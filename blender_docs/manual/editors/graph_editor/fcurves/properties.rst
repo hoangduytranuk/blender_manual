@@ -22,9 +22,9 @@ Channel Name
 RNA Path
    RNA Path to property.
 RNA Array Index
-   Index to the specific property affected by F-Curve if applicable.
+   Index to the specific property affected by the F-curve if applicable.
 Display Color
-   The method used to determine the color of the F-Curve shown in the Graph Editor.
+   The method used to determine the color of the F-curve shown in the Graph editor.
 
    Auto Rainbow
       Increment the hue of the F-curve color based on the channel index.
@@ -70,10 +70,12 @@ Handle Smoothing
       *Auto Clamped* by default, and only switch to *Automatic* handles in places where this
       is desired behavior. This effect can also be reduced by adding in-between keys.
 
-   Considering the upsides and downsides of each mode, *Continuous Acceleration* should be
-   better suited for limited animation, which uses a small number of interpolated keys with
-   minimal manual polish. In case of highly polished high key rate animation, the benefits of
-   smoothing may not outweigh the workflow disruption from more extensive change propagation.
+      .. tip::
+
+         Considering the upsides and downsides of each mode, *Continuous Acceleration* should be
+         better suited for limited animation, which uses a small number of interpolated keys with
+         minimal manual polish. In case of highly polished high key rate animation, the benefits of
+         smoothing may not outweigh the workflow disruption from more extensive change propagation.
 
 
 Active Keyframe

@@ -20,10 +20,10 @@ Options
    Opacity Modifier.
 
 Mode
-   The color transformation will be applied on the stroke/fill color or stroke Hardeness.
-   When Hardeness is selected the opacity affect the stroke transparency (alpha) from the center to the border.
+   The color transformation will be applied on the stroke/fill color or stroke Hardness.
+   When Hardness is selected the opacity affect the stroke transparency (alpha) from the center to the border.
 
-   Stroke and Fill, Stroke, Fill, Hardeness
+   Stroke and Fill, Stroke, Fill, Hardness
 
 Uniform Opacity
    When enabled, makes the opacity equal for the entire strokes.

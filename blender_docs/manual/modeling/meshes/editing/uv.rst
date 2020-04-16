@@ -56,7 +56,7 @@ The UVs menu will appear in the UV Editor after unwrapping has been performed on
 This tool unwraps the faces of the object to provide
 the "best fit" scenario based on how the faces are connected and will fit within the image,
 and takes into account any seams within the selected faces.
-If possible, each selected face gets its own different area of the image and is not overlapping any other faces UV's.
+If possible, each selected face gets its own different area of the image and is not overlapping any other faces UVs.
 If all faces of an object are selected, then each face is mapped to a part of the image.
 
 

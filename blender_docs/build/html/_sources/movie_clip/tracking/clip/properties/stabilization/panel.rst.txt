@@ -84,7 +84,6 @@ Interpolate
 
    Nearest
       No interpolation, uses nearest neighboring pixel.
-      No interpolation, use nearest neighboring pixel.
       This setting basically retains the original image's sharpness.
       The downside is we also retain residual movement below the size of one pixel,
       and compensation movements are done in 1 pixel steps, which might be noticeable as irregular jumps.

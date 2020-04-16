@@ -94,6 +94,16 @@ Gravity
    By default the fluid solver will use the global scene gravity. This behavior can be disabled
    in the scene settings. Disabling the global gravity will enable the fluid gravity options.
 
+.. _bpy.types.FluidDomainSettings.clipping:
+
+Empty Space :guilabel:`Gas Only`
+   Value under which voxels are considered empty space to optimize rendering.
+
+.. _bpy.types.FluidDomainSettings.delete_in_obstacle:
+
+Delete In Obstacle
+   Remover any volume of fluid that intersects with an obstacle inside the domain.
+
 
 .. _bpy.types.FluidDomainSettings.use_collision_border_front:
 .. _bpy.types.FluidDomainSettings.use_collision_border_back:
@@ -273,6 +283,23 @@ Particle Radius
    a good idea to adjust this value. That is, when liquid seems to disappear this value needs to be increased.
    The inverse applies when too much liquid is being produced.
 
+.. _bpy.types.FluidDomainSettings.particle_number:
+
+Sampling
+   Factor that is used when sampling particles. A higher value will sample more particles.
+   Note that particle resampling occurs at every single simulation step.
+
+.. _bpy.types.FluidDomainSettings.particle_randomness:
+
+Randomness
+   New particles are sampled with some randomness attached to their position
+   which can be controlled by this field. Higher values will sample the liquid particles more
+   randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside
+   their corresponding grid cells.
+
+   When trying to create a laminar inflow (with little randomness) or more turbulent flows
+   (with greater randomness) this value can be useful.
+
 .. _bpy.types.FluidDomainSettings.particle_max:
 
 Particles Maximum
@@ -286,15 +313,9 @@ Particles Maximum
 
 .. _bpy.types.FluidDomainSettings.particle_min:
 
-Particles Minimum
+Minimum
    The minimum number of liquid particles per grid cell. Similarly to the maximum particle threshold,
    this value ensures that there are at least a certain amount of particles per cell.
-
-.. _bpy.types.FluidDomainSettings.particle_number:
-
-Particle Sampling
-   Factor that is used when sampling particles. A higher value will sample more particles.
-   Note that particle resampling occurs at every simulation step.
 
 .. _bpy.types.FluidDomainSettings.particle_band_width:
 
@@ -313,16 +334,6 @@ Narrow Band Width
    The narrow band is an implementation of `Narrow Band FLIP for Liquid Simulations
    <https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/>`__.
 
-.. _bpy.types.FluidDomainSettings.particle_randomness:
-
-Particle Randomness
-   New particles are sampled with some randomness attached to their position.
-   This field controls this randomness. Higher values will sample the liquid particles more
-   randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside
-   their corresponding grid cells.
-
-   When trying to create a laminar inflow (with little randomness) or more turbulent flows
-   (with greater randomness) this value can be useful.
 
 .. _bpy.types.FluidDomainSettings.use_fractions:
 
@@ -331,11 +342,11 @@ Fractional Obstacles
    This option reduces the "stepping effect" that results when an obstacles lies inclined inside the domain.
    It also makes liquid flow more smoothly over an obstacle.
 
-.. _bpy.types.FluidDomainSettings.fractions_threshold:
+   .. _bpy.types.FluidDomainSettings.fractions_threshold:
 
-Obstacle-Fluid Threshold
-   Value to control the smoothness of the fractional obstacle option. Smaller value reduce
-   the "stepping effect" but may result particles sticking to the obstacle.
+   Obstacle-Fluid Threshold
+      Value to control the smoothness of the fractional obstacle option. Smaller value reduce
+      the "stepping effect" but may result particles sticking to the obstacle.
 
 .. _bpy.ops.fluid.bake_data:
 .. _bpy.ops.fluid.free_data:

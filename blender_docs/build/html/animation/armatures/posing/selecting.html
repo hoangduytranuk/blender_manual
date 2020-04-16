@@ -65,7 +65,7 @@
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
-    <link rel="next" title="Biên Soạn -- Editing" href="editing.html" />
+    <link rel="next" title="Editing" href="editing/index.html" />
     <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
 </head>
 
@@ -130,7 +130,8 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Tạo Tư Thế -- Posing</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Lựa Chọn -- Selecting</a></li>
-<li class="toctree-l4"><a class="reference internal" href="editing.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="editing/index.html">Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_settings.html">Tool Settings</a></li>
 <li class="toctree-l4"><a class="reference internal" href="bone_constraints/index.html">Ràng Buộc của Xương -- Bone Constraints</a></li>
 </ul>
 </li>
@@ -212,9 +213,6 @@
       <li>Lựa Chọn -- Selecting</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/armatures/posing/selecting.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -228,6 +226,73 @@
 <p>Selection in <em>Pose Mode</em> is very similar to the one in <a class="reference internal" href="../bones/selecting.html"><span class="doc">Edit Mode</span></a>,
 with a few specificities:</p>
 <p>You can only select <em>whole bones</em> in <em>Pose Mode</em>, not roots/tips...</p>
+<div class="section" id="flip-active">
+<h2>Flip Active<a class="headerlink" href="#flip-active" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select</span></p>
+</dd>
+<dt class="field-odd">Phím Tắt -- Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Shift-Ctrl-M</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Flip the selection from one side to another.</p>
+</div>
+<div class="section" id="constraint-target">
+<h2>Constraint Target<a class="headerlink" href="#constraint-target" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
+<div class="section" id="linked">
+<h2>Linked<a class="headerlink" href="#linked" title="Permalink to this headline">¶</a></h2>
+<p>You can select at once all the bones in the chain which the active (last selected)
+bone belongs to by using the <em>linked selection</em> tool, <kbd class="kbd docutils literal notranslate">L</kbd>.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Linked bones selection.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/animation_armatures_bones_selecting_single-bone.png"><img alt="../../../_images/animation_armatures_bones_selecting_single-bone.png" src="../../../_images/animation_armatures_bones_selecting_single-bone.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">A single selected bone.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/animation_armatures_bones_selecting_whole-chain.png"><img alt="../../../_images/animation_armatures_bones_selecting_whole-chain.png" src="../../../_images/animation_armatures_bones_selecting_whole-chain.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Its whole chain selected with <kbd class="kbd docutils literal notranslate">L</kbd>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="select-more-less">
+<h2>Select More/Less<a class="headerlink" href="#select-more-less" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select More/Less</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Parent <kbd class="kbd docutils literal notranslate">[</kbd>, Child <kbd class="kbd docutils literal notranslate">]</kbd></dt><dd><p>You can deselect the active bone and select its immediate parent or one of its children.</p>
+</dd>
+<dt>Extend Parent <kbd class="kbd docutils literal notranslate">Shift-[</kbd>, Extend Child <kbd class="kbd docutils literal notranslate">Shift-]</kbd></dt><dd><p>Similar to <em>Parent</em>/<em>Child</em> but it keeps the active bone in the selection.</p>
+</dd>
+</dl>
+</div>
 <div class="section" id="grouped">
 <h2>Theo Nhóm -- Grouped<a class="headerlink" href="#grouped" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -256,6 +321,10 @@ use the <em>In Same Group</em> entry <kbd class="kbd docutils literal notranslat
 </dd>
 </dl>
 </div>
+<div class="section" id="select-pattern">
+<h2>Select Pattern<a class="headerlink" href="#select-pattern" title="Permalink to this headline">¶</a></h2>
+<p>Todo.</p>
+</div>
 </div>
 
 
@@ -266,7 +335,7 @@ use the <em>In Same Group</em> entry <kbd class="kbd docutils literal notranslat
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="editing.html" class="btn btn-neutral float-right" title="Biên Soạn -- Editing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="editing/index.html" class="btn btn-neutral float-right" title="Editing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -281,7 +350,18 @@ use the <em>In Same Group</em> entry <kbd class="kbd docutils literal notranslat
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/armatures/posing/selecting.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/armatures/posing/selecting%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

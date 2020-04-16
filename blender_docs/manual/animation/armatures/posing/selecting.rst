@@ -9,6 +9,59 @@ with a few specificities:
 You can only select *whole bones* in *Pose Mode*, not roots/tips...
 
 
+Flip Active
+===========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select`
+   :Hotkey:    :kbd:`Shift-Ctrl-M`
+
+Flip the selection from one side to another.
+
+
+Constraint Target
+=================
+
+Todo.
+
+
+Linked
+======
+
+You can select at once all the bones in the chain which the active (last selected)
+bone belongs to by using the *linked selection* tool, :kbd:`L`.
+
+.. list-table:: Linked bones selection.
+
+   * - .. figure:: /images/animation_armatures_bones_selecting_single-bone.png
+          :width: 320px
+
+          A single selected bone.
+
+     - .. figure:: /images/animation_armatures_bones_selecting_whole-chain.png
+          :width: 320px
+
+          Its whole chain selected with :kbd:`L`.
+
+
+Select More/Less
+================
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Select More/Less`
+
+Parent :kbd:`[`, Child :kbd:`]`
+   You can deselect the active bone and select its immediate parent or one of its children.
+Extend Parent :kbd:`Shift-[`, Extend Child :kbd:`Shift-]`
+   Similar to *Parent*/*Child* but it keeps the active bone in the selection.
+
+
 Grouped
 =======
 
@@ -29,3 +82,9 @@ Group
    use the *In Same Group* entry :kbd:`Shift-G 2`.
 Keying Set
    ToDo.
+
+
+Select Pattern
+==============
+
+Todo.

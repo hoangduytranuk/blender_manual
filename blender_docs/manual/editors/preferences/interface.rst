@@ -133,7 +133,7 @@ whenever the mouse pointer hovers over a tool button.
 
 Blender supports I18N for internationalization.
 For more Information on how to load International fonts,
-see: :doc:`Editing Texts </modeling/texts/selecting_editing>` page.
+see: :doc:`Editing Texts </modeling/texts/editing>` page.
 
 
 Text Rendering

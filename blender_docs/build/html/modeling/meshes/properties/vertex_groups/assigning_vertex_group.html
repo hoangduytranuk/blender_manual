@@ -139,6 +139,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Siêu Cầu -- Metaball</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Văn Bản -- Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../empties.html">-- Empties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
 </ul>
@@ -215,9 +216,6 @@
       <li>-- Assigning a Vertex Group</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/properties/vertex_groups/assigning_vertex_group.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -232,9 +230,9 @@
 <h2>-- Creating Vertex Groups<a class="headerlink" href="#creating-vertex-groups" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id1">
 <img alt="../../../../_images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_empty.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_assigning-vertex-group_empty.png" />
-<p class="caption"><span class="caption-text">Empty Vertex Group panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Empty Vertex Groups panel.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>Vertex groups are maintained within the <em>Mesh</em> tab (1) in the Properties Editor.
+<p>Vertex groups are maintained within the <em>Object Data</em> tab (1) in the Properties Editor.
 As long as no vertex groups are defined (the default for new mesh objects),
 the panel is empty (2).</p>
 <p>You create a vertex group by <kbd class="kbd docutils literal notranslate">LMB</kbd> on the <em>Add</em> button <code class="docutils literal notranslate"><span class="pre">+</span></code> on the right panel border (3).
@@ -254,20 +252,20 @@ in the Vertex Groups panel. There you find three clickable elements:</p>
 <dt>Tên Nhóm -- Group Name</dt><dd><p>The group name can be changed by double-clicking <kbd class="kbd docutils literal notranslate">LMB</kbd> on the name itself.
 Then you can edit the name as you like.</p>
 </dd>
-<dt>-- Plus Icon</dt><dd><p>When the little icon in the left lower corner can be clicked, a new
+<dt>Arrow Icon</dt><dd><p>When the little arrow icon in the left lower corner is clicked, a new
 row opens up where you can enter a search term. This becomes handy when
 the number of vertex groups gets big.</p>
 </dd>
 <dt>-- Drag Handle</dt><dd><p>If you have a large number of vertex groups and you want to see more
-than a few groups, you can <kbd class="kbd docutils literal notranslate">LMB</kbd> on the small drag handle to tear
+than a few groups, you can <kbd class="kbd docutils literal notranslate">LMB</kbd> on the small drag handle to make
 the vertex groups list larger or smaller.</p>
 </dd>
 <dt>-- Active Group</dt><dd><p>When a vertex group is created,
 then it is also automatically marked as the <em>Active Group</em>.
 This is indicated by setting the background of the panel entry
-to a light blue color. If you have two or more groups in the list,
+to a light grey color. If you have two or more groups in the list,
 then you can change the active group by <kbd class="kbd docutils literal notranslate">LMB</kbd> on
-the corresponding entry in the Vertex Group panel.</p>
+the corresponding entry in the Vertex Groups panel.</p>
 </dd>
 </dl>
 </div>
@@ -311,8 +309,8 @@ thus all corresponding buttons become disabled for locked vertex groups.</p>
 </div>
 <p>You add vertices to a group as follows:</p>
 <ul class="simple">
-<li><p>Select the group from the group list, thus make it the active group (1).</p></li>
-<li><p>From the 3D View select <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> all vertices that you want to add to the group.</p></li>
+<li><p>Select the group from the group list, thus making it the active group (1).</p></li>
+<li><p>From the 3D View select <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> all vertices that you want to add to the group.</p></li>
 <li><p>Set the weight value that shall be assigned to all selected vertices (2).</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> the <em>Assign</em> button to assign the selected vertices to the active group using the given weight (3).</p></li>
 </ul>
@@ -332,7 +330,7 @@ assigned to the group are not removed from the group.</p>
 <p>To be sure the selected vertices are in the desired vertex group,
 you can try press the deselect button.
 If the vertices remain selected then they are not yet in the current vertex group.</p>
-<p>At this point you may assign then, but take care since all selected vertices
+<p>At this point you may assign them, but take care since all selected vertices
 will have their weight set to the value in the <em>Weight:</em> field.</p>
 </div>
 <div class="section" id="removing-assignments-from-a-group">
@@ -341,7 +339,7 @@ will have their weight set to the value in the <em>Weight:</em> field.</p>
 <ul class="simple">
 <li><p>Select the group from the group list (make it the active group).</p></li>
 <li><p>Select all vertices that you want to remove from the group.</p></li>
-<li><p>Press the <em>Remove</em> button.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> click the <em>Remove</em> button.</p></li>
 </ul>
 <p>Note that removing weight assignments is not available for locked vertex groups.
 The <em>Remove</em> button is grayed out in that case.</p>
@@ -350,7 +348,7 @@ The <em>Remove</em> button is grayed out in that case.</p>
 <h3>-- Using Groups for Selecting/Deselecting<a class="headerlink" href="#using-groups-for-selecting-deselecting" title="Permalink to this headline">¶</a></h3>
 <p>You can quickly select all assigned vertices of a group:</p>
 <ul class="simple">
-<li><p>(optionally) press <kbd class="kbd docutils literal notranslate">A</kbd> once or twice to unselect all vertices.</p></li>
+<li><p>(optionally) press <kbd class="kbd docutils literal notranslate">Alt-A</kbd> to deselect all vertices.</p></li>
 <li><p>Select the group from the group list (make it the active group).</p></li>
 <li><p>When you now <kbd class="kbd docutils literal notranslate">LMB</kbd> click the <em>Select</em> button,
 then the vertices assigned to the active group will be selected and highlighted in the 3D View.</p></li>
@@ -372,8 +370,8 @@ and keep all other vertices selected.</p>
 <h3>-- Finding Ungrouped Vertices<a class="headerlink" href="#finding-ungrouped-vertices" title="Permalink to this headline">¶</a></h3>
 <p>You can find ungrouped vertices as follows:</p>
 <ul class="simple">
-<li><p>Press <kbd class="kbd docutils literal notranslate">A</kbd> once or twice to unselect all vertices.</p></li>
-<li><p>In the header of the 3D View: Navigate to <span class="menuselection">Chọn (Select) ‣ Điểm Đỉnh Chưa Nhóm (Ungrouped Vertices)</span>.</p></li>
+<li><p>Press <kbd class="kbd docutils literal notranslate">Alt-A</kbd> to deselect all vertices.</p></li>
+<li><p>In the header of the 3D View, navigate to <span class="menuselection">Select ‣ Select All By Trait ‣ Ungrouped Verts</span>.</p></li>
 </ul>
 </div>
 </div>
@@ -402,7 +400,18 @@ and keep all other vertices selected.</p>
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/properties/vertex_groups/assigning_vertex_group.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/properties/vertex_groups/assigning_vertex_group%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

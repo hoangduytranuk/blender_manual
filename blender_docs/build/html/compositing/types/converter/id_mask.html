@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="next" title="Nút Toán -- Math Node" href="math.html" />
-    <link rel="prev" title="Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes" href="combine_separate.html" /> 
+    <link rel="prev" title="Nút Kết Hợp/Tách Phân -- Combine/Separate Nodes" href="combine_separate.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -131,7 +131,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Chuyển Đổi -- Converter Nodes</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="alpha_convert.html">Nút Chuyển Đổi Alpha -- Alpha Convert Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="color_ramp.html">Nút Dốc Màu -- Color Ramp Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Nút Kết Hợp/Tách Phân -- Combine/Separate Nodes</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Nút Chắn Lọc ID -- ID Mask Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="math.html">Nút Toán -- Math Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rgb_to_bw.html">Nút RGB Sang Trắng/Đen -- RGB to BW Node</a></li>
@@ -213,9 +213,6 @@
       <li>Nút Chắn Lọc ID -- ID Mask Node</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/converter/id_mask.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -230,11 +227,11 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeIDMask.png" src="../../../_images/compositing_node-types_CompositorNodeIDMask.png" />
 <p class="caption"><span class="caption-text">Nút Chắn Lọc ID.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p><em>Nút Chắn Lọc ID</em> (lọc chỉ số) có thể được sử dụng để truy cập màn chắn alpha trên mỗi một vật thể hoặc trên mỗi một vật liệu.</p>
+<p><abbr title="ID Mask Node -- lọc chỉ số">Nút Chắn Lọc ID</abbr> có thể được sử dụng để tiếp cận màn chắn alpha trên mỗi một vật thể hoặc trên mỗi một nguyên vật liệu nào đó.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Giá trị ID -- ID value</dt><dd><p>Chỉ số lượt kết xuất cung cấp, <em>Chỉ Số Vật Thể</em> (Object Index) hoặc lượt <em>Chỉ Số Chất Liệu</em> (Material Index), tức là đầu ra của <a class="reference internal" href="../input/render_layers.html"><span class="doc">Nút Tầng Lớp Kết Xuất -- Render Layers node</span></a> hoặc <a class="reference internal" href="../input/render_layers.html"><span class="doc">Nút hình ảnh -- Image node</span></a> với định dạng đa tầng lớp (multi-layer).</p>
+<dt>Giá trị ID -- ID value</dt><dd><p>Chỉ số lượt kết xuất cung cấp, <abbr title="Object Index">Chỉ Số Vật Thể</abbr> hoặc lượt <abbr title="Material Index">Chỉ Số Chất Liệu</abbr>, tức là đầu ra của <a class="reference internal" href="../input/render_layers.html"><span class="doc">Nút Tầng Lớp Kết Xuất -- Render Layers node</span></a> hoặc <a class="reference internal" href="../input/render_layers.html"><span class="doc">Nút Hình Ảnh -- Image node</span></a> định dạng <abbr title="multi-layer">đa tầng lớp</abbr>.</p>
 </dd>
 </dl>
 </div>
@@ -243,27 +240,24 @@
 <dl class="simple">
 <dt>Chỉ Số -- Index</dt><dd><p>Sự lựa chọn về chỉ số đã xác định trước đây.</p>
 </dd>
-<dt>Chống Răng Cưa -- Anti-Aliased</dt><dd><p>Chức năng hậu xử lý này tinh chỉnh màn chắn. Xin xem thêm mục <em>Chống Răng Cưa</em> -- <a class="reference internal" href="../../../glossary/index.html#term-anti-aliasing"><span class="xref std std-term">anti-aliasing</span></a>.</p>
+<dt>Chống Răng Cưa -- Anti-Aliased</dt><dd><p>Chức năng hậu xử lý này tinh chỉnh màn chắn. Xin xem thêm mục <span class="xref std std-term">anti-aliasing -- Chống Răng Cưa</span>.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Alpha</dt><dd><p>Màn chắn là màu trắng, trong khi vật thể, hoặc những nơi không phải là màn chắn, là màu đen. Nếu vật thể trong suốt thì màn chắn alpha biểu thị điều này dùng các giá trị màu xám.</p>
+<dt>Alpha</dt><dd><p>Màn chắn là màu trắng, trong khi vật thể, hoặc những nơi không phải là màn chắn, sẽ là màu đen. Nếu vật thể trong suốt thì màn chắn alpha biểu thị điều này dùng các giá trị màu xám.</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>Trong Blender Nội Tại (<em>Blender Internal</em>) nếu một vật thể trong suốt nằm ở phía trước một vật thể khác thì màn chắn sẽ không phản ảnh khả năng hiển thị một phần của vật thể nằm ở phía sau.</p>
+<p>Trong <abbr title="Blender Internal">Blender Nội Tại</abbr>, nếu một vật thể trong suốt nằm ở phía trước một vật thể khác, thì màn chắn sẽ không phản ảnh khả năng hiển thị một phần của vật thể nằm ở phía sau.</p>
 </div>
 </div>
 <div class="section" id="setup">
 <h2>Sắp Đặt -- Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>An index can be specify for any object or material in the scene.
-The Object Index can be set in Properties Editor <span class="menuselection">Object ‣ Relations ‣ Pass Index</span>
-and <span class="menuselection">Material ‣ Settings ‣ Pass Index</span> for the Material Index.
-To be accessible after rendering, <em>Object Index</em> or <em>Material Index</em> render pass has to be enabled.</p>
+<p>Một chỉ số có thể được chỉ định cho bất kỳ một vật thể hoặc nguyên vật liệu nào đó trong cảnh. <abbr title="Object Index">Chỉ Số Vật Thể</abbr> có thể được ấn định  trong <abbr title="Properties Editor">Trình Biên Soạn Tính Chất</abbr> <span class="menuselection">Vật Thể (Object) ‣ Quan Hệ (Relations) ‣ Chỉ Số Lượt (Pass Index)</span> và <span class="menuselection">Nguyên Vật Liệu (Material) ‣ Tùy Chọn (Options) ‣ Chỉ Số Lượt (Pass Index)</span> cho <abbr title="Material Index">Chỉ Số Nguyên Vật Liệu</abbr>. Để có thể truy cập được sau khi kết xuất xong, lượt kết xuất <abbr title="Object Index">Chỉ Số Vật Thể</abbr> hoặc <abbr title="Material Index">Chỉ Số Nguyên Vật Liệu</abbr> phải được bật lên.</p>
 <div class="figure align-default" id="id2">
 <img alt="../../../_images/compositing_types_converter_id-mask_relations-panel.png" src="../../../_images/compositing_types_converter_id-mask_relations-panel.png" />
 <p class="caption"><span class="caption-text">Chỉ Số Lượt Vật Thể.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
@@ -271,7 +265,7 @@ To be accessible after rendering, <em>Object Index</em> or <em>Material Index</e
 </div>
 <div class="section" id="example">
 <h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>Trong ví dụ này, hình lập thể màu đỏ phía sau bên trái được gán Chỉ Số Lượt (Pass Index) là 1 và khối lập phương bên phải Chỉ Số Lượt là 2. Nơi hai hình khối giao nhau, sẽ có nhiễu điểm ảnh (pixelation) đáng chú ý xảy ra, vì chúng kết hợp với nhau ở một góc nhọn và có màu khác nhau. Sử dụng màn chắn từ vật thể 1, tức cái đã được làm mịn (chống răng cưa) ở các cạnh, chúng tôi dùng một <em>nút hòa trộn</em> (Mix Node), và đặt phép <em>Nhân</em> (Multiply) để nhân các cạnh đã làm mịn của hình ảnh, hòng loại bỏ các đường nét khó chịu đó đi, và do đó làm mịn được.</p>
+<p>Trong ví dụ này, hình lập thể màu đỏ phía sau bên trái được ấnh định <abbr title="Pass Index">Chỉ Số Lượt</abbr> là 1 và khối lập phương bên phải Chỉ Số Lượt là 2. Nơi hai hình khối giao nhau, chúng ta sẽ thấy sự <abbr title="pixelation">nhiễu điểm ảnh</abbr> đáng kể xảy ra, vì chúng kết hợp với nhau ở một góc nhọn và có màu khác nhau. Sử dụng màn chắn từ vật thể 1, tức cái đã được làm mịn (chống răng cưa) ở các cạnh, chúng ta dùng một <abbr title="Mix Node">nút hòa trộn</abbr>, và đặt phép <abbr title="Multiply">Nhân</abbr> để nhân các cạnh đã làm mịn của hình ảnh, hòng loại bỏ các đường nét khó chịu đó đi, và do đó làm mịn được.</p>
 <div class="figure align-default" id="id3">
 <img alt="../../../_images/compositing_types_converter_id-mask_example.png" src="../../../_images/compositing_types_converter_id-mask_example.png" />
 <p class="caption"><span class="caption-text">Ví dụ về nút Chắn Lọc Id</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
@@ -290,7 +284,7 @@ To be accessible after rendering, <em>Object Index</em> or <em>Material Index</e
         <a href="math.html" class="btn btn-neutral float-right" title="Nút Toán -- Math Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="combine_separate.html" class="btn btn-neutral float-left" title="Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="combine_separate.html" class="btn btn-neutral float-left" title="Nút Kết Hợp/Tách Phân -- Combine/Separate Nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -302,7 +296,18 @@ To be accessible after rendering, <em>Object Index</em> or <em>Material Index</e
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/converter/id_mask.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60compositing/types/converter/id_mask%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

@@ -217,9 +217,6 @@
       <li>Nút Kết Hợp Z -- Z Combine Node</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/color/z_combine.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -272,7 +269,14 @@
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_z-combine_example-1.png"><img alt="../../../_images/compositing_types_color_z-combine_example-1.png" src="../../../_images/compositing_types_color_z-combine_example-1.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text">Chọn các điểm ảnh gần nhất.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>Trong ví dụ trên, kết quả kết xuất từ hai cảnh được trộn lẫn với nhau bằng nút Kết Hợp-Z (<em>Z-Combine</em>), một cái từ một quả cầu có kích thước là 1,30, và cái kia có hình lập phương với kích thước là 1,00. Hình cầu và hình lập phương được đặt tại cùng một vị trí. Khối lập phương nghiêng về phía trước, do đó, góc ở giữa nằm gần máy quay phim hơn là bề mặt của hình cầu; vì vậy Kết Hợp-Z quyết định sử dụng các điểm ảnh của khối lập phương. Song vì quả cầu hơi lớn hơn (kích thước 1,30 so với 1,00), do đó, nó không hoàn toàn khít vừa và nằm gọn vào trong khối lập phương. Tại một vài thời điểm nào đó, khi các cạnh của khối lập phương lùi xa ra khỏi máy quay phim thì các cạnh của hình cầu sẽ trở nên gần hơn. Khi ấy, Kết Hợp-Z sẽ sử dụng các điểm ảnh của hình cầu để tạo thành hình ảnh đạt được ở kết quả.</p>
+<p>In the example above, render output from two scenes are mixed using the Z Combine node,
+one from a sphere of size 1.30, and the other a cube of size 1.00.
+The sphere and square are located at the same place. The cube is tipped forward,
+so the corner in the center is closer to the camera than the sphere surface;
+so Z Combine chooses to use the cube's pixels. But the sphere is slightly larger
+(a size of 1.30 versus 1.00), so it does not fit totally inside the cube. At some point,
+as the cube's sides recede back away from the camera, the sphere's sides are closer.
+When this happens, Z Combine uses the sphere's pixels to form the resulting picture.</p>
 <p>Nút này có thể được sử dụng để kết hợp một hình ảnh nền trước với một bức vẽ lồng làm nền sau. Walt Disney là công ty tiên phong trong việc sử dụng đa lớp lồng, đa tầng lớp, trong đó ba hoặc bốn lớp lồng được vẽ trên kính và đặt ở bên trái và bên phải tại các vị trí Z khác nhau; Với phương pháp nhích máy ảnh sang bên phải, họ đã tạo được ảo tưởng về chiều sâu, khi con hươu Bambi đi xuyên qua khu rừng.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
@@ -292,7 +296,11 @@
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>Hiệu ứng Người Vô Hình -- Invisible Man Effect</p>
-<p>Nếu hình ảnh ở nền đằng trước có Alpha cao hơn ảnh nền đằng sau, và sau đó được hòa trộn trong Kết Hợp Z (<em>Z combine</em>) với hình ở nền đằng sau, và hình ở đằng sau được phóng to lên một chút, thì đường viền của vùng trong suốt sẽ làm cho hình ảnh nền đằmg sau biến dạng đi, vừa đủ để làm cho nó trông giống như nhìn thấy được một phần nền đằng sau xuyên qua một vật thể vô hình, như qua <a class="reference external" href="https://www.britannica.com/technology/Fresnel-lens">lăng kính Fresnen</a> vậy.</p>
+<p>If a foreground image with a higher Alpha than the background,
+is then mixed in the Z Combine with a slightly magnified background,
+the outline of the transparent area will distort the background,
+enough to make it look like seeing a part of the background through
+an invisible yet Fresnel-lens object.</p>
 </div>
 </div>
 </div>
@@ -320,7 +328,18 @@
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/color/z_combine.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60compositing/types/color/z_combine%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

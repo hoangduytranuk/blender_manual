@@ -55,6 +55,28 @@ trans_finder = tf()
 
 def doctree_resolved(app, doctree, docname):
 
+    def correctingDictionary():
+        new_items = {}
+        for k, v in trans_finder.master_dic_list.items():
+            is_ignore = ig.isIgnored(k) or ig.isIgnored(v)
+            if is_ignore:
+                continue
+
+            ref_list = RefList(msg=v)
+            new_v = ref_list.quotedToAbbrev(k)
+            has_new_v = (new_v is not None)
+            if has_new_v:
+                new_entry={k:new_v}
+                new_items.update(new_entry)
+
+        is_writing_changes = (len(new_items) > 0)
+        if is_writing_changes:
+            trans_finder.master_dic_list.update(new_items)
+            dic_file='/Users/hoangduytran/blender_manual/test_dic.json'
+            print(f'Writing changes to: {dic_file}, number of records:{len(new_items)}')
+            trans_finder.writeJSONDic(dict_list=trans_finder.master_dic_list, file_name=dic_file)
+        exit(0)
+
     def tranRef(msg, is_keep_original):
         ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
         ref_list.parseMessage()
@@ -82,6 +104,8 @@ def doctree_resolved(app, doctree, docname):
     # is_running = runAppOrNot()
     # if not is_running:
     #     return
+
+    correctingDictionary()
 
     debug_file = cm.debug_file
     if debug_file:
@@ -264,7 +288,7 @@ def doctree_resolved(app, doctree, docname):
             print("msgstr \"\"")
 
     print("Output to the path:", new_po_cat, output_path)
-    c.dump_po(output_path, new_po_cat, line_width=1024)
+    # c.dump_po(output_path, new_po_cat, line_width=1024)
     # c.dump_po(output_path, new_po_cat, line_width=4096)
 
 

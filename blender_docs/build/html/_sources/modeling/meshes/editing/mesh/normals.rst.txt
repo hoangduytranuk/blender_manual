@@ -191,16 +191,16 @@ Paste Vectors
 Replace the selected normals with the one in the internal vector buffer.
 
 
-.. _bpy.ops.mesh.smoothen_normals:
+.. _bpy.ops.mesh.smooth_normals:
 
-Smoothen Vectors
-================
+Smooth Vectors
+==============
 
 .. admonition:: Reference
    :class: refbox
 
    :Mode:      Edit Mode
-   :Menu:      :menuselection:`Mesh --> Normals --> Smoothen Vectors`
+   :Menu:      :menuselection:`Mesh --> Normals --> Smooth Vectors`
 
 Adjust the normals to bring them closer to their adjacent vertex normals.
 

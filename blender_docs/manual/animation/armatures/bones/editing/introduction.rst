@@ -30,3 +30,44 @@ Thus you should in general be sure that your armature is definitive before start
 
    Please note that some tools work on bones' joints, while others work on bones themselves.
    Be careful not to get confused.
+
+
+Add Menu
+========
+
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Add`
+   :Hotkey:    :kbd:`Shift-A`
+
+In the 3D View, :kbd:`Shift-A` to add a new bone to your armature.
+
+This bone will be:
+
+- Of one unit of length.
+- Oriented towards the global Z axis.
+- With its root placed at the 3D cursor position.
+- With no relationship with any other bone of the armature.
+
+
+.. _animation_armatures_bones_locking:
+
+Locking Bones
+=============
+
+You can prevent a bone from being transformed in *Edit Mode* in several ways:
+
+.. The active bone can be locked clicking on *Lock*
+   in the *Transform* panel (:kbd:`N` in a 3D View):
+
+- All bones can be locked clicking on the *Lock* checkbox
+  of their Transform panel in the *Bones* tab;
+- Press :kbd:`Shift-W` :menuselection:`Toggle Bone Options --> Locked`
+- Select :menuselection:`Armature --> Bone Settings --> Toggle a Setting`.
+
+*If the root of a locked bone is connected to the tip of an unlocked bone, it will not be locked*,
+i.e. you will be able to move it to your liking.
+This means that in a chain of connected bones, when you lock one bone,
+you only really lock its tip. With unconnected bones, the locking is effective on both joints of the bone.

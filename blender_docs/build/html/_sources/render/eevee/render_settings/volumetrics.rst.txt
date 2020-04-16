@@ -53,7 +53,7 @@ Volumetric Shadows
 ==================
 
 Approximate light absorption of the surrounding volume objects. This makes the volumes more opaque to light.
-This is a very expensive option and has limitations (link).
+This is a very computationally expensive option and has limitations (link).
 
 Samples
    Number of samples to compute volumetric shadowing.

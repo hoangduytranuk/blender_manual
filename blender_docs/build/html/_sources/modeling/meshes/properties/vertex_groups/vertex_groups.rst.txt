@@ -14,8 +14,7 @@ Vertex Groups Panel
 
    The Vertex Group panel.
 
-Vertex groups are maintained within the *Object Data* Properties Editor,
-and there in the *Vertex Groups* panel.
+Vertex groups are maintained within the *Object Data* Properties Editor, in the *Vertex Groups* panel.
 
 .. _bpy.ops.object.vertex_group_add:
 .. _bpy.ops.object.vertex_group_sort:
@@ -24,7 +23,6 @@ and there in the *Vertex Groups* panel.
 .. _bpy.ops.object.vertex_group_copy_to_selected:
 .. _bpy.ops.object.vertex_group_remove_from:
 .. _bpy.ops.object.vertex_group_remove:
-.. _bpy.ops.object.vertex_group_lock:
 .. _bpy.ops.object.vertex_group_move:
 
 Active Vertex Group
@@ -88,9 +86,9 @@ Editing Vertex Groups
 .. admonition:: Reference
    :class: refbox
 
-   :Mode:      All Modes
-   :Panel:     :menuselection:`Object Data tab --> Vertex Groups`
-   :Menu:      :menuselection:`Mesh --> Vertex --> Vertex Groups`
+   :Mode:      Edit Mode
+   :Panel:     :menuselection:`Object Data Properties --> Vertex Groups`
+   :Menu:      :menuselection:`Vertex --> Vertex Groups`
    :Hotkey:    :kbd:`Ctrl-G`
 
 .. figure:: /images/modeling_meshes_properties_vertex-groups_vertex-groups_panel-edit.png

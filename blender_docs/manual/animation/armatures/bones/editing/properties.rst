@@ -36,4 +36,4 @@ Inherit Rotation
 Lock
    (also :kbd:`Shift-W` :menuselection:`--> (Locked, ...)`)
    This will prevent all editing of the bone in *Edit Mode*;
-   see :doc:`previous page </animation/armatures/bones/editing/bones>`.
+   see :ref:`bone locking <animation_armatures_bones_locking>`.

@@ -122,7 +122,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Vật Lý -- Physics</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cloth/index.html">Cloth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Fluid</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -135,10 +135,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../material.html">Materials</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../particles/index.html">Particle System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../forces/index.html">Forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../collision.html">Collision</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../baking.html">-- Baking Physics Simulations</a></li>
 </ul>
 </li>
@@ -199,7 +199,9 @@
     
       <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+          <li><a href="../../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../../../../../modeling/modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
         
           <li><a href="../../../index.html">Fluid</a> &raquo;</li>
         
@@ -212,9 +214,6 @@
       <li>Diffusion</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/fluid/type/domain/liquid/diffusion.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -224,7 +223,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="diffusion">
-<span id="bpy-ops-fluid-preset"></span><h1>Diffusion<a class="headerlink" href="#diffusion" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-types-fluiddomainsettings-use-diffusion"></span><span id="bpy-ops-fluid-preset"></span><h1>Diffusion<a class="headerlink" href="#diffusion" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -241,7 +240,8 @@ and in turn define how a liquid interacts with its environment.
 The main factors of diffusion are the <em>Viscosity</em> and <em>Surface Tension</em>.
 These properties can be adjusted to create virtual liquids that behave like water,
 oil, honey, or any other liquid. A couple presets exist to change the diffusion
-for different substances are predefined and can be changed in the preset menu.</p>
+for different substances are predefined and can be changed in the preset menu.
+Fluid Diffusion settings can be enabled/disabled in the panel header.</p>
 <dl>
 <dt>Viscosity</dt><dd><p>The viscosity refers to the &quot;thickness&quot; of the fluid and actually the force needed to
 move an object of a certain surface area through it at a certain speed.</p>
@@ -296,16 +296,11 @@ so the entry would be 1.002 times 10 to the minus six (1.002×10<sup>-6</sup> in
 </table>
 <p>To simplify the input of these numbers, the viscosity is changed by entering values
 in scientific notation by entering a base value and the exponent of that number.</p>
-</dd>
-</dl>
-<blockquote id="bpy-types-fluiddomainsettings-viscosity-base">
-<div><dl class="simple">
+<dl class="simple" id="bpy-types-fluiddomainsettings-viscosity-base">
 <dt>Base</dt><dd><p>The base of the viscosity value (e.g. 1.002 in the case of water (20 °C)).</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote id="bpy-types-fluiddomainsettings-viscosity-exponent">
-<div><dl class="simple">
+<dl class="simple" id="bpy-types-fluiddomainsettings-viscosity-exponent">
 <dt>Exponent</dt><dd><p>The exponent of the viscosity value that will be multiplied by 10<sup>-6</sup>
 (e.g. 6 in the case of water (20 °C)).</p>
 </dd>
@@ -325,7 +320,8 @@ Glass at room temperature is basically a solid, but glass at 1500 °C flows (nea
 Simply setting the viscosity to very large values will not result in rigid body behavior,
 but might cause instabilities.</p>
 </div>
-</div></blockquote>
+</dd>
+</dl>
 <dl class="simple" id="bpy-types-fluiddomainsettings-domain-size">
 <dt>Real World Size</dt><dd><p>Size of the domain object in the real world in meters. If you want to create a mug of coffee,
 this might be 10 cm (0.1 meters), while a swimming pool might be 10 m. The size set here defines
@@ -361,7 +357,18 @@ the longest side of the domain bounding box.</p>
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/fluid/type/domain/liquid/diffusion.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/fluid/type/domain/liquid/diffusion%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

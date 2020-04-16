@@ -13,6 +13,8 @@ Selecting
 In Edit Mode, your text has a white cursor, and as in any text editor,
 it determines where new chars will be inserted.
 
+Select All :kbd:`Ctrl-A`
+   Selects the full text string.
 Next/Previous Character :kbd:`Left`/ :kbd:`Right`
    You can move the cursor with the arrow keys.
 Next/Previous Word :kbd:`Ctrl-Left`/ :kbd:`Ctrl-Right`
@@ -21,7 +23,7 @@ Line Begin/End :kbd:`Home`/ :kbd:`End`
    Move the cursor to the beginning and end of a line respectively.
 Next/Previous Line :kbd:`Up`/ :kbd:`Down`
    To jump between lines.
-Next/Previous Page :kbd:`PageUp`/ :kbd:`PageDown`
+Next/Previous Block :kbd:`PageUp`/ :kbd:`PageDown`
    To jump back/forward ten lines at a time.
 
 Hold :kbd:`Shift` while using the arrow keys to select a part of the text.

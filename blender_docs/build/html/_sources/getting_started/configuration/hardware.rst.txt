@@ -187,13 +187,15 @@ a special way, as described below.
 
 Monado
 ^^^^^^
-Monado is a :doc:`free and open source </getting_started/about/license>` XR platform for Linux. It is not yet ready for
-production usage and should only be used for testing purposes.
 
-`There are packages available <https://launchpad.net/~monado-xr/+archive/ubuntu/monado>`__ for Debian based
-distributions. For others it has to be compiled from source, which in this case is not recommended for people with
-little experience in compiling software. Follow the `Getting Started Guides
-<https://gitlab.freedesktop.org/monado/monado/-/blob/master/README.md>`__ from Monado to do so nevertheless.
+Monado is a :doc:`free and open source </getting_started/about/license>` XR platform for Linux.
+It is not yet ready for production usage and should only be used for testing purposes.
+
+`There are packages available <https://launchpad.net/~monado-xr/+archive/ubuntu/monado>`__
+for Debian based distributions. For others it has to be compiled from source,
+which in this case is not recommended for people with little experience in compiling software.
+Follow the `Getting Started Guides <https://gitlab.freedesktop.org/monado/monado/-/blob/master/README.md>`__
+from Monado to do so nevertheless.
 
 
 Completing the Setup

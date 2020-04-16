@@ -37,6 +37,11 @@ Repeat
    The number of smoothing iterations,
    equivalent to executing the *Smooth* tool multiple times.
 
+Scale
+   Additional scaling factor to increase the size of the mesh.
+   This is useful because sometimes the Smooth Corrective modifier
+   will introduce volume loss, especially when used with a rig.
+
 Smooth Type
    Select the smoothing method used.
 

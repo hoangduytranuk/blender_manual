@@ -99,7 +99,7 @@ Example showing how Bridge tool can detect multiple loops and connect them in on
 
           Bridge result.
 
-Example of the subdivision option and surface blending with UV's.
+Example of the subdivision option and surface blending with UVs.
 
 .. list-table::
 

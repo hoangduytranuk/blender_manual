@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.82 Manual 2.82\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-06 22:21-0500\n"
-"PO-Revision-Date: 2020-03-31 18:51+0100\n"
+"POT-Creation-Date: 2020-04-04 18:52-0400\n"
+"PO-Revision-Date: 2020-04-10 20:28+0100\n"
 "Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
 "Language: vi\n"
 "Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
@@ -104,6 +104,18 @@ msgstr "Trọng Lực -- Gravity"
 msgid "By default the fluid solver will use the global scene gravity. This behavior can be disabled in the scene settings. Disabling the global gravity will enable the fluid gravity options."
 msgstr "Bằng Cách mặc định the chất lỏng trình giải nghiệm sẽ sử dụng the toàn cầu cảnh trọng lực. Cái/Điều Này tính chất hoạt động có thể được/là tắt vào the cảnh sắp đặt. Tắt the toàn cầu trọng lực sẽ bật the chất lỏng trọng lực tùy chọn."
 
+msgid "Empty Space :guilabel:`Gas Only`"
+msgstr "Phần Tử Trống/Rỗng Cách/Khoảng Trống/Không Gian :guilabel:`Thể Khí Duy/Chỉ -- Gas Only`"
+
+msgid "Value under which voxels are considered empty space to optimize rendering."
+msgstr "Khi thấp hơn giá trị này, các thể tích tử được coi là khoảng không trống rỗng, hòng để tối ưu hóa quá trình kết xuất."
+
+msgid "Delete In Obstacle"
+msgstr "Xóa Bên Trong Chướng Ngại Vật -- Delete In Obstacle"
+
+msgid "Remover any volume of fluid that intersects with an obstacle inside the domain."
+msgstr "Remover bất cứ âm lượng/thể tích của chất lỏng đó/mà intersects với một trướng ngại vật bên trong the phạm vi."
+
 msgid "Border Collisions"
 msgstr "Ranh Giới Va Đập -- Border Collisions"
 
@@ -114,7 +126,7 @@ msgid "Domain (Gas)"
 msgstr "Phạm Vi (Thể Khí)"
 
 msgid "Controls which sides of the domain will allow fluid \"pass through\" the domain, making it disappear without influencing the rest of the simulation, and which sides will deflect fluids."
-msgstr "Điều Khiển cái mà/tức số cạnh của the phạm vi sẽ cho phép chất lỏng \"lượt through -- pass through\" the phạm vi, làm cho it disappear without influencing the rest của the mô phỏng, và cái mà/tức số cạnh sẽ deflect fluids."
+msgstr "Điều Khiển cái mà/tức số cạnh của the phạm vi sẽ cho phép chất lỏng \"lượt through -- pass through\" the phạm vi, làm cho it disappear mà/không có influencing the rest của the mô phỏng, và cái mà/tức số cạnh sẽ deflect fluids."
 
 msgid "Smoke"
 msgstr "Khói -- Smoke"
@@ -228,10 +240,10 @@ msgid ":menuselection:`Physics --> Fluid --> Settings --> Liquid`"
 msgstr ":menuselection:`Vật Lý (Physics) --> Chất Lỏng (Fluid) --> Sắp Đặt (Settings) --> Chất Lỏng (Liquid)`"
 
 msgid "Liquid settings control the behavior of the particles which the simulation consists of. Enabling the liquid checkbox will automatically create a particle system for the simulation. This particle system visualizes the flow of the simulation. Visualizing the liquid particles is optional. The fluid simulation will make use of all the fields without an attached particle system too."
-msgstr "Chất Lỏng sắp đặt điều khiển the tính chất hoạt động của the hạt cái mà/tức the mô phỏng consists của. Bật the chất lỏng checkbox sẽ tự động kiến tạo a hạt hệ thống dành cho/đối với/để the mô phỏng. Cái/Điều Này hạt hệ thống visualizes the lưu luồng của the mô phỏng. Visualizing the chất lỏng hạt là optional. The chất lỏng mô phỏng sẽ tạo sử dụng của toàn bộ the trường without một attached hạt hệ thống too."
+msgstr "Chất Lỏng sắp đặt điều khiển the tính chất hoạt động của the hạt cái mà/tức the mô phỏng consists của. Bật the chất lỏng hộp kiểm sẽ tự động kiến tạo a hạt hệ thống dành cho/đối với/để the mô phỏng. Cái/Điều Này hạt hệ thống visualizes the lưu luồng của the mô phỏng. Visualizing the chất lỏng hạt là optional. The chất lỏng mô phỏng sẽ tạo sử dụng của toàn bộ the trường mà/không có một attached hạt hệ thống too."
 
 msgid "Disabling the liquid checkbox will delete the attached particle system and its settings."
-msgstr "Tắt the chất lỏng checkbox sẽ xóa the attached hạt hệ thống và của nó sắp đặt."
+msgstr "Tắt the chất lỏng hộp kiểm sẽ xóa the attached hạt hệ thống và của nó sắp đặt."
 
 msgid "Simulation Method"
 msgstr "Phương Pháp Mô Phỏng -- Simulation Method"
@@ -249,10 +261,25 @@ msgid "Particle Radius"
 msgstr "Bán Kính Hạt -- Particle Radius"
 
 msgid "The radius of one liquid particle in grid cells units. This value describes how much area is covered by a particle and thus determines how much area around it can be considered as liquid. A greater radius will let particles cover more area. This will result in more grids cell being tagged as liquid instead of just being empty."
-msgstr "The bán kính của một chất lỏng hạt vào khung lưới/đồ thị cells đơn vị. Cái/Điều Này giá trị describes phương pháp/thế nào much diện tích là covered bằng cách a hạt và thus determines phương pháp/thế nào much diện tích chung quanh it có thể được/là considered tựa như chất lỏng. A lớn hơn bán kính sẽ let hạt cover nhiều/lớn hơn diện tích. Cái/Điều Này sẽ kết quả vào nhiều/lớn hơn grids cell being tagged tựa như chất lỏng instead của just being phần tử trống/rỗng."
+msgstr "The bán kính của một chất lỏng hạt vào khung lưới/đồ thị cells đơn vị. Cái/Điều Này giá trị describes phương pháp/thế nào much diện tích là covered bằng cách a hạt và thus determines phương pháp/thế nào much diện tích chung quanh it có thể được/là considered tựa như chất lỏng. A lớn hơn bán kính sẽ let hạt cover nhiều/lớn hơn diện tích. Cái/Điều Này sẽ kết quả vào nhiều/lớn hơn đồ thị cell being tagged tựa như chất lỏng instead của just being phần tử trống/rỗng."
 
 msgid "Whenever the simulation appears to leak or gain volume in an undesired, non physically accurate way it is a good idea to adjust this value. That is, when liquid seems to disappear this value needs to be increased. The inverse applies when too much liquid is being produced."
 msgstr "Whenever the mô phỏng appears tới leak hoặc gia lượng âm lượng/thể tích vào một undesired, non physically chính xác đường lối/phương pháp/cách it là a tốt ý tưởng tới điều chỉnh cái/điều này giá trị. Đó/Mà là, khi chất lỏng seems tới disappear cái/điều này giá trị cần thiết tới được/là gia tăng. The đảo nghịch áp dụng khi too much chất lỏng là being produced."
+
+msgid "Sampling"
+msgstr "Lấy Mẫu Vật -- Sampling"
+
+msgid "Factor that is used when sampling particles. A higher value will sample more particles. Note that particle resampling occurs at every single simulation step."
+msgstr "Hệ Số đó/mà là sử dụng khi lấy mẫu vật hạt. A cao hơn giá trị sẽ lấy mẫu vật nhiều/lớn hơn hạt. Ghi Chú đó/mà hạt resampling occurs tại mọi/mỗi đơn/một cánh mô phỏng bước."
+
+msgid "Randomness"
+msgstr "Độ Ngẫu Nhiên -- Randomness"
+
+msgid "New particles are sampled with some randomness attached to their position which can be controlled by this field. Higher values will sample the liquid particles more randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside their corresponding grid cells."
+msgstr "Tạo Mới hạt là sampled với some độ ngẫu nhiên attached tới của chúng/họ vị trí cái mà/tức có thể được/là điều khiển bằng cách cái/điều này trường. Cao Hơn giá trị sẽ lấy mẫu vật the chất lỏng hạt nhiều/lớn hơn randomly vào luồng chảy vào các vùng. Với a giá trị của 0.0 toàn bộ tạo mới hạt sẽ được/là sampled uniformly bên trong của chúng/họ tương ứng khung lưới/đồ thị cells."
+
+msgid "When trying to create a laminar inflow (with little randomness) or more turbulent flows (with greater randomness) this value can be useful."
+msgstr "Khi trying tới kiến tạo a laminar luồng chảy vào (với little độ ngẫu nhiên) hoặc nhiều/lớn hơn turbulent flows (với lớn hơn độ ngẫu nhiên) cái/điều này giá trị có thể được/là hữu ích/có lợi/có tác dụng trong việc."
 
 msgid "Particles Maximum"
 msgstr "Số Hạt Tối Đa -- Particles Maximum"
@@ -263,17 +290,8 @@ msgstr "The tối đa số/lượng của chất lỏng hạt per khung lưới/
 msgid "This value sets the upper threshold of particles per cell. It is also a good way to estimate how many particles there can be in your simulation (one needs to take grid resolution into account too). This can be useful before baking and when planning a simulation."
 msgstr "Cái/Điều Này giá trị sets the chữ hoa/bên trên ngưỡng của hạt per cell. It là also a tốt đường lối/phương pháp/cách tới estimate phương pháp/thế nào many hạt kia/có có thể được/là vào của bạn mô phỏng (một cần thiết tới take khung lưới/đồ thị độ phân giải vào/trở thành account too). Cái/Điều Này có thể được/là hữu ích/có lợi/có tác dụng trong việc trước nướng và khi planning a mô phỏng."
 
-msgid "Particles Minimum"
-msgstr "Hạt Tối Thiểu -- Particles Minimum"
-
 msgid "The minimum number of liquid particles per grid cell. Similarly to the maximum particle threshold, this value ensures that there are at least a certain amount of particles per cell."
 msgstr "The tối thiểu số/lượng của chất lỏng hạt per khung lưới/đồ thị cell. Similarly tới the tối đa hạt ngưỡng, cái/điều này giá trị ensures đó/mà kia/có là tại least a certain số/lượng của hạt per cell."
-
-msgid "Particle Sampling"
-msgstr "Số Hạt Lấy Mẫu -- Particle Sampling"
-
-msgid "Factor that is used when sampling particles. A higher value will sample more particles. Note that particle resampling occurs at every simulation step."
-msgstr "Hệ Số đó/mà là sử dụng khi lấy mẫu vật hạt. A cao hơn giá trị sẽ lấy mẫu vật nhiều/lớn hơn hạt. Ghi Chú đó/mà hạt resampling occurs tại mọi/mỗi mô phỏng bước."
 
 msgid "Narrow Band Width"
 msgstr "Băng Tần Hẹp -- Narrow Band Width"
@@ -286,15 +304,6 @@ msgstr "Vào some situations gia tăng cái/điều này giá trị có thể gi
 
 msgid "The narrow band is an implementation of `Narrow Band FLIP for Liquid Simulations <https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/>`__."
 msgstr "The narrow band là một implementation của `Narrow Band ĐẢO LẬT dành cho/đối với/để Chất Lỏng Simulations -- Narrow Band FLIP for Liquid Simulations <https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/>`__."
-
-msgid "Particle Randomness"
-msgstr "Độ Ngẫu Nhiên Của Hạt -- Particle Randomness"
-
-msgid "New particles are sampled with some randomness attached to their position. This field controls this randomness. Higher values will sample the liquid particles more randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside their corresponding grid cells."
-msgstr "Tạo Mới hạt là sampled với some độ ngẫu nhiên attached tới của chúng/họ vị trí. Cái/Điều Này trường điều khiển cái/điều này độ ngẫu nhiên. Cao Hơn giá trị sẽ lấy mẫu vật the chất lỏng hạt nhiều/lớn hơn randomly vào luồng chảy vào các vùng. Với a giá trị của 0.0 toàn bộ tạo mới hạt sẽ được/là sampled uniformly bên trong của chúng/họ tương ứng khung lưới/đồ thị cells."
-
-msgid "When trying to create a laminar inflow (with little randomness) or more turbulent flows (with greater randomness) this value can be useful."
-msgstr "Khi trying tới kiến tạo a laminar luồng chảy vào (với little độ ngẫu nhiên) hoặc nhiều/lớn hơn turbulent flows (với lớn hơn độ ngẫu nhiên) cái/điều này giá trị có thể được/là hữu ích/có lợi/có tác dụng trong việc."
 
 msgid "Fractional Obstacles"
 msgstr "Phân Số Chướng Ngại Vật -- Fractional Obstacles"
@@ -312,10 +321,10 @@ msgid "Bake Data, Free Data"
 msgstr "Nướng Dữ Liệu, Tự Do Dữ Liệu -- Bake Data, Free Data"
 
 msgid "This option is only available when using the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type. *Bake Data* simulates and stores the base of the fluid simulation on drive. Both gas and liquid simulations can add refinements on top of this (e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both)."
-msgstr "Cái/Điều Này tùy chọn là duy/chỉ khả dụng khi sử dụng/dùng the :ref:`Mô-Đun-Hóa -- Modular <bpy.types.FluidDomainSettings.cache_type>` bộ nhớ đệm thể loại. *Dữ Liệu Nướng -- Bake Data* simulates và lưu the cơ sở của the chất lỏng mô phỏng bật drive. Cả Hai thể khí và chất lỏng simulations có thể cộng thêm refinements bật trên/đỉnh của cái/điều này (e.g. thể khí simulations có thể cộng thêm nhiễu, chất lỏng simulations có thể cộng thêm a khung lưới hoặc phụ hạt hoặc cả hai)."
+msgstr "Cái/Điều Này tùy chọn là duy/chỉ khả dụng khi sử dụng/dùng the :ref:`Mô-Đun-Hóa -- Modular <bpy.types.FluidDomainSettings.cache_type>` bộ nhớ đệm thể loại. *Nướng Dữ Liệu -- Bake Data* simulates và lưu the cơ sở của the chất lỏng mô phỏng bật drive. Cả Hai thể khí và chất lỏng simulations có thể cộng thêm refinements bật trên/đỉnh của cái/điều này (e.g. thể khí simulations có thể cộng thêm nhiễu, chất lỏng simulations có thể cộng thêm a khung lưới hoặc phụ hạt hoặc cả hai)."
 
 msgid "The progress will be displayed in the status bar. Pressing :kbd:`Esc` will pause the simulation."
-msgstr "The progress sẽ được/là displayed vào the trạng thái bar. Pressing :kbd:`Esc` sẽ tạm ngưng the mô phỏng."
+msgstr "The progress sẽ được/là hiển thị vào the trạng thái bar. Pressing :kbd:`Esc` sẽ tạm ngưng the mô phỏng."
 
 msgid "Once the simulation has been baked, the cache can be deleted by pressing *Free Data*. It is possible to pause or resume a *Bake All* process."
 msgstr "Once the mô phỏng có đã được baked, the bộ nhớ đệm có thể được/là được/bị xóa bằng cách pressing *Phóng Thích Dữ Liệu -- Free Data*. It là có thể tới tạm ngưng hoặc lại tiếp tục a *Nướng Tất Cả -- Bake All* process."

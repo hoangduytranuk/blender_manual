@@ -63,6 +63,8 @@ Cone
 Displays as a cone, initially pointing in the +Y axis direction.
 
 
+.. _bpy.types.Object.empty_image:
+
 Image
 -----
 

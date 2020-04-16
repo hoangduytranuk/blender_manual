@@ -16,4 +16,5 @@ navigate with :kbd:`Down` and :kbd:`Up`, activate it by pressing :kbd:`Return`.
 
 .. seealso::
 
-   The :ref:`keymap-blender_default-spacebar_action` option in the Preferences.
+   The :ref:`Spacebar Action <keymap-blender_default-spacebar_action>`
+   option in the Preferences.

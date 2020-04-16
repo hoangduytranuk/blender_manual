@@ -150,4 +150,4 @@ The color field stores a color value shown in its background.
 Clicking :kbd:`LMB` on color fields opens the :doc:`/interface/controls/templates/color_picker`.
 Color fields with an alpha channel are divided in half: on the left the color is shown without an alpha channel and
 on the right the color with an alpha channel shown over a checker pattern.
-Colors can be copied to other color fields by dragging and dropping to another color field.
+Colors can be copied to other color fields by being dragged and dropped to another color field.

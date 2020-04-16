@@ -30,6 +30,8 @@ in Edit Mode do not exist for texts. The second place is the Properties editor, 
 
 
 .. _bpy.ops.font.text_paste_from_file:
+.. _bpy.ops.font.style_toggle:
+.. _bpy.ops.font.change_spacing:
 
 Text
 ====
@@ -57,8 +59,6 @@ Paste File
    This will bring up a :doc:`File Browser </editors/file_browser>` for navigating to a valid UTF-8 file.
    As usual, be careful that the file does not have too many characters,
    as interactive response will slow down.
-Select All :kbd:`Ctrl-A`
-   Selects the full text string.
 To Uppercase
    Changes the case of the selected text to uppercase.
 To Lowercase
@@ -73,19 +73,6 @@ Special Characters
       The text buffer is in sync with the desktop clipboard.
       But if it is used within Blender the text formatting will be copied as well.
       For other ways of inserting a text, see `Inserting Text`_.
-
-
-.. _bpy.ops.font.style_toggle:
-.. _bpy.ops.font.change_spacing:
-
-Font
-====
-
-.. admonition:: Reference
-   :class: refbox
-
-   :Mode:      Edit Mode
-   :Menu:      :menuselection:`3D View --> Font`
 
 Toggle Bold, Italics, Underline, Small Caps
    To apply the *Bold*, *Italics*, *Underline* or *Small Caps* attribute to a set of characters,
@@ -106,6 +93,12 @@ Kerning
       Increase the spacing between the characters on either side of the cursor.
    Reset Kerning
       Sets the spacing between the characters on either side of the cursor to their initial value.
+
+Delete
+   Previous/Next Character
+      Deletes the character before or after the cursor.
+   Previous/Next Word
+      Deletes the word before or after the cursor.
 
 
 Inserting Text

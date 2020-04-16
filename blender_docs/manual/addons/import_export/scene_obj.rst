@@ -12,7 +12,7 @@ Wavefront OBJ
 OBJ is a widely used de facto standard in the 3D industry.
 The OBJ format is a popular plain text format, however, it has only basic geometry and material support.
 
-- Mesh: vertices, faces, edges, normals, UV's
+- Mesh: vertices, faces, edges, normals, UVs
 - Separation by groups/objects
 - Materials/textures
 - NURBS curves and surfaces

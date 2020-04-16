@@ -126,7 +126,6 @@
 <li class="toctree-l3"><a class="reference internal" href="selecting.html">Selecting</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Editing</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#text">Text</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#font">Font</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#inserting-text">Inserting Text</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#converting-to-a-mesh-or-curve">Converting to a Mesh or Curve</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#assigning-materials">Assigning Materials</a></li>
@@ -135,6 +134,7 @@
 <li class="toctree-l3"><a class="reference internal" href="properties.html">Tính Chất -- Properties</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../empties.html">-- Empties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a></li>
 </ul>
@@ -207,9 +207,6 @@
       <li>Editing</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/texts/editing.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -225,7 +222,7 @@ First, the 3D View, where you type your text, and have a few shortcuts, e.g. for
 styles (see <a class="reference internal" href="properties.html#modeling-text-character"><span class="std std-ref">Phông -- Font</span></a>) -- note however, that most Blender hotkeys you know
 in Edit Mode do not exist for texts. The second place is the Properties editor, especially the <em>Font</em> tab.</p>
 <div class="section" id="text">
-<span id="bpy-ops-font-text-paste-from-file"></span><h2>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h2>
+<span id="bpy-ops-font-change-spacing"></span><span id="bpy-ops-font-style-toggle"></span><span id="bpy-ops-font-text-paste-from-file"></span><h2>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -254,8 +251,6 @@ This will bring up a <a class="reference internal" href="../../editors/file_brow
 As usual, be careful that the file does not have too many characters,
 as interactive response will slow down.</p>
 </dd>
-<dt>Select All <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd></dt><dd><p>Selects the full text string.</p>
-</dd>
 <dt>To Uppercase</dt><dd><p>Changes the case of the selected text to uppercase.</p>
 </dd>
 <dt>To Lowercase</dt><dd><p>Changes the case of the selected text to lowercase.</p>
@@ -270,22 +265,6 @@ But if it is used within Blender the text formatting will be copied as well.
 For other ways of inserting a text, see <a class="reference internal" href="#inserting-text">Inserting Text</a>.</p>
 </div>
 </dd>
-</dl>
-</div>
-<div class="section" id="font">
-<span id="bpy-ops-font-change-spacing"></span><span id="bpy-ops-font-style-toggle"></span><h2>Font<a class="headerlink" href="#font" title="Permalink to this headline">¶</a></h2>
-<div class="refbox admonition">
-<p class="admonition-title">Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Mode</dt>
-<dd class="field-odd"><p>Edit Mode</p>
-</dd>
-<dt class="field-even">Menu</dt>
-<dd class="field-even"><p><span class="menuselection">3D View ‣ Font</span></p>
-</dd>
-</dl>
-</div>
-<dl>
 <dt>Toggle Bold, Italics, Underline, Small Caps</dt><dd><p>To apply the <em>Bold</em>, <em>Italics</em>, <em>Underline</em> or <em>Small Caps</em> attribute to a set of characters,
 you either turn on the related setting prior to typing characters,
 or select existing text, and then toggle desired style from the menu.</p>
@@ -302,6 +281,13 @@ as they also serve as placeholders for you to load up other fonts manually.</p>
 <dt>Increase Kerning <kbd class="kbd docutils literal notranslate">Alt-Right-Arrow</kbd></dt><dd><p>Increase the spacing between the characters on either side of the cursor.</p>
 </dd>
 <dt>Reset Kerning</dt><dd><p>Sets the spacing between the characters on either side of the cursor to their initial value.</p>
+</dd>
+</dl>
+</dd>
+<dt>Delete</dt><dd><dl class="simple">
+<dt>Previous/Next Character</dt><dd><p>Deletes the character before or after the cursor.</p>
+</dd>
+<dt>Previous/Next Word</dt><dd><p>Deletes the word before or after the cursor.</p>
 </dd>
 </dl>
 </dd>
@@ -407,7 +393,18 @@ clicking on the <em>Assign</em> button in the <em>Materials</em> panel.</p>
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/texts/editing.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/texts/editing%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

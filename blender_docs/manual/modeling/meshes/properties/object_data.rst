@@ -84,7 +84,7 @@ Remeshing can either add or remove the amount of topology depending on the defin
 Remeshing is especially useful for :doc:`sculpting </sculpt_paint/sculpting/index>`,
 to generate better topology after blocking out the initial shape.
 
-See :doc:`Mesh Retopology </modeling/meshes/retopology>` for more information
+See :doc:`Mesh Retopology </modeling/meshes/retopology>` for more information.
 
 
 Geometry Data

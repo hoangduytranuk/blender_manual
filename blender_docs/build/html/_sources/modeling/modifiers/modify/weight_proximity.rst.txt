@@ -63,19 +63,22 @@ Highest
 
    *Lowest* can be set above *Highest* to reverse the mapping.
 
-Falloff Type
-   Type of mapping:
+Falloff
+   Falloff Type
+      Type of mapping.
 
-   Linear
-      No mapping.
-   Custom Curve
-      Allows the user to manually define the mapping using a curve.
-   Sharp, Smooth, Root and Sphere
-      These are classical mapping functions, from spikiest to roundest.
-   Random
-      Uses a random value for each vertex.
-   Median Step
-      Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
+      Linear
+         No mapping.
+      Custom Curve
+         Allows the user to manually define the mapping using a curve.
+      Sharp, Smooth, Root and Sphere
+         These are classical mapping functions, from spikiest to roundest.
+      Random
+         Uses a random value for each vertex.
+      Median Step
+         Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.
+   Invert ``<-->``
+      Inverts the falloff.
 
 
 Influence/Mask Options

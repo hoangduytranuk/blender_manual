@@ -58,14 +58,14 @@ Examples
 
    Choosing closest pixels.
 
-In the example above, render output from two scenes are mixed using the Z-Offset node,
+In the example above, render output from two scenes are mixed using the Z Combine node,
 one from a sphere of size 1.30, and the other a cube of size 1.00.
 The sphere and square are located at the same place. The cube is tipped forward,
 so the corner in the center is closer to the camera than the sphere surface;
-so Z-Offset chooses to use the cube's pixels. But the sphere is slightly larger
+so Z Combine chooses to use the cube's pixels. But the sphere is slightly larger
 (a size of 1.30 versus 1.00), so it does not fit totally inside the cube. At some point,
 as the cube's sides recede back away from the camera, the sphere's sides are closer.
-When this happens, Z-offset uses the sphere's pixels to form the resulting picture.
+When this happens, Z Combine uses the sphere's pixels to form the resulting picture.
 
 This node can be used to combine a foreground with a background matte painting.
 Walt Disney pioneered the use of multi-plane mattes, where three or four partial mattes were
@@ -101,7 +101,7 @@ The resulting image appears to have the cube on the table.
 .. note:: Invisible Man Effect
 
    If a foreground image with a higher Alpha than the background,
-   is then mixed in the Z combine with a slightly magnified background,
+   is then mixed in the Z Combine with a slightly magnified background,
    the outline of the transparent area will distort the background,
    enough to make it look like seeing a part of the background through
    an invisible yet Fresnel-lens object.

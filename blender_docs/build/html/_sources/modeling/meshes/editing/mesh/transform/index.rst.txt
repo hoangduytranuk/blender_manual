@@ -12,4 +12,5 @@
    bend.rst
    push_pull.rst
    warp.rst
+   randomize.rst
    shrink-fatten.rst

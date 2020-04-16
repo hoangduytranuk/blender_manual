@@ -1,6 +1,7 @@
 import sys
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
+import re
 from common import Common as cm
 from common import _, pp
 from ignore import Ignore as ig
@@ -84,6 +85,7 @@ class RefItem:
         self.translation_include_original: bool = keep_orig
         self.reftype:RefType = ref_type
         self.text_style:TextStyle = TextStyle.NORMAL
+        self.converted_to_abbr = False
 
     def __repr__(self):
         result = "(" + str(self.start) + ", " + \
@@ -631,6 +633,9 @@ class RefList(defaultdict):
 
             diff_list = self.diff(one_list)
             self.update(diff_list)
+        sorted_list = sorted(list(self.items()))
+        self.clear()
+        self.update(sorted_list)
 
     def testRecord(self, record: RefRecord):
         valid = (record is not None)
@@ -683,14 +688,34 @@ class RefList(defaultdict):
         if not has_record:
             return None
 
+        is_ignore = ig.isIgnored(msg)
+        if is_ignore:
+            return None
+
         for k, v in self.items():
             v_txt = v.getOriginText()
+            is_ignore = ig.isIgnored(v_txt)
+            if is_ignore:
+                return None
+
             is_in_left = cm.isTextuallySubsetOf(v_txt, msg)
             is_in_right = cm.isTextuallySubsetOf(msg, v_txt)
             is_matched = (is_in_left or is_in_right)
             if is_matched:
                 _("found_matched_ref:", v_txt, " for:", msg)
                 return v
+        has_one_ref = (len(self))
+        if has_one_ref:
+            k_list = self.keys()
+            k = list(k_list)[0]
+            v = self[k]
+            v_txt = v.getOriginText()
+            is_ignore = ig.isIgnored(v_txt)
+            if is_ignore:
+                return None
+
+            _("assumed the first item:", v_txt, " for:", msg)
+            return v
         return None
 
 
@@ -709,6 +734,179 @@ class RefList(defaultdict):
             target_ref_record.getOrigin().setTranlation(tran_txt)
             _("transferRefRecordText:", target_ref_record)
         return un_transferred_list
+
+    def quotedToAbbrev(self, orig_txt):
+        def replaceArchedQuote(txt):
+            new_txt = str(txt)
+            new_txt = re.sub('\)', '\]', new_txt)
+            new_txt = re.sub('\(', '\[', new_txt)
+            return new_txt
+
+        def refSplit(ref_txt):
+            ref_txt_list = ref_txt.split(cm.REF_SEP)
+            has_len = (len(ref_txt_list) > 1)
+            if not has_len:
+                return ref_txt_list
+
+            quote_char = ref_txt[0]
+            has_second = (len(ref_txt) > 1) and (ref_txt[1] == quote_char)
+            if has_second:
+                quote_char = ref_txt[:2]
+
+            left_side = ref_txt_list[0]
+            right_side = ref_txt_list[1]
+
+            is_filling = (left_side.startswith(quote_char) and not left_side.endswith(quote_char))
+            if is_filling:
+                left_side = left_side + quote_char
+                ref_txt_list[0] = left_side
+
+            is_filling = (right_side.endswith(quote_char) and not right_side.startswith(quote_char))
+            if is_filling:
+                right_side = quote_char + right_side
+                ref_txt_list[1] = right_side
+            return ref_txt_list
+
+        pattern_list=[
+            (cm.GA_REF, RefType.GA, True), # this will have to further classified as progress
+            (cm.AST_QUOTE, RefType.AST_QUOTE, True),
+            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
+            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
+        ]
+        orig_list = RefList(msg=orig_txt)
+        orig_list.findPattern(pattern_list)
+
+
+        self.findPattern(pattern_list)
+        has_record = (len(self) > 0)
+        if not has_record:
+            return
+
+        _(f'quotedFindRefs, orig: [{orig_txt}]')
+        _(f'quotedFindRefs, tran: [{self.msg}]')
+
+        new_txt = str(self.msg)
+        v : RefRecord
+        k_list = reversed(list(self.keys()))
+        for k in k_list:
+            v = self[k]
+
+            ref_orig = v.getOrigin()
+            ref_list = v.getRefList()
+            ref_type = ref_orig.getRefType()
+
+            ref_orig_txt = ref_orig.getText()
+            is_ignore = ig.isIgnored(ref_orig_txt)
+            if is_ignore:
+                _(f'Ignoring [{ref_orig_txt}]')
+                continue
+
+            is_acceptable = (ref_type == RefType.AST_QUOTE) or \
+                            (ref_type == RefType.DBL_QUOTE) or \
+                            (ref_type == RefType.SNG_QUOTE)
+
+            if is_acceptable:
+                pp(f'ref_orig:[{ref_orig}]')
+                pp(f'ref:[{ref_list}]')
+
+                ref_list_len = len(ref_list)
+                has_ref = (ref_list_len > 0)
+                has_more_than_one_ref_items = (ref_list_len > 1)
+                if has_more_than_one_ref_items:
+                    _(f'ref list has more than one item:[{ref_list_len}]')
+
+                if has_ref:
+                    first_ref_item = ref_list[0]
+                    r_txt = first_ref_item.getText()
+                    # ref_txt_list = r_txt.split(cm.REF_SEP)
+                    ref_txt_list = refSplit(ref_orig_txt) # keeping the original ast, double, single quote
+                    has_ref_sep = (len(ref_txt_list) > 1)
+                    if has_ref_sep:
+                        ref_tran_txt = ref_txt_list[0]
+                        ref_orig_txt = ref_txt_list[1]
+                        ref_tran_txt = replaceArchedQuote(ref_tran_txt)
+                        ref_orig_txt = replaceArchedQuote(ref_orig_txt)
+                        pp(f'ref_txt_list:[{ref_orig_txt}] => [{ref_tran_txt}]')
+                        replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
+                        os, oe = ref_orig.getLocation()
+                        left_side = new_txt[:os]
+                        right_side = new_txt[oe:]
+                        new_txt = left_side + replacement + right_side
+                        _(f'left_side:[{left_side}]')
+                        _(f'right_side:[{right_side}]')
+                        _(f'replacement:[{replacement}]')
+                        _(f'new_txt:[{new_txt}]')
+                    else:
+                        pp(f'first_ref_item:[{first_ref_item}]')
+                        orig_entry = orig_list.findRefRecord(ref_orig_txt)
+                        is_found_orig = (orig_entry is not None)
+                        if is_found_orig:
+                            orig_orig = orig_entry.getOrigin()
+                            orig_ref_list = orig_entry.getRefList()
+                            orig_orig_txt = orig_orig.getText()
+
+                            ref_tran_txt = ref_orig_txt
+                            ref_orig_txt = orig_orig_txt
+                            os, oe = ref_orig.getLocation()
+
+                            ref_tran_txt = replaceArchedQuote(ref_tran_txt)
+                            ref_orig_txt = replaceArchedQuote(ref_orig_txt)
+                            pp(f'findRefRecord:[{ref_orig_txt}] => [{ref_tran_txt}]')
+                            replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
+                            left_side = new_txt[:os]
+                            right_side = new_txt[oe:]
+                            new_txt = left_side + replacement + right_side
+                            _(f'left_side:[{left_side}]')
+                            _(f'right_side:[{right_side}]')
+                            _(f'replacement:[{replacement}]')
+                            _(f'new_txt:[{new_txt}]')
+
+                            # pp(f'orig_entry_orig:[{orig_orig}]')
+                            # pp(f'orig_entry_ref:[{orig_ref_list}]')
+                            # has_ref = (len(orig_ref_list) > 0)
+                            # if has_ref:
+                            #     orig_ref_list_first_elem = orig_ref_list[0]
+                            #     otxt = orig_ref_list_first_elem.getText()
+                            #     os, oe = ref_orig.getLocation()
+                            #     _(f'os:[{os}], oe:[{oe}], otxt:[{otxt}]')
+                            #
+                            #     first_ref_item_txt = first_ref_item.getText()
+                            #
+                            #     ref_tran_txt = ref_orig_txt
+                            #     ref_orig_txt = orig_orig_txt # taking the original
+                            #     # ref_orig_txt = otxt
+                            #     ref_tran_txt = replaceArchedQuote(ref_tran_txt)
+                            #     ref_orig_txt = replaceArchedQuote(ref_orig_txt)
+                            #     pp(f'findRefRecord:[{ref_orig_txt}] => [{ref_tran_txt}]')
+                            #     replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
+                            #     left_side = new_txt[:os]
+                            #     right_side = new_txt[oe:]
+                            #     new_txt = left_side + replacement + right_side
+                            #     _(f'left_side:[{left_side}]')
+                            #     _(f'right_side:[{right_side}]')
+                            #     _(f'replacement:[{replacement}]')
+                            #     _(f'new_txt:[{new_txt}]')
+                            # else:
+                            #     _(f'origin has no ref: [{orig_entry}]')
+                            #     new_txt = None
+                        else:
+                            _(f"Unable to find original for [{ref_orig_txt}]")
+                            r_txt = first_ref_item.getText()
+                            os, oe = ref_orig.getLocation()
+                            r_txt = replaceArchedQuote(r_txt)
+                            replacement = f':abbr:`{r_txt} ({r_txt})`'
+                            left_side = new_txt[:os]
+                            right_side = new_txt[oe:]
+                            new_txt = left_side + replacement + right_side
+                            _(f'left_side:[{left_side}]')
+                            _(f'right_side:[{right_side}]')
+                            _(f'replacement:[{replacement}]')
+                            _(f'new_txt:[{new_txt}]')
+
+            _()
+
+        return new_txt
+
 
 
     def transferTranslatedRefs(self, current_msg, current_tran):
@@ -891,6 +1089,7 @@ class RefList(defaultdict):
             if is_ignore:
                 continue
 
+            is_ignore_left_right = (ref_item.converted_to_abbr == True)
             s, e = ref_item.getLocation()
             o_txt = ref_item.getText()
             tran_state = ref_item.getTranslationState()
@@ -899,7 +1098,12 @@ class RefList(defaultdict):
             if not has_translation:
                 continue
 
-            tran_txt = tran_txt[:s] + tran + tran_txt[e:]
+            if is_ignore_left_right:
+                tran_txt = tran
+            else:
+                left_txt = tran_txt[:s]
+                right_txt = tran_txt[e:]
+                tran_txt = left_txt + tran + right_txt
 
         #is_same = (tran_txt == orig_item.getText())
         #if is_same:
@@ -939,16 +1143,27 @@ class RefList(defaultdict):
         is_kbd = (ref_type == RefType.KBD)
         is_abbr = (ref_type == RefType.ABBR)
         is_menu = (ref_type == RefType.MENUSELECTION)
+        # ----------
+        is_ast = (ref_type == RefType.AST_QUOTE)
+        is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
+        is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+        is_quoted = (is_ast or is_dbl_quote or is_sng_quote)
+
+        converted_to_abbr = False
         if is_kbd:
             tran = self.tf.translateKeyboard(ref_txt)
         elif is_abbr:
             tran = self.tf.translateAbbrev(ref_txt)
         elif is_menu:
             tran = self.tf.translateMenuSelection(ref_txt)
+        elif is_quoted:
+            tran = self.tf.translateQuoted(ref_txt)
+            converted_to_abbr = True
         else:
             tran = self.tf.translateRefWithLink(ref_txt)
         has_tran = (tran is not None)
         if has_tran:
+            ref_item.converted_to_abbr = converted_to_abbr
             ref_item.setTranlation(tran, state=TranslationState.ACCEPTABLE)
         else:
             ref_item.setTranlation("", state=TranslationState.ACCEPTABLE)

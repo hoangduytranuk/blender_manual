@@ -168,7 +168,7 @@ Style
 
       Rotation
          Rotates the gradient.
-      
+
       Scale
          Scales the gradient.
 
@@ -182,7 +182,7 @@ Style
 
       Base Color
          The base color of the fill.
-      
+
       Blend
          Texture and Base Color mixing amount.
 

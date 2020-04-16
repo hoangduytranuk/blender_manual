@@ -17,12 +17,14 @@ DIC_INCLUDE_LOWER_CASE_SET=True
 def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
     if DEBUG:
         pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
-        print('-' * 30)
+        if len(args) == 0:
+            print('-' * 30)
 
 def _(*args, **kwargs):
     if DEBUG:
         print(args, kwargs)
-        print('-' * 30)
+        if len(args) == 0:
+            print('-' * 80)
 
 # def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
 #     if DEBUG:
@@ -116,6 +118,8 @@ class Common:
     BEGIN_PUNCTUAL = re.compile(r'^([\.\,\:\!\?\"\*\'\`]+)')
 
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
+    REF_SEP = ' -- '
+    
 
     # dictionary: {start_location: [[s, e, match_0],[(s, e, :type:), (s, e, text), (s, e, link if any), (s, e, text-within-link | or abbreviation) ]]}
     #SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`\"\'\*]+(?![\s\)\.\(]+)([^\`\("\'\*\<\>]+)(((\<([\w\-\s]+)\>\*)*)|(\(([^(]+)\))*)(?<!([\s\:]))[\`\"\'\*]+')

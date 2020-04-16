@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 21:40+0100\n"
+"POT-Creation-Date: 2020-04-12 10:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,99 +177,131 @@ msgid "Number of volume scattering samples to take for each AA sample."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:89
-msgid "Advanced"
+msgid "Adaptive Sampling"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:97
-msgid "Seed"
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:92
-msgid "Seed value for integrator to get different noise patterns."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:97
-msgid "Animate Seed (clock icon)"
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:95
-msgid "This button, which can be found on the right side of the *Seed* value, can be used to give different seed values. It is a good idea to enable this when making animation because in the real world each frame has a different noise pattern."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:108
-msgid "Pattern"
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:91
+msgid "*Adaptive Sampling* is a technique to speed up rendering by terminating sampling for a particular pixel early. This works by computing how much a pixel changes (the variance) while samples are computed, if the pixel does not change more than a certain amount, Cycles will stop computing samples for that pixel. *Adaptive Sampling* can be enabled/disabled with the checkbox in the panel header."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:100
-msgid "Random sampling pattern used by the integrator."
+msgid "Min Samples"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:103
-msgid "Sobol"
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:103
-msgid "Uses a Sobol pattern to decide the random sampling pattern used by the integrator. See `Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more information."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:108
-msgid "Correlated Multi-Jitter"
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:99
+msgid "The minimum AA samples that must be computed before checking for variance. Zero is an automatic setting based on the total number of AA samples."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:106
-msgid "Uses a Correlated Multi-Jitter pattern to decide the random sampling pattern used by the integrator. See `this Pixar paper <http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ for more information."
+msgid "Noise Threshold"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:111
-msgid "Square Samples"
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:103
+msgid "The amount of variation between samples before terminating sampling. Smaller values will give more accurate results, using more samples, but increase rendering times. Zero is an automatic setting based on the total number of AA samples."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:111
-msgid "Square the amount of samples."
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:109
+msgid "Advanced"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:117
-msgid "Min Light Bounces"
+msgid "Seed"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:114
-msgid "Minimum number of light bounces for each path, after which the integrator uses Russian Roulette to terminate paths that contribute less to the image. Setting this higher gives less noise, but may also increase render time considerably. For a low number of bounces, it is strongly recommended to set this equal to the maximum number of bounces."
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:112
+msgid "Seed value for integrator to get different noise patterns."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:121
-msgid "Min Transparent Bounces"
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:117
+msgid "Animate Seed (clock icon)"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:115
+msgid "This button, which can be found on the right side of the *Seed* value, can be used to give different seed values. It is a good idea to enable this when making animation because in the real world each frame has a different noise pattern."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:135
+msgid "Pattern"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:120
-msgid "Minimum number of transparent bounces. Setting this higher reduces noise in the first bounces, but can also be less efficient for more complex geometry like hair and volumes."
+msgid "Random sampling pattern used by the integrator."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:123
+msgid "Sobol"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:123
+msgid "Uses a Sobol pattern to decide the random sampling pattern used by the integrator. See `Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more information."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:127
+msgid "Correlated Multi-Jitter"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:126
+msgid "Uses a correlated multi-jitter pattern to decide the random sampling pattern used by the integrator. See `this Pixar paper <https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ for more information."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:135
+msgid "Progressive Multi-Jitter"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:130
+msgid "Uses a progressive multi-jitter pattern to decide the random sampling pattern used by the integrator. Its advantage is to provide a well distribution of samples over iterating sample counts. Because of its good distribution over a range of different sample counts, this sample pattern is used for `Adaptive Sampling`_. See `this Pixar paper <https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf>`__ for more information."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:138
+msgid "Square Samples"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:138
+msgid "Square the amount of samples."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:144
+msgid "Min Light Bounces"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:141
+msgid "Minimum number of light bounces for each path, after which the integrator uses Russian Roulette to terminate paths that contribute less to the image. Setting this higher gives less noise, but may also increase render time considerably. For a low number of bounces, it is strongly recommended to set this equal to the maximum number of bounces."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:148
+msgid "Min Transparent Bounces"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:147
+msgid "Minimum number of transparent bounces. Setting this higher reduces noise in the first bounces, but can also be less efficient for more complex geometry like hair and volumes."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:157
 msgid "Light Threshold"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:124
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:151
 msgid "Probabilistically terminates light samples when the light contribution is below this threshold (more noise but faster rendering). Zero disables the test and never ignores lights. This is useful because in large scenes with many light sources, some might only contribute a small amount to the final image, and increase render times. Using this setting can decrease the render times needed to calculate the rays which in the end have very little affect on the image."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:136
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:163
 msgid "Sample All Direct Lights"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:133
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:160
 msgid "When enabled, Cycles will sample all lights in the scene for direct bounces, instead of randomly picking one. Disabling this can improve the performance, but will need a lot of *Samples*, to clear up the render."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:136
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:141
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:163
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:168
 msgid "Visible only when using *Branched Path Tracing*."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:141
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:168
 msgid "Sample All Indirect Lights"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:139
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:166
 msgid "Similar to direct light, but for indirect lights. This can reduce noise in scenes with many lights."
 msgstr ""
 
@@ -277,23 +309,23 @@ msgstr ""
 msgid "Layer Samples"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:146
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:173
 msgid "When render layers have per layer number of samples set, this option specifies how to use them."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:148
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:175
 msgid "Use"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:149
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:176
 msgid "The render layer samples will override the set scene samples."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:150
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:177
 msgid "Bounded"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:151
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:178
 msgid "Bound render layer samples by scene samples."
 msgstr ""
 
@@ -301,6 +333,6 @@ msgstr ""
 msgid "Ignore"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:153
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/sampling.rst:180
 msgid "Ignore render layer sample settings."
 msgstr ""

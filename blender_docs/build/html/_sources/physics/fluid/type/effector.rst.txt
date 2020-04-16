@@ -68,6 +68,23 @@ Effector Type
             A guiding object will write the average of its own current velocity and the existing
             guiding velocity at that cell into the global guiding velocity field.
 
+.. _bpy.types.FluidEffectorSettings.subframes:
+
+Effector Substeps
+   Number of substeps used to reduce gaps in collision of fluid from fast-moving effectors.
+
+.. _bpy.types.FluidEffectorSettings.surface_distance:
+
+Surface Thickness
+   Additional area around the effector that will be considered as an effector.
+
+.. _bpy.types.FluidEffectorSettings.use_effector:
+
+Use Effector
+   Enables or disables the effector object effect on the fluid,
+   this property is useful for animations to selectively enable and disable
+   when the effector affects the fluid.
+
 .. _bpy.types.FluidEffectorSettings.use_plane_init:
 
 Is Planar
@@ -76,8 +93,3 @@ Is Planar
 
    A :term:`manifold` mesh can also be declared as planar. The fluid solver will then ignore the volume
    inside the mesh and just emit fluid from the mesh sides.
-
-.. _bpy.types.FluidEffectorSettings.surface_distance:
-
-Surface Thickness
-   Additional area around the effector that will be considered as an effector.

@@ -133,7 +133,7 @@ def compile_valid_kbd():
             "Up", "Down", "Left", "Right", "Menu",
         )), '|',
         # Numpad
-        r"(?:Numpad(?:[0-9]|Plus|Minus|Delete|Slash|Period|Asterix))|",
+        r"(?:Numpad(?:[0-9]|Plus|Minus|Delete|Slash|Period|Asterisk))|",
         # Function
         r"(?:F[1-9]|F1[0-2])",
         r")(?:\-|\Z))",
@@ -158,7 +158,7 @@ def compile_valid_kbd():
 
 def warn_title(fn, data_src):
     """
-    Complain about title underline/overline length mis-match.
+    Complain about title underline/overline length mismatch.
     """
     lines = data_src.split("\n")
     limit = 118

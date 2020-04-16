@@ -122,7 +122,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Vật Lý -- Physics</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../rigid_body/index.html">Thân Cứng -- Rigid Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../cloth/index.html">-- Cloth Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cloth/index.html">Cloth</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../soft_body/index.html">Thân Mềm -- Soft Body</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Fluid</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
@@ -135,10 +135,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../material.html">Materials</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../particles/index.html">-- Particles System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../particles/index.html">Particle System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../dynamic_paint/index.html">Sơn Động Lực -- Dynamic Paint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../forces/index.html">Forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../collision.html">-- Collisions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../collision.html">Collision</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../baking.html">-- Baking Physics Simulations</a></li>
 </ul>
 </li>
@@ -199,7 +199,9 @@
     
       <li><a href="../../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../../index.html">Vật Lý -- Physics</a> &raquo;</li>
+          <li><a href="../../../../modeling/index.html">Kiến Tạo Mô Hình -- Modeling</a> &raquo;</li>
+        
+          <li><a href="../../../../modeling/modifiers/index.html">Bộ Điều Chỉnh -- Modifiers</a> &raquo;</li>
         
           <li><a href="../../index.html">Fluid</a> &raquo;</li>
         
@@ -210,9 +212,6 @@
       <li>Settings</li>
     
     
-		<li class="wy-breadcrumbs-aside">
-			<a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/fluid/type/domain/settings.rst" class="fa fa-edit"> Edit Page</a>
-		</li>
   </ul>
 
   
@@ -304,6 +303,14 @@ this number of simulation steps per frame.</p>
 <dl class="simple" id="bpy-types-fluiddomainsettings-gravity">
 <dt>Gravity</dt><dd><p>By default the fluid solver will use the global scene gravity. This behavior can be disabled
 in the scene settings. Disabling the global gravity will enable the fluid gravity options.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-clipping">
+<dt>Empty Space <span class="guilabel">Gas Only</span></dt><dd><p>Value under which voxels are considered empty space to optimize rendering.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-delete-in-obstacle">
+<dt>Delete In Obstacle</dt><dd><p>Remover any volume of fluid that intersects with an obstacle inside the domain.</p>
 </dd>
 </dl>
 <div class="section" id="border-collisions">
@@ -481,6 +488,20 @@ a good idea to adjust this value. That is, when liquid seems to disappear this v
 The inverse applies when too much liquid is being produced.</p>
 </dd>
 </dl>
+<dl class="simple" id="bpy-types-fluiddomainsettings-particle-number">
+<dt>Sampling</dt><dd><p>Factor that is used when sampling particles. A higher value will sample more particles.
+Note that particle resampling occurs at every single simulation step.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fluiddomainsettings-particle-randomness">
+<dt>Randomness</dt><dd><p>New particles are sampled with some randomness attached to their position
+which can be controlled by this field. Higher values will sample the liquid particles more
+randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside
+their corresponding grid cells.</p>
+<p>When trying to create a laminar inflow (with little randomness) or more turbulent flows
+(with greater randomness) this value can be useful.</p>
+</dd>
+</dl>
 <dl id="bpy-types-fluiddomainsettings-particle-max">
 <dt>Particles Maximum</dt><dd><p>The maximum number of liquid particles per grid cell. During a simulation the number of liquid
 particles in a cell can fluctuate: Particles can flow into other cells or can get deleted
@@ -491,13 +512,8 @@ This can be useful before baking and when planning a simulation.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-fluiddomainsettings-particle-min">
-<dt>Particles Minimum</dt><dd><p>The minimum number of liquid particles per grid cell. Similarly to the maximum particle threshold,
+<dt>Minimum</dt><dd><p>The minimum number of liquid particles per grid cell. Similarly to the maximum particle threshold,
 this value ensures that there are at least a certain amount of particles per cell.</p>
-</dd>
-</dl>
-<dl class="simple" id="bpy-types-fluiddomainsettings-particle-number">
-<dt>Particle Sampling</dt><dd><p>Factor that is used when sampling particles. A higher value will sample more particles.
-Note that particle resampling occurs at every simulation step.</p>
 </dd>
 </dl>
 <dl id="bpy-types-fluiddomainsettings-particle-band-width">
@@ -514,24 +530,15 @@ contains most details and simulating particles inside the liquid is not an optim
 <p class="admonition-title">Xem thêm</p>
 <p>The narrow band is an implementation of <a class="reference external" href="https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/">Narrow Band FLIP for Liquid Simulations</a>.</p>
 </div>
-<dl id="bpy-types-fluiddomainsettings-particle-randomness">
-<dt>Particle Randomness</dt><dd><p>New particles are sampled with some randomness attached to their position.
-This field controls this randomness. Higher values will sample the liquid particles more
-randomly in inflow regions. With a value of 0.0 all new particles will be sampled uniformly inside
-their corresponding grid cells.</p>
-<p>When trying to create a laminar inflow (with little randomness) or more turbulent flows
-(with greater randomness) this value can be useful.</p>
-</dd>
-</dl>
-<dl class="simple" id="bpy-types-fluiddomainsettings-use-fractions">
+<dl id="bpy-types-fluiddomainsettings-use-fractions">
 <dt>Fractional Obstacles</dt><dd><p>Enables finer resolution in fluid / obstacle regions (second order obstacles).
 This option reduces the &quot;stepping effect&quot; that results when an obstacles lies inclined inside the domain.
 It also makes liquid flow more smoothly over an obstacle.</p>
-</dd>
-</dl>
 <dl class="simple" id="bpy-types-fluiddomainsettings-fractions-threshold">
 <dt>Obstacle-Fluid Threshold</dt><dd><p>Value to control the smoothness of the fractional obstacle option. Smaller value reduce
 the &quot;stepping effect&quot; but may result particles sticking to the obstacle.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <span id="bpy-ops-fluid-bake-data"></span><dl id="bpy-ops-fluid-free-data">
@@ -570,7 +577,18 @@ It is possible to pause or resume a <em>Bake All</em> process.</p>
         &copy; Copyright : This page is licensed under a CC-BY-SA 4.0 Int. License
 
     </p>
-  </div> 
+  </div>
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/fluid/type/domain/settings.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/fluid/type/domain/settings%60&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
 
 </footer>
 

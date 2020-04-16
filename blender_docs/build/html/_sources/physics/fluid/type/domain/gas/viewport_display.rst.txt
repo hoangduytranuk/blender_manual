@@ -8,6 +8,17 @@ Viewport Display
 Thickness
    Factor that scales the thickness of the grid that is currently being displayed.
 
+.. _bpy.types.FluidDomainSettings.display_interpolation:
+
+Interpolation
+   Interpolation method to use for the visualization of the fluid grid.
+
+   Linear
+      Linear interpolation between voxels. Gives good smoothness and speed.
+
+   Cubic
+      Cubic interpolation between voxels. Gives smoothed high quality interpolation, but is slower.
+
 .. _bpy.types.FluidDomainSettings.slice_method:
 
 Slicing
@@ -28,35 +39,24 @@ Method
    Single
       Perform a single slice of the domain object.
 
-.. _bpy.types.FluidDomainSettings.slice_axis:
+      .. _bpy.types.FluidDomainSettings.slice_axis:
 
-Axis
-   Auto
-      Adjust slice direction according to the view direction.
+      Axis
+         Auto
+            Adjust slice direction according to the view direction.
 
-   X/Y/Z
-      Slice along the X/Y/Z axis.
+         X/Y/Z
+            Slice along the X/Y/Z axis.
 
-.. _bpy.types.FluidDomainSettings.slice_depth:
+      .. _bpy.types.FluidDomainSettings.slice_depth:
 
-Position
-   Position of the slice relative to the length of the respective domain side.
+      Position
+         Position of the slice relative to the length of the respective domain side.
 
 .. _bpy.types.FluidDomainSettings.slice_per_voxel:
 
 Slice Per Voxel
    Determines how many slices per voxel should be generated.
-
-.. _bpy.types.FluidDomainSettings.display_interpolation:
-
-Interpolation
-   Interpolation method to use for the visualization of the fluid grid.
-
-      Linear
-         Linear interpolation between voxels. Gives good smoothness and speed.
-
-      Cubic
-         Cubic interpolation between voxels. Gives smoothed high quality interpolation, but is slower.
 
 
 .. _bpy.types.FluidDomainSettings.use_color_ramp:

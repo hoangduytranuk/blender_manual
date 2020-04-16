@@ -83,6 +83,7 @@ class Ignore:
         #r'^()$',
         #r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
         #r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
+        r'^\%[\w]$',
         r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         r'^(GPL[\s\w][\d][+])$',
         r'^(A \(Alpha\))$',
@@ -197,7 +198,7 @@ class Ignore:
         r"^(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))$",
         r"^(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)$",
         r"^(tab|TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)$",
-        "",
+        r"[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
         "",
     ]
 
@@ -399,7 +400,7 @@ class Ignore:
         #r'^$',
         r'^(([\w]+|[~\.]|[\.]{2})[:]?)?([/]([^\]+)?)+)$',
     ]
-    
+
     def isFilePath(text_line : str):
         if (text_line is None) or (len(text_line) == 0):
             return False

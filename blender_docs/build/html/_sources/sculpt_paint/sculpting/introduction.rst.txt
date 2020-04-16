@@ -31,13 +31,13 @@ follow the location of the cursor in the 3D View.
 The Brush
 =========
 
-Sculpt Mode uses a similar brush to other the other :doc:`painting modes </sculpt_paint/brush/introduction>`,
+Sculpt Mode uses a similar brush to the other :doc:`painting modes </sculpt_paint/brush/introduction>`,
 but it is slightly more advanced. All the normal brush controls still apply,
-and it functions exactly the same, however, the brush for sculpting is displayed in 3D.
+and it functions exactly the same, yet the brush for sculpting is displayed in 3D.
 This means that the brush will follow the contours of the mesh and the radius is displayed
 by orienting the brush to match the meshes :term:`normal`.
 How closely the cursor follows the curvature of the mesh can be changed in
 the :doc:`Brush Settings </sculpt_paint/sculpting/tool_settings/brush_settings>`.
 
-The brush can also change depending on the currently active :doc:`tool </sculpt_paint/sculpting/tools>`
+The brush can also change depending on the currently active :doc:`tool </sculpt_paint/sculpting/tools/index>`
 to better display how that tool works.

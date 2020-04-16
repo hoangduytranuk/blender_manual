@@ -75,6 +75,8 @@ Show Seconds :kbd:`Ctrl-T`
    Shows seconds instead of frames on the time axis.
 Show Offsets
    Shows overflow bars of "extra" content from either cutting or sliding strips.
+Show F-Curves
+   Show animation curves for opacity and volume values as darkened sections of the strip.
 Show Markers
    Shows the markers region. When disabled, the `Markers Menu`_ is also hidden
    and markers operators are not available in this editor.

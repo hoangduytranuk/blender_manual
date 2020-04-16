@@ -21,7 +21,7 @@ Vector
 
    .. warning::
 
-      This node can have precision issues with come vector inputs.
+      This node can have precision issues with some vector inputs.
       See the notes for the :doc:`White Noise Texture </render/shader_nodes/textures/white_noise>`
       for ways to mitigate this issue.
 

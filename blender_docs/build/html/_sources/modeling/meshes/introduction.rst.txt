@@ -24,4 +24,4 @@ Edit Mode
    Used for the majority of mesh editing operations.
 Sculpt Mode
    Instead of dealing with individual mesh elements,
-   support sculpting with brushes *(not covered in this chapter)*.
+   supports sculpting with brushes *(not covered in this chapter)*.

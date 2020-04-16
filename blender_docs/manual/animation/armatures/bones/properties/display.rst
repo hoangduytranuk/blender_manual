@@ -1,8 +1,8 @@
 .. _bpy.types.Bone.hide:
 
-**********************
-Viewport Display Panel
-**********************
+****************
+Viewport Display
+****************
 
 .. admonition:: Reference
    :class: refbox

@@ -63,4 +63,4 @@ Individual :kbd:`I`
    By default the Inset tool operates on the region around selected faces,
    but with this option each selected face can be inset on its own.
 Interpolate
-   Interpolate mesh data: e.g. UV's, vertex colors, weights, etc.
+   Interpolate mesh data: e.g. UVs, vertex colors, weights, etc.

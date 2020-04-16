@@ -14,6 +14,7 @@ from babel.messages.catalog import Message
 from babel.messages import pofile
 from common import DEBUG, DIC_INCLUDE_LOWER_CASE_SET
 
+
 class CaseInsensitiveDict(dict):
 
     class Key(str):
@@ -32,7 +33,6 @@ class CaseInsensitiveDict(dict):
             cond = (local == extern)
             _(f'local:{local} extern:{extern}')
             return cond
-
 
     def __init__(self, data=None):
         super(CaseInsensitiveDict, self).__init__()
@@ -55,14 +55,13 @@ class CaseInsensitiveDict(dict):
         key = self.Key(key)
         return super(CaseInsensitiveDict, self).__getitem__(key)
 
-
-
     # def __setitem__(self, key, value):
     #     key = CaseInsensitiveKey(key)
     #     super(CaseInsensitiveDict, self).__setitem__(key, value)
     # def __getitem__(self, key):
     #     key = CaseInsensitiveKey(key)
     #     return super(CaseInsensitiveDict, self).__getitem__(key)
+
 
 class TranslationFinder:
 
@@ -133,7 +132,7 @@ class TranslationFinder:
             _(f'test_again_trans: make = {test_again_trans}')
 
         self.vipo_dic_path = "/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
-        self.vipo_dic_list = None # not used
+        self.vipo_dic_list = None  # not used
 
         self.current_po_dir = "/Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES"
         self.json_dic_file = None
@@ -144,7 +143,7 @@ class TranslationFinder:
         self.current_po_cat = None
         self.setupKBDDicList()
 
-        self.dic_list = defaultdict(int) # for general purposes
+        self.dic_list = defaultdict(int)  # for general purposes
 
         # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
         # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
@@ -152,7 +151,6 @@ class TranslationFinder:
         # self.cleanDictList(self.master_dic_list)
         # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
         # exit(0)
-
 
     def updateMasterDic(self, is_testing=True):
         from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
@@ -171,7 +169,7 @@ class TranslationFinder:
 
         entry = {msg: tran}
         print("addEntry - adding:", entry)
-        #self.master_dic_list.update(entry)
+        # self.master_dic_list.update(entry)
         return True
 
     def loadVIPOtoDic(self, dict_to_update, file_name, is_testing=True):
@@ -199,7 +197,7 @@ class TranslationFinder:
                     continue
             else:
                 #print("NOT IN DIC:", k, v)
-                entry={k:v}
+                entry = {k: v}
                 dict_to_update.update(entry)
                 if is_testing:
                     print("Updating entry:", entry)
@@ -250,36 +248,36 @@ class TranslationFinder:
         #     if not is_k_empty:
         #         continue
 
-            # m.flags.add('fuzzy')
-            # changed = True
-            # k_list = word_only.findall(k)
-            # v_list = word_only.findall(v)
-            # k_set = set(k_list)
-            # v_set = set(v_list)
+        # m.flags.add('fuzzy')
+        # changed = True
+        # k_list = word_only.findall(k)
+        # v_list = word_only.findall(v)
+        # k_set = set(k_list)
+        # v_set = set(v_list)
 
-            # is_fuzzy = m.fuzzy
-            # is_cleanable = (len(k_set) == len(v_set)) and (k_set == v_set) or is_fuzzy
-            # if is_cleanable:
-            #     if m.fuzzy:
-            #         m.flags = set() # clear the fuzzy flags
+        # is_fuzzy = m.fuzzy
+        # is_cleanable = (len(k_set) == len(v_set)) and (k_set == v_set) or is_fuzzy
+        # if is_cleanable:
+        #     if m.fuzzy:
+        #         m.flags = set() # clear the fuzzy flags
 
-            #     set_entry=(k_set, v_set)
-            #     string_entry=(k, v)
-            #     _("cleanupPOFile - set_entry", set_entry)
-            #     _("cleanupPOFile - string_entry", string_entry)
-            #     m.string = ""
-            #     changed = True
+        #     set_entry=(k_set, v_set)
+        #     string_entry=(k, v)
+        #     _("cleanupPOFile - set_entry", set_entry)
+        #     _("cleanupPOFile - string_entry", string_entry)
+        #     m.string = ""
+        #     changed = True
         if changed:
             _("cleanupPOFile", po_file)
             if (not is_dry_run):
                 self.dump_po(po_file, po_cat)
 
     def cleanDictList(self, dic_list):
-        remove_keys=[]
+        remove_keys = []
         for k, v in dic_list.items():
             is_remove = (k is None) or (len(k) == 0) or ig.isIgnored(k)
             if is_remove:
-                entry={k:v}
+                entry = {k: v}
                 # _("cleanDictList removing:", entry)
                 remove_keys.append(k)
         for k in remove_keys:
@@ -296,8 +294,8 @@ class TranslationFinder:
                 if is_same_v:
                     continue
 
-            from_entry={k:source_v}
-            to_entry={k:target_v}
+            from_entry = {k: source_v}
+            to_entry = {k: target_v}
             target_dict.update(from_entry)
             _("Replacing:", to_entry)
             _("With:", from_entry)
@@ -305,7 +303,7 @@ class TranslationFinder:
         return target_change_count
 
     def updatePOUsingDic(self, pofile, dic, is_testing=True):
-        ignore=[
+        ignore = [
             "Volume",
         ]
         po_cat = c.load_po(pofile)
@@ -331,8 +329,8 @@ class TranslationFinder:
             if not is_value_diff:
                 continue
 
-            from_entry={k:po_v}
-            to_entry = {k:dic_v}
+            from_entry = {k: po_v}
+            to_entry = {k: dic_v}
             _("updatePOUsingDic, from:", from_entry, "to:", to_entry)
             m.string = dic_v
             changed = True
@@ -362,13 +360,13 @@ class TranslationFinder:
             else:
                 v = repeat_form
 
-        entry = {k:v}
+        entry = {k: v}
         dict_list.update(entry)
         if DIC_INCLUDE_LOWER_CASE_SET:
             k_lower = k.lower()
             is_same = (k_lower == k)
             if not is_same:
-                entry = {k_lower:v}
+                entry = {k_lower: v}
                 self.master_dic_list.update(entry)
         return True
 
@@ -397,7 +395,7 @@ class TranslationFinder:
             if not has_translation:
                 continue
 
-            entry={k:v}
+            entry = {k: v}
             po_cat_dic.update(entry)
 
             #_("poCatToDic:", k, v)
@@ -406,14 +404,13 @@ class TranslationFinder:
                 lower_k = m.id.lower()
                 is_same_key = (k == lower_k)
                 if not is_same_key:
-                    lower_entry = {lower_k:v}
+                    lower_entry = {lower_k: v}
                     po_cat_dic.update(lower_entry)
 
         return po_cat_dic
 
-
     def setupKBDDicList(self):
-        kbd_l_case = dict((k.lower(), v) for k,v in TranslationFinder.KEYBOARD_TRANS_DIC.items())
+        kbd_l_case = dict((k.lower(), v) for k, v in TranslationFinder.KEYBOARD_TRANS_DIC.items())
         TranslationFinder.KEYBOARD_TRANS_DIC.update(kbd_l_case)
 
     def writeJSONDic(self, dict_list=None, file_name=None):
@@ -440,40 +437,20 @@ class TranslationFinder:
             with open(file_path) as in_file:
                 dic = json.load(in_file)
 
-            lower_dic = {}
-            if dic:
-                for k, v in dic.items():
-                    entry = {k.lower():v}
-                    # _(entry)
-                    lower_dic.update(entry)
-            dic = lower_dic
-            # test_find = ('make' in dic)
-            # _(f"test_find: make is {test_find}")
-            # if test_find:
-            #     tran = dic['make']
-            #     _(f"test_find: make = {tran}")
-            # insensitive_dic = CaseInsensitiveDict(dic)
-            # ln = len(insensitive_dic)
-            # _(f'loaded:{ln}')
-            #pp(insensitive_dic)
-
+            # lower_dic = {}
             # if dic:
-            #     _("Loaded:{}".format(len(dic)))
-            #
-            #     if DIC_INCLUDE_LOWER_CASE_SET:
-            #         #local_dic = self.removeJSONDicNoTranslation(local_dic)
-            #         dic_lower_set=dict((k.lower(),v) for k,v in dic.items())
-            #         dic.update(dic_lower_set)
-            #         _("after loaded lowercase:{}".format(len(dic)))
-            # else:
-            #     raise Exception("dic [{}] is EMPTY. Not expected!", file_path)
+            #     for k, v in dic.items():
+            #         entry = {k.lower(): v}
+            #         # _(entry)
+            #         lower_dic.update(entry)
+            # dic = lower_dic
         except Exception as e:
             _("Exception readDictionary Length of read dictionary:")
             _(e)
             raise e
 
         return dic
-        #return insensitive_dic
+        # return insensitive_dic
 
     # def dump_po(self, filename, catalog):
     #     dirname = os.path.dirname(filename)
@@ -605,13 +582,44 @@ class TranslationFinder:
             trans = None
         return trans
 
-    def translateRefWithLink(self, msg): # for things like :doc:`something <link>`, and :term:`something <link>`
+    def checkIgnore(self, msg):
         is_pure_path = (cm.PURE_PATH.search(msg) is not None)
         is_pure_ref = (cm.PURE_REF.search(msg) is not None)
         is_api_ref = (cm.API_REF.search(msg) is not None)
         is_keep = (ig.isKeep(msg))
         is_keep_contain = (ig.isKeepContains(msg))
         is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not(is_keep or is_keep_contain))
+        return is_ignore
+
+    def translateQuoted(self, msg, is_reversed=False):
+        is_ignore = self.checkIgnore(msg)
+        if is_ignore:
+            return None
+
+        tran, is_fuzzy = self.translate(msg)
+        tran_found = (tran is not None)
+
+        orig_msg = str(msg)
+        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        if (len(ex_ga_msg) > 0):
+            msg = ex_ga_msg[0]
+
+        if tran_found:
+            orig_tran = str(tran)
+            ex_ga_msg = cm.EXCLUDE_GA.findall(tran)
+            if (len(ex_ga_msg) > 0):
+                tran = ex_ga_msg[0]
+
+            tran = f":abbr:`{tran} ({msg})`"
+        else:
+            tran = f":abbr:`{msg} ({msg})`"
+        print(f'translateQuoted: [{msg}] [{tran}]')
+        # exit(0)
+        return tran
+
+    def translateRefWithLink(self, msg):  # for things like :doc:`something <link>`, and :term:`something <link>`
+
+        is_ignore = self.checkIgnore(msg)
         if is_ignore:
             return None
 
@@ -680,14 +688,13 @@ class TranslationFinder:
             return
 
         # hold keys to be removed
-        blank_key=[]
-        remove_key=[]
+        blank_key = []
+        remove_key = []
         for k, v in dic_list.items():
             is_ignore = (ig.isIgnored(k))
             if is_ignore:
                 _("mark for removal:", k, v)
                 remove_key.append(k)
-
 
             # remove null from v
             has_value = (v is not None)
@@ -697,7 +704,7 @@ class TranslationFinder:
 
         for k in blank_key:
             _("actually blanking:", k)
-            entry={k:""}
+            entry = {k: ""}
             dic_list.update(entry)
 
         # run through the keys and remove entry from the dic_list

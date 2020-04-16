@@ -54,7 +54,7 @@ Extrude Array
 
 This tool behaves similar to the :doc:`/modeling/modifiers/generate/array`,
 by extruding the selection along the Z axis of the view.
-If the selection is not manifold it's extruded the specified number of times, else
+If the selection is not :term:`manifold` it's extruded the specified number of times.
 
 Offset
    Distance between the instances.

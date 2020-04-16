@@ -46,7 +46,7 @@ Is Transmission Ray :guilabel:`Cycles Only`
 Ray Length :guilabel:`Cycles Only`
    Distance traveled by the light ray from the last bounce or camera.
 Ray Depth
-   Number of times the ray been reflected or transmitted on interaction with a surface.
+   Number of times the ray has been reflected or transmitted on interaction with a surface.
 
    .. note::
 

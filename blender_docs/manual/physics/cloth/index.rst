@@ -1,9 +1,9 @@
 .. _bpy.types.ClothModifier:
 .. _bpy.ops.cloth:
 
-#####################
-  Cloth Simulations
-#####################
+#########
+  Cloth
+#########
 
 .. toctree::
    :maxdepth: 2

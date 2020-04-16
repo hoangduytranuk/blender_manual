@@ -9,6 +9,6 @@
    array.rst
    build.rst
    mirror.rst
+   multiple_strokes.rst
    simplify.rst
    subdivide.rst
-   multiple_strokes.rst
