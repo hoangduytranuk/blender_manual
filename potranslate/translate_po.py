@@ -55,12 +55,32 @@ trans_finder = tf()
 
 def doctree_resolved(app, doctree, docname):
 
+    def removeDuplication(txt_with_punct):
+        # is_debug = (txt_with_punct.endswith('::'))
+        # if is_debug:
+        #     _('DEBUG')
+        cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct, is_single=True)
+        trans = trans_finder.isInList(cropped_txt, is_lower=True)
+        is_repeat = (trans is not None)
+        if not is_repeat:
+            cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct, is_single=False)
+            trans = trans_finder.isInList(cropped_txt, is_lower=True)
+
+        is_repeat = (trans is not None)
+        return is_repeat
+
     def correctingDictionary():
+        # remove_items=[]
         new_items = {}
         for k, v in trans_finder.master_dic_list.items():
-            is_ignore = ig.isIgnored(k) or ig.isIgnored(v)
-            if is_ignore:
-                continue
+            # is_ignore = ig.isIgnored(k) or ig.isIgnored(v)
+            # if is_ignore:
+            #     continue
+            # is_removed = removeDuplication(k)
+            # if is_removed:
+            #     remove_items.append(k)
+            #     _(f'Duplication Marking for removal:[{k}]')
+            #     continue
 
             ref_list = RefList(msg=v)
             new_v = ref_list.quotedToAbbrev(k)
@@ -68,6 +88,10 @@ def doctree_resolved(app, doctree, docname):
             if has_new_v:
                 new_entry={k:new_v}
                 new_items.update(new_entry)
+
+        # for k in remove_items:
+        #     _(f'Duplication Removing:[{k}]')
+        #     del trans_finder.master_dic_list[k]
 
         is_writing_changes = (len(new_items) > 0)
         if is_writing_changes:

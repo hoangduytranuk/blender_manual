@@ -738,8 +738,8 @@ class RefList(defaultdict):
     def quotedToAbbrev(self, orig_txt):
         def replaceArchedQuote(txt):
             new_txt = str(txt)
-            new_txt = re.sub('\)', '\]', new_txt)
-            new_txt = re.sub('\(', '\[', new_txt)
+            new_txt = re.sub('\)', ']', new_txt)
+            new_txt = re.sub('\(', '[', new_txt)
             return new_txt
 
         def refSplit(ref_txt):
@@ -776,12 +776,13 @@ class RefList(defaultdict):
         orig_list = RefList(msg=orig_txt)
         orig_list.findPattern(pattern_list)
 
-
         self.findPattern(pattern_list)
         has_record = (len(self) > 0)
         if not has_record:
             return
 
+        _('list of refs:')
+        pp(self)
         _(f'quotedFindRefs, orig: [{orig_txt}]')
         _(f'quotedFindRefs, tran: [{self.msg}]')
 
@@ -789,6 +790,8 @@ class RefList(defaultdict):
         v : RefRecord
         k_list = reversed(list(self.keys()))
         for k in k_list:
+            is_reverse = False
+            ref_tran_txt = ref_orig_txt = None
             v = self[k]
 
             ref_orig = v.getOrigin()
@@ -801,6 +804,10 @@ class RefList(defaultdict):
                 _(f'Ignoring [{ref_orig_txt}]')
                 continue
 
+            is_debug = ('%' in ref_orig_txt)
+            if is_debug:
+                _('DEBUG')
+
             is_acceptable = (ref_type == RefType.AST_QUOTE) or \
                             (ref_type == RefType.DBL_QUOTE) or \
                             (ref_type == RefType.SNG_QUOTE)
@@ -808,6 +815,12 @@ class RefList(defaultdict):
             if is_acceptable:
                 pp(f'ref_orig:[{ref_orig}]')
                 pp(f'ref:[{ref_list}]')
+
+                # is_debug = ('key' in ref_orig_txt.lower()) or ('khóa' in ref_orig_txt.lower())
+                # if is_debug:
+                #     print('DEBUG')
+                    
+                is_reverse =  ig.isReverseOrder(ref_orig_txt)
 
                 ref_list_len = len(ref_list)
                 has_ref = (ref_list_len > 0)
@@ -824,18 +837,6 @@ class RefList(defaultdict):
                     if has_ref_sep:
                         ref_tran_txt = ref_txt_list[0]
                         ref_orig_txt = ref_txt_list[1]
-                        ref_tran_txt = replaceArchedQuote(ref_tran_txt)
-                        ref_orig_txt = replaceArchedQuote(ref_orig_txt)
-                        pp(f'ref_txt_list:[{ref_orig_txt}] => [{ref_tran_txt}]')
-                        replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
-                        os, oe = ref_orig.getLocation()
-                        left_side = new_txt[:os]
-                        right_side = new_txt[oe:]
-                        new_txt = left_side + replacement + right_side
-                        _(f'left_side:[{left_side}]')
-                        _(f'right_side:[{right_side}]')
-                        _(f'replacement:[{replacement}]')
-                        _(f'new_txt:[{new_txt}]')
                     else:
                         pp(f'first_ref_item:[{first_ref_item}]')
                         orig_entry = orig_list.findRefRecord(ref_orig_txt)
@@ -848,61 +849,29 @@ class RefList(defaultdict):
                             ref_tran_txt = ref_orig_txt
                             ref_orig_txt = orig_orig_txt
                             os, oe = ref_orig.getLocation()
-
-                            ref_tran_txt = replaceArchedQuote(ref_tran_txt)
-                            ref_orig_txt = replaceArchedQuote(ref_orig_txt)
-                            pp(f'findRefRecord:[{ref_orig_txt}] => [{ref_tran_txt}]')
-                            replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
-                            left_side = new_txt[:os]
-                            right_side = new_txt[oe:]
-                            new_txt = left_side + replacement + right_side
-                            _(f'left_side:[{left_side}]')
-                            _(f'right_side:[{right_side}]')
-                            _(f'replacement:[{replacement}]')
-                            _(f'new_txt:[{new_txt}]')
-
-                            # pp(f'orig_entry_orig:[{orig_orig}]')
-                            # pp(f'orig_entry_ref:[{orig_ref_list}]')
-                            # has_ref = (len(orig_ref_list) > 0)
-                            # if has_ref:
-                            #     orig_ref_list_first_elem = orig_ref_list[0]
-                            #     otxt = orig_ref_list_first_elem.getText()
-                            #     os, oe = ref_orig.getLocation()
-                            #     _(f'os:[{os}], oe:[{oe}], otxt:[{otxt}]')
-                            #
-                            #     first_ref_item_txt = first_ref_item.getText()
-                            #
-                            #     ref_tran_txt = ref_orig_txt
-                            #     ref_orig_txt = orig_orig_txt # taking the original
-                            #     # ref_orig_txt = otxt
-                            #     ref_tran_txt = replaceArchedQuote(ref_tran_txt)
-                            #     ref_orig_txt = replaceArchedQuote(ref_orig_txt)
-                            #     pp(f'findRefRecord:[{ref_orig_txt}] => [{ref_tran_txt}]')
-                            #     replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
-                            #     left_side = new_txt[:os]
-                            #     right_side = new_txt[oe:]
-                            #     new_txt = left_side + replacement + right_side
-                            #     _(f'left_side:[{left_side}]')
-                            #     _(f'right_side:[{right_side}]')
-                            #     _(f'replacement:[{replacement}]')
-                            #     _(f'new_txt:[{new_txt}]')
-                            # else:
-                            #     _(f'origin has no ref: [{orig_entry}]')
-                            #     new_txt = None
                         else:
                             _(f"Unable to find original for [{ref_orig_txt}]")
                             r_txt = first_ref_item.getText()
                             os, oe = ref_orig.getLocation()
                             r_txt = replaceArchedQuote(r_txt)
-                            replacement = f':abbr:`{r_txt} ({r_txt})`'
-                            left_side = new_txt[:os]
-                            right_side = new_txt[oe:]
-                            new_txt = left_side + replacement + right_side
-                            _(f'left_side:[{left_side}]')
-                            _(f'right_side:[{right_side}]')
-                            _(f'replacement:[{replacement}]')
-                            _(f'new_txt:[{new_txt}]')
 
+            is_change = (ref_tran_txt is not None) and (ref_orig_txt is not None)
+            if is_change:
+                ref_tran_txt = replaceArchedQuote(ref_tran_txt)
+                ref_orig_txt = replaceArchedQuote(ref_orig_txt)
+                if is_reverse:
+                    replacement = f':abbr:`{ref_orig_txt} ({ref_tran_txt})`'
+                else:
+                    replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
+
+                os, oe = ref_orig.getLocation()
+                left_side = new_txt[:os]
+                right_side = new_txt[oe:]
+                new_txt = left_side + replacement + right_side
+                _(f'left_side:[{left_side}]')
+                _(f'right_side:[{right_side}]')
+                _(f'replacement:[{replacement}]')
+                _(f'new_txt:[{new_txt}]')
             _()
 
         return new_txt
@@ -1027,6 +996,8 @@ class RefList(defaultdict):
             (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
         ]
         self.findPattern(pattern_list)
+
+        # **** should break up sentences here
         self.findTextOutsideRefs()
 
         has_record = (len(self) > 0)

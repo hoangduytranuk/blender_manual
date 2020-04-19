@@ -12,7 +12,7 @@ from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
 from babel.messages.catalog import Message
 from babel.messages import pofile
-from common import DEBUG, DIC_INCLUDE_LOWER_CASE_SET
+from common import DEBUG, DIC_LOWER_CASE
 
 
 class CaseInsensitiveDict(dict):
@@ -362,7 +362,7 @@ class TranslationFinder:
 
         entry = {k: v}
         dict_list.update(entry)
-        if DIC_INCLUDE_LOWER_CASE_SET:
+        if DIC_LOWER_CASE:
             k_lower = k.lower()
             is_same = (k_lower == k)
             if not is_same:
@@ -399,7 +399,7 @@ class TranslationFinder:
             po_cat_dic.update(entry)
 
             #_("poCatToDic:", k, v)
-            if DIC_INCLUDE_LOWER_CASE_SET:
+            if DIC_LOWER_CASE:
                 #lower_k = (m.id.lower(), context.lower())
                 lower_k = m.id.lower()
                 is_same_key = (k == lower_k)
@@ -437,13 +437,14 @@ class TranslationFinder:
             with open(file_path) as in_file:
                 dic = json.load(in_file)
 
-            # lower_dic = {}
-            # if dic:
-            #     for k, v in dic.items():
-            #         entry = {k.lower(): v}
-            #         # _(entry)
-            #         lower_dic.update(entry)
-            # dic = lower_dic
+            if DIC_LOWER_CASE:
+                lower_dic = {}
+                if dic:
+                    for k, v in dic.items():
+                        entry = {k.lower(): v}
+                        # _(entry)
+                        lower_dic.update(entry)
+                dic = lower_dic
         except Exception as e:
             _("Exception readDictionary Length of read dictionary:")
             _(e)
@@ -490,25 +491,13 @@ class TranslationFinder:
         if (is_ignore):
             return None
 
-        # is_debug = ('...' in msg.lower())
-        # if is_debug:
-        #     _('DEBUG')
-
         orig_msg = str(msg)
-        begin_with_punctuations = (cm.BEGIN_PUNCTUAL.search(msg) is not None)
-        ending_with_punctuations = (cm.ENDS_PUNCTUAL.search(msg) is not None)
-        if begin_with_punctuations:
-            msg = cm.BEGIN_PUNCTUAL.sub("", msg)
-        if ending_with_punctuations:
-            msg = cm.ENDS_PUNCTUAL.sub("", msg)
-
-        list_name = "self.master_dic_list"
+        msg, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(msg, is_single=True)
         trans = self.isInList(msg, is_lower=True)
-        # if not trans:
-        #     list_name = "self.master_dic_list LOWER"
-        #     trans = self.isInList(msg, is_lower=True)
-
-        # _("Using", list_name)
+        has_tran = (trans is not None)
+        if not has_tran:
+            msg, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(msg, is_single=False)
+            trans = self.isInList(msg, is_lower=True)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))

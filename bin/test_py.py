@@ -13,7 +13,7 @@ import re
 from difflib import SequenceMatcher as SM
 #from fuzzywuzzy import fuzz as fz
 from pprint import pprint
-from bs4 import BeautifulSoup as BS
+# from bs4 import BeautifulSoup as BS
 import os
 import html
 from queue import Queue as Q
@@ -2330,8 +2330,14 @@ class test(object):
             self.writeTextFile(changed_file, data)
             print("Wrote changed to:", changed_file)
 
+    def test_0037(self):
+        t = "'to_space -- tới không gian' '%s' I'd to do it's and I'll là không hợp lệ khi chưa được cung cấp xương tư thế nào cả 'but this'"
+        SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
+        find_all_list = re.findall(SNG_QUOTE, t)
+        pp(find_all_list)
+
     def run(self):
-        self.test_0036()
+        self.test_0037()
 
 
 x = test()

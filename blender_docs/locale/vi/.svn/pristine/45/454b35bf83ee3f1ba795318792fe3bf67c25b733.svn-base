@@ -1,0 +1,455 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License
+# This file is distributed under the same license as the Blender 2.79 Manual
+# package.
+# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Blender 2.79 Manual 2.79\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-04 18:52-0400\n"
+"PO-Revision-Date: 2020-02-26 21:13+0000\n"
+"Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n"
+"Language: vi\n"
+"Language-Team: London, UK <hoangduytran1960@gmail.com>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:4
+msgid "Sampling"
+msgstr "Lấy Mẫu Vật -- Sampling"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:6
+msgid "Reference"
+msgstr "Tham Chiếu -- Reference"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst
+msgid "Panel"
+msgstr "Bảng -- Panel"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:9
+msgid ":menuselection:`Render --> Sampling`"
+msgstr ":menuselection:`Kết Xuất (Render) --> Lấy Mẫu Vật (Sampling)`"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:11
+msgid ""
+"The integrator is the rendering algorithm used to compute the lighting. "
+"Cycles currently supports a path tracing integrator with direct light "
+"sampling. It works well for various lighting setups, but is not as "
+"suitable for caustics and some other complex lighting situations."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:16
+msgid ""
+"Rays are traced from the camera into the scene, bouncing around until "
+"they find a light source such as a light, an object emitting light, or "
+"the world background. To find lights and surfaces emitting light, both "
+"indirect light sampling (letting the ray follow the surface BSDF) and "
+"direct light sampling (picking a light source and tracing a ray towards "
+"it) are used."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:39
+msgid "Integrator"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:23
+#, fuzzy
+msgid ""
+"There are two sample methods that can be used: *Path Tracing* and "
+"*Branched Path Tracing*."
+msgstr ""
+"There are two integrator modes that can be used: *Path Tracing* and "
+"*Branched Path Tracing*."
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:28
+msgid "Path Tracing"
+msgstr "Dò Đường Đi -- Path Tracing"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:26
+msgid ""
+"The *Path Tracing* integrator is a pure path tracer; at each hit it will "
+"bounce light in one direction and pick one light to receive lighting "
+"from. This makes each individual sample faster to compute, but will "
+"typically require more samples to clean up the noise."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:39
+msgid "Branched Path Tracing"
+msgstr "Dò Đường Đi Phân Nhánh -- Branched Path Tracing"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:31
+msgid ""
+"The non-progressive Branched Path Tracing integrator offers finer control"
+" over sampling. It is similar to *Path Tracing*, but at the first hit it "
+"will split the path for different surface components and will take all "
+"lights into account for shading instead of just one."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:35
+msgid ""
+"This makes each sample slower, but will reduce noise, especially in "
+"scenes dominated by direct or one-bounce lighting. To get the same number"
+" of diffuse samples as in the path tracing integrator, note that e.g. 250"
+" path tracing samples = 10 AA Samples x 25 diffuse samples. The Sampling "
+"panel shows this total number of samples."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:45
+msgid "Render"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:42
+msgid ""
+"Number of paths to trace for each pixel in the final render. As more "
+"samples are taken, the solution becomes less noisy and more accurate."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:45
+msgid ""
+"When using *Branched Path Tracing*, this changes the *AA Samples* which "
+"are multiplied by the `Sub Samples`_ and improve anti-aliasing."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:48
+msgid "Viewport"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:48
+msgid "Number of samples for viewport rendering."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:65
+msgid "Viewport Denoising"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:53
+msgid ""
+"Removes noise while previewing scenes in *Rendered* mode in the 3D "
+"Viewport. Denoising can also be enabled for the final render in the "
+":ref:`View Layer Properties <render-layers-denoising-optix>`. The sample "
+"value which denoising can be applied on to can be configured in the "
+":ref:`Viewport Performance <render_cycles_settings_perfomance_viewport>` "
+"properties."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:59
+#, fuzzy
+msgid "None"
+msgstr "Bỏ Qua -- Ignore"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:60
+msgid "Do not denoise the 3D Viewport."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:65
+msgid "OptiX AI-Accelerated"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:62
+msgid ""
+"Uses an artificial intelligence algorithm to remove noise from renders. "
+"It is based on the :ref:`render-cycles-gpu-optix` acceleration engine and"
+" therefore has the same GPU requirements as rendering with Optix."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:68
+#, fuzzy
+msgid "Sub Samples"
+msgstr "-- AO Samples"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:70
+msgid "The panel is visible only when using *Branched Path Tracing*."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:72
+msgid "Diffuse"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:73
+msgid "Number of diffuse bounce samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:74
+msgid "Glossy"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:75
+msgid "Number of glossy bounce samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:76
+#, fuzzy
+msgid "Transmission"
+msgstr "Số Mẫu Vật Truyền Xạ -- Transmission Samples"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:77
+msgid "Number of transmission bounce samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:78
+msgid "AO"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:79
+msgid "Number of ambient occlusion samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:80
+msgid "Mesh Light"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:81
+msgid "Number of mesh light samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:82
+#, fuzzy
+msgid "Subsurface"
+msgstr "Mẫu Vật Dưới Bề Mặt -- Subsurface Samples"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:83
+msgid "Number of subsurface scattering samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:86
+msgid "Volume"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:85
+msgid "Number of volume scattering samples to take for each AA sample."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:89
+msgid "Adaptive Sampling"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:91
+msgid ""
+"*Adaptive Sampling* is a technique to speed up rendering by terminating "
+"sampling for a particular pixel early. This works by computing how much a"
+" pixel changes while samples are computed, if the pixel does not change "
+"more than a certain amount, Cycles will stop computing samples for that "
+"pixel. *Adaptive Sampling* can be enabled/disabled with the checkbox in "
+"the panel header."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:100
+#, fuzzy
+msgid "Min Samples"
+msgstr "-- AO Samples"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:99
+msgid ""
+"The minimum AA samples that must be computed before checking for "
+"variance. Zero is an automatic setting based on the total number of AA "
+"samples"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:106
+#, fuzzy
+msgid "Noise Threshold"
+msgstr "Giới Hạn Lấy Mẫu Vật Ánh Sáng -- Light Sampling Threshold"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:103
+msgid ""
+"The amount of variation between samples before terminating sampling. "
+"Smaller values will give more accurate results, using more samples, but "
+"increase rendering times. Zero is an automatic setting based on the total"
+" number of AA samples"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:109
+msgid "Advanced"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:117
+msgid "Seed"
+msgstr "Mầm -- Seed"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:112
+msgid "Seed value for integrator to get different noise patterns."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:117
+msgid "Animate Seed (clock icon)"
+msgstr "-- Animate Seed (clock icon)"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:115
+msgid ""
+"This button, which can be found on the right side of the *Seed* value, "
+"can be used to give different seed values. It is a good idea to enable "
+"this when making animation because in the real world each frame has a "
+"different noise pattern."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:135
+msgid "Pattern"
+msgstr "Hoa Văn/Mẫu -- Pattern"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:120
+msgid "Random sampling pattern used by the integrator."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:123
+msgid "Sobol"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:123
+msgid ""
+"Uses a Sobol pattern to decide the random sampling pattern used by the "
+"integrator. See `Sobol sequence "
+"<https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more "
+"information."
+msgstr ""
+"Uses a Sobol pattern to decide the random sampling pattern used by the "
+"integrator. See `Sobol sequence "
+"<https://en.wikipedia.org/wiki/Sobol_sequence>`__ on Wikipedia for more "
+"information."
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:127
+msgid "Correlated Multi-Jitter"
+msgstr "Đa Biến Động Tương Quan -- Correlated Multi-Jitter"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:126
+#, fuzzy
+msgid ""
+"Uses a Correlated Multi-Jitter pattern to decide the random sampling "
+"pattern used by the integrator. See `this Pixar paper "
+"<https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ "
+"for more information."
+msgstr ""
+"Uses a Correlated Multi-Jitter pattern to decide the random sampling "
+"pattern used by the integrator. See `this Pixar paper "
+"<http://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>`__ "
+"for more information."
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:135
+#, fuzzy
+msgid "Progressive Multi-Jitter"
+msgstr "Đa Biến Động Tương Quan -- Correlated Multi-Jitter"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:130
+msgid ""
+"Uses a Progressive Multi-Jitter pattern to decide the random sampling "
+"pattern used by the integrator. Its advantage is to provide a well "
+"distribution of samples over iterating sample counts. Because of its good"
+" distribution over a range of different sample counts, this sample "
+"pattern is used for `Adaptive Sampling`_. See `this Pixar paper "
+"<https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf>`__"
+" for more information."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:138
+msgid "Square Samples"
+msgstr "Bình Phương Mẫu Vật -- Square Samples"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:138
+msgid "Square the amount of samples."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:144
+msgid "Min Light Bounces"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:141
+msgid ""
+"Minimum number of light bounces for each path, after which the integrator"
+" uses Russian Roulette to terminate paths that contribute less to the "
+"image. Setting this higher gives less noise, but may also increase render"
+" time considerably. For a low number of bounces, it is strongly "
+"recommended to set this equal to the maximum number of bounces."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:148
+msgid "Min Transparent Bounces"
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:147
+msgid ""
+"Minimum number of transparent bounces. Setting this higher reduces noise "
+"in the first bounces, but can also be less efficient for more complex "
+"geometry like hair and volumes."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:157
+#, fuzzy
+msgid "Light Threshold"
+msgstr "Giới Hạn Lấy Mẫu Vật Ánh Sáng -- Light Sampling Threshold"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:151
+msgid ""
+"Probabilistically terminates light samples when the light contribution is"
+" below this threshold (more noise but faster rendering). Zero disables "
+"the test and never ignores lights. This is useful because in large scenes"
+" with many light sources, some might only contribute a small amount to "
+"the final image, and increase render times. Using this setting can "
+"decrease the render times needed to calculate the rays which in the end "
+"have very little affect on the image."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:163
+msgid "Sample All Direct Lights"
+msgstr "Lấy Mẫu Toàn Bộ Nguồn Sáng Trực Tiếp -- Sample All Direct Lights"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:160
+msgid ""
+"When enabled, Cycles will sample all lights in the scene for direct "
+"bounces, instead of randomly picking one. Disabling this can improve the "
+"performance, but will need a lot of *Samples*, to clear up the render."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:163
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:168
+msgid "Visible only when using *Branched Path Tracing*."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:168
+msgid "Sample All Indirect Lights"
+msgstr "Lấy Mẫu Toàn Bộ Nguồn Sáng Gián Tiếp -- Sample All Indirect Lights"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:166
+msgid ""
+"Similar to direct light, but for indirect lights. This can reduce noise "
+"in scenes with many lights."
+msgstr ""
+
+#: <generated>:1
+msgid "Layer Samples"
+msgstr "Mẫu Vật của Tầng -- Layer Samples"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:173
+msgid ""
+"When render layers have per layer number of samples set, this option "
+"specifies how to use them."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:175
+msgid "Use"
+msgstr "Sử Dụng -- Use"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:176
+msgid "The render layer samples will override the set scene samples."
+msgstr ""
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:177
+msgid "Bounded"
+msgstr "Giới Hạn -- Bounded"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:178
+msgid "Bound render layer samples by scene samples."
+msgstr ""
+
+#: <generated>:1
+msgid "Ignore"
+msgstr "Bỏ Qua -- Ignore"
+
+#: C:/Users/Aaron/Documents/Projects/Blender_Foundation/blender_docs/manual/render/cycles/render_settings/sampling.rst:180
+msgid "Ignore render layer sample settings."
+msgstr ""
+

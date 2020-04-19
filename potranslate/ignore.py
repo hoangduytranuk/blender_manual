@@ -83,7 +83,8 @@ class Ignore:
         #r'^()$',
         #r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
         #r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
-        r'^\%[\w]$',
+        r'([\`\'\"\*\(]+)?(\%[\w])([\`\'\"\*\(]+)?',
+        r'^(/\[\`\'\"\*\(]+)?\%[\w](/\[\`\'\"\*\)]+)?$',
         r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         r'^(GPL[\s\w][\d][+])$',
         r'^(A \(Alpha\))$',
@@ -199,7 +200,6 @@ class Ignore:
         r"^(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)$",
         r"^(tab|TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)$",
         r"[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
-        "",
     ]
 
     # , ""
@@ -243,7 +243,18 @@ class Ignore:
         #"",
     ]
 
+    reverse_order_list = [
+        r'khóa.*[\d]+(\s[\-]{2}\s(key))',
+        r'\"Cơ Sở -- Basis\"',
+        r'^\"xương -- bone\"$',
+        r'^\"xương\"$',
+        r'^\"bone\"$',
+        r'xương\.[\d]+',
+        r'bone\.[\d]+',
+    ]
     keep_contains_list = [
+        "xương",
+        "bone",
         "January",
         "February",
         "March",
@@ -267,6 +278,14 @@ class Ignore:
         # "",
         # "",
     ]
+
+    def isReverseOrder(msg):
+        for w in Ignore.reverse_order_list:
+            is_reverse = (re.search(w, msg, flags=re.I) is not None)
+            if is_reverse:
+                _(f'isReverseOrder -> pattern:[{w}] msg:[{msg}]')
+                return True
+        return False
 
     def isKeepContains(msg):
         for term in Ignore.keep_contains_list:
@@ -375,6 +394,7 @@ class Ignore:
             for m in Ignore.runtime_ignore_list:
                 is_found = (m.search(text_line) is not None)
                 if is_found:
+                    _(f'isIgnoredWord: pattern:[{m.pattern}] [{text_line}]')
                     return True
             else:
                 return False

@@ -10,7 +10,7 @@ import Levenshtein as LE
 #import logging
 
 DEBUG=True
-DIC_INCLUDE_LOWER_CASE_SET=True
+DIC_LOWER_CASE=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -114,12 +114,15 @@ class Common:
     TAG_NAME='tagname'
     CLASS='classes'
 
-    ENDS_PUNCTUAL = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
-    BEGIN_PUNCTUAL = re.compile(r'^([\.\,\:\!\?\"\*\'\`]+)')
+    ENDS_PUNCTUAL_MULTI = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
+    ENDS_PUNCTUAL_SINGLE = re.compile(r'([\.\,\:\!\?\"\*\'\`]{1}$)')
+
+    BEGIN_PUNCTUAL_MULTI = re.compile(r'^([\.\,\:\!\?\"\*\'\`]+)')
+    BEGIN_PUNCTUAL_SINGLE = re.compile(r'^([\.\,\:\!\?\"\*\'\`]{1})')
 
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
     REF_SEP = ' -- '
-    
+
 
     # dictionary: {start_location: [[s, e, match_0],[(s, e, :type:), (s, e, text), (s, e, link if any), (s, e, text-within-link | or abbreviation) ]]}
     #SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`\"\'\*]+(?![\s\)\.\(]+)([^\`\("\'\*\<\>]+)(((\<([\w\-\s]+)\>\*)*)|(\(([^(]+)\))*)(?<!([\s\:]))[\`\"\'\*]+')
@@ -160,7 +163,10 @@ class Common:
 
     AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
     DBL_QUOTE = re.compile(r'[\"]+(?![\s\.\,\`]+)([^\"]+)[\"]+(?<!([\s\.\,]))')
-    SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+')
+    # SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+(?<!([\s\.\,]))')
+    # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(!?([\s]))')
+    # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+')
+    SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
@@ -177,7 +183,7 @@ class Common:
     KEYBOARD_SEP = re.compile(r'[^\-]+')
     SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
     ALPHA_NUMERICAL = re.compile(r'[\w]+')
-    EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\`\'\"\*\(\)]+)[\`\`\'\"\*\)]+?$')
+    EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
     OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
     FILLER_CHAR='¶'
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
@@ -220,6 +226,24 @@ class Common:
                 if is_lower:
                     new_str = new_str.lower()
         return new_str
+
+    def beginAndEndPunctuation(msg, is_single=False):
+        if is_single:
+            begin_with_punctuations = (Common.BEGIN_PUNCTUAL_SINGLE.search(msg) is not None)
+            ending_with_punctuations = (Common.ENDS_PUNCTUAL_SINGLE.search(msg) is not None)
+            if begin_with_punctuations:
+                msg = Common.BEGIN_PUNCTUAL_SINGLE.sub("", msg)
+            if ending_with_punctuations:
+                msg = Common.ENDS_PUNCTUAL_SINGLE.sub("", msg)
+        else:
+            begin_with_punctuations = (Common.BEGIN_PUNCTUAL_MULTI.search(msg) is not None)
+            ending_with_punctuations = (Common.ENDS_PUNCTUAL_MULTI.search(msg) is not None)
+            if begin_with_punctuations:
+                msg = Common.BEGIN_PUNCTUAL_MULTI.sub("", msg)
+            if ending_with_punctuations:
+                msg = Common.ENDS_PUNCTUAL_MULTI.sub("", msg)
+
+        return msg, begin_with_punctuations, ending_with_punctuations
 
     def removeOriginal(msg, trans):
         msg = re.escape(msg)
