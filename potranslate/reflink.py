@@ -683,7 +683,7 @@ class RefList(defaultdict):
             entry={o_ss:v}
             self.update(entry)
 
-    def findRefRecord(self, msg):
+    def findRefRecord(self, msg, entry_index, is_using_first_anyway=False, is_reversed_list=False):
         has_record = (len(self) > 0)
         if not has_record:
             return None
@@ -692,7 +692,17 @@ class RefList(defaultdict):
         if is_ignore:
             return None
 
-        for k, v in self.items():
+        is_debug = ('Làm Dịu Đầu Ra' in msg)
+        if is_debug:
+            _('DEBUG')
+
+        k_list = list(self.keys())
+        k_len = len(k_list)
+        if is_reversed_list:
+            k_list = list(reversed(k_list))
+
+        for k in k_list:
+            v = self[k]
             v_txt = v.getOriginText()
             is_ignore = ig.isIgnored(v_txt)
             if is_ignore:
@@ -704,19 +714,16 @@ class RefList(defaultdict):
             if is_matched:
                 _("found_matched_ref:", v_txt, " for:", msg)
                 return v
-        has_one_ref = (len(self))
-        if has_one_ref:
-            k_list = self.keys()
-            k = list(k_list)[0]
-            v = self[k]
-            v_txt = v.getOriginText()
-            is_ignore = ig.isIgnored(v_txt)
-            if is_ignore:
-                return None
 
-            _("assumed the first item:", v_txt, " for:", msg)
-            return v
-        return None
+        if (entry_index < k_len):
+            k = k_list[entry_index]
+            v = self[k]
+        elif (is_using_first_anyway and (k_len > 0)):
+            k = k_list[0]
+            v = self[k]
+        else:
+            v = None
+        return v
 
 
     def transferRefRecordText(self, target_ref_list):
@@ -789,7 +796,7 @@ class RefList(defaultdict):
         new_txt = str(self.msg)
         v : RefRecord
         k_list = reversed(list(self.keys()))
-        for k in k_list:
+        for index, k in enumerate(k_list):
             is_reverse = False
             ref_tran_txt = ref_orig_txt = None
             v = self[k]
@@ -810,7 +817,8 @@ class RefList(defaultdict):
 
             is_acceptable = (ref_type == RefType.AST_QUOTE) or \
                             (ref_type == RefType.DBL_QUOTE) or \
-                            (ref_type == RefType.SNG_QUOTE)
+                            (ref_type == RefType.SNG_QUOTE) or \
+                            (ref_type == RefType.ABBR) # dealing with this later when switch to the test_dic.json
 
             if is_acceptable:
                 pp(f'ref_orig:[{ref_orig}]')
@@ -828,7 +836,29 @@ class RefList(defaultdict):
                 if has_more_than_one_ref_items:
                     _(f'ref list has more than one item:[{ref_list_len}]')
 
-                if has_ref:
+                is_possible_reworking_abbr = (ref_type == RefType.ABBR)
+                if is_possible_reworking_abbr:
+                  first_ref_item = ref_list[0]
+                  fis, fie, fi_txt = first_ref_item.getValues()
+                  fi_word_list = cm.ABBREV_CONTENT_PARSER.findall(fi_txt)
+                  existing_tran, existing_orig = fi_word_list[0]
+                  orig_entry = orig_list.findRefRecord(existing_orig, index, is_reversed_list=True)
+                  is_found_orig = (orig_entry is not None)
+                  if not is_found_orig: #item introduced while translating, ignore, since there are no possibility to identify the origin
+                      _(f'DEBUG: entry not in orig text:[{existing_orig} => [{existing_tran}]')
+                      continue
+
+                  orig_orig = orig_entry.getOrigin()
+                  # orig_ref_list = orig_entry.getRefList()
+                  # orig_orig_txt = orig_orig.getText()
+                  #
+                  # ref_tran_txt = ref_orig_txt
+                  # ref_orig_txt = orig_orig_txt
+                  # os, oe = ref_orig.getLocation()
+
+                  _(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
+                  continue
+                elif has_ref:
                     first_ref_item = ref_list[0]
                     r_txt = first_ref_item.getText()
                     # ref_txt_list = r_txt.split(cm.REF_SEP)
@@ -839,7 +869,7 @@ class RefList(defaultdict):
                         ref_orig_txt = ref_txt_list[1]
                     else:
                         pp(f'first_ref_item:[{first_ref_item}]')
-                        orig_entry = orig_list.findRefRecord(ref_orig_txt)
+                        orig_entry = orig_list.findRefRecord(ref_orig_txt, index, is_reversed_list=True)
                         is_found_orig = (orig_entry is not None)
                         if is_found_orig:
                             orig_orig = orig_entry.getOrigin()
