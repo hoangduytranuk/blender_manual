@@ -1,0 +1,5 @@
+#!/bin/bash -x
+directory=$1
+orig_pattern=$2
+exclude_pattern=$(echo $orig_pattern | sed  's/|/\\|/g')
+find $directory -not -regex ".*\($exclude_pattern\).*" -type f

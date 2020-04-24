@@ -815,10 +815,12 @@ class RefList(defaultdict):
             if is_debug:
                 _('DEBUG')
 
-            is_acceptable = (ref_type == RefType.AST_QUOTE) or \
-                            (ref_type == RefType.DBL_QUOTE) or \
-                            (ref_type == RefType.SNG_QUOTE) or \
-                            (ref_type == RefType.ABBR) # dealing with this later when switch to the test_dic.json
+            is_ast_quote = (ref_type == RefType.AST_QUOTE)
+            is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
+            is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+            is_abbr = (ref_type == RefType.ABBR) # # dealing with this later when switch to the test_dic.json
+
+            is_acceptable = (is_ast_quote or is_dbl_quote or is_sng_quote or is_abbr)
 
             if is_acceptable:
                 pp(f'ref_orig:[{ref_orig}]')
@@ -836,8 +838,7 @@ class RefList(defaultdict):
                 if has_more_than_one_ref_items:
                     _(f'ref list has more than one item:[{ref_list_len}]')
 
-                is_possible_reworking_abbr = (ref_type == RefType.ABBR)
-                if is_possible_reworking_abbr:
+                if is_abbr:
                   first_ref_item = ref_list[0]
                   fis, fie, fi_txt = first_ref_item.getValues()
                   fi_word_list = cm.ABBREV_CONTENT_PARSER.findall(fi_txt)

@@ -180,6 +180,7 @@ class Common:
     ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
     MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
     MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
+
     KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
     KEYBOARD_SEP = re.compile(r'[^\-]+')
     SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
