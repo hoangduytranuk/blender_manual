@@ -149,7 +149,7 @@ class Ignore:
         r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del(ta)?|de)$",
         r"^([^\w]+log.*wm.*)$",
         r"^(Djv|Doppler|Dots\/BU|Dpi|DWAA)$",
-        r"^(EWA|Epsilon|Esc|exr|FBX|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt)$",
+        r"^(EWA|Epsilon|Esc|exr|FBX|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR)$",
         r"^((GGX|GLSL|GPU)[s:]|Gamma([s:])|Ge2Kwy5EGE0|Gizmo[s:]|GPL|GGX|GLSL)$",
         r"^(H\.264|HDR[I]?|Hosek \/ Wilkie|HuffYUV)$",
         r"^(ID|Ins|JPEG 2000)$",

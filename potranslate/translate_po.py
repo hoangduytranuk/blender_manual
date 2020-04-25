@@ -70,17 +70,17 @@ def doctree_resolved(app, doctree, docname):
         return is_repeat
 
     def correctingDictionary():
-        # remove_items=[]
+        remove_items=[]
         new_items = {}
         for k, v in trans_finder.master_dic_list.items():
-            # is_ignore = ig.isIgnored(k) or ig.isIgnored(v)
-            # if is_ignore:
-            #     continue
-            # is_removed = removeDuplication(k)
-            # if is_removed:
-            #     remove_items.append(k)
-            #     _(f'Duplication Marking for removal:[{k}]')
-            #     continue
+            is_end_with_dot = (k.endswith('.') and not (k.endswith('..') or k.endswith('...')))
+            if is_end_with_dot:
+                txt_without_dot = k[:-1]
+                is_repeat = (txt_without_dot in trans_finder.master_dic_list) and (k in trans_finder.master_dic_list)
+                if (is_repeat):
+                    remove_items.append(k)
+                    _(f'ignore this message: [{k}]')
+                    continue
 
             ref_list = RefList(msg=v)
             new_v = ref_list.quotedToAbbrev(k)
@@ -89,9 +89,11 @@ def doctree_resolved(app, doctree, docname):
                 new_entry={k:new_v}
                 new_items.update(new_entry)
 
-        # for k in remove_items:
-        #     _(f'Duplication Removing:[{k}]')
-        #     del trans_finder.master_dic_list[k]
+        has_remove_items = (len(remove_items) > 0)
+        if has_remove_items:
+            for k in remove_items:
+                _(f'Delete from dictionary:[{k}]')
+                del trans_finder.master_dic_list[k]
 
         is_writing_changes = (len(new_items) > 0)
         if is_writing_changes:
