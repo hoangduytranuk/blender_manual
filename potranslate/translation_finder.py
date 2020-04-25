@@ -120,8 +120,8 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0001.json"
-        self.master_dic_backup_file = "/Users/hoangduytran/ref_dict_0003.json"
+        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0003.json"
+        # self.master_dic_backup_file = "/Users/hoangduytran/ref_dict_0003.json"
         #self.master_dic_file = "/Users/hoangduytran/ref_dict_0002.json"
         self.master_dic_backup_list = defaultdict(OrderedDict)
 

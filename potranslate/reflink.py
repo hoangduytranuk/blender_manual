@@ -57,6 +57,7 @@ class RefType(Enum):
     SUP=":sup:"
     TERM=":term:"
     TEXT="generic_text"
+    FILLER="filler"
 
 # :MM:
 # :abbr:
@@ -109,6 +110,11 @@ class RefItem:
                    (self.text == other.text) and \
                    (self.reftype == other.reftype)
         return is_equal
+
+    def textContain(self, search_txt):
+        if self.text is None:
+            return False
+        return (search_txt in self.text)
 
     def getLocation(self):
         return self.start, self.end
@@ -692,9 +698,9 @@ class RefList(defaultdict):
         if is_ignore:
             return None
 
-        is_debug = ('Làm Dịu Đầu Ra' in msg)
-        if is_debug:
-            _('DEBUG')
+        # is_debug = ('Làm Dịu Đầu Ra' in msg)
+        # if is_debug:
+        #     _('DEBUG')
 
         k_list = list(self.keys())
         k_len = len(k_list)
@@ -743,6 +749,31 @@ class RefList(defaultdict):
         return un_transferred_list
 
     def quotedToAbbrev(self, orig_txt):
+        def balanceNumberOfItems(tran_list, orig_list):
+            tran_len = len(tran_list)
+            orig_len = len(orig_list)
+
+            diff = abs(tran_len - orig_len)
+            is_balanced = (diff == 0)
+            if is_balanced:
+                return False
+
+            chosen_list = (tran_list if (tran_len < orig_len) else orig_list)
+            chosen_list_keys = chosen_list.keys()
+            has_key = len(chosen_list_keys) > 0
+            if has_key:
+                last_key = list(chosen_list_keys)[-1]
+            else:
+                last_key = 0
+
+            for index in range(diff):
+                ref_item = RefItem(start=-1, end=-1, txt=RefType.FILLER.value, ref_type=RefType.FILLER)
+                ref_rec = RefRecord(origin=ref_item)
+                k = last_key + 1
+                entry = {k:ref_rec}
+                chosen_list.update(entry)
+
+
         def replaceArchedQuote(txt):
             new_txt = str(txt)
             new_txt = re.sub('\)', ']', new_txt)
@@ -788,6 +819,8 @@ class RefList(defaultdict):
         if not has_record:
             return
 
+        balanceNumberOfItems(self, orig_list) # this will fill in 'filler' records, assingting search
+
         _('list of refs:')
         pp(self)
         _(f'quotedFindRefs, orig: [{orig_txt}]')
@@ -811,9 +844,13 @@ class RefList(defaultdict):
                 _(f'Ignoring [{ref_orig_txt}]')
                 continue
 
-            is_debug = ('%' in ref_orig_txt)
+            is_debug = ref_orig.textContain('handLeft') or ref_orig.textContain('bàn tay trái')
             if is_debug:
-                _('DEBUG')
+                _(f'DEBUG')
+
+            # is_debug = ('%' in ref_orig_txt)
+            # if is_debug:
+            #     _('DEBUG')
 
             is_ast_quote = (ref_type == RefType.AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
@@ -860,6 +897,9 @@ class RefList(defaultdict):
                   _(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
                   continue
                 elif has_ref:
+                    is_debug = ('handLeft' in ref_orig_txt)
+                    if is_debug:
+                        _(f'DEBUG')
                     first_ref_item = ref_list[0]
                     r_txt = first_ref_item.getText()
                     # ref_txt_list = r_txt.split(cm.REF_SEP)
@@ -869,6 +909,10 @@ class RefList(defaultdict):
                         ref_tran_txt = ref_txt_list[0]
                         ref_orig_txt = ref_txt_list[1]
                     else:
+                        is_debug = ('handLeft' in ref_orig_txt)
+                        if is_debug:
+                            _(f'DEBUG')
+
                         pp(f'first_ref_item:[{first_ref_item}]')
                         orig_entry = orig_list.findRefRecord(ref_orig_txt, index, is_reversed_list=True)
                         is_found_orig = (orig_entry is not None)

@@ -1,501 +1,500 @@
-cp --help
-sudo cp -a /Volumes/KINGSTON_120GB/* ./
-cd $BLENDER_GITHUB
-env | grep BLEN
-env | grep 2.8
-env | grep 2\.8
-alias
-viewpovi 
-cp ~/new_vi.po ~/blender_manual/gui/2.80/po/
+gettext > ~/gettext.log 2>&1
+ll
+exit
+cd /Volumes/SEAGATE_BACKUP_5TG/
+ll
+ll -a
+cd Backups.backupdb/
+ll
+sudo ll
+sudo ll
+sudo ls -l
+sudo -s
 cd $BLENDER_GITHUB
 git status
 git add *
-git commit -m "added new_vi.po temporarily for backup"
+git status | more
+ll
+git commit -m "Latest changes as of today"
 git push
-cd /Volumes/
-ll
-cd .timemachine/
-ll
-ll
-cd MyCloud-ER3JS8._afpovertcp._tcp.local./
-ll
-CD ..
-cd ..
+git push
+git push
+convman
+convman
+convman
+findtext.py -p 'updating environment' -s
+findtext.py --help
+findtext.py -p 'updating environment' -y
+findtext.py -p 'updating environment' -y
+cd /Library/Python/3.7/site-packages
+python3
+reloadbashrc 
+findtext.py -p 'updating environment' -y
+cd /usr/local/lib/python3.7/site-packages
 pwd
-cd .tim
-pwd
 ll
-cd ~/Documents/jobs/orridge/
-ls
-cd 2019
-ls
-cd pays/
-ls
-ll
-07/02/2020 - Period 22/2019
-ll
-mv 20200207_Period_222_2019_Ceridian Portal Payslip.pdf 20200207_Period_22_2019_Ceridian Portal Payslip.pdf
-mv 20200207_Period_222_2019_Ceridian\ Portal\ Payslip.pdf 20200207_Period_22_2019_Ceridian\ Portal\ Payslip.pdf
-21/02/2020 - Period 23/2019
-ll
-ll
-open "20200124_Period_21_2019_Ceridian Portal Payslip.pdf"
-open "20200207_Period_22_2019_Ceridian Portal Payslip.pdf"
-open "2019_period_22_Ceridian Portal Payslip.pdf"
-mv "2019_period_22_Ceridian Portal Payslip.pdf" "20200207_Period_22_2019_Ceridian Portal Payslip.pdf"
-open "20200221_Period_23_2019_Ceridian Portal Payslip.pdf"
-open "20200207_Period_22_2019_Ceridian Portal Payslip.pdf"
 cd
-cd Documents/jobs/orridge/
+vi .bashrc
+reloadbashrc 
+findtext.py -p "def wraptext" -p
+findtext.py -p "def wraptext" -y
+cd /Volumes/SEAGATE_BACKUP_5TG/
 ll
-cd 2020/
+cd pbackup/
 ll
-open "Employee Portal%5FEmployee Programme%5FNew.pdf" 
- 
-cd /Applications/
+cd home/
 ll
-alia
-alias
+cd ..
+cd Users/
+ls
+cd hoangduytran/
+ll
+ls -altr
+cd 
+which java
+java --help
+ll
+cd
+ll
+cd blender-git
+ll
+cd blender
+pwd
+ll
+ll
+make update
+ll
+find . -type f -iname \*.c -o -iname \*.cpp -o -iname \*.h -o -name \*.py  -exec grep -i 'filter volume' /dev/null {} \;
+find . -type f -iname \*.c -o -iname \*.cpp -o -iname \*.h -o -name \*.py  -exec grep -i 'filter' /dev/null {} \;
+cd /Volumes/SEAGATE_BACKUP_5TG/
+LL
+ll
 cd old_hdd/
 ll
-cd linux_home/
-ll
-rsync -arP ~/ ./
-ll
+rsync -ar ~/ linux_home/
+rsync -ar ~/ linux_home/
+pwd
 cd ..
+cd pbackup/Users/hoangduytran/
 ll
-chown -R hoangduytran:staff *
-ll
-cd linux_home/
-ll
+rsync -ar ~/Pictures/ ./Pictures/
 cd
 cd /Volumes/SEAGATE_BACKUP_5TG/
 ll
-sudo -s
-cd Documents/
+cd old_hdd/
 ll
-cd jobs/orridge/2020/expenses/
+cd ..
 ll
-cd 20200228-20200228/
+cd pbackup/
 ll
-open 20200228-20200228_travel_expenses_claim_form.svg 
-fillTravelForm.py 
-gettext
-
-gettext
-gettext
-gettext
-filemerge
-which opendiff
-cd
+history
+history | grep rsync
 ll
-opendiff ref_dict_0001.json ref_dict_0002.json 
-gettext
-exit
-gettext
-gettext
-ps -aux | grep File
-ps -ef | grep File
-which pkill
-pkill -9 1887
-pkill -U FileMerge
-ps -ef | grep File
-pkill --help
-pkill 1887
-ps -ef | grep File
-sudo ps -ef | grep File
-sudo pkill -9 1887
-sudo ps -ef | grep File
-sudo pkill -u hoangduytran FileMerge
-sudo ps -ef | grep File
-gettext
-gettext
-gettext
-script ~/log.txt
-vi ~/log.txt
-script ~/log.txt
-gettext
-exit
-gettext
-exit
-gettext
-exit
-gettext
-exit
-script ~/log.txt
-exit
-gettext
-gettext
-gettext
-gettext
-sudo ps -ef | grep vi
-sudo ps -ef | grep vim
-sudo pkill -U hoangduytran vi
-pwd
-cd locale/vi/LC_MESSAGES/animation/constraints/relationship/
-vi shrinkwrap.
-vi shrinkwrap.po 
-pwd
-gettext
-gettext
-gettext
-vi ~/log.txt
-exit
-gettext
-gettext
-clear
-gettext
-gettex
-gettext
-gettext
-gettext
-cd
-vi ~/log.txt
-gettext
-gettext
-gettext
-grep "GA trimmed from" ~/log.txt > ~/ga_trimmed.txt 
-vi ~/ga_trimmed.txt 
-vi ~/log.txt
-gettext
-gettext | more
-vi ~/log.txt
-python3
-gettext
-:q!
-cd
-vi ~/log.txt
-gettext
-gettext
-gettext
-gettext
-cd
-bo ~/.aliasrc 
-vi ~/.aliasrc
-vi ~/.aliasrc
-cd bin
-gettext
-pwd
-vi ~/.aliasrc 
-vi cd bin
-cd ~/bin
-gettext
-pwd
-vi ~/.aliasrc 
+rsync -at --delete /Volumes/Macintosh\ HD/ /Volumes/SEAGATE_BACKUP_5TG/pbackup/
+sudo rsync -at --delete /Volumes/Macintosh\ HD/ /Volumes/SEAGATE_BACKUP_5TG/pbackup/
+find ~/blender-git/blender -type f -iname \*.c -o -iname \*.cpp -o -iname \*.h -o -name \*.py  -exec grep -i 'filter volume' /dev/null {} \;
+find ~/blender-git/blender -type f -iname \*.c -o -iname \*.cpp -o -iname \*.h -o -name \*.py  -exec grep -i 'edge automaking' /dev/null {} \;
 cd 
-cd bin
+cd po
+ll
+svn ìno
+svn info
+cd po
+svn info
+find ~/blender-git/blender -type f -iname \*.c -o -iname \*.cpp -o -iname \*.h -o -name \*.py  -exec grep -i 'edge automasking' /dev/null {} \;
+g++
+g++ --version
+xcode-select
+xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcode-select -p
+xcode-select -s /Applications/Xcode.app/Contents/Developer
+mkdir -p /Applications/Xcode.app/Contents/Developer
+xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcode-select -s /Applications/Xcode.app
+xcode-select -s /Applications/Xcode.app/Contents/
+xcode-select -s /Applications/Xcode.app
+exit
+sudo -s
+sudo xcode-select -s /Applications/Xcode.app
+cd Downloads/
+ll
+chmod u+x eclipse-inst-mac64.dmg 
+sudo ./eclipse-inst-mac64.dmg 
+which java
+java -version
+ll
+cd blender-git
+ll
+cd blender/
+ll
+make update
+history
+xcode-select -s /
+xcode-select -p /
+xcode-select -s '/'
+sudo xcode-select -s /
+make update
+cd $BLENDER_GITHUB
+ll
+git pull
+git pull
+ll
+ll
+cd ..
+ll
+cd blender-manual
 cd pwd
-echo $PWD
-gettext
 pwd
-vi ~/.aliasrc 
-vi ~/ignore.txt 
-cd /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/advanced/app_templates.po 
-vi /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/advanced/app_templates.po 
-vi /Users/hoangduytran/blender_docs/manual/advanced/app_templates.po 
-vi /Users/hoangduytran/blender_docs/manual/advanced/app_templates.rst 
-vi ~/log.txt
-gettext > ~/log.txt
-vi ~/log.txt
-grep "IGNOR" ~/log.txt | sort > ~/ignore.txt
-vi ~/ignore.txt 
-vi ~/log.txt 
-vi ~/log.txt 
-cd /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/animation/constraints/relationship/
+cd blender_manual/
 ll
-vi pivot.po 
-vi ~/log.txt 
-gettext > ~/log.txt
-vi ~/log.txt 
-gettext > ~/log.txt
-gettext
-gettext > ~/log.txt
-grep "IGNOR" ~/log.txt | sort > ~/ignore.txt 
-cd
-vi ~/ignore.txt 
-vi "Not ign" ~/log.txt | sort > ~/not_ignore.txt 
-grep "Not ign" ~/log.txt | sort > ~/not_ignore.txt 
-vi not_ignore.txt 
-vi ~/log.txt
-vi not_ignore.txt 
-gettext > ~/log.txt
-gettext > ~/log.txt
-grep "Not ign" ~/log.txt | sort > ~/not_ignore.txt 
-grep "IGNOR" ~/log.txt | sort > ~/ignore.txt 
-vi ~/ignore.txt 
-vi not_ignore.txt 
-grep "Not ign" ~/log.txt | sort > ~/not_ignore.txt 
-vi not_ignore.txt 
-vi ~/not_ignore.txt 
-gettext > ~/log.txt
-grep "Not ign" ~/log.txt | sort > ~/not_ignore.txt 
-grep "IGNOR" ~/log.txt | sort > ~/ignore.txt 
-vi ~/not_ignore.txt 
-grep "Not ign" ~/log.txt | sort -u > ~/not_ignore.txt 
-vi ~/not_ignore.txt 
-vi ~/ignore.txt 
-vi ~/not_ignore.txt 
-gettext > ~/log.txt
-gettext > ~/log.txt
-grep "IGNOR" ~/log.txt | sort > ~/ignore.txt 
-vi ~/ignore.txt 
-grep "Not ign" ~/log.txt | sort -u > ~/not_ignore.txt 
-vi ~/not_ignore.txt 
-grep "Not ign" ~/log.txt | sort -u > ~/not_ignore.txt 
-vi ~/not_ignore.txt 
-gettext
-gettext
-gettext
-gettext
-gettext
-gettext
-gettext
-gettext
-gettext
-/usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 49169 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-vi ~/log.txt 
-vi ~/not_ignore.txt 
-vi ~/not_ignore.txt 
-/usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 49169 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 49896 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 49971 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 49981 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 49993 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-findtext.py -f ~/not_ignore.txt -p '[^(\s[-]+\s)]'
-findtext.py -f ~/not_ignore.txt -p '[^(\s-->\s)]'
-findtext.py -f ~/not_ignore.txt -p '[^(\ -->\ )]'
-findtext.py -f ~/not_ignore.txt -p '[^(\ -->\ )]'
-findtext.py -f ~/not_ignore.txt -p '(\ -->\ )'
-pman grep
-/usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52493 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52505 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52522 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52525 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-cd /Users/hoangduytran/blender_docs ; env PYTHONIOENCODING=UTF-8 PYTHONUNBUFFERED=1 /usr/bin/python3 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.2.64397/pythonFiles/ptvsd_launcher.py --default --client --host localhost --port 52528 /Users/hoangduytran/blender_docs/exts/translate_po.py -t builder_html -b gettext -j 8 manual build/locale 
-python
-python3
-findtext.py -f ~/not_ignore.txt -p '-->' -i
-findtext.py -f ~/not_ignore.txt -p '-->' -v
-findtext.py -f ~/not_ignore.txt -p '\-\->' -v
-findtext.py -f ~/not_ignore.txt -p '\-\->' -v
-findtext.py -f ~/community.po -p '\-\->' -v
-findtext.py -f ~/community.po -p ':ref:' -v
-findtext.py -f ~/community.po -p ':ref:' -v
-findtext.py -f ~/community.po -p 'http' -v
-findtext.py -f ~/community.po -p ':ref:' -v
-findtext.py -f ~/community.po -p ':ref:' -v -O
-findtext.py -f ~/community.po -p 'https' -v -O
-findtext.py -f ~/community.po -p 'https' -v
-python3
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-python3
-test_py.py 
-test_py.py 
-findtext.py -p ':abbr' -f ~/log.txt
-findtext.py -p ':abbr:[\`]+([^\`]+)[\`]+' -f ~/log.txt -O
-findtext.py -p ':abbr:[\`]+([^\`]+)[\`]+' -f ~/log.txt -O | sort -u > ~/abbr.txt
-#vi ~/abbr.txt 
-vi ~/abbr.txt 
-findtext.py -p ':doc:[\`]+([^\`]+)[\`]+' -f ~/log.txt -O | sort -u > ~/doc.txt
-vi ~/doc.txt
-findtext.py -p ':ref:[\`]+([^\`]+)[\`]+' -f ~/log.txt -O | sort -u > ~/ref.txt
-vi ~/ref.txt
-findtext.py -p ':[\w]+:[\`]+([^\`]+)[\`]+' -f ~/log.txt -O | sort -u > ~/allref.txt
-vi ~/allref.txt 
-findtext.py -p ':[\w]+:[\`]+([^\`]+)[\`]+' -f ~/not_ignore.txt -O | sort -u > ~/allref.txt
-vi ~/allref.txt 
-rsync -arP --delete ~/bin ~/blender_manual/bin/
-rsync -arP --delete ~/PycharmProjects/potranslate/ ~/blender_manual/potranslate/
-cd $BLENDER_GITHUB
-git add *
-git status
-git commit -am "Add latest changes as of today"
-git push
-git push
-gettext
-gettext
-gettext
-convpo
-cd $BLENDER_GUI
-git status
-cd $BLENDER_GITHUB
-git status
-git add *
-git commit -am "Added some changes to vi.po from changes in ref_dict_0001 as corrected"
-git pusgh
-git push
-gettext
-gettext
-
-gettext
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-cd
-vi ~/doc.txt 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-test_py.py 
-
-test_py.py 
-test_py.py 
-cd Documents/jobs/orridge/
+cd .git
 ll
-cd 2019
-ls
-cd pays/
+catindex
+cat index
 ll
-gettext
-alias
-vi ~/bin/convpo 
-cd
-pwd
-vi ~/bin/convpo 
-vi ~/.aliasrc 
-reloadbashrc 
-alias
-convertpo
-vi ~/.aliasrc 
-reloadbashrc 
-convertpo
-vi ~/.aliasrc 
-convertpo
-ls
+cat config
+git config --global user.name "Hoang Duy Tran"
+git config --global user.email "hoangduytran1960@googlemail.com"
+ll
+mv blender_manual/ blender_manual_old
+git clone https://github.com/hoangduytranuk/blender_manual.git
+ll
 cd blender_manual
+ls
 ll
-cd gui
+cd gui/
 ll
 cd 2.80/
 ll
 cd po/
 ll
-pwd
-cd ../locale/vi/
+vi vi.po 
+grep -A 4 ', fuzzy' vi.po > ~/fuzzy.log
+grep -A 1 -B 2 'msgstr ""' vi.po >> ~/fuzzy.log
 ll
-cd LC_MESSAGES/
+cd
+cd
 ll
-cd /Applications/Blender.app/
-ll
-Contents/
-ll
-cd Contents/
-ll
-cd Resources/
-ll
-cd 2.83/
-ll
-cd datafiles/
-ll
-cd locale/
-ll
-cd vi/LC_MESSAGES/
-ll
-pwd
-convpo
-cd /Applications/Blender.app
-ll
-cd Contents/
-ll
-cd MacOS/
-ll
+rm -fr blender_manual_old/
+hítory
+history
+cd blender_manual/
 cd ..
-cd Resources/
+cd po
+ll
+cd po
+ll
+svn info
+cd 
 ll
 pwd
-cd 2.83/
-ll
-pwd
+cd $BLENDER_GIT_EN
 alias
-vi ~/bin/convpo
-cd /Users/hoangduytran/blender_manual/gui/2.80/locale
-pwd
+updatepo 
+svn rm --force locale/vi/LC_MESSAGES/animation/armatures/bones/tool_settings.po
+convertpo
+cd
 ll
-cd vi
-ll
+cd $BLENDR_GITHUB
 pwd
 cd $BLENDER_GITHUB
 pwd
 ll
 git status
-pwd
-cd gui/2.80/locale/vi/LC_MESSAGES/
+git add *
+git status
+git commit -am 'Adding the latest translations as version r5245'
+git push
+git push
+cd $BLENDER_MAN_VI
+svn status
 ll
+cd ..
+ll
+cd ..
+ll
+cd locale/vi/
+svn info
+cd ../..
+mv locale ../old_locale
+svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
+cd $BLENDER_MAN_EN
+svn update .
+cd $BLENDER_GITHUB
+git status
+cd
+ll
+rm -fr old_locale/
+ll
+which python3
+which pip3
+pip3 search python-language-server
+pip3 search python | grep server
+pip3 search python-language-server | grep python
+pwd
+ll
+cd blender_manual/
+ll
+updateVIPO.py --help
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 
+vi ~/update_vipo.log 
+vi ~/update_vipo.log 
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 2>&1
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+which env
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 2>&1
+grep 'IGNORED' ~/update_vipo.log > ~/ignored.log
+vi ~/ignored.log 
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 2>&1
+grep 'IGNORED' ~/update_vipo.log > ~/ignored.log
+vi ~/ignored.log 
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 2>&1
+grep 'IGNORED' ~/update_vipo.log > ~/ignored.log
+vi ~/ignored.log 
+grep 'UPDATING' ~/update_vipo.log > ~/updated.log
+vi ~/updated.log 
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -D -r > ~/update_vipo.log 2>&1
+grep 'IGNORED' ~/update_vipo.log > ~/ignored.log
+vi ~/ignored.log 
+cd $BLENDER_GITHUB
+ll
+mv ref_dict_0001.json ref_dict_0001_old.json
+cp ~/test_file.json ref_dict_0001.json
+git status
+git add *
+git commit -am "Add changes to dictionary and updateVIPO.py"
+git push
+updateVIPO.py -f ~/blender_manual/gui/2.80/po/vi.po -t /Users/hoangduytran/blender_manual/ref_dict_0001_old.json -D -r > ~/update_vipo.log 2>&1
+cp ~/test_file.json ref_dict_0001.json
+git status
+git commit -am "Add changes to dictionary"
+git push
+convman
+pip3 search Leven
+pip3 search Levenshtein
+pip3 install python-Levenshtein
+python
+python3
+python3
+cd $BLENDER_MAN_VI
+ll
+svn status
+ll
+svn status
+svn info
+pwd
+cd ../..
+mv locale/ ../old_locale
+svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
+pip3 install python-Levenshtein
+cd $BLENDER_MAN_VI
+ll
+cd ..
+ll
+cd ..
+ll
+rm -fr locale/
+svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
+pwd
+cd locale/vi/
+ll
+svn status
+pwd
+cd ../..
+rm -fr locale/
+history
+svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
+zip -r ~/locale_backup.zip ./locale/
+ll ~/locale_backup.zip 
+cd $BLENDER_MAN_VI
+status
+svn status
+pwd
+pwd
+svn status
+svn status
+cd $BLENDER_MAN_EN
+alias
+updatepo
+l
+man gettext
+man msgcat
+man msgcmp
+findtext.py --help
+findtext.py -o -X
+findtext.py -o -X
+findtext.py -o -X > clean.log
+findtext.py -o -X > clean.log
+findtext.py -o -X > clean.log
+findtext.py -o -X > clean.log
+findtext.py -o -X > clean.log
+findtext.py -o -X 0.85
+findtext.py -o -X 0.87 > ~/clean.log
+findtext.py -o -X 0.88 > ~/clean.log
+findtext.py -o -X 0.90 > ~/clean.log
+findtext.py -o -D -X 0.88 > ~/clean.log
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/advanced/app_templates.po ~/app_templates.po
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/advanced/app_templates.po ~/app_templates_old.po
+findtext.py -f ~/app_templates.po -D -X 0.88 > ~/clean.log
+findtext.py -f ~/app_templates.po -D -X 0.88
+findtext.py -o -D -X 0.88 > ~/clean.log
+findtext.py -o -D -X 0.88 > ~/clean.log
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/advanced/app_templates.po ~/app_templates.po
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/advanced/app_templates.po ~/app_templates_old.po
+findtext.py -f ~/app_templates.po -D -X 0.88
+pwd
+cd $BLENDER_MAN_VI
+svn status
+ll
+cd ../..
+ll
+pwd
+cd locale/vi/
+svn info
+pwd
+cd ../..
+rm -fr locale > /dev/null 2>&1
+svn checkout https://svn.blender.org/svnroot/bf-manual-translations/trunk/blender_docs/locale/vi locale/vi
+findtext.py -o -D -X 0.88
+findtext.py -o -D -X 0.88
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/video_editing/sequencer/strips/transitions/wipe.po ~/wipe.po
+cp /Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES/video_editing/sequencer/strips/transitions/wipe.po ~/wipe_old.po
+findtext.py --f ~/wipe.po -D -X 0.88
+findtext.py --f ~/wipe.po -D -X 0.88
+findtext.py --f ~/wipe.po -D -X 0.88
+findtext.py --f ~/wipe.po -D -X 0.88
+findtext.py -f ~/wipe.po -D -X 0.88
+cp ~/wipe_old.po ~/wipe.po 
+findtext.py -f ~/wipe.po -t -X 0.88
+findtext.py -f ~/wipe.po -t -X 0.88
+findtext.py -f ~/wipe.po -X 0.88
+cd
+cp wipe_old.po wipe.po 
+findtext.py -f ~/wipe.po t -X 0.88
+findtext.py -f ~/wipe.po -t -X 0.88
+findtext.py -f ~/wipe.po -t -X 0.88
+findtext.py -f ~/wipe.po -X 0.88
+findtext.py -f ~/wipe.po -t -X 0.88
+findtext.py -o -t -X 0.90 > ~/clean.log 
+findtext.py -o -X 0.90 > ~/clean.log 
+history
+msgfmt --help
+which mfgfmt
+which msgfmt
+cd /usr/local/opt/gettext/bin/
+ll
+pwd
+python
+python3
+findtext.py -o -t -X 0.90 > ~/clean.log 
+findtext.py -o -t -X 0.90 > ~/clean.log 
+findtext.py -o -X 0.90 > ~/clean.log 
+pwd
+
+findtext.py -o -X 0.90 > ~/clean.log 
+pwd
+ll *.zip
+zip --hrlp
+zip --help
+which unzip
+unzip --help
+cd $BLENDER_MAN_VI
+pwd
+cd ../..
+pwd
+unzip -t ~/locale_backup.zip 
+unzip -o ~/locale_backup.zip 
+unzip -o ~/locale_backup.zip 
+pwd
+ll
+pwd
+svn update .
+alias
+updatepo
+svn rm --force locale/vi/LC_MESSAGES/animation/armatures/bones/tool_settings.po
+change_placeholders.py --help
+change_placeholders.py -d locale/vi/LC_MESSAGES/ -m -t
+change_placeholders.py -d locale/vi/LC_MESSAGES/ -m -r
+cd locale/vi/LC_MESSAGES/
+change_placeholders.py -d $PWD -m -r
+change_placeholders.py -d $PWD -m 
+cd ..
+pwd
+ll
+cd blender-git
+make update
+ll
+cd blender
+make update
+alias
+mygettext 
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+man touch
+vi ~/blender_manual/test_dic.json 
+cd
+vi .vimrc
+cp .vimrc ~/blender_manual/
+vi ~/blender_manual/test_dic.json 
+/usr/local/opt/python/bin/python3.7 -m pip install -U pylint --user
+ env DEBUGPY_LAUNCHER_PORT=54097 /usr/local/opt/python/bin/python3.7 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/wheels/debugpy/launcher /Users/hoangduytran/blender_manual/helloworld.py 
+ env DEBUGPY_LAUNCHER_PORT=54104 /usr/local/opt/python/bin/python3.7 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/wheels/debugpy/launcher /Users/hoangduytran/blender_manual/helloworld.py 
+ env DEBUGPY_LAUNCHER_PORT=54109 /usr/local/opt/python/bin/python3.7 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/wheels/debugpy/launcher /Users/hoangduytran/blender_manual/helloworld.py 
+ env DEBUGPY_LAUNCHER_PORT=54159 /usr/local/opt/python/bin/python3.7 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/wheels/debugpy/launcher /Users/hoangduytran/blender_manual/helloworld.py 
+ env DEBUGPY_LAUNCHER_PORT=54333 /usr/local/opt/python/bin/python3.7 /Users/hoangduytran/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/wheels/debugpy/launcher /Users/hoangduytran/blender_manual/potranslate/translate_po.py 
+cd blender_manual/
+ll
+vi test_dic.json 
+vi test_dic.json 
+mygettext > ~/gettext.log 2>&1
+python3
+which python3
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
+mygettext > ~/gettext.log 2>&1
