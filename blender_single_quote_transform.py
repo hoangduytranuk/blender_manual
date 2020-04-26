@@ -3,6 +3,19 @@
 # bpy = importlib.util.module_from_spec(spec)
 import bpy
 import re
+from bpy.types import Menu
+
+bl_info = {
+    "name": "single_quote",
+    "author": "Hoang Duy Tran (hoangduytranuk)",
+    "version": (0, 1),
+    "blender": (2, 82, 0),
+    "location": "Text editor > Format panel",
+    "description": "Convert translation text to '<tran> -- <orig>'",
+    "doc_url": "http://wiki.blender.org/index.php/Extensions:2.6/Py/"
+        "Scripts/Text_Editor/hastebin",
+    "tracker_url": "https://developer.blender.org/maniphest/task/edit/form/2/",
+    "category": "Development"}
 
 class TEXT_OT_abbrev_selected(bpy.types.Operator):
     """ 
@@ -39,8 +52,8 @@ class TEXT_OT_abbrev_selected(bpy.types.Operator):
 # Cảnh Cáo: select_end_line_index: 50
 # Cảnh Cáo: select_end_character: 19
 
-    # taken this block from release/scripts/addons_contrib/text_editor_hastebin.py
-    def invoke(self, context, event):
+    # taken this block from /Applications/Blender.app/Contents/Resources/2.83/scripts/addons_contrib/text_editor_hastebin.py
+    def execute(self, context):
         sd = context.space_data
         # text = sd.text
         # sd.text.l
@@ -61,7 +74,7 @@ class TEXT_OT_abbrev_selected(bpy.types.Operator):
         # get the selected text
         text = self.getSelectedText(sd.text)
         if text is None:
-            text = sd.text.as_string()
+            return {'CANCELLED'}
         
         # # example: *bàn giao tiếp Python* (Python Console)
         part_list = text.split(' (')
@@ -155,13 +168,36 @@ class TEXT_OT_abbrev_selected(bpy.types.Operator):
                         continue
 
         return text_return
-            
+
+class TEXT_OT_abbrev_selected_panel(bpy.types.Panel):
+    bl_label = "Single Quote Panel"
+    bl_idname = "TEXT_OT_abbrev_selected_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
+        # obj = context.object
+
+        row = lo.row()
+        # row.label(text='Perform', icon='WORLD_DATA')
+        row.operator("text.single_quoted_for_abbrev")
+
+classes = (
+    TEXT_OT_abbrev_selected_panel,
+    TEXT_OT_abbrev_selected,
+)
+
 def register():
-    bpy.utils.register_class(TEXT_OT_abbrev_selected)
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    
 
 def unregister():
-    bpy.utils.unregister_class(TEXT_OT_abbrev_selected)
-    
+    for cls in classes:
+        bpy.utils.unregister_class(cls)
+
 
 if __name__ == '__main__':
     register()
