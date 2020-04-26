@@ -146,7 +146,7 @@ class Ignore:
         r"^Blender\([\s\d\.]+\)$",
         r"^(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Christensen\-Burley|Cineon|Collada)$",
         r"^(Ctrl|Cycles|Cycles:)$",
-        r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del(ta)?|de)$",
+        r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del(ta)?|de|debian)$",
         r"^([^\w]+log.*wm.*)$",
         r"^(Djv|Doppler|Dots\/BU|Dpi|DWAA)$",
         r"^(EWA|Epsilon|Esc|exr|FBX|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR)$",
