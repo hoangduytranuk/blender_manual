@@ -184,8 +184,9 @@ class TEXT_OT_abbrev_selected_panel(bpy.types.Panel):
 
         # row.label(text='Perform', icon='WORLD_DATA')
         row = lo.row()
-        row.pro(context.window_manager.interface_vars, 'grave_accent', expand=True)
-        row.pro(context.window_manager.interface_vars, 'arch_bracket', expand=True)
+        row.prop(context.window_manager.interface_vars, 'grave_accent', expand=True)
+        row.prop(context.window_manager.interface_vars, 'arch_bracket', expand=True)
+        row.sepator()
         row = lo.row(align=True)
         row.operator("text.single_quoted_for_abbrev")
 
