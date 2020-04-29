@@ -131,7 +131,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Chuyển Đổi -- Converter Nodes</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="alpha_convert.html">Nút Chuyển Đổi Alpha -- Alpha Convert Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="color_ramp.html">Nút Dốc Màu -- Color Ramp Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Nút Kết Hợp/Tách Phân -- Combine/Separate Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="id_mask.html">Nút Chắn Lọc ID -- ID Mask Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="math.html">Nút Toán -- Math Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rgb_to_bw.html">Nút RGB Sang Trắng/Đen -- RGB to BW Node</a></li>
@@ -261,36 +261,19 @@
 <img alt="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" src="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" />
 <p class="caption"><span class="caption-text">Mờ dần sang màu đen.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the example above, the alpha channel of the swirl image is ignored.
-Instead, a <a class="reference internal" href="../input/time.html"><span class="doc">Time node</span></a>
-introduces a factor from 0.00 to 1.00 over 60 frames, or about 2 seconds,
-to the Set Alpha node. Note that the time curve is exponentially-shaped,
-so that the overall blackness will fade in slowly and then accelerate toward the end.
-The Set Alpha node does not need an input image; instead, the flat (shadeless) black color is used.
-The Set Alpha Node uses the input factor and color to create a black image that has an alpha
-set which goes from 0.00 to 1.00 over 60 frames, or completely transparent to completely opaque.
-Think of alpha as a multiplier for how vivid you can see that pixel.
-These two images are combined by the Alpha Over node completely (a <em>Factor</em> of 1.00)
-to produce the composite image. The Set Alpha node will thus, depending on the frame being rendered,
-produce a black image that has some degree of transparency.
-Setup and Animate, and you have an image sequence that fades to black over a 2-second period.</p>
+<p>Trong ví dụ trên, chúng ta bỏ qua kênh alpha của hình ảnh lốc xoáy. Thay vào đó, <a class="reference internal" href="../input/time.html"><span class="doc">nút Thời Gian -- Time node</span></a> sẽ cung cấp một hệ số từ 0,00 đến 1,00, trong khoảng thời hạn 60 khung hình, tức chừng 2 giây, cho nút Đặt Alpha (<em>Set Alpha node</em>). Lưu ý, đường cong thời gian được nắn hình theo cấp số mũ, hầu cho màu đen tổng thể được chầm chậm chuyển mờ dần vào, sau đó tăng tốc nhanh hơn ở đoạn cuối. Nút Đặt Alpha không cần phải có một hình ảnh cung cấp cho nó ở đầu vào; thay vào đó, màu đen phẳng trơn (không có chuyển sắc) được sử dụng. Nút Đặt Alpha sử dụng hệ số đầu vào (<em>input factor</em>) và màu sắc để tạo ra một hình ảnh màu đen có độ alpha từ 0,00 đến 1,00, nội trong khoảng thời gian của 60 khung hình, tức có nghĩa là nó sẽ chuyển tiếp từ hoàn toàn trong suốt đến hoàn toàn mờ đục (<em>opaque</em>). Chúng ta hãy coi alpha như một số nhân cho mức độ nhìn rõ được điểm ảnh. Hai hình ảnh này được kết hợp hoàn toàn bởi nút Alpha Chồng Lên (<em>Alpha Over</em>) (với <em>Hệ Số -- Factor</em> là 1,00) để tạo ra hình ảnh tổng hợp (<em>composite image</em>). Nút Đặt Alpha, do đó, phụ thuộc vào khung hình được kết xuất, tạo ra hình ảnh màu đen có một độ trong suốt nhất định nào đó. Thiết Lập và Hoạt Họa nó thì bạn sẽ có một trình tự hình ảnh chuyển mờ dần sang màu đen trong khoảng thời gian 2 giây đồng hồ.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>Không Sử Dụng Thông Tin Cảnh</p>
-<p>This example node map does not use the Render Layer node.
-To produce this 2-second animation, no Blender scene information was used.
-This is an example of using Blender's powerful compositing abilities
-separate from its modeling and animation capabilities.
-(A Render Layer could be substituted for the Image layer,
-and the &quot;fade-network&quot; effect will still produce the same effect.)</p>
+<p>Ví dụ sơ đồ bài trí nút này không sử dụng nút Tầng Kết Xuất (<em>Render Layer</em>). Chúng ta không sử dụng bất cứ thông tin nào về cảnh của Blender để tạo ra 2 giây hoạt hình này. Đây là một ví dụ về việc sử dụng các khả năng tổng hợp mạnh mẽ của Blender, khả năng tách biệt giữa quá trình mô hình hóa và quá trình hoạt hình. (Chúng ta có thể thay thế tầng Hình Ảnh (<em>Image layer</em>) bằng một tầng kết xuất (<em>Render Layer</em>), và ảnh hưởng &quot;mạng lưới làm mờ dần&quot; (fade-network) cũng vẫn sẽ tạo ra tác động tương tự).</p>
 </div>
 </div>
 <div class="section" id="fade-in-a-title">
 <h3>Làm Rõ Dần Tiêu Đề -- Fade In a Title<a class="headerlink" href="#fade-in-a-title" title="Permalink to this headline">¶</a></h3>
-<p>Để giới thiệu hoạt hình của mình, bạn nên trình bày tiêu đề của đoạn hoạt hình của bạn trên một cái nền. Bạn có thể để tiêu đề bay vào, hoặc bạn có thể làm nó rõ dần lên. Để làm rõ dần lên, bạn hãy sử dụng nút Đặt Alpha với nút Thời Gian (Time) như trình bày dưới đây.</p>
+<p>Để giới thiệu hoạt hình của mình, bạn nên trình bày tiêu đề của đoạn hoạt hình của bạn trên một cái nền. Bạn có thể để tiêu đề bay vào, hoặc bạn có thể làm nó rõ dần lên. Để làm rõ dần lên, bạn hãy sử dụng nút Đặt Alpha (<em>Set Alpha node</em>) với nút Thời Gian (<em>Time node</em>) như trình bày dưới đây.</p>
 <div class="figure align-default" id="id3">
 <img alt="../../../_images/compositing_types_converter_set-alpha_fade-in-title.png" src="../../../_images/compositing_types_converter_set-alpha_fade-in-title.png" />
-<p class="caption"><span class="caption-text">Dùng Đặt Alpha để làm mờ dần một tiêu đề vào</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Dùng Đặt Alpha để làm mờ dần một tiêu đề vào.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Trong ví dụ trên, đường cong Thời gian cung cấp giá trị Alpha cho ổ cắm đầu vào. Nút Tầng Kết Xuất (Render Layer) hiện tại, tức cái có tiêu đề nhìn thấy được là nút cung cấp hình ảnh. Như trước đây, nút Alpha Chồng Lên (Alpha Over) pha trộn (sử dụng các giá trị alpha) hình ảnh nền xoáy lốc và alpha của tiêu đề để tạo ra hình ảnh tổng hợp.</p>
 </div>
@@ -300,8 +283,7 @@ and the &quot;fade-network&quot; effect will still produce the same effect.)</p>
 <img alt="../../../_images/compositing_types_converter_set-alpha_colorizing-image.png" src="../../../_images/compositing_types_converter_set-alpha_colorizing-image.png" />
 <p class="caption"><span class="caption-text">Sử dụng Đặt Alpha để tô màu một hình ảnh.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the example above, notice how the blue tinge of the render input colors the swirl.
-You can use the Set Alpha node's color field with this kind of node map to add a consistent color to a BW image.</p>
+<p>Trong ví dụ trên, xin hãy chú ý đến màu nhuốm xanh lam ở đầu vào kết xuất xoáy lốc trong hình ảnh. Bạn có thể sử dụng ô màu sắc của nút Đặt Alpha (<em>Set Alpha node</em>) với kiểu bố trí nút này để cho thêm một màu nhất quán nào đó vào hình ảnh trắng đen.</p>
 <p>Ở bên phải sơ đồ ví dụ, sử dụng giá trị <em>Alpha</em> của nút Đặt Alpha để cung cấp mức độ màu tô mong muốn. Lồng hình ảnh đầu vào và nút Đặt Alpha vào nút Alpha Chồng Lên (Alpha Over) để tô màu bất kỳ hình ảnh đen trắng nào theo phương pháp này.</p>
 </div>
 </div>

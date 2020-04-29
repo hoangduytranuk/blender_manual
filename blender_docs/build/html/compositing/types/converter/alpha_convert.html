@@ -131,7 +131,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Chuyển Đổi -- Converter Nodes</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Nút Chuyển Đổi Alpha -- Alpha Convert Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="color_ramp.html">Nút Dốc Màu -- Color Ramp Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Nút Kết Hợp/Tách Phân -- Combine/Separate Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Nút Kết Hợp/Phân Tách -- Combine/Separate Nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="id_mask.html">Nút Chắn Lọc ID -- ID Mask Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="math.html">Nút Toán -- Math Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rgb_to_bw.html">Nút RGB Sang Trắng/Đen -- RGB to BW Node</a></li>
@@ -225,11 +225,18 @@
 <span id="bpy-types-compositornodepremulkey"></span><h1>Nút Chuyển Đổi Alpha -- Alpha Convert Node<a class="headerlink" href="#alpha-convert-node" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodePremulKey.png" src="../../../_images/compositing_node-types_CompositorNodePremulKey.png" />
-<p class="caption"><span class="caption-text">Nút Chuyển Đổi Alpha.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Alpha Convert Node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The <abbr title="Alpha Convert Node">Nút Chuyển Đổi Alpha</abbr> chuyển đổi sự phiên dịch về <abbr title="alpha channel">kênh alpha</abbr> của một hình ảnh.</p>
-<p><abbr title="premultiplied alpha">Alpha nhân trước</abbr> là tiêu chuẩn trong Blender đối với quá trình tổng hợp và kết xuất. Các <abbr title="Render layers">tầng Kết Xuất</abbr> sẽ được nhân trước alpha, cũng như các hình ảnh được nạp vào quá trình kết xuất, hoặc quá trình tổng hợp, tất cả đều sẽ được chuyển đổi thành <abbr title="Alpha nhân trước -- premultiplied alpha">cái này</abbr>.</p>
-<p>Nếu bạn muốn thi hành một thao tác tổng hợp với <abbr title="straight alpha">alpha thẳng</abbr> thì bạn có thể sử dụng nút <abbr title="Alpha Convert">Chuyển Đổi Alpha</abbr> để làm việc này. Một ví dụ tiêu biểu là thao tác <abbr title="color correction">sửa đổi màu sắc</abbr>. Trong thao tác này, làm việc với các kênh <abbr title="Đỏ,Lục,Lam">RGB</abbr>, không có alpha, có thể lại cho kết quả tốt hơn. Nếu kênh alpha được chuyển đổi thành <abbr title="straight alpha">thẳng</abbr> trong <abbr title="Compositor">Trình Tổng Hợp</abbr> thì nó cần phải được chuyển đổi trở lại dạng <abbr title="premultiplied">nhân trước</abbr>, trước vị trí của nút <abbr title="Composite Output">Đầu Ra Tổng Hợp</abbr>, nếu không <abbr title="artifacts">giả tượng</abbr> có thể xảy ra.</p>
+<p>The <em>Alpha Convert Node</em> converts the alpha channel interpretation of an image.</p>
+<p>For compositing and rendering, premultiplied alpha is the standard in Blender.
+Render layers will be premultiplied alpha, and images loaded into rendering
+or compositing will be converted to this.</p>
+<p>If you want to do a compositing operation with straight alpha,
+the <em>Alpha Convert</em> node can be used. Typically this would be a color correction operation
+where it might give better results working on RGB channels without alpha.
+If the alpha is converted to straight in the Compositor,
+it should be converted back to premultiplied before the <em>Composite Output</em> node,
+otherwise some artifacts might occur.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
@@ -241,7 +248,8 @@
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
 <dt>Ánh Xạ -- Mapping</dt><dd><dl class="simple">
-<dt>Thẳng sang Nhân Trước, Nhân Trước sang Thẳng -- Straight to Premul, Premul to Straight</dt><dd><p><abbr title="Conversion">Sự chuyển đổi</abbr> xảy ra trong cả <abbr title="both directions">hai chiều hướng</abbr>. <abbr title="viết tắt của Premultiply, nghĩa là Nhân Trước">Premul.</abbr> có nghĩa là Nhân Trước. Để biết thêm chi tiết về sự khác biệt giữa hai phương pháp lưu trữ các giá trị alpha, xin xem bài <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Kênh Alpha -- Alpha Channel</span></a>.</p>
+<dt>Thẳng sang Nhân Trước, Nhân Trước sang Thẳng -- Straight to Premul, Premul to Straight</dt><dd><p>Conversion in both directions. Premul. stands for Premultiplied.
+For details on the difference between both ways to store alpha values see <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
 </dd>
 </dl>
 </dd>
