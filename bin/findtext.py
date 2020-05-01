@@ -21,7 +21,7 @@ import chardet
 CURRENT_FILE_NAME = None
 FILE_NAME_SHOWED = False
 INVERT_SEP='•'
-DEBUG = True
+DEBUG = False
 
 def setfilename(file_name):
     global CURRENT_FILE_NAME
@@ -363,7 +363,7 @@ class FindFilesHasPattern:
                 src_dir = os.environ['BLENDER_SRC']
                 if src_dir:
                     _("src_dir:", src_dir)
-                
+
                 py_list = self.getFileList(src_dir, ".py")
                 cc_list = self.getFileList(src_dir, ".cc")
                 cpp_list = self.getFileList(src_dir, ".cpp")
