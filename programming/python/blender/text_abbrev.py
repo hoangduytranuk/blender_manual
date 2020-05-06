@@ -49,7 +49,7 @@ sep_table = (
     #        ('RESERVED', 'Reserved', 'Reserved Item',2),
 )
 
-rm_sym_list = ["`", "*", "'", "\"", "\\", "(", ")", "<", ">"]
+rm_sym_list = ["`", "*", "'", "\"", "\\", "(", ")", "<", ">", "-"]
 blanking_id = re.compile(r'\:[^\:]+\:')
 blanking_hyphen = re.compile(r'[-]+')
 dbl_quote_pat = re.compile(r'[\"]+')
@@ -60,6 +60,15 @@ case_status_table = (
     ('TITLE', 'Title', 'Title Case', 3),
     ('FIRST', 'Cap First', 'First letter capitalised', 4),
 )
+
+find_replace_option_table = [
+    ("Regular Expression", 'FREEZE'),
+    ("Match Case", 'SYNTAX_OFF'),
+    ("Whole Word", 'OUTLINER_OB_FONT'),
+    ("Wrap Round", 'DECORATE_OVERRIDE'),
+    ("Inselection", 'RESTRICT_INSTANCED_ON'),
+    ("HighLight Matches", 'INDIRECT_ONLY_ON'),
+]
 
 # show_enum_values(bpy.context.scene.transform_orientation_slots[0], 'type')
 # show_enum_values(bpy.context.object, 'mode')
@@ -74,9 +83,10 @@ class MySettings(PropertyGroup):
     )
 
     def updateAbbrev(self, context):
-        is_both_on = (self.is_abbrev and self.is_term)
-        if is_both_on:
+        is_all_on = (self.is_abbrev) and (self.is_kbd or self.is_term)
+        if is_all_on:
             self.is_term = False
+            self.is_kbd = False
 
     is_abbrev: BoolProperty(
         name="Abbrev",
@@ -86,15 +96,29 @@ class MySettings(PropertyGroup):
     )
 
     def updateTerm(self, context):
-        is_both_on = (self.is_term and self.is_abbrev)
-        if is_both_on:
+        is_all_on = (self.is_term) and (self.is_kbd or self.is_abbrev)
+        if is_all_on:
             self.is_abbrev = False
+            self.is_kbd = False
 
     is_term: BoolProperty(
         name="Term",
         description="Create Term",
         default=False,
         update=updateTerm
+    )
+
+    def updateKBD(self, context):
+        is_all_on = (self.is_kbd) and (self.is_abbrev or self.is_term)
+        if is_all_on:
+            self.is_abbrev = False
+            self.is_term = False
+
+    is_kbd: BoolProperty(
+        name="Kbd",
+        description="Create Kbd",
+        default=False,
+        update=updateKBD
     )
 
     def updateSeparator(self, context):
@@ -160,14 +184,83 @@ class MySettings(PropertyGroup):
         default=False,
     )
 
+    # cases ====================================
     def case_status_callback(self, context):
         return case_status_table
 
-    # cases
     case_status: EnumProperty(
         items=case_status_callback,
         name='Type',
         description='Converting selected text to different case types',
+    )
+
+    # replace ==================================
+    find_string: StringProperty(
+        name="Find",
+        description="String to find",
+        default="",
+    )
+
+    replace_string: StringProperty(
+        name="Replace",
+        description="String to replace",
+        default="",
+    )
+
+    find_replace_options: BoolVectorProperty(
+        name='Options',
+        description='Find and replace options',
+        size=len(find_replace_option_table),
+    )
+
+    find_rep_RE: BoolProperty(
+        name="Regular Expression",
+        description="Allowing regular expression",
+        default=False,
+    )
+
+    # ("Regular Expression", 'FREEZE'),
+    # ("Match Case", 'SYNTAX_OFF'),
+    # ("Whole Word", 'OUTLINER_OB_FONT'),
+    # ("Wrap Round", 'DECORATE_OVERRIDE'),
+    # ("Inselection", 'RESTRICT_INSTANCED_ON'),
+    # ("HighLight Matches", 'INDIRECT_ONLY_ON'),
+
+    find_rep_RE: BoolProperty(
+        name="Regular Expression",
+        description="Allowing regular expression",
+        default=False,
+    )
+    find_rep_match_case: BoolProperty(
+        name="Case Sensitive",
+        description="Sensitive to UPPER, lower and mix cases",
+        default=False,
+    )
+    find_rep_whole_word: BoolProperty(
+        name="Whole Word",
+        description="Whole world matching only.",
+        default=False,
+    )
+    find_rep_wrap_round: BoolProperty(
+        name="Wrap Round",
+        description="Wrap round when performing find, ie. back to top if reached the bottom.",
+        default=False,
+    )
+    find_rep_in_selection: BoolProperty(
+        name="In Selection",
+        description="Find and replace within the selected area only.",
+        default=False,
+    )
+    find_rep_highlight_matches: BoolProperty(
+        name="Highlight Matches",
+        description="Find and replace within the selected area only.",
+        default=False,
+    )
+
+    removing_marker: BoolProperty(
+        name="Remove Marker",
+        description="Removing :<something>: in the text.",
+        default=False,
     )
 
 
@@ -269,12 +362,15 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         is_reverse = var.is_reversed  # making use of ready made boolean
         is_abbrev = var.is_abbrev  # making use of ready made boolean
         is_term = var.is_term  # making use of ready made boolean
+        is_kbd = var.is_kbd
         sep = var.term_sep
 
-        print(f'is_reverse: [{is_reverse}]')
-        print(f'is_abbrev: [{is_abbrev}]')
-        print(f'is_term: [{is_term}]')
-        print(f'sep: [{sep}]')
+        # print(f'is_reverse: [{is_reverse}]')
+        # print(f'is_abbrev: [{is_abbrev}]')
+        # print(f'is_term: [{is_term}]')
+        # print(f'is_kbd: [{is_kbd}]')
+        # return {'CANCELLED'}
+        # print(f'sep: [{sep}]')
         # sep_tbl = [
         #     ('SP_DBL_HYPH_SP', ' -- '),
         #     ('SP_ARCH_BRK', ' (')
@@ -364,11 +460,13 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         filler = "".join(filler_list)
 
         # updateRmChars(var, context)
-
-        # clean out any ':something:' groups
-        orig_part = blanking_id.sub("", orig_part)
-        # clean out any ':something:' groups
-        tran_part = blanking_id.sub("", tran_part)
+        is_blanking_id = var.removing_marker
+        print(f'is_blanking_id:{is_blanking_id}')
+        if is_blanking_id:
+            # clean out any ':something:' groups
+            orig_part = blanking_id.sub("", orig_part)
+            # clean out any ':something:' groups
+            tran_part = blanking_id.sub("", tran_part)
 
         is_bracket_to_square = var.braket_to_square
         if is_bracket_to_square:
@@ -456,6 +554,8 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
             text = f":term:`{text}`"
         elif is_abbrev:
             text = f":abbr:`{text}`"
+        elif is_kbd:
+            text = f":kbd:`{text}`"
 
         bpy.context.window_manager.clipboard = text
         bpy.ops.text.paste()
@@ -472,14 +572,46 @@ class TEXT_OT_single_quoted_forward(TEXT_OT_single_quoted_base):
         return result
 
 
-class TEXT_OT_single_quoted_reverse(TEXT_OT_single_quoted_base):
-    bl_idname = "text.single_quoted_for_abbrev_reverse"
-    bl_label = "Abbreviation Reverse Terms"
+class TEXT_OT_find_forward(TEXT_OT_single_quoted_base):
+    bl_idname = "text.find_forward"
+    bl_label = "Forward"
+    bl_description = "Find forward"
+    bl_context = 'scene'
 
     def execute(self, context):
-        self.setReverse(True)
-        result = super(TEXT_OT_single_quoted_reverse, self).execute(context)
-        return result
+        sd = context.space_data
+        text = self.getSelectedText(sd.text)
+        if text is None:
+            return {'CANCELLED'}
+        return {'FINISHED'}
+
+
+class TEXT_OT_find_backward(TEXT_OT_single_quoted_base):
+    bl_idname = "text.find_backward"
+    bl_label = "Backward"
+    bl_description = "Find backward"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        text = self.getSelectedText(sd.text)
+        if text is None:
+            return {'CANCELLED'}
+        return {'FINISHED'}
+
+
+class TEXT_OT_find_replace(TEXT_OT_single_quoted_base):
+    bl_idname = "text.find_replace"
+    bl_label = "Replace"
+    bl_description = "Replace with options"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        text = self.getSelectedText(sd.text)
+        if text is None:
+            return {'CANCELLED'}
+        return {'FINISHED'}
 
 
 class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
@@ -487,16 +619,6 @@ class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
     bl_label = "Change Case"
     bl_description = "Convert selected text to match case option"
     bl_context = 'scene'
-
-    def case_status_callback(self, context):
-        return case_status_table
-
-    # cases
-    case_status: EnumProperty(
-        items=case_status_callback,
-        name='Case Conversion',
-        description='Converting selected text to different case types',
-    )
 
     def execute(self, context):
         sd = context.space_data
@@ -541,6 +663,7 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         lo.label(text='Options:')
         # col = lo.column(align=True)
         row = lo.row(align=True)
+
         # making use of ready made boolean
         row.prop(my_tool, "is_reversed", text="Rev.",
                  icon='FILE_REFRESH', toggle=True)
@@ -548,21 +671,28 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row.prop(my_tool, "is_abbrev", toggle=True)
         # making use of ready made boolean
         row.prop(my_tool, "is_term", toggle=True)
+        row.prop(my_tool, "is_kbd", toggle=True)
 
 #        lo.label(text='Separator:')
         row = lo.row(align=True)
         row.label(text='Separator:')
         row.prop(my_tool, "term_sep", expand=True)
 
-        lo.label(text='Removing Characters:')
+        # lo.label(text='Removing Characters:')
         box = lo.box()
         split = box.split(factor=1, align=True)
         col = split.column()
+        col.label(text='Removing:')
         for i in range(0, len(rm_sym_list)):
             if i % 3 == 0:
                 row = col.row(align=True)
             row.prop(my_tool, "rm_chars", index=i,
                      text=rm_sym_list[i], toggle=True)
+        row.prop(my_tool, "removing_marker", text=":aaa:", toggle=True)
+
+        row = col.row(align=True)
+        # row = lo.row(align=True)
+        row.prop(my_tool, "rm_char_select_all")
 
         col = split.column()
         box = lo.box()
@@ -574,12 +704,8 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
                 row = col.row(align=True)
             row.prop(my_tool, "filler_char", index=i,
                      text=rm_sym_list[i], toggle=True)
-
-        row = lo.row(align=True)
+        row = col.row(align=True)
         row.prop(my_tool, "filler_count")
-
-        col = lo.column(align=True)
-        col.prop(my_tool, "rm_char_select_all")
 
         split = lo.split()
         col = split.column(align=True)
@@ -591,12 +717,45 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         col.label(text="Case Conversion:")
         col.prop(my_tool, "case_status")
         # lo.operator_menu_enum("case_status", "type")
+        col.separator()
         col.operator("text.case_conversion", icon='SYNTAX_OFF')
-
+        # row = col.row(align=True)
         # row = lo.row(align=True)
         col = lo.column(align=True)
         col.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
         # col.operator("text.single_quoted_for_abbrev_reverse", icon='LOOP_BACK')
+
+
+'''
+        box = lo.box()
+        split = box.split(factor=1, align=True)
+        col = split.column(align=True)
+        col.label(text="Find & Replace:")
+        col.prop(my_tool, "find_string")
+        col.prop(my_tool, "replace_string")
+        col.separator()
+
+#        row.label(text="Options:")
+#        box = col.box()
+#        row = col.row(align=True)
+        row = col.grid_flow(align=True)
+        row.prop(my_tool, "find_rep_RE", icon='GHOST_ENABLED', toggle=True, icon_only=True)
+        row.prop(my_tool, "find_rep_match_case", icon='SYNTAX_OFF', toggle=True, icon_only=True)
+        row.prop(my_tool, "find_rep_whole_word", icon='SHADING_WIRE', toggle=True, icon_only=True)
+        row.prop(my_tool, "find_rep_wrap_round", icon='DECORATE_OVERRIDE', toggle=True, icon_only=True)
+        row.prop(my_tool, "find_rep_in_selection", icon='OBJECT_DATAMODE', toggle=True, icon_only=True)
+        row.prop(my_tool, "find_rep_highlight_matches", icon='SELECT_EXTEND', toggle=True, icon_only=True)
+
+        row = col.row(align=True)
+        row.operator("text.find_forward", icon='SORT_ASC')
+        row.operator("text.find_backward", icon='SORT_DESC')
+        row.operator("text.find_replace", icon='OUTLINER_OB_MESH')
+
+        # for i in range(0, len(find_replace_option_table)):
+        #     text_id, icon_id = find_replace_option_table[i]
+        #     row.prop(my_tool, "find_replace_options", index=i,
+        #              text="", icon=icon_id, expand=True, icon_only=True)
+'''
 
 
 class TEXT_PT_case_conversion_panel(bpy.types.Panel):
@@ -616,6 +775,9 @@ class TEXT_PT_case_conversion_panel(bpy.types.Panel):
 
 classes = (
     MySettings,
+    TEXT_OT_find_forward,
+    TEXT_OT_find_backward,
+    TEXT_OT_find_replace,
     TEXT_PT_abbrev_selected_panel,
     TEXT_OT_single_quoted_forward,
     TEXT_OT_case_conversion,
@@ -639,4 +801,4 @@ def unregister():
 if __name__ == '__main__':
     register()
 
-bpy.ops.text. single_quoted_for_abbrev()
+# bpy.ops.text. single_quoted_for_abbrev()

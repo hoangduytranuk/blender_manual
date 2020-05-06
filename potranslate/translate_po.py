@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 print(sys.path)
 
@@ -48,29 +49,31 @@ YOUR_EMAIL = "hoangduytran1960@gmail.com"
 YOUR_ID = "{} <{}>".format(YOUR_NAME, YOUR_EMAIL)
 YOUR_TRANSLATION_TEAM = "London, UK <{}>".format(YOUR_EMAIL)
 YOUR_LANGUAGE_CODE = "vi"
-TIME_ZONE='Europe/London'
+TIME_ZONE = 'Europe/London'
 
-RUNNING_APP_ENVIRON_KEY='EXEC_TRANSLATE_PO'
+RUNNING_APP_ENVIRON_KEY = 'EXEC_TRANSLATE_PO'
 trans_finder = tf()
 
-def doctree_resolved(app, doctree, docname):
 
+def doctree_resolved(app, doctree, docname):
     def removeDuplication(txt_with_punct):
         # is_debug = (txt_with_punct.endswith('::'))
         # if is_debug:
         #     _('DEBUG')
-        cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct, is_single=True)
+        cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
+                                                                                                   is_single=True)
         trans = trans_finder.isInList(cropped_txt, is_lower=True)
         is_repeat = (trans is not None)
         if not is_repeat:
-            cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct, is_single=False)
+            cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
+                                                                                                       is_single=False)
             trans = trans_finder.isInList(cropped_txt, is_lower=True)
 
         is_repeat = (trans is not None)
         return is_repeat
 
     def correctingDictionary():
-        remove_items=[]
+        remove_items = []
         new_items = {}
         for k, v in trans_finder.master_dic_list.items():
             is_end_with_dot = (k.endswith('.') and not (k.endswith('..') or k.endswith('...')))
@@ -86,7 +89,7 @@ def doctree_resolved(app, doctree, docname):
             new_v = ref_list.quotedToAbbrev(k)
             has_new_v = (new_v is not None)
             if has_new_v:
-                new_entry={k:new_v}
+                new_entry = {k: new_v}
                 new_items.update(new_entry)
 
         has_remove_items = (len(remove_items) > 0)
@@ -98,7 +101,7 @@ def doctree_resolved(app, doctree, docname):
         is_writing_changes = (len(new_items) > 0)
         if is_writing_changes:
             trans_finder.master_dic_list.update(new_items)
-            dic_file='/Users/hoangduytran/blender_manual/test_dic.json'
+            dic_file = '/Users/hoangduytran/blender_manual/test_dic.json'
             print(f'Writing changes to: {dic_file}, number of records:{len(new_items)}')
             trans_finder.writeJSONDic(dict_list=trans_finder.master_dic_list, file_name=dic_file)
         exit(0)
@@ -121,10 +124,10 @@ def doctree_resolved(app, doctree, docname):
             return False
 
     def getTimeNow(self):
-        local_time=timezone('Europe/London')
-        fmt='%Y-%m-%d %H:%M%z'
-        loc_dt=local_time.localize(datetime.datetime.now())
-        formatted_dt=loc_dt.strftime(fmt)
+        local_time = timezone('Europe/London')
+        fmt = '%Y-%m-%d %H:%M%z'
+        loc_dt = local_time.localize(datetime.datetime.now())
+        formatted_dt = loc_dt.strftime(fmt)
         return formatted_dt
 
     # is_running = runAppOrNot()
@@ -174,30 +177,29 @@ def doctree_resolved(app, doctree, docname):
     #     nb = input("Press any key to continue:")
     #     cm.file_count = 0
 
-
     # #loading local po file to get translation if any
     po_dic = trans_finder.loadPOAsDic(po_path)
-    current_po_cat : Catalog = c.load_po(po_path)
+    current_po_cat: Catalog = c.load_po(po_path)
 
     rst_output_location = os.path.join(blender_docs_path, build_dir)
     output_path = os.path.join(rst_output_location, po_file_path)
 
-    local_time=timezone(TIME_ZONE)
-    time_now =local_time.localize(datetime.datetime.now())
+    local_time = timezone(TIME_ZONE)
+    time_now = local_time.localize(datetime.datetime.now())
 
     local_locale = locale.getlocale()[0]
     current_header = current_po_cat._get_header_comment()
     new_po_cat = Catalog(
-                locale="vi",
-                header_comment=current_header,
-                project=current_po_cat.project,
-                version=current_po_cat.version,
-                copyright_holder=YOUR_ID,
-                creation_date=current_po_cat.creation_date,
-                revision_date=time_now,
-                last_translator=YOUR_ID,
-                language_team=YOUR_TRANSLATION_TEAM
-                )
+        locale="vi",
+        header_comment=current_header,
+        project=current_po_cat.project,
+        version=current_po_cat.version,
+        copyright_holder=YOUR_ID,
+        creation_date=current_po_cat.creation_date,
+        revision_date=time_now,
+        last_translator=YOUR_ID,
+        language_team=YOUR_TRANSLATION_TEAM
+    )
 
     _("#" * 80)
     _("filename: {}".format(output_path))
@@ -207,8 +209,7 @@ def doctree_resolved(app, doctree, docname):
         _("=" * 80)
         _("msgid:[{}]".format(msg))
 
-        #clean up po file
-
+        # clean up po file
 
         is_inline = isinstance(node, nodes.inline)
         is_emphasis = isinstance(node, nodes.emphasis)
@@ -238,9 +239,7 @@ def doctree_resolved(app, doctree, docname):
         #     # print("IGNORED:", msg)
         #     continue
 
-
-        #clean up po
-
+        # clean up po
 
         # msg = "The *Bake Action* tool will apply interpolated frames into individual keyframes. This can be useful for adding deviation to a cyclic action like a :term:`walk cycle`. This can also useful for keyframe animations created from drivers or constraints."
         # ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
@@ -287,7 +286,7 @@ def doctree_resolved(app, doctree, docname):
                 if is_too_similar:
                     tran = tranRef(msg, is_keep_original)
                 else:
-                    entry = {msg:tran}
+                    entry = {msg: tran}
                     trans_finder.master_dic_list.update(entry)
                     print("Got translation from PO file")
             else:
@@ -318,7 +317,6 @@ def doctree_resolved(app, doctree, docname):
     # c.dump_po(output_path, new_po_cat, line_width=4096)
 
 
-
 def runAppOrNot():
     is_running = (RUNNING_APP_ENVIRON_KEY in os.environ)
     if not is_running:
@@ -329,15 +327,18 @@ def runAppOrNot():
         return False
     return True
 
+
 def builder_inited(app):
-    #trans_finder.loadVIPOtoDic(trans_finder.master_dic_list, trans_finder.master_dic_file, is_testing=True)
-    #trans_finder.updateMasterDic(is_testing=True)
-    #exit(0)
-    #trans_finder.mergePODict()
+    # trans_finder.loadVIPOtoDic(trans_finder.master_dic_list, trans_finder.master_dic_file, is_testing=True)
+    # trans_finder.updateMasterDic(is_testing=True)
+    # exit(0)
+    # trans_finder.mergePODict()
     pass
+
 
 def env_updated(app, env):
     pass
+
 
 def build_finished(app, exeption):
     def refListGetKey(item):
@@ -377,7 +378,7 @@ def build_finished(app, exeption):
 
     # return
 
-    #file_name = "/Users/hoangduytran/ref_dict_0001.json"
+    # file_name = "/Users/hoangduytran/ref_dict_0001.json"
     # dic = cm.removeLowerCaseDic(loc_dic_list)
     # dic = trans_finder.master_dic_backup_list
     # dic.update(trans_finder.master_dic_list)
@@ -387,12 +388,11 @@ def build_finished(app, exeption):
     # if not has_dic:
     #     return
 
-
-    #clean_dic = trans_finder.removeIgnoredEntries(dic)
-    #dic = clean_dic
-    #pp(dic)
-    #exit(0)
-    #sorted_list = sorted(dic.items(), key=lambda x: x[1])
+    # clean_dic = trans_finder.removeIgnoredEntries(dic)
+    # dic = clean_dic
+    # pp(dic)
+    # exit(0)
+    # sorted_list = sorted(dic.items(), key=lambda x: x[1])
 
     # dic = trans_finder.master_dic_backup_list
     # file_name = trans_finder.master_dic_backup_file
@@ -415,14 +415,13 @@ def build_finished(app, exeption):
     # with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
     #     json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
 
-
-
     # with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
     #     json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
 
     # trans_finder.writeJSONDic(dic_list=sorted_list, file_name="/home/htran/20191228_dict_0001.json")
     # pp(sorted_list)
-    #exit(0)
+    # exit(0)
+
 
 def setup(app):
     app.connect('builder-inited', builder_inited)

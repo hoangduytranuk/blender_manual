@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import re
@@ -7,7 +8,7 @@ from common import _, pp
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from translation_finder import TranslationFinder
-#from pyparsing import nestedExpr
+# from pyparsing import nestedExpr
 from enum import Enum
 
 '''
@@ -24,40 +25,45 @@ from enum import Enum
 :sup:`
 :term:`
 '''
+
+
 class TranslationState(Enum):
-    ACCEPTABLE=0
-    FUZZY=1
-    IGNORED=3
-    REMOVE=4
+    ACCEPTABLE = 0
+    FUZZY = 1
+    IGNORED = 3
+    REMOVE = 4
+
 
 class TextStyle(Enum):
-    NORMAL=0
-    ITALIC=1
-    BOLD=2
-    BOX=3
-    RAW=4
+    NORMAL = 0
+    ITALIC = 1
+    BOLD = 2
+    BOX = 3
+    RAW = 4
+
 
 class RefType(Enum):
-    GA="\`"
-    ARCH_BRACKET="()"
-    AST_QUOTE="*"
+    GA = "\`"
+    ARCH_BRACKET = "()"
+    AST_QUOTE = "*"
     DBL_QUOTE = "\""
     SNG_QUOTE = "'"
     MM = ":MM:"
-    ABBR=":abbr:"
-    CLASS=":class:"
+    ABBR = ":abbr:"
+    CLASS = ":class:"
     DOC = ":doc:"
-    GUILABEL=":guilabel:"
-    KBD=":kbd:"
-    LINENOS=":linenos:"
-    MATH=":math:"
-    MENUSELECTION=":menuselection:"
-    MOD=":mod:"
-    REF=":ref:"
-    SUP=":sup:"
-    TERM=":term:"
-    TEXT="generic_text"
-    FILLER="filler"
+    GUILABEL = ":guilabel:"
+    KBD = ":kbd:"
+    LINENOS = ":linenos:"
+    MATH = ":math:"
+    MENUSELECTION = ":menuselection:"
+    MOD = ":mod:"
+    REF = ":ref:"
+    SUP = ":sup:"
+    TERM = ":term:"
+    TEXT = "generic_text"
+    FILLER = "filler"
+
 
 # :MM:
 # :abbr:
@@ -77,15 +83,15 @@ class RefType(Enum):
 class RefItem:
 
     def __init__(self, start=-1, end=-1, txt=None, ref_type=RefType.TEXT, keep_orig=False):
-        self.start:int = start
-        self.end:int = end
-        self.text:str = txt
-        self.translation:str = None
+        self.start: int = start
+        self.end: int = end
+        self.text: str = txt
+        self.translation: str = None
         self.old_translation: str = None
-        self.translation_state:TranslationState = TranslationState.ACCEPTABLE
+        self.translation_state: TranslationState = TranslationState.ACCEPTABLE
         self.translation_include_original: bool = keep_orig
-        self.reftype:RefType = ref_type
-        self.text_style:TextStyle = TextStyle.NORMAL
+        self.reftype: RefType = ref_type
+        self.text_style: TextStyle = TextStyle.NORMAL
         self.converted_to_abbr = False
 
     def __repr__(self):
@@ -136,7 +142,7 @@ class RefItem:
     def getTranslationState(self):
         return self.translation_state
 
-    def setTranslationState(self, state:TranslationState):
+    def setTranslationState(self, state: TranslationState):
         current_state = self.getTranslationState()
         is_fuzzy = (current_state == TranslationState.FUZZY)
         if not is_fuzzy:
@@ -178,24 +184,24 @@ class RefItem:
         return self.translation_include_original
 
     def getTextForKeyboard(self):
-        item_list={}
+        item_list = {}
         for orig, breakdown in cm.patternMatchAll(cm.KEYBOARD_SEP, self.getText()):
             s, e, txt = orig
-            entry={s : (s,e,txt)}
+            entry = {s: (s, e, txt)}
             item_list.update(entry)
         return item_list
 
     def getTextForMenu(self):
-        item_list={}
+        item_list = {}
         word_list = cm.findInvert(cm.MENU_SEP, self.getText())
         for k, v in reversed(list(word_list.items())):
             s, e, txt = v
-            entry={s : (s, e,txt)}
+            entry = {s: (s, e, txt)}
             item_list.update(entry)
         return item_list
 
     def getTextForAbbrev(self):
-        item_list={}
+        item_list = {}
         for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, self.getText()):
             os, oe, otxt = orig
             has_breakdown = (breakdown and len(breakdown) > 0)
@@ -251,12 +257,13 @@ class RefItem:
 
         return entry_list
 
+
 class RefRecord:
-    def __init__(self, origin:RefItem = None, reflist: list = [], pat=None):
+    def __init__(self, origin: RefItem = None, reflist: list = [], pat=None):
         self.origin: RefItem = origin
         self.reflist: list = reflist
         self.pattern: str = pat
-        #self.setOriginType()
+        # self.setOriginType()
 
     def __repr__(self):
         result = ""
@@ -283,7 +290,6 @@ class RefRecord:
         is_ended_with_dot = orig_item.getText().endswith('.)')
         if is_special and not is_ended_with_dot:
             orig_item.setRefType(RefType.REF)
-
 
     def getRefListWithOriginalApplied(self):
         ref_list = []
@@ -330,7 +336,7 @@ class RefRecord:
         item = (self.reflist[index] if valid else None)
         return item
 
-    def appendRefItem(self, ref_list_item : RefItem = None):
+    def appendRefItem(self, ref_list_item: RefItem = None):
         valid = (ref_list_item is not None)
         if not valid:
             return
@@ -432,7 +438,7 @@ class RefList(defaultdict):
             return RefType.TEXT
 
     def getRefsAsList(self):
-        ref_list=[]
+        ref_list = []
         v: RefRecord = None
         for k, v in self.items():
             v_ref_list = v.getRefListWithOriginalApplied()
@@ -447,7 +453,7 @@ class RefList(defaultdict):
             v_orig_txt = v_orig.text
             ss = cm.alterValue(v_orig.start, alter_value=alter_value, op=op)
             ee = ss + len(v_orig_txt)
-            entry= RefItem(start=ss, end=ee, txt=v_orig_txt)
+            entry = RefItem(start=ss, end=ee, txt=v_orig_txt)
             loc_list.append(entry)
         return loc_list
 
@@ -462,17 +468,17 @@ class RefList(defaultdict):
         for k, v in self.items():
             v_orig: RefItem = v.getOrigin()
             s, e = v_orig.getLocation()
-            entry={k:(s,e)}
+            entry = {k: (s, e)}
             loc_list.update(entry)
 
-        remove_list=[]
+        remove_list = []
         for k, v in loc_list.items():
             vs, ve = v  # remove
             for kk, vv in loc_list.items():
                 is_same = (kk == k) and (vv == v)
                 if is_same:
                     continue
-                vvs, vve = vv # keep
+                vvs, vve = vv  # keep
                 is_remove = (vs > vvs) and (ve < vve) and (k not in remove_list)
                 if is_remove:
                     remove_list.append(k)
@@ -484,18 +490,17 @@ class RefList(defaultdict):
         if not valid:
             return
 
-        remain_list=RefList(msg=other_list.msg, pat=other_list.pattern)
+        remain_list = RefList(msg=other_list.msg, pat=other_list.pattern)
         other_loc_list = other_list.getOrigLocList(alter_value=alter_value, op=op)
         v: RefRecord = None
         for k, v in self.items():
             v_orig: RefItem = v.getOrigin()
             is_dupped = (v_orig in other_loc_list)
             if not is_dupped:
-                remain_list.update({k:v})
+                remain_list.update({k: v})
         self.clear()
         self.update(remain_list)
         self.update(other_list)
-
 
     def alterOriginLocation(self, start: int, op: str):
 
@@ -515,11 +520,10 @@ class RefList(defaultdict):
             v.alterOriginLocation(start, op=op)
             o_s, o_e = v.getOriginLocation()
             key = o_s
-            new_ref_list.update({key:v})
+            new_ref_list.update({key: v})
 
         self.clear()
         self.update(new_ref_list)
-
 
     def setText(self, msg):
         self.msg = msg
@@ -552,7 +556,7 @@ class RefList(defaultdict):
                 orig_ref_item = RefItem(o_ss, o_ee, orig, ref_type=reftype, keep_orig=keep_original)
 
                 v = RefRecord(origin=orig_ref_item, reflist=None, pat=pattern)
-                entry={o_ss:v}
+                entry = {o_ss: v}
                 result_list.update(entry)
 
                 has_breakdown = (breakdown is not None) and (len(breakdown) > 0)
@@ -564,15 +568,16 @@ class RefList(defaultdict):
                     if not g:
                         continue
                     i_s = orig.find(g)
-                    #ss = i_s + s # using setence index
-                    ss = i_s # using sub pattern index
+                    # ss = i_s + s # using setence index
+                    ss = i_s  # using sub pattern index
                     ee = ss + len(g)
                     xtype = self.getType(g)
                     is_text = (xtype == RefType.TEXT)
                     if not is_text:
                         orig_ref_item.setRefType(xtype)
                     else:
-                        ref_item = RefItem(ss, ee, g, keep_orig=keep_original) # should this take default reftype.TEXT????
+                        ref_item = RefItem(ss, ee, g,
+                                           keep_orig=keep_original)  # should this take default reftype.TEXT????
                         new_ref_list.append(ref_item)
                 v.reflist = new_ref_list
 
@@ -587,7 +592,7 @@ class RefList(defaultdict):
         is_empty = (len(self) == 0)
         return is_empty
 
-    def inRange(self, item : RefRecord):
+    def inRange(self, item: RefRecord):
         valid = (item is not None)
         if not valid:
             return False
@@ -632,7 +637,7 @@ class RefList(defaultdict):
 
     def findPattern(self, pattern_list, start_loc=0):
         for p, ref_type, keep_orig in pattern_list:
-            one_list : RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, start_loc=start_loc)
+            one_list: RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, start_loc=start_loc)
             is_empty = (one_list is None) or (len(one_list) == 0)
             if is_empty:
                 continue
@@ -666,7 +671,7 @@ class RefList(defaultdict):
             return
 
         temp_msg = str(self.msg)
-        v:RefRecord = None
+        v: RefRecord = None
         # 1. Find where found pattern occured, fill it with a blank
         for k, v in reversed(list(self.items())):
             orig = v.getOrigin()
@@ -686,7 +691,7 @@ class RefList(defaultdict):
             orig_ref_item = RefItem(o_ss, o_ee, orig)
 
             v = RefRecord(origin=orig_ref_item, reflist=None)
-            entry={o_ss:v}
+            entry = {o_ss: v}
             self.update(entry)
 
     def findRefRecord(self, msg, entry_index, is_using_first_anyway=False, is_reversed_list=False):
@@ -731,16 +736,15 @@ class RefList(defaultdict):
             v = None
         return v
 
-
     def transferRefRecordText(self, target_ref_list):
-        un_transferred_list={}
-        v:RefRecord = None
+        un_transferred_list = {}
+        v: RefRecord = None
         for k, v in self.items():
             v_txt = v.getOriginText()
-            target_ref_record : RefRecord = target_ref_list.findRefRecord(v_txt)
+            target_ref_record: RefRecord = target_ref_list.findRefRecord(v_txt)
             is_found = (target_ref_record is not None)
             if not is_found:
-                entry={k:v}
+                entry = {k: v}
                 un_transferred_list.update(entry)
                 continue
             tran_txt = v.getOrigin().getTranslation()
@@ -770,9 +774,8 @@ class RefList(defaultdict):
                 ref_item = RefItem(start=-1, end=-1, txt=RefType.FILLER.value, ref_type=RefType.FILLER)
                 ref_rec = RefRecord(origin=ref_item)
                 k = last_key + 1
-                entry = {k:ref_rec}
+                entry = {k: ref_rec}
                 chosen_list.update(entry)
-
 
         def replaceArchedQuote(txt):
             new_txt = str(txt)
@@ -805,8 +808,8 @@ class RefList(defaultdict):
                 ref_txt_list[1] = right_side
             return ref_txt_list
 
-        pattern_list=[
-            (cm.GA_REF, RefType.GA, True), # this will have to further classified as progress
+        pattern_list = [
+            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
             (cm.AST_QUOTE, RefType.AST_QUOTE, True),
             (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
             (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
@@ -819,7 +822,7 @@ class RefList(defaultdict):
         if not has_record:
             return
 
-        balanceNumberOfItems(self, orig_list) # this will fill in 'filler' records, assingting search
+        balanceNumberOfItems(self, orig_list)  # this will fill in 'filler' records, assingting search
 
         _('list of refs:')
         pp(self)
@@ -827,7 +830,7 @@ class RefList(defaultdict):
         _(f'quotedFindRefs, tran: [{self.msg}]')
 
         new_txt = str(self.msg)
-        v : RefRecord
+        v: RefRecord
         k_list = reversed(list(self.keys()))
         for index, k in enumerate(k_list):
             is_reverse = False
@@ -855,7 +858,7 @@ class RefList(defaultdict):
             is_ast_quote = (ref_type == RefType.AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
             is_sng_quote = (ref_type == RefType.SNG_QUOTE)
-            is_abbr = (ref_type == RefType.ABBR) # # dealing with this later when switch to the test_dic.json
+            is_abbr = (ref_type == RefType.ABBR)  # # dealing with this later when switch to the test_dic.json
 
             is_acceptable = (is_ast_quote or is_dbl_quote or is_sng_quote or is_abbr)
 
@@ -866,8 +869,8 @@ class RefList(defaultdict):
                 # is_debug = ('key' in ref_orig_txt.lower()) or ('khóa' in ref_orig_txt.lower())
                 # if is_debug:
                 #     print('DEBUG')
-                    
-                is_reverse =  ig.isReverseOrder(ref_orig_txt)
+
+                is_reverse = ig.isReverseOrder(ref_orig_txt)
 
                 ref_list_len = len(ref_list)
                 has_ref = (ref_list_len > 0)
@@ -876,26 +879,26 @@ class RefList(defaultdict):
                     _(f'ref list has more than one item:[{ref_list_len}]')
 
                 if is_abbr:
-                  first_ref_item = ref_list[0]
-                  fis, fie, fi_txt = first_ref_item.getValues()
-                  fi_word_list = cm.ABBREV_CONTENT_PARSER.findall(fi_txt)
-                  existing_tran, existing_orig = fi_word_list[0]
-                  orig_entry = orig_list.findRefRecord(existing_orig, index, is_reversed_list=True)
-                  is_found_orig = (orig_entry is not None)
-                  if not is_found_orig: #item introduced while translating, ignore, since there are no possibility to identify the origin
-                      _(f'DEBUG: entry not in orig text:[{existing_orig} => [{existing_tran}]')
-                      continue
+                    first_ref_item = ref_list[0]
+                    fis, fie, fi_txt = first_ref_item.getValues()
+                    fi_word_list = cm.ABBREV_CONTENT_PARSER.findall(fi_txt)
+                    existing_tran, existing_orig = fi_word_list[0]
+                    orig_entry = orig_list.findRefRecord(existing_orig, index, is_reversed_list=True)
+                    is_found_orig = (orig_entry is not None)
+                    if not is_found_orig:  # item introduced while translating, ignore, since there are no possibility to identify the origin
+                        _(f'DEBUG: entry not in orig text:[{existing_orig} => [{existing_tran}]')
+                        continue
 
-                  orig_orig = orig_entry.getOrigin()
-                  # orig_ref_list = orig_entry.getRefList()
-                  # orig_orig_txt = orig_orig.getText()
-                  #
-                  # ref_tran_txt = ref_orig_txt
-                  # ref_orig_txt = orig_orig_txt
-                  # os, oe = ref_orig.getLocation()
+                    orig_orig = orig_entry.getOrigin()
+                    # orig_ref_list = orig_entry.getRefList()
+                    # orig_orig_txt = orig_orig.getText()
+                    #
+                    # ref_tran_txt = ref_orig_txt
+                    # ref_orig_txt = orig_orig_txt
+                    # os, oe = ref_orig.getLocation()
 
-                  _(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
-                  continue
+                    _(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
+                    continue
                 elif has_ref:
                     is_debug = ('handLeft' in ref_orig_txt)
                     if is_debug:
@@ -903,7 +906,7 @@ class RefList(defaultdict):
                     first_ref_item = ref_list[0]
                     r_txt = first_ref_item.getText()
                     # ref_txt_list = r_txt.split(cm.REF_SEP)
-                    ref_txt_list = refSplit(ref_orig_txt) # keeping the original ast, double, single quote
+                    ref_txt_list = refSplit(ref_orig_txt)  # keeping the original ast, double, single quote
                     has_ref_sep = (len(ref_txt_list) > 1)
                     if has_ref_sep:
                         ref_tran_txt = ref_txt_list[0]
@@ -951,12 +954,10 @@ class RefList(defaultdict):
 
         return new_txt
 
-
-
     def transferTranslatedRefs(self, current_msg, current_tran):
         self.msg = current_msg
-        pattern_list=[
-            (cm.GA_REF, RefType.GA, True), # this will have to further classified as progress
+        pattern_list = [
+            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
             (cm.AST_QUOTE, RefType.AST_QUOTE, True),
             (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
             (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
@@ -1037,7 +1038,7 @@ class RefList(defaultdict):
         orig_reflist = RefList(msg=non_tran)
         orig_reflist.findPattern(pattern_list)
 
-        v:RefRecord = None
+        v: RefRecord = None
         for k, v in self.items():
             tran_orig = v.getOrigin()
             s, e, tran_txt = tran_orig.getValues()
@@ -1047,7 +1048,7 @@ class RefList(defaultdict):
                 print("Translation entry NOT FOUND:", k, v)
                 continue
 
-            ov:RefRecord = None
+            ov: RefRecord = None
             ok, ov = orig_item
             os, oe, otxt = ov.getOrigin().getValues()
 
@@ -1055,17 +1056,14 @@ class RefList(defaultdict):
             print("Original type", ov.getOrigin().getRefType())
             print("Original Reflist", ov.getRefList())
 
-
-
-
     def parseMessage(self):
         # is_debug = ("Box Deselect:" in msg)
         # if is_debug:
         #     _("DEBUG")
 
         # entry include: (pattern, ref_type, include_original)
-        pattern_list=[
-            (cm.GA_REF, RefType.GA, True), # this will have to further classified as progress
+        pattern_list = [
+            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
             (cm.AST_QUOTE, RefType.AST_QUOTE, True),
             (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
             (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
@@ -1120,15 +1118,15 @@ class RefList(defaultdict):
         # remove redundancies
         # self.removeRedundancies()
 
-    def mergeTranslationToOrigin(self, ref_rec:RefRecord):
-        orig_item : RefItem = ref_rec.getOrigin()
+    def mergeTranslationToOrigin(self, ref_rec: RefRecord):
+        orig_item: RefItem = ref_rec.getOrigin()
         ref_list = ref_rec.getRefList()
         has_ref_list = (ref_list is not None) and (len(ref_list) > 0)
         if not has_ref_list:
             return
 
         tran_txt = str(orig_item.getText())
-        ref_item : RefItem = None
+        ref_item: RefItem = None
         for ref_item in reversed(ref_list):
             tran_state = ref_item.translation_state
             is_ignore = (tran_state == TranslationState.IGNORED) or (tran_state == TranslationState.REMOVE)
@@ -1151,15 +1149,14 @@ class RefList(defaultdict):
                 right_txt = tran_txt[e:]
                 tran_txt = left_txt + tran + right_txt
 
-        #is_same = (tran_txt == orig_item.getText())
-        #if is_same:
-            #tran_txt = ""
+        # is_same = (tran_txt == orig_item.getText())
+        # if is_same:
+        # tran_txt = ""
         orig_item.setTranlation(tran_txt)
-
 
     def transferTranslation(self, msg):
         tran = str(msg)
-        v:RefRecord = None
+        v: RefRecord = None
         for k, v in reversed(list(self.items())):
             self.mergeTranslationToOrigin(v)
             os, oe = v.getOriginLocation()
@@ -1214,7 +1211,6 @@ class RefList(defaultdict):
         else:
             ref_item.setTranlation("", state=TranslationState.ACCEPTABLE)
 
-
     def translateRefRecord(self, record: RefRecord):
         valid = (record is not None)
         if not valid:
@@ -1224,7 +1220,7 @@ class RefList(defaultdict):
         orig_text = orig.getText()
         has_ref_list = (record.reflist is not None) and (len(record.reflist) > 0)
         if not has_ref_list:
-            orig_trans, is_fuzzy = self.tf.translate(orig_text) # find the whole piece first to see if it's there
+            orig_trans, is_fuzzy = self.tf.translate(orig_text)  # find the whole piece first to see if it's there
             has_orig_tran = (orig_trans is not None) and (orig_trans != orig_text)
             if has_orig_tran:
                 orig.translation = orig_trans
