@@ -1,3 +1,18 @@
+import sys
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+
+import re
+from enum import Enum
+from pprint import pprint as pp
+
+import bpy
+from bpy.types import Menu
+from bpy.types import (Panel,
+                       Operator,
+                       AddonPreferences,
+                       PropertyGroup,
+                       )
+
 from bpy.props import (
     BoolProperty,
     BoolVectorProperty,
@@ -11,19 +26,11 @@ from bpy.props import (
     RemoveProperty,
     StringProperty
 )
-from bpy.types import (Panel,
-                       Operator,
-                       AddonPreferences,
-                       PropertyGroup,
-                       )
-from pprint import pprint as pp
-from enum import Enum
-from bpy.types import Menu
 
-import re
-import bpy
-import sys
-sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+from reflink import RefList, RefRecord, RefItem
+from ignore import Ignore as ig
+from common import Common as cm
+from translate_po import trans_finder
 
 
 bl_info = {
@@ -648,6 +655,41 @@ class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
         bpy.ops.text.paste()
         return {'FINISHED'}
 
+class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
+    bl_idname = "text.parse_sentence"
+    bl_label = "Parse Sentence"
+    bl_description = "Capture and parse sentence automatically"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        text = self.getSelectedText(sd.text)
+        if text is None:
+            return {'CANCELLED'}
+
+        part_list = text.split(': "')
+        has_parts = (len(part_list) > 0)
+        if not has_parts:
+            print('Text is not splitting, requiring dictionary like format!')
+            return {'CANCELLED'}
+
+        orig_msg = part_list[0]
+        orig_msg = orig_msg.strip('"')
+
+        tran_msg = part_list[1]
+        tran_msg = tran_msg.strip('"')
+
+        ref_list = RefList(msg=orig_msg, keep_orig=False, tf=trans_finder)
+        ref_list.parseMessage()
+        ref_list.translateRefList()
+        tran = ref_list.getTranslation()
+        print("Got translation from REF_LIST")
+        return tran
+
+        print(f'converted: [{text}]')
+        bpy.context.window_manager.clipboard = text
+        bpy.ops.text.paste()
+        return {'FINISHED'}
 
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
     bl_label = "Abbreviation Panel"
