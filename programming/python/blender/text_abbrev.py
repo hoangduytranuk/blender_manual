@@ -1,9 +1,3 @@
-import bpy
-import re
-from pprint import pprint as pp
-from enum import Enum
-from bpy.types import Menu
-
 from bpy.props import (
     BoolProperty,
     BoolVectorProperty,
@@ -17,12 +11,20 @@ from bpy.props import (
     RemoveProperty,
     StringProperty
 )
-
 from bpy.types import (Panel,
                        Operator,
                        AddonPreferences,
                        PropertyGroup,
                        )
+from pprint import pprint as pp
+from enum import Enum
+from bpy.types import Menu
+
+import re
+import bpy
+import sys
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+
 
 bl_info = {
     "name": "text_abbreviation",
