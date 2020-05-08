@@ -2,16 +2,17 @@ import sys
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import re
-from enum import Enum
-from pprint import pprint as pp
-
 import bpy
 from bpy.types import Menu
-from bpy.types import (Panel,
-                       Operator,
-                       AddonPreferences,
-                       PropertyGroup,
-                       )
+
+from pprint import pprint as pp
+from enum import Enum
+
+from reflink import RefList, RefRecord, RefItem
+from ignore import Ignore as ig
+from common import Common as cm
+from translate_po import trans_finder
+
 
 from bpy.props import (
     BoolProperty,
@@ -26,11 +27,11 @@ from bpy.props import (
     RemoveProperty,
     StringProperty
 )
-
-from reflink import RefList, RefRecord, RefItem
-from ignore import Ignore as ig
-from common import Common as cm
-from translate_po import trans_finder
+from bpy.types import (Panel,
+                       Operator,
+                       AddonPreferences,
+                       PropertyGroup,
+                       )
 
 
 bl_info = {
@@ -655,6 +656,7 @@ class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
         bpy.ops.text.paste()
         return {'FINISHED'}
 
+
 class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
     bl_idname = "text.parse_sentence"
     bl_label = "Parse Sentence"
@@ -679,17 +681,19 @@ class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
         tran_msg = part_list[1]
         tran_msg = tran_msg.strip('"')
 
-        ref_list = RefList(msg=orig_msg, keep_orig=False, tf=trans_finder)
-        ref_list.parseMessage()
-        ref_list.translateRefList()
-        tran = ref_list.getTranslation()
-        print("Got translation from REF_LIST")
-        return tran
+        k = orig_msg
+        v = tran_msg
 
-        print(f'converted: [{text}]')
-        bpy.context.window_manager.clipboard = text
-        bpy.ops.text.paste()
+        ref_list = RefList(msg=v)
+        new_v = ref_list.quotedToAbbrev(k)
+
+        new_entry = f'"{k}": "{new_v}",'
+
+        print(f'converted: [{new_entry}]')
+        # bpy.context.window_manager.clipboard = text
+        # bpy.ops.text.paste()
         return {'FINISHED'}
+
 
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
     bl_label = "Abbreviation Panel"
@@ -767,7 +771,7 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         # row = lo.row(align=True)
         col = lo.column(align=True)
         col.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
-        # col.operator("text.single_quoted_for_abbrev_reverse", icon='LOOP_BACK')
+        col.operator("text.parse_sentence", icon='MODIFIER_DATAß')
 
 
 '''
@@ -825,6 +829,7 @@ classes = (
     TEXT_PT_abbrev_selected_panel,
     TEXT_OT_single_quoted_forward,
     TEXT_OT_case_conversion,
+    TEXT_OT_parse_sentence,
     # TEXT_PT_case_conversion_panel,
     # TEXT_OT_single_quoted_reverse
 )

@@ -1,12 +1,15 @@
+#!/usr/bin/env python3
 import html #for escaping html
 import sys
+print(f'common sys.path: {sys.path}')
+
 import os
 import re
 import inspect
 import copy as cp
 from collections import OrderedDict, defaultdict
 from pprint import pprint, pformat
-import Levenshtein as LE
+# import Levenshtein as LE
 #import logging
 
 DEBUG=True
@@ -461,10 +464,10 @@ class Common:
             is_similar = (intersect_set == from_set) or (intersect_set == to_set)
         return is_similar
 
-    def isTextuallyVerySimilar(from_txt, to_txt):
-        similar_ratio = LE.ratio(from_txt, to_txt)
-        acceptable = (similar_ratio >= 0.75)
-        return acceptable
+    # def isTextuallyVerySimilar(from_txt, to_txt):
+    #     similar_ratio = LE.ratio(from_txt, to_txt)
+    #     acceptable = (similar_ratio >= 0.75)
+    #     return acceptable
 
     def isTextuallySame(from_txt:str, to_txt:str):
 

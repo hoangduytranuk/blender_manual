@@ -1,5 +1,6 @@
 import sys
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+print(f'translation_finder sys.path: {sys.path}')
 
 import io
 import os

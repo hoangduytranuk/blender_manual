@@ -1,6 +1,6 @@
+#!/usr/bin/env python3
 import sys
-
-sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+sys.path.append('/Users/hoangduytran/blender_manual/potransßlate')
 
 import re
 from common import Common as cm
