@@ -1,6 +1,7 @@
 import sys
+sys.path.append('/usr/local/lib/python3.7/site-packages')
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
-print(f'translation_finder sys.path: {sys.path}')
+# print(f'translation_finder sys.path: {sys.path}')
 
 import io
 import os

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import html #for escaping html
 import sys
-print(f'common sys.path: {sys.path}')
+sys.path.append('/usr/local/lib/python3.7/site-packages')
+
+# print(f'common sys.path: {sys.path}')
 
 import os
 import re

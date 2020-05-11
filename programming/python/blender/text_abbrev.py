@@ -67,7 +67,7 @@ dbl_quote_pat = re.compile(r'[\"]+')
 case_status_table = (
     ('UPPER', 'Upper', 'Upper case', 1),
     ('LOWER', 'Lower', 'Lower case', 2),
-    ('TITLE', 'Title', 'Title Case', 3),
+    ('TITLE', 'Titled', 'Title Case', 3),
     ('FIRST', 'Cap First', 'First letter capitalised', 4),
 )
 
@@ -129,6 +129,12 @@ class MySettings(PropertyGroup):
         description="Create Kbd",
         default=False,
         update=updateKBD
+    )
+
+    is_matching_case: BoolProperty(
+        name="Matching Case",
+        description="Matching the case of translation with the original",
+        default=False,
     )
 
     def updateSeparator(self, context):
@@ -374,6 +380,7 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         is_term = var.is_term  # making use of ready made boolean
         is_kbd = var.is_kbd
         sep = var.term_sep
+        is_matching_case_with_original = var.is_matching_case
 
         # print(f'is_reverse: [{is_reverse}]')
         # print(f'is_abbrev: [{is_abbrev}]')
@@ -539,13 +546,14 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         #     txt = blanking_pat.sub("", txt)
         #     part_list[index] = txt
 
-        # matching cases to original
-        if orig_part.isupper():
-            tran_part = tran_part.upper()
-        elif orig_part.islower():
-            tran_part = tran_part.lower()
-        elif orig_part.istitle():
-            tran_part = tran_part.title()
+        if is_matching_case_with_original:
+            # matching cases to original
+            if orig_part.isupper():
+                tran_part = tran_part.upper()
+            elif orig_part.islower():
+                tran_part = tran_part.lower()
+            elif orig_part.istitle():
+                tran_part = tran_part.title()
 
         if is_term:
             if is_reverse:
@@ -680,6 +688,7 @@ class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
 
         tran_msg = part_list[1]
         tran_msg = tran_msg.strip('"')
+        tran_msg = tran_msg.strip('",')
 
         k = orig_msg
         v = tran_msg
@@ -690,9 +699,86 @@ class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
         new_entry = f'"{k}": "{new_v}",'
 
         print(f'converted: [{new_entry}]')
-        # bpy.context.window_manager.clipboard = text
-        # bpy.ops.text.paste()
+        bpy.context.window_manager.clipboard = new_entry
+        bpy.ops.text.paste()
         return {'FINISHED'}
+
+class TEXT_OT_paste_join(TEXT_OT_single_quoted_base):
+    bl_idname = "text.paste_join_abbrev"
+    bl_label = "Paste Join"
+    bl_description = "Paste the previously copied content, and join with currently selected text"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+
+        sc = context.scene
+        var = sc.my_tool
+        is_reverse = var.is_reversed  # making use of ready made boolean
+        is_abbrev = var.is_abbrev  # making use of ready made boolean
+        is_term = var.is_term  # making use of ready made boolean
+        is_kbd = var.is_kbd
+        sep = var.term_sep
+
+        orig_part = bpy.context.window_manager.clipboard
+        has_orig = len(orig_part) > 0
+        if not has_orig:
+            self.report({'ERROR'}, f"Must select a text for original part and copy to clipboard")
+            return {'CANCELLED'}
+
+        tran_part = self.getSelectedText(sd.text)
+        if tran_part is None:
+            self.report({'ERROR'}, f"Must select a text for translation part")
+            return {'CANCELLED'}
+
+        if is_term:
+            if is_reverse:
+                text = f"{orig_part} -- {tran_part}"
+            else:
+                text = f"{tran_part} -- {orig_part}"
+        else:
+            if is_reverse:
+                text = f"{orig_part} ({tran_part})"
+            else:
+                text = f"{tran_part} ({orig_part})"
+
+            # strip all spaces surrounding text before inserting into the template
+        text = text.strip()
+        if is_term:
+            text = f":term:`{text}`"
+        elif is_abbrev:
+            text = f":abbr:`{text}`"
+        elif is_kbd:
+            text = f":kbd:`{text}`"
+
+        # print(f'text: {text}')
+        # return {'CANCELLED'}
+
+        bpy.context.window_manager.clipboard = text
+        bpy.ops.text.paste()
+        return {'FINISHED'}
+
+class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
+    bl_idname = "text.paste_with_colon"
+    bl_label = "Paste With Colon"
+    bl_description = "Paste the previously copied content, adding colon at the end 'text:'"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+
+        sc = context.scene
+        var = sc.my_tool
+        is_reverse = var.is_reversed  # making use of ready made boolean
+        orig_part = bpy.context.window_manager.clipboard
+        has_orig = len(orig_part) > 0
+        if not has_orig:
+            self.report({'ERROR'}, f"Must select a text for original part and copy to clipboard")
+            return {'CANCELLED'}
+
+        text = f"{orig_part}: "
+        bpy.context.window_manager.clipboard = text
+        bpy.ops.text.paste()
 
 
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
@@ -720,6 +806,8 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         # making use of ready made boolean
         row.prop(my_tool, "is_term", toggle=True)
         row.prop(my_tool, "is_kbd", toggle=True)
+        row = lo.row(align=True)
+        row.prop(my_tool, "is_matching_case")
 
 #        lo.label(text='Separator:')
         row = lo.row(align=True)
@@ -769,9 +857,21 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         col.operator("text.case_conversion", icon='SYNTAX_OFF')
         # row = col.row(align=True)
         # row = lo.row(align=True)
+
         col = lo.column(align=True)
-        col.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
-        col.operator("text.parse_sentence", icon='MODIFIER_DATAß')
+        row = col.row(align=True)
+        row.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
+        row.operator("text.parse_sentence", icon='MODIFIER_DATA')
+
+        row = col.row(align=True)
+        row.operator("text.cut")
+        row.operator("text.copy", icon='COPYDOWN')
+        row.operator("text.save", icon='FILE_TICK')
+
+        row = col.row(align=True)
+        row.operator("text.paste", icon='PASTEDOWN')
+        row.operator("text.paste_join_abbrev", icon='PASTEDOWN')
+        row.operator("text.paste_with_colon", icon='PASTEDOWN')
 
 
 '''
@@ -830,6 +930,8 @@ classes = (
     TEXT_OT_single_quoted_forward,
     TEXT_OT_case_conversion,
     TEXT_OT_parse_sentence,
+    TEXT_OT_paste_join,
+    TEXT_OT_paste_with_colon,
     # TEXT_PT_case_conversion_panel,
     # TEXT_OT_single_quoted_reverse
 )

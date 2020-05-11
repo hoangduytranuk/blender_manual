@@ -1,3 +1,7 @@
+import sys
+sys.path.append('/usr/local/lib/python3.7/site-packages')
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+
 import re
 from os import sep as dirsep
 #os.path.pathsep = ':' or ';'

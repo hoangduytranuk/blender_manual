@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
-sys.path.append('/Users/hoangduytran/blender_manual/potransßlate')
+sys.path.append('/usr/local/lib/python3.7/site-packages')
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import re
 from common import Common as cm

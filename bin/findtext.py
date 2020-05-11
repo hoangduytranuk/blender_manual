@@ -152,7 +152,7 @@ class BasicIO:
     def readTextFile(self, file_name):
         data=None
         try:
-            with open(file_name, "r", encoding="utf-8") as f:
+            with open(file_name, "r", encoding="utf-8", errors='replace') as f:
                 data = f.read()
             return data
         except Exception as e:
@@ -467,7 +467,6 @@ class FindFilesHasPattern:
         if has_result:
             showfilename()
             if self.show_line_number:
-
                 pp(self.found_lines_dic)
             else:
                 for k, v in self.found_lines_dic.items():

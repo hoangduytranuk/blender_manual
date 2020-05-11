@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python3
-import sys
 
+import sys
+sys.path.append('/usr/local/lib/python3.7/site-packages')
 sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
-print(sys.path)
+# print(sys.path)
 
 # sys.path.append('/home/htran/bin/python/PO')
 # sys.path.append('/home/htran/bin/python/base')
