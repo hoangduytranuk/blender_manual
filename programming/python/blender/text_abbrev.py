@@ -54,9 +54,9 @@ bl_info = {
 #     return enum_members_from_type(type(rna_item), prop_str)
 
 sep_table = (
-    ('SP_DBL_HYPH_SP', '" -- "', 'Desc', 0),
-    ('SP_ARCH_BRK', '" ("', 'Desc', 1),
-    #        ('RESERVED', 'Reserved', 'Reserved Item',2),
+    ('SP_DBL_HYPH_SP', '" -- "', ' Space Hyphen Space', 0),
+    ('SP_ARCH_BRK', '" ("', 'Space Left Bracket', 1),
+    ('SP_SPACE', '" "', 'Space',2),
 )
 
 rm_sym_list = ["`", "*", "'", "\"", "\\", "(", ")", "<", ">", "-"]
@@ -294,6 +294,7 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
     def __init__(self):
         self.is_reverse = False
         self.is_abbrev = True
+        self.previous_text = ""
 
     # def replaceSelectedText(self, context, new_text):
     #     sd = context.space_data
@@ -370,6 +371,16 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
     def setAbbrev(self, is_abbrev):
         self.is_abbrev = is_abbrev
 
+    def restoreClibboardPreviousCopy(self):
+        bpy.context.window_manager.clipboard = self.previous_text
+
+    def pasteText(self, text_to_paste):
+
+        self.previous_text = bpy.context.window_manager.clipboard
+
+        bpy.context.window_manager.clipboard = text_to_paste
+        bpy.ops.text.paste()
+
     def execute(self, context):
         sd = context.space_data
 
@@ -445,16 +456,6 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         tran_part = part_list[0]
         orig_part = part_list[1]
 
-        # sep_list = [
-        #     " -- ",
-        #     " (",
-        # ]
-
-        # sample: "Một đường tham chiếu định nghĩa các tọa độ dọc theo một hướng hợp quy trong không gian *đa chiều (n-D) -- (n-Dimensions)*",
-
-#        print(f'chosen_blanking_chars:[{chosen_blanking_chars}]')
-#        escaped_blanking = re.escape(chosen_blanking_chars)
-#        var.updateRmChars(context)
         rm_char_list = var.rm_chars
         chosen_chars = []
         for i, rm_selected in enumerate(rm_char_list):
@@ -560,11 +561,16 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
                 text = f"{orig_part} -- {tran_part}"
             else:
                 text = f"{tran_part} -- {orig_part}"
-        else:
+        elif is_abbrev or is_kbd:
             if is_reverse:
                 text = f"{orig_part} ({tran_part})"
             else:
                 text = f"{tran_part} ({orig_part})"
+        else:
+            if is_reverse:
+                text = f"{orig_part} {tran_part}"
+            else:
+                text = f"{tran_part} {orig_part}"
 
         # strip all spaces surrounding text before inserting into the template
         text = text.strip()
@@ -575,8 +581,7 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         elif is_kbd:
             text = f":kbd:`{text}`"
 
-        bpy.context.window_manager.clipboard = text
-        bpy.ops.text.paste()
+        self.pasteText(text)
         return {'FINISHED'}
 
 
@@ -589,6 +594,10 @@ class TEXT_OT_single_quoted_forward(TEXT_OT_single_quoted_base):
         result = super(TEXT_OT_single_quoted_forward, self).execute(context)
         return result
 
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 class TEXT_OT_find_forward(TEXT_OT_single_quoted_base):
     bl_idname = "text.find_forward"
@@ -602,6 +611,11 @@ class TEXT_OT_find_forward(TEXT_OT_single_quoted_base):
         if text is None:
             return {'CANCELLED'}
         return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 
 class TEXT_OT_find_backward(TEXT_OT_single_quoted_base):
@@ -617,6 +631,11 @@ class TEXT_OT_find_backward(TEXT_OT_single_quoted_base):
             return {'CANCELLED'}
         return {'FINISHED'}
 
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
+
 
 class TEXT_OT_find_replace(TEXT_OT_single_quoted_base):
     bl_idname = "text.find_replace"
@@ -630,6 +649,11 @@ class TEXT_OT_find_replace(TEXT_OT_single_quoted_base):
         if text is None:
             return {'CANCELLED'}
         return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 
 class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
@@ -658,12 +682,11 @@ class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
         elif case == 'FIRST':
             text = text[0].upper() + text[1:].lower()
         else:
-            return None
-        print(f'converted: [{text}]')
-        bpy.context.window_manager.clipboard = text
-        bpy.ops.text.paste()
-        return {'FINISHED'}
+            return {'CANCELLED'}
 
+        print(f'converted: [{text}]')
+        self.pasteText(text)
+        return {'FINISHED'}
 
 class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
     bl_idname = "text.parse_sentence"
@@ -696,12 +719,16 @@ class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
         ref_list = RefList(msg=v)
         new_v = ref_list.quotedToAbbrev(k)
 
-        new_entry = f'"{k}": "{new_v}",'
+        text = f'"{k}": "{new_v}",'
 
-        print(f'converted: [{new_entry}]')
-        bpy.context.window_manager.clipboard = new_entry
-        bpy.ops.text.paste()
+        print(f'converted text: [{text}]')
+        self.pasteText(text)
         return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 class TEXT_OT_paste_join(TEXT_OT_single_quoted_base):
     bl_idname = "text.paste_join_abbrev"
@@ -754,9 +781,13 @@ class TEXT_OT_paste_join(TEXT_OT_single_quoted_base):
         # print(f'text: {text}')
         # return {'CANCELLED'}
 
-        bpy.context.window_manager.clipboard = text
-        bpy.ops.text.paste()
+        self.pasteText(text)
         return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
     bl_idname = "text.paste_with_colon"
@@ -777,9 +808,40 @@ class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
             return {'CANCELLED'}
 
         text = f"{orig_part}: "
-        bpy.context.window_manager.clipboard = text
-        bpy.ops.text.paste()
+        self.pasteText(text)
+        return {'FINISHED'}
 
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
+
+class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
+    bl_idname = "text.convert_to_square_brackets"
+    bl_label = "Square Bracketing"
+    bl_description = "Convert arched brackets of selected text to square brackets"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+
+        # sc = context.scene
+        # var = sc.my_tool
+        # is_reverse = var.is_reversed  # making use of ready made boolean
+        text = self.getSelectedText(sd.text)
+        if not text:
+            self.report({'ERROR'}, f"Must select a text with arched brackets to be converted")
+            return {'CANCELLED'}
+
+        text = text.replace('(', '[')
+        text = text.replace(')', ']')
+        self.pasteText(text)
+        return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
     bl_label = "Abbreviation Panel"
@@ -851,7 +913,8 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
 
         col = split.column(align=True)
         col.label(text="Case Conversion:")
-        col.prop(my_tool, "case_status")
+        row = col.row(align=True)
+        row.prop(my_tool, "case_status", expand=True)
         # lo.operator_menu_enum("case_status", "type")
         col.separator()
         col.operator("text.case_conversion", icon='SYNTAX_OFF')
@@ -860,6 +923,7 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
 
         col = lo.column(align=True)
         row = col.row(align=True)
+        row.operator("text.convert_to_square_brackets", icon='TRACKER_DATA')
         row.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
         row.operator("text.parse_sentence", icon='MODIFIER_DATA')
 
@@ -906,21 +970,6 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
 '''
 
 
-class TEXT_PT_case_conversion_panel(bpy.types.Panel):
-    bl_label = "Case Conversion"
-    bl_idname = "TEXT_PT_case_conversion_panel"
-    bl_space_type = 'TEXT_EDITOR'
-    bl_region_type = 'UI'
-    bl_category = 'Text'
-
-    def draw(self, context):
-        lo = self.layout
-
-        row = lo.row(align=True)
-        # col.prop(my_tool, "case_status")
-        row.operator("text.case_conversion", icon='SYNTAX_OFF')
-
-
 classes = (
     MySettings,
     TEXT_OT_find_forward,
@@ -932,8 +981,7 @@ classes = (
     TEXT_OT_parse_sentence,
     TEXT_OT_paste_join,
     TEXT_OT_paste_with_colon,
-    # TEXT_PT_case_conversion_panel,
-    # TEXT_OT_single_quoted_reverse
+    TEXT_OT_convert_to_square_bracket,
 )
 
 

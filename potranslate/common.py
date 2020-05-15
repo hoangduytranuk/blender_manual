@@ -162,18 +162,22 @@ class Common:
     # this (something ... ) can have other links inside of it as well as others
     # the greedy but more accurate is r'[\(]+(.*)?[\)]+'
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
-    # ARCH_BRAKET_SINGLE_FULL = re.compile(r'[\(]+([^\)]+)?[\)]+')
+    ARCH_BRAKET_SINGLE_FULL = re.compile(r'[\(]+([^\)]+)[\)]+')
     #ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
 
     ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)[\)]+')
 
     AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    DBL_QUOTE = re.compile(r'[\"]+(?![\s\.\,\`]+)([^\"]+)[\"]+(?<!([\s\.\,]))')
+    DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
     # SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+(?<!([\s\.\,]))')
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(!?([\s]))')
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+')
     SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
+    RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
+    RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
+    LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
+    TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries

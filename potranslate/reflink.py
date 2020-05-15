@@ -782,6 +782,12 @@ class RefList(defaultdict):
             new_txt = str(txt)
             new_txt = re.sub('\)', ']', new_txt)
             new_txt = re.sub('\(', '[', new_txt)
+            # new_txt = new_txt.replace('"', '\\\"')
+            return new_txt
+
+        def replaceQuoted(txt):
+            new_txt = str(txt)
+            # new_txt = re.sub('"', '"', new_txt)
             return new_txt
 
         def refSplit(ref_txt):
@@ -810,6 +816,7 @@ class RefList(defaultdict):
             return ref_txt_list
 
         pattern_list = [
+            (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET, True),
             (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
             (cm.AST_QUOTE, RefType.AST_QUOTE, True),
             (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
@@ -860,8 +867,9 @@ class RefList(defaultdict):
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
             is_sng_quote = (ref_type == RefType.SNG_QUOTE)
             is_abbr = (ref_type == RefType.ABBR)  # # dealing with this later when switch to the test_dic.json
+            is_arched_braket = (ref_type == RefType.ARCH_BRACKET)
 
-            is_acceptable = (is_ast_quote or is_dbl_quote or is_sng_quote or is_abbr)
+            is_acceptable = (is_ast_quote or is_dbl_quote or is_sng_quote or is_abbr or is_arched_braket)
 
             if is_acceptable:
                 pp(f'ref_orig:[{ref_orig}]')
@@ -938,12 +946,26 @@ class RefList(defaultdict):
             if is_change:
                 ref_tran_txt = replaceArchedQuote(ref_tran_txt)
                 ref_orig_txt = replaceArchedQuote(ref_orig_txt)
+
+                is_trimming_first_char = (cm.LEADING_WITH_SYMBOL.search(ref_tran_txt) is not None)
+                is_trimming_last_char = (cm.TRAILING_WITH_SYMBOL.search(ref_tran_txt) is not None)
+
+                if is_trimming_first_char:
+                    ref_tran_txt = cm.LEADING_WITH_SYMBOL.sub("", ref_tran_txt)
+                    ref_orig_txt = cm.LEADING_WITH_SYMBOL.sub("", ref_orig_txt)
+
+                if is_trimming_last_char:
+                    ref_tran_txt = cm.TRAILING_WITH_SYMBOL.sub("", ref_tran_txt)
+                    ref_orig_txt = cm.TRAILING_WITH_SYMBOL.sub("", ref_orig_txt)
+
                 if is_reverse:
                     replacement = f':abbr:`{ref_orig_txt} ({ref_tran_txt})`'
                 else:
                     replacement = f':abbr:`{ref_tran_txt} ({ref_orig_txt})`'
 
+                # replacement = replaceQuoted(replacement)
                 os, oe = ref_orig.getLocation()
+                print(f'hello os:{os}, oe:{oe}')
                 left_side = new_txt[:os]
                 right_side = new_txt[oe:]
                 new_txt = left_side + replacement + right_side
