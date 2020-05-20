@@ -13,7 +13,7 @@ and paths of *Baked*
 (You can also edit and style hair before baking.)
 
 Since working in Particle Edit Mode is pretty easy and very similar
-to working with vertices in the 3D View, we will show how to set up
+to working with vertices in the 3D Viewport, we will show how to set up
 a particle system and then give a reference of the various functions.
 
 
@@ -68,7 +68,7 @@ or that you do not like the latest changes you have made.
 .. tip:: To be able to clearly see what you are working on:
 
    #. Open the Options panel in the Toolbar.
-   #. Select *Point select mode* (see below) in the header of the 3D View.
+   #. Select *Point select mode* (see below) in the header of the 3D Viewport.
       This will display key points along the particle path.
 
 
@@ -315,7 +315,7 @@ Show/Hide
    :Mode:      Particle Edit Mode
    :Menu:      :menuselection:`Particle --> Show/Hide`
 
-Hiding and unhiding of particles works similar as with vertices in the 3D View.
+Hiding and unhiding of particles works similar as with vertices in the 3D Viewport.
 Select one or more keypoints of the particle you want to hide and press :kbd:`H`.
 The particle in fact does not vanish, only the key points.
 

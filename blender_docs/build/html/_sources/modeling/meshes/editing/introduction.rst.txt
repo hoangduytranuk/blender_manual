@@ -6,7 +6,7 @@ Introduction
 Blender provides a variety of tools for editing meshes.
 These are tools used to add, duplicate, move and delete elements.
 
-These are available through the Menus in the 3D View header, and context menus in the 3D View,
+These are available through the Menus in the 3D Viewport header, and context menus in the 3D Viewport,
 as well as individual shortcut keys.
 
 .. note::

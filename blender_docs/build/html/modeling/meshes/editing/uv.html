@@ -236,31 +236,11 @@
 <dt class="field-even">Chế Độ -- Mode</dt>
 <dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
 </dd>
-<dt class="field-odd">Tool</dt>
-<dd class="field-odd"><p><span class="menuselection">Toolbar ‣ Shading/UVs ‣ UVs ‣ UV Mapping: Unwrap</span></p>
-</dd>
-<dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Khung Lưới (Mesh) ‣ Mở Gói UV (UV Unwrap)</span></p>
-</dd>
-<dt class="field-odd">Phím Tắt -- Hotkey</dt>
-<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
-</dd>
-</dl>
-</div>
-<div class="refbox admonition">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
-<dd class="field-odd"><p>UV Editor</p>
-</dd>
-<dt class="field-even">Chế Độ -- Mode</dt>
-<dd class="field-even"><p>Chế Độ Góc Nhìn -- View mode</p>
-</dd>
 <dt class="field-odd">Trình Đơn -- Menu</dt>
-<dd class="field-odd"><p><span class="menuselection">UV (UVs) ‣ Mở Gói (Unwrap)</span></p>
+<dd class="field-odd"><p><span class="menuselection">Header ‣ UV</span></p>
 </dd>
 <dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">E</kbd></p>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
 </dd>
 </dl>
 </div>
@@ -270,16 +250,35 @@ by interpolating the position of points toward a point/axis/plane through a surf
 The more advanced methods can be used with more complex models, and have more specific uses.</p>
 <div class="section" id="unwrap">
 <span id="bpy-ops-uv-unwrap"></span><h2>Mở Gói -- Unwrap<a class="headerlink" href="#unwrap" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>3D Viewport or UV Editor</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV (UVs) ‣ Mở Gói (Unwrap)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Flattens the mesh surface by cutting along <a class="reference internal" href="../uv/unwrapping/seams.html"><span class="doc">seams</span></a>.
+Useful for organic shapes.</p>
+<p>Begin by selecting all faces you want to unwrap.
+In the 3D Viewport, select <span class="menuselection">Mesh ‣ UV Unwrap ‣ Unwrap</span> or
+<kbd class="kbd docutils literal notranslate">U</kbd> and select Unwrap.
+You can also do this from the UV Editor with <span class="menuselection">UVs ‣ Unwrap</span> or <kbd class="kbd docutils literal notranslate">U</kbd>.
+This method will unwrap all faces and reset previous work.
+The UVs menu will appear in the UV Editor after unwrapping has been performed once.</p>
 <div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_unwrap-example.png"><img alt="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_unwrap-example.png" src="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_unwrap-example.png" style="width: 420px;" /></a>
 <p class="caption"><span class="caption-text">Result of unwrapping Suzanne.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-<p>Flattens the mesh surface by cutting along <a class="reference internal" href="../uv/unwrapping/seams.html"><span class="doc">seams</span></a>.
-Useful for organic shapes.</p>
-<p>Begin by selecting all faces to be unwrapped in the 3D View. With our faces selected, it is now time to unwrap them. In the 3D View, select <span class="menuselection">Khung Lưới (Mesh) ‣ Mở Gói UV (UV Unwrap) ‣ Mở Gói (Unwrap)</span> or <kbd class="kbd docutils literal notranslate">U</kbd> and select Unwrap.</p>
-<p>You can also do this from the UV Editor with <span class="menuselection">UVs ‣ Unwrap</span> or <kbd class="kbd docutils literal notranslate">E</kbd>.
-This method will unwrap all faces and reset previous work.
-The UVs menu will appear in the UV Editor after unwrapping has been performed once.</p>
 <p>This tool unwraps the faces of the object to provide
 the &quot;best fit&quot; scenario based on how the faces are connected and will fit within the image,
 and takes into account any seams within the selected faces.
@@ -288,7 +287,7 @@ If all faces of an object are selected, then each face is mapped to a part of th
 <div class="section" id="options">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
 <p>Blender has two ways of calculating the unwrapping.
-They can be selected in the tool setting in the tool panel in the 3D View.</p>
+They can be selected in the tool setting in the tool panel in the 3D Viewport.</p>
 <dl class="simple">
 <dt>Cơ Sở Góc -- Angle Based</dt><dd><p>This method gives a good 2D representation of a mesh.</p>
 </dd>
@@ -314,22 +313,38 @@ A face can be mapped to less and less of the total image.</p>
 </div>
 <div class="section" id="smart-uv-project">
 <span id="bpy-ops-uv-smart-project"></span><h2>Phóng Chiếu UV Thông Minh -- Smart UV Project<a class="headerlink" href="#smart-uv-project" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id8">
-<a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png"><img alt="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png" src="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png" style="width: 670px;" /></a>
-<p class="caption"><span class="caption-text">Smart UV project on a cube.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Smart UV Project</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
 </div>
-<p>Smart UV Project, (previously called the Archimapper)
-cuts the mesh based on an angle threshold (angular changes in your mesh).
+<p>Smart UV Project, cuts the mesh based on an angle threshold (angular changes in your mesh).
 This gives you fine control over how automatic seams are be created.
 It is good method for simple and complex geometric forms,
 such as mechanical objects or architecture.</p>
 <p>This algorithm examines the shape of your object,
 the faces selected and their relation to one another,
 and creates a UV map based on this information and settings that you supply.</p>
-<p>In the example to the right,
+<p>In the example below,
 the Smart Mapper mapped all of the faces of a cube to a neat arrangement of three sides on top,
 three sides on the bottom, for all six sides of the cube to fit squarely,
 just like the faces of the cube.</p>
+<div class="figure align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png"><img alt="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png" src="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_smart-project.png" style="width: 670px;" /></a>
+<p class="caption"><span class="caption-text">Smart UV project on a cube.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
 <p>For more complex mechanical objects, this tool can quickly and easily create
 a regular and straightforward UV layout for you.</p>
 <div class="section" id="id1">
@@ -349,6 +364,23 @@ A higher number will add more space between islands.</p>
 </div>
 <div class="section" id="lightmap-pack">
 <span id="bpy-ops-uv-lightmap-pack"></span><h2>Đóng Gói Ánh Xạ Ánh Sáng -- Lightmap Pack<a class="headerlink" href="#lightmap-pack" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Lightmap Pack</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
 <p>Lightmap Pack takes each of a mesh's faces, or selected faces,
 and packs them into the UV bounds. Lightmaps are used primarily in realtime rendering,
 where lighting information is baked onto texture maps,
@@ -385,17 +417,38 @@ A higher number will add more space between islands.</p>
 </div>
 <div class="section" id="follow-active-quads">
 <span id="bpy-ops-uv-follow-active-quads"></span><h2>Đi Theo Tứ Giác Đang Hoạt Động -- Follow Active Quads<a class="headerlink" href="#follow-active-quads" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Follow Active Quads</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
 <p>The Follow Active Quads tool takes the selected faces and lays them out
 by following continuous face loops, even if the mesh face is irregularly-shaped.
 Note that it does not respect the image size,
 so you may have to scale them all down a bit to fit the image area.</p>
 <div class="section" id="id3">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Edge Length Mode:</p>
 <dl class="simple">
+<dt>Edge Length Mode</dt><dd><dl class="simple">
 <dt>Đều Đặn -- Even</dt><dd><p>Space all UVs evenly.</p>
 </dd>
-<dt>Chiều Dài -- Length</dt><dd><p>Average space UVs edge length of each loop.</p>
+<dt>Chiều Dài -- Length</dt><dd><p>Todo.</p>
+</dd>
+<dt>Length Average</dt><dd><p>Average space UVs edge length of each loop.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="admonition note">
@@ -408,6 +461,23 @@ a rectangle in UV space before using &quot;Follow active quad&quot;.</p>
 </div>
 <div class="section" id="cube-projection">
 <span id="bpy-ops-uv-cube-project"></span><h2>Phóng Chiếu Hình Lập Phương -- Cube Projection<a class="headerlink" href="#cube-projection" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Cube Projection</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
 <p>Cube Projection maps the mesh onto the faces of a cube, which is then unfolded.
 It projects the mesh onto six separate planes, creating six UV islands.
 In the UV editor, these will appear overlapped, but can be moved.
@@ -435,17 +505,35 @@ by being moved to the UV space border it is closest to.</p>
 </div>
 </div>
 </div>
-<div class="section" id="cylinder-and-sphere-projection">
-<span id="bpy-ops-uv-sphere-project"></span><span id="bpy-ops-uv-cylinder-project"></span><h2>Phóng Chiếu Hình Cầu và Hình Trụ -- Cylinder and Sphere Projection<a class="headerlink" href="#cylinder-and-sphere-projection" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id9">
-<a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png"><img alt="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png" src="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png" style="width: 420px;" /></a>
-<p class="caption"><span class="caption-text">Using an equirectangular image with a Sphere Projection.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<div class="section" id="cylinder-sphere-projection">
+<span id="bpy-ops-uv-sphere-project"></span><span id="bpy-ops-uv-cylinder-project"></span><h2>Cylinder &amp; Sphere Projection<a class="headerlink" href="#cylinder-sphere-projection" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Sphere Projection</span>
+<span class="menuselection">UVs ‣ Cylinder Projection</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
 </div>
 <p>Cylindrical and Spherical mappings have the same options. The difference is that
 a cylindrical mapping projects the UVs on a plane toward the cylinder shape,
 while a spherical map takes into account the sphere's curvature,
 and each latitude line becomes evenly spaced.
 Useful for spherical shapes, like eyes, planets, etc.</p>
+<div class="figure align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png"><img alt="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png" src="../../../_images/modeling_meshes_editing_uv_unwrapping_mapping-types_sphere-projection.png" style="width: 420px;" /></a>
+<p class="caption"><span class="caption-text">Using an equirectangular image with a Sphere Projection.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
 <p>Normally, to unwrap a cylinder (tube) as if you slit it lengthwise and folded it flat,
 Blender wants the view to be vertical, with the tube standing &quot;up&quot;.
 Different views will project the tube onto the UV map differently, skewing the image if used.
@@ -485,7 +573,24 @@ map of the earth as the UV image will give a good planet mapping onto the sphere
 </div>
 <div class="section" id="project-from-view">
 <span id="bpy-ops-uv-project-from-view"></span><h2>Phóng Chiếu Từ Góc Nhìn -- Project from View<a class="headerlink" href="#project-from-view" title="Permalink to this headline">¶</a></h2>
-<p>Project from View takes the current view in the 3D View and flattens the mesh as it appears.
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Project from View</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Project from View takes the current view in the 3D Viewport and flattens the mesh as it appears.
 Use this option if you are using a picture of a real object as a UV Texture for an object that
 you have modeled. You will get stretching in areas where the model recedes away from you.</p>
 <div class="section" id="id6">
@@ -499,14 +604,48 @@ you have modeled. You will get stretching in areas where the model recedes away 
 </div>
 <div class="section" id="project-from-view-bounds">
 <h2>Phóng Chiếu từ Góc Nhìn (Ranh Giới) -- Project from View (Bounds)<a class="headerlink" href="#project-from-view-bounds" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Project from View (Bounds)</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
 <p>Similar to <a class="reference internal" href="#project-from-view">Project from View</a>,
 but with <em>Scale to Bounds</em> and <em>Correct Aspect</em> activated.</p>
 </div>
 <div class="section" id="reset">
 <span id="bpy-ops-uv-reset"></span><h2>Hoàn Lại -- Reset<a class="headerlink" href="#reset" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Khung Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UVs ‣ Reset</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
 <p>Reset UVs maps each face to fill the UV grid, giving each face the same mapping.</p>
-<p>If we were to use an image that was tileable,
-the surface would be covered in a smooth repetition of that image,
+<p>If you want to use an image that is tileable,
+the surface will be covered in a smooth repetition of that image,
 with the image skewed to fit the shape of each individual face.
 Use this unwrapping option to reset the map and undo any unwrapping (go back to the start).</p>
 </div>

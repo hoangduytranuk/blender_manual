@@ -11,7 +11,7 @@ Accessing Stroke Editing Tools
 ==============================
 
 These are available through the different tools in the Toolbar,
-the Stroke menu in the 3D View header, and context menus in the 3D View,
+the Stroke menu in the 3D Viewport header, and context menus in the 3D Viewport,
 as well as individual shortcut keys.
 
 

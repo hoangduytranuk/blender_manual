@@ -20,7 +20,7 @@ Channels Region
 
 Grease Pencil (light blue)
    The channels' region shows the Grease Pencil data-blocks containing the layers.
-   Multiple blocks are used for each area (e.g. one for the 3D View and the Image editor).
+   Multiple blocks are used for each area (e.g. one for the 3D Viewport and the Image editor).
 Layers (gray)
    These channels contain the keyframes to which
    the :doc:`layers </grease_pencil/properties/layers>` are bound.

@@ -12,13 +12,7 @@ Emission
 The *Emission* node is used to add Lambertian emission shader.
 This can for example, be used for material and light surface outputs.
 
-Cycles uses a physically correct light falloff by default,
-whereas Blender Internal uses a smoothed falloff with a Distance parameter.
-A similar effect can be found by using the Light Falloff node with the Smooth parameter.
-
 Light strength for point, spot and area lights is specified in Watts.
-This means you typically need higher values than Blender Internal,
-as you could not use a 1W light to light a room; you need something stronger like a 100W light.
 
 Sun lights are specified in Watts/m\ :sup:`2`, which require much smaller values like 1 W/m\ :sup:`2`.
 This can be confusing, but specifying strength in Watts would not have been convenient;

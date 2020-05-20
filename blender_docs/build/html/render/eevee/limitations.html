@@ -278,10 +278,10 @@ may be impossible to implement into Eevee's architecture without compromising pe
 <ul class="simple">
 <li><p>Only single scattering is supported.</p></li>
 <li><p>Volumetrics are rendered only for the camera &quot;rays&quot;. They don't appear in reflections/refractions and probes.</p></li>
-<li><p>Volumetrics don't receive light from Irradiance Volumes but does receive world's diffuse lighting.</p></li>
-<li><p>Volumetric shadowing does only work on other volumetrics. They won't cast shadows on solid objects in the scene.</p></li>
-<li><p>Volumetric shadowing does only work for volumes inside the view frustum.</p></li>
-<li><p>Volumetric lighting does not respect the lights shapes. They are treated as point lights.</p></li>
+<li><p>Volumetrics don't receive light from Irradiance Volumes but do receive diffuse lighting from the world.</p></li>
+<li><p>Volumetric shadowing only work in volumetrics. They won't cast shadows onto solid objects in the scene.</p></li>
+<li><p>Volumetric shadowing only work for volumes inside the view frustum.</p></li>
+<li><p>Volumetric lighting do not respect the lights shapes. They are treated as point lights.</p></li>
 </ul>
 </div>
 <div class="section" id="depth-of-field">
@@ -289,7 +289,7 @@ may be impossible to implement into Eevee's architecture without compromising pe
 <ul class="simple">
 <li><p>Rendered at half resolution which can create blocky pixel artifacts on tiny features that are nearly in focus.</p></li>
 <li><p>The near and far defocus buffers are in fact one single continuous texture. This can make some bleeding
-appear on the left and right size of the image. This can be fixed by using the <em>overscan</em> feature.</p></li>
+appear on the left and right sides of the image. This can be fixed by using the <em>overscan</em> feature.</p></li>
 </ul>
 </div>
 <div class="section" id="screen-space-effects">
@@ -324,7 +324,7 @@ but without accurate positioning due to the one layer depth buffer.</p></li>
 </ul>
 </div>
 <div class="section" id="screen-space-refraction">
-<h3>-- Screen Space Refraction<a class="headerlink" href="#screen-space-refraction" title="Permalink to this headline">¶</a></h3>
+<span id="eevee-limitations-refraction"></span><h3>-- Screen Space Refraction<a class="headerlink" href="#screen-space-refraction" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Only one refraction event is correctly modeled.</p></li>
 <li><p>Only opaque and alpha hashed materials can be refracted.</p></li>

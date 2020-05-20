@@ -7,7 +7,7 @@ Add Camera Rigs
    :align: center
 
 This add-on extends the functionality of a camera by creating control rigs with widgets
-and adds a panel to quickly access the camera's settings from the 3D View.
+and adds a panel to quickly access the camera's settings from the 3D Viewport.
 
 
 Activation
@@ -123,7 +123,7 @@ Panel
    :class: refbox
 
    :Mode:      All Modes
-   :Panel:     :menuselection:`3D View --> Sidebar --> Item --> Camera Rig`
+   :Panel:     :menuselection:`3D Viewport --> Sidebar --> Item --> Camera Rig`
 
 The panel will display the most used camera settings.
 Only the added features will be explain here, for more information refer to the :doc:`/render/cameras` section.
@@ -200,7 +200,7 @@ enabled in the Preferences :menuselection:`Preferences --> Save & Load --> Auto 
 
    :Category:  Camera
    :Description: Adds a camera rig with a UI.
-   :Location: :menuselection:`3D View --> Add --> Camera`
+   :Location: :menuselection:`3D Viewport --> Add --> Camera`
    :File: camera_dolly_crane_rigs.py
    :Author: Wayne Dixon, Brian Raschko, Kris Wittig, Damien Picard, Flavio Perez
    :Maintainer: to do

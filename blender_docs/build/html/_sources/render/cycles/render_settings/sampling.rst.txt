@@ -45,7 +45,8 @@ Render
    When using *Branched Path Tracing*, this changes the *AA Samples*
    which are multiplied by the `Sub Samples`_ and improve anti-aliasing.
 Viewport
-   Number of samples for viewport rendering.
+   Number of samples for viewport rendering. Setting this value to zero
+   enables indefinite sampling of the viewport.
 
 .. _render-cycles-settings-viewport-denoising:
 
@@ -88,21 +89,26 @@ Volume
 Adaptive Sampling
 =================
 
-*Adaptive Sampling* is a technique to speed up rendering
-by terminating sampling for a particular pixel early.
-This works by computing how much a pixel changes (the variance) while samples are computed,
-if the pixel does not change more than a certain amount,
-Cycles will stop computing samples for that pixel.
-*Adaptive Sampling* can be enabled/disabled with the checkbox in the panel header.
+With *adaptive sampling* Cycles automatically reduces the number of samples in areas that have little noise,
+for faster rendering and more even noise distribution.
+For example hair on a character may need many samples, but the background may need very few.
 
-Min Samples
-   The minimum AA samples that must be computed before checking for variance.
-   Zero is an automatic setting based on the total number of AA samples.
+By default, the threshold to stop sampling pixels is adapted to the number of AA samples.
+This reduces overall render time, and particularly after denoising the result will be almost indistinguishable.
+
+*Adaptive sampling* also makes it possible to render images with a target amount of noise.
+This is done by settings the Noise Threshold, typical values are in the range from 0.1 to 0.001.
+Then render samples can then be set to a high value,
+and the renderer will automatically choose the appropriate amount of samples.
 
 Noise Threshold
-   The amount of variation between samples before terminating sampling.
-   Smaller values will give more accurate results, using more samples, but increase rendering times.
-   Zero is an automatic setting based on the total number of AA samples.
+   The error threshold to decide whether to continue sampling a pixel or not.
+   Typical values are in the range from 0.1 to 0.001, with lower values meaning less noise.
+   Setting it to exactly 0 lets Cycles guess an automatic value for it based on the total sample count.
+
+Min Samples
+   The minimum number of samples a pixel receives before adaptive sampling is applied.
+   When set to 0 (default), it is automatically set to the square root of the total (max) sample count.
 
 
 Advanced
@@ -112,9 +118,8 @@ Seed
    Seed value for integrator to get different noise patterns.
 
    Animate Seed (clock icon)
-      This button, which can be found on the right side of the *Seed* value,
-      can be used to give different seed values. It is a good idea to enable this
-      when making animation because in the real world each frame has a different noise pattern.
+      Changes the seed for each frame. It is a good idea to enable this
+      when rendering animations because a varying noise pattern is less noticeable.
 
 Pattern
    Random sampling pattern used by the integrator.

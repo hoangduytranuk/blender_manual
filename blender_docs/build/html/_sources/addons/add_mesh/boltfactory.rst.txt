@@ -20,7 +20,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Add --> Mesh` menu.
+Located in the :menuselection:`3D Viewport --> Add --> Mesh` menu.
 
 
 Usage
@@ -34,7 +34,7 @@ To Do
 
    :Category:  Add Mesh
    :Description: Add a bolt or nut.
-   :Location: :menuselection:`3D View --> Add --> Bolt`
+   :Location: :menuselection:`3D Viewport --> Add --> Bolt`
    :File: add_mesh_BoltFactory folder
    :Author: Aaron Keith
    :Maintainer: To Do

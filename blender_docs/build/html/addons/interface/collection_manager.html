@@ -227,11 +227,26 @@
             
   <div class="section" id="collection-manager">
 <h1>Collection Manager<a class="headerlink" href="#collection-manager" title="Permalink to this headline">¶</a></h1>
-<p>This add-on adds new functionality for the management of collections via a pop-up in the 3D Viewport.
-It also offers a simple display and modification of the relationship of objects with collections.</p>
-<div class="figure align-center">
+<p>This add-on adds new functionality for the management of collections via a pop-up
+and a QCD (Quick Content Display) system in the 3D Viewport. It also offers simple display
+and modification of the relationship of objects with collections.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default">
 <img alt="../../_images/addons_interface_collection-manager_popup.png" src="../../_images/addons_interface_collection-manager_popup.png" />
 </div>
+</td>
+<td><div class="figure align-default">
+<img alt="../../_images/addons_interface_collection-manager_qcd.png" src="../../_images/addons_interface_collection-manager_qcd.png" />
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="section" id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -241,7 +256,9 @@ It also offers a simple display and modification of the relationship of objects 
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>Use <kbd class="kbd docutils literal notranslate">M</kbd> call up the main Collection Manager pop-up in the 3D View when in Object Mode.</p>
+<div class="section" id="pop-up">
+<h3>Pop-up<a class="headerlink" href="#pop-up" title="Permalink to this headline">¶</a></h3>
+<p>Use <kbd class="kbd docutils literal notranslate">M</kbd> to call up the main Collection Manager pop-up in the 3D Viewport when in Object Mode.</p>
 <dl>
 <dt>View Layer</dt><dd><dl class="simple">
 <dt>Render</dt><dd><p>Enable/disable rendering of this view layer with this checkbox.</p>
@@ -250,21 +267,53 @@ It also offers a simple display and modification of the relationship of objects 
 </dd>
 </dl>
 </dd>
+<dt>Expand All Items</dt><dd><p>Toggle all collections expanded or collapsed. Only enabled when you have subcollections.</p>
+</dd>
+<dt>Renumber QCD Slots</dt><dd><p>Shown only if QCD is enabled in the preferences.</p>
+<ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Renumber the QCD slots from the root (the slot designated 1)
+down to the bottom, for each depth level
+(<a class="reference external" href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth first search</a>).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> -- Renumber from the first top-level collection in a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Breadth-first_search">breadth first search</a> pattern.</p></li>
+</ul>
+</dd>
 <dt>Filter (funnel icon)</dt><dd><p>Choose which restriction toggles are shown in the interface.</p>
+</dd>
+<dt>Scene Collection</dt><dd><dl class="simple">
+<dt>Set Active Collection</dt><dd><p>Sets the active collection to the Scene Collection.</p>
+</dd>
+<dt>Name</dt><dd><p>This is static and can't be edited.</p>
+</dd>
+<dt>Set Object (box icon)</dt><dd><ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Move object(s) to collection.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Add/Remove object(s) to/from collection.</p></li>
+</ul>
 </dd>
 <dt>Global Restrictions (checkbox, cursor, eye, screen, camera icons)</dt><dd><p>See the Outliner page for information about <a class="reference internal" href="../../editors/outliner.html#editors-outliner-restriction-columns"><span class="std std-ref">Restrictions</span></a>.</p>
 <ul class="simple">
-<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Enable the restrictions for all collections. Click again to restore the previous state.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Enable the restriction for all collections. Click again to restore the previous state.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Invert the restriction state on all collections.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> -- Copy/paste the restriction state on all collections.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Ctrl-Alt-LMB</kbd> -- Swap the restriction state on all collections with that of another restriction.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> -- Discard the previous state, and anything that has been stored for Copy/Paste or Swap.</p></li>
 </ul>
 </dd>
-<dt>Tree View</dt><dd><p>Shows the collections within the current selected scene.
-The active collection is synced to tree view selection.</p>
+</dl>
+</dd>
+<dt>Tree View</dt><dd><p>Shows the collections within the current selected scene.</p>
 <dl class="simple">
-<dt>Expansion (small triangle icon)</dt><dd><ul class="simple">
-<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Expand/collapse children.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Expand/collapse children and descendants.</p></li>
+<dt>Disclosure (small triangle icon)</dt><dd><ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Expand/collapse subcollections.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> --  Isolate the tree. Collapses everything but the current item,
+and it’s parents/descendants. Click again to restore the previous state.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> -- Expand/collapse subcollections and their descendants.</p></li>
 </ul>
+</dd>
+<dt>Set Active Collection</dt><dd><p>Click to set the active collection to this collection.</p>
+</dd>
+<dt>QCD Slot</dt><dd><p>Set which QCD slot the collection corresponds to.
+(Shown only if QCD is enabled in the preferences.)</p>
 </dd>
 <dt>Name</dt><dd><p>Double <kbd class="kbd docutils literal notranslate">LMB</kbd>-click to rename the collection.</p>
 </dd>
@@ -274,10 +323,14 @@ The active collection is synced to tree view selection.</p>
 </ul>
 </dd>
 <dt>Local Restrictions (checkbox, cursor, eye, screen, camera icons)</dt><dd><ul class="simple">
-<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Toggle collection restriction on/off.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Toggle the collection's restriction on/off.</p></li>
 <li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Isolate the collection's restriction, preserving parents if need be.
 Click again to restore the previous state.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> -- Toggles the restrictions of the collection and it's children on/off.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd> -- Isolate the collection and
+it's descendants' restrictions, preserving parents if need be.
+Click again to restore the previous state.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> -- Toggle the restrictions of the collection and it's descendants on/off.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Alt-LMB</kbd> -- Discard the previous state.</p></li>
 </ul>
 </dd>
 <dt>Remove <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>Remove the collection.</p>
@@ -285,10 +338,14 @@ Click again to restore the previous state.</p></li>
 <dt>Filtering</dt><dd><dl class="simple">
 <dt>By Name (box icon)</dt><dd><p>A text field to filter collections by name.</p>
 </dd>
-<dt>Invert (magnifying glass icon)</dt><dd><p>Invert filtering (inverts the collections shown in the tree view so that what is shown is hidden
-and what was hidden is shown).</p>
+<dt>Invert (magnifying glass icon)</dt><dd><p>Invert filtering (inverts the collections shown in the tree view so that what is
+shown is hidden and what was hidden is shown).</p>
 </dd>
-<dt>By Selected (box icon)</dt><dd><p>Filter collections by selected objects (show only collections that contain the selected objects).</p>
+<dt>By Selected (box icon)</dt><dd><p>Filter collections by selected objects (show only collections that contain
+the selected objects).</p>
+</dd>
+<dt>By QCD Slots (Q key icon)</dt><dd><p>Filter collections by those designated as QCD slots (show only collections that
+correspond to a QCD slot). Shown only if QCD is enabled in the preferences.</p>
 </dd>
 </dl>
 </dd>
@@ -297,10 +354,98 @@ and what was hidden is shown).</p>
 <dt>Add Collection, Add Subcollection</dt><dd><p>Self-explanatory.</p>
 </dd>
 <dt>Phantom Mode</dt><dd><p>All visibility changes made in this mode will be discarded when it's disabled.</p>
-<p>Enabling Phantom Mode saves the current state of your restrictions and
-allows you to edit them without fear of losing your current state.
+<p>Enabling Phantom Mode saves the current state of the restrictions and
+allows you to edit them without fear of losing their current state.
 When finished, disabling Phantom Mode will restore the saved state.</p>
-<p>Note: You will be unable to edit anything other than the collections' restrictions while in Phantom Mode.</p>
+<p>Note: You will be unable to edit anything other than the restrictions while in Phantom Mode.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="qcd">
+<h3>QCD<a class="headerlink" href="#qcd" title="Permalink to this headline">¶</a></h3>
+<p>The Quick Content Display system provides a way to rapidly interact with
+collections by allowing you to designate up to 20 collections as QCD slots.
+You can then interact with these slots by using hotkeys or the widget
+to view or move objects to them.</p>
+<div class="section" id="d-viewport-header-widget">
+<h4>3D Viewport Header Widget<a class="headerlink" href="#d-viewport-header-widget" title="Permalink to this headline">¶</a></h4>
+<p>The header widget is composed of 20 buttons in two rows and in groups of five
+where the first row start with slot 1 and the second with slot 11.</p>
+<p>The state of each slots is shown with a combination of the following indicators:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> -- Unassigned slot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">non-highlighted</span></code> -- non-visible slot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">highlighted</span></code> -- visible slot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">icon</span></code> -- no objects in the slot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">horizontal</span> <span class="pre">line</span> <span class="pre">icon</span></code> -- objects are present in this slot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">circle</span> <span class="pre">icon</span></code> -- one or more objects in this slot are selected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dot</span> <span class="pre">icon</span></code> -- the active object is in this slot.</p></li>
+</ul>
+<p class="rubric">Hotkeys</p>
+<ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- View single slot excluding all others.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Add/remove slot to/from view.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> -- Move selected objects to slot.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd> -- Add/remove selected objects to/from slot.</p></li>
+</ul>
+</div>
+<div class="section" id="move-widget">
+<h4>Move Widget<a class="headerlink" href="#move-widget" title="Permalink to this headline">¶</a></h4>
+<p>Use <kbd class="kbd docutils literal notranslate">V</kbd> to call up the Move widget in the 3D Viewport when in Object Mode.
+The Move Widget shares its layout and indicators with the 3D Viewport header widget.</p>
+<p class="rubric">Hotkeys</p>
+<ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> -- Move selected objects to slot.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> -- Add/remove selected objects to/from slot.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">0</kbd> - <kbd class="kbd docutils literal notranslate">9</kbd> -- Move selected objects to slot 1-10 (0 is slot 10).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Alt-0</kbd> - <kbd class="kbd docutils literal notranslate">Alt-9</kbd> -- Move selected objects to slot 11-20 (0 is slot 20).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-0</kbd> - <kbd class="kbd docutils literal notranslate">Shift-9</kbd> -- Add/remove selected objects to/from slot 1-10 (0 is slot 10).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-Alt-0</kbd> - <kbd class="kbd docutils literal notranslate">Shift-Alt-9</kbd> -- Add/remove selected objects to/from slot 11-20 (0 is slot 20).</p></li>
+</ul>
+</div>
+<div class="section" id="d-viewport-hotkeys">
+<h4>3D Viewport Hotkeys<a class="headerlink" href="#d-viewport-hotkeys" title="Permalink to this headline">¶</a></h4>
+<p class="rubric">Object Mode</p>
+<ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">0</kbd> - <kbd class="kbd docutils literal notranslate">9</kbd> -- View slot 1-10 (0 is slot 10). Excludes all others.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Alt-0</kbd> - <kbd class="kbd docutils literal notranslate">Alt-9</kbd> -- View slot 11-20 (0 is slot 20). Excludes all others.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-0</kbd> - <kbd class="kbd docutils literal notranslate">Shift-9</kbd> -- Add/remove slot 1-10 (0 is slot 10) to/from view.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">Shift-Alt-0</kbd> - <kbd class="kbd docutils literal notranslate">Shift-Alt-9</kbd> -- Add/remove slot 11-20 (0 is slot 20) to/from view.</p></li>
+</ul>
+<p class="rubric">Edit Mode</p>
+<p>All Object Mode hotkeys. (Only available if enabled in the preferences.)</p>
+<ul class="simple">
+<li><p><kbd class="kbd docutils literal notranslate">AccentGrave</kbd> -- Mesh Select Mode menu.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Slots with objects not in Object Mode can not be excluded.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="preferences">
+<h2>Preferences<a class="headerlink" href="#preferences" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>QCD</dt><dd><p>Enable the QCD system.</p>
+</dd>
+<dt>QCD Hotkeys</dt><dd><p>Enable 3D Viewport hotkeys in Object Mode.</p>
+</dd>
+<dt>QCD Edit Mode Hotkeys</dt><dd><p>Enable 3D Viewport hotkeys in Edit Mode.</p>
+</dd>
+<dt>QCD Move Widget:</dt><dd><dl>
+<dt>Tool Theme Overrides</dt><dd><p>Enable overrides in this section to change the color of individual elements
+in the QCD Move Widget (colors default to the current theme).</p>
+<dl>
+<dt>Icon Alpha</dt><dd><p>Opacity of the icons for selected (but not active) objects and unselected objects.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The values for icon alpha are not overrides and always affect the QCD Move Widget.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd>
 </dl>
 <div class="refbox admonition">
@@ -316,13 +461,13 @@ When finished, disabling Phantom Mode will restore the saved state.</p>
 <dd class="field-odd"><p>3D Viewport</p>
 </dd>
 <dt class="field-even">File</dt>
-<dd class="field-even"><p>collection_manager folder</p>
+<dd class="field-even"><p>object_collection_manager folder</p>
 </dd>
 <dt class="field-odd">Author</dt>
-<dd class="field-odd"><p>imaginer (Ryan Inch)</p>
+<dd class="field-odd"><p>Imaginer (Ryan Inch)</p>
 </dd>
 <dt class="field-even">Maintainer</dt>
-<dd class="field-even"><p>imaginer</p>
+<dd class="field-even"><p>Imaginer</p>
 </dd>
 <dt class="field-odd">License</dt>
 <dd class="field-odd"><p>GPL</p>

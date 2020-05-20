@@ -21,7 +21,7 @@ Interface
    :align: center
    :width: 640px
 
-Located in the :menuselection:`3D View --> Add --> Curve` menu.
+Located in the :menuselection:`3D Viewport --> Add --> Curve` menu.
 
 
 Instructions
@@ -162,7 +162,7 @@ Settings include speed, wind strength and leaf animation.
 
    :Category:  Add Curve
    :Description: Adds a parametric tree.
-   :Location: :menuselection:`3D View --> Add --> Curve --> Sapling Tree Gen`
+   :Location: :menuselection:`3D Viewport --> Add --> Curve --> Sapling Tree Gen`
    :File: add_curve_sapling folder
    :Author: Andrew Hale (TrumanBlending), Aaron Butcher, CansecoGPC
    :Maintainer: To Do

@@ -87,10 +87,10 @@ Viewport Display
 ================
 
 Influence
-   Show the influence bounds in the 3D View. The inner sphere is where the falloff starts.
+   Show the influence bounds in the 3D Viewport. The inner sphere is where the falloff starts.
 
 Clipping
-   Show the clipping distance in the 3D View.
+   Show the clipping distance in the 3D Viewport.
 
 Parallax
-   Show the *Custom Parallax* shape in the 3D View.
+   Show the *Custom Parallax* shape in the 3D Viewport.

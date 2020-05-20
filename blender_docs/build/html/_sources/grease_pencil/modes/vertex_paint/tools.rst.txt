@@ -3,7 +3,7 @@
 Vertex Paint Tools
 ******************
 
-.. figure:: /images/grease-pencil_modes_vertext-paint_tools_brushes.png
+.. figure:: /images/grease-pencil_modes_vertex-paint_tools_brushes.png
    :align: right
 
 Draw

@@ -6,7 +6,7 @@ Light Settings
 .. admonition:: Reference
    :class: refbox
 
-   :Panel:     :menuselection:`Properties --> Light` and :menuselection:`Shader Editor --> Sidebar --> Settings`
+   :Panel:     :menuselection:`Properties --> Light` and :menuselection:`Shader Editor --> Sidebar --> Options`
 
 Next to lighting from the background and any object with an emission shader,
 lights are another way to add light into the scene.
@@ -20,6 +20,9 @@ Common
 :doc:`Light settings </render/lights/light_object>` for all renderers.
 
 
+.. _bpy.types.Light.use_custom_distance:
+.. _bpy.types.Light.cutoff_distance:
+
 Eevee
 =====
 
@@ -28,6 +31,9 @@ Specular
    Setting this to anything but 1.0 will yield non-photorealistic result.
 Custom Distance
    If enabled uses *Distance* as the custom attenuation distance instead of global light threshold.
+   In order to avoid long setup times, this distance is first computed
+   automatically based on a light threshold. The distance is computed
+   at the light origin and using the inverse square falloff.
 
    Distance
       Specifies where light influence will be set to 0.
@@ -106,7 +112,7 @@ Fade
 
 Max Distance
    Distance away from the view origin (or camera origin if in camera view) to cover by the cascade.
-   If the view far clip distance is lower than Max Distance, the lowest of the two will be used.
+   If the view far clip distance is lower than Max Distance, the view far clip distance will be used.
    Only works in perspective view.
 
 Distribution

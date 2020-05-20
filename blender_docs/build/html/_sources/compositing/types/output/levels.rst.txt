@@ -9,7 +9,7 @@ Levels Node
 
    Levels Node.
 
-The Levels Node read the inputs color channels
+The Levels Node read the input color channels
 and outputs analytical values.
 
 
@@ -35,9 +35,9 @@ Outputs
 Mean
    The mean is the average value of all image pixels in specified channel
    (combined, red, green, blue, luminance). It tells you how dark or bright the image
-   is and can be used as such for setups that depend on how is input "bright" or "dark".
+   is and can be used as such for setups that depend on how "bright" or "dark" the input is.
 Standard deviation
-   How much those pixel values differ from the mean.
+   How much pixel values differ from the mean.
    A low standard deviation indicates that the pixel values tend to be very close to the mean.
    A high standard deviation indicates that the values are spread out over a large range of values.
 

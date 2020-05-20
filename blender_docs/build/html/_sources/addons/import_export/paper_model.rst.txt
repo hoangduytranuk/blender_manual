@@ -138,7 +138,7 @@ After running the *Unfold* tool, these island labels are recalculated so
 that as many faces as possible remain under the same label.
 
 If you select an island and enable the *Highlight Selected Island* button
-(and the mesh you unfolded is the active one), the island will be highlighted in orange in the 3D View.
+(and the mesh you unfolded is the active one), the island will be highlighted in orange in the 3D Viewport.
 Using the slider below, you can change the opacity of the highlight.
 
 

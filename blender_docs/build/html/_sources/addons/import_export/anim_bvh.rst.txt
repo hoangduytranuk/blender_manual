@@ -30,7 +30,7 @@ Transform
 ^^^^^^^^^
 
 Scale
-   TODO.
+   Factor to increase the physical size of the BVH.
 Rotation
    TODO.
 Forward / Up
@@ -46,15 +46,16 @@ Animation
 ^^^^^^^^^
 
 Start Frame
-   TODO.
+   The start frame, in Blender, to start playback of the BVH animation.
 Scale FPS
-   TODO.
+   Scales the frame rate from the BVH file to the scene frame rate set in Blender,
+   otherwise each BVH frame maps directly to a frame in Blender.
 Loop
-   TODO.
+   Cycles the animation playback.
 Update Scene FPS
-   TODO.
+   Set the scene's frame rate to match the frame rate of the BVH file.
 Update Scene Duration
-   TODO.
+   Extend the scene's duration to match the BVH's duration.
 
 
 Export
@@ -64,15 +65,15 @@ Transform
 ^^^^^^^^^
 
 Scale
-   TODO.
+   Factor to increase the physical size of the BVH.
 Rotation
    TODO.
 Root Translation Only
-   TODO.
+   Only write the translation animation channels for the root bone.
 
 
 Animation
 ^^^^^^^^^
 
 Start / End
-   TODO.
+   Sets the range of animation to export to the BVH file.

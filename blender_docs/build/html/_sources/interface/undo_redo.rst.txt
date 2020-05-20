@@ -120,7 +120,7 @@ Undo History
 There is also an Undo History of the last actions taken, recorded by Blender.
 
 The top of the list corresponds to the most recent actions.
-A small icon of an eye next to one of the entries indicates the current status.
+A small icon of a dot next to one of the entries indicates the current status.
 Rolling back actions using the *Undo History* feature will take you back to
 the action you choose. Much like how you can alternate between going backward in
 time with *Undo* and then forward with *Redo*,

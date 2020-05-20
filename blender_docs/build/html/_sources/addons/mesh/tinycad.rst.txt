@@ -70,7 +70,7 @@ This is a little bit experimental, but works fine.
 
    :Category:  Mesh
    :Description: Mesh modeling toolkit. Several tools to aid modeling.
-   :Location: :menuselection:`3D View Edit Mode --> context menu`
+   :Location: :menuselection:`3D Viewport Edit Mode --> context menu`
    :File: tiny_cad folder
    :Author: zeffii (Dealga McArdle)
    :License: GPL

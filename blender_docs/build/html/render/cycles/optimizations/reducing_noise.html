@@ -373,7 +373,7 @@ surface.</p>
 </div>
 <div class="section" id="caustics-and-filter-glossy">
 <h2>-- Caustics and Filter Glossy<a class="headerlink" href="#caustics-and-filter-glossy" title="Permalink to this headline">¶</a></h2>
-<p>Caustics are a well-known source of noise, causing fireflies.
+<p>Caustics are a well-known source of noise, causing <a class="reference internal" href="../../../glossary/index.html#term-fireflies"><span class="xref std std-term">Fireflies</span></a>.
 They happen because the renderer has difficulty finding specular highlights
 viewed through a soft glossy or diffuse reflection.
 There is a <a class="reference internal" href="../render_settings/light_paths.html#render-cycles-integrator-no-caustics"><span class="std std-ref">No Caustics</span></a>
@@ -418,7 +418,7 @@ However, as distance goes to zero,
 this value goes to infinity and we can get very bright spots in the image.
 These are mostly a problem for indirect lighting, where the probability of hitting such
 a small but extremely bright spot is low and so happens only rarely.
-This is a typical recipe for fireflies.</p>
+This is a typical recipe for <a class="reference internal" href="../../../glossary/index.html#term-fireflies"><span class="xref std std-term">Fireflies</span></a>.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -504,7 +504,7 @@ and on the right the render with the trick.</p>
 <tbody>
 <tr class="row-odd"><td><div class="figure align-default" id="id18">
 <a class="reference internal image-reference" href="../../../_images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg"><img alt="../../../_images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg" src="../../../_images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg" style="width: 180px;" /></a>
-<p class="caption"><span class="caption-text">Default Glas BSDF.</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Default Glass BSDF.</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 <td><div class="figure align-default" id="id19">
@@ -560,8 +560,8 @@ in the <em>Render Layers</em> tab of the Properties editor.</p>
 </div>
 <div class="section" id="clamp-fireflies">
 <span id="render-cycles-reducing-noise-clamp-samples"></span><h2>-- Clamp Fireflies<a class="headerlink" href="#clamp-fireflies" title="Permalink to this headline">¶</a></h2>
-<p>Ideally with all the previous tricks, fireflies would be eliminated, but they could still happen. For that,
-the <em>intensity</em> that any individual light ray sample will contribute to a pixel can be <em>clamped</em>
+<p>Ideally with all the previous tricks, <a class="reference internal" href="../../../glossary/index.html#term-fireflies"><span class="xref std std-term">Fireflies</span></a> would be eliminated, but they could still happen.
+For that, the <em>intensity</em> that any individual light ray sample will contribute to a pixel can be <em>clamped</em>
 to a maximum value with the integrator <a class="reference internal" href="../render_settings/light_paths.html#render-cycles-integrator-clamp-samples"><span class="std std-ref">Clamp setting</span></a>.</p>
 <p>If set too low this can cause missing highlights in the image,
 which might be useful to preserve for camera effects such as bloom or glare.

@@ -19,15 +19,6 @@ Surface
    Shading for the :doc:`surface </render/materials/components/surface>` of the object.
 Volume
    Shading for the :doc:`volume </render/materials/components/volume>` inside the object.
-
-   .. seealso::
-
-      The types of volume shaders are:
-
-      - :doc:`Emission </render/shader_nodes/shader/emission>` shader.
-      - :doc:`Volume Absorption </render/shader_nodes/shader/volume_absorption>` shader.
-      - :doc:`Volume Scatter </render/shader_nodes/shader/volume_scatter>` shader.
-
 Displacement
    Used to create bump mapping or actual subdivided :doc:`displacement </render/materials/components/displacement>`.
 
@@ -35,7 +26,10 @@ Displacement
 Properties
 ==========
 
-This node has no properties.
+Target
+   Render engine the input shaders are used for.
+   By default shaders are shared between Cycles and Eevee,
+   with multiple output nodes specialized shader setups can be created for each.
 
 
 Outputs

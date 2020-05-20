@@ -242,9 +242,18 @@
 </dd>
 </dl>
 </div>
+<p>Volume <em>Step</em> size is the distance between volume shader samples.
+Cycles automatically estimates this distance based on voxel size in
+volume objects and smoke simulations.</p>
+<p>Render time can be reduced by increasing the step size, at the cost of
+potentially losing some volume detail. For procedural volume shaders
+that add detail, step size can be increased per object, material or world.</p>
 <dl class="simple">
-<dt>Step Size</dt><dd><p>Distance between volume shader samples when rendering the volume.
-Lower values give more accurate and detailed results but also increased render time.</p>
+<dt>Render Step Rate</dt><dd><p>Global multiplier on the step size for all volumes in renders.
+Increase to reduce render time, at the cost of losing detail.</p>
+</dd>
+<dt>Viewport Step Rate</dt><dd><p>Global multiplier on the step size for all volumes in the viewport.
+Increase for more responsive viewport rendering.</p>
 </dd>
 <dt>Max Steps</dt><dd><p>Maximum number of steps through the volume before giving up,
 to protect from extremely long render times with big objects or small step sizes.</p>

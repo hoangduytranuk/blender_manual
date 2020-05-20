@@ -148,6 +148,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Hệ Thống -- System</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cycles-render-device">Cycles Render Device</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#memory-limits">Memory &amp; Limits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-sequencer">Video Sequencer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sound">Âm Thanh -- Sound</a></li>
 </ul>
 </li>
@@ -255,7 +256,7 @@ the CPU will be used as the computing device for the Cycles Renderer.</p>
 </dd>
 <dt>CUDA</dt><dd><p>If the system has a compatible Nvidia CUDA device, it will show up an option for rendering with Cycles.</p>
 </dd>
-<dt>Optix</dt><dd><p>If the system has a compatible Nvidia Optix device, it will show up an option for rendering with Cycles.</p>
+<dt>OptiX</dt><dd><p>If the system has a compatible Nvidia OptiX device, it will show up an option for rendering with Cycles.</p>
 </dd>
 <dt>OpenCL</dt><dd><p>If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.</p>
 </dd>
@@ -284,9 +285,6 @@ from functioning, also preventing tool options from being changed in some cases.
 <p><a class="reference internal" href="../../interface/undo_redo.html"><span class="doc">Read more about Undo and Redo options</span></a>.</p>
 </div>
 <dl>
-<dt>Sequencer Cache Limit</dt><dd><p>Upper limit of the Sequencer's memory cache (in megabytes).
-For an optimal Clip editor and Sequencer performance, high values are recommended.</p>
-</dd>
 <dt>Console Scroll-back Lines</dt><dd><p>The number of lines, buffered in memory of the console window.
 Useful for debugging purposes and command-line rendering.</p>
 </dd>
@@ -297,14 +295,38 @@ Set this to 0 to keep textures allocated.</p>
 </dd>
 </dl>
 </dd>
-<dt>VBO Time Out</dt><dd><p>Time since last access of a GL Vertex buffer object in seconds after which it is freed
+<dt>VBO Time Out</dt><dd><p>Time since last access of a GL vertex buffer object (VBO) in seconds after which it is freed
 (set to 0 to keep VBO allocated).</p>
 <dl class="simple">
-<dt>Garbage Collection Rate</dt><dd><p>Number of seconds between each run of the GL Vertex buffer object garbage collector.</p>
+<dt>Garbage Collection Rate</dt><dd><p>Number of seconds between each run of the GL vertex buffer object garbage collector.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+</div>
+<div class="section" id="video-sequencer">
+<span id="prefs-system-video-sequencer"></span><h2>Video Sequencer<a class="headerlink" href="#video-sequencer" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>Memory Cache Limit</dt><dd><p>Upper limit of the Video Sequencer and Movie Clip Editor memory cache (in megabytes).
+For an optimal Clip editor and Sequencer performance, high values are recommended.</p>
+</dd>
+<dt>Use Disk Cache</dt><dd><p>Writes cached strips to disk which can store a lot more than
+to use Disk Cache, this option must be enabled,
+the <em>Disk Cache Directory</em> and <em>Disk Cache Limit</em>, and then save or reopen existing blend-file.</p>
+</dd>
+<dt>Disk Cache Directory</dt><dd><p>The location on disk to store the cache.</p>
+</dd>
+<dt>Disk Cache Limit</dt><dd><p>Upper limit of the Video Sequencer's disk cache (in gigabytes), setting to zero disables disk cache.</p>
+</dd>
+<dt>Disk Cache Compression Level</dt><dd><p>The level of compression to compress image in the disk cache.
+This has a trade off between saving disk space and requiring more processing.
+The more compression used requires faster disk write/read speeds and more CPU usage.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../video_editing/sequencer/properties/proxy_cache.html"><span class="doc">Strip Proxy and Cache properties</span></a>.</p>
+</div>
 </div>
 <div class="section" id="sound">
 <span id="prefs-system-sound"></span><h2>Âm Thanh -- Sound<a class="headerlink" href="#sound" title="Permalink to this headline">¶</a></h2>
@@ -326,20 +348,15 @@ Used for 3D source support by speaker objects.</p>
 </dd>
 </dl>
 </dd>
-<dt>Kênh -- Channels</dt><dd><p>Sets the audio channel count. Available options are:
-<em>Mono</em>, <em>Stereo</em>, <em>4 Channels</em>, <em>5.1 Surround</em>, <em>7.1 Surround</em>.</p>
+<dt>Kênh -- Channels</dt><dd><p>Sets the audio channel count.</p>
 </dd>
-<dt>Bộ Đệm Pha Trộn -- Mixing Buffer</dt><dd><p>Sets the number of samples used by the audio mixing buffer. Available options are:
-<em>512</em>, <em>1024</em>, <em>2048</em>, <em>4096</em>, <em>8192</em>, <em>16384</em>, and <em>32768 Samples</em>.
+<dt>Bộ Đệm Pha Trộn -- Mixing Buffer</dt><dd><p>Sets the number of samples used by the audio mixing buffer.
 Higher buffer sizes can cause latency issues,
 but if you hear clicks or other problems, try to increase the size.</p>
 </dd>
-<dt>Tấn Số Mẫu -- Sample Rate</dt><dd><p>Sets the audio <a class="reference external" href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">sampling rate</a>.
-Available options are: <em>44.1 Khz</em>, <em>48 Khz</em>, <em>96 Khz</em> and <em>192 Khz</em>.</p>
+<dt>Tấn Số Mẫu -- Sample Rate</dt><dd><p>Sets the audio <a class="reference external" href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate">sampling rate</a>.</p>
 </dd>
-<dt>Hình Thái Mẫu -- Sample Format</dt><dd><p>Sets the audio sample format. Available options are:
-<em>32 bit float</em>, <em>8 bit Unsigned</em>, <em>16 Bits Signed</em>, <em>24 Bits Signed</em>,
-<em>32 Bits Signed</em>, <em>32 Bits Float</em>, and <em>64 Bits Float</em>.</p>
+<dt>Hình Thái Mẫu -- Sample Format</dt><dd><p>Sets the audio sample format.</p>
 </dd>
 </dl>
 </div>

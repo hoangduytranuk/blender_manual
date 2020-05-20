@@ -80,7 +80,7 @@ Here are some guidelines to help you choose an approach.
   - Color/lighting adjustment
   - Green screen/matte replacement
   - Layering/compositing
-  - Multiple formats and sizes of ultimate product
+  - Multiple formats and resolutions of the final product
 - Intermediate frames/adjustments needed for compression/codec.
 - Precise timing (e.g. lip-sync to audio track) needed in parts.
 - May need to interrupt rendering to use the computer, and want to be able to resume rendering where you left off.
@@ -97,16 +97,12 @@ Frame Sequence Workflow
 #. Choose the output path and file type in the Output panel as well, for example ``//render/my-anim-``.
 #. Confirm the range of your animation (frame Start and End).
 #. Save your blend-file.
-#. Press the big *Animation* button.
-   Do a long task (like sleeping, playing a video game, or cleaning your driveway)
-   while you wait for your computer to finish rendering the frames.
-#. Once the animation is finished,
-   use your OS file explorer to navigate into the output folder (``render`` in this example).
-   You will see lots of images (``.png`` or ``.exr``, etc. depending on the format you chose to render)
-   that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames.
-#. In Blender, now go into the :doc:`Video Sequence editor </video_editing/index>`.
+#. Press the *Animation* button and once the animation is finished,
+   use your file manager to navigate to the output folder (``render`` in this example).
+   You will see lots of images that have a sequence number attached to. These are the single frames.
+#. In Blender, open the :doc:`Video Sequence editor </video_editing/index>`.
 
-   .. warning::
+   .. note::
 
       The :doc:`VSE </video_editing/index>` does not support multi-layer EXR files.
       To render to a video format you will have to skip the next three steps and
@@ -114,25 +110,13 @@ Frame Sequence Workflow
       in the :doc:`Compositor </compositing/types/input/image>`.
 
 #. Choose *Add Image* from the add menu. Select all the frames from your output folder that you want to include
-   in your animation (press :kbd:`A` to Select All easily). They will be added as a strip to the Sequence editor.
-#. Now you can edit the strip and add effects or simply leave it like it is.
+   in your animation. They will be added as a strip in the Sequence editor.
+#. Now you can edit the strip and add effects or leave it like it is.
    You can add other strips, like an audio strip.
-#. Scrub through the animation, checking that you have included all the frames.
+#. Scrub through the animation to check if you have included all the frames.
 #. In the Output panel, choose the container and codec you want (e.g. ``MPEG H.264``) and configure them.
    The video codecs are described on the previous page: :doc:`Output Options </render/output/settings>`.
-#. Click the *Animation* render button and Blender will render out the Sequence editor output into your movie.
-
-Why go through all this hassle? Well, first of all, if you render out single frames, you can
-stop the render at any time by pressing :kbd:`Esc` in the render window or Image editor.
-You will not lose the frames you have already rendered,
-since they have been written out to individual files.
-You can always adjust the range you want to continue from where you left off.
-
-You can edit the frames afterwards and post-process them.
-You can add neat effects in the Sequence editor.
-You can render the same sequence into different resolutions (640×480, 320×240, etc.)
-and use different codecs (to get different file sizes and quality)
-with almost no effort whatsoever.
+#. Click the *Animation* render button and Blender will render out the Sequence editor output into a movie.
 
 
 Hints

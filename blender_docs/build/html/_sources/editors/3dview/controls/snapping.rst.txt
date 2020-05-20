@@ -12,11 +12,11 @@ Snapping
    :Hotkey:    :kbd:`Shift-Tab`
 
 The ability to snap objects and mesh element to various types of scene elements during
-a transformation is available by toggling the magnet icon in the 3D View's header buttons.
+a transformation is available by toggling the magnet icon in the 3D Viewport's header buttons.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_snap_header-magnet-icon.png
 
-   Magnet icon in the 3D View header (blue when enabled).
+   Magnet icon in the 3D Viewport header (blue when enabled).
 
 
 .. _transform-snap-element:

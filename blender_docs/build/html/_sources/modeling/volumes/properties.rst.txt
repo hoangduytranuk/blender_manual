@@ -8,7 +8,8 @@ Properties
 Grids
 =====
 
-Todo.
+OpenVDB can contain multiple grids which represent different "layers" of volume.
+The :ref:`ui-list-view` shows all the grids in the OpenVDB-file along with its name and data type.
 
 
 OpenVDB File
@@ -17,27 +18,27 @@ OpenVDB File
 .. _bpy.types.Volume.filepath:
 
 File Path
-   Todo
+   Volume sample file used by the volume data-block.
 
 .. _bpy.types.Volume.is_sequence:
 
 Sequence
-   Todo
+   Loads the OpenVDB-file as an animation loading separate files for individual frames.
 
-   .. _bpy.types.Volume.frame_duration:
+.. _bpy.types.Volume.frame_duration:
 
    Frames
-      Todo
+      Number of frames of the sequence to use.
 
    .. _bpy.types.Volume.frame_start:
 
    Start
-      Todo
+      Global starting frame of the sequence, assuming the first frame has a 1 in the file name.
 
    .. _bpy.types.Volume.frame_offset:
 
    Offset
-      Todo
+      Offset the number of the frame to use in the animation.
 
    .. _bpy.types.Volume.sequence_mode:
 
@@ -45,13 +46,13 @@ Sequence
       Todo
 
       Clip
-         Todo
+         Hides frames outside the specified frame range.
       Extend
-         Todo
+         Repeats the start frame before, and the end frame after the frame range.
       Repeat
-         Todo
+         Cycles the frames in the sequence; restarting at frame one.
       Ping-Pong
-         Todo
+         Repeats the frames, reversing the playback direction on every other cycle.
 
 
 .. _bpy.types.VolumeDisplay:
@@ -62,31 +63,35 @@ Viewport Display
 .. _bpy.types.VolumeDisplay.wireframe_type:
 
 Wireframe
-   Todo.
+   Method used to represent volumes in :ref:`wireframe <3dview-shading-rendered>` shading mode.
+   For heavy volume data sets, it can be useful to set the object to always display as wireframe.
+   This way the 3D Viewport remains responsive but the volume still appears in the final render.
 
    None
-      Todo.
+      The volume is not displayed in wireframe mode.
    Bounds
-      Todo.
+      Displays the volume as :term:`bounding box` for the entire volume grid.
    Boxes
-      Todo.
+      Displays a bounding boxes for nodes in the volume tree.
    Points
-      Todo.
+      Displays points for nodes in the volume tree.
 
 .. _bpy.types.VolumeDisplay.wireframe_detail:
 
 Detail
-   Todo.
+   The amount of detail to display for *Boxes* or *Points* wireframe mode.
 
    Course
-      Todo.
+      Display one box or point for each intermediate tree node.
    Fine
-      Todo.
+      Display a box or point for each leaf node containing 8×8 voxels.
 
 .. _bpy.types.VolumeDisplay.density:
 
 Density
-   Todo.
+   Thickness of the volume in the 3D Viewport.
+   The density of the volume in the render is adjusted via
+   :doc:`Volume Shading </render/shader_nodes/shader/volume_principled>`.
 
 
 .. _bpy.types.VolumeRender:

@@ -68,7 +68,7 @@ Subdivisions
    Render
       The number of subdivision levels shown in renders.
    Viewport
-      The number of subdivision levels shown in the 3D View.
+      The number of subdivision levels shown in the 3D Viewport.
    Quality
       How precisely the vertices are positioned
       (relatively to their theoretical position of an infinitely subdivided mesh),
@@ -80,7 +80,7 @@ Subdivisions
    .. tip::
 
       Be careful not to set the *Viewport* subdivisions higher than the *Render* subdivisions,
-      this would mean that in the 3D View the quality will be higher than the rendered.
+      this would mean that in the 3D Viewport the quality will be higher than the rendered.
 
 Options
    UV Smooth
@@ -131,7 +131,7 @@ the *Subdivision Surface* modifier subdivides the geometry to give the edges a s
 
    A subdivided cube with creased edges.
 
-The crease weight of selected edges can be changed in the *Transform* panel, Sidebar of the 3D View.
+The crease weight of selected edges can be changed in the *Transform* panel, Sidebar of the 3D Viewport.
 The scale-like dedicated tool :kbd:`Shift-E` can also be used to adjust the crease weight.
 A higher value makes the edge "stronger" and more resistant to the smoothing effect of subdivision surfaces.
 

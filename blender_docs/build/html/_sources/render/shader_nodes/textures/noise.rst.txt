@@ -28,6 +28,8 @@ Detail
    Number of noise octaves.
    The fractional part of the input is multiplied by the magnitude of the highest octave.
    Higher number of octaves corresponds to a higher render time.
+Roughness
+   Blend between a smoother noise pattern, and rougher with sharper peaks.
 Distortion
    Amount of distortion.
 

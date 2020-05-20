@@ -35,7 +35,7 @@ Usage
 
    :Category:  Object
    :Description: Tool for the fracturing of objects.
-   :Location: :menuselection:`3D View --> Object menu --> Quick Effects`
+   :Location: :menuselection:`3D Viewport --> Object menu --> Quick Effects`
    :File: object_fracture_cell folder
    :Author: ideasman42, phymec, Sergey Sharybin
    :License: GPL

@@ -38,8 +38,8 @@ This node has no output sockets.
 
 .. hint::
 
-   This node could be used to plan scene transitions by comparison of the end frame of one scene
-   with the start frame of another to make sure that they align.
+   This node could be used to plan scene transitions by comparing the end frame of one scene
+   with the start frame of another to make sure they align.
 
 
 Examples

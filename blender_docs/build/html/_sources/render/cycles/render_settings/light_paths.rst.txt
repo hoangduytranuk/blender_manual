@@ -59,9 +59,7 @@ Clamp Direct
 
    .. note::
 
-      A common issue encountered with *Path Tracing* is the occurrence of "fireflies":
-      improbable samples that contribute very high values to pixels.
-      This option provides a way to limit that. However, note that as you clamp out such values,
+      This option provides a way to limit :term:`Fireflies`. However, note that as you clamp out such values,
       other bright lights/reflections will be dimmed as well.
 
       Care must be taken when using this setting to find a balance between mitigating fireflies and
@@ -93,7 +91,7 @@ Filter Glossy
    to reduce noise at the cost of accuracy. 1.0 is a good starting value to tweak.
 
    Some light paths have a low probability of being found while contributing much light to the pixel.
-   As a result these light paths will be found in some pixels and not in others, causing fireflies.
+   As a result these light paths will be found in some pixels and not in others, causing :term:`Fireflies`.
    An example of such a difficult path might be a small light that is causing a small specular highlight
    on a sharp glossy material, which is observed through a rough glossy material.
    In fact in such a case there practically occurs a caustic.

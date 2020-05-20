@@ -4,8 +4,7 @@ Selecting
 *********
 
 Selection in *Pose Mode* is very similar to the one in :doc:`Edit Mode </animation/armatures/bones/selecting>`,
-with a few specificities:
-
+with a few deviations:
 You can only select *whole bones* in *Pose Mode*, not roots/tips...
 
 
@@ -31,8 +30,17 @@ Todo.
 Linked
 ======
 
-You can select at once all the bones in the chain which the active (last selected)
-bone belongs to by using the *linked selection* tool, :kbd:`L`.
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Edit Mode
+   :Menu:      :menuselection:`Select --> Linked`
+   :Hotkey:    :kbd:`L`
+
+Selects all the bones in the chain which the active (last selected) bone belongs to.
+
+All Forks
+   Selects all bones connected to the active bone even if the branch off from the current bone.
 
 .. list-table:: Linked bones selection.
 
@@ -44,7 +52,7 @@ bone belongs to by using the *linked selection* tool, :kbd:`L`.
      - .. figure:: /images/animation_armatures_bones_selecting_whole-chain.png
           :width: 320px
 
-          Its whole chain selected with :kbd:`L`.
+          Its whole chain selected with Linked.
 
 
 Select More/Less
@@ -87,4 +95,19 @@ Keying Set
 Select Pattern
 ==============
 
-Todo.
+.. admonition:: Reference
+   :class: refbox
+
+   :Mode:      Object Mode
+   :Menu:      :menuselection:`Select --> Select Pattern...`
+
+Selects all bones whose name matches a given pattern.
+Supported wild-cards: \* matches everything, ? matches any single character,
+[abc] matches characters in "abc", and [!abc] match any character not in "abc".
+As an example \*house\* matches any name that contains "house",
+while floor\* matches any name starting with "floor".
+
+Case Sensitive
+   The matching can be chosen to be case sensitive or not.
+Extend
+   When *Extend* checkbox is checked the selection is extended instead of generating a new one.

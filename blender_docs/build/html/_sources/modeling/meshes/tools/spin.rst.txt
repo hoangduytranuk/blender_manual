@@ -78,9 +78,9 @@ and snapping the 3D cursor to that location with :menuselection:`Mesh --> Cursor
 (Fig. :ref:`fig-mesh-spin-glass-top`)
 shows the wine glass profile from top view, with the cursor correctly positioned.
 
-Click the *Spin* button. If you have more than one 3D View open, the cursor will
+Click the *Spin* button. If you have more than one 3D Viewport open, the cursor will
 change to an arrow with a question mark and you will have to click in the area containing
-the top view before continuing. If you have only one 3D View open,
+the top view before continuing. If you have only one 3D Viewport open,
 the spin will happen immediately. Fig. :ref:`fig-mesh-spin-profile` shows the result of a successful spin.
 
 

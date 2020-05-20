@@ -20,7 +20,7 @@ Releasing the mouse button and starting a new stroke
 will reset the depth and paint on top of the previous stroke.
 
 Height
-   Todo.
+   The amount of displacement for each layer.
 Persistent
    You can keep sculpting on the same layer between strokes when this is on.
 Set Persistent Base

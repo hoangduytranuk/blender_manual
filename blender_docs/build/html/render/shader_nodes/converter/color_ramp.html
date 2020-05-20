@@ -266,26 +266,36 @@
 <h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="creating-an-alpha-mask">
 <h3>Tạo Màn Chắn Alpha -- Creating an Alpha Mask<a class="headerlink" href="#creating-an-alpha-mask" title="Permalink to this headline">¶</a></h3>
-<p>Một tính năng mạnh mẽ nhưng thường bị bỏ qua của Dốc Màu (Color Ramp) là tạo ra một Màn Chắn Alpha (Alpha Mask), hoặc một màn chắn để phủ lên trên một hình ảnh khác, và giống như một màn chắn, cho phép phần nào của hình nền được nhìn thấy. Ví dụ bài trí dưới đây cho thấy cách sử dụng nút Dốc Màu (Color Ramp) để thực hiện điều này:</p>
+<p>An often overlooked use case of the Color Ramp is to create an alpha mask,
+or a mask that is overlaid on top of another image.
+Such a mask allows you to select parts of the background to be show through.</p>
 <div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png"><img alt="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png" src="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Sử dụng nút Dốc Màu (Color Ramp) để tạo màn chắn alpha.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>In the map above, a black-and-white swirl image, which is lacking an alpha channel,
-is fed into the Color Ramp node as a <em>Factor</em>.
-(Technically, we should have converted the image to a value using the RGB to BW node,
-but hey, this works just as well since we are using a BW image as input.)</p>
-<p>Chúng ta đã thiết lập nút Dốc Màu (Color Ramp) với một màu hoàn toàn trong suốt ở đầu bên trái của quang phổ và màu hoàn toàn đỏ ở bên phải. Như thấy được trong nút xem hình, nút Dốc Màu đưa ra một màn chắn hoàn toàn trong suốt ở những nơi hình ảnh có màu đen. Màu đen là số không, vì vậy Dốc Màu sử dụng màu ở đầu bên trái của quang phổ, mà chúng ta đã đặt thành trong suốt. Hình ảnh Dốc Màu hoàn toàn là màu đỏ và những chỗ hình ảnh là màu trắng (1.00) thì hoàn toàn không trong.</p>
-<p>We verify that the output image mask is indeed transparent
+is fed into the Color Ramp node as a <em>Factor</em>.</p>
+<p>The Color Ramp node is set to a purely transparent color on the left end of the gradient,
+and a fully red color on the right. As you can see in the Viewer node,
+the Color Ramp node puts out a mask that is fully transparent where the image is black.
+Black is zero, so Color Ramp outputs the color at the left end of the gradient,
+which is set to transparent.
+The Color Ramp image is fully red and opaque where the image is white (which is 1).</p>
+<p>You can verify that the output image mask is indeed transparent
 by overlaying it on top of another image.</p>
 </div>
 <div class="section" id="colorizing-an-image">
 <h3>Tô Màu một Hình Ảnh -- Colorizing an Image<a class="headerlink" href="#colorizing-an-image" title="Permalink to this headline">¶</a></h3>
-<p>Sức mạnh thực sự của Dốc Màu (Color Ramp) là nhiều màu sắc có thể được cho thêm vào quang phổ màu. Ví dụ sơ đồ tổng hợp này lấy một hình ảnh Trắng/Đen (BW) nhàm chán và làm cho nó thành một cơn lốc bốc lửa!</p>
+<p>In this example multiple colors are added to the color gradient
+converting a black-and-white image into a flaming swirl.</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_converter_color-ramp_colorizing-image.png"><img alt="../../../_images/compositing_types_converter_color-ramp_colorizing-image.png" src="../../../_images/compositing_types_converter_color-ramp_colorizing-image.png" style="width: 600px;" /></a>
 </div>
-<p>Trong ví dụ này, chúng ta ánh xạ các sắc thái của màu xám trong hình ảnh cung cấp thành ba màu, lam, vàng và đỏ, tất cả đều ở mức cực độ, hoàn toàn rõ ràng, không trong,  (Alpha = 1,00). Ở những chỗ hình ảnh có màu đen, Dốc Màu (Color Ramp) thay thế màu làm vào, màu hiện đang được chọn. Nơi nó có pha màu xám, Dốc Màu chọn một màu tương ứng từ quang phổ (hơi xanh lam, vàng, tới hơi đỏ). Ở chỗ nào hình ảnh có màu trắng hoàn toàn, Dốc Màu chọn màu đỏ.</p>
+<p>The shades of gray in the input image are mapped to three colors:
+blue, yellow, and red, all fully opaque (alpha of 1). Where the image is black,
+Color Ramp substitutes blue (the first color stop). Where it is some shade of gray,
+Color Ramp outputs a corresponding color from the gradient (bluish, yellow, to reddish).
+Where the image is fully white, the Color Ramp outputs red.</p>
 </div>
 </div>
 </div>

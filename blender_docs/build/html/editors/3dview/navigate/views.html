@@ -240,8 +240,8 @@
             
   <div class="section" id="contextual-views">
 <h1>Góc Nhìn theo Ngữ Cảnh -- Contextual Views<a class="headerlink" href="#contextual-views" title="Permalink to this headline">¶</a></h1>
-<p>The 3D View has several &quot;contextual view&quot; modes that can be set for a particular 3D View.
-These views can change how the overall 3D View looks or how you interact with objects.</p>
+<p>The 3D Viewport has several &quot;contextual view&quot; modes that can be set for a particular 3D Viewport.
+These views can change how the overall 3D Viewport looks or how you interact with objects.</p>
 <div class="section" id="view-global-local">
 <span id="editors-3dview-navigate-views-local"></span><span id="bpy-ops-view3d-localview"></span><h2>Góc Nhìn Toàn Cầu/Địa Phương -- View Global/Local<a class="headerlink" href="#view-global-local" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -285,13 +285,12 @@ from the <em>View Menu</em> or using the shortcut <kbd class="kbd docutils liter
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>These notes cover changes in local view which are not immediately obvious.</p>
-<dl>
+<dl class="simple">
 <dt>Con Trỏ 3D -- 3D Cursor</dt><dd><p>In local view the 3D cursor is not locked to the scene.
 Instead, each view has an independent cursor location.</p>
 </dd>
 <dt>Tầng Lớp -- Layers</dt><dd><p>Local view bypasses layers, using only the selected objects when entering local view.
 Although new objects may be added while in local view.</p>
-<p>It's also possible to send objects out of local view, using <span class="menuselection">Vật Thể (Object) ‣ Di Chuyển Vật Thể ra khỏi Góc Nhìn Địa Phương (Move Objects out of Local View)</span>, which can be useful to further isolate a selection.</p>
 </dd>
 </dl>
 </div>
@@ -331,24 +330,21 @@ the local view will be left empty and you will have to exit local view to see an
 <dd class="field-odd"><p>Tổng Thể -- All modes</p>
 </dd>
 <dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Góc Nhìn (View) ‣ Bật/Tắt 4 Góc Nhìn (Toggle Quad View)</span></p>
+<dd class="field-even"><p><span class="menuselection">View ‣ Area ‣ Toggle Quad View</span></p>
 </dd>
-<dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Display ‣ Toggle Quad View</span></p>
-</dd>
-<dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-Alt-Q</kbd></p>
+<dt class="field-odd">Phím Tắt -- Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-Alt-Q</kbd></p>
 </dd>
 </dl>
 </div>
-<p>Toggling Quad View will split the 3D View into four views:
+<p>Toggling Quad View will split the 3D Viewport into four views:
 Three <em>Orthographic</em> &quot;side views&quot; and one <em>Camera</em>/<em>User View</em>.
 This view will allow you to instantly see your model from a number of view points.
 In this arrangement, you can zoom and pan each view independently but you cannot rotate the view.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>Quad View is different from <a class="reference internal" href="../../../interface/window_system/areas.html"><span class="doc">splitting the area</span></a>
-and aligning the view manually. In Quad View, the four views are still part of a single 3D View.
+and aligning the view manually. In Quad View, the four views are still part of a single 3D Viewport.
 So they share the same display options and layers.</p>
 </div>
 <div class="figure align-default" id="id3">
@@ -357,13 +353,13 @@ So they share the same display options and layers.</p>
 </div>
 <div class="section" id="options">
 <h3>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
-<p>These options can be found in <span class="menuselection">Sidebar region ‣ Display</span>.</p>
+<p>These options can be found in <span class="menuselection">Sidebar region ‣ Quad View</span>.</p>
 <dl class="simple">
 <dt>Khóa -- Lock</dt><dd><p>If you want to be able to rotate each view, you can uncheck the <em>Locked</em> option.</p>
 </dd>
-<dt>Hình Hộp -- Box</dt><dd><p>Syncs the view position between side views.</p>
+<dt>Hình Hộp -- Box</dt><dd><p>Syncs the view position between side views. (Requires <em>Lock</em> to be enabled.)</p>
 </dd>
-<dt>Đoạn Phim -- Clip</dt><dd><p>Clip objects based on what is visible in other side views.</p>
+<dt>Đoạn Phim -- Clip</dt><dd><p>Clip objects based on what is visible in other side views. (Requires <em>Box</em> to be enabled.)</p>
 </dd>
 </dl>
 </div>

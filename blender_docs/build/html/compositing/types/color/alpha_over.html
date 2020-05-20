@@ -232,11 +232,12 @@
 <p class="caption"><span class="caption-text">Nút Alpha Chồng Lên.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Nút <em>Alpha Chồng Lên -- Alpha Over</em> được sử dụng để chồng tầng các lớp hình ảnh lên trên nhau.</p>
-<p>Trong đó, nếu điểm ảnh nào đó của hình ảnh nằm ở đằng trước có alpha lớn hơn 0 thì hình ảnh nền sẽ được phủ chồng lên (nhìn thấy hình ảnh ở đằng trước thay vì nền).</p>
+<p>Where the foreground image pixels have an alpha greater than 0, it will be overlaid over the background image.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Hệ Số -- Factor</dt><dd><p>Khống chế lượng của hình ảnh ở lớp trước (<em>mức nhìn thấy được</em>). Hệ số nhỏ hơn 1 sẽ làm cho nền trước trong suốt hơn.</p>
+<dt>Hệ Số -- Factor</dt><dd><p>Controls the transparency of the foreground image.
+A factor less than 1 will make the foreground more transparent.</p>
 </dd>
 <dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào cho hình ảnh <em>nền sau</em>.</p>
 </dd>
@@ -248,7 +249,9 @@
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl>
 <dt>Chuyển Đổi Nhân Trước -- Convert Premultiplied</dt><dd><p>Đổi hình ảnh nền trước sang định dạng <em>alpha nhân trước -- premultiplied alpha</em></p>
-<p>Nút <em>Alpha Chồng Lên -- Alpha Over</em> được thiết kế để hoạt động với định dạng màu alpha <em>nhân trước -- premultiplied</em>. Sử dụng <em>Chuyển đổi Alpha Nhân Trước -- Convert Premul</em> khi bạn biết rằng hình ảnh của bạn có các giá trị màu alpha <em>thẳng -- straight</em>, để thực hiện thao tác chồng lên chính xác. Kết quả sẽ vẫn là alpha nhân trước.</p>
+<p>The <em>Alpha Over</em> node is designed to work with <em>premultiplied</em> alpha color format.
+Use <em>Convert Premul</em> when you know that your image has <em>straight</em> alpha color values,
+to perform the correct over operation. Result will still be premultiplied alpha.</p>
 <p>Xin xem thêm về <a class="reference internal" href="../../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
 </dd>
 <dt>Nhân Trước -- Premultiply</dt><dd><p>Thanh trượt <em>Nhân Trước -- Premul</em> cho phép kết hợp giữa sử dụng  alpha <em>Nhân Trước -- premultiplied</em> hoặc  alpha <em>không nhân trước -- non premultiplied</em>.</p>
@@ -275,7 +278,10 @@
 <a class="reference internal image-reference" href="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png"><img alt="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png" src="../../../_images/compositing_types_converter_color-ramp_create-alpha-mask.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Lắp ráp một hình ảnh tổng hợp bằng cách sử dụng Alpha Chồng Lên (<em>Alpha Over</em>).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>Trong ví dụ tiếp theo, chúng ta sử dụng sự điều khiển <em>Hệ Số -- Factor</em> để tạo hiệu ứng &quot;Mờ Dần Vào -- Fade In&quot;. Hiệu ứng này có thể được hoạt họa bằng cách thêm nút <em>Thời Gian -- Time</em> để cung cấp thông tin vào ổ cắm <em>Hệ Số -- Factor</em>, như hình bên dưới. Trong ví dụ này, trong khoảng thời gian 30 khung hình, nút <em>Thời Gian -- Time</em> làm nút <em>Alpha Chồng Lên -- Alpha Over</em> và tạo ra hình ảnh khởi đầu bằng hình nền tinh khiết (<em>nguyên gốc, chưa pha trộn</em>), và rồi tiêu đề dần dần được lách qua phông nền.</p>
+<p>In the next example, we use the <em>Factor</em> control to make a &quot;Fade In&quot; effect.
+This effect can be animated by adding a <em>Time</em> node to feed the <em>Factor</em> socket as shown below.
+In this example, over the course of 30 frames, the <em>Time</em> node makes the <em>Alpha Over</em> node produce
+a picture that starts with the pure background image, and title slowly bleeds through the background.</p>
 <div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_alpha-over_example.png"><img alt="../../../_images/compositing_types_color_alpha-over_example.png" src="../../../_images/compositing_types_color_alpha-over_example.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Tác động của hoạt họa hiệu ứng mờ dần vào khi sử dụng với Alpha Chồng Lên.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>

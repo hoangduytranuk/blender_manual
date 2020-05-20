@@ -6,7 +6,7 @@ Volumetrics
 
 Eevee simulate volumetric scattering by evaluating all volume objects inside the view frustum.
 
-For this it uses several 3D texture which have a high video memory usage.
+For this it uses several 3D textures which have a high video memory usage.
 The texture dimensions can be tweaked using the *Tile Size* and *Samples* parameters.
 
 Object volumes have some :ref:`limitations <eevee-limitations-volumetrics>`.
@@ -53,7 +53,7 @@ Volumetric Shadows
 ==================
 
 Approximate light absorption of the surrounding volume objects. This makes the volumes more opaque to light.
-This is a very computationally expensive option and has limitations (link).
+This is a very computationally expensive option and has limitations.
 
 Samples
    Number of samples to compute volumetric shadowing.

@@ -26,11 +26,11 @@ Weight Paint
 
 .. figure:: /images/grease-pencil_modes_weight-paint_introduction_mode-selector.png
 
-   3D View Mode selector: Weight Paint Mode.
+   3D Viewport Mode selector: Weight Paint Mode.
 
-Weight Paint Mode is selected from the *Mode* menu in the 3D View header.
-Once Weight Paint Mode is activated, the Toolbar of the 3D View will change to Weight Paint Mode specific panels.
-A red circle will appear and follow the location of the cursor in the 3D View.
+Weight Paint Mode is selected from the *Mode* menu in the 3D Viewport header.
+Once Weight Paint Mode is activated, the Toolbar of the 3D Viewport will change to Weight Paint Mode specific panels.
+A red circle will appear and follow the location of the cursor in the 3D Viewport.
 
 
 Weight Options

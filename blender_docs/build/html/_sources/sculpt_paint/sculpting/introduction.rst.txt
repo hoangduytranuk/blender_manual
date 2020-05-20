@@ -18,10 +18,10 @@ Sculpt Mode manipulates geometry in the brush region of influence.
 Sculpt Mode
 ===========
 
-Sculpt Mode is selected from the mode menu of the 3D View header.
-Once Sculpt Mode is activated, the Toolbar of the 3D View will change to
+Sculpt Mode is selected from the mode menu of the 3D Viewport header.
+Once Sculpt Mode is activated, the Toolbar of the 3D Viewport will change to
 Sculpt Mode specific panels. A red circle will appear and
-follow the location of the cursor in the 3D View.
+follow the location of the cursor in the 3D Viewport.
 
 .. note::
 

@@ -107,7 +107,7 @@ and find yourself with a blank viewport. There are two ways to fix this:
 
 #. Select an object in the :doc:`Outliner </editors/outliner>`,
    then zoom to that object with :menuselection:`View --> Frame Selected` or :kbd:`NumpadPeriod`.
-#. Use :kbd:`Home` to fit all objects into the 3D View.
+#. Use :kbd:`Home` to fit all objects into the 3D Viewport.
 
 
 Invisible Limit Zooming In

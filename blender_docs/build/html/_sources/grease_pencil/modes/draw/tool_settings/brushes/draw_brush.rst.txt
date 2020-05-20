@@ -65,7 +65,7 @@ Strength
    From totally transparent (0.0) to fully opaque (1.0).
 
    You can change the brush strength interactively by pressing :kbd:`Shift-F`
-   in the 3D View and then moving the mouse/pen and then :kbd:`LMB`.
+   in the 3D Viewport and then moving the mouse/pen and then :kbd:`LMB`.
    You can also enter the size numerically.
 
    Use Pressure (pressure sensitivity icon)

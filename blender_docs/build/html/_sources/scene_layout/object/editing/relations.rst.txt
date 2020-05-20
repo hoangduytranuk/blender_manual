@@ -12,7 +12,7 @@ Make Single User
    :class: refbox
 
    :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Make Single User`
+   :Menu:      :menuselection:`Object --> Relations --> Make Single User`
 
 Makes the selected or all object data-blocks single users, that is, not shared
 (linked) between other objects in the blend-file.

@@ -130,7 +130,7 @@ North Offset
 By default, the North points to the Y axis in the scene (to the top of the screen in top view).
 But sometimes, you may have modeled it in another orientation. In that case,
 you may enter a *North Offset*, to change the orientation of the scene.
-*Show North* toggles a dashed line pointing to the North in the 3D View,
+*Show North* toggles a dashed line pointing to the North in the 3D Viewport,
 to help you visualize the cardinal directions.
 
 

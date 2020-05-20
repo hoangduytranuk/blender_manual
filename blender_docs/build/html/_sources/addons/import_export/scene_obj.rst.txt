@@ -153,7 +153,7 @@ Apply Modifiers
    Export mesh objects as seen in the 3D Viewport with all modifiers applied.
    Mostly you will want this unless you are exporting a subdivision surface cage.
 Smooth Groups
-   Todo.
+   Write Blender's sharp edges as smooth groups.
 Bitflag Groups
    Todo.
 Write Normals

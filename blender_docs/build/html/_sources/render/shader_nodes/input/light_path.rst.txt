@@ -30,19 +30,19 @@ Outputs
 =======
 
 Is Camera Ray
-   1.0 if shading is executed for a camera ray, 0.0 otherwise.
+   1.0 if shading is executed for a camera ray, otherwise 0.0.
 Is Shadow Ray
-   1.0 if shading is executed for a shadow ray, 0.0 otherwise.
+   1.0 if shading is executed for a shadow ray, otherwise 0.0.
 Is Diffuse Ray
-   1.0 if shading is executed for a diffuse ray, 0.0 otherwise.
+   1.0 if shading is executed for a diffuse ray, otherwise 0.0.
 Is Glossy Ray
-   1.0 if shading is executed for a glossy ray, 0.0 otherwise.
+   1.0 if shading is executed for a glossy ray, otherwise 0.0.
 Is Singular Ray :guilabel:`Cycles Only`
-   1.0 if shading is executed for a singular ray, 0.0 otherwise.
+   1.0 if shading is executed for a singular ray, otherwise 0.0.
 Is Reflection Ray :guilabel:`Cycles Only`
-   1.0 if shading is executed for a reflection ray, 0.0 otherwise.
+   1.0 if shading is executed for a reflection ray, otherwise 0.0.
 Is Transmission Ray :guilabel:`Cycles Only`
-   1.0 if shading is executed for a transmission ray, 0.0 otherwise.
+   1.0 if shading is executed for a transmission ray, otherwise 0.0.
 Ray Length :guilabel:`Cycles Only`
    Distance traveled by the light ray from the last bounce or camera.
 Ray Depth

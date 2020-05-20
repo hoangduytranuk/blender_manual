@@ -89,8 +89,7 @@ Motion Blur
 Each object has its own motion blur settings along with
 the :doc:`Scene Level Motion Blur </render/cycles/render_settings/motion_blur>`
 These settings can be found
-in the :doc:`Object Properties </scene_layout/object/properties/introduction>` tab
-of the Properties editor.
+in the Object Properties tab of the Properties editor.
 
 Deformation
    Enables motion blur for deformed meshes such as animated characters, including hair.

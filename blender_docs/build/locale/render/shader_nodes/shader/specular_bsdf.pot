@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-10 20:09+0100\n"
+"POT-Creation-Date: 2020-05-15 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,139 +20,143 @@ msgstr ""
 msgid "Specular BSDF"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:8
-msgid ":guilabel:`Eevee Only`"
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:10
-msgid "The *Specular* :abbr:`BSDF (Bidirectional scattering distribution function)` combines multiple layers into a single easy to use node."
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:11
+msgid "Specular BSDF."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:13
+msgid ":guilabel:`Eevee Only`"
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:15
+msgid "The *Specular* :abbr:`BSDF (Bidirectional scattering distribution function)` combines multiple layers into a single easy to use node."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:18
 msgid "It is similar to the :doc:`Principled BSDF </render/shader_nodes/shader/principled>` node but uses the *specular* workflow instead of the metallic. It has far fewer parameters and supports less features. Both might be merged into one node in the future."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:17
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:22
 msgid "The specular workflow functions by specifying the facing (along normal) reflection color. The result may not be physically plausible because there is no energy conservation."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:22
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:27
 msgid "Inputs"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:25
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:30
 msgid "Base Color"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:25
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:30
 msgid "Diffuse surface color. For conductor materials (metals) it should be black."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:41
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:46
 msgid "Specular Color"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:28
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:33
 msgid "Amount of specular reflection. Specifies facing (along normal) reflectivity. Conductor materials (metals) can have colored specular reflection."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:33
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:38
 msgid "To compute this value for a realistic material with a known index of refraction, you may use this special case of the Fresnel formula: :math:`specular = ((ior - 1)/(ior + 1))^2`"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:37
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:42
 msgid "For example:"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:39
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:44
 msgid "water: ior = 1.33, specular = 0.25"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:40
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:45
 msgid "glass: ior = 1.5, specular = 0.5"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:41
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:46
 msgid "diamond: ior = 2.417, specular = 2.15"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:48
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:53
 msgid "Roughness"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:44
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:49
 msgid "Specifies microfacet roughness of the surface for diffuse and specular reflection."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:48
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:53
 msgid "When converting from the older *Glossy BSDF* node, use the square root of the original value."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:51
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:56
 msgid "Emissive Color"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:51
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:56
 msgid "Color of the emitted light. This light is added to the BSDF result."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:56
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:61
 msgid "Transparency"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:54
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:59
 msgid "Transparency factor. This is the inverse of the alpha channel (1 - alpha) you find in an image. Use an Invert node to convert alpha to transparency. This will only have an effect if the material uses a blend mode other than opaque."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:59
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:64
 msgid "Normal"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:59
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:64
 msgid "Controls the normals of the base layers."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:63
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:68
 msgid "Clearcoat"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:62
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:67
 msgid "Extra white specular layer on top of others. This is useful for materials like car paint and the like."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:66
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:71
 msgid "Clearcoat Roughness:"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:66
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:71
 msgid "Roughness of clearcoat specular."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:69
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:74
 msgid "Clearcoat Normal"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:69
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:74
 msgid "Controls the normals of the *Clearcoat* layer."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:74
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:79
 msgid "Ambient Occlusion"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:72
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:77
 msgid "Amount of occlusion to apply to indirect lighting. Usually a bake ambient occlusion map. The final occlusion factor is the minimum of this input and the runtime ambient occlusion effect."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:77
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:82
 msgid "Properties"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:79
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:84
 msgid "This node has no properties."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:83
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:88
 msgid "Outputs"
 msgstr ""
 
@@ -160,6 +164,6 @@ msgstr ""
 msgid "BSDF"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:86
+#: /Users/hoangduytran/blender_docs/manual/render/shader_nodes/shader/specular_bsdf.rst:91
 msgid "Standard shader output."
 msgstr ""

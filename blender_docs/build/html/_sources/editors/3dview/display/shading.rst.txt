@@ -1,3 +1,4 @@
+.. _bpy.types.View3DShading.type:
 .. _view3d-viewport-shading:
 
 ****************
@@ -12,6 +13,8 @@ There are several modes to choose from.
    The Material Preview option is not available when the render engine of
    the scene is set to Workbench.
 
+
+.. _3dview-shading-rendered:
 
 Wireframe
 =========

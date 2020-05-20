@@ -70,7 +70,7 @@ Clipping
       You must disable it to be able to move the vertices along the mirror axis again.
 
 Flip UV
-   With this tool you to mirror the UV texture coordinates across the middle of the image.
+   With this option you can mirror the UV texture coordinates across the middle of the image.
 
    E.g. if you have a vertex with UV coordinates of (0.3, 0.9),
    its mirror copy will have UV coordinates of (0.7, 0.1).

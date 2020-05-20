@@ -3,7 +3,7 @@
 Introduction
 ************
 
-Draw Mode is the mode in Grease Pencil that allows you to draw in the 3D View.
+Draw Mode is the mode in Grease Pencil that allows you to draw in the 3D Viewport.
 This mode is actually the only one in which new strokes can be created.
 
 Already made strokes can not be selected in Draw Mode, for editing strokes you must use
@@ -16,12 +16,12 @@ Draw Mode
 
 .. figure:: /images/grease-pencil_modes_draw_introduction_mode-selector.png
 
-   3D View Mode selector: Draw Mode.
+   3D Viewport Mode selector: Draw Mode.
 
 Draw Mode is selected with the *Mode* menu in the 3D Viewport header.
 Once Draw Mode is activated, the Toolbar of the 3D Viewport will change to Draw Mode specific panels.
 Also a circle with the same color as the active material will appear and
-follow the location of the cursor in the 3D View.
+follow the location of the cursor in the 3D Viewport.
 
 To create new strokes you have to select one of the drawing tools in the Toolbar.
 The most common one is the :doc:`Draw tool </grease_pencil/modes/draw/tools>`
@@ -40,7 +40,7 @@ the location and orientation of the new strokes in the 3D space.
 
 .. figure:: /images/grease-pencil_modes_draw_introduction_header-stroke-controls.png
 
-   3D View header Controls for strokes.
+   3D Viewport header Controls for strokes.
 
 
 Stroke Placement

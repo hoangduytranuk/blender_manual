@@ -65,8 +65,8 @@
     
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
-    <link rel="next" title="Phân Đôi -- Bisect" href="bisect.html" />
-    <link rel="prev" title="Extrude" href="extrude.html" /> 
+    <link rel="next" title="Separate" href="separate.html" />
+    <link rel="prev" title="Merge" href="merge.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -229,6 +229,20 @@
             
   <div class="section" id="split">
 <span id="bpy-ops-mesh-split"></span><h1>Split<a class="headerlink" href="#split" title="Permalink to this headline">¶</a></h1>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Split</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Alt-M</kbd></p>
+</dd>
+</dl>
+</div>
 <div class="section" id="selection">
 <h2>Selection<a class="headerlink" href="#selection" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -250,6 +264,78 @@ The border edge to any non-selected elements are duplicated.</p>
 <p>Note that the &quot;copy&quot; is left exactly at the same position as the original, so you must move it
 <kbd class="kbd docutils literal notranslate">G</kbd> to see it clearly...</p>
 </div>
+<div class="section" id="faces-by-edges">
+<span id="bpy-ops-mesh-edge-split"></span><h2>Faces by Edges<a class="headerlink" href="#faces-by-edges" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Split ‣ Faces by Edges</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Faces by Edges</em> is similar to the <em>Rip</em> tool. When two or more touching interior edges,
+or a border edge is selected, a hole will be created,
+and the selected edges will be duplicated to form the border of the hole.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edges_edge-split-before.png"><img alt="../../../../_images/modeling_meshes_editing_edges_edge-split-before.png" src="../../../../_images/modeling_meshes_editing_edges_edge-split-before.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Selected edges.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edges_edge-split-after.png"><img alt="../../../../_images/modeling_meshes_editing_edges_edge-split-after.png" src="../../../../_images/modeling_meshes_editing_edges_edge-split-after.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Adjacent face moved to reveal hole left by split.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="faces-edges-by-vertices">
+<h2>Faces &amp; Edges by Vertices<a class="headerlink" href="#faces-edges-by-vertices" title="Permalink to this headline">¶</a></h2>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Split ‣ Faces &amp; Edges by Vertices</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Faces &amp; Edges by Vertices</em> is similar to <em>Faces by Edges</em> except that
+it also splits the vertices of the adjacent connecting edges.
+This has the same functionality as manually ripping all faces and edges away from a vertex.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edges_edge-split2-before.png"><img alt="../../../../_images/modeling_meshes_editing_edges_edge-split2-before.png" src="../../../../_images/modeling_meshes_editing_edges_edge-split2-before.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">Before.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edges_edge-split2-after.png"><img alt="../../../../_images/modeling_meshes_editing_edges_edge-split2-after.png" src="../../../../_images/modeling_meshes_editing_edges_edge-split2-after.png" style="width: 320px;" /></a>
+<p class="caption"><span class="caption-text">After (also moving edges away).</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
@@ -260,10 +346,10 @@ The border edge to any non-selected elements are duplicated.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="bisect.html" class="btn btn-neutral float-right" title="Phân Đôi -- Bisect" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="separate.html" class="btn btn-neutral float-right" title="Separate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="extrude.html" class="btn btn-neutral float-left" title="Extrude" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="merge.html" class="btn btn-neutral float-left" title="Merge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

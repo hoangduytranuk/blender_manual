@@ -26,7 +26,7 @@ or use :menuselection:`Mesh --> Vertices --> Relax` instead.
 
    :Category:  Mesh
    :Description: Relax the selected vertices while retaining the shape.
-   :Location: :menuselection:`3D View --> Edit Mode Context Menu --> Relax`
+   :Location: :menuselection:`3D Viewport --> Edit Mode Context Menu --> Relax`
    :File: mesh_relax.py
    :Author: Fabian Fricke
    :License: GPL

@@ -107,7 +107,7 @@ to benchmark UI render times along with undo/redo functions.
 
 .. _bpy.ops.screen.spacedata_cleanup:
 
-Clean-up Space-data
+Clean-Up Space-Data
 -------------------
 
 .. admonition:: Reference

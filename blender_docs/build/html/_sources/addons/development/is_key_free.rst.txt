@@ -36,7 +36,7 @@ List All Shortcuts
    :Location: :menuselection:`Text Editor --> Sidebar --> Dev tab`
    :File: development_iskeyfree.py
    :Author: Antonio Vazquez (antonioya)
-   :Maintainer: todo
+   :Maintainer: Blender Foundation
    :License: GPL
    :Support Level: Community
    :Note: This add-on is bundled with Blender.

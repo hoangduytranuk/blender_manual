@@ -29,12 +29,12 @@ Three displacement methods exist, with varying accuracy, performance and memory 
 Bump Only
 =========
 
-The least accurate but most memory efficient method is to use a bump mapping.
+The least accurate but most memory efficient method is bump mapping.
 This method does not actually alter the mesh surface, but merely changes the shading to make it seem so.
 
 Bump maps are often used to add smaller details on a model, for example pores or wrinkles on skin.
 
-For baked bump maps 8-bit byte images are commonly used, however 16 or 32-bit float maps can provide
+For baked bump maps 8-bit images are commonly used, however 16 or 32-bit float maps can provide
 better looking results. When using image textures use Cubic interpolation to avoid stepping artifacts,
 these are more visible for bump maps than other types of textures.
 
@@ -59,7 +59,7 @@ to subdivide the mesh, so that exactly the right amount of subdivision is used d
 the distance of the object to the camera.
 
 For baked displacement maps, best results are achieved with 16 or 32-bit float maps,
-as 8-bit byte images often can not represent all the necessary detail.
+as 8-bit images often can not represent all the necessary detail.
 
 .. seealso::
 
@@ -75,4 +75,4 @@ Both methods can be combined to use actual displacement for the bigger displacem
 bump for the finer details. This can provide a good balance to reduce memory usage.
 
 Once you subdivide the mesh very finely, it is better to use only actual displacement.
-Keeping bump maps will then only increase memory usage and render slower.
+Keeping bump maps will then only increase memory usage and slow down renders.

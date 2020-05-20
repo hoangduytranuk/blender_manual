@@ -39,7 +39,7 @@ Particles may be rendered as:
 - Meshes which in turn may be animated (e.g. fish, bees, ...).
   In these cases, each particle "carries" another object.
 - :doc:`Hair curves </physics/particles/hair/shape>`, following the path of the particle.
-  These hair curves can be manipulated in the 3D View (combing, adding, cutting, moving, etc.).
+  These hair curves can be manipulated in the 3D Viewport (combing, adding, cutting, moving, etc.).
 
 Every object may carry many particle systems. Each particle system may contain up to
 10.000.000 particles. Certain particle types (*Hair* and *Keyed*)

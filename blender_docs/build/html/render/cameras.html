@@ -216,12 +216,12 @@
            <div itemprop="articleBody">
             
   <div class="section" id="cameras">
-<h1>Cameras<a class="headerlink" href="#cameras" title="Permalink to this headline">¶</a></h1>
+<span id="cameras-index"></span><span id="bpy-ops-camera"></span><span id="bpy-types-camera"></span><h1>Cameras<a class="headerlink" href="#cameras" title="Permalink to this headline">¶</a></h1>
 <p>A camera is an object that provides a means of rendering images from Blender.
 It defines which portion of a scene is visible in the rendered image.</p>
 <p>Cameras are invisible in renders, so they do not have any material or texture settings.
-However, they do have <em>Object</em> and <em>Editing</em> setting panels available
-which are displayed when a camera is the selected (active!) object.</p>
+However, they do have <em>Object</em> and <em>Editing</em> setting panels available which are displayed
+when a camera is the active object.</p>
 <div class="admonition seealso">
 <p class="admonition-title">Xem thêm</p>
 <p><a class="reference internal" href="../editors/3dview/navigate/camera_view.html"><span class="doc">3D Viewport Camera Navigation</span></a>
@@ -299,7 +299,7 @@ This means that parallel lines appear parallel, and do not converge like they do
 <dt>Orthographic Scale</dt><dd><p>This controls the apparent size of objects projected on the image.</p>
 <p>Note that this is effectively the only setting which applies to orthographic perspective.
 Since parallel lines do not converge in orthographic mode (no vanishing points),
-the lens shift settings are equivalent to translating the camera in the 3D View.</p>
+the lens shift settings are equivalent to translating the camera in the 3D Viewport.</p>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/render_cameras_orthographic.svg"><img alt="../_images/render_cameras_orthographic.svg" src="../_images/render_cameras_orthographic.svg" width="50%" /></a>
 </div>
@@ -353,13 +353,13 @@ and as such more extreme values can safely be set.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Mẹo</p>
-<p>When <em>Limits</em> in the <em>Display</em> panel is enabled,
-the clip bounds will be visible as two yellow connected dots on the camera line of sight.</p>
+<p>When <em>Limits</em> in the <em>Viewport Display</em> panel is enabled,
+the clip bounds will be visible as two yellow connected dots on the camera's line of sight.</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">Xem thêm</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../editors/3dview/properties/sidebar.html"><span class="doc">3D View clipping</span></a></p></li>
+<li><p><a class="reference internal" href="../editors/3dview/properties/sidebar.html"><span class="doc">3D Viewport clipping</span></a></p></li>
 </ul>
 </div>
 </dd>
@@ -377,16 +377,14 @@ but objects in front and behind that are blurred.</p>
 <p>The area in focus is called the <em>focal point</em> and can be set using either an exact value,
 or by using the distance between the camera and a chosen object:</p>
 <dl>
-<dt>Focus Object</dt><dd><p>Choose an object which will determine the focal point. Linking an object will deactivate the distance parameter.
-Typically this is used to give precise control over the position of the focal point,
-and also allows it to be animated or constrained to another object.</p>
+<dt>Focus Object</dt><dd><p>Choose an object which will determine the focal point. Linking an object will deactivate the distance parameter.</p>
 </dd>
 <dt>Focal Distance</dt><dd><p>Sets the distance to the focal point when no <em>Focus Object</em> is specified.
 If <em>Limits</em> are enabled, a yellow cross is shown on the camera line of sight at this distance.</p>
 <div class="admonition hint">
 <p class="admonition-title">Gợi ý</p>
 <p>Hover the mouse over the <em>Distance</em> property and press <kbd class="kbd docutils literal notranslate">E</kbd> to use a special <em>Depth Picker</em>.
-Then click on a point in the 3D View to sample the distance from that point to the camera.</p>
+Then click on a point in the 3D Viewport to sample the distance from that point to the camera.</p>
 </div>
 </dd>
 </dl>
@@ -527,8 +525,9 @@ In the camera view, this is measured relative to the camera bounds
 <p class="caption"><span class="caption-text">Camera view displaying safe areas, sensor and name.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
-<dt>Size</dt><dd><p>Size of the camera visualization in the 3D View. This setting has <strong>no</strong> effect on the render output of a camera.
-The camera visualization can also be scaled using the standard Scale <kbd class="kbd docutils literal notranslate">S</kbd> transform key.</p>
+<dt>Size</dt><dd><p>Size of the camera visualization in the 3D Viewport. This setting has <strong>no</strong> effect on
+the render output of a camera. The camera visualization can also be scaled using
+the standard Scale <kbd class="kbd docutils literal notranslate">S</kbd> transform key.</p>
 </dd>
 <dt>Limits</dt><dd><p>Shows a line which indicates <em>Start</em> and <em>End Clipping</em> values.</p>
 </dd>

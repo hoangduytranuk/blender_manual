@@ -28,13 +28,13 @@ Interface
    :align: right
    :width: 220px
 
-Located in the :menuselection:`3D View --> Sidebar --> Create tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Create tab`.
 
 
 Instructions
 ============
 
-#. In the :menuselection:`3D View --> Sidebar --> Create tab` press the *Create* button to run the script.
+#. In the :menuselection:`3D Viewport --> Sidebar --> Create tab` press the *Create* button to run the script.
 #. Open the :menuselection:`Properties editor --> World tab` and
    choose ``Dynamic_1`` in the World data-block menu.
 #. Back in the Sidebar panel you will have new settings to adjust your sky.
@@ -46,7 +46,7 @@ Instructions
 
    :Category:  Lighting
    :Description: Creates a Dynamic Sky for Cycles/Eevee.
-   :Location: :menuselection:`3D View --> Sidebar --> Create tab`
+   :Location: :menuselection:`3D Viewport --> Sidebar --> Create tab`
    :File: lighting_dynamic_sky.py
    :Author: Pratik Solanki
    :Maintainer: Pratik Solanki

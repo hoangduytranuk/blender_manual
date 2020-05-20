@@ -5,6 +5,11 @@
 Specular BSDF
 *************
 
+.. figure:: /images/render_shader-nodes_shader_specular_node.png
+   :align: right
+
+   Specular BSDF.
+
 :guilabel:`Eevee Only`
 
 The *Specular* :abbr:`BSDF (Bidirectional scattering distribution function)`

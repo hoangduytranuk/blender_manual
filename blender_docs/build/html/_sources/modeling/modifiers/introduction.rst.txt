@@ -63,7 +63,7 @@ Name
 Render (camera icon)
    Toggle visibility of the modifier's effect in the render.
 Show in Viewport (screen icon)
-   Toggle visibility of the modifier's effect in the 3D View.
+   Toggle visibility of the modifier's effect in the 3D Viewport.
 Show in Edit Mode (vertices-square icon)
    Display the modified geometry in Edit mode, as well as the original geometry which you can edit.
 Show on Cage (vertices-triangle icon) -- Meshes only

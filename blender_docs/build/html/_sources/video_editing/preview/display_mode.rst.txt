@@ -30,7 +30,7 @@ the Luma-video-output of your television set. It will basically look the same.
 In this mode, the vertical axis represents the luminosity: 0 at the bottom, 1 at the top;
 the horizontal axis is a mapping from the horizontal axis of the frame.
 There are as many curves as scanlines in the frame:
-each one of this curves represents the luminosity of the pixels of one line.
+each one of these curves represents the luminosity of the pixels of one line.
 Moreover, the color of a pixel in this mode represents the number of pixels from the matching column of
 the frame sharing the same luminosity, i.e. the number of curves that cross at this point
 (black/transparent, for no pixel, white/opaque for at least three pixels).

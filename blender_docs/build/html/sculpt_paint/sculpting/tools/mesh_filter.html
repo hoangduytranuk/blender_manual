@@ -231,8 +231,8 @@
 <p>Applies a deformation to all vertices in the mesh at the same time.
 To use this tool, click and drag away from the object to have a positive effect
 and click and drag towards the mesh to have a negative effect.</p>
-<dl class="simple">
-<dt>Filter Type</dt><dd><dl class="simple">
+<dl>
+<dt>Filter Type</dt><dd><dl>
 <dt>Smooth</dt><dd><p>Eliminates irregularities of the mesh by making the positions of the vertices more uniform.
 This filter works similar to the <em>Smooth Brush</em>.</p>
 </dd>
@@ -251,11 +251,32 @@ This filter works similar to the <a class="reference internal" href="../../../sc
 <dt>Relax</dt><dd><p>Tries to create an even distribution of quads without deforming the volume of the mesh.
 This filter works the same as the <em>Relax</em> mode of the <em>Slide Relax</em> brush.</p>
 </dd>
+<dt>Surface Smooth</dt><dd><p>Eliminates irregularities of the mesh by making the positions
+of the vertices more uniform while preserving the volume of the object.</p>
+<dl class="simple">
+<dt>Shape Preservation</dt><dd><p>How much of the original shape is preserved when smoothing.</p>
+</dd>
+<dt>Per-Vertex Displacement</dt><dd><p>How much the position of each individual vertex influences the final result.</p>
+</dd>
+</dl>
+</dd>
+<dt>Sharpen</dt><dd><p>Sharpens and smooths the mesh based on its curvature,
+resulting in pinching hard edges and polishing flat surfaces.
+It fixes most of the artifacts of the voxel remesher and those produced when
+sculpting hard surfaces and stylized models with creasing and flattening brushes.</p>
+<dl class="simple">
+<dt>Smooth Ratio</dt><dd><p>How much smoothing is applied to polished surfaces.</p>
+</dd>
+</dl>
+</dd>
 </dl>
 </dd>
 <dt>Strength</dt><dd><p>The amount of effect the filter has on the mesh.</p>
 </dd>
 <dt>Deformation Axis</dt><dd><p>Apply the deformation only on the selected axis.</p>
+</dd>
+<dt>Use Face Sets</dt><dd><p>Only applies the mesh filter to the vertices assigned to the <a class="reference internal" href="../editing.html#sculpting-editing-facesets"><span class="std std-ref">Face Set</span></a>
+that is under the mouse.</p>
 </dd>
 </dl>
 </div>

@@ -6,6 +6,7 @@ class MakingVIDocuments:
     def __init__(self):
         self.is_clean : bool = False
         self.make_dir : str = None
+        self.home_dir = os.environ['HOME']
 
     def setVars(self, is_clean : bool, make_dir: str):
         self.is_clean = (True if (is_clean) else False)
@@ -21,13 +22,20 @@ class MakingVIDocuments:
             os.system("find locale/vi/LC_MESSAGES -type f -name \"*.mo\" -exec rm -f {} {} \;")
             os.system("make update_po")
 
-        cmd = "make -d --trace -w -B -e SPHINXOPTS=\"-D language='vi'\" 2>&1"
+        # cmd = "make -d --trace -w -B -e SPHINXOPTS=\"-D language='vi'\" 2>&1"
+        cmd = 'sphinx-build -b html -D language="vi" ./manual "build/html"'
         print("Performing: %s" % cmd)
         os.system(cmd)
+
+        cmd = 'sphinx-build -b html -D language="en" ./manual "build/en/html"'
+        print("Performing: %s" % cmd)
+        os.system(cmd)
+
         #from_dir="/home/htran/blender_documentations/blender_docs/build/html/"
         #to_dir="/home/htran/blender_documentations/new_blender_manual/blender_docs/build/html/"
-        from_dir="/home/htran/blender_documentations/blender_docs/"
-        to_dir="/home/htran/blender_documentations/new_blender_manual/blender_docs/"
+        HOME_DIR=
+        from_dir= self.home_dir + "blender_docs/"
+        to_dir = self.home_dir + "blender_docs/"
         github_dir="/home/htran/blender_documentations/github/blender_manual/blender_docs"
 
         exclude_list=["exts/process_doctree.py", "exts/TranslatePO.py", "exts/__pycache__"]

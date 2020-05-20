@@ -51,7 +51,7 @@ For obvious reasons, a property represented by a curve
 cannot have more than **one** value at a given time, hence:
 
 - When you move a control point ahead of a control point that was previously ahead of the point that you are moving,
-  the two control points switch their order in the edited curve, to avoid that the curve goes back in time.
+  the two control points switch their order in the edited curve, to avoid the curve going back in time.
 - For the above reason, it is impossible to have a closed F-curve.
 
 .. list-table:: Two control points switching: the curve cannot go back in time!

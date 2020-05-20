@@ -20,9 +20,9 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> Create tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Create tab`.
 
-Located in the :menuselection:`3D View --> Add --> Curve menu`.
+Located in the :menuselection:`3D Viewport --> Add --> Curve menu`.
 
 
 Information
@@ -57,7 +57,7 @@ Surface Objects, by Folkert de Vries
 
    :Category:  Add Curve
    :Description: Add multiple extra curve object types.
-   :Location: :menuselection:`3D View --> Add --> Curve`
+   :Location: :menuselection:`3D Viewport --> Add --> Curve`
    :File: add_curve_extra_objects folder
    :Author: Multiple Authors
    :Maintainer: Vladimir Spivak (cwolf3d)

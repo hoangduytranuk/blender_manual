@@ -24,7 +24,7 @@ Placement Options
 .. figure:: /images/grease-pencil_modes_draw_stroke-placement_selector.png
    :align: right
 
-   Stroke Placement selector on 3D View header.
+   Stroke Placement selector on 3D Viewport header.
 
 Origin
    Strokes are placed at Grease Pencil object origin.

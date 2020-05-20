@@ -1,3 +1,6 @@
+.. _bpy.types.Camera:
+.. _bpy.ops.camera:
+.. _cameras-index:
 
 *******
 Cameras
@@ -7,8 +10,8 @@ A camera is an object that provides a means of rendering images from Blender.
 It defines which portion of a scene is visible in the rendered image.
 
 Cameras are invisible in renders, so they do not have any material or texture settings.
-However, they do have *Object* and *Editing* setting panels available
-which are displayed when a camera is the selected (active!) object.
+However, they do have *Object* and *Editing* setting panels available which are displayed
+when a camera is the active object.
 
 .. seealso::
 
@@ -85,7 +88,7 @@ Orthographic
 
       Note that this is effectively the only setting which applies to orthographic perspective.
       Since parallel lines do not converge in orthographic mode (no vanishing points),
-      the lens shift settings are equivalent to translating the camera in the 3D View.
+      the lens shift settings are equivalent to translating the camera in the 3D Viewport.
 
       .. figure:: /images/render_cameras_orthographic.svg
          :align: center
@@ -134,12 +137,12 @@ Clip Start and End
 
    .. tip::
 
-      When *Limits* in the *Display* panel is enabled,
-      the clip bounds will be visible as two yellow connected dots on the camera line of sight.
+      When *Limits* in the *Viewport Display* panel is enabled,
+      the clip bounds will be visible as two yellow connected dots on the camera's line of sight.
 
    .. seealso::
 
-      - :doc:`3D View clipping </editors/3dview/properties/sidebar>`
+      - :doc:`3D Viewport clipping </editors/3dview/properties/sidebar>`
 
 
 .. _bpy.types.CameraDOFSettings:
@@ -162,8 +165,6 @@ or by using the distance between the camera and a chosen object:
 
 Focus Object
    Choose an object which will determine the focal point. Linking an object will deactivate the distance parameter.
-   Typically this is used to give precise control over the position of the focal point,
-   and also allows it to be animated or constrained to another object.
 Focal Distance
    Sets the distance to the focal point when no *Focus Object* is specified.
    If *Limits* are enabled, a yellow cross is shown on the camera line of sight at this distance.
@@ -171,7 +172,7 @@ Focal Distance
    .. hint::
 
       Hover the mouse over the *Distance* property and press :kbd:`E` to use a special *Depth Picker*.
-      Then click on a point in the 3D View to sample the distance from that point to the camera.
+      Then click on a point in the 3D Viewport to sample the distance from that point to the camera.
 
 
 Aperture
@@ -337,8 +338,9 @@ Viewport Display
    Camera view displaying safe areas, sensor and name.
 
 Size
-   Size of the camera visualization in the 3D View. This setting has **no** effect on the render output of a camera.
-   The camera visualization can also be scaled using the standard Scale :kbd:`S` transform key.
+   Size of the camera visualization in the 3D Viewport. This setting has **no** effect on
+   the render output of a camera. The camera visualization can also be scaled using
+   the standard Scale :kbd:`S` transform key.
 Limits
    Shows a line which indicates *Start* and *End Clipping* values.
 Mist

@@ -235,7 +235,10 @@
 <p class="caption"><span class="caption-text">Ví dụ về một nút nhóm.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Việc nhóm các nút lại có thể đơn giản hóa một cây nút bằng cách cho phép tạo thực thể và ẩn dấu các phần của cây. Cả hai loại nút, nút chất liệu và nút tổng hợp, đều có thể nhóm lại được.</p>
-<p>Nói một cách khái niệm, việc nhóm các nút lại cho phép bạn chỉ định một <em>tập hợp</em> (set) nhiều nút mà bạn có thể coi nó như là một đơn nút. Các nhóm nút cũng tương tự như các hàm trong lập trình vậy. Sau đó, bạn có thể tái sử dụng chúng nội bên trong, cái mà sau đó được gọi là Nhóm Nút (NodeGroups)hoặc bổ sung thêm vào các Cây Nút (NodeTrees)trong những tập tin blend khác.</p>
+<p>Conceptually, grouping nodes allows you to specify a <em>set</em> of nodes that you can treat as
+though it were &quot;just one node&quot;. Node groups are similar to functions in programming,
+they can be reused in many places in a node tree and
+can be customized by changing the &quot;parameters&quot; of the node group.</p>
 <p>Một ví dụ: Nếu bạn đã tạo một nguyên liệu mà bạn muốn sử dụng với các yếu tố đầu vào khác nhau, chẳng hạn, màu khuếch tán: nhựa màu đỏ, nhựa màu xanh lá cây. Bạn có thể tạo các nguyên liệu riêng biệt cho mỗi màu khác nhau bằng nút <em>Biến thành Đơn Người Dùng</em> (<em>Make Single User</em>) với bản sao của phần cây mô tả vật liệu nhựa. Nếu bạn muốn biên soạn nguyên liệu thì bạn sẽ cần phải chỉnh sửa lại tất cả các nguyên liệu. Một phương pháp tốt hơn để tái sử dụng là tạo các nhóm nút, chỉ cho lộ ra các tham số đầu vào (ví dụ: màu khuếch tán) (<em>diffuse color</em>) chẳng hạn.</p>
 <p>Các bạn cũng có thể sử dụng các nhóm nút lồng với nhau nữa, chẳng hạn, một nhóm nút có thể được chèn vào, hoặc được tạo ra bên trong một nhóm nút khác (cái nọ lồng cái kia).</p>
 <div class="admonition note">
@@ -355,11 +358,12 @@ if the group has a large number of sockets.</p>
 <dd class="field-even"><p><span class="menuselection">Nhóm (Group) ‣ Rã Nhóm (Ungroup)</span></p>
 </dd>
 <dt class="field-odd">Phím Tắt -- Hotkey</dt>
-<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Alt-G</kbd></p>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-Alt-G</kbd></p>
 </dd>
 </dl>
 </div>
-<p>Công cụ <kbd class="kbd docutils literal notranslate">Alt-G</kbd> xóa bỏ nhóm và đặt các cá nhân nút vào không gian làm việc của trình biên soạn của bạn. Việc làm này sẽ không gây ảnh hưởng gì đến các kết nối nội bộ, vào sẽ không có cái nào bị mất mát cả. Lúc này, bạn có thể thêu dệt các nút nội bộ với các nút khác trong không gian làm việc.</p>
+<p>The <kbd class="kbd docutils literal notranslate">Ctrl-Alt-G</kbd> tool removes the group and places the individual nodes into your editor workspace.
+No internal connections are lost, and now you can thread internal nodes to other nodes in your workspace.</p>
 <dl>
 <dt>Tách Phân -- Separate <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Tách phân các nút được chọn ra khỏi nhóm nút.</p>
 <dl class="simple">
@@ -380,11 +384,16 @@ if the group has a large number of sockets.</p>
 <dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
 </dd>
 <dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)</span></p>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Group Insert</span></p>
 </dd>
 </dl>
 </div>
-<p>Chọn một tập hợp các nút, kết thúc bằng nút nhóm đích và nếu mình nhấn vào <span class="menuselection">Nhóm (Group) ‣ Chèn Thêm vào Nhóm (Group Insert)</span> thì mình sẽ di chuyển các nút đã chọn này vào nhóm chọn cuối cùng đó. Các nút đã di chuyển vào sẽ được hội tụ lại thành một nhóm của riêng mình, hòng giữ nguyên bối cảnh kết nối của chúng, đồng thời nhóm sẽ có các nút đầu vào và đầu ra riêng biệt. Các nút đầu vào và đầu ra hiện tại của nhóm, nếu có, sẽ được cập nhật với các ổ cắm mới. Nhóm nút cần phải được biên soạn để chỉ có duy nhất một nút <em>Đầu Vào của Nhóm</em> (Group Input) và một nút <em>Đầu Ra của Nhóm</em> (Group Output) mà thôi.</p>
+<p>Selecting a set of nodes, ending with the destination group node,
+and pressing <span class="menuselection">Node ‣ Group Insert</span> will move those nodes into that group.
+The moved nodes are collected into a group of their own to preserve their connection context,
+having their own group input and output nodes.
+The group's existing input and output nodes are updated with new sockets, if any, from the new nodes.
+The node group must be edited to contain a single <em>Group Input</em> and a single <em>Group Output</em> node.</p>
 </div>
 <div class="section" id="appending-node-groups">
 <h2>Bổ Sung Nhóm Nút -- Appending Node Groups<a class="headerlink" href="#appending-node-groups" title="Permalink to this headline">¶</a></h2>

@@ -62,7 +62,7 @@ Example
 ^^^^^^^
 
 For an example of how to use *Topology Mirror* open up a new Blender scene,
-then delete the default cube and add a Monkey object to the 3D View.
+then delete the default cube and add a Monkey object to the 3D Viewport.
 
 #. Press :kbd:`Tab` to put the Monkey object into *Edit Mode*.
 #. With all the *Mirror Axis* options disabled move one of the Monkey object's vertices slightly.

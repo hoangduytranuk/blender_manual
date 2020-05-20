@@ -232,27 +232,46 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeCrop.png" src="../../../_images/compositing_node-types_CompositorNodeCrop.png" />
 <p class="caption"><span class="caption-text">Nút Cắt Xén.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The Crop Node takes an input image and crops it to a selected region.</p>
+<p>The Crop node crops an input image to a selected region
+by either making the cropped area transparent or by resizing the input image.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <dl class="simple">
-<dt>Hình Ảnh -- Image</dt><dd><p>Đầu vào hình ảnh tiêu chuẩn.</p>
+<dt>Hình Ảnh -- Image</dt><dd><p>Standard image input. If no image is selected, an image filled with the selected color is used.
+You can use and crop this image in combination with another background image.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>Cắt Khổ Ảnh -- Crop Image Size</dt><dd><p>When enabled, the image size is cropped to the specified region.
-When disabled, the image remains the same size, and uncropped areas become transparent pixels.</p>
+<dt>Cắt Khổ Ảnh -- Crop Image Size</dt><dd><p>When disabled, the image remains the same size, but the cropped areas become transparent pixels.
+When enabled, the image size is cropped to the specified region and gets a new width or height or both.</p>
+<p>Note that this will probably reposition the image in the render output
+because the cropped image is automatically centered.</p>
 </dd>
-<dt>Tương Đối -- Relative</dt><dd><p>When enabled, crop dimensions are a percentage of the image's width and height.
+<dt>Tương Đối -- Relative</dt><dd><p>When enabled, crop dimensions are a percentage of the input image's width and height.
 When disabled, the range of the <em>Crop Region Values</em> are the width and height of the image in pixels.</p>
 </dd>
-<dt>Giá Trị của Vùng Cắt -- Crop Region Values</dt><dd><p>Define borders of the crop region.</p>
-<p>lower, upper, left, right</p>
+<dt>Giá Trị của Vùng Cắt -- Crop Region Values</dt><dd><p>Define borders of the crop region; <em>Left</em> or <em>Right</em> can vary between 0 and the width of the image.
+<em>Up</em> or <em>Down</em> can vary between 0 and the height of the image.</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The terminology (<em>Left</em>, <em>Right</em>, <em>Up</em>, <em>Down</em>) can be misunderstood easily.
+First, the numbers do not represent the amount of cropping,
+e.g. <em>Left</em> is set 50 and <em>Right</em> to 50 does not mean that you will be
+cropping the image for 50 pixels on both the left and right side.
+In fact, it will result in zero-sized image because you are cropping from pixel 50 to pixel 50.
+So, the numbers defines a position in the input image.</p>
+<p>Secondly, depending on which one is bigger, <em>Left</em> should be interpreted as <em>Right</em> and vice versa.
+If <em>Left</em> is greater than <em>Right</em> then both values are switched and <em>Left</em> gets the value of <em>Right</em> and vice versa.
+The same operation is done for <em>Up</em> and <em>Down</em>, where you can think of them as the top and bottom of the image.</p>
+<p>Thirdly, the terms <em>Up</em> and <em>Down</em> are ambiguous and suggest an action; e.g. &quot;Crop down&quot;.
+The values, however, are not amounts but positions.
+The term <em>Down</em> should be interpreted as &quot;Bottom&quot; and <em>Up</em> as top.</p>
+</div>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
@@ -260,6 +279,21 @@ When disabled, the range of the <em>Crop Region Values</em> are the width and he
 <dt>Hình Ảnh -- Image</dt><dd><p>Đầu ra tiêu chuẩn của hình ảnh.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The following workflow removes some possible confusion:</p>
+<ol class="arabic simple">
+<li><p>Uncheck <em>Crop Image Size</em> for this step, so that you can see the borders of the input image.
+To see this border, you have to select the Viewer node.</p></li>
+<li><p>If you don't need pixel-perfect cropping, check <em>Relative</em> so that
+you do not have to consider the exact dimensions of the input image.</p></li>
+<li><p>Set <em>Left</em> and <em>Down</em> to zero. Set <em>Right</em> and <em>Up</em> to one, or to the width and height of the input image.
+You should see now the entire input image in the backdrop. <em>Up</em> is thus interpreted as the top of the image.
+The origin of the image (0, 0) is at the bottom (down) left corner.</p></li>
+<li><p>To crop from the left, change the <em>Left</em> value. To crop from the right, change the <em>Right</em> value.
+To crop from the top, change the <em>Up</em> value. To crop from the bottom, change the <em>Down</em> value.</p></li>
+</ol>
 </div>
 </div>
 

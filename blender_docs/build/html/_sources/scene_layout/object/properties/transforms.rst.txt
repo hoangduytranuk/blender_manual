@@ -45,7 +45,7 @@ Rotation
 
       Euler
          The gizmo handles are aligned to the :term:`Euler` axis,
-         allowing you to see the discreet XYZ axis underlying the euler rotation,
+         allowing you to see the discreet XYZ axis underlying the Euler rotation,
          as well as possible :term:`gimbal lock`.
       Axis Angle
          The X, Y, and Z coordinates define a point relative to the object origin.

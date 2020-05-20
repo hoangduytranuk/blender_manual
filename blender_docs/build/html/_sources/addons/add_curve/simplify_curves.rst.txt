@@ -27,7 +27,7 @@ Interface
 =========
 
 The *Merge By Distance* and *Curve Simplify* buttons are located in
-the :menuselection:`3D View --> Curve Context Menu` in curve Edit Mode.
+the :menuselection:`3D Viewport --> Curve Context Menu` in curve Edit Mode.
 
 The *Simplify F-Curves* buttons are located in
 the :menuselection:`Dope Sheet --> Action --> Graph Editors --> Channel menu`.
@@ -37,8 +37,8 @@ the :menuselection:`Dope Sheet --> Action --> Graph Editors --> Channel menu`.
    :class: refbox
 
    :Category:  Add Curve
-   :Description: Simplify curves in the 3D View, and Dope Sheet, merge by distance in 3D View.
-   :Location: :menuselection:`3D View --> Add --> Curve --> Curve Simplify`,
+   :Description: Simplify curves in the 3D Viewport, and Dope Sheet, merge by distance in 3D Viewport.
+   :Location: :menuselection:`3D Viewport --> Add --> Curve --> Curve Simplify`,
               :menuselection:`Dope Sheet and Graph editors --> Channel --> Simplify F-Curves`
    :File: curve_simplify.py
    :Author: testscreenings, Michael Soluyanov

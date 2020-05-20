@@ -19,7 +19,6 @@
    laplacian_smooth.rst
    blend_shape.rst
    propagate_shapes.rst
-   merge_vertices.rst
    vertex_groups.rst
    hooks.rst
    make_vertex_parent.rst

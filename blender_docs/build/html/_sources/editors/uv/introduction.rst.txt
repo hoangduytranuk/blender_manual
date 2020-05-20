@@ -67,8 +67,8 @@ each point on the object will have corresponding U and V coordinates.
 Advantages of UVs
 =================
 
-While procedural textures (described in the previous chapters) are useful -- they never repeat
-themselves and always "fit" 3D objects -- they are not sufficient for more complex or natural objects.
+While procedural textures are useful -- they never repeat themselves and always "fit" 3D objects
+-- they are not sufficient for more complex or natural objects.
 For instance, the skin on a human head will never look quite right when procedurally generated.
 Wrinkles on a human head, or scratches on a car do not occur in random places,
 but depend on the shape of the model and its usage. Manually-painted images,
@@ -84,7 +84,7 @@ since it is as if the mesh were unfolded onto a 2D plane.
 
 For most simple 3D models, Blender has an automatic set of unwrapping algorithms that you can easily apply.
 For more complex 3D models, regular Cubic, Cylindrical or Spherical mapping, is usually not sufficient.
-For even and accurate projection, use seams to guide the UV mapping.
+For even and accurate projection, use :doc:`seams </modeling/meshes/uv/unwrapping/seams>` to guide the UV mapping.
 This can be used to apply textures to arbitrary and complex shapes,
 like human heads or animals. Often these textures are painted images,
 created in applications like the Gimp, Krita, or your favorite painting application.
@@ -102,6 +102,15 @@ Header
 
 The header contains several menus and options for working with UVs.
 
+Sync Selection
+   Keeps UV and mesh part selections in sync.
+Selection Modes
+   - Vertex
+   - Edge
+   - Face
+   - Island (Only available if *Sync Selection* is turned off)
+Sticky Selection Mode
+   When *Sync Selection* is disabled, these options control how UVs are selected.
 View
    Tools for controlling how the content is displayed in the editor.
    See :doc:`/editors/uv/navigating`.
@@ -112,22 +121,12 @@ Image
 UVs
    Contains tools for :doc:`Unwrapping Meshes </modeling/meshes/uv/unwrapping/index>`
    and :doc:`Editing UVs </modeling/meshes/uv/editing>`.
-
 Pivot
-   Similar to working with pivot points in the 3D View.
-Sync Selection
-   Keeps UV and mesh part selections in sync.
-Selection Modes
-   - Vertex
-   - Edge
-   - Face
-   - Island
-Sticky Selection Mode
-   When *Sync Selection* is disabled, these options control how UVs are selected.
+   Similar to working with pivot points in the 3D Viewport.
+UV Snapping
+   Similar to Snapping in the 3D Viewport.
 Proportional Editing
    See :doc:`Proportional Editing </editors/3dview/controls/proportional_editing>`.
-UV Snapping
-   Similar to Snapping in the 3D View.
 Active UV Texture Map Selector
    Select which UV texture to use.
 
@@ -140,6 +139,9 @@ Image Tab
 
 UV Vertex
    Transform Properties :doc:`Selecting UVs </modeling/meshes/uv/editing>`.
+
+UDIM Grid
+   Allows you to control the grid size of :doc:`UDIM </modeling/meshes/uv/workflows/udims>` tiles.
 
 
 Tool Tab
@@ -156,3 +158,6 @@ Display
 
 2D Cursor
    Control 2D cursor location.
+
+Annotations
+   Options for the :doc:`annotation tool </interface/annotate_tool>`.

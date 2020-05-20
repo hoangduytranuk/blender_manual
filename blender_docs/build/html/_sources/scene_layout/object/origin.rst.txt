@@ -41,8 +41,7 @@ Type
       Moves the model to the origin and this way the origin of the object will
       also be at the center of the object.
    Origin to Geometry
-      Moves the origin to the center of the object and this way origin of
-      the object will also be at the center of the object.
+      Moves the origin to the center of the object.
    Origin to 3D Cursor
       Moves the origin of the model to the position of the 3D cursor.
    Origin to Center of Mass

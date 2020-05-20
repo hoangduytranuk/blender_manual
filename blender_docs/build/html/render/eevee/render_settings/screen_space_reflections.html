@@ -254,11 +254,11 @@ Subsurface scattering, volumetrics, screen space reflections, screen space refra
 <dt>Khúc Xạ -- Refractions</dt><dd><p>Screen space refractions work the same way as screen space reflections and use the same parameters.
 But they are not enabled by default on all surfaces.
 Enabling it will have a small performance cost.
-You need to enable them in <span class="menuselection">Material Properties ‣ Options</span>.
-Materials using screen space refractions will not be able to cast screen space reflections.</p>
+You need to enable them in <span class="menuselection">Material Properties ‣ Settings</span>.
+Materials using screen space refractions will not cast screen space reflections.</p>
 </dd>
-<dt>Dò Tia Bán Độ Phân Giải -- Half Resolution Trace</dt><dd><p>Use half resolution ray tracing. Only cast a ray for every fourth pixels.
-Enabling this option reduces drastically video memory usage and increased performance at the cost of quality.</p>
+<dt>Dò Tia Bán Độ Phân Giải -- Half Resolution Trace</dt><dd><p>Use half resolution ray tracing. Only cast a ray for every fourth pixel.
+Enabling this option drastically reduces video memory usage and increases performance at the cost of quality.</p>
 </dd>
 <dt>Độ Chính Xác của Dò Tia -- Trace Precision</dt><dd><p>Increases precision of the ray trace but introduces more noise and lowers the maximum trace distance.
 Increased precision also increases performance cost.</p>
@@ -266,9 +266,10 @@ Increased precision also increases performance cost.</p>
 <dt>Độ Dày -- Thickness</dt><dd><p>How thick to consider the pixels of the depth buffer during the tracing.
 Higher values will stretch the reflections and add flickering. Lower values may make the ray miss surfaces.</p>
 </dd>
-<dt>Mờ Dần Cạnh -- Edge Fading</dt><dd><p>Smoothly fade out the reflected pixels if they are close to a screen edge. The unit is in screen percentage.</p>
+<dt>Mờ Dần Cạnh -- Edge Fading</dt><dd><p>Smoothly fade out the reflected and refracted pixels if they are close to a screen edge.
+The unit is in screen percentage.</p>
 </dd>
-<dt>Hạn Định -- Clamp</dt><dd><p>Clamp the reflected color intensity to remove noise and fireflies.</p>
+<dt>Hạn Định -- Clamp</dt><dd><p>Clamp the reflected color intensity to remove noise and <a class="reference internal" href="../../../glossary/index.html#term-fireflies"><span class="xref std std-term">Fireflies</span></a>.</p>
 </dd>
 </dl>
 <div class="admonition seealso">

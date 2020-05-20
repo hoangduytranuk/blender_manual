@@ -211,7 +211,7 @@ For reference, here is a table of data-blocks types stored in blend-files.
      - |none|
      - | 2D/3D sketch data used by Grease Pencil objects.
        | Used as overlay *helper* info, by the
-       | 3D View, Image, Sequencer & Movie Clip editors.
+       | 3D Viewport, Image, Sequencer & Movie Clip editors.
    * - :doc:`Collection </scene_layout/collections/introduction>`
      - |tick|
      - |none|

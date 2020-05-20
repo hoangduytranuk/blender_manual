@@ -40,7 +40,7 @@ Pointing
 
 Holding :kbd:`MMB` after starting a transformation lets you select an axis to constrain to.
 A visual option to constrain the translation will be available,
-showing the three axes in the 3D View space. A dotted white line is used as a pointer.
+showing the three axes in the 3D Viewport space. A dotted white line is used as a pointer.
 The axis of choice to confirm the operation
 will depend on the highlighted axis about which the :kbd:`MMB` is released.
 
@@ -103,7 +103,7 @@ Finally, a third key press of the same key removes constraints.
 
 The orientation can be set
 in the :doc:`Transform Orientation </editors/3dview/controls/orientation>`
-selector of the 3D View header.
+selector of the 3D Viewport header.
 
 .. or independent in the :ref:`ui-undo-redo-adjust-last-operation` panel?
 
@@ -112,7 +112,7 @@ pressing :kbd:`G` to start translation, followed by :kbd:`Z` will lock translati
 in the Z direction relative to the *Global* orientation, pressing :kbd:`Z`
 again will lock translation to the Z axis relative to the *Normal* orientation.
 Pressing :kbd:`Z` again will remove all constraints.
-The current mode will be displayed in the left-hand side of the *3D View header*.
+The current mode will be displayed in the left-hand side of the *3D Viewport header*.
 
 .. list-table:: Axis locking modes.
 

@@ -241,7 +241,7 @@ is a better solution.</p>
 <p>By default objects only have a single material slot, which assigns a material to the entire object.
 If different parts of the mesh need different materials, multiple material slots can be created.</p>
 <div class="figure align-default" id="id2">
-<img alt="../../_images/render_materials_assignment_panel-object-mode-BI.png" src="../../_images/render_materials_assignment_panel-object-mode-BI.png" />
+<img alt="../../_images/render_materials_assignment_panel-object-mode.png" src="../../_images/render_materials_assignment_panel-object-mode.png" />
 <p class="caption"><span class="caption-text">Material slots panel.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="slot-list">
@@ -257,6 +257,8 @@ If different parts of the mesh need different materials, multiple material slots
 <dt>Paste Material</dt><dd><p>Paste material shader nodes and settings from clipboard.</p>
 </dd>
 <dt>Copy Material to Selected</dt><dd><p>Copy the same material assignment from the active to other selected objects.</p>
+</dd>
+<dt>Remove Unused Slots</dt><dd><p>Removes all material slots not assigned to the object.</p>
 </dd>
 </dl>
 </div>
@@ -290,7 +292,7 @@ See <a class="reference internal" href="../../files/introduction.html"><span cla
 <p>To assign materials to different parts of a mesh, enter Edit Mode on the mesh.
 Additional buttons will then appear in the material slots panel.</p>
 <div class="figure align-default" id="id3">
-<img alt="../../_images/render_materials_assignment_panel-edit-mode-BI.png" src="../../_images/render_materials_assignment_panel-edit-mode-BI.png" />
+<img alt="../../_images/render_materials_assignment_panel-edit-mode.png" src="../../_images/render_materials_assignment_panel-edit-mode.png" />
 <p class="caption"><span class="caption-text">Material slots panel in Edit Mode.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
@@ -320,13 +322,12 @@ To use one, just click on it.</p>
 For example, by entering &quot;wood&quot; all existent materials are filtered so that
 only materials containing &quot;wood&quot; are displayed in the list.</p>
 </div>
-<p><em>Multiple Objects</em> -- In the 3D View, with <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd>
+<p><em>Multiple Objects</em> -- In the 3D Viewport, with <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd>
 you can quickly link all selected objects to the material (and other aspects)
 of the <a class="reference internal" href="../../scene_layout/object/selecting.html#object-active"><span class="std std-ref">active object</span></a>.
 Very useful if you need to set a large number of objects to the same material;
 just select all of them,
-then the object that has the desired material, and <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd> links them to that &quot;parent&quot;.
-(See Tip on Linking Data in Creating about data linking.)</p>
+then the object that has the desired material, and <kbd class="kbd docutils literal notranslate">Ctrl-L</kbd> links them to that &quot;parent&quot;.</p>
 </div>
 <div class="section" id="deleting-a-material">
 <h2>Deleting a Material<a class="headerlink" href="#deleting-a-material" title="Permalink to this headline">¶</a></h2>
@@ -351,21 +352,13 @@ you use the Material Slots options in the Materials header panel.</p>
 <p>The workflow for applying a second material to some faces of an object covered by
 a base material is as follows:</p>
 <ol class="arabic simple">
-<li><p>In Object Mode, apply the base material to the whole object.</p></li>
-<li><p>Create/select the second material (the whole object will change to this new material).</p></li>
-<li><p>In the Active Material list, reselect the base material.</p></li>
-<li><p>Go into Edit Mode and Face Select (a new list appears above
-the Active Material list with <em>Assign</em>/<em>Select</em>/<em>Deselect</em> buttons).</p></li>
-<li><p>Select the face/faces to be colored with the second material.</p></li>
-<li><p>In the Object Material Slots list, click the <code class="docutils literal notranslate"><span class="pre">+</span></code> button to create a new slot, and while this is still active,
-click on the second material in the Available Materials list.</p></li>
-<li><p>Click the <em>Assign</em> button, and the second material will appear on the selected object faces.</p></li>
+<li><p>In Object Mode, create a base material.</p></li>
+<li><p>Go into Edit Mode and Face Select (a new list will appear below
+the Active Material list with <em>Assign</em>, <em>Select</em>, <em>Deselect</em> buttons).</p></li>
+<li><p>Select the faces to be colored with the second material.</p></li>
+<li><p>In the Object Material Slots list, click the <code class="docutils literal notranslate"><span class="pre">+</span></code> button to create a new slot or select an existing material.</p></li>
+<li><p>Click the <em>Assign</em> button, and the material will appear on the selected object faces.</p></li>
 </ol>
-<p>You can also make this new material a copy of an existing material by adding the data-block:</p>
-<p>Select the object, get the material, <kbd class="kbd docutils literal notranslate">RMB</kbd> and Copy data to clipboard.
-When you have renamed the material, click &quot;Link: Data&quot; to link to the existing material.
-Proceed to assign faces as required.
-N.b: If you change the material on the original object, the new object color changes too.</p>
 </div>
 </div>
 

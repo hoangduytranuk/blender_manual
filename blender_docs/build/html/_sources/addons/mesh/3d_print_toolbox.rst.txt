@@ -8,7 +8,7 @@
 
    :Category:  Mesh
    :Description: Utilities for 3D printing.
-   :Location: :menuselection:`3D View --> Sidebar`
+   :Location: :menuselection:`3D Viewport --> Sidebar`
    :File: object_print3d_utils folder
    :Author: Campbell Barton
 

@@ -15,7 +15,7 @@ all of the :term:`data users <Data User>` when edited.
 
 Type
    Shows an icon indicating the data-block type. It opens up the following pop-up menu.
-   The data-block can be dragged from here e.g. to drag a material onto an object in the 3D View or
+   The data-block can be dragged from here e.g. to drag a material onto an object in the 3D Viewport or
    into a :ref:`ui-data-id` field.
 
    List

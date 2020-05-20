@@ -21,7 +21,7 @@ Interface
    :align: right
    :width: 310px
 
-Located in the :menuselection:`3D View --> Add --> Mesh` menu.
+Located in the :menuselection:`3D Viewport --> Add --> Mesh` menu.
 
 Discombobulator works in mesh Object Mode and mesh Edit Mode.
 
@@ -30,7 +30,7 @@ Instructions
 ============
 
 #. Select the quad faces you want to add greebles to.
-#. :menuselection:`3D View --> Add --> Mesh --> Discombobulator`.
+#. :menuselection:`3D Viewport --> Add --> Mesh --> Discombobulator`.
 #. Now you will see the interface but nothing happens to the mesh.
 #. It's useful at this point to read the *Usage Information* at the top of the panel.
 #. With the default settings press *OK* and you will see a new mesh object created that has raised areas.
@@ -91,7 +91,7 @@ These settings allow you to add materials to the sides and tops of the protrusio
 
    :Category:  Add Mesh
    :Description: Add Greeble type effect to a mesh.
-   :Location: :menuselection:`3D View --> Add --> Mesh`
+   :Location: :menuselection:`3D Viewport --> Add --> Mesh`
    :File: add_mesh_discombobulator folder
    :Author: Evan J. Rosky (syrux)
    :Maintainer: To Do

@@ -24,7 +24,7 @@ Dope Sheet Modes
 
    Dope Sheet modes.
 
-While the Dope Sheet Mode allow you to edit multiple actions at once,
+While the Dope Sheet Mode allows you to edit multiple actions at once,
 the other ones are dedicated to view and edit specific data-blocks used in different context of animation.
 
 - Dope Sheet

@@ -248,45 +248,52 @@
 </dd>
 </dl>
 </div>
-<p>The ruler is an interactive tool where you can drag lines in the scene to measure distances or angles.
-Optionally snapping to geometry could be activated for better accuracy or to measure wall thickness.
-The ruler can be accessed from the Toolbar.</p>
+<p>The <em>Measure</em> tool is an interactive tool where you can drag lines in the scene to measure distances or angles.
+Snapping to geometry could be activated for better accuracy or to measure wall thickness.
+The <em>Measure</em> tool can be accessed from the Toolbar.</p>
 <div class="figure align-default" id="id1">
 <img alt="../../../_images/editors_3dview_toolbar_measure_ruler-example.png" src="../../../_images/editors_3dview_toolbar_measure_ruler-example.png" />
-<p class="caption"><span class="caption-text">Example of the ruler and protractor.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Examples of the Measure tool.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Here are common steps for using the ruler:</p>
+<p>Here are some common steps for using the <em>Measure</em> tool:</p>
 <ol class="arabic simple">
-<li><p>Activate the Ruler from the Toolbar.</p></li>
-<li><p>Click and drag in the viewport to define the initial start/end point for the ruler.</p></li>
-<li><p>Orbit the view and click on either end of the ruler to re-position it.
-Holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> enables snap to elements.</p></li>
-<li><p>Click on the middle to measure angles.</p></li>
-<li><p>Press <kbd class="kbd docutils literal notranslate">Return</kbd> to store the ruler for later use or <kbd class="kbd docutils literal notranslate">Esc</kbd> to cancel.</p></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Ghi chú</p>
-<p>Editing operations can be used while the ruler is running,
-however, tools like the knife cannot be used at the same time.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Ghi chú</p>
-<p>Unit settings and scale from the scene are used for displaying dimensions.</p>
-</div>
-</div>
-<div class="section" id="shortcuts">
-<h2>Shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this headline">¶</a></h2>
+<li><p>Activate the <em>Measure</em> tool from the Toolbar.</p></li>
+<li><p>Click and drag in the viewport to define the initial start and end point for the ruler or protractor.
+You can add multiple measurements in the viewport.</p></li>
+<li><p>Click on either end of the ruler to move it. You can always navigate (pan, zoom, ...)
+or change the view (orthogonal, perspective) in the viewport to have better access to the ruler.</p>
 <ul class="simple">
-<li><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> Adds new ruler.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> Drag end points to place them, hold <kbd class="kbd docutils literal notranslate">Ctrl</kbd> to snap, hold <kbd class="kbd docutils literal notranslate">Shift</kbd> to measure thickness.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">LMB</kbd> Drag the center point to measure angles, drag out of the view to convert back to a ruler.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Delete</kbd> Deletes the ruler.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Ctrl-C</kbd> Copies the rulers value to the clipboard.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Esc</kbd> Exit tool.</p></li>
-<li><p><kbd class="kbd docutils literal notranslate">Return</kbd> Saves the rulers for the next time the tool is activated.</p></li>
+<li><p>Holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while moving enables snap to edges and vertices.
+More precise measurements are possible this way.
+A small circle appears when the end point is snapped to a vertex or edge.</p></li>
+<li><p>Holding <kbd class="kbd docutils literal notranslate">Shift</kbd> while moving lets you measure the distance between faces.
+This works well only with parallel faces, e.g. walls.</p></li>
 </ul>
+</li>
+<li><p>Click on the midpoint of a created ruler to convert it to a protractor.
+Move this midpoint to set the vertex of the angle.
+Holding down <kbd class="kbd docutils literal notranslate">Ctrl</kbd> enables snap to edges and vertices.
+Move the endpoints to change the angle size.</p></li>
+<li><p>A selected ruler can be deleted with <kbd class="kbd docutils literal notranslate">Delete</kbd> or  <kbd class="kbd docutils literal notranslate">X</kbd>.
+To delete all measurements, make the <span class="menuselection">Sidebar ‣ View ‣ Annotations</span> panel visible.
+Delete the &quot;RulerData3D&quot; layer (see image above).</p></li>
+<li><p>You can copy the measurement value to the clipboard with <kbd class="kbd docutils literal notranslate">Ctrl-C</kbd>.</p></li>
+</ol>
+<p>All measurements are hidden when another tool is selected.
+They are shown when the <em>Measure</em> tool is selected again.
+Yet you can be do editing operations while the ruler is active.
+For example, you can edit the rotation or dimension of the selected object in the Sidebar.
+The measurement values do not appear in the Render output.</p>
+<p>Unit settings and scale from the scene are used for displaying dimensions.
+Changing the units system (metric, imperial), or the units of length (cm, m, ...),
+or angle (degrees, radians) will update the measurements.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>There is also a <em>Measurement</em> setting in the <em>Viewport Overlays</em> panel.
+Edge length, edge angle, face area and face angle can be displayed in Edit Mode through this setting.</p>
+</div>
 </div>
 </div>
 

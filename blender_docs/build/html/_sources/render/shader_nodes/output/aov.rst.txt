@@ -35,7 +35,7 @@ Properties
 
 Name
    The name of the render pass to assign the input value to.
-   This property is the same *Name* that is specified in the :ref:`Shader AOV <render-cycles-passes-aov>` panel.
+   This property has the same *Name* that is specified in the :ref:`Shader AOV <render-cycles-passes-aov>` panel.
 
 
 Outputs

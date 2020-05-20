@@ -14,3 +14,4 @@
    warp.rst
    randomize.rst
    shrink-fatten.rst
+   skin_resize.rst

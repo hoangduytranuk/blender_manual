@@ -67,7 +67,7 @@ Mapping
 
 Angle :kbd:`Ctrl-F`
    This is the rotation angle of the texture brush.
-   It can be changed interactively via :kbd:`Ctrl-F` in the 3D View.
+   It can be changed interactively via :kbd:`Ctrl-F` in the 3D Viewport.
    While in the interactive rotation you can enter a value numerically as well.
 
    Rake :kbd:`R`

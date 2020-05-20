@@ -61,21 +61,21 @@ The node map below shows how to do this using the Set Alpha node.
 
 In the example above, the alpha channel of the swirl image is ignored.
 Instead, a :doc:`Time node </compositing/types/input/time>`
-introduces a factor from 0.00 to 1.00 over 60 frames, or about 2 seconds,
+introduces a factor from 0.0 to 1.0 over 60 frames, or about 2 seconds,
 to the Set Alpha node. Note that the time curve is exponentially-shaped,
 so that the overall blackness will fade in slowly and then accelerate toward the end.
 The Set Alpha node does not need an input image; instead, the flat (shadeless) black color is used.
 The Set Alpha Node uses the input factor and color to create a black image that has an alpha
-set which goes from 0.00 to 1.00 over 60 frames, or completely transparent to completely opaque.
+set which goes from 0.0 to 1.0 over 60 frames, or completely transparent to completely opaque.
 Think of alpha as a multiplier for how vivid you can see that pixel.
-These two images are combined by the Alpha Over node completely (a *Factor* of 1.00)
+These two images are combined by the Alpha Over node completely (a *Factor* of 1.0)
 to produce the composite image. The Set Alpha node will thus, depending on the frame being rendered,
 produce a black image that has some degree of transparency.
 Setup and Animate, and you have an image sequence that fades to black over a 2-second period.
 
 .. note:: No Scene Information Used
 
-   This example node map does not use the Render Layer node.
+   This example node tree does not use the Render Layer node.
    To produce this 2-second animation, no Blender scene information was used.
    This is an example of using Blender's powerful compositing abilities
    separate from its modeling and animation capabilities.

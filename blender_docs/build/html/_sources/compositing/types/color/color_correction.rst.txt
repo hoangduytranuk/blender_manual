@@ -16,7 +16,7 @@ Properties
 ==========
 
 Red, Green, Blue
-   Specifies which RGB channels will be affected by correction.
+   Specifies which RGB channels will be affected by the correction.
 
 
 Correction Tools (Columns)

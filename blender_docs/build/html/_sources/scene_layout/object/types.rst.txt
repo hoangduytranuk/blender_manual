@@ -11,7 +11,7 @@ Object Types
    :Menu:      :menuselection:`Add`
    :Hotkey:    :kbd:`Shift-A`
 
-New objects can be created with the *Add* menu in the 3D View's header.
+New objects can be created with the *Add* menu in the 3D Viewport's header.
 
 :doc:`Mesh </modeling/meshes/introduction>`
    Objects composed of vertices, edges and polygonal faces

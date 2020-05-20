@@ -179,7 +179,7 @@ Color Space
    for example, PNG or JPEG images are often stored in sRGB, while OpenEXR images are stored in a linear color space.
    Some images such as normal, bump or stencil maps do not strictly contain 'colors',
    and on such values, no color space conversion should ever be applied.
-   For such images, the color space should be set to *None*.
+   For such images, the color space should be set to *Non-Color*.
 
 By default only renders are displayed and saved with the render view transformations applied.
 These are the Render Result and Viewer image data-blocks,

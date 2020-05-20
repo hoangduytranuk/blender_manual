@@ -230,7 +230,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="surface-deform-modifier">
-<h1>-- Surface Deform Modifier<a class="headerlink" href="#surface-deform-modifier" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-types-surfacedeformmodifier"></span><h1>-- Surface Deform Modifier<a class="headerlink" href="#surface-deform-modifier" title="Permalink to this headline">¶</a></h1>
 <p>The <em>Surface Deform</em> modifier allows an arbitrary mesh surface to
 control the deformation of another, essentially transferring its motion/deformation.
 One great use for this is to have a proxy mesh for cloth simulation,
@@ -245,7 +245,7 @@ which would otherwise not be suitable for simulation.</p>
 <dl>
 <dt>Mục Tiêu -- Target</dt><dd><p>The object to which to bind (this setting is unavailable after binding).</p>
 </dd>
-<dt>Dốc Suy Giảm của Nội Suy -- Interpolation falloff</dt><dd><p>How much a vertex bound to one face of the target will be affected by the surrounding faces
+<dt>Interpolation Falloff</dt><dd><p>How much a vertex bound to one face of the target will be affected by the surrounding faces
 (this setting is unavailable after binding).
 This essentially controls how smooth the deformations are.</p>
 <div class="admonition note">
@@ -253,6 +253,16 @@ This essentially controls how smooth the deformations are.</p>
 <p>While lower values result in smoother deformations,
 they may also introduce slight artifacts.</p>
 </div>
+</dd>
+<dt>Vertex Group</dt><dd><p>Allows you to define the influence per vertex.</p>
+<dl>
+<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
+now represents vertices that will not be deformed by the modifier.</p>
+<p>The setting reverses the weight values of the group.</p>
+</dd>
+</dl>
+</dd>
+<dt>Strength</dt><dd><p>The overall amount of influence the modifier has on deforming the mesh.</p>
 </dd>
 <dt>Kết Buộc -- Bind</dt><dd><p>Bind the current state of the modified mesh to the current state of the target mesh,
 such that any later change in the target mesh will deform the modified mesh as well.

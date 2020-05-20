@@ -18,7 +18,7 @@ These settings are used to control :doc:`Adaptive Subdivision </render/cycles/ob
 
 Render
    Size of :term:`micropolygons` in pixels.
-Preview
+Viewport
    Size of :term:`micropolygons` in pixels while preview rendering.
 
 .. _bpy.types.CyclesRenderSettings.offscreen_dicing_scale:

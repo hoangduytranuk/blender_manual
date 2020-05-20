@@ -223,13 +223,18 @@
             
   <div class="section" id="volumes">
 <h1>-- Volumes<a class="headerlink" href="#volumes" title="Permalink to this headline">¶</a></h1>
-<p>Volume rendering can be used to render effects like fire, smoke, mist, absorption in glass,
-and many other effects that cannot be represented by surface meshes alone.</p>
-<p>To set up a volume, you create a mesh that defines the bounds within which the volume exists.
-In the material you typically remove the surface nodes and instead connect volume nodes to
-define the shading inside the volume.
-For effects such as absorption in glass you can use both a surface and volume shader.
-The world can also use a volume shader to create effects such as mist.</p>
+<p>Volume rendering is used to render various effects that cannot be represented by hard surfaces alone.</p>
+<ul class="simple">
+<li><p>Smoke, fire or clouds are set up using a volume object or fluid simulation,
+with only a volume shader.</p></li>
+<li><p>Meshes can also be used to create such shapes by removing the default surface shader
+and using a volume shader with the mesh shape defining the volume bounds
+and textures defining the volume density.</p></li>
+<li><p>Mist is created with a volume shader for the world,
+or with a large mesh object encompassing the scene.</p></li>
+<li><p>Absorption in glass is simulated by combining a glass surface shader with refraction
+and a volume absorption shader for the interior of the object.</p></li>
+</ul>
 <div class="section" id="shading">
 <h2>Tô Bóng -- Shading<a class="headerlink" href="#shading" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="principled-volume">

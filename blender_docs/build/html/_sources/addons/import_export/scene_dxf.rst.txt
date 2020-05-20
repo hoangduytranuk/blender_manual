@@ -210,7 +210,7 @@ Unsupported Data
 - Light: ``POINT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
 - Empty: ``POINT`` or (wip: ``INSERT``)
 - Object matrix: extrusion (``210-group``), rotation, elevation
-- 3D View: (wip: ``VIEW``, ``VPORT``)
+- 3D Viewport: (wip: ``VIEW``, ``VPORT``)
 - Instancing vert: auto-instanced or (wip: ``INSERT``)
 - Instancing frame: auto-instanced or (wip: ``INSERT``)
 - Instancing group: auto-instanced or (wip: ``INSERT``)

@@ -33,7 +33,10 @@ Volume
 Properties
 ==========
 
-This node has no properties.
+Target
+   Render engine the input shaders are used for.
+   By default shaders are shared between Cycles and Eevee,
+   with multiple output nodes specialized shader setups can be created for each.
 
 
 Outputs

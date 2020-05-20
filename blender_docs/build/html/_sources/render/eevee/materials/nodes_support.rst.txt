@@ -45,7 +45,7 @@ So be sure to check out the Cycles section of this manual for that.
 
 .. seealso::
 
-   :doc:`Material </render/shader_nodes/shader/index>`.
+   :doc:`Materials </render/shader_nodes/shader/index>`.
 
 Although most BSDFs are supported, many of them are approximations and are not feature complete.
 
@@ -57,7 +57,7 @@ Emission
 
 Glass / Refraction BSDF
    Does not refract lights. Does not support Beckmann and GGX Multiscatter distribution.
-   See limitation of Refraction.
+   See :ref:`Refraction limitations <eevee-limitations-refraction>`.
 
 Glossy BSDF
    Does not support Beckmann, Ashikhmin-Shirley and GGX Multiscatter distribution.
@@ -87,7 +87,7 @@ Volume Scatter
    Also see :ref:`Volume Limitation <eevee-limitations-volumetrics>`.
 
 Principled Volume
-   Same as Volume Scatter. Also see :ref:`Volume Limitation <eevee-limitations-volumetrics>`.
+   Same as Volume Scatter. See :ref:`Volume Limitation <eevee-limitations-volumetrics>`.
 
 Holdout
    Partially supported, using :ref:`Blend Modes <bpy.types.Material.blend_method>`

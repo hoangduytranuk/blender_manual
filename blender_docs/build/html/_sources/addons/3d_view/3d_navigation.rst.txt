@@ -16,7 +16,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> View tab`
+Located in the :menuselection:`3D Viewport --> Sidebar --> View tab`
 This add-on is split over two panels.
 
 
@@ -92,8 +92,8 @@ Roll Left/Right
    :class: refbox
 
    :Category:  3D View
-   :Description: Navigate the 3D View and camera from the Sidebar.
-   :Location: :menuselection:`3D View --> Sidebar --> View tab`
+   :Description: Navigate the 3D Viewport and camera from the Sidebar.
+   :Location: :menuselection:`3D Viewport --> Sidebar --> View tab`
    :File: space_view3d_3d_navigation.py
    :Author: Demohero, uriel, meta-androcto
    :Maintainer: Brendon Murphy (meta-androcto)

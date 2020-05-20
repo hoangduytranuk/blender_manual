@@ -38,7 +38,7 @@ Axis Object
 Angle
    Degrees for a single helix revolution.
 Steps
-   Number of steps used for a single revolution displayed in the 3D View. Beware of setting this higher than
+   Number of steps used for a single revolution displayed in the 3D Viewport. Beware of setting this higher than
    *Render Steps*, which is the value used for rendering.
 Render Steps
    As above, but used during render time. Increase to improve quality.

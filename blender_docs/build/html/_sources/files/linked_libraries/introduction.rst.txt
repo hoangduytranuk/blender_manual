@@ -57,7 +57,7 @@ When you link an object, it will be placed in your scene at the 3D cursor positi
 Many other data types, cameras, curves, and materials for example,
 must be linked to an object before they become visible.
 
-Newly added collections types are available in :menuselection:`Add --> Collection Instance` in the 3D View.
+Newly added collections types are available in :menuselection:`Add --> Collection Instance` in the 3D Viewport.
 
 Look in the *Outliner*, with display mode set to *Blender File*, to see all your linked and appended data-blocks.
 

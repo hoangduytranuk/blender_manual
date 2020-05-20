@@ -125,9 +125,9 @@ The template is ready to quick start your animation with a Grease Pencil object 
 onion skinning activated and in camera view.
 
 #. Set the range of the animation in the Timeline from 1 to 24.
-#. In the 3D View draw a ball on the upper left corner with the Draw Tool (extreme).
+#. In the 3D Viewport draw a ball on the upper left corner with the Draw Tool (extreme).
 #. Move to frame 12 and draw a squashed ball in the bottom center (breakdown).
-#. Move to frame 24 and draw a ball in the top right corner of the 3D View (extreme).
+#. Move to frame 24 and draw a ball in the top right corner of the 3D Viewport (extreme).
 #. Keep drawing all the inbetweens frames you want using the onion skinning ghost as a reference.
 
 To test the animation, press :kbd:`Spacebar` to play.

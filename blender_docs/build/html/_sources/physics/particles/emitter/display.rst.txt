@@ -8,12 +8,12 @@ Viewport Display
 
    :Panel:     :menuselection:`Particle System --> Viewport Display`
 
-The Display Panel controls how particles are displayed in the 3D View.
+The Display Panel controls how particles are displayed in the 3D Viewport.
 This does not necessarily determine how they will appear when rendered.
 
 Display As
    None
-      The particles are not shown in the 3D View and are not rendered.
+      The particles are not shown in the 3D Viewport and are not rendered.
       The emitter may be rendered though.
    Rendered
       Particles are displayed the way they are rendered.

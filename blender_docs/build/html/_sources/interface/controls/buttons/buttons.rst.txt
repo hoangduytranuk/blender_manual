@@ -53,7 +53,7 @@ Radio Buttons
    Radio buttons.
 
 Radio buttons are used to choose one option from a selection of options.
-Active button is indicated by color on the icon background.
+Active button is indicated by a color on the icon background.
 
 
 Cycling

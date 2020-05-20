@@ -1,7 +1,5 @@
 .. _bpy.types.ShaderNodeParticleInfo:
 
-.. --- copy below this line ---
-
 ******************
 Particle Info Node
 ******************
@@ -22,8 +20,6 @@ It can be useful to give some variation to a single material assigned to multipl
 .. note::
 
    This node currently only supports parent particles. Info from child particles is not available.
-
-   .. (TODO) is this still true? ^^
 
 
 Inputs

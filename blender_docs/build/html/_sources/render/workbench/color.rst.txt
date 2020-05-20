@@ -26,14 +26,10 @@ Random
 
 Vertex
    Display the active vertex colors of an object. When an object has
-   no active vertex colors it will be rendered in the color that is set
-   in the Viewport Display :ref:`properties-material-viewport-display` panel.
+   no active vertex colors it will be rendered in the color set
+   in the Viewport Display :ref:`properties-object-viewport-display` panel.
 
 Texture
    Display the active texture. When an object has no active texture
    the object will be rendered with the settings
    in the Viewport Display :ref:`properties-material-viewport-display` panel.
-
-   .. note::
-
-      The *Texture* option is not available when :doc:`/render/workbench/lighting` is set to *MatCap*.

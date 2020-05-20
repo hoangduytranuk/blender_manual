@@ -21,7 +21,7 @@ Add-ons Preferences
 Interface
 =========
 
-Located in the 3D View :kbd:`Shift-Q` hotkey.
+Located in the 3D Viewport :kbd:`Shift-Q` hotkey.
 
 Located in the :menuselection:`Properties editor --> Materials --> Specials`.
 
@@ -82,8 +82,8 @@ Further comprehensive documentation can be found in the co-author's
    :class: refbox
 
    :Category:  Material
-   :Description: Menu of material tools (assign, select...) in the 3D View.
-   :Location: 3D View :kbd:`Shift-Q`
+   :Description: Menu of material tools (assign, select...) in the 3D Viewport.
+   :Location: 3D Viewport :kbd:`Shift-Q`
    :File: materials_utils folder
    :Author: MichaleW, ChrisHinde
    :Maintainer: MichaleW, ChrisHinde

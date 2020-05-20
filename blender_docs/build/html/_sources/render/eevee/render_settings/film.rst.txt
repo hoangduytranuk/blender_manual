@@ -22,4 +22,4 @@ Overscan
 Size
    Percentage of the render size to add to the internal render buffer.
    This will have a serious impact on performance but can fix
-   render glitches around the parameter of the render image.
+   render glitches around the perimeter of the rendered image.

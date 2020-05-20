@@ -28,7 +28,7 @@ In the top of the screen there is a list of all the View Layers in the active sc
 .. _bpy.types.ViewLayer.name:
 
 Name
-   The name of the active view layer, double click to edit the name.
+   The name of the active view layer, click to edit the name.
 
 .. _bpy.ops.scene.view_layer_add:
 
@@ -49,7 +49,7 @@ Remove View Layer
 
    .. note::
 
-      A scene must at least have a single view layer.
+      A scene must have at least one view layer.
 
 
 View Layer Panel
@@ -118,7 +118,7 @@ Set Indirect Only
    indirectly through shadows and reflections.
 
 Clear Indirect Only
-   Clear the Set Indirect Only flag. Objects inside this collection will contribute normal to the final image.
+   Clear the Set Indirect Only flag. Objects inside this collection will contribute normally to the final image.
 
 Set Holdout
    Objects inside this collection will generate a holdout/mask in the active view layer.

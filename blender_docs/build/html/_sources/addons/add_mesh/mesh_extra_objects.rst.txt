@@ -16,7 +16,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Add --> Mesh menu`.
+Located in the :menuselection:`3D Viewport --> Add --> Mesh menu`.
 
 
 Information
@@ -69,7 +69,7 @@ Wall Factory by dudecon, jambay
 
    :Category:  Add Mesh
    :Description: Create many extra object types.
-   :Location: :menuselection:`3D View --> Add --> Mesh`
+   :Location: :menuselection:`3D Viewport --> Add --> Mesh`
    :File: add_mesh_extra_objects folder
    :Author: Multiple Authors
    :Maintainer: Vladimir Spivak (cwolf3d)

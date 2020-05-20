@@ -248,7 +248,11 @@
 moved, rotated, or scaled as described in
 <a class="reference internal" href="../../../scene_layout/object/editing/transform/introduction.html"><span class="doc">Basic Transformations</span></a>.</p>
 </dd>
-<dt>Extend</dt><dd><p>Todo.</p>
+<dt>Extend</dt><dd><p>Moves keyframes relative to the Playhead.
+If the mouse is to the left of the Playhead,
+this operator only affects the selected keyframes that are to the left of the Playhead.
+On the contrary, if the mouse is to the right of the Playhead,
+this operator only affects the selected keyframes that are to the right of the Playhead.</p>
 </dd>
 </dl>
 <div class="admonition tip">
@@ -342,17 +346,30 @@ you can set values in the <em>Active Keyframe</em> of the Sidebar region.</p>
 <dd class="field-odd"><p><span class="menuselection">Key ‣ Insert Keyframes</span></p>
 </dd>
 <dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd></p>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-RMB</kbd>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-RMB</kbd></p>
 </dd>
 </dl>
 </div>
-<p><kbd class="kbd docutils literal notranslate">Ctrl-LMB</kbd> inserts a keyframe to the active F-curve at the mouse position.
+<p>Inserts a keyframe to the active F-curve at the mouse position.
 The newly added keyframes will be selected, making it easier to quickly tweak the newly added keyframes.
-All previously selected keyframes are kept selected by using <kbd class="kbd docutils literal notranslate">Shift-Ctrl-LMB</kbd>.</p>
+All previously selected keyframes are kept selected by using <kbd class="kbd docutils literal notranslate">Shift-Ctrl-RMB</kbd>.</p>
 </div>
 <div class="section" id="add-f-curve-modifier">
 <h2>Add F-Curve Modifier<a class="headerlink" href="#add-f-curve-modifier" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Add F-Curve Modifier</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-Ctrl-M</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Opens a pop-up allowing you to add modifiers to the active F-curve.
+Settings for the <a class="reference internal" href="modifiers.html"><span class="doc">modifier</span></a> can be found in
+the <span class="menuselection">Sidebar ‣ Modifiers</span> tab.</p>
 </div>
 <div class="section" id="bake-sound-to-f-curves">
 <span id="bpy-ops-graph-sound-bake"></span><h2>Nướng Âm Thanh thành Đường Cong-F -- Bake Sound to F-Curves<a class="headerlink" href="#bake-sound-to-f-curves" title="Permalink to this headline">¶</a></h2>
@@ -393,31 +410,137 @@ both positive and negative differences are accumulated.</p>
 </div>
 <div class="section" id="jump-to-keyframe">
 <span id="bpy-ops-graph-frame-jump"></span><h2>Jump to Keyframe<a class="headerlink" href="#jump-to-keyframe" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Jump to keyframes</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-G</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Places the 2D cursor at the center of the selected keyframes.</p>
 </div>
 <div class="section" id="copy-paste">
 <span id="bpy-ops-graph-paste"></span><span id="bpy-ops-graph-copy"></span><h2>Copy/Paste<a class="headerlink" href="#copy-paste" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="admonition-reference admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Copy Keyframes</span>, <span class="menuselection">Key ‣ Paste Keyframes</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-C</kbd>, <kbd class="kbd docutils literal notranslate">Ctrl-V</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Use <kbd class="kbd docutils literal notranslate">Ctrl-C</kbd> to copy selected keyframes and <kbd class="kbd docutils literal notranslate">Ctrl-V</kbd> to paste the previously copied keyframes.
+During the paste action, the <a class="reference internal" href="../../../interface/undo_redo.html#ui-undo-redo-adjust-last-operation"><span class="std std-ref">Adjust Last Operation</span></a> panel provides some options in
+how the paste is applied.</p>
+<dl class="simple">
+<dt>Offset</dt><dd><dl class="simple">
+<dt>No offset</dt><dd><p>Pastes the keyframes in the location they were copied from.</p>
+</dd>
+<dt>Frame relative</dt><dd><p>Pastes the keyframe relative to the Playhead position based on the locations of
+the keyframes relative to the Playhead when they were copied.</p>
+</dd>
+<dt>Frame start</dt><dd><p>Pastes the keyframes with the first keyframe of the copied set placed at the Playhead.</p>
+</dd>
+<dt>Frame end</dt><dd><p>Pastes the keyframes with the last keyframe of the copied set placed at the Playhead.</p>
+</dd>
+</dl>
+</dd>
+<dt>Type</dt><dd><dl class="simple">
+<dt>Mix</dt><dd><p>Integrates the pasted keyframes in with existing keyframes only overwriting keyframes that share a frame.</p>
+</dd>
+<dt>Overwrite All</dt><dd><p>Removes all previous keyframes and replaces it with the pasted keyframes.</p>
+</dd>
+<dt>Overwrite Range</dt><dd><p>TODO</p>
+</dd>
+<dt>Overwrite Entire Range</dt><dd><p>TODO</p>
+</dd>
+</dl>
+</dd>
+<dt>Flipped</dt><dd><p>TODO</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="duplicate">
 <span id="bpy-ops-graph-duplicate-move"></span><h2>Duplicate<a class="headerlink" href="#duplicate" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Duplicate</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-D</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Duplicates the selected keyframes. You can reposition them by moving the mouse.</p>
 </div>
 <div class="section" id="delete-keyframes">
 <span id="bpy-ops-graph-delete"></span><h2>Delete Keyframes<a class="headerlink" href="#delete-keyframes" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Delete Keyframes</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">X</kbd>, <kbd class="kbd docutils literal notranslate">Delete</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Pressing <kbd class="kbd docutils literal notranslate">X</kbd> or <kbd class="kbd docutils literal notranslate">Delete</kbd> opens a pop-up menu from where you can delete the selected keyframes.</p>
 </div>
 <div class="section" id="handle-type">
 <span id="bpy-ops-graph-handle-type"></span><h2>Handle Type<a class="headerlink" href="#handle-type" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Handle Types</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">V</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Sets the <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-handles"><span class="std std-ref">handle type</span></a> of the selected keyframes.</p>
 </div>
 <div class="section" id="interpolation-mode">
 <span id="bpy-ops-graph-interpolation-type"></span><h2>Interpolation Mode<a class="headerlink" href="#interpolation-mode" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Interpolation Mode</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">T</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Sets the <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-interpolation"><span class="std std-ref">interpolation mode</span></a> between the selected keyframes.</p>
 </div>
 <div class="section" id="easing-mode">
 <span id="bpy-ops-graph-easing-type"></span><h2>Easing Mode<a class="headerlink" href="#easing-mode" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Key ‣ Easing Mode</span></p>
+</dd>
+<dt class="field-even">Phím Tắt -- Hotkey</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Ctrl-E</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Sets the <a class="reference internal" href="introduction.html#editors-graph-fcurves-settings-easing"><span class="std std-ref">easing mode</span></a> of the selected keyframes.</p>
 </div>
 <div class="section" id="decimate">
 <span id="bpy-ops-graph-decimate"></span><h2>Decimate<a class="headerlink" href="#decimate" title="Permalink to this headline">¶</a></h2>
@@ -432,7 +555,7 @@ both positive and negative differences are accumulated.</p>
 </dd>
 </dl>
 </div>
-<p>The <em>Decimate</em> operator simplifies an F-curve by removing
+<p>The <em>Decimate</em> tool simplifies an F-curve by removing
 keyframes that influence the curve shape the least.</p>
 <dl>
 <dt>Mode</dt><dd><p>Controls which method is used pick the number of keyframes to use.</p>
@@ -496,7 +619,7 @@ to their auto-clamped shape, if they have been modified.</p>
 </dd>
 </dl>
 </div>
-<p>Acts like the <em>Clean Keyframes</em> operator but will also delete the channel itself if it is only left with
+<p>Acts like the <em>Clean Keyframes</em> tool but will also delete the channel itself if it is only left with
 a single keyframe containing the default property value and
 it's not being used by any generative F-curve modifiers or drivers.</p>
 <div class="admonition note">
@@ -553,7 +676,7 @@ seem to be never modified by this tool.</p>
 <dd class="field-odd"><p><span class="menuselection">Key ‣ Sample Keyframes</span></p>
 </dd>
 <dt class="field-even">Phím Tắt -- Hotkey</dt>
-<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-O</kbd></p>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Shift-Alt-O</kbd></p>
 </dd>
 </dl>
 </div>

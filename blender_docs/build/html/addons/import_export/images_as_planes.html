@@ -248,7 +248,8 @@
 <dd class="field-odd"><p>Import-Export</p>
 </dd>
 <dt class="field-even">Menu</dt>
-<dd class="field-even"><p><span class="menuselection">File ‣ Import/Export ‣ FBX (.fbx)</span></p>
+<dd class="field-even"><p><span class="menuselection">File ‣ Import ‣ Images as Planes</span>,
+<span class="menuselection">3D Viewport ‣ Add ‣ Image ‣ Images as Planes</span></p>
 </dd>
 </dl>
 </div>
@@ -267,18 +268,18 @@ Instead the plane gets linked against an existing material.</p>
 <div class="section" id="import-options">
 <h3>Import Options<a class="headerlink" href="#import-options" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
-<dt>Relative Path</dt><dd><p>Todo.</p>
+<dt>Relative Path</dt><dd><p>Link to the image file using a <a class="reference internal" href="../../files/blend/open_save.html#files-blend-relative-paths"><span class="std std-ref">relative file path</span></a>.</p>
 </dd>
-<dt>Force Reload</dt><dd><p>Todo.</p>
+<dt>Force Reload</dt><dd><p>Reloads the image file into Blender if it is already added as an image data-block.</p>
 </dd>
-<dt>Animate Image Sequences</dt><dd><p>Todo.</p>
+<dt>Animate Image Sequences</dt><dd><p>Import sequentially numbers images as an animated image sequence instead of separate planes.</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="compositing-nodes">
 <h3>Compositing Nodes<a class="headerlink" href="#compositing-nodes" title="Permalink to this headline">¶</a></h3>
 <dl class="simple">
-<dt>Setup Corner Pin</dt><dd><p>Todo.</p>
+<dt>Setup Corner Pin</dt><dd><p>Builds a compositing setup to reference this image using a Corner Pin node.</p>
 </dd>
 </dl>
 </div>
@@ -302,12 +303,28 @@ Instead the plane gets linked against an existing material.</p>
 <h3>Texture Settings<a class="headerlink" href="#texture-settings" title="Permalink to this headline">¶</a></h3>
 <dl>
 <dt>Use Alpha</dt><dd><p>The alpha channel of the image is used for transparency.</p>
+<dl>
+<dt>Alpha Mode</dt><dd><p>Representation of alpha in the image file, to convert to and from when saving and loading the image.
+See <a class="reference internal" href="../../glossary/index.html#term-alpha-channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
 <dl class="simple">
-<dt>Alpha Mode</dt><dd><p><a class="reference internal" href="../../glossary/index.html#term-straight-alpha"><span class="xref std std-term">Straight Alpha</span></a>, <a class="reference internal" href="../../glossary/index.html#term-premultiplied-alpha"><span class="xref std std-term">Premultiplied Alpha</span></a>, Channel Packed, None</p>
+<dt>Straight</dt><dd><p>Store RGB and alpha channels separately with alpha acting as a mask, also known as unassociated alpha.
+Commonly used by image editing applications and file formats like PNG.
+This preserves colors in parts of the image with zero alpha.</p>
+</dd>
+<dt>Premultiplied</dt><dd><p>Store RGB channels with alpha multiplied in, also known as associated alpha.
+The natural format for renders and used by file formats like OpenEXR.
+This can represent purely emissive effects like fire correctly, unlike straight alpha.</p>
+</dd>
+<dt>Channel Packed</dt><dd><p>Different images are packed in the RGB and alpha channels, and they should not affect each other.
+Channel packing is commonly used by game engines to save memory.</p>
+</dd>
+<dt>None</dt><dd><p>Ignore alpha channel from the file and make image fully opaque.</p>
 </dd>
 </dl>
 </dd>
-<dt>Auto Refresh</dt><dd><p>Todo.</p>
+</dl>
+</dd>
+<dt>Auto Refresh</dt><dd><p>Automatically refresh images on frame changes.</p>
 </dd>
 </dl>
 </div>
@@ -336,7 +353,7 @@ Instead the plane gets linked against an existing material.</p>
 <dt>Orientation</dt><dd><dl class="simple">
 <dt>Align</dt><dd><p>Todo.</p>
 </dd>
-<dt>Track Camera</dt><dd><p>Todo.</p>
+<dt>Track Camera</dt><dd><p>Uses a Locked Track Constraint to make the plane always align with the camera.</p>
 </dd>
 </dl>
 </dd>

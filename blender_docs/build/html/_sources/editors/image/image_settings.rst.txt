@@ -63,7 +63,7 @@ Frame
       converting a scene frame to the frame number in the file name.
       This option does not affect tracking data or any other associated data.
 Match Movie Length
-   This button sets image's user's length to the one of selected movie.
+   This button sets the movies *frames* to the length of the selected movie.
 Auto Refresh
    Automatically refresh images on frame changes.
 Cyclic
@@ -77,16 +77,15 @@ Generated
 
 Image generated in Blender.
 
-.. TODO2.8
-   .. list-table::
+.. list-table::
 
-      * - .. figure:: /images/editors_image_image-settings_generated-image-panel.png
+   * - .. figure:: /images/editors_image_image-settings_generated-image-panel.png
 
-             Image panel for Generated source.
+          Image panel for Generated source.
 
-        - .. figure:: /images/editors_image_image-settings_generated-new-image.png
+     - .. figure:: /images/editors_image_image-settings_generated-new-image.png
 
-             The New Image pop-up menu.
+          The New Image pop-up menu.
 
 Width, Height
    The size of image in pixels.

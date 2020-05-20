@@ -263,11 +263,10 @@ they will all be children of the parent and will be at the same level of the hie
 <p>The <em>Set Parent To</em> pop-up menu is context-sensitive, which means
 the number of entries it displays can change depending on what objects are selected
 when the <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> shortcut is used.</p>
-<p>For parenting without <a class="reference internal" href="#parent-inverse">Parent Inverse</a>, use the <kbd class="kbd docutils literal notranslate">Shift-Ctrl-P</kbd> shortcut instead.</p>
 <p>Moving, rotating or scaling the parent will also usually transform the child/children.
 Yet transforming the child/children of the parent will not affect the parent.
 In other words, the direction of influence is from parent to child and not child to parent.</p>
-<p>In general when using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">3D View Header ‣ Object ‣ Parent</span>
+<p>In general when using <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">3D Viewport Header ‣ Object ‣ Parent</span>
 to parent objects, the child objects can only have one parent object.
 If a child object already has a parent object and you give it another parent then
 Blender will remove the previous parent relationship.</p>
@@ -277,7 +276,7 @@ Blender will remove the previous parent relationship.</p>
 is stored in a hidden parent inverse matrix. By using that, the location, rotation and
 scale properties of the child can continue to be effectively interpreted in world space,
 as long as the parent doesn't move.</p>
-<p>For parenting without assigning the matrix, use the <kbd class="kbd docutils literal notranslate">Shift-Ctrl-P</kbd> shortcut instead.
+<p>For parenting without assigning the matrix, select the <em>Without Inverse</em> option in the <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> pop-up menu.
 This creates an alternative parent-child-relationship where child object's properties are
 evaluated in the parent's coordinate system. This is the better choice for CAD purposes,
 for example.</p>
@@ -324,7 +323,7 @@ Fig. <a class="reference internal" href="#fig-view3d-parent-scene-no"><span clas
 <span id="fig-view3d-parent-scene-no"></span><img alt="../../../_images/scene-layout_object_properties_relations_parents_keep-transform-a.png" src="../../../_images/scene-layout_object_properties_relations_parents_keep-transform-a.png" />
 <p class="caption"><span class="caption-text">Scene with no parenting.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>If you select the Monkey object by <kbd class="kbd docutils literal notranslate">RMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>
+<p>If you select the Monkey object by <kbd class="kbd docutils literal notranslate">LMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd>
 click &quot;EmptyA&quot; object and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and finally select <em>Object</em>
 from the <em>Set Parent To</em> pop-up menu.
 This will result in &quot;EmptyA&quot; object being the parent object of the Monkey object.
@@ -335,7 +334,7 @@ the Monkey object being altered respectively.</p>
 <img alt="../../../_images/scene-layout_object_properties_relations_parents_keep-transform-b.png" src="../../../_images/scene-layout_object_properties_relations_parents_keep-transform-b.png" />
 <p class="caption"><span class="caption-text">The monkey is the child object of &quot;EmptyA&quot;.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>If you select only the Monkey object by <kbd class="kbd docutils literal notranslate">RMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd>
+<p>If you select only the Monkey object by <kbd class="kbd docutils literal notranslate">LMB</kbd> click and then <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd>
 click &quot;EmptyB&quot; object and press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select <em>Object</em> from
 the <em>Set Parent To</em> pop-up menu.
 This will result in &quot;EmptyB&quot; object being the parent object of the Monkey object.
@@ -376,8 +375,8 @@ if the specific bone is the child object of moves.</p>
 The cube is only transformed if the 1st or 2nd bones are.
 Notice altering the 3rd and 4th bones has no effect on the cone.</p>
 <p>To use bone parenting, you must first select all the child objects you wish to parent to a specific armature bone,
-then <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> select the armature object and switch it into Pose Mode and
-then select the specific bone you wish to be the parent bone by <kbd class="kbd docutils literal notranslate">RMB</kbd> selecting it.
+then <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> select the armature object and switch it into Pose Mode and
+then select the specific bone you wish to be the parent bone by <kbd class="kbd docutils literal notranslate">LMB</kbd> selecting it.
 Once done press <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> and select bone from the <em>Set Parent To</em> pop-up menu.</p>
 <p>Now transforming that bone in Pose Mode will result in the child objects also transforming.</p>
 <div class="section" id="relative-parenting">

@@ -24,12 +24,12 @@ Refractions
    Screen space refractions work the same way as screen space reflections and use the same parameters.
    But they are not enabled by default on all surfaces.
    Enabling it will have a small performance cost.
-   You need to enable them in :menuselection:`Material Properties --> Options`.
-   Materials using screen space refractions will not be able to cast screen space reflections.
+   You need to enable them in :menuselection:`Material Properties --> Settings`.
+   Materials using screen space refractions will not cast screen space reflections.
 
 Half Resolution Trace
-   Use half resolution ray tracing. Only cast a ray for every fourth pixels.
-   Enabling this option reduces drastically video memory usage and increased performance at the cost of quality.
+   Use half resolution ray tracing. Only cast a ray for every fourth pixel.
+   Enabling this option drastically reduces video memory usage and increases performance at the cost of quality.
 
 Trace Precision
    Increases precision of the ray trace but introduces more noise and lowers the maximum trace distance.
@@ -40,9 +40,10 @@ Thickness
    Higher values will stretch the reflections and add flickering. Lower values may make the ray miss surfaces.
 
 Edge Fading
-   Smoothly fade out the reflected pixels if they are close to a screen edge. The unit is in screen percentage.
+   Smoothly fade out the reflected and refracted pixels if they are close to a screen edge.
+   The unit is in screen percentage.
 
 Clamp
-   Clamp the reflected color intensity to remove noise and fireflies.
+   Clamp the reflected color intensity to remove noise and :term:`Fireflies`.
 
 .. seealso:: :ref:`Limitations <eevee-limitations-reflections>`.

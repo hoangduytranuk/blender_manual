@@ -278,8 +278,8 @@ This helps making easier UV maps, but sometimes adds distortion to the final map
 </div>
 <div class="section" id="advantages-of-uvs">
 <h2>Advantages of UVs<a class="headerlink" href="#advantages-of-uvs" title="Permalink to this headline">¶</a></h2>
-<p>While procedural textures (described in the previous chapters) are useful -- they never repeat
-themselves and always &quot;fit&quot; 3D objects -- they are not sufficient for more complex or natural objects.
+<p>While procedural textures are useful -- they never repeat themselves and always &quot;fit&quot; 3D objects
+-- they are not sufficient for more complex or natural objects.
 For instance, the skin on a human head will never look quite right when procedurally generated.
 Wrinkles on a human head, or scratches on a car do not occur in random places,
 but depend on the shape of the model and its usage. Manually-painted images,
@@ -293,7 +293,7 @@ The operation of generating these UV maps is also called &quot;unwrap&quot;,
 since it is as if the mesh were unfolded onto a 2D plane.</p>
 <p>For most simple 3D models, Blender has an automatic set of unwrapping algorithms that you can easily apply.
 For more complex 3D models, regular Cubic, Cylindrical or Spherical mapping, is usually not sufficient.
-For even and accurate projection, use seams to guide the UV mapping.
+For even and accurate projection, use <a class="reference internal" href="../../modeling/meshes/uv/unwrapping/seams.html"><span class="doc">seams</span></a> to guide the UV mapping.
 This can be used to apply textures to arbitrary and complex shapes,
 like human heads or animals. Often these textures are painted images,
 created in applications like the Gimp, Krita, or your favorite painting application.</p>
@@ -308,6 +308,17 @@ created in applications like the Gimp, Krita, or your favorite painting applicat
 </div>
 <p>The header contains several menus and options for working with UVs.</p>
 <dl class="simple">
+<dt>Đồng Bộ Hóa Lựa Chọn -- Sync Selection</dt><dd><p>Keeps UV and mesh part selections in sync.</p>
+</dd>
+<dt>Chế Độ Lựa Chọn -- Selection Modes</dt><dd><ul class="simple">
+<li><p>Điểm Đỉnh -- Vertex</p></li>
+<li><p>Cạnh -- Edge</p></li>
+<li><p>Bề Mặt -- Face</p></li>
+<li><p>Island (Only available if <em>Sync Selection</em> is turned off)</p></li>
+</ul>
+</dd>
+<dt>Chế Độ Lựa Chọn Dính Kết -- Sticky Selection Mode</dt><dd><p>When <em>Sync Selection</em> is disabled, these options control how UVs are selected.</p>
+</dd>
 <dt>View</dt><dd><p>Tools for controlling how the content is displayed in the editor.
 See <a class="reference internal" href="navigating.html"><span class="doc">Navigating</span></a>.</p>
 </dd>
@@ -318,22 +329,11 @@ See <a class="reference internal" href="navigating.html"><span class="doc">Navig
 <dt>UV -- UVs</dt><dd><p>Contains tools for <a class="reference internal" href="../../modeling/meshes/uv/unwrapping/index.html"><span class="doc">Unwrapping Meshes</span></a>
 and <a class="reference internal" href="../../modeling/meshes/uv/editing.html"><span class="doc">Editing UVs</span></a>.</p>
 </dd>
-<dt>Pivot</dt><dd><p>Similar to working with pivot points in the 3D View.</p>
+<dt>Pivot</dt><dd><p>Similar to working with pivot points in the 3D Viewport.</p>
 </dd>
-<dt>Đồng Bộ Hóa Lựa Chọn -- Sync Selection</dt><dd><p>Keeps UV and mesh part selections in sync.</p>
-</dd>
-<dt>Chế Độ Lựa Chọn -- Selection Modes</dt><dd><ul class="simple">
-<li><p>Điểm Đỉnh -- Vertex</p></li>
-<li><p>Cạnh -- Edge</p></li>
-<li><p>Bề Mặt -- Face</p></li>
-<li><p>Hải Đảo -- Island</p></li>
-</ul>
-</dd>
-<dt>Chế Độ Lựa Chọn Dính Kết -- Sticky Selection Mode</dt><dd><p>When <em>Sync Selection</em> is disabled, these options control how UVs are selected.</p>
+<dt>Bám Dính UV -- UV Snapping</dt><dd><p>Similar to Snapping in the 3D Viewport.</p>
 </dd>
 <dt>Biên Soạn Cân Đối -- Proportional Editing</dt><dd><p>See <a class="reference internal" href="../3dview/controls/proportional_editing.html"><span class="doc">Proportional Editing</span></a>.</p>
-</dd>
-<dt>Bám Dính UV -- UV Snapping</dt><dd><p>Similar to Snapping in the 3D View.</p>
 </dd>
 <dt>Bộ Chọn Lựa Ánh Xạ Chất Liệu đang hoạt động -- Active UV Texture Map Selector</dt><dd><p>Select which UV texture to use.</p>
 </dd>
@@ -345,6 +345,8 @@ and <a class="reference internal" href="../../modeling/meshes/uv/editing.html"><
 <h4>Image Tab<a class="headerlink" href="#image-tab" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
 <dt>Điểm Đỉnh UV -- UV Vertex</dt><dd><p>Transform Properties <a class="reference internal" href="../../modeling/meshes/uv/editing.html"><span class="doc">Selecting UVs</span></a>.</p>
+</dd>
+<dt>UDIM Grid</dt><dd><p>Allows you to control the grid size of <a class="reference internal" href="../../modeling/meshes/uv/workflows/udims.html"><span class="doc">UDIM</span></a> tiles.</p>
 </dd>
 </dl>
 </div>
@@ -358,6 +360,8 @@ and <a class="reference internal" href="../../modeling/meshes/uv/editing.html"><
 <dt>Display</dt><dd><p>See <a class="reference internal" href="display_panel.html"><span class="doc">Display Panel</span></a>.</p>
 </dd>
 <dt>2D Cursor</dt><dd><p>Control 2D cursor location.</p>
+</dd>
+<dt>Annotations</dt><dd><p>Options for the <a class="reference internal" href="../../interface/annotate_tool.html"><span class="doc">annotation tool</span></a>.</p>
 </dd>
 </dl>
 </div>

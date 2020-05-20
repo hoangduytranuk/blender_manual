@@ -12,8 +12,8 @@ Viewer Node
 The *Viewer* node is a temporary, in-process viewer.
 It could be plug in anywhere to inspect an image or value map in your node tree.
 
-Select a view node with :kbd:`LMB` to switch between multiple view nodes.
-It is possible to automatically plug a Viewer node to any other node
+Select a view node with :kbd:`LMB` to switch between multiple viewer nodes.
+It is possible to automatically plug any other node into a Viewer node 
 by pressing :kbd:`Shift-Ctrl-LMB` on it.
 
 
@@ -50,7 +50,7 @@ This node has no output sockets.
 .. note::
 
    It is possible to add multiple Viewer nodes, though only the active one
-   (last selected, indicated with a slightly darker header) will be shown on the backdrop or in the Image editor.
+   (last selected, indicated by a red header) will be shown on the backdrop or in the Image editor.
 
 
 Using the Image Editor
@@ -61,8 +61,8 @@ The image is facilitated in the header by selecting *Viewer Node* in the linked 
 The Image Editor will display the image from the currently selected Viewer node.
 
 To save the image being viewed,
-use :menuselection:`Image --> Save As...`, :kbd:`Shift-S` to save the image in a file.
+use :menuselection:`Image --> Save As...`, :kbd:`Alt-S` to save the image to a file.
 
 The Image Editor also has three additional options in its header to view Images with or
 without Alpha, or to view the Alpha or Z itself.
-Click and holding the mouse in the Image display allows you to sample the values.
+Click and holding the mouse in the Image displayed allows you to sample the values.

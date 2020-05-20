@@ -38,7 +38,7 @@ More to come...
 
    :Category:  Object
    :Description: Creates a mesh object from selected bones.
-   :Location: :menuselection:`3D View Pose Mode --> Sidebar --> Create tab`
+   :Location: :menuselection:`3D Viewport Pose Mode --> Sidebar --> Create tab`
    :File: object_skinify.py
    :Author: Albert Makac (karab44)
    :License: GPL 2+

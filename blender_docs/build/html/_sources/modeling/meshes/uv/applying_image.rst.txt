@@ -16,7 +16,7 @@ Applying Textures to UVs
 
 The UV Editor allows you to map textures directly to the mesh faces.
 The 3D Viewport shows you the object being textured.
-If you set the 3D View into Textured viewport shading,
+If you set the 3D Viewport into Textured viewport shading,
 you will immediately see any changes made in the UV Editor, and vice versa.
 This is because no real rendering is taking place; it is all just viewport shading.
 If you were to apply an image to UVs then render, the texture would not show up by default.
@@ -53,7 +53,7 @@ the :doc:`Image Textures </render/materials/legacy_textures/types/image_movie>` 
 .. note:: Material is Required for Rendering
 
    You can perform UV texturing on a mesh within Blender without assigning a material,
-   and you will even see it in your 3D View in textured viewport mode. However, when you render,
+   and you will even see it in your 3D Viewport in textured viewport mode. However, when you render,
    you will just get a default gray if the object does not have a Material assigned.
    You will get a black if you do not load an image. If you do not create a texture that uses the image,
    your object will render according to the procedural material settings.

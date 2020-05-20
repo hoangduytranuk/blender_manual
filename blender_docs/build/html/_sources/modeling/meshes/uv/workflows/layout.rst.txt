@@ -83,9 +83,9 @@ rotate them a bit to fit logically within the image area of the UV Editor.
 
 Once we are satisfied with the face, it is time to turn our attention to the ear. First, unselect
 the faces you were working with. Their UVs will disappear from the UV Editor, but they are still there,
-just not shown. (To verify this, you can select a few faces in 3D View and it will show up in the UV Editor.)
+just not shown. (To verify this, you can select a few faces in 3D Viewport and it will show up in the UV Editor.)
 
-To work on the ear, in the 3D View, we now select only the "ear" faces.
+To work on the ear, in the 3D Viewport, we now select only the "ear" faces.
 You can use vertex groups to select the ear faces. Selecting sub-meshes is easy too,
 since they are not connected to the rest of the mesh.
 Simply selecting linked vertices will select that entire submesh. Basically,

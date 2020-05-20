@@ -30,7 +30,7 @@ Set Preview Range :kbd:`P`
    Selecting a preview range by dragging in the NLA Editor.
 Clear Preview Range :kbd:`Alt-P`
    Unset the preview range
-Auto Select Preview Range :kbd:`Shift-Ctrl-P`
+Auto Select Preview Range :kbd:`Ctrl-Alt-P`
    Automatically select the preview range based on the range of keyframes.
 
 .. seealso:: See Timeline's :ref:`timeline-view-menu`.
@@ -41,7 +41,7 @@ Select Menu
 
 All :kbd:`A`
    Select all NLA-strips.
-None
+None :kbd:`Alt-A`
    Deselect all NLA-strips.
 Invert :kbd:`Ctrl-I`
    Invert the current selection of NLA-strips.

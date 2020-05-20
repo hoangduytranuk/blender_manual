@@ -24,7 +24,7 @@ Applying transform values essentially resets the values of object's location, ro
 while visually keeping the object data in-place.
 The object origin point is moved to the global origin, the rotation is cleared and scale values are set to 1.
 
-For simple cases you won't notice any difference the 3D View or rendered output,
+For simple cases you won't notice any difference the 3D Viewport or rendered output,
 yet modifiers and constraints may depend on object transformation.
 
 .. warning:: Armature Objects
@@ -57,7 +57,7 @@ Rotation and Scale
    Apply (set) the rotation and scale of the selection. Do the above two applications simultaneously.
 Apply Properties
    Modify properties such as curve vertex radius, font size and bone envelope
-   according to the applied transformation.
+   according to the applied transformation. (Found in the :ref:`ui-undo-redo-adjust-last-operation` panel)
 
 
 .. _bpy.ops.object.transforms_to_deltas:
@@ -70,7 +70,8 @@ Transforms to Deltas
    :class: refbox
 
    :Mode:      Object Mode
-   :Menu:      :menuselection:`Object --> Apply -->`
+   :Menu:      :menuselection:`Object --> Apply --> Location / Rotation / Scale`
+   :Hotkey:    :kbd:`Ctrl-A`
 
 Converts primary object transformations to :ref:`delta transforms <transform-delta>`,
 any existing delta transforms will be included as well.

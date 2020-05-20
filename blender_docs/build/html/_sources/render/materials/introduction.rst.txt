@@ -25,7 +25,7 @@ Materials can be created in either the :doc:`Material properties </editors/prope
 or in the :doc:`Shader Editor </editors/shader_editor>`.
 These provide a different view of the same shader nodes and material settings.
 
-The defaults Shading workspace has a Shader Editor and a 3D Viewport that can be set to
+The default Shading workspace has a Shader Editor and a 3D Viewport that can be set to
 Material Preview or Rendered shading, to interactively preview how the material interacts
 with objects and lights in the scene.
 

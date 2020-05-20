@@ -38,6 +38,8 @@ Mask
 See :doc:`/sculpt_paint/sculpting/hide_mask`.
 
 
+.. _sculpting-editing-facesets:
+
 Face Sets
 =========
 

@@ -19,7 +19,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> Edit tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Edit tab`.
 
 .. figure:: /images/addons_add-curve_assign-shape-keys_ui.jpg
    :align: right

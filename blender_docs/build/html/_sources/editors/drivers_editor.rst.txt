@@ -159,11 +159,5 @@ Cursor from Selection
    Set the *2D cursor* to the center of the selected curve handles.
 Cursor X
    *Time Cursor* X position.
-
-   To Keys
-      Snap selected curve handles to the *Time Cursor*.
 Cursor Y
    Vertical *Cursor* Y position.
-
-   To Keys
-      Snap selected curve handles to the *Cursor*.

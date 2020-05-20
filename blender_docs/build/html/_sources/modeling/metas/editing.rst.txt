@@ -35,7 +35,7 @@ Stiffness
    With a low stiffness, the meta will begin to deform from further away.
    A higher value means the meta needs to be close to another one to begin merging.
    The *Stiffness* is visualized by the *green ring* and can be selected and :ref:`scaled <bpy.ops.transform.resize>`
-   to also changes the *Stiffness* value.
+   to also change the *Stiffness* value.
 
    To be visible, the *Stiffness* must be slightly larger than the *Threshold* value.
 
@@ -51,7 +51,7 @@ Radius
    Controls the physical size of the metaball.
    This works the same as scaling the metaball in Object Mode.
    The *Radius* is visualized by the *white ring* and can be selected and :ref:`scaled <bpy.ops.transform.resize>`
-   to also changes the *Radius* value.
+   to also change the *Radius* value.
 
 .. _meta-ball-editing-negative-influence:
 
@@ -180,7 +180,7 @@ However, if we transform the children, the polygonalization remains unchanged.
 
 .. hint::
 
-   This discussion of "polygonization" does *not* mean that the various meshes do not deform
+   This discussion of "polygonalization" does *not* mean that the various meshes do not deform
    towards or away from each other (meta objects always influence one another in the usual way,
    within a same family).
 

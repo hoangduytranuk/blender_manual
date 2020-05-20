@@ -49,7 +49,7 @@ You should now be able to see this point in the 3D View!
    :class: refbox
 
    :Category:  3D View
-   :Description: Display console defined mathutils variables in the 3D View.
+   :Description: Display console defined mathutils variables in the 3D Viewport.
    :Location: :menuselection:`Properties --> Scene --> Python Console Menu`
    :File: space_view3d_math_vis.py
    :Author: Campbell Barton

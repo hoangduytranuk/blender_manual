@@ -13,7 +13,7 @@ Viewport Display
 The *Viewport Display* panel is used to enable extra display options for the 3D Viewport.
 
 Name
-   Displays the name of the object in the 3D View.
+   Displays the name of the object in the 3D Viewport.
 Axis
    Displays an object similar to an empty that shows the object's axis.
 Wireframe
@@ -27,7 +27,7 @@ Shadow
 In Front
    Makes the object display in front of others. (Unsupported for instanced objects.)
 Display As
-   The shading mode to display in the 3D View; this can be useful if you have
+   The shading mode to display in the 3D Viewport; this can be useful if you have
    a high-poly object that is slowing down the viewport.
 
 .. _objects-display-object-color:

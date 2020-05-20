@@ -11,7 +11,7 @@ From there you might begin editing to create a larger, more complex shape.
 Modeling Modes
 ==============
 
-The 3D View has three principal modes that allow for the creation,
+The 3D Viewport has three principal modes that allow for the creation,
 editing and manipulation of the mesh models.
 Each of the three modes have a variety of tools. Some tools may be found in one or more of the modes.
 

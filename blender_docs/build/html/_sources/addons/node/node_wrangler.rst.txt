@@ -197,7 +197,7 @@ output of the second node and vice versa.
 Or, select one node with a single linked input --
 :kbd:`Alt-S` will cycle the link through the available input sockets.
 Or, select one node with two linked inputs -- :kbd:`Alt-S` will swap the two links.
-If more then two inputs are linked, the two with matching types will be swapped
+If more than two inputs are linked, the two with matching types will be swapped
 (such as a Mix node's two color inputs).
 
 

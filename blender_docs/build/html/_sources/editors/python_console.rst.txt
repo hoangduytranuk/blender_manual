@@ -137,7 +137,7 @@ Now that you got a hang of this, lets proceed to investigate some of modules in 
 Before Tinkering with the Modules
 ---------------------------------
 
-If you look at the 3D View in the default Blender scene,
+If you look at the 3D Viewport in the default Blender scene,
 you will notice three objects: Cube, Light and Camera.
 
 - All objects exist in a context and there can be various modes under which they are operated upon.
@@ -157,15 +157,15 @@ bpy.context
 
 .. note::
 
-   For the commands below to show the proper output, make sure you have selected object(s) in the 3D View.
+   For the commands below to show the proper output, make sure you have selected object(s) in the 3D Viewport.
 
 .. figure:: /images/editors_python-console_bpy-context.png
 
 ``bpy.context.mode``
-   Will print the current 3D View mode (Object, Edit, Sculpt, etc.).
+   Will print the current 3D Viewport mode (Object, Edit, Sculpt, etc.).
 
 ``bpy.context.object`` or ``bpy.context.active_object``
-   Will give you access to the active object in the 3D View.
+   Will give you access to the active object in the 3D Viewport.
 
 Change the X location to a value of 1::
 

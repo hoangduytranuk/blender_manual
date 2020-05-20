@@ -269,7 +269,7 @@
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_z-combine_example-1.png"><img alt="../../../_images/compositing_types_color_z-combine_example-1.png" src="../../../_images/compositing_types_color_z-combine_example-1.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text">Chọn các điểm ảnh gần nhất.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p>In the example above, render output from two scenes are mixed using the Z Combine node,
+<p>In the example above, the render output from two scenes are mixed using the Z Combine node,
 one from a sphere of size 1.30, and the other a cube of size 1.00.
 The sphere and square are located at the same place. The cube is tipped forward,
 so the corner in the center is closer to the camera than the sphere surface;
@@ -287,12 +287,18 @@ When this happens, Z Combine uses the sphere's pixels to form the resulting pict
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_z-combine_example-2.png"><img alt="../../../_images/compositing_types_color_z-combine_example-2.png" src="../../../_images/compositing_types_color_z-combine_example-2.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text">Hòa trộn và kết hợp các hình ảnh.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<p>Kết Hợp Z có thể được sử dụng để kết hợp hai hình ảnh với nhau, dùng các giá trị Z đưa ra bởi hai lớp kết xuất. Sử dụng các giá trị Z từ hình cầu và hình khối lập phương ở các cảnh trên, song lồng các hình ảnh khác vào, sẽ tạo ra kết quả như ví dụ ở bên phải.</p>
+<p>The Z Combine can be used to merge two images as well.
+Using the Z values from the sphere and cube scenes above, but inputting different images,
+yields the example to the right.</p>
 <div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/compositing_types_color_z-combine_example-3.png"><img alt="../../../_images/compositing_types_color_z-combine_example-3.png" src="../../../_images/compositing_types_color_z-combine_example-3.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text">Kết Hợp Z trong hành động.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>Trong sắp xếp nút này, một cảnh kết xuất đang được trộn lẫn với một hình ảnh phẳng. Trong góc nhìn bên của cảnh, khối lập phương màu tím nằm cách xa máy ảnh 10 đơn vị, và quả bóng màu xám nằm cách cách xa 20 đơn vị. Con trỏ 3D nằm cách máy ảnh khoảng 15 đơn vị. Hình ảnh là đầu vào Z, nằm ở vị trí 15, do đó, nó nằm ở khoảng giữa khối lập phương và quả bóng. Hình ảnh đạt được cho thấy khối lập phương dường như được đặt trên mặt bàn vậy.</p>
+<p>In this node setup a render scene is mixed with a flat image. In the side view of the scene,
+the orange cube is 10 units away from the camera, and the blue ball is 20.
+The 3D cursor is about 15 units away from the camera. The image is Z-in at a location of 15,
+thus inserting it in between the cube and the ball.
+The resulting image appears to have the cube on the green image.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>Hiệu ứng Người Vô Hình -- Invisible Man Effect</p>

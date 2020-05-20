@@ -82,7 +82,7 @@ Type
 Outputs
 =======
 
-Factor
+Height
    Texture value.
 
 

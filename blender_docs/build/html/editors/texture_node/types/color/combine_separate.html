@@ -238,8 +238,13 @@
 <li><p>Kết hợp: Tái/Kết hợp một hình ảnh từ các kênh màu tổng hợp của nó.</p></li>
 </ul>
 <p>Các nút này có thể được sử dụng để thao tác từng kênh màu một, một cách độc lập. Mỗi thể loại sẽ được phân biệt trong <a class="reference internal" href="../../../../glossary/index.html#term-color-space"><span class="xref std std-term">color space</span></a>. áp dụng.</p>
-<p>Trong bối cảnh tổng hợp và chất liệu, mỗi nút đều có hỗ trợ kênh Alpha, song trong bối cảnh chất liệu, chỉ có không gian màu RGB là có thể sử dụng được (không có Alpha). Trong bối cảnh tô bóng của Blender nội tại (Blender internal), bạn còn có thể làm việc với HSV (trong cách phân màu thành các thành phần về Sắc Thái (Hue), Độ Bão Hòa (Saturation), Giá Trị (Value), viết tắt là HSV), và trong tô bóng Cycles, làm việc với cặp nút HSV, XYZ để kết hợp/tách phân một véctơ (XYZ) (hai cách để biểu thị màu sắc khác nhau).</p>
-<p>Các nút Kết Hợp (Combine) cũng có thể được sử dụng để nhập các đơn giá trị màu sắc. Đối với không gian màu RGBA và HSVA, bạn nên sử dụng <a class="reference internal" href="../../../../compositing/types/input/rgb.html"><span class="doc">Nút RGB -- RGB Node</span></a>. Một số thao tác phổ biến có thể dễ dàng được thi hành hơn với <a class="reference internal" href="../../../../compositing/types/color/index.html"><span class="doc">Nút Màu Sắc -- Color Nodes</span></a>.</p>
+<p>In compositing and texture context each node supports the Alpha channel.
+In the texture context only RGB color space is available.
+In the shading context of Cycles combine and separate nodes are added
+for HSV and vectors (XYZ).</p>
+<p>The Combine nodes can also be used to input single color values.
+For RGBA and HSVA color spaces it is recommended to use the <a class="reference internal" href="../../../../compositing/types/input/rgb.html"><span class="doc">Nút RGB -- RGB Node</span></a>.
+Some common operations could easier be executed with the <a class="reference internal" href="../../../../compositing/types/color/index.html"><span class="doc">Nút Màu Sắc -- Color Nodes</span></a>.</p>
 <div class="section" id="separate-combine-rgba-nodes">
 <h2>Nút Phân Tách/Kết Hợp RGBA -- Separate/Combine RGBA Nodes<a class="headerlink" href="#separate-combine-rgba-nodes" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-right" id="id8">

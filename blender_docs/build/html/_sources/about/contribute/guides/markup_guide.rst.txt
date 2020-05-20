@@ -86,7 +86,7 @@ Interface Elements
 
 - ``:kbd:`LMB``` -- keyboard and mouse shortcuts.
 - ``*Mirror*`` -- interface labels.
-- ``:menuselection:`3D View --> Add --> Mesh --> Monkey``` -- menus.
+- ``:menuselection:`3D Viewport --> Add --> Mesh --> Monkey``` -- menus.
 
 
 Code Samples

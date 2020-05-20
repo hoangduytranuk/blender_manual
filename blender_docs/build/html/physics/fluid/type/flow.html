@@ -276,6 +276,11 @@ properly. In contrast to domain objects, the actual mesh geometry is used for fl
 </dl>
 </dd>
 </dl>
+<dl class="simple" id="bpy-types-fluidflowsettings-use-flow">
+<dt>Use Flow</dt><dd><p>Enables or disables the flow of fluid, this property is useful for animations to selectively enable and
+disable when fluid is being added to or removed from the domain.</p>
+</dd>
+</dl>
 <dl id="bpy-types-fluidflowsettings-subframes">
 <dt>Sampling Substeps</dt><dd><p>Number of sub-steps used to reduce gaps in emission of fluid from fast-moving sources.</p>
 <table class="docutils align-default" id="id1">
@@ -369,8 +374,8 @@ results will vary depending on the domain's resolution.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-fluidflowsettings-volume-density">
-<dt>Volume Emission</dt><dd><p>Amount of fluid to emit inside the emitter mesh, where 0 is none and 1 is the full amount.
-Note that emitting fluid based on volume may have unpredictable results
+<dt>Volume Emission <span class="guilabel">Fire or Smoke Only</span>:</dt><dd><p>Amount of fluid to emit inside the emitter mesh, where 0 is none and 1 is the full amount.
+Note that emitting fluid based on volume can have unpredictable results
 if your mesh is <a class="reference internal" href="../../../glossary/index.html#term-non-manifold"><span class="xref std std-term">non-manifold</span></a>.</p>
 </dd>
 </dl>
@@ -401,12 +406,15 @@ at which particles can emit smoke, similar to the <em>Surface Emission</em> sett
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-fluidflowsettings-velocity-normal">
-<dt>Normal</dt><dd><p>When using a <em>Geometry Flow Source</em>, this option controls how much velocity fluid is given along
-the source's <a class="reference internal" href="../../../glossary/index.html#term-normal"><span class="xref std std-term">normal</span></a>.</p>
+<dt>Normal</dt><dd><p>This option controls how much velocity fluid is given along a face <a class="reference internal" href="../../../glossary/index.html#term-normal"><span class="xref std std-term">normal</span></a>.
+Note that, initial velocities will always be applied along all face normals.
+Thus with a closed flow source mesh, fluid will always be emitted in more than one direction.
+To set initial velocities along only one direction all normals need to point in the same direction.
+This is can be achieved when using a plane as the flow object.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-fluidflowsettings-velocity-coord">
-<dt>Initial X, Y, Z</dt><dd><p>Initial velocity along X, Y, Z coordinates. Can be used in addition to the initial velocity along
+<dt>Initial X, Y, Z</dt><dd><p>Initial velocity along X, Y, Z coordinates in world space. This can be used in addition to the initial velocity along
 the <a class="reference internal" href="#bpy-types-fluidflowsettings-velocity-normal"><span class="std std-ref">Normal</span></a>.</p>
 </dd>
 </dl>

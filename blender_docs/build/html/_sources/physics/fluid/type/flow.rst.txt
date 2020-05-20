@@ -63,6 +63,12 @@ Flow Behavior
       Also make sure that the surface normals are pointing outwards or else they will not simulate
       properly. In contrast to domain objects, the actual mesh geometry is used for fluid objects.
 
+.. _bpy.types.FluidFlowSettings.use_flow:
+
+Use Flow
+   Enables or disables the flow of fluid, this property is useful for animations to selectively enable and
+   disable when fluid is being added to or removed from the domain.
+
 .. _bpy.types.FluidFlowSettings.subframes:
 
 Sampling Substeps
@@ -155,9 +161,9 @@ Flow Source
 
       .. _bpy.types.FluidFlowSettings.volume_density:
 
-      Volume Emission
+      Volume Emission :guilabel:`Fire or Smoke Only`:
          Amount of fluid to emit inside the emitter mesh, where 0 is none and 1 is the full amount.
-         Note that emitting fluid based on volume may have unpredictable results
+         Note that emitting fluid based on volume can have unpredictable results
          if your mesh is :term:`non-manifold`.
 
    .. _bpy.types.FluidFlowSettings.particle_system:
@@ -192,13 +198,16 @@ Source
 .. _bpy.types.FluidFlowSettings.velocity_normal:
 
 Normal
-   When using a *Geometry Flow Source*, this option controls how much velocity fluid is given along
-   the source's :term:`normal`.
+   This option controls how much velocity fluid is given along a face :term:`normal`.
+   Note that, initial velocities will always be applied along all face normals.
+   Thus with a closed flow source mesh, fluid will always be emitted in more than one direction.
+   To set initial velocities along only one direction all normals need to point in the same direction.
+   This is can be achieved when using a plane as the flow object.
 
 .. _bpy.types.FluidFlowSettings.velocity_coord:
 
 Initial X, Y, Z
-   Initial velocity along X, Y, Z coordinates. Can be used in addition to the initial velocity along
+   Initial velocity along X, Y, Z coordinates in world space. This can be used in addition to the initial velocity along
    the :ref:`Normal <bpy.types.FluidFlowSettings.velocity_normal>`.
 
 

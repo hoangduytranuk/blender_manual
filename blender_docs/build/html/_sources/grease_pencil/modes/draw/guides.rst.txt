@@ -22,7 +22,7 @@ Guide Types
 .. figure:: /images/grease-pencil_modes_draw_guides_selector.png
    :align: right
 
-   Guide selector activated in the 3D View header.
+   Guide selector activated in the 3D Viewport header.
 
 Circular
    Constrains the drawing of new strokes to form rings from the selected reference point.

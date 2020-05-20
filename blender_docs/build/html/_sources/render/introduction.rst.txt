@@ -25,4 +25,4 @@ add non-photorealistic line rendering.
 
 Blender supports interactive 3D viewport rendering for all render engines, for quick iteration
 on lighting and shading. Once this is done, the final quality image or animation can
-be rendered and :doc:`output </render/output/index>` to drive.
+be rendered and :doc:`output </render/output/index>`.

@@ -216,7 +216,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="pose">
-<span id="bpy-types-brush-use-pose-ik-anchored"></span><span id="bpy-types-brush-pose-ik-segments"></span><span id="bpy-types-brush-pose-smooth-iterations"></span><span id="bpy-types-brush-pose-offset"></span><h1>Pose<a class="headerlink" href="#pose" title="Permalink to this headline">¶</a></h1>
+<span id="bpy-types-brush-use-pose-ik-anchored"></span><span id="bpy-types-brush-pose-ik-segments"></span><span id="bpy-types-brush-pose-smooth-iterations"></span><span id="bpy-types-brush-pose-offset"></span><span id="bpy-types-brush-pose-origin-type"></span><h1>Pose<a class="headerlink" href="#pose" title="Permalink to this headline">¶</a></h1>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -234,7 +234,15 @@ on the radius of the brush and the topology of the model.
 When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the pose brush applies a twist rotation
 to the posing segments instead of using the rotation or an IK deformation.
 The falloff of the rotation across multiple segments is controlled by the brush falloff curve.</p>
+<dl>
+<dt>Rotation Origins</dt><dd><p>Method to set the rotation origins for the segments of the brush.</p>
 <dl class="simple">
+<dt>Topology</dt><dd><p>Sets the rotation origin automatically using the topology and shape of the mesh as a guide.</p>
+</dd>
+<dt>Face Sets</dt><dd><p>Creates a pose segment per <a class="reference internal" href="../editing.html#sculpting-editing-facesets"><span class="std std-ref">Face Set</span></a>, starting from the active face set.</p>
+</dd>
+</dl>
+</dd>
 <dt>Pose Origin Offset</dt><dd><p>Offset of the pose origin in relation to the brush radius.
 This is useful to manipulate areas with a lot of complex shapes like fingers.</p>
 </dd>

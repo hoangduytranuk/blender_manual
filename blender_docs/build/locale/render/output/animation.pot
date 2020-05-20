@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-10 20:09+0100\n"
+"POT-Creation-Date: 2020-05-15 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgid "Total render time > 1 hour."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:79
-msgid "Post-production work needed: - Color/lighting adjustment - Green screen/matte replacement - Layering/compositing - Multiple formats and sizes of ultimate product"
+msgid "Post-production work needed: - Color/lighting adjustment - Green screen/matte replacement - Layering/compositing - Multiple formats and resolutions of the final product"
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:84
@@ -142,70 +142,58 @@ msgid "Save your blend-file."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:100
-msgid "Press the big *Animation* button. Do a long task (like sleeping, playing a video game, or cleaning your driveway) while you wait for your computer to finish rendering the frames."
+msgid "Press the *Animation* button and once the animation is finished, use your file manager to navigate to the output folder (``render`` in this example). You will see lots of images that have a sequence number attached to. These are the single frames."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:103
-msgid "Once the animation is finished, use your OS file explorer to navigate into the output folder (``render`` in this example). You will see lots of images (``.png`` or ``.exr``, etc. depending on the format you chose to render) that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames."
+msgid "In Blender, open the :doc:`Video Sequence editor </video_editing/index>`."
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:107
-msgid "In Blender, now go into the :doc:`Video Sequence editor </video_editing/index>`."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:111
 msgid "The :doc:`VSE </video_editing/index>` does not support multi-layer EXR files. To render to a video format you will have to skip the next three steps and instead use an :doc:`Image Input node </compositing/types/input/image>` in the :doc:`Compositor </compositing/types/input/image>`."
 msgstr ""
 
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:112
+msgid "Choose *Add Image* from the add menu. Select all the frames from your output folder that you want to include in your animation. They will be added as a strip in the Sequence editor."
+msgstr ""
+
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:114
+msgid "Now you can edit the strip and add effects or leave it like it is. You can add other strips, like an audio strip."
+msgstr ""
+
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:116
-msgid "Choose *Add Image* from the add menu. Select all the frames from your output folder that you want to include in your animation (press :kbd:`A` to Select All easily). They will be added as a strip to the Sequence editor."
+msgid "Scrub through the animation to check if you have included all the frames."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:118
-msgid "Now you can edit the strip and add effects or simply leave it like it is. You can add other strips, like an audio strip."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:120
-msgid "Scrub through the animation, checking that you have included all the frames."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:121
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:117
 msgid "In the Output panel, choose the container and codec you want (e.g. ``MPEG H.264``) and configure them. The video codecs are described on the previous page: :doc:`Output Options </render/output/settings>`."
 msgstr ""
 
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:119
+msgid "Click the *Animation* render button and Blender will render out the Sequence editor output into a movie."
+msgstr ""
+
 #: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:123
-msgid "Click the *Animation* render button and Blender will render out the Sequence editor output into your movie."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:125
-msgid "Why go through all this hassle? Well, first of all, if you render out single frames, you can stop the render at any time by pressing :kbd:`Esc` in the render window or Image editor. You will not lose the frames you have already rendered, since they have been written out to individual files. You can always adjust the range you want to continue from where you left off."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:131
-msgid "You can edit the frames afterwards and post-process them. You can add neat effects in the Sequence editor. You can render the same sequence into different resolutions (640×480, 320×240, etc.) and use different codecs (to get different file sizes and quality) with almost no effort whatsoever."
-msgstr ""
-
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:139
 msgid "Hints"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:152
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:136
 msgid "Your computer accidentally turns off in the middle of rendering your movie!"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:142
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:126
 msgid "Unless your animation renders in a few minutes, it is best to render the animation as separate image files. Instead of rendering directly to a compressed movie file, use a lossless format (e.g. ``PNG``)."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:146
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:130
 msgid "This allows you an easy recovery if there is a problem and you have to re-start the rendering, since the frames you have already rendered will still be in the output directory."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:149
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:133
 msgid "Just disable the *Overwrite* option to start rendering where you left off."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:151
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:135
 msgid "You can then make a movie out of the separate frames with Blender's Sequence editor or use 3rd party encoding software."
 msgstr ""
 
@@ -213,10 +201,10 @@ msgstr ""
 msgid "Animation Preview"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:155
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:139
 msgid "It can be useful to render a subset of the animated sequence, since only part of an animation may have an error."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:158
+#: /Users/hoangduytran/blender_docs/manual/render/output/animation.rst:142
 msgid "Using an image format for output, you can use the *Frame Step* option to render every *N'th* frame. Then disable *Overwrite* and re-render with *Frame Step* set to 1."
 msgstr ""

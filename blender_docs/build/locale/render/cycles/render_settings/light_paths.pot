@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blender 2.83 Manual 2.83\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-10 20:09+0100\n"
+"POT-Creation-Date: 2020-05-15 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgstr ""
 msgid "Clamp"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:69
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:67
 msgid "Clamp Direct"
 msgstr ""
 
@@ -109,61 +109,61 @@ msgid "This option limits the maximum intensity a sample from rays which have no
 msgstr ""
 
 #: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:62
-msgid "A common issue encountered with *Path Tracing* is the occurrence of \"fireflies\": improbable samples that contribute very high values to pixels. This option provides a way to limit that. However, note that as you clamp out such values, other bright lights/reflections will be dimmed as well."
+msgid "This option provides a way to limit :term:`Fireflies`. However, note that as you clamp out such values, other bright lights/reflections will be dimmed as well."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:67
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:65
 msgid "Care must be taken when using this setting to find a balance between mitigating fireflies and losing intentionally bright parts. It is often useful to clamp indirect bounces separately, as they tend to cause more fireflies than direct bounces. See the *Clamp Indirect* setting."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:73
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:71
 msgid "Clamp Indirect"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:72
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:70
 msgid "The same as *Clamp Direct*, but for rays which have bounced multiple times."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:76
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:74
 msgid "Caustics"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:78
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:76
 msgid "A common source of noise is :term:`caustics`."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:84
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:82
 msgid "Reflective Caustics"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:83
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:81
 msgid "While in principle path tracing supports rendering of caustics with a sufficient number of samples, in practice it may be inefficient to the point that there is just too much noise. This option can be unchecked, to disable reflective caustics."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:87
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:85
 msgid "Refractive Caustics"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:87
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:85
 msgid "The same as above, but for refractive caustics."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:104
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:102
 msgid "Filter Glossy"
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:92
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:90
 msgid "When using a value higher than 0.0, this will blur glossy reflections after blurry bounces, to reduce noise at the cost of accuracy. 1.0 is a good starting value to tweak."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:95
-msgid "Some light paths have a low probability of being found while contributing much light to the pixel. As a result these light paths will be found in some pixels and not in others, causing fireflies. An example of such a difficult path might be a small light that is causing a small specular highlight on a sharp glossy material, which is observed through a rough glossy material. In fact in such a case there practically occurs a caustic."
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:93
+msgid "Some light paths have a low probability of being found while contributing much light to the pixel. As a result these light paths will be found in some pixels and not in others, causing :term:`Fireflies`. An example of such a difficult path might be a small light that is causing a small specular highlight on a sharp glossy material, which is observed through a rough glossy material. In fact in such a case there practically occurs a caustic."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:101
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:99
 msgid "With path tracing it is difficult to find the specular highlight, but if you increase the roughness on the material, the highlight gets bigger and softer, and so easier to find. Often this blurring will hardly be noticeable, because it is blurred by the material anyway, but there are also cases where this will lead to a loss of detail in lighting."
 msgstr ""
 
-#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:108
+#: /Users/hoangduytran/blender_docs/manual/render/cycles/render_settings/light_paths.rst:106
 msgid "See :ref:`Reducing Noise <render-cycles-reducing-noise-clamp-samples>` for examples of the clamp settings in use."
 msgstr ""

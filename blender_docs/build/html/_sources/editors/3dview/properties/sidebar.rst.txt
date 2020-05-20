@@ -22,11 +22,11 @@ View
 View Panel
 ----------
 
-The *View* panel lets you set other settings regarding the 3D View.
+The *View* panel lets you set other settings regarding the 3D Viewport.
 You can show it with the :menuselection:`View --> View Properties...` menu entry.
 
 Focal Length
-   Control the focal length of the 3D View camera in millimeters,
+   Control the focal length of the 3D Viewport camera in millimeters,
    unlike a :doc:`rendering camera </render/cameras>`.
 
 .. _3dview-view-clip:
@@ -56,7 +56,7 @@ Clip Start/End
       See :ref:`Troubleshooting Depth Buffer Glitches <troubleshooting-depth>` for more information.
 
 Use Local Camera
-   Use a local camera in this view, rather then the scene's active camera.
+   Use a local camera in this view, rather than the scene's active camera.
 
 Local Camera
    Active camera used in this view to override the (global) scene camera.
@@ -73,9 +73,9 @@ View Lock
 ^^^^^^^^^
 
 Lock to Object
-   Lock to Object lets you define an object in the *Object* Data ID as the center of the view.
-   In that case, the view can be rotated around or zoomed towards that central object,
-   but not while, unless you move that itself object
+   A :ref:`ui-data-id` that defines an object as the center of the view.
+   In this case, the view can be rotated around or zoomed towards that central object,
+   but not while you move the object itself
    (this option is not available in a camera view).
 
 Lock to 3D Cursor
@@ -85,8 +85,13 @@ Lock to 3D Cursor
 .. _3dview-lock-camera-to-view:
 
 Lock Camera to View
-   When in camera view, all changes in the view (pans, rotations, zooms) will affect the active camera,
-   which will follow all those changes. The camera frame will be outlined with a red dashed line.
+   When in camera view, all changes in the view (pans, rotations, zooms) will affect the active camera.
+   The camera frame will be outlined with a red dashed line.
+
+.. hint::
+
+   This will move the camera's parent which can be useful with camera rigs.
+   Use the :ref:`Camera Parent Lock <prefs-camera-parent-lock>` preference to change this behavior.
 
 
 3D Cursor

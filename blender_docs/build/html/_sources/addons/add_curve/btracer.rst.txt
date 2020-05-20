@@ -17,7 +17,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> Edit tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Edit tab`.
 
 The default setting in the interface is Choose Tool, here you pick what trace methods and functions.
 

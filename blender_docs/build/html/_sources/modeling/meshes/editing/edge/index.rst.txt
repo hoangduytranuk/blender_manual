@@ -15,5 +15,4 @@
    unsubdivide.rst
    rotate_edge.rst
    edge_slide.rst
-   edge_split.rst
    edge_data.rst

@@ -255,13 +255,12 @@ This option effectively double the memory usage of shadow maps and will slow dow
 </dd>
 <dt>-- Soft Shadows</dt><dd><p>Randomize the shadow maps origin to create soft shadows. It needs a lot of samples to get rid of the banding.</p>
 </dd>
-<dt>-- Light Threshold</dt><dd><p>In order to avoid costly setup time, this distance is first computed automatically based on a light threshold. The distance is computed at the light origin and using the inverse square falloff. The setting can be found inside the <span class="menuselection">Bảng Sắp Đặt về Kết Xuất (Render Settings panel) ‣ Thẻ Bóng Tối (Shadow tab)</span>.</p>
-<p>This light threshold does not take the light shape into account and may not
-suit every case. That is why we provide a per-light override where you can
-just set the cut off distance
-(<span class="menuselection">Properties ‣ Object Data ‣ Light ‣ Custom Distance</span>).</p>
+<dt>-- Light Threshold</dt><dd><p>The minimum amount of light for a light to contribute for lighting.
+This light threshold does not take the light shape into account and may not suit every case.
+That is why Blender provides a <a class="reference internal" href="../lighting.html#bpy-types-light-cutoff-distance"><span class="std std-ref">per-light override</span></a>
+where you can just set the cut off distance.</p>
 <p>The influence distance is also used as shadow far clip distance, which might affect how shadows looks.
-This influence distance does not concern sun lights that still have a far clip distance.</p>
+This influence distance does not affect sun lights that still have a far clip distance.</p>
 <div class="admonition seealso">
 <p class="admonition-title">Xem thêm</p>
 <p><a class="reference internal" href="../lighting.html"><span class="doc">Custom Limit</span></a>.</p>

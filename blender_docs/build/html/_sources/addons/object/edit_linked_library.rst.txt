@@ -20,7 +20,7 @@ Activation
 Usage
 =====
 
-Select an object that is been linked from a separate blend-file. In the 3D View's Sidebar,
+Select an object that is been linked from a separate blend-file. In the 3D Viewport's Sidebar,
 the Edit Linked Library panel will show a button labeled *Edit Linked Library*.
 Click this button to open the blend-file that the active object is linked from.
 
@@ -41,7 +41,7 @@ in the Edit Linked Library panel of the Sidebar.
 
    :Category:  Object
    :Description: Allows editing of objects linked from a blend-file library.
-   :Location: :menuselection:`File --> External Data`, :menuselection:`3D View --> Sidebar --> Item tab`
+   :Location: :menuselection:`File --> External Data`, :menuselection:`3D Viewport --> Sidebar --> Item tab`
    :File: object_edit_linked.py
    :Author: Jason van Gumster (Fweeb), Bassam Kurdali, Pablo Vazquez, Rainer Trummer
    :License: GPL

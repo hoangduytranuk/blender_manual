@@ -141,7 +141,7 @@ surface.
 Caustics and Filter Glossy
 ==========================
 
-Caustics are a well-known source of noise, causing fireflies.
+Caustics are a well-known source of noise, causing :term:`Fireflies`.
 They happen because the renderer has difficulty finding specular highlights
 viewed through a soft glossy or diffuse reflection.
 There is a :ref:`No Caustics <render-cycles-integrator-no-caustics>`
@@ -182,7 +182,7 @@ However, as distance goes to zero,
 this value goes to infinity and we can get very bright spots in the image.
 These are mostly a problem for indirect lighting, where the probability of hitting such
 a small but extremely bright spot is low and so happens only rarely.
-This is a typical recipe for fireflies.
+This is a typical recipe for :term:`Fireflies`.
 
 .. list-table::
 
@@ -264,7 +264,7 @@ and on the right the render with the trick.
    * - .. figure:: /images/render_cycles_optimizations_reducing-noise_glass-too-much-shadow.jpg
           :width: 180px
 
-          Default Glas BSDF.
+          Default Glass BSDF.
 
      - .. figure:: /images/render_cycles_optimizations_reducing-noise_glass-trick.jpg
           :width: 180px
@@ -312,8 +312,8 @@ Below is an example render by
 Clamp Fireflies
 ===============
 
-Ideally with all the previous tricks, fireflies would be eliminated, but they could still happen. For that,
-the *intensity* that any individual light ray sample will contribute to a pixel can be *clamped*
+Ideally with all the previous tricks, :term:`Fireflies` would be eliminated, but they could still happen.
+For that, the *intensity* that any individual light ray sample will contribute to a pixel can be *clamped*
 to a maximum value with the integrator :ref:`Clamp setting <render-cycles-integrator-clamp-samples>`.
 
 If set too low this can cause missing highlights in the image,

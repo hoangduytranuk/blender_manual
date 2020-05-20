@@ -10,10 +10,8 @@ Smoke Flow
    :Type:      Smoke Flow
 
 The *Smoke Flow* force field creates a force based on a :doc:`Fluid simulation </physics/fluid/index>` air flow.
-
 It applies the smoke simulation air flow velocity as a force to other simulations that use force fields.
 To use it you need to add a *Smoke Flow* force field and select a domain object for it.
-
 For example fire sparkles could realistically flow along the air turbulence near the simulated fire.
 
 

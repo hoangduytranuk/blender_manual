@@ -28,8 +28,8 @@ None
    the CPU will be used as the computing device for the Cycles Renderer.
 CUDA
    If the system has a compatible Nvidia CUDA device, it will show up an option for rendering with Cycles.
-Optix
-   If the system has a compatible Nvidia Optix device, it will show up an option for rendering with Cycles.
+OptiX
+   If the system has a compatible Nvidia OptiX device, it will show up an option for rendering with Cycles.
 OpenCL
    If the system has a compatible AMD OpenCL device, it will show up an option for rendering with Cycles.
 
@@ -57,9 +57,7 @@ Global Undo
 
    :doc:`Read more about Undo and Redo options </interface/undo_redo>`.
 
-Sequencer Cache Limit
-   Upper limit of the Sequencer's memory cache (in megabytes).
-   For an optimal Clip editor and Sequencer performance, high values are recommended.
+
 Console Scroll-back Lines
    The number of lines, buffered in memory of the console window.
    Useful for debugging purposes and command-line rendering.
@@ -70,11 +68,37 @@ Texture Time Out
    Garbage Collection Rate
       Number of seconds between each run of the GL texture garbage collector.
 VBO Time Out
-   Time since last access of a GL Vertex buffer object in seconds after which it is freed
+   Time since last access of a GL vertex buffer object (VBO) in seconds after which it is freed
    (set to 0 to keep VBO allocated).
 
    Garbage Collection Rate
-      Number of seconds between each run of the GL Vertex buffer object garbage collector.
+      Number of seconds between each run of the GL vertex buffer object garbage collector.
+
+
+.. _prefs-system-video-sequencer:
+
+Video Sequencer
+===============
+
+Memory Cache Limit
+   Upper limit of the Video Sequencer and Movie Clip Editor memory cache (in megabytes).
+   For an optimal Clip editor and Sequencer performance, high values are recommended.
+Use Disk Cache
+   Writes cached strips to disk which can store a lot more than
+   to use Disk Cache, this option must be enabled,
+   the *Disk Cache Directory* and *Disk Cache Limit*, and then save or reopen existing blend-file.
+Disk Cache Directory
+   The location on disk to store the cache.
+Disk Cache Limit
+   Upper limit of the Video Sequencer's disk cache (in gigabytes), setting to zero disables disk cache.
+Disk Cache Compression Level
+   The level of compression to compress image in the disk cache.
+   This has a trade off between saving disk space and requiring more processing.
+   The more compression used requires faster disk write/read speeds and more CPU usage.
+
+.. seealso::
+
+   :doc:`Strip Proxy and Cache properties </video_editing/sequencer/properties/proxy_cache>`.
 
 
 .. _prefs-system-sound:
@@ -101,17 +125,12 @@ Audio Device
       Used for 3D source support by speaker objects.
 
 Channels
-   Sets the audio channel count. Available options are:
-   *Mono*, *Stereo*, *4 Channels*, *5.1 Surround*, *7.1 Surround*.
+   Sets the audio channel count.
 Mixing Buffer
-   Sets the number of samples used by the audio mixing buffer. Available options are:
-   *512*, *1024*, *2048*, *4096*, *8192*, *16384*, and *32768 Samples*.
+   Sets the number of samples used by the audio mixing buffer.
    Higher buffer sizes can cause latency issues,
    but if you hear clicks or other problems, try to increase the size.
 Sample Rate
    Sets the audio `sampling rate <https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate>`__.
-   Available options are: *44.1 Khz*, *48 Khz*, *96 Khz* and *192 Khz*.
 Sample Format
-   Sets the audio sample format. Available options are:
-   *32 bit float*, *8 bit Unsigned*, *16 Bits Signed*, *24 Bits Signed*,
-   *32 Bits Signed*, *32 Bits Float*, and *64 Bits Float*.
+   Sets the audio sample format.

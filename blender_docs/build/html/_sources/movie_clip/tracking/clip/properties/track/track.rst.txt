@@ -74,7 +74,7 @@ Stabilization Weight
 Color Presets
    The preset for the *Custom Color*.
 Custom Color
-   This setting overrides the default marker color used in the Clip editor and 3D View,
+   This setting overrides the default marker color used in the Clip editor and 3D Viewport,
    and it helps to distinguish different type of features
    (for example, features in the background vs. foreground and so on).
    Color also can be used for "grouping" tracks so a whole group of tracks can be selected by

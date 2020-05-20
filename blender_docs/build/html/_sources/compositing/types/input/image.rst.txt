@@ -27,7 +27,7 @@ Image
 
 .. note::
 
-   More options could be set in the Sidebar region.
+   More options can be set in the Sidebar region.
 
 
 Outputs

@@ -224,8 +224,8 @@
   <div class="section" id="selecting">
 <h1>Lựa Chọn -- Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline">¶</a></h1>
 <p>Selection in <em>Pose Mode</em> is very similar to the one in <a class="reference internal" href="../bones/selecting.html"><span class="doc">Edit Mode</span></a>,
-with a few specificities:</p>
-<p>You can only select <em>whole bones</em> in <em>Pose Mode</em>, not roots/tips...</p>
+with a few deviations:
+You can only select <em>whole bones</em> in <em>Pose Mode</em>, not roots/tips...</p>
 <div class="section" id="flip-active">
 <h2>Flip Active<a class="headerlink" href="#flip-active" title="Permalink to this headline">¶</a></h2>
 <div class="refbox admonition">
@@ -250,8 +250,25 @@ with a few specificities:</p>
 </div>
 <div class="section" id="linked">
 <h2>Linked<a class="headerlink" href="#linked" title="Permalink to this headline">¶</a></h2>
-<p>You can select at once all the bones in the chain which the active (last selected)
-bone belongs to by using the <em>linked selection</em> tool, <kbd class="kbd docutils literal notranslate">L</kbd>.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Linked</span></p>
+</dd>
+<dt class="field-odd">Phím Tắt -- Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">L</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Selects all the bones in the chain which the active (last selected) bone belongs to.</p>
+<dl class="simple">
+<dt>All Forks</dt><dd><p>Selects all bones connected to the active bone even if the branch off from the current bone.</p>
+</dd>
+</dl>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">Linked bones selection.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -266,7 +283,7 @@ bone belongs to by using the <em>linked selection</em> tool, <kbd class="kbd doc
 </td>
 <td><div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/animation_armatures_bones_selecting_whole-chain.png"><img alt="../../../_images/animation_armatures_bones_selecting_whole-chain.png" src="../../../_images/animation_armatures_bones_selecting_whole-chain.png" style="width: 320px;" /></a>
-<p class="caption"><span class="caption-text">Its whole chain selected with <kbd class="kbd docutils literal notranslate">L</kbd>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Its whole chain selected with Linked.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </td>
 </tr>
@@ -323,7 +340,28 @@ use the <em>In Same Group</em> entry <kbd class="kbd docutils literal notranslat
 </div>
 <div class="section" id="select-pattern">
 <h2>Select Pattern<a class="headerlink" href="#select-pattern" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<div class="refbox admonition">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Object Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select Pattern...</span></p>
+</dd>
+</dl>
+</div>
+<p>Selects all bones whose name matches a given pattern.
+Supported wild-cards: * matches everything, ? matches any single character,
+[abc] matches characters in &quot;abc&quot;, and [!abc] match any character not in &quot;abc&quot;.
+As an example *house* matches any name that contains &quot;house&quot;,
+while floor* matches any name starting with &quot;floor&quot;.</p>
+<dl class="simple">
+<dt>Case Sensitive</dt><dd><p>The matching can be chosen to be case sensitive or not.</p>
+</dd>
+<dt>Extend</dt><dd><p>When <em>Extend</em> checkbox is checked the selection is extended instead of generating a new one.</p>
+</dd>
+</dl>
 </div>
 </div>
 

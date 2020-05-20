@@ -227,7 +227,7 @@
 <p class="admonition-title">Tham Chiếu -- Reference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Settings</span></p>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Options</span></p>
 </dd>
 </dl>
 </div>
@@ -240,12 +240,15 @@ and can be more easily managed as objects of their own type.</p>
 <p><a class="reference internal" href="../lights/light_object.html"><span class="doc">Light settings</span></a> for all renderers.</p>
 </div>
 <div class="section" id="eevee">
-<h2>Eevee<a class="headerlink" href="#eevee" title="Permalink to this headline">¶</a></h2>
+<span id="bpy-types-light-cutoff-distance"></span><span id="bpy-types-light-use-custom-distance"></span><h2>Eevee<a class="headerlink" href="#eevee" title="Permalink to this headline">¶</a></h2>
 <dl>
 <dt>Lóng Lánh -- Specular</dt><dd><p>Specular Light intensity multiplier. Use it for more artistic control.
 Setting this to anything but 1.0 will yield non-photorealistic result.</p>
 </dd>
-<dt>Custom Distance</dt><dd><p>If enabled uses <em>Distance</em> as the custom attenuation distance instead of global light threshold.</p>
+<dt>Custom Distance</dt><dd><p>If enabled uses <em>Distance</em> as the custom attenuation distance instead of global light threshold.
+In order to avoid long setup times, this distance is first computed
+automatically based on a light threshold. The distance is computed
+at the light origin and using the inverse square falloff.</p>
 <dl class="simple">
 <dt>Distance</dt><dd><p>Specifies where light influence will be set to 0.</p>
 </dd>
@@ -313,7 +316,7 @@ with an evenly distributed shadow precision.</p>
 Higher values means less overall resolution because cascades need to overlap.</p>
 </dd>
 <dt>Max Distance</dt><dd><p>Distance away from the view origin (or camera origin if in camera view) to cover by the cascade.
-If the view far clip distance is lower than Max Distance, the lowest of the two will be used.
+If the view far clip distance is lower than Max Distance, the view far clip distance will be used.
 Only works in perspective view.</p>
 </dd>
 <dt>Distribution</dt><dd><p>Puts more resolution towards the near clip plane. Only works in perspective view.</p>

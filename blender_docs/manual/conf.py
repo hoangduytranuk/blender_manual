@@ -225,7 +225,7 @@ def setup(app):
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
-html_extra_path = ["../resources/versions.json", "../.htaccess"]
+html_extra_path = ["../resources/versions.json"]
 
 # If not None, a 'Last updated on:' timestamp is inserted at every page
 # bottom, using the given strftime format.

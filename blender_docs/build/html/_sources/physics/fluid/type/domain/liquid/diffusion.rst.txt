@@ -92,13 +92,6 @@ Viscosity
       Simply setting the viscosity to very large values will not result in rigid body behavior,
       but might cause instabilities.
 
-.. _bpy.types.FluidDomainSettings.domain_size:
-
-Real World Size
-   Size of the domain object in the real world in meters. If you want to create a mug of coffee,
-   this might be 10 cm (0.1 meters), while a swimming pool might be 10 m. The size set here defines
-   the longest side of the domain bounding box.
-
 .. _bpy.types.FluidDomainSettings.surface_tension:
 
 Surface Tension

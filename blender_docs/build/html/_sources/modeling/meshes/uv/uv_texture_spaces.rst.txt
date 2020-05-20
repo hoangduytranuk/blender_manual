@@ -53,7 +53,7 @@ Auto Texture Space
    Location, Size
       If the texture space is not calculated automatically then you can define
       the location and size of the texture space relative to the base object.
-      These can also be adjusted from the 3D View, see `Editing`_ for more information.
+      These can also be adjusted from the 3D Viewport, see `Editing`_ for more information.
 
 ------------------------
 
@@ -78,7 +78,7 @@ Editing
    :Mode:      Object Mode and Edit Mode
    :Menu:      :menuselection:`Object --> Transform --> Scale/Move Texture Space`
 
-To modify the texture space from the 3D View, enable
+To modify the texture space from the 3D Viewport, enable
 :ref:`Edit Texture Space <modeling_transform_edit-texture-space>`
 while :doc:`transforming </scene_layout/object/editing/transform/basics>` an object.
 

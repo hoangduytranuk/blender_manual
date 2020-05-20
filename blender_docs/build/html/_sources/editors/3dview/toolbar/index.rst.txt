@@ -3,7 +3,7 @@
 Toolbar
 *******
 
-.. Link to tools below, include general 3D View tools here.
+.. Link to tools below, include general 3D Viewport tools here.
 
 .. toctree::
    :hidden:

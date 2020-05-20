@@ -47,17 +47,9 @@ Mist Pass
 
    :Panel:     :menuselection:`World --> Mist Pass`
 
-.. figure:: /images/render_cycles_world-settings_mist-example1-BI.jpg
-
-   Mist example (`blend-file <https://wiki.blender.org/wiki/File:25-Manual-World-Mist-Example1.blend>`__).
-
 Mist can greatly enhance the illusion of depth in your rendering. To create mist,
-Blender makes objects farther away more transparent (decreasing their Alpha value)
-so that they mix more of the background color with the object color. With Mist enabled
-the further the object is away from the camera the less its alpha value will be.
-
-Shown when the Mist pass is enabled. Mist values will range from 0.0 - 1.0 and
-are available from the Render Layers node.
+Blender generates a render layer with a depth map ranging between 0.0 and 1.0
+that can be used in the Compositor to generate a mist effect.
 
 Start
    The distance from the camera at which the mist starts to fade in.
@@ -78,18 +70,11 @@ Falloff
 
 .. tip::
 
-   A visualization can be activated in the :menuselection:`Camera --> Display` panel.
+   A visualization can be activated in the :menuselection:`Camera --> Viewport Display` panel.
 
-.. tip::
+.. figure:: /images/render_cycles_world-settings_mist-example1-BI.jpg
 
-   Because *Mist* works by adjusting transparency,
-   this can sometimes cause objects to be partially transparent when they should not be.
-   One workaround is to set the Mist settings as desired, but turn Mist off.
-   The Mist data is still available for compositing even though it is off.
-   Use :doc:`Compositing </compositing/index>` to feed the Mist pass to
-   the :doc:`Alpha Over </compositing/types/color/alpha_over>` node to blend the background color
-   (or a render layer with just the sky) with the rendered image.
-   This produces the mist effect but since Mist is off the object transparency (or lack of) is preserved.
+   Mist example (`blend-file <https://wiki.blender.org/wiki/File:25-Manual-World-Mist-Example1.blend>`__).
 
 
 .. _render-cycles-integrator-world-settings:
@@ -106,14 +91,16 @@ Settings
 Surface
 -------
 
-Multiple Importance Sample
-   Enabling this will sample the background texture such that lighter parts are favored,
-   creating an importance map. It will producing less noise in the render in trade of artifacts (fireflies).
-   It is almost always a good idea to enable this when
-   using an image texture to light the scene, otherwise noise can take a very long time to converge.
+Sampling
+   Controls the sampling method for the world material. Selecting Auto or Manual enables
+   *Multiple Importance Sampling* while None disables it. *Multiple Importance Sampling*
+   is a method to sample the background texture such that lighter parts are favored,
+   creating an importance map. It will produce less noise in the render in trade of artifacts (:term:`Fireflies`).
+   Enable this when using an image texture with small area lights (like the sun),
+   otherwise noise can take a long time to converge.
 
    Below is a comparison between *Multiple Importance Sample* off and on.
-   Both images are rendered for 25 seconds (Off: 1500 samples, On: 1000 samples).
+   Both images are rendered for 25 seconds (Off: 1,500 samples, On: 1,000 samples).
 
    .. list-table::
 
@@ -144,8 +131,8 @@ Volume
 
 Sampling Method
    Distance
-      If you have got a pretty dense volume that is lit from far away
-      then *Distance* sampling is usually more efficient.
+      For dense volumes lit from far away *Distance* sampling is more efficient in most cases.
+      Usually this shouldn't be used for World volumes.
    Equiangular
       If you have got a light inside or near the volume then *equiangular* sampling is better.
    Multiple Importance
@@ -155,14 +142,18 @@ Interpolation
    Interpolation method to use for the volume.
 
    Linear
-      Good smoothness and speed.
+      Simple interpolation which gives good results for thin volumes.
    Cubic
-      Smoothed high-quality interpolation, but slower.
+      Smoothed high-quality interpolation needed for more dense volumes, but slower.
 
 Homogeneous Volume
    Assume volume has the same density everywhere (not using any textures), for faster rendering.
-   For example absorption in a glass object would typically not have any textures,
-   and so the renderer can be set to avoid taking small steps to sample the volume shader.
+   Usually this is automatically determined by the renderer.
+   This settings provides a manual control for cases where it is not detected.
+
+Step Size
+   Distance between volume shader samples for world volume shaders.
+   See :doc:`Volume Render Settings </render/cycles/render_settings/volumes>` for more information.
 
 
 Ray Visibility

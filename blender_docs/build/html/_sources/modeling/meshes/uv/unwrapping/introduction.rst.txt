@@ -29,7 +29,7 @@ These coordinates can be used for rendering or for real-time viewport display as
 Every face in Blender can have a link to a different image.
 The UV coordinates define how this image is mapped onto the face.
 This image then can be rendered or displayed in real-time.
-A 3D View has to be in "Face Select" mode to be able to assign Images or
+A 3D Viewport has to be in "Face Select" mode to be able to assign Images or
 change UV coordinates of the active mesh object.
 This allows a face to participate in many UV textures.
 A face at the hairline of a character might participate in the facial UV texture,
@@ -53,7 +53,7 @@ This process creates one or more UV Islands in the :ref:`UV Editor <editors-uv-i
 
 To begin, choose the *UV Editing* :doc:`workspace </interface/window_system/workspaces>`
 from the selection list at the top of your screen in the Preferences header.
-This sets one of the areas to show you the UV Editor, and the other area to the 3D View.
+This sets one of the areas to show you the UV Editor, and the other area to the 3D Viewport.
 
 Enter *Edit Mode*, as all unwrapping is done in Edit Mode.
 You can be in vertex, face, or edge selection mode.

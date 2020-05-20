@@ -28,7 +28,7 @@ Plane Options
 .. figure:: /images/grease-pencil_modes_draw_drawing-planes_selector.png
    :align: right
 
-   Drawing Planes selector in the 3D View header.
+   Drawing Planes selector in the 3D Viewport header.
 
 Front
    Strokes are drawn on the plane determined by the XZ axes (front view).

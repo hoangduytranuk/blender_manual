@@ -236,7 +236,7 @@ and select either <em>CUDA</em>, <em>Optix</em> or <em>OpenCL</em>. Next, you mu
 <span class="menuselection">Properties ‣ Render ‣ Device</span>.</p>
 <div class="section" id="supported-hardware">
 <h2>Supported Hardware<a class="headerlink" href="#supported-hardware" title="Permalink to this headline">¶</a></h2>
-<p>Blender supports two different technologies to render on the GPU depending on the particular GPU manufacture.</p>
+<p>Blender supports different technologies to render on the GPU depending on the particular GPU manufacture.</p>
 <div class="section" id="nvidia">
 <h3>Nvidia<a class="headerlink" href="#nvidia" title="Permalink to this headline">¶</a></h3>
 <p><abbr title="Compute Unified Device Architecture">CUDA</abbr> and Optix
@@ -288,7 +288,7 @@ with the GCN generation and supported graphics cards.</p>
 <div class="section" id="why-is-blender-unresponsive-during-rendering">
 <h3>-- Why is Blender unresponsive during rendering?<a class="headerlink" href="#why-is-blender-unresponsive-during-rendering" title="Permalink to this headline">¶</a></h3>
 <p>While a graphics card is rendering, it cannot redraw the user interface, which makes Blender unresponsive.
-We attempt to avoid this problem by giving back control over the GPU as often as possible,
+We attempt to avoid this problem by giving back control over to the GPU as often as possible,
 but a completely smooth interaction cannot be guaranteed, especially on heavy scenes.
 This is a limitation of graphics cards for which no true solution exists,
 though we might be able to improve this somewhat in the future.</p>
@@ -300,10 +300,10 @@ using one for display and the other(s) for rendering.</p>
 <p>There maybe be multiple causes,
 but the most common is that there is not enough memory on your graphics card.
 Typically while using GPU rendering the GPU can only use the amount of memory that is on the GPU.
-This is usually much smaller then the amount of system memory that the CPU uses.
-In the case that the GPU runs out of memory Blender will automatically try to also use system and GPU memory.
-This has a performance impact but it is still faster than using CPU rendering.
-This feature does not work on OpenCL rendering.</p>
+This is usually much smaller than the amount of system memory the CPU can access.
+With CUDA and Optix devices, if the GPU memory is full Blender will automatically try to use system memory.
+This has a performance impact, but will usually still result in a faster render than using CPU rendering.
+This feature does not work for OpenCL rendering.</p>
 </div>
 <div class="section" id="can-multiple-gpus-be-used-for-rendering">
 <h3>-- Can multiple GPUs be used for rendering?<a class="headerlink" href="#can-multiple-gpus-be-used-for-rendering" title="Permalink to this headline">¶</a></h3>
@@ -313,11 +313,11 @@ This feature does not work on OpenCL rendering.</p>
 <h3>-- Would multiple GPUs increase available memory?<a class="headerlink" href="#would-multiple-gpus-increase-available-memory" title="Permalink to this headline">¶</a></h3>
 <p>No, each GPU can only access its own memory.</p>
 </div>
-<div class="section" id="what-renders-faster-nvidia-or-amd-cuda-or-opencl">
-<h3>What renders faster, Nvidia or AMD, CUDA or OpenCL?<a class="headerlink" href="#what-renders-faster-nvidia-or-amd-cuda-or-opencl" title="Permalink to this headline">¶</a></h3>
-<p>Currently Nvidia with CUDA is rendering fastest, but this really depends on the hardware you buy.
-Currently, CUDA and OpenCL are about the same in the newest mid-range GPUs.
-However, CUDA is fastest in the respect of high-end GPUs.</p>
+<div class="section" id="what-renders-faster-nvidia-or-amd-cuda-optix-or-opencl">
+<h3>What renders faster, Nvidia or AMD, CUDA, Optix or OpenCL?<a class="headerlink" href="#what-renders-faster-nvidia-or-amd-cuda-optix-or-opencl" title="Permalink to this headline">¶</a></h3>
+<p>This varies depending on the hardware used. Different technologies also have different compute times
+depending on the scene tested. For the most up to date information on the performance of different devices,
+browse the <a class="reference external" href="https://opendata.blender.org/">Blender Open Data</a> resource.</p>
 </div>
 </div>
 <div class="section" id="error-messages">
@@ -369,12 +369,10 @@ supports your graphics card.</p></li>
 </div>
 <div class="section" id="cuda-error-out-of-memory">
 <h3>-- CUDA Error: Out of memory<a class="headerlink" href="#cuda-error-out-of-memory" title="Permalink to this headline">¶</a></h3>
-<p>This usually means there is not enough memory to store the scene on the GPU.
-We can currently only render scenes that fit in graphics card memory,
-and this is usually smaller than that of the CPU. See above for more details.</p>
+<p>This usually means there is not enough memory to store the scene for use by the GPU.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>One way to reduce memory usage is by using smaller resolutions for textures.
+<p>One way to reduce memory usage is by using smaller resolution textures.
 For example, 8k, 4k, 2k, and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.</p>
 </div>
 </div>

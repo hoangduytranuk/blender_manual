@@ -41,7 +41,7 @@ Instructions
    :Location: :menuselection:`Text Editor --> Dev Tab --> Icon Viewer`
    :File: development_icon_get.py
    :Author: roaoao
-   :Maintainer: todo
+   :Maintainer: Blender Foundation
    :License: GPL
    :Support Level: Community
    :Note: This add-on is bundled with Blender.

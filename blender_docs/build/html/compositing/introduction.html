@@ -244,13 +244,15 @@ it can also be disabled in the <a class="reference internal" href="../render/out
 <li><p>Để truyền tải một cảm giác về sự hồi tưởng hoặc một kỷ niệm nào đó thì hình ảnh có thể được làm nhòe đi một cách mềm mại.</p></li>
 <li><p>Để truyền đạt lòng hận thù và sự khó chịu thì hãy cho thêm màu nhuốm đỏ hoặc tăng cường màu đỏ lên.</p></li>
 <li><p>Đối với một sự kiện đáng kinh ngạc thì mình có thể tăng cường độ rõ nét (<em>sharpened</em>) và độ tương phản lên (để nêu bật).</p></li>
-<li><p>Đối với một cảm giác vui vẻ -- chắc bạn đoán được rồi, phải không? -- thì cho thêm màu vàng vào (cho lượng màu đỏ và lục bằng nhau, không có màu lam) để làm cho hình ảnh sáng lên và tràn đầy ánh nắng.</p></li>
+<li><p>To convey a happy feeling add yellow (equal parts red and green, no blue).</p></li>
 <li><p>Bụi bẩn và bụi bay trong không khí thường được cho thêm vào như một chất liệu mây mù (<em>cloud texture</em>) đè lên hình ảnh để tạo cảm giác chân thực hơn.</p></li>
 </ul>
 </div>
 <div class="section" id="image-size">
 <h2>Khổ Ảnh -- Image Size<a class="headerlink" href="#image-size" title="Permalink to this headline">¶</a></h2>
-<p>Bạn nên chú ý đến độ phân giải hình ảnh và độ sâu của màu sắc (<em>color depth</em>) khi cắt ghép các hình ảnh với nhau. Hầu hết nguyên nhân của những hiện tượng như hình ảnh bị răng cưa (các cạnh thô thiển), màu sắc <em>nhạt nhẽo -- flatness</em> hoặc hình ảnh bị méo mó, đều bắt đầu từ nguyên nhân là độ phân giải và độ sâu màu, khi pha trộn, không phù hợp với nhau.</p>
+<p>It is recommended to pay attention to image resolution and color depth when mixing and
+matching images. <a class="reference internal" href="../glossary/index.html#term-aliasing"><span class="xref std std-term">Aliasing</span></a>, color <em>flatness</em>,
+or distorted images can all be traced to mixing inappropriate resolutions and color depths.</p>
 <p>The Compositor can mix images with any size,
 and will only perform operations on pixels where images have an overlap.
 When nodes receive inputs with differently sized Images, these rules apply:</p>
@@ -262,7 +264,9 @@ When nodes receive inputs with differently sized Images, these rules apply:</p>
 </div>
 <div class="section" id="saving-your-composite-image">
 <h2>Lưu Hình Ảnh Tổng Hợp của bạn -- Saving your Composite Image<a class="headerlink" href="#saving-your-composite-image" title="Permalink to this headline">¶</a></h2>
-<p>Nút <em>Kết Xuất -- Render</em> sẽ kết xuất một đơn khung hình hoặc một hình ảnh mà thôi. Lưu hình ảnh của bạn bằng việc sử dụng trình đơn <span class="menuselection">Hình Ảnh (Image) ‣ Lưu Hình Ảnh (Save Image)</span> hoặc tổ hợp phím <kbd class="kbd docutils literal notranslate">Shift-S</kbd>. Hình ảnh sẽ được lưu theo định dạng hình ảnh đã sắp đặt trong bảng Kết Xuất (<em>Render panel</em>).</p>
+<p>The <em>Render</em> button renders a single frame or image.
+Save your image using <span class="menuselection">Image ‣ Save Image</span> or <kbd class="kbd docutils literal notranslate">Alt-S</kbd>.
+The image will be saved using the image format settings on the Render panel.</p>
 <p>Để lưu một trình tự hình ảnh, chẳng hạn, như bạn cung cấp một đoạn phim (<em>movie clip</em>) hoặc sử dụng nút Thời Gian (<em>Time node</em>), với mỗi khung hình trong tập tin riêng của nó, thì hãy sử dụng nút <em>Hoạt Họa -- Animation</em> và các cài đặt của nó. Nếu như sau này, bạn muốn chồng đè (<em>overlay</em>) lên chúng, thì nên nhớ sử dụng định dạng hình ảnh nào có hỗ trợ kênh Alpha (chẳng hạn như <code class="docutils literal notranslate"><span class="pre">PNG</span></code>). Nếu như sau này, bạn muốn sắp xếp chúng, từ trước đến sau, hoặc muốn tạo độ sâu trường ảnh, thì hãy sử dụng định dạng hỗ trợ kênh chiều sâu Z (<em>Z-depth channel</em>) (chẳng hạn như định dạng <code class="docutils literal notranslate"><span class="pre">EXR</span></code>).</p>
 <p>Để lưu một tổng hợp thành một đoạn phim (toàn bộ tất cả các khung hình nằm trong một tập tin), thì hãy sử dụng định dạng <code class="docutils literal notranslate"><span class="pre">AVI</span></code> hoặc <code class="docutils literal notranslate"><span class="pre">Quicktime</span></code>, và sử dụng nút <em>Hoạt Họa -- Animation</em> và các sắp đặt của nó.</p>
 </div>

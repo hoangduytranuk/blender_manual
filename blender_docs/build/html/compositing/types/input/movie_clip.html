@@ -229,7 +229,14 @@
 <img alt="../../../_images/compositing_node-types_CompositorNodeMovieClip.png" src="../../../_images/compositing_node-types_CompositorNodeMovieClip.png" />
 <p class="caption"><span class="caption-text">Movie Clip node.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>Nút này là một nút đặc biệt, sử dụng một số giá trị được lấy từ các máy quay phim, các giám sát cảnh và liên kết chúng với đầu ra. Nó có thể nạp các trình tự (<em>sequences</em>) hình ảnh, nhưng chỉ các giá trị của Hình Ảnh và Alpha là được nạp để sử dụng mà thôi, bởi vì các đầu ra khác sẽ không có bất kỳ giá trị nào được liên kết với chúng. Khi một đoạn phim (<em>clip</em>) đã giám sát (<em>tracked</em>) được chọn, Blender sẽ hoàn thành các đầu ra bằng cách sử dụng các giá trị nội bộ được lấy từ sự giám sát. Vì vậy, các điều khiển cho khung hình bắt đầu và kết thúc sẽ được xác định tại trình chỉnh sửa Đoạn Phim (<em>Movie Clip editor</em>).</p>
+<p>This node is a special node that uses some of the values taken from
+footage cameras and trackings and link them to the output.
+It is possible to load image sequences, but only Image and Alpha values
+will be available, because the other outputs will not have any values
+associated with them.
+When a tracked clip is chosen, Blender will fulfill the outputs using
+internal values taken from the tracking. So the controls for
+start and end frames will be defined in the Movie Clip editor.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
 <p>Nút này không có ổ cắm đầu vào.</p>
@@ -245,7 +252,7 @@
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
 <p>Hai ổ cắm đầu tiên là hai đầu ra tối thiểu</p>
 <dl class="simple">
-<dt>Hình Ảnh -- Image</dt><dd><p>Cung cấp toàn thể hình ảnh trong không gian màu sắc chỉ định.</p>
+<dt>Hình Ảnh -- Image</dt><dd><p>Outputs the entire image in the specified color space.</p>
 </dd>
 <dt>Alpha</dt><dd><p>Giá trị alpha lấy ra từ đoạn phim hoặc từ hình ảnh.</p>
 </dd>

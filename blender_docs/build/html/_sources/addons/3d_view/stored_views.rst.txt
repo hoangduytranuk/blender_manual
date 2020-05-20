@@ -17,7 +17,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> View tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> View tab`.
 
 .. figure:: /images/addons_3d-view_stored-views_ui.jpg
    :align: right
@@ -69,7 +69,7 @@ the next time you use it, the stored views or point of view will be ready.
 
    :Category:  3D View
    :Description: Save and restore user defined views, :abbr:`POV (Point Of View)` and camera locations.
-   :Location: :menuselection:`3D View --> Sidebar --> View tab`
+   :Location: :menuselection:`3D Viewport --> Sidebar --> View tab`
    :File: space_view3d_stored_views.py
    :Author: nfloyd, Francesco Siddi
    :Maintainer: Brendon Murphy (meta-androcto)

@@ -19,7 +19,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> Create` tab.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Create` tab.
 
 
 .. admonition:: Reference

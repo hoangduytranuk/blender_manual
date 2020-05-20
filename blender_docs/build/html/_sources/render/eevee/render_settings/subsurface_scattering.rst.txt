@@ -27,6 +27,6 @@ Jitter Threshold
    needs to be enabled in order to make the light go through an object
    (like simulating a human ear lit from behind).
 
-   This option only works with shadowed light and does not work with indirect lighting.
+   This option only works with shadowed lights and does not work with indirect lighting.
 
 .. seealso:: :ref:`Limitations <eevee-limitations-sss>`.

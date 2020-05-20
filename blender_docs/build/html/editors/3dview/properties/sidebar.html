@@ -247,10 +247,10 @@ of the active objects.</p>
 <h2>View<a class="headerlink" href="#view" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="view-panel">
 <h3>View Panel<a class="headerlink" href="#view-panel" title="Permalink to this headline">¶</a></h3>
-<p>The <em>View</em> panel lets you set other settings regarding the 3D View.
+<p>The <em>View</em> panel lets you set other settings regarding the 3D Viewport.
 You can show it with the <span class="menuselection">View ‣ View Properties...</span> menu entry.</p>
 <dl class="simple">
-<dt>Focal Length</dt><dd><p>Control the focal length of the 3D View camera in millimeters,
+<dt>Focal Length</dt><dd><p>Control the focal length of the 3D Viewport camera in millimeters,
 unlike a <a class="reference internal" href="../../../render/cameras.html"><span class="doc">rendering camera</span></a>.</p>
 </dd>
 </dl>
@@ -276,7 +276,7 @@ although this depends on the graphics card and drivers.</p>
 <p>See <a class="reference internal" href="../../../troubleshooting/3d_view.html#troubleshooting-depth"><span class="std std-ref">Troubleshooting Depth Buffer Glitches</span></a> for more information.</p>
 </div>
 </dd>
-<dt>Use Local Camera</dt><dd><p>Use a local camera in this view, rather then the scene's active camera.</p>
+<dt>Use Local Camera</dt><dd><p>Use a local camera in this view, rather than the scene's active camera.</p>
 </dd>
 <dt>Local Camera</dt><dd><p>Active camera used in this view to override the (global) scene camera.
 The option is available only when <em>Use Local Camera</em> toggle enabled.</p>
@@ -288,9 +288,9 @@ Using <kbd class="kbd docutils literal notranslate">Ctrl-B</kbd> to draw a regio
 <div class="section" id="view-lock">
 <span id="bpy-types-spaceview3d-lock"></span><h4>View Lock<a class="headerlink" href="#view-lock" title="Permalink to this headline">¶</a></h4>
 <dl class="simple">
-<dt>Lock to Object</dt><dd><p>Lock to Object lets you define an object in the <em>Object</em> Data ID as the center of the view.
-In that case, the view can be rotated around or zoomed towards that central object,
-but not while, unless you move that itself object
+<dt>Lock to Object</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Chỉ Danh của Dữ Liệu -- Data ID</span></a> that defines an object as the center of the view.
+In this case, the view can be rotated around or zoomed towards that central object,
+but not while you move the object itself
 (this option is not available in a camera view).</p>
 </dd>
 <dt>Lock to 3D Cursor</dt><dd><p>Lock the center of the view to the position of the 3D cursor.
@@ -298,10 +298,15 @@ It is only available when <em>Lock to Object</em> is not active.</p>
 </dd>
 </dl>
 <dl class="simple" id="dview-lock-camera-to-view">
-<dt>Lock Camera to View</dt><dd><p>When in camera view, all changes in the view (pans, rotations, zooms) will affect the active camera,
-which will follow all those changes. The camera frame will be outlined with a red dashed line.</p>
+<dt>Lock Camera to View</dt><dd><p>When in camera view, all changes in the view (pans, rotations, zooms) will affect the active camera.
+The camera frame will be outlined with a red dashed line.</p>
 </dd>
 </dl>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>This will move the camera's parent which can be useful with camera rigs.
+Use the <a class="reference internal" href="../../preferences/navigation.html#prefs-camera-parent-lock"><span class="std std-ref">Camera Parent Lock</span></a> preference to change this behavior.</p>
+</div>
 </div>
 </div>
 <div class="section" id="d-cursor">

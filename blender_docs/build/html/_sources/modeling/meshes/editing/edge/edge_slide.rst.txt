@@ -25,7 +25,7 @@ Clamp :kbd:`Alt` or :kbd:`C`
 Factor
    Determines the amount of slide performed.
    Negative values correspond to slides toward one face, while positive ones, refer to the other one.
-   It is also displayed in the 3D View footer.
+   It is also displayed in the 3D Viewport footer.
 Mirror Editing
    Lets you propagate the operation to the symmetrical elements of the mesh (if present, in local X direction).
 Correct UVs

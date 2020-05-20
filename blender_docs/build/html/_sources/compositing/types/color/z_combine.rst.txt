@@ -58,7 +58,7 @@ Examples
 
    Choosing closest pixels.
 
-In the example above, render output from two scenes are mixed using the Z Combine node,
+In the example above, the render output from two scenes are mixed using the Z Combine node,
 one from a sphere of size 1.30, and the other a cube of size 1.00.
 The sphere and square are located at the same place. The cube is tipped forward,
 so the corner in the center is closer to the camera than the sphere surface;
@@ -82,9 +82,8 @@ moves to the right created the illusion of depth as Bambi moved through the fore
 
    Mix and match images.
 
-The Z Combine can be used to merge two images as well,
-using the Z values put out by two render layers.
-Using the Z values from the sphere and cube scenes above, but threading different images,
+The Z Combine can be used to merge two images as well.
+Using the Z values from the sphere and cube scenes above, but inputting different images,
 yields the example to the right.
 
 .. figure:: /images/compositing_types_color_z-combine_example-3.png
@@ -93,10 +92,10 @@ yields the example to the right.
    Z Combine in action.
 
 In this node setup a render scene is mixed with a flat image. In the side view of the scene,
-the purple cube is 10 units away from the camera, and the gray ball is 20.
+the orange cube is 10 units away from the camera, and the blue ball is 20.
 The 3D cursor is about 15 units away from the camera. The image is Z-in at a location of 15,
 thus inserting it in between the cube and the ball.
-The resulting image appears to have the cube on the table.
+The resulting image appears to have the cube on the green image.
 
 .. note:: Invisible Man Effect
 

@@ -77,7 +77,7 @@ Fast Transformation
 
    :Category:  Object
    :Description: Boolean modifier tools.
-   :Location: :menuselection:`3D View --> Sidebar --> Edit tab`, :kbd:`Shift-Ctrl-B`
+   :Location: :menuselection:`3D Viewport --> Sidebar --> Edit tab`, :kbd:`Shift-Ctrl-B`
    :File: object_boolean_tools.py
    :Author: Vitor Balbio, Mikhail Rachinskiy, TynkaTopi, Meta-Androcto, Simon Appelt
    :License: GPL

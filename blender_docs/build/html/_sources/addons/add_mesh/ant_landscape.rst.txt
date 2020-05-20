@@ -20,9 +20,9 @@ Interface
    :align: right
    :width: 220px
 
-Located in the :menuselection:`3D View --> Add --> Mesh` menu.
+Located in the :menuselection:`3D Viewport --> Add --> Mesh` menu.
 
-Located in the :menuselection:`3D View --> Sidebar --> Create` tab.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Create` tab.
 
 
 Instructions

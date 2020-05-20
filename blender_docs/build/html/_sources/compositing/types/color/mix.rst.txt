@@ -44,7 +44,7 @@ Use Alpha
    When deactivated, the default, the icon background is a light gray.
    The alpha channel of the base image is always used.
 Clamp
-   Limit the highest color value to not exceed 1.
+   Limit the output value between 0.0 and 1.0.
 
 
 Outputs
@@ -73,7 +73,7 @@ Subtract
    Taking Blue away from Purple leaves Red. Use this to desaturate an image.
    Taking away yellow makes an image bluer and more depressing.
 Multiply
-   Black (0.00) times anything leaves black. Anything times White (1.00) is itself.
+   Black (0.0) times anything leaves black. Anything times White (1.0) is itself.
    Use this to mask out garbage, or to colorize a black-and-white image.
 Hue
    Shows you how much of a color is in an image,
@@ -89,6 +89,10 @@ Difference
    you have placed in an image for theft detection.
 Darken
    With the colors set here, it's like looking at the world through rose-colored glasses.
+
+.. note::
+
+   Only add, subtract, multiply and divide are suitable for :term:`Scene Referenced` images.
 
 
 Contrast Enhancement

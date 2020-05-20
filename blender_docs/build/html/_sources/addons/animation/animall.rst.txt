@@ -16,7 +16,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> Animate tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Animate tab`.
 
 
 Description

@@ -235,19 +235,10 @@
 <p>The <em>Material Output</em> node is used to output surface material information to a surface object.</p>
 <div class="section" id="inputs">
 <h2>Đầu Vào -- Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<dl>
+<dl class="simple">
 <dt>Bề Mặt -- Surface</dt><dd><p>Shading for the <a class="reference internal" href="../../materials/components/surface.html"><span class="doc">surface</span></a> of the object.</p>
 </dd>
 <dt>Thể Tích -- Volume</dt><dd><p>Shading for the <a class="reference internal" href="../../materials/components/volume.html"><span class="doc">volume</span></a> inside the object.</p>
-<div class="admonition seealso">
-<p class="admonition-title">Xem thêm</p>
-<p>The types of volume shaders are:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../shader/emission.html"><span class="doc">Emission</span></a> shader.</p></li>
-<li><p><a class="reference internal" href="../shader/volume_absorption.html"><span class="doc">Volume Absorption</span></a> shader.</p></li>
-<li><p><a class="reference internal" href="../shader/volume_scatter.html"><span class="doc">Volume Scatter</span></a> shader.</p></li>
-</ul>
-</div>
 </dd>
 <dt>Dịch Hình -- Displacement</dt><dd><p>Used to create bump mapping or actual subdivided <a class="reference internal" href="../../materials/components/displacement.html"><span class="doc">displacement</span></a>.</p>
 </dd>
@@ -255,7 +246,12 @@
 </div>
 <div class="section" id="properties">
 <h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
-<p>Nút này không có tính chất nào cả.</p>
+<dl class="simple">
+<dt>Target</dt><dd><p>Render engine the input shaders are used for.
+By default shaders are shared between Cycles and Eevee,
+with multiple output nodes specialized shader setups can be created for each.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="outputs">
 <h2>Đầu Ra -- Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>

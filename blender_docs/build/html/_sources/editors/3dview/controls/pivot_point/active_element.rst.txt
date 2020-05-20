@@ -17,10 +17,12 @@ will be shown in a lighter orange color when in *Object Mode* and white when in 
 With *Active Element* as *Pivot* set to active, all transformations will occur relative to the active element.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-display.png
+   :align: center
 
    Display of active elements in Object Mode where the active element (cube) is a lighter orange.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-display.png
+   :align: center
 
    Active elements for vertices, edges and faces in Edit Mode are displayed in white.
 
@@ -31,10 +33,11 @@ In Object Mode
 When in *Object Mode*,
 rotation and scaling happen around the origin of the active object.
 This is shown by the figure to the below where the active object (the cube)
-remains in the same location (note its position relative to the 3D cursor)
+remains in the same location (note its position relative to the background grid)
 while the other objects rotate and scale in relation to the active element.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_object-mode-rotation.png
+   :align: center
 
    Rotation and scaling with the cube as the active element.
 
@@ -57,19 +60,19 @@ Single Selection
 ----------------
 
 When one single element is selected it becomes automatically active. In the image below,
-you can see that when it is transformed its vertices move, with the consequence that any
-adjacent element which shares one or more vertices with the active element is also
-transformed.
+you can see that when it is transformed its vertices move, with the consequence that
+any adjacent element which shares one or more vertices with the active element is also transformed.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-single.png
+   :align: center
 
    Edit Mode and only one element selected.
 
 Let us review each case:
 
-- *Faces* have their pivot point where their selection dot appears, which is where the median of their vertices is.
+- *Faces* have their pivot point where the median of their vertices is.
 - *Edges* have their pivot point on their middle since this is always where the median of an edge is.
-- A single *Vertex* has no dimensions at all so it cannot show any transformation
+- A single *vertex* has no dimensions at all so it cannot show any transformation
   (except translation, which is not affected by the pivot point).
 
 
@@ -81,10 +84,11 @@ The pivot points stay in the same place as what we have described above.
 In the image below, the selected elements have been rotated.
 
 .. figure:: /images/scene-layout_object_editing_transform_control_pivot-point_active-element_edit-mode-multiple.png
+   :align: center
 
    Edit Mode and multiple selections.
 
-- For *Faces* the transformation occurs around the selection dot of the active face.
+- For *faces* the transformation occurs around the median of the vertices of the selected face.
 - *Edges* also keep the same behavior with their pivot point at their median.
-- There is a case for *Vertices* this time: the active Vertex is where the pivot point resides.
+- There is a case for *vertices* this time: the active vertex is where the pivot point resides.
   All other vertices are transformed relative to it.

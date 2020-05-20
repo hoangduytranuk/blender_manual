@@ -55,10 +55,10 @@ Volumetrics
 
 - Only single scattering is supported.
 - Volumetrics are rendered only for the camera "rays". They don't appear in reflections/refractions and probes.
-- Volumetrics don't receive light from Irradiance Volumes but does receive world's diffuse lighting.
-- Volumetric shadowing does only work on other volumetrics. They won't cast shadows on solid objects in the scene.
-- Volumetric shadowing does only work for volumes inside the view frustum.
-- Volumetric lighting does not respect the lights shapes. They are treated as point lights.
+- Volumetrics don't receive light from Irradiance Volumes but do receive diffuse lighting from the world.
+- Volumetric shadowing only work in volumetrics. They won't cast shadows onto solid objects in the scene.
+- Volumetric shadowing only work for volumes inside the view frustum.
+- Volumetric lighting do not respect the lights shapes. They are treated as point lights.
 
 
 .. _eevee-limitations-dof:
@@ -68,7 +68,7 @@ Depth of Field
 
 - Rendered at half resolution which can create blocky pixel artifacts on tiny features that are nearly in focus.
 - The near and far defocus buffers are in fact one single continuous texture. This can make some bleeding
-  appear on the left and right size of the image. This can be fixed by using the *overscan* feature.
+  appear on the left and right sides of the image. This can be fixed by using the *overscan* feature.
 
 
 Screen Space Effects
@@ -108,6 +108,8 @@ Screen Space Reflections
 - Screen Space Reflections will reflect transparent objects and objects using Screen Space Refraction
   but without accurate positioning due to the one layer depth buffer.
 
+
+.. _eevee-limitations-refraction:
 
 Screen Space Refraction
 -----------------------

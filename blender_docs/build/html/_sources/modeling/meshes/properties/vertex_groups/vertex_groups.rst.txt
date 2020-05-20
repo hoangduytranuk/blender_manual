@@ -87,7 +87,7 @@ Editing Vertex Groups
    :class: refbox
 
    :Mode:      Edit Mode
-   :Panel:     :menuselection:`Object Data Properties --> Vertex Groups`
+   :Panel:     :menuselection:`Object Data tab --> Vertex Groups`
    :Menu:      :menuselection:`Vertex --> Vertex Groups`
    :Hotkey:    :kbd:`Ctrl-G`
 

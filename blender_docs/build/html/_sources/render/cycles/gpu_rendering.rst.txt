@@ -17,7 +17,7 @@ and select either *CUDA*, *Optix* or *OpenCL*. Next, you must configure each sce
 Supported Hardware
 ==================
 
-Blender supports two different technologies to render on the GPU depending on the particular GPU manufacture.
+Blender supports different technologies to render on the GPU depending on the particular GPU manufacture.
 
 
 Nvidia
@@ -85,7 +85,7 @@ Why is Blender unresponsive during rendering?
 ---------------------------------------------
 
 While a graphics card is rendering, it cannot redraw the user interface, which makes Blender unresponsive.
-We attempt to avoid this problem by giving back control over the GPU as often as possible,
+We attempt to avoid this problem by giving back control over to the GPU as often as possible,
 but a completely smooth interaction cannot be guaranteed, especially on heavy scenes.
 This is a limitation of graphics cards for which no true solution exists,
 though we might be able to improve this somewhat in the future.
@@ -100,10 +100,10 @@ Why does a scene that renders on the CPU not render on the GPU?
 There maybe be multiple causes,
 but the most common is that there is not enough memory on your graphics card.
 Typically while using GPU rendering the GPU can only use the amount of memory that is on the GPU.
-This is usually much smaller then the amount of system memory that the CPU uses.
-In the case that the GPU runs out of memory Blender will automatically try to also use system and GPU memory.
-This has a performance impact but it is still faster than using CPU rendering.
-This feature does not work on OpenCL rendering.
+This is usually much smaller than the amount of system memory the CPU can access.
+With CUDA and Optix devices, if the GPU memory is full Blender will automatically try to use system memory.
+This has a performance impact, but will usually still result in a faster render than using CPU rendering.
+This feature does not work for OpenCL rendering.
 
 
 Can multiple GPUs be used for rendering?
@@ -118,12 +118,13 @@ Would multiple GPUs increase available memory?
 No, each GPU can only access its own memory.
 
 
-What renders faster, Nvidia or AMD, CUDA or OpenCL?
----------------------------------------------------
+What renders faster, Nvidia or AMD, CUDA, Optix or OpenCL?
+----------------------------------------------------------
 
-Currently Nvidia with CUDA is rendering fastest, but this really depends on the hardware you buy.
-Currently, CUDA and OpenCL are about the same in the newest mid-range GPUs.
-However, CUDA is fastest in the respect of high-end GPUs.
+This varies depending on the hardware used. Different technologies also have different compute times
+depending on the scene tested. For the most up to date information on the performance of different devices,
+browse the `Blender Open Data <https://opendata.blender.org/>`__ resource.
+
 
 
 Error Messages
@@ -191,13 +192,11 @@ Normally users do not need to install the CUDA toolkit as Blender comes with pre
 CUDA Error: Out of memory
 -------------------------
 
-This usually means there is not enough memory to store the scene on the GPU.
-We can currently only render scenes that fit in graphics card memory,
-and this is usually smaller than that of the CPU. See above for more details.
+This usually means there is not enough memory to store the scene for use by the GPU.
 
 .. note::
 
-   One way to reduce memory usage is by using smaller resolutions for textures.
+   One way to reduce memory usage is by using smaller resolution textures.
    For example, 8k, 4k, 2k, and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.
 
 

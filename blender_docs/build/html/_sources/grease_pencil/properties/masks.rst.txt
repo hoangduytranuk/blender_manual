@@ -60,7 +60,7 @@ Example
      - .. figure:: /images/grease-pencil_properties_mask-02.png
           :width: 200px
 
-          Blend: Overlay, Opacity: 1.
+          Blend: Hard Light, Opacity: 1.
 
      - .. figure:: /images/grease-pencil_properties_mask-03.png
           :width: 200px

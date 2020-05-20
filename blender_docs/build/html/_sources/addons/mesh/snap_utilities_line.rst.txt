@@ -8,7 +8,7 @@ Snap Utilities Line
 
    :Category:  Mesh
    :Description: Extends Blender Snap controls.
-   :Location: :menuselection:`3D View --> Tools --> Line Tool`
+   :Location: :menuselection:`3D Viewport --> Tools --> Line Tool`
    :File: mesh_snap_utilities_line folder
    :Author: Germano Cavalcante
 

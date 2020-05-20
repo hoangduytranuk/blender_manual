@@ -23,7 +23,7 @@ Strength
    and cause the *Smooth* brush to soften the strokes more quickly.
 
    You can change the brush strength interactively by pressing :kbd:`Shift-F`
-   in the 3D View and then moving the brush and then :kbd:`LMB`.
+   in the 3D Viewport and then moving the brush and then :kbd:`LMB`.
    You can enter the size numerically also while in :kbd:`Shift-F` sizing.
    Brush strength can be affected by enabling the pressure sensitivity icon,
    if a supported tablet is being used.

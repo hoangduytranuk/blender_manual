@@ -480,4 +480,4 @@ Lock Only Selected
 Lock Only Unselected
    Unlock selected and lock unselected vertex groups.
 Invert Locks
-   Inverts the locks on all vertext groups.
+   Inverts the locks on all vertex groups.

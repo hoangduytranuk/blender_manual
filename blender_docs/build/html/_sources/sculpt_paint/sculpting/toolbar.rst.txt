@@ -6,120 +6,82 @@ Toolbar
 .. figure:: /images/sculpt-paint_sculpting_tools_brushes.png
    :align: right
 
-Draw :kbd:`X`
-   Moves vertices inward or outward,
-   based the average normal of the vertices contained within the drawn brush stroke.
+:doc:`/sculpt_paint/sculpting/tools/draw`
+   Moves vertices inward or outward based on the average normal.
 
-Draw Sharp
-   Similar to the *Draw* brush however, it deforms the mesh from the original coordinates
+:doc:`/sculpt_paint/sculpting/tools/draw_sharp`
+   Move vertices inward or outward based the original coordinates
    and uses the *Sharper* :doc:`Falloff </sculpt_paint/brush/falloff>`.
-   This is useful for creating cloth wrinkles, stylized hair or hard surface edges.
 
-Clay :kbd:`C`
+:doc:`/sculpt_paint/sculpting/tools/clay`
    Similar to the *Draw* brush, but includes settings to adjust the plane on which the brush acts.
-   It behaves like a combination of the *Flatten* and *Draw* brushes.
 
-Clay Strips
-   Similar to the *Clay* brush, but it uses a cube to define the brush area of influence rather than a sphere.
+:doc:`/sculpt_paint/sculpting/tools/clay_strips`
+   The same as the *Clay* brush, but it uses a cube to define the brush area of influence rather than a sphere.
 
-Layer :kbd:`L`
-   This brush is similar to *Draw*, except that the height of the displacement layer is capped.
-   This creates the appearance of a solid layer being drawn.
-   This brush does not draw on top of itself; a brush stroke intersects itself.
-   Releasing the mouse button and starting a new stroke
-   will reset the depth and paint on top of the previous stroke.
+:doc:`/sculpt_paint/sculpting/tools/layer`
+   Moves all vertices to an exact height creating a flat layer.
 
-Inflate :kbd:`I`
-   Similar to *Draw*,
-   except that vertices in *Inflate* mode are displaced in the direction of their own normals.
+:doc:`/sculpt_paint/sculpting/tools/inflate`
+   Displaces the mesh in the direction of the vertex normals.
 
-Blob
-   Pushes mesh outward or inward into a spherical shape with settings to
-   control the amount of magnification at the edge of the sphere.
+:doc:`/sculpt_paint/sculpting/tools/blob`
+   Pushes mesh outward or inward into a spherical shape.
 
-Crease :kbd:`Shift-C`
+:doc:`/sculpt_paint/sculpting/tools/crease`
    Creates sharp indents or ridges by pushing or pulling the mesh, while pinching the vertices together.
 
-Smooth :kbd:`S`
-   Eliminates irregularities in the area of the mesh within the brush's
-   influence by smoothing the positions of the vertices.
+:doc:`/sculpt_paint/sculpting/tools/smooth`
+   Eliminates irregularities in the mesh by averaging the positions of the vertices.
 
-Flatten :kbd:`Shift-T`
-   The *Flatten* brush determines an "area plane"
-   located by default at the average height above/below the vertices within the brush area.
-   The vertices are then pulled towards this plane.
-   The inverse of the *Flatten* brush is the *Contrast* brush
-   which pushes vertices up or down away from the brush plane.
+:doc:`/sculpt_paint/sculpting/tools/flatten`
+   Smooths vertices to a flat plain by finding an average height and moves vertices towards that height.
 
-Fill
-   Works like the Flatten brush, but only brings vertices below the brush plane upwards.
+:doc:`/sculpt_paint/sculpting/tools/fill`
+   Brings vertices below the brush plane upwards.
 
-Scrape
-   The *Scrape* brush works like the *Flatten* brush, but only brings vertices above the plane downwards.
+:doc:`/sculpt_paint/sculpting/tools/scrape`
+   Brings vertices above the plane downwards.
 
-Multiplane Scrape
+:doc:`/sculpt_paint/sculpting/tools/multiplane_scrape`
    Scrapes the mesh with two angled planes at the same time, producing a sharp edge between them.
-   This is useful for creating edges when sculpting hard surface objects.
 
-Pinch :kbd:`P`
+:doc:`/sculpt_paint/sculpting/tools/pinch`
    Pulls vertices towards the center of the brush.
-   The inverse setting is *Magnify*, in which vertices are pushed away from the center of the brush.
 
-Grab :kbd:`G`
-   Used to drag a group of vertices around. *Grab* selects a group of vertices on mouse-down,
-   and pulls them to follow the mouse. And unlike other brushes,
-   *Grab* does not move different vertices as the brush is dragged across the model.
-   The effect is like moving a group of vertices in Edit Mode with Proportional Editing enabled,
-   except that *Grab* can make use of other Sculpt Mode options (like textures and symmetry).
+:doc:`/sculpt_paint/sculpting/tools/grab`
+   Selects a group of vertices and pulls them to follow the mouse.
 
-Elastic Deform
+:doc:`/sculpt_paint/sculpting/tools/elastic_deform`
    Used to simulate realistic deformations such as grabbing or twisting of :term:`elastic` objects.
-   For example, this tool works great for modeling the shape of flesh like objects such as humans or animals.
-   When pressing :kbd:`Ctrl`, the brush deforms vertices along the normal of the active vertex.
 
-Snake Hook :kbd:`K`
+:doc:`/sculpt_paint/sculpting/tools/snake_hook`
    Pulls vertices along with the movement of the brush to create long, snake-like forms.
 
-Thumb
-   Similar to the *Nudge* brush, this one flattens the mesh in the brush area,
-   while moving it in the direction of the brush stroke.
+:doc:`/sculpt_paint/sculpting/tools/thumb`
+   Flattens the mesh in the brush area, while moving it in the direction of the brush stroke.
 
-Pose
-   This brush is used to pose a model simulating an armature-like deformation.
-   The pivot point for rotation is calculated automatically based
-   on the radius of the brush and the topology of the model.
-   When pressing :kbd:`Ctrl`, the pose brush applies a twist rotation
-   to the posing segments instead of using the rotation or an IK deformation.
-   The falloff of the rotation across multiple segments is controlled by the brush falloff curve.
+:doc:`/sculpt_paint/sculpting/tools/pose`
+   This brush is used to pose a model simulating an armature-like deformations.
 
-Nudge
+:doc:`/sculpt_paint/sculpting/tools/nudge`
    Moves vertices in the direction of the brush stroke.
 
-Rotate
-   Rotates vertices within the brush in the direction the cursor is moved. The initial drag direction
-   is the zero angle and by rotating around the center you can create a vortex effect.
+:doc:`/sculpt_paint/sculpting/tools/rotate`
+   Rotates vertices within the brush in the direction the cursor is moved.
 
-Slide Relax
+:doc:`/sculpt_paint/sculpting/tools/slide_relax`
    This brush slides the topology of the mesh in the direction of the stroke
    without changing the geometrical shape of the mesh.
-   When pressing :kbd:`Shift`, the brush enters *Relax* mode
-   which tries to create an even distribution of quads without deforming the volume of the mesh.
 
-Simplify
-   This brush collapses short edges (as defined by the detail size) whether or
-   not the *Collapse Short Edges* option is enabled.
-   This brush has no effect if dynamic topology is not enabled.
+:doc:`/sculpt_paint/sculpting/tools/simplify`
+   Cleans up geometry by collapsing short edges.
 
-Mask :kbd:`M`
+:doc:`/sculpt_paint/sculpting/tools/mask`
    Lets you select mesh parts to be unaffected by other brushes by painting vertex colors.
-   The mask values are shown as gray-scale.
-   I.e. the darker a masked area is, the less effect sculpting on it will have.
-   See also the options of the :ref:`sculpt-mask-menu` menu.
 
-Mesh Filter
+:doc:`/sculpt_paint/sculpting/tools/mesh_filter`
    Applies a deformation to all vertices in the mesh at the same time.
-   To use this tool, simply click and drag away from the object to have a positive effect
-   and click and drag towards the mesh to have a negative effect.
 
 Move
    Translation tool.

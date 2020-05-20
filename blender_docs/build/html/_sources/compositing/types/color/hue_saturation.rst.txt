@@ -13,7 +13,6 @@ Hue Saturation Value Node
    Hue Saturation Node.
 
 The *Hue Saturation Value Node* applies a color transformation in the HSV color space.
-Called "Hue Saturation Value" in shader and texture context.
 
 
 Inputs

@@ -14,7 +14,7 @@ Keying Sets
 Keying Sets are a collection of properties.
 They are used to record multiple properties at the same time.
 
-Now when you press :kbd:`I` in the 3D View,
+Now when you press :kbd:`I` in the 3D Viewport,
 Blender will add keyframes for all the properties in the active keying set.
 
 There are some built-in Keying Sets and,
@@ -22,7 +22,7 @@ also custom Keying Sets called *Absolute Keying Sets*.
 
 To select and use a Keying Set, set the *Active Keying Set*
 in the :ref:`Keying popover <timeline-keying>` in the Timeline Header,
-or the Keying Set panel, or press :kbd:`Shift-Ctrl-Alt-I` in the 3D View.
+or the Keying Set panel, or press :kbd:`Shift-Ctrl-Alt-I` in the 3D Viewport.
 
 
 Keying Set Panel

@@ -29,18 +29,13 @@ Soft Shadows
    Randomize the shadow maps origin to create soft shadows. It needs a lot of samples to get rid of the banding.
 
 Light Threshold
-   In order to avoid costly setup time, this distance is first computed
-   automatically based on a light threshold. The distance is computed
-   at the light origin and using the inverse square falloff. The setting
-   can be found inside the :menuselection:`Render Settings panel --> Shadow tab`.
-
-   This light threshold does not take the light shape into account and may not
-   suit every case. That is why we provide a per-light override where you can
-   just set the cut off distance
-   (:menuselection:`Properties --> Object Data --> Light --> Custom Distance`).
+   The minimum amount of light for a light to contribute for lighting.
+   This light threshold does not take the light shape into account and may not suit every case.
+   That is why Blender provides a :ref:`per-light override <bpy.types.Light.cutoff_distance>`
+   where you can just set the cut off distance.
 
    The influence distance is also used as shadow far clip distance, which might affect how shadows looks.
-   This influence distance does not concern sun lights that still have a far clip distance.
+   This influence distance does not affect sun lights that still have a far clip distance.
 
    .. seealso::
 

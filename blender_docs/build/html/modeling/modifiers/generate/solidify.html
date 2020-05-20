@@ -258,10 +258,13 @@
 <h3>Mode Independent Properties<a class="headerlink" href="#mode-independent-properties" title="Permalink to this headline">¶</a></h3>
 <dl>
 <dt>Độ Dày -- Thickness</dt><dd><p>The depth to be solidified.</p>
-</dd>
-<dt>Dịch Chuyển -- Offset</dt><dd><p>A value between (-1 to 1) to locate the solidified output inside or outside the original mesh.
-The inside and outside is determined by the face normals.
-Set to 0.0, the solidified output will be centered on the original mesh.</p>
+<div class="admonition important">
+<p class="admonition-title">Quan trọng</p>
+<p>The modifier thickness is calculated using local vertex coordinates.
+If the object has a non-uniform scale, the thickness will vary on different sides of the object.</p>
+<p>To fix this, either <a class="reference internal" href="../../../scene_layout/object/editing/apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">Apply</span></a>
+or <a class="reference internal" href="../../../scene_layout/object/editing/clear.html#bpy-ops-object-clear"><span class="std std-ref">Clear</span></a> the scale.</p>
+</div>
 </dd>
 <dt>Hạn Định -- Clamp</dt><dd><p>A value between (0 to 2) to clamp offsets to avoid self-intersection.
 The amount is determined by the length of the shortest adjacent edge.</p>
@@ -287,6 +290,12 @@ so vertices with lower weights will be less thick.</p>
 </ul>
 </dd>
 </dl>
+</dd>
+<dt>Bevel Convex</dt><dd><p>Edge <a class="reference internal" href="../../meshes/editing/edge/edge_data.html#modeling-edges-bevel-weight"><span class="std std-ref">bevel weight</span></a> to be added to outside edges.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>A value between (-1 to 1) to locate the solidified output inside or outside the original mesh.
+The inside and outside is determined by the face normals.
+Set to 0.0, the solidified output will be centered on the original mesh.</p>
 </dd>
 <dt>Đảo Lật Pháp Tuyến -- Flip Normals</dt><dd><p>Reverse the normals of all geometry (both the inner and outer surfaces).</p>
 </dd>
@@ -315,6 +324,12 @@ This is applied as an offset from the original material of the face from which i
 <dt>Vành Mép -- Rim</dt><dd><p>Similarly, you can give another material to the rim faces.</p>
 </dd>
 </dl>
+</dd>
+<dt>Shell Vertex Group</dt><dd><p>Vertex group that the generated shell geometry will be weighted to.
+This allows you to use other modifiers to only affect the shell geometry
+by using a that modifier's vertex group influence control.</p>
+</dd>
+<dt>Rim Vertex Group</dt><dd><p>Same as <em>Shell Vertex Group</em>, but for the generated rim geometry.</p>
 </dd>
 </dl>
 </div>
@@ -396,14 +411,12 @@ For up to three faces it is always guaranteed to find a perfect solution.</p>
 </dd>
 </dl>
 </dd>
+<dt>Flat Faces</dt><dd><p>Make faces use the minimal vertex weight assigned to their vertices to ensure that
+new faces remain parallel to their original ones. This is slow, so disable it when it is not needed.</p>
+</dd>
+<dt>Merge Threshold</dt><dd><p>Distance within which degenerated geometry is merged.</p>
+</dd>
 </dl>
-<div class="admonition important">
-<p class="admonition-title">Quan trọng</p>
-<p>The modifier thickness is calculated using local vertex coordinates. If the object has non-uniform scale,
-the thickness will vary on different sides of the object.</p>
-<p>To fix this, either <a class="reference internal" href="../../../scene_layout/object/editing/apply.html#bpy-ops-object-transform-apply"><span class="std std-ref">Apply</span></a>
-or <a class="reference internal" href="../../../scene_layout/object/editing/clear.html#bpy-ops-object-clear"><span class="std std-ref">Clear</span></a> the scale.</p>
-</div>
 </div>
 </div>
 <div class="section" id="known-limitations">

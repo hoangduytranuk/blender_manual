@@ -251,7 +251,7 @@
 </dd>
 <dt>Dùng Alpha -- Use Alpha</dt><dd><p>Nếu được kích hoạt, bằng cách bấm vào biểu tượng <em>Màu và Alpha -- Color and Alpha</em>, thì kênh Alpha của hình ảnh thứ hai sẽ được sử dụng để hòa trộn. Khi bị giải hoạt (tắt đi) -- giải hoạt là chế độ mặc định -- thì nền biểu tượng sẽ có màu xám nhạt. Kênh alpha của hình ảnh nền (<em>base image</em>) sẽ luôn luôn được sử dụng.</p>
 </dd>
-<dt>Hạn Định -- Clamp</dt><dd><p>Giới hạn giá trị màu cao nhất không vượt quá 1.</p>
+<dt>Hạn Định -- Clamp</dt><dd><p>Limit the output value between 0.0 and 1.0.</p>
 </dd>
 </dl>
 </div>
@@ -274,7 +274,8 @@
 </dd>
 <dt>Trừ Khấu -- Subtract</dt><dd><p>Lấy màu Lam ra khỏi màu trắng sẽ để lại màu Đỏ và xanh Lục, tức khi kết hợp lại thì trở nên màu Vàng. Lấy xanh Lam ra khỏi màu Tím sẽ để lại màu Đỏ. Chúng ta có thể sử dụng điều này để giảm độ bão hòa của một hình ảnh đi. Lấy màu vàng đi để làm cho một hình ảnh xanh hơn và cảm giác buồn chán hơn.</p>
 </dd>
-<dt>Nhân -- Multiply</dt><dd><p>Màu đen (0,00) nhân với bất cứ cái gì cũng sẽ thành màu đen mà thôi. Bất cứ màu nào nhân với trắng (1.00) cũng sẽ cho chính màu ấy. Sử dụng tính năng này, chúng ta có thể loại bỏ những bẩn thỉu (<em>garbage</em>) đi, hoặc để tô màu một hình ảnh đen trắng.</p>
+<dt>Nhân -- Multiply</dt><dd><p>Black (0.0) times anything leaves black. Anything times White (1.0) is itself.
+Use this to mask out garbage, or to colorize a black-and-white image.</p>
 </dd>
 <dt>Sắc Màu -- Hue</dt><dd><p>Hiển thị cho bạn thấy lượng màu có trong hình ảnh, bỏ qua tất cả các màu, ngoại trừ những gì đã được chọn: tạo một hình ảnh đơn sắc (kiểu 'Đen &amp; Sắc Màu -- Black &amp; Hue').</p>
 </dd>
@@ -287,6 +288,10 @@
 <dt>Làm Tối -- Darken</dt><dd><p>Với những màu sắc thiết lập ở đây, nó giống như nhìn thế giới qua những chiếc kính màu hoa hồng.</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Only add, subtract, multiply and divide are suitable for <a class="reference internal" href="../../../glossary/index.html#term-scene-referenced"><span class="xref std std-term">Scene Referenced</span></a> images.</p>
+</div>
 <div class="section" id="contrast-enhancement">
 <h3>Nâng Cao Độ Tương Phản -- Contrast Enhancement<a class="headerlink" href="#contrast-enhancement" title="Permalink to this headline">¶</a></h3>
 <p>Đây là một sơ đồ nhỏ cho thấy hiệu ứng của hai cách sử dụng phổ biến khác nữa của đường cong RGB: <em>Làm Tối -- Darken</em> và <em>Tăng Cường Độ Tương Phản -- Contrast Enhancement</em>. Bạn có thể thấy hiệu ứng của mỗi đường cong một cách độc lập, và trông thấy hiệu ứng kết hợp khi chúng được <em>trộn lẫn -- mixed</em> với lượng bằng nhau.</p>

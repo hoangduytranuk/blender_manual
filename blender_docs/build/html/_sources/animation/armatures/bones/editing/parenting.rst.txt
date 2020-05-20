@@ -50,11 +50,11 @@ If you want them to be connected, just enable the checkbox to the right of the l
      - .. figure:: /images/animation_armatures_bones_editing_parenting_unconnected.png
 
           Bone.005 re-parented to Bone.002, but not connected to it
-          (same result, using either :kbd:`Ctrl-P 2` in 3D View, or the Bones tab settings).
+          (same result, using either :kbd:`Ctrl-P 2` in 3D Viewport, or the Bones tab settings).
 
    * - .. figure:: /images/animation_armatures_bones_editing_parenting_connected.png
 
-          Bone.005 parented and connected to Bone.002, using :kbd:`Ctrl-P 1` in 3D View.
+          Bone.005 parented and connected to Bone.002, using :kbd:`Ctrl-P 1` in 3D Viewport.
 
      - .. figure:: /images/animation_armatures_bones_editing_parenting_data-id.png
 
@@ -64,7 +64,7 @@ If you want them to be connected, just enable the checkbox to the right of the l
 
 To disconnect and/or free bones, you can:
 
-- In a 3D View, select the desired bones, and press :kbd:`Alt-P`
+- In a 3D Viewport, select the desired bones, and press :kbd:`Alt-P`
   (or :menuselection:`Armature --> Parent --> Clear Parent...`).
   In the small *Clear Parent* menu that pops up, choose *Clear Parent* to completely free all selected bones,
   or *Disconnect Bone* if you just want to break their connections.

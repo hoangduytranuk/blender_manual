@@ -221,10 +221,18 @@
 <p>Selecting a <em>Paint Slots</em> or <em>Canvas Image</em>
 will also display the corresponding image in the Image Editor.</p>
 <dl>
-<dt>Painting Mode</dt><dd><p>The slot system includes two painting modes:</p>
+<dt>Mode</dt><dd><p>The slot system includes two painting modes:</p>
 <dl>
-<dt>Single Image</dt><dd><p>You can just select an existing image and painting will use
-the active UV layer for painting.</p>
+<dt>Material</dt><dd><p>This mode tries to detect the slots from the materials of the mesh.</p>
+<p>For the Cycles renderer, all textures (<em>Image Texture</em> node) in the material's node tree
+are added in the slots tab.</p>
+<dl class="simple">
+<dt>Active Paint Texture Index</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">List view</span></a> of slots.
+Activate a certain slot to use it for painting by <kbd class="kbd docutils literal notranslate">LMB</kbd> click on it.</p>
+</dd>
+</dl>
+</dd>
+<dt>Single Image</dt><dd><p>You can just select an existing image and painting will use the active UV layer for painting.</p>
 <dl>
 <dt>Image</dt><dd><p>Allows you to select the image used as a canvas.</p>
 <dl class="simple">
@@ -239,19 +247,15 @@ the active UV layer for painting.</p>
 </dd>
 </dl>
 </dd>
-<dt>Material</dt><dd><p>This mode tries to detect the slots from the materials of the mesh.</p>
-<p>For the Cycles renderer, all textures (<em>Image Texture</em> node) on the material's node tree
-are added on the slots tab.</p>
-<dl class="simple">
-<dt>Available Paint Slots</dt><dd><p>A <a class="reference internal" href="../../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">List view</span></a> of slots.
-To activate a certain slot to use it for paint a just <kbd class="kbd docutils literal notranslate">LMB</kbd> click on it.</p>
-</dd>
-</dl>
-</dd>
 </dl>
 </dd>
 <dt>Save All Images</dt><dd><p>Repack (or save if external file) all edited images.
 Same as in the <a class="reference internal" href="../../../editors/image/introduction.html"><span class="doc">Image Editor</span></a>.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-paint-add-simple-uvs">
+<dt>Add Simple UVs</dt><dd><p>The <em>Add Simple UVs</em> does a simple cube unwrap followed by a pack operation.
+It's still recommended to make a custom unwrap.</p>
 </dd>
 </dl>
 </div>

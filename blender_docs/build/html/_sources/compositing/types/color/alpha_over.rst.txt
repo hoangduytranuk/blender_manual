@@ -11,14 +11,14 @@ Alpha Over Node
 
 The *Alpha Over* node is used to layer images on top of one another.
 
-Where the foreground image pixels have an alpha greater than 0, the background image will be overlaid.
+Where the foreground image pixels have an alpha greater than 0, it will be overlaid over the background image.
 
 
 Inputs
 ======
 
 Factor
-   Controls the amount of foreground image.
+   Controls the transparency of the foreground image.
    A factor less than 1 will make the foreground more transparent.
 Image
    Input for the *background* image.
@@ -34,7 +34,7 @@ Convert Premultiplied
 
    The *Alpha Over* node is designed to work with *premultiplied* alpha color format.
    Use *Convert Premul* when you know that your image has *straight* alpha color values,
-   to perform the correct over operation. Result will be still premultiplied alpha.
+   to perform the correct over operation. Result will still be premultiplied alpha.
 
    See :term:`Alpha Channel`.
 
@@ -68,7 +68,7 @@ Then *Alpha Over* node is used to overlay it on top of another image.
 
    Assembling a composite image using Alpha Over.
 
-In next example, we use the *Factor* control to make a "Fade In" effect.
+In the next example, we use the *Factor* control to make a "Fade In" effect.
 This effect can be animated by adding a *Time* node to feed the *Factor* socket as shown below.
 In this example, over the course of 30 frames, the *Time* node makes the *Alpha Over* node produce
 a picture that starts with the pure background image, and title slowly bleeds through the background.

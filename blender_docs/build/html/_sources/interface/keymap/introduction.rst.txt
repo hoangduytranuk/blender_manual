@@ -128,8 +128,8 @@ Dragging
 Text Editing
 ============
 
-- :kbd:`Home` -- Go to the start.
-- :kbd:`End` -- Go to the end.
+- :kbd:`Home` -- Go to the start of the line.
+- :kbd:`End` -- Go to the end of the line.
 - :kbd:`Left`, :kbd:`Right` -- Move the cursor a single character.
 - :kbd:`Ctrl-Left`, :kbd:`Ctrl-Right` -- Move the cursor an entire word.
 - :kbd:`Backspace`, :kbd:`Delete` -- Delete characters.

@@ -24,7 +24,7 @@ Now, enter *Edit Mode* and press *Knife Project* (found in the Toolbar).
 
 .. seealso::
 
-   :doc:`3D View Alignment </editors/3dview/navigate/align>` to adjust the projection axis.
+   :doc:`3D Viewport Alignment </editors/3dview/navigate/align>` to adjust the projection axis.
 
 
 Examples

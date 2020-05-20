@@ -7,7 +7,7 @@ Bone Roll
 In *Edit Mode*, you can control the bone roll
 (i.e. the rotation around the Y axis of the bone).
 
-However, after editing the armature, or when using :term:`euler rotation`,
+However, after editing the armature, or when using :term:`Euler rotation`,
 you may want to set the bone roll.
 
 

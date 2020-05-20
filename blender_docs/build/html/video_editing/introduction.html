@@ -126,6 +126,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Video Editing</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Giới Thiệu -- Introduction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#view-types">Loại Màn -- View Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance">Performance</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sequencer/index.html">Bộ Phối Hình -- Sequencer</a></li>
@@ -235,6 +236,19 @@ Finally, you can add audio and synchronize the timing of the video sequence to m
 <p>By default the Sequencer is enabled, however, it can be disabled
 in the <a class="reference internal" href="../render/output/settings.html#render-output-postprocess"><span class="std std-ref">Post Processing Panel</span></a>.</p>
 </div>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<p>Playback performance can be improved through several ways.
+The biggest impact on performance is to allow the Video Sequencer to cache the playback.
+There are two levels of cache, the first is a RAM cache,
+this is enabled by default but can be increased based on the amount of RAM available.
+The next level of cache is a disk cache which stores cached strips on disk.
+A disk cache can generally cache more than a RAM cache, but it can be slower.
+Both of these cache options can be configured in the <a class="reference internal" href="../editors/preferences/system.html#prefs-system-sound"><span class="std std-ref">Preferences</span></a>.</p>
+<p>Another way to improve performance is by using <a class="reference internal" href="sequencer/properties/proxy_cache.html#bpy-types-sequenceproxy"><span class="std std-ref">Strip Proxies</span></a>
+These are used to cache images or movies in a file that is easier to playback
+by reducing the image quality by either decreasing the resolution and/or compressing the image.</p>
 </div>
 </div>
 

@@ -17,7 +17,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> Edit tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> Edit tab`.
 
 This add-on is split into sub panels with each panel having it's own specific set of tools.
 

@@ -280,6 +280,61 @@ This also determines the size of the generated mesh, or the displaced area.
 Of course, you can scale the object with the <em>Ocean</em> modifier in Object Mode
 to tweak the apparent size in your scene.</p>
 </dd>
+<dt>Spectrum</dt><dd><p>Used to choose the wave spectrum model to use.
+Wave spectra are used to describe how energy moves through the waves at different frequencies.
+Energy travels through waves differently depending on the depth of the water and the wind speed.</p>
+<dl class="simple">
+<dt>Turbulent Ocean</dt><dd><p>Use for turbulent seas with foam (Phillips).</p>
+</dd>
+<dt>Established Ocean</dt><dd><p>Use for a large area, established ocean where the ocean would extend for miles
+with wind blowing for days allowing the waves to reach a point of equilibrium (Pierson-Moskowitz method).</p>
+</dd>
+<dt>Established Ocean (Sharp Peaks)</dt><dd><p>Similar to regular <em>Established Ocean</em> however, waves will continue to grow with time
+creating sharper peaks (<abbr title="JOint North Sea WAve Project">JONSWAP</abbr> and Pierson-Moskowitz method).
+An extra parameter is used to define the sharpness of these peaks.</p>
+</dd>
+<dt>Shallow Water</dt><dd><p>Use for shallow water with depths less than about 10 meters which makes it great
+for small lakes and ponds without heavy wind (JONSWAP and TMA -- Texel-Marsen-Arsloe methods).</p>
+</dd>
+</dl>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Examples of different spectra, settings adjusted for each.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="figure align-default" id="id3">
+<img alt="../../../_images/modeling_modifiers_simulate_ocean_spectra_turbulent.png" src="../../../_images/modeling_modifiers_simulate_ocean_spectra_turbulent.png" />
+<p class="caption"><span class="caption-text">Turbulent Ocean.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id4">
+<img alt="../../../_images/modeling_modifiers_simulate_ocean_spectra_established.png" src="../../../_images/modeling_modifiers_simulate_ocean_spectra_established.png" />
+<p class="caption"><span class="caption-text">Established Ocean.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="figure align-default" id="id5">
+<img alt="../../../_images/modeling_modifiers_simulate_ocean_spectra_established-peaks.png" src="../../../_images/modeling_modifiers_simulate_ocean_spectra_established-peaks.png" />
+<p class="caption"><span class="caption-text">Established Ocean (Sharp Peaks).</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+<td><div class="figure align-default" id="id6">
+<img alt="../../../_images/modeling_modifiers_simulate_ocean_spectra_shallow-water.png" src="../../../_images/modeling_modifiers_simulate_ocean_spectra_shallow-water.png" />
+<p class="caption"><span class="caption-text">Shallow Water.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Sharpness Peak</dt><dd><p>An artificial factor to control how sharp the peaks of the waves are in
+the <em>Established Ocean (Sharp Peaks)</em> and <em>Shallow Water</em> spectrum models.</p>
+</dd>
+<dt>Fetch</dt><dd><p>Distance from a lee shore, called the fetch, or the distance over which the wind blows with constant velocity.
+Used by <em>Established Ocean (Sharp Peaks)</em> and <em>Shallow Water</em> spectrum models.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="wave">
@@ -315,9 +370,9 @@ Acts similarly to a low-pass filter, removing higher frequency wave detail.</p>
 </div>
 <div class="section" id="simulation-data-generation-options">
 <h3>-- Simulation Data Generation Options<a class="headerlink" href="#simulation-data-generation-options" title="Permalink to this headline">¶</a></h3>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id7">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_simulate_ocean_foam-layer-name.png"><img alt="../../../_images/modeling_modifiers_simulate_ocean_foam-layer-name.png" src="../../../_images/modeling_modifiers_simulate_ocean_foam-layer-name.png" style="width: 640px;" /></a>
-<p class="caption"><span class="caption-text">Using foam vertex colors with a named data layer.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Using foam vertex colors with a named data layer.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>By default, the simulator only generates displacement data,
 since it takes the least amount of work and gives the fastest feedback.

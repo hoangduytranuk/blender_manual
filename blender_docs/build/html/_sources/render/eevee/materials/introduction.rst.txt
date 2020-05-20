@@ -3,8 +3,7 @@
 Introduction
 ************
 
-Eevee's materials system uses the same node based approach as Cycles to define
-:doc:`Cycles </render/materials/index>`.
+Eevee's materials system uses the same node based approach as :doc:`Cycles </render/materials/index>`.
 
 
 Nodes Support

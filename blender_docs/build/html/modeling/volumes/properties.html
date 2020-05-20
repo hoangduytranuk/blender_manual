@@ -217,73 +217,80 @@
 <h1>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="grids">
 <span id="bpy-types-volumegrids"></span><h2>Grids<a class="headerlink" href="#grids" title="Permalink to this headline">¶</a></h2>
-<p>Todo.</p>
+<p>OpenVDB can contain multiple grids which represent different &quot;layers&quot; of volume.
+The <a class="reference internal" href="../../interface/controls/templates/list_presets.html#ui-list-view"><span class="std std-ref">Bảng Liệt Kê -- List Views</span></a> shows all the grids in the OpenVDB-file along with its name and data type.</p>
 </div>
 <div class="section" id="openvdb-file">
 <h2>OpenVDB File<a class="headerlink" href="#openvdb-file" title="Permalink to this headline">¶</a></h2>
 <dl class="simple" id="bpy-types-volume-filepath">
-<dt>File Path</dt><dd><p>Todo</p>
+<dt>File Path</dt><dd><p>Volume sample file used by the volume data-block.</p>
 </dd>
 </dl>
-<dl id="bpy-types-volume-is-sequence">
-<dt>Sequence</dt><dd><p>Todo</p>
-<dl class="simple" id="bpy-types-volume-frame-duration">
-<dt>Frames</dt><dd><p>Todo</p>
+<dl class="simple" id="bpy-types-volume-is-sequence">
+<dt>Sequence</dt><dd><p>Loads the OpenVDB-file as an animation loading separate files for individual frames.</p>
+</dd>
+</dl>
+<blockquote id="bpy-types-volume-frame-duration">
+<div><dl class="simple">
+<dt>Frames</dt><dd><p>Number of frames of the sequence to use.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-volume-frame-start">
-<dt>Start</dt><dd><p>Todo</p>
+<dt>Start</dt><dd><p>Global starting frame of the sequence, assuming the first frame has a 1 in the file name.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-volume-frame-offset">
-<dt>Offset</dt><dd><p>Todo</p>
+<dt>Offset</dt><dd><p>Offset the number of the frame to use in the animation.</p>
 </dd>
 </dl>
 <dl id="bpy-types-volume-sequence-mode">
 <dt>Mode</dt><dd><p>Todo</p>
 <dl class="simple">
-<dt>Clip</dt><dd><p>Todo</p>
+<dt>Clip</dt><dd><p>Hides frames outside the specified frame range.</p>
 </dd>
-<dt>Extend</dt><dd><p>Todo</p>
+<dt>Extend</dt><dd><p>Repeats the start frame before, and the end frame after the frame range.</p>
 </dd>
-<dt>Repeat</dt><dd><p>Todo</p>
+<dt>Repeat</dt><dd><p>Cycles the frames in the sequence; restarting at frame one.</p>
 </dd>
-<dt>Ping-Pong</dt><dd><p>Todo</p>
-</dd>
-</dl>
+<dt>Ping-Pong</dt><dd><p>Repeats the frames, reversing the playback direction on every other cycle.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+</div></blockquote>
 </div>
 <div class="section" id="viewport-display">
 <span id="bpy-types-volumedisplay"></span><h2>Viewport Display<a class="headerlink" href="#viewport-display" title="Permalink to this headline">¶</a></h2>
 <dl id="bpy-types-volumedisplay-wireframe-type">
-<dt>Wireframe</dt><dd><p>Todo.</p>
+<dt>Wireframe</dt><dd><p>Method used to represent volumes in <a class="reference internal" href="../../editors/3dview/display/shading.html#dview-shading-rendered"><span class="std std-ref">wireframe</span></a> shading mode.
+For heavy volume data sets, it can be useful to set the object to always display as wireframe.
+This way the 3D Viewport remains responsive but the volume still appears in the final render.</p>
 <dl class="simple">
-<dt>None</dt><dd><p>Todo.</p>
+<dt>None</dt><dd><p>The volume is not displayed in wireframe mode.</p>
 </dd>
-<dt>Bounds</dt><dd><p>Todo.</p>
+<dt>Bounds</dt><dd><p>Displays the volume as <a class="reference internal" href="../../glossary/index.html#term-bounding-box"><span class="xref std std-term">bounding box</span></a> for the entire volume grid.</p>
 </dd>
-<dt>Boxes</dt><dd><p>Todo.</p>
+<dt>Boxes</dt><dd><p>Displays a bounding boxes for nodes in the volume tree.</p>
 </dd>
-<dt>Points</dt><dd><p>Todo.</p>
+<dt>Points</dt><dd><p>Displays points for nodes in the volume tree.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl id="bpy-types-volumedisplay-wireframe-detail">
-<dt>Detail</dt><dd><p>Todo.</p>
+<dt>Detail</dt><dd><p>The amount of detail to display for <em>Boxes</em> or <em>Points</em> wireframe mode.</p>
 <dl class="simple">
-<dt>Course</dt><dd><p>Todo.</p>
+<dt>Course</dt><dd><p>Display one box or point for each intermediate tree node.</p>
 </dd>
-<dt>Fine</dt><dd><p>Todo.</p>
+<dt>Fine</dt><dd><p>Display a box or point for each leaf node containing 8×8 voxels.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-volumedisplay-density">
-<dt>Density</dt><dd><p>Todo.</p>
+<dt>Density</dt><dd><p>Thickness of the volume in the 3D Viewport.
+The density of the volume in the render is adjusted via
+<a class="reference internal" href="../../render/shader_nodes/shader/volume_principled.html"><span class="doc">Volume Shading</span></a>.</p>
 </dd>
 </dl>
 </div>

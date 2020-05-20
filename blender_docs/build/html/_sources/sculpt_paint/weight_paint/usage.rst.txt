@@ -25,8 +25,8 @@ To modify automatically assigned weights, jump into the middle of the process wh
 
 Pick up here for modifying automatically assigned weights.
 
-#. Select the armature in 3D View, and bring the armature to *Pose Mode*
-   with :kbd:`Ctrl-Tab`, or the 3D View header mode selector.
+#. Select the armature in 3D Viewport, and bring the armature to *Pose Mode*
+   with :kbd:`Ctrl-Tab`, or the 3D Viewport header mode selector.
 #. Select a desired bone in the armature.
 #. Select your mesh with :kbd:`RMB` and change immediately to *Weight Paint
    Mode*. The mesh will be colored according to the weight (degree)

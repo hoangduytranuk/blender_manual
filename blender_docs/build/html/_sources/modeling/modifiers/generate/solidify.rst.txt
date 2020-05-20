@@ -26,10 +26,15 @@ Mode Independent Properties
 
 Thickness
    The depth to be solidified.
-Offset
-   A value between (-1 to 1) to locate the solidified output inside or outside the original mesh.
-   The inside and outside is determined by the face normals.
-   Set to 0.0, the solidified output will be centered on the original mesh.
+
+   .. important::
+
+      The modifier thickness is calculated using local vertex coordinates.
+      If the object has a non-uniform scale, the thickness will vary on different sides of the object.
+
+      To fix this, either :ref:`Apply <bpy.ops.object.transform_apply>`
+      or :ref:`Clear <bpy.ops.object.*clear>` the scale.
+
 Clamp
    A value between (0 to 2) to clamp offsets to avoid self-intersection.
    The amount is determined by the length of the shortest adjacent edge.
@@ -53,6 +58,14 @@ Vertex Group
       - On 0.0 , vertices with zero weight will have no thickness at all (creates duplicate vertices).
       - On 0.5 , vertices with zero weight will be half as thick as those with full weight.
       - On 1.0 , the weights are ignored and the *Thickness* value is used for every vertex.
+
+Bevel Convex
+   Edge :ref:`bevel weight <modeling-edges-bevel-weight>` to be added to outside edges.
+
+Offset
+   A value between (-1 to 1) to locate the solidified output inside or outside the original mesh.
+   The inside and outside is determined by the face normals.
+   Set to 0.0, the solidified output will be centered on the original mesh.
 
 Flip Normals
    Reverse the normals of all geometry (both the inner and outer surfaces).
@@ -81,6 +94,13 @@ Material Index Offset
 
    Rim
       Similarly, you can give another material to the rim faces.
+
+Shell Vertex Group
+   Vertex group that the generated shell geometry will be weighted to.
+   This allows you to use other modifiers to only affect the shell geometry
+   by using a that modifier's vertex group influence control.
+Rim Vertex Group
+   Same as *Shell Vertex Group*, but for the generated rim geometry.
 
 
 Simple Mode
@@ -163,13 +183,12 @@ Boundary Shape
    Flat
       Adjusts the boundary of a planar opening to be a flat (like a cut sphere).
 
-.. important::
+Flat Faces
+   Make faces use the minimal vertex weight assigned to their vertices to ensure that
+   new faces remain parallel to their original ones. This is slow, so disable it when it is not needed.
 
-   The modifier thickness is calculated using local vertex coordinates. If the object has non-uniform scale,
-   the thickness will vary on different sides of the object.
-
-   To fix this, either :ref:`Apply <bpy.ops.object.transform_apply>`
-   or :ref:`Clear <bpy.ops.object.*clear>` the scale.
+Merge Threshold
+   Distance within which degenerated geometry is merged.
 
 
 Known Limitations

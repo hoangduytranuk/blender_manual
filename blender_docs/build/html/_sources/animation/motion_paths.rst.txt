@@ -8,14 +8,14 @@ Motion Paths
 .. admonition:: Reference
    :class: refbox
 
-   :Editor:    3D View, Properties editor
+   :Editor:    3D Viewport, Properties editor
    :Mode:      Object Mode
    :Panel:     :menuselection:`Properties editor --> Object --> Motion Paths`
 
 .. admonition:: Reference
    :class: refbox
 
-   :Editor:    3D View, Properties editor
+   :Editor:    3D Viewport, Properties editor
    :Mode:      Pose Mode
    :Panel:     :menuselection:`Properties editor --> Armature --> Motion Paths`
    :Menu:      :menuselection:`Pose --> Motion Paths`

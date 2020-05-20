@@ -47,7 +47,7 @@ Minimum Distance
    The distance from the curve, up to where the force field is effective with full strength.
    If you have a falloff of 0, this parameter will have no effect,
    because the field is effective with full strength up to *Max Distance* (or the infinity).
-   *Min Distance* is shown with a circle at the endpoints of the curve in the 3D View.
+   *Min Distance* is shown with a circle at the endpoints of the curve in the 3D Viewport.
 
 Free
    Fraction of particle life time, that is not used for the curve.

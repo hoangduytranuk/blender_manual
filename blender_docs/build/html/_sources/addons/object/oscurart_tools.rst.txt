@@ -65,7 +65,7 @@ Flipped UV
 
    :Category:  Object
    :Description: Tools for objects, render, shapes, and files.
-   :Location: :menuselection:`3D View Object/Edit Modes --> context menu`
+   :Location: :menuselection:`3D Viewport Object/Edit Modes --> context menu`
    :File: oscurart_tools folder
    :Author: Oscurart
    :License: GPL

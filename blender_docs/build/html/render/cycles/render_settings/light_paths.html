@@ -282,9 +282,7 @@ It reduces noise at the cost of accuracy. Setting this option to 0.0 disables cl
 Lower have a greater affect (dimmer samples) on the resulting image than higher values.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>A common issue encountered with <em>Path Tracing</em> is the occurrence of &quot;fireflies&quot;:
-improbable samples that contribute very high values to pixels.
-This option provides a way to limit that. However, note that as you clamp out such values,
+<p>This option provides a way to limit <a class="reference internal" href="../../../glossary/index.html#term-fireflies"><span class="xref std std-term">Fireflies</span></a>. However, note that as you clamp out such values,
 other bright lights/reflections will be dimmed as well.</p>
 <p>Care must be taken when using this setting to find a balance between mitigating fireflies and
 losing intentionally bright parts. It is often useful to clamp indirect bounces separately,
@@ -310,7 +308,7 @@ This option can be unchecked, to disable reflective caustics.</p>
 <dt>Filter Glossy</dt><dd><p>When using a value higher than 0.0, this will blur glossy reflections after blurry bounces,
 to reduce noise at the cost of accuracy. 1.0 is a good starting value to tweak.</p>
 <p>Some light paths have a low probability of being found while contributing much light to the pixel.
-As a result these light paths will be found in some pixels and not in others, causing fireflies.
+As a result these light paths will be found in some pixels and not in others, causing <a class="reference internal" href="../../../glossary/index.html#term-fireflies"><span class="xref std std-term">Fireflies</span></a>.
 An example of such a difficult path might be a small light that is causing a small specular highlight
 on a sharp glossy material, which is observed through a rough glossy material.
 In fact in such a case there practically occurs a caustic.</p>

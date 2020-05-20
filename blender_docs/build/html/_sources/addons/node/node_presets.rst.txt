@@ -12,7 +12,7 @@ Activation
 ==========
 
 - Open Blender and go to Preferences then the Add-ons tab.
-- Click Render then Node Presets to enable the script.
+- Click Node then Node Presets to enable the script.
 
 
 Usage

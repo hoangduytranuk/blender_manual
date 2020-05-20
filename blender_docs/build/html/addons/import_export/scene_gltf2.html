@@ -290,6 +290,7 @@ with the following channels of information:</p>
 <li><p>Baked Ambient Occlusion</p></li>
 <li><p>Normal Map</p></li>
 <li><p>Emissive</p></li>
+<li><p>Clearcoat (requires <code class="docutils literal notranslate"><span class="pre">KHR_materials_clearcoat</span></code>)</p></li>
 </ul>
 <div class="figure align-default" id="id3">
 <img alt="../../_images/addons_import-export_scene-gltf2_material-channels.jpg" src="../../_images/addons_import-export_scene-gltf2_material-channels.jpg" />
@@ -563,8 +564,8 @@ that object with the name &quot;My Animation&quot;.</p>
 <p class="caption"><span class="caption-text">Will be exported as an animation called &quot;My Animation&quot; with ConeAction
 playing on the Cone and CubeAction playing on the Cube.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
-<p>NLA Strip animations will be exported if the <span class="menuselection">Animation ‣ NLA Strips</span> option is
-selected (on by default). All glTF animations are imported as NLA Strip animations.</p>
+<p>NLA Strip animations will be exported if the <span class="menuselection">Animation ‣ Group by NLA Track</span>
+option is selected (on by default). All glTF animations are imported as NLA Strip animations.</p>
 <p>If option is disabled, Blender NLA strip actions will be ignored.
 Only active action of each objects will be taken into account, and merged into a single glTF animation.</p>
 </div>
@@ -624,6 +625,13 @@ the asset must be shared over a plain-text-only connection.</p>
 <dt>Pack Images</dt><dd><p>Pack all images into the blend-file.</p>
 </dd>
 <dt>Shading</dt><dd><p>How normals are computed during import.</p>
+</dd>
+<dt>Guess Original Bind Pose</dt><dd><p>Determines the pose for bones (and consequently, skinned meshes) in Edit Mode.
+When on, attempts to guess the pose that was used to compute the inverse bind matrices.</p>
+</dd>
+<dt>Bone Direction</dt><dd><p>Changes the heuristic the importer uses to decide where to place bone tips.
+Note that the Fortune setting may cause inaccuracies in models that use non-uniform scaling.
+Otherwise this is purely aesthetic.</p>
 </dd>
 </dl>
 </div>
@@ -712,7 +720,7 @@ web applications due to the smaller file size.</p>
 </dd>
 <dt>Always Sample Animations</dt><dd><p>Apply sampling to all animations.</p>
 </dd>
-<dt>NLA Strips</dt><dd><p>Whether to export NLA strip animations.</p>
+<dt>Group by NLA Track</dt><dd><p>Whether to export NLA strip animations.</p>
 </dd>
 <dt>Export Deformation Bones Only</dt><dd><p>Export deformation bones only (and needed bones for hierarchy).</p>
 </dd>
@@ -732,7 +740,7 @@ web applications due to the smaller file size.</p>
 <h5>Skinning<a class="headerlink" href="#skinning" title="Permalink to this headline">¶</a></h5>
 <p>Export skinning (armature) data.</p>
 <dl class="simple">
-<dt>Include All Bone Influences</dt><dd><p>Allow less than 4 joint vertex influences. Models may appear incorrectly in many viewers.</p>
+<dt>Include All Bone Influences</dt><dd><p>Allow more than 4 joint vertex influences. Models may appear incorrectly in many viewers.</p>
 </dd>
 </dl>
 </div>
@@ -745,7 +753,7 @@ web applications due to the smaller file size.</p>
 the <a class="reference external" href="https://github.com/KhronosGroup/glTF-Blender-IO">glTF-Blender-IO repository</a>,
 where you can file bug reports, submit feature requests, or contribute code.</p>
 <p>Discussion and development of the glTF 2.0 format itself takes place on
-the Khronos Group <a class="reference external" href="https://github.com/KhronosGroup/glTF">glTF Github repository</a>,
+the Khronos Group <a class="reference external" href="https://github.com/KhronosGroup/glTF">glTF GitHub repository</a>,
 and feedback there is welcome.</p>
 </div>
 </div>

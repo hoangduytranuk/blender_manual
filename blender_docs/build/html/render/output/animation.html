@@ -281,7 +281,7 @@ but gives you more flexibility.</p>
 - Color/lighting adjustment
 - Green screen/matte replacement
 - Layering/compositing
-- Multiple formats and sizes of ultimate product</p></li>
+- Multiple formats and resolutions of the final product</p></li>
 <li><p>Intermediate frames/adjustments needed for compression/codec.</p></li>
 <li><p>Precise timing (e.g. lip-sync to audio track) needed in parts.</p></li>
 <li><p>May need to interrupt rendering to use the computer, and want to be able to resume rendering where you left off.</p></li>
@@ -298,16 +298,12 @@ generally using a format that does not compromise any quality.</p></li>
 <li><p>Choose the output path and file type in the Output panel as well, for example <code class="docutils literal notranslate"><span class="pre">//render/my-anim-</span></code>.</p></li>
 <li><p>Confirm the range of your animation (frame Start and End).</p></li>
 <li><p>Save your blend-file.</p></li>
-<li><p>Press the big <em>Animation</em> button.
-Do a long task (like sleeping, playing a video game, or cleaning your driveway)
-while you wait for your computer to finish rendering the frames.</p></li>
-<li><p>Once the animation is finished,
-use your OS file explorer to navigate into the output folder (<code class="docutils literal notranslate"><span class="pre">render</span></code> in this example).
-You will see lots of images (<code class="docutils literal notranslate"><span class="pre">.png</span></code> or <code class="docutils literal notranslate"><span class="pre">.exr</span></code>, etc. depending on the format you chose to render)
-that have a sequence number attached to them ranging from 0000 to a max of 9999. These are your single frames.</p></li>
-<li><p>In Blender, now go into the <a class="reference internal" href="../../video_editing/index.html"><span class="doc">Video Sequence editor</span></a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Cảnh báo</p>
+<li><p>Press the <em>Animation</em> button and once the animation is finished,
+use your file manager to navigate to the output folder (<code class="docutils literal notranslate"><span class="pre">render</span></code> in this example).
+You will see lots of images that have a sequence number attached to. These are the single frames.</p></li>
+<li><p>In Blender, open the <a class="reference internal" href="../../video_editing/index.html"><span class="doc">Video Sequence editor</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
 <p>The <a class="reference internal" href="../../video_editing/index.html"><span class="doc">VSE</span></a> does not support multi-layer EXR files.
 To render to a video format you will have to skip the next three steps and
 instead use an <a class="reference internal" href="../../compositing/types/input/image.html"><span class="doc">Image Input node</span></a>
@@ -315,24 +311,14 @@ in the <a class="reference internal" href="../../compositing/types/input/image.h
 </div>
 </li>
 <li><p>Choose <em>Add Image</em> from the add menu. Select all the frames from your output folder that you want to include
-in your animation (press <kbd class="kbd docutils literal notranslate">A</kbd> to Select All easily). They will be added as a strip to the Sequence editor.</p></li>
-<li><p>Now you can edit the strip and add effects or simply leave it like it is.
+in your animation. They will be added as a strip in the Sequence editor.</p></li>
+<li><p>Now you can edit the strip and add effects or leave it like it is.
 You can add other strips, like an audio strip.</p></li>
-<li><p>Scrub through the animation, checking that you have included all the frames.</p></li>
+<li><p>Scrub through the animation to check if you have included all the frames.</p></li>
 <li><p>In the Output panel, choose the container and codec you want (e.g. <code class="docutils literal notranslate"><span class="pre">MPEG</span> <span class="pre">H.264</span></code>) and configure them.
 The video codecs are described on the previous page: <a class="reference internal" href="settings.html"><span class="doc">Output Options</span></a>.</p></li>
-<li><p>Click the <em>Animation</em> render button and Blender will render out the Sequence editor output into your movie.</p></li>
+<li><p>Click the <em>Animation</em> render button and Blender will render out the Sequence editor output into a movie.</p></li>
 </ol>
-<p>Why go through all this hassle? Well, first of all, if you render out single frames, you can
-stop the render at any time by pressing <kbd class="kbd docutils literal notranslate">Esc</kbd> in the render window or Image editor.
-You will not lose the frames you have already rendered,
-since they have been written out to individual files.
-You can always adjust the range you want to continue from where you left off.</p>
-<p>You can edit the frames afterwards and post-process them.
-You can add neat effects in the Sequence editor.
-You can render the same sequence into different resolutions (640×480, 320×240, etc.)
-and use different codecs (to get different file sizes and quality)
-with almost no effort whatsoever.</p>
 </div>
 <div class="section" id="hints">
 <h2>Gợi ý -- Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h2>

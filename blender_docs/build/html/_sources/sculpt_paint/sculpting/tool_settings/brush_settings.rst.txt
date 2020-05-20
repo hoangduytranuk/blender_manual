@@ -34,7 +34,7 @@ Strength
    This setting is not available for *Grab*, *Snake Hook*, or *Rotate*.
 
    You can change the brush strength interactively by pressing :kbd:`Shift-F`
-   in the 3D View and then moving the brush and then :kbd:`LMB`.
+   in the 3D Viewport and then moving the brush and then :kbd:`LMB`.
    You can enter the size numerically also while in :kbd:`Shift-F` sizing.
 
    Strength Pressure
@@ -80,13 +80,26 @@ Plane Trim
    the trim distance are ignored during sculpting.
 
 
+.. _sculpt-tool-settings-brush-settings-advanced:
+
 Advanced
 ========
 
-Topology Auto-masking
-   Affects only vertices connected to the active vertex under the brush.
-   This can be used for isolating disconnected meshes, masking cavities,
-   mesh boundary edges, or creating topological falloffs.
+Auto-Masking
+   Topology
+      Setting per each brush, affects only vertices connected to the active vertex under the brush.
+      This can be used for isolating disconnected meshes, face sets, masking cavities,
+      mesh boundary edges, or creating topological falloffs.
+   Face Sets
+      Affect only vertices that share face sets with active vertex.
+   Mesh Boundary
+      Does not affect non-manifold boundary edges.
+   Face Sets Boundary
+      Does not affect vertices which belong to a face set boundary.
+
+Propagation Steps
+   The distance where *Mesh Boundary Auto-Masking* is going to protect vertices from the fully masked edge.
+
 Sculpt Plane
    Use this menu to set the plane in which the sculpting takes place.
    In other words, the primary direction that the vertices will move.
@@ -95,20 +108,21 @@ Sculpt Plane
       The movement takes place in the direction of average normal for all active vertices within the brush area.
       Essentially, this means that the direction is dependent on the surface beneath the brush.
    View Plane
-      Sculpting in the plane of the current 3D View.
+      Sculpting in the plane of the current 3D Viewport.
    X, Y, Z Plane
       The movement takes place in the positive direction of one of the global axes.
 
-Original Normal
-   When locked it keeps using the normal of the surface where stroke was initiated,
-   instead of the surface normal currently under the cursor.
-Original Plane
-   When locked keep using the plane origin of surface where stroke was initiated,
-   instead of the surface plane currently under the cursor.
-Accumulate
-   Causes stroke dabs to accumulate on top of each other.
-Front Faces Only
-   When enabled, the brush only affects vertices that are facing the viewer.
+Use Original
+   Normal
+      When locked it keeps using the normal of the surface where stroke was initiated,
+      instead of the surface normal currently under the cursor.
+   Plane
+      When locked keep using the plane origin of surface where stroke was initiated,
+      instead of the surface plane currently under the cursor.
+   Accumulate
+      Causes stroke dabs to accumulate on top of each other.
+   Front Faces Only
+      When enabled, the brush only affects vertices that are facing the viewer.
 
 .. toctree::
    :hidden:

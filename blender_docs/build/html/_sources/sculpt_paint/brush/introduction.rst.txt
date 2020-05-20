@@ -126,7 +126,7 @@ The Clipping Region
 To constrain the paint area further you can use the *Clipping Region*.
 Press :kbd:`Alt-B` and :kbd:`LMB`-drag a rectangular area.
 The selected area will be "cut out" as the area of interest.
-The rest of the 3D View gets hidden.
+The rest of the 3D Viewport gets hidden.
 
 .. figure:: /images/sculpt-paint_brush_introduction_border-select.png
 

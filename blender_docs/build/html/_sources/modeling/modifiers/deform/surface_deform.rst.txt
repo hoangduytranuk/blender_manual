@@ -1,3 +1,4 @@
+.. _bpy.types.SurfaceDeformModifier:
 
 ***********************
 Surface Deform Modifier
@@ -20,7 +21,7 @@ Options
 
 Target
    The object to which to bind (this setting is unavailable after binding).
-Interpolation falloff
+Interpolation Falloff
    How much a vertex bound to one face of the target will be affected by the surrounding faces
    (this setting is unavailable after binding).
    This essentially controls how smooth the deformations are.
@@ -29,6 +30,18 @@ Interpolation falloff
 
       While lower values result in smoother deformations,
       they may also introduce slight artifacts.
+
+Vertex Group
+   Allows you to define the influence per vertex.
+
+   Invert ``<->``
+      Inverts the influence of the selected vertex group, meaning that the group
+      now represents vertices that will not be deformed by the modifier.
+
+      The setting reverses the weight values of the group.
+
+Strength
+   The overall amount of influence the modifier has on deforming the mesh.
 
 Bind
    Bind the current state of the modified mesh to the current state of the target mesh,

@@ -56,7 +56,7 @@ Translations
 Contacts
 ========
 
-`project page <https://developer.blender.org/project/profile/53/>`__.
+`Project Page <https://developer.blender.org/project/profile/53/>`__.
    An overview of the documentation project.
 `Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__
    A mailing list for discussing ideas, and keeping track of progress.

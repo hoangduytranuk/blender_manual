@@ -219,95 +219,57 @@
 <img alt="../../_images/sculpt-paint_sculpting_tools_brushes.png" src="../../_images/sculpt-paint_sculpting_tools_brushes.png" />
 </div>
 <dl>
-<dt>Draw <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>Moves vertices inward or outward,
-based the average normal of the vertices contained within the drawn brush stroke.</p>
+<dt><a class="reference internal" href="tools/draw.html"><span class="doc">Draw</span></a></dt><dd><p>Moves vertices inward or outward based on the average normal.</p>
 </dd>
-<dt>Draw Sharp</dt><dd><p>Similar to the <em>Draw</em> brush however, it deforms the mesh from the original coordinates
-and uses the <em>Sharper</em> <a class="reference internal" href="../brush/falloff.html"><span class="doc">Falloff</span></a>.
-This is useful for creating cloth wrinkles, stylized hair or hard surface edges.</p>
+<dt><a class="reference internal" href="tools/draw_sharp.html"><span class="doc">Draw Sharp</span></a></dt><dd><p>Move vertices inward or outward based the original coordinates
+and uses the <em>Sharper</em> <a class="reference internal" href="../brush/falloff.html"><span class="doc">Falloff</span></a>.</p>
 </dd>
-<dt>Clay <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Similar to the <em>Draw</em> brush, but includes settings to adjust the plane on which the brush acts.
-It behaves like a combination of the <em>Flatten</em> and <em>Draw</em> brushes.</p>
+<dt><a class="reference internal" href="tools/clay.html"><span class="doc">Clay</span></a></dt><dd><p>Similar to the <em>Draw</em> brush, but includes settings to adjust the plane on which the brush acts.</p>
 </dd>
-<dt>Clay Strips</dt><dd><p>Similar to the <em>Clay</em> brush, but it uses a cube to define the brush area of influence rather than a sphere.</p>
+<dt><a class="reference internal" href="tools/clay_strips.html"><span class="doc">Clay Strips</span></a></dt><dd><p>The same as the <em>Clay</em> brush, but it uses a cube to define the brush area of influence rather than a sphere.</p>
 </dd>
-<dt>Layer <kbd class="kbd docutils literal notranslate">L</kbd></dt><dd><p>This brush is similar to <em>Draw</em>, except that the height of the displacement layer is capped.
-This creates the appearance of a solid layer being drawn.
-This brush does not draw on top of itself; a brush stroke intersects itself.
-Releasing the mouse button and starting a new stroke
-will reset the depth and paint on top of the previous stroke.</p>
+<dt><a class="reference internal" href="tools/layer.html"><span class="doc">Layer</span></a></dt><dd><p>Moves all vertices to an exact height creating a flat layer.</p>
 </dd>
-<dt>Inflate <kbd class="kbd docutils literal notranslate">I</kbd></dt><dd><p>Similar to <em>Draw</em>,
-except that vertices in <em>Inflate</em> mode are displaced in the direction of their own normals.</p>
+<dt><a class="reference internal" href="tools/inflate.html"><span class="doc">Inflate</span></a></dt><dd><p>Displaces the mesh in the direction of the vertex normals.</p>
 </dd>
-<dt>Blob</dt><dd><p>Pushes mesh outward or inward into a spherical shape with settings to
-control the amount of magnification at the edge of the sphere.</p>
+<dt><a class="reference internal" href="tools/blob.html"><span class="doc">Blob</span></a></dt><dd><p>Pushes mesh outward or inward into a spherical shape.</p>
 </dd>
-<dt>Crease <kbd class="kbd docutils literal notranslate">Shift-C</kbd></dt><dd><p>Creates sharp indents or ridges by pushing or pulling the mesh, while pinching the vertices together.</p>
+<dt><a class="reference internal" href="tools/crease.html"><span class="doc">Crease</span></a></dt><dd><p>Creates sharp indents or ridges by pushing or pulling the mesh, while pinching the vertices together.</p>
 </dd>
-<dt>Smooth <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>Eliminates irregularities in the area of the mesh within the brush's
-influence by smoothing the positions of the vertices.</p>
+<dt><a class="reference internal" href="tools/smooth.html"><span class="doc">Smooth</span></a></dt><dd><p>Eliminates irregularities in the mesh by averaging the positions of the vertices.</p>
 </dd>
-<dt>Flatten <kbd class="kbd docutils literal notranslate">Shift-T</kbd></dt><dd><p>The <em>Flatten</em> brush determines an &quot;area plane&quot;
-located by default at the average height above/below the vertices within the brush area.
-The vertices are then pulled towards this plane.
-The inverse of the <em>Flatten</em> brush is the <em>Contrast</em> brush
-which pushes vertices up or down away from the brush plane.</p>
+<dt><a class="reference internal" href="tools/flatten.html"><span class="doc">Flatten</span></a></dt><dd><p>Smooths vertices to a flat plain by finding an average height and moves vertices towards that height.</p>
 </dd>
-<dt>Fill</dt><dd><p>Works like the Flatten brush, but only brings vertices below the brush plane upwards.</p>
+<dt><a class="reference internal" href="tools/fill.html"><span class="doc">Fill</span></a></dt><dd><p>Brings vertices below the brush plane upwards.</p>
 </dd>
-<dt>Scrape</dt><dd><p>The <em>Scrape</em> brush works like the <em>Flatten</em> brush, but only brings vertices above the plane downwards.</p>
+<dt><a class="reference internal" href="tools/scrape.html"><span class="doc">Scrape</span></a></dt><dd><p>Brings vertices above the plane downwards.</p>
 </dd>
-<dt>Multiplane Scrape</dt><dd><p>Scrapes the mesh with two angled planes at the same time, producing a sharp edge between them.
-This is useful for creating edges when sculpting hard surface objects.</p>
+<dt><a class="reference internal" href="tools/multiplane_scrape.html"><span class="doc">Multiplane Scrape</span></a></dt><dd><p>Scrapes the mesh with two angled planes at the same time, producing a sharp edge between them.</p>
 </dd>
-<dt>Pinch <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Pulls vertices towards the center of the brush.
-The inverse setting is <em>Magnify</em>, in which vertices are pushed away from the center of the brush.</p>
+<dt><a class="reference internal" href="tools/pinch.html"><span class="doc">Pinch</span></a></dt><dd><p>Pulls vertices towards the center of the brush.</p>
 </dd>
-<dt>Grab <kbd class="kbd docutils literal notranslate">G</kbd></dt><dd><p>Used to drag a group of vertices around. <em>Grab</em> selects a group of vertices on mouse-down,
-and pulls them to follow the mouse. And unlike other brushes,
-<em>Grab</em> does not move different vertices as the brush is dragged across the model.
-The effect is like moving a group of vertices in Edit Mode with Proportional Editing enabled,
-except that <em>Grab</em> can make use of other Sculpt Mode options (like textures and symmetry).</p>
+<dt><a class="reference internal" href="tools/grab.html"><span class="doc">Grab</span></a></dt><dd><p>Selects a group of vertices and pulls them to follow the mouse.</p>
 </dd>
-<dt>Elastic Deform</dt><dd><p>Used to simulate realistic deformations such as grabbing or twisting of <a class="reference internal" href="../../glossary/index.html#term-elastic"><span class="xref std std-term">elastic</span></a> objects.
-For example, this tool works great for modeling the shape of flesh like objects such as humans or animals.
-When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the brush deforms vertices along the normal of the active vertex.</p>
+<dt><a class="reference internal" href="tools/elastic_deform.html"><span class="doc">Elastic Deform</span></a></dt><dd><p>Used to simulate realistic deformations such as grabbing or twisting of <a class="reference internal" href="../../glossary/index.html#term-elastic"><span class="xref std std-term">elastic</span></a> objects.</p>
 </dd>
-<dt>Snake Hook <kbd class="kbd docutils literal notranslate">K</kbd></dt><dd><p>Pulls vertices along with the movement of the brush to create long, snake-like forms.</p>
+<dt><a class="reference internal" href="tools/snake_hook.html"><span class="doc">Snake Hook</span></a></dt><dd><p>Pulls vertices along with the movement of the brush to create long, snake-like forms.</p>
 </dd>
-<dt>Thumb</dt><dd><p>Similar to the <em>Nudge</em> brush, this one flattens the mesh in the brush area,
-while moving it in the direction of the brush stroke.</p>
+<dt><a class="reference internal" href="tools/thumb.html"><span class="doc">Thumb</span></a></dt><dd><p>Flattens the mesh in the brush area, while moving it in the direction of the brush stroke.</p>
 </dd>
-<dt>Pose</dt><dd><p>This brush is used to pose a model simulating an armature-like deformation.
-The pivot point for rotation is calculated automatically based
-on the radius of the brush and the topology of the model.
-When pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd>, the pose brush applies a twist rotation
-to the posing segments instead of using the rotation or an IK deformation.
-The falloff of the rotation across multiple segments is controlled by the brush falloff curve.</p>
+<dt><a class="reference internal" href="tools/pose.html"><span class="doc">Pose</span></a></dt><dd><p>This brush is used to pose a model simulating an armature-like deformations.</p>
 </dd>
-<dt>Nudge</dt><dd><p>Moves vertices in the direction of the brush stroke.</p>
+<dt><a class="reference internal" href="tools/nudge.html"><span class="doc">Nudge</span></a></dt><dd><p>Moves vertices in the direction of the brush stroke.</p>
 </dd>
-<dt>Rotate</dt><dd><p>Rotates vertices within the brush in the direction the cursor is moved. The initial drag direction
-is the zero angle and by rotating around the center you can create a vortex effect.</p>
+<dt><a class="reference internal" href="tools/rotate.html"><span class="doc">Rotate</span></a></dt><dd><p>Rotates vertices within the brush in the direction the cursor is moved.</p>
 </dd>
-<dt>Slide Relax</dt><dd><p>This brush slides the topology of the mesh in the direction of the stroke
-without changing the geometrical shape of the mesh.
-When pressing <kbd class="kbd docutils literal notranslate">Shift</kbd>, the brush enters <em>Relax</em> mode
-which tries to create an even distribution of quads without deforming the volume of the mesh.</p>
+<dt><a class="reference internal" href="tools/slide_relax.html"><span class="doc">Slide Relax</span></a></dt><dd><p>This brush slides the topology of the mesh in the direction of the stroke
+without changing the geometrical shape of the mesh.</p>
 </dd>
-<dt>Simplify</dt><dd><p>This brush collapses short edges (as defined by the detail size) whether or
-not the <em>Collapse Short Edges</em> option is enabled.
-This brush has no effect if dynamic topology is not enabled.</p>
+<dt><a class="reference internal" href="tools/simplify.html"><span class="doc">Simplify</span></a></dt><dd><p>Cleans up geometry by collapsing short edges.</p>
 </dd>
-<dt>Mask <kbd class="kbd docutils literal notranslate">M</kbd></dt><dd><p>Lets you select mesh parts to be unaffected by other brushes by painting vertex colors.
-The mask values are shown as gray-scale.
-I.e. the darker a masked area is, the less effect sculpting on it will have.
-See also the options of the <a class="reference internal" href="hide_mask.html#sculpt-mask-menu"><span class="std std-ref">Màn Chắn -- Mask</span></a> menu.</p>
+<dt><a class="reference internal" href="tools/mask.html"><span class="doc">Mask</span></a></dt><dd><p>Lets you select mesh parts to be unaffected by other brushes by painting vertex colors.</p>
 </dd>
-<dt>Mesh Filter</dt><dd><p>Applies a deformation to all vertices in the mesh at the same time.
-To use this tool, simply click and drag away from the object to have a positive effect
-and click and drag towards the mesh to have a negative effect.</p>
+<dt><a class="reference internal" href="tools/mesh_filter.html"><span class="doc">Mesh Filter</span></a></dt><dd><p>Applies a deformation to all vertices in the mesh at the same time.</p>
 </dd>
 <dt>Move</dt><dd><p>Translation tool.</p>
 </dd>

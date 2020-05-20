@@ -25,7 +25,7 @@ Material
       binding the material to the brush gives more control and avoids a lack of coordination between the two.
 
 
-Color 
+Color
 -----
 
 A toggle. Todo.

@@ -5,7 +5,7 @@ UV Warp Modifier
 ****************
 
 The *UV Warp* modifier transforms an object's UV map based on values or two objects.
-Its purpose is to give you direct control over the object's UVs in the 3D View,
+Its purpose is to give you direct control over the object's UVs in the 3D Viewport,
 allowing you to directly move, rotate, and scale existing UV coordinates
 using defined values or a controller object or bone.
 

@@ -60,7 +60,7 @@ Use Nodes
    materials could not be created with node trees.
 Use Pinned
    When enabled, the editor will retain the material or texture, even when the user selects a different object.
-   A node tree can then be edited independent of the object selection in the 3D View.
+   A node tree can then be edited independent of the object selection in the 3D Viewport.
 Go to Parent button
    This button allows you go to parent node tree e.g. leaving a group.
 Snapping

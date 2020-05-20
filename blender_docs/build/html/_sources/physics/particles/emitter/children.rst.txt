@@ -47,7 +47,7 @@ Child Type
       because you can achieve an even distribution.
       Some of the children can become virtual parents, which are influencing other particles nearby.
 Display Amount
-   The number of children in the 3D View.
+   The number of children in the 3D Viewport.
 Render Amount
    The number of children to be rendered.
 Length

@@ -21,7 +21,7 @@ Activation
 
    :Category:  Add Mesh
    :Description: Online Blenderkit Library, materials, models, brushes and more.
-   :Location: :menuselection:`3D View --> Sidebar --> Blenderkit`
+   :Location: :menuselection:`3D Viewport --> Sidebar --> Blenderkit`
    :File: blenderkit folder
    :Author: Vilem Duha, Petr Dlouhy
    :Maintainer: Vilem Duha

@@ -123,7 +123,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../editing/index.html">Biên Soạn -- Editing</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Tính Chất -- Properties</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../transforms.html">Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../relations.html">Relations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../collections/index.html">Collections</a></li>
@@ -289,18 +288,17 @@ our parent mesh.</p>
 </tr>
 </tbody>
 </table>
-<p>First, in <em>Object Mode</em>,
-select the base object and <kbd class="kbd docutils literal notranslate">Shift-RMB</kbd> to add the circle to the selection
-(order is very important here),
+<p>First, in <em>Object Mode</em>, select the base object
+and <kbd class="kbd docutils literal notranslate">Shift-LMB</kbd> to add the circle to the selection (order is very important here),
 and <kbd class="kbd docutils literal notranslate">Ctrl-P</kbd> or <span class="menuselection">Object ‣ Parent ‣ Object</span>
 to parent the base object to the circle.
 Now, the circle is the parent of the monkey; if you move the circle, the monkey will follow it.</p>
 <p>With only the circle selected, enable <em>Instancing Verts</em>;
 a monkey head should be placed at every vertex of the circle.</p>
-<p>The original monkey head at the center and the parent mesh are still shown in the 3D View but
+<p>The original monkey head at the center and the parent mesh are still shown in the 3D Viewport but
 neither will be rendered. If the placement and rotation of your monkey head are odd,
 you might need to clear its rotation <kbd class="kbd docutils literal notranslate">Alt-R</kbd>, scale <kbd class="kbd docutils literal notranslate">Alt-S</kbd>,
-location <kbd class="kbd docutils literal notranslate">Alt-G</kbd>, and origin <kbd class="kbd docutils literal notranslate">Alt-O</kbd>.</p>
+location <kbd class="kbd docutils literal notranslate">Alt-G</kbd>, and origin <span class="menuselection">Object ‣ Clear ‣ Origin</span>.</p>
 <div class="section" id="rearranging">
 <h4>Rearranging<a class="headerlink" href="#rearranging" title="Permalink to this headline">¶</a></h4>
 <p>If you now select the base object and modify it in either Object or Edit Mode,
@@ -317,7 +315,7 @@ while scaling the circle up in Edit Mode will only increase the distance between
 enabling <em>Align to Vertex Normal</em> in the <em>Instancing</em> panel.
 This will rotate all base objects according to the vertex normals of the parent mesh.</p>
 <p>To change the orientation of the instanced objects, select the base object and
-in the <span class="menuselection">Object ‣ Relations extras</span> panel change the <em>Tracking Axes</em>.</p>
+in the <span class="menuselection">Object ‣ Relations</span> panel change the <em>Tracking Axes</em>.</p>
 <table class="docutils align-default" id="id3">
 <caption><span class="caption-text">Output of various orientations.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -393,8 +391,8 @@ was adapted to the vertex normals of the parent mesh
 </tbody>
 </table>
 <p>As in the previous example, the shape and proportions of the arrangement can now be tweaked.</p>
-<p>To turn all instanced geometry into real objects, simply select the icosphere and
-<span class="menuselection">Object ‣ Apply ‣ Make Instances Real</span>, <kbd class="kbd docutils literal notranslate">Shift-Ctrl-A</kbd>.
+<p>To turn all instanced geometry into real objects, select the icosphere and
+<span class="menuselection">Object ‣ Apply ‣ Make Instances Real</span>, <kbd class="kbd docutils literal notranslate">Ctrl-A</kbd>.
 To make the icosphere and the tentacle a single object,
 make sure they are all selected and go to <span class="menuselection">Object ‣ Join</span>, <kbd class="kbd docutils literal notranslate">Ctrl-J</kbd>.</p>
 <div class="admonition seealso">

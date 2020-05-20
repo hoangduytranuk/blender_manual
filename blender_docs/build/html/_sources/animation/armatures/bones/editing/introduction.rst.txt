@@ -42,7 +42,7 @@ Add Menu
    :Menu:      :menuselection:`Add`
    :Hotkey:    :kbd:`Shift-A`
 
-In the 3D View, :kbd:`Shift-A` to add a new bone to your armature.
+In the 3D Viewport, :kbd:`Shift-A` to add a new bone to your armature.
 
 This bone will be:
 

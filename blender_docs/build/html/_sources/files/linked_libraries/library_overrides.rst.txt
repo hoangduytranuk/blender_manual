@@ -51,7 +51,7 @@ You can override a single data-block from two places:
 Make Library Override Operator
 ------------------------------
 
-This one operates in the 3D View, over linked objects or local empties instantiating a linked collection
+This one operates in the 3D Viewport, over linked objects or local empties instantiating a linked collection
 (typically, a linked character). It is very similar to the *Make Proxy* operator,
 and is found in the same sub-menu :menuselection:`Object --> Relations --> Make Library Overrides...`.
 

@@ -12,6 +12,11 @@ is replaced with a couple of initial preferences to configure how you interact i
 
    These options can always be changed later in the :doc:`Preferences </editors/preferences/index>`.
 
+Language
+   The language used for translating the user interface.
+   The list is broken up into categories determining how complete the translations are.
+   More language preferences can be set in the :ref:`Translation Preferences <prefs-interface-translation>`.
+
 Shortcuts
    Presets for the default :doc:`keymap </editors/preferences/keymap>` for Blender.
    Note that this manual assumes that you use the "Blender" keymap.

@@ -29,7 +29,7 @@ Lift/Gamma/Gain
    Lift
       Increases the value of dark colors.
    Gamma
-      Will adjust midtones.
+      Adjusts midtones.
    Gain
       Adjusts highlights.
 

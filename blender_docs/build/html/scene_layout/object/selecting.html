@@ -123,7 +123,6 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Selecting</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#selections-and-the-active-object">Selections and the Active Object</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#select-menu">Select Menu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#selection-tools">Selection Tools</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn -- Editing</a></li>
@@ -236,49 +235,6 @@ hold <kbd class="kbd docutils literal notranslate">Alt</kbd>, while confirming.<
 </div>
 <div class="section" id="select-menu">
 <span id="object-select-menu"></span><h2>Select Menu<a class="headerlink" href="#select-menu" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
-<dt>All <kbd class="kbd docutils literal notranslate">A</kbd></dt><dd><p>Select all.</p>
-</dd>
-<dt>None <kbd class="kbd docutils literal notranslate">Alt-A</kbd></dt><dd><p>Select none.</p>
-</dd>
-<dt>Inverse <kbd class="kbd docutils literal notranslate">Ctrl-I</kbd></dt><dd><p>Selects all the geometry that is not selected, and deselect currently selected components.</p>
-</dd>
-</dl>
-<hr class="docutils" />
-<dl class="simple">
-<dt><a class="reference internal" href="../../interface/selecting.html#tool-select-box"><span class="std std-ref">Box Select</span></a> <kbd class="kbd docutils literal notranslate">B</kbd></dt><dd><p>Interactive box selection.</p>
-</dd>
-<dt><a class="reference internal" href="../../interface/selecting.html#tool-select-circle"><span class="std std-ref">Circle Select</span></a> <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Interactive circle selection.</p>
-</dd>
-</dl>
-<hr class="docutils" />
-<dl class="simple">
-<dt><a class="reference internal" href="#select-all-by-type">Select All by Type</a></dt><dd><p>Select objects based on their type.</p>
-</dd>
-<dt><a class="reference internal" href="#select-active-camera">Select Active Camera</a></dt><dd><p>Select the viewport's active camera.</p>
-</dd>
-<dt><a class="reference internal" href="#mirror-selection">Mirror Selection</a></dt><dd><p>Select mirrored objects based on their name.</p>
-</dd>
-<dt><a class="reference internal" href="#select-random">Select Random</a></dt><dd><p>Selects a random object, based on a percentage value.</p>
-</dd>
-</dl>
-<hr class="docutils" />
-<dl class="simple">
-<dt><a class="reference internal" href="#select-more-less">Select More/Less</a></dt><dd><p>Select objects based on their parent child relationships.</p>
-</dd>
-</dl>
-<hr class="docutils" />
-<dl class="simple">
-<dt><a class="reference internal" href="#select-grouped">Select Grouped</a></dt><dd><p>Select objects based on matching properties to the active object.</p>
-</dd>
-<dt><a class="reference internal" href="#select-linked">Select Linked</a></dt><dd><p>Select objects sharing data with the active object.</p>
-</dd>
-<dt><a class="reference internal" href="#select-pattern">Select Pattern</a></dt><dd><p>Select objects by pattern matching their name.</p>
-</dd>
-</dl>
-</div>
-<div class="section" id="selection-tools">
-<h2>Selection Tools<a class="headerlink" href="#selection-tools" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="select-all">
 <span id="bpy-ops-object-select-all"></span><h3>Select All<a class="headerlink" href="#select-all" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
@@ -306,7 +262,7 @@ hold <kbd class="kbd docutils literal notranslate">Alt</kbd>, while confirming.<
 <dd class="field-odd"><p>All Modes</p>
 </dd>
 <dt class="field-even">Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Select ‣ None</span>,</p>
+<dd class="field-even"><p><span class="menuselection">Select ‣ None</span></p>
 </dd>
 <dt class="field-odd">Hotkey</dt>
 <dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Alt-A</kbd></p>
@@ -324,7 +280,7 @@ hold <kbd class="kbd docutils literal notranslate">Alt</kbd>, while confirming.<
 <dd class="field-odd"><p>All Modes</p>
 </dd>
 <dt class="field-even">Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Select ‣ Invert</span>,</p>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Invert</span></p>
 </dd>
 <dt class="field-odd">Hotkey</dt>
 <dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl-I</kbd></p>
@@ -333,27 +289,8 @@ hold <kbd class="kbd docutils literal notranslate">Alt</kbd>, while confirming.<
 </div>
 <p>Toggle the selection state of all visible objects.</p>
 </div>
-<div class="section" id="select-random">
-<span id="bpy-ops-object-select-random"></span><h3>Select Random<a class="headerlink" href="#select-random" title="Permalink to this headline">¶</a></h3>
-<div class="refbox admonition">
-<p class="admonition-title">Reference</p>
-<dl class="field-list simple">
-<dt class="field-odd">Mode</dt>
-<dd class="field-odd"><p>Object and Edit Modes</p>
-</dd>
-<dt class="field-even">Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Select ‣ Select Random</span></p>
-</dd>
-</dl>
-</div>
-<p>Randomly selects unselected objects based on percentage probability.
-The percentage can be modified in the <em>Adjust Last Operation</em> panel.
-It is important to note that the percentage represents the likelihood of
-an unselected object being selected and not the percentage amount of objects
-that will be selected.</p>
-</div>
-<div class="section" id="mirror-selection">
-<span id="bpy-ops-object-select-mirror"></span><h3>Mirror Selection<a class="headerlink" href="#mirror-selection" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="box-select">
+<h3>Box Select<a class="headerlink" href="#box-select" title="Permalink to this headline">¶</a></h3>
 <div class="refbox admonition">
 <p class="admonition-title">Reference</p>
 <dl class="field-list simple">
@@ -361,12 +298,32 @@ that will be selected.</p>
 <dd class="field-odd"><p>All Modes</p>
 </dd>
 <dt class="field-even">Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Select ‣ Mirror Selection</span></p>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Box Select</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">B</kbd></p>
 </dd>
 </dl>
 </div>
-<p>Select the Mirror objects of the selected object,
-based on their names, e.g. &quot;sword.L&quot; and &quot;sword.R&quot;.</p>
+<p>Interactive <a class="reference internal" href="../../interface/selecting.html#tool-select-box"><span class="std std-ref">box selection</span></a>.</p>
+</div>
+<div class="section" id="circle-select">
+<h3>Circle Select<a class="headerlink" href="#circle-select" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Circle Select</span></p>
+</dd>
+<dt class="field-odd">Hotkey</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">C</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Interactive <a class="reference internal" href="../../interface/selecting.html#tool-select-circle"><span class="std std-ref">circle selection</span></a>.</p>
 </div>
 <div class="section" id="select-all-by-type">
 <span id="bpy-ops-object-select-by-type"></span><h3>Select All by Type<a class="headerlink" href="#select-all-by-type" title="Permalink to this headline">¶</a></h3>
@@ -398,7 +355,42 @@ Armature, Lattice, Empty, Camera, Light, Speaker.</p>
 </dd>
 </dl>
 </div>
-<p>Selects the active camera, this can be used in a complicated scene to easily find the active camera.</p>
+<p>Selects the active camera, this is especially handy in complex scene.</p>
+</div>
+<div class="section" id="mirror-selection">
+<span id="bpy-ops-object-select-mirror"></span><h3>Mirror Selection<a class="headerlink" href="#mirror-selection" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Mirror Selection</span></p>
+</dd>
+</dl>
+</div>
+<p>Select the Mirror objects of the selected object,
+based on their names, e.g. &quot;sword.L&quot; and &quot;sword.R&quot;.</p>
+</div>
+<div class="section" id="select-random">
+<span id="bpy-ops-object-select-random"></span><h3>Select Random<a class="headerlink" href="#select-random" title="Permalink to this headline">¶</a></h3>
+<div class="refbox admonition">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select Random</span></p>
+</dd>
+</dl>
+</div>
+<p>Randomly selects unselected objects based on percentage probability.
+The percentage can be modified in the <em>Adjust Last Operation</em> panel.
+It is important to note that the percentage is the likelihood of
+an unselected object being selected and not the percentage amount of objects
+that will be selected.</p>
 </div>
 <div class="section" id="select-more-less">
 <span id="bpy-ops-object-select-hierarchy"></span><span id="bpy-ops-object-select-less"></span><span id="bpy-ops-object-select-more"></span><h3>Select More/Less<a class="headerlink" href="#select-more-less" title="Permalink to this headline">¶</a></h3>

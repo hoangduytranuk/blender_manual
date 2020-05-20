@@ -27,17 +27,29 @@ Mode
    Sharp
       Similar to *Smooth*, but preserves sharp edges and corners.
 
+      Sharpness
+         Higher values produce edges more similar to the input, while lower values filter out noise.
+   Voxel
+      Uses an OpenVDB to generate a new manifold mesh from the current geometry
+      while trying to preserve the mesh's original volume.
+
+      Adaptivity
+         Reduces the final face count by simplifying geometry where detail is not needed.
+         This introduce triangulation to faces that do not need as much detail.
+      Smooth Shading
+         Outputs faces with :ref:`Smooth Shading <bpy.ops.object.shade_smooth>` instead of flat shading.
+
 Octree Depth
    Sets the resolution of the output. Low values will generate larger faces relative to the input,
    higher values will generate a denser output.
+
 Scale
    The result can be tweaked further by this, lower values effectively decrease the output resolution.
-Sharpness
-   Shown when using the *Sharp Mode*. Higher values produce edges more similar to the input,
-   while lower values filter out noise.
+
 Smooth Shading
    Output faces with smooth shading rather than flat shading.
    The smooth/flat shading of the input faces is not preserved.
+
 Remove Disconnected Pieces
    Filter out small disconnected pieces of the output.
 

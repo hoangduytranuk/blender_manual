@@ -22,7 +22,7 @@ Activation
 Interface
 =========
 
-Located in the :menuselection:`3D View --> Sidebar --> VR tab`.
+Located in the :menuselection:`3D Viewport --> Sidebar --> VR tab`.
 
 .. figure:: /images/addons_3d-view_vr-scene-inspection_example.jpg
    :align: right
@@ -90,7 +90,7 @@ Mirror VR Session
 
    :Category:  3D View
    :Description: View the viewport with virtual reality glasses (head-mounted displays).
-   :Location: :menuselection:`3D View --> Sidebar --> VR tab`
+   :Location: :menuselection:`3D Viewport --> Sidebar --> VR tab`
    :File: viewport_vr_preview.py
    :Author: Julian Eisel
    :Maintainer: Julian Eisel
