@@ -423,6 +423,10 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         bpy.context.window_manager.clipboard = text_to_paste
         bpy.ops.text.paste()
 
+    def setTextToClipboard(self, text_to_paste):
+        bpy.context.window_manager.clipboard = text_to_paste
+        self.report({'INFO'}, f"Ready to pate: {text_to_paste}")
+
     def execute(self, context):
         sd = context.space_data
 
@@ -769,7 +773,7 @@ class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
             return {'CANCELLED'}
 
         part_list = text.split(': "')
-        has_parts = (len(part_list) > 0)
+        has_parts = (len(part_list) > 1)
         if not has_parts:
             print('Text is not splitting, requiring dictionary like format!')
             return {'CANCELLED'}
@@ -886,6 +890,57 @@ class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
         self.restoreClibboardPreviousCopy()
         return result
 
+
+class TEXT_OT_translate(TEXT_OT_single_quoted_base):
+    bl_idname = "text.translate"
+    bl_label = "Translate"
+    bl_description = "Translate selected text. Result is placed in system's clipboard. Use PASTE feature to get back the translation, to avoid overwriting original text."
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+
+        sc = context.scene
+        var = sc.my_tool
+        text = self.getSelectedText(sd.text)
+        if not text:
+            self.report({'ERROR'}, f"Must select a text")
+            return {'CANCELLED'}
+
+        part_list = text.split(': "')
+        has_parts = (len(part_list) > 1)
+
+        orig_msg = part_list[0]
+        orig_msg = orig_msg.strip('"')
+
+        ref_list = RefList(msg=orig_msg, keep_orig=False, tf=trans_finder)
+        ref_list.parseMessage()
+        ref_list.translateRefList()
+        tran = ref_list.getTranslation()
+
+        print(f"Orig:{orig_msg}")
+        print(f"Tran:{tran}")
+
+        if has_parts:
+            text = f'"{orig_msg}": "{tran}",'
+        else:
+            text = tran
+        self.setTextToClipboard(text)
+        return {'FINISHED'}
+
+
+class TEXT_OT_reload_dict(TEXT_OT_single_quoted_base):
+    bl_idname = "text.reload_dict"
+    bl_label = "Reload Dict"
+    bl_description = "Reload dictionary"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        trans_finder.reloadMasterDict()
+        return {'FINISHED'}
+
+
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
     bl_label = "Abbreviation Panel"
     bl_idname = "TEXT_PT_abbrev_selected_panel"
@@ -972,6 +1027,9 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row.operator("text.convert_to_square_brackets", icon='TRACKER_DATA')
         row.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
         row.operator("text.parse_sentence", icon='MODIFIER_DATA')
+        row.operator("text.translate", icon='MODIFIER_DATA')
+        row.operator("text.reload_dict", icon='MODIFIER_DATA')
+
 
         row = col.row(align=True)
         row.operator("text.cut")
@@ -1013,6 +1071,8 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         #     text_id, icon_id = find_replace_option_table[i]
         #     row.prop(my_tool, "find_replace_options", index=i,
         #              text="", icon=icon_id, expand=True, icon_only=True)
+        
+        reloadMasterDict
 '''
 
 
@@ -1028,6 +1088,8 @@ classes = (
     TEXT_OT_paste_join,
     TEXT_OT_paste_with_colon,
     TEXT_OT_convert_to_square_bracket,
+    TEXT_OT_translate,
+    TEXT_OT_reload_dict,
 )
 
 

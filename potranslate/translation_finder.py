@@ -15,7 +15,7 @@ from sphinx_intl import catalog as c
 from babel.messages.catalog import Message
 from babel.messages import pofile
 from common import DEBUG, DIC_LOWER_CASE
-
+from reftype import RefType
 
 class CaseInsensitiveDict(dict):
 
@@ -122,7 +122,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0003.json"
+        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0004.json"
         # self.master_dic_backup_file = "/Users/hoangduytran/ref_dict_0003.json"
         #self.master_dic_file = "/Users/hoangduytran/ref_dict_0002.json"
         self.master_dic_backup_list = defaultdict(OrderedDict)
@@ -153,6 +153,9 @@ class TranslationFinder:
         # self.cleanDictList(self.master_dic_list)
         # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
         # exit(0)
+
+    def reloadMasterDict(self):
+        self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
 
     def updateMasterDic(self, is_testing=True):
         from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
@@ -440,6 +443,7 @@ class TranslationFinder:
                 dic = json.load(in_file)
 
             if DIC_LOWER_CASE:
+                print('loading dic as lower case')
                 lower_dic = {}
                 if dic:
                     for k, v in dic.items():
@@ -468,9 +472,34 @@ class TranslationFinder:
         trans = None
 
         try:
+            # msg = "phrase::!!''"
             if is_lower:
                 msg = msg.lower()
-            trans = self.master_dic_list[msg]
+
+            is_there = (msg in self.master_dic_list)
+            if is_there:
+                trans = self.master_dic_list[msg]
+                return trans
+
+            # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
+            # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
+            # how far on the 'msg' ending should we add to the translation
+            trailing_count=0
+            temp_msg = str(msg)
+            found = False
+            has_ending_punctuation = cm.TRAILING_WITH_PUNCT.search(temp_msg)
+            while has_ending_punctuation and not found:
+                temp_msg = cm.TRAILING_WITH_PUNCT.sub("", temp_msg)
+                found = (temp_msg in self.master_dic_list)
+                if found:
+                    break
+                else:
+                    has_ending_punctuation = cm.TRAILING_WITH_PUNCT.search(temp_msg)
+                    trailing_count += 1
+            if found:
+                trans = self.master_dic_list[temp_msg]
+                endings = msg[-trailing_count:]
+                trans = trans + endings
             # _(f'isInList:[{msg}], {is_lower}, [{trans}]')
             return trans
         except Exception as e:
@@ -522,13 +551,21 @@ class TranslationFinder:
         trans_list = []
         trans = str(msg)
 
+        word_list = cm.WORD_ONLY_FIND.findall(msg)
+
+        print(f'word_list: {word_list}')
         for origin, breakdown in cm.patternMatchAll(cm.WORD_ONLY_FIND, msg):
             is_end = (origin is None)
             if is_end:
                 break
 
             o_s, o_e, o_txt = origin
+            is_possessive = o_txt.endswith("'s")
+            if is_possessive:
+                o_txt = o_txt[:-2]
             trans_word = self.findTranslation(o_txt)
+            if is_possessive:
+                trans_word = f'của {trans_word}'
             trans_word_entry = (o_s, o_e, o_txt, trans_word)
             trans_list.append(trans_word_entry)
 
@@ -582,7 +619,19 @@ class TranslationFinder:
         is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not(is_keep or is_keep_contain))
         return is_ignore
 
-    def translateQuoted(self, msg, is_reversed=False):
+    def addExtraChar(self, msg, ref_type=None):
+        char_tbl = {
+            RefType.SNG_QUOTE:"'",
+            RefType.DBL_QUOTE:'"',
+            RefType.AST_QUOTE:'*'
+        }
+
+        insert_char = char_tbl[ref_type]
+        if insert_char:
+            msg = f'{insert_char}{msg}{insert_char}'
+        return msg
+
+    def translateQuoted(self, msg, is_reversed=False, ref_type=None):
         is_ignore = self.checkIgnore(msg)
         if is_ignore:
             return None
@@ -595,12 +644,16 @@ class TranslationFinder:
         if (len(ex_ga_msg) > 0):
             msg = ex_ga_msg[0]
 
+        msg = cm.replaceArchedQuote(msg)
+        msg = self.addExtraChar(msg, ref_type=ref_type)
         if tran_found:
             orig_tran = str(tran)
             ex_ga_msg = cm.EXCLUDE_GA.findall(tran)
             if (len(ex_ga_msg) > 0):
                 tran = ex_ga_msg[0]
 
+            tran = cm.replaceArchedQuote(tran)
+            tran = self.addExtraChar(tran, ref_type=ref_type)
             tran = f":abbr:`{tran} ({msg})`"
         else:
             tran = f":abbr:`{msg} ({msg})`"

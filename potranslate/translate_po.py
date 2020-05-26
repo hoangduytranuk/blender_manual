@@ -142,7 +142,11 @@ def doctree_resolved(app, doctree, docname):
     # if not is_running:
     #     return
 
-    correctingDictionary()
+    # correctingDictionary()
+
+    msg = "'MIP' is an acronym of the Latin phrase 'multum in parvo',"
+    tran = tranRef(msg, False)
+    exit(0)
 
     debug_file = cm.debug_file
     if debug_file:

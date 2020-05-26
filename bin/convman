@@ -5,5 +5,5 @@ cd $BLENDER_MAN_EN
 #make -d -w -B -e SPHINXOPTS="-D language='vi'" 2>&1c
 sphinx-build -b html -D language='vi' ./manual "build/html"
 cd -
-rsync -arP --exclude exts/translate_po.py $BLENDER_MAN_EN $to_dir/
-rsync -arP --exclude exts/translate_po.py $BLENDER_MAN_EN $BLENDER_GITHUB/blender_docs/
+rsync -arP --exclude  exts/translate_po.py --delete $BLENDER_MAN_EN $to_dir/
+# rsync -arP --exclude exts/translate_po.py $BLENDER_MAN_EN $BLENDER_GITHUB/blender_docs/

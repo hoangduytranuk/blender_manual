@@ -202,6 +202,7 @@ class FindFilesHasPattern:
             capital_case,
             title_case,
             find_file,
+            vipo_file,
             find_po,
             find_rst,
             find_py,
@@ -219,7 +220,8 @@ class FindFilesHasPattern:
         self.find_po = (True if find_po else False)
         self.find_rst = (True if find_rst else False)
         self.find_py = (True if find_py else False)
-        self.find_src = (True if find_src else False)
+        self.vipo_file = (True if vipo_file else False)
+                
         self.case_sensitive = (True if case_sensitive else False)
         DEBUG = (True if debugging else False)
 
@@ -326,8 +328,18 @@ class FindFilesHasPattern:
 
         if self.find_file:
             search_file_list.append(self.find_file)
+        elif self.vipo_file:
+            po_dir = os.environ['BLENDER_GITHUB']
+            if po_dir:
+                po_dir = os.path.join(po_dir, "gui/2.80/po")
+                _("po_dir:", po_dir)
+
+            po_file_list = self.getFileList(po_dir, ".po")
+            _("po_file_list")
+            pp(po_file_list)
+            search_file_list.extend(po_file_list)
         else:
-            if (self.find_po):
+            if self.find_po:
                 po_dir = os.environ['BLENDER_MAN_VI']
                 if po_dir:
                     po_dir = os.path.join(po_dir, "LC_MESSAGES")
@@ -338,7 +350,7 @@ class FindFilesHasPattern:
                 pp(po_file_list)
                 search_file_list.extend(po_file_list)
 
-            if (self.find_rst):
+            if self.find_rst:
                 rst_dir = os.environ['BLENDER_MAN_EN']
                 if rst_dir:
                     rst_dir = os.path.join(rst_dir, "manual")
@@ -349,7 +361,7 @@ class FindFilesHasPattern:
                 pp(rst_file_list)
                 search_file_list.extend(rst_file_list)
 
-            if (self.find_py):
+            if self.find_py:
                 py_dir = os.environ['LOCAL_PYTHON_3']
                 if py_dir:
                     _("py_dir:", py_dir)
@@ -359,7 +371,7 @@ class FindFilesHasPattern:
                 pp(py_file_list)
                 search_file_list.extend(py_file_list)
 
-            if (self.find_src):
+            if self.find_src:
                 src_dir = os.environ['BLENDER_SRC']
                 if src_dir:
                     _("src_dir:", src_dir)
@@ -381,7 +393,7 @@ class FindFilesHasPattern:
                     search_file_list.extend(cpp_list)
                 if c_list:
                     search_file_list.extend(c_list)
-                if (h_list):
+                if h_list:
                     search_file_list.extend(h_list)
 
         has_file = (len(search_file_list) > 0)
@@ -389,7 +401,7 @@ class FindFilesHasPattern:
             _("No files to search! Terminate.")
             return
 
-        is_po_only = (self.find_po and not (self.find_py or self.find_rst or self.find_src))
+        is_po_only = (self.find_po and not (self.find_py or self.find_rst or self.find_src)) or self.vipo_file
         is_replace = ((self.replace_pattern is not None) and is_po_only) or (self.letter_case != LetterCase.NO_CHANGE)
 
         # _("SEARCHING:")
@@ -586,6 +598,7 @@ parser.add_argument("-t", "--testing_only", dest="testing_only",
                     help="Print out changes only, but DO NOT write changes. For examinations before commit changes. Only applicable with replacing translations in PO files.",
                     action='store_const', const=True)
 parser.add_argument("-D", "--debug", dest="debugging", help="Print out messages as processing.", action='store_const', const=True)
+parser.add_argument("-vi", "--vipo", dest="vipo_file", help="Find text in vi.po file, the latest version in $BLENDER_GITHUB", action='store_const', const=True)
 
 args = parser.parse_args()
 
@@ -598,6 +611,7 @@ x.setVars(
     args.case_capital,
     args.case_title,
     args.find_file,
+    args.vipo_file,
     args.find_po,
     args.find_rst,
     args.find_py,
@@ -609,7 +623,7 @@ x.setVars(
     args.show_line_number,
     args.invert_match,
     args.testing_only,
-    args.debugging
+    args.debugging,
     )
 
 x.run()

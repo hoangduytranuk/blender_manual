@@ -15,7 +15,7 @@ from pprint import pprint, pformat
 #import logging
 
 DEBUG=True
-DIC_LOWER_CASE=False
+DIC_LOWER_CASE=True
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -178,6 +178,7 @@ class Common:
     RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
     LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
     TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
+    TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
@@ -205,6 +206,14 @@ class Common:
     PURE_PATH = re.compile(r'^(([\/\\][\w]+)([\/\\][\w]+)*)+[\/\\]?$')
     PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
     API_REF = re.compile(r'^blender_api:.*$')
+
+
+    def replaceArchedQuote(txt):
+        new_txt = str(txt)
+        new_txt = re.sub('\)', ']', new_txt)
+        new_txt = re.sub('\(', '[', new_txt)
+        # new_txt = new_txt.replace('"', '\\\"')
+        return new_txt
 
     def hasOriginal(msg, tran):
         orig_list = Common.ALPHA_NUMERICAL.findall(msg)

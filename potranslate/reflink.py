@@ -11,6 +11,7 @@ from collections import defaultdict, OrderedDict
 from translation_finder import TranslationFinder
 # from pyparsing import nestedExpr
 from enum import Enum
+from reftype import RefType
 
 '''
 :abbr:`
@@ -41,29 +42,6 @@ class TextStyle(Enum):
     BOLD = 2
     BOX = 3
     RAW = 4
-
-
-class RefType(Enum):
-    GA = "\`"
-    ARCH_BRACKET = "()"
-    AST_QUOTE = "*"
-    DBL_QUOTE = "\""
-    SNG_QUOTE = "'"
-    MM = ":MM:"
-    ABBR = ":abbr:"
-    CLASS = ":class:"
-    DOC = ":doc:"
-    GUILABEL = ":guilabel:"
-    KBD = ":kbd:"
-    LINENOS = ":linenos:"
-    MATH = ":math:"
-    MENUSELECTION = ":menuselection:"
-    MOD = ":mod:"
-    REF = ":ref:"
-    SUP = ":sup:"
-    TERM = ":term:"
-    TEXT = "generic_text"
-    FILLER = "filler"
 
 
 # :MM:
@@ -778,18 +756,6 @@ class RefList(defaultdict):
                 entry = {k: ref_rec}
                 chosen_list.update(entry)
 
-        def replaceArchedQuote(txt):
-            new_txt = str(txt)
-            new_txt = re.sub('\)', ']', new_txt)
-            new_txt = re.sub('\(', '[', new_txt)
-            # new_txt = new_txt.replace('"', '\\\"')
-            return new_txt
-
-        def replaceQuoted(txt):
-            new_txt = str(txt)
-            # new_txt = re.sub('"', '"', new_txt)
-            return new_txt
-
         def refSplit(ref_txt):
             ref_txt_list = ref_txt.split(cm.REF_SEP)
             has_len = (len(ref_txt_list) > 1)
@@ -816,7 +782,7 @@ class RefList(defaultdict):
             return ref_txt_list
 
         pattern_list = [
-            (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET, True),
+            # (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET, True),
             (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
             (cm.AST_QUOTE, RefType.AST_QUOTE, True),
             (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
@@ -832,8 +798,8 @@ class RefList(defaultdict):
 
         balanceNumberOfItems(self, orig_list)  # this will fill in 'filler' records, assingting search
 
-        _('list of refs:')
-        pp(self)
+        # _('list of refs:')
+        # pp(self)
         _(f'quotedFindRefs, orig: [{orig_txt}]')
         _(f'quotedFindRefs, tran: [{self.msg}]')
 
@@ -940,12 +906,12 @@ class RefList(defaultdict):
                             _(f"Unable to find original for [{ref_orig_txt}]")
                             r_txt = first_ref_item.getText()
                             os, oe = ref_orig.getLocation()
-                            r_txt = replaceArchedQuote(r_txt)
+                            r_txt = cm.replaceArchedQuote(r_txt)
 
             is_change = (ref_tran_txt is not None) and (ref_orig_txt is not None)
             if is_change:
-                ref_tran_txt = replaceArchedQuote(ref_tran_txt)
-                ref_orig_txt = replaceArchedQuote(ref_orig_txt)
+                ref_tran_txt = cm.replaceArchedQuote(ref_tran_txt)
+                ref_orig_txt = cm.replaceArchedQuote(ref_orig_txt)
 
                 is_trimming_first_char = (cm.LEADING_WITH_SYMBOL.search(ref_tran_txt) is not None)
                 is_trimming_last_char = (cm.TRAILING_WITH_SYMBOL.search(ref_tran_txt) is not None)
@@ -1223,16 +1189,16 @@ class RefList(defaultdict):
         elif is_menu:
             tran = self.tf.translateMenuSelection(ref_txt)
         elif is_quoted:
-            tran = self.tf.translateQuoted(ref_txt)
+            tran = self.tf.translateQuoted(ref_txt, ref_type=ref_type)
             converted_to_abbr = True
         else:
             tran = self.tf.translateRefWithLink(ref_txt)
         has_tran = (tran is not None)
         if has_tran:
             ref_item.converted_to_abbr = converted_to_abbr
-            ref_item.setTranlation(tran, state=TranslationState.ACCEPTABLE)
-        else:
-            ref_item.setTranlation("", state=TranslationState.ACCEPTABLE)
+
+        tran_txt = (tran if tran else "")
+        ref_item.setTranlation(tran_txt, state=TranslationState.ACCEPTABLE)
 
     def translateRefRecord(self, record: RefRecord):
         valid = (record is not None)
