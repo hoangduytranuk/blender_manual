@@ -400,7 +400,7 @@ class RefList(defaultdict):
 
     def setTranslation(self, tran, state=TranslationState.ACCEPTABLE):
         if ig.isIgnored(self.msg):
-            self.setTranslation(self.msg)
+            self.translation = self.msg
             self.translation_state = TranslationState.IGNORED
         else:
             _('set translation:', self.msg, "=>", tran)

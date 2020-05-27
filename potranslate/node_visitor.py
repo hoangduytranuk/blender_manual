@@ -74,12 +74,12 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
         self.raw_source = msg
         return msg
 
-    def translate(self, node):
-        if DEBUG:
-            _("translate node input:", node.astext())
-        msg = self.getNodeMsg(node)
-        trans = trans_finder.translateText(msg)
-        return trans
+    # def translate(self, node):
+    #     if DEBUG:
+    #         _("translate node input:", node.astext())
+    #     msg = self.getNodeMsg(node)
+    #     trans = trans_finder.translateText(msg)
+    #     return trans
 
     def putTranslation(self, node):
         replace_translated_fragment = (self.node_msg and self.current_trans and self.node_trans)

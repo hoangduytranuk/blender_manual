@@ -472,7 +472,7 @@ class TranslationFinder:
         trans = None
 
         try:
-            # msg = "phrase::!!''"
+            # msg = "WARNING: preferences are lost when add-on is disabled, be sure to use \"Save Persistent\" if you want to keep your settings"
             if is_lower:
                 msg = msg.lower()
 
@@ -486,22 +486,29 @@ class TranslationFinder:
             # how far on the 'msg' ending should we add to the translation
             trailing_count=0
             temp_msg = str(msg)
+            print(f'entering: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
             found = False
-            has_ending_punctuation = cm.TRAILING_WITH_PUNCT.search(temp_msg)
-            while has_ending_punctuation and not found:
+            while cm.TRAILING_WITH_PUNCT.search(temp_msg) and not found:
                 temp_msg = cm.TRAILING_WITH_PUNCT.sub("", temp_msg)
+                trailing_count += 1
+                print(f'processing: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
                 found = (temp_msg in self.master_dic_list)
                 if found:
+                    print(f'on break: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
                     break
-                else:
-                    has_ending_punctuation = cm.TRAILING_WITH_PUNCT.search(temp_msg)
-                    trailing_count += 1
+
             if found:
                 trans = self.master_dic_list[temp_msg]
-                endings = msg[-trailing_count:]
+                endings = ""
+                has_trailing = (trailing_count > 0)
+                if has_trailing:
+                    trailing_count
+                    endings = msg[-trailing_count:]
+
+                print(f'trans:{trans}; endings:{endings}; trailing_count:{trailing_count}; msg:{msg}')
                 trans = trans + endings
-            # _(f'isInList:[{msg}], {is_lower}, [{trans}]')
             return trans
+
         except Exception as e:
             # if msg:
             #     _(msg)
@@ -523,12 +530,7 @@ class TranslationFinder:
             return None
 
         orig_msg = str(msg)
-        msg, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(msg, is_single=True)
         trans = self.isInList(msg, is_lower=True)
-        has_tran = (trans is not None)
-        if not has_tran:
-            msg, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(msg, is_single=False)
-            trans = self.isInList(msg, is_lower=True)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
@@ -538,8 +540,6 @@ class TranslationFinder:
             trans = cm.removeOriginal(msg, trans)
             trans = cm.matchCase(orig_msg, trans)
 
-            if ending_with_punctuations or begin_with_punctuations:
-                trans = orig_msg.replace(msg, trans)
         else:
             trans = None
         if trans is None:
