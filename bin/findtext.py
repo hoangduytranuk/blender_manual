@@ -21,7 +21,7 @@ import chardet
 CURRENT_FILE_NAME = None
 FILE_NAME_SHOWED = False
 INVERT_SEP='•'
-DEBUG = False
+DEBUG = True
 
 def setfilename(file_name):
     global CURRENT_FILE_NAME
@@ -221,6 +221,7 @@ class FindFilesHasPattern:
         self.find_rst = (True if find_rst else False)
         self.find_py = (True if find_py else False)
         self.vipo_file = (True if vipo_file else False)
+        self.find_src = (True if find_src else False)
                 
         self.case_sensitive = (True if case_sensitive else False)
         DEBUG = (True if debugging else False)
@@ -396,6 +397,7 @@ class FindFilesHasPattern:
                 if h_list:
                     search_file_list.extend(h_list)
 
+        _(f'search_file_list:{search_file_list}')
         has_file = (len(search_file_list) > 0)
         if not has_file:
             _("No files to search! Terminate.")
