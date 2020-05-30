@@ -1,15 +1,10 @@
 import sys
-sys.path.append('/usr/local/lib/python3.7/site-packages')
-sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
-
 import re
 from os import sep as dirsep
-#os.path.pathsep = ':' or ';'
-#os.sep = '/' or '\'
-from os.path import pathsep #:
-
-from common import DEBUG, _, pp
+from os.path import pathsep
 from common import Common as cm
+from common import DEBUG, _, pp
+
 class Ignore:
 
     DOS_COMMANDS = [
@@ -75,24 +70,24 @@ class Ignore:
         "XCOPY",
     ]
 
-    STB = r"[\"\'\(\<\{\[]"
-    EDB = r"[\"\'\)\>\}\]]"
-    #NUMB = r"([+-]?[\d]+(([\.\,][\d]+)*)+[\W]?)"
+    STB = r'[\"\'\(\<\{\[]'
+    EDB = r'[\"\'\)\>\}\]]'
+    # NUMB = r'([+-]?[\d]+(([\.\,][\d]+)*)+[\W]?)'
     NUMB = r"[+-]?[\d]+([\.\,][\d]+)?"
-    #PATH = r'(([a-zA-Z][:]?)?) ([\\\/]+)(([\w-_]+)?)*)'
+    # PATH = r'(([a-zA-Z][:]?)?) ([\\\/]+)(([\w-_]+)?)*)'
     PATH = r'([a-zA-Z][:]?)?'
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
     ignore_list = [
-        #r'^()$',
-        #r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
-        #r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
+        # r'^()$',
+        # r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
+        # r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
         r'([\`\'\"\*\(]+)?(\%[\w])([\`\'\"\*\(]+)?',
         r'^(/\[\`\'\"\*\(]+)?\%[\w](/\[\`\'\"\*\)]+)?$',
         r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         r'^(GPL[\s\w][\d][+])$',
         r'^(A \(Alpha\))$',
-        #r'^(([+-]+\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
+        # r'^(([+-]+\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
         r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
         r'^(:ref:)([\`]+(\w+[-]?)+[\`]+)[\.]?$',
         r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`

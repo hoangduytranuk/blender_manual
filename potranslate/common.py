@@ -14,8 +14,10 @@ from pprint import pprint, pformat
 # import Levenshtein as LE
 #import logging
 
-DEBUG=True
-DIC_LOWER_CASE=True
+# DEBUG=True
+DEBUG=False
+# DIC_LOWER_CASE=True
+DIC_LOWER_CASE=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -232,7 +234,7 @@ class Common:
         is_special = (Common.SPECIAL_TERM.search(msg) is not None)
         return is_special
 
-    def matchCase(from_str, to_str):
+    def matchCase(from_str : str , to_str : str):
         new_str = str(to_str)
         is_title = (from_str.istitle())
         if is_title:
@@ -430,7 +432,7 @@ class Common:
         is_empty = (list_elem is None) or (len(list_elem) == 0)
         return is_empty
 
-    def removeLowerCaseDic(dic_list):
+    def removeLowerCaseDic(dic_list : dict ):
         l_case = {}
         u_case = {}
         k = None

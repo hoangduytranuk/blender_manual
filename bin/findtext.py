@@ -206,6 +206,7 @@ class FindFilesHasPattern:
             find_po,
             find_rst,
             find_py,
+            find_py_lib,
             find_src,
             case_sensitive,
             before_lines,
@@ -222,7 +223,8 @@ class FindFilesHasPattern:
         self.find_py = (True if find_py else False)
         self.vipo_file = (True if vipo_file else False)
         self.find_src = (True if find_src else False)
-                
+        self.find_py_lib = (True if find_py_lib else False)
+
         self.case_sensitive = (True if case_sensitive else False)
         DEBUG = (True if debugging else False)
 
@@ -361,6 +363,17 @@ class FindFilesHasPattern:
                 _("rst_file_list")
                 pp(rst_file_list)
                 search_file_list.extend(rst_file_list)
+
+            if self.find_py_lib:
+                py_dir = os.environ['PYTHONPATH']
+                if py_dir and py_dir.endswith(':'):
+                    py_dir = py_dir[:-1]
+
+                _(f'py_dir:{py_dir}')
+                py_file_list = self.getFileList(py_dir, ".py")
+                _("py_file_list")
+                pp(py_file_list)
+                search_file_list.extend(py_file_list)
 
             if self.find_py:
                 py_dir = os.environ['LOCAL_PYTHON_3']
@@ -601,6 +614,7 @@ parser.add_argument("-t", "--testing_only", dest="testing_only",
                     action='store_const', const=True)
 parser.add_argument("-D", "--debug", dest="debugging", help="Print out messages as processing.", action='store_const', const=True)
 parser.add_argument("-vi", "--vipo", dest="vipo_file", help="Find text in vi.po file, the latest version in $BLENDER_GITHUB", action='store_const', const=True)
+parser.add_argument("-py", "--py_lib", dest="find_py_lib", help="Find text in source files, set in $PYTHONPATH", action='store_const', const=True)
 
 args = parser.parse_args()
 
@@ -617,6 +631,7 @@ x.setVars(
     args.find_po,
     args.find_rst,
     args.find_py,
+    args.find_py_lib,
     args.find_src,
     args.case_sensitive,
     args.before_lines,

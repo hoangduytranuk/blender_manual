@@ -75,7 +75,7 @@ class TranslationFinder:
         "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
         "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
         "NumpadDelete": "Dấu Xóa/Del Bàn Số (NumpadDelete)",
-        "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadDelete)",
+        "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadPeriod)",
         "Numpad0": "Số 0 Bàn Số (Numpad0)",
         "Numpad1": "Số 1 Bàn Số (Numpad1)",
         "Numpad2": "Số 2 Bàn Số (Numpad2)",
@@ -105,13 +105,56 @@ class TranslationFinder:
         "PageUp": "Trang Lên (PageUp)",
         "PgDown": "Trang Xuống (PgDown)",
         "PgUp": "Trang Lên (PgUp)",
-        "OSKey": "Phím Hệ Điều hành (OSKey)",
+        "OSKey": "Phím Hệ Điều Hành (OSKey)",
         "Slash": "Dấu Chéo (Slash)",
-        "Backslash": "Dấu Chéo Ngược (Backslash)",
         "Minus": "Dấu Trừ (Minus)",
         "Plus": "Dấu Cộng (Plus)",
         "Down": "Xuống (Down)",
         "Up": "Lên (Up)",
+        "MMB": "NCG (MMB)",
+        "LMB": "NCT (LMB)",
+        "RMB": "NCP (RMB)",
+        "Pen": "Bút (Pen)"
+    }
+
+    KEYBOARD_TRANS_DIC_PURE = {
+        "WheelUp": "Lăn Bánh Xe về Trước (WheelUp)",
+        "WheelDown": "Lăn Bánh Xe về Sau (WheelDown)",
+        "Wheel": "Bánh Xe (Wheel)",
+        "NumpadPlus": "Dấu Cộng (+) Bàn Số (NumpadPlus)",
+        "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
+        "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
+        "NumpadDelete": "Dấu Xóa/Del Bàn Số (NumpadDelete)",
+        "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadPeriod)",
+        "Numpad0": "Số 0 Bàn Số (Numpad0)",
+        "Numpad1": "Số 1 Bàn Số (Numpad1)",
+        "Numpad2": "Số 2 Bàn Số (Numpad2)",
+        "Numpad3": "Số 3 Bàn Số (Numpad3)",
+        "Numpad4": "Số 4 Bàn Số (Numpad4)",
+        "Numpad5": "Số 5 Bàn Số (Numpad5)",
+        "Numpad6": "Số 6 Bàn Số (Numpad6)",
+        "Numpad7": "Số 7 Bàn Số (Numpad7)",
+        "Numpad8": "Số 8 Bàn Số (Numpad8)",
+        "Numpad9": "Số 9 Bàn Số (Numpad9)",
+        "Spacebar": "Dấu Cách (Spacebar)",
+        "Down": "Xuống (Down)",
+        "Up": "Lên (Up)",
+        "Comma": "Dấu Phẩy (Comma)",
+        "Minus": "Dấu Trừ (Minus)",
+        "Plus": "Dấu Cộng (Plus)",
+        "Left": "Trái (Left)",
+        "=": "Dấu Bằng (=)",
+        "Right": "Phải (Right)",
+        "Backslash": "Dấu Chéo Ngược (Backslash)",
+        "Slash": "Dấu Chéo (Slash)",
+        "AccentGrave": "Dấu Huyền (AccentGrave)",
+        "Delete": "Xóa (Delete)",
+        "Period": "Dấu Chấm (Period)",
+        "PageDown": "Trang Xuống (PageDown)",
+        "PageUp": "Trang Lên (PageUp)",
+        "PgDown": "Trang Xuống (PgDown)",
+        "PgUp": "Trang Lên (PgUp)",
+        "OSKey": "Phím Hệ Điều Hành (OSKey)",
         "MMB": "NCG (MMB)",
         "LMB": "NCT (LMB)",
         "RMB": "NCP (RMB)",
@@ -153,6 +196,22 @@ class TranslationFinder:
         # self.cleanDictList(self.master_dic_list)
         # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
         # exit(0)
+
+    def getKeyboardOriginal(self, text):
+        # kbd_def_val = list(TranslationFinder.KEYBOARD_TRANS_DIC.values())
+        orig_txt = str(text)
+        for k, kbd_val in TranslationFinder.KEYBOARD_TRANS_DIC_PURE.items():
+            is_in_text = (kbd_val in text)
+            if is_in_text:
+                text = text.replace(kbd_val, k)
+
+            k_pattern = f' ({k})'
+            is_in_text = (k_pattern in text)
+            if is_in_text:
+                text = text.replace(k_pattern, k)
+
+            text = text.replace('()', '')
+        return text
 
     def reloadMasterDict(self):
         self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
@@ -486,15 +545,15 @@ class TranslationFinder:
             # how far on the 'msg' ending should we add to the translation
             trailing_count=0
             temp_msg = str(msg)
-            print(f'entering: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
+            _(f'entering: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
             found = False
             while cm.TRAILING_WITH_PUNCT.search(temp_msg) and not found:
                 temp_msg = cm.TRAILING_WITH_PUNCT.sub("", temp_msg)
                 trailing_count += 1
-                print(f'processing: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
+                _(f'processing: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
                 found = (temp_msg in self.master_dic_list)
                 if found:
-                    print(f'on break: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
+                    _(f'on break: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
                     break
 
             if found:
@@ -505,7 +564,7 @@ class TranslationFinder:
                     trailing_count
                     endings = msg[-trailing_count:]
 
-                print(f'trans:{trans}; endings:{endings}; trailing_count:{trailing_count}; msg:{msg}')
+                _(f'trans:{trans}; endings:{endings}; trailing_count:{trailing_count}; msg:{msg}')
                 trans = trans + endings
             return trans
 
@@ -553,7 +612,7 @@ class TranslationFinder:
 
         word_list = cm.WORD_ONLY_FIND.findall(msg)
 
-        print(f'word_list: {word_list}')
+        _(f'word_list: {word_list}')
         for origin, breakdown in cm.patternMatchAll(cm.WORD_ONLY_FIND, msg):
             is_end = (origin is None)
             if is_end:

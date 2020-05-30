@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python3
+#!/usr/local/bin/python3
 
 import sys
 sys.path.append('/usr/local/lib/python3.7/site-packages')
@@ -31,6 +31,7 @@ from ignore import Ignore as ig
 from collections import OrderedDict, defaultdict
 import json
 from reflink import RefList, RefRecord, RefItem
+from reftype import RefType
 from sphinx_intl import catalog as c
 from pyparsing import *
 from babel.messages.catalog import Message, Catalog
@@ -57,42 +58,12 @@ trans_finder = tf()
 
 
 def doctree_resolved(app, doctree, docname):
-    def removeDuplication(txt_with_punct):
-        # is_debug = (txt_with_punct.endswith('::'))
-        # if is_debug:
-        #     _('DEBUG')
-        cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
-                                                                                                   is_single=True)
-        trans = trans_finder.isInList(cropped_txt, is_lower=True)
-        is_repeat = (trans is not None)
-        if not is_repeat:
-            cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
-                                                                                                       is_single=False)
-            trans = trans_finder.isInList(cropped_txt, is_lower=True)
 
-        is_repeat = (trans is not None)
-        return is_repeat
-
-    def correctingDictionary():
+    def abbreviating():
         remove_items = []
         new_items = {}
-        temp_dic = {
-            "Keep in mind that this is not real DoF, only a post-processing simulation. Some things cannot be done which would be no problem for real DoF at all. A typical example is a scene with some object very close to the camera, and the camera focusing on some point far behind it. In the real world, using shallow depth of field, it is not impossible for nearby objects to become completely invisible, in effect allowing the camera to see behind them. Hollywood cinematographers use this visual characteristic to achieve the popular \"focus pull\" effect, where the focus shifts from a nearby to a distant object, such that the \"other\" object all but disappears. Well, this is simply not possible to do with the current post-processing method in a single pass. If you really want to achieve this effect, quite satisfactorily, here is how": "Nhớ là đây không phải là độ sâu trường ảnh (DoF) thật, song chỉ là sự mô phỏng của xử lý hậu kỳ (post-processing simulation) mà thôi. Điều này là điều bất khả thi, tuy nó là vấn đề rất dễ giải quyết đối với DoF thật. Một ví dụ điển hình là một cảnh với một đối tượng nào đó rất gần với máy quay phim và máy quay phim đang tập trung vào một vài điểm nằm xa ở phía sau vật thể ấy. Trong thực tế, sử dụng độ sâu trường ảnh mỏng làm biến mất các vật thể lân cận là một điều hoàn toàn khả thi, cho phép máy quay phim nhìn thấy phía sau chúng. Các nhà quay phim Hollywood sử dụng đặc tính trực quan này để đạt được hiệu ứng \"Đổi Trường Nét\" nổi tiếng, trong đó tiêu điểm được di chuyển từ một vật ở gần sang một vật thể khác ở xa, sao cho các đối tượng không liên quan \"khác\" hoàn toàn bị biến mất. Điều này đơn thuần là điều không thể thực hiện được với phương thức xử lý hậu kỳ :abbr:`đơn lượt (single pass)` hiện tại. Nếu bạn thực sự muốn đạt được hiệu ứng này một cách thỏa đáng thì đây là cách làm",
-        }
-        temp_dic = {
-            "Rotate around the specified ('locked') axis to point towards a target": "Xoay quanh trục nhất định ('chốt lại') để hướng về phía một mục tiêu",
-        }
-        # for k, v in trans_finder.master_dic_list.items():
-        for k, v in temp_dic.items():
-            is_end_with_dot = (k.endswith('.') and not (k.endswith('..') or k.endswith('...')))
-            if is_end_with_dot:
-                txt_without_dot = k[:-1]
-                is_repeat = (txt_without_dot in trans_finder.master_dic_list) and (k in trans_finder.master_dic_list)
-                if (is_repeat):
-                    remove_items.append(k)
-                    _(f'ignore this message: [{k}]')
-                    continue
 
+        for k, v in trans_finder.master_dic_list.items():
             ref_list = RefList(msg=v)
             new_v = ref_list.quotedToAbbrev(k)
             has_new_v = (new_v is not None) and (len(new_v) > 0)
@@ -112,7 +83,42 @@ def doctree_resolved(app, doctree, docname):
             dic_file = '/Users/hoangduytran/blender_manual/test_dic.json'
             print(f'Writing changes to: {dic_file}, number of records:{len(new_items)}')
             trans_finder.writeJSONDic(dict_list=trans_finder.master_dic_list, file_name=dic_file)
-        exit(0)
+
+    def checkKeyboard():
+        remove_items = []
+        new_items = {}
+
+        for k, v in trans_finder.master_dic_list.items():
+            k_list = RefList(msg=k, tf=trans_finder)
+            k_list.parseMessage()
+            v_list = RefList(msg=v, tf=trans_finder)
+            v_list.parseMessage()
+
+            k_kbd_list = k_list.getListOfKeyboard(is_translate=True)
+            v_kbd_list = v_list.getListOfKeyboard()
+            is_same = (k_kbd_list == v_kbd_list)
+            if not is_same:
+                print(f'en:{k_kbd_list}')
+                print(f'vn:{v_kbd_list}')
+                print(f'diff:{k} => {v}')
+                print('-----')
+
+
+    def removeDuplication(txt_with_punct):
+        # is_debug = (txt_with_punct.endswith('::'))
+        # if is_debug:
+        #     _('DEBUG')
+        cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
+                                                                                                   is_single=True)
+        trans = trans_finder.isInList(cropped_txt, is_lower=True)
+        is_repeat = (trans is not None)
+        if not is_repeat:
+            cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
+                                                                                                       is_single=False)
+            trans = trans_finder.isInList(cropped_txt, is_lower=True)
+
+        is_repeat = (trans is not None)
+        return is_repeat
 
     def tranRef(msg, is_keep_original):
         ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
@@ -122,7 +128,7 @@ def doctree_resolved(app, doctree, docname):
         print("Got translation from REF_LIST")
         return tran
 
-    def fuzzyTextSimilar(txt1, txt2, accept_ratio):
+    def fuzzyTextSimilar(txt1 : str, txt2 : str, accept_ratio):
         try:
             similar_ratio = LE.ratio(txt1, txt2)
             is_similar = (similar_ratio >= accept_ratio)
@@ -143,9 +149,7 @@ def doctree_resolved(app, doctree, docname):
     #     return
 
     # correctingDictionary()
-
-    msg = "'MIP' is an acronym of the Latin phrase 'multum in parvo',"
-    tran = tranRef(msg, False)
+    checkKeyboard()
     exit(0)
 
     debug_file = cm.debug_file

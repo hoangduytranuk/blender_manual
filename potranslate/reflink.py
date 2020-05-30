@@ -96,6 +96,23 @@ class RefItem:
                    (self.reftype == other.reftype)
         return is_equal
 
+    def isIquivalent(self, other):
+        if not other:
+            return False
+
+        is_same_type = (self.reftype == other.reftype)
+        this_has_text = (self.text and len(self.text) > 0)
+        other_has_text = (other.text and len(other.text) > 0)
+
+        text_in_other = this_has_text and \
+                        other_has_text and \
+                        (self.text in other.text)
+        other_text_in_this =  this_has_text and \
+                        other_has_text and \
+                        (other.text in self.text)
+        is_equipvalent = is_same_type and (text_in_other or other_text_in_this)
+        return is_equipvalent
+
     def textContain(self, search_txt):
         if self.text is None:
             return False
@@ -117,6 +134,9 @@ class RefItem:
 
     def getText(self):
         return self.text
+
+    def setText(self, text):
+        self.text = text
 
     def getTranslationState(self):
         return self.translation_state
@@ -164,7 +184,7 @@ class RefItem:
 
     def getTextForKeyboard(self):
         item_list = {}
-        for orig, breakdown in cm.patternMatchAll(cm.KEYBOARD_SEP, self.getText()):
+        for orig, _ in cm.patternMatchAll(cm.KEYBOARD_SEP, self.getText()):
             s, e, txt = orig
             entry = {s: (s, e, txt)}
             item_list.update(entry)
@@ -173,7 +193,7 @@ class RefItem:
     def getTextForMenu(self):
         item_list = {}
         word_list = cm.findInvert(cm.MENU_SEP, self.getText())
-        for k, v in reversed(list(word_list.items())):
+        for _, v in reversed(list(word_list.items())):
             s, e, txt = v
             entry = {s: (s, e, txt)}
             item_list.update(entry)
@@ -181,8 +201,8 @@ class RefItem:
 
     def getTextForAbbrev(self):
         item_list = {}
-        for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, self.getText()):
-            os, oe, otxt = orig
+        for _, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, self.getText()):
+            # os, oe, otxt = orig
             has_breakdown = (breakdown and len(breakdown) > 0)
             if not has_breakdown:
                 continue
@@ -254,6 +274,17 @@ class RefRecord:
                     result += str(i)
                 result += "}"
         return result
+
+    def isIquivalent(self, other):
+        if other is None:
+            return False
+
+        has_origin = (self.origin and other.origin)
+        if not has_origin:
+            return False
+
+        is_equivalent = (self.origin.isEquivalent(other.origin))
+        return is_equivalent
 
     def setOriginType(self):
         orig_item = self.getOrigin()
@@ -394,6 +425,14 @@ class RefList(defaultdict):
             result += str(v)
             result += "\n"
         return result
+
+    def findRecord(self, ref_record: RefRecord):
+        for k, v in self.items():
+            is_found = (v.isEquivalent(ref_record))
+            if is_found:
+                return v
+        else:
+            return None
 
     def getTranslation(self):
         return self.translation
@@ -1261,3 +1300,36 @@ class RefList(defaultdict):
         has_tran = (tran is not None) and (len(tran) > 0)
         if has_tran:
             self.setTranslation(tran)
+
+    def getListOfRefType(self, ref_type:RefType):
+        ref_list=[]
+        v : RefRecord = None
+        for k, v in self.items():
+            v_type = v.getOrigin().getRefType()
+            is_found = (v_type == ref_type)
+            if is_found:
+                ref_list.append(v)
+        return ref_list
+
+    def getListOfKeyboard(self, is_translate=False):
+        kbd_list = self.getListOfRefType(RefType.KBD)
+
+        kbd_def = TranslationFinder.KEYBOARD_TRANS_DIC_PURE
+
+        kbd_item : RefRecord = None
+        new_list=[]
+        for kbd_item in kbd_list:
+            kbd_text_first_item : RefItem = kbd_item.getRefItemByIndex(0)
+            kbd_text = kbd_text_first_item.getText()
+            is_debug = (kbd_text == 'Wheel')
+            if is_debug:
+                _('DEBUG')
+            if is_translate:
+                tran_kbd_text = self.tf.translateKeyboard(kbd_text)
+                new_list.append(tran_kbd_text)
+            else:
+                new_list.append(kbd_text)
+            # _(f'orig_text:{kbd_text} => kbd_orig_text:{kbd_orig_text}')
+        return new_list
+
+
