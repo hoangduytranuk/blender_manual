@@ -40,6 +40,7 @@ import datetime
 from time import gmtime, strftime, time
 from pytz import timezone
 import Levenshtein as LE
+from pprint import pprint as PP
 
 try:
     import html
@@ -84,16 +85,16 @@ def doctree_resolved(app, doctree, docname):
             print(f'Writing changes to: {dic_file}, number of records:{len(new_items)}')
             trans_finder.writeJSONDic(dict_list=trans_finder.master_dic_list, file_name=dic_file)
 
-    def checkKeyboard():
-        remove_items = []
-        new_items = {}
-
+    def checkDictKeyboard():
         for k, v in trans_finder.master_dic_list.items():
             k_list = RefList(msg=k, tf=trans_finder)
             k_list.parseMessage()
             v_list = RefList(msg=v, tf=trans_finder)
             v_list.parseMessage()
 
+            is_debug = ('in development' in k)
+            if is_debug:
+                _('DEBUG')
             k_kbd_list = k_list.getListOfKeyboard(is_translate=True)
             v_kbd_list = v_list.getListOfKeyboard()
             is_same = (k_kbd_list == v_kbd_list)
@@ -103,6 +104,137 @@ def doctree_resolved(app, doctree, docname):
                 print(f'diff:{k} => {v}')
                 print('-----')
 
+    def checkDictRef():
+        for k, v in trans_finder.master_dic_list.items():
+            k_list = RefList(msg=k, tf=trans_finder)
+            k_list.parseMessage()
+            v_list = RefList(msg=v, tf=trans_finder)
+            v_list.parseMessage()
+
+            k_ref_list = k_list.getListOfRefs()
+            v_ref_list = v_list.getListOfRefs()
+            is_same = (k_ref_list == v_ref_list)
+
+            is_ignore = (len(k_ref_list) == 0)
+            is_ignored = (is_ignore or is_same)
+            if is_ignored:
+                continue
+
+            PP(k_ref_list)
+            print('--')
+            PP(v_ref_list)
+            print('--')
+            print(f'{k}\n\n{v}')
+            print('--------')
+
+    def checkNonTranslatedDictWords():
+        for k, v in trans_finder.master_dic_list.items():
+            k_list = RefList(msg=k, tf=trans_finder)
+            k_list.parseMessage()
+            v_list = RefList(msg=v, tf=trans_finder)
+            v_list.parseMessage()
+
+            k_ref_list = k_list.getListOfNonRefWords()
+            v_ref_list = v_list.getListOfNonRefWords()
+
+            repeat_list=[]
+            is_repeat = False
+            for word in k_ref_list:
+                is_found = (word in v_ref_list)
+                if is_found:
+                    if word not in repeat_list:
+                        print(f'{word}')
+                        repeat_list.append(word)
+                    is_repeat = True
+
+            if not is_repeat:
+                continue
+
+            # print(k_ref_list)
+            print('-'*3)
+            # print(v_ref_list)
+            # print('--')
+            print(f'{k}\n\n{v}')
+            print('-'*40)
+
+    def checkDictForMultipleMeaningsInTrans():
+        pattern = re.compile(r'(\w+(/\w+)+)')
+        k: str = None
+        v: str = None
+        for k, v in trans_finder.master_dic_list.items():
+            k_found_list = pattern.findall(k)
+            v_found_list = pattern.findall(v)
+
+            is_same = (len(k_found_list) == len(v_found_list))
+            if is_same:
+                continue
+
+            k_is_single_word = (len(k.split(' ')) == 1)
+            if k_is_single_word:
+                continue
+
+            PP(k_found_list)
+            print('-'*3)
+            PP(v_found_list)
+            print('-'*3)
+            print(f'{k}\n\n{v}')
+            print('-'*40)
+
+    def trimmingText(text):
+        txt_has_trimmable_ending = (cm.TRIMMABLE_ENDING.search(text) is not None)
+        txt_has_trimmable_beginning = (cm.TRIMMABLE_BEGINNING.search(text) is not None)
+        is_trim = (txt_has_trimmable_ending or txt_has_trimmable_beginning)
+        if not is_trim:
+            return text, False
+        text = cm.TRIMMABLE_BEGINNING.sub('', text)
+        text = cm.TRIMMABLE_ENDING.sub('', text)
+        return text, True
+
+    def removeDictBeginAndEndingPuncts():
+        remove_set={}
+        add_set={}
+
+        for k, v in trans_finder.master_dic_list.items():
+            # is_debug = ('Cut to' in k)
+            # if is_debug:
+            #     _('DEBUG')
+
+            trimmed_k, is_trimmed_k = trimmingText(k)
+            trimmed_v, is_trimmed_v = trimmingText(v)
+
+            changed = (is_trimmed_k or is_trimmed_v)
+            if changed:
+                remove_entry={k:v}
+                remove_set.update(remove_entry)
+
+                add_entry = {trimmed_k:trimmed_v}
+                add_set.update(add_entry)
+
+
+            print(f'[{k}]')
+            print(f'[{trimmed_k}]')
+            print('-'*3)
+            print(f'[{v}]')
+            print(f'[{trimmed_v}]')
+            print('-'*40)
+
+        changed = False
+        for k, v in remove_set.items():
+            remove_entry = {k:v}
+            print(f'remove:{remove_entry}')
+            del trans_finder.master_dic_list[k]
+            changed = True
+
+        for k, v in add_set.items():
+            add_entry = {k:v}
+            trans_finder.master_dic_list.update(add_entry)
+            print(f'added: {add_entry}')
+            changed = True
+
+        if changed:
+            new_dict = cleanupLeadingTrailingPunct(trans_finder.master_dic_list)
+            test_to_file='/Users/hoangduytran/blender_manual/ref_dict_0005.json'
+            trans_finder.writeJSONDic(dict_list=new_dict, file_name=test_to_file)
 
     def removeDuplication(txt_with_punct):
         # is_debug = (txt_with_punct.endswith('::'))
@@ -119,6 +251,140 @@ def doctree_resolved(app, doctree, docname):
 
         is_repeat = (trans is not None)
         return is_repeat
+
+    def cleanupLeadingTrailingPunct(d_dict):
+        return_dict={}
+        for k, v in d_dict.items():
+            trimmed_k = str(k)
+            trimmed_v = str(v)
+            found_k = cm.WORD_WITHOUT_QUOTE.search(k)
+            found_v = cm.WORD_WITHOUT_QUOTE.search(v)
+            if found_k:
+                trimmed_k = found_k.group(1)
+            if found_v:
+                trimmed_v = found_v.group(1)
+            entry = {trimmed_k:trimmed_v}
+            return_dict.update(entry)
+        return return_dict
+
+    def refToDictItems(ref_list):
+        ref_dict = {}
+        ref : RefRecord = None
+        interest_ref = [
+            RefType.REF,
+            RefType.DOC,
+            RefType.GA,
+            RefType.TERM,
+        ]
+        for ref in ref_list:
+            # print(ref)
+            type = ref.getOrigin().getRefType()
+            first_ref = ref.getRefItemByIndex(0)
+            ref_text = first_ref.getText()
+
+            is_debug = ('Poor mans steadycam' in ref_text)
+            if is_debug:
+                _('DEBUG')
+
+            en_part = None
+            vn_part = None
+            d_dict = {}
+            if type == RefType.MENUSELECTION:
+                print(f'MENUSELECTION:{type}')
+                text_list = cm.MENU_TEXT_REVERSE.findall(ref_text)
+                length = len(text_list)
+                i_index = 0
+                for i in range(length):
+                    tran = text_list[i_index]
+                    if i_index + 1 < length:
+                        orig = text_list[i_index + 1]
+                    else:
+                        print('ERROR: Orig is NOT THERE, use original')
+                        orig = ref.getOrigin().getText()
+
+                    entry={orig:tran}
+                    print(f'menu:{entry}')
+                    d_dict.update(entry)
+                    i_index += 2
+                    if i_index >= length:
+                        break
+
+            elif type == RefType.ABBR:
+                print(f'ABBR:{type}')
+                text_list = cm.ABBREV_TEXT_REVERSE.findall(ref_text)
+                abbr = text_list[0]
+                defin = text_list[1]
+                has_further_explanation = (': ' in defin)
+                if has_further_explanation:
+                    exp_list = defin.split(': ')
+                    orig_part = exp_list[0]
+                    further_exp = exp_list[1]
+                    print(f'abbr:{abbr}; orig_part:{orig_part}; further_exp:{further_exp}')
+
+                    if abbr.isascii():
+                        entry={abbr:f'{orig_part}, {further_exp}'}
+                    elif orig_part.isascii():
+                        entry={orig_part:f'{further_exp}, {abbr}'}
+                    else:
+                        entry={further_exp:f'{orig_part}, {abbr}'}
+                    d_dict.update(entry)
+                else:
+                    print(f'abbr:{abbr}; defin:{defin}')
+                    if defin.isascii():
+                        entry={defin: abbr}
+                    else:
+                        entry={abbr: defin}
+                    d_dict.update(entry)
+
+            elif type in interest_ref:
+                print(f'GENERIC_REF:{type}')
+                text_list = cm.REF_TEXT_REVERSE.findall(ref_text)
+                has_text = (len(text_list) > 0)
+                if not has_text:
+                    origin_text = ref.getOrigin().getText()
+                    print(f'ERROR: origin_text:{origin_text}')
+                    # print(f'{text_list}, appeared to be empty!!!')
+                else:
+                    vn_part, en_part = text_list[0]
+                    print(f'en_part:{en_part} vn_part:{vn_part}')
+                    entry={en_part:vn_part}
+                    d_dict.update(entry)
+            else:
+                _(f'{type} is not the type we are looking for.')
+            ref_dict.update(d_dict)
+
+        return_dict = cleanupLeadingTrailingPunct(d_dict)
+
+        return return_dict
+
+    def listDictRefsToDict():
+        interest_ref_list = [
+            RefType.MENUSELECTION,
+            RefType.REF,
+            RefType.DOC,
+            RefType.GA,
+            RefType.TERM,
+            RefType.ABBR,
+        ]
+
+        ref_dict = {}
+        ref_dict_filename='/Users/hoangduytran/blender_manual/ref_dict_refsonly.json'
+        for k, v in trans_finder.master_dic_list.items():
+            ref_list = RefList(msg=v, keep_orig=False, tf=trans_finder)
+            ref_list.parseMessage()
+
+            inter_ref_list = ref_list.getListOfRefType(interest_ref_list)
+            has_ref = (len(inter_ref_list) > 0)
+            if not has_ref:
+                continue
+
+            current_ref_dict = refToDictItems(inter_ref_list)
+            ref_dict.update(current_ref_dict)
+
+        has_dict_content = (len(ref_dict) > 0)
+        if has_dict_content:
+            trans_finder.writeJSONDic(dict_list=ref_dict, file_name=ref_dict_filename)
+
 
     def tranRef(msg, is_keep_original):
         ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
@@ -149,7 +415,13 @@ def doctree_resolved(app, doctree, docname):
     #     return
 
     # correctingDictionary()
-    checkKeyboard()
+    # checkDictKeyboard()
+    # checkDictRef()
+    # checkNonTranslatedDictWords()
+    # checkDictForMultipleMeaningsInTrans()
+    removeDictBeginAndEndingPuncts()
+    # listDictRefsToDict()
+    # trans_finder.saveMasterDict()
     exit(0)
 
     debug_file = cm.debug_file

@@ -568,6 +568,9 @@ class RefList(defaultdict):
                 if is_end:
                     break
 
+                is_debug = ('Poor mans steadycam' in msg)
+                if is_debug:
+                    _('DEBUG')
                 s, e, orig = origin
                 o_ss = s + start_loc
                 o_ee = o_ss + len(orig)
@@ -1301,18 +1304,18 @@ class RefList(defaultdict):
         if has_tran:
             self.setTranslation(tran)
 
-    def getListOfRefType(self, ref_type:RefType):
+    def getListOfRefType(self, request_list_of_ref_type):
         ref_list=[]
         v : RefRecord = None
         for k, v in self.items():
             v_type = v.getOrigin().getRefType()
-            is_found = (v_type == ref_type)
+            is_found = (v_type in request_list_of_ref_type)
             if is_found:
                 ref_list.append(v)
         return ref_list
 
     def getListOfKeyboard(self, is_translate=False):
-        kbd_list = self.getListOfRefType(RefType.KBD)
+        kbd_list = self.getListOfRefType([RefType.KBD])
 
         kbd_def = TranslationFinder.KEYBOARD_TRANS_DIC_PURE
 
@@ -1332,4 +1335,40 @@ class RefList(defaultdict):
             # _(f'orig_text:{kbd_text} => kbd_orig_text:{kbd_orig_text}')
         return new_list
 
+    def getListOfRefs(self):
+        ref_list = self.getListOfRefType([RefType.REF, RefType.DOC, RefType.GA])
 
+        kbd_def = TranslationFinder.KEYBOARD_TRANS_DIC_PURE
+
+        kbd_item : RefRecord = None
+        new_list=[]
+        for ref_item in ref_list:
+            first_ref_item = ref_item.getRefItemByIndex(0)
+            first_ref_item_text = first_ref_item.getText()
+            has_separator = (cm.REF_SEP in first_ref_item_text)
+            if has_separator:
+                text_list = first_ref_item_text.split(cm.REF_SEP)
+                first_ref_item_text = text_list[1]
+            new_list.append(first_ref_item_text)
+
+        return new_list
+
+    def getListOfNonRefWords(self):
+        text_only_list = self.getListOfRefType([RefType.TEXT])
+
+        ref_item : RefRecord = None
+        new_list=[]
+        for ref_item in text_only_list:
+            ref_text = ref_item.getOrigin().getText()
+            word_list = cm.WORD_ONLY.findall(ref_text)
+            for w in word_list:
+                new_list.extend(word_list)
+        return new_list
+
+    def getListOfNonRefText(self):
+        text_only_list = self.getListOfRefType([RefType.TEXT])
+        new_list=[]
+        for ref_item in text_only_list:
+            ref_text = ref_item.getOrigin().getText()
+            new_list.append(ref_text)
+        return new_list

@@ -21,3 +21,8 @@ class RefType(Enum):
     TERM = ":term:"
     TEXT = "generic_text"
     FILLER = "filler"
+'''
+    ABBREV_TEXT_REVERSE = re.compile(r'([^\(]+)\s\(([^\)]+)\)')
+    REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
+    MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
+'''

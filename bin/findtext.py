@@ -21,7 +21,8 @@ import chardet
 CURRENT_FILE_NAME = None
 FILE_NAME_SHOWED = False
 INVERT_SEP='•'
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 def setfilename(file_name):
     global CURRENT_FILE_NAME

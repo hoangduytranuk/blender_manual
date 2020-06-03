@@ -23,6 +23,39 @@ from collections import Counter
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
 
+
+alphabets= "([A-Za-z])"
+prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
+suffixes = "(Inc|Ltd|Jr|Sr|Co)"
+starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
+acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
+websites = "[.](com|net|org|io|gov)"
+
+def split_into_sentences(text):
+    text = " " + text + "  "
+    text = text.replace("\n"," ")
+    text = re.sub(prefixes,"\\1<prd>",text)
+    text = re.sub(websites,"<prd>\\1",text)
+    if "Ph.D" in text: text = text.replace("Ph.D.","Ph<prd>D<prd>")
+    text = re.sub("\s" + alphabets + "[.] "," \\1<prd> ",text)
+    text = re.sub(acronyms+" "+starters,"\\1<stop> \\2",text)
+    text = re.sub(alphabets + "[.]" + alphabets + "[.]" + alphabets + "[.]","\\1<prd>\\2<prd>\\3<prd>",text)
+    text = re.sub(alphabets + "[.]" + alphabets + "[.]","\\1<prd>\\2<prd>",text)
+    text = re.sub(" "+suffixes+"[.] "+starters," \\1<stop> \\2",text)
+    text = re.sub(" "+suffixes+"[.]"," \\1<prd>",text)
+    text = re.sub(" " + alphabets + "[.]"," \\1<prd>",text)
+    if "”" in text: text = text.replace(".”","”.")
+    if "\"" in text: text = text.replace(".\"","\".")
+    if "!" in text: text = text.replace("!\"","\"!")
+    if "?" in text: text = text.replace("?\"","\"?")
+    text = text.replace(".",".<stop>")
+    text = text.replace("?","?<stop>")
+    text = text.replace("!","!<stop>")
+    text = text.replace("<prd>",".")
+    sentences = text.split("<stop>")
+    sentences = sentences[:-1]
+    sentences = [s.strip() for s in sentences]
+
 #import AdvancedHTMLParser as AH
 #from sphinx_intl import catalog as c
 #from Levenshtein import distance as DS
@@ -2336,8 +2369,42 @@ class test(object):
         find_all_list = re.findall(SNG_QUOTE, t)
         pp(find_all_list)
 
+
+
+    def test_0038(self):
+        t = '''
+To clear (the mask of areas) with (the (Lasso Mask) tool), first invert the mask,
+(something glTF allows multiple animations per file, with animations targeted to particular objects at time of export. To ensure that an animation is included, either          (a) make it the active Action on the object, (b) create a single-strip NLA track, or (c) stash the action.
+Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
+3D View: (wip: ``VIEW``, ``VPORT``)
+            '''
+        # p = re.compile(r'[\.\,\:\!](\s+)?')
+        # part_list = p.split(t)
+        # pp(part_list)
+        part_list = split_into_sentences(t)
+        pp(part_list)
+
+    def test_0039(self):
+        p = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
+        t = 'ABBREV (something: other)'
+        found_text = p.findall(t)
+        print(found_text)
+
+        p = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
+        t = 'REF -- and something <and/link>'
+        found_text = p.findall(t)
+        print(found_text)
+
+        p = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
+        t = '''
+        Góc Nhìn 3D (MENU 3D View) --> Cộng Thêm (Add) --> Khung Lưới (Mesh)
+        '''
+        found_text = p.findall(t)
+        print(found_text)
+
+
     def run(self):
-        self.test_0037()
+        self.test_0039()
 
 
 x = test()

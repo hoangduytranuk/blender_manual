@@ -121,6 +121,16 @@ class Common:
     TAG_NAME='tagname'
     CLASS='classes'
 
+    TRIMMABLE_ENDING=re.compile(r'([\s\.\,\:\!]+)$')
+    TRIMMABLE_BEGINNING=re.compile(r'^([\s\.\,]+)')
+    TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
+
+    RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
+    RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
+
+    LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
+    TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
+
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
     ENDS_PUNCTUAL_MULTI = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
     ENDS_PUNCTUAL_SINGLE = re.compile(r'([\.\,\:\!\?\"\*\'\`]{1}$)')
@@ -171,21 +181,18 @@ class Common:
 
     AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
     DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    # SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+(?<!([\s\.\,]))')
-    # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(!?([\s]))')
-    # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+')
     SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
-    RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
-    RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
-    LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
-    TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
-    TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
+    WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
     MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
     MENU_SEP = re.compile(r'[\s]?[\-]{2}\>[\s]?')
+
+    ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
+    REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
+    MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
 

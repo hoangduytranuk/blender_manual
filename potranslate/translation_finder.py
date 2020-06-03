@@ -68,9 +68,9 @@ class CaseInsensitiveDict(dict):
 class TranslationFinder:
 
     KEYBOARD_TRANS_DIC = {
-        r"\bWheelUp\b": "Lăn Bánh Xe về Trước (WheelUp)",
-        r"\bWheelDown\b": "Lăn Bánh Xe về Sau (WheelDown)",
-        r"\bWheel\b": "Bánh Xe (Wheel)",
+        r'\bWheelUp\b': "Lăn Bánh Xe về Trước (WheelUp)",
+        r'\bWheelDown\b': "Lăn Bánh Xe về Sau (WheelDown)",
+        r'\bWheel\b': 'Bánh Xe (Wheel)',
         "NumpadPlus": "Dấu Cộng (+) Bàn Số (NumpadPlus)",
         "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
         "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
@@ -87,16 +87,16 @@ class TranslationFinder:
         "Numpad8": "Số 8 Bàn Số (Numpad8)",
         "Numpad9": "Số 9 Bàn Số (Numpad9)",
         "Spacebar": "Dấu Cách (Spacebar)",
-        r"\bDown\b": "Xuống (Down)",
-        r"\bUp\b": "Lên (Up)",
-        r"\bComma\b": "Dấu Phẩy (Comma)",
-        r"\bMinus\b": "Dấu Trừ (Minus)",
-        r"\bPlus\b": "Dấu Cộng (Plus)",
+        r'\bDown\b': "Xuống (Down)",
+        r'\bUp\b': "Lên (Up)",
+        r'\bComma\b': "Dấu Phẩy (Comma)",
+        r'\bMinus\b': "Dấu Trừ (Minus)",
+        r'\bPlus\b': "Dấu Cộng (Plus)",
         "Left": "Trái (Left)",
         "=": "Dấu Bằng (=)",
         "Right": "Phải (Right)",
         "Backslash": "Dấu Chéo Ngược (Backslash)",
-        r"\bSlash\b": "Dấu Chéo (Slash)",
+        r'\bSlash\b': "Dấu Chéo (Slash)",
         "AccentGrave": "Dấu Huyền (AccentGrave)",
         "Delete": "Xóa (Delete)",
         "Period": "Dấu Chấm (Period)",
@@ -215,6 +215,10 @@ class TranslationFinder:
 
     def reloadMasterDict(self):
         self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
+
+    def saveMasterDict(self, to_file=None):
+        file_path = (to_file if to_file else self.master_dic_file)
+        self.writeJSONDic(dict_list=self.master_dic_list, file_name=file_path)
 
     def updateMasterDic(self, is_testing=True):
         from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
@@ -485,7 +489,7 @@ class TranslationFinder:
             # if DIC_INCLUDE_LOWER_CASE_SET:
             #     dic = cm.removeLowerCaseDic(dic)
 
-            with open(file_path, 'w', newline='\n', encoding='utf8') as out_file:
+            with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
                 # out_file.close()
 
@@ -543,7 +547,7 @@ class TranslationFinder:
             # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
             # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
             # how far on the 'msg' ending should we add to the translation
-            trailing_count=0
+            trailing_count = 0
             temp_msg = str(msg)
             _(f'entering: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
             found = False
@@ -556,6 +560,16 @@ class TranslationFinder:
                     _(f'on break: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
                     break
 
+            is_trimmable_head = False
+            trimmed_head = ""
+            if not found:
+                trimmed_head = cm.TRIMMABLE_BEGINNING.search(temp_msg)
+                is_trimmable_head = (trimmed_head is not None)
+                if is_trimmable_head:
+                    trimmed_head = trimmed_head.group[0]
+                    temp_msg = cm.TRIMMABLE_BEGINNING.sub('', temp_msg)
+                    found = (temp_msg in self.master_dic_list)
+
             if found:
                 trans = self.master_dic_list[temp_msg]
                 endings = ""
@@ -566,6 +580,11 @@ class TranslationFinder:
 
                 _(f'trans:{trans}; endings:{endings}; trailing_count:{trailing_count}; msg:{msg}')
                 trans = trans + endings
+
+                has_extra_head = is_trimmable_head
+                if has_extra_head:
+                    trans = trimmed_head + trans
+
             return trans
 
         except Exception as e:
