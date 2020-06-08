@@ -391,6 +391,7 @@ def doctree_resolved(app, doctree, docname):
         ref_list.parseMessage()
         ref_list.translateRefList()
         tran = ref_list.getTranslation()
+        trans_finder.addBackupDict(msg, tran)
         print("Got translation from REF_LIST")
         return tran
 
@@ -419,14 +420,14 @@ def doctree_resolved(app, doctree, docname):
     # checkDictRef()
     # checkNonTranslatedDictWords()
     # checkDictForMultipleMeaningsInTrans()
-    removeDictBeginAndEndingPuncts()
+    # removeDictBeginAndEndingPuncts()
     # listDictRefsToDict()
     # trans_finder.saveMasterDict()
-    exit(0)
+    # exit(0)
 
     debug_file = cm.debug_file
     if debug_file:
-        is_debug_file = (debug_file == docname)
+        is_debug_file = (debug_file in docname)
         if not is_debug_file:
             return
 
@@ -466,8 +467,7 @@ def doctree_resolved(app, doctree, docname):
     #     cm.file_count = 0
 
     # #loading local po file to get translation if any
-    po_dic = trans_finder.loadPOAsDic(po_path)
-    current_po_cat: Catalog = c.load_po(po_path)
+    po_dic, current_po_cat = trans_finder.loadPOAsDic(po_path)
 
     rst_output_location = os.path.join(blender_docs_path, build_dir)
     output_path = os.path.join(rst_output_location, po_file_path)
@@ -518,91 +518,86 @@ def doctree_resolved(app, doctree, docname):
                             is_strong
                             )
 
-        # MAYBE !!! should partitioning sentences at the punctuation mark's boundaries, so you can
-        # retrieve sentence level translations. Done for none ref-links text parts.
 
-        # is_empty = (len(msg) == 0)
-        # is_ignored = is_empty or ig.isIgnored(msg)
-        # if is_ignored:
-        #     # print("IGNORED:", msg)
-        #     continue
-
-        # clean up po
-
-        # msg = "The *Bake Action* tool will apply interpolated frames into individual keyframes. This can be useful for adding deviation to a cyclic action like a :term:`walk cycle`. This can also useful for keyframe animations created from drivers or constraints."
-        # ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        # ref_list.parseMessage()
-        # ref_list.translateRefList()
-        # #_(ref_list)
-        # # ref_list.dumpRefList(trans_finder.master_dic_backup_list)
-        #
-        # return
-
-        # msg = ":abbr:`IES (Illuminating Engineering Society of North America)`, :abbr:`TL;DR (Too long; didn't read.)`, use *Crop* and/or *Offset* in the Input panel to move and select a region of the image within the output. When you use *Crop* or *Offset*, the auto-scaling will be disabled and you can manually re-scale by adding the Transform effect. ``TEXT``, ``MTEXT``, **1.30 -- April 1998:**, also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`, **Always** position ``-f`` or ``-a`` as the last arguments. *Push/Pull*, ``/tmp``, 1.0×10\ :sup:`15`, :class:`blender_api:bpy.types.KeyMapItem`, :doc:`3D View Alignment </editors/3dview/navigate/align>`, :kbd:`Alt-MMB`, :menuselection:`Armature --> Transform --> Align Bones`, :menuselection:`... --> Show/Hide`, :menuselection:`Add`, :ref:`Knife <tool-mesh-knife>`, :ref:`3dview-nav-zoom-region`. :ref:`Push/Pull <tool-transform-push_pull>`, :term:`non-manifold`,  :term:`Anti-aliasing`, :term:`Color Space`. :term:`Camera Projections <projection>`"
-
-        # has_translation = (msg in po_dic)
-        # if has_translation:
-        #     current_tran = po_dic[msg]
-        #     ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        #     ref_list.transferTranslatedRefs(msg, current_tran)
-        # else:
-        #     print("Not transfer:", msg)
-
-        # ref_list = RefList(msg, translation_finder=trans_finder, keep_orig=is_keep_original)
-        #
-        # ref_list.transferTranslatedRefs(msg, )
-        # ref_list.parseMessage()
-        # ref_list.translateRefList()
-        # # _(ref_list)
-        # #ref_list.dumpRefList(trans_finder.master_dic_backup_list)
-        # return
-
-        # msg = "LimbNode' FBX node, a regular joint between two bones..."
         tran = None
         orig_msg = str(msg)
-
+        add_entry = None
+        is_debug = ('Release Checklist' in msg)
+        if is_debug:
+            _('DEBUG')
         is_ignore = ig.isIgnored(msg)
         if is_ignore:
+            print(f'IGNORED: {msg}')
             continue
         else:
-            # print("Not ignore:", msg)
-            is_added = False
-            has_translation = (msg in po_dic)
+            # is_added = False
+            tran = trans_finder.findTranslation(msg)
+            has_translation = (tran is not None)
             if has_translation:
-                tran = po_dic[msg]
+                # tran = trans_finder.master_dic_list[msg]
                 is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
                 if is_too_similar:
                     tran = tranRef(msg, is_keep_original)
                 else:
-                    entry = {msg: tran}
-                    trans_finder.master_dic_list.update(entry)
-                    print("Got translation from PO file")
+                    print("Got translation from MASTER_DIC_LIST")
             else:
-                has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
+                has_translation = (msg in po_dic)
                 if has_translation:
-                    tran = trans_finder.master_dic_list[msg]
+                    tran = po_dic[msg]
                     is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
                     if is_too_similar:
                         tran = tranRef(msg, is_keep_original)
                     else:
-                        print("Got translation from MASTER_DIC_LIST")
+                        trans_finder.addMasterDict(msg, tran)
+                        print("Got translation from PO file")
                 else:
                     tran = tranRef(msg, is_keep_original)
+                    # print("Got translation from REFLIST")
+
+            has_translation = (tran is not None)
+            if has_translation:
+                is_repeat = is_keep_original and (msg.lower() not in tran.lower())
+                if is_repeat:
+                    print('Repeating MSG')
+                    tran = f'{tran} -- {msg}'
+
+            # is_added = False
+            # has_translation = (msg in po_dic)
+            # if has_translation:
+            #     tran = po_dic[msg]
+            #     is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
+            #     if is_too_similar:
+            #         tran = tranRef(msg, is_keep_original)
+            #     else:
+            #         entry = {msg: tran}
+            #         trans_finder.master_dic_list.update(entry)
+            #         print("Got translation from PO file")
+            # else:
+            #     has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
+            #     if has_translation:
+            #         tran = trans_finder.master_dic_list[msg]
+            #         is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
+            #         if is_too_similar:
+            #             tran = tranRef(msg, is_keep_original)
+            #         else:
+            #             print("Got translation from MASTER_DIC_LIST")
+            #     else:
+            #         tran = tranRef(msg, is_keep_original)
 
         if tran is not None:
             new_po_cat.add(msg, string=tran)
         else:
             new_po_cat.add(msg, string="")
 
-        print("msgid \"", msg, "\"")
+        print(f'msgid \"{msg}\"')
         if tran is not None:
-            print("msgstr \"", tran, "\"")
+            print(f'msgstr \"{tran}\"')
         else:
-            print("msgstr \"\"")
+            print(f'msgstr \"\"')
 
     print("Output to the path:", new_po_cat, output_path)
     # c.dump_po(output_path, new_po_cat, line_width=1024)
-    # c.dump_po(output_path, new_po_cat, line_width=4096)
+    c.dump_po(output_path, new_po_cat)
 
 
 def runAppOrNot():
@@ -709,6 +704,8 @@ def build_finished(app, exeption):
     # trans_finder.writeJSONDic(dic_list=sorted_list, file_name="/home/htran/20191228_dict_0001.json")
     # pp(sorted_list)
     # exit(0)
+    trans_finder.writeBackupDict()
+    trans_finder.writeMasterDict()
 
 
 def setup(app):

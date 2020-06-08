@@ -16,8 +16,8 @@ from pprint import pprint, pformat
 
 # DEBUG=True
 DEBUG=False
-# DIC_LOWER_CASE=True
-DIC_LOWER_CASE=False
+DIC_LOWER_CASE=True
+# DIC_LOWER_CASE=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
@@ -70,6 +70,7 @@ class Common:
     # debug_file = "about/contribute/build/macos"
     # debug_file = "about/contribute/guides/maintenance_guide"
     # debug_file = "about/contribute/guides/markup_guide" # debugging :term: :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
+    debug_file = "about"
     # debug_file = "about/contribute/install/windows"
     # debug_file = "about/license" # (online) or URL (in print) to manual
     # debug_file = "addons/3d_view/3d_navigation" # debugging :menuselection:
@@ -140,7 +141,8 @@ class Common:
 
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
     REF_SEP = ' -- '
-
+    NON_WORD_ONLY = re.compile(r'^([\W]+)$')
+    NON_WORD = re.compile(r'([\W]+)')
 
     # dictionary: {start_location: [[s, e, match_0],[(s, e, :type:), (s, e, text), (s, e, link if any), (s, e, text-within-link | or abbreviation) ]]}
     #SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`\"\'\*]+(?![\s\)\.\(]+)([^\`\("\'\*\<\>]+)(((\<([\w\-\s]+)\>\*)*)|(\(([^(]+)\))*)(?<!([\s\:]))[\`\"\'\*]+')
@@ -309,6 +311,16 @@ class Common:
 
         return trans
 
+    def findStringToDict(pat, text):
+        matching_list = {}
+        for m in pat.finditer(text):
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            k = (s, e)
+            entry = {k: orig}
+            matching_list.update(entry)
+        return matching_list
 
     def patternMatchAll(pat, text):
         try:

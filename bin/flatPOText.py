@@ -3,26 +3,16 @@
 Using sphinx catalog to read/write PO file
 Transfer msgstr from new_vipo/vi.po to po/blender.pot to create new vi.po file
 """
-
-import sys
-sys.path.append("/home/htran/.local/lib/python3.6/site-packages")
-sys.path.append("/home/htran/bin/python/PO")
-sys.path.append("/home/htran/bin")
-
-import re
 import os
 import io
 
 from sphinx_intl import catalog as c
-from common import Common as cm
-from babel.messages.catalog import Message
-from bisect import bisect_left
 from babel.messages import pofile
 
 class FlatPOText:
 
     def __init__(self):
-        self.po_path="/home/htran/blender_documentations/blender_docs/locale/vi/LC_MESSAGES"
+        self.po_path = "/Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES"
 
     def dump_po(self, filename, catalog):
         dirname = os.path.dirname(filename)
@@ -50,7 +40,7 @@ class FlatPOText:
     def printMessageEntry(self, m, extra_message=None):
         print("msgid: [{}]".format(m.id))
         print("msgstr:[{}]".format(m.string))
-        if (extra_message != None):
+        if extra_message is not None:
             print("{}".format(extra_message))
 
 

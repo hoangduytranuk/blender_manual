@@ -3,6 +3,7 @@ import sys
 sys.path.append("/home/htran/bin/python")
 
 from collections import OrderedDict, defaultdict
+
 #from stack import Stack
 import datetime
 from time import gmtime, strftime
@@ -12,7 +13,7 @@ import re
 #from Levenshtein import distance
 from difflib import SequenceMatcher as SM
 #from fuzzywuzzy import fuzz as fz
-from pprint import pprint
+from pprint import pprint as PP
 # from bs4 import BeautifulSoup as BS
 import os
 import html
@@ -83,6 +84,12 @@ MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
 MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
 KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
 KEYBOARD_SEP = re.compile(r'[^\-]+')
+
+WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_]+)\b')
+REF_SEP = ' -- '
+NON_WORD_ONLY = re.compile(r'^([\W]+)$')
+NON_WORD = re.compile(r'([\W]+)')
+
 
 DEBUG=True
 
@@ -367,6 +374,8 @@ ignore_list = [
     ]
 
 FORMULAR = re.compile(r'([\=\+\-\%\*\/])')
+
+
 
 
 class HoldString(list):
@@ -2403,8 +2412,381 @@ Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
         print(found_text)
 
 
+    def test_0040(self):
+        p = re.compile(r'\b[\w\-\_\']+\b')
+        t = '''
+        Góc Nhìn 3D (MENU 3D View) --> Cộng Thêm (Add) --> Khung Lưới (Mesh)
+        '''
+        word_list = p.findall(t)
+        print(word_list)
+
+    def patternMatchAllToDict(self, pat, text):
+        matching_list = {}
+        for m in pat.finditer(text):
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            k = (s, e)
+            entry = {k: orig}
+            matching_list.update(entry)
+        return matching_list
+
+    def test_0041(self):
+        t = '''
+        Góc Nhìn 3D (MENU 3D View) --> Cộng Thêm (Add) --> Khung Lưới (Mesh) --> And Add to (Mesh)
+        and this one mesh at the end of menu item to add (mesh)
+        '''
+        str = re.escape('(Mesh)')
+        p = re.compile(str, re.I)
+        matching_dict = self.patternMatchAllToDict(p, t)
+        print(matching_dict)
+
+    def test_0042(self):
+        wl = ['this', 'thinking', 'the']
+        dd = {}
+        for w in wl:
+            dd.update({len(w): w})
+        k_list = reversed(sorted(list(dd.keys())))
+
+        v_list = []
+        for k in k_list:
+            print(k)
+            v_list.append(dd[k])
+
+        pp(v_list)
+
+    def test_0043(self):
+        t = {
+            "#docs": "#tài liệu",
+            "#today": "#hôm nay",
+            "$xdg_config_home": "THƯ MỤC CẤU HÌNH GỐC của XDG",
+            "%.2f fps": "%.2f khung hình/giây",
+            "%.4g fps": "%.4g khung hình/giây",
+            "%d %s mirrored": "%d %s được đối xứng",
+            "%d %s mirrored, %d failed": "%d %s được đối xứng, %d bị thất bại"
+        }
+
+        dict = WCKLCIOrderedDict(t)
+        # dict.update(t)
+        # pp(dict.keys())
+        print('Listing:')
+        for k, v in dict.items():
+            print(f'k:{k}; v:{v}')
+
+        print('selective:')
+        f_word=['#docs']
+        select_set = dict.getSetUpToWordCount(3, first_word=f_word, is_reversed=True)
+        for k, v in select_set.items():
+            print(f'k:{k}; v:{v}')
+
+    def test_0044(self):
+        t = {
+            "#docs": "#tài liệu",
+            "#today": "#hôm nay",
+            "$xdg_config_home": "THƯ MỤC CẤU HÌNH GỐC của XDG",
+            "%.2f fps": "%.2f khung hình/giây",
+            "%.4g fps": "%.4g khung hình/giây",
+            "%d %s mirrored": "%d %s được đối xứng",
+            "%d %s mirrored, %d failed": "%d %s được đối xứng, %d bị thất bại",
+            "zoom in/out": "Thu-Phóng Vào/Ra",
+            "zoom in/out in the view": "Thu-phóng vào/ra trong khung nhìn",
+            "zoom in/out the background image": "Phóng to/thu nhỏ hình ảnh nền",
+            "zoom in/out the image": "Thu nhỏ/phóng to hình ảnh",
+            "zoom in/out the view": "Thu-Phóng vào/ra góc nhìn",
+            "zoom keyframes": "Số Khung Khóa Thu-Phóng",
+            "zoom method": "Phương Pháp Thu-Phóng",
+            "zoom options": "Tùy Chọn về Thu-Phóng",
+            "zoom out": "lùi xa ra, thu nhỏ",
+            "zoom out eight zoom levels (:kbd:`numpadminus` -- eight times)": "Thu ra tám lần (bấm phím :kbd:`Dấu Trừ (-) Bàn Số (NumpadMinus)` -- tám lần)",
+            "zoom out the image (centered around 2d cursor)": "Thu nhỏ hình ảnh (trung tâm là con trỏ 2D)",
+            "zoom out the view": "Thu nhỏ góc nhìn",
+            "zoom path": "Đường Dẫn cho Thu-Phóng",
+            "zoom preview to fit in the area": "Thu-phóng vùng duyệt thảo cho khít vừa diện tích",
+            "zoom ratio": "Tỷ Lệ Thu-Phóng",
+            "zoom ratio, 1.0 is 1:1, higher is zoomed in, lower is zoomed out": "Tỷ lệ thu-phóng, 1.0 nghĩa là 1:1, lớn hơn nghĩa là phóng to gần vào, nhỏ hơn là thu nhỏ ra",
+            "zoom region": "Thu-Phóng trên Khu Vực",
+            "zoom seconds": "Số Giây Thu-Phóng",
+            "zoom style": "Mốt Thu-Phóng",
+            "zoom the sequencer on the selected strips": "Thu-phóng bộ phối hình trên các dải được chọn",
+            "zoom the view in/out": "Thu-phóng vào/ra góc nhìn",
+            "zoom to border": "Phóng vào Đường Ranh Giới",
+            "zoom to frame type": "Kiểu Thu-Phóng vào Khung Hình",
+            "zoom to mouse position": "Thu-Phóng vào Vị Trí của Chuột",
+            "zoom to the maximum zoom level (hold :kbd:`numpadplus` or :kbd:`ctrl-mmb` or similar)": "Phóng vào đến mức tối đa (bấm và giữ xuống :kbd:`Dấu Cộng (+) Bàn Số (NumpadPlus)` hoặc :kbd:`Ctrl-NCG (MMB)` hoặc tương tự)",
+            "zoom using opposite direction": "Thu-phóng dùng hướng nghịch chiều",
+            "zoom view": "Thu Phóng Khung Nhìn",
+            "zooming": "Thu-Phóng"
+        }
+        l = WCKLCIOrderedDict(t)
+        # for k, v in t.items():
+        #     word_list = k.split()
+        #     first_word = word_list[0]
+        #     wc = len(word_list)
+        #     length = len(k)
+        #     wc_dict_entry={(length, first_word): k}
+        #     wc_key = f'{wc}'
+        #     wc_dict = hasattr(l, wc_key)
+        #     if not wc_dict:
+        #         setattr(l, wc_key, {})
+        #     wc_dict = getattr(l, wc_key)
+        #     wc_dict.update(wc_dict_entry)
+
+        print(l)
+        k = 'zoom region'
+        v = l[k]
+        print(f'{k}; {v}')
+
+        t = 'zoom region to #docs'
+        tran = l.blindTranslation(t)
+        print(f'{t}: {tran}')
+
+
+
+        # set_2 = l.getWCDict(2)
+        # for k, v in reversed(sorted(set_2.items())):
+        #     print(f'{k}:{v}')
+        print('Paused')
+
+
+    def test_0045(self):
+        part_list = []
+        t = 'this one is what'
+        print(t)
+        word_list = t.split(' ')
+        # print(word_list)
+        max_len = len(word_list)
+        print(f'max_len:{max_len}')
+        step = 1
+        for step in range(1, max_len):
+            for i in range(0, max_len):
+                l=[]
+                for k in range(i, min(i+step, max_len)):
+                    l.append(word_list[k])
+                    # print(f'step:{step}; i:{i}; k:{k}, l:{l}')
+                # print(l)
+                s = " ".join(l)
+                k = len(l)
+                entry=(k, s)
+                is_in = (entry in part_list)
+                if not is_in:
+                    part_list.append(entry)
+
+        p = list(reversed(sorted(part_list)))
+        print(p)
+
+
     def run(self):
-        self.test_0039()
+        self.test_0045()
+
+class TextMap(OrderedDict):
+    def __init__(self, text=None):
+        self.text = text
+        self.wordsep = re.compile(r'[\S]+', re.I)
+        self.removed_loc = []
+
+    def findText(self, text):
+        loc_dic = self.getLocationList(self.wordsep, text)
+        return loc_dic
+
+    def getLocationList(self, pat, text):
+        matching_list = {}
+        for m in pat.finditer(text):
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            k = (s, e)
+            entry = {k: orig}
+            matching_list.update(entry)
+        return matching_list
+
+    def genmap(self):
+        loc_dic = self.getLocationList(self.wordsep, self.text)
+        self.clear()
+        self.update(loc_dic)
+        self.removed_loc=[]
+
+    def subtract(self, sub_text):
+        pat_str = r'\b%s\b' % sub_text
+        pat_re = re.compile(pat_str)
+        loc_dic = self.getLocationList(pat_re, self.text)
+        local_loc_list = list(self.keys())
+        rm_count=0
+        for loc in list(loc_dic.keys()):
+            s, e = loc
+            for local_loc in local_loc_list:
+                ls, le = local_loc
+                is_remove = ((ls >= s) and (le <= e))
+                if is_remove:
+                    self.removed_loc.append(local_loc)
+                    rm_count += 1
+        return rm_count
+
+
+class WCKLCIOrderedDict(defaultdict):
+    class Key(str):
+        def __init__(self, key):
+            str.__init__(key)
+
+        def __hash__(self):
+            k = self.lower()
+            hash_value = hash(k)
+            # _(f'key:{k}, hash_value:{hash_value}')
+            return hash_value
+
+        def __eq__(self, other):
+            local = self.lower()
+            extern = other.lower()
+            cond = (local == extern)
+            # _(f'__eq__: local:{local} extern:{extern}')
+            return cond
+
+    def __init__(self, data=None):
+        super(WCKLCIOrderedDict, self).__init__()
+        if data is None:
+            data = {}
+        for key, val in data.items():
+            self[key] = val
+
+    def __contains__(self, key):
+        key = self.Key(key)
+        is_there = super(WCKLCIOrderedDict, self).__contains__(key)
+        # _(f'__contains__:{key}, is_there:{is_there}')
+        return is_there
+
+    def getWCKey(self, key):
+        word_list = key.split()
+        first_word = word_list[0]
+        wc = len(word_list)
+        return f'{wc}', first_word
+
+    def wcKeyValues(self, key):
+        wc_key, first_word = self.getWCKey(key)
+        key_length =len(key)
+        return wc_key, key_length, first_word
+
+    def getLocationList(self, pat, text):
+        matching_list = {}
+        for m in pat.finditer(text):
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            k = (s, e)
+            entry = {k: orig}
+            matching_list.update(entry)
+        return matching_list
+
+    def __setitem__(self, key, value):
+        key = self.Key(key)
+        super(WCKLCIOrderedDict, self).__setitem__(key, value)
+
+        wc_key, key_length, first_word = self.wcKeyValues(key)
+
+        has_wc_attrib = hasattr(self, wc_key)
+        if not has_wc_attrib:
+            setattr(self, wc_key, OrderedDict())
+        wc_dict_list = getattr(self, wc_key)
+
+        has_first_word_attrib = hasattr(wc_dict_list, first_word)
+        if not has_first_word_attrib:
+            setattr(wc_dict_list, first_word, OrderedDict())
+        first_word_dict_list = getattr(wc_dict_list, first_word)
+
+        # temporary using key_length in order to sort -- NEED TO THINK CLEARLY
+        key_length_entry = {key_length: key}
+        first_word_dict_list.update(key_length_entry)
+
+        sorted_list = list(reversed(sorted(first_word_dict_list.items())))
+        sorted_dict = OrderedDict(sorted_list)
+        first_word_dict_list.clear()
+        first_word_dict_list.update(sorted_dict)
+
+    def __getitem__(self, key):
+        key = self.Key(key)
+        return super(WCKLCIOrderedDict, self).__getitem__(key)
+
+    def geDictForFirstWord(self, wc_key, key_length, first_word):
+        try:
+            wc_key = str(wc_key)
+            wc_dic = getattr(self, wc_key)
+            first_word_dic = getattr(wc_dic, first_word)
+            key_length_dic = getattr(first_word_dic, key_length)
+            return key_length_dic
+        except Exception as e:
+            print(e)
+            return None
+
+    def blindTranslation(self, msg):
+        def replace_translation(key_length_dic, self_dic, tran_msg, masking_msg):
+            changed_count=0
+            for length, k in key_length_dic.items():
+                can_tran = (k in masking_msg)
+                if not can_tran:
+                    continue
+                value = self_dic[k]
+                pat_str = r'\b%s\b' % k
+                pat_re = re.compile(pat_str, re.I)
+                tran_msg = pat_re.sub(value, tran_msg)
+                masking_str = (masking_char*length)
+                masking_msg = pat_re.sub(masking_str, masking_msg)
+                changed_count += 1
+            return tran_msg, masking_msg, changed_count
+
+        def breakup_sentence(msg):
+            breakup_dic = {} # {(s, e): sub_str}
+            word_list = msg.split(' ')
+            max_range = len(word_list)
+            for wc in range(1, max_range-1):
+                pass
+
+        dict_set = []
+        word_list = msg.split()
+        wc_key, key_length, first_word = self.wcKeyValues(msg)
+
+        tran = str(msg)
+        # front to back
+        masking_char = '¶'
+        masking_msg = str(msg)
+        f2b_temp_msg = str(msg)
+        f2b_temp_word_list = msg.split()
+
+        # back to font
+        b2f_temp_msg = str(msg)
+        b2f_temp_word_list = msg.split()
+
+        last_word = b2f_temp_msg[-1]
+        last_index = b2f_temp_msg.rfind(last_word)
+        b2f_temp_msg = b2f_temp_msg[:last_index].strip()
+
+        b2f_temp_word_list = b2f_temp_word_list[:-1]
+
+        finished = False
+        # reduce from head
+        while not finished:
+            wc, key_length, first_word = self.wcKeyValues(f2b_temp_msg)
+            key_length_dic = self.geDictForFirstWord(wc, key_length, first_word)
+            has_dic = (key_length_dic is not None)
+            if has_dic:
+                tran, masking_msg_= replace_translation(key_length_dic, self, tran, masking_msg)
+            else:
+                has_b2f = bool(b2f_temp_msg)
+                if has_b2f:
+                    wc, key_length, first_word = self.wcKeyValues(b2f_temp_msg)
+                    key_length_dic = self.geDictForFirstWord(wc, key_length, first_word)
+                    has_dic = (key_length_dic is not None)
+                    if has_dic:
+                        tran, masking_msg_= replace_translation(key_length_dic, self, tran, masking_msg)
+
+                    last_word = b2f_temp_word_list[-1]
+                    last_index = b2f_temp_msg.rfind(last_word)
+                    b2f_temp_msg = b2f_temp_msg[:last_index].strip()
+                    b2f_temp_word_list = b2f_temp_word_list[:-1]
+
+            f2b_temp_msg = f2b_temp_msg.replace(first_word, '', 1).strip()
+            del f2b_temp_word_list[0]
+
+            finished = not (f2b_temp_msg and f2b_temp_word_list)
+
+        return dict_set
 
 
 x = test()
