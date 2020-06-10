@@ -380,97 +380,45 @@ class TranslationFinder:
         return output_dict
 
     def blindTranslation(self, msg):
-        def getOverlap(a, b):
-            return max(0, min(a[1], b[1]) - max(a[0], b[0]))
 
-        def checkOverlapping(loc_list):
-            temp_list = list(loc_list)
-            remove_list = []
+        def removeOverlapped(loc_list, len):
+            sample_str = (" " * len)
+            marker = '¶'
+            len_list = []
+            for loc in loc_list:
+                length = (loc[1] - loc[0])
+                key = (length, loc)
+                len_list.append(key)
+            sorted_len_list = list(reversed(sorted(len_list)))
+            sorted_loc = []
+            for k_loc in sorted_len_list:
+                key, loc = k_loc
+                sorted_loc.append(loc)
 
-            sorted_list = sorted(loc_list)
-            retain_list = list(sorted_list)
-            max_len = len(sorted_list)
+            retain_l = []
+            for loc in sorted_loc:
+                substr = sample_str[loc[0]:loc[1]]
+                is_overlapped = (marker in substr)
+                if not is_overlapped:
+                    maker_substr = (marker * (loc[1] - loc[0]))
+                    left_part = sample_str[:loc[0]]
+                    right_part = sample_str[loc[1]:]
+                    sample_str = left_part + maker_substr + right_part
+                    retain_l.append(loc)
 
-            for i in range(0, max_len):
-                left_loc = sorted_list[i]
-                for j in range(max_len-1, i+1, -1):
-                    right_loc = sorted_list[j]
-                    is_overlapped = (getOverlap(left_loc, right_loc) > 0)
-                    if is_overlapped:
-                        retain_list.remove(right_loc)
+            return retain_l
 
-            return sorted_list, retain_list
-            # i = 0
-            # finished = (i >= max_len - 1)
-            # while not finished:
-            #     current_loc = sorted_list[i]
-            #     current_ss, current_ee = current_loc
-            #
-            #     j = i + 1
-            #     finished = (j >= max_len)
-            #     if finished:
-            #         break
-            #
-            #     next_loc = sorted_list[j]
-            #     next_ss, next_ee = next_loc
-            #
-            #     is_the_same = (current_loc == next_loc)
-            #     is_overlapped = (not is_the_same) and (next_ss < current_ee)
-            #     while is_overlapped:
-            #         current_cover_range = (current_ee - current_ss)
-            #         next_cover_range = (next_ee - next_ss)
-            #         is_keep_current = (current_cover_range > next_cover_range)
-            #         loc_to_add = (next_loc if is_keep_current else current_loc)
-            #         is_already_there = (loc_to_add in remove_list)
-            #         if not is_already_there:
-            #             remove_list.append(loc_to_add)
-            #             retain_list.remove(loc_to_add)
-            #
-            #         j += 1
-            #         finished = (j >= max_len)
-            #         if finished:
-            #             break
-            #
-            #         next_loc = sorted_list[j]
-            #         next_ss, next_ee = next_loc
-            #         is_the_same = (current_ss == next_ss) and (current_ee == next_ee)
-            #         is_overlapped = (not is_the_same) and (next_ss < current_ee)
-            #         # if not is_overlapped:
-            #         #     _('Debug')
-            #     i = j
-            #     finished = (i >= max_len - 1)
-            # return remove_list, retain_list
-
-        def cleanupOverlapped(overlapped_list, translated_dic):
+        def cleanupTranslatedDic(retain_loc_list, translated_dict):
             new_translated_dic = []
-            new_loc_list = []
-            overlapped_list = sorted(overlapped_list)
-            for entry in translated_dic:
-                ee, v = entry
+            for entry in translated_dict:
+                k, v = entry
                 ss, ee, orig_sub_text, tran_sub_text = v
-                entry_loc = (ss, ee)
-                is_remove = (entry_loc in over_lapped_list)
-                if is_remove:
-                    continue
-                new_loc_list.append(entry_loc)
-                new_translated_dic.append(entry)
-            return new_translated_dic, new_loc_list
+                loc = (ss, ee)
+                is_retain = (loc in retain_loc_list)
+                if is_retain:
+                    new_translated_dic.append(entry)
+            return new_translated_dic
 
-        def getLocList(translated_dic):
-            # (end, (start, end, en_msg, vn_msg))
-            loc_list=[]
-            for entry in translated_dic:
-                end_loc, values = entry
-                start, end, en_msg, vn_msg = values
-                loc = (start, end)
-                loc_list.append(loc)
-            return loc_list
-
-        # debug_text = ' is '
-        # debug_text = "The manual provides detailed functional description of all features, tools and options in Blender. While there is a canonical source of truth for each of Blender's key areas, this does not mean we have to document every small detail. The manual should provide information on what a feature is, how to use it, and its purpose. More background information should be provided when necessary to give deeper understanding of a 3D pipeline."
-        # is_debug = (debug_text in msg)
-        # if is_debug:
-        #     _('Debug')
         loc_list=[]
         translated_dic = []
         map_dic = self.genmap(msg)
@@ -486,21 +434,12 @@ class TranslationFinder:
             entry = (ee, (ss, ee, orig_sub_text, tran_sub_text))
             translated_dic.append(entry)
 
-        backup_translated_dic = list(translated_dic)
-        translated_dic = sorted(translated_dic)
-        loc_list = sorted(loc_list)
-        over_lapped_list, retain_list = checkOverlapping(loc_list)
-        while bool(over_lapped_list):
-            translated_dic, loc_list = cleanupOverlapped(over_lapped_list, translated_dic)
-            over_lapped_list, retain_list = checkOverlapping(loc_list)
-
-        orig_loc_list = getLocList(backup_translated_dic)
-
-        sorted_translated = list(reversed(sorted(translated_dic)))
-        # print('sorted_translated:')
-        # print(sorted_translated)
+        retail_l = removeOverlapped(loc_list, len(msg))
+        retain_translated_dic = cleanupTranslatedDic(retail_l, translated_dic)
+        sorted_translated = list(reversed(sorted(retain_translated_dic)))
 
         tran_msg = str(msg)
+        remain_msg = str(msg)
         for k, v in sorted_translated:
             ss, ee, orig_sub_text, tran_sub_text = v
             untran_subtext = tran_msg[ss:ee]
@@ -512,6 +451,7 @@ class TranslationFinder:
             right = tran_msg[ee:]
             blank_str = (' ' * (ee - ss))
             remain_msg = left + blank_str + right
+            tran_msg = left + tran_sub_text + right
 
         return tran_msg
 
