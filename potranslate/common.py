@@ -218,6 +218,7 @@ class Common:
     PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
     API_REF = re.compile(r'^blender_api:.*$')
 
+    SPACE_WORD_SEP =  re.compile(r'[^\ ]+')
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)

@@ -40,7 +40,6 @@ class WCKLCIOrderedDict(OrderedDict):
 
     def __init__(self, data=None):
         super(WCKLCIOrderedDict, self).__init__()
-        self.
         if data is None:
             data = {}
         for key, val in data.items():
@@ -93,6 +92,83 @@ class WCKLCIOrderedDict(OrderedDict):
     def getSetUpToWordCount(self, word_count, first_word=None, is_reversed=False):
         new_set = self.getSetByWordCountInRange(1, word_count, first_word_list=first_word, is_reversed=is_reversed)
         return new_set
+
+class TextMap(OrderedDict):
+    def __init__(self, text=None, dic=None):
+        self.dictionary = dic
+        self.text = text
+        self.wordsep = re.compile(r'[^\ ]+', re.I)
+
+    def genmap(self):
+        self.clear()
+        part_list = []
+        loc_dic = getLocationList(self.wordsep, self.text)
+        loc_key = list(loc_dic.keys())
+
+        max_len = len(loc_dic)
+        for step in range(1, max_len):
+            for i in range(0, max_len):
+                l=[]
+                for k in range(i, min(i+step, max_len)):
+                    loc = loc_key[k]
+                    # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
+                    l.append(loc_key[k])
+
+                s = []
+                for loc in l:
+                    word = loc_dic[loc]
+                    s.append(word)
+                t = " ".join(s)
+                # print(f's location:{l}, text:{t}')
+
+                s_len = len(s)
+                ss = l[0][0]
+                ee = l[s_len-1][1]
+                k = (len(t), ee)
+                v = ((ss, ee), t)
+                entry=(k, v)
+                is_in = (entry in part_list)
+                if not is_in:
+                    part_list.append(entry)
+
+        sorted_partlist = list(reversed(sorted(part_list)))
+        for e in sorted_partlist:
+            k, v = e
+            dict_entry = {k: v}
+            self.update(dict_entry)
+
+    def blindTranslation(self, text=None, dic=None):
+        translated_dic = OrderedDict()
+        is_new_text = (self.text != text)
+
+        if is_new_text:
+            self.text = text
+            self.genmap()
+
+        if dic:
+            self.dictionary = dic
+
+        translated_dic = OrderedDict()
+        for k, v in self.items():
+            loc, orig_sub_text = v
+            has_tran = (orig_sub_text in self.dictionary)
+            if not has_tran:
+                continue
+            tran_sub_text = self.dictionary[orig_sub_text]
+            ss, ee = loc
+            entry = {ee: (ss, ee, tran_sub_text)}
+            translated_dic.update(entry)
+
+        sored_translated = list(reversed(sorted(translated_dic.items())))
+
+        tran_msg = str(msg)
+        for k, v in sored_translated:
+            ss, ee, tran_sub_text = v
+            left = tran_msg[:ss]
+            right = tran_msg[ee:]
+            tran_msg = left + tran_sub_text + right
+
+        return tran_msg
 
 class TranslationFinder:
 
@@ -231,6 +307,7 @@ class TranslationFinder:
         # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
         # exit(0)
 
+
     def listDictRange(self, from_wc_range, to_wc_range):
         # keys = self.master_dic_list.keys()
         # output_l = []
@@ -254,54 +331,189 @@ class TranslationFinder:
             entry=f'"{k}": "{v}",'
             print(entry)
 
+    def genmap(self, msg):
+        part_list = []
+        loc_dic = cm.findStringToDict(cm.SPACE_WORD_SEP, msg)
+        loc_key = list(loc_dic.keys())
 
+        max_len = len(loc_dic)
+        has_only_one_item = (max_len == 1)
+        step = 1
+        is_finished = False
+        while not is_finished:
+            for i in range(0, max_len):
+                l=[]
+                for k in range(i, min(i+step, max_len)):
+                    loc = loc_key[k]
+                    # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
+                    l.append(loc_key[k])
 
-    def masterDictOrderWordCount(self):
-        new_dict = {}
-        for k, v in self.master_dic_list.items():
-            value_enty = (k, v)
-            word_count = len(k.split())
-            k_length = len(k)
-            word_entry = [k_length, value_enty]
-            key_entry = (k_length, value_enty)
+                s = []
+                for loc in l:
+                    word = loc_dic[loc]
+                    s.append(word)
+                t = " ".join(s)
+                # print(f's location:{l}, text:{t}')
 
-            has_dict = (word_count in new_dict)
-            if not has_dict:
-                new_dict.update({word_count: []})
-            word_count_dict = new_dict[key_entry]
-            word_count_dict.update(new_entry)
-
-        return new_dict
-
-    def blindTranslation(self, msg):
-
-        is_debug = ('January' in msg)
-        if is_debug:
-            _('Debug')
-
-        translation_remain = str(msg)
-        translation_text = str(msg)
-        word_list = cm.WORD_ONLY.findall(msg)
-        msg_word_count = len(word_list)
-        dict_set = self.master_dic_list.getSetUpToWordCount(msg_word_count, first_word=word_list, is_reversed=True)
-        key_list = dict_set.keys()
-        for k in key_list:
-            is_there = (k in translation_text)
-            if not is_there:
-                continue
-
-            tran = dict_set[k]
-            pat = re.compile(r'\b%s\b' % re.escape(k), re.I)
-
-            translation_text = pat.sub(tran, translation_text)
-            translation_remain = pat.sub('', translation_remain)
-            remain_word_list = cm.WORD_ONLY.findall(translation_remain)
-            has_untranslated_words = bool(remain_word_list)  # if empty, this will be False
-
-            if not has_untranslated_words:
+                s_len = len(s)
+                ss = l[0][0]
+                ee = l[s_len-1][1]
+                k = (len(t), ee)
+                v = ((ss, ee), t)
+                entry=(k, v)
+                is_in = (entry in part_list)
+                if not is_in:
+                    part_list.append(entry)
+            step += 1
+            is_finish = (step > max_len)
+            if is_finish:
                 break
 
-        return translation_text
+        sorted_partlist = list(reversed(sorted(part_list)))
+        output_dict = OrderedDict(sorted_partlist)
+        # print('output_dict:')
+        # print(output_dict)
+        # for e in sorted_partlist:
+        #     k, v = e
+        #     dict_entry = {k: v}
+        #     self.update(dict_entry)
+        return output_dict
+
+    def blindTranslation(self, msg):
+        def getOverlap(a, b):
+            return max(0, min(a[1], b[1]) - max(a[0], b[0]))
+
+        def checkOverlapping(loc_list):
+            temp_list = list(loc_list)
+            remove_list = []
+
+            sorted_list = sorted(loc_list)
+            retain_list = list(sorted_list)
+            max_len = len(sorted_list)
+
+            for i in range(0, max_len):
+                left_loc = sorted_list[i]
+                for j in range(max_len-1, i+1, -1):
+                    right_loc = sorted_list[j]
+                    is_overlapped = (getOverlap(left_loc, right_loc) > 0)
+                    if is_overlapped:
+                        retain_list.remove(right_loc)
+
+            return sorted_list, retain_list
+            # i = 0
+            # finished = (i >= max_len - 1)
+            # while not finished:
+            #     current_loc = sorted_list[i]
+            #     current_ss, current_ee = current_loc
+            #
+            #     j = i + 1
+            #     finished = (j >= max_len)
+            #     if finished:
+            #         break
+            #
+            #     next_loc = sorted_list[j]
+            #     next_ss, next_ee = next_loc
+            #
+            #     is_the_same = (current_loc == next_loc)
+            #     is_overlapped = (not is_the_same) and (next_ss < current_ee)
+            #     while is_overlapped:
+            #         current_cover_range = (current_ee - current_ss)
+            #         next_cover_range = (next_ee - next_ss)
+            #         is_keep_current = (current_cover_range > next_cover_range)
+            #         loc_to_add = (next_loc if is_keep_current else current_loc)
+            #         is_already_there = (loc_to_add in remove_list)
+            #         if not is_already_there:
+            #             remove_list.append(loc_to_add)
+            #             retain_list.remove(loc_to_add)
+            #
+            #         j += 1
+            #         finished = (j >= max_len)
+            #         if finished:
+            #             break
+            #
+            #         next_loc = sorted_list[j]
+            #         next_ss, next_ee = next_loc
+            #         is_the_same = (current_ss == next_ss) and (current_ee == next_ee)
+            #         is_overlapped = (not is_the_same) and (next_ss < current_ee)
+            #         # if not is_overlapped:
+            #         #     _('Debug')
+            #     i = j
+            #     finished = (i >= max_len - 1)
+            # return remove_list, retain_list
+
+        def cleanupOverlapped(overlapped_list, translated_dic):
+            new_translated_dic = []
+            new_loc_list = []
+            overlapped_list = sorted(overlapped_list)
+            for entry in translated_dic:
+                ee, v = entry
+                ss, ee, orig_sub_text, tran_sub_text = v
+                entry_loc = (ss, ee)
+                is_remove = (entry_loc in over_lapped_list)
+                if is_remove:
+                    continue
+                new_loc_list.append(entry_loc)
+                new_translated_dic.append(entry)
+            return new_translated_dic, new_loc_list
+
+        def getLocList(translated_dic):
+            # (end, (start, end, en_msg, vn_msg))
+            loc_list=[]
+            for entry in translated_dic:
+                end_loc, values = entry
+                start, end, en_msg, vn_msg = values
+                loc = (start, end)
+                loc_list.append(loc)
+            return loc_list
+
+        # debug_text = ' is '
+        # debug_text = "The manual provides detailed functional description of all features, tools and options in Blender. While there is a canonical source of truth for each of Blender's key areas, this does not mean we have to document every small detail. The manual should provide information on what a feature is, how to use it, and its purpose. More background information should be provided when necessary to give deeper understanding of a 3D pipeline."
+        # is_debug = (debug_text in msg)
+        # if is_debug:
+        #     _('Debug')
+        loc_list=[]
+        translated_dic = []
+        map_dic = self.genmap(msg)
+        remove_entry_list=[]
+        for k, v in map_dic.items():
+            loc, orig_sub_text = v
+            tran_sub_text = self.isInList(orig_sub_text)
+            if not tran_sub_text:
+                continue
+
+            loc_list.append(loc)
+            ss, ee = loc
+            entry = (ee, (ss, ee, orig_sub_text, tran_sub_text))
+            translated_dic.append(entry)
+
+        backup_translated_dic = list(translated_dic)
+        translated_dic = sorted(translated_dic)
+        loc_list = sorted(loc_list)
+        over_lapped_list, retain_list = checkOverlapping(loc_list)
+        while bool(over_lapped_list):
+            translated_dic, loc_list = cleanupOverlapped(over_lapped_list, translated_dic)
+            over_lapped_list, retain_list = checkOverlapping(loc_list)
+
+        orig_loc_list = getLocList(backup_translated_dic)
+
+        sorted_translated = list(reversed(sorted(translated_dic)))
+        # print('sorted_translated:')
+        # print(sorted_translated)
+
+        tran_msg = str(msg)
+        for k, v in sorted_translated:
+            ss, ee, orig_sub_text, tran_sub_text = v
+            untran_subtext = tran_msg[ss:ee]
+            is_same_subtext_and_replaceable = (orig_sub_text == untran_subtext)
+            if not is_same_subtext_and_replaceable:
+                continue
+
+            left = tran_msg[:ss]
+            right = tran_msg[ee:]
+            blank_str = (' ' * (ee - ss))
+            remain_msg = left + blank_str + right
+
+        return tran_msg
 
     def addBackupDict(self, msg, tran):
         has_tran = (tran is not None)
