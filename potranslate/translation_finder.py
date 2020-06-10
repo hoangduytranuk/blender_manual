@@ -385,16 +385,7 @@ class TranslationFinder:
             sample_str = (" " * len)
             marker = '¶'
             len_list = []
-            for loc in loc_list:
-                length = (loc[1] - loc[0])
-                key = (length, loc)
-                len_list.append(key)
-            sorted_len_list = list(reversed(sorted(len_list)))
-            sorted_loc = []
-            for k_loc in sorted_len_list:
-                key, loc = k_loc
-                sorted_loc.append(loc)
-
+            sorted_loc = sorted(loc_list, key=lambda x: x[1]-x[0], reverse=True )
             retain_l = []
             for loc in sorted_loc:
                 substr = sample_str[loc[0]:loc[1]]
@@ -405,14 +396,12 @@ class TranslationFinder:
                     right_part = sample_str[loc[1]:]
                     sample_str = left_part + maker_substr + right_part
                     retain_l.append(loc)
-
             return retain_l
 
         def cleanupTranslatedDic(retain_loc_list, translated_dict):
             new_translated_dic = []
             for entry in translated_dict:
-                k, v = entry
-                ss, ee, orig_sub_text, tran_sub_text = v
+                ss, ee, orig_sub_text, tran_sub_text = entry
                 loc = (ss, ee)
                 is_retain = (loc in retain_loc_list)
                 if is_retain:
@@ -431,17 +420,17 @@ class TranslationFinder:
 
             loc_list.append(loc)
             ss, ee = loc
-            entry = (ee, (ss, ee, orig_sub_text, tran_sub_text))
+            entry = (ss, ee, orig_sub_text, tran_sub_text)
             translated_dic.append(entry)
 
         retail_l = removeOverlapped(loc_list, len(msg))
         retain_translated_dic = cleanupTranslatedDic(retail_l, translated_dic)
-        sorted_translated = list(reversed(sorted(retain_translated_dic)))
+        sorted_translated = sorted(retain_translated_dic, key=lambda x: x[1], reverse=True)
 
         tran_msg = str(msg)
         remain_msg = str(msg)
-        for k, v in sorted_translated:
-            ss, ee, orig_sub_text, tran_sub_text = v
+        for entry in sorted_translated:
+            ss, ee, orig_sub_text, tran_sub_text = entry
             untran_subtext = tran_msg[ss:ee]
             is_same_subtext_and_replaceable = (orig_sub_text == untran_subtext)
             if not is_same_subtext_and_replaceable:

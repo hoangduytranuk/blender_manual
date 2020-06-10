@@ -2691,20 +2691,26 @@ Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
     def getOverlap(self, a, b):
         return max(0, min(a[1], b[1]) - max(a[0], b[0]))
 
+    from operator import itemgetter, attrgetter, methodcaller
+
     def test_0046(self):
+        def distKey(x):
+            dist = (x[1] - x[0])
+            return dist
         def removeOverlapped(loc_list, len):
             sample_str = (" "*len)
             marker='¶'
             len_list = []
-            for loc in loc_list:
-                length = (loc[1] - loc[0])
-                key = (length, loc)
-                len_list.append(key)
-            sorted_len_list = list(reversed(sorted(len_list)))
-            sorted_loc = []
-            for k_loc in sorted_len_list:
-                key, loc = k_loc
-                sorted_loc.append(loc)
+            # for loc in loc_list:
+            #     length = (loc[1] - loc[0])
+            #     key = (length, loc)
+            #     len_list.append(key)
+            sorted_loc = sorted(loc_list, key=lambda x: x[1]-x[0], reverse=True )
+            # sorted_loc = sorted_len_list
+            # sorted_loc = []
+            # for k_loc in sorted_len_list:
+            #     key, loc = k_loc
+            #     sorted_loc.append(loc)
 
             retain_l = []
             for loc in sorted_loc:
@@ -2716,8 +2722,9 @@ Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
                     right_part = sample_str[loc[1]:]
                     sample_str = left_part + maker_substr + right_part
                     retain_l.append(loc)
-            sorted_retain_l = sorted(retain_l)
-            return sorted_retain_l
+            # sorted_retain_l = list(reversed(sorted(retain_l)))
+            # return sorted_retain_l
+            return retain_l
 
         l = [(0, 63), (4, 10), (11, 13), (14, 21), (22, 25), (26, 32), (26, 126), (33, 41), (42, 44), \
              (45, 53), (45, 63), (54, 63), (64, 67), (64, 126), (68, 78), (68, 89), (83, 89), (90, 92), (96, 102), \
