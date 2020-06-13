@@ -818,12 +818,12 @@ class TEXT_OT_paste_join(TEXT_OT_single_quoted_base):
         orig_part = bpy.context.window_manager.clipboard
         has_orig = len(orig_part) > 0
         if not has_orig:
-            self.report({'ERROR'}, f"Must select a text for original part and copy to clipboard")
+            self.report({'ERROR'}, "Must select a text for original part and copy to clipboard")
             return {'CANCELLED'}
 
         tran_part = self.getSelectedText(sd.text)
         if tran_part is None:
-            self.report({'ERROR'}, f"Must select a text for translation part")
+            self.report({'ERROR'}, "Must select a text for translation part")
             return {'CANCELLED'}
 
         prefix_type = self.getPrefixType(context)
@@ -851,7 +851,7 @@ class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
         orig_part = bpy.context.window_manager.clipboard
         has_orig = len(orig_part) > 0
         if not has_orig:
-            self.report({'ERROR'}, f"Must select a text for original part and copy to clipboard")
+            self.report({'ERROR'}, "Must select a text for original part and copy to clipboard")
             return {'CANCELLED'}
 
         text = f"{orig_part}: "
@@ -877,7 +877,7 @@ class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
         # is_reverse = var.is_reversed  # making use of ready made boolean
         text = self.getSelectedText(sd.text)
         if not text:
-            self.report({'ERROR'}, f"Must select a text with arched brackets to be converted")
+            self.report({'ERROR'}, "Must select a text with arched brackets to be converted")
             return {'CANCELLED'}
 
         text = text.replace('(', '[')
@@ -890,6 +890,42 @@ class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
         self.restoreClibboardPreviousCopy()
         return result
 
+class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
+    bl_idname = "text.make_dict_entry"
+    bl_label = "Make Dict Entry"
+    bl_description = "Using copied text as ORIG version, and currently selected text as TRANSLATION"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+
+        sc = context.scene
+        var = sc.my_tool
+        is_reverse = var.is_reversed  # making use of ready made boolean
+        orig_part = bpy.context.window_manager.clipboard
+        has_orig = len(orig_part) > 0
+        if not has_orig:
+            self.report({'ERROR'}, "Must first copied original text to clipboard")
+            return {'CANCELLED'}
+
+        tran_part = self.getSelectedText(sd.text)
+        if not tran_part:
+            self.report({'ERROR'}, "Must select a text to make a translation")
+            return {'CANCELLED'}
+
+        if is_reverse:
+            entry = (tran_part, orig_part)
+        else:
+            entry = (orig_part, tran_part)
+
+        trans_finder.addBackupDict(entry)
+        trans_finder.writeBackupDict()
+        return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        self.restoreClibboardPreviousCopy()
+        return result
 
 class TEXT_OT_translate(TEXT_OT_single_quoted_base):
     bl_idname = "text.translate"
@@ -900,11 +936,11 @@ class TEXT_OT_translate(TEXT_OT_single_quoted_base):
     def execute(self, context):
         sd = context.space_data
 
-        sc = context.scene
-        var = sc.my_tool
+        # sc = context.scene
+        # var = sc.my_tool
         text = self.getSelectedText(sd.text)
         if not text:
-            self.report({'ERROR'}, f"Must select a text")
+            self.report({'ERROR'}, "Must select a text")
             return {'CANCELLED'}
 
         part_list = text.split(': "')
@@ -936,7 +972,7 @@ class TEXT_OT_reload_dict(TEXT_OT_single_quoted_base):
     bl_context = 'scene'
 
     def execute(self, context):
-        sd = context.space_data
+        # sd = context.space_data
         trans_finder.reloadMasterDict()
         return {'FINISHED'}
 
@@ -1027,9 +1063,10 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row.operator("text.convert_to_square_brackets", icon='TRACKER_DATA')
         row.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
         row.operator("text.parse_sentence", icon='MODIFIER_DATA')
+        row = col.row(align=True)
         row.operator("text.translate", icon='MODIFIER_DATA')
         row.operator("text.reload_dict", icon='MODIFIER_DATA')
-
+        row.operator("text.make_dict_entry", icon='MODIFIER_DATA')
 
         row = col.row(align=True)
         row.operator("text.cut")
@@ -1071,10 +1108,19 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         #     text_id, icon_id = find_replace_option_table[i]
         #     row.prop(my_tool, "find_replace_options", index=i,
         #              text="", icon=icon_id, expand=True, icon_only=True)
-        
+
         reloadMasterDict
 '''
 
+class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
+    bl_label = "Abbreviation Panel"
+    bl_idname = "TEXT_PT_abbrev_selected_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
 
 classes = (
     MySettings,
@@ -1090,6 +1136,7 @@ classes = (
     TEXT_OT_convert_to_square_bracket,
     TEXT_OT_translate,
     TEXT_OT_reload_dict,
+    TEXT_OT_make_dict_entry,
 )
 
 

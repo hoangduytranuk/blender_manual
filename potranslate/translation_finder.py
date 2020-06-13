@@ -14,11 +14,44 @@ from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
 from babel.messages.catalog import Message
 from babel.messages import pofile
-from common import DEBUG, DIC_LOWER_CASE
+from common import DEBUG
+    # , DIC_LOWER_CASE
 from reftype import RefType
 
 
-class WCKLCIOrderedDict(OrderedDict):
+class CaseInsensitiveDict(dict):
+
+    """Basic case insensitive dict with strings only keys."""
+
+    proxy = {}
+
+    def __init__(self, data):
+        if not data:
+            return
+        self.proxy = dict((k.lower(), k) for k in data)
+        for k in data:
+            self[k] = data[k]
+
+    def __contains__(self, k):
+        return k.lower() in self.proxy
+
+    def __delitem__(self, k):
+        key = self.proxy[k.lower()]
+        super(CaseInsensitiveDict, self).__delitem__(key)
+        del self.proxy[k.lower()]
+
+    def __getitem__(self, k):
+        key = self.proxy[k.lower()]
+        return super(CaseInsensitiveDict, self).__getitem__(key)
+
+    def get(self, k, default=None):
+        return self[k] if k in self else default
+
+    def __setitem__(self, k, v):
+        super(CaseInsensitiveDict, self).__setitem__(k, v)
+        self.proxy[k.lower()] = k
+
+class NoCaseDict(OrderedDict):
     class Key(str):
         def __init__(self, key):
             str.__init__(key)
@@ -38,8 +71,22 @@ class WCKLCIOrderedDict(OrderedDict):
             # _(f'local:{local} extern:{extern}')
             return cond
 
+        def __le__(self, other):
+            local = self.lower()
+            extern = other.lower()
+            cond = (local < extern)
+            # _(f'local:{local} extern:{extern}')
+            return cond
+
+        def __gt__(self, other):
+            local = self.lower()
+            extern = other.lower()
+            cond = (local > extern)
+            # _(f'local:{local} extern:{extern}')
+            return cond
+
     def __init__(self, data=None):
-        super(WCKLCIOrderedDict, self).__init__()
+        super(NoCaseDict, self).__init__()
         if data is None:
             data = {}
         for key, val in data.items():
@@ -47,20 +94,31 @@ class WCKLCIOrderedDict(OrderedDict):
 
     def __contains__(self, key):
         key = self.Key(key)
-        is_there = super(WCKLCIOrderedDict, self).__contains__(key)
+        is_there = super(NoCaseDict, self).__contains__(key)
         # _(f'__contains__:{key}, is_there:{is_there}')
         return is_there
 
     def __setitem__(self, key, value):
         key = self.Key(key)
-        super(WCKLCIOrderedDict, self).__setitem__(key, value)
+        super(NoCaseDict, self).__setitem__(key, value)
 
     def __getitem__(self, key):
         key = self.Key(key)
-        return super(WCKLCIOrderedDict, self).__getitem__(key)
+        try:
+            return super(NoCaseDict, self).__getitem__(key)
+        except Exception as e:
+            print(e)
+            keys = super(NoCaseDict, self).__dict__.keys()
+            is_in = (key in keys)
+            return is_in
+
+
+    def __delitem__(self, key):
+        key = self.Key(key)
+        return super(NoCaseDict, self).__delitem__(key)
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
-        new_set = WCKLCIOrderedDict()
+        new_set = NoCaseDict()
         if is_reversed:
             key_list = reversed(list(self.keys()))
         else:
@@ -92,83 +150,6 @@ class WCKLCIOrderedDict(OrderedDict):
     def getSetUpToWordCount(self, word_count, first_word=None, is_reversed=False):
         new_set = self.getSetByWordCountInRange(1, word_count, first_word_list=first_word, is_reversed=is_reversed)
         return new_set
-
-class TextMap(OrderedDict):
-    def __init__(self, text=None, dic=None):
-        self.dictionary = dic
-        self.text = text
-        self.wordsep = re.compile(r'[^\ ]+', re.I)
-
-    def genmap(self):
-        self.clear()
-        part_list = []
-        loc_dic = getLocationList(self.wordsep, self.text)
-        loc_key = list(loc_dic.keys())
-
-        max_len = len(loc_dic)
-        for step in range(1, max_len):
-            for i in range(0, max_len):
-                l=[]
-                for k in range(i, min(i+step, max_len)):
-                    loc = loc_key[k]
-                    # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
-                    l.append(loc_key[k])
-
-                s = []
-                for loc in l:
-                    word = loc_dic[loc]
-                    s.append(word)
-                t = " ".join(s)
-                # print(f's location:{l}, text:{t}')
-
-                s_len = len(s)
-                ss = l[0][0]
-                ee = l[s_len-1][1]
-                k = (len(t), ee)
-                v = ((ss, ee), t)
-                entry=(k, v)
-                is_in = (entry in part_list)
-                if not is_in:
-                    part_list.append(entry)
-
-        sorted_partlist = list(reversed(sorted(part_list)))
-        for e in sorted_partlist:
-            k, v = e
-            dict_entry = {k: v}
-            self.update(dict_entry)
-
-    def blindTranslation(self, text=None, dic=None):
-        translated_dic = OrderedDict()
-        is_new_text = (self.text != text)
-
-        if is_new_text:
-            self.text = text
-            self.genmap()
-
-        if dic:
-            self.dictionary = dic
-
-        translated_dic = OrderedDict()
-        for k, v in self.items():
-            loc, orig_sub_text = v
-            has_tran = (orig_sub_text in self.dictionary)
-            if not has_tran:
-                continue
-            tran_sub_text = self.dictionary[orig_sub_text]
-            ss, ee = loc
-            entry = {ee: (ss, ee, tran_sub_text)}
-            translated_dic.update(entry)
-
-        sored_translated = list(reversed(sorted(translated_dic.items())))
-
-        tran_msg = str(msg)
-        for k, v in sored_translated:
-            ss, ee, tran_sub_text = v
-            left = tran_msg[:ss]
-            right = tran_msg[ee:]
-            tran_msg = left + tran_sub_text + right
-
-        return tran_msg
 
 class TranslationFinder:
 
@@ -270,7 +251,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0005.json"
+        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0006.json"
         self.master_dic_backup_file = "/Users/hoangduytran/blender_manual/ref_dict_backup_0005.json"
         self.master_dic_test_file = "/Users/hoangduytran/ref_dict_test_0005.json"
         self.master_dic_backup_list = defaultdict(OrderedDict)
@@ -299,6 +280,7 @@ class TranslationFinder:
         self.setupKBDDicList()
 
         self.dic_list = defaultdict(int)  # for general purposes
+        self.last_backup_dict_stat = os.stat(self.master_dic_backup_file)
 
         # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
         # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
@@ -306,34 +288,34 @@ class TranslationFinder:
         # self.cleanDictList(self.master_dic_list)
         # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
         # exit(0)
+        # self.updateDict()
 
+    # def listDictRange(self, from_wc_range, to_wc_range):
+    #     # keys = self.master_dic_list.keys()
+    #     # output_l = []
+    #     # for k in keys:
+    #     #     wc = len(k.split())
+    #     #     found = (wc >= from_wc_range) and (wc <= to_wc_range)
+    #     #     if not found:
+    #     #         continue
+    #     #     v = self.master_dic_list[k]
+    #     #     entry=(wc, k, v)
+    #     #     output_l.append(entry)
+    #     #     # print(f'wc:{wc}; k:{k}; v:{v}')
+    #     # outp = sorted(output_l)
+    #     # for l in outp:
+    #     #     _, k, v = l
+    #     #     entry=f'"{k}": "{v}",'
+    #     #     print(entry)
 
-    def listDictRange(self, from_wc_range, to_wc_range):
-        # keys = self.master_dic_list.keys()
-        # output_l = []
-        # for k in keys:
-        #     wc = len(k.split())
-        #     found = (wc >= from_wc_range) and (wc <= to_wc_range)
-        #     if not found:
-        #         continue
-        #     v = self.master_dic_list[k]
-        #     entry=(wc, k, v)
-        #     output_l.append(entry)
-        #     # print(f'wc:{wc}; k:{k}; v:{v}')
-        # outp = sorted(output_l)
-        # for l in outp:
-        #     _, k, v = l
-        #     entry=f'"{k}": "{v}",'
-        #     print(entry)
-
-        range_l = self.master_dic_list.getSetUpToWordCount(1)
-        for k, v in range_l.items():
-            entry=f'"{k}": "{v}",'
-            print(entry)
+    #     range_l = self.master_dic_list.getSetUpToWordCount(1)
+    #     for k, v in range_l.items():
+    #         entry=f'"{k}": "{v}",'
+    #         print(entry)
 
     def genmap(self, msg):
         part_list = []
-        loc_dic = cm.findStringToDict(cm.SPACE_WORD_SEP, msg)
+        loc_dic = cm.patternMatchAllToList(cm.SPACE_WORD_SEP, msg)
         loc_key = list(loc_dic.keys())
 
         max_len = len(loc_dic)
@@ -348,19 +330,21 @@ class TranslationFinder:
                     # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
                     l.append(loc_key[k])
 
-                s = []
+                w_s = sys.maxsize
+                w_e = -1
                 for loc in l:
-                    word = loc_dic[loc]
-                    s.append(word)
-                t = " ".join(s)
+                    ss, ee = loc
+                    is_remember_start_loc = (ss < w_s)
+                    if is_remember_start_loc:
+                        w_s = ss
+                    is_remember_end_loc = (ee > w_e)
+                    if is_remember_end_loc:
+                        w_e = ee
+                t = msg[w_s : w_e]
+
                 # print(f's location:{l}, text:{t}')
 
-                s_len = len(s)
-                ss = l[0][0]
-                ee = l[s_len-1][1]
-                k = (len(t), ee)
-                v = ((ss, ee), t)
-                entry=(k, v)
+                entry = ((w_s, w_e), t)
                 is_in = (entry in part_list)
                 if not is_in:
                     part_list.append(entry)
@@ -369,35 +353,36 @@ class TranslationFinder:
             if is_finish:
                 break
 
-        sorted_partlist = list(reversed(sorted(part_list)))
-        output_dict = OrderedDict(sorted_partlist)
-        # print('output_dict:')
-        # print(output_dict)
-        # for e in sorted_partlist:
-        #     k, v = e
-        #     dict_entry = {k: v}
-        #     self.update(dict_entry)
-        return output_dict
+        sorted_partlist = sorted(part_list, key=lambda x: len(x[1]), reverse=True )
+        return sorted_partlist
 
     def blindTranslation(self, msg):
-
+        # remove overlapping distances in translation messages by projecting longest translated pieces of text
+        # to create a shadow on a blank string. Smaller distances will find if their covering distance has been
+        # 'shadowed' (marked) already or not, by examining the 'projected screen' (blank string).
         def removeOverlapped(loc_list, len):
             sample_str = (" " * len)
             marker = '¶'
             len_list = []
+
+            # x[0] = start, x[1] = end, x[1]-x[0] = length of text
+            # sort the location list in covering distance, reversed order, larger distance will be on top
             sorted_loc = sorted(loc_list, key=lambda x: x[1]-x[0], reverse=True )
             retain_l = []
             for loc in sorted_loc:
                 substr = sample_str[loc[0]:loc[1]]
                 is_overlapped = (marker in substr)
-                if not is_overlapped:
-                    maker_substr = (marker * (loc[1] - loc[0]))
-                    left_part = sample_str[:loc[0]]
-                    right_part = sample_str[loc[1]:]
-                    sample_str = left_part + maker_substr + right_part
-                    retain_l.append(loc)
+                if is_overlapped:
+                    continue
+
+                maker_substr = (marker * (loc[1] - loc[0]))
+                left_part = sample_str[:loc[0]]
+                right_part = sample_str[loc[1]:]
+                sample_str = left_part + maker_substr + right_part
+                retain_l.append(loc)
             return retain_l
 
+        # removing unused locations (parts) that has been 'overlapped' by larger translated parts
         def cleanupTranslatedDic(retain_loc_list, translated_dict):
             new_translated_dic = []
             for entry in translated_dict:
@@ -408,12 +393,16 @@ class TranslationFinder:
                     new_translated_dic.append(entry)
             return new_translated_dic
 
+        # is_debug = ('developer.blender.org' in msg) or ('system' in msg)
+        # if is_debug:
+        #     _('DEBUG')
         loc_list=[]
         translated_dic = []
-        map_dic = self.genmap(msg)
-        remove_entry_list=[]
-        for k, v in map_dic.items():
-            loc, orig_sub_text = v
+        # generate all possible combinations of string lengths
+        loc_map_length_sorted_reverse = self.genmap(msg)
+
+        # translate them all if possible
+        for loc, orig_sub_text in loc_map_length_sorted_reverse:
             tran_sub_text = self.isInList(orig_sub_text)
             if not tran_sub_text:
                 continue
@@ -423,12 +412,16 @@ class TranslationFinder:
             entry = (ss, ee, orig_sub_text, tran_sub_text)
             translated_dic.append(entry)
 
+        # now removing overlapped ditances of translated message (start, end, orig_sub_text, translated_sub_text)
         retail_l = removeOverlapped(loc_list, len(msg))
+        # reflect changes in location (removals/retains) in the translated dictionary
         retain_translated_dic = cleanupTranslatedDic(retail_l, translated_dic)
+
+        # sorting in x[1]: end location of text, so the last record of text is used first
         sorted_translated = sorted(retain_translated_dic, key=lambda x: x[1], reverse=True)
 
         tran_msg = str(msg)
-        remain_msg = str(msg)
+        remain_msg = str(msg) # keep a copy of what is remained, untranslated, so if wanted, can dump them in a dict
         for entry in sorted_translated:
             ss, ee, orig_sub_text, tran_sub_text = entry
             untran_subtext = tran_msg[ss:ee]
@@ -436,15 +429,57 @@ class TranslationFinder:
             if not is_same_subtext_and_replaceable:
                 continue
 
+            # tran_sub_text = cm.matchCase(orig_sub_text, tran_sub_text)
             left = tran_msg[:ss]
             right = tran_msg[ee:]
             blank_str = (' ' * (ee - ss))
-            remain_msg = left + blank_str + right
+            remain_msg = remain_msg[:ss] + blank_str + remain_msg[ee:]
             tran_msg = left + tran_sub_text + right
 
+        untranslated_word_list = remain_msg.split()
+        self.addBackupDict(untranslated_word_list)
         return tran_msg
 
-    def addBackupDict(self, msg, tran):
+    def addBackupDict(self, msg_list):
+        if not msg_list:
+            return
+        error_msg = f'addBackupDict: Invalid msg_list data type\n[{msg_list}]: {type(msg_list)}.\nExpecting dict, list, tupple(orig_txt, tran_txt), or string ONLY!'
+        is_dic = (type(msg_list) == dict)
+        is_list = (type(msg_list) == list)
+        is_tupple = (type(msg_list) == tuple)
+        is_string = (type(msg_list) == str)
+        is_valid = (is_dic or is_list or is_tupple or is_string)
+        if not is_valid:
+            raise Exception(error_msg)
+        if is_dic:
+            for k, v in msg_list.items():
+                self.addBackupDictEntry(k, v)
+        elif is_list:
+            for entry in msg_list:
+                try:
+                    k, v = entry
+                except Exception as e:
+                    print(error_msg)
+                    k = entry
+                    v = None
+                self.addBackupDictEntry(k, v)
+        elif is_tupple:
+            k, v = msg_list
+            self.addBackupDictEntry(k, v)
+        elif is_string:
+            self.addBackupDictEntry(msg_list, None)
+        else:
+            raise Exception(error_msg)
+
+    def addBackupDictEntry(self, msg, tran):
+        if ig.isIgnored(msg):
+            return
+
+        current_backup_dict_stat = os.stat(self.master_dic_backup_file)
+        is_changed = (current_backup_dict_stat.st_mtime != self.last_backup_dict_stat.st_mtime)
+        if is_changed:
+            self.master_dic_backup_list = self.loadJSONDic(file_name=self.master_dic_backup_file)
+
         has_tran = (tran is not None)
         if has_tran:
             tran = cm.removeOriginal(msg, tran)
@@ -455,6 +490,9 @@ class TranslationFinder:
         print(f'Added BACKUP dict:{entry}')
 
     def addMasterDict(self, msg, tran):
+        if ig.isIgnored(msg):
+            return
+
         has_tran = (tran is not None)
         if has_tran:
             tran = cm.removeOriginal(msg, tran)
@@ -469,6 +507,7 @@ class TranslationFinder:
         if is_changed:
             self.writeJSONDic(dict_list=self.master_dic_backup_list, file_name=self.master_dic_backup_file)
             print(f'wrote BACKUP changes to: {self.master_dic_backup_file}')
+            self.last_backup_dict_stat = os.stat(self.master_dic_backup_file)
 
     def writeMasterDict(self):
         current_count = len(self.master_dic_list)
@@ -499,6 +538,71 @@ class TranslationFinder:
     def saveMasterDict(self, to_file=None):
         file_path = (to_file if to_file else self.master_dic_file)
         self.writeJSONDic(dict_list=self.master_dic_list, file_name=file_path)
+
+
+    def updateDict(self):
+        from_file = '/Users/hoangduytran/blender_manual/ref_dict_0004.json'
+        to_file = '/Users/hoangduytran/blender_manual/ref_dict_0005.json'
+        new_file = '/Users/hoangduytran/blender_manual/ref_dict_0006.json'
+
+        new_dic = NoCaseDict()
+        ignore_dic = NoCaseDict()
+        from_dict = self.loadJSONDic(file_name=from_file)
+        to_dict = self.loadJSONDic(file_name=to_file)
+
+        from_keys = list(sorted(from_dict.keys()))
+        debug_text = '2.30 <https://archive.blender.org/development/release-logs/blender-230/>`__ -- October 2003'
+        meet = 0
+        for k in from_keys:
+            # 'Popther panel for adding extra options'
+            v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
+            if v:
+                print(f'already in new_dic: k:{k}, trimmed_k:{trimmed_k}, v:{v}')
+                continue
+
+            is_debug = (debug_text.lower() in k.lower())
+            if is_debug:
+                meet += 1
+                _('DEBUG')
+
+            v, trimmed_k = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
+            if not v:
+                v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
+
+            if v:
+                entry={trimmed_k: v}
+                new_dic.update(entry)
+                print(f'found entry:{entry}')
+            else:
+                v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=from_dict, is_patching_found=False)
+                entry={trimmed_k: v}
+                ignore_dic.update(entry)
+                print(f'ignored entry:{entry}')
+
+        to_keys = list(sorted(to_dict.keys()))
+        for k in to_keys:
+            v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
+            is_in_new_dict = not (v is None)
+            if is_in_new_dict:
+                print(f'ignored entry in to_dict:{entry}')
+                continue
+
+            is_debug = (debug_text.lower() in k.lower())
+            if is_debug:
+                meet += 1
+                _('DEBUG')
+
+            v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
+            entry={trimmed_k: v}
+            new_dic.update(entry)
+            print(f'added from to_file entry:{entry}')
+
+        from_dict_len = len(from_dict)
+        to_dict_len = len(to_dict)
+        new_dict_len = len(new_dic)
+
+        self.writeJSONDic(dict_list=new_dic, file_name=new_file)
+        exit(0)
 
     def updateMasterDic(self, is_testing=True):
         from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
@@ -710,12 +814,12 @@ class TranslationFinder:
 
         entry = {k: v}
         dict_list.update(entry)
-        if DIC_LOWER_CASE:
-            k_lower = k.lower()
-            is_same = (k_lower == k)
-            if not is_same:
-                entry = {k_lower: v}
-                self.master_dic_list.update(entry)
+        # if DIC_LOWER_CASE:
+        #     k_lower = k.lower()
+        #     is_same = (k_lower == k)
+        #     if not is_same:
+        #         entry = {k_lower: v}
+        #         self.master_dic_list.update(entry)
         return True
 
     def loadPOAsDic(self, po_path):
@@ -747,13 +851,13 @@ class TranslationFinder:
             po_cat_dic.update(entry)
 
             #_("poCatToDic:", k, v)
-            if DIC_LOWER_CASE:
-                #lower_k = (m.id.lower(), context.lower())
-                lower_k = m.id.lower()
-                is_same_key = (k == lower_k)
-                if not is_same_key:
-                    lower_entry = {lower_k: v}
-                    po_cat_dic.update(lower_entry)
+            # if DIC_LOWER_CASE:
+            #     #lower_k = (m.id.lower(), context.lower())
+            #     lower_k = m.id.lower()
+            #     is_same_key = (k == lower_k)
+            #     if not is_same_key:
+            #         lower_entry = {lower_k: v}
+            #         po_cat_dic.update(lower_entry)
 
         return po_cat_dic
 
@@ -791,13 +895,71 @@ class TranslationFinder:
                 test_again_trans = dic[test_word]
                 print(f'test_again_trans: {test_again_trans}')
 
-            return_dic = WCKLCIOrderedDict(dic)
+            return_dic = NoCaseDict(dic)
+
         except Exception as e:
             _("Exception readDictionary Length of read dictionary:")
             _(e)
             raise e
 
         return return_dic
+
+    def trimAndFind(self, pattern, msg, dict_to_use=None):
+        # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
+        # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
+        # how far on the 'msg' ending should we add to the translation
+        count = 0
+        temp_msg = str(msg)
+        search_dict = (dict_to_use if dict_to_use else self.master_dic_list)
+
+        found = (temp_msg in search_dict)
+
+        m = pattern.search(temp_msg)
+        while m and not found:
+            m_group = m.group(0)
+            temp_msg = pattern.sub("", temp_msg)
+            count += 1
+            found = (temp_msg in search_dict)
+            if found:
+                break
+            m = pattern.search(temp_msg)
+        return count, found, temp_msg
+
+    def findAndTrimIfNeeded(self, msg, search_dict=None, is_patching_found=False):
+        head_trimmer = ""
+        tail_trimmer = ""
+        head_count = 0
+        tail_count = 0
+        is_found_tran = False
+        is_debug = ('Transformation tools and widgets, soft bodies' in msg)
+        if is_debug:
+            _('DEBUG')
+
+        tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg, dict_to_use=search_dict)
+        if not is_found_tran:
+            head_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
+                                                                      dict_to_use=search_dict)
+
+        if not is_found_tran:
+            tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg, dict_to_use=search_dict)
+            if not is_found_tran:
+                head_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
+                                                                          dict_to_use=search_dict)
+        if is_patching_found:
+            if head_count:
+                head_trimmer = msg[:head_count]
+            if tail_count:
+                tail_trimmer = msg[-tail_count:]
+
+        if is_found_tran:
+            trans = search_dict[trimmed_msg]
+            if head_trimmer:
+                trans = head_trimmer + trans
+            if tail_trimmer:
+                trans = trans + tail_trimmer
+        else:
+            trans = None
+        return trans, trimmed_msg
 
     # def dump_po(self, filename, catalog):
     #     dirname = os.path.dirname(filename)
@@ -808,100 +970,46 @@ class TranslationFinder:
     #     with io.open(filename, 'wb') as f:
     #         pofile.write_po(f, catalog, width=4096)
     #
-    def isInList(self, msg, is_lower=False):
+    def isInList(self, msg, search_dict=None):
         trans = None
 
-        try:
-            # msg = "WARNING: preferences are lost when add-on is disabled, be sure to use \"Save Persistent\" if you want to keep your settings"
-            # is_debug = ('Maintenance' in msg)
-            # if is_debug:
-            #     _('DEBUG')
-            if is_lower:
-                msg = msg.lower()
+        dict_to_use = (search_dict if search_dict else self.master_dic_list)
+        is_there = (msg in dict_to_use)
+        if is_there:
+            trans = dict_to_use[msg]
+        else:
+            trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+        return trans
 
-            is_there = (msg in self.master_dic_list)
-            if is_there:
-                trans = self.master_dic_list[msg]
-                return trans
-
-            # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
-            # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
-            # how far on the 'msg' ending should we add to the translation
-            trailing_count = 0
-            temp_msg = str(msg)
-            _(f'entering: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
-            found = False
-            while cm.TRAILING_WITH_PUNCT.search(temp_msg) and not found:
-                temp_msg = cm.TRAILING_WITH_PUNCT.sub("", temp_msg)
-                trailing_count += 1
-                _(f'processing: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
-                found = (temp_msg in self.master_dic_list)
-                if found:
-                    _(f'on break: temp_msg:{temp_msg}; trailing_count:{trailing_count}')
-                    break
-
-            is_trimmable_head = False
-            trimmed_head = ""
-            if not found:
-                trimmed_head = cm.TRIMMABLE_BEGINNING.search(temp_msg)
-                is_trimmable_head = (trimmed_head is not None)
-                if is_trimmable_head:
-                    trimmed_head = trimmed_head.group[0]
-                    temp_msg = cm.TRIMMABLE_BEGINNING.sub('', temp_msg)
-                    found = (temp_msg in self.master_dic_list)
-
-            if found:
-                trans = self.master_dic_list[temp_msg]
-                endings = ""
-                has_trailing = (trailing_count > 0)
-                if has_trailing:
-                    endings = msg[-trailing_count:]
-
-                _(f'trans:{trans}; endings:{endings}; trailing_count:{trailing_count}; msg:{msg}')
-                trans = trans + endings
-
-                has_extra_head = is_trimmable_head
-                if has_extra_head:
-                    trans = trimmed_head + trans
-
-            return trans
-
-        except Exception as e:
-            # if msg:
-            #     _(msg)
-            # _("is_lower:", is_lower)
-            #raise e
-            return None
 
     def findTranslation(self, msg):
         trans = None
 
-        # _("findTranslation:", msg)
-        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
-        if (len(ex_ga_msg) > 0):
-            # _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
-            msg = ex_ga_msg[0]
+        # # _("findTranslation:", msg)
+        # ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        # if ex_ga_msg:
+        #     # _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
+        #     msg = ex_ga_msg[0]
 
         is_ignore = ig.isIgnored(msg)
         if (is_ignore):
-            return None
+            return None, is_ignore
 
         orig_msg = str(msg)
-        trans = self.isInList(msg, is_lower=True)
+        trans = self.isInList(msg)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
         has_translation = has_len and (trans != 'None')
         if has_translation:
-            trans = trans.strip()
             trans = cm.removeOriginal(msg, trans)
-            trans = cm.matchCase(orig_msg, trans)
+            # trans = cm.matchCase(orig_msg, trans)
 
         else:
             trans = None
         if trans is None:
             _(f"NOT found: [{msg}]")
-        return trans
+        return trans, is_ignore
 
     def findTranslationByFragment(self, msg):
         # orig_msg = str(msg)
@@ -920,7 +1028,10 @@ class TranslationFinder:
             is_possessive = o_txt.endswith("'s")
             if is_possessive:
                 o_txt = o_txt[:-2]
-            trans_word = self.findTranslation(o_txt)
+            trans_word, is_ignore = self.findTranslation(o_txt)
+            if is_ignore:
+                continue
+
             if is_possessive:
                 trans_word = f'của {trans_word}'
             trans_word_entry = (o_s, o_e, o_txt, trans_word)
@@ -940,12 +1051,18 @@ class TranslationFinder:
 
     def translate(self, msg):
         must_mark = False
+        is_debug = ('the id for' in msg.lower())
+        if is_debug:
+            _('DEBUG')
 
-        trans = self.findTranslation(msg)
+        trans, is_ignore = self.findTranslation(msg)
+        if is_ignore:
+            return (None, False, is_ignore)
+
         if not trans:
             trans = self.blindTranslation(msg)
             must_mark = True
-        return (trans, must_mark)
+        return (trans, must_mark, is_ignore)
 
     def translateKeyboard(self, msg):
         orig = str(msg)
@@ -993,7 +1110,10 @@ class TranslationFinder:
         if is_ignore:
             return None
 
-        tran, is_fuzzy = self.translate(msg)
+        tran, is_fuzzy, is_ignore = self.translate(msg)
+        if is_ignore:
+            return None
+
         tran_found = (tran is not None)
 
         orig_msg = str(msg)
@@ -1030,7 +1150,10 @@ class TranslationFinder:
             found_list = cm.findInvert(cm.REF_LINK, msg)
             for k, v in reversed(list(found_list.items())):
                 s, e, orig_txt = v
-                tran, is_fuzzy = self.translate(orig_txt)
+                tran, is_fuzzy, is_ignore = self.translate(orig_txt)
+                if is_ignore:
+                    continue
+
                 tran_found = (tran and tran != orig_txt)
                 if tran_found:
                     tran = "{} -- {}".format(tran, orig_txt)
@@ -1039,7 +1162,9 @@ class TranslationFinder:
                 tran_txt = tran_txt[:s] + tran + tran_txt[e:]
         else:
             orig_txt = msg
-            tran, is_fuzzy = self.translate(orig_txt)
+            tran, is_fuzzy, is_ignore = self.translate(orig_txt)
+            if is_ignore:
+                return None
             tran_found = (tran and tran != orig_txt)
             if tran_found:
                 tran_txt = "{} -- {}".format(tran, orig_txt)
@@ -1052,7 +1177,10 @@ class TranslationFinder:
         word_list = cm.findInvert(cm.MENU_SEP, msg)
         for k, v in reversed(list(word_list.items())):
             s, e, orig = v
-            tran, is_fuzzy = self.translate(orig)
+            tran, is_fuzzy, is_ignore = self.translate(orig)
+            if is_ignore:
+                continue
+
             is_tran_valid = (tran and (tran != orig))
             if is_tran_valid:
                 entry = "{} ({})".format(tran, orig)
@@ -1071,7 +1199,9 @@ class TranslationFinder:
                 continue
 
             for bs, be, btxt in breakdown:
-                tran, is_fuzzy = self.translate(btxt)
+                tran, is_fuzzy, is_ignore = self.translate(btxt)
+                if is_ignore:
+                    continue
                 valid = (tran and (tran != btxt))
                 if valid:
                     entry = "{} -- {}".format(btxt, tran)

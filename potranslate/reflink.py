@@ -153,9 +153,9 @@ class RefItem:
     def setTranlation(self, tran, state=TranslationState.ACCEPTABLE):
         orig = self.getText()
         is_ignored = ig.isIgnored(orig)
-        is_same = cm.isTextuallySame(orig, tran)
-        is_ignored_all = (is_ignored or is_same)
-        if is_ignored_all:
+        # is_same = cm.isTextuallySame(orig, tran)
+        # is_ignored_all = (is_ignored or is_same)
+        if is_ignored:
             tran = None
             state = TranslationState.IGNORED
         else:
@@ -1106,13 +1106,16 @@ class RefList(defaultdict):
 
         has_record = (len(self) > 0)
         if has_record:
-            sorted_list = sorted(list(self.items()))
+            sorted_list = list(sorted(self.items()))
             list_type = type(sorted_list)
             self.clear()
             self.update(sorted_list)
             _("Sorted")
         else:
-            tran, is_fuzzy = self.tf.translate(self.msg)
+            tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+            if is_ignore:
+                tran = None
+
             has_tran = (tran is not None)
             if has_tran and self.keep_original:
                 tran = f"{tran} -- {self.msg}"
@@ -1251,7 +1254,10 @@ class RefList(defaultdict):
         orig_text = orig.getText()
         has_ref_list = (record.reflist is not None) and (len(record.reflist) > 0)
         if not has_ref_list:
-            orig_trans, is_fuzzy = self.tf.translate(orig_text)  # find the whole piece first to see if it's there
+            orig_trans, is_fuzzy, is_ignore = self.tf.translate(orig_text)  # find the whole piece first to see if it's there
+            if is_ignore:
+                return
+
             has_orig_tran = (orig_trans is not None) and (orig_trans != orig_text)
             if has_orig_tran:
                 orig.translation = orig_trans

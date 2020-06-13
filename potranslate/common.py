@@ -11,6 +11,8 @@ import inspect
 import copy as cp
 from collections import OrderedDict, defaultdict
 from pprint import pprint, pformat
+import hashlib
+import time
 # import Levenshtein as LE
 #import logging
 
@@ -46,6 +48,7 @@ class Common:
     s = "( c>5 or (p==4 and c<4) )"
     total_files = 1358
     file_count = 0
+    PAGE_SIZE = 20 * 4096
     # It's pyparsing.printables without ()
     CHAR_NO_ARCHED_BRAKETS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+,-./:;<=>?@[\]^_`{|}~'
 
@@ -125,6 +128,7 @@ class Common:
     TRIMMABLE_ENDING=re.compile(r'([\s\.\,\:\!]+)$')
     TRIMMABLE_BEGINNING=re.compile(r'^([\s\.\,]+)')
     TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
+    HEADING_WITH_PUNCT = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]')
 
     RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
     RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
@@ -144,33 +148,9 @@ class Common:
     NON_WORD_ONLY = re.compile(r'^([\W]+)$')
     NON_WORD = re.compile(r'([\W]+)')
 
-    # dictionary: {start_location: [[s, e, match_0],[(s, e, :type:), (s, e, text), (s, e, link if any), (s, e, text-within-link | or abbreviation) ]]}
-    #SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`\"\'\*]+(?![\s\)\.\(]+)([^\`\("\'\*\<\>]+)(((\<([\w\-\s]+)\>\*)*)|(\(([^(]+)\))*)(?<!([\s\:]))[\`\"\'\*]+')
-    #SPECIAL_REF = re.compile(r'(:[\w]+:)*[\`]+([^\`])+(((\s\<([^\<\>]+)\>)*)|(\(([^\(\)]+)\))*)(?<!([\s\:]))[\`\]+([\_]+)*')
-    #SPECIAL_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)[\`]+')
-    #GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
-    #BRACKETED = re.compile(r'(?![\s]+)[\*\"\'\(\<]+(?![\s]+)([\w\s\-]+[^\`\*\"\'\)\(\<\>]+)(?<!([\s\:]))[\*\"\'\)\>]+')
-
-    #LITERALS = re.compile(r'([]+)*(:\w+:)*[\`]+(?![\s]+)([^\`]+)[\`]+')
-
-    #DOUBLE_GA_REF = re.compile(r'[\`]{2}(?![\s]+)([^\`]+)(?<!([\s]))[\`]{2}')
-    #MENU_PART = re.compile(r'(?![\s]+)([^\-\>]+)(?<!([\s]))')
-    #NORMAL_TEXT = re.compile(r'(?![\s\-\_\.]+)([\w\-\ \/\.\']+)(?<!([\s\-\_\.\,]))')
-    #NORMAL_TEXT = re.compile(r'(?![\s\-\_\.\(\)]+)(([\w\-\_\'\ \.\/]+))(?<!([\s\.\,\(\)]))')
-    #NORMAL_TEXT = re.compile(r'(?![\s\.\_])([\w\s\.\']+)(?<!([\s\.]))')
-
-    #NORMAL_TEXT = re.compile(r'(?![\s])(?![\_\.\,\:]+[\s]+[\w])(([\w\s\'\<\>\/]+)(([\=\+\*\/\.\-][\w]+)*))+(?<!([\s]))')
-
-    #BRACKETED = re.compile(r'(?![\s]+)[\*\"\']+(?![\s]+)([\w\s\-]+[^\`\*\"\']+)(?<!([\s\:]))[\*\"\']+')
-    #BRACKETED = re.compile(r'[\*\"]+(?![\s\.\,]+)([^\`\*\"]+)[\*\"]+(?<!([\s\.\,]))')
-
-    #NORMAL_TEXT = re.compile(r'(?![\s])(?![\_\.\,\:]+[\s]+[\w])(([\w\s\'\<\>\/]+)(([\=\+\*\/\.\-][\w]+)*))+(?<!([\s]))')
-    #MENU_PART = re.compile(r'(?![\s]+)([^\-\>]+)(?<!([\s]))')
-    #MENU_PART = re.compile(r'(?!([-]{2}\>))(.*)')
-    #MENU_PART = re.compile(r'\b((?![\s]?[-]{2}[>]?[\s]+).)*\b') #working but with empty entries
-
-    GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
-    GA_REF_ONLY = re.compile(r'^[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
+    GA_REF_PART = re.compile(r':[^\:]+:')
+    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
+    GA_REF_ONLY = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
 
     # this (something ... ) can have other links inside of it as well as others
@@ -247,6 +227,7 @@ class Common:
     def matchCase(from_str : str , to_str : str):
         new_str = str(to_str)
         is_title = (from_str.istitle())
+        ga_ref_parts = Common.patternMatchAllToList(Common.GA_REF_PART, new_str)
         if is_title:
             new_str = new_str.title()
         else:
@@ -257,6 +238,13 @@ class Common:
                 is_lower = (from_str.islower())
                 if is_lower:
                     new_str = new_str.lower()
+        # for loc, ref_text in ga_ref_parts.items():
+        #     s, e = loc
+        #     ref_text = ref_text.lower()
+        #     left = new_str[:s]
+        #     right = new_str[e:]
+        #     new_str = left + ref_text + right
+
         return new_str
 
     def beginAndEndPunctuation(msg, is_single=False):
@@ -312,7 +300,7 @@ class Common:
 
         return trans
 
-    def findStringToDict(pat, text):
+    def patternMatchAllToList(pat, text):
         matching_list = {}
         for m in pat.finditer(text):
             s = m.start()
@@ -605,3 +593,22 @@ class Common:
             sorted_loc_list = []
             sorted_loc_list = sorted(loc_list, key=lambda x: x[0])
             return sorted_loc_list
+
+    # https://stackoverflow.com/questions/22058048/hashing-a-file-in-python , answered Jul 2 '17 at 17:23 - maxschlepzig (Georg Sauthoff)
+    #
+    # maxschlepzig
+    # 23.3k99 gold badges9393 silver badges126
+    def sha256sum(filename):
+        h = hashlib.sha256()
+        b = bytearray(Common.PAGE_SIZE) # PAGE_SIZE = 20 * 4096, original 128*1024
+        mv = memoryview(b)
+        with open(filename, 'rb', buffering=0) as f:
+            for n in iter(lambda : f.readinto(mv), 0):
+                h.update(mv[:n])
+        return h.hexdigest()
+
+    def getFileModifiedTime(filename):
+        return time.ctime( os.path.getmtime(filename))
+
+    def getFileCreatedTime(filename):
+        return time.ctime( os.path.getctime(filename))

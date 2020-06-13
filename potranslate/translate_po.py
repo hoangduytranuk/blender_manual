@@ -242,12 +242,12 @@ def doctree_resolved(app, doctree, docname):
         #     _('DEBUG')
         cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
                                                                                                    is_single=True)
-        trans = trans_finder.isInList(cropped_txt, is_lower=True)
+        trans = trans_finder.isInList(cropped_txt)
         is_repeat = (trans is not None)
         if not is_repeat:
             cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
                                                                                                        is_single=False)
-            trans = trans_finder.isInList(cropped_txt, is_lower=True)
+            trans = trans_finder.isInList(cropped_txt)
 
         is_repeat = (trans is not None)
         return is_repeat
@@ -391,7 +391,7 @@ def doctree_resolved(app, doctree, docname):
         ref_list.parseMessage()
         ref_list.translateRefList()
         tran = ref_list.getTranslation()
-        trans_finder.addBackupDict(msg, tran)
+        trans_finder.addBackupDict((msg, tran))
         print("Got translation from REF_LIST")
         return tran
 
@@ -518,11 +518,10 @@ def doctree_resolved(app, doctree, docname):
                             is_strong
                             )
 
-
         tran = None
         orig_msg = str(msg)
         add_entry = None
-        is_debug = ('Release Checklist' in msg)
+        is_debug = ('the id for' in msg.lower())
         if is_debug:
             _('DEBUG')
         is_ignore = ig.isIgnored(msg)
@@ -531,32 +530,24 @@ def doctree_resolved(app, doctree, docname):
             continue
         else:
             # is_added = False
-            tran = trans_finder.findTranslation(msg)
+            tran, is_ignore = trans_finder.findTranslation(msg)
+            if is_ignore:
+                continue
             has_translation = (tran is not None)
-            if has_translation:
-                # tran = trans_finder.master_dic_list[msg]
-                is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
-                if is_too_similar:
-                    tran = tranRef(msg, is_keep_original)
-                else:
-                    print("Got translation from MASTER_DIC_LIST")
-            else:
+            if not has_translation:
                 has_translation = (msg in po_dic)
                 if has_translation:
                     tran = po_dic[msg]
-                    is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
-                    if is_too_similar:
-                        tran = tranRef(msg, is_keep_original)
-                    else:
-                        trans_finder.addMasterDict(msg, tran)
-                        print("Got translation from PO file")
                 else:
                     tran = tranRef(msg, is_keep_original)
                     # print("Got translation from REFLIST")
 
             has_translation = (tran is not None)
             if has_translation:
-                is_repeat = is_keep_original and (msg.lower() not in tran.lower())
+                has_month = ('Tháng ' in tran)
+                if has_month:
+                    _('DEBUG')
+                is_repeat = is_keep_original and (msg.lower() not in tran.lower()) and not has_month
                 if is_repeat:
                     print('Repeating MSG')
                     tran = f'{tran} -- {msg}'
@@ -598,6 +589,7 @@ def doctree_resolved(app, doctree, docname):
     print("Output to the path:", new_po_cat, output_path)
     # c.dump_po(output_path, new_po_cat, line_width=1024)
     c.dump_po(output_path, new_po_cat)
+    _('DEBUG')
 
 
 def runAppOrNot():
@@ -705,7 +697,8 @@ def build_finished(app, exeption):
     # pp(sorted_list)
     # exit(0)
     trans_finder.writeBackupDict()
-    trans_finder.writeMasterDict()
+    # trans_finder.writeMasterDict()
+    _('DEBUG')
 
 
 def setup(app):
