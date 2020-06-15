@@ -321,6 +321,12 @@ class MySettings(PropertyGroup):
         default=False,
     )
 
+    create_entry_to_master_dict: BoolProperty(
+        name = "Master Dict",
+        description = "Using master dictionary as the destination for new entries, rather than backup.",
+        default=False,
+    )
+
 
 class TEXT_OT_single_quoted_base(bpy.types.Operator):
     """
@@ -890,6 +896,10 @@ class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
         self.restoreClibboardPreviousCopy()
         return result
 
+
+# MSG_PATTERN = re.compile(r'^(msgid|msgstr)\s"(.*)"$', re.I)
+MSG_PATTERN = re.compile(r'"(.*)"')
+
 class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
     bl_idname = "text.make_dict_entry"
     bl_label = "Make Dict Entry"
@@ -897,29 +907,69 @@ class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
     bl_context = 'scene'
 
     def execute(self, context):
+        def getMsgParts(msg):
+            msg_part_list = MSG_PATTERN.findall(msg)
+            if msg_part_list:
+                return msg_part_list[0]
+            else:
+                return None
+
         sd = context.space_data
 
         sc = context.scene
         var = sc.my_tool
         is_reverse = var.is_reversed  # making use of ready made boolean
-        orig_part = bpy.context.window_manager.clipboard
-        has_orig = len(orig_part) > 0
-        if not has_orig:
-            self.report({'ERROR'}, "Must first copied original text to clipboard")
-            return {'CANCELLED'}
+        is_using_master_dict = var.create_entry_to_master_dict
 
-        tran_part = self.getSelectedText(sd.text)
-        if not tran_part:
-            self.report({'ERROR'}, "Must select a text to make a translation")
-            return {'CANCELLED'}
+        orig_part = None
+        tran_part = None
+
+        msg = self.getSelectedText(sd.text)
+        text_list = msg.split('\n')
+        print(f'text_list:{text_list}')
+        has_more_than_one = (len(text_list) > 1)
+        if has_more_than_one:
+            msgid_part = text_list[0]
+            msgstr_part = text_list[1]
+
+            print(f'msgid_part:{msgid_part}; msgstr_part:{msgstr_part}')
+            tail = getMsgParts(msgid_part)
+            if tail:
+                orig_part = tail
+            else:
+                self.report({'ERROR'}, "Unable to extract msgid part")
+                return {'CANCELLED'}
+
+            tail = getMsgParts(msgstr_part)
+            if tail:
+                tran_part = tail
+
+            if not tran_part:
+                tran_part = ""
+
+            print(f'orig_part:{orig_part}; tran_part:{tran_part}')
+        else:
+            orig_part = bpy.context.window_manager.clipboard
+            has_orig = len(orig_part) > 0
+            if not has_orig:
+                self.report({'ERROR'}, "Must first copied original text to clipboard")
+                return {'CANCELLED'}
+
+            tran_part = self.getSelectedText(sd.text)
+            if not tran_part:
+                self.report({'ERROR'}, "Must select a text to make a translation")
+                return {'CANCELLED'}
 
         if is_reverse:
             entry = (tran_part, orig_part)
         else:
             entry = (orig_part, tran_part)
 
-        trans_finder.addBackupDict(entry)
-        trans_finder.writeBackupDict()
+        trans_finder.addDictEntry(entry, is_master=is_using_master_dict)
+        if is_using_master_dict:
+            trans_finder.writeMasterDict()
+        else:
+            trans_finder.writeBackupDict()
         return {'FINISHED'}
 
     def invoke(self, context, event):
@@ -1066,6 +1116,8 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row = col.row(align=True)
         row.operator("text.translate", icon='MODIFIER_DATA')
         row.operator("text.reload_dict", icon='MODIFIER_DATA')
+        row = col.row(align=True)
+        row.prop(my_tool, "create_entry_to_master_dict")
         row.operator("text.make_dict_entry", icon='MODIFIER_DATA')
 
         row = col.row(align=True)
@@ -1111,16 +1163,6 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
 
         reloadMasterDict
 '''
-
-class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
-    bl_label = "Abbreviation Panel"
-    bl_idname = "TEXT_PT_abbrev_selected_panel"
-    bl_space_type = 'TEXT_EDITOR'
-    bl_region_type = 'UI'
-    bl_category = 'Text'
-
-    def draw(self, context):
-        lo = self.layout
 
 classes = (
     MySettings,

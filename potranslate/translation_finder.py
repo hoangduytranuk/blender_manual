@@ -281,6 +281,7 @@ class TranslationFinder:
 
         self.dic_list = defaultdict(int)  # for general purposes
         self.last_backup_dict_stat = os.stat(self.master_dic_backup_file)
+        self.last_master_dict_stat = os.stat(self.master_dic_file)
 
         # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
         # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
@@ -440,7 +441,7 @@ class TranslationFinder:
         self.addBackupDict(untranslated_word_list)
         return tran_msg
 
-    def addBackupDict(self, msg_list):
+    def addDictEntry(self, msg_list, is_master=False):
         if not msg_list:
             return
         error_msg = f'addBackupDict: Invalid msg_list data type\n[{msg_list}]: {type(msg_list)}.\nExpecting dict, list, tupple(orig_txt, tran_txt), or string ONLY!'
@@ -459,19 +460,94 @@ class TranslationFinder:
                 try:
                     k, v = entry
                 except Exception as e:
-                    print(error_msg)
+                    print(e, error_msg)
                     k = entry
                     v = None
-                self.addBackupDictEntry(k, v)
+                if is_master:
+                    self.addMasterDict(k, v)
+                else:
+                    self.addBackupDictEntry(k, v)
         elif is_tupple:
             k, v = msg_list
-            self.addBackupDictEntry(k, v)
+            if is_master:
+                self.addMasterDict(k, v)
+            else:
+                self.addBackupDictEntry(k, v)
         elif is_string:
-            self.addBackupDictEntry(msg_list, None)
+            if is_master:
+                self.addMasterDict(k, v)
+            else:
+                self.addBackupDictEntry(k, v)
         else:
             raise Exception(error_msg)
 
+
+    def getHeadAndTailPuncts(self, msg):
+
+        if not msg:
+            return '', ''
+
+        msg_trail = None
+        msg_head = None
+
+        msg_trail = cm.TRAILING_WITH_PUNCT.search(msg)
+        if msg_trail:
+            msg_trail =  msg_trail.group(0)
+            msg_head = cm.HEADING_WITH_PUNCT.search(msg_trail)
+            if msg_head:
+                msg_head = msg_head.group(0)
+
+        if not msg_head:
+            msg_head = cm.HEADING_WITH_PUNCT.search(msg)
+            if msg_head:
+                msg_head = msg_head.group(0)
+                msg_trail = cm.TRAILING_WITH_PUNCT.search(msg_head)
+                if msg_trail:
+                    msg_trail =  msg_trail.group(0)
+        return msg_head, msg_trail
+
+    def cleanBothEntries(self, msg, tran):
+
+        new_msg = str(msg)
+        new_tran = str(tran)
+
+        msg_head, msg_trail = self.getHeadAndTailPuncts(msg)
+        tran_head, tran_trail = self.getHeadAndTailPuncts(tran)
+        trim_head = (msg_head if msg_head == tran_head else None)
+        trim_trail = (msg_trail if msg_trail == tran_trail else None)
+        if trim_head:
+            new_msg = cm.HEADING_WITH_PUNCT.sub('', new_msg)
+            new_tran = cm.HEADING_WITH_PUNCT.sub('', new_tran)
+
+        if trim_trail:
+            new_msg = cm.TRAILING_WITH_PUNCT.sub('', new_msg)
+            new_tran = cm.TRAILING_WITH_PUNCT.sub('', new_tran)
+
+        return new_msg, new_tran
+
+    def addMasterDict(self, msg, tran):
+        if ig.isIgnored(msg):
+            return
+
+        current_master_dict_stat = os.stat(self.master_dic_backup_file)
+        is_changed = (current_master_dict_stat.st_mtime != self.last_master_dict_stat.st_mtime)
+        if is_changed:
+            self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
+
+        has_tran = (tran is not None)
+        if has_tran:
+            tran = cm.removeOriginal(msg, tran)
+            new_msg, new_tran = self.cleanBothEntries(msg, tran)
+            entry = {new_msg: new_tran}
+        else:
+            new_msg, _ = self.cleanBothEntries(msg, None)
+            entry = {new_msg: ""}
+        self.master_dic_list.update(entry)
+        print(f'Added MASTER dict:{entry}')
+
     def addBackupDictEntry(self, msg, tran):
+        # print(f'addBackupDictEntry: msg:{msg}, tran:{tran}')
+        # return
         if ig.isIgnored(msg):
             return
 
@@ -483,24 +559,13 @@ class TranslationFinder:
         has_tran = (tran is not None)
         if has_tran:
             tran = cm.removeOriginal(msg, tran)
-            entry = {msg: tran}
+            new_msg, new_tran = self.cleanBothEntries(msg, tran)
+            entry = {new_msg: new_tran}
         else:
-            entry = {msg: ""}
+            new_msg, _ = self.cleanBothEntries(msg, None)
+            entry = {new_msg: ""}
         self.master_dic_backup_list.update(entry)
         print(f'Added BACKUP dict:{entry}')
-
-    def addMasterDict(self, msg, tran):
-        if ig.isIgnored(msg):
-            return
-
-        has_tran = (tran is not None)
-        if has_tran:
-            tran = cm.removeOriginal(msg, tran)
-            entry = {msg: tran}
-        else:
-            entry = {msg: ""}
-        self.master_dic_list.update(entry)
-        print(f'Added MASTER dict:{entry}')
 
     def writeBackupDict(self):
         is_changed = (len(self.master_dic_backup_list) > 0)
@@ -515,6 +580,7 @@ class TranslationFinder:
         if is_changed:
             self.writeJSONDic(dict_list=self.master_dic_list, file_name=self.master_dic_file)
             print(f'wrote MASTER changes to: {self.master_dic_file}')
+            self.last_master_dict_stat = os.stat(self.master_dic_file)
 
     def getKeyboardOriginal(self, text):
         # kbd_def_val = list(TranslationFinder.KEYBOARD_TRANS_DIC.values())
@@ -550,8 +616,9 @@ class TranslationFinder:
         from_dict = self.loadJSONDic(file_name=from_file)
         to_dict = self.loadJSONDic(file_name=to_file)
 
-        from_keys = list(sorted(from_dict.keys()))
-        debug_text = '2.30 <https://archive.blender.org/development/release-logs/blender-230/>`__ -- October 2003'
+        # sorting so the smaller keys get in first, avoiding duplications by the longer keys, ie. with ending '.' or ':'
+        from_keys = list(sorted(from_dict.keys(), key=lambda x: len(x)))
+        # debug_text = '2.30 <https://archive.blender.org/development/release-logs/blender-230/>`__ -- October 2003'
         meet = 0
         for k in from_keys:
             # 'Popther panel for adding extra options'
@@ -560,10 +627,10 @@ class TranslationFinder:
                 print(f'already in new_dic: k:{k}, trimmed_k:{trimmed_k}, v:{v}')
                 continue
 
-            is_debug = (debug_text.lower() in k.lower())
-            if is_debug:
-                meet += 1
-                _('DEBUG')
+            # is_debug = (debug_text.lower() in k.lower())
+            # if is_debug:
+            #     meet += 1
+            #     _('DEBUG')
 
             v, trimmed_k = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
             if not v:
@@ -579,7 +646,7 @@ class TranslationFinder:
                 ignore_dic.update(entry)
                 print(f'ignored entry:{entry}')
 
-        to_keys = list(sorted(to_dict.keys()))
+        to_keys = list(sorted(to_dict.keys(), key=lambda x: len(x)))
         for k in to_keys:
             v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
             is_in_new_dict = not (v is None)
@@ -587,10 +654,10 @@ class TranslationFinder:
                 print(f'ignored entry in to_dict:{entry}')
                 continue
 
-            is_debug = (debug_text.lower() in k.lower())
-            if is_debug:
-                meet += 1
-                _('DEBUG')
+            # is_debug = (debug_text.lower() in k.lower())
+            # if is_debug:
+            #     meet += 1
+            #     _('DEBUG')
 
             v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
             entry={trimmed_k: v}
@@ -931,9 +998,9 @@ class TranslationFinder:
         head_count = 0
         tail_count = 0
         is_found_tran = False
-        is_debug = ('Transformation tools and widgets, soft bodies' in msg)
-        if is_debug:
-            _('DEBUG')
+        # is_debug = ('Transformation tools and widgets, soft bodies' in msg)
+        # if is_debug:
+        #     _('DEBUG')
 
         tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg, dict_to_use=search_dict)
         if not is_found_tran:
@@ -953,9 +1020,11 @@ class TranslationFinder:
 
         if is_found_tran:
             trans = search_dict[trimmed_msg]
-            if head_trimmer:
+            is_insert_head_trimmer = (head_trimmer and not trans.startswith(head_trimmer))
+            if is_insert_head_trimmer:
                 trans = head_trimmer + trans
-            if tail_trimmer:
+            is_insert_tail_trimmer = (tail_trimmer and not trans.endswith(tail_trimmer))
+            if is_insert_tail_trimmer:
                 trans = trans + tail_trimmer
         else:
             trans = None

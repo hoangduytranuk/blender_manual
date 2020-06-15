@@ -268,8 +268,8 @@ class Common:
     def removeOriginal(msg, trans):
         msg = re.escape(msg)
         p = r'\b{}\b'.format(msg)
-        has_original = (re.search(p, trans, flags=re.I) != None)
-        endings=("", "s", "es", "ies", "ed", "ing", "lly",)
+        has_original = (re.search(p, trans, flags=re.I) is not None)
+        endings = ("", "s", "es", "ies", "ed", "ing", "lly",)
 
         if has_original:
             for end in endings:
@@ -297,7 +297,7 @@ class Common:
             is_empty = (len(trans) == 0)
             if is_empty:
                 trans = None
-
+        trans = trans.replace("\\\"", "\"")
         return trans
 
     def patternMatchAllToList(pat, text):

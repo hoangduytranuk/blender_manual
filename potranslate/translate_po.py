@@ -545,35 +545,14 @@ def doctree_resolved(app, doctree, docname):
             has_translation = (tran is not None)
             if has_translation:
                 has_month = ('Tháng ' in tran)
-                if has_month:
-                    _('DEBUG')
-                is_repeat = is_keep_original and (msg.lower() not in tran.lower()) and not has_month
+                has_original = (msg.lower() in tran.lower())
+                has_link = (cm.REF_LINK.search(tran) is not None)
+                can_ignore = (has_month or has_original or has_link)
+                is_repeat = is_keep_original and not can_ignore
                 if is_repeat:
                     print('Repeating MSG')
                     tran = f'{tran} -- {msg}'
-
-            # is_added = False
-            # has_translation = (msg in po_dic)
-            # if has_translation:
-            #     tran = po_dic[msg]
-            #     is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
-            #     if is_too_similar:
-            #         tran = tranRef(msg, is_keep_original)
-            #     else:
-            #         entry = {msg: tran}
-            #         trans_finder.master_dic_list.update(entry)
-            #         print("Got translation from PO file")
-            # else:
-            #     has_translation = (not is_added) and (msg in trans_finder.master_dic_list)
-            #     if has_translation:
-            #         tran = trans_finder.master_dic_list[msg]
-            #         is_too_similar = fuzzyTextSimilar(msg, tran, 0.8)
-            #         if is_too_similar:
-            #             tran = tranRef(msg, is_keep_original)
-            #         else:
-            #             print("Got translation from MASTER_DIC_LIST")
-            #     else:
-            #         tran = tranRef(msg, is_keep_original)
+                    print(f'Repeating MSG:{tran}')
 
         if tran is not None:
             new_po_cat.add(msg, string=tran)
@@ -584,12 +563,12 @@ def doctree_resolved(app, doctree, docname):
         if tran is not None:
             print(f'msgstr \"{tran}\"')
         else:
-            print(f'msgstr \"\"')
+            print('msgstr \"\"')
 
     print("Output to the path:", new_po_cat, output_path)
     # c.dump_po(output_path, new_po_cat, line_width=1024)
     c.dump_po(output_path, new_po_cat)
-    _('DEBUG')
+    # _('DEBUG')
 
 
 def runAppOrNot():
