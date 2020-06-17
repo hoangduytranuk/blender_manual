@@ -391,7 +391,7 @@ def doctree_resolved(app, doctree, docname):
         ref_list.parseMessage()
         ref_list.translateRefList()
         tran = ref_list.getTranslation()
-        trans_finder.addBackupDict((msg, tran))
+        trans_finder.addDictEntry((msg, tran))
         print("Got translation from REF_LIST")
         return tran
 
@@ -519,40 +519,38 @@ def doctree_resolved(app, doctree, docname):
                             )
 
         tran = None
-        orig_msg = str(msg)
-        add_entry = None
-        is_debug = ('the id for' in msg.lower())
-        if is_debug:
-            _('DEBUG')
+        # is_debug = ('Get involved in discussions' in msg)
+        # if is_debug:
+        #     _('DEBUG')
         is_ignore = ig.isIgnored(msg)
         if is_ignore:
             print(f'IGNORED: {msg}')
             continue
-        else:
-            # is_added = False
-            tran, is_ignore = trans_finder.findTranslation(msg)
-            if is_ignore:
-                continue
+
+        # is_added = False
+        tran, is_ignore = trans_finder.findTranslation(msg)
+        if is_ignore:
+            continue
+
+        has_translation = (tran is not None)
+        if not has_translation:
+            tran = tranRef(msg, is_keep_original)
             has_translation = (tran is not None)
             if not has_translation:
-                has_translation = (msg in po_dic)
-                if has_translation:
-                    tran = po_dic[msg]
-                else:
-                    tran = tranRef(msg, is_keep_original)
-                    # print("Got translation from REFLIST")
+                tran = po_dic[msg]
 
-            has_translation = (tran is not None)
-            if has_translation:
-                has_month = ('Tháng ' in tran)
-                has_original = (msg.lower() in tran.lower())
-                has_link = (cm.REF_LINK.search(tran) is not None)
-                can_ignore = (has_month or has_original or has_link)
-                is_repeat = is_keep_original and not can_ignore
-                if is_repeat:
-                    print('Repeating MSG')
-                    tran = f'{tran} -- {msg}'
-                    print(f'Repeating MSG:{tran}')
+        has_translation = (tran is not None)
+        if has_translation:
+            has_month = ('Tháng ' in tran)
+            has_original = (msg.lower() in tran.lower())
+            has_link = (cm.REF_LINK.search(tran) is not None)
+            can_ignore = (has_month or has_original or has_link)
+            is_repeat = is_keep_original and not can_ignore
+            if is_repeat:
+                print('Repeating MSG')
+                tran = cm.matchCase(msg, tran)
+                tran = f'{tran} -- {msg}'
+                print(f'Repeating MSG:{tran}')
 
         if tran is not None:
             new_po_cat.add(msg, string=tran)

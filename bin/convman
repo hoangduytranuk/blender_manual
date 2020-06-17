@@ -1,12 +1,15 @@
 #!/bin/bash -x
 to_dir=~/blender_docs_backup
 
+# find $BLENDER_MAN_VI -type f -name '*.mo' -exec rm -f {} {} \;
 cd $BLENDER_MAN_EN
 #make -d -w -B -e SPHINXOPTS="-D language='vi'" 2>&1c
 # sphinx-build -b html -D language='en' ./manual "build/html/en"
+# make clean
 sphinx-build -b html -D language='vi' ./manual "build/html/vi"
 # sphinx-build -b latex -D language='vi' ./manual "build/latex"
-make -C
-cd -
-rsync -arP --exclude  exts/translate_po.py --delete $BLENDER_MAN_EN $to_dir/
+# make -C
+# cd -
+# rsync -arP --exclude  exts/translate_po.py --delete $BLENDER_MAN_EN $to_dir/
+rsync -arP --delete --exclude  exts/translate_po.py $BLENDER_MAN_EN $to_dir/
 # rsync -arP --exclude exts/translate_po.py $BLENDER_MAN_EN $BLENDER_GITHUB/blender_docs/

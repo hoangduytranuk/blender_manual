@@ -56,7 +56,7 @@ bl_info = {
 sep_table = (
     ('SP_DBL_HYPH_SP', '" -- "', ' Space Hyphen Space', 0),
     ('SP_ARCH_BRK', '" ("', 'Space Left Bracket', 1),
-    ('SP_SPACE', '" "', 'Space',2),
+    ('SP_SPACE', '" "', 'Space', 2),
 )
 
 rm_sym_list = ["`", "*", "'", "\"", "\\", "(", ")", "<", ">", "-"]
@@ -316,8 +316,8 @@ class MySettings(PropertyGroup):
     )
 
     removing_marker: BoolProperty(
-        name="Remove Marker",
-        description="Removing :<something>: in the text.",
+        name = "Remove Marker",
+        description = "Removing :<something>: in the text.",
         default=False,
     )
 
@@ -362,8 +362,15 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         #     sd.text =
 
     # taken this block from release/scripts/addons_contrib/text_editor_hastebin.py
+    def getFilePath(self, text):
+        return text.filepath
+
     def getSelectedText(self, text):
         """"""
+        # print(f'dir(text):{dir(text)}')
+        # print(f'file_path:{text.filepath}')
+        # return None
+
         current_line = text.current_line
         select_end_line = text.select_end_line
 
@@ -925,6 +932,10 @@ class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
         tran_part = None
 
         msg = self.getSelectedText(sd.text)
+        if msg is None:
+            self.report({'ERROR'}, "Must select a text with msgid and msgstr parts first!")
+            return {'CANCELLED'}
+
         text_list = msg.split('\n')
         print(f'text_list:{text_list}')
         has_more_than_one = (len(text_list) > 1)
@@ -1027,6 +1038,19 @@ class TEXT_OT_reload_dict(TEXT_OT_single_quoted_base):
         return {'FINISHED'}
 
 
+class TEXT_OT_flat_text(TEXT_OT_single_quoted_base):
+    bl_idname = "text.flat_file"
+    bl_label = "Flat File"
+    bl_description = "Flat out the currently shown PO file"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        file_path = self.getFilePath(sd.text)
+        trans_finder.flatPOFile(file_path)
+        return {'FINISHED'}
+
+
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
     bl_label = "Abbreviation Panel"
     bl_idname = "TEXT_PT_abbrev_selected_panel"
@@ -1116,6 +1140,7 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row = col.row(align=True)
         row.operator("text.translate", icon='MODIFIER_DATA')
         row.operator("text.reload_dict", icon='MODIFIER_DATA')
+        row.operator("text.flat_file", icon='MODIFIER_DATA')
         row = col.row(align=True)
         row.prop(my_tool, "create_entry_to_master_dict")
         row.operator("text.make_dict_entry", icon='MODIFIER_DATA')
@@ -1179,6 +1204,7 @@ classes = (
     TEXT_OT_translate,
     TEXT_OT_reload_dict,
     TEXT_OT_make_dict_entry,
+    TEXT_OT_flat_text,
 )
 
 

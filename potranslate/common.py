@@ -125,10 +125,15 @@ class Common:
     TAG_NAME='tagname'
     CLASS='classes'
 
-    TRIMMABLE_ENDING=re.compile(r'([\s\.\,\:\!]+)$')
+    COMMON_SENTENCE_BREAKS = re.compile(r'(?!\s)([^\.\,\:\!]+)\s?(?<!\s)')
+    TRIMMABLE_ENDING = re.compile(r'([\s\.\,\:\!]+)$')
     TRIMMABLE_BEGINNING=re.compile(r'^([\s\.\,]+)')
     TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
     HEADING_WITH_PUNCT = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]')
+
+    TRAILING_WITH_PUNCT_MULTI = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]+$')
+    HEADING_WITH_PUNCT_MULTI = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]+')
+
 
     RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
     RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
@@ -297,8 +302,15 @@ class Common:
             is_empty = (len(trans) == 0)
             if is_empty:
                 trans = None
-        trans = trans.replace("\\\"", "\"")
         return trans
+
+    def cleanSlashesQuote(msg):
+        if not msg:
+            return msg
+
+        msg = msg.replace("\\\"", "\"")
+        msg = msg.replace("\\\\", "\\")
+        return msg
 
     def patternMatchAllToList(pat, text):
         matching_list = {}

@@ -2735,11 +2735,15 @@ Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
         print(sorted(retain_l))
 
 
-
-
+    def test_0047(self):
+        COMMON_SENTENCE_BREAKS = re.compile(r'(?!\s)([^\.\,\:\!]+)\s?(?<!\s)')
+        t = "A new Blender version is targeted to be released every 3 months. The actual `release cycle <https://wiki.blender.org/wiki/Process/Release_Cycle>`__ for a specific release is longer, and overlaps the previous and next release cycle."
+        text_list = self.patternMatchAllToDict(COMMON_SENTENCE_BREAKS, t)
+        for loc, text in text_list.items():
+            print(f'{loc} = [{text}]')
 
     def run(self):
-        self.test_0046()
+        self.test_0047()
 
 class TextMap(OrderedDict):
     def __init__(self, text=None, dic=None):

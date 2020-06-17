@@ -1000,6 +1000,7 @@ class RefList(defaultdict):
             if self.keep_original:
                 has_original = (current_msg in current_tran)
                 if not has_original:
+                    current_tran = cm.matchCase(current_msg, current_tran)
                     txt = f'{current_msg} -- {current_tran}'
                 else:
                     txt = f'-- {current_msg}'
@@ -1118,6 +1119,7 @@ class RefList(defaultdict):
 
             has_tran = (tran is not None)
             if has_tran and self.keep_original:
+                tran = cm.matchCase(self.msg, tran)
                 tran = f"{tran} -- {self.msg}"
             elif not has_tran and self.keep_original:
                 tran = f"-- {self.msg}"
@@ -1292,6 +1294,7 @@ class RefList(defaultdict):
             valid = (trans is not None)
             if valid:
                 if self.keep_original:
+                    trans = cm.matchCase(self.msg, trans)
                     tran_text = f'{trans} -- {self.msg}'
                 else:
                     tran_text = trans
