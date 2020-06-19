@@ -324,7 +324,7 @@ class MySettings(PropertyGroup):
     create_entry_to_master_dict: BoolProperty(
         name = "Master Dict",
         description = "Using master dictionary as the destination for new entries, rather than backup.",
-        default=False,
+        default=True,
     )
 
 
@@ -364,6 +364,12 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
     # taken this block from release/scripts/addons_contrib/text_editor_hastebin.py
     def getFilePath(self, text):
         return text.filepath
+
+    def getTextAsDict(self, text):
+        bpy.ops.save()
+        po_path = text.filepath
+        po_dict, _ = trans_finder.loadPOAsDic(po_path)
+        return po_dict
 
     def getSelectedText(self, text):
         """"""
@@ -681,65 +687,10 @@ class TEXT_OT_single_quoted_forward(TEXT_OT_single_quoted_base):
 
     def invoke(self, context, event):
         result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
         return result
-
-class TEXT_OT_find_forward(TEXT_OT_single_quoted_base):
-    bl_idname = "text.find_forward"
-    bl_label = "Forward"
-    bl_description = "Find forward"
-    bl_context = 'scene'
-
-    def execute(self, context):
-        sd = context.space_data
-        text = self.getSelectedText(sd.text)
-        if text is None:
-            return {'CANCELLED'}
-        return {'FINISHED'}
-
-    def invoke(self, context, event):
-        result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
-        return result
-
-
-class TEXT_OT_find_backward(TEXT_OT_single_quoted_base):
-    bl_idname = "text.find_backward"
-    bl_label = "Backward"
-    bl_description = "Find backward"
-    bl_context = 'scene'
-
-    def execute(self, context):
-        sd = context.space_data
-        text = self.getSelectedText(sd.text)
-        if text is None:
-            return {'CANCELLED'}
-        return {'FINISHED'}
-
-    def invoke(self, context, event):
-        result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
-        return result
-
-
-class TEXT_OT_find_replace(TEXT_OT_single_quoted_base):
-    bl_idname = "text.find_replace"
-    bl_label = "Replace"
-    bl_description = "Replace with options"
-    bl_context = 'scene'
-
-    def execute(self, context):
-        sd = context.space_data
-        text = self.getSelectedText(sd.text)
-        if text is None:
-            return {'CANCELLED'}
-        return {'FINISHED'}
-
-    def invoke(self, context, event):
-        result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
-        return result
-
 
 class TEXT_OT_case_conversion(TEXT_OT_single_quoted_base):
     bl_idname = "text.case_conversion"
@@ -812,7 +763,9 @@ class TEXT_OT_parse_sentence(TEXT_OT_single_quoted_base):
 
     def invoke(self, context, event):
         result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
         return result
 
 class TEXT_OT_paste_join(TEXT_OT_single_quoted_base):
@@ -846,7 +799,9 @@ class TEXT_OT_paste_join(TEXT_OT_single_quoted_base):
 
     def invoke(self, context, event):
         result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
         return result
 
 class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
@@ -873,7 +828,9 @@ class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
 
     def invoke(self, context, event):
         result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
         return result
 
 class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
@@ -900,12 +857,12 @@ class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
 
     def invoke(self, context, event):
         result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
         return result
 
 
-# MSG_PATTERN = re.compile(r'^(msgid|msgstr)\s"(.*)"$', re.I)
-MSG_PATTERN = re.compile(r'"(.*)"')
 
 class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
     bl_idname = "text.make_dict_entry"
@@ -915,9 +872,12 @@ class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
 
     def execute(self, context):
         def getMsgParts(msg):
-            msg_part_list = MSG_PATTERN.findall(msg)
+
             if msg_part_list:
-                return msg_part_list[0]
+                msg = msg_part_list[0]
+                msg = msg.replace('"', '\\"')
+                msg = msg.replace("'", "\\'")
+                return msg
             else:
                 return None
 
@@ -936,47 +896,11 @@ class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
             self.report({'ERROR'}, "Must select a text with msgid and msgstr parts first!")
             return {'CANCELLED'}
 
-        text_list = msg.split('\n')
-        print(f'text_list:{text_list}')
-        has_more_than_one = (len(text_list) > 1)
-        if has_more_than_one:
-            msgid_part = text_list[0]
-            msgstr_part = text_list[1]
+        text_dict = cm.getMsgAsDict(msg)
+        for msgid, msgstr in text_dict.items():
+            entry=(msgid, msgstr)
+            trans_finder.addDictEntry(entry, is_master=is_using_master_dict)
 
-            print(f'msgid_part:{msgid_part}; msgstr_part:{msgstr_part}')
-            tail = getMsgParts(msgid_part)
-            if tail:
-                orig_part = tail
-            else:
-                self.report({'ERROR'}, "Unable to extract msgid part")
-                return {'CANCELLED'}
-
-            tail = getMsgParts(msgstr_part)
-            if tail:
-                tran_part = tail
-
-            if not tran_part:
-                tran_part = ""
-
-            print(f'orig_part:{orig_part}; tran_part:{tran_part}')
-        else:
-            orig_part = bpy.context.window_manager.clipboard
-            has_orig = len(orig_part) > 0
-            if not has_orig:
-                self.report({'ERROR'}, "Must first copied original text to clipboard")
-                return {'CANCELLED'}
-
-            tran_part = self.getSelectedText(sd.text)
-            if not tran_part:
-                self.report({'ERROR'}, "Must select a text to make a translation")
-                return {'CANCELLED'}
-
-        if is_reverse:
-            entry = (tran_part, orig_part)
-        else:
-            entry = (orig_part, tran_part)
-
-        trans_finder.addDictEntry(entry, is_master=is_using_master_dict)
         if is_using_master_dict:
             trans_finder.writeMasterDict()
         else:
@@ -985,7 +909,9 @@ class TEXT_OT_make_dict_entry(TEXT_OT_single_quoted_base):
 
     def invoke(self, context, event):
         result = self.execute(context)
-        self.restoreClibboardPreviousCopy()
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
         return result
 
 class TEXT_OT_translate(TEXT_OT_single_quoted_base):
@@ -1034,7 +960,47 @@ class TEXT_OT_reload_dict(TEXT_OT_single_quoted_base):
 
     def execute(self, context):
         # sd = context.space_data
-        trans_finder.reloadMasterDict()
+        sc = context.scene
+        var = sc.my_tool
+        is_using_master_dict = var.create_entry_to_master_dict
+        trans_finder.reloadChosenDict(is_master=is_using_master_dict)
+        return {'FINISHED'}
+
+class TEXT_OT_update_dict_using_screen_text(TEXT_OT_single_quoted_base):
+    bl_idname = "text.updatedict_usingpo"
+    bl_label = "PO to Dict"
+    bl_description = "Load the content of the current PO file on screen to a dictionary, recommend using BACKUP rather than MASTER"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        sc = context.scene
+        var = sc.my_tool
+
+        is_using_master_dict = var.create_entry_to_master_dict
+        # Save the file currently loaded
+        bpy.ops.text.save()
+        # get it's path from the text structure
+        file_path = self.getFilePath(sd.text)
+        # load PO content into the dictionary of choice
+        trans_finder.loadVIPOtoDic(file_path, is_master=is_using_master_dict)
+
+        return {'FINISHED'}
+
+class TEXT_OT_save_the_dictionary(TEXT_OT_single_quoted_base):
+    bl_idname = "text.save_dict"
+    bl_label = "Save Dict"
+    bl_description = "Save the chosen dictionary to its file"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        sc = context.scene
+        var = sc.my_tool
+
+        is_using_master_dict = var.create_entry_to_master_dict
+        trans_finder.writeChosenDict(is_using_master_dict)
+
         return {'FINISHED'}
 
 
@@ -1048,7 +1014,41 @@ class TEXT_OT_flat_text(TEXT_OT_single_quoted_base):
         sd = context.space_data
         file_path = self.getFilePath(sd.text)
         trans_finder.flatPOFile(file_path)
+        bpy.ops.text.reload()
         return {'FINISHED'}
+
+
+class TEXT_OT_is_in_dictionary(TEXT_OT_single_quoted_base):
+    bl_idname = "text.is_in_dictionary"
+    bl_label = "Is In"
+    bl_description = "Check to see if the selected text is already in the master dictionary or not"
+    bl_context = 'scene'
+
+    def execute(self, context):
+        sd = context.space_data
+        sc = context.scene
+        var = sc.my_tool
+        is_using_master_dict = var.create_entry_to_master_dict
+
+        text = self.getSelectedText(sd.text)
+        if not text:
+            self.report({'ERROR'}, "Must select a text with arched brackets to be converted")
+            return {'CANCELLED'}
+
+        is_found = trans_finder.isInListByDict(text, is_using_master_dict)
+        if is_found:
+            self.report({'INFO'}, f"Found:{is_found}")
+        else:
+            self.report({'ERROR'}, f"Not found")
+
+        return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
+        return result
 
 
 class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
@@ -1140,10 +1140,14 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row = col.row(align=True)
         row.operator("text.translate", icon='MODIFIER_DATA')
         row.operator("text.reload_dict", icon='MODIFIER_DATA')
-        row.operator("text.flat_file", icon='MODIFIER_DATA')
+        row.operator("text.flat_file", icon='FILE_TICK')
+        row.operator("text.updatedict_usingpo", icon='FILE_TICK')
+        row.operator("text.save_dict", icon='FILE_TICK')
+
         row = col.row(align=True)
         row.prop(my_tool, "create_entry_to_master_dict")
         row.operator("text.make_dict_entry", icon='MODIFIER_DATA')
+        row.operator("text.is_in_dictionary", icon='VIEWZOOM')
 
         row = col.row(align=True)
         row.operator("text.cut")
@@ -1191,9 +1195,6 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
 
 classes = (
     MySettings,
-    TEXT_OT_find_forward,
-    TEXT_OT_find_backward,
-    TEXT_OT_find_replace,
     TEXT_PT_abbrev_selected_panel,
     TEXT_OT_single_quoted_forward,
     TEXT_OT_case_conversion,
@@ -1205,6 +1206,9 @@ classes = (
     TEXT_OT_reload_dict,
     TEXT_OT_make_dict_entry,
     TEXT_OT_flat_text,
+    TEXT_OT_is_in_dictionary,
+    TEXT_OT_update_dict_using_screen_text,
+    TEXT_OT_save_the_dictionary,
 )
 
 

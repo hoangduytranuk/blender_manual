@@ -57,7 +57,6 @@ TIME_ZONE = 'Europe/London'
 RUNNING_APP_ENVIRON_KEY = 'EXEC_TRANSLATE_PO'
 trans_finder = tf()
 
-
 def doctree_resolved(app, doctree, docname):
 
     def abbreviating():
@@ -492,6 +491,11 @@ def doctree_resolved(app, doctree, docname):
     _("#" * 80)
     _("filename: {}".format(output_path))
 
+    # msgid = "Lines should be less than 120 characters long."
+    # msgstr = "Số chữ trong các dòng phải ít hơn 120 ký tự de lam gi."
+    # trans_finder.addDictEntry((msgid, msgstr), False)
+    # exit(0)
+
     for node, msg in extract_messages(doctree):
         msg = msg.strip()
         _("=" * 80)
@@ -673,7 +677,9 @@ def build_finished(app, exeption):
     # trans_finder.writeJSONDic(dic_list=sorted_list, file_name="/home/htran/20191228_dict_0001.json")
     # pp(sorted_list)
     # exit(0)
-    trans_finder.writeBackupDict()
+    trans_finder.writeChosenDict(is_master=True)
+    trans_finder.writeChosenDict(is_master=False)
+    # trans_finder.writeBackupDict()
     # trans_finder.writeMasterDict()
     _('DEBUG')
 

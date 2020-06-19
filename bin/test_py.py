@@ -32,6 +32,124 @@ starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|Howeve
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
 
+class TextMap(OrderedDict):
+    def __init__(self, text=None, dic=None):
+        self.dictionary = dic
+        self.text = text
+        self.wordsep = re.compile(r'[^\ ]+', re.I)
+
+    def genmap(self):
+        self.clear()
+        part_list = []
+        loc_dic = getLocationList(self.wordsep, self.text)
+        loc_key = list(loc_dic.keys())
+
+        max_len = len(loc_dic)
+        for step in range(1, max_len):
+            for i in range(0, max_len):
+                l=[]
+                for k in range(i, min(i+step, max_len)):
+                    loc = loc_key[k]
+                    # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
+                    l.append(loc_key[k])
+
+                s = []
+                for loc in l:
+                    word = loc_dic[loc]
+                    s.append(word)
+                t = " ".join(s)
+                print(f's location:{l}, text:{t}')
+
+                s_len = len(s)
+                ss = l[0][0]
+                ee = l[s_len-1][1]
+                k = (len(t), ee)
+                v = ((ss, ee), t)
+                entry=(k, v)
+                is_in = (entry in part_list)
+                if not is_in:
+                    part_list.append(entry)
+
+        sorted_partlist = list(reversed(sorted(part_list)))
+        for e in sorted_partlist:
+            k, v = e
+            dict_entry = {k: v}
+            self.update(dict_entry)
+
+    def blindTranslation(self, text=None, dic=None):
+        translated_dic = OrderedDict()
+        is_new_text = (self.text != text)
+
+        if is_new_text:
+            self.text = text
+            self.genmap()
+
+        if dic:
+            self.dictionary = dic
+
+        translated_dic = OrderedDict()
+        for k, v in self.items():
+            loc, orig_sub_text = v
+            has_tran = (orig_sub_text in self.dictionary)
+            if not has_tran:
+                continue
+            tran_sub_text = self.dictionary[orig_sub_text]
+            ss, ee = loc
+            entry = {ee: (ss, ee, tran_sub_text)}
+            translated_dic.update(entry)
+
+        sored_translated = list(reversed(sorted(translated_dic.items())))
+
+        tran_msg = str(msg)
+        for k, v in sored_translated:
+            ss, ee, tran_sub_text = v
+            left = tran_msg[:ss]
+            right = tran_msg[ee:]
+            tran_msg = left + tran_sub_text + right
+
+        return tran_msg
+
+
+class WCKLCIOrderedDict(defaultdict):
+    class Key(str):
+        def __init__(self, key):
+            str.__init__(key)
+
+        def __hash__(self):
+            k = self.lower()
+            hash_value = hash(k)
+            # _(f'key:{k}, hash_value:{hash_value}')
+            return hash_value
+
+        def __eq__(self, other):
+            local = self.lower()
+            extern = other.lower()
+            cond = (local == extern)
+            # _(f'__eq__: local:{local} extern:{extern}')
+            return cond
+
+    def __init__(self, data=None):
+        super(WCKLCIOrderedDict, self).__init__()
+        if data is None:
+            data = {}
+        for key, val in data.items():
+            self[key] = val
+
+    def __contains__(self, key):
+        key = self.Key(key)
+        is_there = super(WCKLCIOrderedDict, self).__contains__(key)
+        # _(f'__contains__:{key}, is_there:{is_there}')
+        return is_there
+
+    def __setitem__(self, key, value):
+        key = self.Key(key)
+        super(WCKLCIOrderedDict, self).__setitem__(key, value)
+
+
+    def __getitem__(self, key):
+        key = self.Key(key)
+        return super(WCKLCIOrderedDict, self).__getitem__(key)
+
 def split_into_sentences(text):
     text = " " + text + "  "
     text = text.replace("\n"," ")
@@ -2742,126 +2860,46 @@ Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
         for loc, text in text_list.items():
             print(f'{loc} = [{text}]')
 
+    def test_0048(self):
+        MSG_WITH_ID_PATTERN = re.compile(r'(msgid|msgstr)\s"(.*)"')
+        # p = re.compile(r'((?<![\\])[\'\"])((?:.(?!(?<![\\])\1))*.?)\1')
+        # p = re.compile(r'((?<![\\])[\'"])((?:.(?!(?<![\\])\1))*.?)\1')
+        # p = re.compile(r'((?<![\\])[\'"])((?:.)*.?)\1')
+        # p = re.compile(r'((msgid|msgstr)\s((?<![\\])[\'"])"(.?)"')
+        p = re.compile(r'"(?:[^\\"]|\\.)*"')
+        t = '''
+        # SOME DESCRIPTIVE TITLE.# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License# This file is distributed under the same license as the Blender 2.79 Manual# package.# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.##, fuzzymsgid ""msgstr """Project-Id-Version: Blender 2.79 Manual 2.79\n""Report-Msgid-Bugs-To: \n""POT-Creation-Date: 2020-06-01 12:14+1000\n""PO-Revision-Date: 2020-06-14 04:43+0100\n""Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n""Language: vi\n""Language-Team: London, UK <hoangduytran1960@gmail.com>\n""Plural-Forms: nplurals=1; plural=0\n""MIME-Version: 1.0\n""Content-Type: text/plain; charset=utf-8\n""Content-Transfer-Encoding: 8bit\n""Generated-By: Babel 2.8.0\n"#: ../../manual/about/index.rst:5msgid "Contribute Documentation"msgstr "Đóng Góp Tài Liệu -- Contribute Documentation"#: ../../manual/about/index.rst:7msgid "The Blender Manual is a community driven effort to which anyone can contribute. Whether you like to fix a tiny spelling mistake or rewrite an entire chapter, your help with the Blender manual is most welcome!"msgstr "Bản Hướng Dẫn Sử Dụng Blender là một cố gắng do cộng đồng điều vận và ai ai cũng có thể đóng góp phần mình vào được. Cho dù bạn muốn sửa đổi một lỗi đánh vần nhỏ, hoặc muốn viết lại toàn bộ nội dung của một chương đi chăng nữa, thì sự giúp đỡ của bạn với bản Hướng Dẫn Sử Dụng Blender cũng sẽ rất được hoan nghênh!"#: ../../manual/about/index.rst:11msgid "If you find an error in the documentation, please `report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__"msgstr "Nếu bạn tìm thấy một lỗi nào đó trong bản tài liệu thì xin làm ơn `báo cáo vấn đề -- report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__ cho chúng tôi biết"#: ../../manual/about/index.rst:14msgid "Get involved in discussions through the any of the project `Contacts`_"msgstr "Xin bạn hãy tham gia các cuộc bàn luận thông qua các `Đầu Mối Liên Lạc -- Contacts`_ của đề án"#: ../../manual/about/index.rst:20msgid "Getting Started"msgstr "Khởi Đầu -- Getting Started"#: ../../manual/about/index.rst:22msgid "The following guides lead you through the process."msgstr "Hướng dẫn sau đây sẽ dẫn dắt bạn qua toàn bộ quá trình."#: ../../manual/about/index.rst:35msgid "Guidelines"msgstr "Hướng Dẫn -- Guidelines"#: ../../manual/about/index.rst:46msgid "Translations"msgstr "Phiên Dịch -- Translations"#: ../../manual/about/index.rst:58msgid "Contacts"msgstr "Mối Liên Lạc -- Contacts"#: ../../manual/about/index.rst:60msgid "`Project Page <https://developer.blender.org/project/profile/53/>`__."msgstr "`Trang Của Đề Án -- Project Page <https://developer.blender.org/project/profile/53/>`__."#: ../../manual/about/index.rst:61msgid "An overview of the documentation project."msgstr "Một số khái quá về đề án viết tài liệu."#: ../../manual/about/index.rst:62msgid "`Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"msgstr "`Danh Sách Liên Lạc Thư Điện Tử -- Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"#: ../../manual/about/index.rst:63msgid "A mailing list for discussing ideas, and keeping track of progress."msgstr "Một bản danh sách liên lạc qua thư từ để bàn bạc các ý tưởng, đồng thời cũng là nơi để theo dõi sự tiến triển của của chúng."#: ../../manual/about/index.rst:65msgid "`Devtalk <https://devtalk.blender.org/c/documentation/12>`__"msgstr "`Trò Chuyện về Xây Dựng Phần Mềm -- Devtalk <https://devtalk.blender.org/c/documentation/12>`__"#: ../../manual/about/index.rst:65msgid "A forum based discussions on writing and translating documentation. This includes the user manual, wiki, release notes, and code docs."msgstr "Bàn luận trên diễn đàn về viết và dịch tài liệu. Tài liệu ở đây bao gồm bản hướng dẫn sử dụng, trang bách khoa toàn thư mở wiki, các các tài liều về mã nguồn."#: ../../manual/about/index.rst:67msgid ":ref:`blender-chat`"msgstr ""#: ../../manual/about/index.rst:68msgid "``#docs`` channel for informal discussions in real-time."msgstr "Kênh ``#docs`` (*tài liệu*) là kênh dùng cho các cuộc bàn bạc thân thiện, không chính thức, thời gian thật."#: ../../<generated>:1msgid "`Project Workboard <https://developer.blender.org/project/board/53/>`__"msgstr "`Bảng Phân Công Nhiệm Vụ Của Đề Án -- Project Workboard <https://developer.blender.org/project/board/53/>`__"#: ../../manual/about/index.rst:70msgid "Manage tasks such as bugs, todo lists, and future plans."msgstr "Quản lý các nhiệm vụ, như các lỗi trong phần mềm, danh sách những việc cần làm, và các kế hoạch trong tương lai."
+getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 2.79\\n""Report-Msgid-Bugs-To: \\n""POT-Creation-Date: 2020-06-01 12:14+1000\\n""PO-Revision-Date: 2020-06-14 04:43+0100\\n""Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\\n""Language: vi\\n""Language-Team: London, UK <hoangduytran1960@gmail.com>\\n""Plural-Forms: nplurals=1; plural=0\\n""MIME-Version: 1.0\\n""Content-Type: text/plain; charset=utf-8\\n""Content-Transfer-Encoding: 8bit\\n""Generated-By: Babel 2.8.0\\n"#: ../../manual/about/index.rst:5msgid "Contribute Documentation"msgstr "Đóng Góp Tài Liệu -- Contribute Documentation"#: ../../manual/about/index.rst:7msgid "The Blender Manual is a community driven effort to which anyone can contribute. Whether you like to fix a tiny spelling mistake or rewrite an entire chapter, your help with the Blender manual is most welcome!"msgstr "Bản Hướng Dẫn Sử Dụng Blender là một cố gắng do cộng đồng điều vận và ai ai cũng có thể đóng góp phần mình vào được. Cho dù bạn muốn sửa đổi một lỗi đánh vần nhỏ, hoặc muốn viết lại toàn bộ nội dung của một chương đi chăng nữa, thì sự giúp đỡ của bạn với bản Hướng Dẫn Sử Dụng Blender cũng sẽ rất được hoan nghênh!"#: ../../manual/about/index.rst:11msgid "If you find an error in the documentation, please `report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__"msgstr "Nếu bạn tìm thấy một lỗi nào đó trong bản tài liệu thì xin làm ơn `báo cáo vấn đề -- report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__ cho chúng tôi biết"#: ../../manual/about/index.rst:14msgid "Get involved in discussions through the any of the project `Contacts`_"msgstr "Xin bạn hãy tham gia các cuộc bàn luận thông qua các `Đầu Mối Liên Lạc -- Contacts`_ của đề án"#: ../../manual/about/index.rst:20msgid "Getting Started"msgstr "Khởi Đầu -- Getting Started"#: ../../manual/about/index.rst:22msgid "The following guides lead you through the process."msgstr "Hướng dẫn sau đây sẽ dẫn dắt bạn qua toàn bộ quá trình."#: ../../manual/about/index.rst:35msgid "Guidelines"msgstr "Hướng Dẫn -- Guidelines"#: ../../manual/about/index.rst:46msgid "Translations"msgstr "Phiên Dịch -- Translations"#: ../../manual/about/index.rst:58msgid "Contacts"msgstr "Mối Liên Lạc -- Contacts"#: ../../manual/about/index.rst:60msgid "`Project Page <https://developer.blender.org/project/profile/53/>`__."msgstr "`Trang Của Đề Án -- Project Page <https://developer.blender.org/project/profile/53/>`__."#: ../../manual/about/index.rst:61msgid "An overview of the documentation project."msgstr "Một số khái quá về đề án viết tài liệu."#: ../../manual/about/index.rst:62msgid "`Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"msgstr "`Danh Sách Liên Lạc Thư Điện Tử -- Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"#: ../../manual/about/index.rst:63msgid "A mailing list for discussing ideas, and keeping track of progress."msgstr "Một bản danh sách liên lạc qua thư từ để bàn bạc các ý tưởng, đồng thời cũng là nơi để theo dõi sự tiến triển của của chúng."#: ../../manual/about/index.rst:65msgid "`Devtalk <https://devtalk.blender.org/c/documentation/12>`__"msgstr "`Trò Chuyện về Xây Dựng Phần Mềm -- Devtalk <https://devtalk.blender.org/c/documentation/12>`__"#: ../../manual/about/index.rst:65msgid "A forum based discussions on writing and translating documentation. This includes the user manual, wiki, release notes, and code docs."msgstr "Bàn luận trên diễn đàn về viết và dịch tài liệu. Tài liệu ở đây bao gồm bản hướng dẫn sử dụng, trang bách khoa toàn thư mở wiki, các các tài liều về mã nguồn."#: ../../manual/about/index.rst:67msgid ":ref:`blender-chat`"msgstr ""#: ../../manual/about/index.rst:68msgid "``#docs`` channel for informal discussions in real-time."msgstr "Kênh ``#docs`` (*tài liệu*) là kênh dùng cho các cuộc bàn bạc thân thiện, không chính thức, thời gian thật."#: ../../<generated>:1msgid "`Project Workboard <https://developer.blender.org/project/board/53/>`__"msgstr "`Bảng Phân Công Nhiệm Vụ Của Đề Án -- Project Workboard <https://developer.blender.org/project/board/53/>`__"#: ../../manual/about/index.rst:70msgid "Manage tasks such as bugs, todo lists, and future plans."msgstr "Quản lý \\"các nhiệm vụ\\", như các lỗi trong phần mềm, danh sách những việc cần làm, và các kế hoạch trong tương lai."
+                 
+
+        '''
+        # all_list = self.patternMatchAllToDict(MSG_WITH_ID_PATTERN, t)
+        all_list = self.patternMatchAllToDict(p, t)
+        print(all_list)
+        exit(0)
+        result_dict = {}
+        count=0
+        entry=None
+        msgid_part = msgstr_part = None
+        for loc, v in all_list.items():
+            msg = v[1:-1]
+            msg = msg.replace('"', '\\"')
+            msg = msg.replace("'", "\\'")
+            is_even_line_index = (count % 2 == 0)
+            if is_even_line_index:
+                msgid_part = msg
+            else:
+                msgstr_part = msg
+                entry = {msgid_part: msgstr_part}
+                result_dict.update(entry)
+            count += 1
+
+        print(result_dict)
+
     def run(self):
-        self.test_0047()
-
-class TextMap(OrderedDict):
-    def __init__(self, text=None, dic=None):
-        self.dictionary = dic
-        self.text = text
-        self.wordsep = re.compile(r'[^\ ]+', re.I)
-
-    def genmap(self):
-        self.clear()
-        part_list = []
-        loc_dic = getLocationList(self.wordsep, self.text)
-        loc_key = list(loc_dic.keys())
-
-        max_len = len(loc_dic)
-        for step in range(1, max_len):
-            for i in range(0, max_len):
-                l=[]
-                for k in range(i, min(i+step, max_len)):
-                    loc = loc_key[k]
-                    # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
-                    l.append(loc_key[k])
-
-                s = []
-                for loc in l:
-                    word = loc_dic[loc]
-                    s.append(word)
-                t = " ".join(s)
-                print(f's location:{l}, text:{t}')
-
-                s_len = len(s)
-                ss = l[0][0]
-                ee = l[s_len-1][1]
-                k = (len(t), ee)
-                v = ((ss, ee), t)
-                entry=(k, v)
-                is_in = (entry in part_list)
-                if not is_in:
-                    part_list.append(entry)
-
-        sorted_partlist = list(reversed(sorted(part_list)))
-        for e in sorted_partlist:
-            k, v = e
-            dict_entry = {k: v}
-            self.update(dict_entry)
-
-    def blindTranslation(self, text=None, dic=None):
-        translated_dic = OrderedDict()
-        is_new_text = (self.text != text)
-
-        if is_new_text:
-            self.text = text
-            self.genmap()
-
-        if dic:
-            self.dictionary = dic
-
-        translated_dic = OrderedDict()
-        for k, v in self.items():
-            loc, orig_sub_text = v
-            has_tran = (orig_sub_text in self.dictionary)
-            if not has_tran:
-                continue
-            tran_sub_text = self.dictionary[orig_sub_text]
-            ss, ee = loc
-            entry = {ee: (ss, ee, tran_sub_text)}
-            translated_dic.update(entry)
-
-        sored_translated = list(reversed(sorted(translated_dic.items())))
-
-        tran_msg = str(msg)
-        for k, v in sored_translated:
-            ss, ee, tran_sub_text = v
-            left = tran_msg[:ss]
-            right = tran_msg[ee:]
-            tran_msg = left + tran_sub_text + right
-
-        return tran_msg
+        self.test_0048()
 
 
-class WCKLCIOrderedDict(defaultdict):
-    class Key(str):
-        def __init__(self, key):
-            str.__init__(key)
-
-        def __hash__(self):
-            k = self.lower()
-            hash_value = hash(k)
-            # _(f'key:{k}, hash_value:{hash_value}')
-            return hash_value
-
-        def __eq__(self, other):
-            local = self.lower()
-            extern = other.lower()
-            cond = (local == extern)
-            # _(f'__eq__: local:{local} extern:{extern}')
-            return cond
-
-    def __init__(self, data=None):
-        super(WCKLCIOrderedDict, self).__init__()
-        if data is None:
-            data = {}
-        for key, val in data.items():
-            self[key] = val
-
-    def __contains__(self, key):
-        key = self.Key(key)
-        is_there = super(WCKLCIOrderedDict, self).__contains__(key)
-        # _(f'__contains__:{key}, is_there:{is_there}')
-        return is_there
-
-    def __setitem__(self, key, value):
-        key = self.Key(key)
-        super(WCKLCIOrderedDict, self).__setitem__(key, value)
-
-
-    def __getitem__(self, key):
-        key = self.Key(key)
-        return super(WCKLCIOrderedDict, self).__getitem__(key)
 
 
 

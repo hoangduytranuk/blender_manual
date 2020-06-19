@@ -131,8 +131,8 @@ class Common:
     TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
     HEADING_WITH_PUNCT = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]')
 
-    TRAILING_WITH_PUNCT_MULTI = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]+$')
-    HEADING_WITH_PUNCT_MULTI = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]+')
+    TRAILING_WITH_PUNCT_MULTI = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+$')
+    HEADING_WITH_PUNCT_MULTI = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+')
 
 
     RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
@@ -205,6 +205,8 @@ class Common:
 
     SPACE_WORD_SEP =  re.compile(r'[^\ ]+')
 
+    QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
+
     def replaceArchedQuote(txt):
         new_txt = str(txt)
         new_txt = re.sub('\)', ']', new_txt)
@@ -232,7 +234,7 @@ class Common:
     def matchCase(from_str : str , to_str : str):
         new_str = str(to_str)
         is_title = (from_str.istitle())
-        ga_ref_parts = Common.patternMatchAllToList(Common.GA_REF_PART, new_str)
+        ga_ref_parts = Common.patternMatchAllToDict(Common.GA_REF_PART, new_str)
         if is_title:
             new_str = new_str.title()
         else:
@@ -312,7 +314,7 @@ class Common:
         msg = msg.replace("\\\\", "\\")
         return msg
 
-    def patternMatchAllToList(pat, text):
+    def patternMatchAllToDict(pat, text):
         matching_list = {}
         for m in pat.finditer(text):
             s = m.start()
@@ -624,3 +626,28 @@ class Common:
 
     def getFileCreatedTime(filename):
         return time.ctime( os.path.getctime(filename))
+
+    def getMsgAsDict(txt):
+        result_dict={}
+        if not txt:
+            return result_dict
+
+        parsed_list = Common.patternMatchAllToDict(Common.QUOTED_MSG_PATTERN, txt)
+        print(f'getMsgAsDict:{parsed_list}')
+        count=0
+        entry=None
+        msgid_part = msgstr_part = None
+        for loc, v in parsed_list.items():
+            msg = v[1:-1]
+            msg = msg.replace('"', '\\"')
+            msg = msg.replace("'", "\\'")
+            is_even_line_index = (count % 2 == 0)
+            if is_even_line_index:
+                msgid_part = msg
+            else:
+                msgstr_part = msg
+                entry = {msgid_part: msgstr_part}
+                print(f'getMsgAsDict entry:{entry}')
+                result_dict.update(entry)
+            count += 1
+        return result_dict
