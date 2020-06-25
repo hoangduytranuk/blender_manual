@@ -9,6 +9,7 @@ import sys
 import math
 import locale
 import datetime
+from collections import OrderedDict
 from time import gmtime, strftime, time
 from pytz import timezone
 from argparse import ArgumentParser
@@ -18,37 +19,103 @@ from babel.messages import pofile
 from enum import Enum
 import chardet
 
-CURRENT_FILE_NAME = None
-FILE_NAME_SHOWED = False
 INVERT_SEP='•'
 # DEBUG = True
 DEBUG = False
 
-def setfilename(file_name):
-    global CURRENT_FILE_NAME
-    CURRENT_FILE_NAME = file_name
+class FoundRecord(OrderedDict):
+    def __init__(self, filename):
+        self.file_name = filename
+    @property
+    def filename(self):
+        return self.file_name
 
-def showfilename():
-    global FILE_NAME_SHOWED
-    if not FILE_NAME_SHOWED:
-        print(CURRENT_FILE_NAME)
+    @filename.setter
+    def filename(self, new_name):
+        self.file_name = new_name
+
+    def show(self):
+        has_items = (len(self) > 0)
+        if not has_items:
+            return
+
+        if self.file_name:
+            print(f'file_name:{self.file_name}')
+            print('-' * 80)
+
+        for loc, line in self.items():
+            print(f'{loc}: {line}')
+        print()
+
+    def addFound(self, loc, line):
+        entry = {loc: line}
+        self.update(entry)
+
+    def reset(self):
+        self.file_name = None
+        self.clear()
+
+class ShowFileName:
+    def __init__(self):
+        self.CURRENT_FILE_NAME = None
+        self.FILE_NAME_SHOWED = False
+
+    @property
+    def fileName(self):
+        return self.CURRENT_FILE_NAME
+
+    @fileName.setter
+    def fileName(self, name):
+        if not name:
+            self.CURRENT_FILE_NAME = name
+            return
+
+        is_debug = ('__init__' in name) and ('babel' in name)
+        if is_debug:
+            print('DEBUG')
+        self.CURRENT_FILE_NAME = name
+
+    @property
+    def showed(self):
+        return self.FILE_NAME_SHOWED
+
+    @showed.setter
+    def showed(self, value):
+        self.FILE_NAME_SHOWED = value
+
+    def reset(self):
+        self.fileName = None
+        self.showed = False
+
+    def showFileName(self, extra=None):
+        if not self.fileName:
+            return
+
+        if self.showed:
+            return
+
+        if extra:
+            print(f'{extra} {self.fileName}')
+        else:
+            print(f'{self.fileName}')
         print("="*80)
-        FILE_NAME_SHOWED=True
+        self.showed = True
 
-def resetfilenameshowed():
-    global FILE_NAME_SHOWED
-    FILE_NAME_SHOWED=False
-
+fname_shower = ShowFileName()
 
 def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
-    showfilename()
     if DEBUG:
+        file_name = fname_shower.fileName
+        if file_name:
+            print(f'file_name:{file_name}')
         pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
         print('-' * 30)
 
 def _(*args, **kwargs):
-    showfilename()
     if DEBUG:
+        file_name = fname_shower.fileName
+        if file_name:
+            print(f'file_name:{file_name}')
         print(args, kwargs)
         print('-' * 30)
 
@@ -180,6 +247,7 @@ class FindFilesHasPattern:
     def __init__(self):
         self.basic_io = BasicIO()
         self.found_lines_dic = {}
+        self.found_record: FoundRecord = None
 
     def getCase(self, lower_case, upper_case, capital_case, title_case):
         actual_case = LetterCase.NO_CHANGE
@@ -250,6 +318,7 @@ class FindFilesHasPattern:
         self.show_line_number = (True if show_line_number else False)
         self.invert_match = (True if invert_match else False)
         self.testing_only = (True if testing_only else False)
+
 
     def patternMatchAll(self, pat, text):
         try:
@@ -370,11 +439,13 @@ class FindFilesHasPattern:
                 if py_dir and py_dir.endswith(':'):
                     py_dir = py_dir[:-1]
 
-                _(f'py_dir:{py_dir}')
-                py_file_list = self.getFileList(py_dir, ".py")
-                _("py_file_list")
-                pp(py_file_list)
-                search_file_list.extend(py_file_list)
+                py_dir_list = py_dir.split(':')
+                for p_dir in py_dir_list:
+                    _(f'p_dir:{p_dir}')
+                    py_file_list = self.getFileList(p_dir, ".py")
+                    _("py_file_list")
+                    pp(py_file_list)
+                    search_file_list.extend(py_file_list)
 
             if self.find_py:
                 py_dir = os.environ['LOCAL_PYTHON_3']
@@ -422,13 +493,13 @@ class FindFilesHasPattern:
 
         # _("SEARCHING:")
         for f in search_file_list:
-            #_("processing:", f, "for", self.find_pattern)
-            setfilename(f)
+            self.found_record = FoundRecord(f)
             if is_replace:
                 self.replaceInPOFile(f)
             else:
                 self.findPatternInFile(f)
-            resetfilenameshowed()
+            self.found_record.show()
+            self.found_record.reset()
 
     def listingRange(self, data_list, found_index):
         has_from_line = (self.from_line >= 0)
@@ -453,6 +524,7 @@ class FindFilesHasPattern:
             _("to_line", to_line)
 
         _("found_index", found_index, "from_line", from_line, "to_line", to_line)
+        added_count=0
         for index in range(from_line, to_line):
             text_line = data_list[index]
             if self.only_match:
@@ -466,8 +538,14 @@ class FindFilesHasPattern:
                 match_text = text_line
 
             entry = {index: match_text}
-            self.found_lines_dic.update(entry)
-            _(entry)
+            self.found_record.update(entry)
+            added_count += 1
+            # self.found_lines_dic.update(entry)
+            # _(entry)
+        if added_count:
+            entry = {-1 * index: '-' * 20}
+            self.found_record.update(entry)
+
 
 
     def reportFind(self, data):
@@ -476,29 +554,33 @@ class FindFilesHasPattern:
         for line_no, data_line in enumerate(data_list):
             if self.invert_match:
                 if self.only_match:
-                    # print('invert_match and only match')
+                    _('invert_match and only match')
                     replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
                     exc_list = replaced_line.split(INVERT_SEP)
                     is_found = (len(exc_list) > 0)
                 else:
-                    # print('invert_match and normal')
+                    _('invert_match and normal')
                     is_found = (self.find_pattern.search(data_line) == None)
             else:
-                # print('NOT invert')
+                _('NOT invert')
                 is_found = (self.find_pattern.search(data_line) != None)
 
             if is_found:
-                #print(line_no, data_line)
+                _(line_no, data_line)
                 self.listingRange(data_list, line_no)
 
-        has_result = (len(self.found_lines_dic) > 0)
-        if has_result:
-            showfilename()
-            if self.show_line_number:
-                pp(self.found_lines_dic)
-            else:
-                for k, v in self.found_lines_dic.items():
-                    print(v)
+        # has_result = (len(self.found_lines_dic) > 0)
+        # if has_result:
+        #     fname_shower.showFileName(extra='reportFind: has_result=')
+        #     if self.show_line_number:
+        #         pp(self.found_lines_dic)
+        #     else:
+        #         f_name = fname_shower.fileName
+        #         for k, v in self.found_lines_dic.items():
+        #             if f_name:
+        #                 print(f'{f_name}:{v}')
+        #             else:
+        #                 print(v)
 
     def findPatternInFile(self, file_path):
         data = self.basic_io.readTextFile(file_path)
@@ -562,10 +644,7 @@ class FindFilesHasPattern:
             if has_changed:
                 m.string = new_translation
                 changed = True
-                showfilename()
-                print("Replaced:")
-                print(f'old msgstr \"{old_translation}\"')
-                print(f'new msgstr \"{new_translation}\"')
+                self.found_record.addFound(m.lineno, f'Replaced:\nold msgstr \"{old_translation}\"\nnew msgstr \"{new_translation}\"')
 
         is_writing_changes = (changed and not self.testing_only)
         if is_writing_changes:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import html #for escaping html
 import sys
-sys.path.append('/usr/local/lib/python3.7/site-packages')
+# sys.path.append('/usr/local/lib/python3.7/site-packages')
 
 # print(f'common sys.path: {sys.path}')
 
@@ -56,6 +56,8 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
+    # debug_file = 'animation/armatures/posing/bone_constraints/introduction' # e.g.
+    # debug_file = 'animation/armatures/posing/bone_constraints/inverse_kinematics/introduction' # kbd WheelDown/Up
     # debug_file = "video_editing/sequencer/strips/effects/subtract"
     # debug_file = "video_editing/introduction"
     # debug_file = "about/contribute/index"
@@ -73,7 +75,7 @@ class Common:
     # debug_file = "about/contribute/build/macos"
     # debug_file = "about/contribute/guides/maintenance_guide"
     # debug_file = "about/contribute/guides/markup_guide" # debugging :term: :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
-    debug_file = "about"
+    # debug_file = "about"
     # debug_file = "about/contribute/install/windows"
     # debug_file = "about/license" # (online) or URL (in print) to manual
     # debug_file = "addons/3d_view/3d_navigation" # debugging :menuselection:
@@ -134,6 +136,8 @@ class Common:
     TRAILING_WITH_PUNCT_MULTI = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+$')
     HEADING_WITH_PUNCT_MULTI = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+')
 
+    REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
+    REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&\,\.]+$')
 
     RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
     RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
@@ -153,7 +157,7 @@ class Common:
     NON_WORD_ONLY = re.compile(r'^([\W]+)$')
     NON_WORD = re.compile(r'([\W]+)')
 
-    GA_REF_PART = re.compile(r':[^\:]+:')
+    GA_REF_PART = re.compile(r':[\w]+:')
     GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     GA_REF_ONLY = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
@@ -207,6 +211,8 @@ class Common:
 
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
 
+    BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
+
     def replaceArchedQuote(txt):
         new_txt = str(txt)
         new_txt = re.sub('\)', ']', new_txt)
@@ -232,25 +238,63 @@ class Common:
         return is_special
 
     def matchCase(from_str : str , to_str : str):
+        WORD_SHOULD_BE_LOWER = [
+            'trong',
+            'các',
+            'những',
+            'và',
+            'thì'
+            'là',
+            'hoặc',
+            'mà',
+            'có',
+            'của',
+            'với',
+            'đến',
+            'tới',
+        ]
+        def lowercase(loc_text_dict, new_str):
+            for loc, text in ga_ref_dic.items():
+                s, e = loc
+                lcase_text = text.lower()
+                left_part = new_str[:s]
+                right_part = new_str[e:]
+                new_str = left_part + lcase_text + right_part
+            return new_str
+
+        valid = (from_str and to_str)
+        if not valid:
+            return to_str
+
         new_str = str(to_str)
-        is_title = (from_str.istitle())
-        ga_ref_parts = Common.patternMatchAllToDict(Common.GA_REF_PART, new_str)
-        if is_title:
-            new_str = new_str.title()
+
+        # first_char = from_str[0]
+        # remain_part = from_str[1:]
+        # is_first_upper = (first_char.isupper() and remain_part.islower())
+        # if is_first_upper:
+        #     first_char = new_str[0].upper()
+        #     remain_part = new_str[1:].lower()
+        #     new_str = first_char + remain_part
+        # else:
+        is_lower = (from_str.islower())
+        if is_lower:
+            new_str = new_str.lower()
         else:
-            is_upper = (from_str.isupper())
-            if is_upper:
-                new_str = new_str.upper()
+            is_title = (from_str.istitle())
+            if is_title:
+                new_str = new_str.title()
             else:
-                is_lower = (from_str.islower())
-                if is_lower:
-                    new_str = new_str.lower()
-        # for loc, ref_text in ga_ref_parts.items():
-        #     s, e = loc
-        #     ref_text = ref_text.lower()
-        #     left = new_str[:s]
-        #     right = new_str[e:]
-        #     new_str = left + ref_text + right
+                is_upper = (from_str.isupper())
+                if is_upper:
+                    new_str = new_str.upper()
+
+        # ensure ref keywords ':doc:' is always lowercase
+        ga_ref_dic = Common.patternMatchAllToDict(Common.GA_REF_PART, new_str)
+        new_str = lowercase(ga_ref_dic, new_str)
+        for lcase_word in WORD_SHOULD_BE_LOWER:
+            p = re.compile(r'\b%s\b' % lcase_word)
+            p_list = Common.patternMatchAllToDict(p, new_str)
+            new_str = lowercase(p_list, new_str)
 
         return new_str
 
@@ -651,3 +695,146 @@ class Common:
                 result_dict.update(entry)
             count += 1
         return result_dict
+
+    def removeLeadingTrailingSymbs(txt):
+        def cleanForward(txt, pair_dict, leading_set):
+            if not leading_set:
+                return txt, leading_set
+
+            temp_txt = str(txt)
+            count = 0
+            for sym_on in leading_set:
+                is_sym_on_in_dict = (sym_on in pair_dict)
+                if not is_sym_on_in_dict:
+                    continue
+
+                sym_off = pair_dict[sym_on]
+                temp = temp_txt[1:]
+                is_balance = Common.isBalancedSymbol(sym_on, sym_off, temp)
+                if is_balance:
+                    temp_txt = temp
+                    count += 1
+            if count > 0:
+                leading_set = leading_set[count:]
+            return temp_txt, leading_set
+
+        def cleanBackward(txt, pair_dict, trailing_set):
+            if not trailing_set:
+                return txt, trailing_set
+
+            temp_txt = str(txt)
+            count = 0
+            for sym_off in reversed(trailing_set):
+                is_controlled = (sym_off in pair_dict)
+                if not is_controlled:
+                    temp_txt = temp_txt[:-1]
+                    count += 1
+                    continue
+
+                sym_on = pair_dict[sym_off]
+                temp = temp_txt[:-1]
+                is_balance = Common.isBalancedSymbol(sym_on, sym_off, temp)
+                if is_balance:
+                    temp_txt = temp
+                    count += 1
+            if count > 0:
+                trailing_set = trailing_set[:-count]
+            return temp_txt, trailing_set
+
+        def cleanBothEnds(txt, pair_dict, leading_set, trailing_set):
+            count = 0
+            temp_txt = str(txt)
+
+            if leading_set and trailing_set:
+                symbol_set = leading_set + trailing_set
+            elif leading_set:
+                symbol_set = leading_set
+            elif trailing_set:
+                symbol_set = trailing_set
+            else:
+                return temp_txt, leading_set, trailing_set
+
+            for sym_on in symbol_set:
+                is_sym_off_there = (sym_on in pair_dict)
+                if not is_sym_off_there:
+                    break
+
+                sym_off = pair_dict[sym_on]
+                is_both_ends = (temp_txt.startswith(sym_on) and temp_txt.endswith(sym_off))
+                if not is_both_ends:
+                    continue
+
+                temp = temp_txt[1:-1]
+                is_balance = Common.isBalancedSymbol(sym_on, sym_off, temp)
+                if is_balance:
+                    temp_txt = temp
+                    count += 1
+            if count > 0:
+                leading_set = leading_set[count:]
+                trailing_set = trailing_set[:-count]
+            return temp_txt, leading_set, trailing_set
+
+        # txt = '   ({this}....,!'
+        # # txt = '(also :kbd:`Shift-W` :menuselection:`--> (Locked, ...)`) This will prevent all editing of the bone in *Edit Mode*; see :ref:`bone locking <animation_armatures_bones_locking>`'
+        # # txt = '(Top/Side/Front/Camera...)'
+        txt = txt.strip()
+
+        pair_list = [('{', '}'), ('[', ']'), ('(', ')'), ('<', '>'), ('$', '$'),(':', ':'), ('*', '*'), ('\'', '\''), ('"', '"'), ('`', '`'),]
+        pair_dict = {}
+        for p in pair_list:
+            s, e = p
+            entry_1 = {s:e}
+            entry_2 = {e:s}
+            pair_dict.update(entry_1)
+            pair_dict.update(entry_2)
+
+        leading_set = Common.REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
+        if leading_set:
+            leading_set = leading_set[0]
+
+        trailing_set = Common.REMOVABLE_SYMB_FULLSET_BACK.findall(txt)
+        if trailing_set:
+            trailing_set = trailing_set[0]
+
+        temp_txt = str(txt)
+        temp_txt, leading_set, trailing_set = cleanBothEnds(temp_txt, pair_dict, leading_set, trailing_set)
+
+        temp_txt, leading_set = cleanForward(temp_txt, pair_dict, leading_set)
+        temp_txt, trailing_set = cleanBackward(temp_txt, pair_dict, trailing_set)
+
+        temp_txt, _, _ = cleanBothEnds(temp_txt, pair_dict, leading_set, trailing_set)
+        return temp_txt
+
+    def isBalancedSymbol(symb_on, symb_off, txt):
+        p_str = f'\{symb_on}([^\{symb_on}\{symb_off}]+)\{symb_off}'
+        p_exp = r'%s' % (p_str.replace("\\\\", "\\"))
+        pattern = re.compile(p_exp)
+        p_list = Common.patternMatchAllToDict(pattern, txt)
+        has_p_list = (len(p_list) > 0)
+        if has_p_list:
+            temp_txt = str(txt)
+            for loc, txt in p_list.items():
+                s, e = loc
+                left = temp_txt[:s]
+                right = temp_txt[e:]
+                temp_txt = left + right
+            return not ((symb_on in temp_txt) or (symb_off in temp_txt))
+        else:
+            return True
+        # default_last_i = 0xffffffff
+        # counter = 0
+        # last_i = default_last_i
+        # off_happened_first = False
+        # for i, c in enumerate(text):
+        #     is_on = (i != last_i) and (c == symb_on)
+        #     if is_on:
+        #         counter += 1
+        #         last_i = i
+        #     else:
+        #         is_off = (i != last_i) and (c == symb_off)
+        #         if is_off:
+        #             off_happened_first = (last_i == default_last_i)
+        #             counter -= 1
+        #             last_i = i
+        #
+        # return (counter == 0) and not (off_happened_first)

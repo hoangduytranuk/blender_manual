@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+# sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import re
 import bpy

@@ -2,8 +2,8 @@
 #!/usr/local/bin/python3
 
 import sys
-sys.path.append('/usr/local/lib/python3.7/site-packages')
-sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+# sys.path.append('/usr/local/lib/python3.7/site-packages')
+# sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 # print(sys.path)
 
 # sys.path.append('/home/htran/bin/python/PO')
@@ -39,7 +39,7 @@ import locale
 import datetime
 from time import gmtime, strftime, time
 from pytz import timezone
-import Levenshtein as LE
+# import Levenshtein as LE
 from pprint import pprint as PP
 
 try:
@@ -63,7 +63,7 @@ def doctree_resolved(app, doctree, docname):
         remove_items = []
         new_items = {}
 
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             ref_list = RefList(msg=v)
             new_v = ref_list.quotedToAbbrev(k)
             has_new_v = (new_v is not None) and (len(new_v) > 0)
@@ -75,17 +75,17 @@ def doctree_resolved(app, doctree, docname):
         if has_remove_items:
             for k in remove_items:
                 _(f'Delete from dictionary:[{k}]')
-                del trans_finder.master_dic_list[k]
+                del trans_finder.master_dic[k]
 
         is_writing_changes = (len(new_items) > 0)
         if is_writing_changes:
-            trans_finder.master_dic_list.update(new_items)
+            trans_finder.master_dic.update(new_items)
             dic_file = '/Users/hoangduytran/blender_manual/test_dic.json'
             print(f'Writing changes to: {dic_file}, number of records:{len(new_items)}')
-            trans_finder.writeJSONDic(dict_list=trans_finder.master_dic_list, file_name=dic_file)
+            trans_finder.writeJSONDic(dict_list=trans_finder.master_dic, file_name=dic_file)
 
     def checkDictKeyboard():
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             k_list = RefList(msg=k, tf=trans_finder)
             k_list.parseMessage()
             v_list = RefList(msg=v, tf=trans_finder)
@@ -104,7 +104,7 @@ def doctree_resolved(app, doctree, docname):
                 print('-----')
 
     def checkDictRef():
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             k_list = RefList(msg=k, tf=trans_finder)
             k_list.parseMessage()
             v_list = RefList(msg=v, tf=trans_finder)
@@ -127,7 +127,7 @@ def doctree_resolved(app, doctree, docname):
             print('--------')
 
     def checkNonTranslatedDictWords():
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             k_list = RefList(msg=k, tf=trans_finder)
             k_list.parseMessage()
             v_list = RefList(msg=v, tf=trans_finder)
@@ -160,7 +160,7 @@ def doctree_resolved(app, doctree, docname):
         pattern = re.compile(r'(\w+(/\w+)+)')
         k: str = None
         v: str = None
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             k_found_list = pattern.findall(k)
             v_found_list = pattern.findall(v)
 
@@ -193,7 +193,7 @@ def doctree_resolved(app, doctree, docname):
         remove_set={}
         add_set={}
 
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             # is_debug = ('Cut to' in k)
             # if is_debug:
             #     _('DEBUG')
@@ -221,17 +221,17 @@ def doctree_resolved(app, doctree, docname):
         for k, v in remove_set.items():
             remove_entry = {k:v}
             print(f'remove:{remove_entry}')
-            del trans_finder.master_dic_list[k]
+            del trans_finder.master_dic[k]
             changed = True
 
         for k, v in add_set.items():
             add_entry = {k:v}
-            trans_finder.master_dic_list.update(add_entry)
+            trans_finder.master_dic.update(add_entry)
             print(f'added: {add_entry}')
             changed = True
 
         if changed:
-            new_dict = cleanupLeadingTrailingPunct(trans_finder.master_dic_list)
+            new_dict = cleanupLeadingTrailingPunct(trans_finder.master_dic)
             test_to_file='/Users/hoangduytran/blender_manual/ref_dict_0005.json'
             trans_finder.writeJSONDic(dict_list=new_dict, file_name=test_to_file)
 
@@ -368,7 +368,7 @@ def doctree_resolved(app, doctree, docname):
 
         ref_dict = {}
         ref_dict_filename='/Users/hoangduytran/blender_manual/ref_dict_refsonly.json'
-        for k, v in trans_finder.master_dic_list.items():
+        for k, v in trans_finder.master_dic.items():
             ref_list = RefList(msg=v, keep_orig=False, tf=trans_finder)
             ref_list.parseMessage()
 
@@ -394,14 +394,14 @@ def doctree_resolved(app, doctree, docname):
         print("Got translation from REF_LIST")
         return tran
 
-    def fuzzyTextSimilar(txt1 : str, txt2 : str, accept_ratio):
-        try:
-            similar_ratio = LE.ratio(txt1, txt2)
-            is_similar = (similar_ratio >= accept_ratio)
-            return is_similar
-        except Exception as e:
-            print(e)
-            return False
+    # def fuzzyTextSimilar(txt1 : str, txt2 : str, accept_ratio):
+    #     try:
+    #         similar_ratio = LE.ratio(txt1, txt2)
+    #         is_similar = (similar_ratio >= accept_ratio)
+    #         return is_similar
+    #     except Exception as e:
+    #         print(e)
+    #         return False
 
     def getTimeNow(self):
         local_time = timezone('Europe/London')
@@ -424,153 +424,159 @@ def doctree_resolved(app, doctree, docname):
     # trans_finder.saveMasterDict()
     # exit(0)
 
-    debug_file = cm.debug_file
-    if debug_file:
-        is_debug_file = (debug_file in docname)
-        if not is_debug_file:
-            return
+    try:
+        debug_file = cm.debug_file
+        if debug_file:
+            is_debug_file = (debug_file in docname)
+            if not is_debug_file:
+                return
 
-    build_dir = "build/rstdoc"
-    po_vi_dir = "locale/vi/LC_MESSAGES"
+        build_dir = "build/rstdoc"
+        po_vi_dir = "locale/vi/LC_MESSAGES"
 
-    po_file_path = "{}.po".format(docname)
-    local_path = os.path.dirname(os.path.abspath(__file__))
-    blender_docs_path = os.path.dirname(local_path)
+        po_file_path = "{}.po".format(docname)
+        local_path = os.path.dirname(os.path.abspath(__file__))
+        blender_docs_path = cm.BLENDER_DOCS # os.path.dirname(local_path)
 
-    locale_vi_path = "locale/vi/LC_MESSAGES"
+        locale_vi_path = "locale/vi/LC_MESSAGES"
 
-    po_path = os.path.join(blender_docs_path, os.path.join(locale_vi_path, po_file_path))
+        po_path = os.path.join(blender_docs_path, os.path.join(locale_vi_path, po_file_path))
 
-    if not os.path.isfile(po_path):
-        raise Exception("po_path:", po_path, " NOT FOUND!")
-        exit(0)
+        if not os.path.isfile(po_path):
+            msg = f'po_path: {po_path} NOT FOUND!'
+            print(msg)
+            raise Exception(msg)
+            exit(0)
 
-    # with open(po_path, "r") as f:
-    #     data = f.read()
-    # data_list=data.split('\n')
-    # pp(data)
-    # exit(0)
+        # with open(po_path, "r") as f:
+        #     data = f.read()
+        # data_list=data.split('\n')
+        # pp(data)
+        # exit(0)
 
-    # #trans_finder.cleanupPOFile(po_path, is_dry_run=False)
-    # replace_dict = {
-    #     #r'':r''
-    #    #r'Language-Team.*MIME-Version':r'Language-Team: London, UK <hoangduytran1960@gmail.com>\\n"\n"Plural-Forms: nplurals=1; plural=0\\n"\n"MIME-Version',
-    #    r'Language-Team.*MIME-Version':r'Something'
-    # }
-    # trans_finder.replacePOText(po_path, replace_dict, is_dry_run=True)
+        # #trans_finder.cleanupPOFile(po_path, is_dry_run=False)
+        # replace_dict = {
+        #     #r'':r''
+        #    #r'Language-Team.*MIME-Version':r'Language-Team: London, UK <hoangduytran1960@gmail.com>\\n"\n"Plural-Forms: nplurals=1; plural=0\\n"\n"MIME-Version',
+        #    r'Language-Team.*MIME-Version':r'Something'
+        # }
+        # trans_finder.replacePOText(po_path, replace_dict, is_dry_run=True)
 
-    # cm.file_count += 1
-    # is_pausing = (cm.file_count == (cm.total_files / 10))
-    # if is_pausing:
-    #     nb = input("Press any key to continue:")
-    #     cm.file_count = 0
+        # cm.file_count += 1
+        # is_pausing = (cm.file_count == (cm.total_files / 10))
+        # if is_pausing:
+        #     nb = input("Press any key to continue:")
+        #     cm.file_count = 0
 
-    # #loading local po file to get translation if any
-    po_dic, current_po_cat = trans_finder.loadPOAsDic(po_path)
+        # #loading local po file to get translation if any
+        po_dic, current_po_cat = trans_finder.loadPOAsDic(po_path)
 
-    rst_output_location = os.path.join(blender_docs_path, build_dir)
-    output_path = os.path.join(rst_output_location, po_file_path)
+        rst_output_location = os.path.join(blender_docs_path, build_dir)
+        output_path = os.path.join(rst_output_location, po_file_path)
 
-    local_time = timezone(TIME_ZONE)
-    time_now = local_time.localize(datetime.datetime.now())
+        local_time = timezone(TIME_ZONE)
+        time_now = local_time.localize(datetime.datetime.now())
 
-    local_locale = locale.getlocale()[0]
-    current_header = current_po_cat._get_header_comment()
-    new_po_cat = Catalog(
-        locale="vi",
-        header_comment=current_header,
-        project=current_po_cat.project,
-        version=current_po_cat.version,
-        copyright_holder=YOUR_ID,
-        creation_date=current_po_cat.creation_date,
-        revision_date=time_now,
-        last_translator=YOUR_ID,
-        language_team=YOUR_TRANSLATION_TEAM
-    )
+        local_locale = locale.getlocale()[0]
+        current_header = current_po_cat._get_header_comment()
+        new_po_cat = Catalog(
+            locale="vi",
+            header_comment=current_header,
+            project=current_po_cat.project,
+            version=current_po_cat.version,
+            copyright_holder=YOUR_ID,
+            creation_date=current_po_cat.creation_date,
+            revision_date=time_now,
+            last_translator=YOUR_ID,
+            language_team=YOUR_TRANSLATION_TEAM
+        )
 
-    _("#" * 80)
-    _("filename: {}".format(output_path))
+        _("#" * 80)
+        _("filename: {}".format(output_path))
 
-    # msgid = "Lines should be less than 120 characters long."
-    # msgstr = "Số chữ trong các dòng phải ít hơn 120 ký tự de lam gi."
-    # trans_finder.addDictEntry((msgid, msgstr), False)
-    # exit(0)
+        # msgid = "Lines should be less than 120 characters long."
+        # msgstr = "Số chữ trong các dòng phải ít hơn 120 ký tự de lam gi."
+        # trans_finder.addDictEntry((msgid, msgstr), False)
+        # exit(0)
 
-    for node, msg in extract_messages(doctree):
-        msg = msg.strip()
-        _("=" * 80)
-        _("msgid:[{}]".format(msg))
+        for node, msg in extract_messages(doctree):
+            msg = msg.strip()
+            _("=" * 80)
+            _("msgid:[{}]".format(msg))
 
-        # clean up po file
+            # clean up po file
 
-        is_inline = isinstance(node, nodes.inline)
-        is_emphasis = isinstance(node, nodes.emphasis)
-        is_title = isinstance(node, nodes.title)
-        is_term = isinstance(node, nodes.term)
-        is_rubric = isinstance(node, nodes.rubric)
-        is_field_name = isinstance(node, nodes.field_name)
-        is_reference = isinstance(node, nodes.reference)
-        is_strong = isinstance(node, nodes.strong)
+            is_inline = isinstance(node, nodes.inline)
+            is_emphasis = isinstance(node, nodes.emphasis)
+            is_title = isinstance(node, nodes.title)
+            is_term = isinstance(node, nodes.term)
+            is_rubric = isinstance(node, nodes.rubric)
+            is_field_name = isinstance(node, nodes.field_name)
+            is_reference = isinstance(node, nodes.reference)
+            is_strong = isinstance(node, nodes.strong)
 
-        is_keep_original = (is_inline or
-                            is_emphasis or
-                            is_title or
-                            is_term or
-                            is_rubric or
-                            is_field_name or
-                            is_reference or
-                            is_strong
-                            )
+            is_keep_original = (is_inline or
+                                is_emphasis or
+                                is_title or
+                                is_term or
+                                is_rubric or
+                                is_field_name or
+                                is_reference or
+                                is_strong
+                                )
 
-        tran = None
-        # is_debug = ('Get involved in discussions' in msg)
-        # if is_debug:
-        #     _('DEBUG')
-        is_ignore = ig.isIgnored(msg)
-        if is_ignore:
-            print(f'IGNORED: {msg}')
-            continue
+            tran = None
+            # is_debug = ('Get involved in discussions' in msg)
+            # if is_debug:
+            #     _('DEBUG')
+            is_ignore = ig.isIgnored(msg)
+            if is_ignore:
+                print(f'IGNORED: {msg}')
+                continue
 
-        # is_added = False
-        tran, is_ignore = trans_finder.findTranslation(msg)
-        if is_ignore:
-            continue
+            # is_added = False
+            tran, is_ignore = trans_finder.findTranslation(msg)
+            if is_ignore:
+                continue
 
-        has_translation = (tran is not None)
-        if not has_translation:
-            tran = tranRef(msg, is_keep_original)
             has_translation = (tran is not None)
             if not has_translation:
-                tran = po_dic[msg]
+                tran = tranRef(msg, is_keep_original)
+                has_translation = (tran is not None)
+                if not has_translation:
+                    tran = po_dic[msg]
 
-        has_translation = (tran is not None)
-        if has_translation:
-            has_month = ('Tháng ' in tran)
-            has_original = (msg.lower() in tran.lower())
-            has_link = (cm.REF_LINK.search(tran) is not None)
-            can_ignore = (has_month or has_original or has_link)
-            is_repeat = is_keep_original and not can_ignore
-            if is_repeat:
-                print('Repeating MSG')
-                tran = cm.matchCase(msg, tran)
-                tran = f'{tran} -- {msg}'
-                print(f'Repeating MSG:{tran}')
+            has_translation = (tran is not None)
+            if has_translation:
+                has_month = ('Tháng ' in tran)
+                has_original = (msg.lower() in tran.lower())
+                has_link = (cm.REF_LINK.search(tran) is not None)
+                can_ignore = (has_month or has_original or has_link)
+                is_repeat = is_keep_original and not can_ignore
+                if is_repeat:
+                    print('Repeating MSG')
+                    tran = cm.matchCase(msg, tran)
+                    tran = f'{tran} -- {msg}'
+                    print(f'Repeating MSG:{tran}')
 
-        if tran is not None:
-            new_po_cat.add(msg, string=tran)
-        else:
-            new_po_cat.add(msg, string="")
+            if tran is not None:
+                new_po_cat.add(msg, string=tran)
+            else:
+                new_po_cat.add(msg, string="")
 
-        print(f'msgid \"{msg}\"')
-        if tran is not None:
-            print(f'msgstr \"{tran}\"')
-        else:
-            print('msgstr \"\"')
+            print(f'msgid \"{msg}\"')
+            if tran is not None:
+                print(f'msgstr \"{tran}\"')
+            else:
+                print('msgstr \"\"')
 
-    print("Output to the path:", new_po_cat, output_path)
-    # c.dump_po(output_path, new_po_cat, line_width=1024)
-    c.dump_po(output_path, new_po_cat)
-    # _('DEBUG')
+        print("Output to the path:", new_po_cat, output_path)
+        # c.dump_po(output_path, new_po_cat, line_width=1024)
+        c.dump_po(output_path, new_po_cat)
+        # _('DEBUG')
+    except Exception as e:
+        _(e)
+        print(f'STOPPED, e=[{e}]')
 
 
 def runAppOrNot():

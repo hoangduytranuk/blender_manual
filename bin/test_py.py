@@ -2896,12 +2896,162 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
         print(result_dict)
 
+
+
+    def test_0049(self):
+        def cleanForward(txt, pair_dict, leading_set):
+            temp_txt = str(txt)
+            count = 0
+            for sym_on in leading_set:
+                is_sym_on_in_dict = (sym_on in pair_dict)
+                if not is_sym_on_in_dict:
+                    continue
+
+                sym_off = pair_dict[sym_on]
+                temp = temp_txt[1:]
+                is_balance = isBalancedSymbol(sym_on, sym_off, temp)
+                if is_balance:
+                    temp_txt = temp
+                    count += 1
+            if count > 0:
+                leading_set = leading_set[count:]
+            return temp_txt, leading_set
+
+        def cleanBackward(txt, pair_dict, trailing_set):
+            temp_txt = str(txt)
+            count = 0
+            for sym_off in reversed(trailing_set):
+                is_controlled = (sym_off in pair_dict)
+                if not is_controlled:
+                    temp_txt = temp_txt[:-1]
+                    count += 1
+                    continue
+
+                sym_on = pair_dict[sym_off]
+                temp = temp_txt[:-1]
+                is_balance = isBalancedSymbol(sym_on, sym_off, temp)
+                if is_balance:
+                    temp_txt = temp
+                    count += 1
+            if count > 0:
+                trailing_set = trailing_set[:-count]
+            return temp_txt, trailing_set
+
+        def cleanBothEnds(txt, pair_dict, leading_set, trailing_set):
+            count = 0
+            temp_txt = str(txt)
+            symbol_set = leading_set + trailing_set
+            for sym_on in symbol_set:
+                is_sym_off_there = (sym_on in pair_dict)
+                if not is_sym_off_there:
+                    break
+
+                sym_off = pair_dict[sym_on]
+                is_both_ends = (temp_txt.startswith(sym_on) and temp_txt.endswith(sym_off))
+                if not is_both_ends:
+                    continue
+
+                temp = temp_txt[1:-1]
+                is_balance = isBalancedSymbol(sym_on, sym_off, temp)
+                if is_balance:
+                    temp_txt = temp
+                    count += 1
+            if count > 0:
+                leading_set = leading_set[count:]
+                trailing_set = trailing_set[:-count]
+            return temp_txt, leading_set, trailing_set
+
+        txt = '   ({this}....,!'
+        txt = '(also :kbd:`Shift-W` :menuselection:`--> (Locked, ...)`) This will prevent all editing of the bone in *Edit Mode*; see :ref:`bone locking <animation_armatures_bones_locking>`'
+        txt = '(Top/Side/Front/Camera...)'
+        txt = '**this**'
+        txt = "'I'd like to have this cleaned'"
+        txt = txt.strip()
+
+        pair_list = [('{', '}'), ('[', ']'), ('(', ')'), ('<', '>'), ('$', '$'),(':', ':'), ('*', '*'), ('\'', '\''), ('"', '"'), ('`', '`'),]
+        pair_dict = {}
+        for p in pair_list:
+            s, e = p
+            entry_1 = {s:e}
+            entry_2 = {e:s}
+            pair_dict.update(entry_1)
+            pair_dict.update(entry_2)
+
+        leading_set = REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
+        if leading_set:
+            leading_set = leading_set[0]
+
+        trailing_set = REMOVABLE_SYMB_FULLSET_BACK.findall(txt)
+        if trailing_set:
+            trailing_set = trailing_set[0]
+
+        temp_txt = str(txt)
+        temp_txt, leading_set, trailing_set = cleanBothEnds(temp_txt, pair_dict, leading_set, trailing_set)
+
+        temp_txt, leading_set = cleanForward(temp_txt, pair_dict, leading_set)
+        temp_txt, trailing_set = cleanBackward(temp_txt, pair_dict, trailing_set)
+
+        temp_txt, _, _ = cleanBothEnds(temp_txt, pair_dict, leading_set, trailing_set)
+        print(f'temp_txt:[{temp_txt}]')
+
+    def test_0050(self):
+        t = '''An :ref:`Object Selector <ui-eyedropper>` to select an object (usually an empty), which position and rotation will be used to define mirror planes (instead of using the ones from the modified object)'''
+
     def run(self):
-        self.test_0048()
+        self.test_0050()
 
 
+def patternMatchAllToDict(pat, text):
+    matching_list = {}
+    for m in pat.finditer(text):
+        s = m.start()
+        e = m.end()
+        orig = m.group(0)
+        k = (s, e)
+        entry = {k: orig}
+        matching_list.update(entry)
+    return matching_list
 
+REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
+REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&\,\.]+$')
 
+def removeLeadingTrailingSymbs(txt):
+    leading_set = REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
+
+def isBalancedSymbol(symb_on, symb_off, txt):
+    p_str = f'\{symb_on}([^\{symb_on}\{symb_off}]+)\{symb_off}'
+    p_exp = r'%s' % (p_str.replace("\\\\", "\\"))
+    pattern = re.compile(p_exp)
+    p_list = patternMatchAllToDict(pattern, txt)
+    has_p_list = (len(p_list) > 0)
+    if has_p_list:
+        temp_txt = str(txt)
+        for loc, txt in p_list.items():
+            s, e = loc
+            left = temp_txt[:s]
+            right = temp_txt[e:]
+            temp_txt = left + right
+        return not ((symb_on in temp_txt) or (symb_off in temp_txt))
+    else:
+        return True
+
+    # default_last_i = 0xffffffff
+    # counter = 0
+    # last_i = default_last_i
+    # off_happened_first = False
+    # for i, c in enumerate(txt):
+    #     is_on = (i != last_i) and (c == symb_on)
+    #     if is_on:
+    #         counter += 1
+    #         last_i = i
+    #     else:
+    #         is_off = (i != last_i) and (c == symb_off)
+    #         if is_off:
+    #             off_happened_first = (last_i == default_last_i)
+    #             counter -= 1
+    #             last_i = i
+    #
+    # return (counter == 0) and not (off_happened_first)
 
 x = test()
 x.run()

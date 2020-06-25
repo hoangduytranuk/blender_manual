@@ -1,8 +1,9 @@
 import sys
-sys.path.append('/usr/local/lib/python3.7/site-packages')
-sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+# sys.path.append('/usr/local/lib/python3.7/site-packages')
+# sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 # print(f'translation_finder sys.path: {sys.path}')
 
+import hashlib
 import io
 import os
 import re
@@ -54,50 +55,55 @@ class NoCaseDict(OrderedDict):
     class Key(str):
         def __init__(self, key):
             str.__init__(key)
-            self.is_dirty = False
-            self.is_operational = False
 
         def __hash__(self):
             k = self.lower()
+            is_debug = ('Build'.lower() in 'k')
+            if is_debug:
+                _('DEBUG')
             key_len = len(k)
             k = (key_len, k)
             hash_value = hash(k)
-            # _(f'key:{k}, hash_value:{hash_value}')
+            _(f'__hash__ key:[{k}], hash_value:{hash_value}')
             return hash_value
 
         def __eq__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local == extern)
-            # _(f'local:{local} extern:{extern}')
+            _(f'__eq__ local:[{local}] extern:[{extern}]')
             return cond
 
         def __le__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local < extern)
-            # _(f'local:{local} extern:{extern}')
+            _(f'__le__ local:[{local}] extern:[{extern}]')
             return cond
 
         def __gt__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local > extern)
-            # _(f'local:{local} extern:{extern}')
+            _(f'__gt__ local:[{local}] extern:[{extern}]')
             return cond
 
     def __init__(self, data=None):
+        self.is_dirty = False
+        self.is_operational = False
+
         super(NoCaseDict, self).__init__()
         if data is None:
             data = {}
         for key, val in data.items():
             self[key] = val
+            _(f'__init__:[{key}], value:[{val}]')
         self.is_operational = True
 
     def __contains__(self, key):
         key = self.Key(key)
         is_there = super(NoCaseDict, self).__contains__(key)
-        # _(f'__contains__:{key}, is_there:{is_there}')
+        _(f'__contains__:[{key}], is_there:{is_there}')
         return is_there
 
     def __setitem__(self, key, value):
@@ -109,9 +115,11 @@ class NoCaseDict(OrderedDict):
     def __getitem__(self, key):
         key = self.Key(key)
         try:
-            return super(NoCaseDict, self).__getitem__(key)
+            value = super(NoCaseDict, self).__getitem__(key)
+            _(f'__getitem__:[{key}], value:[{value}]')
+            return value
         except Exception as e:
-            print(f'__getitem__:{e}')
+            _(f'Exception __getitem__:{e}')
             keys = super(NoCaseDict, self).__dict__.keys()
             is_in = (key in keys)
             return is_in
@@ -123,7 +131,7 @@ class NoCaseDict(OrderedDict):
             if self.is_operational:
                 self.is_dirty = True
         except Exception as e:
-            print(f'__delitem__:{e}')
+            _(f'__delitem__ Exception :{e}')
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
         new_set = NoCaseDict()
@@ -258,15 +266,14 @@ class TranslationFinder:
     def __init__(self):
         self.update_dic = 0
         self.update_po_file = None
-        # self.master_dic_file = "/Users/hoangduytran/Documents/po_dictionary_sorted_translated_0001_nodot.json"
-        self.master_dic_file = "/Users/hoangduytran/blender_manual/ref_dict_0006.json"
-        self.master_dic_backup_file = "/Users/hoangduytran/blender_manual/ref_dict_backup_0007.json"
-        self.master_dic_test_file = "/Users/hoangduytran/ref_dict_test_0005.json"
+        self.master_dic_file = os.path.join(os.environ['HOME'], "blender_manual/ref_dict_0006.json")
+        self.master_dic_backup_file = os.path.join(os.environ['HOME'], "blender_manual/ref_dict_backup_0005.json")
+        self.master_dic_test_file = os.path.join(os.environ['HOME'], "blender_manual/ref_dict_test_0005.json")
 
-        self.vipo_dic_path = "/Users/hoangduytran/blender_manual/gui/2.80/po/vi.po"
+        self.vipo_dic_path = os.path.join(os.environ['HOME'], "blender_manual/gui/2.80/po/vi.po")
         self.vipo_dic_list = None  # not used
 
-        self.current_po_dir = "/Users/hoangduytran/blender_docs/locale/vi/LC_MESSAGES"
+        self.current_po_dir = os.path.join(os.environ['HOME'], "blender_docs/locale/vi/LC_MESSAGES")
         self.json_dic_file = None
 
         #self.json_dic_list = self.loadJSONDic(file_name=self.json_dic_file)
@@ -275,9 +282,10 @@ class TranslationFinder:
         self.current_po_cat = None
         self.setupKBDDicList()
 
-        self.dic_list = defaultdict(int)  # for general purposes
-        self.master_dic_list = NoCaseDict()
-        self.master_dic_backup_list = NoCaseDict()
+        self.dic_list = None
+        self.master_dic_list = None
+        self.backup_dic_list = None
+        self.kbd_dict = None
         self.loadDictionary()
 
     # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
@@ -311,9 +319,32 @@ class TranslationFinder:
     #         entry=f'"{k}": "{v}",'
     #         print(entry)
 
+    @property
+    def master_dic(self):
+        return self.master_dic_list
+
+    @master_dic.setter
+    def master_dic(self, dic):
+        is_change = (self.master_dic_list is not None) and (dic is None)
+        if is_change:
+            raise Exception('master dic is changed to None')
+        self.master_dic_list = dic
+
+    @property
+    def backup_dic(self):
+        return self.backup_dic_list
+
+    @backup_dic.setter
+    def backup_dic(self, dic):
+        is_change = (self.backup_dic_list is not None) and (dic is None)
+        if is_change:
+            raise Exception('backup dic is changed to None')
+        self.backup_dic_list = dic
+
     def loadDictionary(self):
-        self.master_dic_list = self.reloadChosenDict(is_master=True)
-        self.master_dic_backup_list = self.reloadChosenDict(is_master=False)
+        self.reloadChosenDict(is_master=True)
+        self.reloadChosenDict(is_master=False)
+        self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC_PURE)
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
@@ -543,59 +574,60 @@ class TranslationFinder:
         if not msg:
             return msg
 
-        new_msg = str(msg)
-        new_msg = cm.HEADING_WITH_PUNCT_MULTI.sub('', new_msg)
-        new_msg = cm.TRAILING_WITH_PUNCT_MULTI.sub('', new_msg)
+        new_msg = cm.removeLeadingTrailingSymbs(msg)
+        # new_msg = str(msg)
+        # new_msg = cm.HEADING_WITH_PUNCT_MULTI.sub('', new_msg)
+        # new_msg = cm.TRAILING_WITH_PUNCT_MULTI.sub('', new_msg)
         return new_msg
 
     def cleanBothEntries(self, msg, tran):
 
-        new_msg = str(msg)
-        new_tran = str(tran)
+        new_msg = cm.removeLeadingTrailingSymbs(msg)
+        new_tran = cm.removeLeadingTrailingSymbs(tran)
 
-        print(f'cleanBothEntries: msg:[{msg}]; tran:[{tran}]')
-
-        cut_head_len = cut_tail_len = 0
-        msg_head, msg_trail = self.getHeadAndTailPuncts(msg)
-        print(f'msg_head:[{msg_head}]; msg_trail:[{msg_trail}]')
-
-        tran_head, tran_trail = self.getHeadAndTailPuncts(tran)
-        print(f'tran_head:[{tran_head}]; tran_trail:[{tran_trail}]')
-
-        cut_head_is_required = (msg_head and tran_head)
-        if cut_head_is_required:
-            need_adjust = (len(msg_head) != len(tran_head))
-            if need_adjust:
-                cut_head_len = min(len(msg_head), len(tran_head))
-            else:
-                cut_head_len = len(msg_head)
-
-        cut_tail_is_required = (msg_trail and tran_trail)
-        if cut_tail_is_required:
-            need_adjust = (len(msg_trail) != len(tran_trail))
-            if need_adjust:
-                cut_tail_len = min(len(msg_trail), len(tran_trail))
-            else:
-                cut_tail_len = len(msg_trail)
-
-        print(f'cut_head_len:[{cut_head_len}]; cut_tail_len:[{cut_tail_len}]')
-
-        trim_head = (cut_head_len > 0)
-        trim_trail = (cut_tail_len > 0)
-        if trim_head:
-            new_msg = new_msg[cut_head_len:]
-            new_tran = new_tran[cut_head_len:]
-            print(f'trim_head -- new_msg:[{new_msg}]; new_tran:[{new_tran}]')
-
-        if trim_trail:
-            new_msg = new_msg[:-cut_tail_len]
-            new_tran = new_tran[:-cut_tail_len]
-            print(f'trim_trail -- new_msg:[{new_msg}]; new_tran:[{new_tran}]')
-
-        print(f'cleanBothEntries return -- new_msg:[{new_msg}]; new_tran:[{new_tran}]')
+        # print(f'cleanBothEntries: msg:[{msg}]; tran:[{tran}]')
+        #
+        # cut_head_len = cut_tail_len = 0
+        # msg_head, msg_trail = self.getHeadAndTailPuncts(msg)
+        # print(f'msg_head:[{msg_head}]; msg_trail:[{msg_trail}]')
+        #
+        # tran_head, tran_trail = self.getHeadAndTailPuncts(tran)
+        # print(f'tran_head:[{tran_head}]; tran_trail:[{tran_trail}]')
+        #
+        # cut_head_is_required = (msg_head and tran_head)
+        # if cut_head_is_required:
+        #     need_adjust = (len(msg_head) != len(tran_head))
+        #     if need_adjust:
+        #         cut_head_len = min(len(msg_head), len(tran_head))
+        #     else:
+        #         cut_head_len = len(msg_head)
+        #
+        # cut_tail_is_required = (msg_trail and tran_trail)
+        # if cut_tail_is_required:
+        #     need_adjust = (len(msg_trail) != len(tran_trail))
+        #     if need_adjust:
+        #         cut_tail_len = min(len(msg_trail), len(tran_trail))
+        #     else:
+        #         cut_tail_len = len(msg_trail)
+        #
+        # print(f'cut_head_len:[{cut_head_len}]; cut_tail_len:[{cut_tail_len}]')
+        #
+        # trim_head = (cut_head_len > 0)
+        # trim_trail = (cut_tail_len > 0)
+        # if trim_head:
+        #     new_msg = new_msg[cut_head_len:]
+        #     new_tran = new_tran[cut_head_len:]
+        #     print(f'trim_head -- new_msg:[{new_msg}]; new_tran:[{new_tran}]')
+        #
+        # if trim_trail:
+        #     new_msg = new_msg[:-cut_tail_len]
+        #     new_tran = new_tran[:-cut_tail_len]
+        #     print(f'trim_trail -- new_msg:[{new_msg}]; new_tran:[{new_tran}]')
+        #
+        # print(f'cleanBothEntries return -- new_msg:[{new_msg}]; new_tran:[{new_tran}]')
         return new_msg, new_tran
 
-    def addEntryToChosenDict(self, msg, tran, dicfile_path, dict_list, last_st_mtime, indicator=''):
+    def addEntryToChosenDict(self, msg, tran, dicfile_path, dict_list, indicator=''):
         if ig.isIgnored(msg):
             return
 
@@ -622,15 +654,17 @@ class TranslationFinder:
                 del dict_list[msg]
             else:
                 return
+
         entry = {msg: tran}
         dict_list.update(entry)
         print(f'Added dict:[{msg}], [{tran}] to {indicator} file: [{dicfile_path}] ')
 
     def addMasterDict(self, msg, tran):
-        self.addEntryToChosenDict(msg, tran, self.master_dic_file, self.master_dic_list, indicator='MASTER')
+        self.addEntryToChosenDict(msg, tran, self.master_dic_file, self.master_dic, indicator='MASTER')
 
     def addBackupDictEntry(self, msg, tran):
-        self.addEntryToChosenDict(msg, tran, self.master_dic_backup_file, self.last_backup_dict_stat, indicator='BACKUP')
+        # _('DEBUG')
+        self.addEntryToChosenDict(msg, tran, self.master_dic_backup_file, self.backup_dic, indicator='BACKUP')
 
     def writeChosenDict(self, is_master=False):
         if is_master:
@@ -642,10 +676,10 @@ class TranslationFinder:
         self.writeJSONDic(dict_list=dic_list, file_name=dic_file)
 
     def writeBackupDict(self):
-        dict_stat = self.writeDict(self.master_dic_backup_file, self.master_dic_backup_list, indicator='BACKUP')
+        dict_stat = self.writeDict(self.master_dic_backup_file, self.backup_dic, indicator='BACKUP')
 
     def writeMasterDict(self):
-        dict_stat = self.writeDict(self.master_dic_file, self.master_dic_list, indicator='MASTER')
+        dict_stat = self.writeDict(self.master_dic_file, self.master_dic, indicator='MASTER')
 
     def getKeyboardOriginal(self, text):
         # kbd_def_val = list(TranslationFinder.KEYBOARD_TRANS_DIC.values())
@@ -665,13 +699,15 @@ class TranslationFinder:
 
     def reloadChosenDict(self, is_master=True):
         if is_master:
-            self.master_dic_list = self.loadJSONDic(file_name=self.master_dic_file)
+            _(f'reloadChosenDict:{self.master_dic_file}')
+            self.master_dic = self.loadJSONDic(file_name=self.master_dic_file)
         else:
-            self.master_dic_backup_list = self.loadJSONDic(file_name=self.master_dic_backup_file)
+            _(f'reloadChosenDict:{self.master_dic_backup_file}')
+            self.backup_dic = self.loadJSONDic(file_name=self.master_dic_backup_file)
 
     def saveMasterDict(self, to_file=None):
         file_path = (to_file if to_file else self.master_dic_file)
-        self.writeJSONDic(dict_list=self.master_dic_list, file_name=file_path)
+        self.writeJSONDic(dict_list=self.master_dic, file_name=file_path)
 
 
     def updateDict(self):
@@ -742,7 +778,7 @@ class TranslationFinder:
     def updateMasterDic(self, is_testing=True):
         from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
         from_dic_list = self.loadJSONDic(file_name=from_dic_path)
-        changed_count = self.updateDicUsingDic(from_dic_list, self.master_dic_list)
+        changed_count = self.updateDicUsingDic(from_dic_list, self.master_dic)
         is_changed = (changed_count > 0)
         if is_changed:
             print("Changed:", changed_count)
@@ -750,7 +786,7 @@ class TranslationFinder:
         is_writing_changes = (is_changed and not is_testing)
         if is_writing_changes:
             print("Writing changes to:", self.master_dic_file)
-            self.writeJSONDic(dict_list=self.master_dic_list, file_name=self.master_dic_file)
+            self.writeJSONDic(dict_list=self.master_dic, file_name=self.master_dic_file)
 
     def addEntry(self, msg, tran):
 
@@ -926,7 +962,7 @@ class TranslationFinder:
     def mergeVIPODict(self):
         po_cat = c.load_po(self.vipo_dic_path)
         po_dic = self.poCatToDic(po_cat)
-        self.master_dic_list.update(po_dic)
+        self.master_dic.update(po_dic)
 
     def addEntryToDic(self, k, v, dict_list, keep_orig=False):
         valid = (k is not None) and \
@@ -999,30 +1035,41 @@ class TranslationFinder:
         TranslationFinder.KEYBOARD_TRANS_DIC.update(kbd_l_case)
 
     def writeJSONDic(self, dict_list=None, file_name=None):
+        dic = {}
         try:
             if not file_name:
                 return
+
+            if not dict_list:
+                return
+
+            is_non_case_dic = isinstance(dict_list, NoCaseDict)
+            if is_non_case_dic:
+                dict: NoCaseDict = dict_list
+                is_dirty = dict.is_dirty
+                if not is_dirty:
+                    return
             #
             # if not os.path.isfile(file_name):
             #     return
 
             file_path = (self.master_dic_file if (file_name is None) else file_name)
-            dic = (self.master_dic_list if (dict_list is None) else dict_list)
+            dic = (self.master_dic if (dict_list is None) else dict_list)
 
             with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         except Exception as e:
-            _("Exception writeDictionary Length of read dictionary:{}".format(len(self.master_dic_list)))
+            _("Exception writeDictionary Length of read dictionary:{}".format(len(dic)))
             raise e
 
     def loadJSONDic(self, file_name=None):
         return_dic = None
         try:
             if not file_name:
-                return None
+                return return_dic
 
             if not os.path.isfile(file_name):
-                return None
+                return return_dic
 
             file_path = (self.master_dic_file if (file_name is None) else file_name)
             dic = {}
@@ -1030,14 +1077,17 @@ class TranslationFinder:
                 dic = json.load(in_file)
 
             return_dic = NoCaseDict(dic)
+            test_txt = 'Build'
+            if test_txt in return_dic:
+                value_old = dic[test_txt]
+                value = return_dic[test_txt]
+                _(f'found: {test_txt} => {value}')
 
         except Exception as e:
-            _("Exception readDictionary Length of read dictionary:")
+            _("Exception occurs while performing loadJSONDic()")
             _(e)
-            raise e
-
-        if not return_dic:
             return_dic = NoCaseDict()
+
         return return_dic
 
     def trimAndFind(self, pattern, msg, dict_to_use=None):
@@ -1046,7 +1096,7 @@ class TranslationFinder:
         # how far on the 'msg' ending should we add to the translation
         count = 0
         temp_msg = str(msg)
-        search_dict = (dict_to_use if dict_to_use else self.master_dic_list)
+        search_dict = (dict_to_use if dict_to_use else self.master_dic)
 
         found = (temp_msg in search_dict)
 
@@ -1100,7 +1150,7 @@ class TranslationFinder:
         return trans, trimmed_msg
 
     def isInListByDict(self, msg, is_master):
-        dic_to_use = (self.master_dic_list if is_master else self.master_dic_backup_list)
+        dic_to_use = (self.master_dic if is_master else self.backup_dic)
         return self.isInList(msg, search_dict=dic_to_use)
 
     # def dump_po(self, filename, catalog):
@@ -1114,13 +1164,21 @@ class TranslationFinder:
     #
     def isInList(self, msg, search_dict=None):
         trans = None
+        dict_to_use = (search_dict if search_dict else self.master_dic)
 
-        dict_to_use = (search_dict if search_dict else self.master_dic_list)
+        if not dict_to_use:
+            msg = 'NO Dictionary is available. Stopped'
+            print(msg)
+            raise Exception(msg)
+            exit(0)
+
         is_there = (msg in dict_to_use)
         if is_there:
             trans = dict_to_use[msg]
         else:
             trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+        if trans:
+            trans = cm.matchCase(msg, trans)
         return trans
 
 
@@ -1145,7 +1203,7 @@ class TranslationFinder:
         has_translation = has_len and (trans != 'None')
         if has_translation:
             trans = cm.removeOriginal(msg, trans)
-            # trans = cm.matchCase(orig_msg, trans)
+            trans = cm.matchCase(orig_msg, trans)
             # self.addDictEntry((msg, trans), True)
         else:
             trans = None
@@ -1212,11 +1270,13 @@ class TranslationFinder:
 
         for orig, breakdown in cm.patternMatchAll(cm.KEYBOARD_SEP, msg):
             s, e, txt = orig
-            has_dic = (txt in TranslationFinder.KEYBOARD_TRANS_DIC)
+            # has_dic = (txt in TranslationFinder.KEYBOARD_TRANS_DIC)
+            has_dic = (txt in self.kbd_dict)
             if not has_dic:
                 continue
 
-            tr = TranslationFinder.KEYBOARD_TRANS_DIC[txt]
+            # tr = TranslationFinder.KEYBOARD_TRANS_DIC[txt]
+            tr = self.kbd_dict[txt]
             ll = trans[:s]
             rr = trans[e:]
             trans = ll + tr + rr
