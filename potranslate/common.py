@@ -13,6 +13,8 @@ from collections import OrderedDict, defaultdict
 from pprint import pprint, pformat
 import hashlib
 import time
+from reftype import RefType
+
 # import Levenshtein as LE
 #import logging
 
@@ -136,8 +138,8 @@ class Common:
     TRAILING_WITH_PUNCT_MULTI = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+$')
     HEADING_WITH_PUNCT_MULTI = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+')
 
-    REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
-    REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&\,\.]+$')
+    REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\;\<\`\-\+\/\#\&]+')
+    REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\;\`\-\+\/\#\&\,\.]+$')
 
     RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
     RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
@@ -145,12 +147,13 @@ class Common:
     LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
     TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
 
+    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^(]+)\s\(([^\)]+)(:[^\)]+)?\)[\`]+')
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
     ENDS_PUNCTUAL_MULTI = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
     ENDS_PUNCTUAL_SINGLE = re.compile(r'([\.\,\:\!\?\"\*\'\`]{1}$)')
 
-    BEGIN_PUNCTUAL_MULTI = re.compile(r'^([\.\,\:\!\?\"\*\'\`]+)')
-    BEGIN_PUNCTUAL_SINGLE = re.compile(r'^([\.\,\:\!\?\"\*\'\`]{1})')
+    BEGIN_PUNCTUAL_MULTI = re.compile(r'^([\.\,\:\;\!\?\"\*\'\`]+)')
+    BEGIN_PUNCTUAL_SINGLE = re.compile(r'^([\.\,\:\;\!\?\"\*\'\`]{1})')
 
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
     REF_SEP = ' -- '
@@ -400,6 +403,35 @@ class Common:
             _(e)
         return None, None
 
+    def patternMatchAllAsDictNoDelay(pat, text):
+        try:
+            return_dict = {}
+            for m in pat.finditer(text):
+                original = ()
+                # break_down = []
+
+                s = m.start()
+                e = m.end()
+                orig = m.group(0)
+                original = (s, e, orig)
+                entry = {(s,e): orig}
+                return_dict.update(entry)
+
+                for g in m.groups():
+                    if g:
+                        i_s = orig.find(g)
+                        ss = i_s + s
+                        ee = ss + len(g)
+                        v=(ss, ee, g)
+                        # break_down.append(v)
+                        entry = {(ss, ee): g}
+                        return_dict.update(entry)
+        except Exception as e:
+            _("patternMatchAll")
+            _("pattern:", pat)
+            _("text:", text)
+            _(e)
+        return return_dict
 
     def findInvert(pattern, text):
         found_list={}
@@ -838,3 +870,42 @@ class Common:
         #             last_i = i
         #
         # return (counter == 0) and not (off_happened_first)
+
+    def hasAbbr(txt):
+        abbr_str = RefType.ABBR.value
+        has_abbr = (abbr_str in txt)
+        return has_abbr
+
+    def extractAbbr(abbr_txt):
+        if not abbr_txt:
+            return None, None, None
+
+        has_abbr = Common.hasAbbr(abbr_txt)
+        if not has_abbr:
+            return None, None, None
+
+        abbr_dict = Common.patternMatchAllAsDictNoDelay(Common.ABBREV_PATTERN_PARSER, abbr_txt)
+        if not abbr_dict:
+            return None, None, None
+
+        abbrev_list = list(abbr_dict.items())
+        length = len(abbr_dict)
+        if length > 0:
+            abbrev_orig_rec = abbr_dict[0]
+        else:
+            abbrev_orig_rec = None
+
+        if length > 1:
+            abbrev_rec = abbr_dict[1]
+        else:
+            abbrev_rec = None
+
+        if length > 2:
+            abbrev_exp_rec = abbr_dict[2]
+        else:
+            abbrev_exp_rec = None
+
+        return abbrev_orig_rec, abbrev_rec, abbrev_exp_rec
+
+
+

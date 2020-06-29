@@ -3,13 +3,20 @@
 # Author: Hoang Duy Tran <hoangduytran1960@gmail.com>
 # Revision Date: 2020-02-02 09:59+0000
 #
+import hashlib
 import os
 import re
 import sys
+translate_po_path = os.path.join(os.environ['HOME'], 'blender_manual/potranslate')
+local_lib_path = '/usr/local/lib/python3.7/site-packages'
+sys.path.append( translate_po_path )
+sys.path.append( local_lib_path )
+
 import math
 import locale
 import datetime
 from collections import OrderedDict
+from pprint import pprint as PP
 from time import gmtime, strftime, time
 from pytz import timezone
 from argparse import ArgumentParser
@@ -17,11 +24,45 @@ from pprint import pprint
 from sphinx_intl import catalog as c
 from babel.messages import pofile
 from enum import Enum
-import chardet
+# import chardet
+from translation_finder import TranslationFinder
 
 INVERT_SEP='•'
 # DEBUG = True
 DEBUG = False
+
+def patternMatchAllAsDictNoDelay(pat, text):
+    try:
+        return_dict = {}
+        is_debug = ('Previous Component' in text)
+        if is_debug:
+            _('DEBUG')
+        for m in pat.finditer(text):
+            original = ()
+            # break_down = []
+
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            original = (s, e, orig)
+            entry = {(s,e): orig}
+            return_dict.update(entry)
+
+            for g in m.groups():
+                if g:
+                    i_s = orig.find(g)
+                    ss = i_s + s
+                    ee = ss + len(g)
+                    v=(ss, ee, g)
+                    # break_down.append(v)
+                    entry = {(ss, ee): g}
+                    return_dict.update(entry)
+    except Exception as e:
+        _("patternMatchAll")
+        _("pattern:", pat)
+        _("text:", text)
+        _(e)
+    return return_dict
 
 class FoundRecord(OrderedDict):
     def __init__(self, filename):
@@ -242,12 +283,42 @@ class BasicIO:
                 callback.setVars(dirpath, dirnames, filenames)
                 callback.run()
 
+class SortOrder(Enum):
+    ALPHABET='A',
+    ALPHABET_INVERT='AI',
+    LENGTH='L',
+    LENGTH_INVERT='LI'
+    UNKNOWN = None
+
+    # @classmethod
+    # def asDict(cls):
+    #     return {
+    #         SortOrder.ALPHABET.value: SortOrder.ALPHABET,
+    #         SortOrder.ALPHABET_INVERT.value: SortOrder.ALPHABET_INVERT,
+    #         SortOrder.LENGTH.value: SortOrder.LENGTH,
+    #         SortOrder.LENGTH_INVERT.value: SortOrder.LENGTH_INVERT,
+    #             }
+    #
+    # @classmethod
+    # def findType(cls, text):
+    #     cls.asDict()[text]
+    #     member : SortOrder = None
+    #     for name, member in cls.__members__.items():
+    #         value = member.value
+    #         val = value[0]
+    #         is_found = val.lower() == text.lower()
+    #         if is_found:
+    #             return member
+    #     else:
+    #         return cls.UNKNOWN
+
 class FindFilesHasPattern:
 
     def __init__(self):
         self.basic_io = BasicIO()
         self.found_lines_dic = {}
         self.found_record: FoundRecord = None
+        self.global_found_list = {}
 
     def getCase(self, lower_case, upper_case, capital_case, title_case):
         actual_case = LetterCase.NO_CHANGE
@@ -284,8 +355,11 @@ class FindFilesHasPattern:
             show_line_number,
             invert_match,
             testing_only,
-            debugging
+            debugging,
+            sort_order,
+            marking
             ):
+
         self.find_file = (find_file if (find_file and os.path.isfile(find_file)) else None)
         self.find_po = (True if find_po else False)
         self.find_rst = (True if find_rst else False)
@@ -318,6 +392,8 @@ class FindFilesHasPattern:
         self.show_line_number = (True if show_line_number else False)
         self.invert_match = (True if invert_match else False)
         self.testing_only = (True if testing_only else False)
+        self.sort_order = (SortOrder.__members__[sort_order] if sort_order in SortOrder.__members__ else SortOrder.UNKNOWN)
+        self.is_marking = (True if marking else False)
 
 
     def patternMatchAll(self, pat, text):
@@ -535,7 +611,22 @@ class FindFilesHasPattern:
                     match_list = self.getAllMatchedWordFromLine(self.find_pattern, text_line)
                 match_text = "\n".join(match_list)
             else:
-                match_text = text_line
+                found_matched_dic = patternMatchAllAsDictNoDelay(self.find_pattern, text_line)
+                is_debug = ('Previous Component' in text_line)
+                if is_debug:
+                    _('DEBUG')
+                if self.is_marking:
+                    reversed_list = reversed(list(found_matched_dic.items()))
+                    match_text = str(text_line)
+                    for loc, txt in reversed_list:
+                        s, e = loc
+                        e = s + len(txt)
+                        mid = f'|{txt}|'
+                        left = match_text[:s]
+                        right = match_text[e:]
+                        match_text = left + mid + right
+                else:
+                    match_text = text_line
 
             entry = {index: match_text}
             self.found_record.update(entry)
@@ -547,6 +638,22 @@ class FindFilesHasPattern:
             self.found_record.update(entry)
 
 
+    def insertFoundIntoGlobalList(self, data_line):
+        if self.invert_match:
+            replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
+            exc_list = replaced_line.split(INVERT_SEP)
+            for txt in exc_list:
+                hash_rec = hashlib.sha256(txt.encode('utf-8'))
+                key = hash_rec.digest()
+                entry = {key: txt}
+                self.global_found_list.update(entry)
+        else:
+            temp_file_list = patternMatchAllAsDictNoDelay(self.find_pattern, data_line)
+            for loc, txt in temp_file_list.items():
+                hash_rec = hashlib.sha256(txt.encode('utf-8'))
+                key = hash_rec.digest()
+                entry = {key: txt}
+                self.global_found_list.update(entry)
 
     def reportFind(self, data):
         data_list = data.split('\n')
@@ -566,6 +673,7 @@ class FindFilesHasPattern:
                 is_found = (self.find_pattern.search(data_line) != None)
 
             if is_found:
+                self.insertFoundIntoGlobalList(data_line)
                 _(line_no, data_line)
                 self.listingRange(data_list, line_no)
 
@@ -588,8 +696,12 @@ class FindFilesHasPattern:
         # flag = (re.I if self.case_sensitive else 0)
 
         #found_list = re.findall(self.find_pattern, data, flags=flag)
-        found_list = self.find_pattern.findall(data)
-        is_found = (len(found_list) > 0)
+        found_list = patternMatchAllAsDictNoDelay(self.find_pattern, data)
+        if self.invert_match:
+            is_found = True
+        else:
+            is_found = (len(found_list) > 0)
+
         if is_found:
             #pp(found_list)
             self.reportFind(data)
@@ -666,6 +778,25 @@ class FindFilesHasPattern:
     def run(self):
         # _("Hoang Duy Tran")
         self.find()
+        if self.global_found_list:
+            word_list = sorted(list(self.global_found_list.values()))
+            if self.sort_order is SortOrder.ALPHABET_INVERT:
+                word_list = sorted(word_list, reverse=True)
+            elif self.sort_order is SortOrder.LENGTH:
+                word_list = sorted(word_list, key=lambda x: len(x))
+            elif self.sort_order is SortOrder.LENGTH_INVERT:
+                word_list = sorted(word_list, key=lambda x: len(x), reverse=True)
+
+            tf = TranslationFinder()
+            print('Output global_found_list - only printout if NOT translated:')
+            for w in word_list:
+                trans = tf.isInListByDict(w, True)
+                if not trans:
+                    trans,_,_ = tf.translate(w)
+                    if trans:
+                        print(f'"{w}": "{trans}",')
+                    else:
+                        print(f'"{w}": "",')
 
 
 parser = ArgumentParser()
@@ -695,6 +826,9 @@ parser.add_argument("-t", "--testing_only", dest="testing_only",
 parser.add_argument("-D", "--debug", dest="debugging", help="Print out messages as processing.", action='store_const', const=True)
 parser.add_argument("-vi", "--vipo", dest="vipo_file", help="Find text in vi.po file, the latest version in $BLENDER_GITHUB", action='store_const', const=True)
 parser.add_argument("-py", "--py_lib", dest="find_py_lib", help="Find text in source files, set in $PYTHONPATH", action='store_const', const=True)
+parser.add_argument("-S", "--sort_order", dest="sort_order", help="Sort Order: A, AI, L, LI; This option only APPLIES to the global_found_list which is printed out at the end of the run. Noted that this global_found_list is a dictionary and only hold a SINGLE instance of found texts.")
+parser.add_argument("-m", "--marking", dest="marking", help="Marking the matched parts in string for easier spotting while observing.", action='store_const', const=True)
+
 
 args = parser.parse_args()
 
@@ -721,6 +855,8 @@ x.setVars(
     args.invert_match,
     args.testing_only,
     args.debugging,
+    args.sort_order,
+    args.marking,
     )
 
 x.run()

@@ -20,7 +20,6 @@ import html
 from queue import Queue as Q
 from pyparsing import *
 from collections import Counter
-
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
 
@@ -2995,11 +2994,69 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         print(f'temp_txt:[{temp_txt}]')
 
     def test_0050(self):
-        t = '''An :ref:`Object Selector <ui-eyedropper>` to select an object (usually an empty), which position and rotation will be used to define mirror planes (instead of using the ones from the modified object)'''
+        quoted_msg = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
+        text = '2.2 An :ref:`Object Selector <ui-eyedropper>` to select an object (usually an empty), which position and rotation will be used to define mirror planes (instead of using the ones from the modified object) $1,200.00.'
+        #s_pat = re.compile(r'(?<!\w\.\w.)(?<!\w\.)(?<=\.|\?)\s')
+        # s_pat = re.compile(r'(?<![\.\,]\w)((?:.)*.?)')\
+        # t_list = re.split(r'(?<=[^\w]\.[.?]) +(?=[\w])', t)
+        # t_list = s_pat.findall(t)
+        # s_pat = re.compile(r'([^\.\,]+)')
+        # t_list = patternMatchAllToDict(s_pat, t)
+        t_list = re.findall(r'\S+([\,\.]\S+)', text)
+        # t_list = re.split('(?<!\w[\.\,]\w.)(?<![\w\d]\.)(?<=\.|\,|\?)(\s|[A-Z].*)',text)
+        # t_list = re.split(r'(?<=[^A-Z].[.?]) +(?=[A-Z])', text)
+        print(t_list)
+        # text = ":abbr:`CSG (Constructive solid geometry: Hình Học Lập Thể [Đặc] Suy Diễn)`"
+        # ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^(]+)\s\(([^\)]+)(:[^\)]+)?\)[\`]+')
+        # abbrev_dic = patternMatchAllAsDictNoDelay(ABBREV_PATTERN_PARSER, text)
+        # # t_list = ABBREV_PATTERN_PARSER.findall(text)
+        #
+        # abbrev_list = list(abbrev_dic.items())
+        # orig = abbrev_list[0]
+        # loc, txt = orig
+        # print(f'{orig}\n{loc}\n{txt}\n')
+        #
+        # orig = abbrev_list[1]
+        # loc, txt = orig
+        # print(f'{orig}\n{loc}\n{txt}\n')
+        #
+        # orig = abbrev_list[2]
+        # loc, txt = orig
+        # print(f'{orig}\n{loc}\n{txt}\n')
 
     def run(self):
         self.test_0050()
 
+
+def patternMatchAllAsDictNoDelay(pat, text):
+    try:
+        return_dict = {}
+        for m in pat.finditer(text):
+            original = ()
+            # break_down = []
+
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            original = (s, e, orig)
+            entry = {(s,e): orig}
+            return_dict.update(entry)
+
+            for g in m.groups():
+                if g:
+                    i_s = orig.find(g)
+                    ss = i_s + s
+                    ee = ss + len(g)
+                    v=(ss, ee, g)
+                    # break_down.append(v)
+                    entry = {(ss, ee): g}
+                    return_dict.update(entry)
+    except Exception as e:
+        _("patternMatchAll")
+        _("pattern:", pat)
+        _("text:", text)
+        _(e)
+    return return_dict
 
 def patternMatchAllToDict(pat, text):
     matching_list = {}

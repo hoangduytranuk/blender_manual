@@ -58,7 +58,7 @@ class NoCaseDict(OrderedDict):
 
         def __hash__(self):
             k = self.lower()
-            is_debug = ('Build'.lower() in 'k')
+            is_debug = ('Build'.lower() in k)
             if is_debug:
                 _('DEBUG')
             key_len = len(k)
@@ -126,6 +126,7 @@ class NoCaseDict(OrderedDict):
 
     def __delitem__(self, key):
         key = self.Key(key)
+        _(f'__delitem__:[{key}]')
         try:
             super(NoCaseDict, self).__delitem__(key)
             if self.is_operational:
@@ -321,6 +322,7 @@ class TranslationFinder:
 
     @property
     def master_dic(self):
+        _(f'master_dic - get length: {len(self.master_dic_list)}')
         return self.master_dic_list
 
     @master_dic.setter
@@ -332,6 +334,7 @@ class TranslationFinder:
 
     @property
     def backup_dic(self):
+        _(f'backup_dic - get length: {len(self.backup_dic_list)}')
         return self.backup_dic_list
 
     @backup_dic.setter
@@ -345,6 +348,27 @@ class TranslationFinder:
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
         self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC_PURE)
+        # sorted_dic = None
+        # file_name = os.path.join(os.environ['HOME'], 'blender_manual/sorted_backup_dict.json')
+        # try:
+        #     # new_dict = OrderedDict()
+        #     # for k, v in self.backup_dic.items():
+        #     #     is_ignored = ig.isIgnored(k)
+        #     #     if is_ignored:
+        #     #         print(f'ignored:{k}')
+        #     #         continue
+        #     #     new_dict.update({k:v})
+        #
+        #     items = list(self.backup_dic.items())
+        #     sorted_items = sorted(items, key=lambda x: len(x[0]))
+        #     sorted_dic = OrderedDict(sorted_items)
+        #     self.writeJSONDic(dict_list=sorted_dic, file_name=file_name)
+        # except Exception as e:
+        #     print(e)
+        #
+        # exit(0)
+
+
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
@@ -507,7 +531,16 @@ class TranslationFinder:
             translation = left + tran_sub_text + right
 
         untranslated_word_list = remain_msg.split()
-        self.addDictEntry(untranslated_word_list)
+        # if untranslated_word_list:
+        #     print('blindTranslation -- should be added to BACKUP dictionary:')
+        #     for unword in untranslated_word_list:
+        #         print(f'{unword}')
+
+        # self.addDictEntry(untranslated_word_list)
+
+        if translation:
+            translation = cm.matchCase(msg, translation)
+
         return translation
 
     def addDictEntry(self, msg_list, is_master=False):
@@ -1066,19 +1099,25 @@ class TranslationFinder:
         return_dic = None
         try:
             if not file_name:
+                _(f'loadJSONDic - file_name is None.')
                 return return_dic
 
             if not os.path.isfile(file_name):
+                _(f'loadJSONDic - file_name:{file_name} cannot be found!')
                 return return_dic
 
             file_path = (self.master_dic_file if (file_name is None) else file_name)
             dic = {}
             with open(file_path) as in_file:
+                # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
                 dic = json.load(in_file)
+                length = len(dic)
+                _(f'loadJSONDic - loaded dic, length:{length}')
 
             return_dic = NoCaseDict(dic)
             test_txt = 'Build'
-            if test_txt in return_dic:
+            is_test_text_in_dic = (test_txt in return_dic)
+            if is_test_text_in_dic:
                 value_old = dic[test_txt]
                 value = return_dic[test_txt]
                 _(f'found: {test_txt} => {value}')
@@ -1151,6 +1190,10 @@ class TranslationFinder:
 
     def isInListByDict(self, msg, is_master):
         dic_to_use = (self.master_dic if is_master else self.backup_dic)
+        dic_name = (self.master_dic_file if is_master else self.master_dic_backup_file)
+        dic_length = len(dic_to_use)
+        _(f'isInListByDict - dic_to_use:{dic_name}, number of entries:{dic_length}')
+
         return self.isInList(msg, search_dict=dic_to_use)
 
     # def dump_po(self, filename, catalog):
@@ -1318,6 +1361,11 @@ class TranslationFinder:
 
         tran_found = (tran is not None)
 
+        abbr_str = RefType.ABBR.value
+        has_abbr = (abbr_str in tran)
+        if has_abbr:
+            return tran
+
         orig_msg = str(msg)
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         if (len(ex_ga_msg) > 0):
@@ -1333,9 +1381,9 @@ class TranslationFinder:
 
             tran = cm.replaceArchedQuote(tran)
             tran = self.addExtraChar(tran, ref_type=ref_type)
-            tran = f":abbr:`{tran} ({msg})`"
+            tran = f"{abbr_str}`{tran} ({msg})`"
         else:
-            tran = f":abbr:`{msg} ({msg})`"
+            tran = f"{abbr_str}`{msg} ({msg})`"
         print(f'translateQuoted: [{msg}] [{tran}]')
         # exit(0)
         return tran
@@ -1358,6 +1406,17 @@ class TranslationFinder:
 
                 tran_found = (tran and tran != orig_txt)
                 if tran_found:
+                    has_abbr = cm.hasAbbr(tran)
+                    if has_abbr:
+                        abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(tran)
+                        loc, abbr_txt = abbr_exp
+                        orig_loc, orig_txt = abbr_orig
+                        os, oe = orig_loc
+                        left = tran[:os]
+                        right = tran[oe:]
+                        tran = left + abbr_txt + right
+                        _('debug')
+
                     tran = cm.matchCase(orig_txt, tran)
                     tran = "{} -- {}".format(tran, orig_txt)
                 else:
@@ -1384,6 +1443,17 @@ class TranslationFinder:
             tran, is_fuzzy, is_ignore = self.translate(orig)
             if is_ignore:
                 continue
+
+            has_abbr = cm.hasAbbr(tran)
+            if has_abbr:
+                abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(tran)
+                loc, abbr_txt = abbr_marker
+                orig_loc, orig_txt = abbr_orig
+                os, oe = orig_loc
+                left = tran[:os]
+                right = tran[oe:]
+                tran = left + abbr_txt + right
+                _('debug')
 
             is_tran_valid = (tran and (tran != orig))
             if is_tran_valid:
