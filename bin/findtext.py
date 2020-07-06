@@ -15,7 +15,7 @@ sys.path.append( local_lib_path )
 import math
 import locale
 import datetime
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from pprint import pprint as PP
 from time import gmtime, strftime, time
 from pytz import timezone
@@ -26,12 +26,48 @@ from babel.messages import pofile
 from enum import Enum
 # import chardet
 from translation_finder import TranslationFinder
+from reflink import RefList
 
 INVERT_SEP='•'
 # DEBUG = True
 DEBUG = False
 
-def patternMatchAllAsDictNoDelay(pat, text):
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+escape_char = re.compile(r'[\\\s]+')
+
+def patternMatchOnly(pat, text):
+    try:
+        return_dict = {}
+        # is_debug = ('Previous Component' in text)
+        # if is_debug:
+        #     _('DEBUG')
+        for m in pat.finditer(text):
+            original = ()
+            # break_down = []
+
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            original = (s, e, orig)
+            entry = {(s,e): orig}
+            return_dict.update(entry)
+    except Exception as e:
+        _("patternMatchAll")
+        _("pattern:", pat)
+        _("text:", text)
+        _(e)
+    return return_dict
+
+def patternMatchAllMatches(pat, text):
     try:
         return_dict = {}
         is_debug = ('Previous Component' in text)
@@ -319,6 +355,7 @@ class FindFilesHasPattern:
         self.found_lines_dic = {}
         self.found_record: FoundRecord = None
         self.global_found_list = {}
+        self.global_count = defaultdict(int)
 
     def getCase(self, lower_case, upper_case, capital_case, title_case):
         actual_case = LetterCase.NO_CHANGE
@@ -564,6 +601,7 @@ class FindFilesHasPattern:
             _("No files to search! Terminate.")
             return
 
+
         is_po_only = (self.find_po and not (self.find_py or self.find_rst or self.find_src)) or self.vipo_file
         is_replace = ((self.replace_pattern is not None) and is_po_only) or (self.letter_case != LetterCase.NO_CHANGE)
 
@@ -611,22 +649,9 @@ class FindFilesHasPattern:
                     match_list = self.getAllMatchedWordFromLine(self.find_pattern, text_line)
                 match_text = "\n".join(match_list)
             else:
-                found_matched_dic = patternMatchAllAsDictNoDelay(self.find_pattern, text_line)
-                is_debug = ('Previous Component' in text_line)
-                if is_debug:
-                    _('DEBUG')
+                match_text = str(text_line)
                 if self.is_marking:
-                    reversed_list = reversed(list(found_matched_dic.items()))
-                    match_text = str(text_line)
-                    for loc, txt in reversed_list:
-                        s, e = loc
-                        e = s + len(txt)
-                        mid = f'|{txt}|'
-                        left = match_text[:s]
-                        right = match_text[e:]
-                        match_text = left + mid + right
-                else:
-                    match_text = text_line
+                    match_text = self.markingText(index, text_line, self.find_pattern)
 
             entry = {index: match_text}
             self.found_record.update(entry)
@@ -647,13 +672,15 @@ class FindFilesHasPattern:
                 key = hash_rec.digest()
                 entry = {key: txt}
                 self.global_found_list.update(entry)
+                self.global_count[txt] += 1
         else:
-            temp_file_list = patternMatchAllAsDictNoDelay(self.find_pattern, data_line)
+            temp_file_list = patternMatchAllMatches(self.find_pattern, data_line)
             for loc, txt in temp_file_list.items():
                 hash_rec = hashlib.sha256(txt.encode('utf-8'))
                 key = hash_rec.digest()
                 entry = {key: txt}
                 self.global_found_list.update(entry)
+                self.global_count[txt] += 1
 
     def reportFind(self, data):
         data_list = data.split('\n')
@@ -692,15 +719,10 @@ class FindFilesHasPattern:
 
     def findPatternInFile(self, file_path):
         data = self.basic_io.readTextFile(file_path)
-
-        # flag = (re.I if self.case_sensitive else 0)
-
-        #found_list = re.findall(self.find_pattern, data, flags=flag)
-        found_list = patternMatchAllAsDictNoDelay(self.find_pattern, data)
-        if self.invert_match:
-            is_found = True
-        else:
-            is_found = (len(found_list) > 0)
+        found = self.find_pattern.search(data)
+        is_found = True
+        if not self.invert_match:
+            is_found = bool(found)
 
         if is_found:
             #pp(found_list)
@@ -709,34 +731,38 @@ class FindFilesHasPattern:
             # _("-" * 80)
 
     def switchExistingTextsCase(self, txt):
-        #print("switchExistingTextsCase", txt, type(txt))
-
-        changed_count = 0
         new_txt = str(txt)
-        for orig, _ in self.patternMatchAll(self.find_pattern, txt):
-            s, e, found_txt = orig
-            orig_txt = str(found_txt)
-            if self.letter_case == LetterCase.LOWER_CASE:
-                found_txt = found_txt.lower()
-            elif self.letter_case == LetterCase.UPPER_CASE:
-                found_txt = found_txt.upper()
-            elif self.letter_case == LetterCase.CAPITAL_CASE:
-                first_letter = found_txt[0]
-                first_letter = first_letter.upper()
-                found_txt = first_letter + found_txt[1:]
-            elif self.letter_case == LetterCase.TITLE_CASE:
-                found_txt = found_txt.title()
+        if self.letter_case == LetterCase.LOWER_CASE:
+            new_txt = txt.lower()
+        elif self.letter_case == LetterCase.UPPER_CASE:
+            new_txt = txt.upper()
+        elif self.letter_case == LetterCase.CAPITAL_CASE:
+            first_letter = txt[0]
+            first_letter = txt.upper()
+            new_txt = first_letter + txt[1:]
+        elif self.letter_case == LetterCase.TITLE_CASE:
+            new_txt = txt.title()
+        return new_txt
 
-            new_txt = new_txt[:s] + found_txt + new_txt[e:]
-            is_changed = (found_txt != orig_txt)
-            changed_count += (1 if is_changed else 0)
-            #_("switchExistingTextsCase from:", txt, "=>", new_txt, changed_count)
-        return new_txt, changed_count
-
+    def markingText(self, line_number, text_to_mark, pattern_to_find):
+        text_marked = str(text_to_mark)
+        loc_text_dict = patternMatchOnly(pattern_to_find, text_to_mark)
+        reversed_loc_text_dict = list(reversed(list(loc_text_dict.items())))
+        for loc, txt in reversed_loc_text_dict:
+            s, e = loc
+            left = text_marked[:s]
+            right = text_marked[e:]
+            mid = f'{bcolors.OKGREEN}{txt}{bcolors.ENDC}'
+            text_marked = left + mid + right
+            entry = {line_number: txt}
+            self.found_record.update(entry)
+        return text_marked
 
     def replaceInPOFile(self, file_path):
         changed = False
+        change_case = (self.letter_case != LetterCase.NO_CHANGE)
         po_cat = c.load_po(file_path)
+        unescaped_replace_pattern = escape_char.sub(' ', self.replace_pattern)
         for index, m in enumerate(po_cat):
             is_ignore = (index == 0)
             if is_ignore:
@@ -747,16 +773,45 @@ class FindFilesHasPattern:
             if not has_translation:
                 continue
 
-            is_changing_case = (self.letter_case != LetterCase.NO_CHANGE)
-            if is_changing_case:
-                new_translation, n_changed = self.switchExistingTextsCase(old_translation)
-            else:
-                new_translation, n_changed = re.subn(self.txt_find_pattern, self.replace_pattern, old_translation, flags=self.pattern_flag)
-            has_changed = (n_changed > 0)
+            new_translation = str(old_translation)
+            report_old = str(old_translation)
+            report_new = str(old_translation)
+
+            has_changed = False
+            found_list = patternMatchOnly(self.find_pattern, old_translation)
+            reversed_found_list = sorted(list(found_list.items()), reverse=True)
+            for loc, found_txt in reversed_found_list:
+                self.global_count[found_txt] += 1
+                s, e = loc
+                left = old_translation[:s]
+                right = old_translation[e:]
+
+                if change_case:
+                    mid = self.switchExistingTextsCase(found_txt)
+                else:
+                    # mid = self.replace_pattern
+                    mid = unescaped_replace_pattern
+
+                new_translation = left + mid + right
+                has_changed = True
+                if self.is_marking:
+                    mid_old = f'{bcolors.OKGREEN}{found_txt}{bcolors.ENDC}'
+                    mid_new = f'{bcolors.OKGREEN}{unescaped_replace_pattern}{bcolors.ENDC}'
+                else:
+                    mid_old = found_txt
+                    mid_new = unescaped_replace_pattern
+
+                report_old = report_old[:s] + mid_old + report_old[e:]
+                report_new = report_new[:s] + mid_new + report_new[e:]
+
             if has_changed:
+                # new_translation = escape_char.sub(' ', new_translation)
                 m.string = new_translation
                 changed = True
-                self.found_record.addFound(m.lineno, f'Replaced:\nold msgstr \"{old_translation}\"\nnew msgstr \"{new_translation}\"')
+
+            is_shown = (has_changed or self.invert_match)
+            if is_shown:
+                self.found_record.addFound(m.lineno, f'Replaced:\nold msgstr \"{report_old}\"\nnew msgstr \"{report_new}\"')
 
         is_writing_changes = (changed and not self.testing_only)
         if is_writing_changes:
@@ -775,6 +830,13 @@ class FindFilesHasPattern:
         mod_file_list = modi_file_callback.getListSorted()
         return mod_file_list
 
+    def tranRef(self, msg, is_keep_original, tran_finder):
+        ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=tran_finder)
+        ref_list.parseMessage()
+        ref_list.translateRefList()
+        tran = ref_list.getTranslation()
+        return tran
+
     def run(self):
         # _("Hoang Duy Tran")
         self.find()
@@ -789,14 +851,29 @@ class FindFilesHasPattern:
 
             tf = TranslationFinder()
             print('Output global_found_list - only printout if NOT translated:')
+            is_counting = False
             for w in word_list:
-                trans = tf.isInListByDict(w, True)
-                if not trans:
-                    trans,_,_ = tf.translate(w)
-                    if trans:
+                # trans = tf.isInListByDict(w, True)
+                trans = self.tranRef(w, False, tf)
+                # if not trans:
+                count=1
+                if w in self.global_count:
+                    count = self.global_count[w]
+                # trans,_,_ = tf.translate(w)
+                if trans:
+                    w = re.sub(r'"', '\\"', w)
+                    trans = re.sub(r'"', '\\"', trans)
+                    if is_counting:
+                        print(f'"{w}": "{trans}", {count}')
+                    else:
                         print(f'"{w}": "{trans}",')
+                else:
+                    if is_counting:
+                        print(f'"{w}": "", {count}')
                     else:
                         print(f'"{w}": "",')
+            # PP(self.global_count)
+
 
 
 parser = ArgumentParser()
@@ -835,6 +912,10 @@ args = parser.parse_args()
 x = FindFilesHasPattern()
 x.setVars(
     args.find_pattern,
+    # '\*([^\*]+)\*', # star quotes
+    # '"([^"]+)"', # double quotes
+    # "'(?!(s|re|ll|t)?\s)([^']+)'(?!\S)", # single quote
+    # "\(([^()]+)\)", # bracket     # ':kbd:`Shift-LMB` drag',
     args.replace_pattern,
     args.case_lower,
     args.case_upper,

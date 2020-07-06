@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
+import os
 import sys
-sys.path.append("/home/htran/bin/python")
+home_dir = os.environ['HOME']
+potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
+python_sites = '/usr/local/lib/python3.7/site-packages'
+sys.path.append(potranslate_dir)
+sys.path.append(python_sites)
 
 from collections import OrderedDict, defaultdict
+from nltk.stem import LancasterStemmer
+from nltk.stem.snowball import SnowballStemmer, PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 #from stack import Stack
 import datetime
@@ -15,14 +23,14 @@ from difflib import SequenceMatcher as SM
 #from fuzzywuzzy import fuzz as fz
 from pprint import pprint as PP
 # from bs4 import BeautifulSoup as BS
-import os
 import html
 from queue import Queue as Q
 from pyparsing import *
 from collections import Counter
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
-
+from reflink import RefList
+from translation_finder import TranslationFinder
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -30,6 +38,89 @@ suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
+
+def patternMatchAllAsDictNoDelay(pat, text):
+    try:
+        return_dict = {}
+        for m in pat.finditer(text):
+            original = ()
+            # break_down = []
+
+            s = m.start()
+            e = m.end()
+            orig = m.group(0)
+            original = (s, e, orig)
+            entry = {(s,e): orig}
+            return_dict.update(entry)
+
+            for g in m.groups():
+                if g:
+                    i_s = orig.find(g)
+                    ss = i_s + s
+                    ee = ss + len(g)
+                    v=(ss, ee, g)
+                    # break_down.append(v)
+                    entry = {(ss, ee): g}
+                    return_dict.update(entry)
+    except Exception as e:
+        _("patternMatchAll")
+        _("pattern:", pat)
+        _("text:", text)
+        _(e)
+    return return_dict
+
+def patternMatchAllToDict(pat, text):
+    matching_list = {}
+    for m in pat.finditer(text):
+        s = m.start()
+        e = m.end()
+        orig = m.group(0)
+        k = (s, e)
+        entry = {k: orig}
+        matching_list.update(entry)
+    return matching_list
+
+REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
+REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&\,\.]+$')
+
+def removeLeadingTrailingSymbs(txt):
+    leading_set = REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
+
+def isBalancedSymbol(symb_on, symb_off, txt):
+    p_str = f'\{symb_on}([^\{symb_on}\{symb_off}]+)\{symb_off}'
+    p_exp = r'%s' % (p_str.replace("\\\\", "\\"))
+    pattern = re.compile(p_exp)
+    p_list = patternMatchAllToDict(pattern, txt)
+    has_p_list = (len(p_list) > 0)
+    if has_p_list:
+        temp_txt = str(txt)
+        for loc, txt in p_list.items():
+            s, e = loc
+            left = temp_txt[:s]
+            right = temp_txt[e:]
+            temp_txt = left + right
+        return not ((symb_on in temp_txt) or (symb_off in temp_txt))
+    else:
+        return True
+
+    # default_last_i = 0xffffffff
+    # counter = 0
+    # last_i = default_last_i
+    # off_happened_first = False
+    # for i, c in enumerate(txt):
+    #     is_on = (i != last_i) and (c == symb_on)
+    #     if is_on:
+    #         counter += 1
+    #         last_i = i
+    #     else:
+    #         is_off = (i != last_i) and (c == symb_off)
+    #         if is_off:
+    #             off_happened_first = (last_i == default_last_i)
+    #             counter -= 1
+    #             last_i = i
+    #
+    # return (counter == 0) and not (off_happened_first)
+
 
 class TextMap(OrderedDict):
     def __init__(self, text=None, dic=None):
@@ -3024,91 +3115,67 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # loc, txt = orig
         # print(f'{orig}\n{loc}\n{txt}\n')
 
+    def test_0051(self):
+        print('Import OK')
+        txt = ''':abbr:`SDLS (Selective Damped Least Square)`'''
+        tran = tranRef(txt, False)
+        print(f'tran is:{tran}')
+
+    def test_0052(self):
+        txt = 'Đảo Ngược Tầm Nhìn của Face Set'
+        find_pattern = re.compile("Face\ Set")
+        sub_pattern = "Bề\ Mặt\ Ấn\ Định"
+        find_list = patternMatchAllToDict(find_pattern, txt)
+        new_txt, count = find_pattern.subn(sub_pattern, txt)
+        print(new_txt)
+        # print(find_list)
+
+    def test_0053(self):
+        common_ending_list = sorted([
+            'ing','ed', 'est', 'er',
+            'ies','ly', 'es', 's', 'y',
+            'ble', 'ion', 'ful', 'ess'
+                                     ])
+        common_ending_list_sorted = sorted(common_ending_list, key=lambda x: len(x), reverse=True)
+        common_ending_pattern_list = []
+        print(common_ending_list_sorted)
+
+        st = LancasterStemmer()
+        for txt in common_ending_list_sorted:
+            pat = r'(%s)$' % txt
+            common_ending_pattern_list.append(re.compile(pat, flags=re.I))
+
+        test_text = [
+            "This is fully practically better prettiest ",
+            "general and generalisation communication actually factually",
+        ]
+        for text_line in test_text:
+            word_list = word_tokenize(text_line)
+            for word in word_list:
+                root_word = st.stem(word)
+                print(f'{word} => {root_word}')
+
+            # for word in word_list:
+            #     for pat in common_ending_pattern_list:
+            #         root_word, count = pat.subn('', word)
+            #         is_replaced = (count > 0)
+            #         if is_replaced:
+            #             print(f'{word} => {root_word}')
+            #             break
+            #         # root_word = st.stem(word)
+
     def run(self):
-        self.test_0050()
+        self.test_0053()
 
-
-def patternMatchAllAsDictNoDelay(pat, text):
-    try:
-        return_dict = {}
-        for m in pat.finditer(text):
-            original = ()
-            # break_down = []
-
-            s = m.start()
-            e = m.end()
-            orig = m.group(0)
-            original = (s, e, orig)
-            entry = {(s,e): orig}
-            return_dict.update(entry)
-
-            for g in m.groups():
-                if g:
-                    i_s = orig.find(g)
-                    ss = i_s + s
-                    ee = ss + len(g)
-                    v=(ss, ee, g)
-                    # break_down.append(v)
-                    entry = {(ss, ee): g}
-                    return_dict.update(entry)
-    except Exception as e:
-        _("patternMatchAll")
-        _("pattern:", pat)
-        _("text:", text)
-        _(e)
-    return return_dict
-
-def patternMatchAllToDict(pat, text):
-    matching_list = {}
-    for m in pat.finditer(text):
-        s = m.start()
-        e = m.end()
-        orig = m.group(0)
-        k = (s, e)
-        entry = {k: orig}
-        matching_list.update(entry)
-    return matching_list
-
-REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
-REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&\,\.]+$')
-
-def removeLeadingTrailingSymbs(txt):
-    leading_set = REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
-
-def isBalancedSymbol(symb_on, symb_off, txt):
-    p_str = f'\{symb_on}([^\{symb_on}\{symb_off}]+)\{symb_off}'
-    p_exp = r'%s' % (p_str.replace("\\\\", "\\"))
-    pattern = re.compile(p_exp)
-    p_list = patternMatchAllToDict(pattern, txt)
-    has_p_list = (len(p_list) > 0)
-    if has_p_list:
-        temp_txt = str(txt)
-        for loc, txt in p_list.items():
-            s, e = loc
-            left = temp_txt[:s]
-            right = temp_txt[e:]
-            temp_txt = left + right
-        return not ((symb_on in temp_txt) or (symb_off in temp_txt))
-    else:
-        return True
-
-    # default_last_i = 0xffffffff
-    # counter = 0
-    # last_i = default_last_i
-    # off_happened_first = False
-    # for i, c in enumerate(txt):
-    #     is_on = (i != last_i) and (c == symb_on)
-    #     if is_on:
-    #         counter += 1
-    #         last_i = i
-    #     else:
-    #         is_off = (i != last_i) and (c == symb_off)
-    #         if is_off:
-    #             off_happened_first = (last_i == default_last_i)
-    #             counter -= 1
-    #             last_i = i
-    #
-    # return (counter == 0) and not (off_happened_first)
+trans_finder = TranslationFinder()
+def tranRef(msg, is_keep_original):
+    ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
+    ref_list.parseMessage()
+    ref_list.translateRefList()
+    tran = ref_list.getTranslation()
+    trans_finder.addDictEntry((msg, tran))
+    print("Got translation from REF_LIST")
+    return tran
 
 x = test()
 x.run()

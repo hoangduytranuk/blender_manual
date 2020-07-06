@@ -347,6 +347,7 @@ class TranslationFinder:
     def loadDictionary(self):
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
+        # self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC)
         self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC_PURE)
         # sorted_dic = None
         # file_name = os.path.join(os.environ['HOME'], 'blender_manual/sorted_backup_dict.json')
@@ -1384,7 +1385,7 @@ class TranslationFinder:
             tran = f"{abbr_str}`{tran} ({msg})`"
         else:
             tran = f"{abbr_str}`{msg} ({msg})`"
-        print(f'translateQuoted: [{msg}] [{tran}]')
+        # print(f'translateQuoted: [{msg}] [{tran}]')
         # exit(0)
         return tran
 
@@ -1418,9 +1419,9 @@ class TranslationFinder:
                         _('debug')
 
                     tran = cm.matchCase(orig_txt, tran)
-                    tran = "{} -- {}".format(tran, orig_txt)
+                    tran = f"{orig_txt}: {tran}"
                 else:
-                    tran = "-- {}".format(orig_txt)
+                    tran = f"{orig_txt}: "
                 tran_txt = tran_txt[:s] + tran + tran_txt[e:]
         else:
             orig_txt = msg
@@ -1430,9 +1431,9 @@ class TranslationFinder:
             tran_found = (tran and tran != orig_txt)
             if tran_found:
                 tran = cm.matchCase(orig_txt, tran)
-                tran_txt = "{} -- {}".format(tran, orig_txt)
+                tran_txt = f"{orig_txt}: {tran}"
             else:
-                tran_txt = "-- {}".format(orig_txt)
+                tran_txt = f"{orig_txt}: "
         return tran_txt
 
     def translateMenuSelection(self, msg):
@@ -1467,25 +1468,45 @@ class TranslationFinder:
 
     def translateAbbrev(self, msg):
         tran_txt = str(msg)
-        for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, tran_txt):
-            os, oe, otxt = orig
-            has_breakdown = (breakdown and len(breakdown) > 0)
-            if not has_breakdown:
-                continue
+        all_matches = cm.patternMatchAllAsDictNoDelay(cm.ABBR_TEXT, msg)
+        has_items = (all_matches and len(all_matches) > 1)
+        if not has_items:
+            return None
 
-            for bs, be, btxt in breakdown:
-                tran, is_fuzzy, is_ignore = self.translate(btxt)
-                if is_ignore:
-                    continue
-                valid = (tran and (tran != btxt))
-                if valid:
-                    tran = cm.matchCase(btxt, tran)
-                    entry = "{} -- {}".format(btxt, tran)
-                else:
-                    entry = "-- {}".format(btxt)
-                s = os + bs
-                e = oe + be
-                tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+        all_matches_reversed = list(reversed(list(all_matches.items())))
+        loc, btxt = all_matches_reversed[0]
+        s, e = loc
+        tran, is_fuzzy, is_ignore = self.translate(btxt)
+        if is_ignore:
+            return None
+
+        valid = (tran and (tran != btxt))
+        if valid:
+            tran = cm.matchCase(btxt, tran)
+            entry = "{} -- {}".format(btxt, tran)
+        else:
+            entry = "-- {}".format(btxt)
+        tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+
+        # for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, tran_txt):
+        #     os, oe, otxt = orig
+        #     has_breakdown = (breakdown and len(breakdown) > 0)
+        #     if not has_breakdown:
+        #         continue
+        #
+        #     for bs, be, btxt in breakdown:
+        #         tran, is_fuzzy, is_ignore = self.translate(btxt)
+        #         if is_ignore:
+        #             continue
+        #         valid = (tran and (tran != btxt))
+        #         if valid:
+        #             tran = cm.matchCase(btxt, tran)
+        #             entry = "{} -- {}".format(btxt, tran)
+        #         else:
+        #             entry = "-- {}".format(btxt)
+        #         s = os + bs
+        #         e = oe + be
+        #         tran_txt = tran_txt[:s] + entry + tran_txt[e:]
 
         return tran_txt
 

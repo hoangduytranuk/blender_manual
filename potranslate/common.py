@@ -216,6 +216,19 @@ class Common:
 
     BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
 
+    common_ending_list = ['ing','ed', 'est', 'er',
+                          'ies','|ly', 'es', 's',
+                         'ble', 'ion', 'ful', 'ess']
+    common_ending_list_sorted = sorted(common_ending_list, key=lambda x: len(x), reverse=True)
+    common_ending_pattern_list = []
+
+    COMMON_ENDING = re.compile('r(ing|ed|est|er|ies|ly|es|s|ble|ion|ful|ess)$')
+    def removeCommonEnding(txt):
+        if not Common.common_ending_pattern_list:
+            for ending in Common.common_ending_list_sorted:
+                pass
+
+
     def replaceArchedQuote(txt):
         new_txt = str(txt)
         new_txt = re.sub('\)', ']', new_txt)
@@ -323,15 +336,20 @@ class Common:
         msg = re.escape(msg)
         p = r'\b{}\b'.format(msg)
         has_original = (re.search(p, trans, flags=re.I) is not None)
-        endings = ("", "s", "es", "ies", "ed", "ing", "lly",)
+        endings_list = ["", "s", "es", "ies", "ed", "ing", "lly",]
+        endings = sorted(endings_list, key=lambda x: len(x), reverse=True)
 
         if has_original:
             for end in endings:
+                p = r'{}{}:\ '.format(msg, end)
+                trans = re.sub(p, "", trans, flags=re.I)
+
                 p = r'-- {}{}'.format(msg, end)
                 trans = re.sub(p, "", trans, flags=re.I)
 
                 p = r' ({}{})'.format(msg, end)
                 trans = re.sub(p, "", trans, flags=re.I)
+
 
             for end in endings:
                 p = r'{}{} --'.format(msg, end)
