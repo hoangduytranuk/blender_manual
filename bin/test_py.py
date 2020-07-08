@@ -7,6 +7,7 @@ python_sites = '/usr/local/lib/python3.7/site-packages'
 sys.path.append(potranslate_dir)
 sys.path.append(python_sites)
 
+import json
 from collections import OrderedDict, defaultdict
 from nltk.stem import LancasterStemmer
 from nltk.stem.snowball import SnowballStemmer, PorterStemmer
@@ -29,8 +30,8 @@ from pyparsing import *
 from collections import Counter
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
-from reflink import RefList
-from translation_finder import TranslationFinder
+# from reflink import RefList
+# from translation_finder import TranslationFinder
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -38,6 +39,15 @@ suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
+
+def readJSON(file_path):
+    with open(file_path) as in_file:
+        dic = json.load(in_file, object_pairs_hook=OrderedDict)
+    return dic
+
+def writeJSON(file_path, data):
+    with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
+        json.dump(data, out_file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
 
 def patternMatchAllAsDictNoDelay(pat, text):
     try:
@@ -3164,10 +3174,51 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
             #             break
             #         # root_word = st.stem(word)
 
-    def run(self):
-        self.test_0053()
+    def test_0054(self):
+        dic = {
+            'err': ['e', 'y', 'ee', 'ear', 'er',],
+            'ier': ['y','e','er','a','ie',]
+               }
+        home_dir = os.environ['HOME']
+        test_file = os.path.join(home_dir, 'testing.json')
 
-trans_finder = TranslationFinder()
+        writeJSON(test_file, dic)
+
+    def test_0055(self):
+        def sort_list_value(dic):
+            new_dic = OrderedDict()
+            for k, v in dic.items():
+                v = list(sorted(v, key=lambda x: len(x), reverse=False))
+                entry = {k: v}
+                new_dic.update(entry)
+            return new_dic
+
+        home_dir = os.environ['HOME']
+        test_file1 = os.path.join(home_dir, 'blender_manual/prefix_and_filler.json')
+        test_file2 = os.path.join(home_dir, 'blender_manual/suffix_transform.json')
+        test_out_file = os.path.join(home_dir, 'testing.json')
+
+        dic = readJSON(test_file1)
+
+        sorting = sorted(list(dic.items()))
+        sorted_list = list(sorted(sorting, key=lambda x: len(x[0]), reverse=False))
+        dic = OrderedDict(sorted_list)
+        sorted_dic = sort_list_value(dic)
+        writeJSON(test_file1, sorted_dic)
+
+        dic = readJSON(test_file2)
+        sorting = sorted(list(dic.items()))
+        sorted_list = list(sorted(sorting, key=lambda x: len(x[0]), reverse=False))
+        dic = OrderedDict(sorted_list)
+        sorted_dic = sort_list_value(dic)
+        writeJSON(test_file2, sorted_dic)
+
+        # PP(dic)
+
+    def run(self):
+        self.test_0055()
+
+# trans_finder = TranslationFinder()
 def tranRef(msg, is_keep_original):
     ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
     ref_list.parseMessage()

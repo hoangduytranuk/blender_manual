@@ -216,17 +216,107 @@ class Common:
 
     BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
 
-    common_ending_list = ['ing','ed', 'est', 'er',
-                          'ies','|ly', 'es', 's',
-                         'ble', 'ion', 'ful', 'ess']
-    common_ending_list_sorted = sorted(common_ending_list, key=lambda x: len(x), reverse=True)
-    common_ending_pattern_list = []
+    common_prefixes = [
+        'a',
+        'an',
+        'ante',
+        'anti',
+        'auto',
+        'circum',
+        'co',
+        'com',
+        'con',
+        'contra',
+        'contro',
+        'de',
+        'dis',
+        'en',
+        'ex',
+        'extra',
+        'hetero',
+        'homo',
+        'homeo',
+        'hyper',
+        'il',
+        'im',
+        'in',
+        'ir',
+        'in',
+        'inter',
+        'intra',
+        'intro',
+        'macro',
+        'micro',
+        'mono',
+        'non',
+        'omni',
+        'post',
+        'pre',
+        'pro',
+        'sub',
+        'sym',
+        'syn',
+        'tele',
+        'trans',
+        'tri',
+        'un',
+        'uni',
+        'up',
+    ]
+    common_suffixes = [
+        'eer',
+        'er',
+        'ion',
+        'ity',
+        'ment',
+        'ness',
+        'or',
+        'sion',
+        'ship',
+        'th',
+        'able',
+        'ible',
+        'al',
+        'ant',
+        'ary',
+        'ful',
+        'ic',
+        'ious',
+        'ous',
+        'ive',
+        'less',
+        'y',
+        'ed',
+        'en',
+        'er',
+        'ing',
+        'ize',
+        'ise',
+        'ly',
+        'ward',
+        'wise',
+            ]
 
-    COMMON_ENDING = re.compile('r(ing|ed|est|er|ies|ly|es|s|ble|ion|ful|ess)$')
-    def removeCommonEnding(txt):
-        if not Common.common_ending_pattern_list:
-            for ending in Common.common_ending_list_sorted:
-                pass
+    common_prefix_sorted = sorted(common_prefixes, key=lambda x: len(x), reverse=False)
+    common_prefix_pattern_list = []
+
+    common_suffix_sorted = sorted(common_suffixes, key=lambda x: len(x), reverse=False)
+    common_suffix_pattern_list = []
+
+    def initCommonPatternList():
+
+        if Common.common_suffix_pattern_list:
+            return
+
+        for suffix in Common.common_suffix_sorted:
+            pat = r'%s$' % suffix
+            pattern = re.compile(pat, flags=re.I)
+            Common.common_suffix_pattern_list.append(pattern)
+
+        for prefix in Common.common_prefix_sorted:
+            pat = r'^%s' % prefix
+            pattern = re.compile(pat, flags=re.I)
+            Common.common_prefix_pattern_list.append(pattern)
 
 
     def replaceArchedQuote(txt):

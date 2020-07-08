@@ -1197,6 +1197,83 @@ class TranslationFinder:
 
         return self.isInList(msg, search_dict=dic_to_use)
 
+    def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
+        def removeByPatternListAndCheck(txt, pattern_list, dic_to_use):
+            for pat in pattern_list:
+                test_text, count = pat.subn('', txt)
+                is_matched = (count > 0)
+                if not is_matched:
+                    continue
+
+                is_leading_with_hyphen = (test_text.startswith('-'))
+                if is_leading_with_hyphen:
+                    test_text = test_text[1:]
+
+                is_in_dict = (test_text in dic_to_use)
+                if not is_in_dict:
+                    is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
+                    if is_double_ending:
+                        test_text = test_text[:-1]
+                        is_in_dict = (test_text in dic_to_use)
+
+                if is_in_dict:
+                    tran = dic_to_use[test_text]
+                    return test_text, tran
+            return txt, None
+
+        def removeBothByPatternListAndCheck(txt, pattern_list_prefix, pattern_list_suffix, dic_to_use):
+            suffixed_list = []
+            for pat in pattern_list_suffix:
+                test_text, count = pat.subn('', txt)
+                is_matched = (count > 0)
+                if not is_matched:
+                    continue
+
+                is_leading_with_hyphen = (test_text.startswith('-'))
+                if is_leading_with_hyphen:
+                    test_text = test_text[1:]
+
+                suffixed_list.append(test_text)
+
+            prefixed_list = []
+            for suffixed_word in suffixed_list:
+                for pat in pattern_list_prefix:
+                    test_text, count = pat.subn('', suffixed_word)
+                    is_matched = (count > 0)
+                    if not is_matched:
+                        continue
+
+                    prefixed_list.append(test_text)
+
+            for test_text in prefixed_list:
+                is_in_dict = (test_text in dic_to_use)
+                if not is_in_dict:
+                    is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
+                    if is_double_ending:
+                        test_text = test_text[:-1]
+                        is_in_dict = (test_text in dic_to_use)
+
+                if is_in_dict:
+                    tran = dic_to_use[test_text]
+                    return test_text, tran
+            return txt, None
+
+
+        # has_suffix = cm.COMMON_ENDING.search(txt)
+        # if not has_suffix:
+        #     return None
+        #
+        cm.initCommonPatternList()
+
+        new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_pattern_list, dic_to_use)
+        if not tran:
+            new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_pattern_list, dic_to_use)
+            if not tran:
+                new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_pattern_list, cm.common_suffix_pattern_list, dic_to_use)
+
+        return tran
+
+
     # def dump_po(self, filename, catalog):
     #     dirname = os.path.dirname(filename)
     #     if not os.path.exists(dirname):
@@ -1220,7 +1297,11 @@ class TranslationFinder:
         if is_there:
             trans = dict_to_use[msg]
         else:
-            trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+            trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
+            if not trans:
+                trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+                if not trans:
+                    trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
         if trans:
             trans = cm.matchCase(msg, trans)
         return trans

@@ -831,6 +831,10 @@ class FindFilesHasPattern:
         return mod_file_list
 
     def tranRef(self, msg, is_keep_original, tran_finder):
+        is_debug = ('ray' in msg)
+        if is_debug:
+            _('DEBUG')
+
         ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=tran_finder)
         ref_list.parseMessage()
         ref_list.translateRefList()
