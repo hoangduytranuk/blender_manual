@@ -10,7 +10,8 @@ BGUI2_80=$BGUI/2.8x
 BGUI2_90=$BGUI/2.9x
 
 VIPO=po/vi.po
-VIMO=locale/vi/LC_MESSAGES/blender.mo
+# VIMO=locale/vi/LC_MESSAGES/blender.mo
+VIMO=~/blender.mo
 
 function convertPOtoMO() {
     vipo_file=$1
@@ -22,5 +23,5 @@ function convertPOtoMO() {
     msgfmt -Cv -o $vipo_file $vimo_file
 }
 
-convertPOtoMO $BGUI2_90/$VIPO $BGUI2_90/$VIMO
+convertPOtoMO $BGUI2_90/$VIPO $VIMO
 
