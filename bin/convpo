@@ -4,70 +4,23 @@
 MD5SUM_EXE=/usr/bin/md5sum
 MD5SUM_MO_FILE=blender_mo
 
-BGUI=$BLENDER_GITHUB_GUI
+BGUI=$BLENDER_GITHUB/gui
 BGUI2_79=$BGUI/2.79
-BGUI2_80=$BGUI/2.80
-VIPO_2_79=$BGUI2_79/po/vi.po
-VIMO_2_79=$BGUI2_79/locale/vi/LC_MESSAGES/blender.mo
-NEW_2_80_LOC=$BLENDER_DOC/new_po
-FROM_VIPO_2_80=$NEW_2_80_LOC/vi.po
-#FROM_VIPO_2_80=/home/htran/new_vi.po
-VIPO_2_80=$BGUI2_80/po/vi.po
-VIMO_2_80=$BGUI2_80/locale/vi/LC_MESSAGES/blender.mo
-#
-LOCAL_BUILD_DIR=/home/htran/blender-git/blender_local
-LOCAL_BUILD_VIPO_PATH=$LOCAL_BUILD_DIR/release/datafiles/locale/po
+BGUI2_80=$BGUI/2.8x
+BGUI2_90=$BGUI/2.9x
 
-BSTUFF=$HOME/blender-stuff
-OUT_MO_LOCATION_2_78=$BSTUFF/blender_278/2.78/datafiles/locale/vi/LC_MESSAGES
-OUT_MO_LOCATION_2_79=$BSTUFF/blender_latest/2.79/datafiles/locale/vi/LC_MESSAGES
-OUT_MO_LOCATION_2_80=$BSTUFF/blender-2.80-linux-glibc217-x86_64/2.8*/datafiles/locale/vi/LC_MESSAGES
-OUT_MO_LOCATION_2_8X=$BSTUFF/blender_2_8_latest/2.8*/datafiles/locale/vi/LC_MESSAGES
-OUT_MO_LOCATION_2_8X_LOCAL_BUILD=/home/htran/blender-git/build_linux/bin/2.8*/datafiles/locale/vi/LC_MESSAGES
-OUT_MO_LOCATION_2_82=$BSTUFF/blender_2_82/2.82/datafiles/locale/vi/LC_MESSAGES
-OUT_MO_LOCATION_2_83=$BSTUFF/blender_2_83/2.8*/datafiles/locale/vi/LC_MESSAGES
+VIPO=po/vi.po
+VIMO=locale/vi/LC_MESSAGES/blender.mo
 
-#TEST_VIPO_HOME=$HOME/Music/blender_documentations/
-#TEST_VIPO=$TEST_VIPO_HOME/po/vi.po
-#TEST_BLENDER_MO=$TEST_VIPO_HOME/blender_docs/locale/vi/LC_MESSAGES/
+function convertPOtoMO() {
+    vipo_file=$1
+    vimo_file=$2
 
-function copyToLocalBuild(){
-    cp -a $FROM_VIPO_2_80 $LOCAL_BUILD_VIPO_PATH
-    cp -a $VIMO_2_80 $OUT_MO_LOCATION_2_8X_LOCAL_BUILD
-    cd $LOCAL_BUILD_DIR
-    make
-    echo "You'll need to perform 'sudo make install' at $LOCAL_BUILD_DIR"
-}
-
-
-function convertPOtoMO279() {
-    echo "Convert PO to MO 2.79";
-    cd $BGUI2_79/po
-    change_placeholders.py -f $VIPO_2_79
-    #msgfmt -cv -o $VIMO_2_79 $VIPO_2_79
+    echo "Convert $vipo_file to $vimo_file";
+    change_placeholders.py -f $vipo_file
     #msgfmt -Cv -o $VIMO_2_79 $VIPO_2_79
-    msgfmt -o $VIMO_2_79 $VIPO_2_79
-
-    cp -a $VIMO_2_79 $OUT_MO_LOCATION_2_78
-    cp -a $VIMO_2_79 $OUT_MO_LOCATION_2_79
+    msgfmt -Cv -o $vipo_file $vimo_file
 }
 
-function convertPOtoMO280() {
-    echo "Convert PO to MO 2.8*";
-    cd $BGUI2_80/po
-    change_placeholders.py -f $FROM_VIPO_2_80
-    #msgfmt -cv -o $VIMO_2_80 $FROM_VIPO_2_80
-    msgfmt -o $VIMO_2_80 $FROM_VIPO_2_80
+convertPOtoMO $BGUI2_90/$VIPO $BGUI2_90/$VIMO
 
-    cp -a $FROM_VIPO_2_80 $VIPO_2_80
-    #cp $FROM_VIPO_2_80 $TEST_VIPO
-    cp -a $VIMO_2_80 $OUT_MO_LOCATION_2_80
-    cp -a $VIMO_2_80 $OUT_MO_LOCATION_2_8X
-    cp -a $VIMO_2_80 $OUT_MO_LOCATION_2_82
-    cp -a $VIMO_2_80 $OUT_MO_LOCATION_2_83
-}
-
-
-#convertPOtoMO279
-convertPOtoMO280
-#copyToLocalBuild

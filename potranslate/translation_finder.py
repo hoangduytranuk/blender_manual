@@ -267,14 +267,15 @@ class TranslationFinder:
     def __init__(self):
         self.update_dic = 0
         self.update_po_file = None
-        self.master_dic_file = os.path.join(os.environ['HOME'], "blender_manual/ref_dict_0006.json")
-        self.master_dic_backup_file = os.path.join(os.environ['HOME'], "blender_manual/ref_dict_backup_0005.json")
-        self.master_dic_test_file = os.path.join(os.environ['HOME'], "blender_manual/ref_dict_test_0005.json")
+        home_dir = os.environ['HOME']
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006.json")
+        self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
+        self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
-        self.vipo_dic_path = os.path.join(os.environ['HOME'], "blender_manual/gui/2.80/po/vi.po")
+        self.vipo_dic_path = os.path.join(home_dir, "blender_manual/gui/2.80/po/vi.po")
         self.vipo_dic_list = None  # not used
 
-        self.current_po_dir = os.path.join(os.environ['HOME'], "blender_docs/locale/vi/LC_MESSAGES")
+        self.current_po_dir = os.path.join(home_dir, "blender_docs/locale/vi/LC_MESSAGES")
         self.json_dic_file = None
 
         #self.json_dic_list = self.loadJSONDic(file_name=self.json_dic_file)
