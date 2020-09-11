@@ -3,15 +3,15 @@ import os
 import sys
 home_dir = os.environ['HOME']
 potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
-python_sites = '/usr/local/lib/python3.7/site-packages'
+python_sites = '/usr/local/lib/python3.8/site-packages'
 sys.path.append(potranslate_dir)
 sys.path.append(python_sites)
 
 import json
 from collections import OrderedDict, defaultdict
-from nltk.stem import LancasterStemmer
-from nltk.stem.snowball import SnowballStemmer, PorterStemmer
-from nltk.tokenize import sent_tokenize, word_tokenize
+# from nltk.stem import LancasterStemmer
+# from nltk.stem.snowball import SnowballStemmer, PorterStemmer
+# from nltk.tokenize import sent_tokenize, word_tokenize
 
 #from stack import Stack
 import datetime
@@ -32,6 +32,11 @@ from collections import Counter
 import subprocess as sub
 # from reflink import RefList
 # from translation_finder import TranslationFinder
+from sphinx_intl import catalog as c
+from leven import levenshtein as LEV
+from time import gmtime, strftime, time
+from pytz import timezone
+import enchant as ENC
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -39,6 +44,20 @@ suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 starters = "(Mr|Mrs|Ms|Dr|He\s|She\s|It\s|They\s|Their\s|Our\s|We\s|But\s|However\s|That\s|This\s|Wherever)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 websites = "[.](com|net|org|io|gov)"
+
+#Leave the variables here to make them obvious and easier to change
+YOUR_NAME = "Hoang Duy Tran"
+YOUR_EMAIL = "hoangduytran1960@gmail.com"
+YOUR_ID = "{} <{}>".format(YOUR_NAME, YOUR_EMAIL)
+YOUR_TRANSLATION_TEAM = "London, UK <{}>".format(YOUR_EMAIL)
+YOUR_LANGUAGE_CODE = "vi"
+TIME_ZONE='Europe/London' # this value can be optained using the code 'import pytz; for entry in pytz.all_timezones(); print(entry)'
+
+#header default values, for internal uses only
+default_first_author = "FIRST AUTHOR"
+default_mail_address = "MAIL@ADDRESS"
+default_year = ", YEAR."
+
 
 def readJSON(file_path):
     with open(file_path) as in_file:
@@ -3215,8 +3234,292 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
         # PP(dic)
 
+    def test_0056(self):
+        home_dir = os.environ['HOME']
+        test_file1 = os.path.join(home_dir, 'blender_manual/ref_dict_backup_0005.json')
+        test_out_file = os.path.join(home_dir, 'testing.json')
+
+        dic = readJSON(test_file1)
+
+        sorting = sorted(list(dic.items()))
+        sorted_list = list(sorted(sorting, key=lambda x: len(x[0]), reverse=False))
+        sorted_dic = OrderedDict(sorted_list)
+        writeJSON(test_file1, sorted_dic)
+
+# /Users/hoangduytran/blender_manual/sorted_temp05.json
+    def test_0057(self):
+        home_dir = os.environ['HOME']
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006.json')
+        from_file = os.path.join(home_dir, 'blender_manual/sorted_temp05.json')
+
+        from_dic = readJSON(from_file)
+        to_dic = readJSON(to_file)
+
+        del_list=[]
+        for f_k, f_v in from_dic.items():
+            is_in_target = (f_k in to_dic)
+            if is_in_target:
+                t_v = to_dic[f_k]
+                is_diff = (f_v and (f_v.lower() != t_v.lower()))
+                if is_diff:
+                    print('-' * 30)
+                    print(f'from:{f_v}')
+                    print(f'to:{t_v}')
+                else:
+                    del_list.append(f_k)
+        
+        is_updated = (len(del_list) > 0)
+        for f_k in del_list:
+            print(f'del:{f_k}')
+            del from_dic[f_k]
+        
+        if is_updated:
+            writeJSON(from_file, from_dic)
+                
+
+        # sorting = sorted(list(dic.items()))
+        # sorted_list = list(sorted(sorting, key=lambda x: len(x[0]), reverse=False))
+        # sorted_dic = OrderedDict(sorted_list)
+        # writeJSON(test_file1, sorted_dic)
+
+    def test_0058(self):
+        home_dir = os.environ['HOME']
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006.json')
+        to_dic = readJSON(to_file)
+
+        sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
+        new_dic = OrderedDict(sorting)
+        for t_k, t_v in to_dic.items():
+            entry = {t_k:t_v}
+            new_dic.update(entry)
+
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
+        writeJSON(to_file, new_dic)
+
+    from leven import levenshtein as LEV
+    def test_0059(self):
+        class DelRecord(list):
+            def __init__(self):
+                self.file_name = None
+
+            def show(self):
+                count = len(self)
+                if count == 0:
+                    return
+
+                print(f'file_name:{self.file_name}')
+                print('-'*80)
+                for entry in self:
+                    dist, sim, msgid, msgstr, translated = entry
+                    print(f'dist:{dist}, sim:{sim}')
+                    print(f'msgid "{msgid}"')
+                    print(f'msgstr "{msgstr}"')
+                    if translated:
+                        print(f'{translated}')
+                    print('-'*10)
+
+
+        home_dir = os.environ['HOME']
+        from_path = os.path.join(home_dir, 'blender_docs/locale/vi/LC_MESSAGES')
+
+        untran_pat = re.compile(r'^(\s)?[\-]{2}\s')
+        tran_pat = re.compile(r'(\w+)\s([\-]{2})\s(\w+)')
+        vn_char_tbl = [
+            'à', 'á', 'ả', 'ã', 'ạ',
+            'â', 'ầ', 'ấ', 'ẩ', 'ẫ', 'ậ',
+            'ă', 'ằ', 'ắ', 'ẳ', 'ẵ', 'ặ',
+            'è', 'é', 'ẹ', 'ẻ', 'ẽ', 'ẹ', 
+            'ê', 'ề', 'ế', 'ệ', 'ể', 'ễ', 'ệ',
+            'í', 'ì', 'ỉ', 'ĩ', 'ị', 
+            'ò', 'ó', 'ỏ', 'õ', 'ọ', 
+            'ô', 'ồ', 'ố', 'ổ', 'ỗ', 'ộ',
+            'ơ', 'ờ', 'ớ', 'ở', 'ỡ', 'ợ',
+            'ù', 'ú', 'ủ', 'ũ', 'ụ',
+            'ư', 'ừ', 'ứ', 'ử', 'ữ', 'ự',
+            'đ',
+       ]
+
+        acceptable_v = [
+            "Khe -- Slot",
+            "Phim -- Movie",
+            "Lia -- Pan",
+            "Sin -- Sinusoidal",
+            "Sin -- Sine",
+            "Chia -- Divide",
+            "Phim -- Film",
+            "Gaus -- Gaussian",
+            "THTQXMT -- AO",
+            "Chung Chung -- General",
+            "Newton -- Newtonian",
+            "Lang Thang -- Wander",
+            "Xa -- Far",
+            "Xoay Quatenion -- Quaternion Rotation",
+            "các UV -- UVs",
+            "Cos -- Cosine",
+            "Fresnen -- Fresnel",
+            "Loa -- Speaker",
+            "Quanh Khung Phim -- Around Frame",
+            "XYZ sang RGB -- XYZ to RGB",
+            "Phim Video -- Videos",
+        ]
+
+        special_cases = {
+            "Copy :kbd:`Ctrl-C`": "Sao -- Copy :kbd:`Ctrl-C`"
+        }
+
+        def count_similar(k, v):
+            return SM(None, k, v).ratio()
+
+        def has_vietnamese_char(v):
+            v_lower = v.lower()
+            for c in v_lower:
+                is_vn_char = (c in vn_char_tbl)
+                if is_vn_char:
+                    return True
+            return False
+
+        for root, dirnames, filenames in os.walk(from_path):
+            if root.startswith('.'):
+                continue
+
+            for filename in filenames:
+                is_found  = (filename.lower().endswith('.po'))
+                if not is_found:
+                    continue
+
+                is_updated = False
+                del_rec = DelRecord()
+                po_path = os.path.join(root, filename)
+                del_rec.file_name = po_path
+                po_cat = c.load_po(po_path)
+                for m in po_cat:
+                    k = m.id
+                    if not k:
+                        continue
+
+                    k_len = len(k)
+                    v = m.string
+                    if not v:
+                        continue
+
+                    has_vn_char = has_vietnamese_char(v)
+                    dist = LEV(k, v)
+                    sim_ratio = count_similar(k, v)
+                    too_similar = (sim_ratio > 0.8)
+                    no_diff = (dist == 0) or too_similar
+                    k_not_translated = (untran_pat.search(v) is not None)
+                    k_translated = (tran_pat.search(v) is not None)
+                    is_v_english_ascii = (v.isascii())
+                    translated = (k_translated and not too_similar) and not is_v_english_ascii
+                    # is_del_k = (no_diff or is_v_english_ascii or k_not_translated) and not translated
+                    is_acceptable = (v in acceptable_v)
+                    is_secial_case = (k in special_cases)
+                    if is_secial_case:
+                        special_v = special_cases[k]
+                        is_secial_case = (v.lower() == special_v.lower())
+
+                    is_del_k = (no_diff or is_v_english_ascii or k_not_translated) and \
+                               (not (translated or has_vn_char)) and not (is_acceptable or is_secial_case)
+
+                    # is_debug = ('before the first' in k)
+                    # if is_debug:
+                    #     _('Debug')
+                    #
+                    if not is_del_k:
+                        continue
+
+                    m.string = ""
+                    if m.fuzzy:
+                        m.flags = set() # clear the fuzzy flags
+
+                    if translated:
+                        entry = (dist, sim_ratio, k, v, 'TRANSLATED')
+                    else:
+                        entry = (dist, sim_ratio, k, v, '')
+                    del_rec.append(entry)
+
+                is_updated = (len(del_rec) > 0)
+                if is_updated:
+                    local_time = timezone(TIME_ZONE)
+                    time_now = local_time.localize(datetime.datetime.now())
+                    po_cat.revision_date = time_now
+                    po_cat.last_translator = YOUR_ID
+                    po_cat.language_team = YOUR_TRANSLATION_TEAM
+
+                    # temp_dir = os.path.join(home_dir, "temp")
+                    # from_path = os.path.join(temp_dir, filename)
+                    c.dump_po(po_path, po_cat)
+                    del_rec.show()
+                    print(f'OUTPUT:{po_path}')
+
+    def test_0060(self):
+        class WordRecord(list):
+            def __init__(self):
+                self.file_name = None
+
+            def show(self):
+                count = len(self)
+                if count == 0:
+                    return
+
+                print(f'file_name:{self.file_name}')
+                print('-'*80)
+                for entry in self:
+                    msgid, not_word_list = entry
+                    print(f'msgid "{msgid}"')
+                    print(f'not_word_list "{not_word_list}"')
+                    print('-'*10)
+
+
+        home_dir = os.environ['HOME']
+        from_path = os.path.join(home_dir, 'blender_docs/locale/vi/LC_MESSAGES')
+        WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\_\<\>\(\)\`\*\"\|\']')
+        SYMBOLS = re.compile(r'^[\W\s]+$')
+        en_us = ENC.Dict('en_US')
+
+        for root, dirnames, filenames in os.walk(from_path):
+            if root.startswith('.'):
+                continue
+
+            for filename in filenames:
+                is_found  = (filename.lower().endswith('.po'))
+                if not is_found:
+                    continue
+
+                is_updated = False
+                word_rec = WordRecord()
+                po_path = os.path.join(root, filename)
+                word_rec.file_name = po_path
+                po_cat = c.load_po(po_path)
+                not_word_list=None
+                for m in po_cat:
+                    k = m.id
+                    if not k:
+                        continue
+
+                    word_list = WORD_SEP.split(k)
+                    not_word_list = []
+                    for word in word_list:
+                        try:
+                            is_in_dict = en_us.check(word)
+                            is_symbols = (SYMBOLS.search(word) is not None)
+                            is_ignored = (is_in_dict or is_symbols)
+                            if not is_ignored:
+                                not_word_list.append(word)
+                        except Exception as e:
+                            continue
+
+                    if not_word_list:
+                        entry= (k, not_word_list)
+                        word_rec.append(entry)
+                if len(word_rec) > 0:
+                    word_rec.show()
+
+    def test_0061(self):
+        msg = 'a'
     def run(self):
-        self.test_0055()
+        self.test_0060()
+
 
 # trans_finder = TranslationFinder()
 def tranRef(msg, is_keep_original):

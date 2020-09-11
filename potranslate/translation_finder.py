@@ -1,5 +1,5 @@
 import sys
-# sys.path.append('/usr/local/lib/python3.7/site-packages')
+sys.path.append('/usr/local/lib/python3.8/site-packages')
 # sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 # print(f'translation_finder sys.path: {sys.path}')
 
@@ -379,6 +379,7 @@ class TranslationFinder:
     def genmap(self, msg):
         part_list = []
         loc_dic = cm.patternMatchAllToDict(cm.SPACE_WORD_SEP, msg)
+        # loc_dic = cm.patternMatchAllToDict(cm.WORD_SEP, msg)
         loc_key = list(loc_dic.keys())
 
         max_len = len(loc_dic)
@@ -1489,21 +1490,21 @@ class TranslationFinder:
 
                 tran_found = (tran and tran != orig_txt)
                 if tran_found:
-                    has_abbr = cm.hasAbbr(tran)
-                    if has_abbr:
-                        abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(tran)
-                        loc, abbr_txt = abbr_exp
-                        orig_loc, orig_txt = abbr_orig
-                        os, oe = orig_loc
-                        left = tran[:os]
-                        right = tran[oe:]
-                        tran = left + abbr_txt + right
-                        _('debug')
+                    # has_abbr = cm.hasAbbr(tran)
+                    # if has_abbr:
+                    #     abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(tran)
+                    #     loc, abbr_txt = abbr_exp
+                    #     orig_loc, orig_txt = abbr_orig
+                    #     os, oe = orig_loc
+                    #     left = tran[:os]
+                    #     right = tran[oe:]
+                    #     tran = left + abbr_txt + right
+                    #     _('debug')
 
                     tran = cm.matchCase(orig_txt, tran)
-                    tran = f"{orig_txt}: {tran}"
+                    tran = f"{tran} -- {orig_txt}"
                 else:
-                    tran = f"{orig_txt}: "
+                    tran = f"-- {orig_txt}"
                 tran_txt = tran_txt[:s] + tran + tran_txt[e:]
         else:
             orig_txt = msg

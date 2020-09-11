@@ -390,8 +390,8 @@ def doctree_resolved(app, doctree, docname):
         ref_list.parseMessage()
         ref_list.translateRefList()
         tran = ref_list.getTranslation()
-        trans_finder.addDictEntry((msg, tran))
-        print("Got translation from REF_LIST")
+        # trans_finder.addDictEntry((msg, tran))
+        # print("Got translation from REF_LIST")
         return tran
 
     # def fuzzyTextSimilar(txt1 : str, txt2 : str, accept_ratio):
@@ -425,6 +425,20 @@ def doctree_resolved(app, doctree, docname):
     # exit(0)
 
     try:
+
+        is_debug = ('vr_scene_inspection' in docname)
+        if is_debug:
+            _('DEBUG')
+
+        ex_env_key = 'EX_PO_TRANS'
+        is_ex_env_set = (ex_env_key in os.environ)
+        if not is_ex_env_set:
+            return
+        ex_env_key_value = os.environ[ex_env_key]
+        is_ex_set_true = (ex_env_key_value.lower() == 'true')
+        if not is_ex_set_true:
+            return
+
         debug_file = cm.debug_file
         if debug_file:
             is_debug_file = (debug_file in docname)
@@ -448,28 +462,9 @@ def doctree_resolved(app, doctree, docname):
             raise Exception(msg)
             exit(0)
 
-        # with open(po_path, "r") as f:
-        #     data = f.read()
-        # data_list=data.split('\n')
-        # pp(data)
-        # exit(0)
-
-        # #trans_finder.cleanupPOFile(po_path, is_dry_run=False)
-        # replace_dict = {
-        #     #r'':r''
-        #    #r'Language-Team.*MIME-Version':r'Language-Team: London, UK <hoangduytran1960@gmail.com>\\n"\n"Plural-Forms: nplurals=1; plural=0\\n"\n"MIME-Version',
-        #    r'Language-Team.*MIME-Version':r'Something'
-        # }
-        # trans_finder.replacePOText(po_path, replace_dict, is_dry_run=True)
-
-        # cm.file_count += 1
-        # is_pausing = (cm.file_count == (cm.total_files / 10))
-        # if is_pausing:
-        #     nb = input("Press any key to continue:")
-        #     cm.file_count = 0
-
         # #loading local po file to get translation if any
         po_dic, current_po_cat = trans_finder.loadPOAsDic(po_path)
+        trans_finder.flatPOFile(po_path)
 
         rst_output_location = os.path.join(blender_docs_path, build_dir)
         output_path = os.path.join(rst_output_location, po_file_path)
@@ -541,7 +536,15 @@ def doctree_resolved(app, doctree, docname):
 
             has_translation = (tran is not None)
             if not has_translation:
-                tran = tranRef(msg, is_keep_original)
+                is_debug = ('is based on the OpenXR specification' in msg)
+                if is_debug:
+                    _('Debug')
+
+                ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
+                ref_list.parseMessage()
+                ref_list.translateRefList()
+                tran = ref_list.getTranslation()
+                # tran = tranRef(msg, is_keep_original)
                 has_translation = (tran is not None)
                 if not has_translation:
                     tran = po_dic[msg]
@@ -571,7 +574,6 @@ def doctree_resolved(app, doctree, docname):
                 print('msgstr \"\"')
 
         print("Output to the path:", new_po_cat, output_path)
-        # c.dump_po(output_path, new_po_cat, line_width=1024)
         c.dump_po(output_path, new_po_cat)
         # _('DEBUG')
     except Exception as e:

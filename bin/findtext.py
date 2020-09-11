@@ -397,6 +397,7 @@ class FindFilesHasPattern:
             marking
             ):
 
+        self.is_stdout_redirected = (not sys.stdout.isatty())
         self.find_file = (find_file if (find_file and os.path.isfile(find_file)) else None)
         self.find_po = (True if find_po else False)
         self.find_rst = (True if find_rst else False)
@@ -404,24 +405,6 @@ class FindFilesHasPattern:
         self.vipo_file = (True if vipo_file else False)
         self.find_src = (True if find_src else False)
         self.find_py_lib = (True if find_py_lib else False)
-
-        self.case_sensitive = (True if case_sensitive else False)
-        DEBUG = (True if debugging else False)
-
-        self.letter_case = self.getCase(lower_case, upper_case, capital_case, title_case)
-
-        self.pattern_flag = (re.I if not self.case_sensitive else 0)
-        #self.input_pattern = find_pattern
-        if (find_pattern is not None):
-            self.find_pattern = re.compile(r'{}'.format(find_pattern), flags=self.pattern_flag)
-            self.txt_find_pattern = find_pattern
-        else:
-            self.find_pattern = None
-
-        if (replace_pattern is not None):
-            self.replace_pattern = replace_pattern
-        else:
-            self.replace_pattern = None
 
         self.from_line = (int(before_lines) if before_lines else -1)
         self.to_line = (int(after_lines) if after_lines else -1)
@@ -431,6 +414,28 @@ class FindFilesHasPattern:
         self.testing_only = (True if testing_only else False)
         self.sort_order = (SortOrder.__members__[sort_order] if sort_order in SortOrder.__members__ else SortOrder.UNKNOWN)
         self.is_marking = (True if marking else False)
+
+        self.case_sensitive = (True if case_sensitive else False)
+        DEBUG = (True if debugging else False)
+
+        self.letter_case = self.getCase(lower_case, upper_case, capital_case, title_case)
+
+        self.pattern_flag = (re.I if not self.case_sensitive else 0)
+        #self.input_pattern = find_pattern
+        if (find_pattern is not None):
+            if self.only_match:
+                self.find_pattern = re.compile(r'\b{}\b'.format(find_pattern), flags=self.pattern_flag)
+            else:
+                self.find_pattern = re.compile(r'{}'.format(find_pattern), flags=self.pattern_flag)
+            self.txt_find_pattern = find_pattern
+        else:
+            self.find_pattern = None
+
+        if (replace_pattern is not None):
+            self.replace_pattern = replace_pattern
+        else:
+            self.replace_pattern = None
+
 
 
     def patternMatchAll(self, pat, text):
@@ -645,13 +650,16 @@ class FindFilesHasPattern:
                 if self.invert_match:
                     replaced_line=self.find_pattern.sub(INVERT_SEP, text_line)
                     match_list = replaced_line.split(INVERT_SEP)
+                    match_text = "\n".join(match_list)
                 else:
-                    match_list = self.getAllMatchedWordFromLine(self.find_pattern, text_line)
-                match_text = "\n".join(match_list)
+                    m = self.find_pattern.search(text_line)
+                    if m:
+                        match_text = str(text_line)
             else:
                 match_text = str(text_line)
-                if self.is_marking:
-                    match_text = self.markingText(index, text_line, self.find_pattern)
+
+            if self.is_marking and not self.is_stdout_redirected:
+                match_text = self.markingText(index, text_line, self.find_pattern)
 
             entry = {index: match_text}
             self.found_record.update(entry)
@@ -687,14 +695,14 @@ class FindFilesHasPattern:
 
         for line_no, data_line in enumerate(data_list):
             if self.invert_match:
-                if self.only_match:
-                    _('invert_match and only match')
-                    replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
-                    exc_list = replaced_line.split(INVERT_SEP)
-                    is_found = (len(exc_list) > 0)
-                else:
-                    _('invert_match and normal')
-                    is_found = (self.find_pattern.search(data_line) == None)
+                # if self.only_match:
+                #     _('invert_match and only match')
+                #     replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
+                #     exc_list = replaced_line.split(INVERT_SEP)
+                #     is_found = (len(exc_list) > 0)
+                # else:
+                _('invert_match and normal')
+                is_found = (self.find_pattern.search(data_line) == None)
             else:
                 _('NOT invert')
                 is_found = (self.find_pattern.search(data_line) != None)
@@ -748,6 +756,7 @@ class FindFilesHasPattern:
         text_marked = str(text_to_mark)
         loc_text_dict = patternMatchOnly(pattern_to_find, text_to_mark)
         reversed_loc_text_dict = list(reversed(list(loc_text_dict.items())))
+
         for loc, txt in reversed_loc_text_dict:
             s, e = loc
             left = text_marked[:s]

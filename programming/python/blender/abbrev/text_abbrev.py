@@ -1,5 +1,5 @@
 import sys
-# sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
+sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import re
 import bpy
@@ -1051,9 +1051,10 @@ class TEXT_OT_is_in_dictionary(TEXT_OT_single_quoted_base):
         return result
 
 
-class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
-    bl_label = "Abbreviation Panel"
-    bl_idname = "TEXT_PT_abbrev_selected_panel"
+
+class TEXT_PT_abbrev_basic_panel(bpy.types.Panel):
+    bl_label = "Abbrev Basic Options"
+    bl_idname = "TEXT_PT_abbrev_basic_panel"
     bl_space_type = 'TEXT_EDITOR'
     bl_region_type = 'UI'
     bl_category = 'Text'
@@ -1064,12 +1065,10 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         scene = context.scene
         my_tool = scene.my_tool
 
-        lo.label(text='Options:')
-        # col = lo.column(align=True)
         row = lo.row(align=True)
 
         # making use of ready made boolean
-        row.prop(my_tool, "is_reversed", text="Rev.",
+        row.prop(my_tool, "is_reversed", text="Reversed",
                  icon='FILE_REFRESH', toggle=True)
         # making use of ready made boolean
         row = lo.row(align=True)
@@ -1087,6 +1086,19 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row.label(text='Separator:')
         row.prop(my_tool, "term_sep", expand=True)
 
+class TEXT_PT_removing_chars_panel(bpy.types.Panel):
+    bl_label = "Removing Characters"
+    bl_idname = "TEXT_PT_removing_char_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
+
+        scene = context.scene
+        my_tool = scene.my_tool
+
         # lo.label(text='Removing Characters:')
         box = lo.box()
         split = box.split(factor=1, align=True)
@@ -1103,7 +1115,19 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         # row = lo.row(align=True)
         row.prop(my_tool, "rm_char_select_all")
 
-        col = split.column()
+class TEXT_PT_head_tail_filter_panel(bpy.types.Panel):
+    bl_label = "Head & Tail Filter"
+    bl_idname = "TEXT_PT_head_tail_fil_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
+
+        scene = context.scene
+        my_tool = scene.my_tool
+
         box = lo.box()
         split = box.split(factor=1, align=True)
         col = split.column()
@@ -1115,6 +1139,20 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
                      text=rm_sym_list[i], toggle=True)
         row = col.row(align=True)
         row.prop(my_tool, "filler_count")
+
+
+class TEXT_PT_extra_options_panel(bpy.types.Panel):
+    bl_label = "Extra Options"
+    bl_idname = "TEXT_PT_extra_opts_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
+
+        scene = context.scene
+        my_tool = scene.my_tool
 
         split = lo.split()
         col = split.column(align=True)
@@ -1137,6 +1175,22 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row.operator("text.convert_to_square_brackets", icon='TRACKER_DATA')
         row.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
         row.operator("text.parse_sentence", icon='MODIFIER_DATA')
+
+
+class TEXT_PT_dict_action_panel(bpy.types.Panel):
+    bl_label = "Dictionary Actions"
+    bl_idname = "TEXT_PT_dict_act_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
+
+        scene = context.scene
+        my_tool = scene.my_tool
+
+        col = lo.column(align=True)
         row = col.row(align=True)
         row.operator("text.translate", icon='MODIFIER_DATA')
         row.operator("text.reload_dict", icon='MODIFIER_DATA')
@@ -1149,6 +1203,21 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
         row.operator("text.make_dict_entry", icon='MODIFIER_DATA')
         row.operator("text.is_in_dictionary", icon='VIEWZOOM')
 
+
+class TEXT_PT_copy_and_paste_panel(bpy.types.Panel):
+    bl_label = "Copy & Paste"
+    bl_idname = "TEXT_PT_copy_paste_panel"
+    bl_space_type = 'TEXT_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = 'Text'
+
+    def draw(self, context):
+        lo = self.layout
+
+        scene = context.scene
+        my_tool = scene.my_tool
+
+        col = lo.column(align=True)
         row = col.row(align=True)
         row.operator("text.cut")
         row.operator("text.copy", icon='COPYDOWN')
@@ -1195,7 +1264,12 @@ class TEXT_PT_abbrev_selected_panel(bpy.types.Panel):
 
 classes = (
     MySettings,
-    TEXT_PT_abbrev_selected_panel,
+    TEXT_PT_abbrev_basic_panel,
+    TEXT_PT_removing_chars_panel,
+    TEXT_PT_head_tail_filter_panel,
+    TEXT_PT_extra_options_panel,
+    TEXT_PT_dict_action_panel,
+    TEXT_PT_copy_and_paste_panel,
     TEXT_OT_single_quoted_forward,
     TEXT_OT_case_conversion,
     TEXT_OT_parse_sentence,
