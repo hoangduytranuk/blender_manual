@@ -1201,7 +1201,12 @@ class TranslationFinder:
 
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
         def removeByPatternListAndCheck(txt, pattern_list, dic_to_use):
-            pat:re.Pattern = None
+
+            is_in_dict = (txt in dic_to_use)
+            if is_in_dict:
+                tran = dic_to_use[txt]
+                return txt, tran
+
             for pat in pattern_list:
                 # is_special_case = ('ing' in pat.pattern) and txt.endswith('e')
                 # if is_special_case:
@@ -1269,13 +1274,13 @@ class TranslationFinder:
             cm.initCommonPatternList()
 
             new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_pattern_list, dic_to_use)
-            print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
+            # print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
             if not tran:
                 new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_pattern_list, dic_to_use)
-                print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
+                # print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
                 if not tran:
                     new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_pattern_list, cm.common_suffix_pattern_list, dic_to_use)
-                    print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
+                    # print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
             return new_txt, tran
 
         new_txt, tran = tryToFindTran(txt, dic_to_use)
