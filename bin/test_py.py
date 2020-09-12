@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 import os
 import sys
-home_dir = os.environ['HOME']
-potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
-python_sites = '/usr/local/lib/python3.8/site-packages'
-sys.path.append(potranslate_dir)
-sys.path.append(python_sites)
+# home_dir = os.environ['HOME']
+# potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
+# python_sites = '/usr/local/lib/python3.8/site-packages'
+# sys.path.append(potranslate_dir)
+# sys.path.append(python_sites)
 
 import json
 from collections import OrderedDict, defaultdict
@@ -31,12 +31,13 @@ from collections import Counter
 #from subprocess import PIPE, Popen, run
 import subprocess as sub
 # from reflink import RefList
-# from translation_finder import TranslationFinder
+from translation_finder import TranslationFinder
 from sphinx_intl import catalog as c
 from leven import levenshtein as LEV
 from time import gmtime, strftime, time
 from pytz import timezone
 import enchant as ENC
+from common import Common as cm
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -3515,10 +3516,27 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                 if len(word_rec) > 0:
                     word_rec.show()
 
+
     def test_0061(self):
-        msg = 'a'
+        WORD_SPLIT = re.compile(r'[^\W]+')
+        tf = TranslationFinder()
+
+        msg = 'animating'
+        # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
+        # print(f'{word_list}')
+        tran = tf.blindTranslation(msg)
+        print(f'{msg} => {tran}')
+
+        # word_list = cm.findInvert(WORD_SPLIT, msg)
+        # print(word_list)
+        # for start_index, entry in word_list.items():
+        #     s, e, word = entry
+        #     tran = tf.blindTranslation(word)
+        #     print(f'{word}, {tran}')
+
+
     def run(self):
-        self.test_0060()
+        self.test_0061()
 
 
 # trans_finder = TranslationFinder()

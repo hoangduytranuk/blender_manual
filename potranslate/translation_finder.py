@@ -268,7 +268,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006.json")
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -1201,7 +1201,12 @@ class TranslationFinder:
 
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
         def removeByPatternListAndCheck(txt, pattern_list, dic_to_use):
+            pat:re.Pattern = None
             for pat in pattern_list:
+                # is_special_case = ('ing' in pat.pattern) and txt.endswith('e')
+                # if is_special_case:
+                #     print(f'is_special_case: pattern:{pat.pattern}, txt:{txt}')
+                #
                 test_text, count = pat.subn('', txt)
                 is_matched = (count > 0)
                 if not is_matched:
@@ -1260,18 +1265,39 @@ class TranslationFinder:
                     return test_text, tran
             return txt, None
 
+        def tryToFindTran(txt, dic_to_use):
+            cm.initCommonPatternList()
 
-        # has_suffix = cm.COMMON_ENDING.search(txt)
-        # if not has_suffix:
-        #     return None
-        #
-        cm.initCommonPatternList()
-
-        new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_pattern_list, dic_to_use)
-        if not tran:
-            new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_pattern_list, dic_to_use)
+            new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_pattern_list, dic_to_use)
+            print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
             if not tran:
-                new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_pattern_list, cm.common_suffix_pattern_list, dic_to_use)
+                new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_pattern_list, dic_to_use)
+                print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
+                if not tran:
+                    new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_pattern_list, cm.common_suffix_pattern_list, dic_to_use)
+                    print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
+            return new_txt, tran
+
+        new_txt, tran = tryToFindTran(txt, dic_to_use)
+        if not tran:
+            tran_txt = str(txt)
+            # split into separated words, treat each independently
+            word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
+            tran_dic = {}
+            for loc, word in word_dict_list.items():
+                s, e = loc
+                new_txt, tran = tryToFindTran(word, dic_to_use)
+                replacement = (tran if tran else word)
+                entry = {s: (s, e, replacement)}
+                tran_dic.update(entry)
+
+            sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
+            for k, entry in sorted_tran_dic:
+                s, e, replacement = entry
+                left = tran_txt[:s]
+                right = tran_txt[e:]
+                tran_txt = left + replacement + right
+            tran = tran_txt
 
         return tran
 

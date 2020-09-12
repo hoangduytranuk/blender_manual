@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
+import os
 import html #for escaping html
 import sys
+home_dir=os.environ['HOME']
+po_tran_path = os.path.join(home_dir, 'blender_manual/potranslate')
+sys.path.append(po_tran_path)
+
 # sys.path.append('/usr/local/lib/python3.7/site-packages')
 
 # print(f'common sys.path: {sys.path}')
@@ -218,8 +223,13 @@ class Common:
 
     BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
 
-    WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\_\<\>\(\)\`\*\"\|\']')
+    # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\_\<\>\(\)\`\*\"\|\']')
+    WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS = re.compile(r'^[\W\s]+$')
+
+    common_removable_ending = [
+        'e',
+    ]
 
     common_prefixes = [
         'a',
@@ -272,6 +282,13 @@ class Common:
         'd',
         'y',
         's',
+        '\'s',
+        '\'re',
+        '\'ve',
+        '\'t',
+        '\'m',
+        '\'ll',
+        'n\'t',
         'er',
         'es',
         'or',
