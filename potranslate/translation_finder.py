@@ -1208,10 +1208,8 @@ class TranslationFinder:
                 return txt, tran
 
             for pat in pattern_list:
-                # is_special_case = ('ing' in pat.pattern) and txt.endswith('e')
-                # if is_special_case:
-                #     print(f'is_special_case: pattern:{pat.pattern}, txt:{txt}')
-                #
+                is_special_case = ('ing' in pat.pattern) and txt.endswith('ing')
+
                 test_text, count = pat.subn('', txt)
                 is_matched = (count > 0)
                 if not is_matched:
@@ -1223,6 +1221,13 @@ class TranslationFinder:
 
                 is_in_dict = (test_text in dic_to_use)
                 if not is_in_dict:
+                    if is_special_case:
+                        test_text += 'e'
+                        is_in_dict = (test_text in dic_to_use)
+                        if is_in_dict:
+                            tran = dic_to_use[test_text]
+                            return test_text, tran
+
                     is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
                     if is_double_ending:
                         test_text = test_text[:-1]
