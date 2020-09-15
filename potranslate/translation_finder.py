@@ -1230,7 +1230,8 @@ class TranslationFinder:
 
             for pat in pattern_list:
                 e_ing_ending = ('ing' in pat.pattern) and txt.endswith('ing')
-                ies_to_y_ending = ('ies' in pat.pattern) and txt.endswith('ies')
+                ies_to_y_ending = (('ies' in pat.pattern) and txt.endswith('ies')) or \
+                                  (('ied' in pat.pattern) and txt.endswith('ied'))
                 possesive_term = ('\'s' in pat.pattern) and txt.endswith('\'s')
 
                 test_text, count = pat.subn('', txt)

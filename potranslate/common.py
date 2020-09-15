@@ -316,6 +316,7 @@ class Common:
         'er',
         'ly',
         'eer',
+        'ied',
         'ion',
         'ity',
         'ies',
