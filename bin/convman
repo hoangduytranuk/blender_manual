@@ -4,6 +4,8 @@ to_dir=~/blender_docs_backup
 # find $BLENDER_MAN_VI -type f -name '*.mo' -exec rm -f {} {} \;
 cd $BLENDER_MAN_EN
 #make -d -w -B -e SPHINXOPTS="-D language='vi'" 2>&1c
+#make gettext
+#sphinx-intl update -p _build/gettext -l de -l ja
 sphinx-build -b html -D language='en' ./manual "build/html/en"
 # make clean
 # export EX_PO_TRANS=True

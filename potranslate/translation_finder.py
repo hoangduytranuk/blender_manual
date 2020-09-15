@@ -1200,6 +1200,27 @@ class TranslationFinder:
         return self.isInList(msg, search_dict=dic_to_use)
 
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
+        def fixTranslationWithKnowsSuffixes(txt, trans):
+            new_txt = str(trans)
+            for pat, position, add_translation in cm.common_suffix_translation_pattern_list:
+                has_suffix = (pat.search(txt) is not None)
+                if not has_suffix:
+                    continue
+
+                is_at_front = (position == cm.START_WORD)
+                is_at_end = (position == cm.END_WORD)
+                is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
+                is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
+
+                if is_patching_front:
+                    new_txt = add_translation + ' ' + new_txt
+                    return new_txt
+
+                if is_patching_end:
+                    new_txt += ' ' + add_translation
+                    return new_txt
+            return trans
+
         def removeByPatternListAndCheck(txt, pattern_list, dic_to_use):
 
             is_in_dict = (txt in dic_to_use)
@@ -1208,7 +1229,9 @@ class TranslationFinder:
                 return txt, tran
 
             for pat in pattern_list:
-                is_special_case = ('ing' in pat.pattern) and txt.endswith('ing')
+                e_ing_ending = ('ing' in pat.pattern) and txt.endswith('ing')
+                ies_to_y_ending = ('ies' in pat.pattern) and txt.endswith('ies')
+                possesive_term = ('\'s' in pat.pattern) and txt.endswith('\'s')
 
                 test_text, count = pat.subn('', txt)
                 is_matched = (count > 0)
@@ -1221,8 +1244,12 @@ class TranslationFinder:
 
                 is_in_dict = (test_text in dic_to_use)
                 if not is_in_dict:
-                    if is_special_case:
+                    is_special = (e_ing_ending or ies_to_y_ending)
+                    if e_ing_ending:
                         test_text += 'e'
+                    if ies_to_y_ending:
+                        test_text += 'y'
+                    if is_special:
                         is_in_dict = (test_text in dic_to_use)
                         if is_in_dict:
                             tran = dic_to_use[test_text]
@@ -1235,6 +1262,7 @@ class TranslationFinder:
 
                 if is_in_dict:
                     tran = dic_to_use[test_text]
+                    tran = fixTranslationWithKnowsSuffixes(txt, tran)
                     return test_text, tran
             return txt, None
 
@@ -1341,6 +1369,8 @@ class TranslationFinder:
                 if not trans:
                     trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
         if trans:
+            trans = trans.replace(cm.FILLER_CHAR, '') # blank out filler char
+            trans = trans.replace('  ', ' ') # double space => single space
             trans = cm.matchCase(msg, trans)
         return trans
 

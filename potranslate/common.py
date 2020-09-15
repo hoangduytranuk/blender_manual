@@ -227,6 +227,9 @@ class Common:
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS = re.compile(r'^[\W\s]+$')
 
+    START_WORD = '^'
+    END_WORD = '$'
+
     common_removable_ending = [
         'e',
     ]
@@ -278,6 +281,18 @@ class Common:
         'contro',
         'hetero',
     ]
+
+    common_sufix_trans = {
+        'ed': (START_WORD, 'đã/bị'),
+        's': (START_WORD, 'những/các/nhiều/một số/vài'),
+        'es': (START_WORD, 'những/các/nhiều/một số/vài'),
+        'ies': (START_WORD, 'những/các/nhiều/một số/vài'),
+        '\'s': (START_WORD, 'của'),
+        '\'ll': (START_WORD, 'sẽ'),
+        'er': (END_WORD, 'hơn'),
+        'est': (END_WORD, 'nhất'),
+    }
+
     common_suffixes = [
         'd',
         'y',
@@ -316,6 +331,7 @@ class Common:
         'ions',
         'ment',
         'ness',
+        'ning',
         'sion',
         'ship',
         'able',
@@ -327,6 +343,7 @@ class Common:
         'ward',
         'wise',
         'ation',
+        'iness',
         'ities',
         'ments',
         'sions',
@@ -337,6 +354,9 @@ class Common:
         'nesses',
         'iously',
             ]
+
+    common_sufix_translation = sorted( list(common_sufix_trans.items()), key=lambda x: len(x), reverse=False)
+    common_suffix_translation_pattern_list = []
 
     common_prefix_sorted = sorted(common_prefixes, key=lambda x: len(x), reverse=False)
     common_prefix_pattern_list = []
@@ -359,6 +379,14 @@ class Common:
             pattern = re.compile(pat, flags=re.I)
             Common.common_prefix_pattern_list.append(pattern)
 
+        # print(type(Common.common_sufix_translation))
+        # for entry in Common.common_sufix_translation:
+        #     print(entry)
+
+        for suffix, (position, translation) in Common.common_sufix_translation:
+            pat = r'%s$' % suffix
+            pattern = re.compile(pat, flags=re.I)
+            Common.common_suffix_translation_pattern_list.append((pattern, position, translation))
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)

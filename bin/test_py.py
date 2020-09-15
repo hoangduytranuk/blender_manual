@@ -3521,7 +3521,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
 
-        msg = 'Basing'
+        msg = 'canvases'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # print(f'{word_list}')
         tran = tf.blindTranslation(msg)
