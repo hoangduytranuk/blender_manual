@@ -295,6 +295,7 @@ class Common:
         'ably': (START_WORD, 'có khả năng/thể'),
         'ible': (START_WORD, 'có khả năng/thể'),
         'ibly': (START_WORD, 'có khả năng/thể'),
+        'ful': (START_WORD, 'rất/nhiều'),
     }
 
     common_suffixes = [
@@ -333,6 +334,7 @@ class Common:
         'ing',
         'ize',
         'ise',
+        'ful',
         'ions',
         'ment',
         'ness',
