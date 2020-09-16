@@ -291,6 +291,10 @@ class Common:
         '\'ll': (START_WORD, 'sẽ'),
         'er': (END_WORD, 'hơn'),
         'est': (END_WORD, 'nhất'),
+        'able': (START_WORD, 'có khả năng/thể'),
+        'ably': (START_WORD, 'có khả năng/thể'),
+        'ible': (START_WORD, 'có khả năng/thể'),
+        'ibly': (START_WORD, 'có khả năng/thể'),
     }
 
     common_suffixes = [
