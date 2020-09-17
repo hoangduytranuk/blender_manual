@@ -58,34 +58,34 @@ class NoCaseDict(OrderedDict):
 
         def __hash__(self):
             k = self.lower()
-            is_debug = ('Build'.lower() in k)
-            if is_debug:
-                _('DEBUG')
+            # is_debug = ('Build'.lower() in k)
+            # if is_debug:
+            #     _('DEBUG')
             key_len = len(k)
             k = (key_len, k)
             hash_value = hash(k)
-            _(f'__hash__ key:[{k}], hash_value:{hash_value}')
+            # _(f'__hash__ key:[{k}], hash_value:{hash_value}')
             return hash_value
 
         def __eq__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local == extern)
-            _(f'__eq__ local:[{local}] extern:[{extern}]')
+            # _(f'__eq__ local:[{local}] extern:[{extern}]')
             return cond
 
         def __le__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local < extern)
-            _(f'__le__ local:[{local}] extern:[{extern}]')
+            # _(f'__le__ local:[{local}] extern:[{extern}]')
             return cond
 
         def __gt__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local > extern)
-            _(f'__gt__ local:[{local}] extern:[{extern}]')
+            # _(f'__gt__ local:[{local}] extern:[{extern}]')
             return cond
 
     def __init__(self, data=None):
@@ -97,7 +97,7 @@ class NoCaseDict(OrderedDict):
             data = {}
         for key, val in data.items():
             self[key] = val
-            _(f'__init__:[{key}], value:[{val}]')
+            # _(f'__init__:[{key}], value:[{val}]')
         self.is_operational = True
 
     def __contains__(self, key):
@@ -116,7 +116,7 @@ class NoCaseDict(OrderedDict):
         key = self.Key(key)
         try:
             value = super(NoCaseDict, self).__getitem__(key)
-            _(f'__getitem__:[{key}], value:[{value}]')
+            # _(f'__getitem__:[{key}], value:[{value}]')
             return value
         except Exception as e:
             _(f'Exception __getitem__:{e}')
@@ -126,7 +126,7 @@ class NoCaseDict(OrderedDict):
 
     def __delitem__(self, key):
         key = self.Key(key)
-        _(f'__delitem__:[{key}]')
+        # _(f'__delitem__:[{key}]')
         try:
             super(NoCaseDict, self).__delitem__(key)
             if self.is_operational:
@@ -737,6 +737,7 @@ class TranslationFinder:
         if is_master:
             _(f'reloadChosenDict:{self.master_dic_file}')
             self.master_dic = self.loadJSONDic(file_name=self.master_dic_file)
+            cm.testDict(self.master_dic)
         else:
             _(f'reloadChosenDict:{self.master_dic_backup_file}')
             self.backup_dic = self.loadJSONDic(file_name=self.master_dic_backup_file)
@@ -1118,12 +1119,7 @@ class TranslationFinder:
                 _(f'loadJSONDic - loaded dic, length:{length}')
 
             return_dic = NoCaseDict(dic)
-            test_txt = 'Build'
-            is_test_text_in_dic = (test_txt in return_dic)
-            if is_test_text_in_dic:
-                value_old = dic[test_txt]
-                value = return_dic[test_txt]
-                _(f'found: {test_txt} => {value}')
+            # cm.testDict(return_dic)
 
         except Exception as e:
             _("Exception occurs while performing loadJSONDic()")
@@ -1212,11 +1208,14 @@ class TranslationFinder:
                 is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
                 is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
+                _(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
                 if is_patching_front:
+                    _(f'is_patching_front: add_translation={add_translation}')
                     new_txt = add_translation + ' ' + new_txt
                     return new_txt
 
                 if is_patching_end:
+                    _(f'is_patching_end: add_translation={add_translation}')
                     new_txt += ' ' + add_translation
                     return new_txt
             return trans
@@ -1225,14 +1224,23 @@ class TranslationFinder:
 
             is_in_dict = (txt in dic_to_use)
             if is_in_dict:
+                _('removeByPatternListAndCheck: is_in_dict')
                 tran = dic_to_use[txt]
                 return txt, tran
 
             for pat in pattern_list:
-                e_ing_ending = ('ing' in pat.pattern) and txt.endswith('ing')
+                e_able_ending = ('able' in pat.pattern) and txt.endswith('able')
+                e_ation_ending = ('ation' in pat.pattern) and txt.endswith('ation') or (('ations' in pat.pattern) and txt.endswith('ations'))
+                e_ion_ending = ('ion' in pat.pattern) and txt.endswith('ion') or (('ions' in pat.pattern) and txt.endswith('ions'))
+                e_ity_ending = (('ity' in pat.pattern) and txt.endswith('ity') or ('ities' in pat.pattern) and txt.endswith('ities') )
+                e_ing_ending = ('ing' in pat.pattern) and txt.endswith('ing') or \
+                               e_able_ending or \
+                               e_ation_ending or \
+                               e_ion_ending or \
+                               e_ity_ending
+
                 ies_to_y_ending = (('ies' in pat.pattern) and txt.endswith('ies')) or \
                                   (('ied' in pat.pattern) and txt.endswith('ied'))
-                possesive_term = ('\'s' in pat.pattern) and txt.endswith('\'s')
 
                 test_text, count = pat.subn('', txt)
                 is_matched = (count > 0)
@@ -1241,6 +1249,7 @@ class TranslationFinder:
 
                 is_leading_with_hyphen = (test_text.startswith('-'))
                 if is_leading_with_hyphen:
+                    _('is_leading_with_hyphen')
                     test_text = test_text[1:]
 
                 is_in_dict = (test_text in dic_to_use)
@@ -1248,16 +1257,22 @@ class TranslationFinder:
                     is_special = (e_ing_ending or ies_to_y_ending)
                     if e_ing_ending:
                         test_text += 'e'
+                        _(f'e_ing_ending test_text={test_text}')
                     if ies_to_y_ending:
                         test_text += 'y'
+                        _(f'ies_to_y_ending test_text={test_text}')
                     if is_special:
                         is_in_dict = (test_text in dic_to_use)
+                        _(f'is_special test_text={test_text}')
                         if is_in_dict:
                             tran = dic_to_use[test_text]
+                            tran = fixTranslationWithKnowsSuffixes(txt, tran)
+                            _(f'is_special test_text={test_text} tran={tran}')
                             return test_text, tran
 
                     is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
                     if is_double_ending:
+                        _('is_double_ending')
                         test_text = test_text[:-1]
                         is_in_dict = (test_text in dic_to_use)
 

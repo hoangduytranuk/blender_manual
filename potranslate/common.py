@@ -23,8 +23,8 @@ from reftype import RefType
 # import Levenshtein as LE
 #import logging
 
-# DEBUG=True
-DEBUG=False
+DEBUG=True
+# DEBUG=False
 DIC_LOWER_CASE=True
 # DIC_LOWER_CASE=False
 
@@ -283,7 +283,7 @@ class Common:
     ]
 
     common_sufix_trans = {
-        'ed': (START_WORD, 'đã/bị'),
+        'ed': (START_WORD, 'đã/bị/được'),
         's': (START_WORD, 'những/các/nhiều/một số/vài'),
         'es': (START_WORD, 'những/các/nhiều/một số/vài'),
         'ies': (START_WORD, 'những/các/nhiều/một số/vài'),
@@ -292,10 +292,22 @@ class Common:
         'er': (END_WORD, 'hơn'),
         'est': (END_WORD, 'nhất'),
         'able': (START_WORD, 'có khả năng/thể'),
-        'ably': (START_WORD, 'có khả năng/thể'),
-        'ible': (START_WORD, 'có khả năng/thể'),
-        'ibly': (START_WORD, 'có khả năng/thể'),
+        'ably': (START_WORD, 'có khả năng/thể/đáng'),
+        'ible': (START_WORD, 'có khả năng/thể/đáng'),
+        'ibly': (START_WORD, 'có khả năng/thể/đáng'),
         'ful': (START_WORD, 'rất/nhiều'),
+        'tion': (START_WORD, 'sự'),
+        'sion': (START_WORD, 'sự'),
+        'less': (START_WORD, 'vô/không/phi'),
+        'ity': (START_WORD, 'sự'),
+        'ly': (START_WORD, 'nói một cách'),
+        'ities': (START_WORD, 'nhiều/các/những sự'),
+        'ation': (START_WORD, 'sự'),
+        'ations': (START_WORD, 'nhiều/các/những sự'),
+        'ization': (START_WORD, 'sự'),
+        'isation': (START_WORD, 'sự'),
+        'izations': (START_WORD, 'nhiều/các/những sự'),
+        'isations': (START_WORD, 'nhiều/các/những sự'),
     }
 
     common_suffixes = [
@@ -332,9 +344,12 @@ class Common:
         'ous',
         'ive',
         'ing',
+        'ity',
         'ize',
         'ise',
         'ful',
+        'ual',
+        'ually',
         'ions',
         'ment',
         'ness',
@@ -342,6 +357,7 @@ class Common:
         'sion',
         'ship',
         'able',
+        'ably',
         'ible',
         'ally',
         'ious',
@@ -357,18 +373,22 @@ class Common:
         'ships',
         'aries',
         'ingly',
+        'izing',
+        'ising',
         'ations',
         'nesses',
         'iously',
+        'ization',
+        'isation',
             ]
 
-    common_sufix_translation = sorted( list(common_sufix_trans.items()), key=lambda x: len(x), reverse=False)
+    common_sufix_translation = sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True)
     common_suffix_translation_pattern_list = []
 
-    common_prefix_sorted = sorted(common_prefixes, key=lambda x: len(x), reverse=False)
+    common_prefix_sorted = sorted(common_prefixes, key=lambda x: len(x), reverse=True)
     common_prefix_pattern_list = []
 
-    common_suffix_sorted = sorted(common_suffixes, key=lambda x: len(x), reverse=False)
+    common_suffix_sorted = sorted(common_suffixes, key=lambda x: len(x), reverse=True)
     common_suffix_pattern_list = []
 
     def initCommonPatternList():
@@ -1090,6 +1110,16 @@ class Common:
             abbrev_exp_rec = None
 
         return abbrev_orig_rec, abbrev_rec, abbrev_exp_rec
+
+    def testDict(dic_to_use):
+        test_txt = 'Build'
+        is_test_text_in_dic = (test_txt in dic_to_use)
+        if is_test_text_in_dic:
+            # value_old = dic[test_txt]
+            value = dic_to_use[test_txt]
+            _(f'found: {test_txt} => {value}')
+        else:
+            _(f'NOT found: {test_txt} SOMETHING WRONG!!!')
 
 
 
