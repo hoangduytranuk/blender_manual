@@ -1198,8 +1198,10 @@ class TranslationFinder:
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
         def fixTranslationWithKnowsSuffixes(txt, trans):
             new_txt = str(trans)
-            for pat, position, add_translation in cm.common_suffix_translation_pattern_list:
-                has_suffix = (pat.search(txt) is not None)
+            # _(f'fixTranslationWithKnowsSuffixes: ')
+            # pp(cm.common_sufix_translation)
+            for suffix, (position, add_translation) in cm.common_sufix_translation:
+                has_suffix = new_txt.endswith(suffix)
                 if not has_suffix:
                     continue
 
@@ -1208,7 +1210,7 @@ class TranslationFinder:
                 is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
                 is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
-                _(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
+                # _(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
                 if is_patching_front:
                     _(f'is_patching_front: add_translation={add_translation}')
                     new_txt = add_translation + ' ' + new_txt
@@ -1220,96 +1222,96 @@ class TranslationFinder:
                     return new_txt
             return trans
 
-        def removeByPatternListAndCheck(txt, pattern_list, dic_to_use):
+        def replaceEndings(part, clipped_txt, dict_to_use):
+            # _(f'replaceEndings: part:{part}; clipped_text:{clipped_txt}')
+            for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
+                for ending in ending_list:
+                    part_matched = (part == ending)
+                    if not part_matched:
+                        continue
 
+                    clipped_text = (clipped_txt + replacement_word)
+                    # _(f'replaceEndings: clipped_text:{clipped_text}')
+                    is_found = (clipped_text in dic_to_use)
+                    if is_found:
+                        tran = dic_to_use[clipped_text]
+                        return tran
+            return None
+
+        def removeByPatternListAndCheck(txt, part_list, at, dic_to_use):
             is_in_dict = (txt in dic_to_use)
             if is_in_dict:
-                _('removeByPatternListAndCheck: is_in_dict')
+                # _(f'removeByPatternListAndCheck: is_in_dict')
                 tran = dic_to_use[txt]
                 return txt, tran
 
-            for pat in pattern_list:
-                e_able_ending = ('able' in pat.pattern) and txt.endswith('able')
-                e_ation_ending = ('ation' in pat.pattern) and txt.endswith('ation') or (('ations' in pat.pattern) and txt.endswith('ations'))
-                e_ion_ending = ('ion' in pat.pattern) and txt.endswith('ion') or (('ions' in pat.pattern) and txt.endswith('ions'))
-                e_ity_ending = (('ity' in pat.pattern) and txt.endswith('ity') or ('ities' in pat.pattern) and txt.endswith('ities') )
-                e_ing_ending = ('ing' in pat.pattern) and txt.endswith('ing') or \
-                               e_able_ending or \
-                               e_ation_ending or \
-                               e_ion_ending or \
-                               e_ity_ending
+            is_at_start = (at == cm.START_WORD)
+            is_at_end = (at == cm.END_WORD)
+            test_text = str(txt)
 
-                ies_to_y_ending = (('ies' in pat.pattern) and txt.endswith('ies')) or \
-                                  (('ied' in pat.pattern) and txt.endswith('ied'))
-
-                test_text, count = pat.subn('', txt)
-                is_matched = (count > 0)
-                if not is_matched:
+            # pp(part_list)
+            for part in part_list:
+                part_len = len(part)
+                has_start = is_at_start and (test_text.startswith(part))
+                has_end = is_at_end and (test_text.endswith(part))
+                # _(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
+                if has_start:
+                    test_text = test_text[part_len:]
+                    # _(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
+                elif has_end:
+                    test_text = test_text[:-part_len]
+                    # _(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
+                else:
                     continue
-
-                is_leading_with_hyphen = (test_text.startswith('-'))
-                if is_leading_with_hyphen:
-                    _('is_leading_with_hyphen')
-                    test_text = test_text[1:]
 
                 is_in_dict = (test_text in dic_to_use)
                 if not is_in_dict:
-                    is_special = (e_ing_ending or ies_to_y_ending)
-                    if e_ing_ending:
-                        test_text += 'e'
-                        _(f'e_ing_ending test_text={test_text}')
-                    if ies_to_y_ending:
-                        test_text += 'y'
-                        _(f'ies_to_y_ending test_text={test_text}')
-                    if is_special:
-                        is_in_dict = (test_text in dic_to_use)
-                        _(f'is_special test_text={test_text}')
-                        if is_in_dict:
-                            tran = dic_to_use[test_text]
+                    if has_end:
+                        tran = replaceEndings(part, test_text, dic_to_use)
+                        if tran:
                             tran = fixTranslationWithKnowsSuffixes(txt, tran)
-                            _(f'is_special test_text={test_text} tran={tran}')
                             return test_text, tran
 
-                    is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
-                    if is_double_ending:
-                        _('is_double_ending')
-                        test_text = test_text[:-1]
-                        is_in_dict = (test_text in dic_to_use)
+                is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
+                if is_double_ending:
+                    # _('is_double_ending')
+                    test_text = test_text[:-1]
+                    is_in_dict = (test_text in dic_to_use)
 
                 if is_in_dict:
                     tran = dic_to_use[test_text]
-                    tran = fixTranslationWithKnowsSuffixes(txt, tran)
+                    if is_at_end:
+                        tran = fixTranslationWithKnowsSuffixes(txt, tran)
+
                     return test_text, tran
             return txt, None
 
-        def removeBothByPatternListAndCheck(txt, pattern_list_prefix, pattern_list_suffix, dic_to_use):
+        def removeBothByPatternListAndCheck(txt, prefix_list, suffix_list, dic_to_use):
             suffixed_list = []
-            for pat in pattern_list_suffix:
-                test_text, count = pat.subn('', txt)
-                is_matched = (count > 0)
-                if not is_matched:
+            for part in suffix_list:
+                part_len = (len(part))
+                has_suffix = (txt.endswith(part))
+                if not has_suffix:
                     continue
 
-                is_leading_with_hyphen = (test_text.startswith('-'))
-                if is_leading_with_hyphen:
-                    test_text = test_text[1:]
-
+                test_text = txt[:-part_len]
                 suffixed_list.append(test_text)
 
             prefixed_list = []
             for suffixed_word in suffixed_list:
-                for pat in pattern_list_prefix:
-                    test_text, count = pat.subn('', suffixed_word)
-                    is_matched = (count > 0)
-                    if not is_matched:
+                for part in prefix_list:
+                    part_len = (len(part))
+                    has_prefix = (txt.startswith(part))
+                    if not has_prefix:
                         continue
 
+                    test_text = suffixed_word[part_len:]
                     prefixed_list.append(test_text)
 
             for test_text in prefixed_list:
                 is_in_dict = (test_text in dic_to_use)
                 if not is_in_dict:
-                    is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
+                    is_double_ending = (len(test_text) > 2) and (test_text[-1] == test_text[-2])
                     if is_double_ending:
                         test_text = test_text[:-1]
                         is_in_dict = (test_text in dic_to_use)
@@ -1320,15 +1322,13 @@ class TranslationFinder:
             return txt, None
 
         def tryToFindTran(txt, dic_to_use):
-            cm.initCommonPatternList()
-
-            new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_pattern_list, dic_to_use)
+            new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD, dic_to_use)
             # print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
             if not tran:
-                new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_pattern_list, dic_to_use)
+                new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD, dic_to_use)
                 # print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
                 if not tran:
-                    new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_pattern_list, cm.common_suffix_pattern_list, dic_to_use)
+                    new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted, dic_to_use)
                     # print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
             return new_txt, tran
 

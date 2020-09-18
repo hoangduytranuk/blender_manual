@@ -229,6 +229,7 @@ class Common:
 
     START_WORD = '^'
     END_WORD = '$'
+    BOTH_START_AND_END = '^$'
 
     common_removable_ending = [
         'e',
@@ -289,12 +290,14 @@ class Common:
         'ies': (START_WORD, 'những/các/nhiều/một số/vài'),
         '\'s': (START_WORD, 'của'),
         '\'ll': (START_WORD, 'sẽ'),
-        'er': (END_WORD, 'hơn'),
+        'er': (END_WORD, 'hơn/trình/bộ'),
+        'or': (START_WORD, 'trình/bộ'),
         'est': (END_WORD, 'nhất'),
         'able': (START_WORD, 'có khả năng/thể'),
         'ably': (START_WORD, 'có khả năng/thể/đáng'),
         'ible': (START_WORD, 'có khả năng/thể/đáng'),
         'ibly': (START_WORD, 'có khả năng/thể/đáng'),
+        'lable': (START_WORD, 'có khả năng/thể/đáng'),
         'ful': (START_WORD, 'rất/nhiều'),
         'tion': (START_WORD, 'sự'),
         'sion': (START_WORD, 'sự'),
@@ -310,10 +313,19 @@ class Common:
         'isations': (START_WORD, 'nhiều/các/những sự'),
     }
 
+    common_suffixes_replace_dict = {
+        'e': list(sorted(
+            ['able', 'ation', 'ations', 'ion', 'ions', 'ity', 'ities', 'ing', 'ously', 'ous'],
+            key=lambda x: len(x), reverse=True)),
+        't':['ce',],
+        'y':['ies', 'ied'],
+    }
+
     common_suffixes = [
         'd',
         'y',
         's',
+        't',
         '\'s',
         '\'re',
         '\'ve',
@@ -321,6 +333,7 @@ class Common:
         '\'m',
         '\'ll',
         'n\'t',
+        'ce',
         'er',
         'es',
         'or',
@@ -380,40 +393,14 @@ class Common:
         'iously',
         'ization',
         'isation',
+        'lable',
+        'ously',
+        'ous',
             ]
 
-    common_sufix_translation = sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True)
-    common_suffix_translation_pattern_list = []
-
-    common_prefix_sorted = sorted(common_prefixes, key=lambda x: len(x), reverse=True)
-    common_prefix_pattern_list = []
-
-    common_suffix_sorted = sorted(common_suffixes, key=lambda x: len(x), reverse=True)
-    common_suffix_pattern_list = []
-
-    def initCommonPatternList():
-
-        if Common.common_suffix_pattern_list:
-            return
-
-        for suffix in Common.common_suffix_sorted:
-            pat = r'%s$' % suffix
-            pattern = re.compile(pat, flags=re.I)
-            Common.common_suffix_pattern_list.append(pattern)
-
-        for prefix in Common.common_prefix_sorted:
-            pat = r'^%s' % prefix
-            pattern = re.compile(pat, flags=re.I)
-            Common.common_prefix_pattern_list.append(pattern)
-
-        # print(type(Common.common_sufix_translation))
-        # for entry in Common.common_sufix_translation:
-        #     print(entry)
-
-        for suffix, (position, translation) in Common.common_sufix_translation:
-            pat = r'%s$' % suffix
-            pattern = re.compile(pat, flags=re.I)
-            Common.common_suffix_translation_pattern_list.append((pattern, position, translation))
+    common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
+    common_prefix_sorted = list(sorted(common_prefixes, key=lambda x: len(x), reverse=True))
+    common_suffix_sorted = list(sorted(common_suffixes, key=lambda x: len(x), reverse=True))
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)

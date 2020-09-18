@@ -3521,7 +3521,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
 
-        msg = 'continuity'
+        msg = 'convenience'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # print(f'{word_list}')
         tran = tf.blindTranslation(msg)
@@ -3534,6 +3534,42 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         #     tran = tf.blindTranslation(word)
         #     print(f'{word}, {tran}')
 
+    def test_0062(self):
+        import nltk
+        from nltk.stem import WordNetLemmatizer as LEM
+        from nltk.corpus import wordnet
+
+        lem = LEM()
+
+        def pos_tagger(nltk_tag: str):
+            if nltk_tag.startswith('J'):
+                return wordnet.ADJ
+            elif nltk_tag.startswith('V'):
+                return wordnet.VERB
+            elif nltk_tag.startswith('N'):
+                return wordnet.NOUN
+            elif nltk_tag.startswith('R'):
+                return wordnet.ADV
+            else:
+                return None
+
+        sentence = 'the cat is sitting with the bats on the striped mat under badly flying geese'
+        sentence = "If set too low this can cause missing highlights in the image, which might be useful to preserve for camera effects such as bloom or glare. To mitigate this conundrum it's often useful to clamp only indirect bounces, leaving highlights directly visible to the camera untouched."
+        print(f'{sentence}')
+        pos_tagged = nltk.pos_tag(nltk.word_tokenize(sentence))
+        print(pos_tagged)
+
+        wordnet_tagged = list(map(lambda x: (x[0], pos_tagger(x[1])), pos_tagged ))
+        print(wordnet_tagged)
+
+        lem_sentence = []
+        for word, tag in wordnet_tagged:
+            if tag is None:
+                lem_sentence.append(word)
+            else:
+                lem_sentence.append( lem.lemmatize(word, tag))
+        lemmed_sentence = ' '.join(lem_sentence)
+        print(lemmed_sentence)
 
     def run(self):
         self.test_0061()
