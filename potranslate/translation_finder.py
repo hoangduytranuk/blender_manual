@@ -1198,10 +1198,9 @@ class TranslationFinder:
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
         def fixTranslationWithKnowsSuffixes(txt, trans):
             new_txt = str(trans)
-            # _(f'fixTranslationWithKnowsSuffixes: ')
             # pp(cm.common_sufix_translation)
             for suffix, (position, add_translation) in cm.common_sufix_translation:
-                has_suffix = new_txt.endswith(suffix)
+                has_suffix = txt.endswith(suffix)
                 if not has_suffix:
                     continue
 
@@ -1210,7 +1209,8 @@ class TranslationFinder:
                 is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
                 is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
-                # _(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
+                _(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
+                _(f'txt:{txt}; suffix:{suffix}; position:{position}')
                 if is_patching_front:
                     _(f'is_patching_front: add_translation={add_translation}')
                     new_txt = add_translation + ' ' + new_txt
@@ -1269,6 +1269,7 @@ class TranslationFinder:
                     if has_end:
                         tran = replaceEndings(part, test_text, dic_to_use)
                         if tran:
+                            _('here')
                             tran = fixTranslationWithKnowsSuffixes(txt, tran)
                             return test_text, tran
 
@@ -1281,6 +1282,7 @@ class TranslationFinder:
                 if is_in_dict:
                     tran = dic_to_use[test_text]
                     if is_at_end:
+                        _('NO here')
                         tran = fixTranslationWithKnowsSuffixes(txt, tran)
 
                     return test_text, tran
