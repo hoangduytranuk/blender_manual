@@ -1252,14 +1252,14 @@ class TranslationFinder:
             # pp(part_list)
             for part in part_list:
                 part_len = len(part)
-                has_start = is_at_start and (test_text.startswith(part))
-                has_end = is_at_end and (test_text.endswith(part))
-                # _(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
+                has_start = is_at_start and (txt.startswith(part))
+                has_end = is_at_end and (txt.endswith(part))
+                _(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
                 if has_start:
-                    test_text = test_text[part_len:]
+                    test_text = txt[part_len:]
                     # _(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
                 elif has_end:
-                    test_text = test_text[:-part_len]
+                    test_text = txt[:-part_len]
                     # _(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
                 else:
                     continue
@@ -1273,16 +1273,16 @@ class TranslationFinder:
                             tran = fixTranslationWithKnowsSuffixes(txt, tran)
                             return test_text, tran
 
-                is_double_ending = (len(test_text) > 2)  and (test_text[-1] == test_text[-2])
+                is_double_ending = (len(txt) > 2)  and (txt[-1] == txt[-2])
                 if is_double_ending:
                     # _('is_double_ending')
-                    test_text = test_text[:-1]
+                    test_text = txt[:-1]
                     is_in_dict = (test_text in dic_to_use)
 
                 if is_in_dict:
                     tran = dic_to_use[test_text]
                     if is_at_end:
-                        _('NO here')
+                        # _('NO here')
                         tran = fixTranslationWithKnowsSuffixes(txt, tran)
 
                     return test_text, tran
