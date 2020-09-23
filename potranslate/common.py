@@ -282,16 +282,23 @@ class Common:
         'contro',
         'hetero',
     ]
+    
+    # common_prefix_tran = {
+    #
+    # }
 
     common_sufix_trans = {
         'ed': (START_WORD, 'đã/bị/được'),
         's': (START_WORD, 'những/các/nhiều/một số/vài'),
+        'or': (START_WORD, 'trình/người/viên'),
+        'ors': (START_WORD, 'những/nhiều/các/mọi trình/người/viên'),
         'es': (START_WORD, 'những/các/nhiều/một số/vài'),
         'ies': (START_WORD, 'những/các/nhiều/một số/vài'),
         '\'s': (START_WORD, 'của'),
         '\'ll': (START_WORD, 'sẽ'),
         'er': (END_WORD, 'hơn/trình/bộ'),
-        'or': (START_WORD, 'trình/bộ'),
+        'or': (START_WORD, 'trình/bộ/người/nhà/viên'),
+        'ors': (START_WORD, 'các/những/nhiều/vài trình/bộ/người/nhà/viên'),
         'est': (END_WORD, 'nhất'),
         'able': (START_WORD, 'có khả năng/thể'),
         'ably': (START_WORD, 'có khả năng/thể/đáng'),
@@ -303,9 +310,11 @@ class Common:
         'sion': (START_WORD, 'sự'),
         'tion': (START_WORD, 'sự'),
         'less': (START_WORD, 'vô/không/phi'),
+        'ness': (START_WORD, 'mức/độ/tính/sự'),
         'ity': (START_WORD, 'sự'),
         'ly': (START_WORD, 'nói một cách'),
         'ities': (START_WORD, 'nhiều/các/những sự'),
+        'iness': (START_WORD, 'mức/độ/tính/sự'),
         'ation': (START_WORD, 'sự'),
         'ations': (START_WORD, 'nhiều/các/những sự'),
         'ization': (START_WORD, 'sự'),
@@ -316,7 +325,7 @@ class Common:
 
     common_suffixes_replace_dict = {
         'e': list(sorted(
-            ['able', 'ation', 'ations', 'ion', 'ions', 'ity', 'ities', 'ing', 'ously', 'ous'],
+            ['able', 'ation', 'ations', 'ion', 'ions', 'ity', 'ities', 'ing', 'ously', 'ous', 'ive', 'or', 'ors', 'iness',],
             key=lambda x: len(x), reverse=True)),
         't':['ce',],
         'y':['ies', 'ied'],
@@ -338,6 +347,7 @@ class Common:
         'er',
         'es',
         'or',
+        'ors',
         'th',
         'al',
         'ic',
@@ -393,6 +403,7 @@ class Common:
         'ations',
         'nesses',
         'iously',
+        'iness',
         'ization',
         'isation',
         'lable',

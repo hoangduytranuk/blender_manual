@@ -1254,7 +1254,7 @@ class TranslationFinder:
                 part_len = len(part)
                 has_start = is_at_start and (txt.startswith(part))
                 has_end = is_at_end and (txt.endswith(part))
-                _(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
+                # _(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
                 if has_start:
                     test_text = txt[part_len:]
                     # _(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
@@ -1265,11 +1265,15 @@ class TranslationFinder:
                     continue
 
                 is_in_dict = (test_text in dic_to_use)
-                if not is_in_dict:
+                if is_in_dict:
+                    tran = dic_to_use[test_text]
+                    if has_end:
+                        tran = fixTranslationWithKnowsSuffixes(txt, tran)
+                    return test_text, tran
+                else:
                     if has_end:
                         tran = replaceEndings(part, test_text, dic_to_use)
                         if tran:
-                            _('here')
                             tran = fixTranslationWithKnowsSuffixes(txt, tran)
                             return test_text, tran
 
