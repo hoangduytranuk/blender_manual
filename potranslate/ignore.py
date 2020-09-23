@@ -3,7 +3,7 @@ import re
 from os import sep as dirsep
 from os.path import pathsep
 from common import Common as cm
-from common import DEBUG, _, pp
+from common import DEBUG, dd, pp
 
 class Ignore:
 
@@ -74,7 +74,7 @@ class Ignore:
     EDB = r'[\"\'\)\>\}\]]'
     # NUMB = r'([+-]?[\d]+(([\.\,][\d]+)*)+[\W]?)'
     NUMB = r"[+-]?[\d]+([\.\,][\d]+)?"
-    # PATH = r'(([a-zA-Z][:]?)?) ([\\\/]+)(([\w-_]+)?)*)'
+    # PATH = r'(([a-zA-Z][:]?)?) ([\\\/]+)(([\w-dd]+)?)*)'
     PATH = r'([a-zA-Z][:]?)?'
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
@@ -114,7 +114,7 @@ class Ignore:
         r"^(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)$",
         r"^([\W]+)$",
         r"^([-]{2}([\w-]+)*)$",
-        r"^([\w]+[:][\w_]+)$", # geom:curve_tangent_normal
+        r"^([\w]+[:][\wdd]+)$", # geom:curve_tangent_normal
         r"^([\w\_\-]+\(([^\(\)]+)?\))$", # function_name(param1, param2)
         r"^([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)$",
         r"^([\d]D)$",
@@ -282,7 +282,7 @@ class Ignore:
         for w in Ignore.reverse_order_list:
             is_reverse = (re.search(w, msg, flags=re.I) is not None)
             if is_reverse:
-                _(f'isReverseOrder -> pattern:[{w}] msg:[{msg}]')
+                dd(f'isReverseOrder -> pattern:[{w}] msg:[{msg}]')
                 return True
         return False
 
@@ -312,7 +312,7 @@ class Ignore:
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         if (len(ex_ga_msg) > 0):
             msg = ex_ga_msg[0]
-            _("GA trimmed from:", orig_msg, msg)
+            dd("GA trimmed from:", orig_msg, msg)
 
         is_keep = Ignore.isKeep(msg)
         if is_keep:
@@ -333,13 +333,13 @@ class Ignore:
                     #         or is_ignore_path)
         # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
         if is_ignore:
-            #_("checking for ignore")
+            #dd("checking for ignore")
             dict_ignore = {"is_ignore_word": is_ignore_word,
                            "is_dos_command": is_dos_command,
                            "is_ignore_start": is_ignore_start,
                            #"is_ignore_path": is_ignore_path
                            }
-            _("IGNORING:", msg)
+            dd("IGNORING:", msg)
             pp(dict_ignore)
         return is_ignore
 
@@ -350,7 +350,7 @@ class Ignore:
         for x in Ignore.ignore_start_with_list:
             is_starts_with = (text_line.lower().startswith(x.lower()))
             if is_starts_with:
-                #_("isIgnoredIfStartsWith:", x)
+                #dd("isIgnoredIfStartsWith:", x)
                 return True
         else:
             return False
@@ -367,7 +367,7 @@ class Ignore:
             m = p.search(text_line)
             is_found = (m != None)
             if (is_found):
-                _("[{}] matched [{}], escaped [{}]".format(text_line, x, escape_x))
+                dd("[{}] matched [{}], escaped [{}]".format(text_line, x, escape_x))
                 return True
         return False
 
@@ -393,13 +393,13 @@ class Ignore:
             for m in Ignore.runtime_ignore_list:
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    _(f'isIgnoredWord: pattern:[{m.pattern}] [{text_line}]')
+                    dd(f'isIgnoredWord: pattern:[{m.pattern}] [{text_line}]')
                     return True
             else:
                 return False
         except Exception as e:
-            _(e)
-            _("isIgnoredWord ERROR:", text_line, " pattern:", pattern)
+            dd(e)
+            dd("isIgnoredWord ERROR:", text_line, " pattern:", pattern)
         return False
 
     def isDosCommand(text):
@@ -441,7 +441,7 @@ class Ignore:
         is_path = (has_path_characters or starts_with_path_chars or ends_with_extensions) and not contain_spaces
 
         if is_path:
-            _("isFilePath", text_line)
+            dd("isFilePath", text_line)
             #exit(0)
 
         return is_path

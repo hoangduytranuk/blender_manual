@@ -5,7 +5,7 @@ import sys
 
 import re
 from common import Common as cm
-from common import _, pp
+from common import dd, pp
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from translation_finder import TranslationFinder
@@ -295,7 +295,7 @@ class RefRecord:
         # orig_txt = orig_item.getText()
         # is_debug = ("In some cases you may not want to use the default" in orig_txt)
         # if is_debug:
-        #     _("DEBUG")
+        #     dd("DEBUG")
         is_special = cm.isSpecialTerm(orig_item.getText())
         is_ended_with_dot = orig_item.getText().endswith('.)')
         if is_special and not is_ended_with_dot:
@@ -442,7 +442,7 @@ class RefList(defaultdict):
             self.translation = self.msg
             self.translation_state = TranslationState.IGNORED
         else:
-            _('set translation:', self.msg, "=>", tran)
+            dd('set translation:', self.msg, "=>", tran)
             self.translation = tran
             self.translation_state = state
 
@@ -479,7 +479,7 @@ class RefList(defaultdict):
 
         # is_debug = ("INSERT(ATTRIB+XDATA)" in self.msg)
         # if is_debug:
-        #     _("DEBUG")
+        #     dd("DEBUG")
 
         loc_list = {}
         v: RefRecord = None
@@ -570,7 +570,7 @@ class RefList(defaultdict):
 
                 is_debug = ('Poor mans steadycam' in msg)
                 if is_debug:
-                    _('DEBUG')
+                    dd('DEBUG')
                 s, e, orig = origin
                 o_ss = s + start_loc
                 o_ee = o_ss + len(orig)
@@ -603,10 +603,10 @@ class RefList(defaultdict):
                 v.reflist = new_ref_list
 
         except Exception as e:
-            _("RefList.findPattern()")
-            _("pattern:", pattern)
-            _("text:", result_list.msg)
-            _(e)
+            dd("RefList.findPattern()")
+            dd("pattern:", pattern)
+            dd("text:", result_list.msg)
+            dd(e)
         return result_list
 
     def isEmpty(self):
@@ -628,7 +628,7 @@ class RefList(defaultdict):
 
             # is_debug = (test_txt in i_txt) and (test_txt in r_txt)
             # if is_debug:
-            #     _("DEBUG")
+            #     dd("DEBUG")
 
             is_in_range = (i_s >= r_s) and (i_e <= r_e)
             if is_in_range:
@@ -640,7 +640,7 @@ class RefList(defaultdict):
                     item_ref.start += item_origin.start
                     v.clearRefList()
                     v.appendRefItem(item_ref)
-                    _("CAN REPLACE V's result BY ITEM'S RESULT")
+                    dd("CAN REPLACE V's result BY ITEM'S RESULT")
                 return True
         else:
             return False
@@ -672,7 +672,7 @@ class RefList(defaultdict):
     def testRecord(self, record: RefRecord):
         valid = (record is not None)
         if not valid:
-            _("testRecord: Unable to TEST, record is NONE")
+            dd("testRecord: Unable to TEST, record is NONE")
             return
 
         orig = record.getOrigin()
@@ -683,8 +683,8 @@ class RefList(defaultdict):
             left = orig_txt[:item.start]
             right = orig_txt[:item.end:]
             txt = left + item.text + right
-            _("original:", orig_txt)
-            _("ref_text:", txt)
+            dd("original:", orig_txt)
+            dd("ref_text:", txt)
 
     def findTextOutsideRefs(self):
         has_ref = (len(self) > 0)
@@ -726,7 +726,7 @@ class RefList(defaultdict):
 
         # is_debug = ('Làm Dịu Đầu Ra' in msg)
         # if is_debug:
-        #     _('DEBUG')
+        #     dd('DEBUG')
 
         k_list = list(self.keys())
         k_len = len(k_list)
@@ -744,7 +744,7 @@ class RefList(defaultdict):
             is_in_right = cm.isTextuallySubsetOf(msg, v_txt)
             is_matched = (is_in_left or is_in_right)
             if is_matched:
-                _("found_matched_ref:", v_txt, " for:", msg)
+                dd("found_matched_ref:", v_txt, " for:", msg)
                 return v
 
         if (entry_index < k_len):
@@ -770,7 +770,7 @@ class RefList(defaultdict):
                 continue
             tran_txt = v.getOrigin().getTranslation()
             target_ref_record.getOrigin().setTranlation(tran_txt)
-            _("transferRefRecordText:", target_ref_record)
+            dd("transferRefRecordText:", target_ref_record)
         return un_transferred_list
 
     def quotedToAbbrev(self, orig_txt):
@@ -840,10 +840,10 @@ class RefList(defaultdict):
 
         balanceNumberOfItems(self, orig_list)  # this will fill in 'filler' records, assingting search
 
-        # _('list of refs:')
+        # dd('list of refs:')
         # pp(self)
-        _(f'quotedFindRefs, orig: [{orig_txt}]')
-        _(f'quotedFindRefs, tran: [{self.msg}]')
+        dd(f'quotedFindRefs, orig: [{orig_txt}]')
+        dd(f'quotedFindRefs, tran: [{self.msg}]')
 
         new_txt = str(self.msg)
         v: RefRecord
@@ -860,16 +860,16 @@ class RefList(defaultdict):
             ref_orig_txt = ref_orig.getText()
             is_ignore = ig.isIgnored(ref_orig_txt)
             if is_ignore:
-                _(f'Ignoring [{ref_orig_txt}]')
+                dd(f'Ignoring [{ref_orig_txt}]')
                 continue
 
             is_debug = ref_orig.textContain('handLeft') or ref_orig.textContain('bàn tay trái')
             if is_debug:
-                _(f'DEBUG')
+                dd(f'DEBUG')
 
             # is_debug = ('%' in ref_orig_txt)
             # if is_debug:
-            #     _('DEBUG')
+            #     dd('DEBUG')
 
             is_ast_quote = (ref_type == RefType.AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
@@ -893,7 +893,7 @@ class RefList(defaultdict):
                 has_ref = (ref_list_len > 0)
                 has_more_than_one_ref_items = (ref_list_len > 1)
                 if has_more_than_one_ref_items:
-                    _(f'ref list has more than one item:[{ref_list_len}]')
+                    dd(f'ref list has more than one item:[{ref_list_len}]')
 
                 if is_abbr:
                     first_ref_item = ref_list[0]
@@ -903,7 +903,7 @@ class RefList(defaultdict):
                     orig_entry = orig_list.findRefRecord(existing_orig, index, is_reversed_list=True)
                     is_found_orig = (orig_entry is not None)
                     if not is_found_orig:  # item introduced while translating, ignore, since there are no possibility to identify the origin
-                        _(f'DEBUG: entry not in orig text:[{existing_orig} => [{existing_tran}]')
+                        dd(f'DEBUG: entry not in orig text:[{existing_orig} => [{existing_tran}]')
                         continue
 
                     orig_orig = orig_entry.getOrigin()
@@ -914,12 +914,12 @@ class RefList(defaultdict):
                     # ref_orig_txt = orig_orig_txt
                     # os, oe = ref_orig.getLocation()
 
-                    _(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
+                    dd(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
                     continue
                 elif has_ref:
                     is_debug = ('handLeft' in ref_orig_txt)
                     if is_debug:
-                        _(f'DEBUG')
+                        dd(f'DEBUG')
                     first_ref_item = ref_list[0]
                     r_txt = first_ref_item.getText()
                     # ref_txt_list = r_txt.split(cm.REF_SEP)
@@ -931,7 +931,7 @@ class RefList(defaultdict):
                     else:
                         is_debug = ('handLeft' in ref_orig_txt)
                         if is_debug:
-                            _(f'DEBUG')
+                            dd(f'DEBUG')
 
                         pp(f'first_ref_item:[{first_ref_item}]')
                         orig_entry = orig_list.findRefRecord(ref_orig_txt, index, is_reversed_list=True)
@@ -945,7 +945,7 @@ class RefList(defaultdict):
                             ref_orig_txt = orig_orig_txt
                             os, oe = ref_orig.getLocation()
                         else:
-                            _(f"Unable to find original for [{ref_orig_txt}]")
+                            dd(f"Unable to find original for [{ref_orig_txt}]")
                             r_txt = first_ref_item.getText()
                             os, oe = ref_orig.getLocation()
                             r_txt = cm.replaceArchedQuote(r_txt)
@@ -977,11 +977,11 @@ class RefList(defaultdict):
                 left_side = new_txt[:os]
                 right_side = new_txt[oe:]
                 new_txt = left_side + replacement + right_side
-                _(f'left_side:[{left_side}]')
-                _(f'right_side:[{right_side}]')
-                _(f'replacement:[{replacement}]')
-                _(f'new_txt:[{new_txt}]')
-            _()
+                dd(f'left_side:[{left_side}]')
+                dd(f'right_side:[{right_side}]')
+                dd(f'replacement:[{replacement}]')
+                dd(f'new_txt:[{new_txt}]')
+            dd()
 
         return new_txt
 
@@ -996,7 +996,7 @@ class RefList(defaultdict):
         self.findPattern(pattern_list)
         has_record = (len(self) > 0)
         if not has_record:
-            _("Message has refs, but translation DOESN'T")
+            dd("Message has refs, but translation DOESN'T")
             if self.keep_original:
                 has_original = (current_msg in current_tran)
                 if not has_original:
@@ -1028,12 +1028,12 @@ class RefList(defaultdict):
         tran = current_tran_reflist.transferTranslation(current_tran)
         current_tran_reflist.setTranslation(tran)
 
-        # _("tran before:", current_tran)
-        # _("tran now:", current_tran_reflist.getTranslation())
+        # dd("tran before:", current_tran)
+        # dd("tran now:", current_tran_reflist.getTranslation())
 
         has_untransferred = (un_transferred_list and len(un_transferred_list) > 0)
         if has_untransferred:
-            _("Untransferred:")
+            dd("Untransferred:")
             pp(un_transferred_list)
         return un_transferred_list
 
@@ -1091,7 +1091,7 @@ class RefList(defaultdict):
     def parseMessage(self):
         # is_debug = ("Box Deselect:" in msg)
         # if is_debug:
-        #     _("DEBUG")
+        #     dd("DEBUG")
 
         # entry include: (pattern, ref_type, include_original)
         pattern_list = [
@@ -1111,7 +1111,7 @@ class RefList(defaultdict):
             list_type = type(sorted_list)
             self.clear()
             self.update(sorted_list)
-            _("Sorted")
+            dd("Sorted")
         else:
             tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
             if is_ignore:
@@ -1212,7 +1212,7 @@ class RefList(defaultdict):
         ref_txt = ref_item.getText()
         # is_debug = ("alias" in ref_txt.lower())
         # if is_debug:
-        #     _("DEBUG")
+        #     dd("DEBUG")
 
         is_ignore = ig.isIgnored(ref_txt)
         if is_ignore:
@@ -1286,7 +1286,7 @@ class RefList(defaultdict):
 
         # is_debug = ("Image sequences can use placeholder files" in self.msg)
         # if is_debug:
-        #     _("DEBUG")
+        #     dd("DEBUG")
 
         has_ref = (len(self) > 0)
         if not has_ref:
@@ -1335,13 +1335,13 @@ class RefList(defaultdict):
             kbd_text = kbd_text_first_item.getText()
             is_debug = (kbd_text == 'Wheel')
             if is_debug:
-                _('DEBUG')
+                dd('DEBUG')
             if is_translate:
                 tran_kbd_text = self.tf.translateKeyboard(kbd_text)
                 new_list.append(tran_kbd_text)
             else:
                 new_list.append(kbd_text)
-            # _(f'orig_text:{kbd_text} => kbd_orig_text:{kbd_orig_text}')
+            # dd(f'orig_text:{kbd_text} => kbd_orig_text:{kbd_orig_text}')
         return new_list
 
     def getListOfRefs(self):

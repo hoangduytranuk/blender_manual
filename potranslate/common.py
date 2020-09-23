@@ -36,7 +36,7 @@ def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False
         if len(args) == 0:
             print('-' * 30)
 
-def _(*args, **kwargs):
+def dd(*args, **kwargs):
     if DEBUG:
         print(args, kwargs)
         if len(args) == 0:
@@ -46,7 +46,7 @@ def _(*args, **kwargs):
 #     if DEBUG:
 #         logging.info(pformat(args))
 #
-# def _(*args, **kwargs):
+# def dd(*args, **kwargs):
 #     if DEBUG:
 #         logging.info(args, kwargs)
 
@@ -57,7 +57,7 @@ class Common:
     file_count = 0
     PAGE_SIZE = 20 * 4096
     # It's pyparsing.printables without ()
-    CHAR_NO_ARCHED_BRAKETS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+,-./:;<=>?@[\]^_`{|}~'
+    CHAR_NO_ARCHED_BRAKETS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+,-./:;<=>?@[\]^dd`{|}~'
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -223,7 +223,7 @@ class Common:
 
     BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
 
-    # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\_\<\>\(\)\`\*\"\|\']')
+    # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS = re.compile(r'^[\W\s]+$')
 
@@ -601,10 +601,10 @@ class Common:
                 yield original, break_down
 
         except Exception as e:
-            _("patternMatchAll")
-            _("pattern:", pat)
-            _("text:", text)
-            _(e)
+            dd("patternMatchAll")
+            dd("pattern:", pat)
+            dd("text:", text)
+            dd(e)
         return None, None
 
     def patternMatchAllAsDictNoDelay(pat, text):
@@ -631,10 +631,10 @@ class Common:
                         entry = {(ss, ee): g}
                         return_dict.update(entry)
         except Exception as e:
-            _("patternMatchAll")
-            _("pattern:", pat)
-            _("text:", text)
-            _(e)
+            dd("patternMatchAll")
+            dd("pattern:", pat)
+            dd("text:", text)
+            dd(e)
         return return_dict
 
     def findInvert(pattern, text):
@@ -711,11 +711,11 @@ class Common:
         entry_list = []
 
         its, ite, txt = text_entry
-        _("menu_list: its, ite, txt")
-        _(its, ite, txt)
+        dd("menu_list: its, ite, txt")
+        dd(its, ite, txt)
 
         menu_list = Common.patternMatchAll(Common.MENU_PART, txt)
-        _("menu_list")
+        dd("menu_list")
         pp(menu_list)
         for mk, mi in menu_list.items():
             ms, me, mtxt = mi[0]
@@ -761,9 +761,9 @@ class Common:
                     l_case_remain.update({k: v})
             u_case.update(l_case_remain)
         except Exception as e:
-            _("k:", k)
-            _("v:", k)
-            _(e)
+            dd("k:", k)
+            dd("v:", k)
+            dd(e)
             raise e
         return u_case
 
@@ -1117,9 +1117,9 @@ class Common:
         if is_test_text_in_dic:
             # value_old = dic[test_txt]
             value = dic_to_use[test_txt]
-            _(f'found: {test_txt} => {value}')
+            dd(f'found: {test_txt} => {value}')
         else:
-            _(f'NOT found: {test_txt} SOMETHING WRONG!!!')
+            dd(f'NOT found: {test_txt} SOMETHING WRONG!!!')
 
 
 

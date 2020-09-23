@@ -36,12 +36,12 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
         if extra:
             _(extra)
 
-        # _("self.current_msg:[{}]".format(self.current_msg))
+        # dd("self.current_msg:[{}]".format(self.current_msg))
         _("type:", type(node))
         if hasattr(node, 'children'):
             _("children:", node.children)
 
-        #_("name:", type(node.name))
+        #dd("name:", type(node.name))
         _("pp node:")
         pp(node)
         if hasattr(node, 'astext'):
@@ -56,8 +56,8 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
             _("line", node.line)
 
         _("")
-        # _("dir:", dir(node))
-        # _("len:", len(node))
+        # dd("dir:", dir(node))
+        # dd("len:", len(node))
 
 
 
@@ -76,7 +76,7 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
 
     # def translate(self, node):
     #     if DEBUG:
-    #         _("translate node input:", node.astext())
+    #         dd("translate node input:", node.astext())
     #     msg = self.getNodeMsg(node)
     #     trans = trans_finder.translateText(msg)
     #     return trans
@@ -227,12 +227,12 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
             _("depart_reference", msg)
         # is_debug = ('Editing' in msg)
         # if is_debug:
-        #     _('DEBUG')
+        #     dd('DEBUG')
         # has_ref_uri = (cm.REF_URI in node.attributes)
         # if has_ref_uri:
         #     # ref = [#armature-editing-naming-conventions], actual form = :ref:`next page <armature-editing-naming-conventions>`
         #     refuri = node.attributes[cm.REF_URI]
-        #     _('Attaching REFUIR', refuri)
+        #     dd('Attaching REFUIR', refuri)
 
     def visit_reference(self, node):
         if DEBUG:
@@ -256,17 +256,17 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
         #
         # accounted = (is_doc or is_menu or is_kbd or is_std_ref or is_x_ref or is_gui_lab)
         # if not accounted:
-        #     _("NOT ACCOUNTED")
+        #     dd("NOT ACCOUNTED")
         # else:
-        #     _("is_doc, is_menu, is_kbd, is_std_ref, is_x_ref, is_gui_lab")
-        #     _(is_doc , is_menu , is_kbd , is_std_ref , is_x_ref , is_gui_lab)
+        #     dd("is_doc, is_menu, is_kbd, is_std_ref, is_x_ref, is_gui_lab")
+        #     dd(is_doc , is_menu , is_kbd , is_std_ref , is_x_ref , is_gui_lab)
         #     orig_msg = node.astext()
-        #     _("text:", orig_msg)
+        #     dd("text:", orig_msg)
         #     raw_source = self.getNodeMsg(node)
         #     if raw_source:
-        #         _("raw_source:", raw_source)
+        #         dd("raw_source:", raw_source)
         #     else:
-        #         _("NO RAW")
+        #         dd("NO RAW")
         #     trans = None
         #     must_use_raw_source = (raw_source != orig_msg)
         #     if is_menu and must_use_raw_source:
@@ -288,9 +288,9 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
         self.setupNodeForTrans(node)
         # raw_source = self.getNodeMsg(node)
         # if raw_source:
-        #     _("raw_source:", raw_source)
+        #     dd("raw_source:", raw_source)
         # else:
-        #     _("NO RAW")
+        #     dd("NO RAW")
 
     def depart_paragraph(self, node):
         _("depart_paragraph", node.astext())
@@ -313,12 +313,12 @@ class TranslationNodeVisitor(nodes.TreeCopyVisitor):
         if DEBUG:
             _("visit_paragraph", node.astext())
         # msg = node.astext()
-        # _("text:", msg)
+        # dd("text:", msg)
         # raw_source = self.getNodeMsg(node)
         # if raw_source:
-        #     _("raw_source:", raw_source)
+        #     dd("raw_source:", raw_source)
         # else:
-        #     _("NO RAW")
+        #     dd("NO RAW")
 
         #self.default_translation(node)
 

@@ -23,7 +23,7 @@ import re
 # print("import fine so far")
 from ignore import Ignore as ig
 from common import Common as cm
-from common import DEBUG, _, pp
+from common import DEBUG, dd, pp
 from docutils import nodes
 from sphinx.util.nodes import extract_messages
 from translation_finder import TranslationFinder as tf
@@ -74,7 +74,7 @@ def doctree_resolved(app, doctree, docname):
         has_remove_items = (len(remove_items) > 0)
         if has_remove_items:
             for k in remove_items:
-                _(f'Delete from dictionary:[{k}]')
+                dd(f'Delete from dictionary:[{k}]')
                 del trans_finder.master_dic[k]
 
         is_writing_changes = (len(new_items) > 0)
@@ -93,7 +93,7 @@ def doctree_resolved(app, doctree, docname):
 
             is_debug = ('in development' in k)
             if is_debug:
-                _('DEBUG')
+                dd('DEBUG')
             k_kbd_list = k_list.getListOfKeyboard(is_translate=True)
             v_kbd_list = v_list.getListOfKeyboard()
             is_same = (k_kbd_list == v_kbd_list)
@@ -196,7 +196,7 @@ def doctree_resolved(app, doctree, docname):
         for k, v in trans_finder.master_dic.items():
             # is_debug = ('Cut to' in k)
             # if is_debug:
-            #     _('DEBUG')
+            #     dd('DEBUG')
 
             trimmed_k, is_trimmed_k = trimmingText(k)
             trimmed_v, is_trimmed_v = trimmingText(v)
@@ -238,7 +238,7 @@ def doctree_resolved(app, doctree, docname):
     def removeDuplication(txt_with_punct):
         # is_debug = (txt_with_punct.endswith('::'))
         # if is_debug:
-        #     _('DEBUG')
+        #     dd('DEBUG')
         cropped_txt, begin_with_punctuations, ending_with_punctuations = cm.beginAndEndPunctuation(txt_with_punct,
                                                                                                    is_single=True)
         trans = trans_finder.isInList(cropped_txt)
@@ -283,7 +283,7 @@ def doctree_resolved(app, doctree, docname):
 
             is_debug = ('Poor mans steadycam' in ref_text)
             if is_debug:
-                _('DEBUG')
+                dd('DEBUG')
 
             en_part = None
             vn_part = None
@@ -349,7 +349,7 @@ def doctree_resolved(app, doctree, docname):
                     entry={en_part:vn_part}
                     d_dict.update(entry)
             else:
-                _(f'{type} is not the type we are looking for.')
+                dd(f'{type} is not the type we are looking for.')
             ref_dict.update(d_dict)
 
         return_dict = cleanupLeadingTrailingPunct(d_dict)
@@ -428,7 +428,7 @@ def doctree_resolved(app, doctree, docname):
 
         is_debug = ('vr_scene_inspection' in docname)
         if is_debug:
-            _('DEBUG')
+            dd('DEBUG')
 
         ex_env_key = 'EX_PO_TRANS'
         is_ex_env_set = (ex_env_key in os.environ)
@@ -486,8 +486,8 @@ def doctree_resolved(app, doctree, docname):
             language_team=YOUR_TRANSLATION_TEAM
         )
 
-        _("#" * 80)
-        _("filename: {}".format(output_path))
+        dd("#" * 80)
+        dd("filename: {}".format(output_path))
 
         # msgid = "Lines should be less than 120 characters long."
         # msgstr = "Số chữ trong các dòng phải ít hơn 120 ký tự de lam gi."
@@ -496,8 +496,8 @@ def doctree_resolved(app, doctree, docname):
 
         for node, msg in extract_messages(doctree):
             msg = msg.strip()
-            _("=" * 80)
-            _("msgid:[{}]".format(msg))
+            dd("=" * 80)
+            dd("msgid:[{}]".format(msg))
 
             # clean up po file
 
@@ -523,7 +523,7 @@ def doctree_resolved(app, doctree, docname):
             tran = None
             # is_debug = ('Get involved in discussions' in msg)
             # if is_debug:
-            #     _('DEBUG')
+            #     dd('DEBUG')
             is_ignore = ig.isIgnored(msg)
             if is_ignore:
                 print(f'IGNORED: {msg}')
@@ -538,7 +538,7 @@ def doctree_resolved(app, doctree, docname):
             if not has_translation:
                 is_debug = ('is based on the OpenXR specification' in msg)
                 if is_debug:
-                    _('Debug')
+                    dd('Debug')
 
                 ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
                 ref_list.parseMessage()
@@ -575,9 +575,9 @@ def doctree_resolved(app, doctree, docname):
 
         print("Output to the path:", new_po_cat, output_path)
         c.dump_po(output_path, new_po_cat)
-        # _('DEBUG')
+        # dd('DEBUG')
     except Exception as e:
-        _(e)
+        dd(e)
         print(f'STOPPED, e=[{e}]')
 
 
@@ -689,7 +689,7 @@ def build_finished(app, exeption):
     trans_finder.writeChosenDict(is_master=False)
     # trans_finder.writeBackupDict()
     # trans_finder.writeMasterDict()
-    _('DEBUG')
+    dd('DEBUG')
 
 
 def setup(app):

@@ -8,7 +8,7 @@ import io
 import os
 import re
 from common import Common as cm
-from common import _, pp
+from common import dd, pp
 from ignore import Ignore as ig
 import json
 from collections import OrderedDict, defaultdict
@@ -60,32 +60,32 @@ class NoCaseDict(OrderedDict):
             k = self.lower()
             # is_debug = ('Build'.lower() in k)
             # if is_debug:
-            #     _('DEBUG')
+            #     dd('DEBUG')
             key_len = len(k)
             k = (key_len, k)
             hash_value = hash(k)
-            # _(f'__hash__ key:[{k}], hash_value:{hash_value}')
+            # dd(f'__hash__ key:[{k}], hash_value:{hash_value}')
             return hash_value
 
         def __eq__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local == extern)
-            # _(f'__eq__ local:[{local}] extern:[{extern}]')
+            # dd(f'__eq__ local:[{local}] extern:[{extern}]')
             return cond
 
         def __le__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local < extern)
-            # _(f'__le__ local:[{local}] extern:[{extern}]')
+            # dd(f'__le__ local:[{local}] extern:[{extern}]')
             return cond
 
         def __gt__(self, other):
             local = self.lower()
             extern = other.lower()
             cond = (local > extern)
-            # _(f'__gt__ local:[{local}] extern:[{extern}]')
+            # dd(f'__gt__ local:[{local}] extern:[{extern}]')
             return cond
 
     def __init__(self, data=None):
@@ -97,13 +97,13 @@ class NoCaseDict(OrderedDict):
             data = {}
         for key, val in data.items():
             self[key] = val
-            # _(f'__init__:[{key}], value:[{val}]')
+            # dd(f'__init__:[{key}], value:[{val}]')
         self.is_operational = True
 
     def __contains__(self, key):
         key = self.Key(key)
         is_there = super(NoCaseDict, self).__contains__(key)
-        _(f'__contains__:[{key}], is_there:{is_there}')
+        dd(f'__contains__:[{key}], is_there:{is_there}')
         return is_there
 
     def __setitem__(self, key, value):
@@ -116,23 +116,23 @@ class NoCaseDict(OrderedDict):
         key = self.Key(key)
         try:
             value = super(NoCaseDict, self).__getitem__(key)
-            # _(f'__getitem__:[{key}], value:[{value}]')
+            # dd(f'__getitem__:[{key}], value:[{value}]')
             return value
         except Exception as e:
-            _(f'Exception __getitem__:{e}')
+            dd(f'Exception __getitem__:{e}')
             keys = super(NoCaseDict, self).__dict__.keys()
             is_in = (key in keys)
             return is_in
 
     def __delitem__(self, key):
         key = self.Key(key)
-        # _(f'__delitem__:[{key}]')
+        # dd(f'__delitem__:[{key}]')
         try:
             super(NoCaseDict, self).__delitem__(key)
             if self.is_operational:
                 self.is_dirty = True
         except Exception as e:
-            _(f'__delitem__ Exception :{e}')
+            dd(f'__delitem__ Exception :{e}')
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
         new_set = NoCaseDict()
@@ -312,7 +312,7 @@ class TranslationFinder:
     #     #     # print(f'wc:{wc}; k:{k}; v:{v}')
     #     # outp = sorted(output_l)
     #     # for l in outp:
-    #     #     _, k, v = l
+    #     #     dd, k, v = l
     #     #     entry=f'"{k}": "{v}",'
     #     #     print(entry)
 
@@ -323,7 +323,7 @@ class TranslationFinder:
 
     @property
     def master_dic(self):
-        _(f'master_dic - get length: {len(self.master_dic_list)}')
+        dd(f'master_dic - get length: {len(self.master_dic_list)}')
         return self.master_dic_list
 
     @master_dic.setter
@@ -335,7 +335,7 @@ class TranslationFinder:
 
     @property
     def backup_dic(self):
-        _(f'backup_dic - get length: {len(self.backup_dic_list)}')
+        dd(f'backup_dic - get length: {len(self.backup_dic_list)}')
         return self.backup_dic_list
 
     @backup_dic.setter
@@ -493,7 +493,7 @@ class TranslationFinder:
         translation = str(msg)
         # is_debug = ('developer.blender.org' in msg) or ('system' in msg)
         # if is_debug:
-        #     _('DEBUG')
+        #     dd('DEBUG')
         loc_list=[]
         translated_dic = []
         # generate all possible combinations of string lengths
@@ -699,7 +699,7 @@ class TranslationFinder:
         self.addEntryToChosenDict(msg, tran, self.master_dic_file, self.master_dic, indicator='MASTER')
 
     def addBackupDictEntry(self, msg, tran):
-        # _('DEBUG')
+        # dd('DEBUG')
         self.addEntryToChosenDict(msg, tran, self.master_dic_backup_file, self.backup_dic, indicator='BACKUP')
 
     def writeChosenDict(self, is_master=False):
@@ -735,11 +735,11 @@ class TranslationFinder:
 
     def reloadChosenDict(self, is_master=True):
         if is_master:
-            _(f'reloadChosenDict:{self.master_dic_file}')
+            dd(f'reloadChosenDict:{self.master_dic_file}')
             self.master_dic = self.loadJSONDic(file_name=self.master_dic_file)
             cm.testDict(self.master_dic)
         else:
-            _(f'reloadChosenDict:{self.master_dic_backup_file}')
+            dd(f'reloadChosenDict:{self.master_dic_backup_file}')
             self.backup_dic = self.loadJSONDic(file_name=self.master_dic_backup_file)
 
     def saveMasterDict(self, to_file=None):
@@ -771,7 +771,7 @@ class TranslationFinder:
             # is_debug = (debug_text.lower() in k.lower())
             # if is_debug:
             #     meet += 1
-            #     _('DEBUG')
+            #     dd('DEBUG')
 
             v, trimmed_k = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
             if not v:
@@ -798,7 +798,7 @@ class TranslationFinder:
             # is_debug = (debug_text.lower() in k.lower())
             # if is_debug:
             #     meet += 1
-            #     _('DEBUG')
+            #     dd('DEBUG')
 
             v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
             entry={trimmed_k: v}
@@ -867,7 +867,7 @@ class TranslationFinder:
 
 
     def replacePOText(self, po_file, rep_list, is_dry_run=True):
-        _("replacePOText:", po_file, rep_list, is_dry_run)
+        dd("replacePOText:", po_file, rep_list, is_dry_run)
         data = None
         with open(po_file, "r") as f:
             data = f.read()
@@ -877,13 +877,13 @@ class TranslationFinder:
             data, change_count = re.subn(k, v, data, flags=re.M)
             is_changed = (change_count > 0)
             if is_changed:
-                _("CHANGED", change_count, k, "=>", v)
+                dd("CHANGED", change_count, k, "=>", v)
                 changed = True
 
         if changed:
-            _(data)
-            _("file:", po_file)
-            _("Data has changed:", change_count)
+            dd(data)
+            dd("file:", po_file)
+            dd("Data has changed:", change_count)
             if not is_dry_run:
                 with open(po_file, "w", encoding="utf-8") as f:
                     f.write(data)
@@ -921,12 +921,12 @@ class TranslationFinder:
 
         #     set_entry=(k_set, v_set)
         #     string_entry=(k, v)
-        #     _("cleanupPOFile - set_entry", set_entry)
-        #     _("cleanupPOFile - string_entry", string_entry)
+        #     dd("cleanupPOFile - set_entry", set_entry)
+        #     dd("cleanupPOFile - string_entry", string_entry)
         #     m.string = ""
         #     changed = True
         if changed:
-            _("cleanupPOFile", po_file)
+            dd("cleanupPOFile", po_file)
             if (not is_dry_run):
                 self.dump_po(po_file, po_cat)
 
@@ -936,7 +936,7 @@ class TranslationFinder:
             is_remove = (k is None) or (len(k) == 0) or ig.isIgnored(k)
             if is_remove:
                 entry = {k: v}
-                # _("cleanDictList removing:", entry)
+                # dd("cleanDictList removing:", entry)
                 remove_keys.append(k)
         for k in remove_keys:
             del dic_list[k]
@@ -955,8 +955,8 @@ class TranslationFinder:
             from_entry = {k: source_v}
             to_entry = {k: target_v}
             target_dict.update(from_entry)
-            _("Replacing:", to_entry)
-            _("With:", from_entry)
+            dd("Replacing:", to_entry)
+            dd("With:", from_entry)
             target_change_count += 1
         return target_change_count
 
@@ -989,7 +989,7 @@ class TranslationFinder:
 
             from_entry = {k: po_v}
             to_entry = {k: dic_v}
-            _("updatePOUsingDic, from:", from_entry, "to:", to_entry)
+            dd("updatePOUsingDic, from:", from_entry, "to:", to_entry)
             m.string = dic_v
             changed = True
 
@@ -1041,7 +1041,7 @@ class TranslationFinder:
                 continue
 
             #context = (m.context if m.context else "")
-            #_("context:{}".format(context))
+            #dd("context:{}".format(context))
             #k = (m.id, context)
             k = m.id
             # is_ignore = (ig.isIgnored(k))
@@ -1056,7 +1056,7 @@ class TranslationFinder:
             entry = {k: v}
             po_cat_dic.update(entry)
 
-            #_("poCatToDic:", k, v)
+            #dd("poCatToDic:", k, v)
             # if DIC_LOWER_CASE:
             #     #lower_k = (m.id.lower(), context.lower())
             #     lower_k = m.id.lower()
@@ -1096,18 +1096,18 @@ class TranslationFinder:
             with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         except Exception as e:
-            _("Exception writeDictionary Length of read dictionary:{}".format(len(dic)))
+            dd("Exception writeDictionary Length of read dictionary:{}".format(len(dic)))
             raise e
 
     def loadJSONDic(self, file_name=None):
         return_dic = None
         try:
             if not file_name:
-                _(f'loadJSONDic - file_name is None.')
+                dd(f'loadJSONDic - file_name is None.')
                 return return_dic
 
             if not os.path.isfile(file_name):
-                _(f'loadJSONDic - file_name:{file_name} cannot be found!')
+                dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
                 return return_dic
 
             file_path = (self.master_dic_file if (file_name is None) else file_name)
@@ -1116,14 +1116,14 @@ class TranslationFinder:
                 # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
                 dic = json.load(in_file)
                 length = len(dic)
-                _(f'loadJSONDic - loaded dic, length:{length}')
+                dd(f'loadJSONDic - loaded dic, length:{length}')
 
             return_dic = NoCaseDict(dic)
             # cm.testDict(return_dic)
 
         except Exception as e:
-            _("Exception occurs while performing loadJSONDic()")
-            _(e)
+            dd("Exception occurs while performing loadJSONDic()")
+            dd(e)
             return_dic = NoCaseDict()
 
         return return_dic
@@ -1157,7 +1157,7 @@ class TranslationFinder:
         is_found_tran = False
         # is_debug = ('Transformation tools and widgets, soft bodies' in msg)
         # if is_debug:
-        #     _('DEBUG')
+        #     dd('DEBUG')
 
         tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg, dict_to_use=search_dict)
         if not is_found_tran:
@@ -1191,7 +1191,7 @@ class TranslationFinder:
         dic_to_use = (self.master_dic if is_master else self.backup_dic)
         dic_name = (self.master_dic_file if is_master else self.master_dic_backup_file)
         dic_length = len(dic_to_use)
-        _(f'isInListByDict - dic_to_use:{dic_name}, number of entries:{dic_length}')
+        dd(f'isInListByDict - dic_to_use:{dic_name}, number of entries:{dic_length}')
 
         return self.isInList(msg, search_dict=dic_to_use)
 
@@ -1209,21 +1209,31 @@ class TranslationFinder:
                 is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
                 is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
-                _(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
-                _(f'txt:{txt}; suffix:{suffix}; position:{position}')
+                dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
+                dd(f'txt:{txt}; suffix:{suffix}; position:{position}')
                 if is_patching_front:
-                    _(f'is_patching_front: add_translation={add_translation}')
+                    dd(f'is_patching_front: add_translation={add_translation}')
                     new_txt = add_translation + ' ' + new_txt
                     return new_txt
 
                 if is_patching_end:
-                    _(f'is_patching_end: add_translation={add_translation}')
+                    dd(f'is_patching_end: add_translation={add_translation}')
                     new_txt += ' ' + add_translation
                     return new_txt
             return trans
 
+        def reduceDuplicatedEnding(txt, dic_to_use):
+            is_double_ending = (len(txt) > 2)  and (txt[-1] == txt[-2])
+            if is_double_ending:
+                # dd(f'is_double_ending txt:{txt}')
+                test_text = txt[:-1]
+                is_in_dict = (test_text in dic_to_use)
+                if is_in_dict:
+                    tran = dic_to_use[test_text]
+                    return test_text, tran
+            return txt, None
+
         def replaceEndings(part, clipped_txt, dict_to_use):
-            # _(f'replaceEndings: part:{part}; clipped_text:{clipped_txt}')
             for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
                 for ending in ending_list:
                     part_matched = (part == ending)
@@ -1231,17 +1241,21 @@ class TranslationFinder:
                         continue
 
                     clipped_text = (clipped_txt + replacement_word)
-                    # _(f'replaceEndings: clipped_text:{clipped_text}')
+                    # dd(f'replaceEndings: clipped_text:{clipped_text}')
                     is_found = (clipped_text in dic_to_use)
                     if is_found:
                         tran = dic_to_use[clipped_text]
                         return tran
+                    else:
+                        chopped_txt, tran = reduceDuplicatedEnding(clipped_txt, dict_to_use)
+                        if tran:
+                            return tran
             return None
 
         def removeByPatternListAndCheck(txt, part_list, at, dic_to_use):
             is_in_dict = (txt in dic_to_use)
             if is_in_dict:
-                # _(f'removeByPatternListAndCheck: is_in_dict')
+                # dd(f'removeByPatternListAndCheck: is_in_dict')
                 tran = dic_to_use[txt]
                 return txt, tran
 
@@ -1254,13 +1268,13 @@ class TranslationFinder:
                 part_len = len(part)
                 has_start = is_at_start and (txt.startswith(part))
                 has_end = is_at_end and (txt.endswith(part))
-                # _(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
+                # dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
                 if has_start:
                     test_text = txt[part_len:]
-                    # _(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
+                    # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
                 elif has_end:
                     test_text = txt[:-part_len]
-                    # _(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
+                    # dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
                 else:
                     continue
 
@@ -1272,21 +1286,17 @@ class TranslationFinder:
                     return test_text, tran
                 else:
                     if has_end:
-                        tran = replaceEndings(part, test_text, dic_to_use)
+                        chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
+                        if not tran:
+                            tran = replaceEndings(part, test_text, dic_to_use)
+
                         if tran:
                             tran = fixTranslationWithKnowsSuffixes(txt, tran)
                             return test_text, tran
 
-                is_double_ending = (len(txt) > 2)  and (txt[-1] == txt[-2])
-                if is_double_ending:
-                    # _('is_double_ending')
-                    test_text = txt[:-1]
-                    is_in_dict = (test_text in dic_to_use)
-
-                if is_in_dict:
-                    tran = dic_to_use[test_text]
+                chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
+                if tran:
                     if is_at_end:
-                        # _('NO here')
                         tran = fixTranslationWithKnowsSuffixes(txt, tran)
 
                     return test_text, tran
@@ -1400,10 +1410,10 @@ class TranslationFinder:
     def findTranslation(self, msg):
         trans = None
 
-        # # _("findTranslation:", msg)
+        # # dd("findTranslation:", msg)
         # ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
         # if ex_ga_msg:
-        #     # _("findTranslation - ex_ga_msg", msg, ex_ga_msg)
+        #     # dd("findTranslation - ex_ga_msg", msg, ex_ga_msg)
         #     msg = ex_ga_msg[0]
 
         is_ignore = ig.isIgnored(msg)
@@ -1423,7 +1433,7 @@ class TranslationFinder:
         else:
             trans = None
         if trans is None:
-            _(f"NOT found: [{msg}]")
+            dd(f"NOT found: [{msg}]")
         return trans, is_ignore
 
     def findTranslationByFragment(self, msg):
@@ -1433,7 +1443,7 @@ class TranslationFinder:
 
         word_list = cm.WORD_ONLY_FIND.findall(msg)
 
-        _(f'word_list: {word_list}')
+        dd(f'word_list: {word_list}')
         for origin, breakdown in cm.patternMatchAll(cm.WORD_ONLY_FIND, msg):
             is_end = (origin is None)
             if is_end:
@@ -1468,7 +1478,7 @@ class TranslationFinder:
         must_mark = False
         is_debug = ('Once the docs have been built, all the HTML' in msg)
         if is_debug:
-            _('DEBUG')
+            dd('DEBUG')
 
         trans, is_ignore = self.findTranslation(msg)
         if is_ignore:
@@ -1587,7 +1597,7 @@ class TranslationFinder:
                     #     left = tran[:os]
                     #     right = tran[oe:]
                     #     tran = left + abbr_txt + right
-                    #     _('debug')
+                    #     dd('debug')
 
                     tran = cm.matchCase(orig_txt, tran)
                     tran = f"{tran} -- {orig_txt}"
@@ -1625,7 +1635,7 @@ class TranslationFinder:
                 left = tran[:os]
                 right = tran[oe:]
                 tran = left + abbr_txt + right
-                _('debug')
+                dd('debug')
 
             is_tran_valid = (tran and (tran != orig))
             if is_tran_valid:
@@ -1692,21 +1702,21 @@ class TranslationFinder:
         for k, v in dic_list.items():
             is_ignore = (ig.isIgnored(k))
             if is_ignore:
-                _("mark for removal:", k, v)
+                dd("mark for removal:", k, v)
                 remove_key.append(k)
 
             # remove null from v
             has_value = (v is not None)
             if not has_value:
-                _("mark due to blanking value:", k, v)
+                dd("mark due to blanking value:", k, v)
                 blank_key.append(k)
 
         for k in blank_key:
-            _("actually blanking:", k)
+            dd("actually blanking:", k)
             entry = {k: ""}
             dic_list.update(entry)
 
         # run through the keys and remove entry from the dic_list
         for k in remove_key:
-            _("acutally removing:", k)
+            dd("acutally removing:", k)
             del dic_list[k]
