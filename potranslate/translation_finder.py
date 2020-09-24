@@ -878,7 +878,7 @@ class TranslationFinder:
             is_changed = (change_count > 0)
             if is_changed:
                 dd("CHANGED", change_count, k, "=>", v)
-                changed = True
+                changed = Tprefixrue
 
         if changed:
             dd(data)
@@ -1209,16 +1209,19 @@ class TranslationFinder:
                 is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
                 is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
-                dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
-                dd(f'txt:{txt}; suffix:{suffix}; position:{position}')
+                # dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
+                # dd(f'txt:{txt}; suffix:{suffix}; position:{position}')
                 if is_patching_front:
-                    dd(f'is_patching_front: add_translation={add_translation}')
+                    # dd(f'is_patching_front: add_translation={add_translation}')
+                    # dd(f'is_patching_front: Befor adding; new_txt={new_txt}')
                     new_txt = add_translation + ' ' + new_txt
+                    # dd(f'is_patching_front: new_txt={new_txt}')
                     return new_txt
 
                 if is_patching_end:
-                    dd(f'is_patching_end: add_translation={add_translation}')
+                    # dd(f'is_patching_end: add_translation={add_translation}')
                     new_txt += ' ' + add_translation
+                    # dd(f'is_patching_end: new_txt={new_txt}')
                     return new_txt
             return trans
 

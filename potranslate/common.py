@@ -312,6 +312,7 @@ class Common:
         'less': (START_WORD, 'vô/không/phi'),
         'ness': (START_WORD, 'mức/độ/tính/sự'),
         'ity': (START_WORD, 'sự'),
+        'ively': (START_WORD, 'theo..mà nói/nói một cách'),
         'ly': (START_WORD, 'nói một cách'),
         'ities': (START_WORD, 'nhiều/các/những sự'),
         'iness': (START_WORD, 'mức/độ/tính/sự'),
@@ -325,7 +326,7 @@ class Common:
 
     common_suffixes_replace_dict = {
         'e': list(sorted(
-            ['able', 'ation', 'ations', 'ion', 'ions', 'ity', 'ities', 'ing', 'ously', 'ous', 'ive', 'or', 'ors', 'iness',],
+            ['able', 'ation', 'ations', 'ion', 'ions', 'ity', 'ities', 'ing', 'ously', 'ous', 'ive', 'ively', 'or', 'ors', 'iness', 'ature', 'atures',],
             key=lambda x: len(x), reverse=True)),
         't':['ce',],
         'y':['ies', 'ied'],
@@ -368,6 +369,7 @@ class Common:
         'nce',
         'ous',
         'ive',
+        'ively',
         'ing',
         'ity',
         'ize',
@@ -397,10 +399,13 @@ class Common:
         'sions',
         'ships',
         'aries',
+        'ature',
+        'atures',
         'ingly',
         'izing',
         'ising',
         'ations',
+        'aceous',
         'nesses',
         'iously',
         'iness',
