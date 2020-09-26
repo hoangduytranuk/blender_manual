@@ -3521,7 +3521,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
 
-        msg = '"preselected data-block(s)'
+        msg = 'preselected data-block(s) with something do not yet functioning'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # print(f'{word_list}')
         tran = tf.translate(msg)

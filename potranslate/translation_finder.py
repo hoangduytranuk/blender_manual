@@ -485,6 +485,11 @@ class TranslationFinder:
                     new_translated_dic.append(entry)
             return new_translated_dic
 
+        def dic_key(x):
+            loc, word = x
+            s, e = loc
+            return s
+
         # translation, c_tran, c_untran = self.translateBreakupSentences(msg)
         # translated_all = (c_untran == 0)
         # if translated_all:
@@ -530,12 +535,12 @@ class TranslationFinder:
             # tran_sub_text = cm.matchCase(orig_sub_text, tran_sub_text)
             left = translation[:ss]
             right = translation[ee:]
-            blank_str = (' ' * (ee - ss))
+            blank_str = (' ' * len(tran_sub_text))
             remain_msg = remain_msg[:ss] + blank_str + remain_msg[ee:]
             translation = left + tran_sub_text + right
 
         un_tran_word_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, remain_msg)
-        sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=lambda x: x[0], reverse=True))
+        sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=dic_key, reverse=True))
         pp(sorted_by_loc_list)
         for loc, word in sorted_by_loc_list:
             ss, ee = loc
