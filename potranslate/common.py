@@ -226,6 +226,7 @@ class Common:
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS = re.compile(r'^[\W\s]+$')
+    SPACE_SEP_WORD = re.compile(r'[^\s]+')
 
     START_WORD = '^'
     END_WORD = '$'
@@ -290,6 +291,7 @@ class Common:
     common_sufix_trans = {
         'ed': (START_WORD, 'đã/bị/được'),
         's': (START_WORD, 'những/các/nhiều/một số/vài'),
+        '(s)': (START_WORD, '(những/các)'),
         'or': (START_WORD, 'trình/người/viên'),
         'ors': (START_WORD, 'những/nhiều/các/mọi trình/người/viên'),
         'es': (START_WORD, 'những/các/nhiều/một số/vài'),
@@ -414,6 +416,7 @@ class Common:
         'lable',
         'ously',
         'ous',
+        '(s)',
             ]
 
     common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))

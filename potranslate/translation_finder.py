@@ -501,6 +501,7 @@ class TranslationFinder:
 
         # translate them all if possible
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
+            dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInList(orig_sub_text)
             if not tran_sub_text:
                 continue
@@ -533,7 +534,18 @@ class TranslationFinder:
             remain_msg = remain_msg[:ss] + blank_str + remain_msg[ee:]
             translation = left + tran_sub_text + right
 
-        untranslated_word_list = remain_msg.split()
+        un_tran_word_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, remain_msg)
+        sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=lambda x: x[0], reverse=True))
+        pp(sorted_by_loc_list)
+        for loc, word in sorted_by_loc_list:
+            ss, ee = loc
+            word_tran = self.findByReduction(word)
+            if word_tran:
+                left = translation[:ss]
+                right = translation[ee:]
+                translation = left + word_tran + right
+
+        # untranslated_word_list = remain_msg.split()
         # if untranslated_word_list:
         #     print('blindTranslation -- should be added to BACKUP dictionary:')
         #     for unword in untranslated_word_list:
@@ -1374,6 +1386,28 @@ class TranslationFinder:
 
         return tran
 
+    def findByReduction(self, msg, search_dict=None):
+        trans = None
+        dict_to_use = (search_dict if search_dict else self.master_dic)
+
+        if not dict_to_use:
+            msg = 'NO Dictionary is available. Stopped'
+            print(msg)
+            raise Exception(msg)
+            exit(0)
+
+        trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
+        if not trans:
+            trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+            if not trans:
+                trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
+
+        if trans:
+            trans = trans.replace(cm.FILLER_CHAR, '') # blank out filler char
+            trans = trans.replace('  ', ' ') # double space => single space
+            trans = cm.matchCase(msg, trans)
+            dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
+        return trans
 
     # def dump_po(self, filename, catalog):
     #     dirname = os.path.dirname(filename)
@@ -1397,12 +1431,12 @@ class TranslationFinder:
         is_there = (msg in dict_to_use)
         if is_there:
             trans = dict_to_use[msg]
-        else:
-            trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
-            if not trans:
-                trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
-                if not trans:
-                    trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
+        # else:
+        #     trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
+        #     if not trans:
+        #         trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+        #         if not trans:
+        #             trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
         if trans:
             trans = trans.replace(cm.FILLER_CHAR, '') # blank out filler char
             trans = trans.replace('  ', ' ') # double space => single space

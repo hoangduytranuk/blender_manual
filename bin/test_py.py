@@ -3521,10 +3521,10 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
 
-        msg = 'Curveaceous'
+        msg = '"preselected data-block(s)'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # print(f'{word_list}')
-        tran = tf.blindTranslation(msg)
+        tran = tf.translate(msg)
         print(f'{msg} => {tran}')
 
         # word_list = cm.findInvert(WORD_SPLIT, msg)
