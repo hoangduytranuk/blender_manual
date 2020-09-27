@@ -294,12 +294,13 @@ class Common:
         '(s)': (START_WORD, '(những/các)'),
         'or': (START_WORD, 'trình/người/viên'),
         'ors': (START_WORD, 'những/nhiều/các/mọi trình/người/viên'),
+        'ers': (START_WORD, 'những/các/nhiều/một số/vài bộ/trình/người/viên'),
         'es': (START_WORD, 'những/các/nhiều/một số/vài'),
         'ies': (START_WORD, 'những/các/nhiều/một số/vài'),
         '\'s': (START_WORD, 'của'),
         '\'ll': (START_WORD, 'sẽ'),
-        'er': (END_WORD, 'hơn/trình/bộ'),
-        'or': (START_WORD, 'trình/bộ/người/nhà/viên'),
+        'er': (END_WORD, 'hơn/trình/bộ/người/viên'),
+        'or': (START_WORD, 'trình/bộ/người/nhà/viên/vật'),
         'ors': (START_WORD, 'các/những/nhiều/vài trình/bộ/người/nhà/viên'),
         'est': (END_WORD, 'nhất'),
         'able': (START_WORD, 'có khả năng/thể'),
@@ -314,6 +315,7 @@ class Common:
         'less': (START_WORD, 'vô/không/phi'),
         'ness': (START_WORD, 'mức/độ/tính/sự'),
         'ity': (START_WORD, 'sự'),
+        'ive': (START_WORD, 'có tính'),
         'ively': (START_WORD, 'theo..mà nói/nói một cách'),
         'ly': (START_WORD, 'nói một cách'),
         'ities': (START_WORD, 'nhiều/các/những sự'),
@@ -324,18 +326,26 @@ class Common:
         'isation': (START_WORD, 'sự'),
         'izations': (START_WORD, 'nhiều/các/những sự'),
         'isations': (START_WORD, 'nhiều/các/những sự'),
+        'ively': (START_WORD, 'nói một cách'),
     }
 
     common_suffixes_replace_dict = {
         'e': list(sorted(
-            ['able', 'ation', 'ations', 'ion', 'ions', 'ity', 'ities', 'ing', 'ously', 'ous', 'ive', 'ively', 'or', 'ors', 'iness', 'ature', 'atures',],
+            ['able', 'ation', 'ations', 'ion', 'ions',
+             'ity', 'ities', 'ing', 'ously', 'ous', 'ive',
+             'ively', 'or', 'ors', 'iness', 'ature',
+             'atures', 'ition', 'itions', 'itiveness',
+             'itivenesses', 'itively',
+             ],
             key=lambda x: len(x), reverse=True)),
         't':['ce',],
         'y':['ies', 'ied'],
+        'ion':['ively'],
     }
 
     common_suffixes = [
         'd',
+        'r',
         'y',
         's',
         't',
@@ -358,6 +368,7 @@ class Common:
         'ed',
         'en',
         'er',
+        'ers',
         'ly',
         'eer',
         'ied',
@@ -397,6 +408,13 @@ class Common:
         'ation',
         'iness',
         'ities',
+        'ition',
+        'itive',
+        'itively',
+        'itiveness',
+        'itivenesses',
+        'itives',
+        'itions',
         'ments',
         'sions',
         'ships',
@@ -419,9 +437,14 @@ class Common:
         '(s)',
             ]
 
+    common_infix = [
+        '-',
+    ]
+
     common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
     common_prefix_sorted = list(sorted(common_prefixes, key=lambda x: len(x), reverse=True))
     common_suffix_sorted = list(sorted(common_suffixes, key=lambda x: len(x), reverse=True))
+    common_infix_sorted = list(sorted(common_infix, key=lambda x: len(x), reverse=True))
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)

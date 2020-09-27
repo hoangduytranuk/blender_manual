@@ -524,7 +524,8 @@ class TranslationFinder:
         # sorting in x[1]: end location of text, so the last record of text is used first
         sorted_translated = sorted(retain_translated_dic, key=lambda x: x[1], reverse=True)
 
-        remain_msg = str(translation) # keep a copy of what is remained, untranslated, so if wanted, can dump them in a dict
+        # keep a copy of what is remained, untranslated, so if wanted, can dump them in a dict, or blindly translate them by reduction
+        remain_msg = str(translation)
         for entry in sorted_translated:
             ss, ee, orig_sub_text, tran_sub_text = entry
             untran_subtext = translation[ss:ee]
@@ -535,10 +536,13 @@ class TranslationFinder:
             # tran_sub_text = cm.matchCase(orig_sub_text, tran_sub_text)
             left = translation[:ss]
             right = translation[ee:]
+
+            # use the length of translation text so later on can correctly identify the position of untranslated word in the translated text
             blank_str = (' ' * len(tran_sub_text))
             remain_msg = remain_msg[:ss] + blank_str + remain_msg[ee:]
             translation = left + tran_sub_text + right
 
+        # now blindly translate all words that are not translatable using reduction
         un_tran_word_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, remain_msg)
         sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=dic_key, reverse=True))
         pp(sorted_by_loc_list)
@@ -549,14 +553,8 @@ class TranslationFinder:
                 left = translation[:ss]
                 right = translation[ee:]
                 translation = left + word_tran + right
-
-        # untranslated_word_list = remain_msg.split()
-        # if untranslated_word_list:
-        #     print('blindTranslation -- should be added to BACKUP dictionary:')
-        #     for unword in untranslated_word_list:
-        #         print(f'{unword}')
-
-        # self.addDictEntry(untranslated_word_list)
+            else:
+                self.addBackupDictEntry(word, None)
 
         if translation:
             translation = cm.matchCase(msg, translation)
@@ -1288,7 +1286,8 @@ class TranslationFinder:
                 part_len = len(part)
                 has_start = is_at_start and (txt.startswith(part))
                 has_end = is_at_end and (txt.endswith(part))
-                # dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
+                # if 'r' in part:
+                #     dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
                 if has_start:
                     test_text = txt[part_len:]
                     # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
@@ -1357,6 +1356,20 @@ class TranslationFinder:
                     return test_text, tran
             return txt, None
 
+        def removeInfixAndCheck(txt, infix_list, dic_to_use):
+            #1. generate a list of patterns with infix being removed or replaced by spaces
+            #2. sort patterns list using the accending order of number of replacements, so the entry with least changes goes first,
+            #   the entry with most changes goes last
+            #3. running through the pattern list and check to see which produce a result
+            has_infix = False
+            for infix in infix_list:
+                if (infix in txt):
+                    has_infix = True
+            if not has_infix:
+                return txt, None
+
+
+
         def tryToFindTran(txt, dic_to_use):
             new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD, dic_to_use)
             # print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
@@ -1414,15 +1427,7 @@ class TranslationFinder:
             dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
         return trans
 
-    # def dump_po(self, filename, catalog):
-    #     dirname = os.path.dirname(filename)
-    #     if not os.path.exists(dirname):
-    #         os.makedirs(dirname)
-    #
-    #     # Because babel automatically encode strings, file should be open as binary mode.
-    #     with io.open(filename, 'wb') as f:
-    #         pofile.write_po(f, catalog, width=4096)
-    #
+
     def isInList(self, msg, search_dict=None):
         trans = None
         dict_to_use = (search_dict if search_dict else self.master_dic)
