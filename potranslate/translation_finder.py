@@ -504,10 +504,14 @@ class TranslationFinder:
         # generate all possible combinations of string lengths
         loc_map_length_sorted_reverse = self.genmap(translation)
 
+        # dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
         # translate them all if possible
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
-            dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
+            # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInList(orig_sub_text)
+            if not tran_sub_text:
+                tran_sub_text = self.findByReduction(orig_sub_text)
+
             if not tran_sub_text:
                 continue
 
@@ -1381,27 +1385,30 @@ class TranslationFinder:
                     # print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
             return new_txt, tran
 
-        new_txt, tran = tryToFindTran(txt, dic_to_use)
-        if not tran:
-            tran_txt = str(txt)
-            # split into separated words, treat each independently
-            word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
-            tran_dic = {}
-            for loc, word in word_dict_list.items():
-                s, e = loc
-                new_txt, tran = tryToFindTran(word, dic_to_use)
-                replacement = (tran if tran else word)
-                entry = {s: (s, e, replacement)}
-                tran_dic.update(entry)
+        def searchDicFor(txt, dic_to_use):
+            new_txt, tran = tryToFindTran(txt, dic_to_use)
+            if not tran:
+                tran_txt = str(txt)
+                # split into separated words, treat each independently
+                word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
+                tran_dic = {}
+                for loc, word in word_dict_list.items():
+                    s, e = loc
+                    new_txt, tran = tryToFindTran(word, dic_to_use)
+                    replacement = (tran if tran else word)
+                    entry = {s: (s, e, replacement)}
+                    tran_dic.update(entry)
 
-            sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
-            for k, entry in sorted_tran_dic:
-                s, e, replacement = entry
-                left = tran_txt[:s]
-                right = tran_txt[e:]
-                tran_txt = left + replacement + right
-            tran = tran_txt
+                sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
+                for k, entry in sorted_tran_dic:
+                    s, e, replacement = entry
+                    left = tran_txt[:s]
+                    right = tran_txt[e:]
+                    tran_txt = left + replacement + right
+                tran = tran_txt
+            return tran
 
+        tran = searchDicFor(txt, dic_to_use)
         return tran
 
     def findByReduction(self, msg, search_dict=None):
