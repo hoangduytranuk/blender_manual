@@ -268,7 +268,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -323,7 +323,7 @@ class TranslationFinder:
 
     @property
     def master_dic(self):
-        dd(f'master_dic - get length: {len(self.master_dic_list)}')
+        # dd(f'master_dic - get length: {len(self.master_dic_list)}')
         return self.master_dic_list
 
     @master_dic.setter
@@ -335,7 +335,7 @@ class TranslationFinder:
 
     @property
     def backup_dic(self):
-        dd(f'backup_dic - get length: {len(self.backup_dic_list)}')
+        # dd(f'backup_dic - get length: {len(self.backup_dic_list)}')
         return self.backup_dic_list
 
     @backup_dic.setter
@@ -509,8 +509,9 @@ class TranslationFinder:
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
             # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInList(orig_sub_text)
-            if not tran_sub_text:
-                tran_sub_text = self.findByReduction(orig_sub_text)
+            # if not tran_sub_text:
+                # dangerous step to take
+                # tran_sub_text = self.findByReduction(orig_sub_text)
 
             if not tran_sub_text:
                 continue
@@ -1215,12 +1216,18 @@ class TranslationFinder:
         return self.isInList(msg, search_dict=dic_to_use)
 
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
-        def fixTranslationWithKnowsSuffixes(txt, trans):
+        def fixTranslationWithKnowsPrefixSuffixes(txt, trans, is_prefix=False):
             new_txt = str(trans)
             # pp(cm.common_sufix_translation)
-            for suffix, (position, add_translation) in cm.common_sufix_translation:
-                has_suffix = txt.endswith(suffix)
-                if not has_suffix:
+            fix_translation_list = (cm.common_prefix_translation if is_prefix else cm.common_sufix_translation )
+            for fix_term, (position, add_translation) in fix_translation_list:
+
+                if is_prefix:
+                    has_fix_term = txt.startswith(fix_term)
+                else:
+                    has_fix_term = txt.endswith(fix_term)
+
+                if not has_fix_term:
                     continue
 
                 is_at_front = (position == cm.START_WORD)
@@ -1229,7 +1236,7 @@ class TranslationFinder:
                 is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
                 # dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
-                # dd(f'txt:{txt}; suffix:{suffix}; position:{position}')
+                # dd(f'txt:{txt}; fix_term:{fix_term}; position:{position}')
                 if is_patching_front:
                     # dd(f'is_patching_front: add_translation={add_translation}')
                     # dd(f'is_patching_front: Befor adding; new_txt={new_txt}')
@@ -1267,12 +1274,12 @@ class TranslationFinder:
                     is_found = (clipped_text in dic_to_use)
                     if is_found:
                         tran = dic_to_use[clipped_text]
-                        return tran
+                        return clipped_text, tran
                     else:
                         chopped_txt, tran = reduceDuplicatedEnding(clipped_txt, dict_to_use)
                         if tran:
-                            return tran
-            return None
+                            return chopped_txt, tran
+            return None, None
 
         def removeByPatternListAndCheck(txt, part_list, at, dic_to_use):
             is_in_dict = (txt in dic_to_use)
@@ -1305,22 +1312,31 @@ class TranslationFinder:
                 if is_in_dict:
                     tran = dic_to_use[test_text]
                     if has_end:
-                        tran = fixTranslationWithKnowsSuffixes(txt, tran)
+                        # dd('has_end')
+                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                    elif has_start:
+                        # dd('has_start')
+                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=True)
                     return test_text, tran
                 else:
+                    fix_tran = True
                     if has_end:
                         chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
                         if not tran:
-                            tran = replaceEndings(part, test_text, dic_to_use)
+                            chopped_txt, tran = replaceEndings(part, test_text, dic_to_use)
+                            fix_tran = (chopped_txt and chopped_txt not in cm.verb_with_ending_y)
 
                         if tran:
-                            tran = fixTranslationWithKnowsSuffixes(txt, tran)
+                            if fix_tran:
+                                tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
                             return test_text, tran
 
                 chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
                 if tran:
                     if is_at_end:
-                        tran = fixTranslationWithKnowsSuffixes(txt, tran)
+                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                    elif is_at_start:
+                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
 
                     return test_text, tran
             return txt, None
@@ -1539,6 +1555,7 @@ class TranslationFinder:
             return (None, False, is_ignore)
 
         if not trans:
+            dd(f'calling blindTranslation')
             trans = self.blindTranslation(msg)
             must_mark = True
         return (trans, must_mark, is_ignore)

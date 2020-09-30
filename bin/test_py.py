@@ -3283,10 +3283,12 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # sorted_dic = OrderedDict(sorted_list)
         # writeJSON(test_file1, sorted_dic)
 
-    def test_0058(self):
+    def resort_dictionary(self):
         home_dir = os.environ['HOME']
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006.json')
-        to_dic = readJSON(to_file)
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
+        from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
+
+        to_dic = readJSON(from_file)
 
         sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
         new_dic = OrderedDict(sorting)
@@ -3294,7 +3296,6 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
             entry = {t_k:t_v}
             new_dic.update(entry)
 
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
         writeJSON(to_file, new_dic)
 
     from leven import levenshtein as LEV
@@ -3517,23 +3518,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                     word_rec.show()
 
 
-    def test_0061(self):
-        WORD_SPLIT = re.compile(r'[^\W]+')
-        tf = TranslationFinder()
 
-        # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
-        # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
-        msg = 'Bendy Bones'
-        # print(f'{word_list}')
-        tran = tf.translate(msg)
-        print(f'{msg} => {tran}')
-
-        # word_list = cm.findInvert(WORD_SPLIT, msg)
-        # print(word_list)
-        # for start_index, entry in word_list.items():
-        #     s, e, word = entry
-        #     tran = tf.blindTranslation(word)
-        #     print(f'{word}, {tran}')
 
     def test_0062(self):
         import nltk
@@ -3572,8 +3557,40 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         lemmed_sentence = ' '.join(lem_sentence)
         print(lemmed_sentence)
 
+    def test_translate(self):
+        WORD_SPLIT = re.compile(r'[^\W]+')
+        tf = TranslationFinder()
+
+        # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
+        # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
+        msg = 'e.g. 1'
+        # print(f'{word_list}')
+        tran = tf.translate(msg)
+        print(f'{msg} => {tran}')
+
+        # word_list = cm.findInvert(WORD_SPLIT, msg)
+        # print(word_list)
+        # for start_index, entry in word_list.items():
+        #     s, e, word = entry
+        #     tran = tf.blindTranslation(word)
+        #     print(f'{word}, {tran}')
+
+    def test_0063(self):
+        home_dir = os.environ['HOME']
+        test_file = os.path.join(home_dir, 'sort_term.json')
+        test_out_file = os.path.join(home_dir, 'sorted.json')
+
+        dic = readJSON(test_file)
+
+        sorting = sorted(list(dic.items()))
+        sorted_list = list(sorted(sorting, key=lambda x: len(x[0]), reverse=False))
+        dic = OrderedDict(sorted_list)
+        writeJSON(test_out_file, dic)
+
     def run(self):
-        self.test_0061()
+        # self.resort_dictionary()
+        self.test_translate()
+        # self.test_0063()
 
 
 # trans_finder = TranslationFinder()
