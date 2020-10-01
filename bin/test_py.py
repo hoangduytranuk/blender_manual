@@ -3563,7 +3563,8 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
         # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
-        msg = 'e.g. 1'
+        # msg = 'emitter\'s'
+        msg = 'entries'
         # print(f'{word_list}')
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')
@@ -3575,22 +3576,10 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         #     tran = tf.blindTranslation(word)
         #     print(f'{word}, {tran}')
 
-    def test_0063(self):
-        home_dir = os.environ['HOME']
-        test_file = os.path.join(home_dir, 'sort_term.json')
-        test_out_file = os.path.join(home_dir, 'sorted.json')
-
-        dic = readJSON(test_file)
-
-        sorting = sorted(list(dic.items()))
-        sorted_list = list(sorted(sorting, key=lambda x: len(x[0]), reverse=False))
-        dic = OrderedDict(sorted_list)
-        writeJSON(test_out_file, dic)
-
     def run(self):
-        # self.resort_dictionary()
-        self.test_translate()
-        # self.test_0063()
+        self.resort_dictionary()
+        # self.test_translate()
+
 
 
 # trans_finder = TranslationFinder()

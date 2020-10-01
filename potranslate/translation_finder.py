@@ -1324,7 +1324,9 @@ class TranslationFinder:
                         chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
                         if not tran:
                             chopped_txt, tran = replaceEndings(part, test_text, dic_to_use)
-                            fix_tran = (chopped_txt and chopped_txt not in cm.verb_with_ending_y)
+                            fix_tran = (chopped_txt) and \
+                                       (chopped_txt not in cm.verb_with_ending_y) and \
+                                       (chopped_txt not in cm.verb_with_ending_s)
 
                         if tran:
                             if fix_tran:
