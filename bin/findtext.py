@@ -27,10 +27,21 @@ from enum import Enum
 # import chardet
 from translation_finder import TranslationFinder
 from reflink import RefList
+import json
 
 INVERT_SEP='•'
 # DEBUG = True
 DEBUG = False
+
+def readJSON(file_path):
+    with open(file_path) as in_file:
+        dic = json.load(in_file, object_pairs_hook=OrderedDict)
+    return dic
+
+def writeJSON(file_path, data):
+    with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
+        json.dump(data, out_file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -373,6 +384,8 @@ class FindFilesHasPattern:
 
     def setVars(self,
             find_pattern,
+            find_bracketed,
+            bracket_pair_to_find,
             replace_pattern,
             lower_case,
             upper_case,
@@ -394,9 +407,12 @@ class FindFilesHasPattern:
             testing_only,
             debugging,
             sort_order,
-            marking
+            marking,
+            output_json
             ):
 
+        self.json_dic = {}
+        self.output_json = (True if output_json else False)
         self.is_stdout_redirected = (not sys.stdout.isatty())
         self.find_file = (find_file if (find_file and os.path.isfile(find_file)) else None)
         self.find_po = (True if find_po else False)
@@ -422,20 +438,34 @@ class FindFilesHasPattern:
 
         self.pattern_flag = (re.I if not self.case_sensitive else 0)
         #self.input_pattern = find_pattern
-        if (find_pattern is not None):
-            if self.only_match:
-                self.find_pattern = re.compile(r'\b{}\b'.format(find_pattern), flags=self.pattern_flag)
-            else:
-                self.find_pattern = re.compile(r'{}'.format(find_pattern), flags=self.pattern_flag)
-            self.txt_find_pattern = find_pattern
-        else:
-            self.find_pattern = None
 
-        if (replace_pattern is not None):
+        self.find_pattern = None
+        self.replace_pattern = None
+
+        if find_pattern is not None:
+            self.find_pattern = re.compile(r'{}'.format(find_pattern), flags=self.pattern_flag)
+
+        if replace_pattern is not None:
             self.replace_pattern = replace_pattern
-        else:
-            self.replace_pattern = None
 
+        self.is_find_bracketed = (True if find_bracketed else False)
+        self.bracket_pair = (bracket_pair_to_find if bracket_pair_to_find else None)
+        self.open_bracket = None
+        self.close_bracket = None
+        if self.is_find_bracketed:
+            try:
+                # self.find_pattern = re.compile(r'\(.*?\)')
+                self.open_bracket = (self.bracket_pair[0] if self.bracket_pair else '(')
+                self.close_bracket = (self.bracket_pair[1] if self.bracket_pair else ')')
+
+                if self.invert_match:
+                    pat = fr'\{self.open_bracket}.*?\{self.close_bracket}'
+                else:
+                    pat = fr'\{self.open_bracket}(.*?)\{self.close_bracket}'
+                self.find_pattern = re.compile(pat)
+                # print(f'self.open_bracket:{self.open_bracket}; self.close_bracket:{self.close_bracket}')
+            except Exception as e:
+                pass
 
 
     def patternMatchAll(self, pat, text):
@@ -509,6 +539,24 @@ class FindFilesHasPattern:
             list_of_matches.append(orig)
         return list_of_matches
 
+    def findBracketted(self, txt):
+        from pyparsing import nestedExpr
+
+        # define parser
+        parser = nestedExpr(self.open_bracket, self.close_bracket)("content")
+
+        # search input string for matching keyword and following braced content
+        matches = parser.searchString(txt)
+
+        list_of_matches = (' '.join(map(str, sl)) for sl in matches)
+        final_list = []
+        for entry in list_of_matches:
+            list_entry = ''.join(entry)
+            string_entry = list_entry.replace('[', self.open_bracket)
+            string_entry = string_entry.replace(']', self.close_bracket)
+            string_entry = string_entry.replace('\'', '')
+            final_list.append(string_entry)
+        return final_list
 
     def find(self):
 
@@ -620,6 +668,30 @@ class FindFilesHasPattern:
             self.found_record.show()
             self.found_record.reset()
 
+    def foundDataToDic(self, found_data):
+        if not self.output_json:
+            return
+
+        is_list = isinstance(found_data, list)
+        if is_list:
+            for k in found_data:
+                if not k.isascii():
+                    continue
+
+                v = ""
+                entry = {k:v}
+                # print(f'json_dic.update entry from list: {entry}')
+                self.json_dic.update(entry)
+        else:
+            k = found_data
+            if not k.isascii():
+                return
+
+            v = ""
+            entry = {k:v}
+            # print(f'json_dic.update entry from text: {entry}')
+            self.json_dic.update(entry)
+
     def listingRange(self, data_list, found_index):
         has_from_line = (self.from_line >= 0)
         has_to_line = (self.to_line >= 0)
@@ -646,17 +718,29 @@ class FindFilesHasPattern:
         added_count=0
         for index in range(from_line, to_line):
             text_line = data_list[index]
+            is_added = False
             if self.only_match:
                 if self.invert_match:
                     replaced_line=self.find_pattern.sub(INVERT_SEP, text_line)
                     match_list = replaced_line.split(INVERT_SEP)
                     match_text = "\n".join(match_list)
                 else:
-                    m = self.find_pattern.search(text_line)
-                    if m:
+                    if self.is_find_bracketed:
+                        found_list = self.findBracketted(text_line)
+                    else:
+                        found_list = self.find_pattern.findall(text_line)
+
+                    if found_list:
+                        self.foundDataToDic(found_list)
+                        match_text = '; '.join(found_list)
+                        is_added = True
+                    else:
                         match_text = str(text_line)
             else:
                 match_text = str(text_line)
+
+            if not is_added:
+                self.foundDataToDic(match_text)
 
             if self.is_marking and not self.is_stdout_redirected:
                 match_text = self.markingText(index, text_line, self.find_pattern)
@@ -695,17 +779,16 @@ class FindFilesHasPattern:
 
         for line_no, data_line in enumerate(data_list):
             if self.invert_match:
-                # if self.only_match:
-                #     _('invert_match and only match')
-                #     replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
-                #     exc_list = replaced_line.split(INVERT_SEP)
-                #     is_found = (len(exc_list) > 0)
-                # else:
-                _('invert_match and normal')
-                is_found = (self.find_pattern.search(data_line) == None)
+                if self.only_match:
+                    _('invert_match and only match')
+                    replaced_line=self.find_pattern.sub(INVERT_SEP, data_line)
+                    exc_list = replaced_line.split(INVERT_SEP)
+                    is_found = (len(exc_list) > 0)
+                else:
+                    is_found = (self.find_pattern.search(data_line) is None)
             else:
                 _('NOT invert')
-                is_found = (self.find_pattern.search(data_line) != None)
+                is_found = (self.find_pattern.search(data_line) is not None)
 
             if is_found:
                 self.insertFoundIntoGlobalList(data_line)
@@ -862,6 +945,16 @@ class FindFilesHasPattern:
             elif self.sort_order is SortOrder.LENGTH_INVERT:
                 word_list = sorted(word_list, key=lambda x: len(x), reverse=True)
 
+            pp(word_list)
+
+        # if self.json_dic:
+        #     sorted_list = list(sorted(list(self.json_dic.items()), key=lambda x: len(x[0])))
+        #     output_dict = OrderedDict(sorted_list)
+        #     home_dir = os.environ['HOME']
+        #     json_file = os.path.join(home_dir, 'find_text.json')
+        #     writeJSON(json_file, output_dict)
+            # pp(self.json_dic)
+
             tf = TranslationFinder()
             print('Output global_found_list - only printout if NOT translated:')
             is_counting = False
@@ -885,13 +978,15 @@ class FindFilesHasPattern:
                         print(f'"{w}": "", {count}')
                     else:
                         print(f'"{w}": "",')
-            # PP(self.global_count)
+            PP(self.global_count)
 
 
 
 parser = ArgumentParser()
 #parser.add_argument("-c", "--clean", dest="clean_action", help="Clean before MAKE.", action='store_const', const=True)
 parser.add_argument("-p", "--pattern", dest="find_pattern", help="Pattern to find.")
+parser.add_argument("-BR", "--bracket", dest="bracketed", help="Using brackets instead of pattern, provide a pair of brackets to find, default is '()'", action='store_const', const=True)
+parser.add_argument("-BP", "--brk_pair", dest="bracket_pair", help="Bracket pair to find, includes in a group, starting and ending bracket, such as -BP '{}'.")
 parser.add_argument("-R", "--replace_pattern", dest="replace_pattern", help="Pattern to replace. Only works with PO files and in msgstr entries. Not currently support INVERT match")
 
 parser.add_argument("-CL", "--case_low", dest="case_lower", help="Replaced find pattern with lowercase version in PO tranlation string", action='store_const', const=True)
@@ -918,6 +1013,7 @@ parser.add_argument("-vi", "--vipo", dest="vipo_file", help="Find text in vi.po 
 parser.add_argument("-py", "--py_lib", dest="find_py_lib", help="Find text in source files, set in $PYTHONPATH", action='store_const', const=True)
 parser.add_argument("-S", "--sort_order", dest="sort_order", help="Sort Order: A, AI, L, LI; This option only APPLIES to the global_found_list which is printed out at the end of the run. Noted that this global_found_list is a dictionary and only hold a SINGLE instance of found texts.")
 parser.add_argument("-m", "--marking", dest="marking", help="Marking the matched parts in string for easier spotting while observing.", action='store_const', const=True)
+parser.add_argument("-json", "--json", dest="output_json", help="Dumps all found instances as a dictionary, non-repeat, JSON format.", action='store_const', const=True)
 
 
 args = parser.parse_args()
@@ -929,6 +1025,8 @@ x.setVars(
     # '"([^"]+)"', # double quotes
     # "'(?!(s|re|ll|t)?\s)([^']+)'(?!\S)", # single quote
     # "\(([^()]+)\)", # bracket     # ':kbd:`Shift-LMB` drag',
+    args.bracketed,
+    args.bracket_pair,
     args.replace_pattern,
     args.case_lower,
     args.case_upper,
@@ -951,6 +1049,7 @@ x.setVars(
     args.debugging,
     args.sort_order,
     args.marking,
+    args.output_json,
     )
 
 x.run()

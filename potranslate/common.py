@@ -5,8 +5,7 @@ import sys
 home_dir=os.environ['HOME']
 po_tran_path = os.path.join(home_dir, 'blender_manual/potranslate')
 sys.path.append(po_tran_path)
-
-# sys.path.append('/usr/local/lib/python3.7/site-packages')
+# sys.path.append('/usr/local/lib/python3.8/site-packages')
 
 # print(f'common sys.path: {sys.path}')
 
@@ -19,6 +18,7 @@ from pprint import pprint, pformat
 import hashlib
 import time
 from reftype import RefType
+# from nltk.corpus import wordnet as wn
 
 # import Levenshtein as LE
 #import logging
@@ -227,6 +227,8 @@ class Common:
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS = re.compile(r'^[\W\s]+$')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
+    THE_WORD = re.compile(r'\bthe\b')
+    MULTI_SPACES = re.compile(r'[\s]{2,}')
 
     START_WORD = '^'
     END_WORD = '$'
@@ -770,29 +772,32 @@ class Common:
     common_sufix_trans = {
         's': (START_WORD, 'những/các/nhiều/một số/vài'),
         'ed': (START_WORD, 'đã/bị/được'),
-        'es': (START_WORD, 'những/các/nhiều/một số/vài'),
+        'es': (START_WORD, 'mọi/những/các/nhiều/một số/vài'),
         'er': (END_WORD, 'hơn/trình/bộ/người/viên'),
-        'or': (START_WORD, 'phần/cái/trình/bộ/người/nhà/viên/vật'),
+        'ic': (END_WORD, 'giống/liên quan đến/hoạt động trong'),
+        'or': (START_WORD, 'máy/phần/cái/trình/bộ/người/nhà/viên/vật'),
         'al': (START_WORD, 'thuộc/có tính/sự/phần'),
         'ly': (START_WORD, 'nói một cách/có tính'),
         'ty': (START_WORD, 'trạng thái/có tính'),
         '(s)': (START_WORD, '(những/các)'),
-        'ers': (START_WORD, 'những/các/nhiều/một số/vài bộ/trình/người/viên'),
-        'ies': (START_WORD, 'những/các/nhiều/một số/vài'),
+        'ers': (START_WORD, 'mọi/những/các/nhiều/một số/vài bộ/trình/người/viên'),
+        'ies': (START_WORD, 'mọi/những/các/nhiều/một số/vài'),
         'ier': (END_WORD, 'hơn'),
         '\'s': (START_WORD, 'của'),
-        'ors': (START_WORD, 'các/những/nhiều/vài phần/cái/trình/bộ/người/nhà/viên'),
+        'ors': (START_WORD, 'máy/mọi/các/những/nhiều/vài phần/cái/trình/bộ/người/nhà/viên'),
         'est': (END_WORD, 'nhất'),
+        'dom': (START_WORD, 'sự/phần'),
         'ful': (START_WORD, 'rất/nhiều'),
         'nce': (START_WORD, 'sự/phần'),
         'ily': (START_WORD, 'một cách'),
         'ity': (START_WORD, 'sự/phần'),
         'ive': (START_WORD, 'có tính'),
-        'als': (START_WORD, 'nhiều/các/những có tính/sự/phần'),
+        'als': (START_WORD, 'mọi/nhiều/các/những có tính/sự/phần'),
         'ure': (START_WORD, 'sự/phần'),
         '\'ll': (START_WORD, 'sẽ'),
         'able': (START_WORD, 'có khả năng/thể'),
         'ably': (START_WORD, 'có khả năng/thể/đáng'),
+        'doms': (START_WORD, 'sự/phần'),
         'ible': (START_WORD, 'có khả năng/thể/đáng'),
         'ibly': (START_WORD, 'có khả năng/thể/đáng'),
         'iest': (END_WORD, 'nhất'),
@@ -804,18 +809,18 @@ class Common:
         'ment': (START_WORD, 'sự/phần/phép'),
         'ures': (START_WORD, 'sự/phần'),
         'lable': (START_WORD, 'có khả năng/thể/đáng'),
-        'ities': (START_WORD, 'nhiều/các/những sự/phần'),
+        'ities': (START_WORD, 'mọi/nhiều/các/những sự/phần'),
         'iness': (START_WORD, 'mức/độ/tính/sự/phần'),
         'ation': (START_WORD, 'sự/phần'),
         'ively': (START_WORD, 'nói một cách/có tính'),
         'ments': (START_WORD, 'sự/phần'),
         'ption': (START_WORD, 'sự/phần'),
-        'ations': (START_WORD, 'nhiều/các/những sự/phần'),
-        'encies': (START_WORD, 'nhiều/các/những sự/phần'),
+        'ations': (START_WORD, 'mọi/nhiều/các/những sự/phần'),
+        'encies': (START_WORD, 'mọi/nhiều/các/những sự/phần'),
         'ization': (START_WORD, 'sự/phần'),
         'isation': (START_WORD, 'sự/phần'),
-        'izations': (START_WORD, 'nhiều/các/những sự/phần'),
-        'isations': (START_WORD, 'nhiều/các/những sự/phần'),
+        'izations': (START_WORD, 'mọi/nhiều/các/những sự/phần'),
+        'isations': (START_WORD, 'mọi/nhiều/các/những sự/phần'),
     }
 
     common_suffixes_replace_dict = {
@@ -826,17 +831,18 @@ class Common:
              'atures', 'ition', 'itions', 'itiveness',
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
-             'al', 'als', 'iast', 'iasts', 'iastic',
+             'al', 'als', 'iast', 'iasts', 'iastic', 'ial',
              ],
             key=lambda x: len(x), reverse=True)),
         't':['ce','cy', 'ssion', 'ssions'],
         'y':['ies', 'ied', 'ier', 'iest', 'ily', 'ic', 'ical', 'ically'],
         'ion':['ively'],
         'be':['ption', 'ptions',],
-        'de':['sible'],
+        'de':['sible', 'sion', 'sions' ],
         'ate':['ant'],
         'cy':['t'],
         'ze':['s'],
+        'le':['ility', 'ilities', ]
     }
 
     common_suffixes = [
@@ -846,6 +852,7 @@ class Common:
         's',
         't',
         'al',
+        'an',
         'ce',
         'cy',
         'er',
@@ -858,6 +865,7 @@ class Common:
         'en',
         'er',
         'ly',
+        'st',
         'ty',
         'ze',
         'ze',
@@ -865,9 +873,11 @@ class Common:
         '\'t',
         '\'m',
         'als',
+        'dom',
         'ors',
         'ers',
         'eer',
+        'ial',
         'ied',
         'ier',
         'ion',
@@ -886,6 +896,7 @@ class Common:
         'ity',
         'ize',
         'ise',
+        'ite',
         'ful',
         'ual',
         'ure',
@@ -897,6 +908,9 @@ class Common:
         'n\'t',
         'ator',
         'ants',
+        'doms',
+        'ence',
+        'ency',
         'ents',
         'ings',
         'ures',
@@ -905,6 +919,8 @@ class Common:
         'iast',
         'iasts',
         'iastic',
+        'lier',
+        'liest',
         'ment',
         'ness',
         'ning',
@@ -944,6 +960,8 @@ class Common:
         'lable',
         'ously',
         'ptions',
+        'ility',
+        'ilities',
         'itives',
         'itions',
         'atures',

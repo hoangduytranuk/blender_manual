@@ -3285,8 +3285,8 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
     def resort_dictionary(self):
         home_dir = os.environ['HOME']
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
         from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
 
         to_dic = readJSON(from_file)
 
@@ -3557,6 +3557,33 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         lemmed_sentence = ' '.join(lem_sentence)
         print(lemmed_sentence)
 
+    def test_0063(self):
+        from pyparsing import nestedExpr
+
+        source = 'this (one ((four) two)) and (three)'
+        # define parser
+        parser = nestedExpr('(',')')("content")
+
+        # search input string for matching keyword and following braced content
+        matches = parser.searchString(source)
+
+        list_of_matches = (' '.join(map(str, sl)) for sl in matches)
+        final_list = []
+        for entry in list_of_matches:
+            list_entry = ''.join(entry)
+            string_entry = list_entry.replace('[', '(')
+            string_entry = string_entry.replace(']', ')')
+            string_entry = string_entry.replace('\'', '')
+            final_list.append(string_entry)
+        print(final_list)
+
+        # for elem in matches:
+        #     ee = p(*elem)
+        #     print(*ee)
+
+        # # remove quotation marks
+        # return [[qs.strip('"') for qs in r[0].asList()] for r in matches]
+
     def test_translate(self):
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
@@ -3564,7 +3591,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # msg = 'emitter\'s'
-        msg = 'entries'
+        msg = 'ghosted'
         # print(f'{word_list}')
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')
@@ -3579,6 +3606,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
     def run(self):
         self.resort_dictionary()
         # self.test_translate()
+        # self.test_0063()
 
 
 

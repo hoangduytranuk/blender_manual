@@ -1032,14 +1032,14 @@ class TEXT_OT_is_in_dictionary(TEXT_OT_single_quoted_base):
 
         text = self.getSelectedText(sd.text)
         if not text:
-            self.report({'ERROR'}, "Must select a text with arched brackets to be converted")
+            self.report({'ERROR'}, "Must select a text.")
             return {'CANCELLED'}
 
         is_found = trans_finder.isInListByDict(text, is_using_master_dict)
         if is_found:
-            self.report({'INFO'}, f"Found:{is_found}")
+            self.report({'INFO'}, f"{text}=>{is_found}")
         else:
-            self.report({'ERROR'}, f"Not found")
+            self.report({'ERROR'}, f"{text} Not found")
 
         return {'FINISHED'}
 
@@ -1050,7 +1050,41 @@ class TEXT_OT_is_in_dictionary(TEXT_OT_single_quoted_base):
             self.restoreClibboardPreviousCopy()
         return result
 
+class TEXT_OT_translate_from_master_dictionary(TEXT_OT_single_quoted_base):
+    bl_idname = "text.get_translation_from_dictionary"
+    bl_label = "Translate"
+    bl_description = "Translate using blind-translation if needed"
+    bl_context = 'scene'
 
+    def execute(self, context):
+        sd = context.space_data
+        sc = context.scene
+        var = sc.my_tool
+        is_using_master_dict = var.create_entry_to_master_dict
+
+        text = self.getSelectedText(sd.text)
+        if not text:
+            self.report({'ERROR'}, "Must select a text.")
+            return {'CANCELLED'}
+
+        trans, must_mark, is_ignore = trans_finder.translate(text)
+        if is_ignore:
+            self.report({'INFO'}, f"{text} is considered to be IGNORED")
+        if not trans:
+            self.report({'ERROR'}, f"{text} Not found")
+        else:
+            self.report({'INFO'}, f"{text} => {trans}")
+            if must_mark:
+                self.report({'INFO'}, "translation is considered FUZZY")
+
+        return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
+        return result
 
 class TEXT_PT_abbrev_basic_panel(bpy.types.Panel):
     bl_label = "Abbrev Basic Options"
@@ -1202,6 +1236,7 @@ class TEXT_PT_dict_action_panel(bpy.types.Panel):
         row.prop(my_tool, "create_entry_to_master_dict")
         row.operator("text.make_dict_entry", icon='MODIFIER_DATA')
         row.operator("text.is_in_dictionary", icon='VIEWZOOM')
+        row.operator("text.get_translation_from_dictionary", icon='VIEWZOOM')
 
 
 class TEXT_PT_copy_and_paste_panel(bpy.types.Panel):
@@ -1264,6 +1299,7 @@ class TEXT_PT_copy_and_paste_panel(bpy.types.Panel):
 
 classes = (
     MySettings,
+    TEXT_OT_translate_from_master_dictionary,
     TEXT_PT_abbrev_basic_panel,
     TEXT_PT_removing_chars_panel,
     TEXT_PT_head_tail_filter_panel,

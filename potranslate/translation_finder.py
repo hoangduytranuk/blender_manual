@@ -268,7 +268,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -1211,7 +1211,7 @@ class TranslationFinder:
         dic_to_use = (self.master_dic if is_master else self.backup_dic)
         dic_name = (self.master_dic_file if is_master else self.master_dic_backup_file)
         dic_length = len(dic_to_use)
-        dd(f'isInListByDict - dic_to_use:{dic_name}, number of entries:{dic_length}')
+        # dd(f'isInListByDict - dic_to_use:{dic_name}, number of entries:{dic_length}')
 
         return self.isInList(msg, search_dict=dic_to_use)
 
@@ -1501,6 +1501,7 @@ class TranslationFinder:
         if has_translation:
             trans = cm.removeOriginal(msg, trans)
             trans = cm.matchCase(orig_msg, trans)
+            trans = self.removeTheWord(trans)
             # self.addDictEntry((msg, trans), True)
         else:
             trans = None
@@ -1546,6 +1547,14 @@ class TranslationFinder:
 
         return trans
 
+    def removeTheWord(self, trans):
+        try:
+            trans = cm.THE_WORD.sub("", trans)
+            trans = cm.MULTI_SPACES.sub(" ", trans)
+        except Exception as e:
+            pass
+        return trans
+
     def translate(self, msg):
         must_mark = False
         is_debug = ('Once the docs have been built, all the HTML' in msg)
@@ -1560,6 +1569,8 @@ class TranslationFinder:
             dd(f'calling blindTranslation')
             trans = self.blindTranslation(msg)
             must_mark = True
+        if trans:
+            trans = self.removeTheWord(trans)
         return (trans, must_mark, is_ignore)
 
     def translateKeyboard(self, msg):
