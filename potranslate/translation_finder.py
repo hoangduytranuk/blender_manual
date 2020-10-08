@@ -268,7 +268,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -1312,56 +1312,68 @@ class TranslationFinder:
             is_at_start = (at == cm.START_WORD)
             is_at_end = (at == cm.END_WORD)
             test_text = str(txt)
+            if is_at_start:
+                test_text = cm.NON_WORD_STARTING.sub("", test_text)
+            elif is_at_end:
+                test_text = cm.NON_WORD_ENDING.sub("", test_text)
 
+            part_list = ['like', '-like']
+            word_len = len(test_text)
             # pp(part_list)
             for part in part_list:
                 part_len = len(part)
-                has_start = is_at_start and (txt.startswith(part))
-                has_end = is_at_end and (txt.endswith(part))
+                if part_len >= word_len:
+                    break
+
+                has_start = is_at_start and (test_text.startswith(part))
+                has_end = is_at_end and (test_text.endswith(part))
                 # if 'r' in part:
                 #     dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
                 if has_start:
-                    test_text = txt[part_len:]
+                    text_before_cutoff = str(test_text)
+                    test_text = test_text[part_len:]
+                    test_text = cm.NON_WORD_STARTING.sub("", test_text)
                     # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
                 elif has_end:
-                    test_text = txt[:-part_len]
+                    text_before_cutoff = str(test_text)
+                    test_text = test_text[:-part_len]
+                    test_text = cm.NON_WORD_ENDING.sub("", test_text)
                     # dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
                 else:
                     continue
 
-                if has_end:
+                is_in_dict = (test_text in dic_to_use)
+                if is_in_dict:
+                    tran = dic_to_use[test_text]
+                    if has_end:
+                        # dd('has_end')
+                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+                    elif has_start:
+                        # dd('has_start')
+                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=True)
+                    return test_text, tran
+                else:
                     fix_tran = True
-                    chopped_txt, tran = replaceEndings(part, test_text, dic_to_use)
+                    chopped_txt, tran = replaceEndings(part, text_before_cutoff, dic_to_use)
                     fix_tran = (chopped_txt) and \
                                (chopped_txt not in cm.verb_with_ending_y) and \
                                (chopped_txt not in cm.verb_with_ending_s)
                     if tran:
                         if fix_tran:
-                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                            tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                         return test_text, tran
                     else:
-                        chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
+                        chopped_txt, tran = reduceDuplicatedEnding(text_before_cutoff, dic_to_use)
                         if tran:
-                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                            tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                             return chopped_txt, tran
-                else:
-                    is_in_dict = (test_text in dic_to_use)
-                    if is_in_dict:
-                        tran = dic_to_use[test_text]
-                        if has_end:
-                            # dd('has_end')
-                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
-                        elif has_start:
-                            # dd('has_start')
-                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=True)
-                        return test_text, tran
 
-                chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
+                chopped_txt, tran = reduceDuplicatedEnding(text_before_cutoff, dic_to_use)
                 if tran:
                     if is_at_end:
-                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                     elif is_at_start:
-                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
 
                     return test_text, tran
             return txt, None

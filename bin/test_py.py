@@ -3285,8 +3285,8 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
     def resort_dictionary(self):
         home_dir = os.environ['HOME']
-        from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
+        from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
 
         to_dic = readJSON(from_file)
 
@@ -3591,7 +3591,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # msg = 'emitter\'s'
-        msg = 'handier'
+        msg = 'cloud-like; cell-like'
         # print(f'{word_list}')
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')

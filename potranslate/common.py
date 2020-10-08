@@ -165,6 +165,8 @@ class Common:
     REF_SEP = ' -- '
     NON_WORD_ONLY = re.compile(r'^([\W]+)$')
     NON_WORD = re.compile(r'([\W]+)')
+    NON_WORD_ENDING = re.compile(r'([\W]+)$')
+    NON_WORD_STARTING = re.compile(r'^([\W]+)')
 
     GA_REF_PART = re.compile(r':[\w]+:')
     GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
@@ -805,10 +807,13 @@ class Common:
         'iest': (END_WORD, 'nhất'),
         'sion': (START_WORD, 'sự/phần'),
         'tion': (START_WORD, 'sự/phần'),
-        'less': (START_WORD, 'vô/không/phi'),
         'ness': (START_WORD, 'mức/độ/tính/sự'),
         'ency': (START_WORD, 'sự/phần'),
         'ment': (START_WORD, 'sự/phần/phép'),
+        'less': (START_WORD, 'vô/không/phi'),
+        '-less': (START_WORD, 'vô/không/phi'),
+        'like': (START_WORD, 'Thích/Giống Như/Tương Tự'),
+        '-like': (START_WORD, 'Thích/Giống Như/Tương Tự'),
         'than': (END_WORD, 'hơn'),
         'ures': (START_WORD, 'sự/phần'),
         'lable': (START_WORD, 'có khả năng/thể/đáng'),
@@ -888,6 +893,10 @@ class Common:
         'ity',
         'ics',
         'ies',
+        'like',
+        '-like',
+        'less',
+        '-less',
         'ant',
         'ent',
         'ary',
@@ -925,6 +934,7 @@ class Common:
         'iasts',
         'iastic',
         'lier',
+        'less',
         'liest',
         'ment',
         'ness',
