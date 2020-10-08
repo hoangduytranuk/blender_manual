@@ -229,6 +229,7 @@ class Common:
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
     THE_WORD = re.compile(r'\bthe\b')
     MULTI_SPACES = re.compile(r'[\s]{2,}')
+    HYPHEN = re.compile(r'[\-]')
 
     START_WORD = '^'
     END_WORD = '$'
@@ -792,6 +793,7 @@ class Common:
         'ily': (START_WORD, 'một cách'),
         'ity': (START_WORD, 'sự/phần'),
         'ive': (START_WORD, 'có tính'),
+        'ish': (START_WORD, 'hơi hơi/có xu hướng/gần giống'),
         'als': (START_WORD, 'mọi/nhiều/các/những có tính/sự/phần'),
         'ure': (START_WORD, 'sự/phần'),
         '\'ll': (START_WORD, 'sẽ'),
@@ -807,6 +809,7 @@ class Common:
         'ness': (START_WORD, 'mức/độ/tính/sự'),
         'ency': (START_WORD, 'sự/phần'),
         'ment': (START_WORD, 'sự/phần/phép'),
+        'than': (END_WORD, 'hơn'),
         'ures': (START_WORD, 'sự/phần'),
         'lable': (START_WORD, 'có khả năng/thể/đáng'),
         'ities': (START_WORD, 'mọi/nhiều/các/những sự/phần'),
@@ -835,7 +838,7 @@ class Common:
              ],
             key=lambda x: len(x), reverse=True)),
         't':['ce','cy', 'ssion', 'ssions'],
-        'y':['ies', 'ied', 'ier', 'iest', 'ily', 'ic', 'ical', 'ically'],
+        'y':['ies', 'ied', 'ier', 'iest', 'ily', 'ic', 'ical', 'ically', 'iness', 'inesses'],
         'ion':['ively'],
         'be':['ption', 'ptions',],
         'de':['sible', 'sion', 'sions' ],
@@ -876,6 +879,7 @@ class Common:
         'dom',
         'ors',
         'ers',
+        'est',
         'eer',
         'ial',
         'ied',
@@ -896,6 +900,7 @@ class Common:
         'ity',
         'ize',
         'ise',
+        'ish',
         'ite',
         'ful',
         'ual',
@@ -985,9 +990,9 @@ class Common:
 
     common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
     common_prefix_translation = list(sorted( list(common_prefix_trans.items()), key=lambda x: len(x[0]), reverse=True))
-    common_prefix_sorted = list(sorted(common_prefixes, key=lambda x: len(x), reverse=True))
-    common_suffix_sorted = list(sorted(common_suffixes, key=lambda x: len(x), reverse=True))
-    common_infix_sorted = list(sorted(common_infix, key=lambda x: len(x), reverse=True))
+    common_prefix_sorted = list(sorted(common_prefixes, key=lambda x: len(x), reverse=False))
+    common_suffix_sorted = list(sorted(common_suffixes, key=lambda x: len(x), reverse=False))
+    common_infix_sorted = list(sorted(common_infix, key=lambda x: len(x), reverse=False))
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)

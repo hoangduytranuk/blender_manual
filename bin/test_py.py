@@ -3591,7 +3591,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # msg = 'emitter\'s'
-        msg = 'ghosted'
+        msg = 'handier'
         # print(f'{word_list}')
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')
@@ -3604,8 +3604,8 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         #     print(f'{word}, {tran}')
 
     def run(self):
-        self.resort_dictionary()
-        # self.test_translate()
+        # self.resort_dictionary()
+        self.test_translate()
         # self.test_0063()
 
 
@@ -3622,3 +3622,5 @@ def tranRef(msg, is_keep_original):
 
 x = test()
 x.run()
+
+

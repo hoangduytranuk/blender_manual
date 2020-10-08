@@ -268,7 +268,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -1215,6 +1215,27 @@ class TranslationFinder:
 
         return self.isInList(msg, search_dict=dic_to_use)
 
+    def hyphenationRemoval(self, txt, dic_to_use):
+        match = cm.HYPHEN.search(txt)
+        has_hyphen = bool(match)
+        if not has_hyphen:
+            return txt, None
+
+        test_text = str(txt)
+        pattern = test_text.replace('-', ' ')
+        has_trans = (pattern in dic_to_use)
+        if has_trans:
+            trans = dic_to_use[pattern]
+            return pattern, trans
+
+        pattern = test_text.replace('-', '')
+        has_trans = (pattern in dic_to_use)
+        if has_trans:
+            trans = dic_to_use[pattern]
+            return pattern, trans
+
+        return txt, None
+
     def findDictByRemoveCommonPrePostFixes(self, txt, dic_to_use):
         def fixTranslationWithKnowsPrefixSuffixes(txt, trans, is_prefix=False):
             new_txt = str(trans)
@@ -1308,30 +1329,32 @@ class TranslationFinder:
                 else:
                     continue
 
-                is_in_dict = (test_text in dic_to_use)
-                if is_in_dict:
-                    tran = dic_to_use[test_text]
-                    if has_end:
-                        # dd('has_end')
-                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
-                    elif has_start:
-                        # dd('has_start')
-                        tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=True)
-                    return test_text, tran
-                else:
+                if has_end:
                     fix_tran = True
-                    if has_end:
+                    chopped_txt, tran = replaceEndings(part, test_text, dic_to_use)
+                    fix_tran = (chopped_txt) and \
+                               (chopped_txt not in cm.verb_with_ending_y) and \
+                               (chopped_txt not in cm.verb_with_ending_s)
+                    if tran:
+                        if fix_tran:
+                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                        return test_text, tran
+                    else:
                         chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
-                        if not tran:
-                            chopped_txt, tran = replaceEndings(part, test_text, dic_to_use)
-                            fix_tran = (chopped_txt) and \
-                                       (chopped_txt not in cm.verb_with_ending_y) and \
-                                       (chopped_txt not in cm.verb_with_ending_s)
-
                         if tran:
-                            if fix_tran:
-                                tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
-                            return test_text, tran
+                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                            return chopped_txt, tran
+                else:
+                    is_in_dict = (test_text in dic_to_use)
+                    if is_in_dict:
+                        tran = dic_to_use[test_text]
+                        if has_end:
+                            # dd('has_end')
+                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=False)
+                        elif has_start:
+                            # dd('has_start')
+                            tran = fixTranslationWithKnowsPrefixSuffixes(txt, tran, is_prefix=True)
+                        return test_text, tran
 
                 chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
                 if tran:
@@ -1439,11 +1462,13 @@ class TranslationFinder:
             raise Exception(msg)
             exit(0)
 
-        trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
+        chopped_text, trans = self.hyphenationRemoval(msg, dict_to_use)
         if not trans:
-            trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+            trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
             if not trans:
-                trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
+                trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
+                if not trans:
+                    trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
 
         if trans:
             trans = trans.replace(cm.FILLER_CHAR, '') # blank out filler char
@@ -1466,16 +1491,6 @@ class TranslationFinder:
         is_there = (msg in dict_to_use)
         if is_there:
             trans = dict_to_use[msg]
-        # else:
-        #     trans = self.findDictByRemoveCommonPrePostFixes(msg, dict_to_use)
-        #     if not trans:
-        #         trans, trimmed_msg = self.findAndTrimIfNeeded(msg, search_dict=dict_to_use, is_patching_found=True)
-        #         if not trans:
-        #             trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg, dict_to_use)
-        if trans:
-            trans = trans.replace(cm.FILLER_CHAR, '') # blank out filler char
-            trans = trans.replace('  ', ' ') # double space => single space
-            trans = cm.matchCase(msg, trans)
         return trans
 
 
