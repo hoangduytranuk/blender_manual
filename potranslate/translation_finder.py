@@ -757,7 +757,7 @@ class TranslationFinder:
         if is_master:
             dd(f'reloadChosenDict:{self.master_dic_file}')
             self.master_dic = self.loadJSONDic(file_name=self.master_dic_file)
-            cm.testDict(self.master_dic)
+            # cm.testDict(self.master_dic)
         else:
             dd(f'reloadChosenDict:{self.master_dic_backup_file}')
             self.backup_dic = self.loadJSONDic(file_name=self.master_dic_backup_file)
@@ -1317,28 +1317,27 @@ class TranslationFinder:
             elif is_at_end:
                 test_text = cm.NON_WORD_ENDING.sub("", test_text)
 
-            part_list = ['like', '-like']
+            # part_list = ['like', '-like']
             word_len = len(test_text)
+            text_before_cutoff = str(test_text)
             # pp(part_list)
             for part in part_list:
                 part_len = len(part)
                 if part_len >= word_len:
                     break
 
-                has_start = is_at_start and (test_text.startswith(part))
-                has_end = is_at_end and (test_text.endswith(part))
+                has_start = is_at_start and (text_before_cutoff.startswith(part))
+                has_end = is_at_end and (text_before_cutoff.endswith(part))
                 # if 'r' in part:
                 #     dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
                 if has_start:
-                    text_before_cutoff = str(test_text)
-                    test_text = test_text[part_len:]
+                    test_text = text_before_cutoff[part_len:]
                     test_text = cm.NON_WORD_STARTING.sub("", test_text)
-                    # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
+                    dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
                 elif has_end:
-                    text_before_cutoff = str(test_text)
-                    test_text = test_text[:-part_len]
+                    test_text = text_before_cutoff[:-part_len]
                     test_text = cm.NON_WORD_ENDING.sub("", test_text)
-                    # dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
+                    dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
                 else:
                     continue
 
@@ -1354,16 +1353,16 @@ class TranslationFinder:
                     return test_text, tran
                 else:
                     fix_tran = True
-                    chopped_txt, tran = replaceEndings(part, text_before_cutoff, dic_to_use)
-                    fix_tran = (chopped_txt) and \
+                    chopped_txt, tran = replaceEndings(part, test_text, dic_to_use)
+                    fix_tran = bool((chopped_txt) and \
                                (chopped_txt not in cm.verb_with_ending_y) and \
-                               (chopped_txt not in cm.verb_with_ending_s)
+                               (chopped_txt not in cm.verb_with_ending_s))
                     if tran:
                         if fix_tran:
                             tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                         return test_text, tran
                     else:
-                        chopped_txt, tran = reduceDuplicatedEnding(text_before_cutoff, dic_to_use)
+                        chopped_txt, tran = reduceDuplicatedEnding(test_text, dic_to_use)
                         if tran:
                             tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                             return chopped_txt, tran

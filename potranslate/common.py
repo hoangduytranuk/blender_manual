@@ -1000,9 +1000,15 @@ class Common:
 
     common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
     common_prefix_translation = list(sorted( list(common_prefix_trans.items()), key=lambda x: len(x[0]), reverse=True))
-    common_prefix_sorted = list(sorted(common_prefixes, key=lambda x: len(x), reverse=False))
-    common_suffix_sorted = list(sorted(common_suffixes, key=lambda x: len(x), reverse=False))
-    common_infix_sorted = list(sorted(common_infix, key=lambda x: len(x), reverse=False))
+
+    ascending_sorted = list(sorted(common_prefixes))
+    common_prefix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
+
+    ascending_sorted = list(sorted(common_suffixes))
+    common_suffix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
+
+    ascending_sorted = list(sorted(common_infix))
+    common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)
@@ -1701,14 +1707,26 @@ class Common:
         return abbrev_orig_rec, abbrev_rec, abbrev_exp_rec
 
     def testDict(dic_to_use):
-        test_txt = 'Build'
-        is_test_text_in_dic = (test_txt in dic_to_use)
-        if is_test_text_in_dic:
-            # value_old = dic[test_txt]
-            value = dic_to_use[test_txt]
-            dd(f'found: {test_txt} => {value}')
-        else:
-            dd(f'NOT found: {test_txt} SOMETHING WRONG!!!')
+        key_list = dic_to_use.keys()
+        debug_text = 'like'
+        for k in key_list:
+            is_there = (k in dic_to_use)
+            is_debug = (k.lower() == debug_text.lower())
+            if not is_there:
+                print(f'key:{k} IS NOT THERE')
+            if is_debug:
+                print(f'debug_text:{debug_text} key:{k} exists: {is_there}')
+                exit(0)
+        exit(0)
+        # test_txt = 'like'
+        #
+        # is_test_text_in_dic = (test_txt in dic_to_use)
+        # if is_test_text_in_dic:
+        #     # value_old = dic[test_txt]
+        #     value = dic_to_use[test_txt]
+        #     dd(f'found: {test_txt} => {value}')
+        # else:
+        #     dd(f'NOT found: {test_txt} SOMETHING WRONG!!!')
 
 
 
