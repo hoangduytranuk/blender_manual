@@ -776,31 +776,35 @@ class Common:
         's': (START_WORD, 'những/các/nhiều/một số/vài'),
         'ed': (START_WORD, 'đã/bị/được'),
         'es': (START_WORD, 'mọi/những/các/nhiều/một số/vài'),
-        'er': (END_WORD, 'hơn/trình/bộ/người/viên'),
-        'ic': (END_WORD, 'giống/liên quan đến/hoạt động trong'),
+        'er': (END_WORD, 'hơn/trình/bộ/người/viên/nhà'),
+        'ic': (START_WORD, 'giống/liên quan đến/hoạt động trong'),
         'or': (START_WORD, 'máy/phần/cái/trình/bộ/người/nhà/viên/vật'),
         'al': (START_WORD, 'thuộc/có tính/sự/phần'),
-        'ly': (START_WORD, 'nói một cách/có tính'),
+        'inal': (START_WORD, 'thuộc/có tính/sự/phần'),
+        'ly': (START_WORD, 'nói một cách/có tính/theo'),
         'ty': (START_WORD, 'trạng thái/có tính'),
         '(s)': (START_WORD, '(những/các)'),
-        'ers': (START_WORD, 'mọi/những/các/nhiều/một số/vài bộ/trình/người/viên'),
+        'ers': (START_WORD, 'mọi/những/các/nhiều/một số/vài bộ/trình/người/viên/nhà'),
         'ies': (START_WORD, 'mọi/những/các/nhiều/một số/vài'),
         'ier': (END_WORD, 'hơn'),
         '\'s': (START_WORD, 'của'),
         'ors': (START_WORD, 'máy/mọi/các/những/nhiều/vài phần/cái/trình/bộ/người/nhà/viên'),
         'est': (END_WORD, 'nhất'),
         'dom': (START_WORD, 'sự/phần'),
-        'ful': (START_WORD, 'rất/nhiều'),
+        'ful': (START_WORD, 'có/rất/nhiều'),
         'nce': (START_WORD, 'sự/phần'),
         'ily': (START_WORD, 'một cách'),
         'ity': (START_WORD, 'sự/phần'),
         'ive': (START_WORD, 'có tính'),
         'ish': (START_WORD, 'hơi hơi/có xu hướng/gần giống'),
+        'ism': (START_WORD, 'chủ nghĩa/tính/trường phái'),
+        'isms': (START_WORD, 'chủ nghĩa/tính/trường phái'),
         'als': (START_WORD, 'mọi/nhiều/các/những có tính/sự/phần'),
         'ure': (START_WORD, 'sự/phần'),
         '\'ll': (START_WORD, 'sẽ'),
         'able': (START_WORD, 'có khả năng/thể'),
         'ably': (START_WORD, 'có khả năng/thể/đáng'),
+        'ence': (START_WORD, 'sự/phần'),
         'doms': (START_WORD, 'sự/phần'),
         'ible': (START_WORD, 'có khả năng/thể/đáng'),
         'ibly': (START_WORD, 'có khả năng/thể/đáng'),
@@ -811,9 +815,7 @@ class Common:
         'ency': (START_WORD, 'sự/phần'),
         'ment': (START_WORD, 'sự/phần/phép'),
         'less': (START_WORD, 'vô/không/phi'),
-        '-less': (START_WORD, 'vô/không/phi'),
         'like': (START_WORD, 'Thích/Giống Như/Tương Tự'),
-        '-like': (START_WORD, 'Thích/Giống Như/Tương Tự'),
         'than': (END_WORD, 'hơn'),
         'ures': (START_WORD, 'sự/phần'),
         'lable': (START_WORD, 'có khả năng/thể/đáng'),
@@ -839,18 +841,41 @@ class Common:
              'atures', 'ition', 'itions', 'itiveness',
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
-             'al', 'als', 'iast', 'iasts', 'iastic', 'ial',
+             'al', 'als', 'iast', 'iasts', 'iastic', 'ial', 'y',
+             'ary', 'ingly', 'ian', 'inal',
              ],
             key=lambda x: len(x), reverse=True)),
-        't':['ce','cy', 'ssion', 'ssions'],
-        'y':['ies', 'ied', 'ier', 'iest', 'ily', 'ic', 'ical', 'ically', 'iness', 'inesses'],
+        't': list(sorted(
+            ['ce','cy', 'ssion', 'ssions'],
+            key=lambda x: len(x), reverse=True)),
+        'x': list(sorted(
+            ['ce','ces', ],
+            key=lambda x: len(x), reverse=True)),
+        'y':list(sorted(
+            ['ies', 'ied', 'ier', 'iers',  'iest', 'ily', 'ic', 'ical', 'ically', 'iness', 'inesses',
+             'ication', 'ications',
+             ],
+            key=lambda x: len(x), reverse=True)),
         'ion':['ively'],
-        'be':['ption', 'ptions',],
-        'de':['sible', 'sion', 'sions' ],
+        'be':list(sorted(
+            ['ption', 'ptions',],
+            key=lambda x: len(x), reverse=True)),
+        'de':list(sorted(
+            ['sible', 'sion', 'sions', 'sive' ],
+            key=lambda x: len(x), reverse=True)),
         'ate':['ant'],
         'cy':['t'],
         'ze':['s'],
-        'le':['ility', 'ilities', ]
+        'te':list(sorted(
+            ['cy', 'ry'],
+            key=lambda x: len(x), reverse=True)),
+        'le':['ility'],
+        'le':list(sorted(
+            ['ility', 'ilities', ],
+            key=lambda x: len(x), reverse=True)),
+       'ic':list(sorted(
+           ['ism', 'isms', ],
+           key=lambda x: len(x), reverse=True)),
     }
 
     common_suffixes = [
@@ -863,6 +888,7 @@ class Common:
         'an',
         'ce',
         'cy',
+        'de',
         'er',
         'es',
         'or',
@@ -873,6 +899,7 @@ class Common:
         'en',
         'er',
         'ly',
+        'ry',
         'st',
         'ty',
         'ze',
@@ -881,22 +908,25 @@ class Common:
         '\'t',
         '\'m',
         'als',
+        'ces',
         'dom',
         'ors',
         'ers',
         'est',
         'eer',
         'ial',
+        'ian',
+        'ism',
         'ied',
         'ier',
+        'iers',
         'ion',
         'ity',
         'ics',
         'ies',
         'like',
-        '-like',
+        'ful',
         'less',
-        '-less',
         'ant',
         'ent',
         'ary',
@@ -904,7 +934,10 @@ class Common:
         'nce',
         'ous',
         'ive',
+        'ism',
+        'isms',
         'ing',
+        'inal',
         'ily',
         'ity',
         'ize',
@@ -922,6 +955,7 @@ class Common:
         'n\'t',
         'ator',
         'ants',
+        'ance',
         'doms',
         'ence',
         'ency',
@@ -929,6 +963,9 @@ class Common:
         'ings',
         'ures',
         'ions',
+        'sion',
+        'sions',
+        'sive',
         'iest',
         'iast',
         'iasts',
@@ -955,7 +992,9 @@ class Common:
         'ators',
         'sible',
         'ively',
+        'ility',
         'ually',
+        'ingly',
         'ption',
         'ation',
         'iness',
@@ -972,6 +1011,7 @@ class Common:
         'izing',
         'ising',
         'iness',
+        'ional',
         'lable',
         'ously',
         'ptions',
@@ -979,6 +1019,8 @@ class Common:
         'ilities',
         'itives',
         'itions',
+        'ication',
+        'ications',
         'atures',
         'ations',
         'aceous',
@@ -1009,6 +1051,16 @@ class Common:
 
     ascending_sorted = list(sorted(common_infix))
     common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
+
+    EN_DUP_ENDING = re.compile(r'[aeiou]\w{1}$')
+
+    def shouldHaveDuplicatedEnding(cutoff_part, txt):
+        is_verb_cutoff = (cutoff_part in ['ed', 'ing', 'es'])
+        if not is_verb_cutoff:
+            return False
+
+        is_dup = (Common.EN_DUP_ENDING.search(txt) is not None)
+        return is_dup
 
     def replaceArchedQuote(txt):
         new_txt = str(txt)
@@ -1114,6 +1166,13 @@ class Common:
         return msg, begin_with_punctuations, ending_with_punctuations
 
     def removeOriginal(msg, trans):
+        if not trans:
+            return trans
+
+        has_abbr = Common.hasAbbr(trans)
+        if has_abbr:
+            return trans
+
         msg = re.escape(msg)
         p = r'\b{}\b'.format(msg)
         has_original = (re.search(p, trans, flags=re.I) is not None)

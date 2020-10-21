@@ -1092,6 +1092,7 @@ class TEXT_PT_abbrev_basic_panel(bpy.types.Panel):
     bl_space_type = 'TEXT_EDITOR'
     bl_region_type = 'UI'
     bl_category = 'Text'
+    bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
         lo = self.layout
@@ -1126,6 +1127,7 @@ class TEXT_PT_removing_chars_panel(bpy.types.Panel):
     bl_space_type = 'TEXT_EDITOR'
     bl_region_type = 'UI'
     bl_category = 'Text'
+    bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
         lo = self.layout
@@ -1155,6 +1157,7 @@ class TEXT_PT_head_tail_filter_panel(bpy.types.Panel):
     bl_space_type = 'TEXT_EDITOR'
     bl_region_type = 'UI'
     bl_category = 'Text'
+    bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
         lo = self.layout
@@ -1181,6 +1184,7 @@ class TEXT_PT_extra_options_panel(bpy.types.Panel):
     bl_space_type = 'TEXT_EDITOR'
     bl_region_type = 'UI'
     bl_category = 'Text'
+    bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
         lo = self.layout
@@ -1218,6 +1222,7 @@ class TEXT_PT_dict_action_panel(bpy.types.Panel):
     bl_region_type = 'UI'
     bl_category = 'Text'
 
+
     def draw(self, context):
         lo = self.layout
 
@@ -1245,6 +1250,7 @@ class TEXT_PT_copy_and_paste_panel(bpy.types.Panel):
     bl_space_type = 'TEXT_EDITOR'
     bl_region_type = 'UI'
     bl_category = 'Text'
+    bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
         lo = self.layout

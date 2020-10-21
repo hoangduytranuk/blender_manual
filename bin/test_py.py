@@ -3285,8 +3285,8 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
     def resort_dictionary(self):
         home_dir = os.environ['HOME']
-        from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
+        from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001_01.json')
 
         to_dic = readJSON(from_file)
 
@@ -3584,6 +3584,86 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # # remove quotation marks
         # return [[qs.strip('"') for qs in r[0].asList()] for r in matches]
 
+    def sorting_temp_05(self):
+        home_dir = os.environ['HOME']
+        dic_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
+        temp_file = os.path.join(home_dir, 'blender_manual/sorted_temp05.json')
+        out_file = os.path.join(home_dir, 'blender_manual/sorted_temp05_01.json')
+
+        dic_data = readJSON(dic_file)
+        temp_data = readJSON(temp_file)
+
+        out_dic = {}
+        for t_k, t_v in temp_data.items():
+            is_in_dic = (t_k in dic_data)
+            if is_in_dic:
+                tran = dic_data[t_k]
+                print(f'Removing: {t_k}=>{tran}')
+                continue
+
+            entry = {t_k: t_v}
+            out_dic.update(entry)
+
+        sorted_out_ascending = list(sorted(list(out_dic.items()), key=lambda x: x[0]))
+        sorted_out_length = list(sorted(sorted_out_ascending, key=lambda x: len(x[0])))
+        out_dic = OrderedDict(sorted_out_length)
+        writeJSON(out_file, out_dic)
+
+    def recur(self, k):
+        if (k > 0):
+            return (k + self.recur(k -1))
+        else:
+            return 0
+
+    def parseSVG(self):
+        from svg.path import parse_path
+        from svg.path import Line
+        from xml.dom.minidom import parse
+        import xml.etree.ElementTree as ET
+
+        def get_all_text(node):
+            if node.nodeType == node.TEXT_NODE:
+                return node.data
+            else:
+                text_string = ""
+                for child_node in node.childNodes:
+                    text_string += get_all_text(child_node)
+                return text_string
+
+        home = os.environ['HOME']
+        svg_file = os.path.join(home, 'Employee_20201016.svg')
+        data = None
+        with open(svg_file) as f:
+            data = f.read()
+        # print(data)
+        pat = re.compile(r'\>([^\<\>]+)\<')
+
+        find_list = pat.findall(data)
+        chosen_list = []
+        for item in find_list:
+            itm = item.strip()
+            if len(itm) > 0:
+                chosen_list.append(itm)
+        print(' '.join(chosen_list))
+
+        # datasource = open(svg_file)
+        # doc = parse(datasource)
+        # elem_list = doc.getElementsByTagName('text')
+        # doc.unlink()
+        # print(elem_list)
+
+        # tree = ET.parse(svg_file)
+        # root = tree.getroot()
+        # for item in root.findall('path'):
+        #     print(dir(item))
+        # doc = parse(svg_file)
+        # elem_list = doc.getElementsByTagName('tspan')
+        # # print(x_string_list)
+        # doc.unlink()
+
+        # for elem in elem_list:
+        #     print(f'{elem.toxml()}')
+
     def test_translate(self):
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
@@ -3592,7 +3672,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
         # msg = 'emitter\'s'
         # msg = 'cloud-like; cell-like; hidden'
-        msg = 'likely making'
+        msg = "multi-tracks"
         # print(f'{word_list}')
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')
@@ -3605,9 +3685,12 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         #     print(f'{word}, {tran}')
 
     def run(self):
+        # self.sorting_temp_05()
         # self.resort_dictionary()
         self.test_translate()
         # self.test_0063()
+        # print(self.recur(4))
+        # self.parseSVG()
 
 
 
