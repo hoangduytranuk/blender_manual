@@ -120,9 +120,10 @@ class NoCaseDict(OrderedDict):
             return value
         except Exception as e:
             dd(f'Exception __getitem__:{e}')
-            keys = super(NoCaseDict, self).__dict__.keys()
-            is_in = (key in keys)
-            return is_in
+            return None
+
+    def get(self, k, default=None):
+        return self[k] if k in self else default
 
     def __delitem__(self, key):
         key = self.Key(key)
@@ -268,7 +269,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -504,23 +505,31 @@ class TranslationFinder:
         # generate all possible combinations of string lengths
         loc_map_length_sorted_reverse = self.genmap(translation)
 
-        # dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
+        dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
         # translate them all if possible
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
             # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInDict(orig_sub_text)
+            # if not tran_sub_text:
+            #     tran_sub_text = self.findDictByRemoveCommonPrePostFixes(orig_sub_text)
+            #     if not tran_sub_text:
+            #         chopped_text, tran_sub_text = self.hyphenationRemoval(orig_sub_text)
+
             if not tran_sub_text:
-                chopped_text, trans = self.hyphenationRemoval(msg)
-                if not trans:
-                    trans = self.findDictByRemoveCommonPrePostFixes(msg)
-            if not tran_sub_text:
+                continue
+
+            is_fully_translatd = self.isTranslatedFully(orig_sub_text, tran_sub_text)
+            if not is_fully_translatd:
+                dd(f'not is_fully_translatd: "{orig_sub_text}" => "{tran_sub_text}" IGNORE!')
                 continue
 
             loc_list.append(loc)
             ss, ee = loc
             entry = (ss, ee, orig_sub_text, tran_sub_text)
+            dd(f'translated_dic.append: "{entry}"')
             translated_dic.append(entry)
 
+        dd(f'translated_dic: {translated_dic}')
         # now removing overlapped ditances of translated message (start, end, orig_sub_text, translated_sub_text)
         retail_l = removeOverlapped(loc_list, len(translation))
         # reflect changes in location (removals/retains) in the translated dictionary
@@ -1154,10 +1163,11 @@ class TranslationFinder:
             msg = 'NO Dictionary is available. Stopped'
             print(msg)
             raise Exception(msg)
-
-        is_in = (msg in search_dict)
-        if is_in:
+        # msg = 'neat'
+        is_found = (msg in search_dict)
+        if is_found:
             tran = search_dict[msg]
+            dd(f'{msg} => {tran}')
         else:
             tran = None
         return tran
@@ -1448,23 +1458,44 @@ class TranslationFinder:
             if not has_infix:
                 return txt, None
 
+        def removeStarAndEndingPunctuations(txt):
+            new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
+            new_txt = cm.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
+            # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
+            trans = self.isInDict(new_txt)
+            if trans:
+                dd(f'removeStarAndEndingPunctuations: FOUND {new_txt} => {trans}')
+            return new_txt, trans
+
         def tryToFindTran(txt):
-            new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
-            # print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
+
+            new_txt, tran = removeStarAndEndingPunctuations(txt)
             if not tran:
-                new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
-                # print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
+                new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
+                # print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
                 if not tran:
-                    new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-                    # print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
-            return new_txt, tran
+                    new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
+                    # print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
+                    if not tran:
+                        new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+                        # print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
+
+            return_text = None
+            if tran:
+                if (new_txt != txt):
+                    return_text = re.sub(new_txt, tran, txt)
+                else:
+                    return_text = tran
+
+            return new_txt, return_text
 
         def searchDicFor(txt):
             new_txt, tran = tryToFindTran(txt)
             if not tran:
                 tran_txt = str(txt)
                 # split into separated words, treat each independently
-                word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
+                # word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
+                word_dict_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, txt)
                 tran_dic = {}
                 for loc, word in word_dict_list.items():
                     s, e = loc
@@ -1502,6 +1533,20 @@ class TranslationFinder:
             dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
         return trans
 
+    def isTranslatedFully(self, msg, trans):
+        is_abbrev = (cm.ABBREV_PATTERN_PARSER.search(msg) is not None)
+        if is_abbrev:
+            return True
+
+        orig_word_list = msg.split()
+        for word in orig_word_list:
+            is_ignored = ig.isIgnored(word)
+            if is_ignored:
+                continue
+            is_in_trans = (word in trans)
+            if is_in_trans:
+                return False
+        return True
 
     def findTranslation(self, msg):
         trans = None
@@ -1575,6 +1620,7 @@ class TranslationFinder:
         try:
             trans = cm.THE_WORD.sub("", trans)
             trans = cm.MULTI_SPACES.sub(" ", trans)
+            trans = trans.strip()
         except Exception as e:
             pass
         return trans
@@ -1593,8 +1639,13 @@ class TranslationFinder:
             dd(f'calling blindTranslation')
             trans = self.blindTranslation(msg)
             must_mark = True
+
         if trans:
-            trans = self.removeTheWord(trans)
+            is_same = (trans.lower() == msg.lower())
+            if is_same:
+                trans = None
+            else:
+                trans = self.removeTheWord(trans)
         return (trans, must_mark, is_ignore)
 
     def translateKeyboard(self, msg):

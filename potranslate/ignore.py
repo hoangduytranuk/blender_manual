@@ -83,17 +83,19 @@ class Ignore:
         # r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
         # r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
         r'([\.](org|com|uk|ac))$',
-        r'([\`\'\"\*\(]+)?(\%[\w])([\`\'\"\*\(]+)?',
-        r'^(/\[\`\'\"\*\(]+)?\%[\w](/\[\`\'\"\*\)]+)?$',
+        # r'([\`\'\"\*\(]+)?(\%[\w])([\`\'\"\*\(]+)?',
+        # r'^(/\[\`\'\"\*\(]+)?\%[\w](/\[\`\'\"\*\)]+)?$',
         r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         r'^(GPL[\s\w][\d][+])$',
         r'^(A \(Alpha\))$',
+        r'^([\w][\d])$',
+        r'^[\w]\s?(\+|\-|\*|\/|\%|\=|\!\=|\>|\<|\>\=|\<\=|\=\=|\>\>|\<\<)\s?[\w]$', # A - B, A >= B
         # r'^(([+-]+\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
         r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
         r'^(:ref:)([\`]+(\w+[-]?)+[\`]+)[\.]?$',
         r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`
         r'^([\w]+)\/$', # rendering/
-        r'(^([\`]+)?[^\`]+)\.([\w]{2,5})([\`]+)?$', #file name
+        # r'(^([\`]+)?[^\`]+)\.([\w]{2,5})([\`]+)?$', #file name
         r"^([\d]+)(px|khz)?$", # 1024x2048
         r"^([\d]+[x][\d]+)$", # 1024x2048
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
@@ -135,47 +137,57 @@ class Ignore:
         r"^(jpg|png|int)$",
         r"^(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)$",
         r"^(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))$",
-        r"^(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2||sRGB)$",
-        r"^(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD)$",
+        r"^(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2|Arctan2|sRGB)$",
+        r"^(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)$",
         r"^Alembic([\s\W|abc]+)$",
         r"^(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)$",
         r"^(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)$",
         r"^(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)$",
-        r"^(Blackman\-Harris|Blosc|Byte\([s]*\)|Bytecode|Bézier)$",
-        r"^Blender\([\s\d\.]+\)$",
+        r"^(Blackman\-Harris|Blosc|Byte\([s]*\)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))$",
+        r"^Blender\([\s\d\.]+\)|Blender_id[\W]?$",
         r"^(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Christensen\-Burley|Cineon|Collada)$",
-        r"^(Ctrl|Cycles|Cycles:)$",
-        r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del(ta)?|de|debian)$",
+        r"^(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)$",
+        r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del|de|debian|Delete|Delta([\s][\w])?)$",
         r"^([^\w]+log.*wm.*)$",
         r"^(Djv|Doppler|Dots\/BU|Dpi|DWAA)$",
-        r"^(EWA|Epsilon|Esc|exr|FBX|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR)$",
-        r"^((GGX|GLSL|GPU)[s:]|Gamma([s:])|Ge2Kwy5EGE0|Gizmo[s:]|GPL|GGX|GLSL)$",
-        r"^(H\.264|Hosek \/ Wilkie|HuffYUV)$",
-        r"^(ID|Ins|JPEG 2000)$",
+        r"^(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)$",
+        r"^((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GPL|GGX|GLSL|Gizmo[\s]?[\w]?)$",
+        r"^(H\.264|Hosek \/ Wilkie|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)$",
+        r"^(ID|Ins|JPEG 2000|(ITU(\s\d+)?)|Internet[\w\W]|iScale)$",
         r"^(KDE|K1, K2|Kirsch|komi3D)$",
         r"^(Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)$",
-        r"^MPEG([\-|\d]+)$",
-        r"^(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski|Mitch|Mono|Musgrave)$",
-        r"^(NDOF|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn)$",
-        r"^(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR)$",
+        r"^MPEG([\-|\d]+)|MatCaps$",
+        r"^(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)$",
+        r"^(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)$",
+        r"^(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR|Ozone|OptiX)$",
         r"^PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
-        r"^(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2)$",
+        r"^(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2|Preetham(\s?\d+)?|Python(\:\s[\.\%s]+)?)$",
         r"^(QuickTime|quasi\-)$",
+        r"^(\d+[x]?)$", # 16x
+        r"^(\%\d+[\w]?)$", # %14s
+        r"^(\%[d](x%[d])?)$", # %dx%d
+        r"^(\w[\:]?)$", # X:
+        r"^\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
         # r"^(RGB[\w]?)$",
-        r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch)$",
+        r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)$",
+        r'^(\,\s)?(RGB[A]?)(\s(byte))?$',
+        r'^(RGB[A]?)[\s]?(byte)?$',
         r"^(RK4|RRT|Redhat\/Fedora|RLE)$",
         r"^(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)$",
         r"^(Tab|Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|TAR-)$",
         r"^(URL|UV[s:]?|U & V|Uber)$",
         r"^(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)$",
-        r"^(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-)$",
-        r"^(X(/Y|YZ)?|Xvid|XY|XZ)$",
-        r"^(Y(CC)?|YCbCr|Z(ip)?|ZIPS)$",
+        r"^(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)$",
+        r"^(X(/Y|YZ)?|Xvid|XY|XZ|YCbCr(\s\(ITU\s?\d+?\))?)$",
+        r"^(Y(CC)?|YCbCr(\s\(Jpeg\))?|Z(ip)?|ZIPS)$",
+        r"^(\w+(_\w+)+)$", # MASK_MT_add
         r"^[\-]*\d+(\.[\w]{2,5})$",  # -0001.jpg
         r"^[\W]{1}$",
+        r"^\w([\s]?[<]?[\*\/\+\-\=][>]?[\s]?\w)+$",  # A * B + C; A -> B
         r"^(\"fr\"[:]?|\"fr\": \"Fran&ccedil;ais\"|)$",
         r"^\*(\.[\w]{2,5})$",  # *.jpg
         r"^\.bashrc$",
+        r"^(the quick|brown fox|jumps over|the lazy dog)$",
         r"^\:([\w\-\_]+)\:$",
         r"^\:sup\:\`™\`$",
         r"^\|([\w\-\_]+)\|$",
@@ -189,9 +201,10 @@ class Ignore:
         r"^gabhead, Lell, Anfeo, meta-androcto$",
         r"^(git([\s]+[^\`]+)?|glTF 2\.0)$",
         r"^(hm|html|iTaSC|jpeg|SubRip)$",
+        r"^[\%s\s\'\:]+$", # %s: %s
         r"^(kConstantScope|kUniformScope|kUnknownScope|kVaryingScope|kVertexScope|kFacevaryingScope|kbd)$",
         r"^(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))$",
-        r"^(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr)$",
+        r"^(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr|MPEG-4 \(divx\))$",
         r"^(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)$",
         r"^(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\)|unregister|)$",
         r"^(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)$",
@@ -221,10 +234,40 @@ class Ignore:
     ]
 
     keep_list = [
+        "Add-on",
+        "Off-Axis",
+        "Toe-in",
+        "Sub-Target",
+        "Foam + Bubbles",
+        "Spray + Foam + Bubbles",
+        "Fire + Smoke",
+        "Sub-Steps",
+        "Z-Axis",
+        "Normal/View"
+        "F-Curve",
+        "F-Modifier",
+        "Counter-Clockwise",
+        "Normal/Surface",
         "left/right",
         "top/bottom",
         "link/append",
         "fog/mist",
+        "Exterior/Interior",
+        "Flat/Smooth",
+        "Mirror%s",
+        "Un-Subdivide",
+        "Un-Comment",
+        "Shrink/Fatten",
+        "Smoke + Fire",
+        "Expand/Contract",
+        "Open/Close",
+        "Hide/Show",
+        "Co-planar",
+        "Hide/Unhide",
+        "Lock/Unlock",
+        "Major/Minor",
+        "Click-Extrude",
+        "Front/Back",
         "rotation/scale",
         "BLENDER_VERSION",
         "MPEG Preseek",

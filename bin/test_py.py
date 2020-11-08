@@ -32,6 +32,8 @@ from collections import Counter
 import subprocess as sub
 # from reflink import RefList
 from translation_finder import TranslationFinder
+from ignore import Ignore as IG
+
 from sphinx_intl import catalog as c
 from leven import levenshtein as LEV
 from time import gmtime, strftime, time
@@ -3286,7 +3288,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
     def resort_dictionary(self):
         home_dir = os.environ['HOME']
         from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001_01.json')
+        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
 
         to_dic = readJSON(from_file)
 
@@ -3630,21 +3632,31 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                     text_string += get_all_text(child_node)
                 return text_string
 
-        home = os.environ['HOME']
-        svg_file = os.path.join(home, 'Employee_20201016.svg')
-        data = None
-        with open(svg_file) as f:
-            data = f.read()
-        # print(data)
-        pat = re.compile(r'\>([^\<\>]+)\<')
+        def printOneFile(file_name):
+            home = os.environ['HOME']
+            svg_file = os.path.join(home, file_name)
+            data = None
+            with open(svg_file) as f:
+                data = f.read()
+            # print(data)
+            pat = re.compile(r'\>([^\<\>]+)\<')
 
-        find_list = pat.findall(data)
-        chosen_list = []
-        for item in find_list:
-            itm = item.strip()
-            if len(itm) > 0:
-                chosen_list.append(itm)
-        print(' '.join(chosen_list))
+            find_list = pat.findall(data)
+            chosen_list = []
+            for item in find_list:
+                itm = item.strip()
+                if len(itm) > 0:
+                    chosen_list.append(itm)
+            final_string = ' '.join(chosen_list)
+            print(final_string)
+            d_char = re.compile(r'\bD\b')
+            pc_pt_number = re.compile(f'(pc|pt)\d+')
+
+
+
+        file_list=['0001.svg']
+        for f in file_list:
+            printOneFile(f)
 
         # datasource = open(svg_file)
         # doc = parse(datasource)
@@ -3664,45 +3676,211 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # for elem in elem_list:
         #     print(f'{elem.toxml()}')
 
+    def translate_po_file(self):
+        fuzzy_str = 'fuzzy'
+        home = os.environ['HOME']
+        tf = TranslationFinder()
+
+        def update_dic():
+            po_input = os.path.join(home, 'test_output_0003.po')
+            input_po_cat = c.load_po(po_input)
+
+            new_list = {}
+            changed = False
+            for m in input_po_cat:
+                k = m.id
+                is_ignore = (not k)
+                if is_ignore:
+                    continue
+
+                v = m.string
+                dic_trans = tf.isInDict(k)
+                must_mark = False
+                if not dic_trans:
+                    tf.addDictEntry((k, v), True)
+                    # entry = {k:v}
+                    # new_list.update(entry)
+                    changed = True
+                else:
+                    is_same = (v == dic_trans)
+                    if is_same:
+                        continue
+
+                    # looking for :.*:, ie. :abbr:
+                    has_ref = (cm.GA_REF_PART.search(k) is not None)
+                    if has_ref: # leave the old ref as is
+                        continue
+
+                    tf.addDictEntry((k, v), True)
+                    # changed = True
+
+                    print('Correct existing:')
+                    print('-'*30)
+                    print(f'key:"{k}"')
+                    print(f'dic_tran:"{dic_trans}"')
+                    print(f'new_tran:"{v}"')
+                print('-'*30)
+
+            if changed:
+                print('Update dictionary')
+                tf.saveMasterDict()
+
+        def test_cases():
+            # po_input = os.path.join(home, 'test_output.po')
+            po_input = os.path.join(home, 'blender_manual/gui/2.9x/po/vi.po')
+            # po_output = os.path.join(home, 'test_output_0004.po')
+            po_output = os.path.join(home, 'test_output_0007.po')
+            # dic_file = os.path.join(home, 'blender_manual/ref_dict_0006_0002.json')
+            input_po_cat = c.load_po(po_input)
+            changed = False
+            for m in input_po_cat:
+                k:str = m.id
+                is_ignore = (not k)
+                if is_ignore:
+                    continue
+
+                is_ignored_term = IG.isIgnored(k)
+                if is_ignored_term:
+                    continue
+
+                v:str = m.string
+                # k_upper_count = sum(1 for c in k if c.isupper())
+                # v_upper_count = sum(1 for c in v if c.isupper())
+                # is_diff = (k_upper_count != v_upper_count)
+
+                k_is_title = k.istitle()
+                k_is_upper = k.isupper()
+                k_is_lower = k.islower()
+
+                v_is_title = v.istitle()
+                v_is_upper = v.isupper()
+                v_is_lower = v.islower()
+
+                is_diff = (k_is_title and not v_is_title) or (k_is_upper and not v_is_upper) or (k_is_lower and not v_is_lower)
+
+                if is_diff:
+                    print('-'*30)
+                    print(f'msgid \"{k}\"')
+                    print(f'msgstr \"{v}\"')
+
+
+        def translating_po():
+            # po_input = os.path.join(home, 'Documents/working.txt')
+            # po_input = os.path.join(home, 'test_output.po')
+
+            # po_input = os.path.join(home, 'test_output.po')
+            po_input = os.path.join(home, 'test_output_0005.po')
+            # po_output = os.path.join(home, 'test_output_0004.po')
+            po_output = os.path.join(home, 'test_output_0006.po')
+            # dic_file = os.path.join(home, 'blender_manual/ref_dict_0006_0002.json')
+            input_po_cat = c.load_po(po_input)
+            changed = False
+            for m in input_po_cat:
+                k = m.id
+                is_ignore = (not k)
+                if is_ignore:
+                    continue
+
+                is_ignored_term = IG.isIgnored(k)
+                if is_ignored_term:
+                    print('-'*30)
+                    print(f'IGNORED msgid \"{k}\"')
+                    print('*'*30)
+                    print("")
+
+                    v = m.string
+                    is_value_empty = (not v)
+                    is_fuzzy = m.fuzzy
+
+                    if not is_value_empty:
+                        m.string = ""
+                        changed = True
+                    if is_fuzzy:
+                        m.flags.remove(fuzzy_str)
+                        changed = True
+                    continue
+
+                v = m.string
+                is_value_empty = (not v)
+                is_fuzzy = m.fuzzy
+
+                is_translate = (is_value_empty or is_fuzzy)
+                if not is_translate:
+                    continue
+
+                trans = tf.isInDict(k)
+                must_mark = False
+                if not trans:
+                    trans = tf.blindTranslation(k)
+                    must_mark = True
+
+                if trans:
+                    trans = tf.removeTheWord(trans)
+                    trans = cm.matchCase(k, trans)
+                    m.string = trans
+
+                    print('-'*30)
+                    print(f'msgid \"{k}\"')
+                    print(f'msgstr \"{trans}\"')
+                    if must_mark and not is_fuzzy:
+                        if m.flags is None:
+                            m.flags = set() # init
+                        m.flags.add(fuzzy_str) # set the fuzzy flags
+                        print('marked fuzzy')
+                    elif not must_mark and is_fuzzy:
+                        m.flags.remove(fuzzy_str) # clear the fuzzy flags
+                        print('CLEAR fuzzy')
+
+                    changed = True
+
+            if changed:
+                print(f'Wrote changes to {po_output}')
+                c.dump_po(po_output, input_po_cat)
+
+        # translating_po()
+        test_cases()
+
+
     def test_translate(self):
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
 
-        # msg = 'preselected data-block(s) with something do not yet functioning (de)activate and (de)selected'
-        # word_list = cm.patternMatchAllToDict(WORD_SPLIT, msg)
-        # msg = 'emitter\'s'
-        # msg = 'cloud-like; cell-like; hidden'
-        msg = "multi-tracks"
-        # print(f'{word_list}')
+        # msg = "Style modules:"
+        msg = "View Layer '%s' not found in scene '%s'"
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')
 
-        # word_list = cm.findInvert(WORD_SPLIT, msg)
-        # print(word_list)
-        # for start_index, entry in word_list.items():
-        #     s, e, word = entry
-        #     tran = tf.blindTranslation(word)
-        #     print(f'{word}, {tran}')
+    def test_pattern_0001(self):
+        msg = "RGBA byte"
+        msg1 = ", RGB byte"
+
+        p = re.compile(r'^(\,\s)?(RGB[A]?)(\s(byte))?$', re.I)
+        # p = re.compile(r'^Blender\s(\d+[\d\.]+)$', re.I)
+        m = p.search(msg)
+        print(m)
 
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
-        self.test_translate()
+        # self.test_translate()
         # self.test_0063()
         # print(self.recur(4))
         # self.parseSVG()
+        self.translate_po_file()
+        # self.test_pattern_0001()
 
 
 
-# trans_finder = TranslationFinder()
-def tranRef(msg, is_keep_original):
-    ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
-    ref_list.parseMessage()
-    ref_list.translateRefList()
-    tran = ref_list.getTranslation()
-    trans_finder.addDictEntry((msg, tran))
-    print("Got translation from REF_LIST")
-    return tran
+
+# # trans_finder = TranslationFinder()
+# def tranRef(msg, is_keep_original):
+#     ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
+#     ref_list.parseMessage()
+#     ref_list.translateRefList()
+#     tran = ref_list.getTranslation()
+#     trans_finder.addDictEntry((msg, tran))
+#     print("Got translation from REF_LIST")
+#     return tran
 
 x = test()
 x.run()
