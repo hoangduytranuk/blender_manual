@@ -26,8 +26,11 @@ from babel.messages import pofile
 from enum import Enum
 # import chardet
 from translation_finder import TranslationFinder
-from reflink import RefList
+from reflink import RefList, TranslationState
+from reftype import RefType
+from common import Common as cm
 import json
+
 
 INVERT_SEP='•'
 # DEBUG = True
@@ -396,6 +399,7 @@ class FindFilesHasPattern:
             find_po,
             find_rst,
             find_py,
+            find_gettext,
             find_py_lib,
             find_src,
             case_sensitive,
@@ -411,6 +415,7 @@ class FindFilesHasPattern:
             output_json
             ):
 
+        self.is_po = False
         self.json_dic = {}
         self.output_json = (True if output_json else False)
         self.is_stdout_redirected = (not sys.stdout.isatty())
@@ -418,9 +423,12 @@ class FindFilesHasPattern:
         self.find_po = (True if find_po else False)
         self.find_rst = (True if find_rst else False)
         self.find_py = (True if find_py else False)
+        self.find_gettext = (True if find_gettext else False)
+        self.find_py_lib = (True if find_py_lib else False)
         self.vipo_file = (True if vipo_file else False)
         self.find_src = (True if find_src else False)
-        self.find_py_lib = (True if find_py_lib else False)
+
+        self.is_po = (self.find_po or self.find_gettext)
 
         self.from_line = (int(before_lines) if before_lines else -1)
         self.to_line = (int(after_lines) if after_lines else -1)
@@ -448,6 +456,7 @@ class FindFilesHasPattern:
         if replace_pattern is not None:
             self.replace_pattern = replace_pattern
 
+        self.find_pattern = re.compile(r'[\"]([^\"]+)[\"]')
         self.is_find_bracketed = (True if find_bracketed else False)
         self.bracket_pair = (bracket_pair_to_find if bracket_pair_to_find else None)
         self.open_bracket = None
@@ -499,34 +508,7 @@ class FindFilesHasPattern:
             _(e)
         return None, None
 
-    # def finInvert(self, pattern, text):
-    #     invert_list=[]
-    #     pro_list=[]
-    #     for orig, breakdown in self.patternMatchAll(pattern, text):
-    #         pro_list.append(orig)
-    #     is_empty = (len(pro_list) == 0)
-    #     if is_empty:
-    #         invert_list.append(text)
-    #     else:
-    #         max = len(text)
-    #         inc_list=[]
-    #         s = e = 0
-    #         for ss, ee, ex_txt in pro_list:
-    #             e = ss-1
-    #             valid= (s < e) and (s >= 0) and (e <= max)
-    #             if (valid):
-    #                 inc_txt = text[s:e]
-    #                 entry=(s, e, inc_txt)
-    #                 inc_list.append(entry)
-    #             s = ee+1
-    #         e = max
-    #         valid=(s < e) and (s >= 0) and (e <= max)
-    #         if (valid):
-    #             inc_txt = text[s:e]
-    #             entry=(s, e, inc_txt)
-    #             inc_list.append(entry)
 
-    #     return invert_list
 
     def getAllMatchedWordFromLine(self, pattern, text_line):
         list_of_matches=[]
@@ -558,8 +540,7 @@ class FindFilesHasPattern:
             final_list.append(string_entry)
         return final_list
 
-    def find(self):
-
+    def getListOfFiles(self) -> list:
         po_file_list=None
         rst_file_list=None
         py_file_list=None
@@ -623,6 +604,17 @@ class FindFilesHasPattern:
                 pp(py_file_list)
                 search_file_list.extend(py_file_list)
 
+            if self.find_gettext:
+                gettext_dir = os.environ['BLENDER_MAN_EN']
+                if gettext_dir:
+                    gettext_dir = os.path.join(gettext_dir, "build/gettext")
+                    _("gettext_dir:", gettext_dir)
+
+                gettext_file_list = self.getFileList(gettext_dir, ".pot")
+                _("gettext_file_list")
+                pp(gettext_file_list)
+                search_file_list.extend(gettext_file_list)
+
             if self.find_src:
                 src_dir = os.environ['BLENDER_SRC']
                 if src_dir:
@@ -647,6 +639,11 @@ class FindFilesHasPattern:
                     search_file_list.extend(c_list)
                 if h_list:
                     search_file_list.extend(h_list)
+        return search_file_list
+
+    def find(self):
+
+        search_file_list = self.getListOfFiles()
 
         _(f'search_file_list:{search_file_list}')
         has_file = (len(search_file_list) > 0)
@@ -808,8 +805,24 @@ class FindFilesHasPattern:
         #             else:
         #                 print(v)
 
+    def poFileToDataBlock(self, file_path):
+        po_cat = c.load_po(file_path)
+        data_list = []
+        for m in po_cat:
+            k = m.id
+            if not k:
+                continue
+
+            data_list.append(k)
+        data_block = "\n".join(data_list)
+        return data_block
+
     def findPatternInFile(self, file_path):
-        data = self.basic_io.readTextFile(file_path)
+        if self.is_po:
+            data = self.poFileToDataBlock(file_path)
+        else:
+            data = self.basic_io.readTextFile(file_path)
+
         found = self.find_pattern.search(data)
         is_found = True
         if not self.invert_match:
@@ -933,20 +946,284 @@ class FindFilesHasPattern:
         tran = ref_list.getTranslation()
         return tran
 
+    def patternMatchAllToDict(self, pat, text):
+        matching_list = {}
+        for m in pat.finditer(text):
+            orig = m.group(0)
+            s = m.start()
+            e = m.end()
+            k = (s, e)
+            entry = {k: orig}
+            matching_list.update(entry)
+        return matching_list
+
+    # def isConsidered(self, ref_type):
+    #     is_keyboard = (ref_type == RefType.KBD.value)
+    #     is_menu = (ref_type == RefType.MENUSELECTION.value)
+    #     is_term = (ref_type == RefType.TERM.value)
+    #     is_abbr = (ref_type == RefType.ABBR.value)
+    #     is_gui = (ref_type == RefType.GUILABEL.value)
+    #     is_term = (ref_type == RefType.TERM.value)
+    #     is_ref = (ref_type == RefType.REF.value)
+    #     return (is_keyboard or is_menu or is_term or is_abbr or is_gui or is_ref or is_term)
+
+    def translate_word_into_dict(self, k:str, dict_tf: TranslationFinder, dict_to_insert:OrderedDict, is_translating_ref=False):
+
+        if is_translating_ref:
+            ref_list: RefList = None
+            ref_list = RefList(msg=k, keep_orig=False, tf=dict_tf)
+            ref_list.parseMessage()
+            ref_list.translateRefList()
+            trans = ref_list.getTranslation()
+            is_ignore = (ref_list.isIgnore())
+            is_fuzzy = (ref_list.isFuzzy())
+        else:
+            trans, is_fuzzy, is_ignore = dict_tf.translate(k)
+
+
+        # # trans, is_fuzzy, is_ignore = dict_tf.translate(k)
+        if is_ignore:
+            print(f'IGNORED: {k}')
+            return
+
+        if not trans:
+            trans = ""
+
+        if not is_fuzzy:
+            key = f'&&{k}'
+            entry = {key: trans}
+        else:
+            entry = {k: trans}
+        print(f'translated entry:{entry}')
+        dict_to_insert.update(entry)
+
+    def extract_bracket_texts_from_gtx(self):
+        def findListOfTexts() -> dict:
+            find_pat_list = [
+                # re.compile(r'[\(]+(.*?)[\)]+'), # ARCH_BRAKET_MULTI
+                # re.compile(r"(?<!\w)\'([^\']+)(?:\b)\'"), # single quote
+                # re.compile(r"(?<!\w)\*([^\*]+)(?:\b)\*"), # asterisk
+                # re.compile(r'"(?<!\\")(.*?)"'),         # double quote
+                # re.compile(r'[\`]*(:[^\:]+:)?[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]?'),
+                cm.AST_QUOTE,
+                cm.DBL_QUOTE,
+                cm.SNG_QUOTE,
+                cm.GA_REF,
+                re.compile(r''),
+            ]
+
+
+            data = '''
+            like ''textures'' for instance
+            hold :kbd:`NumpadPlus` or :kbd:`Ctrl-MMB` or similar
+            see :doc:`Normals'
+            see :ref:`temp-dir` for details
+            this bracketed line  (will 'cause' some *translation* to be "done internally" or :kbd:`Ctrl-MMB` :menuselection:`View --> Show Curve Extremes` here).
+            this is the same thing as the *Playback Range* option of the :ref:`Timeline editor header <animation-editors-timeline-headercontrols>`
+            and optionally *Topology Mirror* if your mesh is not symmetric
+            visible if :menuselection:`View --> Show Curve Extremes` are enabled
+            which remains in *Pose Mode*
+            which you might call "sun", what do you think?
+            ``INSERT(ATTRIB+XDATA)``
+            with components like "L", "R", "right", "left"
+            with holding :kbd:`Alt`'
+            '''
+            # data = "(will 'cause' some *translation* to be \"done internally\" or :kbd:`Ctrl-MMB` :menuselection:`View --> Show Curve Extremes` here)"
+            # found_dict = {}
+            # data_lines = data.split('\n')
+            # # print('-' * 30)
+            # # print(f'File:{f}')
+            # for text_line in data_lines:
+            #     for p in find_pat_list:
+            #         if not p.pattern:
+            #             found_items = cm.getTextWithinBrackets('(', ')', text_line, is_include_bracket=False)
+            #         else:
+            #             found_items = [i for i in p.findall(text_line) if i]
+            #         if not found_items:
+            #             continue
+            #
+            #         if p.pattern:
+            #             print(f'{p.pattern}')
+            #         else:
+            #             print(f'( .. )')
+            #         print(found_items)
+            #         # k = f'{f}:{p}'
+            #         for item in found_items:
+            #             is_tupple = isinstance(item, tuple)
+            #             # is_str = isinstance(item, str)
+            #             if is_tupple:
+            #                 v, k, _ = item
+            #             else:
+            #                 v = ""
+            #                 k = item
+            #
+            #             entry = {k: v}
+            #             print(f'ADD: {entry}')
+            #             found_dict.update(entry)
+            # # print(found_dict)
+            # new_dict_sorted = OrderedDict(list(sorted(list(found_dict.items()))))
+            # return new_dict_sorted
+
+            found_dict = {}
+            file_list = self.getListOfFiles()
+            for f in file_list:
+                data = self.poFileToDataBlock(f)
+                data_lines = data.split('\n')
+                print('-' * 30)
+                print(f'File:{f}')
+                for text_line in data_lines:
+                    for p in find_pat_list:
+                        if not p.pattern:
+                            found_items = cm.getTextWithinBrackets('(', ')', text_line, is_include_bracket=False)
+                        else:
+                            found_items = [i for i in p.findall(text_line) if i]
+                        if not found_items:
+                            continue
+
+                        if p.pattern:
+                            print(f'{p.pattern}')
+                        else:
+                            print(f'( .. )')
+                        print(found_items)
+                        k = f'{f}:{p}'
+                        for item in found_items:
+                            is_tupple = isinstance(item, tuple)
+                            # is_str = isinstance(item, str)
+                            if is_tupple:
+                                v, k, _ = item
+                            else:
+                                v = ""
+                                k = item
+
+                            entry = {k: v}
+                            print(f'ADD: {entry}')
+                            found_dict.update(entry)
+            # print(found_dict)
+            new_dict_sorted = OrderedDict(list(sorted(list(found_dict.items()))))
+            return new_dict_sorted
+
+        def writeSortedDict (found_dict: dict):
+
+            sorted_dict = OrderedDict(list(sorted(list(found_dict.items()))))
+            home = os.environ['HOME']
+            out_file = os.path.join(home, 'log.json')
+            writeJSON(out_file, sorted_dict)
+
+        def translateTheFoundDict(found_dict: dict) -> dict:
+            # for item in found_items:
+            #     if not item:
+            #         continue
+            #
+            #     print(f'ITEM: type: {type(item)} => {item}')
+            #     is_string = isinstance(item, str)
+            #     ref_type = None
+            #     if not is_string:
+            #         print(f'NOT STRING: type: {type(item)} => {item}')
+            #         ref_type, txt_item, _ = item
+            #
+            #         is_consider = (not ref_type) and txt_item
+            #         if is_consider:
+            #             print(f'CONSIDERING: txt_item: {txt_item}')
+            #             ref_type = RefType.REF.value
+            #
+            #         is_keyboard = (ref_type == RefType.KBD.value)
+            #         is_menu = (ref_type == RefType.MENUSELECTION.value)
+            #         is_abbr = (ref_type == RefType.ABBR.value)
+            #         is_gui = (ref_type == RefType.GUILABEL.value)
+            #         is_term = (ref_type == RefType.TERM.value)
+            #         is_ref = (ref_type == RefType.REF.value)
+            #
+            #         is_translate = (is_keyboard or is_menu or is_term or is_abbr or is_gui or is_ref or is_term)
+            #
+            #         if not is_translate:
+            #             print(f'IGNORE:{ref_type} {item}')
+            #             continue
+            #
+            #         item = txt_item
+            #
+            #     v = ("" if is_string else ref_type)
+            #     entry={item: v} # entries should contain information about ref_type in order to use proper translate
+            #     found_dict.update(entry)
+            #
+            #     if new_dict is None:
+            #         new_dict = OrderedDict(found_dict)
+            #     else:
+            #         new_dict.update(found_dict)
+            #     found_dict = {}
+            #
+            # if not new_dict:
+            #     print(f'new_dict is empty, NOTHING TO DO')
+            #     exit(0)
+            #
+            # temp_dict = OrderedDict(list(sorted(list(new_dict.items()))))
+            # new_dict = temp_dict
+
+            tran_dict = {}
+            tf = TranslationFinder()
+            sorted_by_length = list(sorted(found_dict.items(), key=lambda x: len(x[0]), reverse=True))
+            for k, v in sorted_by_length:
+                is_kbd = (v == RefType.KBD.value)
+                is_menu = (v == RefType.MENUSELECTION.value)
+                is_abbr = (v == RefType.ABBR.value)
+
+                print(f'k:{k}, v:{v}')
+                if is_menu:
+                    current_tran = tf.isInDict(k)
+                    if not current_tran:
+                        print(f'<IS MENU>')
+                        word_list = k.split('-->')
+                        for word in word_list:
+                            word = word.strip()
+                            self.translate_word_into_dict(word, tf, tran_dict)
+                        print(f'</IS MENU>')
+                elif is_kbd:
+                    current_tran = tf.isInDict(k)
+                    if not current_tran:
+                        print(f'<IS KBD>')
+                        trans, is_fuzzy, is_ignore = tf.translateKeyboard(k)
+                        entry = {k: trans}
+                        tran_dict.update(entry)
+                    print(f'</IS KBD>')
+                elif is_abbr:
+                    m = cm.ABBR_TEXT_ALL.findall(k)
+                    abbr, word = m[0]
+                    current_tran = tf.isInDict(abbr)
+                    if not current_tran:
+                        print(f'<IS ABBR>')
+                        self.translate_word_into_dict(abbr, tf, tran_dict)
+                        self.translate_word_into_dict(word, tf, tran_dict)
+                    print(f'</IS ABBR>')
+                else:
+                    print(f'<ANYTHING ELSE>')
+                    word_list = cm.findInvertSimple(cm.REF_PART, k)
+                    for word in word_list:
+                        self.translate_word_into_dict(word, tf, tran_dict, is_translating_ref=True)
+                    print(f'</ANYTHING ELSE>')
+
+            return tran_dict
+
+        found_text_dict = findListOfTexts()
+        translated_dict = translateTheFoundDict(found_text_dict)
+        writeSortedDict(translated_dict)
+        exit(0)
+
     def run(self):
         # _("Hoang Duy Tran")
-        self.find()
-        if self.global_found_list:
-            word_list = sorted(list(self.global_found_list.values()))
-            if self.sort_order is SortOrder.ALPHABET_INVERT:
-                word_list = sorted(word_list, reverse=True)
-            elif self.sort_order is SortOrder.LENGTH:
-                word_list = sorted(word_list, key=lambda x: len(x))
-            elif self.sort_order is SortOrder.LENGTH_INVERT:
-                word_list = sorted(word_list, key=lambda x: len(x), reverse=True)
-
-            pp(word_list)
-
+        self.extract_bracket_texts_from_gtx()
+        # self.find()
+        # if self.global_found_list:
+        #     word_list = sorted(list(self.global_found_list.values()))
+        #     if self.sort_order is SortOrder.ALPHABET_INVERT:
+        #         word_list = sorted(word_list, reverse=True)
+        #     elif self.sort_order is SortOrder.LENGTH:
+        #         word_list = sorted(word_list, key=lambda x: len(x))
+        #     elif self.sort_order is SortOrder.LENGTH_INVERT:
+        #         word_list = sorted(word_list, key=lambda x: len(x), reverse=True)
+        # 
+        #     print('WORDLIST:')
+        #     pp(self.global_found_list.values())
+        #
+        #     exit(0)
         # if self.json_dic:
         #     sorted_list = list(sorted(list(self.json_dic.items()), key=lambda x: len(x[0])))
         #     output_dict = OrderedDict(sorted_list)
@@ -955,30 +1232,56 @@ class FindFilesHasPattern:
         #     writeJSON(json_file, output_dict)
             # pp(self.json_dic)
 
-            tf = TranslationFinder()
-            print('Output global_found_list - only printout if NOT translated:')
-            is_counting = False
-            for w in word_list:
-                # trans = tf.isInListByDict(w, True)
-                trans = self.tranRef(w, False, tf)
-                # if not trans:
-                count=1
-                if w in self.global_count:
-                    count = self.global_count[w]
-                # trans,_,_ = tf.translate(w)
-                if trans:
-                    w = re.sub(r'"', '\\"', w)
-                    trans = re.sub(r'"', '\\"', trans)
-                    if is_counting:
-                        print(f'"{w}": "{trans}", {count}')
-                    else:
-                        print(f'"{w}": "{trans}",')
-                else:
-                    if is_counting:
-                        print(f'"{w}": "", {count}')
-                    else:
-                        print(f'"{w}": "",')
-            PP(self.global_count)
+            # tf = TranslationFinder()
+            # print('Output global_found_list - only printout if NOT translated:')
+            # is_counting = False
+            # is_first = True
+            #
+            # final_dict={}
+            # for w in word_list:
+            #     if is_first:
+            #         print('FIRST')
+            #         is_first = False
+            #
+            #     # trans = tf.isInListByDict(w, True)
+            #     # trans = self.tranRef(w, False, tf)
+            #     # if not trans:
+            #     trans, is_marked, is_ignore = tf.translate(w)
+            #     if is_ignore:
+            #         print(f'IGNORED: {w}')
+            #     if not is_marked:
+            #         # print(f'COMPLETED: "{w}": "{trans}",')
+            #         continue
+            #
+            #     if not trans:
+            #         trans = ""
+            #
+            #     w = re.sub(r'"', '', w)
+            #     entry = {w: trans}
+            #     final_dict.update(entry)
+                
+                # count=1
+                # if w in self.global_count:
+                #     count = self.global_count[w]
+                # # trans,_,_ = tf.translate(w)
+                # if trans:
+                #     w = re.sub(r'"', '', w)
+                #     # trans = re.sub(r'"', '\\"', trans)
+                #     if is_counting:
+                #         print(f'"{w}": "{trans}", {count}')
+                #     else:
+                #         print(f'"{w}": "{trans}",')
+                # else:
+                #     if is_counting:
+                #         print(f'"{w}": "", {count}')
+                #     else:
+                #         print(f'"{w}": "",')
+            # PP(self.global_count)
+            # PP(final_list)
+        # home = os.environ['HOME']
+        # out_file = os.path.join(home, 'log.json')
+        # writeJSON(out_file, final_dict)
+
 
 
 
@@ -998,6 +1301,8 @@ parser.add_argument("-o", "--po", dest="find_po", help="Find in $BLENDER_MAN_VI/
 parser.add_argument("-r", "--rst", dest="find_rst", help="Find in $BLENDER_MAN_EN/manual.", action='store_const', const=True)
 parser.add_argument("-s", "--src", dest="find_src", help="Find in $BLENDER_ae.", action='store_const', const=True)
 parser.add_argument("-y", "--py", dest="find_py", help="Find in $LOCAL_PYTHON_3.", action='store_const', const=True)
+parser.add_argument("-gtx", "--gettext", dest="find_gettext", help="Find in $LOCAL_PYTHON_3.", action='store_const', const=True)
+
 parser.add_argument("-c", "--case", dest="case_sensitive", help="Find with case sensitive.", action='store_const', const=True)
 parser.add_argument("-A", "--after", dest="after_lines", help="Listing this number of lines AFTER the found lines as well.")
 parser.add_argument("-B", "--before", dest="before_lines", help="Listing this number of line BEFORE the found lines as well.")
@@ -1037,6 +1342,7 @@ x.setVars(
     args.find_po,
     args.find_rst,
     args.find_py,
+    args.find_gettext,
     args.find_py_lib,
     args.find_src,
     args.case_sensitive,

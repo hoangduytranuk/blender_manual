@@ -18,13 +18,14 @@ from pprint import pprint, pformat
 import hashlib
 import time
 from reftype import RefType
+from collections import deque
 # from nltk.corpus import wordnet as wn
 
 # import Levenshtein as LE
 #import logging
 
-DEBUG=True
-# DEBUG=False
+# DEBUG=True
+DEBUG=False
 DIC_LOWER_CASE=True
 # DIC_LOWER_CASE=False
 
@@ -63,7 +64,7 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
-    debug_file = 'addons/3d_view'
+    # debug_file = 'addons/3d_view'
     # debug_file = 'animation/armatures/posing/bone_constraints/introduction' # e.g.
     # debug_file = 'animation/armatures/posing/bone_constraints/inverse_kinematics/introduction' # kbd WheelDown/Up
     # debug_file = "video_editing/sequencer/strips/effects/subtract"
@@ -123,6 +124,18 @@ class Common:
     # debug_file = "video_editing/sequencer/properties/strip"
     # debug_file = "video_editing/sequencer/strips/movie_image"
 
+    PREFIX_END = r'[^0-9@#.,]'
+    NUMBER_TOKEN = r'[0-9@#.,E+]'
+
+    PREFIX_PATTERN = r"(?P<prefix>(?:'[^']*'|%s)*)" % PREFIX_END
+    NUMBER_PATTERN = r"(?P<number>%s*)" % NUMBER_TOKEN
+    SUFFIX_PATTERN = r"(?P<suffix>.*)"
+
+    NUMBER_RE = re.compile(r"%s%s%s" % (PREFIX_PATTERN, NUMBER_PATTERN,
+                                        SUFFIX_PATTERN))
+    WHITESPACE = re.compile('[\n\r\t\v\f]')
+    EMAIL_ADDRESS = re.compile(r"^.+@[^\.].*\.[a-z]{2,}$")      # start to end
+
     KBD='kbd'
     MNU='menuselection'
     DOC='doc'
@@ -179,11 +192,14 @@ class Common:
     ARCH_BRAKET_SINGLE_FULL = re.compile(r'[\(]+([^\)]+)[\)]+')
     #ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
 
-    ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)[\)]+')
+    ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*?)[\)]+')
 
-    AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
+    # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
+    AST_QUOTE = re.compile(r"(?<!\w)\*([^\*]+)(?:\b)\*")
+    # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
+    DBL_QUOTE = re.compile(r'(?<!\\")"(.*?)"')
+    # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
+    SNG_QUOTE = re.compile(r"(?<!\w)\'([^\']+)(?:\b)\'")
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
 
@@ -194,6 +210,7 @@ class Common:
 
     ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
     REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
+    REF_PART = re.compile(r'(<[^<>]+>)')
     MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
@@ -201,6 +218,7 @@ class Common:
     ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
     MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
     MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
+    MENU_EX_PART = re.compile(r'(\s?[\-]{2}\>\s?)')
 
     KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
     KEYBOARD_SEP = re.compile(r'[^\-]+')
@@ -211,14 +229,16 @@ class Common:
     FILLER_CHAR='¶'
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
-    ABBR_TEXT = re.compile(r'[\(]([^\)]+)[\)]')
+    ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
+    ABBR_TEXT_ALL = re.compile(r'([^\(]+)\s\(([^\)]+)\)')
 
     REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
+    TERM_LINK = re.compile(r'([^\`]+)\<?[^\`]+\>?')
     PURE_PATH = re.compile(r'^(([\/\\][\w]+)([\/\\][\w]+)*)+[\/\\]?$')
     PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
     API_REF = re.compile(r'^blender_api:.*$')
 
-    SPACE_WORD_SEP =  re.compile(r'[^\ ]+')
+    SPACE_WORD_SEP =  re.compile(r'[^\ //]+')
     ACCEPTABLE_WORD =  re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
 
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
@@ -227,9 +247,11 @@ class Common:
 
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
     WORD_SEP = re.compile(r'[^\W]+')
-    SYMBOLS = re.compile(r'^[\W\s]+$')
+    SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
+    SYMBOLS = re.compile(r'[\W]+')
+    NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
-    THE_WORD = re.compile(r'\bthe\b', re.I)
+    THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
     MULTI_SPACES = re.compile(r'[\s]{2,}')
     HYPHEN = re.compile(r'[\-]')
 
@@ -238,482 +260,73 @@ class Common:
     BOTH_START_AND_END = '^$'
 
     verb_with_ending_y = [
-        'aby',
-        'bay',
-        'buy',
-        'cry',
-        'dry',
-        'fly',
-        'fry',
-        'guy',
-        'hay',
-        'joy',
-        'key',
-        'lay',
-        'pay',
-        'ply',
-        'pry',
-        'ray',
-        'say',
-        'shy',
-        'sky',
-        'spy',
-        'toy',
-        'try',
-        'ally',
-        'baby',
-        'body',
-        'bray',
-        'buoy',
-        'bury',
-        'busy',
-        'cloy',
-        'copy',
-        'defy',
-        'deny',
-        'eddy',
-        'envy',
-        'espy',
-        'flay',
-        'fray',
-        'gray',
-        'grey',
-        'levy',
-        'obey',
-        'okay',
-        'pity',
-        'play',
-        'pray',
-        'prey',
-        'rely',
-        'scry',
-        'slay',
-        'spay',
-        'stay',
-        'sway',
-        'tidy',
-        'vary',
-        'allay',
-        'alloy',
-        'annoy',
-        'apply',
-        'array',
-        'assay',
-        'bandy',
-        'belay',
-        'belly',
-        'berry',
-        'bogey',
-        'bully',
-        'caddy',
-        'candy',
-        'carry',
-        'chevy',
-        'chivy',
-        'colly',
-        'curry',
-        'dally',
-        'decay',
-        'decoy',
-        'decry',
-        'deify',
-        'delay',
-        'dirty',
-        'dizzy',
-        'dummy',
-        'edify',
-        'empty',
-        'enjoy',
-        'ensky',
-        'epoxy',
-        'essay',
-        'fancy',
-        'ferry',
-        'foray',
-        'glory',
-        'harry',
-        'honey',
-        'hurry',
-        'imply',
-        'inlay',
-        'jelly',
-        'jimmy',
-        'jolly',
-        'lobby',
-        'marry',
-        'mosey',
-        'muddy',
-        'palsy',
-        'parry',
-        'party',
-        'putty',
-        'query',
-        'rally',
-        'ready',
-        'reify',
-        'relay',
-        'repay',
-        'reply',
-        'retry',
-        'savvy',
-        'splay',
-        'spray',
-        'stray',
-        'study',
-        'stymy',
-        'sully',
-        'tally',
-        'tarry',
-        'toady',
-        'unify',
-        'unsay',
-        'weary',
-        'worry',
-        'aerify',
-        'argufy',
-        'basify',
-        'benday',
-        'betray',
-        'bewray',
-        'bloody',
-        'canopy',
-        'chivvy',
-        'citify',
-        'codify',
-        'comply',
-        'convey',
-        'convoy',
-        'curtsy',
-        'defray',
-        'deploy',
-        'descry',
-        'dismay',
-        'embody',
-        'employ',
-        'flurry',
-        'gasify',
-        'jockey',
-        'minify',
-        'mislay',
-        'modify',
-        'monkey',
-        'motley',
-        'mutiny',
-        'nazify',
-        'notify',
-        'occupy',
-        'ossify',
-        'outcry',
-        'pacify',
-        'parlay',
-        'parley',
-        'parody',
-        'prepay',
-        'purify',
-        'purvey',
-        'quarry',
-        'ramify',
-        'rarefy',
-        'rarify',
-        'ratify',
-        'rebury',
-        'recopy',
-        'remedy',
-        'replay',
-        'sashay',
-        'scurry',
-        'shimmy',
-        'shinny',
-        'steady',
-        'supply',
-        'survey',
-        'tumefy',
-        'typify',
-        'uglify',
-        'verify',
-        'vilify',
-        'vinify',
-        'vivify',
-        'volley',
-        'waylay',
-        'whinny',
-        'acetify',
-        'acidify',
-        'amnesty',
-        'amplify',
-        'atrophy',
-        'autopsy',
-        'beatify',
-        'blarney',
-        'calcify',
-        'carnify',
-        'certify',
-        'clarify',
-        'company',
-        'crucify',
-        'curtsey',
-        'dandify',
-        'destroy',
-        'dignify',
-        'disobey',
-        'display',
-        'dulcify',
-        'falsify',
-        'fancify',
-        'fantasy',
-        'fortify',
-        'gainsay',
-        'glorify',
-        'gratify',
-        'holiday',
-        'horrify',
-        'jellify',
-        'jollify',
-        'journey',
-        'justify',
-        'lignify',
-        'liquefy',
-        'liquify',
-        'magnify',
-        'metrify',
-        'misally',
-        'misplay',
-        'mollify',
-        'mortify',
-        'mummify',
-        'mystify',
-        'nigrify',
-        'nitrify',
-        'nullify',
-        'opacify',
-        'outplay',
-        'outstay',
-        'overfly',
-        'overjoy',
-        'overlay',
-        'overpay',
-        'petrify',
-        'pillory',
-        'portray',
-        'putrefy',
-        'qualify',
-        'rectify',
-        'remarry',
-        'reunify',
-        'satisfy',
-        'scarify',
-        'signify',
-        'specify',
-        'stupefy',
-        'terrify',
-        'testify',
-        'tourney',
-        'verbify',
-        'versify',
-        'vitrify',
-        'alkalify',
-        'ammonify',
-        'beautify',
-        'bioassay',
-        'causeway',
-        'classify',
-        'corduroy',
-        'denazify',
-        'detoxify',
-        'disarray',
-        'downplay',
-        'emulsify',
-        'esterify',
-        'etherify',
-        'fructify',
-        'gentrify',
-        'humidify',
-        'identify',
-        'lapidify',
-        'misapply',
-        'miscarry',
-        'multiply',
-        'overplay',
-        'overstay',
-        'prettify',
-        'prophesy',
-        'quantify',
-        'redeploy',
-        'revivify',
-        'rigidify',
-        'sanctify',
-        'saponify',
-        'simplify',
-        'solidify',
-        'stratify',
-        'stultify',
-        'travesty',
-        'underlay',
-        'underpay',
-        'accompany',
-        'butterfly',
-        'decalcify',
-        'decertify',
-        'demulsify',
-        'demystify',
-        'denitrify',
-        'devitrify',
-        'disembody',
-        'diversify',
-        'electrify',
-        'exemplify',
-        'frenchify',
-        'indemnify',
-        'intensify',
-        'inventory',
-        'microcopy',
-        'objectify',
-        'overweary',
-        'personify',
-        'photocopy',
-        'preachify',
-        'preoccupy',
-        'speechify',
-        'syllabify',
-        'underplay',
-        'blackberry',
-        'complexify',
-        'declassify',
-        'dehumidify',
-        'dillydally',
-        'disqualify',
-        'dissatisfy',
-        'intermarry',
-        'oversupply',
-        'reclassify',
-        'saccharify',
-        'understudy',
-        'hypertrophy',
-        'misidentify',
-        'oversimplify',
-        'transmogrify',
-        'interstratify',
+        'aby', 'bay',  'buy',  'cry',  'dry',  'fly',  'fry',  'guy',  'hay',
+        'joy',  'key',  'lay',  'pay',  'ply',  'pry',  'ray',  'say',  'shy',
+        'sky',  'spy',  'toy',  'try',  'ally',  'baby',  'body',  'bray',  'buoy',
+        'bury',  'busy',  'cloy',  'copy',  'defy',  'deny',  'eddy',  'envy',
+        'espy',  'flay',  'fray',  'gray',  'grey',  'levy',  'obey',  'okay',
+        'pity',  'play',  'pray',  'prey',  'rely',  'scry',  'slay',
+        'spay',  'stay',  'sway',  'tidy',  'vary',  'allay',  'alloy',  'annoy',
+        'apply',  'array',  'assay',  'bandy',  'belay',  'belly',  'berry',
+        'bogey',  'bully',  'caddy',  'candy',  'carry',  'chevy',  'chivy',
+        'colly',  'curry',  'dally',  'decay',  'decoy',  'decry',  'deify',  'delay',
+        'dirty',  'dizzy',  'dummy',  'edify',  'empty',  'enjoy',  'ensky',  'epoxy',
+        'essay',  'fancy',  'ferry',  'foray',  'glory',  'harry',  'honey',  'hurry',
+        'imply',  'inlay',  'jelly',  'jimmy',  'jolly',  'lobby',  'marry',  'mosey',
+        'muddy',  'palsy',  'parry',  'party',  'putty',  'query',  'rally',  'ready',
+        'reify',  'relay',  'repay',  'reply',  'retry',  'savvy',  'splay',  'spray',
+        'stray',  'study',  'stymy',  'sully',  'tally',  'tarry',  'toady',  'unify',
+        'unsay',  'weary',  'worry',  'aerify',  'argufy',  'basify',  'benday',
+        'betray',  'bewray',  'bloody',  'canopy',  'chivvy',  'citify',  'codify',
+        'comply',  'convey',  'convoy',  'curtsy',  'defray',  'deploy',  'descry',
+        'dismay',  'embody',  'employ',  'flurry',  'gasify',  'jockey',  'minify',
+        'mislay',  'modify',  'monkey',  'motley',  'mutiny',  'nazify',  'notify',
+        'occupy',  'ossify',  'outcry',  'pacify',  'parlay',  'parley',  'parody',
+        'prepay',  'purify',  'purvey',  'quarry',  'ramify',  'rarefy',  'rarify',
+        'ratify',  'rebury',  'recopy',  'remedy',  'replay',  'sashay',  'scurry',
+        'shimmy',  'shinny',  'steady',  'supply',  'survey',  'tumefy',  'typify',
+        'uglify',  'verify',  'vilify',  'vinify',  'vivify',  'volley',  'waylay',
+        'whinny',  'acetify',  'acidify',  'amnesty',  'amplify',  'atrophy',  'autopsy',
+        'beatify',  'blarney',  'calcify',  'carnify',  'certify',  'clarify',  'company',
+        'crucify',  'curtsey',  'dandify',  'destroy',  'dignify',  'disobey',  'display',
+        'dulcify',  'falsify',  'fancify',  'fantasy',  'fortify',  'gainsay',  'glorify',
+        'gratify',  'holiday',  'horrify',  'jellify',  'jollify',  'journey',  'justify',
+        'lignify',  'liquefy',  'liquify',  'magnify',  'metrify',  'misally',  'misplay',
+        'mollify',  'mortify',  'mummify',  'mystify',  'nigrify',  'nitrify',  'nullify',
+        'opacify',  'outplay',  'outstay',  'overfly',  'overjoy',  'overlay',  'overpay',
+        'petrify',  'pillory',  'portray',  'putrefy',  'qualify',  'rectify',  'remarry',
+        'reunify',  'satisfy',  'scarify',  'signify',  'specify',  'stupefy',  'terrify',
+        'testify',  'tourney',  'verbify',  'versify',  'vitrify',  'alkalify',  'ammonify',
+        'beautify',  'bioassay',  'causeway',  'classify',  'corduroy',  'denazify',  'detoxify',
+        'disarray',  'downplay',  'emulsify',  'esterify',  'etherify',  'fructify',  'gentrify',
+        'humidify',  'identify',  'lapidify',  'misapply',  'miscarry',  'multiply',  'overplay',
+        'overstay',  'prettify',  'prophesy',  'quantify',  'redeploy',  'revivify',  'rigidify',
+        'sanctify',  'saponify',  'simplify',  'solidify',  'stratify',  'stultify',  'travesty',
+        'underlay',  'underpay',  'accompany',  'butterfly',  'decalcify',  'decertify',  'demulsify',
+        'demystify',  'denitrify',  'devitrify',  'disembody',  'diversify',  'electrify',  'exemplify',
+        'frenchify',  'indemnify',  'intensify',  'inventory',  'microcopy',  'objectify',  'overweary',
+        'personify',  'photocopy',  'preachify',  'preoccupy',  'speechify',  'syllabify',  'underplay',
+        'blackberry',  'complexify',  'declassify',  'dehumidify',  'dillydally',  'disqualify',
+        'dissatisfy',  'intermarry',  'oversupply',  'reclassify',  'saccharify',  'understudy',
+        'hypertrophy',  'misidentify',  'oversimplify',  'transmogrify',  'interstratify',
     ]
 
     verb_with_ending_s = [
-        'Bus',
-        'Gas',
-        'Bias',
-        'Boss',
-        'Buss',
-        'Cuss',
-        'Diss',
-        'Doss',
-        'Fuss',
-        'Hiss',
-        'Kiss',
-        'Mass',
-        'Mess',
-        'Miss',
-        'Muss',
-        'Pass',
-        'Sass',
-        'Suds',
-        'Toss',
-        'Amass',
-        'Bless',
-        'Class',
-        'Cross',
-        'Degas',
-        'Dress',
-        'Floss',
-        'Focus',
-        'Glass',
-        'Gloss',
-        'Grass',
-        'Gross',
-        'Guess',
-        'Press',
-        'Truss',
-        'Access',
-        'Assess',
-        'Bypass',
-        'Callus',
-        'Canvas',
-        'Caress',
-        'Caucus',
-        'Census',
-        'Chorus',
-        'Egress',
-        'Emboss',
-        'Harass',
-        'Obsess',
-        'Precis',
-        'Recess',
-        'Rumpus',
-        'Schuss',
-        'Stress',
-        'Address',
-        'Aggress',
-        'Callous',
-        'Canvass',
-        'Compass',
-        'Concuss',
-        'Confess',
-        'Degauss',
-        'Depress',
-        'Digress',
-        'Discuss',
-        'Dismiss',
-        'Engross',
-        'Express',
-        'Harness',
-        'Impress',
-        'Nonplus',
-        'Oppress',
-        'Percuss',
-        'Possess',
-        'Precess',
-        'Premiss',
-        'Process',
-        'Profess',
-        'Redress',
-        'Refocus',
-        'Regress',
-        'Repress',
-        'Succuss',
-        'Summons',
-        'Surpass',
-        'Teargas',
-        'Trellis',
-        'Uncross',
-        'Undress',
-        'Witness',
-        'Bollocks',
-        'Buttress',
-        'Compress',
-        'Distress',
-        'Outclass',
-        'Outguess',
-        'Progress',
-        'Reassess',
-        'Suppress',
-        'Trespass',
-        'Waitress',
-        'Backcross',
-        'Embarrass',
-        'Encompass',
-        'Overdress',
-        'Repossess',
-        'Reprocess',
-        'Unharness',
-        'Verdigris',
-        'Crisscross',
-        'Decompress',
-        'Dispossess',
-        'Eyewitness',
-        'Misaddress',
-        'Overstress',
-        'Prepossess',
-        'Rendezvous',
-        'Retrogress',
-        'Transgress',
-        'Disembarrass',
+        'Bus' ,  'Gas' ,  'Bias' ,  'Boss' ,  'Buss' ,  'Cuss' ,  'Diss' ,  'Doss' ,  'Fuss' ,  'Hiss' ,
+        'Kiss' ,  'Mass' ,  'Mess' ,  'Miss' ,  'Muss' ,  'Pass' ,  'Sass' ,  'Suds' ,  'Toss' ,  'Amass' ,
+        'Bless' ,  'Class' ,  'Cross' ,  'Degas' ,  'Dress' ,  'Floss' ,  'Focus' ,  'Glass' ,  'Gloss' ,
+        'Grass' ,  'Gross' ,  'Guess' ,  'Press' ,  'Truss' ,  'Access' ,  'Assess' ,  'Bypass' ,  'Callus' ,
+        'Canvas' ,  'Caress' ,  'Caucus' ,  'Census' ,  'Chorus' ,  'Egress' ,  'Emboss' ,  'Harass' ,
+        'Obsess' ,  'Precis' ,  'Recess' ,  'Rumpus' ,  'Schuss' ,  'Stress' ,  'Address' ,  'Aggress' ,
+        'Callous' ,  'Canvass' ,  'Compass' ,  'Concuss' ,  'Confess' ,  'Degauss' ,  'Depress' ,  'Digress' ,
+        'Discuss' ,  'Dismiss' ,  'Engross' ,  'Express' ,  'Harness' ,  'Impress' ,  'Nonplus' ,  'Oppress' ,
+        'Percuss' ,  'Possess' ,  'Precess' ,  'Premiss' ,  'Process' ,  'Profess' ,  'Redress' ,  'Refocus' ,
+        'Regress' ,  'Repress' ,  'Succuss' ,  'Summons' ,  'Surpass' ,  'Teargas' ,  'Trellis' ,  'Uncross' ,
+        'Undress' ,  'Witness' ,  'Bollocks' ,  'Buttress' ,  'Compress' ,  'Distress' ,  'Outclass' ,  'Outguess' ,
+        'Progress' ,  'Reassess' ,  'Suppress' ,  'Trespass' ,  'Waitress' ,  'Backcross' ,  'Embarrass' ,
+        'Encompass' ,  'Overdress' ,  'Repossess' ,  'Reprocess' ,  'Unharness' ,  'Verdigris' ,  'Crisscross' ,
+        'Decompress' ,  'Dispossess' ,  'Eyewitness' ,  'Misaddress' ,  'Overstress' ,  'Prepossess' ,  'Rendezvous' ,
+        'Retrogress' ,  'Transgress' ,  'Disembarrass',
     ]
 
     common_removable_ending = [
@@ -721,51 +334,11 @@ class Common:
     ]
 
     common_prefixes = [
-        'a',
-        'an',
-        'co',
-        'de',
-        'en',
-        'ex',
-        'il',
-        'im',
-        'in',
-        'ir',
-        'in',
-        'un',
-        'up',
-        'com',
-        'con',
-        'dis',
-        'non',
-        'pre',
-        'pro',
-        'sub',
-        'sym',
-        'syn',
-        'tri',
-        'uni',
-        'ante',
-        'anti',
-        'auto',
-        'homo',
-        'mono',
-        'omni',
-        'post',
-        'tele',
-        'extra',
-        'homeo',
-        'hyper',
-        'inter',
-        'intra',
-        'intro',
-        'macro',
-        'micro',
-        'trans',
-        'circum',
-        'contra',
-        'contro',
-        'hetero',
+        'a',   'an',   'co',   'de',   'en',   'ex',   'il',   'im',   'in',   'ir',   'in',
+        'un',   'up',   'com',   'con',   'dis',   'non',   'pre',   'pro',   'sub',   'sym',
+        'syn',   'tri',   'uni',   'ante',   'anti',   'auto',   'homo',   'mono',   'omni',
+        'post',   'tele',   'extra',   'homeo',   'hyper',   'inter',   'intra',   'intro',
+        'macro',   'micro',   'trans',   'circum',   'contra',   'contro',   'hetero',
     ]
     
     common_prefix_trans = {
@@ -776,14 +349,15 @@ class Common:
     noun_001 = 'sự/chỗ/phần/vùng/cái/mức/độ/tính/sự/phần/phép'
     noun_002 = 'mọi/nhiều/các/những sự/chỗ/phần'
     noun_003 = 'chủ nghĩa/tính/trường phái'
-    noun_0004 = 'mọi/những/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/cái/trình/bộ/người/viên/vật'
+    noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/cái/trình/bộ/người/viên/vật'
     adj_0001 = 'thuộc/có tính/sự/chỗ/phần/trạng thái'
     adj_0002 = 'nói một cách/có tính/theo'
     adv_0001 = 'đáng/có khả năng/thể'
+    past_0001 = 'đã/bị/được'
 
     common_sufix_trans = {
         's': (START_WORD, noun_0004),
-        'ed': (START_WORD, 'đã/bị/được'),
+        'ed': (START_WORD, past_0001),
         'es': (START_WORD, noun_0004),
         'er': (END_WORD, 'hơn/trình/bộ/người/viên/nhà'),
         'ic': (START_WORD, 'giống/liên quan đến/hoạt động trong'),
@@ -843,6 +417,11 @@ class Common:
     }
 
     common_suffixes_replace_dict = {
+        'a': list(sorted(
+            [
+                'ic',
+             ],
+            key=lambda x: len(x), reverse=True)),
         'e': list(sorted(
             ['able', 'ation', 'ations', 'ion', 'ions',
              'ity', 'ities', 'ing', 'ings', 'ously', 'ous', 'ive', 'ily',
@@ -851,7 +430,7 @@ class Common:
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
              'al', 'ally', 'als', 'iast', 'iasts', 'iastic', 'ial', 'y',
-             'ary', 'ingly', 'ian', 'inal',
+             'ary', 'ingly', 'ian', 'inal', 'ten'
              ],
             key=lambda x: len(x), reverse=True)),
         't': list(sorted(
@@ -888,162 +467,20 @@ class Common:
     }
 
     common_suffixes = [
-        'd',
-        'r',
-        'y',
-        's',
-        't',
-        'al',
-        'an',
-        'ce',
-        'cy',
-        'de',
-        'er',
-        'es',
-        'or',
-        'th',
-        'ic',
-        'ly',
-        'ed',
-        'en',
-        'er',
-        'ly',
-        'ry',
-        'st',
-        'ty',
-        'ze',
-        'ze',
-        '\'s',
-        '\'t',
-        '\'m',
-        'als',
-        'ces',
-        'dom',
-        'ors',
-        'ers',
-        'est',
-        'eer',
-        'ial',
-        'ian',
-        'ism',
-        'ied',
-        'ier',
-        'iers',
-        'ion',
-        'ity',
-        'ics',
-        'ies',
-        'like',
-        'ful',
-        'less',
-        'ant',
-        'ent',
-        'ary',
-        'ful',
-        'nce',
-        'ous',
-        'ive',
-        'ism',
-        'isms',
-        'ing',
-        'inal',
-        'ily',
-        'ity',
-        'ize',
-        'ise',
-        'ish',
-        'ite',
-        'ful',
-        'ual',
-        'ure',
-        'ous',
-        '(s)',
-        '\'re',
-        '\'ve',
-        '\'ll',
-        'n\'t',
-        'ally',
-        'ator',
-        'ants',
-        'ance',
-        'doms',
-        'ence',
-        'ency',
-        'ents',
-        'ings',
-        'ures',
-        'ions',
-        'sion',
-        'sions',
-        'sive',
-        'iest',
-        'iast',
-        'iasts',
-        'iastic',
-        'lier',
-        'less',
-        'liest',
-        'ment',
-        'ness',
-        'ning',
-        'sion',
-        'ship',
-        'able',
-        'ably',
-        'ible',
-        'ical',
-        'ally',
-        'ious',
-        'less',
-        'ally',
-        'ward',
-        'wise',
-        'ency',
-        'ators',
-        'sible',
-        'ively',
-        'ility',
-        'ually',
-        'ingly',
-        'ption',
-        'ation',
-        'iness',
-        'ities',
-        'ition',
-        'itive',
-        'ments',
-        'sions',
-        'ssion',
-        'ships',
-        'aries',
-        'ature',
-        'ingly',
-        'izing',
-        'ising',
-        'iness',
-        'ional',
-        'lable',
-        'ously',
-        'ptions',
-        'ility',
-        'ilities',
-        'itives',
-        'itions',
-        'ication',
-        'ications',
-        'atures',
-        'ations',
-        'aceous',
-        'nesses',
-        'iously',
-        'ically',
-        'encies',
-        'ssions',
-        'itively',
-        'ization',
-        'isation',
-        'itiveness',
-        'itivenesses',
+        'd',  'r',  'y',  's',  't',  'al',  'an',  'ce',  'cy',  'de',  'er',  'es',  'or',  'th',  'ic',  'ly',
+        'ed',  'en',  'er', 'ic', 'ly',  'ry',  'st',  'ty',  'ze',  'ze',  '\'s',  '\'t',  '\'m',  'als',  'ate',
+        'age',  'aging',  'ages',  'ated',  'ates',  'ces',  'dom',  'ors',  'ers',  'est',  'eer',  'ial', 'ked',
+        'ian',  'ism',  'ied',  'ier',  'iers',  'ion',  'ity',  'ics',  'ies',  'like',  'ful',  'less',  'ant',
+        'ent',  'ary',  'ful',  'nce',  'ous',  'ive',  'ism',  'isms',  'ing',  'inal',  'ily',  'ity',  'ize',
+        'ise',  'ish',  'ite',  'ful',  'ten',  'ual',  'ure',  'ous',  '(s)',  '\'re',  '\'ve',  '\'ll',  'n\'t',
+        'ally',  'ator',  'ants',  'ance',  'doms',  'ence',  'ency',  'ents',  'ings',  'ures',  'ions',  'sion',
+        'sions',  'sive',  'iest',  'iast',  'iasts',  'iastic',  'lier',  'less',  'liest',  'ment',  'ness',
+        'ning',  'sion',  'ship',  'able',  'ably',  'ible',  'ical',  'ally',  'ious',  'less',  'ally',  'ward',
+        'wise',  'ency',  'ators',  'sible',  'ively',  'ility',  'ually',  'ingly',  'ption',  'ation',  'iness',
+        'ities',  'ition',  'itive',  'ments',  'sions',  'ssion',  'ships',  'aries',  'ature',  'ingly',  'izing',
+        'ising',  'iness',  'ional',  'lable',  'ously',  'ptions',  'ility',  'ilities',  'itives',  'itions',
+        'ication',  'ications',  'atures',  'ations',  'aceous',  'nesses',  'iously',  'ically',  'encies',
+        'ssions',  'itively',  'ization',  'isation',  'itiveness',  'itivenesses', 'perception', 'perceive'
     ]
 
     common_infix = [
@@ -1232,9 +669,9 @@ class Common:
     def patternMatchAllToDict(pat, text):
         matching_list = {}
         for m in pat.finditer(text):
+            orig = m.group(0)
             s = m.start()
             e = m.end()
-            orig = m.group(0)
             k = (s, e)
             entry = {k: orig}
             matching_list.update(entry)
@@ -1271,37 +708,49 @@ class Common:
             dd(e)
         return None, None
 
-    def patternMatchAllAsDictNoDelay(pat, text):
+    def patternMatchAllAsDictNoDelay(pat: re.Pattern, text: str) -> dict:
         try:
             return_dict = {}
+            one_pattern=[]
+            is_text_printed = False
             for m in pat.finditer(text):
-                original = ()
-                # break_down = []
+                if not is_text_printed:
+                    print(f'patternMatchAllAsDictNoDelay: text:{text}')
+                    print(f'patternMatchAllAsDictNoDelay: pattern:{pat.pattern}')
+                    is_text_printed = True
 
                 s = m.start()
                 e = m.end()
                 orig = m.group(0)
                 original = (s, e, orig)
-                entry = {(s,e): orig}
-                return_dict.update(entry)
-
+                entry = ((s, e), orig)
+                one_pattern.append(entry)
                 for g in m.groups():
                     if g:
                         i_s = orig.find(g)
                         ss = i_s + s
                         ee = ss + len(g)
-                        v=(ss, ee, g)
-                        # break_down.append(v)
-                        entry = {(ss, ee): g}
-                        return_dict.update(entry)
+                        entry = ((ss, ee), g)
+                        one_pattern.append(entry)
+                dict_entry = {s: one_pattern}
+                return_dict.update(dict_entry)
+                one_pattern = []
         except Exception as e:
             dd("patternMatchAll")
             dd("pattern:", pat)
             dd("text:", text)
             dd(e)
+        print(f'patternMatchAllAsDictNoDelay: return_dict:{return_dict}')
         return return_dict
 
-    def findInvert(pattern, text):
+    def findInvertSimple(pattern:re.Pattern, text:str) -> list:
+        temp_list = text.split('\n')
+        temp_txt = Common.FILLER_CHAR.join(temp_list)
+        temp_str = pattern.sub(Common.FILLER_CHAR, temp_txt)
+        word_list = [i.strip() for i in temp_str.split(Common.FILLER_CHAR) if i]
+        return word_list
+
+    def findInvert(pattern:re.Pattern, text:str):
         found_list={}
         tt = str(text)
         # fill in the place of pattern with a filler (FILLER_CHAR), length of found pattern
@@ -1797,5 +1246,90 @@ class Common:
         # else:
         #     dd(f'NOT found: {test_txt} SOMETHING WRONG!!!')
 
+    def getTextWithinBrackets(
+            start_bracket: str,
+            end_bracket: str,
+            text:str,
+            is_include_bracket:bool =False,
+            replace_internal_start_bracket:str = None,
+            replace_internal_end_bracket:str = None
+    ) -> list:
 
+        def pop_q() -> bool:
+            last_s = q.pop()
+            ss = (last_s if is_include_bracket else last_s + 1)
+            ee = (e if is_include_bracket else e - 1)
+            txt_line = text[ss:ee]
+            if not txt_line:
+                return False
 
+            is_replace_internal_bracket = (replace_internal_start_bracket and (start_bracket in txt_line))
+            if is_replace_internal_bracket:
+                txt_line = txt_line.replace(start_bracket, replace_internal_start_bracket)
+
+            if is_same_brakets:
+                sentence_list.append(txt_line)
+                False
+
+            is_replace_internal_bracket = (replace_internal_end_bracket and (end_bracket in txt_line))
+            if is_replace_internal_bracket:
+                txt_line = txt_line.replace(end_bracket, replace_internal_end_bracket)
+
+            sentence_list.append(txt_line)
+            return True
+
+        is_same_brakets = (start_bracket == end_bracket)
+        if is_same_brakets:
+            print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
+                  f'ERRORS might occurs!')
+
+        sentence_list = []
+
+        # 1. find positions of start bracket
+        if is_same_brakets:
+            p_txt = r'\%s' % start_bracket
+        else:
+            p_txt = r'\%s|\%s' % (start_bracket, end_bracket)
+
+        p = re.compile(p_txt, flags=re.I|re.M)
+
+        word_dict={}
+        m_list = p.finditer(text)
+        for m in m_list:
+            s = m.start()
+            e = m.end()
+            w = m.group(0)
+            entry = {(s, e): w}
+            word_dict.update(entry)
+
+        if not word_dict:
+            return sentence_list
+        debug_len = 20
+        q = deque()
+        if is_same_brakets:
+            for loc, bracket in word_dict.items():
+                s, e = loc
+                is_bracket = (bracket == start_bracket)
+                if is_bracket:
+                    if not q:
+                        q.append(s)
+                    else:
+                        is_finished = pop_q()
+                        if not is_finished:
+                            continue
+        else:
+            for loc, bracket in word_dict.items():
+                s, e = loc
+                is_open = (bracket == start_bracket)
+                is_close = (bracket == end_bracket)
+                if is_open:
+                    q.append(s)
+                if is_close:
+                    if not q:
+                        continue
+                    else:
+                        is_finished = pop_q()
+                        if not is_finished:
+                            continue
+
+        return sentence_list

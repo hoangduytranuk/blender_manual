@@ -12,7 +12,6 @@ from translation_finder import TranslationFinder
 # from pyparsing import nestedExpr
 from enum import Enum
 from reftype import RefType
-
 '''
 :abbr:`
 :class:`
@@ -142,25 +141,23 @@ class RefItem:
         return self.translation_state
 
     def setTranslationState(self, state: TranslationState):
-        current_state = self.getTranslationState()
-        is_fuzzy = (current_state == TranslationState.FUZZY)
-        if not is_fuzzy:
-            self.translation_state = state
+        self.translation_state = state
 
     def getTranslation(self):
         return self.translation
 
-    def setTranlation(self, tran, state=TranslationState.ACCEPTABLE):
-        orig = self.getText()
-        is_ignored = ig.isIgnored(orig)
-        # is_same = cm.isTextuallySame(orig, tran)
-        # is_ignored_all = (is_ignored or is_same)
-        if is_ignored:
-            tran = None
-            state = TranslationState.IGNORED
-        else:
-            self.translation = tran
-            self.setTranslationState(state)
+    def setTranlation(self, tran, is_fuzzy: bool, is_ignore: bool):
+        if not tran:
+            tran = ""
+
+        self.translation = tran
+
+        st = TranslationState.ACCEPTABLE
+        if is_fuzzy:
+            st = TranslationState.FUZZY
+        elif is_ignore:
+            st = TranslationState.IGNORED
+        self.setTranslationState(st)
 
     def getValues(self):
         return self.start, self.end, self.text
@@ -275,6 +272,34 @@ class RefRecord:
                 result += "}"
         return result
 
+    def getTranslateStateList(self):
+        state_list = []
+        if self.origin:
+            state_list.append(self.origin.translation_state)
+
+        is_check_fuzzy_on_ref_list = bool(self.reflist)
+        if is_check_fuzzy_on_ref_list:
+            for ref_item in self.reflist:
+                state_list.append(ref_item.translation_state)
+        return state_list
+
+    def isFuzzy(self):
+        state_list = self.getTranslateStateList()
+        has_ignored = (TranslationState.IGNORED in state_list)
+        has_fuzzy = (TranslationState.FUZZY in state_list)
+
+        is_fuzzy = (has_ignored or has_fuzzy)
+        return is_fuzzy
+
+    def isIgnore(self):
+        state_list = self.getTranslateStateList()
+        has_ignored = (TranslationState.IGNORED in state_list)
+        has_fuzzy = (TranslationState.FUZZY in state_list)
+        has_acceptable = (TranslationState.ACCEPTABLE in state_list)
+
+        is_ignore = has_ignored and not (has_fuzzy or has_acceptable)
+        return is_ignore
+
     def isIquivalent(self, other):
         if other is None:
             return False
@@ -292,10 +317,6 @@ class RefRecord:
         if not has_orig:
             return False
 
-        # orig_txt = orig_item.getText()
-        # is_debug = ("In some cases you may not want to use the default" in orig_txt)
-        # if is_debug:
-        #     dd("DEBUG")
         is_special = cm.isSpecialTerm(orig_item.getText())
         is_ended_with_dot = orig_item.getText().endswith('.)')
         if is_special and not is_ended_with_dot:
@@ -328,12 +349,6 @@ class RefRecord:
         try:
             self.origin.start = cm.alterValue(self.origin.start, alter_value=start, op=op)
             self.origin.end = self.origin.start + len(self.origin.text)
-
-            # item: RefItem = None
-            # for item in self.reflist:
-            #     item.start = cm.alterValue(item.start, alter_value=start, op=op)
-            #     item.end = item.start + len(item.text)
-            #
         except Exception as e:
             pass
 
@@ -393,22 +408,12 @@ class RefRecord:
         is_empty = (s == -1) or (e == -1)
         return is_empty
 
-    # def getRefTextOnly(self):
-    #
-    #     has_ref = (not self.isRefEmtpy())
-    #     if not has_ref:
-    #         return None
-    #
-    #     item:RefItem = None
-    #     ref_type = self.getOrigin().getRefType()
-    #     for s, e, txt in self.getRefList():
-
 
 class RefList(defaultdict):
     def __init__(self, msg=None, pat=None, keep_orig=False, tf=None):
         self.msg = msg
         self.translation = None
-        self.translation_state = TranslationState.FUZZY
+        self.translation_state = TranslationState.ACCEPTABLE
         self.pattern = pat
         self.keep_original = keep_orig
         self.tf = tf
@@ -437,14 +442,45 @@ class RefList(defaultdict):
     def getTranslation(self):
         return self.translation
 
-    def setTranslation(self, tran, state=TranslationState.ACCEPTABLE):
-        if ig.isIgnored(self.msg):
-            self.translation = self.msg
+    def getTranslationStateList(self):
+        translation_state_list=[]
+        v : RefRecord = None
+        translation_state_list.append(self.translation_state)
+        for k, v in self.items():
+            if v.isIgnore():
+                translation_state_list.append(TranslationState.IGNORED)
+            elif v.isFuzzy():
+                translation_state_list.append(TranslationState.FUZZY)
+            else:
+                translation_state_list.append(TranslationState.ACCEPTABLE)
+        return translation_state_list
+
+    def isFuzzy(self):
+        v:RefRecord = None
+        state_list = self.getTranslationStateList()
+        has_fuzzy = (TranslationState.FUZZY in state_list)
+        has_ignored = (TranslationState.IGNORED in state_list)
+        has_acceptable = (TranslationState.ACCEPTABLE in state_list)
+
+        return has_fuzzy or (has_ignored and has_acceptable)
+
+    def isIgnore(self):
+        state_list = self.getTranslationStateList()
+        has_fuzzy = (TranslationState.FUZZY in state_list)
+        has_ignored = (TranslationState.IGNORED in state_list)
+        has_acceptable = (TranslationState.ACCEPTABLE in state_list)
+        return has_ignored and not (has_fuzzy or has_acceptable)
+
+    def setTranslation(self, tran: str, is_fuzzy: bool, is_ignored: bool):
+        if not tran:
+            tran = ""
+        self.translation = tran
+        if is_ignored:
             self.translation_state = TranslationState.IGNORED
+        elif is_fuzzy:
+            self.translation_state = TranslationState.FUZZY
         else:
-            dd('set translation:', self.msg, "=>", tran)
-            self.translation = tran
-            self.translation_state = state
+            self.translation_state = TranslationState.ACCEPTABLE
 
     def getType(self, xtype):
         for x in RefType:
@@ -554,7 +590,7 @@ class RefList(defaultdict):
         else:
             return None
 
-    def findOnePattern(self, msg, pattern, reftype, keep_original, start_loc=0):
+    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType, keep_original, use_orig_location: bool):
         valid_msg = (msg is not None) and (len(msg) > 0)
         valid_pattern = (pattern is not None)
         valid = valid_msg and valid_pattern
@@ -563,44 +599,30 @@ class RefList(defaultdict):
 
         result_list = RefList(msg=msg, pat=pattern)
         try:
-            for origin, breakdown in cm.patternMatchAll(pattern, msg):
-                is_end = (origin is None)
-                if is_end:
-                    break
+            actual_ref_type = RefType.TEXT
+            found_dict = cm.patternMatchAllAsDictNoDelay(pattern, msg)
+            for k, v in found_dict.items():
+                v_len = len(v)
+                if v_len > 2:
+                    orig, sub_type, sub_content = v
+                    sub_type_loc, sub_type_txt = sub_type
+                    actual_ref_type = RefType.getRef(sub_type_txt)
+                else:
+                    actual_ref_type = reftype
+                    sub_type = None
+                    orig, sub_content = v
 
-                is_debug = ('Poor mans steadycam' in msg)
-                if is_debug:
-                    dd('DEBUG')
-                s, e, orig = origin
-                o_ss = s + start_loc
-                o_ee = o_ss + len(orig)
-                orig_ref_item = RefItem(o_ss, o_ee, orig, ref_type=reftype, keep_orig=keep_original)
+                (o_ss, o_ee), o_txt = orig
+                (sub_ss, sub_ee), sub_txt = sub_content
 
-                v = RefRecord(origin=orig_ref_item, reflist=None, pat=pattern)
-                entry = {o_ss: v}
+                orig_ref_item = RefItem(o_ss, o_ee, o_txt, ref_type=actual_ref_type, keep_orig=keep_original)
+                if use_orig_location:
+                    ref_item = RefItem(o_ss, o_ee, sub_txt, keep_orig=keep_original)
+                else:
+                    ref_item = RefItem(sub_ss, sub_ee, sub_txt, keep_orig=keep_original)
+                ref_record = RefRecord(origin=orig_ref_item, reflist=[ref_item], pat=pattern)
+                entry = {o_ss: ref_record}
                 result_list.update(entry)
-
-                has_breakdown = (breakdown is not None) and (len(breakdown) > 0)
-                if not has_breakdown:
-                    continue
-
-                new_ref_list = []
-                for ss, ee, g in breakdown:
-                    if not g:
-                        continue
-                    i_s = orig.find(g)
-                    # ss = i_s + s # using setence index
-                    ss = i_s  # using sub pattern index
-                    ee = ss + len(g)
-                    xtype = self.getType(g)
-                    is_text = (xtype == RefType.TEXT)
-                    if not is_text:
-                        orig_ref_item.setRefType(xtype)
-                    else:
-                        ref_item = RefItem(ss, ee, g,
-                                           keep_orig=keep_original)  # should this take default reftype.TEXT????
-                        new_ref_list.append(ref_item)
-                v.reflist = new_ref_list
 
         except Exception as e:
             dd("RefList.findPattern()")
@@ -657,8 +679,10 @@ class RefList(defaultdict):
         return loc_keep_list
 
     def findPattern(self, pattern_list, start_loc=0):
-        for p, ref_type, keep_orig in pattern_list:
-            one_list: RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, start_loc=start_loc)
+        for index, item in enumerate(pattern_list):
+            p, ref_type, keep_orig, use_orig_location = item
+        # for p, ref_type, keep_orig in pattern_list:
+            one_list: RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, use_orig_location)
             is_empty = (one_list is None) or (len(one_list) == 0)
             if is_empty:
                 continue
@@ -681,7 +705,7 @@ class RefList(defaultdict):
         item: RefItem
         for item in ref_list:
             left = orig_txt[:item.start]
-            right = orig_txt[:item.end:]
+            right = orig_txt[item.end:]
             txt = left + item.text + right
             dd("original:", orig_txt)
             dd("ref_text:", txt)
@@ -769,7 +793,7 @@ class RefList(defaultdict):
                 un_transferred_list.update(entry)
                 continue
             tran_txt = v.getOrigin().getTranslation()
-            target_ref_record.getOrigin().setTranlation(tran_txt)
+            target_ref_record.getOrigin().setTranlation(tran_txt, v.isFuzzy(), v.isIgnore())
             dd("transferRefRecordText:", target_ref_record)
         return un_transferred_list
 
@@ -985,57 +1009,57 @@ class RefList(defaultdict):
 
         return new_txt
 
-    def transferTranslatedRefs(self, current_msg, current_tran):
-        self.msg = current_msg
-        pattern_list = [
-            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
-            (cm.AST_QUOTE, RefType.AST_QUOTE, True),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
-        ]
-        self.findPattern(pattern_list)
-        has_record = (len(self) > 0)
-        if not has_record:
-            dd("Message has refs, but translation DOESN'T")
-            if self.keep_original:
-                has_original = (current_msg in current_tran)
-                if not has_original:
-                    current_tran = cm.matchCase(current_msg, current_tran)
-                    txt = f'{current_msg} -- {current_tran}'
-                else:
-                    txt = f'-- {current_msg}'
-                self.setTranslation(txt)
-            else:
-                self.setTranslation(current_tran)
-            return None
-
-        sorted_list = sorted(list(self.items()))
-        self.clear()
-        self.update(sorted_list)
-        self.translateRefList()
-
-        current_tran_reflist = RefList(msg=current_tran)
-        current_tran_reflist.setTranslation(current_tran)
-
-        current_tran_reflist.findPattern(pattern_list)
-        has_record = (len(current_tran_reflist) > 0)
-
-        sorted_list = sorted(list(current_tran_reflist.items()))
-        current_tran_reflist.clear()
-        current_tran_reflist.update(sorted_list)
-
-        un_transferred_list = self.transferRefRecordText(current_tran_reflist)
-        tran = current_tran_reflist.transferTranslation(current_tran)
-        current_tran_reflist.setTranslation(tran)
-
-        # dd("tran before:", current_tran)
-        # dd("tran now:", current_tran_reflist.getTranslation())
-
-        has_untransferred = (un_transferred_list and len(un_transferred_list) > 0)
-        if has_untransferred:
-            dd("Untransferred:")
-            pp(un_transferred_list)
-        return un_transferred_list
+    # def transferTranslatedRefs(self, current_msg, current_tran):
+    #     self.msg = current_msg
+    #     pattern_list = [
+    #         (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
+    #         (cm.AST_QUOTE, RefType.AST_QUOTE, True),
+    #         (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
+    #         (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
+    #     ]
+    #     self.findPattern(pattern_list)
+    #     has_record = (len(self) > 0)
+    #     if not has_record:
+    #         dd("Message has refs, but translation DOESN'T")
+    #         if self.keep_original:
+    #             has_original = (current_msg in current_tran)
+    #             if not has_original:
+    #                 current_tran = cm.matchCase(current_msg, current_tran)
+    #                 txt = f'{current_msg} -- {current_tran}'
+    #                 self.setTranslation(txt, TranslationState.ACCEPTABLE)
+    #             else:
+    #                 txt = f'-- {current_msg}'
+    #                 self.setTranslation(txt, TranslationState.FUZZY)
+    #         else:
+    #             self.setTranslation(current_tran, TranslationState.ACCEPTABLE)
+    #         return None
+    #
+    #     sorted_list = sorted(list(self.items()))
+    #     self.clear()
+    #     self.update(sorted_list)
+    #     self.translateRefList()
+    #
+    #     current_tran_reflist = RefList(msg=current_tran)
+    #     current_tran_reflist.setTranslation(current_tran, current_tran_reflist.translation_state)
+    #
+    #     current_tran_reflist.findPattern(pattern_list)
+    #
+    #     sorted_list = sorted(list(current_tran_reflist.items()))
+    #     current_tran_reflist.clear()
+    #     current_tran_reflist.update(sorted_list)
+    #
+    #     un_transferred_list = self.transferRefRecordText(current_tran_reflist)
+    #     tran = current_tran_reflist.transferTranslation(current_tran)
+    #     current_tran_reflist.setTranslation(tran)
+    #
+    #     # dd("tran before:", current_tran)
+    #     # dd("tran now:", current_tran_reflist.getTranslation())
+    #
+    #     has_untransferred = (un_transferred_list and len(un_transferred_list) > 0)
+    #     if has_untransferred:
+    #         dd("Untransferred:")
+    #         pp(un_transferred_list)
+    #     return un_transferred_list
 
     def findRefByText(self, txt):
         for index, item in enumerate(self.items()):
@@ -1052,12 +1076,13 @@ class RefList(defaultdict):
         self.msg = tran
 
         pattern_list = [
-            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
-            (cm.AST_QUOTE, RefType.AST_QUOTE, True),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
-            (cm.DBL_QUOTE_SLASH, RefType.DBL_QUOTE, True),
+            (cm.GA_REF, RefType.GA, True, False),  # this will have to further classified as progress
+            (cm.AST_QUOTE, RefType.AST_QUOTE, True, True),
+            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True, True),
+            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True, True),
+            (cm.DBL_QUOTE_SLASH, RefType.DBL_QUOTE, True, True),
         ]
+
         self.findPattern(pattern_list)
         has_record = (len(self) > 0)
         if not has_record:
@@ -1095,10 +1120,10 @@ class RefList(defaultdict):
 
         # entry include: (pattern, ref_type, include_original)
         pattern_list = [
-            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
-            (cm.AST_QUOTE, RefType.AST_QUOTE, True),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
+            (cm.GA_REF, RefType.GA, True, False),  # this will have to further classified as progress
+            (cm.AST_QUOTE, RefType.AST_QUOTE, True, True),
+            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True, True),
+            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True, True),
         ]
         self.findPattern(pattern_list)
 
@@ -1114,18 +1139,16 @@ class RefList(defaultdict):
             dd("Sorted")
         else:
             tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-            if is_ignore:
-                tran = None
-
             has_tran = (tran is not None)
             if has_tran and self.keep_original:
                 tran = cm.matchCase(self.msg, tran)
                 tran = f"{tran} -- {self.msg}"
             elif not has_tran and self.keep_original:
                 tran = f"-- {self.msg}"
+                is_fuzzy = True
             elif not has_tran and not self.keep_original:
                 tran = ""
-            self.setTranslation(tran)
+            self.setTranslation(tran, is_fuzzy, is_ignore)
 
         # arched_bracket_list = cm.parseMessageWithDelimiterPair('(', ')', self.msg)
         # has_record = (len(arched_bracket_list) > 0)
@@ -1157,8 +1180,7 @@ class RefList(defaultdict):
     def mergeTranslationToOrigin(self, ref_rec: RefRecord):
         orig_item: RefItem = ref_rec.getOrigin()
         ref_list = ref_rec.getRefList()
-        has_ref_list = (ref_list is not None) and (len(ref_list) > 0)
-        if not has_ref_list:
+        if not ref_list:
             return
 
         tran_txt = str(orig_item.getText())
@@ -1169,14 +1191,12 @@ class RefList(defaultdict):
             if is_ignore:
                 continue
 
+            tran = ref_item.getTranslation()
+            if not tran:
+                continue
+
             is_ignore_left_right = (ref_item.converted_to_abbr == True)
             s, e = ref_item.getLocation()
-            o_txt = ref_item.getText()
-            tran_state = ref_item.getTranslationState()
-            tran = ref_item.getTranslation()
-            has_translation = (tran is not None) and (len(tran) > 0)
-            if not has_translation:
-                continue
 
             if is_ignore_left_right:
                 tran_txt = tran
@@ -1185,67 +1205,78 @@ class RefList(defaultdict):
                 right_txt = tran_txt[e:]
                 tran_txt = left_txt + tran + right_txt
 
-        # is_same = (tran_txt == orig_item.getText())
-        # if is_same:
-        # tran_txt = ""
-        orig_item.setTranlation(tran_txt)
+        orig_item.setTranlation(tran_txt, False, False) # temporary acceptable. The isFuzzy or isIgnore will show up TRUE state
 
     def transferTranslation(self, msg):
         tran = str(msg)
         v: RefRecord = None
         for k, v in reversed(list(self.items())):
-            self.mergeTranslationToOrigin(v)
-            os, oe = v.getOriginLocation()
-            otran = v.getOrigin().getTranslation()
+            # self.mergeTranslationToOrigin(v)
+            v_ref_list = v.getRefList()
+            has_ref_list = bool(v_ref_list)
+            otran: str = None
+            if has_ref_list:
+                first_item: RefItem = v.getRefItemByIndex(0)
+                os, oe = first_item.getLocation()
+                otran = first_item.getTranslation()
+            else:
+                os, oe = v.getOriginLocation()
+                otran = v.getOrigin().getTranslation()
+
             has_tran = (otran is not None) and (len(otran) > 0)
             if not has_tran:
                 continue
-
-            tran = tran[:os] + otran + tran[oe:]
+            left = tran[:os]
+            right = tran[oe:]
+            tran = left + otran + right
         return tran
 
     def translateRefItem(self, ref_item: RefItem, ref_type):
-        valid = (ref_item is not None)
-        if not valid:
-            return
+        try:
+            valid = (ref_item is not None)
+            if not valid:
+                return
 
-        ref_txt = ref_item.getText()
-        # is_debug = ("alias" in ref_txt.lower())
-        # if is_debug:
-        #     dd("DEBUG")
+            ref_txt = ref_item.getText()
+            is_debug = ('Agent' in ref_txt)
+            if is_debug:
+                print('Debug')
 
-        is_ignore = ig.isIgnored(ref_txt)
-        if is_ignore:
-            ref_item.setTranlation(None, state=TranslationState.IGNORED)
-            return
+            is_ignore = ig.isIgnored(ref_txt)
+            if is_ignore:
+                ref_item.setTranlation(None, False, True)
+                return
 
-        is_kbd = (ref_type == RefType.KBD)
-        is_abbr = (ref_type == RefType.ABBR)
-        is_menu = (ref_type == RefType.MENUSELECTION)
-        # ----------
-        is_ast = (ref_type == RefType.AST_QUOTE)
-        is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
-        is_sng_quote = (ref_type == RefType.SNG_QUOTE)
-        is_quoted = (is_ast or is_dbl_quote or is_sng_quote)
+            is_kbd = (ref_type == RefType.KBD)
+            is_abbr = (ref_type == RefType.ABBR)
+            is_menu = (ref_type == RefType.MENUSELECTION)
+            # ----------
+            is_ast = (ref_type == RefType.AST_QUOTE)
+            is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
+            is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+            is_quoted = (is_ast or is_dbl_quote or is_sng_quote)
 
-        converted_to_abbr = False
-        if is_kbd:
-            tran = self.tf.translateKeyboard(ref_txt)
-        elif is_abbr:
-            tran = self.tf.translateAbbrev(ref_txt)
-        elif is_menu:
-            tran = self.tf.translateMenuSelection(ref_txt)
-        elif is_quoted:
-            tran = self.tf.translateQuoted(ref_txt, ref_type=ref_type)
-            converted_to_abbr = True
-        else:
-            tran = self.tf.translateRefWithLink(ref_txt)
-        has_tran = (tran is not None)
-        if has_tran:
-            ref_item.converted_to_abbr = converted_to_abbr
+            converted_to_abbr = False
+            if is_kbd:
+                tran, is_fuzzy, is_ignore = self.tf.translateKeyboard(ref_txt)
+            elif is_abbr:
+                tran, is_fuzzy, is_ignore = self.tf.translateAbbrev(ref_txt)
+            elif is_menu:
+                tran, is_fuzzy, is_ignore = self.tf.translateMenuSelection(ref_txt)
+            elif is_quoted:
+                tran, is_fuzzy, is_ignore = self.tf.translateQuoted(ref_txt, ref_type=ref_type)
+                converted_to_abbr = True
+            else:
+                tran, is_fuzzy, is_ignore = self.tf.translateRefWithLink(ref_txt)
 
-        tran_txt = (tran if tran else "")
-        ref_item.setTranlation(tran_txt, state=TranslationState.ACCEPTABLE)
+            ref_item.setTranlation(tran, is_fuzzy, is_ignore)
+
+            has_tran = (tran is not None)
+            if has_tran:
+                ref_item.converted_to_abbr = converted_to_abbr
+
+        except Exception as e:
+            print(f'translateRefItem(), ref_item:{ref_item}, ref_type:{ref_type}, ERROR: {e}')
 
     def translateRefRecord(self, record: RefRecord):
         valid = (record is not None)
@@ -1256,62 +1287,44 @@ class RefList(defaultdict):
         orig_text = orig.getText()
         has_ref_list = (record.reflist is not None) and (len(record.reflist) > 0)
         if not has_ref_list:
-            orig_trans, is_fuzzy, is_ignore = self.tf.translate(orig_text)  # find the whole piece first to see if it's there
-            if is_ignore:
-                return
-
-            has_orig_tran = (orig_trans is not None) and (orig_trans != orig_text)
-            if has_orig_tran:
-                orig.translation = orig_trans
-                orig.translation_state = TranslationState.ACCEPTABLE
+            orig_trans, is_fuzzy, is_ignore = self.tf.translate(orig_text) # find the whole piece first to see if it's there
+            orig.setTranlation(orig_trans, is_fuzzy, is_ignore)
             return
 
         # translate the ref_list
         ref_type = orig.getRefType()
         ref_list: list = record.getRefList()
+        item: RefItem = None
         for item in reversed(ref_list):
             is_math = (ref_type == RefType.MATH)
             is_class = (ref_type == RefType.CLASS)
             is_sup = (ref_type == RefType.SUP)
             is_ignore = (is_math or is_class or is_sup)
             if is_ignore:
+                self.translateRefItem(None, TranslationState.ACCEPTABLE)
                 continue
 
             self.translateRefItem(item, ref_type)
 
     def translateRefList(self):
-        valid = (len(self) > 0)
-        if not valid:
-            return
 
-        # is_debug = ("Image sequences can use placeholder files" in self.msg)
-        # if is_debug:
-        #     dd("DEBUG")
-
+        tran_text = None
         has_ref = (len(self) > 0)
         if not has_ref:
-            trans, is_fuzzy = self.tf.translate(self.msg)
-            valid = (trans is not None)
-            if valid:
+            trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+            if trans:
                 if self.keep_original:
                     trans = cm.matchCase(self.msg, trans)
                     tran_text = f'{trans} -- {self.msg}'
                 else:
                     tran_text = trans
-            else:
-                tran = None
+            self.setTranslation(tran_text, is_fuzzy, is_ignore)
+        else:
+            for k, ref_item in reversed(list(self.items())):
+                self.translateRefRecord(ref_item)
 
-            tran_state = (TranslationState.FUZZY if is_fuzzy else TranslationState.ACCEPTABLE)
-            self.setTranslation(tran_text, state=tran_state)
-            return
-
-        for k, ref_item in reversed(list(self.items())):
-            self.translateRefRecord(ref_item)
-
-        tran = self.transferTranslation(self.msg)
-        has_tran = (tran is not None) and (len(tran) > 0)
-        if has_tran:
-            self.setTranslation(tran)
+            tran = self.transferTranslation(self.msg)
+            self.setTranslation(tran, False, False) # temporary acceptable, isFuzzy and isIgnore will show TRUE state
 
     def getListOfRefType(self, request_list_of_ref_type):
         ref_list=[]

@@ -18,6 +18,7 @@ import datetime
 from time import gmtime, strftime
 from pytz import timezone
 import math
+from collections import deque
 import re
 #from Levenshtein import distance
 from difflib import SequenceMatcher as SM
@@ -70,6 +71,75 @@ def readJSON(file_path):
 def writeJSON(file_path, data):
     with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
         json.dump(data, out_file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
+
+def getTextWithinBracket(
+        start_bracket:str,
+        end_bracket:str,
+        text:str,
+        is_include_bracket:bool =False,
+        replace_internal_start_bracket:str = None,
+        replace_internal_end_bracket:str = None
+    ) -> list:
+
+    is_same_brakets = (start_bracket == end_bracket)
+    if is_same_brakets:
+        print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
+              f'ERRORS might occurs!')
+
+    sentence_list = []
+
+    # 1. find positions of start bracket
+    if is_same_brakets:
+        p_txt = r'\%s' % start_bracket
+    else:
+        p_txt = r'\%s|\%s' % (start_bracket, end_bracket)
+
+    p = re.compile(p_txt, flags=re.I|re.M)
+
+    word_dict={}
+    m_list = p.finditer(text)
+    for m in m_list:
+        s = m.start()
+        e = m.end()
+        w = m.group(0)
+        entry = {(s, e): w}
+        word_dict.update(entry)
+
+    if not word_dict:
+        return sentence_list
+
+    q = deque()
+    for loc, bracket in word_dict.items():
+        s, e = loc
+        is_open = (bracket == start_bracket)
+        is_close = (bracket == end_bracket)
+        if is_open:
+            q.append(s)
+        if is_close:
+            if not q:
+                raise Exception(f'getTextWithinBracket(): Invalid close bracket at {s, e}')
+
+            last_s = q.pop()
+            ss = (last_s if is_include_bracket else last_s + 1)
+            ee = (e if is_include_bracket else e - 1)
+            txt_line = text[ss:ee]
+
+            # replace_internal_start_bracket:str = None,
+            # replace_internal_end_bracket:str = None
+            is_replace_internal_bracket = (replace_internal_start_bracket and (start_bracket in txt_line))
+            if is_replace_internal_bracket:
+                txt_line = txt_line.replace(start_bracket, replace_internal_start_bracket)
+
+            if is_same_brakets:
+                sentence_list.append(txt_line)
+                continue
+
+            is_replace_internal_bracket = (replace_internal_end_bracket and (end_bracket in txt_line))
+            if is_replace_internal_bracket:
+                txt_line = txt_line.replace(end_bracket, replace_internal_end_bracket)
+
+            sentence_list.append(txt_line)
+    return sentence_list
 
 def patternMatchAllAsDictNoDelay(pat, text):
     try:
@@ -3840,16 +3910,6 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # translating_po()
         test_cases()
 
-
-    def test_translate(self):
-        WORD_SPLIT = re.compile(r'[^\W]+')
-        tf = TranslationFinder()
-
-        # msg = "Style modules:"
-        msg = "View Layer '%s' not found in scene '%s'"
-        tran = tf.translate(msg)
-        print(f'{msg} => {tran}')
-
     def test_pattern_0001(self):
         msg = "RGBA byte"
         msg1 = ", RGB byte"
@@ -3859,6 +3919,2745 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         m = p.search(msg)
         print(m)
 
+
+    def test_insert_abbr(self):
+        dic_list = {
+            "per-bone": ":abbr:` ()`",
+            "per-curve": "",
+            "per-frame": "",
+            "per-hair": "",
+            "per-item": "",
+            "per-layer": "",
+            "per-light": "",
+            "per-name": "",
+            "per-object": "",
+            "per-path": "",
+            "per-pixel": "",
+            "per-point": "",
+            "per-shader": "",
+            "per-vertex": "",
+        }
+
+        # for k, v in dic_list.items():
+        #     v = f'`',
+        #     print(f'"{k}": ":abbr:` ({k})`",')
+
+        p = re.compile(r'\`+([^\`\<]+)\s\<[^\<\>]+\>\`[\_]?')
+        p = re.compile(r':[^\:]:+[\`]+([^\`\<\>]+)[\`]+[\_]*')
+        p = re.compile(r'\`([^\`]+?)\s\<[^\>]+\>\`[\_]') # `Wikipedia <https://en.wikipedia.org/wiki/XYZ_file_format>`__
+        p = re.compile(r'(\:\w+\:)?[\`]+([^\`]+)[\`]+[\_]*?') # :menuselection:`Select --> Mirror`
+
+        t = "Description of the XYZ file format: `Wikipedia <https://en.wikipedia.org/wiki/XYZ_file_format>`__ and `Open Babel <https://openbabel.org/docs/dev/FileFormats/XYZ_cartesian_coordinates_format.html>`__."
+        t = ":kbd:`Shift-Alt-L`"
+        t = ":math:`\\lvert q \\rvert = \\sqrt{X^2 + Y^2 + Z^2 + W^2}`"
+        t = '''
+            To interact with Blender, scripts can make use of the tightly integrated :abbr:`API (Application Programming Interface)`.
+            To understand this, look at Fig. :ref:`fig-rig-bone-select-deselect`. 
+            With this script you'll notice we're doing some math with the object location and cursor, 
+            `Wikipedia <https://en.wikipedia.org/wiki/XYZ_file_format>`__ and 
+            `Open Babel <https://openbabel.org/docs/dev/FileFormats/XYZ_cartesian_coordinates_format.html>`__.
+            this works because both are 3D :class:`blender_api:mathutils.Vector` instances, a convenient 
+            class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied 
+            by numbers and matrices.
+            :menuselection:`Pose --> Motion Paths`    
+            :kbd:`Ctrl-I`
+            ``MajorRadius``, ``MinorRadius``
+            :doc:`Display panel page </animation/armatures/properties/display>`
+        '''
+        # m = p.findall(t)
+        # print(m)
+
+        t = '''node editor --> Sidebar --> Trees
+--> (Deform, ...)
+Add --> Remove Meta-Strips
+Face --> Intersect (Boolean)
+File --> Import/Export --> Stl (.stl)
+'''
+        # print(t)
+        #
+        # p_sep = '$$'
+        # p = re.compile(r'(\s?[\-]{2}\>\s)')
+        #
+        # # m = p.search(t)
+        # # print(m)
+        # # m = p.findall(t)
+        # # print(m)
+        #
+        # # this is the simplest solution
+        # word_list = t.split('--> ')
+        # print(word_list)
+
+        # p_sep = '$$'
+        # # p = re.compile(r'\s?[\-]{2}\>\s?')
+        # p = re.compile(r'(\w)|(\w\-\w)')
+        # tt = t.split('\n')
+        # t = p_sep.join(tt)
+        # print(t)
+        # m = p.findall(t)
+        # print(m)
+        # no_sep = p.sub(p_sep, t)
+        # word_list = no_sep.split(p_sep)
+        # m = p.findall(t)
+        # print(word_list)
+
+        t = '''Pixel <Pixel>
+Focal Length <Focal Length>
+Fireflies
+IOR
+'''
+        # p = re.compile(r'(<[^<>]+>)')
+        # word_list = cm.findInvertSimple(p, t)
+        # print(word_list)
+
+        # p = re.compile(r'([^\<\>]+)')
+        # p = re.compile(r'(?!\<*\>).*')
+        # p = re.compile(r'(?P<words>[^<>\n]+)(?!\s<.*>\s)?')
+        # p = re.compile(r'([^<>\n]+)\s?(?:<.*>)?', flags=re.M)
+        # m = p.findall(t)
+        # print(m)
+        # print(m.group('words'))
+        # p = re.compile(r'(\<?[^\<\>]+\>?)')
+        # print(t)
+        # m = p.finditer(t)
+        # for i in m:
+        #     print(i)
+#         # re.compile( r"(?P<quote>['\"])(?P<string>.*?)(?<!\\)(?P=quote)")
+#         # menu_p = re.compile(r'(?P<menu_sep>\s?-->\s?)?(?P<string>[^\`]+)((?P=menu_sep)(?P=string))*')
+#         # menu_p = re.compile(r'(?P<menu_sep>\s?-->\s?)?(?P<string>[^\`]+)((?P=menu_sep)(?P=string))*?')
+#         print(t)
+#         # menu_p = re.compile(r'((?!\-\-\>).)*', flags=re.M)
+#         # menu_p = re.compile(r'(\s?[\-]{2}\>\s?)', flags=re.MULTILINE)
+#         # temp_str = menu_p.sub('$$', t)
+#         # word_list = temp_str.split('$$')
+#         # print(word_list)
+#
+#         term_p = re.compile(r'(?P<string>[^\`]+)\s\<(?P=string)\>')
+#         m = term_p.findall(t)
+#         print(m)
+        long_t = '''
+ -- Links to an entry in the :doc:
+!=
+\"
+\"Agent\"
+\"You have to select a string of connected vertices too\"
+\"auto\" <curve-handle-type-auto>
+\"fr\": \"Fran&ccedil;ais\",
+\"fr\": \"Français\"
+#
+####
+#blender-coders
+#blender-coders <https://blender.chat/channel/blender-coders>
+#cos(frame)
+#declare
+#docs
+#docs <https://blender.chat/channel/docs>
+#fmod(frame, 24) / 24
+#frame
+#frame / 20.0
+#include
+#python <https://blender.chat/channel/python>
+#sin(frame)
+#today <https://blender.chat/channel/today>
+$XDG_CONFIG_HOME
+'
+'locale' is not under version control
+(
+(Crepuscular Rays) <https://en.wikipedia.org/wiki/Crepuscular_rays>
+(De)select First/Last
+(LW)POLYGON
+(LW)POLYLINE
+(X)
+(origin, vertex_coordinates)
+(sin( )*4)
+*
+**
+*-0001.jpg
+*-0002.jpg
+*-0003.jpg
+*.avi
+*.blend
+*.blend1
+*.blend2
+*.jpg
+*.png
+*Mirror*
++
++<frame>
++C
++WT
++WT2
++q1
++q11
+,
+,.?!:;
+-
+--
+--addons
+--app-template
+--background
+--cycles-device CPU
+--cycles-print-stats
+--debug
+--debug-all
+--debug-cycles
+--debug-depsgraph
+--debug-depsgraph-build
+--debug-depsgraph-eval
+--debug-depsgraph-no-threads
+--debug-depsgraph-pretty
+--debug-depsgraph-tag
+--debug-depsgraph-time
+--debug-depsgraph-uuid
+--debug-events
+--debug-exit-on-error
+--debug-ffmpeg
+--debug-fpe
+--debug-freestyle
+--debug-ghost
+--debug-gpu
+--debug-gpu-force-workarounds
+--debug-gpu-shaders
+--debug-gpumem
+--debug-handlers
+--debug-io
+--debug-jobs
+--debug-libmv
+--debug-memory
+--debug-python
+--debug-value
+--debug-wm
+--debug-xr
+--debug-xr-time
+--disable-abort-handler
+--disable-autoexec
+--disable-crash-handler
+--enable-autoexec
+--enable-event-simulate
+--engine
+--env-system-datafiles
+--env-system-python
+--env-system-scripts
+--factory-startup
+--factory-startup --debug-all
+--frame-end
+--frame-jump
+--frame-start
+--help
+--log
+--log \"*,^wm.operator.*\"
+--log \"wm.*\"
+--log-file
+--log-level
+--log-show-backtrace
+--log-show-basename
+--log-show-timestamp
+--no-native-pixels
+--no-window-focus
+--python
+--python-console
+--python-exit-code
+--python-expr
+--python-text
+--python-use-system-env
+--render-anim
+--render-format
+--render-frame
+--render-frame 1
+--render-output
+--scene
+--start-console
+--threads
+--use-extension
+--verbose
+--version
+--window-border
+--window-fullscreen
+--window-geometry
+--window-maximized
+-<frame>
+-D
+-E
+-E CYCLES
+-E help
+-F
+-F OPEN_EXR
+-M
+-P
+-R
+-S
+-W
+-Y
+-a
+-b
+-ba
+-con
+-d
+-e
+-f
+-f -2
+-f 10
+-h
+-j
+-m
+-m \"message\"
+-noaudio
+-o
+-o /project/renders/frame_#####
+-p
+-r
+-s
+-s 10 -e 500
+-setaudio
+-t
+-t 2
+-v
+-w
+-x
+-y
+.
+.*
+.*rabbit.*
+..
+...
+... is not a valid Win32 application.
+...@bone_name
+./Blender.app/Contents/MacOS/Blender
+./autosave/ ...
+./config/ ...
+./config/bookmarks.txt
+./config/recent-files.txt
+./config/startup.blend
+./config/userpref.blend
+./config/{APP_TEMPLATE_ID}/startup.blend
+./config/{APP_TEMPLATE_ID}/userpref.blend
+./datafiles/ ...
+./datafiles/locale/{language}/
+./python/ ...
+./resources/theme/js/version_switch.js
+./scripts/ ...
+./scripts/addons/*.py
+./scripts/addons/modules/*.py
+./scripts/addons_contrib/*.py
+./scripts/addons_contrib/modules/*.py
+./scripts/modules/*.py
+./scripts/presets/interface_theme/
+./scripts/presets/{preset}/*.py
+./scripts/startup/*.py
+./scripts/templates_osl/*.osl
+./scripts/templates_py/*.py
+.001
+.MTL
+.app
+.avi
+.bashrc
+.bat
+.bin
+.blend
+.blend1
+.blend2
+.bmp
+.btx
+.bw
+.cin
+.dae
+.dpx
+.dv
+.dvd
+.eps
+.exr
+.flv
+.gif
+.glb
+.gltf
+.hdr
+.html
+.inc
+.j2c
+.jp2
+.jpeg
+.jpg
+.mdd
+.mkv
+.mov
+.mp4
+.mpeg
+.mpg
+.ogg
+.ogv
+.osl
+.oso
+.pc2
+.pdb
+.png
+.po
+.py
+.pyd
+.rgb
+.rst
+.sab
+.sat
+.sgi
+.sh
+.so
+.srt
+.svg
+.svn
+.tga
+.tif
+.tiff
+.uni
+.vdb
+.velocities
+.vob
+.webm
+.xxxx
+.xyz
+.zip
+/
+//
+//render/my-anim-
+//render_
+//render_####
+//render_0001.png
+/?
+/EXIT
+/branches
+/fr
+/tmp
+/tmp/
+/usr/lib/X11/fonts
+/usr/lib/fonts
+/usr/local
+/usr/local/cuda/include/host_config.h
+/usr/local/share
+/usr/share/local
+0
+0 +
+0 + (cos(frame / 8) * 4)
+0 + (sin(frame / 8) * 4)
+0.1
+0.8
+0001.jpg
+1
+1.0
+10
+10/5+4
+1000
+1000x500
+1001
+1002
+1010
+1011
+10km
+16
+16:9
+1:1
+1cm
+1m 3mm
+1m, 3mm
+2
+2 /
+2 / Width
+2.285m
+2.2mm + 5' / 3\" - 2yards
+2.30 <https://archive.blender.org/development/release-logs/blender-230/>
+2.31 <https://archive.blender.org/development/release-logs/blender-231/>
+2.32 <https://archive.blender.org/development/release-logs/blender-232/>
+2.33 <https://archive.blender.org/development/release-logs/blender-233/>
+2.34 <https://archive.blender.org/development/release-logs/blender-234/>
+2.35 <https://archive.blender.org/development/release-logs/blender-235a/>
+2.36 <https://archive.blender.org/development/release-logs/blender-236/>
+2.37 <https://archive.blender.org/development/release-logs/blender-237a/>
+2.40 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.40>
+2.41 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.41>
+2.42 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.42>
+2.43 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.43>
+2.44 <https://archive.blender.org/development/release-logs/blender-244/index.html>
+2.45 <https://archive.blender.org/development/release-logs/blender-245/index.html>
+2.46 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.46>
+2.47 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.47>
+2.48 <https://archive.blender.org/development/release-logs/blender-248/index.html>
+2.49 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.49>
+2.5x <https://www.blender.org/download/releases/#25-series-2009-2011>
+2.60 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.60>
+2.61 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.61>
+2.62 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.62>
+2.63 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.63>
+2.64 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.64>
+2.65 <https://archive.blender.org/wiki/index.php/Dev:Ref/Release_Notes/2.65>
+2.66 <https://www.blender.org/download/releases/2-66>
+2.67 <https://www.blender.org/download/releases/2-67>
+2.68 <https://www.blender.org/download/releases/2-68>
+2.69 <https://www.blender.org/download/releases/2-69>
+2.70 <https://www.blender.org/download/releases/2-70>
+2.71 <https://www.blender.org/download/releases/2-71>
+2.72 <https://www.blender.org/download/releases/2-72>
+2.73 <https://www.blender.org/download/releases/2-73/>
+2.74 <https://www.blender.org/download/releases/2-74/>
+2.75 <https://www.blender.org/download/releases/2-75/>
+2.76 <https://www.blender.org/download/releases/2-76/>
+2.77 <https://www.blender.org/download/releases/2-77/>
+2.78 <https://www.blender.org/download/releases/2-78/>
+2.79 <https://www.blender.org/download/releases/2-79/>
+2.80 <https://www.blender.org/download/releases/2-80>
+2.81 <https://www.blender.org/download/releases/2-81/>
+2.82 <https://www.blender.org/download/releases/2-82/>
+2.83 <https://www.blender.org/download/releases/2-83/>
+20 /
+210-group
+21:9
+23cm
+256×256
+2D Cursor <graph_editor-2d-cursor>
+2ft
+2m 28.5cm
+3*2
+3001
+3D cursor <editors-3dview-3d_cursor>
+3DFACE
+3DSOLID
+3dview-fly-walk
+3dview-multi-object-mode
+3dview-nav-zoom-region
+3ft/0.5km
+4 / Narrowness
+43756265
+43756265_xxxxxx_yy.bphys
+47
+4:3
+5 × 60 × 30 = 9000
+500
+6
+7200.jpg
+9000 / 1.25 = 7200 = 5 × 60 × 24
+:
+::::
+:abbr:
+:kbd:
+:linenos:
+:menuselection:
+:term:
+<
+<-->
+<->
+<=
+<Matrix>
+<addon(s)>
+<bool>
+<code>
+<engine>
+<expression>
+<extra>
+<file(s)>
+<filename>
+<format>
+<fps-base>
+<fps>
+<frame>
+<frames>
+<h>
+<instance_node>
+<level>
+<lines>
+<match>
+<name>
+<node>
+<options>
+<path of original footage>/BL_proxy/<clip name>
+<path>
+<polylist>
+<sx>
+<sy>
+<template>
+<threads>
+<value>
+<verbose>
+<vertices>
+<w>
+==
+>
+>=
+>>>
+@
+@CTRL
+@DEF
+@MCH
+A
+A detailed guide <https://www.miikahweb.com/en/articles/dynamic-paint-guide>
+A step-by step introduction <https://www.miikahweb.com/en/articles/blender-dynamicpaint-basics>
+AAC <https://en.wikipedia.org/wiki/Advanced_Audio_Coding>
+AC3 <https://en.wikipedia.org/wiki/Dolby_Digital>
+ACES <https://www.oscars.org/science-technology/sci-tech-projects/aces>
+ACES configuration <https://opencolorio.readthedocs.io/en/latest/configurations/_index.html>
+ACIS
+AMD Drivers and Support Website <https://www.amd.com/en/support>
+AMD website <https://www.amd.com/en/support>
+API Introduction <https://docs.blender.org/api/current/info_quickstart.html>
+API documentation <https://docs.blender.org/api/blender_python_api_current/info_quickstart.html#custom-properties>
+API documentation <https://docs.blender.org/api/current/info_overview.html#registration>
+ARC
+ASE <https://wiki.fysik.dtu.dk/ase/>
+AUTO
+AVI
+AVI <https://en.wikipedia.org/wiki/Audio_Video_Interleave>
+AVIJPEG
+AVIRAW
+Accent Characters
+Accuracy
+Action <bpy.types.Action>
+Action <dopesheet-action-action>
+Action or NLA Editor <actions-workflow>
+Adaptive Sampling
+Add Hook <bpy.ops.object.hook_add_selob>
+Add-ons project <https://developer.blender.org/project/profile/3/>
+Adding Text
+Adding/Removing Layers
+Adjust Last Operation <ui-undo-redo-adjust-last-operation>
+Advanced Brush Settings <sculpt-tool-settings-brush-settings-advanced>
+Advanced Rig Generation
+Aim
+Alembic home page <https://www.alembic.io/>
+Aligned Inherit Scale <bone-relations-inherit-settings>
+Animating Cameras <bpy.ops.marker.camera_bind>
+Animation <grease-pencil-animation-tools-interpolation>
+Animation <https://vimeo.com/1865817>
+Animation <https://vimeo.com/1866538>
+Animation Player <render-output-animation_player>
+Animation player <prefs-file_paths-animation_player>
+Animation player <render-output-animation_player>
+Annotate <tool-annotate>
+Anti-Aliasing Threshold <bpy.types.SceneGpencil.antialias_threshold>
+Antialias_Threshold=n.n
+Apply <bpy.ops.object.transform_apply>
+Applying <bpy.ops.object.transform_apply>
+Arc <tool-grease-pencil-draw-arc>
+Arccosine <https://en.wikipedia.org/wiki/Inverse_trigonometric_functions>
+Arcsine <https://en.wikipedia.org/wiki/Inverse_trigonometric_functions>
+Arctangent <https://en.wikipedia.org/wiki/Inverse_trigonometric_functions>
+Armature Layers <bpy.types.Armature.layers>
+Armature Modifier <bpy.types.ArmatureModifier>
+Armatures <armatures-index>
+Ask Us Anything! <https://wiki.blender.org/wiki/Reference/AskUsAnything>
+Atomic Blender Utilities panel
+Attributes
+Audio Output <render-output-video-encoding-audio>
+Audio Panel <data-scenes-audio>
+Audio Preferences <prefs-system-sound>
+Auto Completion
+Auto Depth <prefs-auto-depth>
+Auto Face Map Widgets add-on <https://developer.blender.org/diffusion/BAC/browse/master/object_facemap_auto/>
+Auto Handle Smoothing <graph_editor-auto-handle-smoothing>
+Auto IK
+Auto Normalize <weight-painting-auto-normalize>
+Auto Run Python Scripts <prefs-auto-execution>
+Auto Save <troubleshooting-file-recovery>
+Auto Save Preferences <prefs-auto-save>
+Auto Saves <troubleshooting-file-recovery>
+Auto Smooth <auto-smooth>
+Auto-Keyframing <animation-editors-timeline-autokeyframe>
+Auto-Offset. A workflow enhancement for Blender's node editors <https://vimeo.com/135125839>
+Auto-Perspective Preference <prefs-interface-auto-perspective>
+BEZIER
+BLENDER_SYSTEM_DATAFILES
+BLENDER_SYSTEM_PYTHON
+BLENDER_SYSTEM_SCRIPTS
+BLOCK
+BMP
+BODY
+Background Set <scene-background-set>
+Bake <physics-bake>
+Barcelona Pavilion <https://en.wikipedia.org/wiki/Barcelona_Pavilion>
+Batch Rename tool <bpy.ops.wm.batch_rename>
+Beer-Lambert law <https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law#Expression_with_attenuation_coefficient>
+Bendy Bones <bendy-bones>
+Best practices for attribution <https://wiki.creativecommons.org/wiki/Marking/Users>
+Bevel <bpy.types.Curve.bevel>
+Bevel <tool-mesh-bevel>
+Bevel Depth <bpy.types.Curve.bevel_depth>
+Bevel Resolution <bpy.types.Curve.bevel_resolution>
+Bevel Weights <bpy.ops.transform.edge_bevelweight>
+Bisect <tool-mesh-bisect>
+Blade <tool-blade>
+Blend Modes <bpy.types.Material.blend_method>
+Blend Modes <https://docs.gimp.org/en/gimp-concepts-layer-modes.html>
+Blend-file available here <https://wiki.blender.org/uploads/5/51/Derotest.blend>
+Blender 2.78 <https://www.blender.org/download/releases/2-78>
+Blender <https://www.blender.org>
+Blender API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>
+Blender API Quickstart <https://docs.blender.org/api/blender_python_api_current/info_quickstart.html>
+Blender Artists <https://blenderartists.org/>
+Blender Artists forum <https://blenderartists.org/t/1197801>
+Blender Artists: Python Support Forum <https://blenderartists.org/c/coding/python-support>
+Blender Cloud <https://cloud.blender.org/>
+Blender Cloud add-on <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/System/BlenderCloud/>
+Blender Development (Wiki) <https://wiki.blender.org>
+Blender FAQ <https://www.blender.org/support/faq/>
+Blender Hair Basics <https://www.youtube.com/watch?v=kpLaxqemFU0>
+Blender ID <https://id.blender.org/>
+Blender ID <https://id.blender.org>
+Blender ID site <https://id.blender.org/>
+Blender License <https://www.blender.org/about/license/>
+Blender Open Data <https://opendata.blender.org/>
+Blender Publisher <https://download.blender.org/release/Publisher2.25/>
+Blender Python API <https://docs.blender.org/api/current/>
+Blender Versions
+Blender Wiki <https://wiki.blender.org/wiki/Process/Addons/Rigify>
+Blender translation howto <https://wiki.blender.org/wiki/Dev:Doc/How_to/Translate_Blender>
+Blender website <https://www.blender.org/download/>
+Blender's API documentation <https://docs.blender.org/api/current/>
+Blender.app
+Blender/Python API Overview <https://docs.blender.org/api/blender_python_api_current/info_overview.html>
+Blending <bpy.types.AnimData.action_blend_type>
+Blending Mode <bpy.types.Material.blend_method>
+Blosc
+Bone Envelopes <armature-bones-envelope>
+Bounding Volume Hierarchy <https://en.wikipedia.org/wiki/Bounding_volume_hierarchy>
+Bounds <bpy.types.Object.show_bounds>
+Box <tool-grease-pencil-draw-box>
+Box Select <tool-select-box>
+Bridge Edge Loops <modeling-meshes-editing-bridge-edge-loops>
+Brush <grease-pencil-draw-brushes>
+Brush Display <sculpt-paint-brush-display>
+Brushes panel <grease-pencil-draw-common-options>
+Bug report T34665 <https://developer.blender.org/T34665>
+Build from Source <https://wiki.blender.org/wiki/Building_Blender>
+Bézier
+Bézier Handles <editors-graph-fcurves-settings-handles>
+Bézier curves <curve-bezier-handle-type>
+Bézier curves <curve-bezier>
+C
+C:\\blender_docs
+C:\\blender_docs\\build\\html
+CG Cookie: Blender 2.8 Python Scripting Superpowers for Non-Programmers <https://cgcookie.com/articles/blender-2-8-python-scripting-superpowers-for-non-programmers>
+CINEON
+CIRCLE
+COLOR
+COM
+CPU
+CTRL
+CUBE.001
+CUDA
+CUDA+CPU
+CYCLES_CUDA_EXTRA_CFLAGS
+Cache Settings
+Calculate To Frame <calc-physics-bake-to-frame>
+Camera Parent Lock <prefs-camera-parent-lock>
+Carve library <https://code.google.com/archive/p/carve/>
+Catmull-Clark <https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface>
+Catmull-Clark subdivision surface <https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface>
+Caustics <https://en.wikipedia.org/wiki/Caustic_(optics)>
+Certified Trainers <https://www.blender.org/certification/>
+Cessen's Rigify Extensions <https://github.com/cessen/cessen_rigify_ext>
+ChainPredicateIterator
+ChainSilhouetteIterator
+Chains of Bones
+Channels Region
+Chebychev distance metric <https://en.wikipedia.org/wiki/Chebyshev_distance>
+Checker Deselect
+Checker Deselect <bpy.ops.mesh.select_nth>
+Child Of <bpy.types.ChildOfConstraint>
+Cineon & DPX
+Circle <tool-grease-pencil-draw-circle>
+Circle Select <tool-select-circle>
+Clamp setting <render-cycles-integrator-clamp-samples>
+Clear <bpy.ops.object.*clear>
+Clear Parent Inverse <bpy.ops.object.parent_clear>
+Clear Sculpt-Mask Data
+Clip Display <clip-editor-clip-display-label>
+Cloth flag with wind and self-collisions <https://wiki.blender.org/wiki/File:Cloth-flag2.blend>
+Cloth self-collisions <https://wiki.blender.org/wiki/File:Cloth-regression-selfcollisions.blend>
+Collada Importer
+Collections in the Outliner <editors-outliner-editing-collections>
+Color <grease-pencil-draw-color>
+Color Palette <ui-color-palette>
+Color management <render-post-color-management>
+Command Line Launching <command_line-launch-index>
+Common
+Common Image Settings <editors-image-image-settings-common>
+Common Object Options <object-common-options>
+Common Options <spline-common-options>
+Common Settings section <force-field-common-settings>
+Communicating <contribute-contact>
+Compress file <files-blend-compress>
+Constraints <constraints-index>
+Contacts
+Containers <files-video-containers>
+Contribute to this Manual <about-user-contribute>
+Control Points
+Convex and concave polygons <https://en.wikipedia.org/wiki/Convex_and_concave_polygons>
+Copy As New Driver <drivers-copy-as-new>
+Cosine <https://en.wikipedia.org/wiki/Trigonometric_functions>
+Crease <modeling-edges-crease-subdivision>
+Create Face <modeling-mesh-make-face-edge-dissolve>
+Creating Add-ons <https://wiki.blender.org/wiki/Process/Addons/Guidelines>
+Creative Commons Attribution-ShareAlike 4.0 International License <https://creativecommons.org/licenses/by-sa/4.0/>
+Cross
+Ctrl Shift C
+Cube
+Cube.001
+Cube.location.x
+Curve <tool-grease-pencil-draw-curve>
+Curve Edit Mode <curve-toolbar-index>
+Curve widget <ui-curve-widget>
+Custom Orientations
+Custom Properties
+Custom Properties <files-data_blocks-custom-properties>
+Custom Split Normals of Meshes
+Custom Weight Paint Range <prefs-system-weight>
+Custom data file <https://development.root-1.de/X-Download/atom_info.dat>
+Cutter <tool-grease-pencil-draw-cutter>
+Cycle-Aware Keying <timeline-keying>
+Cycles website <https://www.cycles-renderer.org/>
+D
+D. -3.0000 (3.0000) Global
+DDS
+DEF
+DEF-
+DNxHD <https://en.wikipedia.org/wiki/Avid_DNxHD>
+DOI 10.1111/j.1467-8659.2010.01805.x <https://doi.org/10.1111/j.1467-8659.2010.01805.x>
+DPX
+DV <https://en.wikipedia.org/wiki/DV>
+DWAA
+Daily Builds <https://builder.blender.org/download>
+Dashed Line
+Data ID <ui-data-id>
+Data ID menu <ui-data-id>
+Data-Block <ui-data-block>
+Data-Block Menu <ui-data-block>
+Data-Block menu <ui-data-block>
+Data-block menu <ui-data-block>
+Debug Value <bpy.ops.wm.debug_menu>
+Defocus node <bpy.types.CompositorNodeDefocus>
+Delete
+Delta Transform <bpy.types.Object.delta>
+Delta Transformations <bpy.types.Object.delta>
+Demo and benchmark files <https://www.blender.org/download/demo-files/>
+Demonstration video <https://www.youtube.com/watch?v=GTlmmd13J1w>
+DensityUP1D
+Depth Troubleshooting <troubleshooting-depth>
+DevTalk <https://devtalk.blender.org/tag/python>
+Developer Community <https://devtalk.blender.org>
+Developer Extras <prefs-interface-dev-extras>
+Developer Preview <https://store.steampowered.com/newshub/app/250820/view/2396425843528787269>
+Devtalk <https://devtalk.blender.org/c/documentation/12>
+Differential Coordinates for Interactive Mesh Editing <https://igl.ethz.ch/projects/Laplacian-mesh-processing/Laplacian-mesh-editing/diffcoords-editing.pdf>
+Diffusion <https://developer.blender.org/diffusion/BM/>
+Directory Layout <blender-directory-layout>
+Displace modifier <bpy.types.DisplaceModifier>
+Display <sculpt-paint-brush-display>
+Display Mode
+Dissolve Vertices
+Dissolved <bpy.ops.mesh.dissolve>
+Distributed Memory Across Devices <prefs-system-cycles-distributive-memory>
+Dive Into Python <http://getpython3.com/diveintopython3/index.html>
+Docutils reStructuredText Reference <https://docutils.sourceforge.io/rst.html>
+DoubleSided
+Download Latest AMD Drivers <https://www.amd.com/en/support>
+Download Latest Intel Drivers <https://downloadcenter.intel.com/product/80939/Graphics-Drivers>
+Download Latest Nvidia Drivers <https://www.nvidia.com/Download/index.aspx>
+Download an example <https://wiki.blender.org/wiki/File:Uvproject.blend>
+Download example file <https://wiki.blender.org/wiki/File:25-Manual-Modifiers-example.blend>
+Download the full manual (zipped HTML files) <blender_manual.zip>
+Downloading the Repository
+Draw <bpy.ops.curve.draw>
+Draw <tool-grease-pencil-draw-draw>
+Driver Variables
+Driver Variables <drivers-variables-rotation-modes>
+Drivers <animation-drivers-index>
+Duplicating <modeling_surface_editing_duplicating>
+Dynamic_1
+Dyntopo <bpy.types.Brush.topology_rake_factor>
+E
+ELLIPSE
+EPS
+EXR
+Edge Creases <bpy.ops.transform.edge_crease>
+Edge Creases <modifiers-generate-subsurf-creases>
+Edge Loop Selection <bpy.ops.mesh.loop_multi_select>
+Edge Loops <bpy.ops.mesh.loop_multi_select>
+Edge Marks
+Edge Rings <modeling-meshes-selecting-edge-rings>
+Edge Slide <tool-mesh-edge_slide>
+Edge Slide tool <modeling-meshes-editing-edge-slide>
+Edge bevel weight <modeling-edges-bevel-weight>
+Edit Mode <modeling-meshes-editing-vertices-shape-keys>
+Edit Texture Space <modeling_transform_edit-texture-space>
+Editing
+Editing Armatures: Naming conventions <armature-editing-naming-conventions>
+Editing Markers <animation-markers-editing>
+Enable SteamVR beta updates <https://www.vive.com/us/support/vive/category_howto/optin-to-steamvr-beta.html>
+Encoding Panel <render-output-video-encoding-panel>
+Envelope Multiply <armature-bones-envelope>
+Eoan, Focal <https://launchpad.net/~monado-xr/+archive/ubuntu/monado>
+Erase <tool-grease-pencil-draw-erase>
+Euclidean distance metric <https://en.wikipedia.org/wiki/Euclidean_distance>
+Euler's number <https://en.wikipedia.org/wiki/E_(mathematical_constant)>
+Euler(...)
+Example blend-file <https://en.blender.org/uploads/0/03/Blender2.65_motion_blur.blend>
+Example blend-file <https://en.blender.org/uploads/b/b7/Blender2.65_cycles_anisotropic.blend>
+Examples
+Expand/Contract Selection
+Experimental Feature Set <cycles-experimental-features>
+Experimental Rigs by Alexander Gavrilov <https://github.com/angavrilov/angavrilov-rigs>
+Expressions
+Extending Blender with Python <scripting-index>
+Extrapolation <bpy.types.AnimData.action_extrapolation>
+Extrapolation <editors-graph-fcurves-settings-extrapolation>
+Extrude <modeling-curves-extrude>
+Extrude Individual <tool-mesh-extrude_individual>
+Extrude Region <tool-mesh-extrude_region>
+Extrude To Cursor <tool-mesh-extrude_cursor>
+Eyedropper <tool-grease-pencil-draw-eyedropper>
+F-curve Extrapolation <editors-graph-fcurves-settings-extrapolation>
+FC0
+FFCC00
+FFmpeg -b:v <https://ffmpeg.org/ffmpeg.html#Description>
+FFmpeg video codec #1 <https://en.wikipedia.org/wiki/FFV1>
+FLAC <https://en.wikipedia.org/wiki/FLAC>
+FS_floral_brush.png
+Face Loop Selection <modeling-meshes-selecting-face-loops>
+Face Loops <modeling-meshes-selecting-face-loops>
+Face Map <bpy.types.FaceMaps>
+Face Selection Masking <bpy.types.Mesh.use_paint_mask>
+Face Set <sculpting-editing-facesets>
+Face Sets <sculpting-editing-facesets>
+Face-Map <bpy.types.FaceMaps>
+False
+Features reference <https://www.gdquest.com/docs/power-sequencer/reference/>
+Femto-ST institute <https://www.femto-st.fr/en>
+File Format Variations
+File.py
+File:AtvBuggy.zip <https://wiki.blender.org/wiki/File:AtvBuggy.zip>
+File:M-130Blueprint.zip <https://wiki.blender.org/wiki/File:M-130Blueprint.zip>
+File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>
+File:Mato_sus304_cut02.zip <https://wiki.blender.org/wiki/File:Mato_sus304_cut02.zip>
+File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend <https://wiki.blender.org/wiki/File:Parent_-_Object_(Keep_Transform)_(Demo_File).blend>
+Fill <modeling-meshes-editing-fill>
+Fill <tool-grease-pencil-draw-fill>
+Filter
+Filter Glossy <render-cycles-integrator-filter-glossy>
+Final <bpy.types.FluidDomainSettings.cache_type>
+Flash <https://en.wikipedia.org/wiki/Flash_Video>
+Flash Video <https://en.wikipedia.org/wiki/Flash_Video>
+Flow Object <bpy.types.FluidFlowSettings.flow_type>
+Fly/Walk Navigation <3dview-fly-walk>
+Fly/walk Navigation <3dview-fly-walk>
+Follow Path <curve-path-animation>
+Fraction <https://en.wikipedia.org/wiki/Rational_function>
+Frame Overlay <bpy.types.SequenceEditor.show_overlay>
+Free Bake <free-physics-bake>
+Freestyle Face Marks <bpy.ops.mesh.mark_freestyle_face>
+Freestyle Renders <bpy.types.Freestyle>
+From Instancer <cycles-nodes-input-texture-coordinate-from-instancer>
+G.debug_value
+GNU GPL <https://www.gnu.org/licenses/gpl.html>
+GNU GPL License <https://www.gnu.org/licenses/gpl.html>
+GNU General Public License <http://www.gnu.org/licenses/gpl.html>
+GNU Project website <https://www.gnu.org/licenses/licenses.html#GPL>
+GROUPS
+Gamma correction <https://en.wikipedia.org/wiki/Gamma_correction>
+Ge2Kwy5EGE0
+Generated
+Generated Image <image-generated>
+Generated UV Properties <properties-texture-space>
+Generated UVs <properties-texture-space>
+Geometry Mapping
+Get Involved <https://www.blender.org/get-involved/>
+Getting Started <about-getting-started>
+Getting Started Guide for OpenXR <https://docs.microsoft.com/en-us/windows/mixed-reality/openxr-getting-started>
+Getting Started Guides <https://gitlab.freedesktop.org/monado/monado/-/blob/master/README.md>
+Getting started <https://www.gdquest.com/docs/power-sequencer/getting-started/>
+Gimbal <https://en.wikipedia.org/wiki/Gimbal>
+Gimbal lock <https://blender.stackexchange.com/questions/469>
+Gimbal lock <https://en.wikipedia.org/wiki/Gimbal_lock>
+Github repository <https://github.com/ChrisHinde/MaterialUtilities/blob/master/README.md>
+Github repository <https://github.com/nutti/Magic-UV/wiki>
+Gizmo Preferences <prefs-viewport-gizmo-size>
+Global/Local <modeling-mesh-transform-panel>
+Glossy Filter <render-cycles-integrator-filter-glossy>
+Goal Weight <curves-weight>
+Goal Weight <surface-goal-weight>
+GoodTextures.com <https://www.goodtextures.com/>
+Graphics Tablet <hardware-tablet>
+Grease Pencil Draw <gpencil_draw-toolbar-index>
+Grease Pencil Edit <gpencil_edit-toolbar-index>
+Grease Pencil Sculpting <gpencil_sculpt-toolbar-index>
+Grease Pencil Weight Paint <gpencil_weight_paint-toolbar-index>
+Grid Fill <modeling-meshes-editing-grid-fill>
+Group of Pictures <https://en.wikipedia.org/wiki/Group_of_pictures>
+H.264
+H.264 <https://en.wikipedia.org/wiki/H.264>
+HDR
+HDRI <https://en.wikipedia.org/wiki/HDRI>
+HELIX
+HH:MM:SS.FF
+HMD <hardware-head-mounted-displays>
+Hair Dynamics <hair-dynamics>
+Halos <particle-halo>
+Handle <editors-graph-fcurves-settings-handles>
+Handles & Interpolation Display <keyframe-handle-display>
+Harkyman on the development of the Maintain Volume constraint <http://www.harkyman.com/2010/03/16/maintaining-bone-volume-a-new-constraint/>
+Head-Mounted Displays (HMD) <hardware-head-mounted-displays>
+Heat Buoyancy <bpy.types.FluidDomainSettings.beta>
+Histogram
+Hold Offset <sequencer-duration-hard>
+Holdout Collections <bpy.ops.outliner.collection_holdout_set>
+Houdini Ocean Toolkit <https://code.google.com/archive/p/houdini-ocean-toolkit/>
+How to Think Like a Computer Scientist <http://interactivepython.org/courselib/static/thinkcspy/index.html>
+How to install it <translations-fuzzy-strings>
+HuffYUV <https://en.wikipedia.org/wiki/Huffyuv>
+Humane Rigging <https://www.youtube.com/playlist?list=PLE211C8C41F1AFBAB>
+Hyperbolic Cosine <https://en.wikipedia.org/wiki/Hyperbolic_functions>
+Hyperbolic Sine <https://en.wikipedia.org/wiki/Hyperbolic_functions>
+Hyperbolic Tangent <https://en.wikipedia.org/wiki/Hyperbolic_functions>
+ID
+IK Arm Example <https://wiki.blender.org/wiki/File:IK_Arm_Example.blend>
+IK bones <bone-constraints-inverse-kinematics>
+ILM's OpenEXR <https://www.openexr.com/>
+INSERT
+INSERT(ATTRIB+XDATA)
+IRIS
+IRIZ
+Image <bpy.types.Object.empty_image>
+Import PDB/XYZ
+Importance sampling <https://en.wikipedia.org/wiki/Importance_sampling>
+Increment Snap <transform-snap-element>
+Influence <bpy.types.constraint.influence>
+Initial Temperature <bpy.types.FluidFlowSettings.temperature>
+Inserting Text
+Inset Faces <tool-mesh-inset_faces>
+Install from Zip
+Install from blender.org
+Installing Dependencies
+Installing Python
+Installing SVN and Downloading the Repository
+Interface <prefs-interface-color-picker-type>
+Interface0D
+Interface1D
+Interpolation <editors-graph-fcurves-settings-interpolation>
+Interpolation Mode <editors-graph-fcurves-settings-interpolation>
+Invalid Selection, Disable Anti-Aliasing <troubleshooting-3dview-invalid-selection>
+Inverse Kinematics <bone-constraints-inverse-kinematics>
+Inverse Tangent <https://en.wikipedia.org/wiki/Inverse_trigonometric_functions>
+IvyGen program <http://graphics.uni-konstanz.de/~luft/ivy_generator/>
+JACK
+JP2
+JPEG
+Joining objects <object-join>
+Julien Deswaef <https://github.com/xuv>
+KHR_draco_mesh_compression
+KHR_lights_punctual
+KHR_materials_clearcoat
+KHR_materials_pbrSpecularGlossiness
+KHR_materials_transmission
+KHR_materials_unlit
+KHR_mesh_quantization
+KHR_texture_transform
+Keying popover <timeline-keying>
+Keymap Editor <prefs-input-keymap-editor>
+Knife <tool-mesh-knife>
+LAYER
+LAYER_frozen
+LAYER_locked
+LAYER_on
+LIGHT
+LINE
+LOCAL directory <blender-directory-layout>
+LOCAL, SYSTEM
+LOCAL, USER
+LOCAL, USER, SYSTEM
+LWPOLYLINE
+Laplacian Surface Editing (Original paper) <https://igl.ethz.ch/projects/Laplacian-mesh-processing/Laplacian-mesh-editing/laplacian-mesh-editing.pdf>
+Laplacian Surface Editing <https://igl.ethz.ch/projects/Laplacian-mesh-processing/Laplacian-mesh-editing/laplacian-mesh-editing.pdf>
+Latest Stable Release <https://www.blender.org/download/>
+Layers <bpy.types.Armature.layers>
+Learn More Here <https://docs.microsoft.com/en-us/windows-hardware/drivers/display/timeout-detection-and-recovery>
+Learn the benefits of right-click-select <https://vimeo.com/76335056>
+Length2DBP1D
+Life Time
+Light Paths <render-cycles-integrator-light-paths>
+Light Portals <render-cycles-lights-area-portals>
+Limitations
+Limitations <eevee-limitations-ao>
+Limitations <eevee-limitations-dof>
+Limitations <eevee-limitations-materials>
+Limitations <eevee-limitations-reflections>
+Limitations <eevee-limitations-shadows>
+Limitations <eevee-limitations-sss>
+Limitations <eevee-limitations-volumetrics>
+Line <tool-grease-pencil-draw-line>
+Link to publication <https://onlinelibrary.wiley.com/doi/abs/10.1002/ese3.174>
+Link to publication <https://pubs.acs.org/doi/abs/10.1021/jp501738c>
+Linking to a Scene <data-system-linked-libraries-make-link>
+List View <ui-list-view>
+List view <ui-list-view>
+Live Unwrap <bpy.types.SpaceUVEditor.use_live_unwrap>
+Live Unwrap <bpy.types.ToolSettings.use_edge_path_live_unwrap>
+Living Room
+Load UI <file-load-ui>
+Lock Camera to View <3dview-lock-camera-to-view>
+Lock Relative <weight-painting-auto-normalize>
+Loop Cut <tool-mesh-loop_cut>
+Loop Cut and Slide <bpy.ops.mesh.loopcut_slide>
+Loop Cut and Slide Options <modeling-meshes-editing-edge-loopcut-slide-options>
+M
+MCH
+MCH-
+MESH
+MP2 <https://en.wikipedia.org/wiki/MPEG-1_Audio_Layer_II>
+MP3 <https://en.wikipedia.org/wiki/MP3>
+MPEG
+MPEG H.264
+MPEG-1 <https://en.wikipedia.org/wiki/MPEG-1>
+MPEG-2 <https://en.wikipedia.org/wiki/MPEG-2>
+MPEG-4 <https://en.wikipedia.org/wiki/MPEG-4>
+MPEG-4(DivX) <https://en.wikipedia.org/wiki/MPEG-4>
+MTEXT
+Mailing List <https://lists.blender.org/mailman/listinfo/bf-docboard>
+Main View
+MajorControl
+MajorRadius
+Makefile
+Mango Open Movie <https://mango.blender.org/>
+Manhattan distance metric <https://en.wikipedia.org/wiki/Taxicab_geometry>
+Manual Index <genindex>
+Markers Menu
+Mask <dope-sheet-mask>
+Mask Feathers <mask-feather>
+Mask Mode <dope-sheet-mask>
+Masked <sculpt-mask-menu>
+Masked Geometry <sculpt-mask-menu>
+Masks <sculpt-mask-menu>
+MatCap <render-workbench-matcap>
+Material Preview <3dview-material-preview>
+Material Slot <material-slots>
+Math module reference <https://docs.python.org/3/library/math.html>
+Matrix(...)
+Matroska <https://en.wikipedia.org/wiki/Matroska>
+MaxGradient
+Measure <tool-measure>
+Menus <ui-header-menu>
+Mesh Display Viewport Overlays panel <mesh-display-normals>
+Mesh Edit Mode <mesh-toolbar-index>
+Mesh Smoothing <modeling-meshes-editing-normals-shading>
+Mesh Symmetry <modeling_meshes_tools-settings_mirror>
+MetaPlane
+MetaThing
+MetaThing.001
+MetaThing.round
+Metaball Edit Mode <meta-toolbar-index>
+Microsoft Store <https://www.microsoft.com/en-us/p/mixed-reality-portal/9ng1h8b3zc7m>
+Minkowski distance metric <https://en.wikipedia.org/wiki/Minkowski_distance>
+MinorControl
+MinorRadius
+Mirror Vertex Group <bpy.ops.object.vertex_group_mirror>
+Mirroring a Selection <fig-mesh-duplicating-mirror-selection>
+Mist section <render-cycles-integrator-world-mist>
+Modifiers Interface <bpy.types.Modifier.show>
+Modular <bpy.types.FluidDomainSettings.cache_type>
+Monado <https://monado.dev/>
+Movie
+Movie Clip Editor Proxy settings <clip-editor-proxy>
+Multi-Paint <weight-painting-auto-normalize>
+Multiple Selection Modes
+Multiplexing <https://www.afterdawn.com/glossary/term.cfm/multiplexing>
+MyCache_xxxxxx_yy.bphys
+N-poles & E-poles <https://blender.stackexchange.com/a/133676/55>
+NDOF device <hardware-ndof>
+NLA blending <bpy.types.AnimData.action_blend_type>
+NULL
+NUMBER
+NURBS
+NURBS <curve-nurbs>
+NURBS Curves <modeling-curve-order>
+NURBS Splines <curve-nurbs>
+NURBS curves <curve-nurbs>
+NVidia Website <https://www.nvidia.com/Download/index.aspx>
+Naming bones <armature-editing-naming-bones>
+Narrow Band FLIP for Liquid Simulations <https://www.in.tum.de/cg/research/publications/2016/narrow-band-flip-for-liquid-simulations/>
+Navigation Gizmo <navigation-gizmo>
+No Caustics <render-cycles-integrator-no-caustics>
+Nodes
+Non-Uniform Scale
+Normal <bpy.types.FluidFlowSettings.velocity_normal>
+Normal Mode
+Normal Properties <modeling_meshes_editing_normals_properties>
+Normalize All <bpy.ops.object.vertex_group_normalize_all>
+Normals <https://en.wikipedia.org/wiki/Normal_(geometry)>
+Normals <modeling-meshes-structure-normals>
+Not a valid font
+Notes section <shader-white-noise-notes>
+Nvidia CUDA Installation Guide for Linux <https://docs.nvidia.com/cuda/archive/10.2/cuda-installation-guide-linux/index.html>
+O
+OHA Studio <http://oha-studios.com/>
+OPENAL
+OPENCL
+OPENCL+CPU
+OPEN_EXR
+OPEN_EXR_MULTILAYER
+OPTIX
+ORG
+ORG-
+OSL specification <https://github.com/imageworks/OpenShadingLanguage/blob/master/src/doc/osl-languagespec.pdf>
+OSL-file <https://github.com/imageworks/OpenShadingLanguage>
+Object <movie-clip-tracking-properties-object>
+Object Color <bpy.types.Object.color>
+Object Modifiers <modifiers-index>
+Object Parent <object-parenting>
+Object Selector <ui-data-id>
+Objects <object-common-options>
+Occlusion
+Oculus <https://www.oculus.com/>
+Oculus Rift software <https://www.oculus.com/setup/>
+Offset Edge Loop Cut <bpy.ops.mesh.offset_edge_loops_slide>
+Ogg <https://en.wikipedia.org/wiki/Ogg>
+Ogg container <files-video-containers>
+Olav3D Tutorials: 3D Programming for Beginners Using Python <https://www.youtube.com/watch?v=rHzf3Dku_cE>
+Opacity <bpy.types.GPencilLayer.opacity>
+Open <files-blend-open>
+Open Babel <https://openbabel.org/docs/dev/FileFormats/XYZ_cartesian_coordinates_format.html>
+Open Content License <https://web.archive.org/web/19981206111937/http://www.opencontent.org/opl.shtml>
+Open Image Denoise <https://www.openimagedenoise.org/>
+Open Shading Language <https://github.com/imageworks/OpenShadingLanguage>
+OpenAL documentation <https://www.openal.org/documentation/>
+OpenColorIO <https://opencolorio.org/>
+OpenColorIO website <https://opencolorio.org/>
+OpenEXR
+OpenFootage.net <https://www.openfootage.net/?p=986>
+OpenGL <https://en.wikipedia.org/wiki/OpenGL>
+OpenSubdiv library <http://graphics.pixar.com/opensubdiv/docs/intro.html>
+OpenVDB <https://www.openvdb.org/>
+Operator
+Operator Preset <ui-presets>
+Operator Search <bpy.ops.wm.search_operator>
+Operators.bidirectional_chain()
+Operators.chain()
+Operators.chain(), Operators.bidirectional_chain()
+Operators.create()
+Operators.recursiveSplit()
+Operators.select()
+Operators.sequentialSplit()
+Operators.sequential_split(), Operators.recursive_split()
+Operators.sort()
+OptiX <render-cycles-gpu-optix>
+Opus <https://en.wikipedia.org/wiki/Opus_(audio_format)>
+Orbit <bpy.ops.view3d.view_orbit>
+Orbit Style Preference <prefs-input-orbit-style>
+Original paper <http://graphics.pixar.com/library/HarmonicCoordinatesB/>
+Origins <bpy.types.ToolSettings.use_transform_data_origin>
+Outliner <bpy.ops.outliner.orphans_purge>
+Outliner <editors-outliner-editing-collections>
+Overscan <https://en.wikipedia.org/wiki/Overscan>
+PATH
+PCM <https://en.wikipedia.org/wiki/PCM>
+PIP <https://pip.pypa.io/en/latest/installing/>
+PIZ
+PLANESURFACE
+PLAY
+PNG
+PNG <https://en.wikipedia.org/wiki/Portable_Network_Graphics>
+POINT
+POLYFACE
+POLYLINE
+POLYMESH
+POV-Ray Wiki <http://wiki.povray.org/content/Category:Command-Line_and_INI-File_Options>
+POV-Ray Wiki <http://wiki.povray.org/content/Documentation:Tutorial_Section_3.3#Gamma_Handling>
+POV-Ray Wiki <http://wiki.povray.org/content/HowTo:Use_radiosity>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Blob>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Box>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Cone>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Cylinder>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Finish#Diffuse>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Height_Field>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Isosurface>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Lathe>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Parametric>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Plane>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Prism>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Rainbow>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Sphere>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Sphere_Sweep>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Superquadric_Ellipsoid>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Torus>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Tracing_Options#Anti-Aliasing_Options>
+POV-Ray Wiki <http://wiki.povray.org/content/Reference:Tracing_Options#BSP_Bounding>
+PXR24
+PYTHONPATH
+Paint Mask <sculpt-mask-menu>
+Panels <ui-panels>
+Pans the 3D Viewport <bpy.ops.view3d.view_pan>
+Parent Inverse
+Parent Inverse matrix <parent-inverse-matrix>
+Parent Particles <bpy.types.ParticleSettings.use_parent_particles>
+Particle Radius <bpy.types.FluidDomainSettings.particle_radius>
+Particle Radius <bpy.types.FluidDomainSettings.resolution_max>
+Paste Driver Variables <drivers-variables>
+Path Animation panel <curve-path-animation>
+Path/Curve-Deform <curve-shape-path-curve-deform>
+Pie Menu on Drag <keymap-pref-py_menu_on_drag>
+Pie menu settings <prefs-pie-menu>
+Pixel Coordinates <bpy.types.SpaceUVEditor.show_pixel_coords>
+Playhead & 2D Cursor
+Poedit <https://poedit.net/>
+Poly Build <tool-mesh-poly-build>
+Polyline <tool-grease-pencil-draw-polyline>
+Preference <editors_preferences_input_ndof>
+Preferences <prefs-editing-duplicate-data>
+Preferences <prefs-menu>
+Preferences <prefs-system-sound>
+Presets <ui-presets>
+Primal-Dual Optimization for Fluids <https://ge.in.tum.de/publications/2017-cgf-eckert/>
+Primitives
+ProfilCreate.py
+Project Apricot <https://apricot.blender.org/>
+Project Orange <https://orange.blender.org/>
+Project Page <https://developer.blender.org/project/profile/53/>
+Project Peach <https://peach.blender.org/>
+Project Workboard <https://developer.blender.org/project/board/53/>
+Project from View
+Projection Painting <painting-texture-index>
+Properties
+Proportional Editing <3dview-transform-control-proportional-edit-falloff>
+Protected <data-system-datablock-fake-user>
+Prototype Release <https://developer.oculus.com/blog/openxr-for-oculus/>
+Proxy <object-proxy>
+Proxy Render Size <proxy-render-size>
+Proxy Settings
+Push Down Action <bpy.ops.nla.action_pushdown>
+Push/Pull <tool-transform-push_pull>
+Python <https://www.python.org/>
+Python <https://www.python.org>
+Python <scripting-index>
+Python API Reference <https://docs.blender.org/api/blender_python_api_current/>
+Python API: Quickstart <https://docs.blender.org/api/current/info_quickstart.html>
+Python installation package <https://www.python.org/downloads/>
+Python.org <https://www.python.org/>
+QT rle / QT Animation <https://en.wikipedia.org/wiki/QuickTime_Animation>
+Quality <http://wiki.povray.org/content/Reference:Tracing_Options#Quality_Settings>
+QuantitativeInvisibilityUP1D
+Quantization <https://en.wikipedia.org/wiki/Quantization>
+Quaternion(...)
+Quick Liquid and Quick Smoke <bpy.ops.object.quick>
+Quick Set Up Process <splash-quick-start>
+Quicktime
+Quicktime <https://en.wikipedia.org/wiki/.mov>
+RAWTGA
+RCSB <https://www.rcsb.org/pdb/static.do?p=file_formats/pdb/index.html>
+RCSB site <https://www.rcsb.org/>
+RCSB site <https://www.rcsb.org/pages/thirdparty/molecular_graphics>
+README
+REGION
+RENDER
+RGB
+RLE
+ROT
+RRGGBB
+Radiance HDR
+Radiosity (computer graphics) <https://en.wikipedia.org/wiki/Radiosity_%28computer_graphics%29>
+Radius <modeling-curve-radius>
+Radius used
+Random seed <https://en.wikipedia.org/wiki/Random_seed>
+Randomize <tool-mesh-smooth>
+Randomize Transform <bpy.ops.object.randomize_transform>
+Rate
+Ray Casting <https://en.wikipedia.org/wiki/Ray_casting>
+Read more about this function <https://archive.blender.org/wiki/index.php/Doc:2.4/Manual/Composite_Nodes/Types/Convertor/#Quantize.2FRestrict_Color_Selection>
+Read prefs: {DIR}/userpref.blend
+Redo Panel <ui-undo-redo-adjust-last-operation>
+Reducing Noise <render-cycles-reducing-noise-clamp-samples>
+Refraction limitations <eevee-limitations-refraction>
+Refresh All <bpy.ops.sequencer.refresh_all>
+Regression blend-file <https://wiki.blender.org/wiki/File:Cloth-regression-armature.blend>
+Regression blend-file <https://wiki.blender.org/wiki/File:Cloth_anim_vertex.blend>
+Regression blend-file <https://wiki.blender.org/wiki/File:Cloth_dynamic_paint.blend>
+Regular Expressions <https://en.wikipedia.org/wiki/Regular_expression>
+Related thread on Blender artists <https://blenderartists.org/t/499364>
+Relations panel <bone-relations-bone-group>
+Relations panel <bone-relations-parenting>
+Relative Paths <files-blend-relative_paths>
+Release Guide <about-contribute-guides-release>
+Rename Active Item
+Rename tool <tools_rename-active>
+Render Dimensions Panel <render-tab-dimensions>
+Render Region <editors-3dview-navigate-render-region>
+Render Regions <editors-3dview-navigate-render-region>
+Render perspective <camera-lens-type>
+Rendered <3dview-rendered>
+Report a Bug <https://developer.blender.org/maniphest/task/edit/form/1/>
+Resolution Divisions <bpy.types.FluidDomainSettings.resolution_max>
+Resolution Divisions<bpy.types.FluidDomainSettings.resolution_max>
+Resolution does not match
+Restriction Columns
+Restrictions <editors-outliner-interface-restriction_columns>
+Retina
+Rip <bpy.ops.mesh.rip_move>
+Rip Edge <tool-mesh-rip_edge>
+Rip Region <tool-mesh-rip_region>
+Roll <tool-bone-role>
+Rolling Shutter <https://en.wikipedia.org/wiki/Rolling_shutter>
+Rotation Channel Modes
+Rotation Channel Modes <drivers-variables-rotation-modes>
+Rotation Mode <rotation-modes>
+Run Script button <editors-text-run-script>
+Running Scripts
+S
+SCALE
+SDL
+SOLID
+STYLE
+SURFACE
+SVG
+Safe Areas <camera-safe-areas>
+Sample blend-file <https://en.blender.org/uploads/6/62/Manual-Modifier-Displace-Slime01.blend>
+Sample blend-file <https://en.blender.org/uploads/9/9e/Manual-Modifier-Displace-Example01.blend>
+Sample blend-file <https://wiki.blender.org/wiki/File:25-manual-meshsmooth-example.blend>
+Sample blend-file <https://wiki.blender.org/wiki/File:263-Cast-Modifier.blend>
+Sample blend-file <https://wiki.blender.org/wiki/File:Dev-ArrayModifier-Chain01.blend>
+Sample blend-file <https://wiki.blender.org/wiki/File:Dev-ArrayModifier-Fractal01.blend>
+Sample blend-file <https://wiki.blender.org/wiki/File:Manual-Modifier-Array-Tentacle01.blend>
+Save & Load <prefs-save-load>
+Save <files-blend-save>
+Save As... <files-blend-save>
+Save Buffers <render_properties_save-buffers>
+Saves <files-blend-save>
+Scale Cage <tool-scale-cage>
+Scale Transform <bpy.ops.transform.resize>
+Scene Audio <data-scenes-audio>
+Scene Units <bpy.types.UnitSettings>
+Scribus <https://www.scribus.net/>
+Select <tool-select-tweak>
+Select Box <tool-select-box>
+Select Circle <tool-select-circle>
+Select Control Point Row
+Select Edge Loops <bpy.ops.mesh.loop_multi_select>
+Select Grouped <bpy.ops.object.select_grouped>
+Select Lasso <tool-select-lasso>
+Select Linked
+Select Linked <bpy.ops.mesh.select_linked>
+Select More/Less
+Select Next/Previous
+Select Non-Manifold <bpy.ops.mesh.select_non_manifold>
+Select Random
+Select Random <bpy.ops.mesh.select_random>
+Select Shortest Path <bpy.ops.mesh.shortest_path_select>
+Select Similar
+Select Similar <bpy.ops.mesh.select_similar>
+Select With Mouse Button <keymap-blender_default-prefs-select_with>
+Selection Mode <bpy.types.ToolSettings.uv_select_mode>
+Selection Modes <bpy.types.ToolSettings.mesh_select_mode>
+Self-Collision <physics-softbody-settings-self-collision>
+Separate Atoms
+Set Origin <bpy.ops.object.origin_set>
+Set Origin to Geometry <bpy.ops.object.origin_set>
+Set as default
+Setting up the Build Environment
+Shader AOV <render-cycles-passes-aov>
+Shader Script <bpy.types.ShaderNodeScript>
+Shape Key Editor <dope-sheet-shape-key>
+Shape Keys <animation-shape_keys-index>
+Sharing scripts <https://wiki.blender.org/wiki/Process/Addons>
+Sharp Edges <bpy.ops.mesh.mark_sharp>
+Shear <tool-transform-shear>
+Shortest Path <bpy.ops.mesh.shortest_path_select>
+Shrink/Flatten <tool-mesh-shrink-fatten>
+Sidebar <ui-region-sidebar>
+Simple Expression <drivers-simple-expressions>
+Simple Expressions
+Simple Expressions <drivers-simple-expressions>
+Simple UVs <bpy.ops.paint.add_simple_uvs>
+Simple and Table Feline: Fast Elliptical Lines for Anisotropic Texture Mapping <https://www.hpl.hp.com/techreports/Compaq-DEC/WRL-99-1.pdf>
+Sine <https://en.wikipedia.org/wiki/Sine>
+Skin Modifier Development at Blender Nation <https://www.blendernation.com/2011/03/11/skin-modifier-development/>
+Small Caps Scale setting <modeling-text-character-underline>
+Smooth
+Smooth <tool-mesh-smooth>
+Smooth Maximum <https://en.wikipedia.org/wiki/Smooth_maximum>
+Smooth Minimum <https://en.wikipedia.org/wiki/Smooth_maximum>
+Smooth Normals <bpy.ops.object.shade_smooth>
+Smooth Shading <bpy.ops.object.shade_smooth>
+Smooth Shading <modeling-meshes-editing-normals-shading>
+Smooth tool <bpy.ops.mesh.vertices_smooth>
+Snap <https://snapcraft.io/>
+Snap Element <transform-snap-element>
+Sobol sequence <https://en.wikipedia.org/wiki/Sobol_sequence>
+Soft Body Edges <physics-softbody-settings-aerodynamics>
+Soft Body Edges settings <physics-softbody-settings-edges>
+Soft Body Goal settings <physics-softbody-settings-goal>
+Soft Body Solver settings <physics-softbody-settings-solver>
+Solve Camera Motion <editors-movie-clip-tracking-clip-solve-motion>
+Solve object Motion <editors-movie-clip-tracking-clip-solve-motion>
+Sort Mesh Elements <mesh-edit-sort-elements>
+Sound Crossfade <bpy.ops.sequencer.crossfade_sounds>
+Spacebar Action <keymap-blender_default-spacebar_action>
+Specials <ui-specials-menu>
+Sphinx RST Primer <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>
+Sphinx reference <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>
+Spin <tool-mesh-spin>
+Spin Duplicate <tool-mesh-spin>
+Splash Screen <splash>
+Spline Types
+Spring <https://cloud.blender.org/p/spring/>
+Stabilize Stroke <grease-pencil-draw-brushes-stabilizer>
+Stack Exchange <https://blender.stackexchange.com/>
+Stanford Bunny <https://en.wikipedia.org/wiki/Stanford_Bunny>
+Startup File <startup-file>
+State Colors <animation-state-colors>
+Steam client <https://store.steampowered.com/>
+SteamVR <https://www.steamvr.com/>
+Sticky Selection Mode <bpy.types.SpaceUVEditor.sticky_select_mode>
+Straight Skeleton <https://en.wikipedia.org/wiki/Straight_skeleton>
+Stretch To <constraints-stretch-to-volume-preservation>
+Strip Proxies <bpy.types.SequenceProxy>
+SubRip <https://en.wikipedia.org/wiki/SubRip>
+Subdivide <bpy.ops.mesh.subdivide>
+Submit Patches <contribute-patch_submit>
+Subsamples
+Subsurface Translucency <bpy.types.Material.use_sss_translucency>
+Subversion <https://subversion.apache.org/>
+Sun + HDRI Texture Mode
+Super
+Support <https://www.blender.org/support>
+Surface Edit Mode <surface-toolbar-index>
+Surface editing <bpy.ops.curve.spin>
+Swing and X/Y/Z Twist <drivers-variables-rotation-modes>
+Switch Direction <modeling_surfaces_editing_segments_switch-direction>
+Switching Select Mode
+Sync Selection <bpy.types.ToolSettings.use_uv_select_sync>
+System Preferences <editors_preferences_cycles>
+T
+TEMP
+TEXT
+TGA
+TIFF
+TMP
+TMP_DIR
+Tangent <https://en.wikipedia.org/wiki/Trigonometric_functions>
+Targa
+Technical Details
+Technical Details and Hints
+Technical Terms
+Template Menu
+Texture Mask <bpy.types.BrushTextureSlot.mask>
+Texture Space <properties-texture-space>
+Texture Spaces <properties-texture-space>
+The Modifier Stack
+The Pixelary <https://blog.thepixelary.com/post/160451378592/denoising-in-cycles-tested>
+The Subset Option <bpy.ops.object.vertex_group_levels>
+The Subset Option <sculpt-paint_weight-paint_editing_subset>
+The Wikipedia Page <https://en.wikipedia.org/wiki/Polynomial>
+The blend-file <https://wiki.blender.org/wiki/File:ManModifiersWeightVGroupEx.blend>
+Theora <https://en.wikipedia.org/wiki/Theora>
+This Thread <https://blender.stackexchange.com/questions/14262#14267>
+This video <https://vimeo.com/15837189>
+Tilt <modeling-curve-tilt>
+Timeline Keyframe Control <animation-editors-timeline-autokeyframe>
+Timeline editor header <animation-editors-timeline-headercontrols>
+Tint <tool-grease-pencil-draw-tint>
+To Sphere <tool-transform-to_sphere>
+To Sphere Transform <bpy.ops.transform.tosphere>
+Too few selections to merge
+Tool Settings
+Toolbar <ui-region-toolbar>
+TortoiseSVN <https://tortoisesvn.net/downloads.html>
+Tracking Axis <bpy.types.Object.track_axis>
+Transform Cache Constraint <bpy.types.TransformCacheConstraint>
+Transform Snapping <transform-snap>
+Translation Preferences <prefs-interface-translation>
+Triangulate <bpy.ops.mesh.quads_convert_to_tris>
+Troubleshooting Depth Buffer Glitches <troubleshooting-depth>
+True
+Tutorials
+Tutorials <https://www.blender.org/support/tutorials>
+Tweak <tool-select-tweak>
+TypeError: an integer is required (got type str)
+Types
+UDIM Tiles
+UI Template List Enhancement <https://archive.blender.org/wiki/index.php/User:Mont29/UI_Template_List_Enhancement/>
+USD issue #542 <https://github.com/PixarAnimationStudios/USD/issues/542>
+UV Editor <editors-uv-index>
+UV Mapping <editors-uv-index>
+UV Mapping section <editors-uv-index>
+UV maps list <uv-maps-panel>
+UV texturing <editors-uv-index>
+UVMap
+Unit Circle <https://en.wikipedia.org/wiki/Unit_circle>
+Unpack <pack-unpack-data>
+Upload the diff file here <https://developer.blender.org/differential/diff/create/>
+Upres Factor <bpy.types.FluidDomainSettings.mesh_scale>
+Usage
+Use The Terminal <https://docs.blender.org/api/blender_python_api_current/info_tips_and_tricks.html#use-the-terminal>
+User Communities <https://www.blender.org/community/>
+User Stories page <https://www.blender.org/about/user-stories/>
+Using Cloth for soft bodies <https://wiki.blender.org/wiki/File:Cloth-sb1.blend>
+Utah Teapot <https://en.wikipedia.org/wiki/Utah_teapot>
+VIEW
+VPORT
+Vector(...)
+Velocity Source<bpy.types.FluidDomainSettings.guide_source>
+Vertex Mapping
+Vertex Slide <tool-mesh-vertex-slide>
+Vertex Weight Edit modifier <modeling-modifiers-weight-edit-influence-mask-options>
+Vertex Weight modifiers <bpy.types.VertexWeightEditModifier>
+Vertex count after removing doubles
+Vertex merging <vertex-merging>
+Vesta <https://jp-minerals.org/vesta/en/>
+Video Output
+Video Playlist <https://www.youtube.com/playlist?list=PLQAfj95MdhTJ7zifNb5ab-n-TI0GmKwWQ>
+Videos
+View Animation <topbar-render-view_animation>
+View Dolly <3dview-nav-zoom-dolly>
+View Layer Properties <render-layers-denoising-optix>
+View Menu <dope-sheet-view-menu>
+ViewEdge
+ViewEdgeIterator
+Viewport Overlays <3dview-overlay-grease-pencil>
+Viewport Renders <bpy.ops.render.opengl>
+Viewport denoising <render-cycles-settings-viewport-denoising>
+Visibility properties <grease_pencil-object-visibility>
+Visibility properties <render-cycles-object-settings-visibility>
+Volume Limitation <eevee-limitations-volumetrics>
+Vorbis <https://en.wikipedia.org/wiki/Vorbis>
+Vorticity <bpy.types.FluidDomainSettings.vorticity>
+WAV
+WEBM / VP9 <https://en.wikipedia.org/wiki/VP9>
+WGT-
+Walk/Fly Navigation <3dview-fly-walk>
+Watermark images
+Wavelength
+Wavelet Turbulence for Fluid Simulation <http://www.cs.cornell.edu/~tedkim/WTURB/>
+WebM <https://en.wikipedia.org/wiki/WebM>
+Weight <clip-tracking-weight>
+Weight <curves-weight>
+When should N-gons be used, and when shouldn't they? <https://blender.stackexchange.com/questions/89>
+Whole Character keying set <whole-character-keying-set>
+Why should triangles be avoided for character animation? <https://blender.stackexchange.com/questions/2931>
+Widgets
+Wikipedia <https://en.wikipedia.org/wiki/Protein_Data_Bank_(file_format)>
+Wikipedia <https://en.wikipedia.org/wiki/XYZ_file_format>
+Wikipedia page <https://en.wikipedia.org/wiki/Catmull%E2%80%93Clark_subdivision_surface>
+Wikipedia page <https://en.wikipedia.org/wiki/NURBS>
+Windows <https://github.com/pyproj4/pyproj>
+Windows Mixed Reality <https://www.microsoft.com/windows/windows-mixed-reality>
+Windows Mixed Reality PC Check <https://www.microsoft.com/en-us/p/windows-mixed-reality-pc-check/9nzvl19n7cnc>
+Windows-Key
+Workspace controls <workspaces-controls>
+World tab <render-cycles-integrator-world-mist>
+Worley Noise <https://en.wikipedia.org/wiki/Worley_noise>
+Wrap <https://en.wikipedia.org/wiki/Rounding>
+X-Axis Mirror Pose Mode <bpy.types.Pose.use_mirror_x>
+X-ray <3dview-shading-xray>
+XYZ
+ZIP
+ZIPS
+Zip
+Zoom to Mouse Position <prefs-zoom-mouse-pos>
+Zooms the 3D Viewport <editors_3dview_navigation_zoom>
+[\"Agent\"]
+[\"prop_name\"]
+[0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+[1, 2, 3, 4, 5, 6]
+[1, 2, 3]
+[1.0, 2.0, 3.0]
+[327, 47]
+[47]
+[Vector(...), Vector(...), ...]
+[[1, 2, 3], [4, 5], [6]]
+\\
+\\build\\html\\index.html
+\\n
+^
+__call__
+__init__.py
+_page<number>.svg
+_sep
+_socket
+_socket.py
+_socket.pyd
+abs
+absorption()
+acos
+active clip <scene-active-clip>
+active object <object-active>
+add-ons section <addons-io>
+addons
+addons/
+addons_contrib
+affects light paths somewhat differently <render-cycles-light-paths-transparency>
+ambient_occlusion()
+analemma
+analemma <https://en.wikipedia.org/wiki/Analemma>
+and
+angle_y
+angular diameter <https://en.wikipedia.org/wiki/Angular_diameter#Use_in_astronomy>
+anim_cycles
+anim_render
+anim_screen_switch
+anim_time_max
+anim_time_min
+animate <bpy.ops.anim.keyframe_insert>
+animation player <render-output-animation_player>
+animation-shapekeys-relative-vs-absolute
+animation-state-colors
+animation_##_test.png
+animation_01_test.png
+any type of node <tab-node-tree-types>
+application template <app_templates>
+armature-bone-roll
+as in the 3D Viewport <3dview-view-clip>
+ashikhmin_shirley(N, T, ax, ay)
+ashikhmin_velvet(N, roughness)
+asin
+atan
+atan2
+author's Github repository <https://github.com/waylow/add_camera_rigs>
+author's site <http://www.dragoneex.com/downloads/dynamic-skyadd-on>
+author's site <https://sites.google.com/site/aleonserra/home/scripts/matlib-vx-5-6>
+authors site <http://gregzaal.github.io/auto-tile-size/>
+authors site <https://www.blenderkit.com/>
+auto-bones naming <armature-editing-naming-bones>
+automatic Bézier handles <editors-graph-fcurves-settings-handles>
+automatic curve handles <editors-graph-fcurves-settings-handles>
+avi
+background()
+background{}
+basic.copy_chain
+basic.pivot
+basic.raw_copy
+basic.super_copy
+below <Would multiple GPUs increase available memory?>
+bevel weight <modeling-edges-bevel-weight>
+bin
+bind_mat
+bit rate <https://en.wikipedia.org/wiki/Bit_rate>
+bl*er
+bl_idname
+bl_info
+bl_label
+bl_math
+blend-file <https://download.blender.org/demo/test/FreeStyle_demo_file.blend.zip>
+blend-file <https://en.blender.org/uploads/0/03/Blender2.65_motion_blur.blend>
+blend-file <https://en.blender.org/uploads/4/44/Apinzonf_Shape_Enhanced_camel.blend>
+blend-file <https://en.blender.org/uploads/4/47/Apinzonf_GSOC_2012_Media_femme_side.blend>
+blend-file <https://en.blender.org/uploads/5/54/Apinzonf_GSOC_2012_Media_cube_smooth.blend>
+blend-file <https://en.blender.org/uploads/8/8d/CollidingVertices.blend>
+blend-file <https://en.blender.org/uploads/8/8f/Apinzonf_GSOC_2012_Media_femme_front.blend>
+blend-file <https://en.blender.org/uploads/a/a2/Apinzonf_Deform_Horse_example1.blend>
+blend-file <https://wiki.blender.org/uploads/b/b4/Render_freestyle_modifier_crease_angle.blend>
+blend-file <https://wiki.blender.org/wiki/File:25-Manual-World-Mist-Example1.blend>
+blend-file <https://wiki.blender.org/wiki/File:Blender_272_textured_strokes_in_cycles.blend>
+blend-file <https://wiki.blender.org/wiki/File:CreaseAngle.zip>
+blend-file <https://wiki.blender.org/wiki/File:EdgeType.zip>
+blend-file <https://wiki.blender.org/wiki/File:HiddenCreaseEdgeMark.zip>
+blend-file <https://wiki.blender.org/wiki/File:Lilies_Color_Material.zip>
+blend-file <https://wiki.blender.org/wiki/File:Lily_Broken_Topology.zip>
+blend-file <https://wiki.blender.org/wiki/File:LineStyles.zip>
+blend-file <https://wiki.blender.org/wiki/File:ManAnimationTechsUsingConstraintsExSolarSys.blend>
+blend-file <https://wiki.blender.org/wiki/File:QI-Range.zip>
+blend-file <https://wiki.blender.org/wiki/File:Render_freestyle_modifier_curvature_3d.blend>
+blend-file <https://wiki.blender.org/wiki/File:Toycar_Calligraphy.zip>
+blend-file <https://wiki.blender.org/wiki/File:Toycar_Guiding_Line.zip>
+blend-file <https://wiki.blender.org/wiki/File:Toycar_Sinus.zip>
+blend-file <https://wiki.blender.org/wiki/File:Toycar_Three_Contours.zip>
+blend-file <https://wiki.blender.org/wiki/File:Turning_Pages.zip>
+blend-file <https://wiki.blender.org/wiki/File:toycar_bezier.zip>
+blend-file example <https://en.blender.org/uploads/2/2a/Bilateral_blur_example_01.blend>
+blend-file example <https://wiki.blender.org/uploads/7/79/Doftest.blend>
+blendcache_[filename]
+blender
+blender -E help
+blender -d
+blender -r
+blender-chat
+blender-directory-layout
+blender-v{VERSION}-release
+blender.chat <https://blender.chat>
+blender.crash.txt
+blender.org <https://www.blender.org/download/>
+blender.org/about/license <https://www.blender.org/about/license/>
+blender.org/community <https://www.blender.org/community>
+blender_debug_gpu.cmd
+blender_debug_gpu_workaround.cmd
+blender_debug_log.cmd
+blender_debug_log.txt
+blender_docs
+blender_factory_startup.cmd
+blender_oculus
+blog article <https://freestyleintegration.wordpress.com/2014/07/07/line-color-priority/>
+blog post <http://lacuisine.tech/blog/2018/07/19/2d-camera-rig/>
+blogger
+bone envelopes <armature-bones-envelope>
+bone locking <animation_armatures_bones_locking>
+bone page <armature-bone-influence>
+bone-relations-parenting
+box selection <tool-select-box>
+bpy
+bpy.
+bpy.app
+bpy.app.debug = True
+bpy.app.driver_namespace
+bpy.app.handlers.load_factory_preferences_post
+bpy.app.handlers.load_factory_startup_post
+bpy.context
+bpy.context <https://docs.blender.org/api/current/bpy.context.html>
+bpy.context.active_object
+bpy.context.mode
+bpy.context.object
+bpy.context.scene
+bpy.context.scene.frame_current
+bpy.context.selected_objects
+bpy.data
+bpy.ops <https://docs.blender.org/api/current/bpy.ops.html>
+bpy.ops.armature.bone_layers
+bpy.ops.armature.flip_names
+bpy.ops.curve.select_row
+bpy.ops.mesh.dissolve_faces
+bpy.ops.mesh.extrude_edges_move
+bpy.ops.mesh.extrude_vertices_move
+bpy.ops.mesh.loopcut_slide
+bpy.ops.mesh.remove_doubles
+bpy.ops.node.read_viewlayers
+bpy.ops.object.duplicates_make_real
+bpy.ops.object.make_single_user
+bpy.ops.object.select_linked
+bpy.ops.screen.screen_full_area
+bpy.ops.sculpt.face_set_edit
+bpy.ops.uv.cube_project
+bpy.ops.uv.cylinder_project
+bpy.ops.uv.follow_active_quads
+bpy.ops.uv.lightmap_pack
+bpy.ops.uv.smart_project
+bpy.ops.uv.sphere_project
+bpy.ops.uv.unwrap
+bpy.ops.view3d.edit_mesh_extrude_move_normal
+bpy.ops.view3d.edit_mesh_extrude_move_shrink_fatten
+bpy.ops.wm <https://docs.blender.org/api/current/bpy.ops.wm.html>
+bpy.ops.wm.search_menu
+bpy.types.Armature.use_mirror_x
+bpy.types.UnitSettings
+bpy.types.Window.event_simulate
+breadth first search <https://en.wikipedia.org/wiki/Breadth-first_search>
+bssrdf_cubic(N, radius, texture_blur, sharpness)
+bssrdf_gaussian(N, radius, texture_blur)
+build
+build/html
+build/html/contents_quicky.html
+build/html/index.html
+bullseye <https://packages.debian.org/bullseye/libopenxr1-monado>
+camera_for_shot_ZXY_36x24.chan
+cartoon.py
+cd
+cd C:\\blender_docs
+ceil
+ch
+chains of bones <armature-bone-chain>
+change_placeholders.sh
+chapter_subsection_sub-subsection_id.png
+check this out <http://blender.stackexchange.com/questions/15620>
+children <object-parenting>
+circle icon
+circle selection <tool-select-circle>
+clamp
+clipping distance <camera-clipping>
+clipping range <3dview-view-clip>
+cm
+cmd
+code and documentation <https://github.com/ampas/aces-dev>
+collision physics <physics-collision-soft-bodt-cloth>
+color
+color picker widget <ui-color-picker>
+color ramp <ui-color-ramp-widget>
+color_picking
+colors.inc
+command-line arguments <command_line-args>
+command_line-args
+command_line-launch-index
+common constraint properties <bpy.types.constraint.influence>
+common constraint properties <rigging-constraints-interface-common-space>
+common constraint properties <rigging-constraints-interface-common-target>
+common masking options <modifiers-common-options-masking>
+conf.py
+conf.py: blender_version
+config
+configured in the preferences <prefs-lights-studio>
+configuring peripherals <hardware-ndof>
+contact <contribute-contact>
+context
+context menu <editors-outliner-editing-context_menu>
+context.scene
+converting meshes to curves <bpy.ops.object.convert>
+cos
+crease <modeling-edges-crease-subdivision>
+create a task <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>
+cube
+cube.
+cube.001
+cube?
+curvature <https://en.wikipedia.org/wiki/Curvature>
+curve <ui-curve-widget>
+curve-bezier
+curve-convert-type
+curve-nurbs
+curved-POLYLINE
+curves <modeling-curves-extrude>
+curves <modeling-curves-make-segment>
+curves <modeling-curves-subdivision>
+curves <modeling-curves-toggle-cyclic>
+custom normals <modeling_meshes_normals_custom>
+custom set of data <modeling-modifiers-generate-skin-data>
+custom split normals <modeling_meshes_normals_custom>
+cycles/
+dam
+data
+data ID <ui-data-id>
+data-block <ui-data-block>
+data-block menu <ui-data-block>
+data-block menus <ui-data-block>
+data-block type <data-system-datablock-types>
+data-blocks types <data-system-datablock-types>
+data-scenes-props-units
+data-system-datablock-make-single-user
+data_path
+decoder bitstream buffer <https://en.wikipedia.org/wiki/Video_buffering_verifier>
+default
+default keymap preferences <keymap-blender_default-prefs>
+default_byte
+default_float
+default_sequencer
+deg
+degrees
+delete <bpy.ops.armature.delete>
+delta transform <bpy.types.Object.delta>
+delta transforms <bpy.types.Object.delta>
+demo blend-file <https://wiki.blender.org/wiki/File:Manual_-_Explode_Modifier_-_Exploding_Cube_-_2.5.blend>
+demo.py
+denoiser <render-cycles-settings-viewport-denoising>
+denoising <render-cycles-settings-viewport-denoising>
+density
+dev
+developer's site <https://development.root-1.de/Atomic_Blender_PDB_XYZ.php>
+developer.blender.org
+developer.blender.org <https://developer.blender.org/>
+development builds <https://builder.blender.org/download/>
+dictionaries <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>
+differential coordinates <https://igl.ethz.ch/projects/Laplacian-mesh-processing/Laplacian-mesh-editing/diffcoords-editing.pdf>
+diffuse(N)
+diffuse_ramp(N, colors[8])
+diffuse_toon(N, size, smooth)
+dir()
+directory_name/
+discussion <http://news.povray.org/povray.general/thread/%3Cweb.4d77b443f36cbfe281c811d20%40news.povray.org%3E/>
+disp_####.exr
+display_render
+diurnal
+dm
+documentation <https://docs.python.org/>
+documentation <https://github.com/s-leger/archipack/wiki>
+documentation workboard <https://developer.blender.org/project/board/53/>
+does not count as a normal \"bounce\" <render-cycles-light-paths-transparency>
+doi:10.1111/cgf.12830 <https://doi.org/10.1111/cgf.12830>
+doi:10.1111/j.1467-8659.2011.01976.x <https://doi.org/10.1111/j.1467-8659.2011.01976.x>
+dot icon
+download <http://www.povray.org/download/>
+driver namespace example <driver-namespace>
+easing mode <editors-graph-fcurves-settings-easing>
+easings <editors-graph-fcurves-settings-easing>
+edge loop selection <bpy.ops.mesh.loop_multi_select>
+edge loops <modeling-mesh-structure-edge-loops>
+edited <properties-texture-space-editing>
+editing <meta-ball-editing>
+editors-3dview-index
+editors-graph-fcurves-settings-handles
+editors-graph-fcurves-settings-interpolation
+editors-sequencer-index
+emission()
+envelopes <armature-bones-envelope>
+example <fig-sequencer-strips-effects-add>
+example blend-file <http://download.blender.org/ftp/mont29/persistent_data/sapling_CN.blend>
+example blend-file <https://en.blender.org/uploads/4/48/Manual_-_Modifiers_-_Particle_Instance_Modifiers_-_Split_Plane.blend>
+example blend-file <https://wiki.blender.org/wiki/File:Blender3D Quads-BE-Stiffness.blend>
+execute()
+exp
+experimental builds <https://builder.blender.org/download/>
+exported <bpy.ops.sequencer.export_subtitles>
+exr
+exterior forces <physics-softbody-forces-exterior-aerodynamics>
+exterior forces <physics-softbody-forces-exterior-goal>
+extrapolation <editors-graph-fcurves-settings-extrapolation>
+extras
+eyedropper <ui-eyedropper>
+fabs
+faces.super_face
+families <meta-ball-object-families>
+family <meta-ball-object-families>
+fig-collision-soft-plane
+fig-constraints-transformation-extrapolate
+fig-curves-editing-open-close
+fig-curves-extrude-taper-curve
+fig-curves-extrude-taper1
+fig-curves-extrude-taper2
+fig-curves-extrude-taper3
+fig-dope-sheet-action
+fig-interface-redo-last-edit-mode
+fig-interface-redo-last-object-mode
+fig-interpolation-type
+fig-mesh-basics-add-one
+fig-mesh-deform-mirror-cursor
+fig-mesh-deform-mirror-origins
+fig-mesh-deform-to-sphere-monkey
+fig-mesh-screw-angle
+fig-mesh-screw-circle
+fig-mesh-screw-clock
+fig-mesh-screw-duplicate
+fig-mesh-screw-error-info
+fig-mesh-screw-error-popup
+fig-mesh-screw-generated-mesh
+fig-mesh-screw-interactive-panel
+fig-mesh-screw-profile
+fig-mesh-screw-ramp
+fig-mesh-screw-spindle
+fig-mesh-screw-spring
+fig-mesh-screw-start
+fig-mesh-screw-start-mesh
+fig-mesh-screw-transform-panel
+fig-mesh-screw-wood
+fig-mesh-select-advanced-loop-ring
+fig-mesh-select-intro-selection-modes
+fig-mesh-spin-glass
+fig-mesh-spin-glass-top
+fig-mesh-spin-profile
+fig-mesh-topo-loop
+fig-meta-ball-base
+fig-meta-ball-example
+fig-meta-ball-scale
+fig-meta-intro-underlying
+fig-modifiers-panel-layout
+fig-particle-child-kink
+fig-rig-bone-active-tip
+fig-rig-bone-connected-root
+fig-rig-bone-disconnected-tip
+fig-rig-bone-duplication
+fig-rig-bone-intro-bbone
+fig-rig-bone-intro-same
+fig-rig-bone-mirror
+fig-rig-bone-select-deselect
+fig-rig-bones-extrusion
+fig-rig-pose-edit-scale
+fig-rig-properties-switch
+fig-softbody-collision-plane1
+fig-softbody-collision-plane2
+fig-softbody-force-interior-bending
+fig-softbody-force-interior-connection
+fig-softbody-force-interior-no-bending
+fig-softbody-force-interior-stiff
+fig-softbody-force-interior-with
+fig-softbody-force-interior-without
+fig-surface-edit-extruding
+fig-surface-edit-join-complete
+fig-surface-edit-join-ready
+fig-surface-edit-select-point
+fig-surface-edit-select-row
+fig-surface-intro-order
+fig-surface-intro-surface
+fig-surface-intro-weight
+fig-troubleshooting-file-browser
+fig-view3d-median-point-edit-mode
+fig-view3d-median-point-object-mode
+fig-view3d-mode-select
+fig-view3d-parent-bone-parent
+fig-view3d-parent-bone-parent-child
+fig-view3d-parent-bone-parent-relative
+fig-view3d-parent-scene-no
+file
+file.blend
+file_01.blend
+file_02.blend
+filename + frame number + .extension
+files-blend-relative_paths
+files-data_blocks-custom-properties
+files-linked_libraries-known_limitations-compression
+files-media-index
+filter
+filter <editors-outliner-interface-filter>
+float
+floor
+fmod
+foam_####.exr
+font hinting <https://en.wikipedia.org/wiki/Font_hinting>
+forearm
+found bundled python: {DIR}
+fr
+frame
+frame/8
+ft
+functions.wolfram.com <https://functions.wolfram.com/>
+fur
+g
+geom:curve_intercept
+geom:curve_tangent_normal
+geom:curve_thickness
+geom:dupli_generated
+geom:dupli_uv
+geom:generated
+geom:is_curve
+geom:name
+geom:numpolyvertices
+geom:polyvertices
+geom:trianglevertices
+geom:uv
+getattribute()
+getmessage
+getmessage(\"trace\", ..)
+glTF 2.0 extensions <https://github.com/KhronosGroup/glTF/tree/master/extensions>
+glTF GitHub repository <https://github.com/KhronosGroup/glTF>
+glTF Settings
+glTF-Blender-IO repository <https://github.com/KhronosGroup/glTF-Blender-IO>
+glossy_toon(N, size, smooth)
+graph-preview-range
+graph-view-menu
+graph_editor-view-properties
+gravity <bpy.types.Sculpt.gravity>
+grease-pencil-draw-common-options
+grease-pencil-modifier-influence-filters
+hair_reflection(N, roughnessu, roughnessv, T, offset)
+hair_transmission(N, roughnessu, roughnessv, T, offset)
+handle type <editors-graph-fcurves-settings-handles>
+hard-coded 24 FPS <https://developer.blender.org/T55288#754358>
+hardware-ndof
+headers <ui-region-header>
+held_object
+help-menu
+henyey_greenstein(g)
+here <bpy.types.Mesh.use_mirror_topology>
+here <curve-switch-direction>
+here <https://wiki.blender.org/wiki/File:ManGreasePencilConvertToCurveDynamicExample.blend>
+here <https://wiki.blender.org/wiki/File:Manual-2.5-Duplifaces-Example01.blend>
+here <https://www.blender.org/download/>
+hide and reveal <curves-show-hide>
+highlighted
+hm
+holdout()
+horizontal line icon
+hostname <https://en.wikipedia.org/wiki/Hostname>
+hour:minute:second
+how to combine shape keys and drivers <shapekey-driver-example>
+html
+https://developer.blender.org
+https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs
+https://www.youtube.com/watch?v=Ge2Kwy5EGE0
+iTaSC IK Solver <rigging-armatures_posing_bone-constraints_ik_model_itasc>
+image formats <files-media-image_formats>
+image-formats-open-sequence
+image-generated
+image0001.png
+image_##_test.png
+image_01_test.png
+in
+in development <https://code.blender.org/2013/12/how-blender-started-twenty-years-ago/>
+increasing the radius <modeling-curve-radius>
+index.rst
+influence <meta-ball-editing-negative-influence>
+injected
+injected,held_object
+inputs
+int
+inter-frame <https://en.wikipedia.org/wiki/Inter-frame>
+interface_splash_current.png
+interface_undo-redo_last.png
+interface_undo-redo_repeat-history-menu.png
+interpolation algorithm <bpy.types.Spline.tilt_interpolation>
+interpolation mode <editors-graph-fcurves-settings-interpolation>
+introduction.rst
+inverse kinematics feature <bone-constraints-inverse-kinematics>
+island_abbreviation: edge_number
+join <bpy.ops.object.join>
+jpeg
+jpg
+kConstantScope
+kFacevaryingScope
+kUniformScope
+kUnknownScope
+kVaryingScope
+kVertexScope
+keyframe-type
+keymap-customize
+km
+known compatibility issues <https://wiki.blender.org/wiki/Reference/Compatibility>
+languages codes <https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html>
+lasso selection <tool-select-lasso>
+later page <bone-constraints-inverse-kinematics>
+layer samples <render-cycles-integrator-layer-samples>
+layername_3Dfaces
+left/right <armature-editing-naming-conventions>
+lerp
+libsdl.org <https://www.libsdl.org>
+limbs.simple_tentacle
+limbs.super_finger
+limbs.super_limb
+limbs.super_palm
+limitation of FFmpeg <https://trac.ffmpeg.org/ticket/8344>
+limitations <eevee-limitations-volumetrics>
+link <data-system-linked-libraries-make-link>
+list <ui-list-view>
+list of GCN generations <https://en.wikipedia.org/wiki/Graphics_Core_Next#Generations>
+list of Nvidia graphics cards <https://developer.nvidia.com/cuda-gpus#compute>
+list view <ui-list-view>
+lists <ui-list-view>
+living room
+loaded in the preferences <prefs-lights-matcaps>
+local, system and user paths <blender-directory-layout>
+locale
+locale/fr
+locale/fr/LC_MESSAGES/getting_started/about_blender/introduction.po
+location.x
+location[0]
+locks pie menu <bpy.ops.object.vertex_group_lock>
+log
+m
+macOS <http://www.ia.arch.ethz.ch/wp-content/uploads/2013/11/pyproj.zip>
+mailing lists <https://lists.blender.org/mailman/listinfo>
+main task of the project <https://developer.blender.org/T53500>
+make
+make modifiers
+make.bat
+manual
+manual/getting_started/about_blender/introduction.rst
+manual/images
+marked as sharp <bpy.ops.mesh.mark_sharp>
+master
+material indices <bi-multiple-materials>
+material slot <material-slots>
+material slots <material-slots>
+material:index
+materials/
+math
+math <https://docs.python.org/3.8/library/math.html>
+max
+mesh counterpart <bpy.ops.mesh.decimate>
+mesh-faces-tristoquads
+mesh-unsubdivide
+meta family <meta-ball-object-families>
+metaballs <https://en.wikipedia.org/wiki/Metaballs>
+meter
+meters
+mi
+microfacet_beckmann(N, roughness)
+microfacet_beckmann_aniso(N, T, ax, ay)
+microfacet_beckmann_refraction(N, roughness, ior)
+microfacet_ggx(N, roughness)
+microfacet_ggx_aniso(N, T, ax, ay)
+microfacet_ggx_refraction(N, roughness, ior)
+mil
+min
+minimum and recommended requirements <https://www.blender.org/download/requirements/>
+minimum requirements <https://www.blender.org/download/requirements/>
+mm
+mode
+mode='RENDER'
+model <https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/simulating-sky/simulating-colors-of-the-sky>
+modeling-mesh-analysis
+modeling-mesh-make-face-edge-dissolve
+modeling-meshes-editing-fill
+modeling-text-character
+modeling_meshes_normals_custom
+modeling_modifiers_deform_shrinkwrap_methods
+modifier stack <modifier-stack>
+modifiers-generate-subsurf-creases
+module owners page <https://wiki.blender.org/wiki/Process/Module_Owners/List>
+modules
+modules/
+more details see here <render-cycles-reducing-noise-glass-and-transp-shadows>
+mov
+mp3
+msgstr
+multiple applications <https://opencolorio.org/#supported_apps>
+my_app_template
+my_scripts
+name
+name_frame_index.bphys
+naming conventions <armature-editing-naming-conventions>
+new_length = real_length / speed_factor
+no icon
+non-highlighted
+non-local means <https://en.wikipedia.org/wiki/Non-local_means>
+normal_####.exr
+not
+object setting <render-cycles-settings-object-motion-blur>
+object-convert-to
+object-data <properties-data-tabs>
+object-proxy
+object-show-hide
+object.show_name
+object:index
+object:location
+object:random
+objects types <objects-types>
+offsetting nodes <editors-nodes-usage-auto-offset>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/3D_interaction/Align_Tools/>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Modeling/Extra_Tools/>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Modeling/Inset-Polygon/>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Modeling/LoopTools/>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Nodes/Nodes_Efficiency_Tools/>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Object/CellFracture/>
+old Wiki <https://archive.blender.org/wiki/index.php/Extensions:2.6/Py/Scripts/Paint/Palettes/>
+online calculator <https://www.esrl.noaa.gov/gmd/grad/solcalc>
+open source <https://opensource.org/>
+or
+oren_nayar(N, roughness)
+outputs
+overview on ReStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>
+pack islands operator <editors-uv-editing-layout-pack_islands>
+pack or unpack external Data <pack-unpack-data>
+pack-unpack-data
+paint mask <sculpt-mask-menu>
+painting-sculpting-index
+painting-weight-index
+panoramic camera <cycles-panoramic-camera>
+paper <https://cgg.mff.cuni.cz/projects/SkylightModelling/>
+paper <https://doi.org/10.1145/311535.311545>
+parallelepiped <https://en.wikipedia.org/wiki/Parallelepiped>
+parenting <bpy.ops.object.parent_set>
+particle:age
+particle:angular_velocity
+particle:index
+particle:lifetime
+particle:location
+particle:size
+particle:velocity
+passes <render-cycles-passes>
+path:ray_length
+per-light override <bpy.types.Light.cutoff_distance>
+performed manually <bpy.ops.mesh.edge_split>
+phong_ramp(N, exponent, colors[8])
+physics-cloth-introduction-springs
+pi
+pinned <bpy.ops.uv.pin>
+pip
+pip3
+pivot-point-index
+plane track <clip-tracking-plane>
+png
+pose marker <marker-pose-add>
+pot
+pov/inc/mcr/ini
+pow
+pre-version <https://archive.blender.org/development/release-logs/blender-256-beta>
+prefs-auto-execution
+prefs-file-paths
+prefs-index
+prefs-interface-translation
+prefs-menu
+prefs-save-load
+preset <ui-presets>
+presets
+presets/
+previews <file_browser-previews>
+previous section <Write the Add-on (Simple)>
+principled_hair(N, absorption, roughness, radial_roughness, coat, offset, IOR)
+print()
+project site <http://www.povray.org/download/>
+properties switching/enabling/disabling <armature-bone-properties>
+properties-material-viewport-display
+properties-object-viewport-display
+proxies <object-proxy>
+quantum chemical calculators <https://en.wikipedia.org/wiki/List_of_quantum_chemistry_and_solid-state_physics_software>
+quit.blend
+rad_def
+rad_def.inc
+radians
+ray visibility <cycles-ray-visibility>
+reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>
+recently <other-file-open-options>
+reflection(N)
+refraction(N, ior)
+refresh <bpy.ops.sequencer.refresh_all>
+region <render-output-dimensions-region>
+register
+register an extension prefix <https://github.com/KhronosGroup/glTF/blob/master/extensions/Prefixes.md>
+register for one <https://developer.blender.org/auth/register/>
+register()
+relations page <bone-relations-parenting>
+relative file path <files-blend-relative_paths>
+relative shape keys mix additively <animation-shapekeys-relative-vs-absolute>
+release cycle <https://wiki.blender.org/wiki/Process/Release_Cycle>
+release notes <https://wiki.blender.org/wiki/Reference/Release_Notes/2.81/Library_Overrides>
+release notes <https://www.blender.org/download/releases/>
+remarks <https://development.root-1.de/Atomic_Blender_PDB_XYZ_Remarks.php>
+render
+render output path <render-tab-output>
+render pass <render-cycles-passes>
+render-cycles-gpu-optix
+render-cycles-integrator-world-settings
+render-cycles-reducing-noise-mis
+render-materials-settings-viewport-display
+render-output-postprocess
+render-tab-dimensions
+rendered shading <view3d-viewport-shading>
+rendering animation <command_line-render>
+rendering/
+report a bug <https://developer.blender.org/maniphest/task/edit/form/1/>
+report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>
+requirements.txt
+resolution <bpy.types.Curve.resolution_u>
+resolution <bpy.types.Curve.resolution_v>
+resolution_x
+resources/versions.json
+rest_mat
+rig_ui
+rig_ui.py
+rigged <animation-rigging>
+roll rotation <armature-bone-roll>
+root
+rotation_x
+rotation_y
+rotation_z
+round
+row <modeling-surfaces-rows-grids>
+rst
+sampling rate <https://en.wikipedia.org/wiki/Sampling_(signal_processing)#Sampling_rate>
+save <files-blend-save>
+saving images <bpy.types.ImageFormatSettings>
+scale transformation <bpy.ops.transform.resize>
+scaled <bpy.ops.transform.resize>
+scene dicing rate <cycles-subdivision-rate>
+scene settings <data-scenes-audio>
+scene settings <data-scenes-props-units>
+scene's active camera<scene-camera>
+scene-wide bounce settings <cycles-bounces>
+scene_linear
+script <http://www.apexbow.com/randd.html>
+script homepage <https://sites.google.com/site/bartiuscrouch/looptools>
+scripting <scripting-index>
+scripts
+sculpt-mask-menu
+sculpt_mask_clear-data
+search_path
+section_1.rst
+section_2.rst
+see example blend-file <https://en.blender.org/uploads/a/ad/Data_Transfer_Normal_Torus.blend>
+see the example on GitHub <https://github.com/KhronosGroup/glTF-Blender-IO/tree/master/example-addons/example_gltf_extension>
+see this <https://www.mathworks.com/help/vision/ug/interpolation-methods.html>
+selecting <object-select-menu>
+selection states <object-active>
+self
+self.location.x
+sequencer-edit-change
+setmessage
+several independent websites <https://www.blender.org/community/>
+shape <bpy.types.Curve.dimensions>
+sharp edges <modeling_meshes_normals_sharp_edge>
+sid <https://packages.debian.org/sid/libopenxr1-monado>
+simplify panel <render-cycles-settings-scene-simplify>
+sin
+sin(frame/8)
+sin(x)/x
+sky_sphere{}
+smooth shading <modeling-meshes-editing-normals-shading>
+smoothstep
+snap tools <bpy.ops.view3d.snap>
+source code <https://developer.blender.org/diffusion/B/browse/master/source/blender/blenkernel/BKE_global.h>
+sphere_sweep
+spines.super_spine
+splash
+splash.png
+split normals <auto-smooth>
+sqrt
+sqrt(2)
+square(frame)
+st
+stack <modifier-stack>
+startup
+startup.blend
+startup/
+strip option <sequencer-sound-waveform>
+support page <https://www.blender.org/support/>
+supported platforms
+svn
+svn add /path/to/file
+svn rm /path/to/file
+svn status
+svn update
+sys.argv
+sys.path
+sys.stdin
+system-info.txt
+tab-view3d-modes
+tan
+targa
+temp-dir
+temperature
+test-######.png
+test-000001.png
+test.blend
+test.crash.txt
+test_blender_file.blend
+text editing <ui-text-editing>
+texture {}
+textured brush pack <https://cloud.blender.org/p/gallery/5f235cc297f8815e74ffb90b>
+their documentation <bpy.ops.object.make_single_user>
+this Pixar paper <https://graphics.pixar.com/library/MultiJitteredSampling/paper.pdf>
+this Pixar paper <https://graphics.pixar.com/library/ProgressiveMultiJitteredSampling/paper.pdf>
+this blend <https://wiki.blender.org/wiki/File:Manual-2.5-DupliVerts-Examples.blend>
+this page <https://blender.stackexchange.com/questions/26643>
+this pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>
+this picture <https://commons.wikimedia.org/wiki/File:Analemma_fishburn.tif>
+this post <https://blenderartists.org/forum/showthread.php?323358-DXF-Importer&p=2664492&viewfull=1#post2664492>
+this section <render-layers>
+tilt <modeling-curve-tilt>
+timeline-playback
+timeline-view-menu
+todo
+tool-annotate
+tool-mesh-extrude_individual
+tool-select-circle
+top -o %MEM
+top -o MEM
+topbar-app_menu
+topbar-render
+total
+trace(point pos, vector dir, ...)
+trackball rotation <view3d-transform-trackball>
+transform-numeric-input-advanced
+transform-numeric-input-simple
+transformations <bpy.ops.object.transform_apply>
+translucent(N)
+transparent()
+trivially cyclic curves <bpy.types.FModifierCycles>
+troubleshooting-gpu-index
+trunc
+turntable.blend
+ui-color-palette
+ui-color-picker
+ui-color-ramp-widget
+ui-curve-widget
+ui-data-block
+ui-data-id
+ui-direction-button
+ui-eyedropper
+ui-list-view
+ui-operator-buttons
+ui-undo-redo-adjust-last-operation
+ui_template_list diff
+um
+underline settings <modeling-text-character-underline>
+unit system <data-scenes-props-units>
+unregister
+unregister()
+userpref.blend
+uv-image-rotate-reverse-uvs
+uv-maps-panel
+v
+value <animation-shapekey-relative-value>
+var all_langs = {..};
+vertex snapping <transform-snap-element>
+video codec <files-video-codecs>
+view3d-transform-plane-lock
+view3d-viewport-shading
+volumes.rst
+water bottle <https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle>
+water bottle sample model <https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/WaterBottle>
+weasel words <https://en.wikipedia.org/wiki/Weasel_word>
+weight <curves_structure_nurbs_weight>
+weight <modeling-surfaces-weight>
+weight = 1
+weight-painting-bones
+wireframe <3dview-shading-rendered>
+wm.call_menu
+wm.call_menu_pie
+wm.call_panel
+wm.context_
+wm.context_cycle_enum
+wm.context_menu_enum
+wm.context_modal_mouse
+wm.context_pie_enum
+wm.context_scale_float
+wm.context_toggle
+wm.context_toggle_enum
+wm.operators.*
+wm.set_stereo_3d
+x
+x-ray <3dview-shading-xray>
+yd
+zoom level <editors_3dview_navigation_zoom>
+{BLENDER_SYSTEM_SCRIPTS}/startup/bl_app_templates_system
+{BLENDER_USER_SCRIPTS}/startup/bl_app_templates_user
+{base path}/{file name}{frame number}.{extension}
+|
+|BLENDER_VERSION|
+~
+~/.blender/|BLENDER_VERSION|/config/startup.blend
+~/blender_docs
+~/blender_docs/build/html
+~/blender_docs/toos_maintenance
+~/software        
+'''
+
+        # p = re.compile(r'(?<!\\")"(.*?)"')
+        # m = p.findall(long_t)
+        # print(m)
+        # p = re.compile(r'(<[^<>]+>)', flags=re.MULTILINE)
+        # word_list = cm.findInvertSimple(p, t)
+        # for w in word_list:
+        #     print(w)
+        # t = "``:term:`Manifold``` -- Links to an entry in the :doc:`Glossary </glossary/index>`."
+        # p = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
+        # print(t)
+        # m = p.findall(t)
+        # print(m)
+        t = "The *Transform Orientations* panel, found in the header of the 3D Viewport, " \
+            "can be used to manage transform orientations: selecting the active orientation, " \
+            "adding (\"+\" icon), deleting (\"X\" icon) and rename custom orientations."
+
+        t = "When you have completed arranging and stitching, you will end up with a consolidated " \
+            "UV map, like that shown to the right, arranged such that a single image will cover, " \
+            "or paint, all of the mesh that needs detailed painting. All the detailed instructions on " \
+            "how to do this are contained in the next section. The point of this paragraph is to show " \
+            "you the ultimate goal. Note that the mesh shown is Mirrored along the Z axis, so the " \
+            "right side of the face is virtual; it is an exact copy of the right, so only one set of " \
+            "UVs actually exist. (If more realism is desired, the Mirror Modifier would be applied, " \
+            "resulting in a physical mirror and a complete head. You could then make both side physically " \
+            "different by editing one side and not the other. Unwrapping would produce a full set of " \
+            "UVs (for each side) and painting could thus be different for each side of the face, " \
+            "which is more realistic). and (this (is the second one) but not here) and (another one)"
+
+
+        t = ''' 
+        C:\\blender_docs
+        with space in front build/html/contents_quicky.html
+        '''
+
+        # word_list = getTextWithinBracket('(', ')', t, is_include_bracket=False, replace_internal_start_bracket='[', replace_internal_end_bracket=']')
+        # print(word_list)
+
+        # print(t)
+        # # p = re.compile(r'(?P<word>[^\\\/]+)([\\\/]{1,2}(?P=word))*?(?P<ext>\.[\w]{2,5})')
+        # p = re.compile(r'(?:[^\\\/\:\s]+?[/\\])*\w+\.\w{2,5}')
+        # # m = p.search(t)
+        # m = p.findall(long_t)
+        # print(m)
+
+        # p = re.compile(r'(?!\).*?\()\(.*?\)')
+        # p = re.compile(r'(?:(?!\).*?\().)*')
+        # print(t)
+        # m = p.findall(t)
+        # print(m)
+        # from collections import deque
+        # word_dict={}
+        # m_list = re.finditer(r'\(|\)', t)
+        # for m in m_list:
+        #     s = m.start()
+        #     e = m.end()
+        #     w = m.group(0)
+        #     entry = {(s, e): w}
+        #     word_dict.update(entry)
+        #
+        # print(word_dict)
+        #
+        # sentence_list = []
+        # q = deque()
+        # for loc, bracket in word_dict.items():
+        #     s, e = loc
+        #     is_open = (bracket == '(')
+        #     is_close = (bracket == ')')
+        #     if is_open:
+        #         q.append(s)
+        #     if is_close:
+        #         if not q:
+        #             raise Exception(f'Invalid close bracket at {s, e}')
+        #         last_s = q.pop()
+        #         ss = last_s + 1
+        #         ee = e - 1
+        #         txt_line = t[ss:ee]
+        #         sentence_list.append(txt_line)
+        # print(sentence_list)
+
+        # print(word_list)
+
+        # t_dict = {0: [{(0, 3): '"D"'}, {(1, 2): 'D'}], 15: [{(15, 21): '"dash"'}, {(16, 20): 'dash'}], 23: [{(23, 26): '"G"'}, {(24, 25): 'G'}], 38: [{(38, 43): '"gap"'}, {(39, 42): 'gap'}]}
+        # t_dict = {11: [{(11, 56): ':menuselection:`View --> Show Curve Extremes`'}, {(11, 26): ':menuselection:'}, {(27, 55): 'View --> Show Curve Extremes'}]}
+        t_dict = {10: [((10, 16), '*Path*'), ((11, 15), 'Path')]}
+        t_dict = {11: [((11, 56), ':menuselection:`View --> Show Curve Extremes`'), ((11, 26), ':menuselection:'), ((27, 55), 'View --> Show Curve Extremes')]}
+        for k, v in t_dict.items():
+            v_len = len(v)
+            if v_len > 2:
+                orig, sub_type, sub_content = v
+            else:
+                sub_type = None
+                orig, sub_content = v
+
+            (o_ss, o_ee), o_txt = orig
+            print(f'{o_ss}, {o_ee} {o_txt}')
+            print(f'orig:{orig} sub_type:{sub_type} sub_content:{sub_content}')
+            # for index, item in enumerate(v):
+            #     # print(f'index:{index} item:{item}')
+            #     if index == 0:
+            #         print(f'orig: {item}')
+            #     if index == 1:
+            #         print(f'sub/type: {item}')
+            #     if index == 2:
+            #         print(f'sub text: {item}')
+
+            # v_len = len(v)
+            # orig = v[0]
+            # sub = v[1]
+            #
+            # ok = list(orig.keys())[0]
+
+            # ov = list(orig.values())[0]
+            #
+            # sk = list(sub.keys())[0]
+            # sv = list(sub.values())[0]
+            #
+            # print(f'O: {ok} {ov}')
+            # print(f'S: {sk} {sv}')
+
+    def test_capt_0001(self):
+        string = 'abababacb'
+        p = re.compile(r'(?:b)(a)(?:b)', flags=re.MULTILINE)
+        m = p.search(string)
+        m = p.findall(string)
+
+        p = re.compile(r'(?<=b)(a)(?=b)')
+        m = p.search(string)
+        print(m)
+        m = p.findall(string)
+        print(m)
+
+        string = 'I love cherries, apples, strawberries.'
+        p = re.compile(r'(\w+)(?:\.|,)')
+        m = p.search(string)
+        print(m)
+        m = p.findall(string)
+        print(m)
+
+        password1 = 'AZN#3232!abbb32..'
+        password2 = 'AZN#3232abbb3232'
+        # make sure that ALL lower
+        # upper number symbols are matched
+        # first before capture using \S+
+        # Non-capturing ?=.* will start from the position where cursor was and check ahead, without capturing.
+
+        pass_pattern = re.compile('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!?.])\S+')
+
+        m = pass_pattern.search(password1)
+        print(m)
+        m = pass_pattern.findall(password1)
+        print(m)
+
+        m = pass_pattern.search(password2)
+        print(m)
+        m = pass_pattern.findall(password2)
+        print(m)
+
+
+    def test_translate(self):
+        WORD_SPLIT = re.compile(r'[^\W]+')
+        tf = TranslationFinder()
+
+        # msg = "Style modules:"
+        msg = "Add-ons"
+        tran = tf.translate(msg)
+        print(f'{msg} => {tran}')
+
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
@@ -3866,9 +6665,10 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # self.test_0063()
         # print(self.recur(4))
         # self.parseSVG()
-        self.translate_po_file()
+        # self.translate_po_file()
         # self.test_pattern_0001()
-
+        self.test_insert_abbr()
+        # self.test_capt_0001()
 
 
 

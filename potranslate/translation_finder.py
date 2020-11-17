@@ -502,6 +502,7 @@ class TranslationFinder:
         #     dd('DEBUG')
         loc_list=[]
         translated_dic = []
+        untranslated = []
         # generate all possible combinations of string lengths
         loc_map_length_sorted_reverse = self.genmap(translation)
 
@@ -513,7 +514,8 @@ class TranslationFinder:
             # if not tran_sub_text:
             #     tran_sub_text = self.findDictByRemoveCommonPrePostFixes(orig_sub_text)
             #     if not tran_sub_text:
-            #         chopped_text, tran_sub_text = self.hyphenationRemoval(orig_sub_text)
+            #         chopped_text, tran_sub_text = self.symbolsRemoval(orig_sub_text)
+            ss, ee = loc
 
             if not tran_sub_text:
                 continue
@@ -524,7 +526,6 @@ class TranslationFinder:
                 continue
 
             loc_list.append(loc)
-            ss, ee = loc
             entry = (ss, ee, orig_sub_text, tran_sub_text)
             dd(f'translated_dic.append: "{entry}"')
             translated_dic.append(entry)
@@ -561,6 +562,10 @@ class TranslationFinder:
         sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=dic_key, reverse=True))
         pp(sorted_by_loc_list)
         for loc, word in sorted_by_loc_list:
+            is_symbol = (cm.SYMBOLS_ONLY.search(word) is not None)
+            if is_symbol:
+                continue
+
             ss, ee = loc
             word_tran = self.findByReduction(word)
             if word_tran:
@@ -1235,32 +1240,32 @@ class TranslationFinder:
         search_dic = (self.master_dic if is_master else self.backup_dic)
         return self.isInDict(msg, dic_to_use=search_dic)
 
-    def hyphenationRemoval(self, txt):
-        match = cm.HYPHEN.search(txt)
+    def symbolsRemoval(self, txt):
+        match = cm.SYMBOLS.search(txt)
         has_hyphen = bool(match)
         if not has_hyphen:
             return txt, None
 
-        test_text = str(txt)
-
-        pattern = test_text.replace('-', '')
-        trans = self.isInDict(pattern)
-        if trans:
-            return pattern, trans
-        else:
-            trans = self.findDictByRemoveCommonPrePostFixes(pattern)
+        pattern, subcount = cm.SYMBOLS.subn('', txt)
+        if subcount > 0:
+            trans = self.isInDict(pattern)
             if trans:
                 return pattern, trans
+            else:
+                trans = self.findDictByRemoveCommonPrePostFixes(pattern)
+                if trans and (trans != pattern):
+                    return pattern, trans
 
-        pattern = test_text.replace('-', ' ')
-        trans = self.isInDict(pattern)
-        if trans:
-            return pattern, trans
-        else:
-            trans = self.findDictByRemoveCommonPrePostFixes(pattern)
+        pattern, subcount = cm.SYMBOLS.subn(' ', txt)
+        if subcount > 0:
+            # there might be multiple spaced words here, must try to retain original symbols
+            trans = self.isInDict(pattern)
             if trans:
                 return pattern, trans
-
+            else:
+                trans = self.findDictByRemoveCommonPrePostFixes(pattern)
+                if trans and (trans != pattern):
+                    return pattern, trans
         return txt, None
 
     def findDictByRemoveCommonPrePostFixes(self, txt):
@@ -1482,10 +1487,9 @@ class TranslationFinder:
 
             return_text = None
             if tran:
+                return_text = tran
                 if (new_txt != txt):
                     return_text = re.sub(new_txt, tran, txt)
-                else:
-                    return_text = tran
 
             return new_txt, return_text
 
@@ -1518,7 +1522,7 @@ class TranslationFinder:
 
     def findByReduction(self, msg):
         trans = None
-        chopped_text, trans = self.hyphenationRemoval(msg)
+        chopped_text, trans = self.symbolsRemoval(msg)
         if not trans:
             trans = self.findDictByRemoveCommonPrePostFixes(msg)
             if not trans:
@@ -1619,14 +1623,12 @@ class TranslationFinder:
     def removeTheWord(self, trans):
         try:
             trans = cm.THE_WORD.sub("", trans)
-            trans = cm.MULTI_SPACES.sub(" ", trans)
-            trans = trans.strip()
         except Exception as e:
             pass
         return trans
 
     def translate(self, msg):
-        must_mark = False
+        is_fuzzy = False
         is_debug = ('Once the docs have been built, all the HTML' in msg)
         if is_debug:
             dd('DEBUG')
@@ -1638,7 +1640,7 @@ class TranslationFinder:
         if not trans:
             dd(f'calling blindTranslation')
             trans = self.blindTranslation(msg)
-            must_mark = True
+            is_fuzzy = True
 
         if trans:
             is_same = (trans.lower() == msg.lower())
@@ -1646,7 +1648,7 @@ class TranslationFinder:
                 trans = None
             else:
                 trans = self.removeTheWord(trans)
-        return (trans, must_mark, is_ignore)
+        return (trans, is_fuzzy, is_ignore)
 
     def translateKeyboard(self, msg):
         orig = str(msg)
@@ -1665,10 +1667,13 @@ class TranslationFinder:
             rr = trans[e:]
             trans = ll + tr + rr
 
+        is_fuzzy = False
+        is_ignore = False
         is_the_same = (orig == trans)
         if is_the_same:
             trans = None
-        return trans
+            is_fuzzy = True
+        return trans, is_fuzzy, is_ignore
 
     def checkIgnore(self, msg):
         is_pure_path = (cm.PURE_PATH.search(msg) is not None)
@@ -1692,20 +1697,21 @@ class TranslationFinder:
         return msg
 
     def translateQuoted(self, msg, is_reversed=False, ref_type=None):
+        is_fuzzy = False
         is_ignore = self.checkIgnore(msg)
         if is_ignore:
-            return None
+            return None, is_fuzzy, is_ignore
 
         tran, is_fuzzy, is_ignore = self.translate(msg)
         if is_ignore:
-            return None
+            return None, is_fuzzy, is_ignore
 
         tran_found = (tran is not None)
 
         abbr_str = RefType.ABBR.value
-        has_abbr = (abbr_str in tran)
+        has_abbr = tran_found and (abbr_str in tran)
         if has_abbr:
-            return tran
+            return tran, is_fuzzy, is_ignore
 
         orig_msg = str(msg)
         ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
@@ -1725,15 +1731,13 @@ class TranslationFinder:
             tran = f"{abbr_str}`{tran} ({msg})`"
         else:
             tran = f"{abbr_str}`{msg} ({msg})`"
-        # print(f'translateQuoted: [{msg}] [{tran}]')
-        # exit(0)
-        return tran
+        return tran, is_fuzzy, is_ignore
 
     def translateRefWithLink(self, msg):  # for things like :doc:`something <link>`, and :term:`something <link>`
-
-        is_ignore = self.checkIgnore(msg)
-        if is_ignore:
-            return None
+        ref_is_fuzzy = False
+        ref_is_ignore = self.checkIgnore(msg)
+        if ref_is_ignore:
+            return None, ref_is_fuzzy, ref_is_ignore
 
         tran_txt = str(msg)
         has_ref_link = (cm.REF_LINK.search(msg) is not None)
@@ -1744,6 +1748,9 @@ class TranslationFinder:
                 tran, is_fuzzy, is_ignore = self.translate(orig_txt)
                 if is_ignore:
                     continue
+
+                if is_fuzzy:
+                    ref_is_fuzzy = True
 
                 tran_found = (tran and tran != orig_txt)
                 if tran_found:
@@ -1765,24 +1772,28 @@ class TranslationFinder:
                 tran_txt = tran_txt[:s] + tran + tran_txt[e:]
         else:
             orig_txt = msg
-            tran, is_fuzzy, is_ignore = self.translate(orig_txt)
-            if is_ignore:
-                return None
+            tran, ref_is_fuzzy, ref_is_ignore = self.translate(orig_txt)
+            if ref_is_ignore:
+                return None, ref_is_fuzzy, ref_is_ignore
+
             tran_found = (tran and tran != orig_txt)
             if tran_found:
                 tran = cm.matchCase(orig_txt, tran)
-                tran_txt = f"{orig_txt}: {tran}"
+                tran_txt = f"{tran} -- {orig_txt}"
             else:
-                tran_txt = f"{orig_txt}: "
-        return tran_txt
+                tran_txt = f" -- {orig_txt}"
+        return tran_txt, ref_is_fuzzy, ref_is_ignore
 
     def translateMenuSelection(self, msg):
+        men_is_fuzzy = False
+        men_is_ignore = False
         tran_txt = str(msg)
         word_list = cm.findInvert(cm.MENU_SEP, msg)
         for k, v in reversed(list(word_list.items())):
             s, e, orig = v
             tran, is_fuzzy, is_ignore = self.translate(orig)
             if is_ignore:
+                men_is_fuzzy = is_fuzzy
                 continue
 
             has_abbr = cm.hasAbbr(tran)
@@ -1794,7 +1805,7 @@ class TranslationFinder:
                 left = tran[:os]
                 right = tran[oe:]
                 tran = left + abbr_txt + right
-                dd('debug')
+                dd('debug translateMenuSelection hasAbbr')
 
             is_tran_valid = (tran and (tran != orig))
             if is_tran_valid:
@@ -1804,7 +1815,7 @@ class TranslationFinder:
                 entry = "({})".format(orig)
             tran_txt = tran_txt[:s] + entry + tran_txt[e:]
 
-        return tran_txt
+        return tran_txt, men_is_fuzzy, men_is_ignore
 
     def translateAbbrev(self, msg):
         tran_txt = str(msg)
@@ -1818,7 +1829,7 @@ class TranslationFinder:
         s, e = loc
         tran, is_fuzzy, is_ignore = self.translate(btxt)
         if is_ignore:
-            return None
+            return None, is_fuzzy, is_ignore
 
         valid = (tran and (tran != btxt))
         if valid:
@@ -1848,7 +1859,7 @@ class TranslationFinder:
         #         e = oe + be
         #         tran_txt = tran_txt[:s] + entry + tran_txt[e:]
 
-        return tran_txt
+        return tran_txt, is_fuzzy, is_ignore
 
     def removeIgnoredEntries(self, dic_list):
         valid = (dic_list is not None) and (len(dic_list) > 0)

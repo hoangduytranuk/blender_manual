@@ -21,6 +21,14 @@ class RefType(Enum):
     TERM = ":term:"
     TEXT = "generic_text"
     FILLER = "filler"
+
+    @classmethod
+    def getRef(cls, string_value: str):
+        for name, member in cls.__members__.items():
+            if member.value == string_value:
+                return member
+        return None
+
 '''
     ABBREV_TEXT_REVERSE = re.compile(r'([^\(]+)\s\(([^\)]+)\)')
     REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
