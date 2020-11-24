@@ -1556,7 +1556,9 @@ class TranslationFinder:
         if not trans or (trans == txt):
             is_fuzzy, trans = self.translateWordsAtSymbolBoundary(txt)
             if trans:
-                candidates.update({trans: (None, is_fuzzy)})
+                new_txt = str(txt)
+                candidates.update({trans: (new_txt, is_fuzzy)})
+
         if not trans or (trans == txt) or is_fuzzy:
             new_txt, trans = self.translationByRemovingSymbols(txt)
         if not trans or (trans == txt):

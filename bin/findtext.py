@@ -6000,14 +6000,16 @@ class FindFilesHasPattern:
 ``~``            
 '''
             found_dict = {}
-            home = os.environ['HOME']
-            test_file = os.path.join(home, 'findgettext_cleaned.log')
-            data_lines = []
-            with open(test_file) as f:
-                data_lines = f.readlines()
+            # home = os.environ['HOME']
+            # test_file = os.path.join(home, 'findgettext_cleaned.log')
+            # data_lines = []
+            # with open(test_file) as f:
+            #     data_lines = f.readlines()
             # data_lines = data.split('\n')
             # print('-' * 30)
             # print(f'File:{f}')
+            data = "Developer's `Ask Us Anything! <https://wiki.blender.org/wiki/Reference/AskUsAnything>`__"
+            data_lines = data.split('\n')
             for text_line in data_lines:
                 is_debug = ('animation/armatures' in text_line)
                 if is_debug:
@@ -6091,11 +6093,11 @@ class FindFilesHasPattern:
             sorted_list = list(found_dict.items())
             sorted_list.sort()
             sorted_dict = OrderedDict(sorted_list)
-            # if TESTING:
-            #     for k, v in sorted_dict.items():
-            #         trans = (v if v and not (v == k) else "")
-            #         print(f'"{k}": "{trans}",')
-            #     return
+            if TESTING:
+                for k, v in sorted_dict.items():
+                    trans = (v if v and not (v == k) else "")
+                    print(f'"{k}": "{trans}",')
+                return
 
             home = os.environ['HOME']
             out_file = os.path.join(home, 'log.json')
