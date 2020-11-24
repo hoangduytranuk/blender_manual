@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append('/usr/local/lib/python3.8/site-packages')
 # sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 # print(f'translation_finder sys.path: {sys.path}')
@@ -16,11 +17,11 @@ from sphinx_intl import catalog as c
 from babel.messages.catalog import Message
 from babel.messages import pofile
 from common import DEBUG
-    # , DIC_LOWER_CASE
+# , DIC_LOWER_CASE
 from reftype import RefType
 
-class CaseInsensitiveDict(dict):
 
+class CaseInsensitiveDict(dict):
     """Basic case insensitive dict with strings only keys."""
 
     proxy = {}
@@ -50,6 +51,7 @@ class CaseInsensitiveDict(dict):
     def __setitem__(self, k, v):
         super(CaseInsensitiveDict, self).__setitem__(k, v)
         self.proxy[k.lower()] = k
+
 
 class NoCaseDict(OrderedDict):
     class Key(str):
@@ -162,15 +164,16 @@ class NoCaseDict(OrderedDict):
         return new_set
 
     def getSetByWordCount(self, word_count, first_word=None, is_reversed=False):
-        new_set = self.getSetByWordCountInRange(word_count, word_count, first_word_list=first_word, is_reversed=is_reversed)
+        new_set = self.getSetByWordCountInRange(word_count, word_count, first_word_list=first_word,
+                                                is_reversed=is_reversed)
         return new_set
 
     def getSetUpToWordCount(self, word_count, first_word=None, is_reversed=False):
         new_set = self.getSetByWordCountInRange(1, word_count, first_word_list=first_word, is_reversed=is_reversed)
         return new_set
 
-class TranslationFinder:
 
+class TranslationFinder:
     KEYBOARD_TRANS_DIC = {
         r'\bWheelUp\b': "Lăn Bánh Xe về Trước (WheelUp)",
         r'\bWheelDown\b': "Lăn Bánh Xe về Sau (WheelDown)",
@@ -279,7 +282,7 @@ class TranslationFinder:
         self.current_po_dir = os.path.join(home_dir, "blender_docs/locale/vi/LC_MESSAGES")
         self.json_dic_file = None
 
-        #self.json_dic_list = self.loadJSONDic(file_name=self.json_dic_file)
+        # self.json_dic_list = self.loadJSONDic(file_name=self.json_dic_file)
         self.json_dic_list = {}
         self.current_po_path = None
         self.current_po_cat = None
@@ -292,12 +295,12 @@ class TranslationFinder:
         self.loadDictionary()
 
     # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
-        # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
+    # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
 
-        # self.cleanDictList(self.master_dic_list)
-        # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
-        # exit(0)
-        # self.updateDict()
+    # self.cleanDictList(self.master_dic_list)
+    # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
+    # exit(0)
+    # self.updateDict()
 
     # def listDictRange(self, from_wc_range, to_wc_range):
     #     # keys = self.master_dic_list.keys()
@@ -371,8 +374,6 @@ class TranslationFinder:
         #
         # exit(0)
 
-
-
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
         c.dump_po(file_path, data_cat)
@@ -389,8 +390,8 @@ class TranslationFinder:
         is_finished = False
         while not is_finished:
             for i in range(0, max_len):
-                l=[]
-                for k in range(i, min(i+step, max_len)):
+                l = []
+                for k in range(i, min(i + step, max_len)):
                     loc = loc_key[k]
                     # print(f'step:{step}; i:{i}; k:{k}, loc:{loc}')
                     l.append(loc_key[k])
@@ -405,7 +406,7 @@ class TranslationFinder:
                     is_remember_end_loc = (ee > w_e)
                     if is_remember_end_loc:
                         w_e = ee
-                t = msg[w_s : w_e]
+                t = msg[w_s: w_e]
 
                 # print(f's location:{l}, text:{t}')
 
@@ -418,7 +419,7 @@ class TranslationFinder:
             if is_finish:
                 break
 
-        sorted_partlist = sorted(part_list, key=lambda x: len(x[1]), reverse=True )
+        sorted_partlist = sorted(part_list, key=lambda x: len(x[1]), reverse=True)
         return sorted_partlist
 
     def translateBreakupSentences(self, msg):
@@ -460,7 +461,7 @@ class TranslationFinder:
 
             # x[0] = start, x[1] = end, x[1]-x[0] = length of text
             # sort the location list in covering distance, reversed order, larger distance will be on top
-            sorted_loc = sorted(loc_list, key=lambda x: x[1]-x[0], reverse=True )
+            sorted_loc = sorted(loc_list, key=lambda x: x[1] - x[0], reverse=True)
             retain_l = []
             for loc in sorted_loc:
                 substr = sample_str[loc[0]:loc[1]]
@@ -497,10 +498,8 @@ class TranslationFinder:
         #     return translation
 
         translation = str(msg)
-        # is_debug = ('developer.blender.org' in msg) or ('system' in msg)
-        # if is_debug:
-        #     dd('DEBUG')
-        loc_list=[]
+
+        loc_list = []
         translated_dic = []
         untranslated = []
         # generate all possible combinations of string lengths
@@ -508,6 +507,7 @@ class TranslationFinder:
 
         dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
         # translate them all if possible
+
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
             # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInDict(orig_sub_text)
@@ -518,11 +518,15 @@ class TranslationFinder:
             ss, ee = loc
 
             if not tran_sub_text:
+                new_text, tran_sub_text = self.tryToFindTran(orig_sub_text)
+
+            if not tran_sub_text:
                 continue
 
-            is_fully_translatd = self.isTranslatedFully(orig_sub_text, tran_sub_text)
+            is_fully_translatd = self.isNonGATranslatedFully(orig_sub_text, tran_sub_text)
             if not is_fully_translatd:
-                dd(f'not is_fully_translatd: "{orig_sub_text}" => "{tran_sub_text}" IGNORE!')
+                dd(
+                    f'not fully translated or has GA ref, which parts could still be in English: "{orig_sub_text}" => "{tran_sub_text}" IGNORE!')
                 continue
 
             loc_list.append(loc)
@@ -780,7 +784,6 @@ class TranslationFinder:
         file_path = (to_file if to_file else self.master_dic_file)
         self.writeJSONDic(dict_list=self.master_dic, file_name=file_path)
 
-
     def updateDict(self):
         from_file = '/Users/hoangduytran/blender_manual/ref_dict_0004.json'
         to_file = '/Users/hoangduytran/blender_manual/ref_dict_0005.json'
@@ -812,12 +815,12 @@ class TranslationFinder:
                 v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
 
             if v:
-                entry={trimmed_k: v}
+                entry = {trimmed_k: v}
                 new_dic.update(entry)
                 print(f'found entry:{entry}')
             else:
                 v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=from_dict, is_patching_found=False)
-                entry={trimmed_k: v}
+                entry = {trimmed_k: v}
                 ignore_dic.update(entry)
                 print(f'ignored entry:{entry}')
 
@@ -835,7 +838,7 @@ class TranslationFinder:
             #     dd('DEBUG')
 
             v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
-            entry={trimmed_k: v}
+            entry = {trimmed_k: v}
             new_dic.update(entry)
             print(f'added from to_file entry:{entry}')
 
@@ -898,7 +901,6 @@ class TranslationFinder:
                 continue
 
             self.addDictEntry((k, v), is_master)
-
 
     def replacePOText(self, po_file, rep_list, is_dry_run=True):
         dd("replacePOText:", po_file, rep_list, is_dry_run)
@@ -1074,9 +1076,9 @@ class TranslationFinder:
             if is_first_entry:
                 continue
 
-            #context = (m.context if m.context else "")
-            #dd("context:{}".format(context))
-            #k = (m.id, context)
+            # context = (m.context if m.context else "")
+            # dd("context:{}".format(context))
+            # k = (m.id, context)
             k = m.id
             # is_ignore = (ig.isIgnored(k))
             # if is_ignore:
@@ -1090,7 +1092,7 @@ class TranslationFinder:
             entry = {k: v}
             po_cat_dic.update(entry)
 
-            #dd("poCatToDic:", k, v)
+            # dd("poCatToDic:", k, v)
             # if DIC_LOWER_CASE:
             #     #lower_k = (m.id.lower(), context.lower())
             #     lower_k = m.id.lower()
@@ -1214,7 +1216,8 @@ class TranslationFinder:
                                                                       dict_to_use=search_dict)
 
         if not is_found_tran:
-            tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg, dict_to_use=search_dict)
+            tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
+                                                                      dict_to_use=search_dict)
             if not is_found_tran:
                 head_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
                                                                           dict_to_use=search_dict)
@@ -1240,306 +1243,404 @@ class TranslationFinder:
         search_dic = (self.master_dic if is_master else self.backup_dic)
         return self.isInDict(msg, dic_to_use=search_dic)
 
-    def symbolsRemoval(self, txt):
-        match = cm.SYMBOLS.search(txt)
-        has_hyphen = bool(match)
-        if not has_hyphen:
-            return txt, None
-
+    def translationByRemovingSymbols(self, txt: str) -> str:
         pattern, subcount = cm.SYMBOLS.subn('', txt)
         if subcount > 0:
             trans = self.isInDict(pattern)
             if trans:
                 return pattern, trans
-            else:
-                trans = self.findDictByRemoveCommonPrePostFixes(pattern)
-                if trans and (trans != pattern):
-                    return pattern, trans
+            # else:
+            #     trans = self.findDictByRemoveCommonPrePostFixes(pattern)
+            #     if trans and (trans != pattern):
+            #         return pattern, trans
+        return txt, None
 
+    def translationByReplacingSymbolsWithSpaces(self, txt: str) -> str:
         pattern, subcount = cm.SYMBOLS.subn(' ', txt)
         if subcount > 0:
             # there might be multiple spaced words here, must try to retain original symbols
             trans = self.isInDict(pattern)
             if trans:
                 return pattern, trans
-            else:
-                trans = self.findDictByRemoveCommonPrePostFixes(pattern)
-                if trans and (trans != pattern):
-                    return pattern, trans
+            # else:
+            #     trans = self.findDictByRemoveCommonPrePostFixes(pattern)
+            #     if trans and (trans != pattern):
+            #         return pattern, trans
         return txt, None
 
-    def findDictByRemoveCommonPrePostFixes(self, txt):
-        def fixTranslationWithKnowsPrefixSuffixes(txt, trans, is_prefix=False):
-            new_txt = str(trans)
-            # pp(cm.common_sufix_translation)
-            fix_translation_list = (cm.common_prefix_translation if is_prefix else cm.common_sufix_translation )
-            for fix_term, (position, add_translation) in fix_translation_list:
+    def translateWordsAtSymbolBoundary(self, txt: str) -> str:
+        is_fuzzy = False
+        translation = str(txt)
+        found_dict = cm.findInvert(cm.SYMBOLS, txt)
+        if not found_dict:
+            return False, None
 
-                if is_prefix:
-                    has_fix_term = txt.startswith(fix_term)
-                else:
-                    has_fix_term = txt.endswith(fix_term)
+        translated_dict = {}
+        for k, v in found_dict.items():
+            loc, orig_txt = v
+            s, e = loc
+            trans = self.isInDict(orig_txt)
 
-                if not has_fix_term:
+            if not trans:
+                new_txt, trans = self.removeStarAndEndingPunctuations(orig_txt)
+                if not trans or (trans == txt):
+                    new_txt, trans = self.translationByRemovingSymbols(orig_txt)
+                if not trans or (trans == txt):
+                    new_txt, trans = self.translationByReplacingSymbolsWithSpaces(orig_txt)
+                if not trans or (trans == txt):
+                    new_txt, trans = self.removeByPatternListAndCheck(orig_txt, cm.common_suffix_sorted, cm.END_WORD)
+                if not trans or (trans == txt):
+                    new_txt, tran = self.removeByPatternListAndCheck(orig_txt, cm.common_prefix_sorted, cm.START_WORD)
+                if not trans or (trans == txt):
+                    new_txt, tran = self.removeBothByPatternListAndCheck(orig_txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+                if not trans or (trans == txt):
+                    is_fuzzy = True
                     continue
 
-                is_at_front = (position == cm.START_WORD)
-                is_at_end = (position == cm.END_WORD)
-                is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
-                is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
+                if new_txt and not (new_txt == txt):
+                    list_of_remain_loc = cm.locRemain(orig_txt, new_txt)
+                    new_tran = str(trans)
+                    for ss, ee in list_of_remain_loc:
+                        left = orig_txt[:ss]
+                        right = orig_txt[ee:]
+                        new_tran = left + trans + right
+                    trans = new_tran
 
-                # dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
-                # dd(f'txt:{txt}; fix_term:{fix_term}; position:{position}')
-                if is_patching_front:
-                    # dd(f'is_patching_front: add_translation={add_translation}')
-                    # dd(f'is_patching_front: Befor adding; new_txt={new_txt}')
-                    new_txt = add_translation + ' ' + new_txt
-                    # dd(f'is_patching_front: new_txt={new_txt}')
-                    return new_txt
+            if trans and not (trans == orig_txt):
+                entry = {s: (loc, orig_txt, trans)}
+                found_dict_entry = {s: (loc, orig_txt, trans)}
+                found_dict.update(found_dict_entry)
+                translated_dict.update(entry)
 
-                if is_patching_end:
-                    # dd(f'is_patching_end: add_translation={add_translation}')
-                    new_txt += ' ' + add_translation
-                    # dd(f'is_patching_end: new_txt={new_txt}')
-                    return new_txt
-            return trans
+        if not translated_dict:
+            return False, None
 
-        def reduceDuplicatedEnding(txt):
-            is_double_ending = (len(txt) > 2)  and (txt[-1] == txt[-2])
-            if is_double_ending:
-                # dd(f'is_double_ending txt:{txt}')
-                test_text = txt[:-1]
-                trans = self.isInDict(test_text)
-                if trans:
-                    return test_text, trans
+        for k, v in translated_dict.items():
+            loc, orig_txt, trans = v
+            s, e = loc
+            left = translation[:s]
+            right = translation[e:]
+            translation = left + trans + right
+
+        return is_fuzzy, translation
+
+    def symbolsRemoval(self, txt):
+        match = cm.SYMBOLS.search(txt)
+        has_hyphen = bool(match)
+        if not has_hyphen:
             return txt, None
 
-        def replaceEndings(part, clipped_txt):
-            for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
-                for ending in ending_list:
-                    part_matched = (part == ending)
-                    if not part_matched:
-                        continue
-
-                    clipped_text = (clipped_txt + replacement_word)
-                    # dd(f'replaceEndings: clipped_text:{clipped_text}')
-                    trans = self.isInDict(clipped_text)
+        pattern, trans = self.removeStarAndEndingPunctuations(txt)
+        if trans:
+            return pattern, trans
+        else:
+            is_fuzzy, trans = self.translateWordsAtSymbolBoundary(txt)
+            if trans and not is_fuzzy:
+                return txt, trans
+            else:
+                pattern, trans = self.translationByRemovingSymbols(txt)
+                if trans:
+                    return pattern, trans
+                else:
+                    pattern, trans = self.translationByReplacingSymbolsWithSpaces(txt)
                     if trans:
-                        return clipped_text, trans
-                    else:
-                        chopped_txt, tran = reduceDuplicatedEnding(clipped_txt)
-                        if tran:
-                            return chopped_txt, tran
+                        return pattern, trans
+        return txt, None
+
+    def removeStarAndEndingPunctuations(self, txt):
+        new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
+        new_txt = cm.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
+        # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
+        trans = self.isInDict(new_txt)
+        if trans:
+            dd(f'removeStarAndEndingPunctuations: FOUND {new_txt} => {trans}')
+        return new_txt, trans
+
+    def fixTranslationWithKnowsPrefixSuffixes(self, txt, trans, is_prefix=False):
+        new_txt = str(trans)
+        # pp(cm.common_sufix_translation)
+        fix_translation_list = (cm.common_prefix_translation if is_prefix else cm.common_sufix_translation)
+        for fix_term, (position, add_translation) in fix_translation_list:
+
+            if is_prefix:
+                has_fix_term = txt.startswith(fix_term)
+            else:
+                has_fix_term = txt.endswith(fix_term)
+
+            if not has_fix_term:
+                continue
+
+            is_at_front = (position == cm.START_WORD)
+            is_at_end = (position == cm.END_WORD)
+            is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
+            is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
+
+            # dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
+            # dd(f'txt:{txt}; fix_term:{fix_term}; position:{position}')
+            if is_patching_front:
+                # dd(f'is_patching_front: add_translation={add_translation}')
+                # dd(f'is_patching_front: Befor adding; new_txt={new_txt}')
+                new_txt = add_translation + ' ' + new_txt
+                # dd(f'is_patching_front: new_txt={new_txt}')
+                return new_txt
+
+            if is_patching_end:
+                # dd(f'is_patching_end: add_translation={add_translation}')
+                new_txt += ' ' + add_translation
+                # dd(f'is_patching_end: new_txt={new_txt}')
+                return new_txt
+        return trans
+
+    def reduceDuplicatedEnding(self, txt):
+        is_double_ending = (len(txt) > 2) and (txt[-1] == txt[-2])
+        if is_double_ending:
+            # dd(f'is_double_ending txt:{txt}')
+            test_text = txt[:-1]
+            trans = self.isInDict(test_text)
+            if trans:
+                return test_text, trans
+        return txt, None
+
+    def replaceEndings(self, part, clipped_txt):
+        for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
+            for ending in ending_list:
+                part_matched = (part == ending)
+                if not part_matched:
+                    continue
+
+                clipped_text = (clipped_txt + replacement_word)
+                # dd(f'replaceEndings: clipped_text:{clipped_text}')
+                trans = self.isInDict(clipped_text)
+                if trans:
+                    return clipped_text, trans
+                else:
+                    chopped_txt, tran = self.reduceDuplicatedEnding(clipped_txt)
+                    if tran:
+                        return chopped_txt, tran
+        return None, None
+
+    def removeBothByPatternListAndCheck(self, txt, prefix_list, suffix_list):
+        suffixed_list = []
+        for part in suffix_list:
+            part_len = (len(part))
+            has_suffix = (txt.endswith(part))
+            if not has_suffix:
+                continue
+
+            test_text = txt[:-part_len]
+            suffixed_list.append(test_text)
+
+        prefixed_list = []
+        for suffixed_word in suffixed_list:
+            for part in prefix_list:
+                part_len = (len(part))
+                has_prefix = (txt.startswith(part))
+                if not has_prefix:
+                    continue
+
+                test_text = suffixed_word[part_len:]
+                prefixed_list.append(test_text)
+
+        for test_text in prefixed_list:
+            tran = self.isInDict(test_text)
+            if not tran:
+                is_double_ending = (len(test_text) > 2) and (test_text[-1] == test_text[-2])
+                if is_double_ending:
+                    test_text = test_text[:-1]
+                    tran = self.isInDict(test_text)
+
+            if tran:
+                return test_text, tran
+        return txt, None
+
+    def removeByPatternListAndCheck(self, txt, part_list, at):
+        tran = self.isInDict(txt)
+        if tran:
+            return txt, tran
+
+        is_at_start = (at == cm.START_WORD)
+        is_at_end = (at == cm.END_WORD)
+        test_text = str(txt)
+        if is_at_start:
+            test_text = cm.NON_WORD_STARTING.sub("", test_text)
+        elif is_at_end:
+            test_text = cm.NON_WORD_ENDING.sub("", test_text)
+
+        # part_list = ['like', '-like']
+        word_len = len(test_text)
+        text_before_cutoff = str(test_text)
+        # pp(part_list)
+        for part in part_list:
+            part_len = len(part)
+            if part_len >= word_len:
+                break
+
+            has_start = is_at_start and (text_before_cutoff.startswith(part))
+            has_end = is_at_end and (text_before_cutoff.endswith(part))
+            # if 'r' in part:
+            #     dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
+            if has_start:
+                test_text = text_before_cutoff[part_len:]
+                test_text = cm.NON_WORD_STARTING.sub("", test_text)
+                # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
+            elif has_end:
+                test_text = text_before_cutoff[:-part_len]
+                test_text = cm.NON_WORD_ENDING.sub("", test_text)
+                # dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
+            else:
+                continue
+
+            # this is to fix the 'hop' (should be hopping), and 'hope' (should be hoping)
+            should_have_duplicated_ending = cm.shouldHaveDuplicatedEnding(part, test_text)
+            if should_have_duplicated_ending:
+                chopped_txt, tran = self.replaceEndings(part, test_text)
+                fix_tran = bool((chopped_txt) and \
+                                (chopped_txt not in cm.verb_with_ending_y) and \
+                                (chopped_txt not in cm.verb_with_ending_s))
+                if tran:
+                    if fix_tran:
+                        tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+                    return test_text, tran
+
+            tran = self.isInDict(test_text)
+            if tran:
+                if has_end:
+                    # dd('has_end')
+                    tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+                elif has_start:
+                    # dd('has_start')
+                    tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=True)
+                return test_text, tran
+            else:
+                fix_tran = True
+                chopped_txt, tran = self.replaceEndings(part, test_text)
+                fix_tran = bool((chopped_txt) and \
+                                (chopped_txt not in cm.verb_with_ending_y) and \
+                                (chopped_txt not in cm.verb_with_ending_s))
+                if tran:
+                    if fix_tran:
+                        tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+                    return test_text, tran
+                else:
+                    chopped_txt, tran = self.reduceDuplicatedEnding(test_text)
+                    if tran:
+                        tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+                        return chopped_txt, tran
+
+            chopped_txt, tran = self.reduceDuplicatedEnding(text_before_cutoff)
+            if tran:
+                if is_at_end:
+                    tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+                elif is_at_start:
+                    tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
+
+                return test_text, tran
+        return txt, None
+
+    def removeInfixAndCheck(self, txt, infix_list):
+        # 1. generate a list of patterns with infix being removed or replaced by spaces
+        # 2. sort patterns list using the accending order of number of replacements, so the entry with least changes goes first,
+        #   the entry with most changes goes last
+        # 3. running through the pattern list and check to see which produce a result
+        has_infix = False
+        for infix in infix_list:
+            if (infix in txt):
+                has_infix = True
+        if not has_infix:
+            return txt, None
+
+    def tryToFindTran(self, txt):
+        is_fuzzy = False
+        candidates = {}
+        new_txt, trans = self.removeStarAndEndingPunctuations(txt)
+        if not trans or (trans == txt):
+            is_fuzzy, trans = self.translateWordsAtSymbolBoundary(txt)
+            if trans:
+                candidates.update({trans: (None, is_fuzzy)})
+        if not trans or (trans == txt) or is_fuzzy:
+            new_txt, trans = self.translationByRemovingSymbols(txt)
+        if not trans or (trans == txt):
+            new_txt, trans = self.translationByReplacingSymbolsWithSpaces(txt)
+        if not trans or (trans == txt):
+            new_txt, trans = self.removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
+        if not trans or (trans == txt):
+            new_txt, tran = self.removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
+        if not trans or (trans == txt):
+            new_txt, tran = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+
+        if trans and not (trans == txt):
+            candidates.update({trans: (new_txt, False)})
+
+        if not candidates:
             return None, None
 
-        def removeByPatternListAndCheck(txt, part_list, at):
+        return_text = None
+        sorted_candidates = list(sorted(list(candidates.items()), key=lambda x: len(x[0]), reverse=True))
+        candidate = sorted_candidates[0]
 
-            tran = self.isInDict(txt)
-            if tran:
-                return txt, tran
+        trans, v = candidate
+        new_txt, is_fuzzy = v
 
-            is_at_start = (at == cm.START_WORD)
-            is_at_end = (at == cm.END_WORD)
-            test_text = str(txt)
-            if is_at_start:
-                test_text = cm.NON_WORD_STARTING.sub("", test_text)
-            elif is_at_end:
-                test_text = cm.NON_WORD_ENDING.sub("", test_text)
+        return_text = trans
+        if new_txt and not (new_txt == txt):
+            return_text = txt.replace(new_txt, trans)
 
-            # part_list = ['like', '-like']
-            word_len = len(test_text)
-            text_before_cutoff = str(test_text)
-            # pp(part_list)
-            for part in part_list:
-                part_len = len(part)
-                if part_len >= word_len:
-                    break
+        return new_txt, return_text
 
-                has_start = is_at_start and (text_before_cutoff.startswith(part))
-                has_end = is_at_end and (text_before_cutoff.endswith(part))
-                # if 'r' in part:
-                #     dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
-                if has_start:
-                    test_text = text_before_cutoff[part_len:]
-                    test_text = cm.NON_WORD_STARTING.sub("", test_text)
-                    # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
-                elif has_end:
-                    test_text = text_before_cutoff[:-part_len]
-                    test_text = cm.NON_WORD_ENDING.sub("", test_text)
-                    # dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
-                else:
-                    continue
+    def findDictByRemoveCommonPrePostFixes(self, txt):
+        new_txt, tran = self.tryToFindTran(txt)
+        if not tran:
+            tran_txt = str(txt)
+            # split into separated words, treat each independently
+            # word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
+            word_dict_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, txt)
+            tran_dic = {}
+            for loc, word in word_dict_list.items():
+                s, e = loc
+                new_txt, tran = self.tryToFindTran(word)
+                replacement = (tran if tran else word)
+                entry = {s: (s, e, replacement)}
+                tran_dic.update(entry)
 
-                # this is to fix the 'hop' (should be hopping), and 'hope' (should be hoping)
-                should_have_duplicated_ending = cm.shouldHaveDuplicatedEnding(part, test_text)
-                if should_have_duplicated_ending:
-                    chopped_txt, tran = replaceEndings(part, test_text)
-                    fix_tran = bool((chopped_txt) and \
-                                    (chopped_txt not in cm.verb_with_ending_y) and \
-                                    (chopped_txt not in cm.verb_with_ending_s))
-                    if tran:
-                        if fix_tran:
-                            tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
-                        return test_text, tran
-
-                tran = self.isInDict(test_text)
-                if tran:
-                    if has_end:
-                        # dd('has_end')
-                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
-                    elif has_start:
-                        # dd('has_start')
-                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=True)
-                    return test_text, tran
-                else:
-                    fix_tran = True
-                    chopped_txt, tran = replaceEndings(part, test_text)
-                    fix_tran = bool((chopped_txt) and \
-                               (chopped_txt not in cm.verb_with_ending_y) and \
-                               (chopped_txt not in cm.verb_with_ending_s))
-                    if tran:
-                        if fix_tran:
-                            tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
-                        return test_text, tran
-                    else:
-                        chopped_txt, tran = reduceDuplicatedEnding(test_text)
-                        if tran:
-                            tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
-                            return chopped_txt, tran
-
-                chopped_txt, tran = reduceDuplicatedEnding(text_before_cutoff)
-                if tran:
-                    if is_at_end:
-                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
-                    elif is_at_start:
-                        tran = fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
-
-                    return test_text, tran
-            return txt, None
-
-        def removeBothByPatternListAndCheck(txt, prefix_list, suffix_list):
-            suffixed_list = []
-            for part in suffix_list:
-                part_len = (len(part))
-                has_suffix = (txt.endswith(part))
-                if not has_suffix:
-                    continue
-
-                test_text = txt[:-part_len]
-                suffixed_list.append(test_text)
-
-            prefixed_list = []
-            for suffixed_word in suffixed_list:
-                for part in prefix_list:
-                    part_len = (len(part))
-                    has_prefix = (txt.startswith(part))
-                    if not has_prefix:
-                        continue
-
-                    test_text = suffixed_word[part_len:]
-                    prefixed_list.append(test_text)
-
-            for test_text in prefixed_list:
-                tran = self.isInDict(test_text)
-                if not tran:
-                    is_double_ending = (len(test_text) > 2) and (test_text[-1] == test_text[-2])
-                    if is_double_ending:
-                        test_text = test_text[:-1]
-                        tran = self.isInDict(test_text)
-
-                if tran:
-                    return test_text, tran
-            return txt, None
-
-        def removeInfixAndCheck(txt, infix_list):
-            #1. generate a list of patterns with infix being removed or replaced by spaces
-            #2. sort patterns list using the accending order of number of replacements, so the entry with least changes goes first,
-            #   the entry with most changes goes last
-            #3. running through the pattern list and check to see which produce a result
-            has_infix = False
-            for infix in infix_list:
-                if (infix in txt):
-                    has_infix = True
-            if not has_infix:
-                return txt, None
-
-        def removeStarAndEndingPunctuations(txt):
-            new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
-            new_txt = cm.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
-            # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
-            trans = self.isInDict(new_txt)
-            if trans:
-                dd(f'removeStarAndEndingPunctuations: FOUND {new_txt} => {trans}')
-            return new_txt, trans
-
-        def tryToFindTran(txt):
-
-            new_txt, tran = removeStarAndEndingPunctuations(txt)
-            if not tran:
-                new_txt, tran = removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
-                # print(f'removeByPatternListAndCheck - common_suffix_pattern_list: new_txt:{new_txt}, tran:{tran}')
-                if not tran:
-                    new_txt, tran = removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
-                    # print(f'removeByPatternListAndCheck - common_prefix_pattern_list: new_txt:{new_txt}, tran:{tran}')
-                    if not tran:
-                        new_txt, tran = removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-                        # print(f'removeBothByPatternListAndCheck : new_txt:{new_txt}, tran:{tran}')
-
-            return_text = None
-            if tran:
-                return_text = tran
-                if (new_txt != txt):
-                    return_text = re.sub(new_txt, tran, txt)
-
-            return new_txt, return_text
-
-        def searchDicFor(txt):
-            new_txt, tran = tryToFindTran(txt)
-            if not tran:
-                tran_txt = str(txt)
-                # split into separated words, treat each independently
-                # word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
-                word_dict_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, txt)
-                tran_dic = {}
-                for loc, word in word_dict_list.items():
-                    s, e = loc
-                    new_txt, tran = tryToFindTran(word)
-                    replacement = (tran if tran else word)
-                    entry = {s: (s, e, replacement)}
-                    tran_dic.update(entry)
-
-                sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
-                for k, entry in sorted_tran_dic:
-                    s, e, replacement = entry
-                    left = tran_txt[:s]
-                    right = tran_txt[e:]
-                    tran_txt = left + replacement + right
-                tran = tran_txt
-            return tran
-
-        tran = searchDicFor(txt)
+            sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
+            for k, entry in sorted_tran_dic:
+                s, e, replacement = entry
+                left = tran_txt[:s]
+                right = tran_txt[e:]
+                tran_txt = left + replacement + right
+            tran = tran_txt
         return tran
 
     def findByReduction(self, msg):
         trans = None
-        chopped_text, trans = self.symbolsRemoval(msg)
+        chopped_text = None
+        trans = self.findDictByRemoveCommonPrePostFixes(msg)
         if not trans:
-            trans = self.findDictByRemoveCommonPrePostFixes(msg)
-            if not trans:
-                trans, trimmed_msg = self.findAndTrimIfNeeded(msg, is_patching_found=True)
-                if not trans:
-                    trans = self.findDictByRemoveCommonPrePostFixes(trimmed_msg)
+            trans, chopped_text = self.findAndTrimIfNeeded(msg, is_patching_found=True)
+        if not trans:
+            trans = self.findDictByRemoveCommonPrePostFixes(chopped_text)
+        if not trans:
+            chopped_text, trans = self.symbolsRemoval(msg)
 
         if trans:
-            trans = trans.replace(cm.FILLER_CHAR, '') # blank out filler char
-            trans = trans.replace('  ', ' ') # double space => single space
+            trans = trans.replace(cm.FILLER_CHAR, '')  # blank out filler char
+            trans = trans.replace('  ', ' ')  # double space => single space
             trans = cm.matchCase(msg, trans)
+
+            is_putting_back_into_msg = (chopped_text and (chopped_text != msg))
+            if is_putting_back_into_msg:
+                trans = re.sub(chopped_text, trans, msg)  # is this dangerous? should this needs a location?
+
             dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
         return trans
 
-    def isTranslatedFully(self, msg, trans):
-        is_abbrev = (cm.ABBREV_PATTERN_PARSER.search(msg) is not None)
-        if is_abbrev:
+    def isNonGATranslatedFully(self, msg, trans):
+        is_ga = (cm.GA_PATTERN_PARSER.search(msg) is not None)
+        if is_ga:
+            return True
+
+        is_ga = (cm.GA_PATTERN_PARSER.search(trans) is not None)
+        if is_ga:
             return True
 
         orig_word_list = msg.split()
@@ -1566,7 +1667,7 @@ class TranslationFinder:
             return None, is_ignore
 
         orig_msg = str(msg)
-        trans = self.isInDict(msg)
+        trans = self.isInDict(orig_msg)
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
@@ -1629,14 +1730,13 @@ class TranslationFinder:
 
     def translate(self, msg):
         is_fuzzy = False
-        is_debug = ('Once the docs have been built, all the HTML' in msg)
-        if is_debug:
-            dd('DEBUG')
-
         trans, is_ignore = self.findTranslation(msg)
         if is_ignore:
             return (None, False, is_ignore)
 
+        is_debug = ('Agent' in msg)
+        if is_debug:
+            print('DEBUG')
         if not trans:
             dd(f'calling blindTranslation')
             trans = self.blindTranslation(msg)
@@ -1681,14 +1781,14 @@ class TranslationFinder:
         is_api_ref = (cm.API_REF.search(msg) is not None)
         is_keep = (ig.isKeep(msg))
         is_keep_contain = (ig.isKeepContains(msg))
-        is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not(is_keep or is_keep_contain))
+        is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not (is_keep or is_keep_contain))
         return is_ignore
 
     def addExtraChar(self, msg, ref_type=None):
         char_tbl = {
-            RefType.SNG_QUOTE:"'",
-            RefType.DBL_QUOTE:'"',
-            RefType.AST_QUOTE:'*'
+            RefType.SNG_QUOTE: "'",
+            RefType.DBL_QUOTE: '"',
+            RefType.AST_QUOTE: '*'
         }
 
         insert_char = char_tbl[ref_type]
@@ -1740,11 +1840,12 @@ class TranslationFinder:
             return None, ref_is_fuzzy, ref_is_ignore
 
         tran_txt = str(msg)
+
         has_ref_link = (cm.REF_LINK.search(msg) is not None)
         if has_ref_link:
             found_list = cm.findInvert(cm.REF_LINK, msg)
-            for k, v in reversed(list(found_list.items())):
-                s, e, orig_txt = v
+            for loc, orig_txt in reversed(list(found_list.items())):
+                s, e = loc
                 tran, is_fuzzy, is_ignore = self.translate(orig_txt)
                 if is_ignore:
                     continue
@@ -1754,17 +1855,6 @@ class TranslationFinder:
 
                 tran_found = (tran and tran != orig_txt)
                 if tran_found:
-                    # has_abbr = cm.hasAbbr(tran)
-                    # if has_abbr:
-                    #     abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(tran)
-                    #     loc, abbr_txt = abbr_exp
-                    #     orig_loc, orig_txt = abbr_orig
-                    #     os, oe = orig_loc
-                    #     left = tran[:os]
-                    #     right = tran[oe:]
-                    #     tran = left + abbr_txt + right
-                    #     dd('debug')
-
                     tran = cm.matchCase(orig_txt, tran)
                     tran = f"{tran} -- {orig_txt}"
                 else:
@@ -1789,9 +1879,9 @@ class TranslationFinder:
         men_is_ignore = False
         tran_txt = str(msg)
         word_list = cm.findInvert(cm.MENU_SEP, msg)
-        for k, v in reversed(list(word_list.items())):
-            s, e, orig = v
-            tran, is_fuzzy, is_ignore = self.translate(orig)
+        for loc, word in reversed(list(word_list.items())):
+            s, e = loc
+            tran, is_fuzzy, is_ignore = self.translate(word)
             if is_ignore:
                 men_is_fuzzy = is_fuzzy
                 continue
@@ -1807,58 +1897,70 @@ class TranslationFinder:
                 tran = left + abbr_txt + right
                 dd('debug translateMenuSelection hasAbbr')
 
-            is_tran_valid = (tran and (tran != orig))
+            is_tran_valid = (tran and (tran != word))
             if is_tran_valid:
-                tran = cm.matchCase(orig, tran)
-                entry = "{} ({})".format(tran, orig)
+                tran = cm.matchCase(word, tran)
+                entry = "{} ({})".format(tran, word)
             else:
-                entry = "({})".format(orig)
+                entry = "({})".format(word)
             tran_txt = tran_txt[:s] + entry + tran_txt[e:]
 
         return tran_txt, men_is_fuzzy, men_is_ignore
 
-    def translateAbbrev(self, msg):
+    def translateAbbrev(self, msg: str) -> list:
+        '''
+            translateAbbrev: Routine to parse abbreviation entry, such as:
+            :abbr:`JONSWAP (JOint North Sea WAve Project)`.
+            The routine will capture the part within brackets and translating
+            that part, rejoins the translation with original text:
+            'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
+        :param msg:
+            text which contains the part within grave accents (GA), ie.
+            JONSWAP (JOint North Sea WAve Project)
+        :return:
+            'JONSWAP (JOint North Sea WAve Project -- <translation part>)' if has translationm, else
+            'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
+        '''
         tran_txt = str(msg)
         all_matches = cm.patternMatchAllAsDictNoDelay(cm.ABBR_TEXT, msg)
-        has_items = (all_matches and len(all_matches) > 1)
-        if not has_items:
-            return None
+        if not all_matches:
+            return None, False, False
 
-        all_matches_reversed = list(reversed(list(all_matches.items())))
-        loc, btxt = all_matches_reversed[0]
-        s, e = loc
-        tran, is_fuzzy, is_ignore = self.translate(btxt)
-        if is_ignore:
-            return None, is_fuzzy, is_ignore
+        return_list = []
+        tran = str(msg)
+        is_fuzzy_list = []
+        is_ignore_list = []
+        matched_list = all_matches.values()
+        for item_list in matched_list:
+            list_length = len(item_list)
+            has_sub_item = (list_length > 1)
+            if has_sub_item:
+                loc, abbrev_explain_txt = item_list[1]
+            else:
+                loc, abbrev_explain_txt = item_list[0]
 
-        valid = (tran and (tran != btxt))
-        if valid:
-            tran = cm.matchCase(btxt, tran)
-            entry = "{} -- {}".format(btxt, tran)
-        else:
-            entry = "-- {}".format(btxt)
-        tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+            s, e = loc
+            tran, is_fuzzy, is_ignore = self.translate(abbrev_explain_txt)
+            is_fuzzy_list.append(is_fuzzy)
+            is_ignore_list.append(is_ignore)
 
-        # for orig, breakdown in cm.patternMatchAll(cm.ABBR_TEXT, tran_txt):
-        #     os, oe, otxt = orig
-        #     has_breakdown = (breakdown and len(breakdown) > 0)
-        #     if not has_breakdown:
-        #         continue
-        #
-        #     for bs, be, btxt in breakdown:
-        #         tran, is_fuzzy, is_ignore = self.translate(btxt)
-        #         if is_ignore:
-        #             continue
-        #         valid = (tran and (tran != btxt))
-        #         if valid:
-        #             tran = cm.matchCase(btxt, tran)
-        #             entry = "{} -- {}".format(btxt, tran)
-        #         else:
-        #             entry = "-- {}".format(btxt)
-        #         s = os + bs
-        #         e = oe + be
-        #         tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+            if is_ignore:
+                continue
 
+            valid = (tran and (tran != abbrev_explain_txt))
+            if valid:
+                tran = cm.matchCase(abbrev_explain_txt, tran)
+                entry = f"{abbrev_explain_txt} -- {tran}"
+            else:
+                entry = f"{abbrev_explain_txt} -- "
+            tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+
+        some_ignore = (True in is_ignore_list)
+        some_not_ignore = (False not in is_ignore_list)
+        some_fuzzy = (True not in is_fuzzy_list)
+
+        is_ignore = some_ignore and not (some_not_ignore or some_fuzzy)
+        is_fuzzy = (True in is_fuzzy_list)
         return tran_txt, is_fuzzy, is_ignore
 
     def removeIgnoredEntries(self, dic_list):

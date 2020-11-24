@@ -24,9 +24,10 @@ from collections import deque
 # import Levenshtein as LE
 #import logging
 
-# DEBUG=True
-DEBUG=False
+DEBUG=True
+# DEBUG=False
 DIC_LOWER_CASE=True
+
 # DIC_LOWER_CASE=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -64,6 +65,7 @@ class Common:
     debug_current_file_count = 0
     debug_max_file_count = 5
     debug_file = None
+
     # debug_file = 'addons/3d_view'
     # debug_file = 'animation/armatures/posing/bone_constraints/introduction' # e.g.
     # debug_file = 'animation/armatures/posing/bone_constraints/inverse_kinematics/introduction' # kbd WheelDown/Up
@@ -135,6 +137,16 @@ class Common:
                                         SUFFIX_PATTERN))
     WHITESPACE = re.compile('[\n\r\t\v\f]')
     EMAIL_ADDRESS = re.compile(r"^.+@[^\.].*\.[a-z]{2,}$")      # start to end
+    DOC_LINK = re.compile(r'^(\/\w+)+$')
+
+    WORD_SEPARATION = re.compile('('
+                      r'\s+|'                                 # any whitespace
+                      r'[^\s\w]*\w+[a-zA-Z]-(?=\w+[a-zA-Z])|'  # hyphenated words
+                      r'(?<=[\w\!\"\'\&\.\,\?])-{2,}(?=\w)'   # em-dash
+                      ')')
+
+    REF_PATH = re.compile(r'^\w+([\-\.]\w+){1,}$')
+    DOC_PATH = re.compile(r'^(\/\w+)+$')
 
     KBD='kbd'
     MNU='menuselection'
@@ -166,7 +178,8 @@ class Common:
     LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
     TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
 
-    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^(]+)\s\(([^\)]+)(:[^\)]+)?\)[\`]+')
+    GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
+    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+[^\`]+?[\`]+')
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
     ENDS_PUNCTUAL_MULTI = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
     ENDS_PUNCTUAL_SINGLE = re.compile(r'([\.\,\:\!\?\"\*\'\`]{1}$)')
@@ -210,7 +223,9 @@ class Common:
 
     ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
     REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
-    REF_PART = re.compile(r'(<[^<>]+>)')
+    REF_PART = re.compile(r'([<(][^<>()]+[>)])')
+    HYPHEN_REF_LINK = re.compile(r'^(\w+)(\-\w+){2,}$')
+    LINK_ALL = re.compile(r'^([/][\w_]+)+$')
     MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
@@ -248,7 +263,7 @@ class Common:
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
-    SYMBOLS = re.compile(r'[\W]+')
+    SYMBOLS = re.compile(r'[^a-zA-Z0-9]+')
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
     THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
@@ -258,6 +273,8 @@ class Common:
     START_WORD = '^'
     END_WORD = '$'
     BOTH_START_AND_END = '^$'
+
+    RGBA = re.compile(r'(RGB[A]?)\([\d\,]+\)')
 
     verb_with_ending_y = [
         'aby', 'bay',  'buy',  'cry',  'dry',  'fly',  'fry',  'guy',  'hay',
@@ -346,10 +363,10 @@ class Common:
         'pre': (START_WORD, 'tiền/trước'),
     }
 
-    noun_001 = 'sự/chỗ/phần/vùng/cái/mức/độ/tính/sự/phần/phép'
-    noun_002 = 'mọi/nhiều/các/những sự/chỗ/phần'
+    noun_001 = 'sự/chỗ/phần/vùng/bản/cái/mức/độ/tính/sự/phép'
+    noun_002 = 'mọi/nhiều/những/các/phần/bản/sự/chỗ'
     noun_003 = 'chủ nghĩa/tính/trường phái'
-    noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/cái/trình/bộ/người/viên/vật'
+    noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/bản/cái/trình/bộ/người/viên/vật'
     adj_0001 = 'thuộc/có tính/sự/chỗ/phần/trạng thái'
     adj_0002 = 'nói một cách/có tính/theo'
     adv_0001 = 'đáng/có khả năng/thể'
@@ -662,8 +679,8 @@ class Common:
         if not msg:
             return msg
 
-        msg = msg.replace("\\\"", "\"")
         msg = msg.replace("\\\\", "\\")
+        msg = msg.replace("\\\"", "\"")
         return msg
 
     def patternMatchAllToDict(pat, text):
@@ -672,8 +689,8 @@ class Common:
             orig = m.group(0)
             s = m.start()
             e = m.end()
-            k = (s, e)
-            entry = {k: orig}
+            loc = (s, e)
+            entry = {loc: orig}
             matching_list.update(entry)
         return matching_list
 
@@ -743,28 +760,46 @@ class Common:
         print(f'patternMatchAllAsDictNoDelay: return_dict:{return_dict}')
         return return_dict
 
-    def findInvertSimple(pattern:re.Pattern, text:str) -> list:
-        temp_list = text.split('\n')
-        temp_txt = Common.FILLER_CHAR.join(temp_list)
-        temp_str = pattern.sub(Common.FILLER_CHAR, temp_txt)
-        word_list = [i.strip() for i in temp_str.split(Common.FILLER_CHAR) if i]
-        return word_list
-
     def findInvert(pattern:re.Pattern, text:str):
+        '''
+        findInvert:
+            Find list of words that are NOT matching the pattern.
+            can use to find words amongst puntuations for instance.
+            The routine uses internally declared FILLER_CHAR to mark the
+            boundaries of unmatched words and then SPLIT at these boundaries
+        :param pattern:
+            the re.compile(d) pattern to use to find/replace
+        :param text:
+            the string of text that words are to be found
+        :return:
+            list of words that are NOT matching the pattern input
+        '''
+
         found_list={}
-        tt = str(text)
-        # fill in the place of pattern with a filler (FILLER_CHAR), length of found pattern
-        for orig, bkdown in Common.patternMatchAll(pattern, text):
-            s, e, txt = orig
-            filler = str(Common.FILLER_CHAR * len(txt))
-            tt = tt[:s] + filler + tt[e:]
-        # tt is not contains 'word....another word...and an another word' (... represents the filler)
-        # now find with NOT '[^\FILLER_CHAR]+'
-        for orig, bkdown in Common.patternMatchAll(Common.NEGATE_FIND_WORD, tt):
-            s, e, txt = orig
-            entry={s:orig}
+        matched_list = Common.patternMatchAllToDict(pattern, text)
+
+        temp_string = str(text)
+        ws = 0
+        for loc, matched_word in matched_list.items():
+            we, _ = loc
+            is_word = (ws < we)
+            if is_word:
+                word = text[ws: we]
+                word_loc = (ws, we)
+                entry = {ws: (word_loc, word)}
+                found_list.update(entry)
+            _, ws = loc
+        we = len(text)
+        is_word = (ws < we)
+        if is_word:
+            word = text[ws: we]
+            word_loc = (ws, we)
+            entry = {ws: (word_loc, word)}
             found_list.update(entry)
-        return found_list
+        reversed_list = list(found_list.items())
+        reversed_list.reverse()
+        temp_dict = OrderedDict(reversed_list)
+        return temp_dict
 
 
     def getListOfLocation(find_list):
@@ -1333,3 +1368,32 @@ class Common:
                             continue
 
         return sentence_list
+
+    def locRemain(original_word: str, new_word: str) -> list:
+        '''
+        locRemain:
+            Find where the remainder starts, ends, excluding alphanumeric characters, so can decide
+            if remainder can be removed or not and how far
+        :param original_word: word where new_word is extracted from
+        :param new_word: word from which dictionary has found from original word
+        :return:
+            list of locations (start, end) within the original where original word including
+            but not containing any alpha-numerical characters, which can be removed (ie. remainder
+            parts of the word in the original_word)
+        '''
+        p = re.compile(new_word, flags=re.I)
+        list_of_occurences = Common.patternMatchAllToDict(p, original_word)
+        # entry = {loc: orig}
+        list_of_places = []
+        max = len(original_word)
+        list_of_found_locations = list_of_occurences.keys()
+        for loc in list_of_found_locations:
+            s, e = loc
+            while s > 0 and original_word[s].isalnum():
+                s -= 1
+
+            while e < max and original_word[e].isalnum():
+                e += 1
+            loc = (s, e)
+            list_of_places.append(loc)
+        return list_of_places

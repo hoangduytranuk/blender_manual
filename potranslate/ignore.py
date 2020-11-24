@@ -79,10 +79,13 @@ class Ignore:
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
     ignore_list = [
+        # r'^(\w+)([\-\.]\w+){2,}$', # hyphen ref links: "mesh-faces-tristoquads"
+        # r'^\/?(\w+)(\/\w+){3,}$', # slash ref links: "/animation/armatures/bones/properties/bendy_bones"
         # r'^()$',
         # r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
         # r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
-        r'([\.](org|com|uk|ac))$',
+        r'^((\/[^\/]+)*)$',
+        r'([\.](org|com|uk|ac))$', # '/render/freestyle/parameter_editor/line_style/modifiers/color/noise'
         # r'([\`\'\"\*\(]+)?(\%[\w])([\`\'\"\*\(]+)?',
         # r'^(/\[\`\'\"\*\(]+)?\%[\w](/\[\`\'\"\*\)]+)?$',
         r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
@@ -172,6 +175,7 @@ class Ignore:
         r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)$",
         r'^(\,\s)?(RGB[A]?)(\s(byte))?$',
         r'^(RGB[A]?)[\s]?(byte)?$',
+        r'^(RGB[A]?)\([^\)]+\)$',
         r"^(RK4|RRT|Redhat\/Fedora|RLE)$",
         r"^(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)$",
         r"^(Tab|Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|TAR-)$",
@@ -347,44 +351,47 @@ class Ignore:
 
     def isIgnored(msg):
 
-        is_empty = (msg is None) or (len(msg) == 0)
-        if is_empty:
+        if not msg:
             return True
 
-        orig_msg = str(msg)
-        ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
-        if (len(ex_ga_msg) > 0):
-            msg = ex_ga_msg[0]
-            dd("GA trimmed from:", orig_msg, msg)
+        # orig_msg = str(msg)
+        # ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
+        # if (len(ex_ga_msg) > 0):
+        #     msg = ex_ga_msg[0]
+        #     dd("GA trimmed from:", orig_msg, msg)
 
-        is_keep = Ignore.isKeep(msg)
-        if is_keep:
-            return False
+        try:
+            is_keep = Ignore.isKeep(msg)
+            if is_keep:
+                return False
 
-        is_allowed_contains = Ignore.isKeepContains(msg)
-        if is_allowed_contains:
-            return False
+            is_allowed_contains = Ignore.isKeepContains(msg)
+            if is_allowed_contains:
+                return False
 
-        is_ignore_word = Ignore.isIgnoredWord(msg)
-        is_dos_command = Ignore.isDosCommand(msg)
-        is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
-        #is_ignore_path = Ignore.isFilePath(msg)
+            is_ignore_word = Ignore.isIgnoredWord(msg)
+            is_dos_command = Ignore.isDosCommand(msg)
+            is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
+            #is_ignore_path = Ignore.isFilePath(msg)
 
-        is_ignore = (is_ignore_word or
-                    is_dos_command or
-                    is_ignore_start)
-                    #         or is_ignore_path)
-        # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
-        if is_ignore:
-            #dd("checking for ignore")
-            dict_ignore = {"is_ignore_word": is_ignore_word,
-                           "is_dos_command": is_dos_command,
-                           "is_ignore_start": is_ignore_start,
-                           #"is_ignore_path": is_ignore_path
-                           }
-            dd("IGNORING:", msg)
-            pp(dict_ignore)
-        return is_ignore
+            is_ignore = (is_ignore_word or
+                        is_dos_command or
+                        is_ignore_start)
+                        #         or is_ignore_path)
+            # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
+            if is_ignore:
+                #dd("checking for ignore")
+                dict_ignore = {"is_ignore_word": is_ignore_word,
+                               "is_dos_command": is_dos_command,
+                               "is_ignore_start": is_ignore_start,
+                               #"is_ignore_path": is_ignore_path
+                               }
+                dd("IGNORING:", msg)
+                pp(dict_ignore)
+            return is_ignore
+        except Exception as e:
+            print(f'ERROR: {e}, msg:{msg}')
+            raise e
 
     def isIgnoredIfStartsWith(text_line : str):
         if (text_line is None) or (len(text_line) == 0):

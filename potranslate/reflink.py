@@ -590,7 +590,7 @@ class RefList(defaultdict):
         else:
             return None
 
-    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType, keep_original, use_orig_location: bool):
+    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType, keep_original: bool, use_orig_location: bool):
         valid_msg = (msg is not None) and (len(msg) > 0)
         valid_pattern = (pattern is not None)
         valid = valid_msg and valid_pattern
@@ -679,16 +679,31 @@ class RefList(defaultdict):
         return loc_keep_list
 
     def findPattern(self, pattern_list, start_loc=0):
+        remain_to_be_parsed = str(self.msg)
         for index, item in enumerate(pattern_list):
             p, ref_type, keep_orig, use_orig_location = item
         # for p, ref_type, keep_orig in pattern_list:
-            one_list: RefList = self.findOnePattern(self.msg, p, ref_type, keep_orig, use_orig_location)
+            one_list: RefList = self.findOnePattern(remain_to_be_parsed, p, ref_type, keep_orig, use_orig_location)
             is_empty = (one_list is None) or (len(one_list) == 0)
             if is_empty:
                 continue
+            ref_record:RefRecord = None
+            for k, v in one_list.items():
+                origin: RefItem = v.getOrigin()
+                s, e = origin.getLocation()
+                blank_str = (cm.FILLER_CHAR * (e-s))
+                left = remain_to_be_parsed[:s]
+                right = remain_to_be_parsed[e:]
+                remain_to_be_parsed = left + blank_str + right
 
             diff_list = self.diff(one_list)
             self.update(diff_list)
+
+        # if remain_to_be_parsed:
+        #     un_parsed_words = self.findOnePattern(remain_to_be_parsed, cm.NEGATE_FIND_WORD, RefType.TEXT, False, False)
+        #     diff_list = self.diff(un_parsed_words)
+        #     self.update(diff_list)
+        #
         sorted_list = sorted(list(self.items()))
         self.clear()
         self.update(sorted_list)
@@ -1120,7 +1135,7 @@ class RefList(defaultdict):
 
         # entry include: (pattern, ref_type, include_original)
         pattern_list = [
-            (cm.GA_REF, RefType.GA, True, False),  # this will have to further classified as progress
+            (cm.GA_PATTERN_PARSER, RefType.GA, True, False),  # this will have to further classified as progress
             (cm.AST_QUOTE, RefType.AST_QUOTE, True, True),
             (cm.DBL_QUOTE, RefType.DBL_QUOTE, True, True),
             (cm.SNG_QUOTE, RefType.SNG_QUOTE, True, True),
@@ -1238,10 +1253,6 @@ class RefList(defaultdict):
                 return
 
             ref_txt = ref_item.getText()
-            is_debug = ('Agent' in ref_txt)
-            if is_debug:
-                print('Debug')
-
             is_ignore = ig.isIgnored(ref_txt)
             if is_ignore:
                 ref_item.setTranlation(None, False, True)
@@ -1250,6 +1261,10 @@ class RefList(defaultdict):
             is_kbd = (ref_type == RefType.KBD)
             is_abbr = (ref_type == RefType.ABBR)
             is_menu = (ref_type == RefType.MENUSELECTION)
+            is_ga = (ref_type == RefType.GA)
+            is_ref = (ref_type == RefType.REF)
+            is_doc = (ref_type == RefType.DOC)
+
             # ----------
             is_ast = (ref_type == RefType.AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
@@ -1267,6 +1282,12 @@ class RefList(defaultdict):
                 tran, is_fuzzy, is_ignore = self.tf.translateQuoted(ref_txt, ref_type=ref_type)
                 converted_to_abbr = True
             else:
+                is_ref_path = (is_ref and cm.REF_PATH.search(ref_txt.strip()) is not None)
+                is_doc_path = (is_doc and cm.DOC_PATH.search(ref_txt.strip()) is not None)
+                is_ignore_path = (is_ref_path or is_doc_path)
+                if is_ignore_path:
+                    return
+
                 tran, is_fuzzy, is_ignore = self.tf.translateRefWithLink(ref_txt)
 
             ref_item.setTranlation(tran, is_fuzzy, is_ignore)

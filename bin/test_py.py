@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
 import sys
-# home_dir = os.environ['HOME']
-# potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
-# python_sites = '/usr/local/lib/python3.8/site-packages'
+home_dir = os.environ['HOME']
+potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
+python_sites = '/usr/local/lib/python3.8/site-packages'
 # sys.path.append(potranslate_dir)
 # sys.path.append(python_sites)
 
@@ -41,6 +41,7 @@ from time import gmtime, strftime, time
 from pytz import timezone
 import enchant as ENC
 from common import Common as cm
+from reflink import RefList
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -4006,7 +4007,7 @@ Fireflies
 IOR
 '''
         # p = re.compile(r'(<[^<>]+>)')
-        # word_list = cm.findInvertSimple(p, t)
+        # word_list = cm.findInvert(p, t)
         # print(word_list)
 
         # p = re.compile(r'([^\<\>]+)')
@@ -6654,9 +6655,30 @@ zoom level <editors_3dview_navigation_zoom>
         tf = TranslationFinder()
 
         # msg = "Style modules:"
-        msg = "Add-ons"
+        msg = "Refers to the general color decomposition resulting in *Y* (Luminance) and *C* (Chrominance) channels, whereas the chrominance is represented by: U = ( Blue minus Luminance ) and V = ( Red minus Luminance )."
         tran = tf.translate(msg)
         print(f'{msg} => {tran}')
+
+    def test_refs_0001(self):
+        msg = "see the :doc:`Particle Physics </physics/particles/emitter/physics/index>` page"
+        msg = " constraint, or, through a driver, "
+        msg = "--log \"wm.*\""
+        msg = 'Add --> Armature'
+        msg = 'Properties --> Bone --> Deform Panel'
+        msg = "Refers to the general color decomposition resulting in *Y* (Luminance) and *C* (Chrominance) channels, whereas the chrominance is represented by: U = ( Blue minus Luminance ) and V = ( Red minus Luminance )."
+        msg = "//render_"
+
+        dict_tf = TranslationFinder()
+        # trans, is_fuzzy, is_ignore = dict_tf.translate(msg)
+        ref_list: RefList = None
+        ref_list = RefList(msg=msg, keep_orig=False, tf=dict_tf)
+        ref_list.parseMessage()
+        ref_list.translateRefList()
+        trans = ref_list.getTranslation()
+        is_ignore = (ref_list.isIgnore())
+        is_fuzzy = (ref_list.isFuzzy())
+        print(f'"{msg}"')
+        print(f'"{trans}"')
 
     def run(self):
         # self.sorting_temp_05()
@@ -6667,8 +6689,9 @@ zoom level <editors_3dview_navigation_zoom>
         # self.parseSVG()
         # self.translate_po_file()
         # self.test_pattern_0001()
-        self.test_insert_abbr()
+        # self.test_insert_abbr()
         # self.test_capt_0001()
+        self.test_refs_0001()
 
 
 
