@@ -269,6 +269,7 @@ class Common:
     THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
     MULTI_SPACES = re.compile(r'[\s]{2,}')
     HYPHEN = re.compile(r'[\-]')
+    SPACE_SEP = re.compile(r'\s')
 
     START_WORD = '^'
     END_WORD = '$'
@@ -1381,19 +1382,24 @@ class Common:
             but not containing any alpha-numerical characters, which can be removed (ie. remainder
             parts of the word in the original_word)
         '''
-        p = re.compile(new_word, flags=re.I)
-        list_of_occurences = Common.patternMatchAllToDict(p, original_word)
-        # entry = {loc: orig}
-        list_of_places = []
-        max = len(original_word)
-        list_of_found_locations = list_of_occurences.keys()
-        for loc in list_of_found_locations:
-            s, e = loc
-            while s > 0 and original_word[s].isalnum():
-                s -= 1
+        try:
+            p = re.compile(new_word, flags=re.I)
+            list_of_occurences = Common.patternMatchAllToDict(p, original_word)
+            # entry = {loc: orig}
+            list_of_places = []
+            max = len(original_word)
+            list_of_found_locations = list_of_occurences.keys()
+            for loc in list_of_found_locations:
+                s, e = loc
+                while s > 0 and original_word[s].isalnum():
+                    s -= 1
 
-            while e < max and original_word[e].isalnum():
-                e += 1
-            loc = (s, e)
-            list_of_places.append(loc)
-        return list_of_places
+                while e < max and original_word[e].isalnum():
+                    e += 1
+                loc = (s, e)
+                list_of_places.append(loc)
+            return list_of_places
+        except Exception as e:
+            print(f'original_word:{original_word}, new_word:{new_word}')
+            print(e)
+            raise e

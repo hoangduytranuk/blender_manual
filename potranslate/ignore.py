@@ -124,7 +124,7 @@ class Ignore:
         r"^([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)$",
         r"^([\d]D)$",
         r"^([\"\'][\.\s]?[\S]{1}[\"\'])$",
-        r"^(#[\w\-\_]+)$",  # blender-coders <literal>#blender-coders</literal>
+        # r"^(#[\w\-\_]+)$",  # blender-coders <literal>#blender-coders</literal>
         r"^(#fmod\(frame, 24\) / 24)$",
         r"^(([\w]+)?([\.][\w]+)+)$", # bpy.context, bpy.context.object
         r"^(:(math|class):)\`([^\`]+)\`$",

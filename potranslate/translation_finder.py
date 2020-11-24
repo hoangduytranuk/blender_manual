@@ -517,16 +517,15 @@ class TranslationFinder:
             #         chopped_text, tran_sub_text = self.symbolsRemoval(orig_sub_text)
             ss, ee = loc
 
-            if not tran_sub_text:
-                new_text, tran_sub_text = self.tryToFindTran(orig_sub_text)
+            # if not tran_sub_text:
+            #     new_text, tran_sub_text = self.tryToFindTran(orig_sub_text)
 
             if not tran_sub_text:
                 continue
 
             is_fully_translatd = self.isNonGATranslatedFully(orig_sub_text, tran_sub_text)
             if not is_fully_translatd:
-                dd(
-                    f'not fully translated or has GA ref, which parts could still be in English: "{orig_sub_text}" => "{tran_sub_text}" IGNORE!')
+                dd(f'not fully translated or has GA ref, which parts could still be in English: "{orig_sub_text}" => "{tran_sub_text}" IGNORE!')
                 continue
 
             loc_list.append(loc)
@@ -564,7 +563,7 @@ class TranslationFinder:
         # now blindly translate all words that are not translatable using reduction
         un_tran_word_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, remain_msg)
         sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=dic_key, reverse=True))
-        pp(sorted_by_loc_list)
+        print(f'sorted_by_loc_list:{sorted_by_loc_list}')
         for loc, word in sorted_by_loc_list:
             is_symbol = (cm.SYMBOLS_ONLY.search(word) is not None)
             if is_symbol:
@@ -1249,10 +1248,6 @@ class TranslationFinder:
             trans = self.isInDict(pattern)
             if trans:
                 return pattern, trans
-            # else:
-            #     trans = self.findDictByRemoveCommonPrePostFixes(pattern)
-            #     if trans and (trans != pattern):
-            #         return pattern, trans
         return txt, None
 
     def translationByReplacingSymbolsWithSpaces(self, txt: str) -> str:
@@ -1262,58 +1257,60 @@ class TranslationFinder:
             trans = self.isInDict(pattern)
             if trans:
                 return pattern, trans
-            # else:
-            #     trans = self.findDictByRemoveCommonPrePostFixes(pattern)
-            #     if trans and (trans != pattern):
-            #         return pattern, trans
         return txt, None
 
+    def reduceFind(self, txt: str):
+        if not txt:
+            return txt, None
+
+        new_txt, trans = self.removeStarAndEndingPunctuations(txt)
+        if not trans or (trans == txt):
+            new_txt, trans = self.translationByRemovingSymbols(txt)
+        if not trans or (trans == txt):
+            new_txt, trans = self.translationByReplacingSymbolsWithSpaces(txt)
+        if not trans or (trans == txt):
+            new_txt, trans = self.removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
+        if not trans or (trans == txt):
+            new_txt, tran = self.removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
+        if not trans or (trans == txt):
+            new_txt, tran = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+        return new_txt, trans
+
+    def insertTranslation(self, orig_str: str, orig_word: str, new_word: str, current_trans: str) -> str:
+        is_valid = (orig_str and orig_word and new_word and current_trans)
+        if not is_valid:
+            return current_trans
+
+        list_of_remain_loc = cm.locRemain(orig_word, new_word)
+        new_tran = str(current_trans)
+        for ss, ee in list_of_remain_loc:
+            left = orig_word[:ss]
+            right = orig_word[ee:]
+            new_tran = left + current_trans + right
+        trans = new_tran
+        return trans
+
     def translateWordsAtSymbolBoundary(self, txt: str) -> str:
-        is_fuzzy = False
-        translation = str(txt)
         found_dict = cm.findInvert(cm.SYMBOLS, txt)
         if not found_dict:
             return False, None
 
         translated_dict = {}
+        translation = str(txt)
         for k, v in found_dict.items():
             loc, orig_txt = v
             s, e = loc
+
+            new_text = orig_txt
             trans = self.isInDict(orig_txt)
-
             if not trans:
-                new_txt, trans = self.removeStarAndEndingPunctuations(orig_txt)
-                if not trans or (trans == txt):
-                    new_txt, trans = self.translationByRemovingSymbols(orig_txt)
-                if not trans or (trans == txt):
-                    new_txt, trans = self.translationByReplacingSymbolsWithSpaces(orig_txt)
-                if not trans or (trans == txt):
-                    new_txt, trans = self.removeByPatternListAndCheck(orig_txt, cm.common_suffix_sorted, cm.END_WORD)
-                if not trans or (trans == txt):
-                    new_txt, tran = self.removeByPatternListAndCheck(orig_txt, cm.common_prefix_sorted, cm.START_WORD)
-                if not trans or (trans == txt):
-                    new_txt, tran = self.removeBothByPatternListAndCheck(orig_txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-                if not trans or (trans == txt):
-                    is_fuzzy = True
-                    continue
+                new_text, trans = self.reduceFind(orig_txt)
 
-                if new_txt and not (new_txt == txt):
-                    list_of_remain_loc = cm.locRemain(orig_txt, new_txt)
-                    new_tran = str(trans)
-                    for ss, ee in list_of_remain_loc:
-                        left = orig_txt[:ss]
-                        right = orig_txt[ee:]
-                        new_tran = left + trans + right
-                    trans = new_tran
-
-            if trans and not (trans == orig_txt):
-                entry = {s: (loc, orig_txt, trans)}
-                found_dict_entry = {s: (loc, orig_txt, trans)}
-                found_dict.update(found_dict_entry)
-                translated_dict.update(entry)
-
-        if not translated_dict:
-            return False, None
+            is_found_trans = (trans and trans != orig_txt)
+            if is_found_trans:
+                trans = self.insertTranslation(txt, orig_txt, new_text, trans)
+                translated_entry = {s: (loc, orig_txt, trans)}
+                translated_dict.update(translated_entry)
 
         for k, v in translated_dict.items():
             loc, orig_txt, trans = v
@@ -1322,7 +1319,7 @@ class TranslationFinder:
             right = translation[e:]
             translation = left + trans + right
 
-        return is_fuzzy, translation
+        return txt, translation
 
     def symbolsRemoval(self, txt):
         match = cm.SYMBOLS.search(txt)
@@ -1554,11 +1551,7 @@ class TranslationFinder:
         candidates = {}
         new_txt, trans = self.removeStarAndEndingPunctuations(txt)
         if not trans or (trans == txt):
-            is_fuzzy, trans = self.translateWordsAtSymbolBoundary(txt)
-            if trans:
-                new_txt = str(txt)
-                candidates.update({trans: (new_txt, is_fuzzy)})
-
+            new_txt, trans = self.translateWordsAtSymbolBoundary(txt)
         if not trans or (trans == txt) or is_fuzzy:
             new_txt, trans = self.translationByRemovingSymbols(txt)
         if not trans or (trans == txt):
@@ -1570,24 +1563,10 @@ class TranslationFinder:
         if not trans or (trans == txt):
             new_txt, tran = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
 
-        if trans and not (trans == txt):
-            candidates.update({trans: (new_txt, False)})
-
-        if not candidates:
-            return None, None
-
-        return_text = None
-        sorted_candidates = list(sorted(list(candidates.items()), key=lambda x: len(x[0]), reverse=True))
-        candidate = sorted_candidates[0]
-
-        trans, v = candidate
-        new_txt, is_fuzzy = v
-
-        return_text = trans
-        if new_txt and not (new_txt == txt):
-            return_text = txt.replace(new_txt, trans)
-
-        return new_txt, return_text
+        if not trans or (trans == txt):
+            return txt, None
+        else:
+            return new_txt, trans
 
     def findDictByRemoveCommonPrePostFixes(self, txt):
         new_txt, tran = self.tryToFindTran(txt)

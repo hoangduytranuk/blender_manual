@@ -37,7 +37,7 @@ INVERT_SEP='•'
 # DEBUG = True
 DEBUG = False
 TESTING = False
-TESTING = True
+# TESTING = True
 
 def readJSON(file_path):
     with open(file_path) as in_file:
@@ -6008,7 +6008,11 @@ class FindFilesHasPattern:
             # data_lines = data.split('\n')
             # print('-' * 30)
             # print(f'File:{f}')
-            data = "Developer's `Ask Us Anything! <https://wiki.blender.org/wiki/Reference/AskUsAnything>`__"
+            # data = "Developer's `Ask Us Anything! <https://wiki.blender.org/wiki/Reference/AskUsAnything>`__"
+            # data = "`Auto Face Map Widgets add-on <https://developer.blender.org/diffusion/BAC/browse/master/object_facemap_auto/>`__"
+            # data = "``~/.blender/|BLENDER_VERSION|/config/startup.blend``"
+            # data = "`Auto Face Map Widgets add-on <https://developer.blender.org/diffusion/BAC/browse/master/object_facemap_auto/>`__"
+            data = "`#docs <https://blender.chat/channel/docs>`__ For discussion related to Blender's documentation."
             data_lines = data.split('\n')
             for text_line in data_lines:
                 is_debug = ('animation/armatures' in text_line)
@@ -6055,6 +6059,9 @@ class FindFilesHasPattern:
                 print('-' * 30)
                 print(f'File:{f}')
                 for text_line in data_lines:
+                    # is_debug = ("#today" in text_line)
+                    # if not is_debug:
+                    #     continue
                     for p, ref_type in find_pat_list:
                         if not p.pattern:
                             found_items = cm.getTextWithinBrackets('(', ')', text_line, is_include_bracket=False)
@@ -6074,6 +6081,8 @@ class FindFilesHasPattern:
                             # is_str = isinstance(item, str)
                             if is_tupple:
                                 v, k, _ = item
+                                if not v:
+                                    v = ref_type.value
                             else:
                                 v = ""
                                 k = item
