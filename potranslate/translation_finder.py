@@ -19,7 +19,8 @@ from babel.messages import pofile
 from common import DEBUG
 # , DIC_LOWER_CASE
 from reftype import RefType
-
+import operator as OP
+from pprint import pprint
 
 class CaseInsensitiveDict(dict):
     """Basic case insensitive dict with strings only keys."""
@@ -273,7 +274,7 @@ class TranslationFinder:
         self.update_po_file = None
         home_dir = os.environ['HOME']
         self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
-        self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005.json")
+        self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005_0001.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
         self.vipo_dic_path = os.path.join(home_dir, "blender_manual/gui/2.80/po/vi.po")
@@ -352,27 +353,7 @@ class TranslationFinder:
     def loadDictionary(self):
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
-        # self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC)
         self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC_PURE)
-        # sorted_dic = None
-        # file_name = os.path.join(os.environ['HOME'], 'blender_manual/sorted_backup_dict.json')
-        # try:
-        #     # new_dict = OrderedDict()
-        #     # for k, v in self.backup_dic.items():
-        #     #     is_ignored = ig.isIgnored(k)
-        #     #     if is_ignored:
-        #     #         print(f'ignored:{k}')
-        #     #         continue
-        #     #     new_dict.update({k:v})
-        #
-        #     items = list(self.backup_dic.items())
-        #     sorted_items = sorted(items, key=lambda x: len(x[0]))
-        #     sorted_dic = OrderedDict(sorted_items)
-        #     self.writeJSONDic(dict_list=sorted_dic, file_name=file_name)
-        # except Exception as e:
-        #     print(e)
-        #
-        # exit(0)
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
@@ -451,135 +432,101 @@ class TranslationFinder:
 
     def blindTranslation(self, msg):
 
-        # remove overlapping distances in translation messages by projecting longest translated pieces of text
-        # to create a shadow on a blank string. Smaller distances will find if their covering distance has been
-        # 'shadowed' (marked) already or not, by examining the 'projected screen' (blank string).
-        def removeOverlapped(loc_list, len):
-            sample_str = (" " * len)
-            marker = '¶'
-            len_list = []
-
-            # x[0] = start, x[1] = end, x[1]-x[0] = length of text
-            # sort the location list in covering distance, reversed order, larger distance will be on top
-            sorted_loc = sorted(loc_list, key=lambda x: x[1] - x[0], reverse=True)
-            retain_l = []
-            for loc in sorted_loc:
-                substr = sample_str[loc[0]:loc[1]]
-                is_overlapped = (marker in substr)
-                if is_overlapped:
-                    continue
-
-                maker_substr = (marker * (loc[1] - loc[0]))
-                left_part = sample_str[:loc[0]]
-                right_part = sample_str[loc[1]:]
-                sample_str = left_part + maker_substr + right_part
-                retain_l.append(loc)
-            return retain_l
-
-        # removing unused locations (parts) that has been 'overlapped' by larger translated parts
-        def cleanupTranslatedDic(retain_loc_list, translated_dict):
-            new_translated_dic = []
-            for entry in translated_dict:
-                ss, ee, orig_sub_text, tran_sub_text = entry
-                loc = (ss, ee)
-                is_retain = (loc in retain_loc_list)
-                if is_retain:
-                    new_translated_dic.append(entry)
-            return new_translated_dic
-
-        def dic_key(x):
-            loc, word = x
-            s, e = loc
-            return s
-
-        # translation, c_tran, c_untran = self.translateBreakupSentences(msg)
-        # translated_all = (c_untran == 0)
-        # if translated_all:
-        #     return translation
-
         translation = str(msg)
-
         loc_list = []
-        translated_dic = []
-        untranslated = []
+        translated_list = []
+        untranslated_list = []
+        local_translated_dict = {} # for quick, local translation
+
         # generate all possible combinations of string lengths
         loc_map_length_sorted_reverse = self.genmap(translation)
 
         dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
-        # translate them all if possible
-
+        # translate them all if possible, store in local dict
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
+            is_ok = 1
             # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInDict(orig_sub_text)
-            # if not tran_sub_text:
-            #     tran_sub_text = self.findDictByRemoveCommonPrePostFixes(orig_sub_text)
-            #     if not tran_sub_text:
-            #         chopped_text, tran_sub_text = self.symbolsRemoval(orig_sub_text)
             ss, ee = loc
 
-            # if not tran_sub_text:
-            #     new_text, tran_sub_text = self.tryToFindTran(orig_sub_text)
+            has_tran = (tran_sub_text and not (tran_sub_text == orig_sub_text))
+            if has_tran:
+                local_dict_entry = {orig_sub_text: tran_sub_text}
+                local_translated_dict.update(local_dict_entry)
 
-            if not tran_sub_text:
-                continue
+        print('blindTranslation:')
+        print(f'msg: {msg}')
+        print(f'local_translated_dict:')
+        pprint(local_translated_dict)
 
-            is_fully_translatd = self.isNonGATranslatedFully(orig_sub_text, tran_sub_text)
-            if not is_fully_translatd:
-                dd(f'not fully translated or has GA ref, which parts could still be in English: "{orig_sub_text}" => "{tran_sub_text}" IGNORE!')
-                continue
+        # use the translated (longest first) to replace all combination,
+        # translate by reduction for ones could not, to form the final translation for the variation
+        # translated_dic will be sorted in length by default.
+        # using safe translation length and unsafe translation length to sort so one with both highest values
+        # are floated on top once sorted. Pick the one at the top list, ignore the rest
+        translated_list = []
+        for loc, orig_sub_text in loc_map_length_sorted_reverse:
+            print(f'blindTranslation: orig_sub_text:[{orig_sub_text}]')
+            safe_tran_length = 0
+            unsafe_tran_length = 0
 
-            loc_list.append(loc)
-            entry = (ss, ee, orig_sub_text, tran_sub_text)
-            dd(f'translated_dic.append: "{entry}"')
-            translated_dic.append(entry)
+            masking_string = str(orig_sub_text)
+            temp_translation = str(orig_sub_text)
+            for orig_txt, trans in local_translated_dict.items():
+                rep_count = 0
+                escaped_string = re.escape(orig_txt)
+                pattern = r'\b%s\b' % (escaped_string)
+                p = re.compile(pattern, re.I)
+                temp_translation, rep_count = p.subn(trans, temp_translation)               # watch this one, might be location is required
+                if rep_count:
+                    safe_tran_length += len(orig_txt) * rep_count
+                    print(f'blindTranslation: orig_txt:[{orig_txt}]; trans:[{trans}]; safe_tran_length:[{safe_tran_length}]')
+                empty_part = (cm.FILLER_CHAR * len(orig_txt))
+                masking_string = p.sub(empty_part, masking_string)
 
-        dd(f'translated_dic: {translated_dic}')
-        # now removing overlapped ditances of translated message (start, end, orig_sub_text, translated_sub_text)
-        retail_l = removeOverlapped(loc_list, len(translation))
-        # reflect changes in location (removals/retains) in the translated dictionary
-        retain_translated_dic = cleanupTranslatedDic(retail_l, translated_dic)
+            remain_untranslated_list = cm.findInvert(re.compile(cm.FILLER_CHAR), masking_string)
+            for k, v in reversed(list(remain_untranslated_list.items())):
+                rep_count = 0
+                remain_loc, un_tran_txt = v
+                un_tran_txt = un_tran_txt.strip()
+                is_ignore = (not un_tran_txt)
+                if is_ignore:
+                    continue
 
-        # sorting in x[1]: end location of text, so the last record of text is used first
-        sorted_translated = sorted(retain_translated_dic, key=lambda x: x[1], reverse=True)
+                new_text, tran_sub_text = self.findByReduction(un_tran_txt)
+                has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
+                if has_tran:
+                    try:
+                        escaped_string = re.escape(un_tran_txt)
+                        pattern = r'\b%s\b' % (escaped_string)
+                        p = re.compile(pattern, re.I)
+                        print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; escaped_string:[{escaped_string}], to be replaced by tran_sub_text:[{tran_sub_text}]')
+                        temp_translation, rep_count = p.subn(tran_sub_text, temp_translation)
+                        if rep_count:
+                            unsafe_tran_length += len(un_tran_txt) * rep_count
+                            print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; tran_sub_text:[{tran_sub_text}]; unsafe_tran_length:[{unsafe_tran_length}]')
+                    except Exception as e:
+                        print(f'ERROR! blindTranslation: trying to re.compile un_tran_txt:[{un_tran_txt}], escaped_string:[{escaped_string}]')
+                        print(e)
+                        continue
 
-        # keep a copy of what is remained, untranslated, so if wanted, can dump them in a dict, or blindly translate them by reduction
-        remain_msg = str(translation)
-        for entry in sorted_translated:
-            ss, ee, orig_sub_text, tran_sub_text = entry
-            untran_subtext = translation[ss:ee]
-            is_same_subtext_and_replaceable = (orig_sub_text == untran_subtext)
-            if not is_same_subtext_and_replaceable:
-                continue
+            translated_list_entry = (safe_tran_length, unsafe_tran_length, loc, orig_sub_text, temp_translation)
+            translated_list.append(translated_list_entry)
 
-            # tran_sub_text = cm.matchCase(orig_sub_text, tran_sub_text)
-            left = translation[:ss]
-            right = translation[ee:]
+        print(f'translated_list:')
+        pprint(translated_list)
 
-            # use the length of translation text so later on can correctly identify the position of untranslated word in the translated text
-            blank_str = (' ' * len(tran_sub_text))
-            remain_msg = remain_msg[:ss] + blank_str + remain_msg[ee:]
-            translation = left + tran_sub_text + right
-
-        # now blindly translate all words that are not translatable using reduction
-        un_tran_word_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, remain_msg)
-        sorted_by_loc_list = list(sorted(list(un_tran_word_list.items()), key=dic_key, reverse=True))
-        print(f'sorted_by_loc_list:{sorted_by_loc_list}')
-        for loc, word in sorted_by_loc_list:
-            is_symbol = (cm.SYMBOLS_ONLY.search(word) is not None)
-            if is_symbol:
-                continue
-
-            ss, ee = loc
-            word_tran = self.findByReduction(word)
-            if word_tran:
-                left = translation[:ss]
-                right = translation[ee:]
-                translation = left + word_tran + right
-            else:
-                self.addBackupDictEntry(word, None)
-
-        if translation:
-            translation = cm.matchCase(msg, translation)
+        translated_list.sort(key= OP.itemgetter(0, 1))
+        translated_list.reverse()
+        dd('blindTranslation:')
+        pp(translated_list)
+        if translated_list:
+            accept_entry = translated_list[0]
+            safe_tran_length, unsafe_tran_length, loc, orig_sub_text, translation = accept_entry
+            translation = msg.replace(orig_sub_text, translation)
+            print(f'blindTranslation: chosen orig_sub_text:[{orig_sub_text}]; translation:[{translation}];')
+        else:
+            translation = None
 
         return translation
 
@@ -701,9 +648,6 @@ class TranslationFinder:
         return new_msg, new_tran
 
     def addEntryToChosenDict(self, msg, tran, dicfile_path, dict_list, indicator=''):
-        if ig.isIgnored(msg):
-            return
-
         tran = cm.cleanSlashesQuote(tran)
         msg = cm.cleanSlashesQuote(msg)
 
@@ -774,10 +718,13 @@ class TranslationFinder:
         if is_master:
             dd(f'reloadChosenDict:{self.master_dic_file}')
             self.master_dic = self.loadJSONDic(file_name=self.master_dic_file)
-            # cm.testDict(self.master_dic)
+            if not self.master_dic:
+                self.master_dic = {}
         else:
             dd(f'reloadChosenDict:{self.master_dic_backup_file}')
             self.backup_dic = self.loadJSONDic(file_name=self.master_dic_backup_file)
+            if not self.backup_dic:
+                self.backup_dic = {}
 
     def saveMasterDict(self, to_file=None):
         file_path = (to_file if to_file else self.master_dic_file)
@@ -799,7 +746,7 @@ class TranslationFinder:
         meet = 0
         for k in from_keys:
             # 'Popther panel for adding extra options'
-            v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
+            trimmed_k, v = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
             if v:
                 print(f'already in new_dic: k:{k}, trimmed_k:{trimmed_k}, v:{v}')
                 continue
@@ -809,23 +756,23 @@ class TranslationFinder:
             #     meet += 1
             #     dd('DEBUG')
 
-            v, trimmed_k = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
+            trimmed_k, v  = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
             if not v:
-                v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
+                trimmed_k, v = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
 
             if v:
                 entry = {trimmed_k: v}
                 new_dic.update(entry)
                 print(f'found entry:{entry}')
             else:
-                v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=from_dict, is_patching_found=False)
+                trimmed_k, v = self.findAndTrimIfNeeded(k, search_dict=from_dict, is_patching_found=False)
                 entry = {trimmed_k: v}
                 ignore_dic.update(entry)
                 print(f'ignored entry:{entry}')
 
         to_keys = list(sorted(to_dict.keys(), key=lambda x: len(x)))
         for k in to_keys:
-            v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
+            trimmed_k, v = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
             is_in_new_dict = not (v is None)
             if is_in_new_dict:
                 print(f'ignored entry in to_dict:{entry}')
@@ -836,7 +783,7 @@ class TranslationFinder:
             #     meet += 1
             #     dd('DEBUG')
 
-            v, trimmed_k = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
+            trimmed_k, v  = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
             entry = {trimmed_k: v}
             new_dic.update(entry)
             print(f'added from to_file entry:{entry}')
@@ -1236,7 +1183,7 @@ class TranslationFinder:
                 trans = trans + tail_trimmer
         else:
             trans = None
-        return trans, trimmed_msg
+        return trimmed_msg, trans
 
     def isInListByDict(self, msg, is_master):
         search_dic = (self.master_dic if is_master else self.backup_dic)
@@ -1548,7 +1495,6 @@ class TranslationFinder:
 
     def tryToFindTran(self, txt):
         is_fuzzy = False
-        candidates = {}
         new_txt, trans = self.removeStarAndEndingPunctuations(txt)
         if not trans or (trans == txt):
             new_txt, trans = self.translateWordsAtSymbolBoundary(txt)
@@ -1590,30 +1536,37 @@ class TranslationFinder:
                 right = tran_txt[e:]
                 tran_txt = left + replacement + right
             tran = tran_txt
-        return tran
+        return new_txt, tran
 
     def findByReduction(self, msg):
         trans = None
-        chopped_text = None
-        trans = self.findDictByRemoveCommonPrePostFixes(msg)
+        original_text = str(msg)
+
+        new_text, trans = self.findDictByRemoveCommonPrePostFixes(msg)
         if not trans:
-            trans, chopped_text = self.findAndTrimIfNeeded(msg, is_patching_found=True)
+            new_text, trans,  = self.findAndTrimIfNeeded(msg, is_patching_found=True)
         if not trans:
-            trans = self.findDictByRemoveCommonPrePostFixes(chopped_text)
+            new_text, trans = self.findDictByRemoveCommonPrePostFixes(new_text)
         if not trans:
-            chopped_text, trans = self.symbolsRemoval(msg)
+            new_text, trans = self.symbolsRemoval(msg)
 
         if trans:
             trans = trans.replace(cm.FILLER_CHAR, '')  # blank out filler char
             trans = trans.replace('  ', ' ')  # double space => single space
             trans = cm.matchCase(msg, trans)
 
-            is_putting_back_into_msg = (chopped_text and (chopped_text != msg))
+            is_putting_back_into_msg = (new_text and (new_text != msg))
             if is_putting_back_into_msg:
-                trans = re.sub(chopped_text, trans, msg)  # is this dangerous? should this needs a location?
+                try:
+                    p = re.compile(re.escape(new_text))
+                    trans = p.sub(trans, msg)  # is this dangerous? should this needs a location?
+                except Exception as e:
+                    print(f'findByReduction: msg:[{msg}] trans:[{trans}], new_text:[{new_text}]')
+                    print(e)
+                    raise(e)
 
             dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
-        return trans
+        return new_text, trans
 
     def isNonGATranslatedFully(self, msg, trans):
         is_ga = (cm.GA_PATTERN_PARSER.search(msg) is not None)
@@ -1657,7 +1610,6 @@ class TranslationFinder:
             trans = cm.removeOriginal(msg, trans)
             trans = cm.matchCase(orig_msg, trans)
             trans = self.removeTheWord(trans)
-            # self.addDictEntry((msg, trans), True)
         else:
             trans = None
         if trans is None:
@@ -1681,7 +1633,7 @@ class TranslationFinder:
             is_possessive = o_txt.endswith("'s")
             if is_possessive:
                 o_txt = o_txt[:-2]
-            trans_word, is_ignore = self.findTranslation(o_txt)
+            trans_word, is_ignore, weight = self.findTranslation(o_txt)
             if is_ignore:
                 continue
 
@@ -1720,6 +1672,7 @@ class TranslationFinder:
             print('DEBUG')
         if not trans:
             dd(f'calling blindTranslation')
+            cm.debugging(msg)
             trans = self.blindTranslation(msg)
             is_fuzzy = True
 
@@ -1825,7 +1778,8 @@ class TranslationFinder:
         has_ref_link = (cm.REF_LINK.search(msg) is not None)
         if has_ref_link:
             found_list = cm.findInvert(cm.REF_LINK, msg)
-            for loc, orig_txt in reversed(list(found_list.items())):
+            for k, v in reversed(list(found_list.items())):
+                loc, orig_txt = v
                 s, e = loc
                 tran, is_fuzzy, is_ignore = self.translate(orig_txt)
                 if is_ignore:
@@ -1860,7 +1814,8 @@ class TranslationFinder:
         men_is_ignore = False
         tran_txt = str(msg)
         word_list = cm.findInvert(cm.MENU_SEP, msg)
-        for loc, word in reversed(list(word_list.items())):
+        for k, v in word_list.items():
+            loc, word = v
             s, e = loc
             tran, is_fuzzy, is_ignore = self.translate(word)
             if is_ignore:
@@ -1881,10 +1836,13 @@ class TranslationFinder:
             is_tran_valid = (tran and (tran != word))
             if is_tran_valid:
                 tran = cm.matchCase(word, tran)
-                entry = "{} ({})".format(tran, word)
+                entry = f"{tran} ({word})"
             else:
-                entry = "({})".format(word)
-            tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+                entry = f"({word})"
+
+            left = tran_txt[:s]
+            right = tran_txt[e:]
+            tran_txt = left + entry + right
 
         return tran_txt, men_is_fuzzy, men_is_ignore
 
@@ -1943,6 +1901,37 @@ class TranslationFinder:
         is_ignore = some_ignore and not (some_not_ignore or some_fuzzy)
         is_fuzzy = (True in is_fuzzy_list)
         return tran_txt, is_fuzzy, is_ignore
+
+    def translateOSLAttrrib(self, msg: str):
+        if not msg:
+            return None, False, False
+
+        tran_txt = str(msg)
+        is_fuzzy_list=[]
+        is_ignore_list=[]
+        word_list_dict = cm.findInvert(cm.COLON_CHAR, tran_txt)
+        word_list_count = len(word_list_dict)
+        for k, v in word_list_dict.items():
+            loc, orig_txt = v
+            s, e = loc
+            tran, is_fuzzy, is_ignore = self.translate(orig_txt)
+            is_fuzzy_list.append(is_fuzzy)
+            is_ignore_list.append(is_ignore)
+            has_tran = (tran and tran != orig_txt)
+            if has_tran:
+                left = tran_txt[:s]
+                right = tran_txt[e:]
+                tran_txt = left + tran + right
+
+        has_tran = (tran_txt != msg)
+        if not has_tran:
+            tran_txt = f'{msg} -- '
+            return None, False, False
+        else:
+            is_fuzzy = (True in is_fuzzy_list)
+            is_ignore = (not is_fuzzy) and (True in is_ignore_list) and (False not in is_ignore_list)
+            tran_txt = f'{msg} ({tran_txt})'
+            return tran_txt, is_fuzzy, is_ignore
 
     def removeIgnoredEntries(self, dic_list):
         valid = (dic_list is not None) and (len(dic_list) > 0)

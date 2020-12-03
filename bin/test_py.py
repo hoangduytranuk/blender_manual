@@ -6680,6 +6680,36 @@ zoom level <editors_3dview_navigation_zoom>
         print(f'"{msg}"')
         print(f'"{trans}"')
 
+    def test_0064(self):
+        t = "/files/blend/open_save"
+        t = "/compositing/types/distort/plane_track_deform"
+        # t = "bone-relations-parenting"
+        d = "scene dicing rate"
+        p = re.compile(r'^(?P<sep>[\/])?[^.*(?P=sep)]+(.*(?P=sep).*[^(?P=sep)]+){2,}$')
+        p = re.compile(r'[\\\/\-\_\.]')
+        wp = re.compile(r'^[^\\\/\-\_\.]+$')
+
+        delim = ["\\", "/", "-", "_", "."]
+        splitter = '|'.join(map(re.escape, delim))
+        print(splitter)
+
+        w_list = cm.findInvert(p, d)
+        print(w_list)
+        w_count = len(w_list)
+        is_path = False
+        if w_count > 2:
+            is_path = True
+            for k, v in w_list.items():
+                loc, word = v
+                is_just_word = wp.search(word)
+                if not is_just_word:
+                    is_path = False
+                    break
+        if is_path:
+            print(f'is_path')
+        else:
+            print(f'NOT is_path')
+
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
@@ -6691,7 +6721,8 @@ zoom level <editors_3dview_navigation_zoom>
         # self.test_pattern_0001()
         # self.test_insert_abbr()
         # self.test_capt_0001()
-        self.test_refs_0001()
+        # self.test_refs_0001()
+        self.test_0064()
 
 
 

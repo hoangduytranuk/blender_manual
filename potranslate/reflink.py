@@ -42,6 +42,15 @@ class TextStyle(Enum):
     BOX = 3
     RAW = 4
 
+pattern_list = [
+    # (cm.GA_PATTERN_PARSER, RefType.GA, True, False),  # this will have to further classified as progress
+    # (cm.OSL_ATTRIB, RefType.OSL_ATTRIB, True, False),
+    # (cm.ARCH_BRAKET_MULTI, RefType.ARCH_BRACKET),
+    (cm.GA_REF, RefType.GA),
+    (cm.AST_QUOTE, RefType.AST_QUOTE),
+    (cm.DBL_QUOTE, RefType.DBL_QUOTE),
+    (cm.SNG_QUOTE, RefType.SNG_QUOTE),
+]
 
 # :MM:
 # :abbr:
@@ -590,36 +599,83 @@ class RefList(defaultdict):
         else:
             return None
 
-    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType, keep_original: bool, use_orig_location: bool):
+    def extractTextFromTextWithLink(self, k: str, loc:tuple, ref_type: RefType):
+        dd(f'extractTextFromTextWithLink: k:{k}; loc:{loc} ref_type:{ref_type}')
+        found_list = cm.patternMatchAllToDict(cm.REF_WITH_LINK, k)
+        list_length = len(found_list)
+        if list_length > 2:
+            dd(f'extractTextFromTextWithLink: REWORKING using REF_WITH_HTML_LINK: {k}')
+            found_list = cm.patternMatchAllToDict(cm.REF_WITH_HTML_LINK, k)
+
+        link_loc = None
+        txt = k
+        actual_loc = loc
+        for index, (f_loc, word) in enumerate(found_list.items()):
+            # print(f'extractTextFromTextWithLink: f_lock:{f_loc}; word:{word}')
+            if index == 0:
+                txt_loc = f_loc
+                txt = word
+                o_s, o_e = loc
+                t_s, t_e = txt_loc
+                a_s = (o_s + t_s)
+                a_e = a_s + len(txt)
+                actual_loc = (a_s, a_e)
+                dd(f'extractTextFromTextWithLink: list_length:{list_length}; index:{index} actual_loc:{actual_loc}; txt:{txt}; ref_type:{ref_type}')
+            if index == 1:
+                link_loc = loc
+                link = word
+                dd(f'extractTextFromTextWithLink: list_length:{list_length}; index:{index} link_loc:{link_loc}; link:{link}; ref_type:{ref_type}')
+        dd('-' * 30)
+        return txt, actual_loc
+
+    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType):
         valid_msg = (msg is not None) and (len(msg) > 0)
         valid_pattern = (pattern is not None)
         valid = valid_msg and valid_pattern
         if not valid:
             return None
 
+        is_debug = (':doc:`operator </' in msg)
+        if is_debug:
+            print('Debug')
         result_list = RefList(msg=msg, pat=pattern)
         try:
-            actual_ref_type = RefType.TEXT
+            actual_ref_type = reftype
             found_dict = cm.patternMatchAllAsDictNoDelay(pattern, msg)
+            if not found_dict:
+                return None
+
             for k, v in found_dict.items():
                 v_len = len(v)
-                if v_len > 2:
+                if v_len == 3:
                     orig, sub_type, sub_content = v
                     sub_type_loc, sub_type_txt = sub_type
                     actual_ref_type = RefType.getRef(sub_type_txt)
-                else:
+                elif v_len == 2:
+                    orig, sub_content = v
+                    actual_ref_type = reftype
+                elif v_len == 1:
                     actual_ref_type = reftype
                     sub_type = None
                     orig, sub_content = v
+                else:
+                    raise Exception(f'findOnePattern: v_len is NOT EXPECTED: {v_len}. Expected from 1->3 only')
 
                 (o_ss, o_ee), o_txt = orig
                 (sub_ss, sub_ee), sub_txt = sub_content
 
-                orig_ref_item = RefItem(o_ss, o_ee, o_txt, ref_type=actual_ref_type, keep_orig=keep_original)
-                if use_orig_location:
-                    ref_item = RefItem(o_ss, o_ee, sub_txt, keep_orig=keep_original)
-                else:
-                    ref_item = RefItem(sub_ss, sub_ee, sub_txt, keep_orig=keep_original)
+                is_doc = (actual_ref_type == RefType.DOC)
+                is_ref = (actual_ref_type == RefType.REF)
+                is_ga = (actual_ref_type == RefType.GA)
+                sub_text_might_have_link = sub_txt and (is_doc or is_ref or is_ga)
+                if sub_text_might_have_link:
+                    actual_sub_txt, actual_loc = self.extractTextFromTextWithLink(sub_txt, (sub_ss, sub_ee), actual_ref_type)
+                    sub_txt = actual_sub_txt
+                    sub_ss, sub_ee = actual_loc
+
+                orig_ref_item = RefItem(o_ss, o_ee, o_txt, ref_type=actual_ref_type)
+                ref_item = RefItem(sub_ss, sub_ee, sub_txt, ref_type=actual_ref_type)
+
                 ref_record = RefRecord(origin=orig_ref_item, reflist=[ref_item], pat=pattern)
                 entry = {o_ss: ref_record}
                 result_list.update(entry)
@@ -678,12 +734,12 @@ class RefList(defaultdict):
 
         return loc_keep_list
 
-    def findPattern(self, pattern_list, start_loc=0):
+    def findPattern(self, pattern_list):
         remain_to_be_parsed = str(self.msg)
         for index, item in enumerate(pattern_list):
-            p, ref_type, keep_orig, use_orig_location = item
+            p, ref_type = item
         # for p, ref_type, keep_orig in pattern_list:
-            one_list: RefList = self.findOnePattern(remain_to_be_parsed, p, ref_type, keep_orig, use_orig_location)
+            one_list: RefList = self.findOnePattern(remain_to_be_parsed, p, ref_type)
             is_empty = (one_list is None) or (len(one_list) == 0)
             if is_empty:
                 continue
@@ -862,13 +918,6 @@ class RefList(defaultdict):
                 ref_txt_list[1] = right_side
             return ref_txt_list
 
-        pattern_list = [
-            # (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET, True),
-            (cm.GA_REF, RefType.GA, True),  # this will have to further classified as progress
-            (cm.AST_QUOTE, RefType.AST_QUOTE, True),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True),
-        ]
         orig_list = RefList(msg=orig_txt)
         orig_list.findPattern(pattern_list)
 
@@ -1087,59 +1136,13 @@ class RefList(defaultdict):
         else:
             return None
 
-    def correctRefs(self, non_tran, tran):
-        self.msg = tran
-
-        pattern_list = [
-            (cm.GA_REF, RefType.GA, True, False),  # this will have to further classified as progress
-            (cm.AST_QUOTE, RefType.AST_QUOTE, True, True),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True, True),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True, True),
-            (cm.DBL_QUOTE_SLASH, RefType.DBL_QUOTE, True, True),
-        ]
-
-        self.findPattern(pattern_list)
-        has_record = (len(self) > 0)
-        if not has_record:
-            return False
-
-        sorted_list = sorted(list(self.items()))
-        self.clear()
-        self.update(sorted_list)
-
-        orig_reflist = RefList(msg=non_tran)
-        orig_reflist.findPattern(pattern_list)
-
-        v: RefRecord = None
-        for k, v in self.items():
-            tran_orig = v.getOrigin()
-            s, e, tran_txt = tran_orig.getValues()
-            orig_item = orig_reflist.findRefByText(tran_txt)
-            is_found = (orig_item is not None)
-            if not is_found:
-                print("Translation entry NOT FOUND:", k, v)
-                continue
-
-            ov: RefRecord = None
-            ok, ov = orig_item
-            os, oe, otxt = ov.getOrigin().getValues()
-
-            print("Original found:", otxt, "for:", tran_txt)
-            print("Original type", ov.getOrigin().getRefType())
-            print("Original Reflist", ov.getRefList())
-
     def parseMessage(self):
         # is_debug = ("Box Deselect:" in msg)
         # if is_debug:
         #     dd("DEBUG")
 
         # entry include: (pattern, ref_type, include_original)
-        pattern_list = [
-            (cm.GA_PATTERN_PARSER, RefType.GA, True, False),  # this will have to further classified as progress
-            (cm.AST_QUOTE, RefType.AST_QUOTE, True, True),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE, True, True),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE, True, True),
-        ]
+
         self.findPattern(pattern_list)
 
         # **** should break up sentences here
@@ -1225,14 +1228,27 @@ class RefList(defaultdict):
     def transferTranslation(self, msg):
         tran = str(msg)
         v: RefRecord = None
+        origin: RefItem = None
         for k, v in reversed(list(self.items())):
             # self.mergeTranslationToOrigin(v)
-            v_ref_list = v.getRefList()
-            has_ref_list = bool(v_ref_list)
+            ref_list = v.getRefList()
+            origin = v.getOrigin()
+            ref_type = origin.getRefType()
+            has_ref_list = bool(ref_list)
+
             otran: str = None
             if has_ref_list:
+                is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
+                is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+                is_ast_quote = (ref_type == RefType.AST_QUOTE)
+
+                is_quoted = (is_ast_quote or is_dbl_quote or is_sng_quote)
+
                 first_item: RefItem = v.getRefItemByIndex(0)
-                os, oe = first_item.getLocation()
+                if is_quoted:
+                    os, oe = origin.getLocation()
+                else:
+                    os, oe = first_item.getLocation()
                 otran = first_item.getTranslation()
             else:
                 os, oe = v.getOriginLocation()
@@ -1246,24 +1262,30 @@ class RefList(defaultdict):
             tran = left + otran + right
         return tran
 
-    def translateRefItem(self, ref_item: RefItem, ref_type):
+    def translateRefItem(self, ref_item: RefItem):
         try:
             valid = (ref_item is not None)
             if not valid:
                 return
 
             ref_txt = ref_item.getText()
+            is_debug = ('Appears in the' in ref_txt)
+            if is_debug:
+                print('Debug')
+
             is_ignore = ig.isIgnored(ref_txt)
             if is_ignore:
                 ref_item.setTranlation(None, False, True)
                 return
 
+            ref_type = ref_item.reftype
             is_kbd = (ref_type == RefType.KBD)
             is_abbr = (ref_type == RefType.ABBR)
             is_menu = (ref_type == RefType.MENUSELECTION)
             is_ga = (ref_type == RefType.GA)
             is_ref = (ref_type == RefType.REF)
             is_doc = (ref_type == RefType.DOC)
+            is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
 
             # ----------
             is_ast = (ref_type == RefType.AST_QUOTE)
@@ -1273,15 +1295,28 @@ class RefList(defaultdict):
 
             converted_to_abbr = False
             if is_kbd:
+                dd(f'translateRefItem: is_kbd:{ref_txt}')
                 tran, is_fuzzy, is_ignore = self.tf.translateKeyboard(ref_txt)
             elif is_abbr:
+                dd(f'translateRefItem: is_abbr:{ref_txt}')
                 tran, is_fuzzy, is_ignore = self.tf.translateAbbrev(ref_txt)
             elif is_menu:
+                dd(f'translateRefItem: is_menu:{ref_txt}')
                 tran, is_fuzzy, is_ignore = self.tf.translateMenuSelection(ref_txt)
             elif is_quoted:
+                dd(f'translateRefItem: is_quoted:{ref_txt}')
                 tran, is_fuzzy, is_ignore = self.tf.translateQuoted(ref_txt, ref_type=ref_type)
                 converted_to_abbr = True
+            elif is_osl_attrib:
+                # tran, is_fuzzy, is_ignore = self.tf.translateOSLAttrrib(ref_txt)
+                return
             else:
+                is_ignore = cm.isLinkPath(ref_txt)
+                if is_ignore:
+                    ref_item.setTranlation(None, False, True)
+                    return
+
+                dd(f'translateRefItem: anything else: {ref_txt}')
                 is_ref_path = (is_ref and cm.REF_PATH.search(ref_txt.strip()) is not None)
                 is_doc_path = (is_doc and cm.DOC_PATH.search(ref_txt.strip()) is not None)
                 is_ignore_path = (is_ref_path or is_doc_path)
@@ -1322,10 +1357,9 @@ class RefList(defaultdict):
             is_sup = (ref_type == RefType.SUP)
             is_ignore = (is_math or is_class or is_sup)
             if is_ignore:
-                self.translateRefItem(None, TranslationState.ACCEPTABLE)
                 continue
 
-            self.translateRefItem(item, ref_type)
+            self.translateRefItem(item)
 
     def translateRefList(self):
 

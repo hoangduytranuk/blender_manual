@@ -79,7 +79,7 @@ class Ignore:
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
     ignore_list = [
-        # r'^(\w+)([\-\.]\w+){2,}$', # hyphen ref links: "mesh-faces-tristoquads"
+        r'^(\w+)([\-\.]\w+){2,}$', # hyphen ref links: "mesh-faces-tristoquads"
         # r'^\/?(\w+)(\/\w+){3,}$', # slash ref links: "/animation/armatures/bones/properties/bendy_bones"
         # r'^()$',
         # r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
@@ -119,7 +119,7 @@ class Ignore:
         r"^(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)$",
         r"^([\W]+)$",
         r"^([-]{2}([\w-]+)*)$",
-        r"^([\w]+[:][\wdd]+)$", # geom:curve_tangent_normal
+        # r"^(\w+\:\w+)$", # geom:curve_tangent_normal
         r"^([\w\_\-]+\(([^\(\)]+)?\))$", # function_name(param1, param2)
         r"^([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)$",
         r"^([\d]D)$",
@@ -169,7 +169,6 @@ class Ignore:
         r"^(\d+[x]?)$", # 16x
         r"^(\%\d+[\w]?)$", # %14s
         r"^(\%[d](x%[d])?)$", # %dx%d
-        r"^(\w[\:]?)$", # X:
         r"^\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
         # r"^(RGB[\w]?)$",
         r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)$",
@@ -369,6 +368,7 @@ class Ignore:
             if is_allowed_contains:
                 return False
 
+            is_ref_link = cm.isLinkPath(msg)
             is_ignore_word = Ignore.isIgnoredWord(msg)
             is_dos_command = Ignore.isDosCommand(msg)
             is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
@@ -384,7 +384,7 @@ class Ignore:
                 dict_ignore = {"is_ignore_word": is_ignore_word,
                                "is_dos_command": is_dos_command,
                                "is_ignore_start": is_ignore_start,
-                               #"is_ignore_path": is_ignore_path
+                               "is_ref_link": is_ref_link
                                }
                 dd("IGNORING:", msg)
                 pp(dict_ignore)

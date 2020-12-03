@@ -24,8 +24,8 @@ from collections import deque
 # import Levenshtein as LE
 #import logging
 
-DEBUG=True
-# DEBUG=False
+# DEBUG=True
+DEBUG=False
 DIC_LOWER_CASE=True
 
 # DIC_LOWER_CASE=False
@@ -195,10 +195,12 @@ class Common:
     NON_WORD_STARTING = re.compile(r'^([\W]+)')
 
     GA_REF_PART = re.compile(r':[\w]+:')
-    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
+    # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
+    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)[\`]+[\_]*')
     GA_REF_ONLY = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
-
+    OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
+    COLON_CHAR = re.compile(r'\:')
     # this (something ... ) can have other links inside of it as well as others
     # the greedy but more accurate is r'[\(]+(.*)?[\)]+'
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
@@ -227,6 +229,8 @@ class Common:
     HYPHEN_REF_LINK = re.compile(r'^(\w+)(\-\w+){2,}$')
     LINK_ALL = re.compile(r'^([/][\w_]+)+$')
     MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
+    PATH_SEP = re.compile(r'[\\\/\-\_\.]')
+    NON_PATH_SEP = re.compile(r'^[^\\\/\-\_\.]+$')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
 
@@ -245,7 +249,11 @@ class Common:
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
-    ABBR_TEXT_ALL = re.compile(r'([^\(]+)\s\(([^\)]+)\)')
+    ABBR_TEXT_ALL = re.compile(r'([^\(]+[\w])\s[\(]([^\)]+)[\)]')
+    REF_WITH_LINK = re.compile(r'([^\<\>\(\)]+)(\s[\<\(]([^\<\>\(\)]+)[\)\>])?')
+    REF_WITH_HTML_LINK = re.compile(r'([^\<\>]+)(\s[\<]([^\<\>]+)[\>])?')
+
+    IS_A_PURE_LINK = re.compile(r'^(?P<sep>[\/\-\\\.])?[^.*(?P=sep)]+(.*(?P=sep).*[^(?P=sep)]+){2,}$')
 
     REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
     TERM_LINK = re.compile(r'([^\`]+)\<?[^\`]+\>?')
@@ -369,7 +377,7 @@ class Common:
     noun_003 = 'chủ nghĩa/tính/trường phái'
     noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/bản/cái/trình/bộ/người/viên/vật'
     adj_0001 = 'thuộc/có tính/sự/chỗ/phần/trạng thái'
-    adj_0002 = 'nói một cách/có tính/theo'
+    adj_0002 = 'là/nói một cách/có tính/theo'
     adv_0001 = 'đáng/có khả năng/thể'
     past_0001 = 'đã/bị/được'
 
@@ -518,6 +526,38 @@ class Common:
     common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
 
     EN_DUP_ENDING = re.compile(r'[aeiou]\w{1}$')
+    WORD_SPLITTER = None
+
+    FILE_EXTENSION = re.compile(r'^[\.//]\w{2,}|\w+[\.//]$')
+    FILE_NAME_WITH_EXTENSION = re.compile(r'^[\w\-\_\*]+\.\w+$')
+
+    def isLinkPath(txt: str) -> bool:
+        if txt.startswith('--'):
+            return False
+
+        is_file_extension = Common.FILE_EXTENSION.search(txt)
+        is_file_name = Common.FILE_NAME_WITH_EXTENSION.search(txt)
+        is_file = (is_file_extension or is_file_name)
+        if is_file:
+            return True
+
+        if not Common.WORD_SPLITTER:
+            delim = ["\\", "/", "-", "_", "."]
+            Common.WORD_SPLITTER = '|'.join(map(re.escape, delim))
+
+        w_list = re.split(Common.WORD_SPLITTER,txt)
+        print(f'isLinkPath w_list:{w_list}')
+        w_count = len(w_list)
+        is_path = False
+        if w_count > 2:
+            is_path = True
+            for word in w_list:
+                is_just_word = (' ' not in word)
+                if not is_just_word:
+                    is_path = False
+                    break
+        print(f'isLinkPath:{is_path} => "{txt}"')
+        return is_path
 
     def shouldHaveDuplicatedEnding(cutoff_part, txt):
         is_verb_cutoff = (cutoff_part in ['ed', 'ing', 'es'])
@@ -732,10 +772,10 @@ class Common:
             one_pattern=[]
             is_text_printed = False
             for m in pat.finditer(text):
-                if not is_text_printed:
-                    print(f'patternMatchAllAsDictNoDelay: text:{text}')
-                    print(f'patternMatchAllAsDictNoDelay: pattern:{pat.pattern}')
-                    is_text_printed = True
+                # if not is_text_printed:
+                #     print(f'patternMatchAllAsDictNoDelay: text:{text}')
+                #     print(f'patternMatchAllAsDictNoDelay: pattern:{pat.pattern}')
+                #     is_text_printed = True
 
                 s = m.start()
                 e = m.end()
@@ -758,7 +798,7 @@ class Common:
             dd("pattern:", pat)
             dd("text:", text)
             dd(e)
-        print(f'patternMatchAllAsDictNoDelay: return_dict:{return_dict}')
+        # print(f'patternMatchAllAsDictNoDelay: return_dict:{return_dict}')
         return return_dict
 
     def findInvert(pattern:re.Pattern, text:str):
@@ -1311,7 +1351,9 @@ class Common:
             if is_replace_internal_bracket:
                 txt_line = txt_line.replace(end_bracket, replace_internal_end_bracket)
 
-            sentence_list.append(txt_line)
+            loc = (ss, ee)
+            entry = {ss: [(loc, txt_line)]}
+            sentence_list.update(entry)
             return True
 
         is_same_brakets = (start_bracket == end_bracket)
@@ -1319,7 +1361,7 @@ class Common:
             print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
                   f'ERRORS might occurs!')
 
-        sentence_list = []
+        sentence_list = {}
 
         # 1. find positions of start bracket
         if is_same_brakets:
@@ -1329,17 +1371,21 @@ class Common:
 
         p = re.compile(p_txt, flags=re.I|re.M)
 
+        # split at the boundary of start and end brackets
         word_dict={}
         m_list = p.finditer(text)
         for m in m_list:
             s = m.start()
             e = m.end()
             w = m.group(0)
-            entry = {(s, e): w}
+            loc = (s, e)
+            entry = {loc: w}
             word_dict.update(entry)
 
         if not word_dict:
             return sentence_list
+
+        # detecting where start/end and take the locations
         debug_len = 20
         q = deque()
         if is_same_brakets:
@@ -1368,6 +1414,9 @@ class Common:
                         if not is_finished:
                             continue
 
+        temp_list = list(sentence_list.items())
+        temp_list.reverse()
+        sentence_list = OrderedDict(temp_list)
         return sentence_list
 
     def locRemain(original_word: str, new_word: str) -> list:
@@ -1403,3 +1452,9 @@ class Common:
             print(f'original_word:{original_word}, new_word:{new_word}')
             print(e)
             raise e
+
+    def debugging(txt):
+        msg = 'Blue minus Luminance'
+        is_debug = (msg and txt and (msg in txt))
+        if is_debug:
+            print(f'Debugging text: {msg} at line txt:{txt}')

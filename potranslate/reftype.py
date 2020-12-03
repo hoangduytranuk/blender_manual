@@ -19,6 +19,7 @@ class RefType(Enum):
     REF = ":ref:"
     SUP = ":sup:"
     TERM = ":term:"
+    OSL_ATTRIB = "w:w"
     TEXT = "generic_text"
     FILLER = "filler"
 
