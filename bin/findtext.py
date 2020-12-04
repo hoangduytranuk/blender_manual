@@ -1187,7 +1187,7 @@ with holding :kbd:`Alt`'
             tf = TranslationFinder()
             for k, ref_type in found_dict.items():
                 try:
-                    # cm.debugging(k)
+                    cm.debugging(k)
                     print(f'try: k:[{k}]; ref_type:[{ref_type}]')
                     is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
                     is_abbr = (ref_type == RefType.ABBR)

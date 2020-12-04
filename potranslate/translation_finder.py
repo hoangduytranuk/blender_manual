@@ -469,6 +469,7 @@ class TranslationFinder:
             print(f'blindTranslation: orig_sub_text:[{orig_sub_text}]')
             safe_tran_length = 0
             unsafe_tran_length = 0
+            is_performing_untranslated = True
 
             masking_string = str(orig_sub_text)
             temp_translation = str(orig_sub_text)
@@ -484,31 +485,37 @@ class TranslationFinder:
                 empty_part = (cm.FILLER_CHAR * len(orig_txt))
                 masking_string = p.sub(empty_part, masking_string)
 
-            remain_untranslated_list = cm.findInvert(re.compile(cm.FILLER_CHAR), masking_string)
-            for k, v in reversed(list(remain_untranslated_list.items())):
-                rep_count = 0
-                remain_loc, un_tran_txt = v
-                un_tran_txt = un_tran_txt.strip()
-                is_ignore = (not un_tran_txt)
-                if is_ignore:
-                    continue
+                is_translation_provided_for_whole_string = (orig_txt == orig_sub_text)
+                if is_translation_provided_for_whole_string:
+                    is_performing_untranslated = False
+                    break
 
-                new_text, tran_sub_text = self.findByReduction(un_tran_txt)
-                has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
-                if has_tran:
-                    try:
-                        escaped_string = re.escape(un_tran_txt)
-                        pattern = r'\b%s\b' % (escaped_string)
-                        p = re.compile(pattern, re.I)
-                        print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; escaped_string:[{escaped_string}], to be replaced by tran_sub_text:[{tran_sub_text}]')
-                        temp_translation, rep_count = p.subn(tran_sub_text, temp_translation)
-                        if rep_count:
-                            unsafe_tran_length += len(un_tran_txt) * rep_count
-                            print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; tran_sub_text:[{tran_sub_text}]; unsafe_tran_length:[{unsafe_tran_length}]')
-                    except Exception as e:
-                        print(f'ERROR! blindTranslation: trying to re.compile un_tran_txt:[{un_tran_txt}], escaped_string:[{escaped_string}]')
-                        print(e)
+            if is_performing_untranslated:
+                remain_untranslated_list = cm.findInvert(re.compile(cm.FILLER_CHAR), masking_string)
+                for k, v in reversed(list(remain_untranslated_list.items())):
+                    rep_count = 0
+                    remain_loc, un_tran_txt = v
+                    un_tran_txt = un_tran_txt.strip()
+                    is_ignore = (not un_tran_txt)
+                    if is_ignore:
                         continue
+
+                    new_text, tran_sub_text = self.findByReduction(un_tran_txt)
+                    has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
+                    if has_tran:
+                        try:
+                            escaped_string = re.escape(un_tran_txt)
+                            pattern = r'\b%s\b' % (escaped_string)
+                            p = re.compile(pattern, re.I)
+                            print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; escaped_string:[{escaped_string}], to be replaced by tran_sub_text:[{tran_sub_text}]')
+                            temp_translation, rep_count = p.subn(tran_sub_text, temp_translation)
+                            if rep_count:
+                                unsafe_tran_length += len(un_tran_txt) * rep_count
+                                print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; tran_sub_text:[{tran_sub_text}]; unsafe_tran_length:[{unsafe_tran_length}]')
+                        except Exception as e:
+                            print(f'ERROR! blindTranslation: trying to re.compile un_tran_txt:[{un_tran_txt}], escaped_string:[{escaped_string}]')
+                            print(e)
+                            continue
 
             translated_list_entry = (safe_tran_length, unsafe_tran_length, loc, orig_sub_text, temp_translation)
             translated_list.append(translated_list_entry)
@@ -1767,7 +1774,26 @@ class TranslationFinder:
             tran = f"{abbr_str}`{msg} ({msg})`"
         return tran, is_fuzzy, is_ignore
 
-    def translateRefWithLink(self, msg):  # for things like :doc:`something <link>`, and :term:`something <link>`
+    def recomposeAbbrevTranslation(self, msg, tran):
+        has_tran = (tran and not tran is None)
+        if not has_tran:
+            return tran
+
+        has_abbr = (cm.ABBREV_CONTENT_PARSER.search(tran) is not None)
+        if not has_abbr:
+            return tran
+
+        abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(tran)
+        print(f'abbrev_orig_rec:{abbrev_orig_rec} abbrev_part:{abbrev_part} exp_part:{exp_part}')
+        loc, orig = abbrev_orig_rec
+        s, e = loc
+        left = tran[:s]
+        right = tran[e:]
+        tran = left + f'{abbrev_part}: {exp_part}' + right
+        tran = cm.removeOriginal(msg, tran)
+        return tran
+
+    def translateRefWithLink(self, msg: str, ref_type: RefType):  # for things like :doc:`something <link>`, and :term:`something <link>`
         ref_is_fuzzy = False
         ref_is_ignore = self.checkIgnore(msg)
         if ref_is_ignore:
@@ -1790,6 +1816,8 @@ class TranslationFinder:
 
                 tran_found = (tran and tran != orig_txt)
                 if tran_found:
+                    # solving the problem :term:`:abbr:`something (explanation)``
+                    tran = self.recomposeAbbrevTranslation(orig_txt, tran)
                     tran = cm.matchCase(orig_txt, tran)
                     tran = f"{tran} -- {orig_txt}"
                 else:
@@ -1803,6 +1831,7 @@ class TranslationFinder:
 
             tran_found = (tran and tran != orig_txt)
             if tran_found:
+                tran = self.recomposeAbbrevTranslation(orig_txt, tran)
                 tran = cm.matchCase(orig_txt, tran)
                 tran_txt = f"{tran} -- {orig_txt}"
             else:

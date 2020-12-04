@@ -1269,10 +1269,7 @@ class RefList(defaultdict):
                 return
 
             ref_txt = ref_item.getText()
-            is_debug = ('Appears in the' in ref_txt)
-            if is_debug:
-                print('Debug')
-
+            cm.debugging(ref_txt)
             is_ignore = ig.isIgnored(ref_txt)
             if is_ignore:
                 ref_item.setTranlation(None, False, True)
@@ -1286,6 +1283,7 @@ class RefList(defaultdict):
             is_ref = (ref_type == RefType.REF)
             is_doc = (ref_type == RefType.DOC)
             is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
+            is_term = (ref_type == RefType.TERM)
 
             # ----------
             is_ast = (ref_type == RefType.AST_QUOTE)
@@ -1323,7 +1321,7 @@ class RefList(defaultdict):
                 if is_ignore_path:
                     return
 
-                tran, is_fuzzy, is_ignore = self.tf.translateRefWithLink(ref_txt)
+                tran, is_fuzzy, is_ignore = self.tf.translateRefWithLink(ref_txt, ref_type)
 
             ref_item.setTranlation(tran, is_fuzzy, is_ignore)
 

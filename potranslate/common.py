@@ -179,7 +179,7 @@ class Common:
     TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
 
     GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
-    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+[^\`]+?[\`]+')
+    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^\`]+)[\`]+')
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
     ENDS_PUNCTUAL_MULTI = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
     ENDS_PUNCTUAL_SINGLE = re.compile(r'([\.\,\:\!\?\"\*\'\`]{1}$)')
@@ -249,7 +249,7 @@ class Common:
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
-    ABBR_TEXT_ALL = re.compile(r'([^\(]+[\w])\s[\(]([^\)]+)[\)]')
+    ABBR_TEXT_ALL = re.compile(r'([^\(]+[\w])\s\(([^\)]+)\)')
     REF_WITH_LINK = re.compile(r'([^\<\>\(\)]+)(\s[\<\(]([^\<\>\(\)]+)[\)\>])?')
     REF_WITH_HTML_LINK = re.compile(r'([^\<\>]+)(\s[\<]([^\<\>]+)[\>])?')
 
@@ -1281,24 +1281,26 @@ class Common:
         if not abbr_dict:
             return None, None, None
 
-        abbrev_list = list(abbr_dict.items())
-        length = len(abbr_dict)
-        if length > 0:
-            abbrev_orig_rec = abbr_dict[0]
-        else:
-            abbrev_orig_rec = None
-
-        if length > 1:
-            abbrev_rec = abbr_dict[1]
-        else:
+        abbrev_orig_rec = abbrev_part = exp_part = None
+        for k, v in abbr_dict.items():
             abbrev_rec = None
+            for index, item in enumerate(v):
+                loc, txt = item
+                if index == 0:
+                    abbrev_orig_rec = item
+                if index == 1:
+                    abbrev_rec = item
 
-        if length > 2:
-            abbrev_exp_rec = abbr_dict[2]
-        else:
-            abbrev_exp_rec = None
+            if abbrev_rec:
+                loc, txt = abbrev_rec
+                found_texts = Common.ABBR_TEXT_ALL.findall(txt)
+                has_abbrev_components = (found_texts and len(found_texts) > 0 and found_texts[0])
+                if has_abbrev_components:
+                    abbrev_tuple = found_texts[0]
+                    abbrev_part, exp_part = abbrev_tuple
+                    print(f'extractAbbr => abbrev_part:{abbrev_part}, exp_part:{exp_part}')
 
-        return abbrev_orig_rec, abbrev_rec, abbrev_exp_rec
+        return abbrev_orig_rec, abbrev_part, exp_part
 
     def testDict(dic_to_use):
         key_list = dic_to_use.keys()
@@ -1454,7 +1456,7 @@ class Common:
             raise e
 
     def debugging(txt):
-        msg = 'Blue minus Luminance'
+        msg = '3D Painting'
         is_debug = (msg and txt and (msg in txt))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')
