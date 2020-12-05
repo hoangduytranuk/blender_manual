@@ -477,6 +477,9 @@ class Common:
         'de':list(sorted(
             ['sible', 'sion', 'sions', 'sive' ],
             key=lambda x: len(x), reverse=True)),
+        'ce':list(sorted(
+            ['tific', 'tist', 'tists'],
+            key=lambda x: len(x), reverse=True)), # science, scientific, scientist, scientists
         'ate':['ant'],
         'cy':['t'],
         'ze':['s'],
@@ -506,7 +509,8 @@ class Common:
         'ities',  'ition',  'itive',  'ments',  'sions',  'ssion',  'ships',  'aries',  'ature',  'ingly',  'izing',
         'ising',  'iness',  'ional',  'lable',  'ously',  'ptions',  'ility',  'ilities',  'itives',  'itions',
         'ication',  'ications',  'atures',  'ations',  'aceous',  'nesses',  'iously',  'ically',  'encies',
-        'ssions',  'itively',  'ization',  'isation',  'itiveness',  'itivenesses', 'perception', 'perceive'
+        'ssions',  'itively',  'ization',  'isation',  'itiveness',  'itivenesses', 'perception', 'perceive',
+        'tific', 'tist', 'tists'
     ]
 
     common_infix = [
@@ -1456,7 +1460,7 @@ class Common:
             raise e
 
     def debugging(txt):
-        msg = '3D Painting'
+        msg = 'is fully opaque'
         is_debug = (msg and txt and (msg in txt))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

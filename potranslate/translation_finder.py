@@ -1127,6 +1127,7 @@ class TranslationFinder:
         is_found = (msg in search_dict)
         if is_found:
             tran = search_dict[msg]
+            tran = cm.matchCase(msg, tran)
             dd(f'{msg} => {tran}')
         else:
             tran = None
@@ -1352,22 +1353,42 @@ class TranslationFinder:
                 return test_text, trans
         return txt, None
 
-    def replaceEndings(self, part, clipped_txt):
+    def replaceEndings(self, part, clipped_txt: str):
+        def checkTranslationForText(test_text):
+            trans = self.isInDict(test_text)
+            if trans:
+                return test_text, trans, True
+
+            chopped_txt, trans = self.reduceDuplicatedEnding(test_text)
+            if trans:
+                return chopped_txt, trans, True
+            return test_text, None, False
+
         for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
             for ending in ending_list:
                 part_matched = (part == ending)
                 if not part_matched:
                     continue
 
-                clipped_text = (clipped_txt + replacement_word)
-                # dd(f'replaceEndings: clipped_text:{clipped_text}')
-                trans = self.isInDict(clipped_text)
-                if trans:
-                    return clipped_text, trans
-                else:
-                    chopped_txt, tran = self.reduceDuplicatedEnding(clipped_txt)
-                    if tran:
-                        return chopped_txt, tran
+                p = r'%s$' % ending
+                test_text_less, less_rep_count = re.subn(p, '', clipped_txt)
+                test_text_with, with_rep_count = re.subn(p, ending, clipped_txt)
+                test_text_more = (clipped_txt + replacement_word)
+
+                test_text, trans, has_translation = checkTranslationForText(test_text_more)
+                if has_translation:
+                    return test_text, trans
+
+                has_ending_and_text_has_changed = (less_rep_count > 0) or (with_rep_count > 0)
+                if has_ending_and_text_has_changed:
+                    test_text, trans, has_translation = checkTranslationForText(test_text_less)
+                    if has_translation:
+                        return test_text, trans
+
+                    test_text, trans, has_translation = checkTranslationForText(test_text_with)
+                    if has_translation:
+                        return test_text, trans
+
         return None, None
 
     def removeBothByPatternListAndCheck(self, txt, prefix_list, suffix_list):
@@ -1560,8 +1581,6 @@ class TranslationFinder:
         if trans:
             trans = trans.replace(cm.FILLER_CHAR, '')  # blank out filler char
             trans = trans.replace('  ', ' ')  # double space => single space
-            trans = cm.matchCase(msg, trans)
-
             is_putting_back_into_msg = (new_text and (new_text != msg))
             if is_putting_back_into_msg:
                 try:
@@ -1615,7 +1634,6 @@ class TranslationFinder:
         has_translation = has_len and (trans != 'None')
         if has_translation:
             trans = cm.removeOriginal(msg, trans)
-            trans = cm.matchCase(orig_msg, trans)
             trans = self.removeTheWord(trans)
         else:
             trans = None
@@ -1818,7 +1836,6 @@ class TranslationFinder:
                 if tran_found:
                     # solving the problem :term:`:abbr:`something (explanation)``
                     tran = self.recomposeAbbrevTranslation(orig_txt, tran)
-                    tran = cm.matchCase(orig_txt, tran)
                     tran = f"{tran} -- {orig_txt}"
                 else:
                     tran = f"-- {orig_txt}"
@@ -1832,7 +1849,6 @@ class TranslationFinder:
             tran_found = (tran and tran != orig_txt)
             if tran_found:
                 tran = self.recomposeAbbrevTranslation(orig_txt, tran)
-                tran = cm.matchCase(orig_txt, tran)
                 tran_txt = f"{tran} -- {orig_txt}"
             else:
                 tran_txt = f" -- {orig_txt}"
@@ -1864,7 +1880,6 @@ class TranslationFinder:
 
             is_tran_valid = (tran and (tran != word))
             if is_tran_valid:
-                tran = cm.matchCase(word, tran)
                 entry = f"{tran} ({word})"
             else:
                 entry = f"({word})"
@@ -1917,7 +1932,6 @@ class TranslationFinder:
 
             valid = (tran and (tran != abbrev_explain_txt))
             if valid:
-                tran = cm.matchCase(abbrev_explain_txt, tran)
                 entry = f"{abbrev_explain_txt} -- {tran}"
             else:
                 entry = f"{abbrev_explain_txt} -- "
