@@ -431,7 +431,27 @@ class TranslationFinder:
         return translation, count_translated, count_untranslated
 
     def blindTranslation(self, msg):
+        def replaceTranslation(sub_orig: str, sub_tran: str, entire_tran: str):
+            rep_count: int = 0
+            copy_of_entire_tran = str(entire_tran)
+            temp_entire_tran = str(entire_tran)
+            is_finished = False
+            while not is_finished:
+                temp_entire_tran = temp_entire_tran.replace(sub_orig, sub_tran, 1)
+                has_changed = not (entire_tran == copy_of_entire_tran)
+                if has_changed:
+                    rep_count += 1
+                    copy_of_entire_tran = str(temp_entire_tran)
+                else:
+                    is_finished = True
+            entire_tran = temp_entire_tran
+            # pattern = r'\b%s\b' % (escaped_sub_orig)
+            # esc_pattern = re.escape(pattern)
+            # p = re.compile(esc_pattern, re.I)
+            # entire_tran, rep_count = p.subn(sub_tran, entire_tran)
+            return entire_tran, rep_count
 
+        # cm.debugging(msg)
         translation = str(msg)
         loc_list = []
         translated_list = []
@@ -500,36 +520,58 @@ class TranslationFinder:
                     if is_ignore:
                         continue
 
-                    new_text, tran_sub_text = self.findByReduction(un_tran_txt)
+                    _, tran_sub_text = self.findByReduction(un_tran_txt)
                     has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
                     if has_tran:
+                        rep_count = 0
                         try:
-                            escaped_string = re.escape(un_tran_txt)
-                            pattern = r'\b%s\b' % (escaped_string)
-                            p = re.compile(pattern, re.I)
-                            print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; escaped_string:[{escaped_string}], to be replaced by tran_sub_text:[{tran_sub_text}]')
-                            temp_translation, rep_count = p.subn(tran_sub_text, temp_translation)
+                            # escaped_string = re.escape(un_tran_txt)
+                            escaped_string = un_tran_txt
+                            temp_translation, rep_count = replaceTranslation(escaped_string, tran_sub_text, temp_translation)
+
+                            p1 = r'\W+$'     # ending symbols, puntuations
+                            p2 = r'^\W+'     # leading symbols, puntuations
+                            if not rep_count:
+                                escaped_string = re.sub(p1, '', un_tran_txt)
+                                chopped_tran_sub_text = re.sub(p1, '', tran_sub_text)
+                                temp_translation, rep_count = replaceTranslation(escaped_string, chopped_tran_sub_text, temp_translation)
+
+                            if not rep_count:
+                                escaped_string = re.sub(p2, '', un_tran_txt)
+                                chopped_tran_sub_text = re.sub(p2, '', tran_sub_text)
+                                temp_translation, rep_count = replaceTranslation(escaped_string, chopped_tran_sub_text, temp_translation)
+
+                            if not rep_count:
+                                escaped_string = re.sub(p1, '', un_tran_txt)
+                                escaped_string = re.sub(p2, '', escaped_string)
+
+                                chopped_tran_sub_text = re.sub(p1, '', tran_sub_text)
+                                chopped_tran_sub_text = re.sub(p2, '', chopped_tran_sub_text)
+
+                                temp_translation, rep_count = replaceTranslation(escaped_string, chopped_tran_sub_text, temp_translation)
+
                             if rep_count:
                                 unsafe_tran_length += len(un_tran_txt) * rep_count
                                 print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; tran_sub_text:[{tran_sub_text}]; unsafe_tran_length:[{unsafe_tran_length}]')
+
                         except Exception as e:
                             print(f'ERROR! blindTranslation: trying to re.compile un_tran_txt:[{un_tran_txt}], escaped_string:[{escaped_string}]')
                             print(e)
                             continue
 
-            translated_list_entry = (safe_tran_length, unsafe_tran_length, loc, orig_sub_text, temp_translation)
+            translated_list_entry = (safe_tran_length, unsafe_tran_length, len(orig_sub_text), loc, orig_sub_text, temp_translation)
             translated_list.append(translated_list_entry)
 
         print(f'translated_list:')
         pprint(translated_list)
 
-        translated_list.sort(key= OP.itemgetter(0, 1))
+        translated_list.sort(key= OP.itemgetter(0, 1, 2))
         translated_list.reverse()
         dd('blindTranslation:')
         pp(translated_list)
         if translated_list:
             accept_entry = translated_list[0]
-            safe_tran_length, unsafe_tran_length, loc, orig_sub_text, translation = accept_entry
+            safe_tran_length, unsafe_tran_length, length_of_sub_text, loc, orig_sub_text, translation = accept_entry
             translation = msg.replace(orig_sub_text, translation)
             print(f'blindTranslation: chosen orig_sub_text:[{orig_sub_text}]; translation:[{translation}];')
         else:
@@ -1124,6 +1166,7 @@ class TranslationFinder:
             print(msg)
             raise Exception(msg)
         # msg = 'neat'
+        # cm.debugging(msg)
         is_found = (msg in search_dict)
         if is_found:
             tran = search_dict[msg]

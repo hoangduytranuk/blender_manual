@@ -226,6 +226,7 @@ class Common:
     ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
     REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
     REF_PART = re.compile(r'([<(][^<>()]+[>)])')
+    END_WITH_REF = re.compile(r'([<][^<>]+[>])$')
     HYPHEN_REF_LINK = re.compile(r'^(\w+)(\-\w+){2,}$')
     LINK_ALL = re.compile(r'^([/][\w_]+)+$')
     MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
@@ -1460,7 +1461,7 @@ class Common:
             raise e
 
     def debugging(txt):
-        msg = 'is fully opaque'
-        is_debug = (msg and txt and (msg in txt))
+        msg = 'Computer Graphics'
+        is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

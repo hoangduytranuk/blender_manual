@@ -995,6 +995,35 @@ class FindFilesHasPattern:
     #     is_ref = (ref_type == RefType.REF.value)
     #     return (is_keyboard or is_menu or is_term or is_abbr or is_gui or is_ref or is_term)
 
+    find_pat_list = [
+        # re.compile(r'[\(]+(.*?)[\)]+'), # ARCH_BRAKET_MULTI
+        # re.compile(r"(?<!\w)\'([^\']+)(?:\b)\'"), # single quote
+        # re.compile(r"(?<!\w)\*([^\*]+)(?:\b)\*"), # asterisk
+        # re.compile(r'"(?<!\\")(.*?)"'),         # double quote
+        # re.compile(r'[\`]*(:[^\:]+:)?[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]?'),
+        # (cm.OSL_ATTRIB, RefType.OSL_ATTRIB),
+        # OSL_ATTRIB(re.compile(r''), RefType.ARCH_BRACKET),
+
+        (cm.AST_QUOTE, RefType.AST_QUOTE),
+        (cm.DBL_QUOTE, RefType.DBL_QUOTE),
+        (cm.SNG_QUOTE, RefType.SNG_QUOTE),
+        (cm.RGBA, RefType.TEXT),
+        (cm.GA_REF, RefType.GA),
+        (re.compile(r'()'), RefType.ARCH_BRACKET),
+    ]
+
+    def isParsingRequired(self, txt):
+        for p, ref_type in self.find_pat_list:
+            if ref_type is RefType.ARCH_BRACKET:
+                m = cm.getTextWithinBrackets('(', ')', txt, is_include_bracket=False)
+            else:
+                m = p.search(txt)
+
+            is_required = (m is not None and len(m) > 0)
+            if is_required:
+                return True
+        return False
+
     def translate_word_into_dict(self, k:str, dict_tf: TranslationFinder, dict_to_insert:OrderedDict, is_translating_ref=False):
         if is_translating_ref:
             ref_list: RefList = None
@@ -1024,29 +1053,13 @@ class FindFilesHasPattern:
         dict_to_insert.update(entry)
 
     def extract_bracket_texts_from_gtx(self):
-        find_pat_list = [
-            # re.compile(r'[\(]+(.*?)[\)]+'), # ARCH_BRAKET_MULTI
-            # re.compile(r"(?<!\w)\'([^\']+)(?:\b)\'"), # single quote
-            # re.compile(r"(?<!\w)\*([^\*]+)(?:\b)\*"), # asterisk
-            # re.compile(r'"(?<!\\")(.*?)"'),         # double quote
-            # re.compile(r'[\`]*(:[^\:]+:)?[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]?'),
-            # (cm.OSL_ATTRIB, RefType.OSL_ATTRIB),
-            # OSL_ATTRIB(re.compile(r''), RefType.ARCH_BRACKET),
-
-            (cm.AST_QUOTE, RefType.AST_QUOTE),
-            (cm.DBL_QUOTE, RefType.DBL_QUOTE),
-            (cm.SNG_QUOTE, RefType.SNG_QUOTE),
-            (cm.RGBA, RefType.TEXT),
-            (cm.GA_REF, RefType.GA),
-            (re.compile(r'()'), RefType.ARCH_BRACKET),
-        ]
 
         def processingData(data):
             found_dict = {}
             data_lines = data.split('\n')
             for text_line in data_lines:
                 remain_line = str(text_line)
-                for p, ref_type in find_pat_list:
+                for p, ref_type in self.find_pat_list:
                     try:
                         if ref_type is RefType.ARCH_BRACKET:
                             found_items = cm.getTextWithinBrackets('(', ')', text_line, is_include_bracket=False)
@@ -1187,7 +1200,7 @@ with holding :kbd:`Alt`'
             tf = TranslationFinder()
             for k, ref_type in found_dict.items():
                 try:
-                    cm.debugging(k)
+                    # cm.debugging(k)
                     print(f'try: k:[{k}]; ref_type:[{ref_type}]')
                     is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
                     is_abbr = (ref_type == RefType.ABBR)
@@ -1255,42 +1268,49 @@ with holding :kbd:`Alt`'
                     elif is_math or is_sup:
                         print(f'IGNORING type:{ref_type}: "{k}"')
                         pass
-                    elif is_arched_bracket:
-                        self.translate_word_into_dict(k, tf, tran_dict, is_translating_ref=True)
                     else:
-                        found_list = cm.REF_WITH_LINK.findall(k)
-                        if not found_list:
-                            print(f'IGNORING: {k}')
-                            continue
-
-                        list_length = len(found_list)
-                        if list_length > 2:
-                            print(f'REWORKING using REF_WITH_HTML_LINK: {k}')
-                            found_list = cm.REF_WITH_HTML_LINK.findall(k)
-                            if not found_list:
-                                print(f'IGNORING: {k}')
-                                continue
-
-                        print(f'found_list:{found_list}, ref_type:{ref_type}')
-                        txt = word = link = None
-                        for index, item in enumerate(found_list):
-                            print(f'index:{index}, item:{item}')
-                            if index == 0:
-                                txt, _, _ = item
-                            if index == 1:
-                                link, _, _ = item
-                        txt = txt.strip()
-                        is_word_a_link = cm.isLinkPath(txt)
-                        if is_word_a_link:
-                            print(f'word_is_a_link: link:{txt};')
-                            continue
-
-                        if link:
-                            print(f'might_have_link: ref_type:{ref_type};\nword:[{txt}];\nlink:[{link}]')
+                        m_ref = cm.END_WITH_REF.search(k)
+                        is_end_with_ref = (m_ref is not None)
+                        if is_end_with_ref:
+                            found_dict = cm.findInvert(cm.END_WITH_REF, k)
+                            for k, v in found_dict.items():
+                                loc, txt = v
+                                self.translate_word_into_dict(txt.strip(), tf, tran_dict, is_translating_ref=True)
                         else:
-                            print(f'might_have_link: ref_type:{ref_type};\nword:[{txt}]')
-
-                        self.translate_word_into_dict(txt, tf, tran_dict)
+                            self.translate_word_into_dict(k, tf, tran_dict, is_translating_ref=True)
+                    # else:
+                    #     is_parsing = self.isParsingRequired(k)
+                    #     if is_parsing:
+                    #         self.translate_word_into_dict(k, tf, tran_dict, is_translating_ref=True)
+                    #         continue
+                    #
+                    #     list_length = len(found_list)
+                    #     if list_length > 2:
+                    #         print(f'REWORKING using REF_WITH_HTML_LINK: {k}')
+                    #         found_list = cm.REF_WITH_HTML_LINK.findall(k)
+                    #         if not found_list:
+                    #             print(f'IGNORING: {k}')
+                    #             continue
+                    #
+                    #     print(f'found_list:{found_list}, ref_type:{ref_type}')
+                    #     txt = word = link = None
+                    #     for index, item in enumerate(found_list):
+                    #         print(f'index:{index}, item:{item}')
+                    #         if index == 0:
+                    #             txt, _, _ = item
+                    #         if index == 1:
+                    #             link, _, _ = item
+                    #     txt = txt.strip()
+                    #     is_word_a_link = cm.isLinkPath(txt)
+                    #     if is_word_a_link:
+                    #         print(f'word_is_a_link: link:{txt};')
+                    #         continue
+                    #
+                    #     if link:
+                    #         print(f'might_have_link: ref_type:{ref_type};\nword:[{txt}];\nlink:[{link}]')
+                    #     else:
+                    #         print(f'might_have_link: ref_type:{ref_type};\nword:[{txt}]')
+                    #     self.translate_word_into_dict(txt, tf, tran_dict, is_translating_ref=True)
                 except Exception as e:
                     print(f'ERROR! {k}, Reftype:{ref_type}')
                     print(e)
