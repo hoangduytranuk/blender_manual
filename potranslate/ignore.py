@@ -376,7 +376,8 @@ class Ignore:
 
             is_ignore = (is_ignore_word or
                         is_dos_command or
-                        is_ignore_start)
+                        is_ignore_start or
+                        is_ref_link )
                         #         or is_ignore_path)
             # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
             if is_ignore:

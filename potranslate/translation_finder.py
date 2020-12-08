@@ -430,28 +430,113 @@ class TranslationFinder:
 
         return translation, count_translated, count_untranslated
 
-    def blindTranslation(self, msg):
-        def replaceTranslation(sub_orig: str, sub_tran: str, entire_tran: str):
-            rep_count: int = 0
-            copy_of_entire_tran = str(entire_tran)
-            temp_entire_tran = str(entire_tran)
-            is_finished = False
-            while not is_finished:
-                temp_entire_tran = temp_entire_tran.replace(sub_orig, sub_tran, 1)
-                has_changed = not (entire_tran == copy_of_entire_tran)
-                if has_changed:
-                    rep_count += 1
-                    copy_of_entire_tran = str(temp_entire_tran)
-                else:
-                    is_finished = True
-            entire_tran = temp_entire_tran
-            # pattern = r'\b%s\b' % (escaped_sub_orig)
-            # esc_pattern = re.escape(pattern)
-            # p = re.compile(esc_pattern, re.I)
-            # entire_tran, rep_count = p.subn(sub_tran, entire_tran)
-            return entire_tran, rep_count
 
-        # cm.debugging(msg)
+    def replacingUsingDic(self, local_dict: dict, text: str) -> str:
+        location_database = []
+        def filerLocation(item):
+            loc_covered_length, local_location, loc_dict_txt, loc_tran_txt = item
+            if not location_database:
+                location_database.append(local_location)
+                return True
+            else:
+                l_s, l_e = local_location
+                for current_loc in location_database:
+                    c_s, c_e = current_loc
+                    is_within_current = (l_s >= c_s) and (l_e <= c_e)
+                    if is_within_current:
+                        return False
+                location_database.append(local_location)
+                return True
+
+        def translatedListToText(loc_translated_list: list, current_translation, filter_function) -> str:
+
+            # sorted the list by text length (maximum covering distance goes first, key=0), that's reverse=True is for
+            # filter function will check if the location is already in local location database or that location is ALREADY
+            # covered (overlapped) by previous instances.
+            filtered_translated_list = list(filter(filter_function, sorted(loc_translated_list, key=OP.itemgetter(0), reverse=True)))
+
+            filtered_translated_list.sort(key=OP.itemgetter(1, 0))
+            filtered_translated_list.reverse()
+
+            for loc_covered_length, local_location, loc_dict_txt, loc_tran_txt in filtered_translated_list:
+                loc_ss, loc_ee = local_location
+                loc_left = current_translation[:loc_ss]
+                loc_right = current_translation[loc_ee:]
+                current_translation = loc_left + loc_tran_txt + loc_right
+                is_finish = not (loc_left or loc_right)
+                if is_finish:
+                    break
+            return current_translation
+
+        masking_string = str(text)
+        translated_list = []
+        covered_length = 0
+        translation = str(text)
+        for untran_txt, tran_txt in local_dict.items():
+            p = r'\b%s\b' % (untran_txt)
+            pat = re.compile(p, flags=re.I)
+            found_dict = cm.patternMatchAllToDict(pat, text)
+            is_found = (len(found_dict) > 0)
+            if not is_found:
+                continue
+
+            found_item_list = list(found_dict.items())
+            non_fuzzy_length = 0
+            for loc, dict_txt in found_item_list:
+                empty_part = (cm.FILLER_CHAR * len(dict_txt))
+                ss, ee = loc
+
+                # update every instance found in the temp_translation with already found translation text
+                txt_length = len(dict_txt)
+                tran_dict_entry = (txt_length, loc, dict_txt, tran_txt)
+                translated_list.append(tran_dict_entry)
+
+                left = masking_string[:ss]
+                right = masking_string[ee:]
+                masking_string = left + empty_part + right
+
+                # if the translation has provided fully then it's enough to get out
+                is_translation_provided_fully = not (left or right)
+                if is_translation_provided_fully:
+                    # replacing dict into text and finish
+                    temp_translation = translatedListToText(translated_list, translation, filerLocation)
+                    return temp_translation
+
+        # for untranslated words, we will try to find definitions for each, using reductions
+        # check to see if untranslated word
+        has_translatable_characters = (re.search(r'[a-zA-Z]+', masking_string) is not None)
+        if not has_translatable_characters:
+            temp_translation = translatedListToText(translated_list, translation, filerLocation)
+            return temp_translation
+
+        un_tran_list = cm.findInvert(cm.FILLER_CHAR_PATTERN,
+                                     masking_string,
+                                     is_remove_empty=True,
+                                     is_removing_surrounding_none_alphas=True)
+        fuzzy_length = 0
+        for k, v in un_tran_list.items():
+            remain_loc, un_tran_txt = v
+            is_ignore = ig.isIgnored(un_tran_txt)
+            if is_ignore:
+                print(f'replacingUsingDic: IGNORING: un_tran_txt:[{un_tran_txt}]')
+                continue
+
+            _, tran_sub_text = self.findByReduction(un_tran_txt)
+            has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
+            if has_tran:
+                txt_length = len(un_tran_txt)
+                tran_dict_entry = (txt_length, remain_loc, un_tran_txt, tran_sub_text)
+                translated_list.append(tran_dict_entry)
+
+        # replacing dict into text and finish
+        temp_translation = translatedListToText(translated_list, translation, filerLocation)
+        has_translation = not (temp_translation == text)
+        if not has_translation:
+            return None
+        else:
+            return temp_translation
+
+    def buildLocalTranslationDict(self, msg):
         translation = str(msg)
         loc_list = []
         translated_list = []
@@ -474,109 +559,25 @@ class TranslationFinder:
                 local_dict_entry = {orig_sub_text: tran_sub_text}
                 local_translated_dict.update(local_dict_entry)
 
-        print('blindTranslation:')
-        print(f'msg: {msg}')
-        print(f'local_translated_dict:')
-        pprint(local_translated_dict)
+        # print('blindTranslation:')
+        # print(f'msg: {msg}')
+        # print(f'local_translated_dict:')
+        # pprint(local_translated_dict)
+        return local_translated_dict
+
+    def blindTranslation(self, msg):
+        cm.debugging(msg)
+        if ig.isIgnored(msg):
+            return None
+
+        local_translated_dict = self.buildLocalTranslationDict(msg)
 
         # use the translated (longest first) to replace all combination,
         # translate by reduction for ones could not, to form the final translation for the variation
         # translated_dic will be sorted in length by default.
         # using safe translation length and unsafe translation length to sort so one with both highest values
         # are floated on top once sorted. Pick the one at the top list, ignore the rest
-        translated_list = []
-        for loc, orig_sub_text in loc_map_length_sorted_reverse:
-            print(f'blindTranslation: orig_sub_text:[{orig_sub_text}]')
-            safe_tran_length = 0
-            unsafe_tran_length = 0
-            is_performing_untranslated = True
-
-            masking_string = str(orig_sub_text)
-            temp_translation = str(orig_sub_text)
-            for orig_txt, trans in local_translated_dict.items():
-                rep_count = 0
-                escaped_string = re.escape(orig_txt)
-                pattern = r'\b%s\b' % (escaped_string)
-                p = re.compile(pattern, re.I)
-                temp_translation, rep_count = p.subn(trans, temp_translation)               # watch this one, might be location is required
-                if rep_count:
-                    safe_tran_length += len(orig_txt) * rep_count
-                    print(f'blindTranslation: orig_txt:[{orig_txt}]; trans:[{trans}]; safe_tran_length:[{safe_tran_length}]')
-                empty_part = (cm.FILLER_CHAR * len(orig_txt))
-                masking_string = p.sub(empty_part, masking_string)
-
-                is_translation_provided_for_whole_string = (orig_txt == orig_sub_text)
-                if is_translation_provided_for_whole_string:
-                    is_performing_untranslated = False
-                    break
-
-            if is_performing_untranslated:
-                remain_untranslated_list = cm.findInvert(re.compile(cm.FILLER_CHAR), masking_string)
-                for k, v in reversed(list(remain_untranslated_list.items())):
-                    rep_count = 0
-                    remain_loc, un_tran_txt = v
-                    un_tran_txt = un_tran_txt.strip()
-                    is_ignore = (not un_tran_txt)
-                    if is_ignore:
-                        continue
-
-                    _, tran_sub_text = self.findByReduction(un_tran_txt)
-                    has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
-                    if has_tran:
-                        rep_count = 0
-                        try:
-                            # escaped_string = re.escape(un_tran_txt)
-                            escaped_string = un_tran_txt
-                            temp_translation, rep_count = replaceTranslation(escaped_string, tran_sub_text, temp_translation)
-
-                            p1 = r'\W+$'     # ending symbols, puntuations
-                            p2 = r'^\W+'     # leading symbols, puntuations
-                            if not rep_count:
-                                escaped_string = re.sub(p1, '', un_tran_txt)
-                                chopped_tran_sub_text = re.sub(p1, '', tran_sub_text)
-                                temp_translation, rep_count = replaceTranslation(escaped_string, chopped_tran_sub_text, temp_translation)
-
-                            if not rep_count:
-                                escaped_string = re.sub(p2, '', un_tran_txt)
-                                chopped_tran_sub_text = re.sub(p2, '', tran_sub_text)
-                                temp_translation, rep_count = replaceTranslation(escaped_string, chopped_tran_sub_text, temp_translation)
-
-                            if not rep_count:
-                                escaped_string = re.sub(p1, '', un_tran_txt)
-                                escaped_string = re.sub(p2, '', escaped_string)
-
-                                chopped_tran_sub_text = re.sub(p1, '', tran_sub_text)
-                                chopped_tran_sub_text = re.sub(p2, '', chopped_tran_sub_text)
-
-                                temp_translation, rep_count = replaceTranslation(escaped_string, chopped_tran_sub_text, temp_translation)
-
-                            if rep_count:
-                                unsafe_tran_length += len(un_tran_txt) * rep_count
-                                print(f'blindTranslation: un_tran_txt:[{un_tran_txt}]; tran_sub_text:[{tran_sub_text}]; unsafe_tran_length:[{unsafe_tran_length}]')
-
-                        except Exception as e:
-                            print(f'ERROR! blindTranslation: trying to re.compile un_tran_txt:[{un_tran_txt}], escaped_string:[{escaped_string}]')
-                            print(e)
-                            continue
-
-            translated_list_entry = (safe_tran_length, unsafe_tran_length, len(orig_sub_text), loc, orig_sub_text, temp_translation)
-            translated_list.append(translated_list_entry)
-
-        print(f'translated_list:')
-        pprint(translated_list)
-
-        translated_list.sort(key= OP.itemgetter(0, 1, 2))
-        translated_list.reverse()
-        dd('blindTranslation:')
-        pp(translated_list)
-        if translated_list:
-            accept_entry = translated_list[0]
-            safe_tran_length, unsafe_tran_length, length_of_sub_text, loc, orig_sub_text, translation = accept_entry
-            translation = msg.replace(orig_sub_text, translation)
-            print(f'blindTranslation: chosen orig_sub_text:[{orig_sub_text}]; translation:[{translation}];')
-        else:
-            translation = None
-
+        translation = self.replacingUsingDic(local_translated_dict, msg)
         return translation
 
     def addDictEntry(self, msg_list, is_master=False):
@@ -1261,9 +1262,9 @@ class TranslationFinder:
         if not txt:
             return txt, None
 
-        new_txt, trans = self.removeStarAndEndingPunctuations(txt)
-        if not trans or (trans == txt):
-            new_txt, trans = self.translationByRemovingSymbols(txt)
+        # new_txt, trans = self.removeStarAndEndingPunctuations(txt)
+        # if not trans or (trans == txt):
+        new_txt, trans = self.translationByRemovingSymbols(txt)
         if not trans or (trans == txt):
             new_txt, trans = self.translationByReplacingSymbolsWithSpaces(txt)
         if not trans or (trans == txt):
@@ -1301,8 +1302,8 @@ class TranslationFinder:
 
             new_text = orig_txt
             trans = self.isInDict(orig_txt)
-            if not trans:
-                new_text, trans = self.reduceFind(orig_txt)
+            # if not trans:
+            #     new_text, trans = self.reduceFind(orig_txt)
 
             is_found_trans = (trans and trans != orig_txt)
             if is_found_trans:
@@ -1566,9 +1567,9 @@ class TranslationFinder:
 
     def tryToFindTran(self, txt):
         is_fuzzy = False
-        new_txt, trans = self.removeStarAndEndingPunctuations(txt)
-        if not trans or (trans == txt):
-            new_txt, trans = self.translateWordsAtSymbolBoundary(txt)
+        # new_txt, trans = self.removeStarAndEndingPunctuations(txt)
+        # if not trans or (trans == txt):
+        new_txt, trans = self.translateWordsAtSymbolBoundary(txt)
         if not trans or (trans == txt) or is_fuzzy:
             new_txt, trans = self.translationByRemovingSymbols(txt)
         if not trans or (trans == txt):
@@ -1621,20 +1622,20 @@ class TranslationFinder:
         if not trans:
             new_text, trans = self.symbolsRemoval(msg)
 
-        if trans:
-            trans = trans.replace(cm.FILLER_CHAR, '')  # blank out filler char
-            trans = trans.replace('  ', ' ')  # double space => single space
-            is_putting_back_into_msg = (new_text and (new_text != msg))
-            if is_putting_back_into_msg:
-                try:
-                    p = re.compile(re.escape(new_text))
-                    trans = p.sub(trans, msg)  # is this dangerous? should this needs a location?
-                except Exception as e:
-                    print(f'findByReduction: msg:[{msg}] trans:[{trans}], new_text:[{new_text}]')
-                    print(e)
-                    raise(e)
-
-            dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
+        # if trans:
+        #     trans = trans.replace(cm.FILLER_CHAR, '')  # blank out filler char
+        #     trans = trans.replace('  ', ' ')  # double space => single space
+        #     is_putting_back_into_msg = (new_text and (new_text != msg))
+        #     if is_putting_back_into_msg:
+        #         try:
+        #             p = re.compile(re.escape(new_text))
+        #             trans = p.sub(trans, msg)  # is this dangerous? should this needs a location?
+        #         except Exception as e:
+        #             print(f'findByReduction: msg:[{msg}] trans:[{trans}], new_text:[{new_text}]')
+        #             print(e)
+        #             raise(e)
+        #
+        #     dd(f'findByReduction: FOUND: msg:{msg} => trans:{trans}')
         return new_text, trans
 
     def isNonGATranslatedFully(self, msg, trans):
@@ -1669,6 +1670,7 @@ class TranslationFinder:
         if (is_ignore):
             return None, is_ignore
 
+        cm.debugging(msg)
         orig_msg = str(msg)
         trans = self.isInDict(orig_msg)
 
@@ -1730,27 +1732,32 @@ class TranslationFinder:
         return trans
 
     def translate(self, msg):
-        is_fuzzy = False
-        trans, is_ignore = self.findTranslation(msg)
-        if is_ignore:
-            return (None, False, is_ignore)
-
-        is_debug = ('Agent' in msg)
-        if is_debug:
-            print('DEBUG')
-        if not trans:
-            dd(f'calling blindTranslation')
+        try:
             cm.debugging(msg)
-            trans = self.blindTranslation(msg)
-            is_fuzzy = True
+            is_fuzzy = False
+            trans, is_ignore = self.findTranslation(msg)
+            if is_ignore:
+                return (None, False, is_ignore)
 
-        if trans:
-            is_same = (trans.lower() == msg.lower())
-            if is_same:
-                trans = None
-            else:
-                trans = self.removeTheWord(trans)
-        return (trans, is_fuzzy, is_ignore)
+            is_debug = ('Agent' in msg)
+            if is_debug:
+                print('DEBUG')
+            if not trans:
+                dd(f'calling blindTranslation')
+                # cm.debugging(msg)
+                trans = self.blindTranslation(msg)
+                is_fuzzy = True
+
+            if trans:
+                is_same = (trans == msg)
+                if is_same:
+                    trans = None
+                else:
+                    trans = self.removeTheWord(trans)
+            return (trans, is_fuzzy, is_ignore)
+        except Exception as e:
+            print(f'ERROR: {e} - msg:[{msg}], trans:[{trans}]')
+            raise e
 
     def translateKeyboard(self, msg):
         orig = str(msg)
@@ -1805,13 +1812,15 @@ class TranslationFinder:
             return None, is_fuzzy, is_ignore
 
         tran, is_fuzzy, is_ignore = self.translate(msg)
+        tran_found = (tran is not None)
+        if not tran_found:
+            return None, False, False
+
         if is_ignore:
             return None, is_fuzzy, is_ignore
 
-        tran_found = (tran is not None)
-
         abbr_str = RefType.ABBR.value
-        has_abbr = tran_found and (abbr_str in tran)
+        has_abbr = (abbr_str in tran)
         if has_abbr:
             return tran, is_fuzzy, is_ignore
 

@@ -1026,6 +1026,7 @@ class FindFilesHasPattern:
 
     def translate_word_into_dict(self, k:str, dict_tf: TranslationFinder, dict_to_insert:OrderedDict, is_translating_ref=False):
         if is_translating_ref:
+            cm.debugging(k)
             ref_list: RefList = None
             ref_list = RefList(msg=k, keep_orig=False, tf=dict_tf)
             ref_list.parseMessage()
@@ -1201,6 +1202,10 @@ with holding :kbd:`Alt`'
             for k, ref_type in found_dict.items():
                 try:
                     # cm.debugging(k)
+                    is_a_link_path = cm.isLinkPath(k)
+                    if is_a_link_path:
+                        continue
+
                     print(f'try: k:[{k}]; ref_type:[{ref_type}]')
                     is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
                     is_abbr = (ref_type == RefType.ABBR)
@@ -1278,39 +1283,6 @@ with holding :kbd:`Alt`'
                                 self.translate_word_into_dict(txt.strip(), tf, tran_dict, is_translating_ref=True)
                         else:
                             self.translate_word_into_dict(k, tf, tran_dict, is_translating_ref=True)
-                    # else:
-                    #     is_parsing = self.isParsingRequired(k)
-                    #     if is_parsing:
-                    #         self.translate_word_into_dict(k, tf, tran_dict, is_translating_ref=True)
-                    #         continue
-                    #
-                    #     list_length = len(found_list)
-                    #     if list_length > 2:
-                    #         print(f'REWORKING using REF_WITH_HTML_LINK: {k}')
-                    #         found_list = cm.REF_WITH_HTML_LINK.findall(k)
-                    #         if not found_list:
-                    #             print(f'IGNORING: {k}')
-                    #             continue
-                    #
-                    #     print(f'found_list:{found_list}, ref_type:{ref_type}')
-                    #     txt = word = link = None
-                    #     for index, item in enumerate(found_list):
-                    #         print(f'index:{index}, item:{item}')
-                    #         if index == 0:
-                    #             txt, _, _ = item
-                    #         if index == 1:
-                    #             link, _, _ = item
-                    #     txt = txt.strip()
-                    #     is_word_a_link = cm.isLinkPath(txt)
-                    #     if is_word_a_link:
-                    #         print(f'word_is_a_link: link:{txt};')
-                    #         continue
-                    #
-                    #     if link:
-                    #         print(f'might_have_link: ref_type:{ref_type};\nword:[{txt}];\nlink:[{link}]')
-                    #     else:
-                    #         print(f'might_have_link: ref_type:{ref_type};\nword:[{txt}]')
-                    #     self.translate_word_into_dict(txt, tf, tran_dict, is_translating_ref=True)
                 except Exception as e:
                     print(f'ERROR! {k}, Reftype:{ref_type}')
                     print(e)

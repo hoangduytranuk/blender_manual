@@ -247,6 +247,8 @@ class Common:
     EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
     OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
     FILLER_CHAR='¶'
+    filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
+    FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
@@ -806,7 +808,7 @@ class Common:
         # print(f'patternMatchAllAsDictNoDelay: return_dict:{return_dict}')
         return return_dict
 
-    def findInvert(pattern:re.Pattern, text:str):
+    def findInvert(pattern:re.Pattern, text:str, is_remove_empty=False, is_removing_surrounding_none_alphas=False):
         '''
         findInvert:
             Find list of words that are NOT matching the pattern.
@@ -817,31 +819,86 @@ class Common:
             the re.compile(d) pattern to use to find/replace
         :param text:
             the string of text that words are to be found
+        :param is_remove_empty:
+            If this is set to True, removing empty strings while processing,
+            and these empty strings (or just contain spaces) won't be
+            in the returning list
+        :param is_removing_surrounding_none_alphas:
+            removing empty spaces and symbols surrounding words
         :return:
             list of words that are NOT matching the pattern input
         '''
+        def isEmtpyWord(word):
+            if word is None:
+                return True
+
+            if not is_remove_empty:
+                return False
+
+            check_word = word.strip()
+            is_empty = (len(check_word) == 0)
+            return is_empty
 
         found_list={}
         matched_list = Common.patternMatchAllToDict(pattern, text)
 
+        # starting with collecting words surrounding the pattern
+        # word_start = 0, word_end is the start of found location
+        # this will, for some pattern, collecting spaces and symbols, punctuations etc..
+        # which are not alpha numericals
         temp_string = str(text)
         ws = 0
         for loc, matched_word in matched_list.items():
             we, _ = loc
-            is_word = (ws < we)
-            if is_word:
+            is_a_valid_word = (ws < we)
+            if is_a_valid_word:
                 word = text[ws: we]
                 word_loc = (ws, we)
                 entry = {ws: (word_loc, word)}
                 found_list.update(entry)
             _, ws = loc
+        # capturing the last word here
         we = len(text)
-        is_word = (ws < we)
-        if is_word:
+        is_a_valid_word = (ws < we)
+        if is_a_valid_word:
             word = text[ws: we]
-            word_loc = (ws, we)
-            entry = {ws: (word_loc, word)}
-            found_list.update(entry)
+            if not isEmtpyWord(word):
+                word_loc = (ws, we)
+                entry = {ws: (word_loc, word)}
+                found_list.update(entry)
+
+        if not found_list:
+            return found_list           # empty list
+
+        is_required_further_processing = (is_remove_empty or is_removing_surrounding_none_alphas)
+        if is_required_further_processing:
+            new_found_list = {}
+            for k, v in found_list.items():
+                o_loc, word = v
+                is_removing = (is_remove_empty and isEmtpyWord(word))
+                if is_removing:
+                    continue
+
+                entry = {k: (o_loc, word)}      # default entry
+                if is_removing_surrounding_none_alphas:
+                    new_loc, new_word = Common.removingNonAlpha(word)
+                    is_removing = (is_remove_empty and isEmtpyWord(new_word))
+                    if is_removing:
+                        continue
+
+                    is_changed = not (o_loc == new_loc)
+                    if is_changed:
+                        o_s, o_e = o_loc
+                        n_s, n_e = new_loc
+                        a_s = o_s + n_s
+                        a_e = a_s + len(new_word)
+
+                        word_loc = (a_s, a_e)
+                        entry = {a_s: (word_loc, new_word)}
+
+                new_found_list.update(entry)
+            found_list = new_found_list
+
         reversed_list = list(found_list.items())
         reversed_list.reverse()
         temp_dict = OrderedDict(reversed_list)
@@ -1426,6 +1483,24 @@ class Common:
         sentence_list = OrderedDict(temp_list)
         return sentence_list
 
+    def removingNonAlpha(word: str):
+        default_loc = (0, 0)
+        is_empty_word = (word is None) or (len(word) == 0)
+        if word is None:
+            return (default_loc, word)
+
+        s = 0
+        e = len(word)
+        while s < e and not word[s].isalnum():
+            s += 1
+
+        while e > 0 and not word[e-1].isalnum():
+            e -= 1
+        loc = (s, e)
+        new_word = word[s:e]
+        return (loc, new_word)
+
+
     def locRemain(original_word: str, new_word: str) -> list:
         '''
         locRemain:
@@ -1460,8 +1535,38 @@ class Common:
             print(e)
             raise e
 
+    def replaceStr(from_str: str, to_str: str, txt: str) -> str:
+        '''
+        Replace a sub-string (from_str) with another sub-string (to_str) in the
+        string input (txt), with return count
+        :param from_str:
+            the sub-string to be replaced
+        :param to_str:
+            the sub-string acting as the replacement, to be replaced by.
+        :param txt:
+            the string to perform the replacement upon.
+        :return:
+            result_str, count
+
+            the string with replacements performed upon,
+            the count for number of replaced instances, how many times the replacement succeeded
+        '''
+        prev_txt = str(txt)
+        rep_count: int = 0
+        result_txt = str(txt)
+        is_finished = False
+        while not is_finished:
+            result_txt = result_txt.replace(from_str, to_str, 1)
+            has_changed = not (result_txt == prev_txt)
+            if has_changed:
+                rep_count += 1
+                prev_txt = str(result_txt)
+            else:
+                is_finished = True
+        return result_txt, rep_count
+
     def debugging(txt):
-        msg = 'Computer Graphics'
-        is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        msg = 'by "symmetry" -- the real values remain unchanged!'
+        is_debug = (msg and txt and (msg.lower() == txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')
