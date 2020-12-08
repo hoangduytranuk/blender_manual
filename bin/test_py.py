@@ -6710,6 +6710,12 @@ zoom level <editors_3dview_navigation_zoom>
         else:
             print(f'NOT is_path')
 
+    def test_0065(self):
+        t = "With the \"traditional\" representation of three bytes, like RGB(124, 255, 56), the multiplications give far too high results, like RGB(7316, 46410, 1848), that have to be normalized (brought back) by dividing them by 256 to fit in the range of (0 to 255)... RGBA(7316, 46410, 1848, 0xff)"
+        p = re.compile(r'(RGB[A]?)\(([^\)]+)\)')
+        m = p.findall(t)
+        print(m)
+
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
@@ -6722,7 +6728,8 @@ zoom level <editors_3dview_navigation_zoom>
         # self.test_insert_abbr()
         # self.test_capt_0001()
         # self.test_refs_0001()
-        self.test_0064()
+        # self.test_0064()
+        self.test_0065()
 
 
 

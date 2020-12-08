@@ -1,6 +1,7 @@
 from enum import Enum
 
 class RefType(Enum):
+    RGBA = "rgb"
     GA = "\`"
     ARCH_BRACKET = "()"
     AST_QUOTE = "*"
@@ -28,6 +29,8 @@ class RefType(Enum):
         for name, member in cls.__members__.items():
             if member.value == string_value:
                 return member
+            if ('rgb' in string_value.lower()):
+                return cls.RGBA
         return None
 
 '''

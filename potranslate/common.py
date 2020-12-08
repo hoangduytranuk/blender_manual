@@ -286,7 +286,7 @@ class Common:
     END_WORD = '$'
     BOTH_START_AND_END = '^$'
 
-    RGBA = re.compile(r'(RGB[A]?)\([\d\,]+\)')
+    RGBA = re.compile(r'(RGB[A]?)\(([^\)]+)\)')
 
     verb_with_ending_y = [
         'aby', 'bay',  'buy',  'cry',  'dry',  'fly',  'fry',  'guy',  'hay',
@@ -1566,7 +1566,7 @@ class Common:
         return result_txt, rep_count
 
     def debugging(txt):
-        msg = 'by "symmetry" -- the real values remain unchanged!'
-        is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        msg = 'RGB('
+        is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

@@ -46,6 +46,7 @@ pattern_list = [
     # (cm.GA_PATTERN_PARSER, RefType.GA, True, False),  # this will have to further classified as progress
     # (cm.OSL_ATTRIB, RefType.OSL_ATTRIB, True, False),
     # (cm.ARCH_BRAKET_MULTI, RefType.ARCH_BRACKET),
+    (cm.RGBA, RefType.GA),
     (cm.GA_REF, RefType.GA),
     (cm.AST_QUOTE, RefType.AST_QUOTE),
     (cm.DBL_QUOTE, RefType.DBL_QUOTE),
