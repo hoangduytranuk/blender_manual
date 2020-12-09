@@ -522,11 +522,6 @@ class RefList(defaultdict):
         return loc_list
 
     def removeRedundancies(self):
-
-        # is_debug = ("INSERT(ATTRIB+XDATA)" in self.msg)
-        # if is_debug:
-        #     dd("DEBUG")
-
         loc_list = {}
         v: RefRecord = None
         for k, v in self.items():
@@ -636,9 +631,6 @@ class RefList(defaultdict):
         if not valid:
             return None
 
-        is_debug = (':doc:`operator </' in msg)
-        if is_debug:
-            print('Debug')
         result_list = RefList(msg=msg, pat=pattern)
         try:
             actual_ref_type = reftype
@@ -704,10 +696,6 @@ class RefList(defaultdict):
         for k, v in self.items():
             r_s, r_e = v.getOriginLocation()
             r_txt = v.getOrigin().text
-
-            # is_debug = (test_txt in i_txt) and (test_txt in r_txt)
-            # if is_debug:
-            #     dd("DEBUG")
 
             is_in_range = (i_s >= r_s) and (i_e <= r_e)
             if is_in_range:
@@ -819,10 +807,6 @@ class RefList(defaultdict):
         is_ignore = ig.isIgnored(msg)
         if is_ignore:
             return None
-
-        # is_debug = ('Làm Dịu Đầu Ra' in msg)
-        # if is_debug:
-        #     dd('DEBUG')
 
         k_list = list(self.keys())
         k_len = len(k_list)
@@ -952,14 +936,6 @@ class RefList(defaultdict):
                 dd(f'Ignoring [{ref_orig_txt}]')
                 continue
 
-            is_debug = ref_orig.textContain('handLeft') or ref_orig.textContain('bàn tay trái')
-            if is_debug:
-                dd(f'DEBUG')
-
-            # is_debug = ('%' in ref_orig_txt)
-            # if is_debug:
-            #     dd('DEBUG')
-
             is_ast_quote = (ref_type == RefType.AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
             is_sng_quote = (ref_type == RefType.SNG_QUOTE)
@@ -971,10 +947,6 @@ class RefList(defaultdict):
             if is_acceptable:
                 pp(f'ref_orig:[{ref_orig}]')
                 pp(f'ref:[{ref_list}]')
-
-                # is_debug = ('key' in ref_orig_txt.lower()) or ('khóa' in ref_orig_txt.lower())
-                # if is_debug:
-                #     print('DEBUG')
 
                 is_reverse = ig.isReverseOrder(ref_orig_txt)
 
@@ -1006,9 +978,6 @@ class RefList(defaultdict):
                     dd(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
                     continue
                 elif has_ref:
-                    is_debug = ('handLeft' in ref_orig_txt)
-                    if is_debug:
-                        dd(f'DEBUG')
                     first_ref_item = ref_list[0]
                     r_txt = first_ref_item.getText()
                     # ref_txt_list = r_txt.split(cm.REF_SEP)
@@ -1018,10 +987,6 @@ class RefList(defaultdict):
                         ref_tran_txt = ref_txt_list[0]
                         ref_orig_txt = ref_txt_list[1]
                     else:
-                        is_debug = ('handLeft' in ref_orig_txt)
-                        if is_debug:
-                            dd(f'DEBUG')
-
                         pp(f'first_ref_item:[{first_ref_item}]')
                         orig_entry = orig_list.findRefRecord(ref_orig_txt, index, is_reversed_list=True)
                         is_found_orig = (orig_entry is not None)
@@ -1138,12 +1103,7 @@ class RefList(defaultdict):
             return None
 
     def parseMessage(self):
-        # is_debug = ("Box Deselect:" in msg)
-        # if is_debug:
-        #     dd("DEBUG")
-
         # entry include: (pattern, ref_type, include_original)
-
         self.findPattern(pattern_list)
 
         # **** should break up sentences here
@@ -1270,7 +1230,7 @@ class RefList(defaultdict):
                 return
 
             ref_txt = ref_item.getText()
-            cm.debugging(ref_txt)
+            # cm.debugging(ref_txt)
             is_ignore = ig.isIgnored(ref_txt)
             if is_ignore:
                 ref_item.setTranlation(None, False, True)
@@ -1400,9 +1360,6 @@ class RefList(defaultdict):
         for kbd_item in kbd_list:
             kbd_text_first_item : RefItem = kbd_item.getRefItemByIndex(0)
             kbd_text = kbd_text_first_item.getText()
-            is_debug = (kbd_text == 'Wheel')
-            if is_debug:
-                dd('DEBUG')
             if is_translate:
                 tran_kbd_text = self.tf.translateKeyboard(kbd_text)
                 new_list.append(tran_kbd_text)

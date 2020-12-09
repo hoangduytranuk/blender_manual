@@ -234,6 +234,7 @@ class Common:
     NON_PATH_SEP = re.compile(r'^[^\\\/\-\_\.]+$')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
+    NON_WORD_FIND = re.compile(r'\W+')
 
     ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
     MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
@@ -287,6 +288,7 @@ class Common:
     BOTH_START_AND_END = '^$'
 
     RGBA = re.compile(r'(RGB[A]?)\(([^\)]+)\)')
+
 
     verb_with_ending_y = [
         'aby', 'bay',  'buy',  'cry',  'dry',  'fly',  'fry',  'guy',  'hay',
@@ -1566,7 +1568,7 @@ class Common:
         return result_txt, rep_count
 
     def debugging(txt):
-        msg = 'RGB('
+        msg = 'et al'
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

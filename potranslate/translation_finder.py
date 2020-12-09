@@ -61,9 +61,6 @@ class NoCaseDict(OrderedDict):
 
         def __hash__(self):
             k = self.lower()
-            # is_debug = ('Build'.lower() in k)
-            # if is_debug:
-            #     dd('DEBUG')
             key_len = len(k)
             k = (key_len, k)
             hash_value = hash(k)
@@ -473,7 +470,11 @@ class TranslationFinder:
         covered_length = 0
         translation = str(text)
         for untran_txt, tran_txt in local_dict.items():
-            p = r'\b%s\b' % (untran_txt)
+            has_none_word_char = cm.NON_WORD_FIND.search(untran_txt)
+            if has_none_word_char:
+                p = r'%s' % (untran_txt)
+            else:
+                p = r'\b%s\b' % (untran_txt)
             pat = re.compile(p, flags=re.I)
             found_dict = cm.patternMatchAllToDict(pat, text)
             is_found = (len(found_dict) > 0)
@@ -496,10 +497,14 @@ class TranslationFinder:
                 masking_string = left + empty_part + right
 
                 # if the translation has provided fully then it's enough to get out
-                is_translation_provided_fully = not (left or right)
+                tester_left = cm.removingNonAlpha(left)
+                tester_right = cm.removingNonAlpha(right)
+                is_translation_provided_fully = not (tester_left or tester_right)
                 if is_translation_provided_fully:
                     # replacing dict into text and finish
+                    print(f'FINISH EARLY: is_translation_provided_fully = TRUE')
                     temp_translation = translatedListToText(translated_list, translation, filerLocation)
+                    print(f'translation:[{translation}]; temp_translation:[{temp_translation}]')
                     return temp_translation
 
         # for untranslated words, we will try to find definitions for each, using reductions
@@ -549,13 +554,25 @@ class TranslationFinder:
         dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
         # translate them all if possible, store in local dict
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
+            is_ignore = (ig.isIgnored(orig_sub_text))
+            if is_ignore:
+                continue
+
             is_ok = 1
             # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInDict(orig_sub_text)
             ss, ee = loc
 
-            has_tran = (tran_sub_text and not (tran_sub_text == orig_sub_text))
-            if has_tran:
+            if not tran_sub_text:
+                cleaned_loc, cleaned_orig_sub_text = cm.removingNonAlpha(orig_sub_text)
+                temp_tran_sub_text = self.isInDict(cleaned_orig_sub_text)
+                if temp_tran_sub_text:
+                    cl_s, cl_e = cleaned_loc
+                    cl_left = orig_sub_text[:cl_s]
+                    cl_right = orig_sub_text[cl_e:]
+                    tran_sub_text = cl_left + temp_tran_sub_text + cl_right
+
+            if tran_sub_text:
                 local_dict_entry = {orig_sub_text: tran_sub_text}
                 local_translated_dict.update(local_dict_entry)
 
@@ -801,11 +818,6 @@ class TranslationFinder:
                 print(f'already in new_dic: k:{k}, trimmed_k:{trimmed_k}, v:{v}')
                 continue
 
-            # is_debug = (debug_text.lower() in k.lower())
-            # if is_debug:
-            #     meet += 1
-            #     dd('DEBUG')
-
             trimmed_k, v  = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
             if not v:
                 trimmed_k, v = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
@@ -827,11 +839,6 @@ class TranslationFinder:
             if is_in_new_dict:
                 print(f'ignored entry in to_dict:{entry}')
                 continue
-
-            # is_debug = (debug_text.lower() in k.lower())
-            # if is_debug:
-            #     meet += 1
-            #     dd('DEBUG')
 
             trimmed_k, v  = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
             entry = {trimmed_k: v}
@@ -1166,8 +1173,7 @@ class TranslationFinder:
             msg = 'NO Dictionary is available. Stopped'
             print(msg)
             raise Exception(msg)
-        # msg = 'neat'
-        # cm.debugging(msg)
+
         is_found = (msg in search_dict)
         if is_found:
             tran = search_dict[msg]
@@ -1204,10 +1210,6 @@ class TranslationFinder:
         head_count = 0
         tail_count = 0
         is_found_tran = False
-        # is_debug = ('Transformation tools and widgets, soft bodies' in msg)
-        # if is_debug:
-        #     dd('DEBUG')
-
         tail_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg, dict_to_use=search_dict)
         if not is_found_tran:
             head_count, is_found_tran, trimmed_msg = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
@@ -1242,20 +1244,28 @@ class TranslationFinder:
         return self.isInDict(msg, dic_to_use=search_dic)
 
     def translationByRemovingSymbols(self, txt: str) -> str:
-        pattern, subcount = cm.SYMBOLS.subn('', txt)
+        new_txt, subcount = cm.SYMBOLS.subn('', txt)
         if subcount > 0:
-            trans = self.isInDict(pattern)
+            is_ignore = ig.isIgnored(new_txt)
+            if is_ignore:
+                return txt, None
+
+            trans = self.isInDict(new_txt)
             if trans:
-                return pattern, trans
+                return new_txt, trans
         return txt, None
 
     def translationByReplacingSymbolsWithSpaces(self, txt: str) -> str:
-        pattern, subcount = cm.SYMBOLS.subn(' ', txt)
+        new_txt, subcount = cm.SYMBOLS.subn(' ', txt)
         if subcount > 0:
             # there might be multiple spaced words here, must try to retain original symbols
-            trans = self.isInDict(pattern)
+            is_ignore = ig.isIgnored(new_txt)
+            if is_ignore:
+                return txt, None
+
+            trans = self.isInDict(new_txt)
             if trans:
-                return pattern, trans
+                return new_txt, trans
         return txt, None
 
     def reduceFind(self, txt: str):
@@ -1300,7 +1310,11 @@ class TranslationFinder:
             loc, orig_txt = v
             s, e = loc
 
-            new_text = orig_txt
+            is_ignore = ig.isIgnored(orig_txt)
+            if is_ignore:
+                continue
+
+            new_text = str(orig_txt)
             trans = self.isInDict(orig_txt)
             # if not trans:
             #     new_text, trans = self.reduceFind(orig_txt)
@@ -1347,6 +1361,11 @@ class TranslationFinder:
         new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
         new_txt = cm.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
         # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
+
+        is_ignore = ig.isIgnored(txt)
+        if is_ignore:
+            return txt, None
+
         trans = self.isInDict(new_txt)
         if trans:
             dd(f'removeStarAndEndingPunctuations: FOUND {new_txt} => {trans}')
@@ -1408,6 +1427,9 @@ class TranslationFinder:
                 return chopped_txt, trans, True
             return test_text, None, False
 
+        if ig.isIgnored(clipped_txt):
+            return None, None
+
         for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
             for ending in ending_list:
                 part_matched = (part == ending)
@@ -1418,6 +1440,12 @@ class TranslationFinder:
                 test_text_less, less_rep_count = re.subn(p, '', clipped_txt)
                 test_text_with, with_rep_count = re.subn(p, ending, clipped_txt)
                 test_text_more = (clipped_txt + replacement_word)
+
+                if ig.isIgnored(test_text_more):
+                    continue
+
+                if ig.isIgnored(test_text_less):
+                    continue
 
                 test_text, trans, has_translation = checkTranslationForText(test_text_more)
                 if has_translation:
@@ -1482,7 +1510,11 @@ class TranslationFinder:
         elif is_at_end:
             test_text = cm.NON_WORD_ENDING.sub("", test_text)
 
-        # part_list = ['like', '-like']
+        is_ignore = ig.isIgnored(test_text)
+        if (is_ignore):
+            return txt, None
+
+    # part_list = ['like', '-like']
         word_len = len(test_text)
         text_before_cutoff = str(test_text)
         # pp(part_list)
@@ -1670,7 +1702,7 @@ class TranslationFinder:
         if (is_ignore):
             return None, is_ignore
 
-        cm.debugging(msg)
+        # cm.debugging(msg)
         orig_msg = str(msg)
         trans = self.isInDict(orig_msg)
 
@@ -1733,15 +1765,12 @@ class TranslationFinder:
 
     def translate(self, msg):
         try:
-            cm.debugging(msg)
+            # cm.debugging(msg)
             is_fuzzy = False
             trans, is_ignore = self.findTranslation(msg)
             if is_ignore:
                 return (None, False, is_ignore)
 
-            is_debug = ('Agent' in msg)
-            if is_debug:
-                print('DEBUG')
             if not trans:
                 dd(f'calling blindTranslation')
                 # cm.debugging(msg)

@@ -64,13 +64,7 @@ escape_char = re.compile(r'[\\\s]+')
 def patternMatchOnly(pat, text):
     try:
         return_dict = {}
-        # is_debug = ('Previous Component' in text)
-        # if is_debug:
-        #     _('DEBUG')
         for m in pat.finditer(text):
-            original = ()
-            # break_down = []
-
             s = m.start()
             e = m.end()
             orig = m.group(0)
@@ -87,18 +81,11 @@ def patternMatchOnly(pat, text):
 def patternMatchAllMatches(pat, text):
     try:
         return_dict = {}
-        is_debug = ('Previous Component' in text)
-        if is_debug:
-            _('DEBUG')
         for m in pat.finditer(text):
-            original = ()
-            # break_down = []
-
             s = m.start()
             e = m.end()
             orig = m.group(0)
-            original = (s, e, orig)
-            entry = {(s,e): orig}
+            entry = {(s, e): orig}
             return_dict.update(entry)
 
             for g in m.groups():
@@ -106,7 +93,6 @@ def patternMatchAllMatches(pat, text):
                     i_s = orig.find(g)
                     ss = i_s + s
                     ee = ss + len(g)
-                    v=(ss, ee, g)
                     # break_down.append(v)
                     entry = {(ss, ee): g}
                     return_dict.update(entry)
@@ -164,9 +150,6 @@ class ShowFileName:
             self.CURRENT_FILE_NAME = name
             return
 
-        is_debug = ('__init__' in name) and ('babel' in name)
-        if is_debug:
-            print('DEBUG')
         self.CURRENT_FILE_NAME = name
 
     @property
@@ -1026,7 +1009,7 @@ class FindFilesHasPattern:
 
     def translate_word_into_dict(self, k:str, dict_tf: TranslationFinder, dict_to_insert:OrderedDict, is_translating_ref=False):
         if is_translating_ref:
-            cm.debugging(k)
+            # cm.debugging(k)
             ref_list: RefList = None
             ref_list = RefList(msg=k, keep_orig=False, tf=dict_tf)
             ref_list.parseMessage()
