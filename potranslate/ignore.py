@@ -237,6 +237,12 @@ class Ignore:
     ]
 
     keep_list = [
+        "etc",
+        "etc.",
+        "e.g",
+        "e.g.",
+        "i.e",
+        "i.e.",
         "Add-on",
         "Off-Axis",
         "Toe-in",

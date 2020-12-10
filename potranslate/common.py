@@ -24,8 +24,8 @@ from collections import deque
 # import Levenshtein as LE
 #import logging
 
-# DEBUG=True
-DEBUG=False
+DEBUG=True
+# DEBUG=False
 DIC_LOWER_CASE=True
 
 # DIC_LOWER_CASE=False
@@ -1609,7 +1609,7 @@ class Common:
         return bracketed_list, outside_bracket_list
 
     def debugging(txt):
-        msg = 'A workflow enhancement'
+        msg = 'attempting to load a library built for a different version of'
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')
