@@ -990,7 +990,7 @@ class FindFilesHasPattern:
         (cm.AST_QUOTE, RefType.AST_QUOTE),
         (cm.DBL_QUOTE, RefType.DBL_QUOTE),
         (cm.SNG_QUOTE, RefType.SNG_QUOTE),
-        (cm.RGBA, RefType.TEXT),
+        (cm.FUNCTION, RefType.FUNCTION),
         (cm.GA_REF, RefType.GA),
         (re.compile(r'()'), RefType.ARCH_BRACKET),
     ]

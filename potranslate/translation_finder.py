@@ -470,9 +470,11 @@ class TranslationFinder:
         covered_length = 0
         translation = str(text)
         for untran_txt, tran_txt in local_dict.items():
-            has_none_word_char = cm.NON_WORD_FIND.search(untran_txt)
+            cm.debugging(untran_txt)
+            non_word_char_list = cm.NON_WORD_FIND.findall(untran_txt)
+            has_none_word_char = (len(non_word_char_list) > 0)
             if has_none_word_char:
-                p = r'%s' % (untran_txt)
+                p = r'%s' % (re.escape(untran_txt))
             else:
                 p = r'\b%s\b' % (untran_txt)
             pat = re.compile(p, flags=re.I)
@@ -482,7 +484,6 @@ class TranslationFinder:
                 continue
 
             found_item_list = list(found_dict.items())
-            non_fuzzy_length = 0
             for loc, dict_txt in found_item_list:
                 empty_part = (cm.FILLER_CHAR * len(dict_txt))
                 ss, ee = loc
@@ -518,7 +519,7 @@ class TranslationFinder:
                                      masking_string,
                                      is_remove_empty=True,
                                      is_removing_surrounding_none_alphas=True)
-        fuzzy_length = 0
+
         for k, v in un_tran_list.items():
             remain_loc, un_tran_txt = v
             is_ignore = ig.isIgnored(un_tran_txt)
@@ -549,7 +550,7 @@ class TranslationFinder:
         local_translated_dict = {} # for quick, local translation
 
         # generate all possible combinations of string lengths
-        loc_map_length_sorted_reverse = self.genmap(translation)
+        loc_map_length_sorted_reverse = self.genmap(msg)
 
         dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
         # translate them all if possible, store in local dict
@@ -1702,7 +1703,6 @@ class TranslationFinder:
         if (is_ignore):
             return None, is_ignore
 
-        # cm.debugging(msg)
         orig_msg = str(msg)
         trans = self.isInDict(orig_msg)
 
@@ -1765,7 +1765,6 @@ class TranslationFinder:
 
     def translate(self, msg):
         try:
-            # cm.debugging(msg)
             is_fuzzy = False
             trans, is_ignore = self.findTranslation(msg)
             if is_ignore:
@@ -1773,7 +1772,6 @@ class TranslationFinder:
 
             if not trans:
                 dd(f'calling blindTranslation')
-                # cm.debugging(msg)
                 trans = self.blindTranslation(msg)
                 is_fuzzy = True
 

@@ -46,7 +46,7 @@ pattern_list = [
     # (cm.GA_PATTERN_PARSER, RefType.GA, True, False),  # this will have to further classified as progress
     # (cm.OSL_ATTRIB, RefType.OSL_ATTRIB, True, False),
     # (cm.ARCH_BRAKET_MULTI, RefType.ARCH_BRACKET),
-    (cm.RGBA, RefType.GA),
+    (cm.FUNCTION, RefType.FUNCTION),
     (cm.GA_REF, RefType.GA),
     (cm.AST_QUOTE, RefType.AST_QUOTE),
     (cm.DBL_QUOTE, RefType.DBL_QUOTE),
@@ -633,6 +633,7 @@ class RefList(defaultdict):
 
         result_list = RefList(msg=msg, pat=pattern)
         try:
+            is_function = (pattern == cm.FUNCTION)
             actual_ref_type = reftype
             found_dict = cm.patternMatchAllAsDictNoDelay(pattern, msg)
             if not found_dict:
@@ -643,7 +644,10 @@ class RefList(defaultdict):
                 if v_len == 3:
                     orig, sub_type, sub_content = v
                     sub_type_loc, sub_type_txt = sub_type
-                    actual_ref_type = RefType.getRef(sub_type_txt)
+                    if is_function:
+                        actual_ref_type = RefType.FUNCTION
+                    else:
+                        actual_ref_type = RefType.getRef(sub_type_txt)
                 elif v_len == 2:
                     orig, sub_content = v
                     actual_ref_type = reftype
@@ -723,15 +727,16 @@ class RefList(defaultdict):
 
         return loc_keep_list
 
-    def findPattern(self, pattern_list):
+    def findPattern(self, pattern_list: list):
+        count_item = 0
         remain_to_be_parsed = str(self.msg)
         for index, item in enumerate(pattern_list):
             p, ref_type = item
-        # for p, ref_type, keep_orig in pattern_list:
             one_list: RefList = self.findOnePattern(remain_to_be_parsed, p, ref_type)
             is_empty = (one_list is None) or (len(one_list) == 0)
             if is_empty:
                 continue
+            count_item += len(one_list)
             ref_record:RefRecord = None
             for k, v in one_list.items():
                 origin: RefItem = v.getOrigin()
@@ -744,14 +749,10 @@ class RefList(defaultdict):
             diff_list = self.diff(one_list)
             self.update(diff_list)
 
-        # if remain_to_be_parsed:
-        #     un_parsed_words = self.findOnePattern(remain_to_be_parsed, cm.NEGATE_FIND_WORD, RefType.TEXT, False, False)
-        #     diff_list = self.diff(un_parsed_words)
-        #     self.update(diff_list)
-        #
         sorted_list = sorted(list(self.items()))
         self.clear()
         self.update(sorted_list)
+        return count_item
 
     def testRecord(self, record: RefRecord):
         valid = (record is not None)
@@ -968,13 +969,6 @@ class RefList(defaultdict):
                         continue
 
                     orig_orig = orig_entry.getOrigin()
-                    # orig_ref_list = orig_entry.getRefList()
-                    # orig_orig_txt = orig_orig.getText()
-                    #
-                    # ref_tran_txt = ref_orig_txt
-                    # ref_orig_txt = orig_orig_txt
-                    # os, oe = ref_orig.getLocation()
-
                     dd(f'DEBUG: found orig entry:[{orig_orig}], for the current:[{v}] and index: [{index}]')
                     continue
                 elif has_ref:
@@ -1103,6 +1097,7 @@ class RefList(defaultdict):
             return None
 
     def parseMessage(self):
+        text_list = []
         # entry include: (pattern, ref_type, include_original)
         self.findPattern(pattern_list)
 
@@ -1129,32 +1124,6 @@ class RefList(defaultdict):
                 tran = ""
             self.setTranslation(tran, is_fuzzy, is_ignore)
 
-        # arched_bracket_list = cm.parseMessageWithDelimiterPair('(', ')', self.msg)
-        # has_record = (len(arched_bracket_list) > 0)
-        # if has_record:
-        #     for s, e, txt in arched_bracket_list:
-        #         result_list: RefList = self.findOnePattern(txt, cm.ARCH_BRAKET_MULTI, start_loc=s)
-        #         for k, v in result_list.items():
-        #             orig = v.getOrigin()
-        #             o_s, o_e, o_txt = orig.getValues()
-        #             sub_ref_list = RefList(msg=o_txt)
-        #             sub_ref_list.findPattern(pattern_list)
-        #             has_sub_ref = (len(sub_ref_list) > 0)
-        #             if has_sub_ref:
-        #                 # sub_ref_list.finalizeList()
-        #                 v.getRefList().clear()
-        #                 for kk, vv in sub_ref_list.items():
-        #                     v.getRefList().append(vv)
-        #             ref_list_entry = {o_s:v}
-        #             self.update(ref_list_entry)
-
-        # sorted_list = sorted(self.items(), key=lambda t: t[0])
-        # self.clear()
-        # self.update(ref_list)
-
-        # pp(self.items())
-        # remove redundancies
-        # self.removeRedundancies()
 
     def mergeTranslationToOrigin(self, ref_rec: RefRecord):
         orig_item: RefItem = ref_rec.getOrigin()
@@ -1230,7 +1199,6 @@ class RefList(defaultdict):
                 return
 
             ref_txt = ref_item.getText()
-            # cm.debugging(ref_txt)
             is_ignore = ig.isIgnored(ref_txt)
             if is_ignore:
                 ref_item.setTranlation(None, False, True)
@@ -1325,6 +1293,7 @@ class RefList(defaultdict):
         tran_text = None
         has_ref = (len(self) > 0)
         if not has_ref:
+            cm.debugging(self.msg)
             trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
             if trans:
                 if self.keep_original:

@@ -11,19 +11,24 @@ do
     egrep -o '(msgid "[^"]).*"' $f | sed 's/msgid "//g' | sed 's/"$//g' > $out_file
     # # arched bracket
     # cat $out_file | grep -o -E '\([^\(\)]+\)' | grep -o -E '\([^\(\)]+\)' | sed 's/(//g' | sed 's/)//g' 
+    ## arched bracket original form
+    # cat $out_file | grep -o -E '(^|\s)\([^\(\)]+\)'
+    cat $out_file | grep -o -E '(^|\s)\([^\(\)]+\)'
+    ## function declaration forms, ie. func(a, b, c)
+    # cat $out_file | grep -o -E '\w+\([^\(\)]+\)' 
     # # double quote
     # cat $out_file | grep -o -E '"[^"]+"' | sed 's/\\//g' | sed 's/"//g' 
     # # # single quote    
     # cat $out_file | grep -o -E "'[^']+'" | sed "s/^'//g" | sed "s/'$//g"
     # cat $out_file | grep -o -E "(:\w+:)?[\`]+[^\`]+[\`]+"
-    cat $out_file | grep -E "\w+:\w+" > $temp_file
-    if [ -s $temp_file ]; then
-        echo "$f";
-        echo "------------- >>";
-        cat $out_file | grep -o -E "\w+:\w+"
-        cat $temp_file;
-        echo "------------- <<";
-    fi
+    # cat $out_file | grep -E "\w+:\w+" > $temp_file
+    # if [ -s $temp_file ]; then
+    #     echo "$f";
+    #     echo "------------- >>";
+    #     cat $out_file | grep -o -E "\w+:\w+"
+    #     cat $temp_file;
+    #     echo "------------- <<";
+    # fi
     # if [ ! -z $result ]; then
     #     echo "FOUND: $f"
     #     cat $out_file | grep -o -E "\w+:\w+"

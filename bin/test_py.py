@@ -6716,6 +6716,132 @@ zoom level <editors_3dview_navigation_zoom>
         m = p.findall(t)
         print(m)
 
+    def test_0066(self):
+        t = "With the \"traditional\" representation of three bytes, like RGB(124, 255, 56), the multiplications give far too high results, like RGB(7316, 46410, 1848), that have to be normalized (brought back) by dividing them by 256 to fit in the range of (0 to 255)... RGBA(7316, 46410, 1848, 0xff)"
+        p = re.compile(r'(?:^|\s)\(.*\)')
+        m = p.findall(t)
+        print(m)
+
+    def test_0067(self):
+        class bracket_record:
+            def __init__(self, filename, list_of_bracket):
+                self.file_name = filename
+                self.list_of_bracket = list_of_bracket
+            
+            def __repr__(self):
+                str_list = []
+                if not self.list_of_bracket:
+                    return str_list
+
+                if self.file_name:
+                    str_list.append(self.file_name)
+                    str_list.append('-' * 80)
+                str_list.append(self.list_of_bracket)
+                return '\n'.join(str_list)
+
+        def parseBracket(pat, text_line, external_list):
+            found_list = pat.findall(text_line)
+            if not found_list:
+                external_list.append(text_line)
+                return
+            else:
+                for line in found_list:
+                    parseBracket(pat, line, external_list)
+
+        home_dir = os.environ['HOME']
+        from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
+        p = re.compile(r'(?:^|\s)(\(.*\))')
+
+        file_list = []
+        list_of_brackets = []
+        text_line = "One advantage of using the command line is that we do not need a graphical display (no need for X server on Linux for example) and consequently we can render via a remote shell (typically SSH)."
+        parseBracket(p, text_line, list_of_brackets)
+        exit(0)
+        for root, dirnames, filenames in os.walk(from_path):
+            if root.startswith('.'):
+                continue
+
+            b_list_for_file = []
+            for filename in filenames:
+                is_found  = (filename.lower().endswith('.pot'))
+                if not is_found:
+                    continue
+
+                file_path = os.path.join(root, filename)
+                file_list.append(file_path)
+
+        for file_path in file_list:
+            is_updated = False
+            po_cat = c.load_po(file_path)
+
+            for m in po_cat:
+                text_line = m.id
+                if text_line:
+                    parseBracket(p, text_line, b_list_for_file)
+
+            if b_list_for_file:
+                b_rec = bracket_record(file_path, b_list_for_file)
+                list_of_brackets.append(b_rec)
+
+        print(list_of_brackets)
+
+    def test_0068(self):
+
+        def bracketParser(text):
+            def error_msg(item, text_string):
+                return f'Imbalanced parenthesis! Near the "{item}" text_string:[{text_string}]'
+
+            _tokenizer = re.compile(r'\s*([()])\s*').split
+            def tokenize(text_line: str):
+                return list(filter(None, _tokenizer(text_line)))
+
+            def _helper(tokens):
+                outside_brackets = []
+                bracketed = []
+                q = []
+                max = len(tokens)
+                chosen_items = []
+                start_loc = end_loc = 0
+                for i in range(0, max):
+                    item = tokens[i]
+                    if item == '(':
+                        q.append(i)
+                    elif item == ')':
+                        if not q:
+                            raise ValueError(error_msg(item, text))
+                        q.pop()
+                        bracketed.extend(chosen_items)
+                        chosen_items = []
+                    else:
+                        start_loc = text.find(item, end_loc)
+                        end_loc = start_loc + len(item)
+                        loc = (start_loc, end_loc)
+                        entry = (loc, item)
+                        if q:
+                            chosen_items.append(entry)
+                        else:
+                            outside_brackets.append(entry)
+                if q:
+                    raise ValueError(error_msg(item, text))
+                return bracketed, outside_brackets
+            tokens = tokenize(text)
+            bracketed_list, outside_bracket_list = _helper(tokens)
+            return bracketed_list, outside_bracket_list
+
+        text_line = "One advantage of using the RGB(123, 123, 123) command line is that we do not need a graphical display (no need for X server on Linux (for example)) and ((consequently we) can render) () via a remote shell (typically SSH)."
+        # text_line = "One advantage of using the RGB"
+        print(text_line)
+        l, o = bracketParser(text_line)
+        for loc, txt in l:
+            s, e = loc
+            print(f'bket: {loc} @ "{text_line[s:e]}"')
+
+        for loc, txt in o:
+            s, e = loc
+            print(f'ouside: {loc} @ "{text_line[s:e]}"')
+
+        print(l)
+
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
@@ -6729,7 +6855,9 @@ zoom level <editors_3dview_navigation_zoom>
         # self.test_capt_0001()
         # self.test_refs_0001()
         # self.test_0064()
-        self.test_0065()
+        # self.test_0066()
+        # self.test_0067()
+        self.test_0068()
 
 
 
