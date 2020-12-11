@@ -1609,7 +1609,7 @@ class Common:
         return bracketed_list, outside_bracket_list
 
     def debugging(txt):
-        msg = 'attempting to load a library built for a different version of'
-        is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        msg = '\"copy\" ones'
+        is_debug = (msg and txt and (msg.lower() == txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

@@ -498,8 +498,8 @@ class TranslationFinder:
                 masking_string = left + empty_part + right
 
                 # if the translation has provided fully then it's enough to get out
-                tester_left = cm.removingNonAlpha(left)
-                tester_right = cm.removingNonAlpha(right)
+                loc, tester_left = cm.removingNonAlpha(left)
+                loc, tester_right = cm.removingNonAlpha(right)
                 is_translation_provided_fully = not (tester_left or tester_right)
                 if is_translation_provided_fully:
                     # replacing dict into text and finish

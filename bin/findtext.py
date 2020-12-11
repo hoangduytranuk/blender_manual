@@ -1173,7 +1173,6 @@ with holding :kbd:`Alt`'
                 for k, v in sorted_dict.items():
                     trans = (v if v and not (v == k) else "")
                     print(f'"{k}": "{trans}",')
-                return
 
             home = os.environ['HOME']
             out_file = os.path.join(home, 'log.json')
@@ -1182,7 +1181,8 @@ with holding :kbd:`Alt`'
         def translateTheFoundDict(found_dict: dict) -> dict:
             tran_dict = {}
             tf = TranslationFinder()
-            for k, ref_type in found_dict.items():
+            found_dict_list = list(found_dict.items())
+            for k, ref_type in found_dict_list:
                 try:
                     # cm.debugging(k)
                     is_a_link_path = cm.isLinkPath(k)

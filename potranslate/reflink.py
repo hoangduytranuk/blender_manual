@@ -1097,7 +1097,15 @@ class RefList(defaultdict):
             return None
 
     def parseMessage(self):
-        text_list = []
+        cm.debugging(self.msg)
+        tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+        if is_ignore:
+            self.setTranslation("", is_fuzzy, is_ignore)
+            return
+        if not is_fuzzy:
+            self.setTranslation(tran, is_fuzzy, is_ignore)
+            return
+
         # entry include: (pattern, ref_type, include_original)
         self.findPattern(pattern_list)
 
@@ -1303,7 +1311,8 @@ class RefList(defaultdict):
                     tran_text = trans
             self.setTranslation(tran_text, is_fuzzy, is_ignore)
         else:
-            for k, ref_item in reversed(list(self.items())):
+            tran_required_reversed_list = list(sorted(list(self.items()), key=lambda x: x[0], reverse=True))
+            for k, ref_item in tran_required_reversed_list:
                 self.translateRefRecord(ref_item)
 
             tran = self.transferTranslation(self.msg)
