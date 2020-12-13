@@ -1076,12 +1076,6 @@ class TranslationFinder:
 
         entry = {k: v}
         dict_list.update(entry)
-        # if DIC_LOWER_CASE:
-        #     k_lower = k.lower()
-        #     is_same = (k_lower == k)
-        #     if not is_same:
-        #         entry = {k_lower: v}
-        #         self.master_dic_list.update(entry)
         return True
 
     def loadPOAsDic(self, po_path):
@@ -1111,16 +1105,6 @@ class TranslationFinder:
 
             entry = {k: v}
             po_cat_dic.update(entry)
-
-            # dd("poCatToDic:", k, v)
-            # if DIC_LOWER_CASE:
-            #     #lower_k = (m.id.lower(), context.lower())
-            #     lower_k = m.id.lower()
-            #     is_same_key = (k == lower_k)
-            #     if not is_same_key:
-            #         lower_entry = {lower_k: v}
-            #         po_cat_dic.update(lower_entry)
-
         return po_cat_dic
 
     def setupKBDDicList(self):
@@ -1200,68 +1184,6 @@ class TranslationFinder:
             tran = None
         return tran
 
-    # def trimAndFind(self, pattern, msg, dict_to_use=None):
-    #     # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
-    #     # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
-    #     # how far on the 'msg' ending should we add to the translation
-    #     count = 0
-    #     temp_msg = str(msg)
-    #     search_dict = (dict_to_use if dict_to_use else self.master_dic)
-    #
-    #     found = (temp_msg in search_dict)
-    #
-    #     m = pattern.search(temp_msg)
-    #     tran = None
-    #     while m and not found:
-    #         m_group = m.group(0)
-    #         temp_msg = pattern.sub("", temp_msg)
-    #         count += 1
-    #         found = (temp_msg in search_dict)
-    #         if found:
-    #             tran = search_dict[temp_msg]
-    #             break
-    #         m = pattern.search(temp_msg)
-    #     return count, temp_msg, tran
-
-    # def findAndTrimIfNeeded(self, msg, search_dict=None, is_patching_found=False):
-    #     head_trimmer = ""
-    #     tail_trimmer = ""
-    #     head_count = 0
-    #     tail_count = 0
-    #     is_found_tran = False
-    #     cover_length = 0
-    #     tail_count, trimmed_msg, trans = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
-    #                                                       dict_to_use=search_dict)
-    #     is_found_tran = (trans and not trans == msg)
-    #     if not is_found_tran:
-    #         head_count, trimmed_msg, trans = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
-    #                                                                   dict_to_use=search_dict)
-    #     is_found_tran = (trans and not trans == msg)
-    #     if not is_found_tran:
-    #         tail_count, trimmed_msg, trans = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
-    #                                                                   dict_to_use=search_dict)
-    #         is_found_tran = (trans and not trans == msg)
-    #         if not is_found_tran:
-    #             head_count, trimmed_msg, trans = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
-    #                                                                       dict_to_use=search_dict)
-    #     if is_patching_found:
-    #         if head_count:
-    #             head_trimmer = msg[:head_count]
-    #         if tail_count:
-    #             tail_trimmer = msg[-tail_count:]
-    #
-    #     if is_found_tran:
-    #         cover_length = len(msg)
-    #         is_insert_head_trimmer = (head_trimmer and not trans.startswith(head_trimmer))
-    #         if is_insert_head_trimmer:
-    #             trans = head_trimmer + trans
-    #         is_insert_tail_trimmer = (tail_trimmer and not trans.endswith(tail_trimmer))
-    #         if is_insert_tail_trimmer:
-    #             trans = trans + tail_trimmer
-    #     else:
-    #         trans = None
-    #     return trimmed_msg, trans, cover_length
-
     def isInListByDict(self, msg, is_master):
         search_dic = (self.master_dic if is_master else self.backup_dic)
         return self.isInDict(msg, dic_to_use=search_dic)
@@ -1295,23 +1217,6 @@ class TranslationFinder:
                 return new_txt, trans, cover_length
         return txt, None, cover_length
 
-    # def reduceFind(self, txt: str):
-    #     if not txt:
-    #         return txt, None
-    #
-    #     # new_txt, trans = self.removeStarAndEndingPunctuations(txt)
-    #     # if not trans or (trans == txt):
-    #     new_txt, trans, cover_length = self.translationByRemovingSymbols(txt)
-    #     if not trans or (trans == txt):
-    #         new_txt, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
-    #     if not trans or (trans == txt):
-    #         new_txt, trans, cover_length = self.removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
-    #     if not trans or (trans == txt):
-    #         new_txt, tran, cover_length = self.removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
-    #     if not trans or (trans == txt):
-    #         new_txt, tran, cover_length = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-    #     return new_txt, trans
-
     def insertTranslation(self, orig_str: str, orig_word: str, new_word: str, current_trans: str) -> str:
         is_valid = (orig_str and orig_word and new_word and current_trans)
         if not is_valid:
@@ -1332,19 +1237,22 @@ class TranslationFinder:
             cm.SPACES,
             cm.SYMBOLS,
         ]
+        selective_list = []
 
         new_text, trans, cover_length = self.findByReduction(txt)
         is_found_trans = (trans and not trans == txt)
         if is_found_trans:
             return txt, trans, cover_length
 
-        translated_dict = {}
-        translation = str(txt)
+
+
         for separator in separator_list:
             found_dict = cm.findInvert(separator, txt, is_remove_empty=True, is_removing_surrounding_none_alphas=True)
             if not found_dict:
                 continue
 
+            translated_dict = {}
+            translation = str(txt)
             for k, v in found_dict.items():
                 loc, orig_txt = v
                 s, e = loc
@@ -1373,36 +1281,13 @@ class TranslationFinder:
                 translation = left + trans + right
                 cover_length += len(orig_txt)
 
-        return txt, translation, cover_length
+            entry = (cover_length, txt, translation)
+            selective_list.append(entry)
 
-    # def symbolsRemoval(self, txt):
-    #     cover_length = 0
-    #     match = cm.SYMBOLS.search(txt)
-    #     has_hyphen = bool(match)
-    #     if not has_hyphen:
-    #         return txt, None, cover_length
-    #
-    #     len_of_txt = len(txt)
-    #     pattern, trans, cover_length = self.removeStarAndEndingPunctuations(txt)
-    #     if trans:
-    #         cover_length = len_of_txt
-    #         return pattern, trans, cover_length
-    #     else:
-    #         is_fuzzy, trans, cover_length = self.translateWordsAtSymbolBoundary(txt)
-    #         if trans and not is_fuzzy:
-    #             cover_length = len_of_txt
-    #             return txt, trans, cover_length
-    #         else:
-    #             pattern, trans, cover_length = self.translationByRemovingSymbols(txt)
-    #             if trans:
-    #                 cover_length = len_of_txt
-    #                 return pattern, trans, cover_length
-    #             else:
-    #                 pattern, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
-    #                 if trans:
-    #                     cover_length = len_of_txt
-    #                     return pattern, trans, cover_length
-    #     return txt, None, cover_length
+        sorted_selective_list = list(sorted(selective_list, reverse=True))
+        chosen_entry = sorted_selective_list[0]
+        cover_length, txt, translation = chosen_entry
+        return txt, translation, cover_length
 
     def removeStarAndEndingPunctuations(self, txt):
         new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
@@ -1656,37 +1541,6 @@ class TranslationFinder:
                 has_infix = True
         if not has_infix:
             return txt, None
-
-
-
-
-    # def findDictByRemoveCommonPrePostFixes(self, txt):
-    #     new_txt, tran, cover_length = self.tryToFindTran(txt)
-    #     if not tran:
-    #         overall_cover_length = 0
-    #         tran_txt = str(txt)
-    #         # split into separated words, treat each independently
-    #         # word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
-    #         word_dict_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, txt)
-    #         tran_dic = {}
-    #         for loc, word in word_dict_list.items():
-    #             s, e = loc
-    #             new_txt, tran, cover_length = self.tryToFindTran(word)
-    #             replacement = (tran if tran else word)
-    #             entry = {s: (s, e, replacement, cover_length)}
-    #             tran_dic.update(entry)
-    #
-    #         sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
-    #         for k, entry in sorted_tran_dic:
-    #             s, e, replacement, cover_length = entry
-    #             left = tran_txt[:s]
-    #             right = tran_txt[e:]
-    #             tran_txt = left + replacement + right
-    #             overall_cover_length += cover_length
-    #         cover_length = overall_cover_length
-    #         tran = tran_txt
-    #     return new_txt, tran, cover_length
-
 
     def isNonGATranslatedFully(self, msg, trans):
         is_ga = (cm.GA_PATTERN_PARSER.search(msg) is not None)
