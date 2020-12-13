@@ -154,7 +154,7 @@ class Ignore:
         r"^([^\w]+log.*wm.*)$",
         r"^(Djv|Doppler|Dots\/BU|Dpi|DWAA)$",
         r"^(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)$",
-        r"^((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GPL|GGX|GLSL|Gizmo[\s]?[\w]?)$",
+        r"^((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)$",
         r"^(H\.264|Hosek \/ Wilkie|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)$",
         r"^(ID|Ins|JPEG 2000|(ITU(\s\d+)?)|Internet[\w\W]|iScale)$",
         r"^(KDE|K1, K2|Kirsch|komi3D)$",

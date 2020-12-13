@@ -43,15 +43,21 @@ class TextStyle(Enum):
     RAW = 4
 
 pattern_list = [
-    # (cm.GA_PATTERN_PARSER, RefType.GA, True, False),  # this will have to further classified as progress
-    # (cm.OSL_ATTRIB, RefType.OSL_ATTRIB, True, False),
-    # (cm.ARCH_BRAKET_MULTI, RefType.ARCH_BRACKET),
     (cm.FUNCTION, RefType.FUNCTION),
     (cm.GA_REF, RefType.GA),
     (cm.AST_QUOTE, RefType.AST_QUOTE),
     (cm.DBL_QUOTE, RefType.DBL_QUOTE),
     (cm.SNG_QUOTE, RefType.SNG_QUOTE),
 ]
+
+def hasRef(txt) -> bool:
+    for pat, ref_type in pattern_list:
+        has_ref = (pat.search(txt) is not None)
+        is_function = (ref_type == RefType.FUNCTION)
+        confirm_has_ref = (has_ref and not is_function)
+        if confirm_has_ref:
+            return True
+    return False
 
 # :MM:
 # :abbr:
@@ -1102,7 +1108,9 @@ class RefList(defaultdict):
         if is_ignore:
             self.setTranslation("", is_fuzzy, is_ignore)
             return
+
         if not is_fuzzy:
+            print(f'set translation:\nen:[{self.msg}]\nvn:[{tran}]')
             self.setTranslation(tran, is_fuzzy, is_ignore)
             return
 

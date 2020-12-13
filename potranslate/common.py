@@ -276,6 +276,7 @@ class Common:
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
     SYMBOLS = re.compile(r'[^a-zA-Z0-9]+')
+    SPACES = re.compile(r'\s+')
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
     THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
@@ -287,7 +288,7 @@ class Common:
     END_WORD = '$'
     BOTH_START_AND_END = '^$'
 
-    FUNCTION = re.compile(r'(\w+)\(([^\)]+)\)')
+    FUNCTION = re.compile(r'[^\(\)]+\(([^\(\)]+)\)')
 
 
     verb_with_ending_y = [
@@ -381,8 +382,8 @@ class Common:
     noun_002 = 'mọi/nhiều/những/các/phần/bản/sự/chỗ'
     noun_003 = 'chủ nghĩa/tính/trường phái'
     noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/bản/cái/trình/bộ/người/viên/vật'
-    adj_0001 = 'thuộc/có tính/sự/chỗ/phần/trạng thái'
-    adj_0002 = 'là/nói một cách/có tính/theo'
+    adj_0001 = 'trong/thuộc/có tính/sự/chỗ/phần/trạng thái'
+    adj_0002 = 'trong/là/nói một cách/có tính/theo'
     adv_0001 = 'đáng/có khả năng/thể'
     past_0001 = 'đã/bị/được'
 
@@ -631,25 +632,26 @@ class Common:
 
         new_str = str(to_str)
 
-        # first_char = from_str[0]
-        # remain_part = from_str[1:]
-        # is_first_upper = (first_char.isupper() and remain_part.islower())
-        # if is_first_upper:
-        #     first_char = new_str[0].upper()
-        #     remain_part = new_str[1:].lower()
-        #     new_str = first_char + remain_part
-        # else:
-        is_lower = (from_str.islower())
-        if is_lower:
-            new_str = new_str.lower()
+        first_char = from_str[0]
+        remain_part = from_str[1:]
+        is_first_upper = (first_char.isupper() and remain_part.islower())
+        if is_first_upper:
+            first_char = new_str[0].upper()
+            remain_part = new_str[1:].lower()
+            new_str = first_char + remain_part
         else:
-            is_title = (from_str.istitle())
-            if is_title:
-                new_str = new_str.title()
+            is_lower = (from_str.islower())
+            if is_lower:
+                new_str = new_str.lower()
+                return new_str
             else:
-                is_upper = (from_str.isupper())
-                if is_upper:
-                    new_str = new_str.upper()
+                is_title = (from_str.istitle())
+                if is_title:
+                    new_str = new_str.title()
+                else:
+                    is_upper = (from_str.isupper())
+                    if is_upper:
+                        new_str = new_str.upper()
 
         # ensure ref keywords ':doc:' is always lowercase
         ga_ref_dic = Common.patternMatchAllToDict(Common.GA_REF_PART, new_str)
@@ -1609,7 +1611,7 @@ class Common:
         return bracketed_list, outside_bracket_list
 
     def debugging(txt):
-        msg = '\"copy\" ones'
-        is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        msg = 'blocks Previews'
+        is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

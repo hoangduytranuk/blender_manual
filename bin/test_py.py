@@ -6842,6 +6842,21 @@ zoom level <editors_3dview_navigation_zoom>
 
         print(l)
 
+    def test_0069(self):
+        def func1(name):
+            print(f'func1: name:{name}')
+
+        def func2(name, index):
+            print(f'func2: name:{name}; index:{index}')
+
+        func_list=[func1, func2]
+
+        for index, f in enumerate(func_list):
+            if index == 0:
+                f('hoang')
+            if index == 1:
+                f('hanh', index)
+            
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
@@ -6857,7 +6872,8 @@ zoom level <editors_3dview_navigation_zoom>
         # self.test_0064()
         # self.test_0066()
         # self.test_0067()
-        self.test_0068()
+        # self.test_0068()
+        self.test_0069()
 
 
 

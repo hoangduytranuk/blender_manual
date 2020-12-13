@@ -290,38 +290,49 @@ class TranslationFinder:
         self.master_dic_list = None
         self.backup_dic_list = None
         self.kbd_dict = None
+
+        self.tran_find_func_list = [
+            (self.translationByRemovingSymbols, ('txt', None, None)),              # (txt)
+            (self.translationByReplacingSymbolsWithSpaces, ('txt', None, None)),   # (txt)
+            # self.symbolsRemoval,                            # (new_txt)
+            (self.removeByPatternListAndCheck, ('txt', cm.common_suffix_sorted, cm.END_WORD)),               # (txt, cm.common_suffix_sorted, cm.END_WORD)
+            (self.removeByPatternListAndCheck, ('txt', cm.common_suffix_sorted, cm.START_WORD)),               # (txt, cm.common_prefix_sorted, cm.START_WORD)
+            (self.removeBothByPatternListAndCheck, ('txt', cm.common_prefix_sorted, cm.common_suffix_sorted)),           # (txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+            # output: new_txt, trans, cover_length
+            # ------------------------------------
+            # self.findDictByRemoveCommonPrePostFixes,        # (txt)
+            # self.findAndTrimIfNeeded,                       # (msg, is_patching_found=True)
+            # ------------------------------------
+            # self.removeStarAndEndingPunctuations,           # (txt)
+        ]
+
         self.loadDictionary()
 
-    # self.loadVIPOtoDic(self.master_dic_list, self.master_dic_file, is_testing=False)
-    # self.loadVIPOtoBackupDic(self.master_dic_list, self.master_dic_file)
+    def findByReduction(self, msg):
+        def append_selective(cover_length, new_text, trans, selective_list, function_name):
+            entry = (cover_length, new_text, trans, function_name)
+            selective_list.append(entry)
 
-    # self.cleanDictList(self.master_dic_list)
-    # self.updatePOUsingDic(self.vipo_dic_path, self.master_dic_list, is_testing=False)
-    # exit(0)
-    # self.updateDict()
-
-    # def listDictRange(self, from_wc_range, to_wc_range):
-    #     # keys = self.master_dic_list.keys()
-    #     # output_l = []
-    #     # for k in keys:
-    #     #     wc = len(k.split())
-    #     #     found = (wc >= from_wc_range) and (wc <= to_wc_range)
-    #     #     if not found:
-    #     #         continue
-    #     #     v = self.master_dic_list[k]
-    #     #     entry=(wc, k, v)
-    #     #     output_l.append(entry)
-    #     #     # print(f'wc:{wc}; k:{k}; v:{v}')
-    #     # outp = sorted(output_l)
-    #     # for l in outp:
-    #     #     dd, k, v = l
-    #     #     entry=f'"{k}": "{v}",'
-    #     #     print(entry)
-
-    #     range_l = self.master_dic_list.getSetUpToWordCount(1)
-    #     for k, v in range_l.items():
-    #         entry=f'"{k}": "{v}",'
-    #         print(entry)
+        trans = None
+        original_text = str(msg)
+        selective_list = []
+        try:
+            for f, params in self.tran_find_func_list:
+                txt, param1, param2 = params
+                is_empty = not (param1 and param2)
+                if is_empty:
+                    new_text, trans, cover_length = f(msg)
+                else:
+                    new_text, trans, cover_length = f(msg, param1, param2)
+                append_selective(cover_length, new_text, trans, selective_list, f.__name__)
+            sorted_selective_list = list(sorted(selective_list, reverse=True))
+            chosen_entry = sorted_selective_list[0]
+            cover_length, new_text, trans, function_name = chosen_entry
+        except Exception as e:
+            print(f'findByReduction() msg:{msg}')
+            print(e)
+            raise e
+        return new_text, trans, cover_length
 
     @property
     def master_dic(self):
@@ -469,6 +480,7 @@ class TranslationFinder:
         translated_list = []
         covered_length = 0
         translation = str(text)
+        # must masking after replacement, even entries are in local_dict, because definitions could overlapped (Vertex Group Weight/Clean Vertext Group for instance)
         for untran_txt, tran_txt in local_dict.items():
             cm.debugging(untran_txt)
             non_word_char_list = cm.NON_WORD_FIND.findall(untran_txt)
@@ -478,7 +490,7 @@ class TranslationFinder:
             else:
                 p = r'\b%s\b' % (untran_txt)
             pat = re.compile(p, flags=re.I)
-            found_dict = cm.patternMatchAllToDict(pat, text)
+            found_dict = cm.patternMatchAllToDict(pat, masking_string)
             is_found = (len(found_dict) > 0)
             if not is_found:
                 continue
@@ -528,7 +540,7 @@ class TranslationFinder:
                 continue
 
             try:
-                _, tran_sub_text, covered_length = self.findByReduction(un_tran_txt)
+                _, tran_sub_text, covered_length = self.tryToFindTranslation(un_tran_txt)
             except Exception as e:
                 print(f'replacingUsingDic() findByReduction: un_tran_txt:[{un_tran_txt}]')
                 print(e)
@@ -803,60 +815,60 @@ class TranslationFinder:
         file_path = (to_file if to_file else self.master_dic_file)
         self.writeJSONDic(dict_list=self.master_dic, file_name=file_path)
 
-    def updateDict(self):
-        from_file = '/Users/hoangduytran/blender_manual/ref_dict_0004.json'
-        to_file = '/Users/hoangduytran/blender_manual/ref_dict_0005.json'
-        new_file = '/Users/hoangduytran/blender_manual/ref_dict_0006.json'
-
-        new_dic = NoCaseDict()
-        ignore_dic = NoCaseDict()
-        from_dict = self.loadJSONDic(file_name=from_file)
-        to_dict = self.loadJSONDic(file_name=to_file)
-
-        # sorting so the smaller keys get in first, avoiding duplications by the longer keys, ie. with ending '.' or ':'
-        from_keys = list(sorted(from_dict.keys(), key=lambda x: len(x)))
-        # debug_text = '2.30 <https://archive.blender.org/development/release-logs/blender-230/>`__ -- October 2003'
-        meet = 0
-        for k in from_keys:
-            # 'Popther panel for adding extra options'
-            trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
-            if v:
-                print(f'already in new_dic: k:{k}, trimmed_k:{trimmed_k}, v:{v}')
-                continue
-
-            trimmed_k, v, cover_length  = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
-            if not v:
-                trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
-
-            if v:
-                entry = {trimmed_k: v}
-                new_dic.update(entry)
-                print(f'found entry:{entry}')
-            else:
-                trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=from_dict, is_patching_found=False)
-                entry = {trimmed_k: v}
-                ignore_dic.update(entry)
-                print(f'ignored entry:{entry}')
-
-        to_keys = list(sorted(to_dict.keys(), key=lambda x: len(x)))
-        for k in to_keys:
-            trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
-            is_in_new_dict = not (v is None)
-            if is_in_new_dict:
-                print(f'ignored entry in to_dict:{entry}')
-                continue
-
-            trimmed_k, v, cover_length  = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
-            entry = {trimmed_k: v}
-            new_dic.update(entry)
-            print(f'added from to_file entry:{entry}')
-
-        from_dict_len = len(from_dict)
-        to_dict_len = len(to_dict)
-        new_dict_len = len(new_dic)
-
-        self.writeJSONDic(dict_list=new_dic, file_name=new_file)
-        exit(0)
+    # def updateDict(self):
+    #     from_file = '/Users/hoangduytran/blender_manual/ref_dict_0004.json'
+    #     to_file = '/Users/hoangduytran/blender_manual/ref_dict_0005.json'
+    #     new_file = '/Users/hoangduytran/blender_manual/ref_dict_0006.json'
+    #
+    #     new_dic = NoCaseDict()
+    #     ignore_dic = NoCaseDict()
+    #     from_dict = self.loadJSONDic(file_name=from_file)
+    #     to_dict = self.loadJSONDic(file_name=to_file)
+    #
+    #     # sorting so the smaller keys get in first, avoiding duplications by the longer keys, ie. with ending '.' or ':'
+    #     from_keys = list(sorted(from_dict.keys(), key=lambda x: len(x)))
+    #     # debug_text = '2.30 <https://archive.blender.org/development/release-logs/blender-230/>`__ -- October 2003'
+    #     meet = 0
+    #     for k in from_keys:
+    #         # 'Popther panel for adding extra options'
+    #         trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
+    #         if v:
+    #             print(f'already in new_dic: k:{k}, trimmed_k:{trimmed_k}, v:{v}')
+    #             continue
+    #
+    #         trimmed_k, v, cover_length  = self.findAndTrimIfNeeded(trimmed_k, search_dict=to_dict, is_patching_found=False)
+    #         if not v:
+    #             trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
+    #
+    #         if v:
+    #             entry = {trimmed_k: v}
+    #             new_dic.update(entry)
+    #             print(f'found entry:{entry}')
+    #         else:
+    #             trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=from_dict, is_patching_found=False)
+    #             entry = {trimmed_k: v}
+    #             ignore_dic.update(entry)
+    #             print(f'ignored entry:{entry}')
+    #
+    #     to_keys = list(sorted(to_dict.keys(), key=lambda x: len(x)))
+    #     for k in to_keys:
+    #         trimmed_k, v, cover_length = self.findAndTrimIfNeeded(k, search_dict=new_dic, is_patching_found=False)
+    #         is_in_new_dict = not (v is None)
+    #         if is_in_new_dict:
+    #             print(f'ignored entry in to_dict:{entry}')
+    #             continue
+    #
+    #         trimmed_k, v, cover_length  = self.findAndTrimIfNeeded(k, search_dict=to_dict, is_patching_found=False)
+    #         entry = {trimmed_k: v}
+    #         new_dic.update(entry)
+    #         print(f'added from to_file entry:{entry}')
+    #
+    #     from_dict_len = len(from_dict)
+    #     to_dict_len = len(to_dict)
+    #     new_dict_len = len(new_dic)
+    #
+    #     self.writeJSONDic(dict_list=new_dic, file_name=new_file)
+    #     exit(0)
 
     def updateMasterDic(self, is_testing=True):
         from_dic_path = "/Users/hoangduytran/ref_dict_0002.json"
@@ -897,7 +909,6 @@ class TranslationFinder:
         DIC_INCLUDE_LOWER_CASE_SET = False
         ignore = [
             "volume",
-            "Volume",
         ]
 
         changed_count = 0
@@ -905,7 +916,7 @@ class TranslationFinder:
         po_cat = c.load_po(po_filename)
         po_cat_dic = self.poCatToDic(po_cat)
         for k, v in po_cat_dic.items():
-            is_ignore = (k in ignore)
+            is_ignore = (k.lower() in ignore)
             if is_ignore:
                 continue
 
@@ -1189,67 +1200,67 @@ class TranslationFinder:
             tran = None
         return tran
 
-    def trimAndFind(self, pattern, msg, dict_to_use=None):
-        # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
-        # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
-        # how far on the 'msg' ending should we add to the translation
-        count = 0
-        temp_msg = str(msg)
-        search_dict = (dict_to_use if dict_to_use else self.master_dic)
+    # def trimAndFind(self, pattern, msg, dict_to_use=None):
+    #     # Search to see if msg is trailling with punctuations and symbols which prevents the finding of translation
+    #     # by chopping off trailing symbols, one at a time, and search in dict. Accumulate the count so at end, we know
+    #     # how far on the 'msg' ending should we add to the translation
+    #     count = 0
+    #     temp_msg = str(msg)
+    #     search_dict = (dict_to_use if dict_to_use else self.master_dic)
+    #
+    #     found = (temp_msg in search_dict)
+    #
+    #     m = pattern.search(temp_msg)
+    #     tran = None
+    #     while m and not found:
+    #         m_group = m.group(0)
+    #         temp_msg = pattern.sub("", temp_msg)
+    #         count += 1
+    #         found = (temp_msg in search_dict)
+    #         if found:
+    #             tran = search_dict[temp_msg]
+    #             break
+    #         m = pattern.search(temp_msg)
+    #     return count, temp_msg, tran
 
-        found = (temp_msg in search_dict)
-
-        m = pattern.search(temp_msg)
-        tran = None
-        while m and not found:
-            m_group = m.group(0)
-            temp_msg = pattern.sub("", temp_msg)
-            count += 1
-            found = (temp_msg in search_dict)
-            if found:
-                tran = search_dict[temp_msg]
-                break
-            m = pattern.search(temp_msg)
-        return count, temp_msg, tran
-
-    def findAndTrimIfNeeded(self, msg, search_dict=None, is_patching_found=False):
-        head_trimmer = ""
-        tail_trimmer = ""
-        head_count = 0
-        tail_count = 0
-        is_found_tran = False
-        cover_length = 0
-        tail_count, trimmed_msg, trans = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
-                                                          dict_to_use=search_dict)
-        is_found_tran = (trans and not trans == msg)
-        if not is_found_tran:
-            head_count, trimmed_msg, trans = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
-                                                                      dict_to_use=search_dict)
-        is_found_tran = (trans and not trans == msg)
-        if not is_found_tran:
-            tail_count, trimmed_msg, trans = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
-                                                                      dict_to_use=search_dict)
-            is_found_tran = (trans and not trans == msg)
-            if not is_found_tran:
-                head_count, trimmed_msg, trans = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
-                                                                          dict_to_use=search_dict)
-        if is_patching_found:
-            if head_count:
-                head_trimmer = msg[:head_count]
-            if tail_count:
-                tail_trimmer = msg[-tail_count:]
-
-        if is_found_tran:
-            cover_length = len(msg)
-            is_insert_head_trimmer = (head_trimmer and not trans.startswith(head_trimmer))
-            if is_insert_head_trimmer:
-                trans = head_trimmer + trans
-            is_insert_tail_trimmer = (tail_trimmer and not trans.endswith(tail_trimmer))
-            if is_insert_tail_trimmer:
-                trans = trans + tail_trimmer
-        else:
-            trans = None
-        return trimmed_msg, trans, cover_length
+    # def findAndTrimIfNeeded(self, msg, search_dict=None, is_patching_found=False):
+    #     head_trimmer = ""
+    #     tail_trimmer = ""
+    #     head_count = 0
+    #     tail_count = 0
+    #     is_found_tran = False
+    #     cover_length = 0
+    #     tail_count, trimmed_msg, trans = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
+    #                                                       dict_to_use=search_dict)
+    #     is_found_tran = (trans and not trans == msg)
+    #     if not is_found_tran:
+    #         head_count, trimmed_msg, trans = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
+    #                                                                   dict_to_use=search_dict)
+    #     is_found_tran = (trans and not trans == msg)
+    #     if not is_found_tran:
+    #         tail_count, trimmed_msg, trans = self.trimAndFind(cm.TRAILING_WITH_PUNCT, msg,
+    #                                                                   dict_to_use=search_dict)
+    #         is_found_tran = (trans and not trans == msg)
+    #         if not is_found_tran:
+    #             head_count, trimmed_msg, trans = self.trimAndFind(cm.HEADING_WITH_PUNCT, trimmed_msg,
+    #                                                                       dict_to_use=search_dict)
+    #     if is_patching_found:
+    #         if head_count:
+    #             head_trimmer = msg[:head_count]
+    #         if tail_count:
+    #             tail_trimmer = msg[-tail_count:]
+    #
+    #     if is_found_tran:
+    #         cover_length = len(msg)
+    #         is_insert_head_trimmer = (head_trimmer and not trans.startswith(head_trimmer))
+    #         if is_insert_head_trimmer:
+    #             trans = head_trimmer + trans
+    #         is_insert_tail_trimmer = (tail_trimmer and not trans.endswith(tail_trimmer))
+    #         if is_insert_tail_trimmer:
+    #             trans = trans + tail_trimmer
+    #     else:
+    #         trans = None
+    #     return trimmed_msg, trans, cover_length
 
     def isInListByDict(self, msg, is_master):
         search_dic = (self.master_dic if is_master else self.backup_dic)
@@ -1284,22 +1295,22 @@ class TranslationFinder:
                 return new_txt, trans, cover_length
         return txt, None, cover_length
 
-    def reduceFind(self, txt: str):
-        if not txt:
-            return txt, None
-
-        # new_txt, trans = self.removeStarAndEndingPunctuations(txt)
-        # if not trans or (trans == txt):
-        new_txt, trans, cover_length = self.translationByRemovingSymbols(txt)
-        if not trans or (trans == txt):
-            new_txt, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
-        if not trans or (trans == txt):
-            new_txt, trans, cover_length = self.removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
-        if not trans or (trans == txt):
-            new_txt, tran, cover_length = self.removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
-        if not trans or (trans == txt):
-            new_txt, tran, cover_length = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-        return new_txt, trans
+    # def reduceFind(self, txt: str):
+    #     if not txt:
+    #         return txt, None
+    #
+    #     # new_txt, trans = self.removeStarAndEndingPunctuations(txt)
+    #     # if not trans or (trans == txt):
+    #     new_txt, trans, cover_length = self.translationByRemovingSymbols(txt)
+    #     if not trans or (trans == txt):
+    #         new_txt, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
+    #     if not trans or (trans == txt):
+    #         new_txt, trans, cover_length = self.removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
+    #     if not trans or (trans == txt):
+    #         new_txt, tran, cover_length = self.removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
+    #     if not trans or (trans == txt):
+    #         new_txt, tran, cover_length = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+    #     return new_txt, trans
 
     def insertTranslation(self, orig_str: str, orig_word: str, new_word: str, current_trans: str) -> str:
         is_valid = (orig_str and orig_word and new_word and current_trans)
@@ -1315,76 +1326,89 @@ class TranslationFinder:
         trans = new_tran
         return trans
 
-    def translateWordsAtSymbolBoundary(self, txt: str) -> str:
+    def tryToFindTranslation(self, txt: str) -> str:
         cover_length = 0
-        found_dict = cm.findInvert(cm.SYMBOLS, txt)
-        if not found_dict:
-            return False, None, cover_length
+        separator_list = [
+            cm.SPACES,
+            cm.SYMBOLS,
+        ]
+
+        new_text, trans, cover_length = self.findByReduction(txt)
+        is_found_trans = (trans and not trans == txt)
+        if is_found_trans:
+            return txt, trans, cover_length
 
         translated_dict = {}
         translation = str(txt)
-        for k, v in found_dict.items():
-            loc, orig_txt = v
-            s, e = loc
-
-            is_ignore = ig.isIgnored(orig_txt)
-            if is_ignore:
+        for separator in separator_list:
+            found_dict = cm.findInvert(separator, txt, is_remove_empty=True, is_removing_surrounding_none_alphas=True)
+            if not found_dict:
                 continue
 
-            new_text = str(orig_txt)
-            trans = self.isInDict(orig_txt)
-            # if not trans:
-            #     new_text, trans = self.reduceFind(orig_txt)
+            for k, v in found_dict.items():
+                loc, orig_txt = v
+                s, e = loc
 
-            is_found_trans = (trans and trans != orig_txt)
-            if is_found_trans:
-                trans = self.insertTranslation(txt, orig_txt, new_text, trans)
-                translated_entry = {s: (loc, orig_txt, trans)}
-                translated_dict.update(translated_entry)
+                is_ignore = ig.isIgnored(orig_txt)
+                if is_ignore:
+                    continue
 
+                new_text = str(orig_txt)
+                trans = self.isInDict(orig_txt)
+                is_found_trans = (trans and not trans == orig_txt)
+                if not is_found_trans:
+                    new_text, trans, cover_length = self.findByReduction(orig_txt)
 
-        for k, v in translated_dict.items():
-            loc, orig_txt, trans = v
-            s, e = loc
-            left = translation[:s]
-            right = translation[e:]
-            translation = left + trans + right
-            cover_length += len(orig_txt)
+                is_found_trans = (trans and not trans == orig_txt)
+                if is_found_trans:
+                    trans = self.insertTranslation(txt, orig_txt, new_text, trans)
+                    translated_entry = {s: (loc, orig_txt, trans)}
+                    translated_dict.update(translated_entry)
+
+            for k, v in translated_dict.items():
+                loc, orig_txt, trans = v
+                s, e = loc
+                left = translation[:s]
+                right = translation[e:]
+                translation = left + trans + right
+                cover_length += len(orig_txt)
 
         return txt, translation, cover_length
 
-    def symbolsRemoval(self, txt):
-        cover_length = 0
-        match = cm.SYMBOLS.search(txt)
-        has_hyphen = bool(match)
-        if not has_hyphen:
-            return txt, None, cover_length
-
-        len_of_txt = len(txt)
-        pattern, trans = self.removeStarAndEndingPunctuations(txt)
-        if trans:
-            cover_length = len_of_txt
-            return pattern, trans, cover_length
-        else:
-            is_fuzzy, trans, cover_length = self.translateWordsAtSymbolBoundary(txt)
-            if trans and not is_fuzzy:
-                cover_length = len_of_txt
-                return txt, trans, cover_length
-            else:
-                pattern, trans, cover_length = self.translationByRemovingSymbols(txt)
-                if trans:
-                    cover_length = len_of_txt
-                    return pattern, trans, cover_length
-                else:
-                    pattern, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
-                    if trans:
-                        cover_length = len_of_txt
-                        return pattern, trans, cover_length
-        return txt, None, cover_length
+    # def symbolsRemoval(self, txt):
+    #     cover_length = 0
+    #     match = cm.SYMBOLS.search(txt)
+    #     has_hyphen = bool(match)
+    #     if not has_hyphen:
+    #         return txt, None, cover_length
+    #
+    #     len_of_txt = len(txt)
+    #     pattern, trans, cover_length = self.removeStarAndEndingPunctuations(txt)
+    #     if trans:
+    #         cover_length = len_of_txt
+    #         return pattern, trans, cover_length
+    #     else:
+    #         is_fuzzy, trans, cover_length = self.translateWordsAtSymbolBoundary(txt)
+    #         if trans and not is_fuzzy:
+    #             cover_length = len_of_txt
+    #             return txt, trans, cover_length
+    #         else:
+    #             pattern, trans, cover_length = self.translationByRemovingSymbols(txt)
+    #             if trans:
+    #                 cover_length = len_of_txt
+    #                 return pattern, trans, cover_length
+    #             else:
+    #                 pattern, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
+    #                 if trans:
+    #                     cover_length = len_of_txt
+    #                     return pattern, trans, cover_length
+    #     return txt, None, cover_length
 
     def removeStarAndEndingPunctuations(self, txt):
         new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
         new_txt = cm.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
+
+        cover_length = 0
         # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
 
         is_ignore = ig.isIgnored(txt)
@@ -1393,8 +1417,9 @@ class TranslationFinder:
 
         trans = self.isInDict(new_txt)
         if trans:
+            cover_length = len(txt)
             dd(f'removeStarAndEndingPunctuations: FOUND {new_txt} => {trans}')
-        return new_txt, trans
+        return new_txt, trans, cover_length
 
     def fixTranslationWithKnowsPrefixSuffixes(self, txt, trans, is_prefix=False):
         new_txt = str(trans)
@@ -1632,96 +1657,36 @@ class TranslationFinder:
         if not has_infix:
             return txt, None
 
-    def tryToFindTran(self, txt):
-        def addEntryToSelectiveList(cover_length, chopped_text, trans, selective_list, method_name):
-            entry = (cover_length, chopped_text, trans, method_name)
-            selective_list.append(entry)
 
-        is_fuzzy = False
-        # new_txt, trans = self.removeStarAndEndingPunctuations(txt)
-        # if not trans or (trans == txt):
-        selective_list = []
-        new_txt, trans, cover_length = self.translateWordsAtSymbolBoundary(txt)
-        addEntryToSelectiveList(cover_length, new_txt, trans, selective_list, 'translateWordsAtSymbolBoundary')
 
-        new_txt, trans, cover_length = self.translationByRemovingSymbols(txt)
-        addEntryToSelectiveList(cover_length, new_txt, trans, selective_list, 'translationByRemovingSymbols')
 
-        new_txt, trans, cover_length = self.translationByReplacingSymbolsWithSpaces(txt)
-        addEntryToSelectiveList(cover_length, new_txt, trans, selective_list, 'translationByReplacingSymbolsWithSpaces')
+    # def findDictByRemoveCommonPrePostFixes(self, txt):
+    #     new_txt, tran, cover_length = self.tryToFindTran(txt)
+    #     if not tran:
+    #         overall_cover_length = 0
+    #         tran_txt = str(txt)
+    #         # split into separated words, treat each independently
+    #         # word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
+    #         word_dict_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, txt)
+    #         tran_dic = {}
+    #         for loc, word in word_dict_list.items():
+    #             s, e = loc
+    #             new_txt, tran, cover_length = self.tryToFindTran(word)
+    #             replacement = (tran if tran else word)
+    #             entry = {s: (s, e, replacement, cover_length)}
+    #             tran_dic.update(entry)
+    #
+    #         sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
+    #         for k, entry in sorted_tran_dic:
+    #             s, e, replacement, cover_length = entry
+    #             left = tran_txt[:s]
+    #             right = tran_txt[e:]
+    #             tran_txt = left + replacement + right
+    #             overall_cover_length += cover_length
+    #         cover_length = overall_cover_length
+    #         tran = tran_txt
+    #     return new_txt, tran, cover_length
 
-        new_txt, trans, cover_length = self.removeByPatternListAndCheck(txt, cm.common_suffix_sorted, cm.END_WORD)
-        addEntryToSelectiveList(cover_length, new_txt, trans, selective_list, 'removeByPatternListAndCheck common_suffix_sorted')
-
-        new_txt, trans, cover_length = self.removeByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.START_WORD)
-        addEntryToSelectiveList(cover_length, new_txt, trans, selective_list, 'removeByPatternListAndCheck common_prefix_sorted')
-
-        new_txt, trans, cover_length = self.removeBothByPatternListAndCheck(txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-        addEntryToSelectiveList(cover_length, new_txt, trans, selective_list, 'removeBothByPatternListAndCheck cm.common_prefix_sorted, cm.common_suffix_sorted')
-
-        sorted_selective_list = list(sorted(selective_list, key=OP.itemgetter(0), reverse=True))
-        cover_length, new_txt, trans, method = sorted_selective_list[0]
-        if not trans or (trans == txt):
-            return txt, None, cover_length
-        else:
-            return new_txt, trans, cover_length
-
-    def findDictByRemoveCommonPrePostFixes(self, txt):
-        new_txt, tran, cover_length = self.tryToFindTran(txt)
-        if not tran:
-            overall_cover_length = 0
-            tran_txt = str(txt)
-            # split into separated words, treat each independently
-            # word_dict_list = cm.patternMatchAllToDict(cm.WORD_SEP, txt)
-            word_dict_list = cm.patternMatchAllToDict(cm.SPACE_SEP_WORD, txt)
-            tran_dic = {}
-            for loc, word in word_dict_list.items():
-                s, e = loc
-                new_txt, tran, cover_length = self.tryToFindTran(word)
-                replacement = (tran if tran else word)
-                entry = {s: (s, e, replacement, cover_length)}
-                tran_dic.update(entry)
-
-            sorted_tran_dic = sorted(list(tran_dic.items()), reverse=True)
-            for k, entry in sorted_tran_dic:
-                s, e, replacement, cover_length = entry
-                left = tran_txt[:s]
-                right = tran_txt[e:]
-                tran_txt = left + replacement + right
-                overall_cover_length += cover_length
-            cover_length = overall_cover_length
-            tran = tran_txt
-        return new_txt, tran, cover_length
-
-    def findByReduction(self, msg):
-        def append_selective(cover_length, new_text, trans, selective_list):
-            entry = (cover_length, new_text, trans)
-            selective_list.append(entry)
-
-        trans = None
-        original_text = str(msg)
-        selective_list = []
-        try:
-            new_text, trans, cover_length = self.findDictByRemoveCommonPrePostFixes(msg)
-            append_selective(cover_length, new_text, trans, selective_list)
-
-            new_text, trans, cover_length = self.findAndTrimIfNeeded(msg, is_patching_found=True)
-            append_selective(cover_length, new_text, trans, selective_list)
-
-            new_text, trans, cover_length = self.findDictByRemoveCommonPrePostFixes(new_text)
-            append_selective(cover_length, new_text, trans, selective_list)
-
-            new_text, trans, cover_length = self.symbolsRemoval(msg)
-            append_selective(cover_length, new_text, trans, selective_list)
-
-            sorted_selective_list = list(sorted(selective_list, key=OP.itemgetter(0), reverse=True))
-            cover_length, new_text, trans = sorted_selective_list[0]
-
-        except Exception as e:
-            print(f'findByReduction() msg:{msg}')
-            print(e)
-            raise e
-        return new_text, trans, cover_length
 
     def isNonGATranslatedFully(self, msg, trans):
         is_ga = (cm.GA_PATTERN_PARSER.search(msg) is not None)
