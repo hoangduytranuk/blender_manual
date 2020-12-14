@@ -560,10 +560,6 @@ class TranslationFinder:
             return temp_translation
 
     def buildLocalTranslationDict(self, msg):
-        translation = str(msg)
-        loc_list = []
-        translated_list = []
-        untranslated_list = []
         local_translated_dict = {} # for quick, local translation
 
         # generate all possible combinations of string lengths
@@ -576,7 +572,6 @@ class TranslationFinder:
             if is_ignore:
                 continue
 
-            is_ok = 1
             # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
             tran_sub_text = self.isInDict(orig_sub_text)
             ss, ee = loc
@@ -594,10 +589,6 @@ class TranslationFinder:
                 local_dict_entry = {orig_sub_text: tran_sub_text}
                 local_translated_dict.update(local_dict_entry)
 
-        # print('blindTranslation:')
-        # print(f'msg: {msg}')
-        # print(f'local_translated_dict:')
-        # pprint(local_translated_dict)
         return local_translated_dict
 
     def blindTranslation(self, msg):
@@ -1252,6 +1243,7 @@ class TranslationFinder:
             return txt, trans, cover_length
 
         for separator in separator_list:
+            temp_masking_text = str(txt)
             found_dict = cm.findInvert(separator, txt, is_remove_empty=True, is_removing_surrounding_none_alphas=True)
             if not found_dict:
                 continue
@@ -1286,8 +1278,16 @@ class TranslationFinder:
                 translation = left + trans + right
                 cover_length += len(orig_txt)
 
+                empty_string = (' ' * len(orig_txt))
+                temp_masking_text = temp_masking_text[:s] + empty_string + temp_masking_text[e:]
+
             entry = (cover_length, txt, translation)
             selective_list.append(entry)
+
+            loc, test_masking_text = cm.removingNonAlpha(temp_masking_text)
+            is_finish_loop = (len(test_masking_text) == 0)
+            if is_finish_loop:      # no need to carry on to the next variance of separator
+                break
 
         sorted_selective_list = list(sorted(selective_list, reverse=True))
         chosen_entry = sorted_selective_list[0]
