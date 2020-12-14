@@ -319,7 +319,7 @@ class TranslationFinder:
         try:
             for f, params in self.tran_find_func_list:
                 txt, param1, param2 = params
-                is_empty = not (param1 and param2)
+                is_empty = not (param1 or param2)
                 if is_empty:
                     new_text, trans, cover_length = f(msg)
                 else:
@@ -482,7 +482,7 @@ class TranslationFinder:
         translation = str(text)
         # must masking after replacement, even entries are in local_dict, because definitions could overlapped (Vertex Group Weight/Clean Vertext Group for instance)
         for untran_txt, tran_txt in local_dict.items():
-            cm.debugging(untran_txt)
+            # cm.debugging(untran_txt)
             non_word_char_list = cm.NON_WORD_FIND.findall(untran_txt)
             has_none_word_char = (len(non_word_char_list) > 0)
             if has_none_word_char:
@@ -604,6 +604,12 @@ class TranslationFinder:
         cm.debugging(msg)
         if ig.isIgnored(msg):
             return None
+
+        # cm.debugging(txt)
+        new_text, trans, cover_length = self.findByReduction(msg)
+        is_found_trans = (trans and not trans == msg)
+        if is_found_trans:
+            return trans
 
         local_translated_dict = self.buildLocalTranslationDict(msg)
 
@@ -1239,12 +1245,11 @@ class TranslationFinder:
         ]
         selective_list = []
 
+        # cm.debugging(txt)
         new_text, trans, cover_length = self.findByReduction(txt)
         is_found_trans = (trans and not trans == txt)
         if is_found_trans:
             return txt, trans, cover_length
-
-
 
         for separator in separator_list:
             found_dict = cm.findInvert(separator, txt, is_remove_empty=True, is_removing_surrounding_none_alphas=True)

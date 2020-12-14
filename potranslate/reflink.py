@@ -1103,7 +1103,7 @@ class RefList(defaultdict):
             return None
 
     def parseMessage(self):
-        cm.debugging(self.msg)
+        # cm.debugging(self.msg)
         tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
         if is_ignore:
             self.setTranslation("", is_fuzzy, is_ignore)

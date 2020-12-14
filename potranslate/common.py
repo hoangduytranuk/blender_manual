@@ -634,7 +634,13 @@ class Common:
 
         first_char = from_str[0]
         remain_part = from_str[1:]
-        is_first_upper = (first_char.isupper() and remain_part.islower())
+
+        from_str_has_multi_words = (Common.SYMBOLS.search(from_str) is not None)
+        to_str_has_multi_words = (Common.SYMBOLS.search(to_str) is not None)
+
+        from_string_is_to_first_upper = (first_char.isupper() and remain_part.islower())
+        to_string_is_to_first_upper = not (from_str_has_multi_words or to_str_has_multi_words)
+        is_first_upper = (from_string_is_to_first_upper and to_string_is_to_first_upper)
         if is_first_upper:
             first_char = new_str[0].upper()
             remain_part = new_str[1:].lower()
@@ -1611,7 +1617,7 @@ class Common:
         return bracketed_list, outside_bracket_list
 
     def debugging(txt):
-        msg = 'blocks Previews'
+        msg = 'Color Ramp'
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

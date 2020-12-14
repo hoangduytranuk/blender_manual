@@ -1217,6 +1217,7 @@ with holding :kbd:`Alt`'
                     :sup:
                     :term:*
                     '''
+                    # cm.debugging(k)
                     current_tran = tf.isInDict(k)
                     if current_tran:
                         print(f'translated: k:{k}, current_tran:{current_tran}')
