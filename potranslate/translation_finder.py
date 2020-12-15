@@ -309,8 +309,8 @@ class TranslationFinder:
         self.loadDictionary()
 
     def findByReduction(self, msg):
-        def append_selective(cover_length, new_text, trans, selective_list, function_name):
-            entry = (cover_length, new_text, trans, function_name)
+        def append_selective(cover_length, new_text_length, new_text, trans, selective_list, function_name):
+            entry = (cover_length, new_text_length, new_text, trans, function_name)
             selective_list.append(entry)
 
         trans = None
@@ -328,7 +328,7 @@ class TranslationFinder:
                 append_selective(cover_length, new_text_length, new_text, trans, selective_list, f.__name__)
             sorted_selective_list = list(sorted(selective_list, key=OP.itemgetter(0, 1), reverse=True))
             chosen_entry = sorted_selective_list[0]
-            cover_length, new_text, trans, function_name = chosen_entry
+            cover_length, new_text_length, new_text, trans, function_name = chosen_entry
         except Exception as e:
             print(f'findByReduction() msg:{msg}')
             print(e)
