@@ -6856,7 +6856,62 @@ zoom level <editors_3dview_navigation_zoom>
                 f('hoang')
             if index == 1:
                 f('hanh', index)
-            
+
+    def test_0070(self):
+        p1 = re.compile(r'[\w\-\_\*]+\.\w+')
+        p = re.compile(r'(?:[^\+\-\=\s])[\w\-\_\*]+\.\w+$')
+        home_dir = os.environ['HOME']
+        from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
+        file_list = []
+        for root, dirnames, filenames in os.walk(from_path):
+            if root.startswith('.'):
+                continue
+
+            b_list_for_file = []
+            for filename in filenames:
+                is_found  = (filename.lower().endswith('.pot'))
+                if not is_found:
+                    continue
+
+                file_path = os.path.join(root, filename)
+                file_list.append(file_path)
+
+        for file_path in file_list:
+            is_updated = False
+            po_cat = c.load_po(file_path)
+
+            result_list=[]
+            for m in po_cat:
+                text_line = m.id
+                if not text_line:
+                    continue
+
+                # t = '-3.0000'
+                # t1 = 'this.that'
+                # m = p.search(t)
+                # m1 = p.search(t1)
+                # print(f'm:{m}')
+                # print(f'm1:{m1}')
+                m1 = p1.findall(text_line)
+                m = p.findall(text_line)
+
+                if not m:
+                    continue
+
+                if m1:
+                    result_list.append('possible:')
+                    result_list.extend(m1)
+                result_list.append('definitely:')
+                result_list.extend(m)
+
+            if not result_list:
+                continue
+
+            print(f'file: {file_path}')
+            print('*' * 50)
+            print(result_list)
+            print('-' * 50)
+
     def run(self):
         # self.sorting_temp_05()
         # self.resort_dictionary()
@@ -6873,8 +6928,8 @@ zoom level <editors_3dview_navigation_zoom>
         # self.test_0066()
         # self.test_0067()
         # self.test_0068()
-        self.test_0069()
-
+        # self.test_0069()
+        self.test_0070()
 
 
 # # trans_finder = TranslationFinder()

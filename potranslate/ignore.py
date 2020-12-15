@@ -79,6 +79,7 @@ class Ignore:
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
     ignore_list = [
+        r'^[\W\d]+$',   # symbols and numbersr
         r'^(\w+)([\-\.]\w+){2,}$', # hyphen ref links: "mesh-faces-tristoquads"
         # r'^\/?(\w+)(\/\w+){3,}$', # slash ref links: "/animation/armatures/bones/properties/bendy_bones"
         # r'^()$',

@@ -1104,12 +1104,13 @@ class RefList(defaultdict):
 
     def parseMessage(self):
         # cm.debugging(self.msg)
-        tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-        if is_ignore:
-            self.setTranslation("", is_fuzzy, is_ignore)
-            return
+        has_ref = hasRef(self.msg)
+        if not has_ref:
+            tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+            if is_ignore:
+                self.setTranslation("", is_fuzzy, is_ignore)
+                return
 
-        if not is_fuzzy:
             print(f'set translation:\nen:[{self.msg}]\nvn:[{tran}]')
             self.setTranslation(tran, is_fuzzy, is_ignore)
             return
@@ -1275,7 +1276,7 @@ class RefList(defaultdict):
                 ref_item.converted_to_abbr = converted_to_abbr
 
         except Exception as e:
-            print(f'translateRefItem(), ref_item:{ref_item}, ref_type:{ref_type}, ERROR: {e}')
+            print(f'ERROR! translateRefItem(), ref_item:{ref_item}, ref_type:{ref_type}, ERROR: {e}')
 
     def translateRefRecord(self, record: RefRecord):
         valid = (record is not None)

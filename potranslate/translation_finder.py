@@ -324,8 +324,9 @@ class TranslationFinder:
                     new_text, trans, cover_length = f(msg)
                 else:
                     new_text, trans, cover_length = f(msg, param1, param2)
-                append_selective(cover_length, new_text, trans, selective_list, f.__name__)
-            sorted_selective_list = list(sorted(selective_list, reverse=True))
+                new_text_length = len(new_text) # the least cut off the better
+                append_selective(cover_length, new_text_length, new_text, trans, selective_list, f.__name__)
+            sorted_selective_list = list(sorted(selective_list, key=OP.itemgetter(0, 1), reverse=True))
             chosen_entry = sorted_selective_list[0]
             cover_length, new_text, trans, function_name = chosen_entry
         except Exception as e:
@@ -481,44 +482,30 @@ class TranslationFinder:
         covered_length = 0
         translation = str(text)
         # must masking after replacement, even entries are in local_dict, because definitions could overlapped (Vertex Group Weight/Clean Vertext Group for instance)
-        for untran_txt, tran_txt in local_dict.items():
-            # cm.debugging(untran_txt)
-            non_word_char_list = cm.NON_WORD_FIND.findall(untran_txt)
-            has_none_word_char = (len(non_word_char_list) > 0)
-            if has_none_word_char:
-                p = r'%s' % (re.escape(untran_txt))
-            else:
-                p = r'\b%s\b' % (untran_txt)
-            pat = re.compile(p, flags=re.I)
-            found_dict = cm.patternMatchAllToDict(pat, masking_string)
-            is_found = (len(found_dict) > 0)
-            if not is_found:
-                continue
+        for loc, v in local_dict.items():
+            untran_txt, tran_txt = v
 
-            found_item_list = list(found_dict.items())
-            for loc, dict_txt in found_item_list:
-                empty_part = (cm.FILLER_CHAR * len(dict_txt))
-                ss, ee = loc
+            # update every instance found in the temp_translation with already found translation text
+            txt_length = len(untran_txt)
+            tran_dict_entry = (txt_length, loc, untran_txt, tran_txt)
+            translated_list.append(tran_dict_entry)
 
-                # update every instance found in the temp_translation with already found translation text
-                txt_length = len(dict_txt)
-                tran_dict_entry = (txt_length, loc, dict_txt, tran_txt)
-                translated_list.append(tran_dict_entry)
+            empty_part = (cm.FILLER_CHAR * len(untran_txt))
+            ss, ee = loc
+            left = masking_string[:ss]
+            right = masking_string[ee:]
+            masking_string = left + empty_part + right
 
-                left = masking_string[:ss]
-                right = masking_string[ee:]
-                masking_string = left + empty_part + right
-
-                # if the translation has provided fully then it's enough to get out
-                loc, tester_left = cm.removingNonAlpha(left)
-                loc, tester_right = cm.removingNonAlpha(right)
-                is_translation_provided_fully = not (tester_left or tester_right)
-                if is_translation_provided_fully:
-                    # replacing dict into text and finish
-                    print(f'FINISH EARLY: is_translation_provided_fully = TRUE')
-                    temp_translation = translatedListToText(translated_list, translation, filerLocation)
-                    print(f'translation:[{translation}]; temp_translation:[{temp_translation}]')
-                    return temp_translation
+            # if the translation has provided fully then it's enough to get out
+            loc, tester_left = cm.removingNonAlpha(left)
+            loc, tester_right = cm.removingNonAlpha(right)
+            is_translation_provided_fully = not (tester_left or tester_right)
+            if is_translation_provided_fully:
+                # replacing dict into text and finish
+                print(f'FINISH EARLY: is_translation_provided_fully = TRUE')
+                temp_translation = translatedListToText(translated_list, translation, filerLocation)
+                print(f'translation:[{translation}]; temp_translation:[{temp_translation}]')
+                return temp_translation
 
         # for untranslated words, we will try to find definitions for each, using reductions
         # check to see if untranslated word
@@ -527,9 +514,8 @@ class TranslationFinder:
             temp_translation = translatedListToText(translated_list, translation, filerLocation)
             return temp_translation
 
-        un_tran_list = cm.findInvert(cm.FILLER_CHAR_PATTERN,
+        un_tran_list = cm.findInvert(cm.FILLER_CHAR,
                                      masking_string,
-                                     is_remove_empty=True,
                                      is_removing_surrounding_none_alphas=True)
 
         for k, v in un_tran_list.items():
@@ -586,10 +572,11 @@ class TranslationFinder:
                     tran_sub_text = cl_left + temp_tran_sub_text + cl_right
 
             if tran_sub_text:
-                local_dict_entry = {orig_sub_text: tran_sub_text}
+                local_dict_entry = {loc: (orig_sub_text, tran_sub_text)}
                 local_translated_dict.update(local_dict_entry)
-
-        return local_translated_dict
+        sorted_list = list(sorted(list(local_translated_dict.items()), reverse=True))
+        return_dict = OrderedDict(sorted_list)
+        return return_dict
 
     def blindTranslation(self, msg):
         cm.debugging(msg)
@@ -1244,7 +1231,7 @@ class TranslationFinder:
 
         for separator in separator_list:
             temp_masking_text = str(txt)
-            found_dict = cm.findInvert(separator, txt, is_remove_empty=True, is_removing_surrounding_none_alphas=True)
+            found_dict = cm.findInvert(separator, txt, is_removing_surrounding_none_alphas=True)
             if not found_dict:
                 continue
 
@@ -1803,7 +1790,7 @@ class TranslationFinder:
 
             tran_found = (tran and tran != orig_txt)
             if tran_found:
-                tran = self.recomposeAbbrevTranslation(orig_txt, tran)
+                # tran = self.recomposeAbbrevTranslation(orig_txt, tran)
                 tran_txt = f"{tran} -- {orig_txt}"
             else:
                 tran_txt = f" -- {orig_txt}"

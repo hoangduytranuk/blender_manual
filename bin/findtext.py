@@ -1184,7 +1184,7 @@ with holding :kbd:`Alt`'
             found_dict_list = list(found_dict.items())
             for k, ref_type in found_dict_list:
                 try:
-                    # cm.debugging(k)
+                    cm.debugging(k)
                     is_a_link_path = cm.isLinkPath(k)
                     if is_a_link_path:
                         continue
