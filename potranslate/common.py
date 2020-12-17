@@ -265,7 +265,7 @@ class Common:
     PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
     API_REF = re.compile(r'^blender_api:.*$')
 
-    SPACE_WORD_SEP =  re.compile(r'[^\ //]+')
+    SPACE_WORD_SEP =  re.compile(r'[\S]+')
     ACCEPTABLE_WORD =  re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
 
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
@@ -1620,7 +1620,7 @@ class Common:
         return bracketed_list, outside_bracket_list
 
     def debugging(txt):
-        msg = 'until the info in the bottom left corner of the 3D Viewport displays'
+        msg = 'Substitute the name or path of the compatible GCC compiler'
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

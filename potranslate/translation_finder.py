@@ -553,6 +553,7 @@ class TranslationFinder:
 
         dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
         # translate them all if possible, store in local dict
+        cm.debugging(msg)
         for loc, orig_sub_text in loc_map_length_sorted_reverse:
             is_ignore = (ig.isIgnored(orig_sub_text))
             if is_ignore:
