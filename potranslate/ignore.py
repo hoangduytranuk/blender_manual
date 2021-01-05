@@ -100,121 +100,121 @@ class Ignore:
         r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`
         r'^([\w]+)\/$', # rendering/
         # r'(^([\`]+)?[^\`]+)\.([\w]{2,5})([\`]+)?$', #file name
-        r"^([\d]+)(px|khz)?$", # 1024x2048
-        r"^([\d]+[x][\d]+)$", # 1024x2048
+        r"^\s*([\d]+)(px|khz)?$", # 1024x2048
+        r"^\s*([\d]+[x][\d]+)\s*$", # 1024x2048
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
         # r'^(\<([^\<\>]+)\>)$', # <something>
-        #r"^((Ctrl|Alt|Shift)?[\-](F[\d]+)?)$",  # Ctrl|Alt|Shif-F1-12
+        #r"^\s*((Ctrl|Alt|Shift)?[\-](F[\d]+)?)\s*$",  # Ctrl|Alt|Shif-F1-12
         # r'^([\*]?[\-]?[\d]+[\.][\w]{2,5})$', # *-0001.jpg
         #r'^(' + r'([\+\-]?[\w]{1})([\,][\s]([\+\-]?[\w]))*' + r')$',
-        r"^([\d]+\s?bit[s]?)$",
-        r"^(" + NUMB + MATH_OPS + r".*" + NUMB + r")$",
-        r"^(" + r"(cd|mk|mkdir)[\s]+" + r".*" + r")$",
-        r"^(" + STB + r"?([\+\-]?[\d]+[\W]?)" + EDB + r"?)$",  # (+-180°)
-        r"^(" + STB + r"?(" + NUMB + r"(([\,]+[\s]+)?" + NUMB + r")*)+" + EDB + r"?)$", # (-1.0 - 1.0), (-X, -Y, -Z, X, Y, Z)
-        r"^(\*\-[\d]+[\.][\w]{3})$", #*-0001.jpg
-        r"^(Bone[ABC]|COR\-|Cartesian|Bfont|ABC)$",
-        r"^(F[\d]{1,2})$", # F1-12
-        r"^([\w]([\s]+[\w\d])+)$", # :kbd:`S X 0`
-        #r"^(Shift[-][\S]{1})$",
-        r"^(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)$",
-        r"^([\W]+)$",
-        r"^([-]{2}([\w-]+)*)$",
-        # r"^(\w+\:\w+)$", # geom:curve_tangent_normal
-        r"^([\w\_\-]+\(([^\(\)]+)?\))$", # function_name(param1, param2)
-        r"^([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)$",
-        r"^([\d]D)$",
-        r"^([\"\'][\.\s]?[\S]{1}[\"\'])$",
-        # r"^(#[\w\-\_]+)$",  # blender-coders <literal>#blender-coders</literal>
-        r"^(#fmod\(frame, 24\) / 24)$",
-        r"^(([\w]+)?([\.][\w]+)+)$", # bpy.context, bpy.context.object
-        r"^(:(math|class):)\`([^\`]+)\`$",
-        r"^(ITU \d+,)+",
-        r"^(" + STB + r"?[+-][\w]{1}[,.])*([\s]?[+-][\w]{1})" + EDB + r"?$",  # "+X, +Y, +Z, -X, -Y, -Z"
-        r"^([^\S]{1})$",  # single anything non spaces
-        r"^(" + STB + r"?([+-]?[\d]+)([\,\.]?[\s]?[\d]+)*)+" + EDB + r"?$",  # 1,000 or 0.00001 or 1, 2, 3, 4
-        r"^([\d]+[.,][\s]?)*[\d]+bit$",
-        r"^([\d]?[\w]{1})$",  # "4D"
-        r"^([\w\d]{2}\:){2}[\w\d]{2}\.[\w\d]{2}\.$",  # HH:MM:SS.FF
-        r"^(\.[\w]{2,5})$",  # .jpg, .so
-        r"^(htt[ps][^\S]+)$",
-        r"^(jpg|png|int)$",
-        r"^(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)$",
-        r"^(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))$",
-        r"^(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2|Arctan2|sRGB)$",
-        r"^(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)$",
-        r"^Alembic([\s\W|abc]+)$",
-        r"^(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)$",
-        r"^(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)$",
-        r"^(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)$",
-        r"^(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))$",
-        r"^Blender\([\s\d\.]+\)|Blender_id[\W]?$",
-        r"^(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)$",
-        r"^(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)$",
-        r"^(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del|de|debian|Delete|Delta([\s][\w])?)$",
-        r"^([^\w]+log.*wm.*)$",
-        r"^(Djv|Doppler|Dots\/BU|Dpi|DWAA)$",
-        r"^(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)$",
-        r"^((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)$",
-        r"^(H\.264|Hosek \/ Wilkie|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)$",
-        r"^(ID|Ins|JPEG 2000|(ITU(\s\d+)?)|Internet[\w\W]|iScale)$",
-        r"^(KDE|K1, K2|Kirsch|komi3D)$",
-        r"^(Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)$",
-        r"^MPEG([\-|\d]+)|MatCaps$",
-        r"^(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)$",
-        r"^(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)$",
-        r"^(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR|Ozone|OptiX)$",
-        r"^PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
-        r"^(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2|Preetham(\s?\d+)?|Python(\:\s[\.\%s]+)?)$",
-        r"^(QuickTime|quasi\-)$",
-        r"^(\d+[x]?)$", # 16x
-        r"^(\%\d+[\w]?)$", # %14s
-        r"^(\%[d](x%[d])?)$", # %dx%d
-        r"^\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
-        # r"^(RGB[\w]?)$",
-        r"^(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)$",
+        r"^\s*([\d]+\s?bit[s]?)\s*$",
+        r"^\s*(" + NUMB + MATH_OPS + r".*" + NUMB + r")\s*$",
+        r"^\s*(" + r"(cd|mk|mkdir)[\s]+" + r".*" + r")\s*$",
+        r"^\s*(" + STB + r"?([\+\-]?[\d]+[\W]?)" + EDB + r"?)\s*$",  # (+-180°)
+        r"^\s*(" + STB + r"?(" + NUMB + r"(([\,]+[\s]+)?" + NUMB + r")*)+" + EDB + r"?)\s*$", # (-1.0 - 1.0), (-X, -Y, -Z, X, Y, Z)
+        r"^\s*(\*\-[\d]+[\.][\w]{3})\s*$", #*-0001.jpg
+        r"^\s*(Bone[ABC]|COR\-|Cartesian|Bfont|ABC)\s*$",
+        r"^\s*(F[\d]{1,2})\s*$", # F1-12
+        r"^\s*([\w]([\s]+[\w\d])+)\s*$", # :kbd:`S X 0`
+        #r"^\s*(Shift[-][\S]{1})\s*$",
+        r"^\s*(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)\s*$",
+        r"^\s*([\W]+)\s*$",
+        r"^\s*([-]{2}([\w-]+)*)\s*$",
+        # r"^\s*(\w+\:\w+)\s*$", # geom:curve_tangent_normal
+        r"^\s*([\w\_\-]+\(([^\(\)]+)?\))\s*$", # function_name(param1, param2)
+        r"^\s*([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)\s*$",
+        r"^\s*([\d]D)\s*$",
+        r"^\s*([\"\'][\.\s]?[\S]{1}[\"\'])\s*$",
+        # r"^\s*(#[\w\-\_]+)\s*$",  # blender-coders <literal>#blender-coders</literal>
+        r"^\s*(#fmod\(frame, 24\) / 24)\s*$",
+        r"^\s*(([\w]+)?([\.][\w]+)+)\s*$", # bpy.context, bpy.context.object
+        r"^\s*(:(math|class):)\`([^\`]+)\`$",
+        r"^\s*(ITU \d+,)+",
+        r"^\s*(" + STB + r"?[+-][\w]{1}[,.])*([\s]?[+-][\w]{1})" + EDB + r"?$",  # "+X, +Y, +Z, -X, -Y, -Z"
+        r"^\s*([^\S]{1})\s*$",  # single anything non spaces
+        r"^\s*(" + STB + r"?([+-]?[\d]+)([\,\.]?[\s]?[\d]+)*)+" + EDB + r"?$",  # 1,000 or 0.00001 or 1, 2, 3, 4
+        r"^\s*([\d]+[.,][\s]?)*[\d]+bit$",
+        r"^\s*([\d]?[\w]{1})\s*$",  # "4D"
+        r"^\s*([\w\d]{2}\:){2}[\w\d]{2}\.[\w\d]{2}\.$",  # HH:MM:SS.FF
+        r"^\s*(\.[\w]{2,5})\s*$",  # .jpg, .so
+        r"^\s*(htt[ps][^\S]+)\s*$",
+        r"^\s*(jpg|png|int)\s*$",
+        r"^\s*(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)\s*$",
+        r"^\s*(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))\s*$",
+        r"^\s*(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2|Arctan2|sRGB)\s*$",
+        r"^\s*(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)\s*$",
+        r"^\s*Alembic([\s\W|abc]+)\s*$",
+        r"^\s*(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)\s*$",
+        r"^\s*(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)\s*$",
+        r"^\s*(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)\s*$",
+        r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
+        r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?$",
+        r"^\s*(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
+        r"^\s*(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*$",
+        r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del|de|debian|Delete|Delta([\s][\w])?)\s*$",
+        r"^\s*([^\w]+log.*wm.*)\s*$",
+        r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",
+        r"^\s*(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)\s*$",
+        r"^\s*((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)\s*$",
+        r"^\s*(H\.264|Hosek \/ Wilkie|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)\s*$",
+        r"^\s*(ID|Ins|JPEG 2000|(ITU(\s\d+)?)|Internet[\w\W]|iScale)\s*$",
+        r"^\s*(KDE|K1, K2|Kirsch|komi3D)\s*$",
+        r"^\s*(Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)\s*$",
+        r"^\s*MPEG([\-|\d]+)|MatCaps$",
+        r"^\s*(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)\s*$",
+        r"^\s*(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)\s*$",
+        r"^\s*(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR|Ozone|OptiX)\s*$",
+        r"^\s*PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
+        r"^\s*(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2|Preetham(\s?\d+)?|Python(\:\s[\.\%s]+)?)\s*$",
+        r"^\s*(QuickTime|quasi\-)\s*$",
+        r"^\s*(\d+[x]?)\s*$", # 16x
+        r"^\s*(\%\d+[\w]?)\s*$", # %14s
+        r"^\s*(\%[d](x%[d])?)\s*$", # %dx%d
+        r"^\s*\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
+        # r"^\s*(RGB[\w]?)\s*$",
+        r"^\s*(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)\s*$",
         r'^(\,\s)?(RGB[A]?)(\s(byte))?$',
         r'^(RGB[A]?)[\s]?(byte)?$',
         r'^(RGB[A]?)\([^\)]+\)$',
-        r"^(RK4|RRT|Redhat\/Fedora|RLE)$",
-        r"^(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)$",
-        r"^(Tab|Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|TAR-)$",
-        r"^(URL|UV[s:]?|U & V|Uber)$",
-        r"^(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)$",
-        r"^(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)$",
-        r"^(X(/Y|YZ)?|Xvid|XY|XZ|YCbCr(\s\(ITU\s?\d+?\))?)$",
-        r"^(Y(CC)?|YCbCr(\s\(Jpeg\))?|Z(ip)?|ZIPS)$",
-        r"^(\w+(_\w+)+)$", # MASK_MT_add
-        r"^[\-]*\d+(\.[\w]{2,5})$",  # -0001.jpg
-        r"^[\W]{1}$",
-        r"^\w([\s]?[<]?[\*\/\+\-\=][>]?[\s]?\w)+$",  # A * B + C; A -> B
-        r"^(\"fr\"[:]?|\"fr\": \"Fran&ccedil;ais\"|)$",
-        r"^\*(\.[\w]{2,5})$",  # *.jpg
-        r"^\.bashrc$",
-        r"^(the quick|brown fox|jumps over|the lazy dog)$",
-        r"^\:([\w\-\_]+)\:$",
-        r"^\:sup\:\`™\`$",
-        r"^\|([\w\-\_]+)\|$",
-        r"^\|[^\|]+\|$",  # |tick|cross|
-        r"^(bItasc|bin|bit[s]?|bl\*er|blendcache_[filename]|blender \-[drE]+([\s]+help)?|blender_doc|blender_api)$",
-        r"^(bpy\.(context|data|ops)|bpy\.([\w\.\-\_]+)|byte([s]?))$",
-        r"^(cd|mkdir|ctrl)$",
-        r"^(dam|deg|developer\.blender\.org|dir\(\)|dm|dx)$",
-        r"^(eevee|emission\(\)|esc|etc[\.]+)$",
-        r"^(f\(\d+\)|fBM|flac|fr|fr\/|ft)$",
-        r"^gabhead, Lell, Anfeo, meta-androcto$",
-        r"^(git([\s]+[^\`]+)?|glTF 2\.0)$",
-        r"^(hm|html|iTaSC|jpeg|SubRip)$",
-        r"^[\%s\s\'\:]+$", # %s: %s
-        r"^(kConstantScope|kUniformScope|kUnknownScope|kVaryingScope|kVertexScope|kFacevaryingScope|kbd)$",
-        r"^(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))$",
-        r"^(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr|MPEG-4 \(divx\))$",
-        r"^(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)$",
-        r"^(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\)|unregister|)$",
-        r"^(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)$",
-        r"^(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))$",
-        r"^(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)$",
-        r"^(tab|TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)$",
+        r"^\s*(RK4|RRT|Redhat\/Fedora|RLE)\s*$",
+        r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)\s*$",
+        r"^\s*(Tab|Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",
+        r"^\s*(URL|UV[s:]?|U & V|Uber)\s*$",
+        r"^\s*(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)\s*$",
+        r"^\s*(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)\s*$",
+        r"^\s*(X(/Y|YZ)?|Xvid|XY|XZ|YCbCr(\s\(ITU\s?\d+?\))?)\s*$",
+        r"^\s*(Y(CC)?|YCbCr(\s\(Jpeg\))?|Z(ip)?|ZIPS)\s*$",
+        r"^\s*(\w+(_\w+)+)\s*$", # MASK_MT_add
+        r"^\s*[\-]*\d+(\.[\w]{2,5})\s*$",  # -0001.jpg
+        r"^\s*[\W]{1}$",
+        r"^\s*\w([\s]?[<]?[\*\/\+\-\=][>]?[\s]?\w)+\s*$",  # A * B + C; A -> B
+        r"^\s*(\"fr\"[:]?|\"fr\": \"Fran&ccedil;ais\"|)\s*$",
+        r"^\s*\*(\.[\w]{2,5})\s*$",  # *.jpg
+        r"^\s*\.bashrc$",
+        r"^\s*(the quick|brown fox|jumps over|the lazy dog)\s*$",
+        r"^\s*\:([\w\-\_]+)\:$",
+        r"^\s*\:sup\:\`™\`$",
+        r"^\s*\|([\w\-\_]+)\|$",
+        r"^\s*\|[^\|]+\|$",  # |tick|cross|
+        r"^\s*(bItasc|bin|bit[s]?|bl\*er|blendcache_[filename]|blender \-[drE]+([\s]+help)?|blender_doc|blender_api)\s*$",
+        r"^\s*(bpy\.(context|data|ops)|bpy\.([\w\.\-\_]+)|byte([s]?))\s*$",
+        r"^\s*(cd|mkdir|ctrl)\s*$",
+        r"^\s*(dam|deg|developer\.blender\.org|dir\(\)|dm|dx)\s*$",
+        r"^\s*(eevee|emission\(\)|esc|etc[\.]+)\s*$",
+        r"^\s*(f\(\d+\)|fBM|flac|fr|fr\/|ft)\s*$",
+        r"^\s*gabhead, Lell, Anfeo, meta-androcto$",
+        r"^\s*(git([\s]+[^\`]+)?|glTF 2\.0)\s*$",
+        r"^\s*(hm|html|iTaSC|jpeg|SubRip)\s*$",
+        r"^\s*[\%s\s\'\:]+$", # %s: %s
+        r"^\s*(kConstantScope|kUniformScope|kUnknownScope|kVaryingScope|kVertexScope|kFacevaryingScope|kbd)\s*$",
+        r"^\s*(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))\s*$",
+        r"^\s*(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr|MPEG-4 \(divx\))\s*$",
+        r"^\s*(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)\s*$",
+        r"^\s*(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\)|unregister|)\s*$",
+        r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",
+        r"^\s*(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))\s*$",
+        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)\s*$",
+        r"^\s*(tab|TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)\s*$",
         r"[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
     ]
 
@@ -429,7 +429,7 @@ class Ignore:
                 return True
         return False
 
-    NUMBERS = re.compile(r"^(([\d]+)([\,\.]?[\s]?[\d]+)*)+$")
+    NUMBERS = re.compile(r"^\s*(([\d]+)([\,\.]?[\s]?[\d]+)*)+$")
 
     def isIgnoredWord(text_line : str):
         if (text_line is None) or (len(text_line) == 0):

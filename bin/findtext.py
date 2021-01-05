@@ -7,8 +7,10 @@ import hashlib
 import os
 import re
 import sys
-translate_po_path = os.path.join(os.environ['HOME'], 'blender_manual/potranslate')
-local_lib_path = '/usr/local/lib/python3.7/site-packages'
+home_dir = os.environ['HOME']
+dev_tran = os.path.join(home_dir, 'Dev/tran')
+translate_po_path = os.path.join(dev_tran, 'blender_manual/potranslate')
+local_lib_path = os.path.join(home_dir, '.local/share/virtualenvs/tran-IsQxE3ax/lib/python3.7/site-packages')
 sys.path.append( translate_po_path )
 sys.path.append( local_lib_path )
 
@@ -1184,7 +1186,7 @@ with holding :kbd:`Alt`'
             found_dict_list = list(found_dict.items())
             for k, ref_type in found_dict_list:
                 try:
-                    cm.debugging(k)
+                    # cm.debugging(k)
                     is_a_link_path = cm.isLinkPath(k)
                     if is_a_link_path:
                         continue
@@ -1218,7 +1220,7 @@ with holding :kbd:`Alt`'
                     :term:*
                     '''
                     # cm.debugging(k)
-                    current_tran = tf.isInDict(k)
+                    current_tran, matched_text = tf.isInDict(k)
                     if current_tran:
                         print(f'translated: k:{k}, current_tran:{current_tran}')
                         continue
@@ -1242,8 +1244,8 @@ with holding :kbd:`Alt`'
                             print(f'SOMETHING WRONG WITH ABBR: {k}, {ref_type}')
                             continue
                         abbr, word = m[0]
-                        abbr_tran = tf.isInDict(abbr)
-                        word_tran = tf.isInDict(word)
+                        abbr_tran, matched_text = tf.isInDict(abbr)
+                        word_tran, matched_text = tf.isInDict(word)
                         has_abbr_tran = bool(abbr)
                         has_word_tran = bool(word_tran)
                         is_ignore_entry = (has_abbr_tran and has_word_tran)
@@ -1262,8 +1264,7 @@ with holding :kbd:`Alt`'
                         is_end_with_ref = (m_ref is not None)
                         if is_end_with_ref:
                             found_dict = cm.findInvert(cm.END_WITH_REF, k)
-                            for k, v in found_dict.items():
-                                loc, txt = v
+                            for loc, txt in found_dict.items():
                                 self.translate_word_into_dict(txt.strip(), tf, tran_dict, is_translating_ref=True)
                         else:
                             self.translate_word_into_dict(k, tf, tran_dict, is_translating_ref=True)

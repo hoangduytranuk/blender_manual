@@ -491,12 +491,12 @@ class RefList(defaultdict):
         if not tran:
             tran = ""
         self.translation = tran
+        state = (TranslationState.ACCEPTABLE)
+        if is_fuzzy:
+            state = TranslationState.FUZZY
         if is_ignored:
-            self.translation_state = TranslationState.IGNORED
-        elif is_fuzzy:
-            self.translation_state = TranslationState.FUZZY
-        else:
-            self.translation_state = TranslationState.ACCEPTABLE
+            state = TranslationState.IGNORED
+        self.translation_state = state
 
     def getType(self, xtype):
         for x in RefType:
@@ -1107,39 +1107,38 @@ class RefList(defaultdict):
         has_ref = hasRef(self.msg)
         if not has_ref:
             tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-            if is_ignore:
-                self.setTranslation("", is_fuzzy, is_ignore)
-                return
+            is_empty = (is_ignore or not bool(tran))
+            if is_empty:
+                tran = ""
 
             print(f'set translation:\nen:[{self.msg}]\nvn:[{tran}]')
             self.setTranslation(tran, is_fuzzy, is_ignore)
-            return
-
-        # entry include: (pattern, ref_type, include_original)
-        self.findPattern(pattern_list)
-
-        # **** should break up sentences here
-        self.findTextOutsideRefs()
-
-        has_record = (len(self) > 0)
-        if has_record:
-            sorted_list = list(sorted(self.items()))
-            list_type = type(sorted_list)
-            self.clear()
-            self.update(sorted_list)
-            dd("Sorted")
         else:
-            tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-            has_tran = (tran is not None)
-            if has_tran and self.keep_original:
-                tran = cm.matchCase(self.msg, tran)
-                tran = f"{tran} -- {self.msg}"
-            elif not has_tran and self.keep_original:
-                tran = f"-- {self.msg}"
-                is_fuzzy = True
-            elif not has_tran and not self.keep_original:
-                tran = ""
-            self.setTranslation(tran, is_fuzzy, is_ignore)
+            # entry include: (pattern, ref_type, include_original)
+            self.findPattern(pattern_list)
+
+            # **** should break up sentences here
+            self.findTextOutsideRefs()
+
+            has_record = (len(self) > 0)
+            if has_record:
+                sorted_list = list(sorted(self.items()))
+                list_type = type(sorted_list)
+                self.clear()
+                self.update(sorted_list)
+                dd("Sorted")
+            else:
+                tran, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+                has_tran = (tran is not None)
+                if has_tran and self.keep_original:
+                    tran = cm.matchCase(self.msg, tran)
+                    tran = f"{tran} -- {self.msg}"
+                elif not has_tran and self.keep_original:
+                    tran = f"-- {self.msg}"
+                    is_fuzzy = True
+                elif not has_tran and not self.keep_original:
+                    tran = ""
+                self.setTranslation(tran, is_fuzzy, is_ignore)
 
 
     def mergeTranslationToOrigin(self, ref_rec: RefRecord):

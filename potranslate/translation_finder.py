@@ -14,6 +14,7 @@ from ignore import Ignore as ig
 import json
 from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
+# import numpy as np
 from babel.messages.catalog import Message
 from babel.messages import pofile
 from common import DEBUG
@@ -21,6 +22,9 @@ from common import DEBUG
 from reftype import RefType
 import operator as OP
 from pprint import pprint
+# from stringmatch import StringMatch
+from fuzzywuzzy import fuzz
+# from pyphonetics import Soundex
 
 class CaseInsensitiveDict(dict):
     """Basic case insensitive dict with strings only keys."""
@@ -91,12 +95,13 @@ class NoCaseDict(OrderedDict):
     def __init__(self, data=None):
         self.is_dirty = False
         self.is_operational = False
+        self.local_keys = []
 
         super(NoCaseDict, self).__init__()
         if data is None:
             data = {}
         for key, val in data.items():
-            self[key] = val
+            self[key.lower()] = val
             # dd(f'__init__:[{key}], value:[{val}]')
         self.is_operational = True
 
@@ -107,8 +112,8 @@ class NoCaseDict(OrderedDict):
         return is_there
 
     def __setitem__(self, key, value):
-        key = self.Key(key)
-        super(NoCaseDict, self).__setitem__(key, value)
+        lkey_key = self.Key(key)
+        super(NoCaseDict, self).__setitem__(lkey_key, value)
         if self.is_operational:
             self.is_dirty = True
 
@@ -124,6 +129,185 @@ class NoCaseDict(OrderedDict):
 
     def get(self, k, default=None):
         return self[k] if k in self else default
+
+    def fuzzyTranslate(self, msg, ratio):
+
+        def getFuzzyTranslationUsingStringMatch():
+            # Application of StringMatch class, using default args
+            titlematch = StringMatch(source_titles, target_titles)
+            titlematch.tokenize()
+            match_df = titlematch.match(output_fmt='dict')
+
+            k_set = [k]
+            titlematch = StringMatch(subset, k_set)
+            titlematch.tokenize()
+            match_df = titlematch.match(output_fmt='dict')
+            dd('match_df:')
+            dd('-' * 80)
+            for subset_index, v in match_df.items():
+                _, matched_ratio = v[0]
+                matched_ratio *= 100
+                is_acceptable = (matched_ratio >= cm.AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO)
+                if is_acceptable:
+                    entry = (matched_ratio, subset[subset_index])
+                    selectable_list.append(entry)
+                    dd(entry)
+
+        def compareString(item, test_length):
+
+            item_len = len(item)
+
+            # has_fuzzy_any = cm.FUZZY_ANY_PART_PATTERN.search(item)
+            # if not has_fuzzy_any:
+            item_test_length = min(item_len, test_length)
+            item_part = item[:item_test_length]
+            is_equal = (item_part == k_part)
+            if is_equal:
+                return 0
+            elif item_part < k_part:
+                return -1
+            else:
+                return 1
+            # else:
+            #     item_word_list = item.split(cm.FUZZY_ANY_PART)
+            #     item_left_part = item_word_list[0].strip()
+            #     item_right_part = item_word_list[1].strip()
+            #
+            #     item_left_part_word_list = item_left_part.split()
+            #     item_right_part_word_list = item_right_part.split()
+            #     item_left_wc = len(item_left_part_word_list)
+            #     item_right_wc = len(item_right_part_word_list)
+            #
+            #     try:
+            #         k_word_list = k.split()
+            #         k_left_part = k_word_list[:item_left_wc]
+            #         k_right_part = k_word_list[item_right_wc:]
+            #         k_mid_part = k_word_list[item_left_wc:item_right_wc]
+            #
+            #         compare_left_ratio = fuzz.ratio(item_left_part, k_left_part)
+            #         compare_right_ratio = fuzz.ratio(item_right_part, k_right_part)
+            #         is_same = (compare_left_ratio == cm.FUZZY_ACCEPTABLE_RATIO) and (compare_right_ratio == cm.FUZZY_ACCEPTABLE_RATIO)
+            #         if is_same:
+            #             return 0
+            #         elif item_left_part < k_left_part:
+            #             return -1
+            #         else:
+            #             return 1
+            #     except Exception as e:
+            #
+            # return False
+
+        def binarySearchStartIndex(k_list, test_length):
+            lo = 0
+            hi = len(k_list)-1
+            while lo < hi:
+                mid = (lo + hi) // 2
+                item = k_list[mid]
+                value = compareString(item, test_length)
+                is_equal = (value == 0)
+                if is_equal:
+                    return mid
+                elif value < 0:
+                    lo = mid + 1
+                else:
+                    hi = mid
+            return -1
+
+        def reduceListSize(k_list, start_index, test_length):
+            new_list=[]
+            hi = len(k_list)-1
+            for i in range(start_index, -1, -1):
+                item = k_list[i]
+                value = compareString(item, test_length)
+                is_equal = (value == 0)
+                if is_equal:
+                    start_index = i
+                else:
+                    acceptable_ratio = fuzz.ratio(item, k)
+                    is_acceptable = (acceptable_ratio >= ratio)
+                    if is_acceptable:
+                        continue
+                    else:
+                        print(f'reduceListSize: going back on found list, looking for: [{k}];  stopping at: [{item}]')
+                        break
+
+            for i in range(start_index, hi):
+                lo = i+1
+                item = k_list[i]
+                value = compareString(item, test_length)
+                is_equal = (value == 0)
+                if is_equal:
+                    new_list.append(item)
+                else:
+                    acceptable_ratio = fuzz.ratio(item, k)
+                    is_acceptable = (acceptable_ratio >= ratio)
+                    if is_acceptable:
+                        continue
+                    else:
+                        return new_list
+            return new_list
+
+        # print(f'fuzzyTranslation, looking for: [{msg}]')
+        # cm.debugging(msg)
+        selectable_list=[]
+
+        loc, k = cm.removingNonAlpha(msg.lower())
+        k_length = len(k)
+        k_half_length = (k_length // 2)
+        k_part = None
+        key_list = list(self.keys())
+        # subset = list(filter(filter_function, key_list))
+        subset = key_list
+        max_k_length = int(k_length * cm.FUZZY_KEY_LENGTH_RATIO)
+        min_test_length = min(cm.MAX_FUZZY_TEST_LENGTH, max_k_length)
+        for test_length in range(min_test_length, k_length):
+            k_test_length = min(k_length, test_length)
+            k_part = k[:k_test_length]
+
+            s_index = binarySearchStartIndex(subset, test_length)
+            if s_index >= 0:
+                subset = reduceListSize(subset, s_index, test_length)
+            else:
+                break
+
+        if not subset:
+            return None, None
+
+        number_of_possible_fuzzy_entries = len(subset)
+        is_too_large_subset = (number_of_possible_fuzzy_entries > cm.MAX_FUZZY_LIST)
+        if is_too_large_subset:
+            return None, None
+
+        for selected in subset:
+            ratio = fuzz.ratio(selected, k)
+            entry=(ratio, selected)
+            selectable_list.append(entry)
+
+        if not selectable_list:
+            return None, None
+
+        selectable_list.sort(reverse=True)
+
+        dd(f'selectable_list: ')
+        dd('-' * 80)
+        pp(selectable_list)
+        dd('-' * 80)
+
+        first_entry = selectable_list[0]
+        accepted_ratio, word_selected = first_entry
+        is_acceptable = (accepted_ratio >= ratio)
+        if not is_acceptable:
+            dd(f'looking for:[{k}]; first_entry:[{first_entry}], UNACCEPTABLE, ratio demanded is higher than: [{ratio}]')
+            return None, None
+
+        tran = self[word_selected]
+        tran = cm.insertTranslation(msg.lower(), word_selected, tran)
+
+        dd(f'looking for:[{k}]; first_entry:[{first_entry}] => tran:[{tran}]')
+        dd('-' * 80)
+        # covered_length = len(word_selected)
+
+        return tran, word_selected
 
     def __delitem__(self, key):
         key = self.Key(key)
@@ -270,7 +454,8 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0002.json")
+        home_dir = os.path.join(home_dir, 'Dev/tran')
+        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
         self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005_0001.json")
         self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
 
@@ -287,8 +472,8 @@ class TranslationFinder:
         self.setupKBDDicList()
 
         self.dic_list = None
-        self.master_dic_list = None
-        self.backup_dic_list = None
+        self.master_dic_list: NoCaseDict = None
+        self.backup_dic_list: NoCaseDict = None
         self.kbd_dict = None
 
         self.tran_find_func_list = [
@@ -317,6 +502,11 @@ class TranslationFinder:
         original_text = str(msg)
         selective_list = []
         try:
+            #
+            # trans = self.isInDict(msg, find_fuzzy=True)
+            # if trans:
+            #     return msg, trans, len(msg)
+
             for f, params in self.tran_find_func_list:
                 txt, param1, param2 = params
                 is_empty = not (param1 or param2)
@@ -363,6 +553,13 @@ class TranslationFinder:
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
         self.kbd_dict = NoCaseDict(TranslationFinder.KEYBOARD_TRANS_DIC_PURE)
+        cm.testDict(self.master_dic_list)
+
+        keylist = list(self.master_dic_list.keys())
+        for k in keylist:
+            is_treat = k.startswith('treat')
+            if is_treat:
+                print(k)
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
@@ -422,7 +619,7 @@ class TranslationFinder:
         result_list = OrderedDict()
         text_list = cm.patternMatchAllToDict(cm.COMMON_SENTENCE_BREAKS, msg)
         for loc, t in text_list.items():
-            tran = self.isInDict(t)
+            tran, matched_text = self.isInDict(t)
             count_translated += (1 if tran else 0)
             count_untranslated += (1 if not tran else 0)
             text_entry = ((t, tran) if tran else (t, ""))
@@ -459,15 +656,9 @@ class TranslationFinder:
 
         def translatedListToText(loc_translated_list: list, current_translation, filter_function) -> str:
 
-            # sorted the list by text length (maximum covering distance goes first, key=0), that's reverse=True is for
-            # filter function will check if the location is already in local location database or that location is ALREADY
-            # covered (overlapped) by previous instances.
-            filtered_translated_list = list(filter(filter_function, sorted(loc_translated_list, key=OP.itemgetter(0), reverse=True)))
+            loc_translated_list.sort(key=OP.itemgetter(1), reverse=True)
 
-            filtered_translated_list.sort(key=OP.itemgetter(1, 0))
-            filtered_translated_list.reverse()
-
-            for loc_covered_length, local_location, loc_dict_txt, loc_tran_txt in filtered_translated_list:
+            for loc_covered_length, local_location, loc_dict_txt, loc_tran_txt in loc_translated_list:
                 loc_ss, loc_ee = local_location
                 loc_left = current_translation[:loc_ss]
                 loc_right = current_translation[loc_ee:]
@@ -479,47 +670,33 @@ class TranslationFinder:
 
         masking_string = str(text)
         translated_list = []
-        covered_length = 0
         translation = str(text)
         # must masking after replacement, even entries are in local_dict, because definitions could overlapped (Vertex Group Weight/Clean Vertext Group for instance)
-        for loc, v in local_dict.items():
-            untran_txt, tran_txt = v
-
+        for covered_length, loc, untran_txt, tran_txt in local_dict:
             # update every instance found in the temp_translation with already found translation text
-            txt_length = len(untran_txt)
-            tran_dict_entry = (txt_length, loc, untran_txt, tran_txt)
-            translated_list.append(tran_dict_entry)
-
-            empty_part = (cm.FILLER_CHAR * len(untran_txt))
             ss, ee = loc
+            masking_string_part = masking_string[ss:ee]
+            is_translated = (cm.FILLER_CHAR_ALL_PATTERN.search(masking_string_part) is not None)
+            if is_translated:
+                continue
+
+            empty_part = (cm.FILLER_CHAR * covered_length)
             left = masking_string[:ss]
             right = masking_string[ee:]
             masking_string = left + empty_part + right
 
-            # if the translation has provided fully then it's enough to get out
-            loc, tester_left = cm.removingNonAlpha(left)
-            loc, tester_right = cm.removingNonAlpha(right)
-            is_translation_provided_fully = not (tester_left or tester_right)
-            if is_translation_provided_fully:
-                # replacing dict into text and finish
-                print(f'FINISH EARLY: is_translation_provided_fully = TRUE')
-                temp_translation = translatedListToText(translated_list, translation, filerLocation)
-                print(f'translation:[{translation}]; temp_translation:[{temp_translation}]')
-                return temp_translation
-
         # for untranslated words, we will try to find definitions for each, using reductions
         # check to see if untranslated word
-        has_translatable_characters = (re.search(r'[a-zA-Z]+', masking_string) is not None)
+        has_translatable_characters = (cm.TRANSLATABLE_CHARACTERS.search(masking_string) is not None)
         if not has_translatable_characters:
-            temp_translation = translatedListToText(translated_list, translation, filerLocation)
+            temp_translation = translatedListToText(local_dict, translation, filerLocation)
             return temp_translation
 
-        un_tran_list = cm.findInvert(cm.FILLER_CHAR,
+        un_tran_list = cm.findInvert(cm.FILLER_CHAR_PATTERN,
                                      masking_string,
                                      is_removing_surrounding_none_alphas=True)
 
-        for k, v in un_tran_list.items():
-            remain_loc, un_tran_txt = v
+        for remain_loc, un_tran_txt in un_tran_list.items():
             is_ignore = ig.isIgnored(un_tran_txt)
             if is_ignore:
                 print(f'replacingUsingDic: IGNORING: un_tran_txt:[{un_tran_txt}]')
@@ -531,59 +708,103 @@ class TranslationFinder:
                 print(f'replacingUsingDic() findByReduction: un_tran_txt:[{un_tran_txt}]')
                 print(e)
                 raise e
+
             has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
             if has_tran:
-                txt_length = len(un_tran_txt)
-                tran_dict_entry = (txt_length, remain_loc, un_tran_txt, tran_sub_text)
-                translated_list.append(tran_dict_entry)
+                cover_length = len(un_tran_txt)
+                tran_dict_entry = (cover_length, remain_loc, un_tran_txt, tran_sub_text)
+                local_dict.append(tran_dict_entry)
 
         # replacing dict into text and finish
-        temp_translation = translatedListToText(translated_list, translation, filerLocation)
+        temp_translation = translatedListToText(local_dict, translation, filerLocation)
         has_translation = not (temp_translation == text)
         if not has_translation:
             return None
         else:
             return temp_translation
 
+    def tryFuzzyTranlation(self, msg):
+        msg_len = len(msg)
+        num_msg_word = (len(msg.split()))
+        last_trial_fuzzy_text = None
+        for acceptable_ratio in range(cm.FUZZY_ACCEPTABLE_RATIO, cm.MAX_FUZZY_ACCEPTABLE_RATIO, cm.FUZZY_RATIO_INCREMENT):
+            print(f'tryFuzzyTranlation: looking for: [{msg}]; trying at acceptable_ratio: [{acceptable_ratio}]')
+            tran_sub_text, fuzzy_text = self.isInDict(msg, find_fuzzy=True, ratio=acceptable_ratio)
+            has_translation = (bool(tran_sub_text) and bool(fuzzy_text))
+            fuzzy_len = (len(fuzzy_text) if has_translation else 0)
+            fuzzy_percent = (fuzzy_len / msg_len * 100)
+            inc_percentage = 0
+            if has_translation:
+                inc_percentage = cm.wordInclusiveLevel(msg, fuzzy_text)
+            is_all_fuzzy_text_included = (inc_percentage >= cm.MAX_FUZZY_ACCEPTABLE_RATIO)
+            is_fuzzy_percent_acceptable = (fuzzy_percent >= cm.FUZZY_ACCEPTABLE_RATIO)
+            is_acceptable_len = (has_translation and is_all_fuzzy_text_included and is_fuzzy_percent_acceptable)
+            if is_acceptable_len:
+                print(f'tryFuzzyTranlation: looking for: [{msg}] found and accept: [{tran_sub_text}] trying at acceptable_ratio: [{acceptable_ratio}]')
+                return tran_sub_text, fuzzy_len
+            else:
+                no_tranlation = (not has_translation)
+                first_trial_and_no_translation = no_tranlation and (acceptable_ratio == cm.FUZZY_ACCEPTABLE_RATIO)
+                is_fuzzy_text_repeated = has_translation and (bool(last_trial_fuzzy_text) and fuzzy_text == last_trial_fuzzy_text)
+                no_need_to_go_further = first_trial_and_no_translation or is_fuzzy_text_repeated
+                if no_need_to_go_further:
+                    if no_tranlation:
+                        print(f'tryFuzzyTranlation: looking for: [{msg}] no translation, STOP!')
+                    else:
+                        print(f'tryFuzzyTranlation: looking for: [{msg}] text found is REPEATED, STOP! ')
+                    break
+                last_trial_fuzzy_text = fuzzy_text
+                print(f'tryFuzzyTranlation: repeat loop')
+        return None, 0
+        # is_check_fuzzy_text = and (fuzzy_text != msg)
+        # if is_check_fuzzy_text:
+        #     un_tran_word_dict = cm.findUntranslatedWords(msg, fuzzy_text)
+
     def buildLocalTranslationDict(self, msg):
-        local_translated_dict = {} # for quick, local translation
+
+        def loc_filter_function(item):
+            i_loc, i_txt = item
+            i_s, i_e = i_loc
+            for d_loc in done_loc:
+                d_s, d_e = d_loc
+                is_done = (i_s >= d_s) and (i_e <= d_e)
+                if is_done:
+                    return False
+            return True
+
+        local_translated_dict = [] # for quick, local translation
 
         # generate all possible combinations of string lengths
-        loc_map_length_sorted_reverse = self.genmap(msg)
-
-        dd(f'loc_map_length_sorted_reverse: {loc_map_length_sorted_reverse}')
+        loc_map = self.genmap(msg)
+        dd(f'buildLocalTranslationDict() loc_map: {loc_map}')
         # translate them all if possible, store in local dict
         cm.debugging(msg)
-        for loc, orig_sub_text in loc_map_length_sorted_reverse:
-            is_ignore = (ig.isIgnored(orig_sub_text))
-            if is_ignore:
-                continue
+        blank_msg = str(msg)
+        done_loc = []
+        finished = False
+        i = 0
+        while not finished:
+            finished = (len(loc_map) == 0)
+            if finished:
+                break
 
-            # dd(f'blindTranslation: loc:{loc} orig_sub_text:{orig_sub_text}')
-            tran_sub_text = self.isInDict(orig_sub_text)
-            ss, ee = loc
+            loc, orig_sub_text = loc_map.pop(0)
+            tran_sub_text, matched_text = self.isInDict(orig_sub_text)
 
             if not tran_sub_text:
-                cleaned_loc, cleaned_orig_sub_text = cm.removingNonAlpha(orig_sub_text)
-                temp_tran_sub_text = self.isInDict(cleaned_orig_sub_text)
-                if temp_tran_sub_text:
-                    cl_s, cl_e = cleaned_loc
-                    cl_left = orig_sub_text[:cl_s]
-                    cl_right = orig_sub_text[cl_e:]
-                    tran_sub_text = cl_left + temp_tran_sub_text + cl_right
+                tran_sub_text, matched_text = self.tryFuzzyTranlation(orig_sub_text)
 
             if tran_sub_text:
-                local_dict_entry = {loc: (orig_sub_text, tran_sub_text)}
-                local_translated_dict.update(local_dict_entry)
-        sorted_list = list(sorted(list(local_translated_dict.items()), reverse=True))
-        return_dict = OrderedDict(sorted_list)
-        return return_dict
+                cover_length = len(matched_text)
+                done_loc.append(loc)
+                local_dict_entry = (cover_length, loc, orig_sub_text, tran_sub_text)
+                local_translated_dict.append(local_dict_entry)
+                loc_map = list(filter(loc_filter_function, loc_map)) # removing parts that are shadowed by translated area, avoid repeating unnecessarily
+
+        local_translated_dict.sort(key=OP.itemgetter(1,2), reverse=True)
+        return local_translated_dict
 
     def blindTranslation(self, msg):
-        cm.debugging(msg)
-        if ig.isIgnored(msg):
-            return None
-
         # cm.debugging(txt)
         new_text, trans, cover_length = self.findByReduction(msg)
         is_found_trans = (trans and not trans == msg)
@@ -1140,10 +1361,16 @@ class TranslationFinder:
             with open(file_path) as in_file:
                 # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
                 dic = json.load(in_file)
-                length = len(dic)
-                dd(f'loadJSONDic - loaded dic, length:{length}')
-
-            return_dic = NoCaseDict(dic)
+            length = len(dic)
+            dd(f'loadJSONDic - loaded dic, length:{length}')
+            lcase_dict = {}
+            for k, v in dic.items():
+                entry = {k.lower(): v}
+                lcase_dict.update(entry)
+            dict_list = list(lcase_dict.items())
+            sorted_dict_list = list(sorted(dict_list))
+            temp_dict = OrderedDict(sorted_dict_list)
+            return_dic = NoCaseDict(temp_dict)
             # cm.testDict(return_dic)
 
         except Exception as e:
@@ -1153,25 +1380,41 @@ class TranslationFinder:
 
         return return_dic
 
-    def isInDict(self, msg, dic_to_use=None):
+    def isInDict(self, msg, dic_to_use=None, find_fuzzy=False, ratio=cm.FUZZY_ACCEPTABLE_RATIO):
+        tran = None
+        matched_text = msg
         search_dict = (dic_to_use if dic_to_use else self.master_dic)
         if not search_dict:
             msg = 'NO Dictionary is available. Stopped'
             print(msg)
             raise Exception(msg)
 
-        is_found = (msg in search_dict)
+        msg_length = len(msg)
+        stripped_msg = msg.strip()
+        if ig.isIgnored(stripped_msg):
+            return None, matched_text
+
+        is_found = (stripped_msg in search_dict)
         if is_found:
-            tran = search_dict[msg]
+            tran = search_dict[stripped_msg]
+
+        is_find_fuzzy = (find_fuzzy and not is_found)
+        if is_find_fuzzy:
+            tran, matched_text = search_dict.fuzzyTranslate(stripped_msg, ratio)
+
+        # cm.debugging(msg)
+        if tran:
+            tran = msg.replace(stripped_msg, tran)
             tran = cm.matchCase(msg, tran)
-            dd(f'{msg} => {tran}')
+            dd(f'isInDict: {msg} => {tran}')
         else:
             tran = None
-        return tran
+        return tran, matched_text
 
     def isInListByDict(self, msg, is_master):
         search_dic = (self.master_dic if is_master else self.backup_dic)
-        return self.isInDict(msg, dic_to_use=search_dic)
+        tran, matched_text = self.isInDict(msg, dic_to_use=search_dic)
+        return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:
         new_txt, subcount = cm.SYMBOLS.subn('', txt)
@@ -1181,9 +1424,9 @@ class TranslationFinder:
             if is_ignore:
                 return txt, None, cover_length
 
-            trans = self.isInDict(new_txt)
+            trans, matched_text = self.isInDict(new_txt)
             if trans:
-                cover_length = len(txt)
+                cover_length = len(matched_text)
                 return new_txt, trans, cover_length
         return txt, None, cover_length
 
@@ -1196,25 +1439,11 @@ class TranslationFinder:
             if is_ignore:
                 return txt, None, cover_length
 
-            trans = self.isInDict(new_txt)
+            trans, matched_text = self.isInDict(new_txt)
             if trans:
-                cover_length = len(txt)
+                cover_length = len(matched_text)
                 return new_txt, trans, cover_length
         return txt, None, cover_length
-
-    def insertTranslation(self, orig_str: str, orig_word: str, new_word: str, current_trans: str) -> str:
-        is_valid = (orig_str and orig_word and new_word and current_trans)
-        if not is_valid:
-            return current_trans
-
-        list_of_remain_loc = cm.locRemain(orig_word, new_word)
-        new_tran = str(current_trans)
-        for ss, ee in list_of_remain_loc:
-            left = orig_word[:ss]
-            right = orig_word[ee:]
-            new_tran = left + current_trans + right
-        trans = new_tran
-        return trans
 
     def tryToFindTranslation(self, txt: str) -> str:
         cover_length = 0
@@ -1238,28 +1467,33 @@ class TranslationFinder:
 
             translated_dict = {}
             translation = str(txt)
-            for k, v in found_dict.items():
-                loc, orig_txt = v
+            for loc, orig_txt in found_dict.items():
                 s, e = loc
 
+                cm.debugging(orig_txt)
                 is_ignore = ig.isIgnored(orig_txt)
                 if is_ignore:
                     continue
 
                 new_text = str(orig_txt)
-                trans = self.isInDict(orig_txt)
-                is_found_trans = (trans and not trans == orig_txt)
-                if not is_found_trans:
+                trans, matched_text = self.isInDict(orig_txt)
+                if not trans:
+                    tran_sub_text, matched_text = self.tryFuzzyTranlation(orig_txt)
+
+                if trans:
+                    cover_length = len(matched_text)
+
+                if not trans:
                     new_text, trans, cover_length = self.findByReduction(orig_txt)
 
                 is_found_trans = (trans and not trans == orig_txt)
                 if is_found_trans:
-                    trans = self.insertTranslation(txt, orig_txt, new_text, trans)
-                    translated_entry = {s: (loc, orig_txt, trans)}
+                    trans = cm.insertTranslation(orig_txt, new_text, trans)
+                    translated_entry = {loc: (orig_txt, trans)}
                     translated_dict.update(translated_entry)
 
-            for k, v in translated_dict.items():
-                loc, orig_txt, trans = v
+            for loc, v in translated_dict.items():
+                orig_txt, trans = v
                 s, e = loc
                 left = translation[:s]
                 right = translation[e:]
@@ -1289,13 +1523,9 @@ class TranslationFinder:
         cover_length = 0
         # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
 
-        is_ignore = ig.isIgnored(txt)
-        if is_ignore:
-            return txt, None
-
-        trans = self.isInDict(new_txt)
+        trans, matched_text = self.isInDict(new_txt)
         if trans:
-            cover_length = len(txt)
+            cover_length = len(matched_text)
             dd(f'removeStarAndEndingPunctuations: FOUND {new_txt} => {trans}')
         return new_txt, trans, cover_length
 
@@ -1339,14 +1569,14 @@ class TranslationFinder:
         if is_double_ending:
             # dd(f'is_double_ending txt:{txt}')
             test_text = txt[:-1]
-            trans = self.isInDict(test_text)
+            trans, matched_text = self.isInDict(test_text)
             if trans:
                 return test_text, trans
         return txt, None
 
     def replaceEndings(self, part, clipped_txt: str):
         def checkTranslationForText(test_text):
-            trans = self.isInDict(test_text)
+            trans, matched_text = self.isInDict(test_text)
             if trans:
                 return test_text, trans, True
 
@@ -1368,12 +1598,6 @@ class TranslationFinder:
                 test_text_less, less_rep_count = re.subn(p, '', clipped_txt)
                 test_text_with, with_rep_count = re.subn(p, ending, clipped_txt)
                 test_text_more = (clipped_txt + replacement_word)
-
-                if ig.isIgnored(test_text_more):
-                    continue
-
-                if ig.isIgnored(test_text_less):
-                    continue
 
                 test_text, trans, has_translation = checkTranslationForText(test_text_more)
                 if has_translation:
@@ -1415,43 +1639,39 @@ class TranslationFinder:
                 prefixed_list.append(test_text)
 
         for test_text in prefixed_list:
-            tran = self.isInDict(test_text)
+            tran, matched_text = self.isInDict(test_text)
             if not tran:
                 is_double_ending = (len(test_text) > 2) and (test_text[-1] == test_text[-2])
                 if is_double_ending:
                     test_text = test_text[:-1]
-                    tran = self.isInDict(test_text)
+                    tran, matched_text = self.isInDict(test_text)
 
             if tran:
-                cover_length = len(txt)
+                cover_length = len(matched_text)
                 return test_text, tran, cover_length
         return txt, None, cover_length
 
     def removeByPatternListAndCheck(self, txt, part_list, at):
         cover_length = 0
-        txt_len = len(txt)
-        tran = self.isInDict(txt)
+        tran, matched_text = self.isInDict(txt)
         if tran:
-            cover_length = txt_len
+            cover_length = len(matched_text)
             return txt, tran, cover_length
 
         is_at_start = (at == cm.START_WORD)
         is_at_end = (at == cm.END_WORD)
         test_text = str(txt)
+        cover_length = 0
         if is_at_start:
             test_text = cm.NON_WORD_STARTING.sub("", test_text)
         elif is_at_end:
             test_text = cm.NON_WORD_ENDING.sub("", test_text)
 
-        is_ignore = ig.isIgnored(test_text)
-        if (is_ignore):
-            return txt, None, cover_length
-
-    # part_list = ['like', '-like']
         word_len = len(test_text)
         text_before_cutoff = str(test_text)
         # pp(part_list)
         for part in part_list:
+            cover_length = 0
             part_len = len(part)
             if part_len >= word_len:
                 break
@@ -1479,14 +1699,14 @@ class TranslationFinder:
                                 (chopped_txt not in cm.verb_with_ending_y) and \
                                 (chopped_txt not in cm.verb_with_ending_s))
                 if tran:
-                    cover_length = txt_len
+                    cover_length = len(text_before_cutoff)
                     if fix_tran:
                         tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                     return test_text, tran, cover_length
 
-            tran = self.isInDict(test_text)
+            tran, matched_text = self.isInDict(test_text)
             if tran:
-                cover_length = txt_len
+                cover_length = len(matched_text)
                 if has_end:
                     # dd('has_end')
                     tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
@@ -1501,20 +1721,21 @@ class TranslationFinder:
                                 (chopped_txt not in cm.verb_with_ending_y) and \
                                 (chopped_txt not in cm.verb_with_ending_s))
                 if tran:
-                    cover_length = txt_len
+                    cover_length = len(text_before_cutoff)
                     if fix_tran:
                         tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                     return test_text, tran, cover_length
                 else:
                     chopped_txt, tran = self.reduceDuplicatedEnding(test_text)
                     if tran:
-                        cover_length = txt_len
+                        cover_length = len(text_before_cutoff)
                         tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                         return chopped_txt, tran, cover_length
 
             chopped_txt, tran = self.reduceDuplicatedEnding(text_before_cutoff)
+
             if tran:
-                cover_length = txt_len
+                cover_length = len(text_before_cutoff)
                 if is_at_end:
                     tran = self.fixTranslationWithKnowsPrefixSuffixes(text_before_cutoff, tran, is_prefix=False)
                 elif is_at_start:
@@ -1556,31 +1777,32 @@ class TranslationFinder:
 
     def findTranslation(self, msg):
         trans = None
-
-        # # dd("findTranslation:", msg)
-        # ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
-        # if ex_ga_msg:
-        #     # dd("findTranslation - ex_ga_msg", msg, ex_ga_msg)
-        #     msg = ex_ga_msg[0]
-
+        is_fuzzy = False
         is_ignore = ig.isIgnored(msg)
         if (is_ignore):
-            return None, is_ignore
+            return None, is_fuzzy, is_ignore
 
         orig_msg = str(msg)
-        trans = self.isInDict(orig_msg)
+        trans, matched_text = self.isInDict(orig_msg)
+        is_found = (trans is not None) and not (trans == orig_msg)
+        # if not is_found:
+        #     print('trying fuzzy')
+        #     trans = self.isInDict(msg, find_fuzzy=True)
+        #     print(f'result of isInDect find_fuzzy=True :[{orig_msg}] => [{trans}]')
+        #     is_fuzzy = True
 
         has_tran = not (trans is None)
         has_len = (has_tran and (len(trans) > 0))
         has_translation = has_len and (trans != 'None')
         if has_translation:
+            print(f'result of isInDict:[{orig_msg}] => [{trans}] => is_found: [{is_found}]')
             trans = cm.removeOriginal(msg, trans)
             trans = self.removeTheWord(trans)
         else:
             trans = None
         if trans is None:
             dd(f"NOT found: [{msg}]")
-        return trans, is_ignore
+        return trans, is_fuzzy, is_ignore
 
     def findTranslationByFragment(self, msg):
         # orig_msg = str(msg)
@@ -1599,7 +1821,7 @@ class TranslationFinder:
             is_possessive = o_txt.endswith("'s")
             if is_possessive:
                 o_txt = o_txt[:-2]
-            trans_word, is_ignore, weight = self.findTranslation(o_txt)
+            trans_word, is_fuzzy, is_ignore = self.findTranslation(o_txt)
             if is_ignore:
                 continue
 
@@ -1628,11 +1850,18 @@ class TranslationFinder:
         return trans
 
     def translate(self, msg):
+        trans = None
         try:
+            dd(f'calling findTranslation')
             is_fuzzy = False
-            trans, is_ignore = self.findTranslation(msg)
+            trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
                 return (None, False, is_ignore)
+
+            if not trans:
+                dd(f'calling tryFuzzyTranlation')
+                trans, cover_length = self.tryFuzzyTranlation(msg)
+                is_fuzzy = bool(trans)
 
             if not trans:
                 dd(f'calling blindTranslation')
@@ -1644,6 +1873,7 @@ class TranslationFinder:
                 if is_same:
                     trans = None
                 else:
+                    dd(f'calling removeTheWord')
                     trans = self.removeTheWord(trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
@@ -1765,8 +1995,7 @@ class TranslationFinder:
         has_ref_link = (cm.REF_LINK.search(msg) is not None)
         if has_ref_link:
             found_list = cm.findInvert(cm.REF_LINK, msg)
-            for k, v in reversed(list(found_list.items())):
-                loc, orig_txt = v
+            for loc, orig_txt in reversed(list(found_list.items())):
                 s, e = loc
                 tran, is_fuzzy, is_ignore = self.translate(orig_txt)
                 if is_ignore:
@@ -1791,7 +2020,7 @@ class TranslationFinder:
 
             tran_found = (tran and tran != orig_txt)
             if tran_found:
-                # tran = self.recomposeAbbrevTranslation(orig_txt, tran)
+                tran = self.recomposeAbbrevTranslation(orig_txt, tran)
                 tran_txt = f"{tran} -- {orig_txt}"
             else:
                 tran_txt = f" -- {orig_txt}"
@@ -1802,8 +2031,7 @@ class TranslationFinder:
         men_is_ignore = False
         tran_txt = str(msg)
         word_list = cm.findInvert(cm.MENU_SEP, msg)
-        for k, v in word_list.items():
-            loc, word = v
+        for loc, word in word_list.items():
             s, e = loc
             tran, is_fuzzy, is_ignore = self.translate(word)
             if is_ignore:
@@ -1897,8 +2125,7 @@ class TranslationFinder:
         is_ignore_list=[]
         word_list_dict = cm.findInvert(cm.COLON_CHAR, tran_txt)
         word_list_count = len(word_list_dict)
-        for k, v in word_list_dict.items():
-            loc, orig_txt = v
+        for loc, orig_txt in word_list_dict.items():
             s, e = loc
             tran, is_fuzzy, is_ignore = self.translate(orig_txt)
             is_fuzzy_list.append(is_fuzzy)

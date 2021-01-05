@@ -3,6 +3,7 @@ cd $BLENDER_MAN_EN/build/gettext
 out_file=~/temp.txt
 temp_file=~/tmp.txt
 echo "" > $out_file
+echo "" > $temp_file
 for f in $(find . -name '*.pot'): 
 do
     # echo $f
@@ -13,7 +14,8 @@ do
     # cat $out_file | grep -o -E '\([^\(\)]+\)' | grep -o -E '\([^\(\)]+\)' | sed 's/(//g' | sed 's/)//g' 
     ## arched bracket original form
     # cat $out_file | grep -o -E '(^|\s)\([^\(\)]+\)'
-    cat $out_file | grep -o -E '(^|\s)\([^\(\)]+\)'
+    # cat $out_file | grep -o -E '(^|\s)\([^\(\)]+\)'
+    cat $out_file | grep -o -E 'stand \w+ \w+' >> $temp_file
     ## function declaration forms, ie. func(a, b, c)
     # cat $out_file | grep -o -E '\w+\([^\(\)]+\)' 
     # # double quote
@@ -43,7 +45,7 @@ do
 #     grep -o -E ':[[:alnum:]]+:\`([^\`]+)' $f | sed 's/\<[^<>]+\>//g'
 done
 # done > ~/findgettext.log
-# cat ~/findgettext.log | sort -u > ~/findgettext_cleaned.log
+cat $temp_file | sort | uniq -c | sort > $out_file
 
 # f=./editors/image/introduction.pot
 # grep -o -E ':[[:alnum:]]+:\`([^\`]+)\`' $f 

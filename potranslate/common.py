@@ -8,7 +8,6 @@ sys.path.append(po_tran_path)
 # sys.path.append('/usr/local/lib/python3.8/site-packages')
 
 # print(f'common sys.path: {sys.path}')
-
 import os
 import re
 import inspect
@@ -20,6 +19,7 @@ import time
 from reftype import RefType
 from collections import deque
 # from nltk.corpus import wordnet as wn
+from fuzzywuzzy import fuzz
 
 # import Levenshtein as LE
 #import logging
@@ -54,12 +54,18 @@ def dd(*args, **kwargs):
 
 
 class Common:
-    s = "( c>5 or (p==4 and c<4) )"
     total_files = 1358
     file_count = 0
     PAGE_SIZE = 20 * 4096
-    # It's pyparsing.printables without ()
-    CHAR_NO_ARCHED_BRAKETS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'*+,-./:;<=>?@[\]^dd`{|}~'
+    MAX_FUZZY_LIST = 10
+    MAX_FUZZY_TEST_LENGTH = 10
+    FUZZY_ACCEPTABLE_RATIO = 80
+    MAX_FUZZY_ACCEPTABLE_RATIO = 95
+    FUZZY_RATIO_INCREMENT = 5
+    AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
+    FUZZY_KEY_LENGTH_RATIO = 0.3
+    FUZZY_ANY_PART = '$$$'
+    FUZZY_ANY_PART_PATTERN = re.compile(r'\s*\${3}\s*')
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -136,7 +142,7 @@ class Common:
     NUMBER_RE = re.compile(r"%s%s%s" % (PREFIX_PATTERN, NUMBER_PATTERN,
                                         SUFFIX_PATTERN))
     WHITESPACE = re.compile('[\n\r\t\v\f]')
-    EMAIL_ADDRESS = re.compile(r"^.+@[^\.].*\.[a-z]{2,}$")      # start to end
+    EMAIL_ADDRESS = re.compile(r"^\s*.+@[^\.].*\.[a-z]{2,}$")      # start to end
     DOC_LINK = re.compile(r'^(\/\w+)+$')
 
     WORD_SEPARATION = re.compile('('
@@ -193,6 +199,7 @@ class Common:
     NON_WORD = re.compile(r'([\W]+)')
     NON_WORD_ENDING = re.compile(r'([\W]+)$')
     NON_WORD_STARTING = re.compile(r'^([\W]+)')
+    TRANSLATABLE_CHARACTERS = re.compile(r'[a-zA-Z]+')
 
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
@@ -250,6 +257,10 @@ class Common:
     FILLER_CHAR='¶'
     filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
     FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
+
+    filler_char_all_pattern_str = r'^[%s\s]+$' % FILLER_CHAR
+    FILLER_CHAR_ALL_PATTERN = re.compile(filler_char_all_pattern_str)
+
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
@@ -265,8 +276,8 @@ class Common:
     PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
     API_REF = re.compile(r'^blender_api:.*$')
 
-    SPACE_WORD_SEP =  re.compile(r'[\S]+')
-    ACCEPTABLE_WORD =  re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
+    SPACE_WORD_SEP = re.compile(r'[\S]+')
+    ACCEPTABLE_WORD = re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
 
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
 
@@ -275,7 +286,7 @@ class Common:
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
-    SYMBOLS = re.compile(r'[^a-zA-Z0-9]+')
+    SYMBOLS = re.compile(r'[^a-zA-Z0-9\s]+')
     SPACES = re.compile(r'\s+')
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
@@ -556,7 +567,7 @@ class Common:
             Common.WORD_SPLITTER = '|'.join(map(re.escape, delim))
 
         w_list = re.split(Common.WORD_SPLITTER,txt)
-        print(f'isLinkPath w_list:{w_list}')
+        # print(f'isLinkPath w_list:{w_list}')
         w_count = len(w_list)
         is_path = False
         if w_count > 2:
@@ -566,7 +577,7 @@ class Common:
                 if not is_just_word:
                     is_path = False
                     break
-        print(f'isLinkPath:{is_path} => "{txt}"')
+        # print(f'isLinkPath:{is_path} => "{txt}"')
         return is_path
 
     def shouldHaveDuplicatedEnding(cutoff_part, txt):
@@ -897,7 +908,7 @@ class Common:
         new_found_list = {}
         for o_loc, word in found_list.items():
             a_s, a_e = o_loc
-            entry = {a_s: (o_loc, word)}
+            entry = {o_loc: word}
 
             if is_removing_surrounding_none_alphas:
                 new_loc, new_word = Common.removingNonAlpha(word)
@@ -910,7 +921,7 @@ class Common:
                 a_e = a_s + len(new_word)
                 new_loc = (a_s, a_e)
 
-                entry = {a_s: (new_loc, new_word)}
+                entry = {new_loc: new_word}
             new_found_list.update(entry)
         reversed_list = list(new_found_list.items())
         reversed_list.reverse()
@@ -1378,26 +1389,13 @@ class Common:
         return abbrev_orig_rec, abbrev_part, exp_part
 
     def testDict(dic_to_use):
-        key_list = dic_to_use.keys()
-        debug_text = 'like'
-        for k in key_list:
-            is_there = (k in dic_to_use)
-            is_debug = (k.lower() == debug_text.lower())
-            if not is_there:
-                print(f'key:{k} IS NOT THERE')
-            if is_debug:
-                print(f'debug_text:{debug_text} key:{k} exists: {is_there}')
-                exit(0)
-        exit(0)
-        # test_txt = 'like'
-        #
-        # is_test_text_in_dic = (test_txt in dic_to_use)
-        # if is_test_text_in_dic:
-        #     # value_old = dic[test_txt]
-        #     value = dic_to_use[test_txt]
-        #     dd(f'found: {test_txt} => {value}')
-        # else:
-        #     dd(f'NOT found: {test_txt} SOMETHING WRONG!!!')
+        key_list = list(dic_to_use.keys())
+        debug_text = 'trick'
+        is_there = (debug_text.lower() in key_list)
+        if not is_there:
+            print(f'debug_text:{debug_text} IS NOT THERE')
+        else:
+            print(f'debug_text:[{debug_text}] exists:{is_there}')
 
     def getTextWithinBrackets(
             start_bracket: str,
@@ -1513,6 +1511,19 @@ class Common:
         new_word = word[s:e]
         return (loc, new_word)
 
+    def insertTranslation(orig_word: str, new_word: str, current_trans: str) -> str:
+        is_valid = (orig_word and new_word and current_trans)
+        if not is_valid:
+            return current_trans
+
+        list_of_remain_loc = Common.locRemain(orig_word, new_word)
+        new_tran = str(current_trans)
+        for ss, ee in list_of_remain_loc:
+            left = orig_word[:ss]
+            right = orig_word[ee:]
+            new_tran = left + current_trans + right
+        trans = new_tran
+        return trans
 
     def locRemain(original_word: str, new_word: str) -> list:
         '''
@@ -1527,19 +1538,27 @@ class Common:
             parts of the word in the original_word)
         '''
         try:
-            p = re.compile(new_word, flags=re.I)
+            try:
+                p = re.compile(new_word, flags=re.I)
+            except Exception as e:
+                new_word_esc = re.escape(new_word)
+                p = re.compile(new_word_esc, flags=re.I)
+
             list_of_occurences = Common.patternMatchAllToDict(p, original_word)
             # entry = {loc: orig}
             list_of_places = []
-            max = len(original_word)
+            max_len = len(original_word)
             list_of_found_locations = list_of_occurences.keys()
             for loc in list_of_found_locations:
                 s, e = loc
-                while s > 0 and original_word[s].isalnum():
+                while s-1 >= 0 and original_word[s-1].isalnum():
                     s -= 1
 
-                while e < max and original_word[e].isalnum():
+                while e+1 < max_len and original_word[e+1].isalnum():
                     e += 1
+
+                s = max(0, s)
+                e = min(e, max_len)
                 loc = (s, e)
                 list_of_places.append(loc)
             return list_of_places
@@ -1619,8 +1638,80 @@ class Common:
         bracketed_list, outside_bracket_list = _helper(tokens)
         return bracketed_list, outside_bracket_list
 
+    def wordInclusiveLevel(orig_txt:str, fuzzy_txt:str) -> int:
+        '''
+        Expected to see 0 to indicate every fuzzy word is included in
+        original text
+        :param orig_txt: original text
+        :param fuzzy_txt: fuzzily found text
+        :return:
+            0 if all words in fuzzy text is included in the original text, fuzzily
+            > 0 number of words NOT included in the original text
+        '''
+        def isFuzzilyInList(word_to_find, word_list):
+            for word in word_list:
+                ratio = fuzz.ratio(word, word_to_find)
+                acceptable = (ratio >= Common.FUZZY_ACCEPTABLE_RATIO)
+                if acceptable:
+                    return True
+            return False
+
+        fuzzy_list = fuzzy_txt.split()
+        orig_list = orig_txt.split()
+        list_len = len(fuzzy_list)
+        fuzzy_word_count = 0
+        for fuzzy_word in fuzzy_list:
+            is_in_original = (fuzzy_word in orig_list) or isFuzzilyInList(fuzzy_word, orig_list)
+            fuzzy_word_count += (1 if is_in_original else 0)
+
+        inc_percentage = fuzzy_word_count / list_len * 100
+        return inc_percentage
+
+    def findUntranslatedWords(orig_txt, fuzzy_txt):
+        def insertEntryIntoRemainDict():
+            orig_loc = orig_locs[index]
+            entry = {orig_loc: orig_word}
+            remain_dict.update(entry)
+
+    # expecting to find fuzzy_txt within orig_txt, try to locate the range
+        orig_txt_copy = str(orig_txt)
+        orig_word_list = Common.findInvert(Common.SPACES, orig_txt)
+        fuzzy_word_list = Common.findInvert(Common.SPACES, fuzzy_txt)
+
+        fuzzy_locs = list(fuzzy_word_list.keys())
+        fuzzy_locs.reverse()
+
+        fuzzy_words = list(fuzzy_word_list.values())
+        fuzzy_words.reverse()
+
+        orig_locs = list(orig_word_list.keys())
+        orig_locs.reverse()
+
+        orig_words = list(orig_word_list.values())
+        orig_words.reverse()
+
+        remain_dict = OrderedDict()
+        is_finished = False
+        for index, orig_word in enumerate(orig_words):
+            try:
+                fuzzy_word = fuzzy_words[index]
+                ratio = fuzz.ratio(orig_word, fuzzy_word)
+                sounds_similar = (ratio >= Common.FUZZY_ACCEPTABLE_RATIO)
+                if sounds_similar:
+                    continue
+
+                insertEntryIntoRemainDict()
+            except Exception as e:
+                insertEntryIntoRemainDict()
+
+        reversed_remain = list(remain_dict.items())
+        reversed_remain.reverse()
+        rev_remain = OrderedDict(reversed_remain)
+        return rev_remain
+
+
     def debugging(txt):
-        msg = 'Substitute the name or path of the compatible GCC compiler'
+        msg = '_socket'
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')
