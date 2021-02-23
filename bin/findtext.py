@@ -562,8 +562,8 @@ class FindFilesHasPattern:
                 _("po_dir:", po_dir)
 
             po_file_list = self.getFileList(po_dir, ".po")
-            _("po_file_list")
-            pp(po_file_list)
+            # _("po_file_list")
+            # pp(po_file_list)
             search_file_list.extend(po_file_list)
         else:
             if self.find_po:
@@ -573,8 +573,8 @@ class FindFilesHasPattern:
                     _("po_dir:", po_dir)
 
                 po_file_list = self.getFileList(po_dir, ".po")
-                _("po_file_list")
-                pp(po_file_list)
+                # _("po_file_list")
+                # pp(po_file_list)
                 search_file_list.extend(po_file_list)
 
             if self.find_rst:
@@ -584,8 +584,8 @@ class FindFilesHasPattern:
                     _("rst_dir:", rst_dir)
 
                 rst_file_list = self.getFileList(rst_dir, ".rst")
-                _("rst_file_list")
-                pp(rst_file_list)
+                # _("rst_file_list")
+                # pp(rst_file_list)
                 search_file_list.extend(rst_file_list)
 
             if self.find_py_lib:
@@ -597,8 +597,8 @@ class FindFilesHasPattern:
                 for p_dir in py_dir_list:
                     _(f'p_dir:{p_dir}')
                     py_file_list = self.getFileList(p_dir, ".py")
-                    _("py_file_list")
-                    pp(py_file_list)
+                    # _("py_file_list")
+                    # pp(py_file_list)
                     search_file_list.extend(py_file_list)
 
             if self.find_py:
@@ -607,8 +607,8 @@ class FindFilesHasPattern:
                     _("py_dir:", py_dir)
 
                 py_file_list = self.getFileList(py_dir, ".py")
-                _("py_file_list")
-                pp(py_file_list)
+                # _("py_file_list")
+                # pp(py_file_list)
                 search_file_list.extend(py_file_list)
 
             if self.find_gettext:
@@ -618,8 +618,8 @@ class FindFilesHasPattern:
                     _("gettext_dir:", gettext_dir)
 
                 gettext_file_list = self.getFileList(gettext_dir, ".pot")
-                _("gettext_file_list")
-                pp(gettext_file_list)
+                # _("gettext_file_list")
+                # pp(gettext_file_list)
                 search_file_list.extend(gettext_file_list)
 
             if self.find_src:
@@ -666,7 +666,6 @@ class FindFilesHasPattern:
         if not has_file:
             _("No files to search! Terminate.")
             return
-
 
         is_po_only = (self.find_po and not (self.find_py or self.find_rst or self.find_src)) or self.vipo_file
         is_replace = ((self.replace_pattern is not None) and is_po_only) or (self.letter_case != LetterCase.NO_CHANGE)
@@ -1055,6 +1054,7 @@ class FindFilesHasPattern:
                             continue
 
                         print(f'{p.pattern}')
+                        record_loc = record_txt = None
                         for k, v in found_items.items():
                             item_ref_type = None
                             value_length = len(v)
@@ -1185,11 +1185,28 @@ with holding :kbd:`Alt`'
             tf = TranslationFinder()
             found_dict_list = list(found_dict.items())
             for k, ref_type in found_dict_list:
-                try:
-                    # cm.debugging(k)
-                    is_a_link_path = cm.isLinkPath(k)
-                    if is_a_link_path:
+                is_considering_path = (ref_type == RefType.REF) or \
+                                      (ref_type == RefType.GA) or \
+                                      (ref_type == RefType.DOC) or \
+                                      (ref_type == RefType.CLASS)
+
+                is_path = is_considering_path and cm.isLinkPath(k)
+                if is_path:
+                    print(f'IS PATH: [{k}] [{ref_type}]')
+                    continue
+                else:
+                    is_function = cm.FUNCTION.search(k)
+                    if is_function:
+                        print(f'IS FUNCTION: [{k}] [{ref_type}]')
                         continue
+                    else:
+                        print(f'NOT PATH or FUNCTION: [{k}] [{ref_type}]')
+
+                try:
+                    cm.debugging(k)
+                    # is_a_link_path = cm.isLinkPath(k)
+                    # if is_a_link_path:
+                    #     continue
 
                     print(f'try: k:[{k}]; ref_type:[{ref_type}]')
                     is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
@@ -1203,6 +1220,8 @@ with holding :kbd:`Alt`'
                     is_sup = (ref_type == RefType.SUP)
                     is_term = (ref_type == RefType.TERM)
                     is_ga = (ref_type == RefType.GA)
+                    is_func= (ref_type== RefType.FUNCTION)
+
                     is_arched_bracket = (ref_type == RefType.ARCH_BRACKET)
                     is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
 
@@ -1220,15 +1239,28 @@ with holding :kbd:`Alt`'
                     :term:*
                     '''
                     # cm.debugging(k)
-                    current_tran, matched_text = tf.isInDict(k)
+                    current_tran = tf.isInDict(k)
                     if current_tran:
-                        print(f'translated: k:{k}, current_tran:{current_tran}')
+                        # key = f'&&{k}'
+                        # entry = {k: current_tran}
+                        # tran_dict.update(entry)
+                        print(f'translated: k:{k}, current_tran:{current_tran}; IGNORED')
+                        continue
+
+                    if is_func:
+                        print(f'FUNCTION: [{k}] IGNORED')
                         continue
 
                     if is_menu:
                         print(f'<IS MENU>')
-                        word_list = k.split('-->')
+                        menu_sep = re.compile(r'\s?([-]+\>)\s?')
+
+                        # word_list = k.split('--> | ->' )
+                        word_list = menu_sep.split(k)
+                        print(f'menu_sep, word_list:[{word_list}]')
                         for word in word_list:
+                            if menu_sep.search(word):
+                                continue
                             word = word.strip()
                             self.translate_word_into_dict(word,tf, tran_dict)
                         print(f'</IS MENU>')
@@ -1244,22 +1276,20 @@ with holding :kbd:`Alt`'
                             print(f'SOMETHING WRONG WITH ABBR: {k}, {ref_type}')
                             continue
                         abbr, word = m[0]
-                        abbr_tran, matched_text = tf.isInDict(abbr)
-                        word_tran, matched_text = tf.isInDict(word)
-                        has_abbr_tran = bool(abbr)
-                        has_word_tran = bool(word_tran)
-                        is_ignore_entry = (has_abbr_tran and has_word_tran)
-                        if not is_ignore_entry:
-                            print(f'<IS ABBR>')
-                            if not has_abbr_tran:
-                                self.translate_word_into_dict(abbr, tf, tran_dict)
-                            if not has_word_tran:
-                                self.translate_word_into_dict(word, tf, tran_dict)
-                            print(f'</IS ABBR>')
+                        self.translate_word_into_dict(word, tf, tran_dict)
                     elif is_math or is_sup:
                         print(f'IGNORING type:{ref_type}: "{k}"')
                         pass
                     else:
+                        is_function = (cm.FUNCTION.search(k) is not None)
+                        if is_function:
+                            print(f'IGNORING is_function:{ref_type}: "{k}"')
+                            continue
+
+                        is_path = (cm.PATH_CHECKER.search(k) is not None)
+                        if is_path:
+                            print(f'IGNORING is_path:{ref_type}: "{k}"')
+                            continue
                         m_ref = cm.END_WITH_REF.search(k)
                         is_end_with_ref = (m_ref is not None)
                         if is_end_with_ref:

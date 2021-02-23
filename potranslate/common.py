@@ -13,13 +13,16 @@ import re
 import inspect
 import copy as cp
 from collections import OrderedDict, defaultdict
-from pprint import pprint, pformat
+from pprint import pprint, pp, pformat
 import hashlib
 import time
 from reftype import RefType
 from collections import deque
 # from nltk.corpus import wordnet as wn
 from fuzzywuzzy import fuzz
+from urlextract import URLExtract as URLX
+
+# import spacy
 
 # import Levenshtein as LE
 #import logging
@@ -32,11 +35,11 @@ DIC_LOWER_CASE=True
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
-    if DEBUG:
-        pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
-        if len(args) == 0:
-            print('-' * 30)
+# def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
+#     if DEBUG:
+#         pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
+#         if len(args) == 0:
+#             print('-' * 30)
 
 def dd(*args, **kwargs):
     if DEBUG:
@@ -57,15 +60,21 @@ class Common:
     total_files = 1358
     file_count = 0
     PAGE_SIZE = 20 * 4096
-    MAX_FUZZY_LIST = 10
+    MAX_FUZZY_LIST = 100
     MAX_FUZZY_TEST_LENGTH = 10
-    FUZZY_ACCEPTABLE_RATIO = 80
+    FUZZY_ACCEPTABLE_RATIO = 90
+    FUZZY_MODERATE_ACCEPTABLE_RATIO = 80
+    FUZZY_LOW_ACCEPTABLE_RATIO = 70
+    FUZZY_VERY_LOW_ACCEPTABLE_RATIO = 45
+
+    APOSTROPHE_CHAR = "'"
     MAX_FUZZY_ACCEPTABLE_RATIO = 95
     FUZZY_RATIO_INCREMENT = 5
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.3
-    FUZZY_ANY_PART = '$$$'
-    FUZZY_ANY_PART_PATTERN = re.compile(r'\s*\${3}\s*')
+    FUZZY_EXP_VAR = '$$$'
+    FUZZY_EXP_VAR_PATTERN = re.compile(r'\s*\${3}\s*')
+    TRAN_REF_PATTERN = re.compile(r'\@\{(\w+?)\}')
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -132,6 +141,55 @@ class Common:
     # debug_file = "video_editing/sequencer/properties/strip"
     # debug_file = "video_editing/sequencer/strips/movie_image"
 
+    leading=r'([\`\<]+)'
+    ending=r'([\`\>]+)'
+    word = r'([\w\d\#]+)'
+    sep = r'([<>\\\/\-\_\.{}:]+)'
+    sep_first = r'((%s(%s%s)+)+)' % (sep, word, sep)
+    word_first = r'((%s(%s%s)+)+%s?)' % (word, sep, word, sep)
+    word_first_with_leading_ending = r'(%s%s%s)' % (leading, word_first, ending)
+    pat = r'%s|%s' % (word_first, sep_first)
+    path_with_leading_and_ending = r'%s|%s' % (word_first_with_leading_ending, sep_first)
+    pat_full = r'^(%s)$' % (pat)
+
+    word = r'(\w+)'
+    ignore_words = r'((M[ris]+|Dr|etc|e.g)[\.])'
+    url_leading = r'^((https|file)\:)'
+    path_sep = r'([\~\\\\////\\\/\_\-\.\:\*\?\=\{\}\|]{1,2})'
+    leading_hyphens = r'(^[-]+)'
+    ref_tag = r'(^:%s:$)' % (word)
+    single_hyphen = r'(^%s[-:*_\/]%s$)' % (word, word)
+    number_format = r'(\d+[.]\d+)'
+    hour_format = r'(%s:%s(:%s)?([.]%s)?)' % (word, word, word, word)
+    whatever = r'(%s?)[*]{1}(%s?)' % (word, word)
+    file_extension = r'^([.]%s)$' % (word)
+    return_linefeed = r'^(\\[nr])$'
+    bold_word = r'^(\*%s\*)$' % (word)
+    not_allowed = r'(?!(%s|%s|%s|%s|%s|%s|%s|%s))' % (ignore_words, bold_word, leading_hyphens, single_hyphen, ref_tag, hour_format, number_format, return_linefeed)
+    path = r'(%s|%s)?((%s(%s)?%s)+)+' % (word, path_sep, path_sep, path_sep, word)
+    variable = r'[\w_-]+'
+    api_path = r'((%s\.%s)+)+' % (variable, variable)
+    blender_api = r'^(blender_api\:%s)$' % (api_path)
+
+    extension_0001 = r'(%s\.%s)' % (word, word)
+    extension_0002 = r'(%s\.%s)' % (whatever, word)
+    extension_0003 = r'(%s\.%s)' % (word, whatever)
+    extension_0004 = r'(%s\.%s)' % (whatever, whatever)
+
+    ending_extension = r'(%s|%s|%s|%s)' \
+                       % ( \
+                           extension_0001, \
+                           extension_0002, \
+                           extension_0003, \
+                           extension_0004,
+                       )
+    path_def = r'^(%s|%s)%s?(%s)?$' % (path, url_leading, path_sep, ending_extension)
+    # path_def = r'^%s(%s)%s?$' % (not_allowed, path, path_sep)
+    path_pattern = r'%s(%s|%s|%s)' % (not_allowed, path_def, file_extension, blender_api)
+    PATH_CHECKER = re.compile(path_pattern, flags=re.I)
+
+    # meta_char_list = "[].^$*+?{}()\|"
+    METACHAR_PATTERN = re.compile(r'[\[\]\.\^\$\*\+\?\{\}\(\)\\\|]', re.M)
     PREFIX_END = r'[^0-9@#.,]'
     NUMBER_TOKEN = r'[0-9@#.,E+]'
 
@@ -166,7 +224,24 @@ class Common:
     TAG_NAME='tagname'
     CLASS='classes'
 
-    COMMON_SENTENCE_BREAKS = re.compile(r'(?!\s)([^\.\,\:\!]+)\s?(?<!\s)')
+    # var = r'[\w\_\.\-]+'
+    # param = r'(%s(\,(\s+)?)?)+' % (var)
+    # funct = r'^(%s\((%s)?\))$' % (var, param)
+    var = r'[\w\_\.\-]+'
+    param = r'(%s(\,(\s+)?)?)+' % (var)
+    multiple = r'^\w+\(s\)$'
+    funct = r'(?!%s)^(%s\((%s)?\))$' % (multiple, var, param)
+    FUNCTION = re.compile(funct)
+
+    email = r'(<)?(\w+@\w+(?:\.\w+)+)(?(1)>|$)'
+    sentence_elements = r'([^\.\,\:\!]+)'
+    not_follow_by_a_space = r'(?!\s)'
+    follow_by_a_space_or_end = r'(?:(\s|$))'
+    not_precede_by_a_space = r'(?<![\s\d])'
+    # setence_break_pat_txt = r'%s%s%s' % (not_precede_by_a_space, sentence_elements, follow_by_a_space_or_end)
+    setence_break_pat_txt = r'%s%s' % (sentence_elements, follow_by_a_space_or_end)
+    COMMON_SENTENCE_BREAKS = re.compile(setence_break_pat_txt)
+
     TRIMMABLE_ENDING = re.compile(r'([\s\.\,\:\!]+)$')
     TRIMMABLE_BEGINNING=re.compile(r'^([\s\.\,]+)')
     TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
@@ -187,11 +262,21 @@ class Common:
     GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
     ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^\`]+)[\`]+')
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
-    ENDS_PUNCTUAL_MULTI = re.compile(r'([\.\,\:\!\?\"\*\'\`]+$)')
-    ENDS_PUNCTUAL_SINGLE = re.compile(r'([\.\,\:\!\?\"\*\'\`]{1}$)')
 
-    BEGIN_PUNCTUAL_MULTI = re.compile(r'^([\.\,\:\;\!\?\"\*\'\`]+)')
-    BEGIN_PUNCTUAL_SINGLE = re.compile(r'^([\.\,\:\;\!\?\"\*\'\`]{1})')
+    punctuals = r'([\\\/\.\,\:\;\!\?\"\*\'\`]+)'
+    PUNCTUALS = re.compile(punctuals)
+
+    begin_punctuals = r'^%s' % (punctuals)
+    end_punctuals = r'%s$' % (punctuals)
+    single = r'{1}'
+    punctual_single = r'(%s%s)' % (punctuals, single)
+    end_punctual_single = r'%s$' % (punctual_single)
+    begin_punctual_single = r'^%s' % (punctual_single)
+
+    BEGIN_PUNCTUAL_MULTI = re.compile(begin_punctuals)
+    BEGIN_PUNCTUAL_SINGLE = re.compile(begin_punctual_single)
+    ENDS_PUNCTUAL_MULTI = re.compile(end_punctuals)
+    ENDS_PUNCTUAL_SINGLE = re.compile(end_punctual_single)
 
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
     REF_SEP = ' -- '
@@ -226,9 +311,9 @@ class Common:
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
-    MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
+    MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
     MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
-    MENU_SEP = re.compile(r'[\s]?[\-]{2}\>[\s]?')
+    MENU_SEP = re.compile(r'\s?([\-]+\>)\s?')
 
     ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
     REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
@@ -237,11 +322,15 @@ class Common:
     HYPHEN_REF_LINK = re.compile(r'^(\w+)(\-\w+){2,}$')
     LINK_ALL = re.compile(r'^([/][\w_]+)+$')
     MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
-    PATH_SEP = re.compile(r'[\\\/\-\_\.]')
+
+    path_sep = r'[\\\/\-\_\.]'
+    PATH_SEP = re.compile(path_sep)
     NON_PATH_SEP = re.compile(r'^[^\\\/\-\_\.]+$')
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
     NON_WORD_FIND = re.compile(r'\W+')
+    WORD_START_REMAIN = re.compile(r'^\w+')
+    WORD_END_REMAIN = re.compile(r'\w+$')
 
     ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
     MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
@@ -257,6 +346,12 @@ class Common:
     FILLER_CHAR='¶'
     filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
     FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
+
+    filler_char_and_space_pattern_str = r'[%s\s]+' % (FILLER_CHAR)
+    FILLER_CHAR_INVERT = re.compile(filler_char_and_space_pattern_str)
+
+    filler_char_and_space_pattern_str = r'^[\s%s]+$' % FILLER_CHAR
+    FILLER_CHAR_AND_SPACE_ONLY_PATTERN = re.compile(filler_char_and_space_pattern_str)
 
     filler_char_all_pattern_str = r'^[%s\s]+$' % FILLER_CHAR
     FILLER_CHAR_ALL_PATTERN = re.compile(filler_char_all_pattern_str)
@@ -299,8 +394,15 @@ class Common:
     END_WORD = '$'
     BOTH_START_AND_END = '^$'
 
-    FUNCTION = re.compile(r'[\w\_\-]+\(([^\(\)]+)\)')
+    START_WORD_SYMBOLS = re.compile(r'^\W+')
+    END_WORD_SYMBOLS = re.compile(r'\W+$')
 
+    EN_DUP_ENDING = re.compile(r'[aeiou]\w{1}$')
+
+    FILE_EXTENSION = re.compile(r'^[\.//]\w{2,}$')
+    FILE_NAME_WITH_EXTENSION = re.compile(r'(?:[^\+\-\=\s])[\w\-\_\*]+\.\w+$')
+    WORD_SPLITTER = None
+    # nlp = spacy.load('en_core_web_sm')
 
     verb_with_ending_y = [
         'aby', 'bay', 'buy', 'cry', 'dry', 'fly', 'fry', 'guy', 'hay',
@@ -372,10 +474,6 @@ class Common:
         'Retrogress', 'Transgress', 'Disembarrass',
     ]
 
-    common_removable_ending = [
-        'e',
-    ]
-
     common_prefixes = [
         'a', 'an', 'co', 'de', 'en', 'ex', 'il', 'im', 'in', 'ir', 'in',
         'un', 'up', 'com', 'con', 'dis', 'non', 'pre', 'pro', 'sub', 'sym',
@@ -392,7 +490,7 @@ class Common:
     noun_001 = 'sự/chỗ/phần/vùng/bản/cái/mức/độ/tính/sự/phép'
     noun_002 = 'mọi/nhiều/những/các/phần/bản/sự/chỗ'
     noun_003 = 'chủ nghĩa/tính/trường phái'
-    noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài bộ/trình/người/viên/nhà/máy/phần/bản/cái/trình/bộ/người/viên/vật'
+    noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài vật/bộ/trình/người/viên/nhà/máy/phần/bản/cái/con/trình/bộ/người/viên/vật'
     adj_0001 = 'trong/thuộc/có tính/sự/chỗ/phần/trạng thái'
     adj_0002 = 'trong/là/nói một cách/có tính/theo'
     adv_0001 = 'đáng/có khả năng/thể'
@@ -512,6 +610,10 @@ class Common:
            key=lambda x: len(x), reverse=True)),
     }
 
+    common_allowed_appostrophes = {
+        "'": ['ll', 've', ', ', 's', 'd', ' ', '.'] # keep this sorted in length
+    }
+
     common_suffixes = [
         'd', 'r', 'y', 's', 't', 'al', 'an', 'ce', 'cy', 'de', 'er', 'es', 'or', 'th', 'ic', 'ly',
         'ed', 'en', 'er', 'ic', 'ly', 'ry', 'st', 'ty', 'ze', 'ze', '\'s', '\'t', '\'m', 'als', 'ate',
@@ -534,6 +636,192 @@ class Common:
         '-',
     ]
 
+    common_conjuctions = {
+        'a minute later': '',
+        'accordingly': '',
+        'actually': '',
+        'after': '',
+        'after a while': '',
+        'after a short time': '',
+        'afterward': '',
+        'also': '',
+        'and': '',
+        'another': '',
+        'as an example': '',
+        'as a result': '',
+        'as soon as': '',
+        'at last': '',
+        'at length': '',
+        'because': '',
+        'because of this': '',
+        'before': '',
+        'besides': '',
+        'briefly': '',
+        'but': '',
+        'consequently': '',
+        'conversely': '',
+        'equally': '',
+        'finally': '',
+        'first': '',
+        'first of all': '',
+        'first and last': '',
+        'first time': '',
+        'at first': '',
+        'firstly': '',
+        'for example': '',
+        'for instance': '',
+        'for this purpose': '',
+        'for this reason': '',
+        'fourth': '',
+        'from here on': '',
+        'further': '',
+        'furthermore': '',
+        'gradually': '',
+        'hence': '',
+        'however': '',
+        'how are you': '',
+        'in addition': '',
+        'in conclusion': '',
+        'in contrast': '',
+        'in fact': '',
+        'in short': '',
+        'in spite of': '',
+        'in spite of this': '',
+        'despite of': '',
+        'despite of this': '',
+        'in summary': '',
+        'in the end': '',
+        'whereas': '',
+        'whomever': '',
+        'whoever': '',
+        'in the meanwhile': '',
+        'in the meantime': '',
+        'in the same manner': '',
+        'in the sameway': '',
+        'just as important': '',
+        'of equal importance': '',
+        'on the contrary': '',
+        'on the following day': '',
+        'on the other hand': '',
+        'other hands': '',
+        'otherwise': '',
+        'on purpose': '',
+        'on the head': '',
+        'hit the nail on the head': '',
+        'least': '',
+        'the least I can': '',
+        'in the least': '',
+        'last': '',
+        'the last of': '',
+        'last of all': '',
+        'lastly': '',
+        'later': '',
+        'later on': '',
+        'meanwhile': '',
+        'moreover': '',
+        'nevertheless': '',
+        'next': '',
+        'next to': '',
+        'nonetheless': '',
+        'now': '',
+        'nor': '',
+        'neither': '',
+        'or': '',
+        'when': '',
+        'while': '',
+        'presently': '',
+        'second': '',
+        'similarly': '',
+        'since': '',
+        'since then': '',
+        'so': '',
+        'so much': '',
+        'so many': '',
+        'soon': '',
+        'so soon': '',
+        'very soon': '',
+        'as soon as possible': '',
+        'as much as possible': '',
+        'as many as possible': '',
+        'as long as possible': '',
+        'still': '',
+        'subsequently': '',
+        'such as': '',
+        'such that': '',
+        'as such': '',
+        'the next week': '',
+        'then': '',
+        'thereafter': '',
+        'there and then': '',
+        'therefore': '',
+        'and thus': '',
+        'thus': '',
+        'to be specific': '',
+        'to begin with': '',
+        'to be precise': '',
+        'to be exact': '',
+        'to illustrate': '',
+        'to repeat': '',
+        'to sum up': '',
+        'too': '',
+        'ultimately': '',
+        'what': '',
+        'with this in mind': '',
+        'with that in mind': '',
+        'yet': '',
+        'not yet': '',
+        'and yet': '',
+        'although': '',
+        'as if': '',
+        'although': '',
+        'as though': '',
+        'even': '',
+        'even if': '',
+        'even though': '',
+        'if': '',
+        'if only if': '',
+        'if only': '',
+        'if when': '',
+        'if then': '',
+        'if you can': '',
+        'if I can': '',
+        'if it is possible': '',
+        'inasmuch': '',
+        'in order that': '',
+        'just as': '',
+        'lest': 'hầu cho không/e ngại/rằng',
+        'now and then': '',
+        'for now': '',
+        'for now that is': '',
+        'so for now': '',
+        'but for now': '',
+        'now since': '',
+        'now that': '',
+        'now that\'s what I call': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+        '': '',
+
+    }
     common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
     common_prefix_translation = list(sorted( list(common_prefix_trans.items()), key=lambda x: len(x[0]), reverse=True))
 
@@ -546,39 +834,74 @@ class Common:
     ascending_sorted = list(sorted(common_infix))
     common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
 
-    EN_DUP_ENDING = re.compile(r'[aeiou]\w{1}$')
-    WORD_SPLITTER = None
+    numberal = r"\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|((thir|four|fif|six|seven|eigh|nine)teen)|((twen|thir|four|fif|six|seven|eigh|nine)ty)|(hundred|thousand|(mil|tril)lion))[s]?\b"
+    urlx_engine = URLX()
 
-    FILE_EXTENSION = re.compile(r'^[\.//]\w{2,}$')
-    FILE_NAME_WITH_EXTENSION = re.compile(r'(?:[^\+\-\=\s])[\w\-\_\*]+\.\w+$')
+    def isPath(txt: str) -> bool:
+        def insertTextOutsideEntry():
+            is_valid = (ee > ss)
+            if not is_valid:
+                return False
 
-    def isLinkPath(txt: str) -> bool:
-        if txt.startswith('--'):
-            return False
-
-        is_file_extension = Common.FILE_EXTENSION.search(txt)
-        is_file_name = Common.FILE_NAME_WITH_EXTENSION.search(txt)
-        is_file = (is_file_extension or is_file_name)
-        if is_file:
+            text_outside_url = txt[ss:ee]
+            ex_loc = (ss, ee)
+            entry = {ex_loc: text_outside_url}
+            text_outside_url_list.update(entry)
             return True
 
-        if not Common.WORD_SPLITTER:
-            delim = ["\\", "/", "-", "_", "."]
-            Common.WORD_SPLITTER = '|'.join(map(re.escape, delim))
+        if not txt:
+            return False
 
-        w_list = re.split(Common.WORD_SPLITTER,txt)
-        # print(f'isLinkPath w_list:{w_list}')
-        w_count = len(w_list)
-        is_path = False
-        if w_count > 2:
-            is_path = True
-            for word in w_list:
-                is_just_word = (' ' not in word)
-                if not is_just_word:
-                    is_path = False
-                    break
-        # print(f'isLinkPath:{is_path} => "{txt}"')
+        is_path = (Common.PATH_CHECKER.search(txt) is not None)
+        if is_path:
+            return True
+
+        urls = Common.urlx_engine.find_urls(txt, get_indices=True)
+        if not urls:
+            return False
+
+        # 1. Find the list of urls and put into dictionary so locations can be extracted, uing keys
+        url_loc_list = {}
+        for url, loc in urls:
+            url_length = len(url)
+            entry = {loc: url}
+            url_loc_list.update(entry)
+
+
+        # 2. find all the text outside the links and see if they are just spaces and symbols only, which can be classified as
+        # IGNORABLE
+        text_outside_url_list = {}
+        ss = 0
+        for loc in url_loc_list.keys():
+            s, e = loc
+            ee = s
+            insertTextOutsideEntry()
+            ss = e
+        url = url_loc_list[loc]
+        ee = len(url)
+        insertTextOutsideEntry()
+
+        # 3. Find out if text outside are but all symbols (non-alpha), which means they are discardable (non-translatable)
+        is_ignorable = True
+        for loc, text_outside in text_outside_url_list.items():
+            is_all_symbols = Common.SYMBOLS_ONLY.search(text_outside)
+            if not is_all_symbols:
+                is_ignorable = False
+
+        return is_ignorable
+
+    def isLinkPath(txt: str) -> bool:
+        # is_file_extension = Common.FILE_EXTENSION.search(txt)
+        # is_file_name = Common.FILE_NAME_WITH_EXTENSION.search(txt)
+        is_path = Common.isPath(txt)
+        if is_path:
+            return True
+
+        left, mid, right = Common.getTextWithin(txt)
+        is_path = Common.isPath(mid)
         return is_path
+        # is_path_link = (is_file_extension or is_file_name or is_path)
+        # return is_path_link
 
     def shouldHaveDuplicatedEnding(cutoff_part, txt):
         is_verb_cutoff = (cutoff_part in ['ed', 'ing', 'es'])
@@ -864,20 +1187,20 @@ class Common:
             invert_required = True
             pat = pattern
 
-        found_list = {}
+        found_list = []
         if not invert_required:
             matched_list = Common.patternMatchAllToDict(pat, text)
             for loc, invert_word in matched_list.items():
                 if not invert_word.strip():
                     continue
-                entry = {loc: invert_word}
-                found_list.update(entry)
+                entry = (loc, invert_word)
+                found_list.append(entry)
         else:
             # 1: find that matched pattern, with locations
             matched_list = Common.patternMatchAllToDict(pat, text)
 
             # 2: extract location list
-            loc_list = [loc for loc, matched_word in matched_list.items()]
+            loc_list = matched_list.keys()
 
             # 3: extract invert locations, using the location list above
             invert_loc_list = []
@@ -890,44 +1213,28 @@ class Common:
             we = len(text)
             if (ws < we):
                 invert_loc_list.append((ws, we))
-            print(f'invert_loc_list:{invert_loc_list}')
+            # dd(f'invert_loc_list:{invert_loc_list}')
 
             # 4: using the invert location list, extract words, exclude empties.
             for ws, we in invert_loc_list:
                 invert_word = text[ws:we]
-                if invert_word.strip():
-                    loc = (ws, we)
-                    entry = {loc: invert_word}
-                    found_list.update(entry)
-
-            print(f'found_list:{found_list}')
-        # starting with collecting words surrounding the pattern
-        # word_start = 0, word_end is the start of found location
-        # this will, for some pattern, collecting spaces and symbols, punctuations etc..
-        # which are not alpha numericals
-        new_found_list = {}
-        for o_loc, word in found_list.items():
-            a_s, a_e = o_loc
-            entry = {o_loc: word}
-
-            if is_removing_surrounding_none_alphas:
-                new_loc, new_word = Common.removingNonAlpha(word)
-                if not new_word:
+                left, mid, right = Common.getTextWithin(invert_word)
+                is_empty = (not bool(mid))
+                if is_empty:
                     continue
 
-                o_s, o_e = o_loc
-                n_s, n_e = new_loc
-                a_s = o_s + n_s
-                a_e = a_s + len(new_word)
-                new_loc = (a_s, a_e)
+                loc = (ws, we)
+                entry = (loc, invert_word)
+                found_list.append(entry)
 
-                entry = {new_loc: new_word}
-            new_found_list.update(entry)
-        reversed_list = list(new_found_list.items())
-        reversed_list.reverse()
-        temp_dict = OrderedDict(reversed_list)
+        found_list.sort(reverse=True)
+        temp_dict = OrderedDict(found_list)
+        dd('findInvert() found_list:')
+        dd('-' * 30)
+        pp(found_list)
+        dd('-' * 30)
+
         return temp_dict
-
 
     def getListOfLocation(find_list):
         loc_list = {}
@@ -982,27 +1289,13 @@ class Common:
         return keep_norm_list
 
     def getTextListForMenu(text_entry):
-        #print("getTextListForMenu", text_entry, txt_item)
         entry_list = []
 
-        its, ite, txt = text_entry
-        dd("menu_list: its, ite, txt")
-        dd(its, ite, txt)
-
-        menu_list = Common.patternMatchAll(Common.MENU_PART, txt)
-        dd("menu_list")
-        pp(menu_list)
-        for mk, mi in menu_list.items():
-            ms, me, mtxt = mi[0]
-            is_empty = (ms == me)
-            if (is_empty):
-                continue
-
-            ss = its + ms
-            se = ss + len(mtxt)
-            entry=(ss, se, mtxt)
+        matched_list = Common.findInvert(Common.MENU_SEP, text_entry)
+        for loc, mtxt in matched_list.items():
+            ss, ee = loc
+            entry=(ss, ee, mtxt)
             entry_list.append(entry)
-        pp(entry_list)
         return entry_list
 
     def isListEmpty(list_elem):
@@ -1377,14 +1670,16 @@ class Common:
                 if index == 1:
                     abbrev_rec = item
 
-            if abbrev_rec:
-                loc, txt = abbrev_rec
-                found_texts = Common.ABBR_TEXT_ALL.findall(txt)
-                has_abbrev_components = (found_texts and len(found_texts) > 0 and found_texts[0])
-                if has_abbrev_components:
-                    abbrev_tuple = found_texts[0]
-                    abbrev_part, exp_part = abbrev_tuple
-                    print(f'extractAbbr => abbrev_part:{abbrev_part}, exp_part:{exp_part}')
+            if not abbrev_rec:
+                continue
+
+            loc, txt = abbrev_rec
+            found_texts = Common.ABBR_TEXT_ALL.findall(txt)
+            has_abbrev_components = (found_texts and len(found_texts) > 0 and found_texts[0])
+            if has_abbrev_components:
+                abbrev_tuple = found_texts[0]
+                abbrev_part, exp_part = abbrev_tuple
+                print(f'extractAbbr => abbrev_part:{abbrev_part}, exp_part:{exp_part}')
 
         return abbrev_orig_rec, abbrev_part, exp_part
 
@@ -1494,21 +1789,30 @@ class Common:
         sentence_list = OrderedDict(temp_list)
         return sentence_list
 
-    def removingNonAlpha(word: str):
+    def removingNonAlpha(original_word: str):
         default_loc = (0, 0)
-        is_empty_word = (word is None) or (len(word) == 0)
-        if word is None:
-            return (default_loc, word)
+        is_empty_word = (original_word is None) or (len(original_word) == 0)
+        if original_word is None:
+            return (default_loc, original_word)
 
-        s = 0
-        e = len(word)
-        while s < e and not word[s].isalnum():
-            s += 1
+        max_len = len(original_word)
+        s = max_len // 2
+        e = s
 
-        while e > 0 and not word[e-1].isalnum():
-            e -= 1
+        left_part = original_word[0:s]
+        right_part = original_word[e:max_len]
+        matcher = Common.WORD_END_REMAIN.search(left_part)
+        if matcher:
+            grp = matcher.group(0)
+            s -= len(grp)
+
+        matcher = Common.WORD_START_REMAIN.search(right_part)
+        if matcher:
+            grp = matcher.group(0)
+            e += len(grp)
+
         loc = (s, e)
-        new_word = word[s:e]
+        new_word = original_word[s:e]
         return (loc, new_word)
 
     def insertTranslation(orig_word: str, new_word: str, current_trans: str) -> str:
@@ -1516,14 +1820,12 @@ class Common:
         if not is_valid:
             return current_trans
 
-        list_of_remain_loc = Common.locRemain(orig_word, new_word)
-        new_tran = str(current_trans)
-        for ss, ee in list_of_remain_loc:
-            left = orig_word[:ss]
-            right = orig_word[ee:]
-            new_tran = left + current_trans + right
-        trans = new_tran
-        return trans
+        loc, actual_new_word = Common.locRemain(orig_word, new_word)
+        ss, ee = loc
+        left = orig_word[:ss]
+        right = orig_word[ee:]
+        new_tran = left + current_trans + right
+        return new_tran
 
     def locRemain(original_word: str, new_word: str) -> list:
         '''
@@ -1537,35 +1839,36 @@ class Common:
             but not containing any alpha-numerical characters, which can be removed (ie. remainder
             parts of the word in the original_word)
         '''
+        # REWRITE THIS, MAKE IT SHORTER
         try:
-            try:
-                p = re.compile(new_word, flags=re.I)
-            except Exception as e:
-                new_word_esc = re.escape(new_word)
-                p = re.compile(new_word_esc, flags=re.I)
-
-            list_of_occurences = Common.patternMatchAllToDict(p, original_word)
-            # entry = {loc: orig}
-            list_of_places = []
             max_len = len(original_word)
-            list_of_found_locations = list_of_occurences.keys()
-            for loc in list_of_found_locations:
-                s, e = loc
-                while s-1 >= 0 and original_word[s-1].isalnum():
-                    s -= 1
+            ss = original_word.find(new_word)
+            ee = ss + len(new_word)
 
-                while e+1 < max_len and original_word[e+1].isalnum():
-                    e += 1
+            found_test = original_word[ss:ee]
+            ok = (found_test == new_word)
+            if not ok:
+                raise Exception(f'FAILED TO LOCATE [{new_word}] in [{original_word}]')
 
-                s = max(0, s)
-                e = min(e, max_len)
-                loc = (s, e)
-                list_of_places.append(loc)
-            return list_of_places
+            left_part = original_word[0:ss]
+            right_part = original_word[ee:max_len]
+
+            matcher = Common.WORD_END_REMAIN.search(left_part)
+            if matcher:
+                grp = matcher.group(0)
+                ss -= len(grp)
+
+            matcher = Common.WORD_START_REMAIN.search(right_part)
+            if matcher:
+                grp = matcher.group(0)
+                ee += len(grp)
+
+            loc = (ss, ee)
+            return loc, original_word[ss:ee]
         except Exception as e:
-            print(f'original_word:{original_word}, new_word:{new_word}')
-            print(e)
             raise e
+
+        return (-1, -1), new_word
 
     def replaceStr(from_str: str, to_str: str, txt: str) -> str:
         '''
@@ -1667,6 +1970,42 @@ class Common:
         inc_percentage = fuzzy_word_count / list_len * 100
         return inc_percentage
 
+    def getLeadingMatchCount(k_item, item):
+        def binary_match(loc_from, loc_to):
+            f_len = len(loc_from)
+            f_len_mid = (f_len // 2)
+            f_list_0 = loc_from[:f_len_mid]
+
+            t_len = len(loc_to)
+            t_len_mid = (t_len // 2)
+            t_list_0 = loc_to[:t_len_mid]
+
+            is_same = (t_list_0.lower() == f_list_0.lower())
+            if not is_same:
+                return False
+
+            f_list_1 = loc_from[f_len_mid+1:]
+            t_list_1 = loc_to[t_len_mid+1:]
+            is_same = (t_list_0.lower() == f_list_0.lower())
+            if is_same:
+                return True
+            else:
+                return binary_match(f_list_1, t_list_1)
+
+        item_length = len(item)
+        matched_total = 0
+        for index, kw in enumerate(k_item):
+            is_valid_index = (index < item_length)
+            if not is_valid_index:
+                break
+            iw = item[index]
+            is_matched = (iw == kw)
+            if is_matched:
+                matched_total += 1
+            else:
+                break
+        return matched_total
+
     def findUntranslatedWords(orig_txt, fuzzy_txt):
         def insertEntryIntoRemainDict():
             orig_loc = orig_locs[index]
@@ -1709,9 +2048,149 @@ class Common:
         rev_remain = OrderedDict(reversed_remain)
         return rev_remain
 
+    def splitExpVar(item, k):
+        i_list = item.split(Common.FUZZY_EXP_VAR)
+
+        i_left = i_list[0]
+        i_right = i_list[1]
+        i_left_len = len(i_left)
+        i_right_len = len(i_right)
+
+        i_left_list = i_right_list = []
+        if i_left:
+            i_left_list = i_left.split()
+
+        if i_right:
+            i_right_list = i_right.split()
+
+        i_left_word_count = len(i_left_list)
+        i_right_word_count = len(i_right_list)
+        i_exp_word_count_total = (i_left_word_count + i_right_word_count)
+
+        k_length = len(k)
+        k_word_list = Common.SPACES.split(k)
+        k_word_count = len(k_word_list)
+
+        is_less_than_expected = (k_word_count < i_exp_word_count_total)
+        if is_less_than_expected:
+            return i_left, i_right, None, None
+
+        k_left = k_right = ""
+        if i_left_word_count:
+            k_left = ' '.join(k_word_list[:i_left_word_count])
+
+        if i_right_word_count:
+            k_right = ' '.join(k_word_list[i_right_word_count:])
+
+        return i_left, i_right, k_left, k_right
+
+    def getListOfVariations(txt):
+        list_var = []
+        for i in range(len(txt), 0, -1):
+            entry = txt[0:i]
+            list_var.append(entry)
+        return list_var
+
+    def getNoneAlphaPart(msg, is_start=True):
+        if not msg:
+            return ""
+
+        non_alnum_part = ""
+        if is_start:
+            non_alpha = Common.START_WORD_SYMBOLS.search(msg)
+        else:
+            non_alpha = Common.END_WORD_SYMBOLS.search(msg)
+
+        if non_alpha:
+            non_alnum_part = non_alpha.group(0)
+
+
+        return non_alnum_part
+
+    def getTextWithin(msg):
+        left_part = Common.getNoneAlphaPart(msg, is_start=True)
+        right_part = Common.getNoneAlphaPart(msg, is_start=False)
+        ss = len(left_part)
+        ee = (-len(right_part) if right_part else len(msg))
+        mid_part = msg[ss:ee]
+        return left_part, mid_part, right_part
+
+    def replaceWord(orig_word: str, new_word: str, replace_word: str) -> str:
+
+        is_inclusive = (new_word in orig_word)
+        if is_inclusive:
+            ss = orig_word.find(new_word)
+            ee = ss + len(new_word)
+            left_part = orig_word[:ss]
+            right_part = orig_word[ee:]
+            matcher = Common.WORD_END_REMAIN.search(left_part)
+            if matcher:
+                grp = matcher.group(0)
+                ss -= len(grp)
+
+            matcher = Common.WORD_START_REMAIN.search(right_part)
+            if matcher:
+                grp = matcher.group(0)
+                ee += len(grp)
+
+            left_part = orig_word[:ss]
+            right_part = orig_word[ee:]
+            final_part = left_part + replace_word + right_part
+            return final_part
+        else:
+            left_part = Common.getNoneAlphaPart(orig_word, is_start=True)
+            right_part = Common.getNoneAlphaPart(orig_word, is_start=False)
+            final_part = left_part + replace_word + right_part
+        return final_part
+
+    # def getSentenceList(input_text:str) -> list:
+    #     t_list = {}
+    #     doc = Common.nlp(input_text)
+    #     sen = []
+    #     last_e = 0
+    #     for token in doc:
+    #         is_punct = (token.pos_ == 'PUNCT')
+    #         if not is_punct:
+    #             txt = token.text
+    #             sen.append(token.text)
+    #             continue
+    #
+    #         if not sen:
+    #             continue
+    #
+    #         sen_text = ' '.join(sen)
+    #         ss = input_text.find(sen_text, last_e)
+    #         is_error = (ss < 0)
+    #         if is_error:
+    #             raise ValueError(f'Common.getSentenceList(): Unable to find text [{sen_text}] in [{input_text}]')
+    #
+    #         ee = ss + len(sen_text)
+    #         last_e = ee
+    #         loc = (ss, ee)
+    #         entry = {loc: sen_text}
+    #         t_list.update(entry)
+    #         sen = []
+    #
+    #     return t_list
 
     def debugging(txt):
-        msg = '_socket'
-        is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        # msg = 'between root and tip'
+        # msg = 'Profile Brush'
+        # msg = ' reversed...'
+        # msg = "BLENDER_SYSTEM_SCRIPTS"
+        # msg = "command-line arguments"
+        # msg = "Factory Settings"
+        # msg = "limbs"
+        # msg = "data-block"
+        # msg = "Object"
+        # msg = "and"
+        # msg = "larger "
+        # msg = "right-click-select"
+        # msg = "Material Library VX"
+        # msg = "Equals"
+        # msg = "fig-mesh-screw-angle"
+        msg = "treated as"
+        # is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        is_debug = (msg and txt and (msg.lower() == txt.lower()))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

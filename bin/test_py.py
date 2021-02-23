@@ -12,6 +12,7 @@ from collections import OrderedDict, defaultdict
 # from nltk.stem import LancasterStemmer
 # from nltk.stem.snowball import SnowballStemmer, PorterStemmer
 # from nltk.tokenize import sent_tokenize, word_tokenize
+from urllib.parse import urlparse as url
 
 #from stack import Stack
 import datetime
@@ -34,6 +35,7 @@ import subprocess as sub
 # from reflink import RefList
 from translation_finder import TranslationFinder
 from ignore import Ignore as IG
+from fuzzywuzzy import fuzz
 
 from sphinx_intl import catalog as c
 # from leven import levenshtein as LEV
@@ -41,8 +43,9 @@ from time import gmtime, strftime, time
 from pytz import timezone
 # import enchant as ENC
 from common import Common as cm
-from reflink import RefList
+from reflink import RefList, TranslationState
 from pprint import pprint
+from urlextract import URLExtract as URLX
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -7895,11 +7898,20 @@ IOR
         from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
         p = re.compile(r'(?:^|\s)(\(.*\))')
 
+        word = r'(\w+)'
+        path_sep = r'([\\\/\_\-\.\:\*\{\}]+)'
+        no_space = r'(?!\w\s)'
+        path = r'(%s|%s)?((%s%s)+)+' % (word, path_sep, path_sep, word)
+        path_pattern = r'^(%s)%s?$' % (path, path_sep)
+        # pat_full = r'^(((\w+)?(\:)?)|([\.]{1,2})?(\w+){2,})+([*\.](\w{2,5})|[\*])?$'
+
+        PATH_CHECKER = cm.PATH_CHECKER
+
         file_list = []
         list_of_brackets = []
-        text_line = "One advantage of using the command line is that we do not need a graphical display (no need for X server on Linux for example) and consequently we can render via a remote shell (typically SSH)."
-        parseBracket(p, text_line, list_of_brackets)
-        exit(0)
+        # text_line = "One advantage of using the command line is that we do not need a graphical display (no need for X server on Linux for example) and consequently we can render via a remote shell (typically SSH)."
+        # parseBracket(p, text_line, list_of_brackets)
+        # exit(0)
         for root, dirnames, filenames in os.walk(from_path):
             if root.startswith('.'):
                 continue
@@ -8003,8 +8015,22 @@ IOR
     def test_0070(self):
         p1 = re.compile(r'[\w\-\_\*]+\.\w+')
         p = re.compile(r'(?:[^\+\-\=\s])[\w\-\_\*]+\.\w+$')
+
+        leading=r'([\`\<]+)'
+        ending=r'([\`\>]+)'
+        word = r'([\w\d\#]+)'
+        sep = r'([<>\\\/\-\_\.{}:]+)'
+        pat = r'(%s((%s?(%s%s)+)*%s?)%s)|(%s%s%s)' % (leading, word, sep, word, sep, ending, sep, word, sep)
+        only_sep = r'^(%s|%s|%s)$' % (sep, leading, ending)
+        only_sep_pat = re.compile(only_sep)
+
+        # p1 = re.compile(r'(([\w\d]+)?[\\\/\-\_\.]+([\w\d]+))+')
+        p1 = re.compile(pat)
+        leading_pat = re.compile(leading)
+
         home_dir = os.environ['HOME']
-        from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
+        from_path = os.path.join(home_dir, 'Dev/tran/blender_docs/build/gettext')
+        total_list = []
         file_list = []
         for root, dirnames, filenames in os.walk(from_path):
             if root.startswith('.'):
@@ -8035,25 +8061,68 @@ IOR
                 # m1 = p.search(t1)
                 # print(f'm:{m}')
                 # print(f'm1:{m1}')
-                m1 = p1.findall(text_line)
-                m = p.findall(text_line)
 
-                if not m:
-                    continue
+                for m in p1.finditer(text_line):
+                    found_orig = m.group(0)
+                    s = m.start()
+                    e = m.end()
+                    loc = (s, e)
 
-                if m1:
-                    result_list.append('possible:')
-                    result_list.extend(m1)
-                result_list.append('definitely:')
-                result_list.extend(m)
+                    is_only_sep = (only_sep_pat.search(text_line) is not None)
+                    if found_orig and not is_only_sep:
+                        entry = (loc, found_orig, text_line)
+                        result_list.append(entry)
+
+                    # found_orig_with_leading = None
+                    # if (s-1 >= 0):
+                    #     found_orig_with_leading = text_line[s-1:e]
+                    
+                    # is_considering = False
+                    # if found_orig_with_leading:
+                    #     is_considering = (leading_pat.search(found_orig_with_leading) is not None)
+
+                    # if is_considering:                        
+                    #     entry = (loc, found_orig, text_line)
+                    #     result_list.append(entry)
+                
+                # m1 = p1.search(text_line)
+                # # m = p.findall(text_line)
+
+                # if not m1:
+                #     continue
+
+                # entry=(m1.group(0), text_line)
+                # result_list.append(entry)
+
+                # if m1:
+                #     result_list.append('possible:')
+                #     result_list.extend(m1)
+                # result_list.append('definitely:')
+                # result_list.extend(m)
 
             if not result_list:
                 continue
 
             print(f'file: {file_path}')
             print('*' * 50)
-            print(result_list)
+            prev_text_line=None
+            for entry in result_list:
+                loc, found_orig, text_line = entry
+                is_new_line = (text_line != prev_text_line)
+                if is_new_line:
+                    print(f'------ [{text_line}]')
+                    prev_text_line = text_line                    
+
+                print(f'[{found_orig}]')
+                entry=(text_line, found_orig)
+                total_list.append(entry)
             print('-' * 50)
+
+        print('*' * 50)
+        total_list.sort()
+        for entry in total_list:
+            print(f'[{entry}]')
+        print('-' * 50)
 
     def getHome(self):
         home = os.environ['HOME']
@@ -8082,6 +8151,7 @@ IOR
 
                 if is_start:
                     q.append(index)
+
                 if is_end:
                     if q:
                         open_index = q.pop()
@@ -8093,12 +8163,12 @@ IOR
             return False
 
         home = self.getHome()
-        dict_path = os.path.join(home, 'blender_manual/ref_dict_0006_0001.json')
+        dict_path = os.path.join(home, 'Dev/tran/blender_manual/ref_dict_0006_0001.json')
         json_dict = readJSON(dict_path)
 
         symbol_pairs = [
-            '()',
-            '[]',
+            # '()',
+            # '[]',
             '""',
         ]
 
@@ -8110,10 +8180,25 @@ IOR
             bk_s = bk_set[0]
             bk_e = bk_set[1]
             for k, v in json_dict.items():
+                has_bk_s = (bk_s in k)
+                has_bk_v = (bk_e in k)
+                can_process = (has_bk_s and has_bk_v)
+                if not can_process:
+                    continue
+
+                is_debug = ('auto' in k)
+                if is_debug:
+                    print('debug')
+
                 new_k = k
                 new_v = v
+
                 can_remove_brackets_in_k = canSafelyRemoveBrackets(bk_s, bk_e, k)
                 can_remove_brackets_in_v = canSafelyRemoveBrackets(bk_s, bk_e, v)
+                can_remove_brackets = (can_remove_brackets_in_v or can_remove_brackets_in_k)
+                if not can_remove_brackets:
+                    continue
+
                 if can_remove_brackets_in_k:
                     k_len = len(k)
                     new_k = k[1:k_len-1]
@@ -8130,7 +8215,7 @@ IOR
                 new_dict.update(entry)
         if changed:
             print(f'Write changes to: {dict_path}')
-            writeJSON(dict_path, new_dict)
+            # writeJSON(dict_path, new_dict)
 
     def poCatToDic(self, po_cat):
         po_cat_dic = OrderedDict()
@@ -8198,7 +8283,326 @@ IOR
         rat = fuzz.partial_token_sort_ratio(t1, t2)
         print(f't1:{t1}; t2:{t2}; rat:{rat}')
 
+    def locRemain(self, original_word: str, new_word: str) -> list:
+        '''
+        locRemain:
+            Find where the remainder starts, ends, excluding alphanumeric characters, so can decide
+            if remainder can be removed or not and how far
+        :param original_word: word where new_word is extracted from
+        :param new_word: word from which dictionary has found from original word
+        :return:
+            list of locations (start, end) within the original where original word including
+            but not containing any alpha-numerical characters, which can be removed (ie. remainder
+            parts of the word in the original_word)
+        '''
+        try:
+            try:
+                p = re.compile(new_word, flags=re.I)
+            except Exception as e:
+                new_word_esc = re.escape(new_word)
+                p = re.compile(new_word_esc, flags=re.I)
+
+            list_of_occurences = patternMatchAllToDict(p, original_word)
+            # entry = {loc: orig}
+            list_of_places = []
+            max_len = len(original_word)
+            list_of_found_locations = list_of_occurences.keys()
+            for loc in list_of_found_locations:
+                s, e = loc
+                while s-1 >= 0 and original_word[s-1].isalnum():
+                    s -= 1
+
+                while e+1 < max_len and original_word[e+1].isalnum():
+                    e += 1
+
+                s = max(0, s)
+                e = min(e, max_len)
+                loc = (s, e)
+                list_of_places.append(loc)
+            return list_of_places
+        except Exception as e:
+            print(f'original_word:{original_word}, new_word:{new_word}')
+            print(e)
+            raise e
+
+    def compareExpressContruct(self, item, k, is_fuzz=False):
+        i_left, i_right, k_left, k_right = cm.splitExpVar(item, k)
+        is_left_match = is_right_match = True
+        has_left = bool(i_left and k_left)
+        if has_left:
+            left_ratio = fuzz.ratio(i_left, k_left)
+            is_left_match = (left_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+
+        has_right = bool(i_right and k_right)
+        if has_right:
+            right_ratio = fuzz.ratio(i_right, k_right)
+            is_right_match = (right_ratio >= cm.FUZZY_ACCEPTABLE_RATIO)
+
+        is_equal = (has_left or has_right) and (is_left_match and is_right_match)
+        if is_equal:
+            return 0, i_left, i_right, k_left, k_right
+        elif item < k:
+            return -1, None, None, None, None
+        else:
+            return 1, None, None, None, None
+
+    def test_loc_remain(self):
+        item = 'take up $$$'
+        k = 'taking up courage'
+
+        item = 'this is the $$$'
+        item = 'this is the'
+        k = 'This is the command you will always use when building the docs'
+        is_matched, i_left, i_right, k_left, k_right = self.compareExpressContruct(item, k)
+        print(f'is_matched:[{is_matched}], i_left:[{i_left}], i_right:[{i_right}], k_left:[{k_left}], k_right:[{k_right}]')
+        # ratio = fuzz.ratio(item, k)
+        # print(f'item:[{item}], k:[{k}], ratio:[{ratio}]')
+
+
+
+    def plistToText(self):
+        import pathlib
+        import xmltodict
+        
+        home = self.getHome()
+        plist_file_path = os.path.join(home, 'Documents/Text Substitutions.plist')
+        data = None
+        with open(plist_file_path) as fd:
+            data = fd.read()        
+        # print(data)
+        entry_list = re.findall(r'<string>(.*?)<\/string>', data)
+        dict_list = {}
+        key = expand = None
+        for index, entry in enumerate(entry_list):
+            is_even = (index % 2 == 0)
+            if is_even:
+                expand = entry                
+                # print(f'even:{entry}')
+            else:
+                key = entry
+                dict_entry = {key: expand}
+                dict_list.update(dict_entry)
+                # print(f'entry: {entry}')
+        json_file_path = os.path.join(home, 'plist.json')
+        writeJSON(json_file_path, dict_list)
+
+        # print(entry_list)
+
+        # doc = xmltodict.parse(data)
+        # print(f'{type(doc)}')
+        # for k, v in doc.items():
+        #     print(f'k:{type(k)}')
+        #     print(f'v:{type(v)}')
+        #     i=0
+        #     for kk, vv in v.items():
+        #         print(f'kk:{kk}')
+        #         print(f'vv:{vv}')
+        #         print('*' * 30)
+        #         i += 1
+        #         if i > 1:
+        #             exit(0)
+        # for dct in doc:
+        #     print(dct)
+            # for k, v in dct.items():
+            #     print(f'{k}=>{v}')
+        # for entry in doc:
+        #     pprint(entry)
+        # json_data = json.dumps(doc)
+        # print(json_data)
+
+        # url = pathlib.Path(plist_file_path).as_uri()
+        # print(url)
+        # data = requests.get(url)
+        # print(data)
+
+    def binary_match(self, loc_from, loc_to):
+        is_same_empty = not (loc_from or loc_to)
+        if is_same_empty:
+            return 0
+
+        if not loc_from and loc_to:
+            return -len(loc_to)
+
+        if loc_from and not loc_to:
+            return -len(loc_from)
+
+        same_count = 0
+
+        f_len = len(loc_from)
+        f_len_mid = (f_len // 2)
+        f_list_0 = loc_from[:f_len_mid].lower()
+        t_list_0 = loc_to[:f_len_mid].lower()
+        is_same = (bool(f_list_0) and bool(t_list_0)) and (t_list_0 == f_list_0)
+        if not is_same:
+            t_len = len(t_list_0)
+            for i, f_char in f_list_0:
+                valid = (i < t_len)
+                if not valid:
+                    break
+
+                t_char = t_list_0[i]
+                is_equal = (t_char == f_char)
+                if not is_equal:
+                    break
+
+                same_count += 1
+
+            return same_count
+        else:
+            same_count += f_len_mid
+
+
+        f_list_1 = loc_from[f_len_mid+1:]
+        t_list_1 = loc_to[f_len_mid+1:]
+        is_same = (f_list_1.lower() == t_list_1.lower())
+        if is_same:
+            return same_count + len(f_list_1)
+        else:
+            return same_count + self.binary_match(f_list_1, t_list_1)
+
+    def test_binary_search(self):
+        t1= 'this one location'
+        t2 = 'this one location is a test'
+        l_t1 = len(t1)
+        matched_count = self.binary_match(t1, t2)
+        print(f'is_found:[{matched_count}]')
+
+    def test_0072(self):
+        t = '``-o /project/renders/frame_#####``'
+        leading=r'([\`\<]+)?'
+        ending=r'([\`\>]+)?'
+        word = r'([\w\d\#]+)'
+        sep = r'([<>\\\/\-\_\.{}:]+)'
+        pat = r'(%s((%s?(%s%s)+)*%s?)%s)|(%s%s%s)' % (leading, word, sep, word, sep, ending, sep, word, sep)
+        only_sep = r'^%s$' % (sep)
+        only_sep_pat = re.compile(only_sep)
+        # p1 = re.compile(r'(([\w\d]+)?[\\\/\-\_\.]+([\w\d]+))+')
+        p = re.compile(pat)
+        # m = p.search(t)
+        iter = p.finditer(t)
+        for m in iter:
+            f = m.group(0)
+            s = m.start()
+            e = m.end()
+            is_only_sep = (only_sep_pat.search(t) is not None)
+            if f and not is_only_sep:
+                print(f'{(s,e)}; [{f}]')
+
+    def test_0073(self):
+        def pat_search(local_en_txt):
+            for pat, tran in numerical_pat_list:
+                m = pat.search(local_en_txt)
+                is_matching = (m is not None)
+                if is_matching:
+                    return tran
+            return None
+
+        def find_tran(en_txt):
+            try:
+                tran = pat_search(en_txt)
+                iter = numerical_abbrev_pat.finditer(tran)
+                for m in iter:
+                    abbrev_txt = m.group(0)
+                    try:
+                        abbrev_tran_txt = numeral_dict[abbrev_txt]
+                        tran = tran.replace(abbrev_txt, abbrev_tran_txt)
+                    except Exception as e:
+                        pass
+                return tran
+            except Exception as e:
+                return None
+
+
+        numeric_prefix = 'hằng/lần thứ/bộ/bậc'
+        numeric_postfix = 'mươi/lần/bậc'
+        numeral_dict = {
+            '@{1t}': 'ức',
+            '@{1b}': 'tỉ',
+            '@{1m}': 'triệu',
+            '@{1k}': 'nghìn',
+            '@{1h}': 'trăm',
+            '@{10}': 'chục/mươi/mười',
+            '@{0}': 'không/vô/mươi',
+            '@{1}': 'một/nhất/đầu tiên',
+            '@{2}': 'hai/nhì/nhị/phó/thứ/giây đồng hồ',
+            '@{3}': 'ba/tam',
+            '@{4}': 'bốn/tứ/tư',
+            '@{5}': 'năm/lăm/nhăm/Ngũ',
+            '@{6}': 'Sáu/Lục',
+            '@{7}': 'Bảy/Thất',
+            '@{8}': 'Số tám/bát',
+            '@{9}': 'Chín/cửu',
+        }
+
+        numeric_trans = {
+            'zero|none|empty|nullary': '@{1}',
+            'one|first|monuple|unary': '@{1}',
+            'two|second|couple|binary': '@{2}',
+            'three|third|triple|ternary': '@{3}',
+            'four(th)?|quadruple|Quaternary': '@{4}',
+            'five|fifth|quintuple|Quinary': '@{5}',
+            'six(th)?|sextuple|Senary': '@{6}',
+            'seven(th)?|septuple|Septenary': '@{7}',
+            'eight(th)?|octa|octal|octet|octuple|Octonary': '@{8}',
+            'nine(th)?|nonuple|Novenary|nonary': '@{9}',
+            'ten(th)?|decimal|decuple|Denary': '@{10}',
+            'eleven(th)?|undecuple|hendecuple': 'Mười @{1}',
+            'twelve(th)?|doudecuple': 'Mười @{2}',
+            'thirteen(th)?|tredecuple': 'Mười @{3}',
+            'fourteen(th)?|quattuordecuple': 'Mười @{4}',
+            'fifteen(th)?|quindecuple': 'Mười @{5}',
+            'sixteen(th)?|sexdecuple': 'Mười @{6}',
+            'seventeen(th)?|septendecuple': 'Mười @{7}',
+            'eighteen(th)?|octodecuple': 'Mười @{8}',
+            'nineteen(th)?|novemdecuple': 'Mười @{9}',
+            '(twent(y|ie(s|th))+?)|vigintuple': '@{2} @{10}',
+            '(thirt(y|ie(s|th))+?)|trigintuple': '@{3} @{10}',
+            '(fort(y|ie(s|th))+?)|quadragintuple': '@{4} @{10}',
+            '(fift(y|ie(s|th))+?)|quinquagintuple': '@{5} @{10}',
+            '(sixt(y|ie(s|th))+?)|sexagintuple': '@{6} @{10}',
+            '(sevent(y|ie(s|th))+?)|septuagintuple': '@{7} @{10}',
+            '(eight(y|ie(s|th))+?)|octogintuple': '@{8} @{10}',
+            '(ninet(y|ie(s|th))+?)|nongentuple': '@{9} @{10}',
+            '(hundred(s|th)?)|centuple': '@{1h}',
+            '(thousand(s|th)?)|milluple': '@{1k}',
+            'million(s|th)?': '@{1m}',
+            'billion(s|th)?': '@{1t}',
+            'trillion(s|th)?': '@{1t}',
+        }
+        puntuations = r'[\,\.\:\;\'\"\}\-|_]'
+        numerical_abbrev_pat = re.compile(r'@{\w+}?')
+        numerical_pat_list = []
+        for pat_txt, tran_txt in numeric_trans.items():
+            pattern_text = r'\b(%s)\b' % (pat_txt)
+            pat = re.compile(pattern_text, flags=re.I)
+            entry=(pat, tran_txt)
+            numerical_pat_list.append(entry)
+
+        numeral = r"\b(one|first|once)|" \
+                  r"(two|second|twice)|" \
+                  r"(three|third|triple)|" \
+                  r"(four|fourth|quadruple)|" \
+                  r"(five|fifth|quintuple)|" \
+                  r"(six|sixth|sextuple)|" \
+                  r"(seven|)|" \
+                  r"eight|nine|ten|eleven|twelve|((thir|four|fif|six|seven|eigh|nine)teen)|(twen|thir|for|four|fif|six|seven|eigh|nine)(ty|ties)|(hundred|thousand|(mil|tril)lion)))(s|th)?\b"
+        n_p = re.compile(numeral, flags=re.I)
+        t = 'Sixty five and fifty hundreds, For one two three years, hundreds thousands people came to see millions of them, thirty people and fourteen of them has made one trillion donations, and the man came third is the fifth is the nineteenth man forties forthcoming oneness final second'
+
+        word_sep="()"
+        for w in t.split():
+            mm = n_p.search(w)
+            is_number = (mm is not None)
+            if is_number:
+                print(f'[{w}] is numeral.')
+            loc, stripped_word = cm.removingNonAlpha(w)
+            translation = find_tran(stripped_word)
+            if translation:
+                print(f'[{stripped_word}] => [{translation}]')
+
     def test_translate(self):
+        # import spacy
+        # nlp = spacy.load('en_core_web_sm')
         WORD_SPLIT = re.compile(r'[^\W]+')
         tf = TranslationFinder()
 
@@ -8206,18 +8610,568 @@ IOR
         # sorted_list = sorted(transtable.items())
         # t="texture_blur"
         # t = "%s, not exacted since frame %i"
-        t = 'turn our attention'
+        # t = "would not turn every body's attention to the problem"
+        # t = "underlying"
+        # t = "color ramps"
+        # t = 'DCT, similar algorithm to JPEG.'
+        # t = '__Delete Driver(s).'
+        # t = 'difference'
+        # t = "Dope Sheet's;;;"
+        # t = '"limit" ones'
+        # t = "\"Basis\" is the rest shape. \"Key 1\", \"Key 2\", etc. will be the new shapes"
+        # t = '"Bone" is "Bone.003" \'s parent. Therefore "Bone.003" \'s root is same as the tip of "Bone". Since "Bone" is still selected, its tip is selected. Thus the root of "Bone.003" remains selected'
         # t = 'aim to please'
         # t = 'tricky'
-        trans, is_fuzzy, is_ignore = tf.translate(t)
+        # t = "assuming you are at the ``blender_docs`` subdirectory"
+        # t = "do not remove or add vertices"
+        # t = 'this is the same thing as the *Playback Range* option of the :ref:`Timeline editor header <animation-editors-timeline-headercontrols>`'
+        # t = "Helps to maintain the hair volume when puffing the root."
+        # t = "Hint: the color of the UI control changes when you wouldn't have located at precisely the frame number of the keyframed."
+        # t = "\"limit\" ones"
+        # t = "like e.g. the :doc:`\"copy\" ones </animation/constraints/transform/copy_location>`"
+        # t = "If more realism is desired, the Mirror Modifier would be applied, resulting in a physical mirror and a complete head. You could then make both side physically different by editing one side and not the other. Unwrapping would produce a full set of UVs (for each side) and painting could thus be different for each side of the face, which is more realistic"
+        # t = "Foreground colors of Warning icon next to Form of hair"
+        # t = 'i.e. it will be "played" reversed...' # solving ' reversed...' is PATH and is ignored
 
-        # trans = self.binSearch(sorted_list, word_to_find)
-        print(f't:[{t}] => trans:[{trans}]')
+        # t = '//one/two'
+        # # t = 'one/two/three'
+        # PATH_WORD_TRAIL = re.compile(r'(\\\\|/|\\-|_|\\.)\w+')
+        # PATH_WORD_LEAD = re.compile(r'\w+(\\\\|/|\\-|_|\\.)')
+
+        # m1 = PATH_WORD_LEAD.findall(t)
+        # m2 = PATH_WORD_LEAD.findall(t)
+
+        # t = "Load Template Factory Settings"
+        t_list = [
+            # "i.e. if you had a ``forearm`` bone selected when you copied the pose, the ``forearm`` bone of the current posed armature will get its pose when you paste it -- and if there is no such named bone, nothing will happen...",
+            # "{BLENDER_USER_SCRIPTS}/startup/bl_app_templates_user",
+            # "Face or Vertex select modes",
+            # "Factor Start, End",
+            # "perimeter of the object",
+            # "First and Last Copies",
+            # "Flip to Bottom/Top",
+            # "Grease Pencil materials are linked at stroke level.",
+            # "(Grease Pencil Edit)",
+            # "found in the panel header",
+            # "also available from the 3D header in both *Object Mode* and *Edit Mode* :menuselection:`Object --> Snap` and :menuselection:`Mesh --> Snap`",
+            # "larger *Edge Kernel Radius*, like 8 / smaller *Edge Kernel Tolerance*, like 0.05",
+            # "with a Radius of 100 px",
+            # 'the Mirror Modifier; would be!! applied, 2.5 one.to.one, resulting in a physical mirror and a complete head. You could then make both side physically different',
+            # "Helps to maintain the hair volume when puffing the root realism.",
+            # "If more realism is desired, the Mirror Modifier would be applied, resulting in a physical mirror and a complete head. You could then make both side physically different by editing one side and not the other. Unwrapping would produce a full set of UVs (for each side) and painting could thus be different for each side of the face, which is more realistic",
+            # "Image texturing only. Insert texts, Install from",
+            # "Instancing Vertices",
+            # "Learn the benefits of right-click-select",
+            # "Light tab",
+            # "Linux",
+            # "Marker-And-Cell Grid",
+            # "Material Library VX",
+            # "Houdini Ocean Toolkit",
+            # "NURBS spheres and specific element colors and sizes",
+            # "NURBS, mesh, meta",
+            # "NVidia Website",
+            # "North / South",
+            # "as long as",
+            # "Quickening up",
+            # "non-highlighted",
+            # "show only collections that contain the selected objects",
+            # "/render/freestyle/parameter_editor/line_style/modifiers/geometry/backbone_stretcher",
+            # "C:\\blender_docs\\build\\html",
+            # "Blender.app",
+            # "3D Viewport --> Add --> Mesh --> Monkey"
+            # "Object Mode, 60 degrees",
+            # "Operators.bidirectional_chain()",
+            "microfacet_ggx_aniso(N, T, ax, ay)",
+            "Vector(...)",
+            "object(s)", # not a function
+            "Nuke(*.chan)", # not a function
+            "RGBA(0.0, 0.0, 0.0, 1.0)",
+            "Add/Remove object(s) to/from collection", # not a function
+            "print()",
+            "Need selected bone(s)", # not a function
+            "principled_hair(N, absorption, roughness, radial_roughness, coat, offset, IOR)",
+            "Result(s)",
+            "./config/{APP_TEMPLATE_ID}/startup.blend",
+            ".*rabbit.*",
+        "./Blender.app/Contents/MacOS/Blender",
+        "./autosave/ ...",
+        "./config/ ...",
+        "./config/bookmarks.txt",
+        "./config/recent-files.txt",
+        "./config/startup.blend",
+        "./config/userpref.blend",
+        "./config/{APP_TEMPLATE_ID}/startup.blend",
+        "./config/{APP_TEMPLATE_ID}/userpref.blend",
+        "./datafiles/ ...",
+        "./datafiles/locale/{language}/",
+        "./python/ ...",
+        "./resources/theme/js/version_switch.js",
+        "./scripts/ ...",
+        "./scripts/addons/*.py",
+        "./scripts/addons/modules/*.py",
+        "./scripts/addons_contrib/*.py",
+        "./scripts/addons_contrib/modules/*.py",
+        "./scripts/modules/*.py",
+        "./scripts/presets/interface_theme/",
+        "./scripts/presets/{preset}/*.py",
+        "./scripts/startup/*.py",
+        "./scripts/templates_osl/*.osl",
+        "./scripts/templates_py/*.py",
+        ".001",
+        ".Bk",
+        ".Bot",
+        ".Fr",
+        ".L",
+        ".MTL",
+        ".R",
+        ".Top",
+        ".app",
+        ".avi",
+        ".bashrc",
+        ".bat",
+        ".bin",
+        ".blend",
+        ".blend1",
+        ".blend2",
+        ".bmp",
+        ".btx",
+        ".bvh",
+        ".bw",
+        ".chan",
+        ".cin",
+        ".dae",
+        ".dpx",
+        ".dv",
+        ".dvd",
+        ".eps",
+        ".exr",
+        ".fbx",
+        ".flv",
+        ".gif",
+        ".glb",
+        ".glb, .gltf",
+        ".gltf",
+        ".hdr",
+        ".html",
+        ".inc",
+        ".j2c",
+        ".jp2",
+        ".jpeg",
+        ".jpg",
+        ".mdd",
+        ".mkv",
+        ".mov",
+        ".mp4",
+        ".mpeg",
+        ".mpg",
+        ".obj",
+        ".ogg",
+        ".ogv",
+        ".osl",
+        ".oso",
+        ".pc2",
+        ".pdb",
+        ".ply",
+        ".png",
+        ".po",
+        ".py",
+        ".pyd",
+        ".rgb",
+        ".right",
+        ".rst",
+        ".sab",
+        ".sat",
+        ".sgi",
+        ".sh",
+        ".so",
+        ".srt",
+        ".stl",
+        ".svg",
+        ".svn",
+        ".tga",
+        ".tif",
+        ".tiff",
+        ".uni",
+        ".vdb",
+        ".velocities",
+        ".vob",
+        ".webm",
+        ".xxxx",
+        ".xyz",
+        ".zip",
+        "/EXIT",
+        "/branches",
+        "/copyright",
+        "/fr",
+        "/tmp",
+        "resting..."
+        ]
+
+        # t_dict = {
+        #     "./config/{APP_TEMPLATE_ID}/startup.blend": "./cấu hình/{TRÌNHỨNGDỤNG_BẢN MẪU_ID}/khởi động.blend/hòa trộn/chuyển đổi",
+        # "./config/{APP_TEMPLATE_ID}/userpref.blend": "./cấu hình/{TRÌNHỨNGDỤNG_BẢN MẪU_ID}/userpref.blend/hòa trộn/chuyển đổi",
+        # "./datafiles/ ...": "",
+        # "./datafiles/locale/{language}/": "",
+        # "./python/ ...": "",
+        # "./scripts/ ...": "",
+        # "./scripts/addons/*.py": "./tập lệnh/các trình bổ sung/*.py",
+        # "./scripts/addons/modules/*.py": "./tập lệnh/các trình bổ sung/mô-đun/*.py",
+        # "./scripts/addons_contrib/*.py": "./tập lệnh/các trình bổ sung_contrib/*.py",
+        # "./scripts/addons_contrib/modules/*.py": "./tập lệnh/các trình bổ sung_contrib/mô-đun/*.py",
+        # "./scripts/modules/*.py": "./tập lệnh/mô-đun/*.py",
+        # "./scripts/presets/{preset}/*.py": "./tập lệnh/sắp đặt sẵn/{sắp đặt sẵn}/*.py",
+        # "./scripts/startup/*.py": "./tập lệnh/khởi động/*.py",
+        # "./scripts/templates_osl/*.osl": "./tập lệnh/khuôn mẫu_:abbr:`osl (open shading language: ngôn ngữ tô bóng mở)`:/*.:abbr:`osl (open shading language: ngôn ngữ tô bóng mở)`:",
+        # "./scripts/templates_py/*.py": "./tập lệnh/khuôn mẫu_py/*.py",
+        # "./scripts/templates_py/*.*": "./tập lệnh/khuôn mẫu_py/*.py",
+        # "./w*": "./tập lệnh/khuôn mẫu_py/*.py"
+        # }
+        var = r'[\w\_\.\-]+'
+        param = r'(%s(\,(\s+)?)?)+' % (var)
+        multiple = r'^\w+\(s\)$'
+        funct = r'(?!%s)^(%s\((%s)?\))$' % (multiple, var, param)
+        FUNC = re.compile(funct)
+
+        word = r'(\w+)'
+        path_sep = r'([\~\\\\////\\\/\_\-\.\:\*\{\}]{1,2})'
+        leading_hyphens = r'(^[-]+)'
+        ref_tag = r'(^:%s:$)' % (word)
+        single_hyphen = r'(^%s[-:*_\/]%s$)' % (word, word)
+        number_format = r'(\d+[.]\d+)'
+        hour_format = r'(%s:%s(:%s)?([.]%s)?)' % (word, word, word, word)
+        whatever = r'(%s?)[*]{1}(%s?)' % (word, word)
+        file_extension = r'^([.]%s)$' % (word)
+        return_linefeed = r'^(\\[nr])$'
+        bold_word = r'^(\*%s\*)$' % (word)
+        digits = r'(\d+)'
+        real_number = r'^(%s([,\.]{1}(%s))?)$' % (digits, digits)
+        parameters = r'^([\-]{2,})'
+        not_allowed = r'(?!(%s|%s|%s|%s|%s|%s|%s|%s|%s))' % (parameters, real_number, bold_word, leading_hyphens, single_hyphen, ref_tag, hour_format, number_format, return_linefeed)
+        path = r'(%s|%s)?((%s(%s)?%s)+)+' % (word, path_sep, path_sep, path_sep, word)
+        variable = r'[\w_-]+'
+        api_path = r'((%s\.%s)+)+' % (variable, variable)
+        blender_api = r'^(blender_api\:%s)$' % (api_path)
+
+        extension_0001 = r'(%s\.%s)' % (word, word)
+        extension_0002 = r'(%s\.%s)' % (whatever, word)
+        extension_0003 = r'(%s\.%s)' % (word, whatever)
+        extension_0004 = r'(%s\.%s)' % (whatever, whatever)
+
+        ending_extension = r'(%s|%s|%s|%s)' \
+                                        % ( \
+                                            extension_0001, \
+                                            extension_0002, \
+                                            extension_0003, \
+                                            extension_0004,
+                                           )
+        path_def = r'^(%s)%s?(%s)?$' % (path, path_sep, ending_extension)
+        # path_def = r'^%s(%s)%s?$' % (not_allowed, path, path_sep)
+        path_pattern = r'%s(%s|%s|%s)' % (not_allowed, path_def, file_extension, blender_api)
+        PATH_CHECKER = re.compile(path_pattern)
+
+        t_list = [
+            # "(E.g. depending on the rest position of your elbow, it may be from (0 to 160) or from (-45 to 135));.",
+            # "Cycles, Workbench",
+            # "Object and Edit Mode Pivot",
+            # "~/.blender/|BLENDER_VERSION|/config/startup.blend",
+            # "~/blender_docs",
+            # "~/blender_docs/build/html",
+            # "~/blender_docs/toos_maintenance",
+            # "F-Curves",
+            # "2.71",
+            # "--debug-xr-time",
+            # "prefs-menu",
+            # "https://www.youtube.com/watch?v=Ge2Kwy5EGE0",
+            # "further information: `File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>`__",
+            # "Mesh Primitives",
+            # "~/.blender/|BLENDER_VERSION|/config/startup.blend",
+            "--addons",
+            "--app-template",
+        "--background",
+        "--debug",
+        "--debug-all",
+        "--debug-cycles",
+        "--debug-depsgraph",
+        "--debug-events",
+        "--debug-ffmpeg",
+        "--debug-fpe",
+        "--debug-freestyle",
+        "--debug-ghost",
+        "--debug-gpu",
+        "--debug-handlers",
+        "--debug-io",
+        "--debug-jobs",
+        "--debug-libmv",
+        "--debug-memory",
+        "--debug-python",
+        "--debug-value",
+        "--debug-wm",
+        "--debug-xr",
+        "--disable-autoexec",
+        "--enable-autoexec",
+        "--engine",
+        "--factory-startup",
+        "--frame-end",
+        "--frame-jump",
+        "--frame-start",
+        "--help",
+        "--log",
+        "--log \"*,^wm.operator.*\"",
+        "--log \"wm.*\"",
+        "--log-file",
+        "--log-level",
+        "--python",
+        "--python-console",
+        "--python-expr",
+        "--python-text",
+        "--render-anim",
+        "--render-format",
+        "--render-frame",
+        "--render-frame 1",
+        "--render-output",
+        "--scene",
+        "--start-console",
+        "--threads",
+        "--use-extension",
+        "--verbose",
+        "--version",
+        "--window-border",
+        "--window-fullscreen",
+        "--window-geometry",
+        "--window-maximized",
+        "BLENDER_SYSTEM_DATAFILES",
+        "BLENDER_SYSTEM_PYTHON",
+        "BLENDER_SYSTEM_SCRIPTS",
+        "CYCLES_CUDA_EXTRA_CFLAGS",
+        "KHR_draco_mesh_compression",
+        "KHR_lights_punctual",
+        "KHR_materials_clearcoat",
+        "KHR_materials_pbrSpecularGlossiness",
+        "KHR_materials_transmission",
+        "KHR_materials_unlit",
+        "KHR_mesh_quantization",
+        "KHR_texture_transform",
+        "Keep_Transform",
+        "LAYER_frozen",
+        "LAYER_locked",
+        "LAYER_on",
+        ]
+        t_list = [
+            "Parent Objects",
+        ]
+        # for t, _ in t_dict.items():
+        # output_list = {}
+        for t in t_list:
+            # # iter = cm.pattern MENU_SEP.finditer(t)
+            # matched_list = cm.findInvert(cm.MENU_SEP, t)
+            # for loc, mtxt in matched_list.items():
+            #     entry = (loc, mtxt)
+            #     print(entry)
+            #
+            # exit(0)
+            # o = url(t)
+            # try:
+            #     valid = all([result.scheme, result.netloc, result.path])
+            # except Exception as e:
+            #     valid = False
+            # print(f'[{t}] [{valid}]')
+
+            # function = FUNC.search(t)
+            # is_func = (function is not None)
+            # if is_func:
+            #     print(f'FUNCTION: [{t}]')
+            # else:
+            #     print(f'NOT FUNCTION: [{t}]')
+            #
+            # urlx = URLX()
+            # urls = urlx.find_urls(t)
+            # if urls:
+            #     print(f'URL: [{t}]')
+            # is_path = PATH_CHECKER.search(t)
+            # is_path = cm.isLinkPath(t)
+            # if is_path:
+            #     print(f'PATH: [{t}]')
+            # else:
+            #     print(f'NOT PATH: [{t}]')
+            # continue
+            # new_t = re.sub('[-_]', ' ', t)
+            # ref_list = RefList(msg=new_t, keep_orig=False, tf=tf)
+            ref_list = RefList(msg=t, keep_orig=False, tf=tf)
+            ref_list.parseMessage()
+            ref_list.translateRefList()
+            trans = ref_list.getTranslation()
+            print(f't:[{t}] => trans:[{trans}]')
+
+        #     # tran_txt = ":abbr:`%s (%s)`" % (t, trans)
+        #     # entry = {t: tran_txt}
+        #     # output_list.update(entry)
+        #     is_ignore = (ref_list.isIgnore())
+        #     is_fuzzy = (ref_list.isFuzzy())
+        #
+        #     # trans, is_fuzzy, is_ignore = tf.translate(t)
+        #
+        #     # trans = self.binSearch(sorted_list, word_to_find)
+        #     # print(f't:[{t}] => trans:[{trans}]')
+        # for k, v in output_list.items():
+        #     print(f"\"{k}\": \"{v.strip()}\",")
+
+        # print(f't:[{t}]')
+        # m_list = cm.COMMON_SENTENCE_BREAKS.findall(t)
+        # pprint(m_list)
+        #
+        # doc = nlp(t)
+        # sen = []
+        # for token in doc:
+        #     is_punct = (token.pos_ == 'PUNCT')
+        #     if is_punct:
+        #         if not sen:
+        #             continue
+        #
+        #         sen_text = ' '.join(sen)
+        #         print(f'[{sen_text}]')
+        #         sen = []
+        #     else:
+        #         txt = token.text
+        #         s_txt = txt.strip()
+        #         is_valid = (len(s_txt) > 0)
+        #         if is_valid:
+        #             sen.append(token.text)
+
+            # print(f'token.text[{token.text}]; token.lemma_[{token.lemma_}]; token.pos_[{token.pos_}]; token.tag_[{token.tag_}]; token.dep_[{token.dep_}]; token.shape_[{token.shape_}]; token.is_alpha[{token.is_alpha}]; token.is_stop[{token.is_stop}];')
+            # print(token.text, token.lemma_, token.pos_, token.tag_, token.dep_,
+            #       token.shape_, token.is_alpha, token.is_stop)
+
+    def translatePO(self):
+
+        input_po_file=os.path.join(self.getHome(), 'msgmerge_out_0002.po')
+        output_po_file=os.path.join(self.getHome(), 'msgmerge_out_0003.po')
+        changed = False
+        ignore_list = [
+            ('Volume', 'Sound')
+        ]
+        tf = TranslationFinder()
+
+        input_data = c.load_po(input_po_file)
+        for index, m in enumerate(input_data):
+            is_first_record = (index == 0)
+            if is_first_record:
+                continue
+
+            msgid = m.id
+            msgstr = m.string
+            is_fuzzy = m.fuzzy
+            msg_context = m.context
+            ig_entry = (msgstr, msg_context)
+            is_ignore = (ig_entry in ignore_list)
+            is_empty = (not bool(msgstr))
+            if is_ignore:
+                continue
+
+            is_translate = (is_fuzzy or is_empty)
+            if not is_translate:
+                continue
+
+            ref_list = RefList(msg=msgid, keep_orig=False, tf=tf)
+            ref_list.parseMessage()
+            ref_list.translateRefList()
+            trans = ref_list.getTranslation()
+
+            if not trans:
+                print(f'msgid:[{msgid}] No translation found')
+                continue
+
+            tran_state = ref_list.getTranslationState()
+            is_ignore = (tran_state == TranslationState.IGNORED)
+            if is_ignore:
+                print(f'msgid:[{msgid}] IGNORED')
+                continue
+
+            is_tran_same = (msgstr == trans)
+            if is_tran_same:
+                print(f'msgid:[{msgid}] same translation:[{msgstr}] IGNORED')
+                continue
+            
+            print(f'msgid:[{msgid}]')
+            print(f'msgstr:[{trans}]')
+            if not is_fuzzy:
+                m.flags |= {u'fuzzy'}
+                # m.flags.remove(u'fuzzy')
+            m.string = trans
+            changed = True
+
+        if changed:
+            print(f'Writing changes to: [{output_po_file}]')
+            c.dump_po(output_po_file, input_data)
+
+    def mergeVIPOFiles(self):
+        git_hub = os.environ['BLENDER_GITHUB']
+        blender_pot_path = f'{git_hub}/../po/blender.pot'
+        input_po_file=blender_pot_path
+        tran_file = os.path.join(self.getHome(), 'msgmerge_out_0004.po')
+        output_po_file=os.path.join(self.getHome(), 'msgmerge_out_0005.po')
+
+        changed = False
+        ignore_list = [
+            ('Volume', 'Sound')
+        ]
+
+        tran_dict = {}
+        # tf = TranslationFinder()
+        tran_data = c.load_po(tran_file)
+        for index, m in enumerate(tran_data):
+            if index == 0:
+                continue
+            k = m.id
+            v = m
+            entry = {k: v}
+            tran_dict.update(entry)
+
+        changed = False
+        input_data = c.load_po(input_po_file)
+        for index, m in enumerate(input_data):
+            if index == 0:
+                continue
+
+            k = m.id
+            has_tran = (k in tran_dict)
+            if has_tran:
+                v = tran_dict[k]                # translated entry
+                msgstr = v.string
+                flags = v.flags
+                print_flag = (flags if flags else "")
+                print(f'[{k}], [{msgstr}], flags:[{print_flag}]')
+                m.string = msgstr
+                m.flags = flags
+                changed = True
+            else:
+                print(f'entry [{k}] in blender.pot is NOT FOUND in the tran_file (msgmerge_out_0004.po) file')
+
+        if changed:
+            print(f'Writing changes to: [{output_po_file}]')
+            c.dump_po(output_po_file, input_data)
+
+    def test_translate_0001(self):
+        tf = TranslationFinder()
+        t_list = [
+            # "Angle threshold to be treated as corners",
+            # "Axis that points in the 'forward' direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
+            "Axis that points in the upward direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
+        ]
+        for t in t_list:
+            ref_list = RefList(msg=t, keep_orig=False, tf=tf)
+            ref_list.parseMessage()
+            ref_list.translateRefList()
+            trans = ref_list.getTranslation()
+            print(f't:[{t}] => trans:[{trans}]')
 
     def run(self):
+        # self.test_0073()
+        # self.plistToText()
+        # self.test_binary_search()
         # self.sorting_temp_05()
         # self.resort_dictionary()
-        self.test_translate()
+        self.test_translate_0001()
+        # self.translatePO()
         # self.test_0063()
         # print(self.recur(4))
         # self.parseSVG()
@@ -8232,9 +9186,12 @@ IOR
         # self.test_0068()
         # self.test_0069()
         # self.test_0070()
+        # self.test_0072()
         # self.test_0071()
         # self.cleanDictionary()
         # self.diffPOTFile()
+        # self.test_loc_remain()
+        # self.mergeVIPOFiles()
 
 
 # # trans_finder = TranslationFinder()

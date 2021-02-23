@@ -80,33 +80,18 @@ class Ignore:
     runtime_ignore_list = None
     ignore_list = [
         r'^[\W\d]+$',   # symbols and numbersr
-        r'^(\w+)([\-\.]\w+){2,}$', # hyphen ref links: "mesh-faces-tristoquads"
-        # r'^\/?(\w+)(\/\w+){3,}$', # slash ref links: "/animation/armatures/bones/properties/bendy_bones"
-        # r'^()$',
-        # r'^((\w)([\//,\s]?)[\/,\s]?|=[\d]+([\.]?[\d]+)?)+$', #X, Y, Z  X=0.0, Y=0.0
-        # r'^(HS[VL][\s]?[\/]?[\s]?)+$', #HSV/HSL
-        r'^((\/[^\/]+)*)$',
-        r'([\.](org|com|uk|ac))$', # '/render/freestyle/parameter_editor/line_style/modifiers/color/noise'
-        # r'([\`\'\"\*\(]+)?(\%[\w])([\`\'\"\*\(]+)?',
-        # r'^(/\[\`\'\"\*\(]+)?\%[\w](/\[\`\'\"\*\)]+)?$',
-        r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
+        # r'([\.](org|com|uk|ac))$',
+        # r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         r'^(GPL[\s\w][\d][+])$',
         r'^(A \(Alpha\))$',
-        r'^([\w][\d])$',
+        r'^(\w+\d+)$',
         r'^[\w]\s?(\+|\-|\*|\/|\%|\=|\!\=|\>|\<|\>\=|\<\=|\=\=|\>\>|\<\<)\s?[\w]$', # A - B, A >= B
-        # r'^(([+-]+\w)(,\s)?)+$', #"+X, +Y, +Z, -X, -Y, -Z",
-        r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
+        # r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
         r'^(:ref:)([\`]+(\w+[-]?)+[\`]+)[\.]?$',
-        r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|Tab|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`
-        r'^([\w]+)\/$', # rendering/
-        # r'(^([\`]+)?[^\`]+)\.([\w]{2,5})([\`]+)?$', #file name
+        r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`
         r"^\s*([\d]+)(px|khz)?$", # 1024x2048
         r"^\s*([\d]+[x][\d]+)\s*$", # 1024x2048
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
-        # r'^(\<([^\<\>]+)\>)$', # <something>
-        #r"^\s*((Ctrl|Alt|Shift)?[\-](F[\d]+)?)\s*$",  # Ctrl|Alt|Shif-F1-12
-        # r'^([\*]?[\-]?[\d]+[\.][\w]{2,5})$', # *-0001.jpg
-        #r'^(' + r'([\+\-]?[\w]{1})([\,][\s]([\+\-]?[\w]))*' + r')$',
         r"^\s*([\d]+\s?bit[s]?)\s*$",
         r"^\s*(" + NUMB + MATH_OPS + r".*" + NUMB + r")\s*$",
         r"^\s*(" + r"(cd|mk|mkdir)[\s]+" + r".*" + r")\s*$",
@@ -116,16 +101,13 @@ class Ignore:
         r"^\s*(Bone[ABC]|COR\-|Cartesian|Bfont|ABC)\s*$",
         r"^\s*(F[\d]{1,2})\s*$", # F1-12
         r"^\s*([\w]([\s]+[\w\d])+)\s*$", # :kbd:`S X 0`
-        #r"^\s*(Shift[-][\S]{1})\s*$",
         r"^\s*(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)\s*$",
         r"^\s*([\W]+)\s*$",
         r"^\s*([-]{2}([\w-]+)*)\s*$",
-        # r"^\s*(\w+\:\w+)\s*$", # geom:curve_tangent_normal
         r"^\s*([\w\_\-]+\(([^\(\)]+)?\))\s*$", # function_name(param1, param2)
         r"^\s*([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)\s*$",
         r"^\s*([\d]D)\s*$",
         r"^\s*([\"\'][\.\s]?[\S]{1}[\"\'])\s*$",
-        # r"^\s*(#[\w\-\_]+)\s*$",  # blender-coders <literal>#blender-coders</literal>
         r"^\s*(#fmod\(frame, 24\) / 24)\s*$",
         r"^\s*(([\w]+)?([\.][\w]+)+)\s*$", # bpy.context, bpy.context.object
         r"^\s*(:(math|class):)\`([^\`]+)\`$",
@@ -156,12 +138,12 @@ class Ignore:
         r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",
         r"^\s*(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)\s*$",
         r"^\s*((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)\s*$",
-        r"^\s*(H\.264|Hosek \/ Wilkie|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)\s*$",
+        r"^\s*(H\.264|Hosek \/ Wilkie|Houdini|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)\s*$",
         r"^\s*(ID|Ins|JPEG 2000|(ITU(\s\d+)?)|Internet[\w\W]|iScale)\s*$",
         r"^\s*(KDE|K1, K2|Kirsch|komi3D)\s*$",
-        r"^\s*(Lennard\-Jones|LimbNode|Linux|Log|Look[\s]?Dev(HDRIs)?)\s*$",
-        r"^\s*MPEG([\-|\d]+)|MatCaps$",
-        r"^\s*(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)\s*$",
+        r"^\s*(Lennard\-Jones|LimbNode|Laplace Beltrami|Lightwave Point Cache \(\.mdd\)|Linux|Log|Look[\s]?Dev(HDRIs)?)\s*$",
+        r"^\s*MPEG([\-|\d]+)|MPEG H.264|MPEG-4\(DivX\)|MatCaps$",
+        r"^\s*(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|MacBook [\`]+Retina[\`]+|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)\s*$",
         r"^\s*(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)\s*$",
         r"^\s*(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR|Ozone|OptiX)\s*$",
         r"^\s*PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
@@ -171,14 +153,13 @@ class Ignore:
         r"^\s*(\%\d+[\w]?)\s*$", # %14s
         r"^\s*(\%[d](x%[d])?)\s*$", # %dx%d
         r"^\s*\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
-        # r"^\s*(RGB[\w]?)\s*$",
         r"^\s*(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)\s*$",
         r'^(\,\s)?(RGB[A]?)(\s(byte))?$',
         r'^(RGB[A]?)[\s]?(byte)?$',
         r'^(RGB[A]?)\([^\)]+\)$',
         r"^\s*(RK4|RRT|Redhat\/Fedora|RLE)\s*$",
         r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)\s*$",
-        r"^\s*(Tab|Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",
+        r"^\s*(Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",
         r"^\s*(URL|UV[s:]?|U & V|Uber)\s*$",
         r"^\s*(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)\s*$",
         r"^\s*(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)\s*$",
@@ -210,11 +191,11 @@ class Ignore:
         r"^\s*(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))\s*$",
         r"^\s*(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr|MPEG-4 \(divx\))\s*$",
         r"^\s*(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)\s*$",
-        r"^\s*(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\)|unregister|)\s*$",
+        r"^\s*(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\))\s*$",
         r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",
         r"^\s*(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))\s*$",
         r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)\s*$",
-        r"^\s*(tab|TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)\s*$",
+        r"^\s*(TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)\s*$",
         r"[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
     ]
 
@@ -227,9 +208,6 @@ class Ignore:
         "Antonio Vazquez (antonioya)",
         "Vladimir Spivak (cwolf3d)",
         "Nuke (.chan)",
-        "Houdini",
-        "Nuke",
-        "./",
         #"A (Alpha)",
         "(*x*\\ :sup:",
         #"+X, +Y, +Z, -X, -Y, -Z",
@@ -238,6 +216,9 @@ class Ignore:
     ]
 
     keep_list = [
+        "Path/Curve-Deform",
+        "a",
+        "an",
         "etc",
         "etc.",
         "e.g",
@@ -285,12 +266,14 @@ class Ignore:
         "anti-aliases",
         "anti-aliased",
         "anti-aliasing",
+        "Marker-And-Cell Grid",
         "reflect/refract",
         "scattering/absorbtion",
         "inside/outside",
         "Dots/BU",
         "Model by © 2016 pokedstudio.com",
         "Video: From Blender 1.60 to 2.50",
+        "right-click-select",
         #"",
         #"",
     ]
@@ -305,6 +288,10 @@ class Ignore:
         r'bone\.[\d]+',
     ]
     keep_contains_list = [
+        "i.e.",
+        "etc.",
+        "/etc",
+        "e.g.",
         "xương",
         "bone",
         "January",
@@ -376,22 +363,23 @@ class Ignore:
                 return False
 
             is_ref_link = cm.isLinkPath(msg)
+            is_function = (cm.FUNCTION.search(msg) is not None)
             is_ignore_word = Ignore.isIgnoredWord(msg)
             is_dos_command = Ignore.isDosCommand(msg)
             is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
-            #is_ignore_path = Ignore.isFilePath(msg)
 
-            is_ignore = (is_ignore_word or
+            is_ignore = (is_function or
+                        is_ignore_word or
                         is_dos_command or
                         is_ignore_start or
                         is_ref_link )
-                        #         or is_ignore_path)
             # is_ignore = (is_ignore_word or is_dos_command or is_ignore_start)
             if is_ignore:
                 #dd("checking for ignore")
                 dict_ignore = {"is_ignore_word": is_ignore_word,
                                "is_dos_command": is_dos_command,
                                "is_ignore_start": is_ignore_start,
+                               "is_function": is_function,
                                "is_ref_link": is_ref_link
                                }
                 dd("IGNORING:", msg)
