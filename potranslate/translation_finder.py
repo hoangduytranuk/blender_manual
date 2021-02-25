@@ -148,6 +148,7 @@ class NoCaseDict(OrderedDict):
         self.fuzzy_dict = []
         self.fuzzy_exp_var_chosen_record = None
         self.global_text_match = {}
+        self.local_cache = {}
 
         super(NoCaseDict, self).__init__()
         if data is None:
@@ -206,6 +207,23 @@ class NoCaseDict(OrderedDict):
 
         return new_tran
 
+    def clearCache(self):
+        self.local_cache.clear()
+
+    def addCache(self, item, result):
+        entry = {item: result}
+        self.local_cache(entry)
+
+    def findCache(self, item):
+        try:
+            result = self.local_cache[item]
+            return result
+        except Exception as e:
+            return None
+
+    def isInCache(self, item):
+        return (item in self.local_cache)
+
     def simpleFuzzyTranslate(self, msg: str):
         def comparePartial(from_item, to_item):
 
@@ -256,21 +274,6 @@ class NoCaseDict(OrderedDict):
             else:
                 return 0
 
-        def getWordMatchingPercentage(loc_item):
-            loc_item_word_list = loc_item.split()
-            loc_item_word_count = len(loc_item)
-            match_percentage = 0
-            for index, item_word in enumerate(loc_item_word_list):
-                try:
-                    k_word = k_word_list[index]
-                    match_rat = fuzz.ratio(item_word, k_word)
-                    is_acceptable = (match_rat > cm.FUZZY_LOW_ACCEPTABLE_RATIO)
-                    if is_acceptable:
-                        match_percentage += (match_rat / loc_item_word_count)
-                except Exception as e:
-                    pass
-            return match_percentage
-
         def wordFuzzyCompare(item_txt: str):
             word_list = item_txt.split()
             word_list_count = len(word_list)
@@ -292,27 +295,66 @@ class NoCaseDict(OrderedDict):
             if not is_equal:
                 match_rat = wordFuzzyCompare(loc_item)
                 is_equal = (match_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
-
             if is_equal:
                 return 0, match_rat
             elif loc_item < k:
-                return -1, 0
+                return -1, match_rat
             else:
-                return 1, 0
+                return 1, match_rat
+
+        def linearSearch(k_list):
+            rat_list = []
+            for i, item in enumerate(k_list):
+                value, match_rat = fuzzyCompareString(item)
+                entry = (match_rat, i, item)
+                rat_list.append(entry)
+            rat_list.sort(reverse=True)
+            dd(f'linearSearch(): rat_list sorted:')
+            dd('---------')
+            pp(rat_list)
+            dd('---------')
+            first_item = rat_list[0]
+            return first_item
 
         def binarySearchStartIndex(k_list):
+            looking_for = k # for debugging purposes
             lo = 0
             hi = len(k_list)-1
             selective_list=[]
             while lo < hi:
                 mid = (lo + hi) // 2
                 item = k_list[mid]
-                value, match_rat = fuzzyCompareString(item)
-                # match_rat = fuzz.ratio(item, k)
-                is_equal = (match_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                item_part = item[:k_matching_length]
+                is_equal = (item_part == k_part)
                 if is_equal:
                     return mid
-                elif value < 0:
+
+                # if not is_equal:
+                #     value, match_rat = fuzzyCompareString(item)
+                #     can_look_around = (match_rat > 50)
+                #     # match_rat = fuzz.ratio(item, k)
+                #     is_equal = (match_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                #     if is_equal:
+                #         return mid
+                #     elif can_look_around:
+                #         max_back = max(mid - 100, 0)
+                #         max_forth = min(mid + 100, hi)
+                #         rate, i, found_item = linearSearch(k_list[max_back:max_forth])
+                #         actual_rate = fuzz.ratio(found_item, looking_for)
+                #         is_equal = (actual_rate >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                #         if is_equal:
+                #             index = max_back + i
+                #             test_item = k_list[index] # for debugging purposes
+                #             return index
+                #         elif value < 0:
+                #             lo = mid + 1
+                #         else:
+                #             hi = mid
+                #     elif value < 0:
+                #         lo = mid + 1
+                #     else:
+                #         hi = mid
+                elif item < k:
                     lo = mid + 1
                 else:
                     hi = mid
@@ -347,19 +389,21 @@ class NoCaseDict(OrderedDict):
             is_found = (item_part.lower() == k_part.lower())
             if not is_found:
                 return -1, None
-
-            if is_k_single_word:
-                item_len = len(item)
-                acceptable = (item_len >= k_length // 2) and (item_len < k_length * 2)
             else:
-                is_tran_ref = (cm.TRAN_REF_PATTERN.search(item) is not None)
-                word_count = len(item.split())
-                acceptable = (word_count >= k_word_count) and (word_count < int(k_word_count * 1.5))
+                return 1, item
 
-            return_result = (1 if acceptable else 0)
+            # if is_k_single_word:
+            #     item_len = len(item)
+            #     acceptable = (item_len >= k_length // 2) and (item_len < k_length * 2)
+            # else:
+            #     is_tran_ref = (cm.TRAN_REF_PATTERN.search(item) is not None)
+            #     word_count = len(item.split())
+            #     acceptable = (word_count >= k_word_count) and (word_count < int(k_word_count * 1.5))
+            #
+            # return_result = (1 if acceptable else 0)
             # if acceptable:
                 # dd(f'simpleFuzzyTranslate(), validate(): looking for: [{k_part}] => found: [{item}]')
-            return return_result, item
+            # return return_result, item
 
         def findListOfCandidates():
 
@@ -419,6 +463,12 @@ class NoCaseDict(OrderedDict):
                 ratio = fuzz.ratio(found_item, k)
                 is_found = (ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
                 if not is_found:
+                    # perfect_match_percent = cm.matchTextPercent(k, found_item)
+                    # is_accepted = (perfect_match_percent > cm.FUZZY_PERFECT_MATCH_PERCENT)
+                    # dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => found_item:[{found_item}]')
+                    # if not is_accepted:
+                    #     dd('simpleFuzzyTranslate(): perfect_match_percent TOO LOW, IGNORED')
+                    #     continue
                     continue
 
                 entry = (ratio, found_item)
@@ -446,12 +496,12 @@ class NoCaseDict(OrderedDict):
             first_word = k_word_list[0]
             first_word_len = len(first_word)
             is_two_small = (first_word_len < 3)
-            k_matching_length = int(ma.ceil(first_word_len * 0.7))
+            k_matching_length = int(ma.ceil(first_word_len * cm.MAX_FUZZY_TEST_LENGTH))
             if is_two_small:
                 try:
                     second_word = k_word_list[1]
                     second_word_len = len(second_word)
-                    k_matching_length = int(ma.ceil((first_word_len + second_word_len + 1) * 0.7))
+                    k_matching_length = int(ma.ceil((first_word_len + second_word_len + 1) * cm.MAX_FUZZY_TEST_LENGTH))
                 except Exception as e:
                     pass
 
@@ -460,15 +510,21 @@ class NoCaseDict(OrderedDict):
         max_k_length = int(k_length * cm.FUZZY_KEY_LENGTH_RATIO)
         k_part = k[:k_matching_length]
         subset = findListOfCandidates()
-        if not subset:
+        found_candidates = (len(subset) > 0)
+        if not found_candidates:
             return None, None, 0
 
         cm.debugging(msg)
         matched_ratio, selected_item = subset[0]
-        matched_ratio = fuzz.ratio(msg, selected_item)
         is_accepted = (matched_ratio >= cm.FUZZY_MODERATE_ACCEPTABLE_RATIO)
         if not is_accepted:
-            return None, None, 0
+            perfect_match_percent = cm.matchTextPercent(k, selected_item)
+            is_accepted = (perfect_match_percent > cm.FUZZY_PERFECT_MATCH_PERCENT)
+            dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]')
+            if not is_accepted:
+                dd('simpleFuzzyTranslate(): perfect_match_percent TOO LOW, IGNORED')
+                return None, None, 0
+            # return None, None, 0
 
         translation_txt = self[selected_item]
         # translation = cm.replaceWord(k, selected_item, translation_txt)
@@ -923,16 +979,15 @@ class TranslationFinder:
     def __init__(self):
         self.update_dic = 0
         self.update_po_file = None
-        home_dir = os.environ['HOME']
-        home_dir = os.path.join(home_dir, 'Dev/tran')
-        self.master_dic_file = os.path.join(home_dir, "blender_manual/ref_dict_0006_0001.json")
-        self.master_dic_backup_file = os.path.join(home_dir, "blender_manual/ref_dict_backup_0005_0001.json")
-        self.master_dic_test_file = os.path.join(home_dir, "blender_manual/ref_dict_test_0005.json")
+        home_dir = os.environ['BLENDER_GITHUB']
+        self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0002.json")
+        self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0005_0001.json")
+        self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0005.json")
 
-        self.vipo_dic_path = os.path.join(home_dir, "blender_manual/gui/2.80/po/vi.po")
+        self.vipo_dic_path = os.path.join(home_dir, "gui/2.80/po/vi.po")
         self.vipo_dic_list = None  # not used
 
-        self.current_po_dir = os.path.join(home_dir, "blender_docs/locale/vi/LC_MESSAGES")
+        self.current_po_dir = os.path.join(home_dir, "../blender_docs/locale/vi/LC_MESSAGES")
         self.json_dic_file = None
 
         # self.json_dic_list = self.loadJSONDic(file_name=self.json_dic_file)
@@ -1311,6 +1366,7 @@ class TranslationFinder:
             dd(f'tryFuzzyTranlation: found: [{tran_sub_text}], matching_ratio:[{matching_ratio}]')
             return tran_sub_text, fuzzy_len, search_dict.fuzzy_exp_var_chosen_record, matching_ratio
         else:
+            dd(f'tryFuzzyTranlation: UNABLE TO FIND: [{msg}]')
             return None, fuzzy_len, None, 0
 
     def buildLocalTranslationDict(self, msg):

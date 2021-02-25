@@ -1121,6 +1121,11 @@ class RefList(defaultdict):
             dd(f'parseMessage(): IGNORED [{self.msg}]; is_full_path')
             return
 
+        trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+        if trans:
+            self.setTranslation(trans, is_fuzzy, is_ignore)
+            return
+
         self.findPattern(pattern_list)
 
         # **** should break up sentences here

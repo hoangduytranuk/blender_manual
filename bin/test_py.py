@@ -7111,9 +7111,9 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # writeJSON(test_file1, sorted_dic)
 
     def resort_dictionary(self):
-        home_dir = os.environ['HOME']
-        from_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
-        to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0002.json')
+        home_dir = os.environ['BLENDER_GITHUB']
+        from_file = os.path.join(home_dir, 'ref_dict_0006_0001.json')
+        to_file = os.path.join(home_dir, 'ref_dict_0006_0002.json')
 
         to_dic = readJSON(from_file)
 
@@ -9150,12 +9150,39 @@ IOR
             print(f'Writing changes to: [{output_po_file}]')
             c.dump_po(output_po_file, input_data)
 
+    def test_0074(self):
+        t1 = 'will'
+        t2 = 'willing'
+        l1 = len(t1)
+        l2 = len(t2)
+
+        match_percent = 0.0
+        lx = max(l1, l2)
+        lc = 100 / lx
+        try:
+            for i, c1 in enumerate(t1):
+                c2 = t2[i]
+                is_matched = (c1 == c2)
+                if not is_matched:
+                    print(f'stopped at [{i}], c1:[{c1}], c2:[{c2}]')
+                    break
+                match_percent += lc
+        except Exception as e:
+            pass
+        print(f'match_percent:[{match_percent}]')
+
     def test_translate_0001(self):
         tf = TranslationFinder()
         t_list = [
             # "Angle threshold to be treated as corners",
             # "Axis that points in the 'forward' direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
-            "Axis that points in the upward direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
+            # "Axis that points in the upward direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
+            # "Utilities",
+            # "Uses Map Value to multiply",
+            # "!EXPERIMENTAL! Apply Transform",
+            # "\"Basis\" is the rest shape. \"Key 1\", \"Key 2\", etc. will be the new shapes",
+            # "\"big\" joint",
+            "\"Bone\" is \"Bone.003\" 's parent. Therefore \"Bone.003\" 's root is same as the tip of \"Bone\". Since \"Bone\" is still selected, its tip is selected. Thus the root of \"Bone.003\" remains selected",
         ]
         for t in t_list:
             ref_list = RefList(msg=t, keep_orig=False, tf=tf)
@@ -9165,6 +9192,7 @@ IOR
             print(f't:[{t}] => trans:[{trans}]')
 
     def run(self):
+        # self.test_0074()
         # self.test_0073()
         # self.plistToText()
         # self.test_binary_search()

@@ -61,11 +61,12 @@ class Common:
     file_count = 0
     PAGE_SIZE = 20 * 4096
     MAX_FUZZY_LIST = 100
-    MAX_FUZZY_TEST_LENGTH = 10
+    MAX_FUZZY_TEST_LENGTH = 0.5
     FUZZY_ACCEPTABLE_RATIO = 90
     FUZZY_MODERATE_ACCEPTABLE_RATIO = 80
     FUZZY_LOW_ACCEPTABLE_RATIO = 70
     FUZZY_VERY_LOW_ACCEPTABLE_RATIO = 45
+    FUZZY_PERFECT_MATCH_PERCENT = 60
 
     APOSTROPHE_CHAR = "'"
     MAX_FUZZY_ACCEPTABLE_RATIO = 95
@@ -2103,8 +2104,6 @@ class Common:
 
         if non_alpha:
             non_alnum_part = non_alpha.group(0)
-
-
         return non_alnum_part
 
     def getTextWithin(msg):
@@ -2173,6 +2172,45 @@ class Common:
     #
     #     return t_list
 
+    def matchTextPercent(t1: str, t2: str):
+        match_percent = 0.0
+        try:
+            l1 = t1.split()
+            l2 = t2.split()
+            l1_count = len(l1)
+            l1_per_each_word = (100 / l1_count)
+
+            for i in range(0, l1_count):
+                w1 = l1[i]
+                w2 = l2[i]
+                word_percent = Common.matchWordPercent(w1, w2)
+                is_tool_small = (word_percent <= Common.FUZZY_PERFECT_MATCH_PERCENT)
+                if is_tool_small:
+                    break
+                match_percent += (l1_per_each_word * word_percent / 100)
+        except Exception as e:
+            pass
+        return match_percent
+
+    def matchWordPercent(t1:str, t2:str):
+        match_percent = 0.0
+        try:
+            l1 = len(t1)
+            l2 = len(t2)
+
+            lx = max(l1, l2)
+            lc = 100 / lx
+            for i, c1 in enumerate(t1):
+                c2 = t2[i]
+                is_matched = (c1 == c2)
+                if not is_matched:
+                    # print(f'stopped at [{i}], c1:[{c1}], c2:[{c2}]')
+                    break
+                match_percent += lc
+        except Exception as e:
+            pass
+        return match_percent
+
     def debugging(txt):
         # msg = 'between root and tip'
         # msg = 'Profile Brush'
@@ -2189,8 +2227,9 @@ class Common:
         # msg = "Material Library VX"
         # msg = "Equals"
         # msg = "fig-mesh-screw-angle"
-        msg = "treated as"
+        msg = "using"
         # is_debug = (msg and txt and (msg.lower() in txt.lower()))
-        is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        # is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')
