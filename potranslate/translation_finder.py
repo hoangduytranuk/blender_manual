@@ -212,7 +212,7 @@ class NoCaseDict(OrderedDict):
 
     def addCache(self, item, result):
         entry = {item: result}
-        self.local_cache(entry)
+        self.local_cache.update(entry)
 
     def findCache(self, item):
         try:
@@ -389,21 +389,19 @@ class NoCaseDict(OrderedDict):
             is_found = (item_part.lower() == k_part.lower())
             if not is_found:
                 return -1, None
-            else:
-                return 1, item
 
-            # if is_k_single_word:
-            #     item_len = len(item)
-            #     acceptable = (item_len >= k_length // 2) and (item_len < k_length * 2)
-            # else:
-            #     is_tran_ref = (cm.TRAN_REF_PATTERN.search(item) is not None)
-            #     word_count = len(item.split())
-            #     acceptable = (word_count >= k_word_count) and (word_count < int(k_word_count * 1.5))
-            #
-            # return_result = (1 if acceptable else 0)
-            # if acceptable:
-                # dd(f'simpleFuzzyTranslate(), validate(): looking for: [{k_part}] => found: [{item}]')
-            # return return_result, item
+            if is_k_single_word:
+                item_len = len(item)
+                acceptable = (item_len == k_length)
+            else:
+                is_tran_ref = (cm.TRAN_REF_PATTERN.search(item) is not None)
+                word_count = len(item.split())
+                acceptable = (word_count >= k_word_count) and (word_count < int(k_word_count * 1.5))
+            
+            return_result = (1 if acceptable else 0)
+            if acceptable:
+                dd(f'simpleFuzzyTranslate(), validate(): looking for: [{k_part}] => found: [{item}]')
+            return return_result, item
 
         def findListOfCandidates():
 
@@ -483,9 +481,11 @@ class NoCaseDict(OrderedDict):
 
             return subset
 
+        untran_word_dic = {}
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
+        cm.debugging(k)
         k_length = len(k)
         k_word_list = k.split()
         k_word_count = len(k_word_list)
@@ -512,9 +512,8 @@ class NoCaseDict(OrderedDict):
         subset = findListOfCandidates()
         found_candidates = (len(subset) > 0)
         if not found_candidates:
-            return None, None, 0
+            return None, None, 0, untran_word_dic
 
-        cm.debugging(msg)
         matched_ratio, selected_item = subset[0]
         is_accepted = (matched_ratio >= cm.FUZZY_MODERATE_ACCEPTABLE_RATIO)
         if not is_accepted:
@@ -523,7 +522,7 @@ class NoCaseDict(OrderedDict):
             dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]')
             if not is_accepted:
                 dd('simpleFuzzyTranslate(): perfect_match_percent TOO LOW, IGNORED')
-                return None, None, 0
+                return None, None, 0, untran_word_dic
             # return None, None, 0
 
         translation_txt = self[selected_item]
@@ -533,13 +532,29 @@ class NoCaseDict(OrderedDict):
         try:
             loc, new_selected = cm.locRemain(lower_msg, selected_item)
             translation = lower_msg.replace(new_selected, translation_txt)
+            untran_word_dic = cm.getRemainedWord(lower_msg, new_selected)
         except Exception as e:
             dd(e)
             dd(f'FAILED TO REPLACE: [{lower_msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
-            left, mid, right = cm.getTextWithin(lower_msg)
-            translation = left + translation_txt + right
-            dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
-        return translation, selected_item, matched_ratio
+            can_accept = (matched_ratio >= cm.FUZZY_ACCEPTABLE_RATIO)
+            if can_accept:
+                translation = translation_txt
+
+                left, mid, right = cm.getTextWithin(lower_msg)
+                had_the_same_right = (right and translation.endswith(right))
+                had_the_same_left = (left and translation.startswith(left))
+                
+                if left and not had_the_same_left:
+                    translation = left + translation
+                
+                if right and not had_the_same_right:
+                    translation = translation + right
+
+                dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
+                untran_word_dic = cm.getRemainedWord(lower_msg, selected_item)
+            else:
+                translation = None
+        return translation, selected_item, matched_ratio, untran_word_dic
 
     def fuzzyTranslate(self, msg):
 
@@ -1325,7 +1340,7 @@ class TranslationFinder:
                     continue
 
                 try:
-                    cm.debugging(un_tran_txt)
+                    # cm.debugging(un_tran_txt)
                     _, tran_sub_text, covered_length = self.tryToFindTranslation(un_tran_txt)
                 except Exception as e:
                     print(f'replacingUsingDic() findByReduction: un_tran_txt:[{un_tran_txt}]')
@@ -1358,14 +1373,36 @@ class TranslationFinder:
             return temp_translation
 
     def tryFuzzyTranlation(self, msg):
+        search_dict: NoCaseDict = self.getDict()
+        tran_sub_text = search_dict.findCache(msg)
+
+        is_not_found = isinstance(tran_sub_text, bool)
+        if is_not_found:
+            return None, len(msg), search_dict.fuzzy_exp_var_chosen_record, 0
+
+        if tran_sub_text:
+            return tran_sub_text, len(msg), search_dict.fuzzy_exp_var_chosen_record, 100
+
         dd(f'tryFuzzyTranlation: looking for: [{msg}]')
-        tran_sub_text, fuzzy_text, search_dict, matching_ratio = self.isInDictFuzzy(msg)
+        search_dict: NoCaseDict = None
+        tran_sub_text, fuzzy_text, search_dict, matching_ratio, untran_word_dic = self.isInDictFuzzy(msg)
+        has_abbrev = (tran_sub_text and (cm.ABBREV_PATTERN_PARSER.search(tran_sub_text) is not None))
+        if untran_word_dic and not has_abbrev:
+            untran_word_list = list(untran_word_dic.items())
+            untran_word_list.sort(reverse=True)
+            for loc, un_tran_word in untran_word_list:
+                tran_word_text, fuzzy_word_text, search_dict, matching_word_ratio, untran_sub_word_dic = self.isInDictFuzzy(un_tran_word)
+                if tran_word_text:
+                    tran_sub_text = tran_sub_text.lower().replace(un_tran_word, tran_word_text)
+
         has_translation = (bool(tran_sub_text) and bool(fuzzy_text))
         fuzzy_len = (len(fuzzy_text) if has_translation else 0)
         if has_translation:
+            search_dict.addCache(msg, tran_sub_text)
             dd(f'tryFuzzyTranlation: found: [{tran_sub_text}], matching_ratio:[{matching_ratio}]')
             return tran_sub_text, fuzzy_len, search_dict.fuzzy_exp_var_chosen_record, matching_ratio
         else:
+            search_dict.addCache(msg, False)
             dd(f'tryFuzzyTranlation: UNABLE TO FIND: [{msg}]')
             return None, fuzzy_len, None, 0
 
@@ -2018,11 +2055,28 @@ class TranslationFinder:
 
         return return_dic
 
-    def isInDictFuzzy(self, msg, dic_to_use=None):
+    def getDict(self, local_dict=None):
+        search_dict = (local_dict if local_dict else self.master_dic)
+        if not search_dict:
+            msg = 'isInDict() NO Dictionary is available. Stopped'
+            print(msg)
+            raise Exception(msg)
+        return search_dict
 
-        cm.debugging(msg)
+    def isInDictFuzzy(self, msg, dic_to_use=None):
+        untran_word_dic = {}
+        # cm.debugging(msg)
         matched_text = msg
-        search_dict = (dic_to_use if dic_to_use else self.master_dic)
+        search_dict = self.getDict(local_dict=dic_to_use)
+        tran_sub_text = search_dict.findCache(msg)
+
+        is_not_found = isinstance(tran_sub_text, bool)
+        if is_not_found:
+            return None, matched_text, search_dict, 0, untran_word_dic
+
+        if tran_sub_text:
+            return tran_sub_text, matched_text, search_dict, 100, untran_word_dic
+
         if not search_dict:
             msg = 'isInDictFuzzy(): NO Dictionary is available. Stopped'
             print(msg)
@@ -2030,7 +2084,7 @@ class TranslationFinder:
 
         is_ignore = (not msg) or ig.isIgnored(msg)
         if is_ignore:
-            return None, matched_text, search_dict, 0
+            return None, matched_text, search_dict, 0, untran_word_dic
 
         is_found = (msg in search_dict)
         if is_found:
@@ -2038,7 +2092,7 @@ class TranslationFinder:
             matched_text = msg
             matching_ratio = 100.0
         else:
-            tran, matched_text, matching_ratio = search_dict.simpleFuzzyTranslate(msg)
+            tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
 
         if tran:
             tran = search_dict.replaceTranRef(tran)
@@ -2046,7 +2100,7 @@ class TranslationFinder:
             dd(f'isInDictFuzzy: [{msg}] => [{tran}]')
         else:
             tran = None
-        return tran, matched_text, search_dict, matching_ratio
+        return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 
 
     def isInDict(self, msg, dic_to_use=None):
@@ -2055,11 +2109,15 @@ class TranslationFinder:
         if is_ignore:
             return None
 
-        search_dict = (dic_to_use if dic_to_use else self.master_dic)
-        if not search_dict:
-            msg = 'isInDict() NO Dictionary is available. Stopped'
-            print(msg)
-            raise Exception(msg)
+        search_dict = self.getDict(local_dict=dic_to_use)
+        tran_sub_text = search_dict.findCache(msg)
+
+        is_not_found = isinstance(tran_sub_text, bool)
+        if is_not_found:
+            return None
+
+        if tran_sub_text:
+            return tran_sub_text
 
         left = right = ""
         is_found = (msg in search_dict)
@@ -2579,7 +2637,6 @@ class TranslationFinder:
         return trans
 
     def translate(self, msg):
-        trans = None
         try:
             dd(f'calling findTranslation')
             is_fuzzy = False
@@ -2604,6 +2661,7 @@ class TranslationFinder:
                 else:
                     dd(f'calling removeTheWord')
                     trans = self.removeTheWord(trans)
+                    trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
             print(f'ERROR: {e} - msg:[{msg}], trans:[{trans}]')

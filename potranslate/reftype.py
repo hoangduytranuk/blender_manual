@@ -1,6 +1,7 @@
 from enum import Enum
 
 class RefType(Enum):
+    PYTHON_FORMAT = "%"
     FUNCTION = "func"
     GA = "\`"
     ARCH_BRACKET = "()"

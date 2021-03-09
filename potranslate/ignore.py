@@ -133,7 +133,7 @@ class Ignore:
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?$",
         r"^\s*(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
         r"^\s*(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*$",
-        r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Deflate|Del|de|debian|Delete|Delta([\s][\w])?)\s*$",
+        r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|de|debian|Delta([\s][\w])?)\s*$",
         r"^\s*([^\w]+log.*wm.*)\s*$",
         r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",
         r"^\s*(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)\s*$",

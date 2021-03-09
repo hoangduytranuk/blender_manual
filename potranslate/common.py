@@ -63,7 +63,7 @@ class Common:
     MAX_FUZZY_LIST = 100
     MAX_FUZZY_TEST_LENGTH = 0.5
     FUZZY_ACCEPTABLE_RATIO = 90
-    FUZZY_MODERATE_ACCEPTABLE_RATIO = 80
+    FUZZY_MODERATE_ACCEPTABLE_RATIO = 85
     FUZZY_LOW_ACCEPTABLE_RATIO = 70
     FUZZY_VERY_LOW_ACCEPTABLE_RATIO = 45
     FUZZY_PERFECT_MATCH_PERCENT = 60
@@ -76,6 +76,7 @@ class Common:
     FUZZY_EXP_VAR = '$$$'
     FUZZY_EXP_VAR_PATTERN = re.compile(r'\s*\${3}\s*')
     TRAN_REF_PATTERN = re.compile(r'\@\{(\w+?)\}')
+    PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -380,6 +381,7 @@ class Common:
     BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
 
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
+    CHARACTERS = re.compile(r'\w+')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
     SYMBOLS = re.compile(r'[^a-zA-Z0-9\s]+')
@@ -975,7 +977,8 @@ class Common:
 
         from_string_is_to_first_upper = (first_char.isupper() and remain_part.islower())
         to_string_is_to_first_upper = not (from_str_has_multi_words or to_str_has_multi_words)
-        is_first_upper = (from_string_is_to_first_upper and to_string_is_to_first_upper)
+
+        is_first_upper = (first_char.isupper() and remain_part.islower())
         if is_first_upper:
             first_char = new_str[0].upper()
             remain_part = new_str[1:].lower()
@@ -2013,7 +2016,7 @@ class Common:
             entry = {orig_loc: orig_word}
             remain_dict.update(entry)
 
-    # expecting to find fuzzy_txt within orig_txt, try to locate the range
+        # expecting to find fuzzy_txt within orig_txt, try to locate the range
         orig_txt_copy = str(orig_txt)
         orig_word_list = Common.findInvert(Common.SPACES, orig_txt)
         fuzzy_word_list = Common.findInvert(Common.SPACES, fuzzy_txt)
@@ -2106,7 +2109,45 @@ class Common:
             non_alnum_part = non_alpha.group(0)
         return non_alnum_part
 
+    def getRemainedWord(orig_txt: str, new_txt: str):
+        def isInNewFuzzy(search_word):
+            for loc, word in new_txt_word_list:
+                match_rat = fuzz.ratio(word, search_word)
+                is_same = (match_rat >= Common.FUZZY_MODERATE_ACCEPTABLE_RATIO)
+                if is_same:
+                    return True
+            return False
+
+        blank_orig_txt = str(orig_txt)
+        orig_word_dict = Common.patternMatchAllToDict(Common.CHARACTERS, orig_txt)
+        orig_word_list = list(orig_word_dict.items())
+
+        new_txt_word_dict = Common.patternMatchAllToDict(Common.CHARACTERS, new_txt)
+        new_txt_word_list = list(orig_word_dict.items())
+
+        remain_word_dict={}
+        i = 0
+        try:
+            for i, orig_entry in enumerate(orig_word_list):
+                orig_loc, orig_word = orig_entry
+                is_in_new = isInNewFuzzy(orig_word)
+                if is_in_new:
+                    continue
+
+                entry = {orig_loc: orig_word}
+                remain_word_dict.append(entry)
+
+        except Exception as e:
+            max = len(orig_word)
+            if i < max:
+                remain_sub_list = orig_word_list[i:]
+                remain_sub_dict = OrderedDict(remain_sub_list)
+                remain_word_dict.update(remain_sub_dict)
+
+        return remain_word_dict
+
     def getTextWithin(msg):
+        # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
         left_part = Common.getNoneAlphaPart(msg, is_start=True)
         right_part = Common.getNoneAlphaPart(msg, is_start=False)
         ss = len(left_part)
@@ -2227,9 +2268,9 @@ class Common:
         # msg = "Material Library VX"
         # msg = "Equals"
         # msg = "fig-mesh-screw-angle"
-        msg = "using"
+        msg = "ignoring!"
         # is_debug = (msg and txt and (msg.lower() in txt.lower()))
-        # is_debug = (msg and txt and (msg.lower() == txt.lower()))
-        is_debug = (msg and txt and txt.startswith(msg))
+        is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

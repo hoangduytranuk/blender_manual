@@ -43,6 +43,9 @@ class TextStyle(Enum):
     RAW = 4
 
 pattern_list = [
+    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
+    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
+    (cm.PYTHON_FORMAT, RefType.PYTHON_FORMAT),
     (cm.FUNCTION, RefType.FUNCTION),
     (cm.GA_REF, RefType.GA),
     (cm.AST_QUOTE, RefType.AST_QUOTE),
@@ -633,10 +636,16 @@ class RefList(defaultdict):
 
         result_list = RefList(msg=msg, pat=pattern)
         try:
-            cm.debugging(msg)
+            is_bracket = (reftype == RefType.ARCH_BRACKET)
             is_function = (pattern == cm.FUNCTION)
+            is_python = (pattern == cm.PYTHON_FORMAT)
             actual_ref_type = reftype
-            found_dict = cm.patternMatchAllAsDictNoDelay(pattern, msg)
+
+            if is_bracket:
+                found_dict = cm.getTextWithinBrackets('(', ')', msg, is_include_bracket=False)
+            else:
+                found_dict = cm.patternMatchAllAsDictNoDelay(pattern, msg)
+
             if not found_dict:
                 return None
 
@@ -645,7 +654,9 @@ class RefList(defaultdict):
                 if v_len == 3:
                     orig, sub_type, sub_content = v
                     sub_type_loc, sub_type_txt = sub_type
-                    if is_function:
+                    if is_python:
+                        actual_ref_type = RefType.PYTHON_FORMAT
+                    elif is_function:
                         actual_ref_type = RefType.FUNCTION
                     else:
                         actual_ref_type = RefType.getRef(sub_type_txt)
@@ -653,9 +664,14 @@ class RefList(defaultdict):
                     orig, sub_content = v
                     actual_ref_type = reftype
                 elif v_len == 1:
+                    sub_content = None
                     actual_ref_type = reftype
                     sub_type = None
-                    orig, sub_content = v
+                    if is_bracket:
+                        sub_content = v[0]
+                        orig = v[0]
+                    else:
+                        orig, sub_content = v
                 else:
                     raise Exception(f'findOnePattern: v_len is NOT EXPECTED: {v_len}. Expected from 1->3 only')
 
@@ -665,7 +681,8 @@ class RefList(defaultdict):
                 is_checking_for_path = (actual_ref_type == RefType.REF) or \
                                         (actual_ref_type == RefType.GA) or \
                                         (actual_ref_type == RefType.DOC) or \
-                                        (actual_ref_type == RefType.CLASS)
+                                        (actual_ref_type == RefType.CLASS) or \
+                                        is_bracket
 
                 is_path = is_checking_for_path and cm.isLinkPath(o_txt)
                 if is_path:
@@ -677,7 +694,7 @@ class RefList(defaultdict):
                 is_doc = (actual_ref_type == RefType.DOC)
                 is_ref = (actual_ref_type == RefType.REF)
                 is_ga = (actual_ref_type == RefType.GA)
-                sub_text_might_have_link = sub_txt and (is_doc or is_ref or is_ga)
+                sub_text_might_have_link = sub_txt and (is_bracket or is_doc or is_ref or is_ga)
                 if sub_text_might_have_link:
                     actual_sub_txt, actual_loc = self.extractTextFromTextWithLink(sub_txt, (sub_ss, sub_ee), actual_ref_type)
                     sub_txt = actual_sub_txt
@@ -1122,7 +1139,9 @@ class RefList(defaultdict):
             return
 
         trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-        if trans:
+        has_ref = hasRef(self.msg)
+        is_accept = (trans and not has_ref and not is_fuzzy)
+        if is_accept:
             self.setTranslation(trans, is_fuzzy, is_ignore)
             return
 
@@ -1250,6 +1269,9 @@ class RefList(defaultdict):
             is_ast = (ref_type == RefType.AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
             is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+            is_python_format = (ref_type == RefType.PYTHON_FORMAT)
+            is_function = (ref_type == RefType.FUNCTION)
+
             is_quoted = (is_ast or is_dbl_quote or is_sng_quote)
 
             converted_to_abbr = False
@@ -1266,8 +1288,7 @@ class RefList(defaultdict):
                 dd(f'translateRefItem: is_quoted:{ref_txt}')
                 tran, is_fuzzy, is_ignore = self.tf.translateQuoted(ref_txt, ref_type=ref_type)
                 converted_to_abbr = True
-            elif is_osl_attrib:
-                # tran, is_fuzzy, is_ignore = self.tf.translateOSLAttrrib(ref_txt)
+            elif is_osl_attrib or is_python_format or is_function:
                 return
             else:
                 # is_ignore = cm.isLinkPath(ref_txt)

@@ -8125,8 +8125,20 @@ IOR
         print('-' * 50)
 
     def getHome(self):
-        home = os.environ['HOME']
-        return home
+        dir = os.environ['HOME']
+        return dir
+
+    def getDevTran(self):
+        dir = os.environ['DEV_TRAN']
+        return dir
+
+    def getBlenderGithub(self):
+        dir = os.path.join(self.getDevTran(), 'blender_manual')
+        return dir
+
+    def get29xViPoPath(self):
+        dir = os.path.join(self.getBlenderGithub(), 'gui/2.9x/po/vi.po')
+        return dir
 
     def cleanDictionary(self):
         def canSafelyRemoveBrackets(s_start, s_end, txt: str):
@@ -9042,9 +9054,8 @@ IOR
             #       token.shape_, token.is_alpha, token.is_stop)
 
     def translatePO(self):
-
-        input_po_file=os.path.join(self.getHome(), 'msgmerge_out_0002.po')
-        output_po_file=os.path.join(self.getHome(), 'msgmerge_out_0003.po')
+        input_po_file=self.get29xViPoPath()
+        output_po_file= os.path.join(self.getHome(), 'msgmerge_out_0008.po')
         changed = False
         ignore_list = [
             ('Volume', 'Sound')
@@ -9057,8 +9068,14 @@ IOR
             if is_first_record:
                 continue
 
+            ctx = m.context
+            is_keyboard = (ctx == "UI_Events_KeyMaps")
+            if is_keyboard:
+                continue
+
             msgid = m.id
             msgstr = m.string
+
             is_fuzzy = m.fuzzy
             msg_context = m.context
             ig_entry = (msgstr, msg_context)
@@ -9182,9 +9199,62 @@ IOR
             # "!EXPERIMENTAL! Apply Transform",
             # "\"Basis\" is the rest shape. \"Key 1\", \"Key 2\", etc. will be the new shapes",
             # "\"big\" joint",
-            "\"Bone\" is \"Bone.003\" 's parent. Therefore \"Bone.003\" 's root is same as the tip of \"Bone\". Since \"Bone\" is still selected, its tip is selected. Thus the root of \"Bone.003\" remains selected",
+            # "\"Bone\" is \"Bone.003\" 's parent. Therefore \"Bone.003\" 's root is same as the tip of \"Bone\". Since \"Bone\" is still selected, its tip is selected. Thus the root of \"Bone.003\" remains selected",
+            # "Amount of focal blur, 128 (infinity) is perfect focus, half the value doubles the blur radius",
+            # "Scene '%s' is the last local one, cannot be removed",
+            # "Apply global space transform to the object rotations. When disabled only the axis space is written to the file and all object transforms are left as-is",
+            # "Selection to Cursor Value and that",
+            # "Calculate sharp edges using custom normal data (when available)",
+            # "Create a new geometry node group and assign it to the active modifier"
+            # "Create a new modifier with a new geometry node group",
+            # "Mesh from Curve, Surface, Metaball, Text, or Point Cloud objects",
+            # "Apply Modifier as Shape Key",
+            # "Apply modifier as a new shape key and remove from the stack",
+            # "Set Active Modifier",
+            # "Duplicate effect at the same position in the stack",
+            # "Toggle Viewport Use",
+            # "Apply the gesture action only to the area that is contained within the segment without extending its effect to the entire line",
+            # "Add a path to a .blend file to be used by the Asset Browser as source of assets",
+            # "Delete Geometry",
+            # "Keep strip offset to playhead when pasting",
+            # "Set the boundaries of the border used for offset view",
+            # "Supports any combination of grab, rotate, and scale at once",
+            # "Channel Group Colors",
+            # "New Point Cloud Type",
+            # "Automatic saving of temporary files in temp directory, uses process ID (sculpt and edit mode data won't be saved)",
+            # "Scale along X axis",
+            # "Invert filtering (show hidden items, and vice versa)",
+            # "Matrix combining location and rotation of the cursor singing",
+            # "Some strings were fixed, don't forget to save the .blend file to keep those changes"
+            # "Unexpected modifier type: ",
+            # "Target object not specified",
+            # "has '%r' F-Curve(s).",
+            # "No objects with bound-box selected",
+            # "Select at least one mesh object",
+            # "Remove Add-on: %r?",
+            # "and are treated as if they were in the same place",
+            # "Active face not selected",
+            # "%d of %d rotation channels were filtered (see the Info window for details)",
+            # "%d of %d rotation channels were filtered (see the Info window for details)"
+            # "XYZ rotations not equally keyed for ID='%s' and RNA-Path='%s'",
+            # "The rotation channel was filtered",
+            # "Linked or library override data-blocks do not allow adding or removing caches",
+            # "The active mesh object has no vertex group data",
+            # "No active editable object",
+            # "Could not create a library override from proxy '%s' (might use already local data?)",
+            # "Modifier '%s' was not copied to any objects",
+            # "Cannot edit modifiers coming from linked data in a library override",
+            # "Target object not a grease pencil, ignoring!",
+            # "Data-block '%s' is no asset anymore",
+            # "Invalid regular expression (replace): ",
+            # "Invalid regular expression (find) isn't a common thing: ",
+            "Date: %s %sutf-8replaceutf-8replace",
         ]
+        p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
         for t in t_list:
+            # m = p.findall(t)
+            # print(f'm:{m}')
+            # exit(0)
             ref_list = RefList(msg=t, keep_orig=False, tf=tf)
             ref_list.parseMessage()
             ref_list.translateRefList()
