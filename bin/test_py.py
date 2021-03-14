@@ -7112,7 +7112,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
     def resort_dictionary(self):
         home_dir = os.environ['BLENDER_GITHUB']
-        from_file = os.path.join(home_dir, 'ref_dict_0006_0001.json')
+        from_file = os.path.join(home_dir, 'ref_dict_0006_0003.json')
         to_file = os.path.join(home_dir, 'ref_dict_0006_0002.json')
 
         to_dic = readJSON(from_file)
@@ -9188,67 +9188,105 @@ IOR
             pass
         print(f'match_percent:[{match_percent}]')
 
+    def vipotoJSON(self):
+        input_po_file=self.get29xViPoPath()
+        input_data = c.load_po(input_po_file)
+        output_po_file=os.path.join(self.getHome(), 'vipo.json')
+        po_dict = {}
+        for index, m in enumerate(input_data):
+            is_first_record = (index == 0)
+            if is_first_record:
+                continue
+
+            msgid = m.id
+            msgstr = m.string
+            entry={msgid: msgstr}
+            po_dict.update(entry)
+
+        po_list = list(po_dict.items())
+        po_list.sort()
+        po_dict = OrderedDict(po_list)
+
+        writeJSON(output_po_file, po_dict)
+
+    def matchingVIPOChangesToDict(self):
+        output_po_file=os.path.join(self.getHome(), 'vipo.json')
+
+        input_po_file=self.get29xViPoPath()
+        input_po_data = c.load_po(input_po_file)
+
+        home_dir = os.environ['BLENDER_GITHUB']
+        input_dict = os.path.join(home_dir, 'ref_dict_0006_0001.json')
+
+        to_dic = readJSON(input_dict)
+
+        diff_dict = {}
+        for m in input_po_data:            
+            msgid = m.id
+            msgstr = m.string
+            is_id_empty = (not msgid)
+            if is_id_empty:
+                continue
+            
+            is_in_dict = (msgid in to_dic)
+            if not is_in_dict:
+                diff_entry = {msgid: msgstr}
+                to_dic.update(diff_entry)
+                continue
+            
+            dict_tran = (to_dic[msgid])
+            is_tran_same = (msgstr.lower() == dict_tran.lower())
+            if is_tran_same:
+                continue
+            
+            msgid = msgid + '&U'
+            diff_entry = {msgid: msgstr}
+            to_dic.update(diff_entry)
+        
+        diff_list = list(to_dic.items())
+        diff_list.sort()
+        diff_dict = OrderedDict(diff_list)
+        
+        if diff_dict:
+            writeJSON(output_po_file, diff_dict)
+
+    def cleanWorkingTextFile(self):
+        home = os.environ['BLENDER_GITHUB']
+        output_po_file=os.path.join(home, 'working_txt.json')
+        input_po_file=os.path.join(home, "working_txt.txt")
+        
+        input_po_data =readJSON(input_po_file)        
+        dict_path = os.path.join(home_dir, 'ref_dict_0006_0002.json')
+
+        tf = TranslationFinder()
+        input_dict = tf.getDict()
+
+        changed = False
+        output_data = {}
+        for msgid, msgstr in input_po_data.items():
+            is_in_dict = (msgid in input_dict)
+            if is_in_dict:
+                continue
+
+            ref_list = RefList(msg=msgid, keep_orig=False, tf=tf)
+            ref_list.parseMessage()
+            ref_list.translateRefList()
+            trans = ref_list.getTranslation()
+            if not trans:
+                trans = ""
+            entry = {msgid: trans}
+            output_data.update(entry)
+            changed = True
+
+        if changed:
+            writeJSON(output_po_file, output_data)
+
     def test_translate_0001(self):
         tf = TranslationFinder()
         t_list = [
-            # "Angle threshold to be treated as corners",
-            # "Axis that points in the 'forward' direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
-            # "Axis that points in the upward direction (applies to Instance Vertices when Align to Vertex Normal is enabled)",
-            # "Utilities",
-            # "Uses Map Value to multiply",
-            # "!EXPERIMENTAL! Apply Transform",
-            # "\"Basis\" is the rest shape. \"Key 1\", \"Key 2\", etc. will be the new shapes",
-            # "\"big\" joint",
-            # "\"Bone\" is \"Bone.003\" 's parent. Therefore \"Bone.003\" 's root is same as the tip of \"Bone\". Since \"Bone\" is still selected, its tip is selected. Thus the root of \"Bone.003\" remains selected",
-            # "Amount of focal blur, 128 (infinity) is perfect focus, half the value doubles the blur radius",
-            # "Scene '%s' is the last local one, cannot be removed",
-            # "Apply global space transform to the object rotations. When disabled only the axis space is written to the file and all object transforms are left as-is",
-            # "Selection to Cursor Value and that",
-            # "Calculate sharp edges using custom normal data (when available)",
-            # "Create a new geometry node group and assign it to the active modifier"
-            # "Create a new modifier with a new geometry node group",
-            # "Mesh from Curve, Surface, Metaball, Text, or Point Cloud objects",
-            # "Apply Modifier as Shape Key",
-            # "Apply modifier as a new shape key and remove from the stack",
-            # "Set Active Modifier",
-            # "Duplicate effect at the same position in the stack",
-            # "Toggle Viewport Use",
-            # "Apply the gesture action only to the area that is contained within the segment without extending its effect to the entire line",
-            # "Add a path to a .blend file to be used by the Asset Browser as source of assets",
-            # "Delete Geometry",
-            # "Keep strip offset to playhead when pasting",
-            # "Set the boundaries of the border used for offset view",
-            # "Supports any combination of grab, rotate, and scale at once",
-            # "Channel Group Colors",
-            # "New Point Cloud Type",
-            # "Automatic saving of temporary files in temp directory, uses process ID (sculpt and edit mode data won't be saved)",
-            # "Scale along X axis",
-            # "Invert filtering (show hidden items, and vice versa)",
-            # "Matrix combining location and rotation of the cursor singing",
-            # "Some strings were fixed, don't forget to save the .blend file to keep those changes"
-            # "Unexpected modifier type: ",
-            # "Target object not specified",
-            # "has '%r' F-Curve(s).",
-            # "No objects with bound-box selected",
-            # "Select at least one mesh object",
-            # "Remove Add-on: %r?",
-            # "and are treated as if they were in the same place",
-            # "Active face not selected",
-            # "%d of %d rotation channels were filtered (see the Info window for details)",
-            # "%d of %d rotation channels were filtered (see the Info window for details)"
-            # "XYZ rotations not equally keyed for ID='%s' and RNA-Path='%s'",
-            # "The rotation channel was filtered",
-            # "Linked or library override data-blocks do not allow adding or removing caches",
-            # "The active mesh object has no vertex group data",
-            # "No active editable object",
-            # "Could not create a library override from proxy '%s' (might use already local data?)",
-            # "Modifier '%s' was not copied to any objects",
-            # "Cannot edit modifiers coming from linked data in a library override",
-            # "Target object not a grease pencil, ignoring!",
-            # "Data-block '%s' is no asset anymore",
-            # "Invalid regular expression (replace): ",
-            # "Invalid regular expression (find) isn't a common thing: ",
-            "Date: %s %sutf-8replaceutf-8replace",
+            # "To the outside or to the inside of the volume",
+            # "to the outside or to the inside of the mesh without any overlaps",
+            "To verify this, you can select a few faces in 3D Viewport and it will show up in the UV Editor.",
         ]
         p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
         for t in t_list:
@@ -9262,13 +9300,16 @@ IOR
             print(f't:[{t}] => trans:[{trans}]')
 
     def run(self):
+        # self.matchingVIPOChangesToDict()
+        # self.vipotoJSON()
         # self.test_0074()
         # self.test_0073()
         # self.plistToText()
         # self.test_binary_search()
         # self.sorting_temp_05()
-        # self.resort_dictionary()
+        self.resort_dictionary()
         self.test_translate_0001()
+        # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()
         # print(self.recur(4))
