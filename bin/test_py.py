@@ -9284,9 +9284,7 @@ IOR
     def test_translate_0001(self):
         tf = TranslationFinder()
         t_list = [
-            # "To the outside or to the inside of the volume",
-            # "to the outside or to the inside of the mesh without any overlaps",
-            "To verify this, you can select a few faces in 3D Viewport and it will show up in the UV Editor.",
+            "Transformations (translation/scale/rotation)",
         ]
         p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
         for t in t_list:

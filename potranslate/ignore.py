@@ -8,66 +8,66 @@ from common import DEBUG, dd, pp
 class Ignore:
 
     DOS_COMMANDS = [
-        "BASICA",
-        "CD",
-        "CHDIR",
-        "CHCP",
-        "CHKDSK",
-        "CLS",
-        "COMP",
-        "CTTY",
-        "CV",
-        "DBLBOOT",
-        "DBLSPACE",
-        "DELTREE",
-        "DIR",
-        "DISKCOMP",
-        "DISKCOPY",
-        "DOSKEY",
-        "DRVSPACE",
-        "EDLIN",
-        "EMM386",
-        "EXE2BIN",
-        "FAKEMOUS",
-        "FASTHELP",
-        "FASTOPEN",
-        "FC",
-        "FDISK",
-        "GOTO",
-        "GRAFTABL",
-        "INTERSVR",
-        "INTERLNK",
-        "KEYB",
-        "LOADFIX",
-        "LOADHIGH",
-        "LH",
-        "MD",
-        "MKDIR",
-        "MEM",
-        "MEMMAKER",
-        "MSAV",
-        "MSBACKUP",
-        "MSCDEX",
-        "MSD",
-        "MSHERC",
-        "NLSFUNC",
-        "PRINTFIX",
-        "QBASIC",
-        "RD",
-        "RMDIR",
-        "RECOVER",
-        "REM",
-        "REN",
-        "SETVER",
-        "SMARTDRV",
-        "SUBST",
-        "SYS",
-        "TELNET",
-        "TRUENAME",
-        "VER",
-        "VOL",
-        "VSAFE",
-        "XCOPY",
+        "basica",
+        "cd",
+        "chdir",
+        "chcp",
+        "chkdsk",
+        "cls",
+        "comp",
+        "ctty",
+        "cv",
+        "dblboot",
+        "dblspace",
+        "deltree",
+        "dir",
+        "diskcomp",
+        "diskcopy",
+        "doskey",
+        "drvspace",
+        "edlin",
+        "emm386",
+        "exe2bin",
+        "fakemous",
+        "fasthelp",
+        "fastopen",
+        "fc",
+        "fdisk",
+        "goto",
+        "graftabl",
+        "intersvr",
+        "interlnk",
+        "keyb",
+        "loadfix",
+        "loadhigh",
+        "lh",
+        "md",
+        "mkdir",
+        "mem",
+        "memmaker",
+        "msav",
+        "msbackup",
+        "mscdex",
+        "msd",
+        "msherc",
+        "nlsfunc",
+        "printfix",
+        "qbasic",
+        "rd",
+        "rmdir",
+        "recover",
+        "rem",
+        "ren",
+        "setver",
+        "smartdrv",
+        "subst",
+        "sys",
+        "telnet",
+        "truename",
+        "ver",
+        "vol",
+        "vsafe",
+        "xcopy",
     ]
 
     STB = r'[\"\'\(\<\{\[]'
@@ -204,19 +204,21 @@ class Ignore:
         # "bpy", "bpy", "bl_info", "dx",
         #"", "", "", "", "",
         # "", "", "", "", "", "", "", "", "", "", "", "", "",
-        "Demohero, uriel, meta-androcto",
-        "Antonio Vazquez (antonioya)",
-        "Vladimir Spivak (cwolf3d)",
-        "Nuke (.chan)",
-        #"A (Alpha)",
+        "demohero, uriel, meta-androcto",
+        "antonio vazquez (antonioya)",
+        "vladimir spivak (cwolf3d)",
+        "nuke (.chan)",
+        #"a (alpha)",
         "(*x*\\ :sup:",
-        #"+X, +Y, +Z, -X, -Y, -Z",
+        #"+x, +y, +z, -x, -y, -z",
         #"",
         #"",
     ]
 
     keep_list = [
-        "Path/Curve-Deform",
+        "(translation/scale/rotation)",
+        "translation/scale/rotation",
+        "path/curve-deform",
         "a",
         "an",
         "etc",
@@ -225,54 +227,54 @@ class Ignore:
         "e.g.",
         "i.e",
         "i.e.",
-        "Add-on",
-        "Off-Axis",
-        "Toe-in",
-        "Sub-Target",
-        "Foam + Bubbles",
-        "Spray + Foam + Bubbles",
-        "Fire + Smoke",
-        "Sub-Steps",
-        "Z-Axis",
-        "Normal/View"
-        "F-Curve",
-        "F-Modifier",
-        "Counter-Clockwise",
-        "Normal/Surface",
+        "add-on",
+        "off-axis",
+        "toe-in",
+        "sub-target",
+        "foam + bubbles",
+        "spray + foam + bubbles",
+        "fire + smoke",
+        "sub-steps",
+        "z-axis",
+        "normal/view"
+        "f-curve",
+        "f-modifier",
+        "counter-clockwise",
+        "normal/surface",
         "left/right",
         "top/bottom",
         "link/append",
         "fog/mist",
-        "Exterior/Interior",
-        "Flat/Smooth",
-        "Mirror%s",
-        "Un-Subdivide",
-        "Un-Comment",
-        "Shrink/Fatten",
-        "Smoke + Fire",
-        "Expand/Contract",
-        "Open/Close",
-        "Hide/Show",
-        "Co-planar",
-        "Hide/Unhide",
-        "Lock/Unlock",
-        "Major/Minor",
-        "Click-Extrude",
-        "Front/Back",
+        "exterior/interior",
+        "flat/smooth",
+        "mirror%s",
+        "un-subdivide",
+        "un-comment",
+        "shrink/fatten",
+        "smoke + fire",
+        "expand/contract",
+        "open/close",
+        "hide/show",
+        "co-planar",
+        "hide/unhide",
+        "lock/unlock",
+        "major/minor",
+        "click-extrude",
+        "front/back",
         "rotation/scale",
-        "BLENDER_VERSION",
-        "MPEG Preseek",
+        "blender_version",
+        "mpeg preseek",
         "0 or 1",
         "anti-aliases",
         "anti-aliased",
         "anti-aliasing",
-        "Marker-And-Cell Grid",
+        "marker-and-cell grid",
         "reflect/refract",
         "scattering/absorbtion",
         "inside/outside",
-        "Dots/BU",
-        "Model by © 2016 pokedstudio.com",
-        "Video: From Blender 1.60 to 2.50",
+        "dots/bu",
+        "model by © 2016 pokedstudio.com",
+        "video: from blender 1.60 to 2.50",
         "right-click-select",
         #"",
         #"",
@@ -280,13 +282,14 @@ class Ignore:
 
     reverse_order_list = [
         r'khóa.*[\d]+(\s[\-]{2}\s(key))',
-        r'\"Cơ Sở -- Basis\"',
+        r'\"cơ sở -- basis\"',
         r'^\"xương -- bone\"$',
         r'^\"xương\"$',
         r'^\"bone\"$',
         r'xương\.[\d]+',
         r'bone\.[\d]+',
     ]
+
     keep_contains_list = [
         "i.e.",
         "etc.",
@@ -294,18 +297,18 @@ class Ignore:
         "e.g.",
         "xương",
         "bone",
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "Novemeber",
-        "December",
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "novemeber",
+        "december",
         "|first|",
         "|previous|",
         "|rewind|",
@@ -313,10 +316,13 @@ class Ignore:
         "|next|",
         "|last|",
         "|pause|",
-        "HH:MM:SS.FF",
+        "hh:mm:ss.ff",
         # "",
         # "",
     ]
+
+    keep_contains_list.sort()
+    keep_list.sort()
 
     def isReverseOrder(msg):
         for w in Ignore.reverse_order_list:
@@ -327,18 +333,18 @@ class Ignore:
         return False
 
     def isKeepContains(msg):
-        for term in Ignore.keep_contains_list:
-            is_found = (term.lower() in msg.lower())
-            if is_found:
-                return True
+        found_item = cm.findInSortedList(msg, Ignore.keep_contains_list)
+        is_found = (found_item is not None)
+        if is_found:
+            return True
         else:
             return False
 
     def isKeep(msg):
-        for term in Ignore.keep_list:
-            is_found = (term.lower() == msg.lower())
-            if is_found:
-                return True
+        found_item = cm.findInSortedList(msg, Ignore.keep_list)
+        is_found = (found_item is not None)
+        if is_found:
+            return True
         else:
             return False
 
@@ -354,19 +360,26 @@ class Ignore:
         #     dd("GA trimmed from:", orig_msg, msg)
 
         try:
-            is_keep = Ignore.isKeep(msg)
+            find_msg = msg.lower()
+            is_keep = Ignore.isKeep(find_msg)
             if is_keep:
                 return False
 
-            is_allowed_contains = Ignore.isKeepContains(msg)
+            is_allowed_contains = Ignore.isKeepContains(find_msg)
             if is_allowed_contains:
                 return False
 
-            is_ref_link = cm.isLinkPath(msg)
-            is_function = (cm.FUNCTION.search(msg) is not None)
-            is_ignore_word = Ignore.isIgnoredWord(msg)
-            is_dos_command = Ignore.isDosCommand(msg)
-            is_ignore_start = Ignore.isIgnoredIfStartsWith(msg)
+            is_ref_link = is_function = is_ignore_word = is_dos_command = is_ignore_start = False
+
+            is_ref_link = cm.isLinkPath(find_msg)
+            if not is_ref_link:
+                is_function = (cm.FUNCTION.search(find_msg) is not None)
+                if not is_function:
+                    is_ignore_word = Ignore.isIgnoredWord(find_msg)
+                    if not is_ignore_word:
+                        is_dos_command = Ignore.isDosCommand(find_msg)
+                        if not is_dos_command:
+                            is_ignore_start = Ignore.isIgnoredIfStartsWith(find_msg)
 
             is_ignore = (is_function or
                         is_ignore_word or

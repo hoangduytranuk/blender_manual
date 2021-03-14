@@ -21,7 +21,7 @@ from collections import deque
 # from nltk.corpus import wordnet as wn
 from fuzzywuzzy import fuzz
 from urlextract import URLExtract as URLX
-
+from bisect import bisect_left, bisect_right
 # import spacy
 
 # import Levenshtein as LE
@@ -1695,6 +1695,27 @@ class Common:
             print(f'debug_text:{debug_text} IS NOT THERE')
         else:
             print(f'debug_text:[{debug_text}] exists:{is_there}')
+
+    def findInSortedList(item, sorted_list):
+        if not sorted_list:
+            return None
+        if not item:
+            return None
+        
+        lower_item = item.lower()
+        lo = 0
+        hi = len(sorted_list)
+        found_index = bisect_left(sorted_list, lower_item, lo, hi)        
+        is_found = (found_index >= 0)
+        if not is_found:            
+            return None
+        else:
+            found_item = sorted_list[found_index]
+            is_found = (found_item == lower_item)
+            if is_found:                
+                return found_item
+            else:
+                return None
 
     def getTextWithinBrackets(
             start_bracket: str,
