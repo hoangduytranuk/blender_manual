@@ -232,7 +232,8 @@ class Common:
     var = r'[\w\_\.\-]+'
     param = r'(%s(\,(\s+)?)?)+' % (var)
     multiple = r'^\w+\(s\)$'
-    funct = r'(?!%s)^(%s\((%s)?\))$' % (multiple, var, param)
+    ga_multi = r'([\`]+)?'
+    funct = r'^%s(%s\((%s)?\))%s$' % (ga_multi, var, param, ga_multi)
     FUNCTION = re.compile(funct)
 
     email = r'(<)?(\w+@\w+(?:\.\w+)+)(?(1)>|$)'
@@ -1706,16 +1707,20 @@ class Common:
         lo = 0
         hi = len(sorted_list)
         found_index = bisect_left(sorted_list, lower_item, lo, hi)        
-        is_found = (found_index >= 0)
+        is_found = (found_index >= 0 and found_index < hi)
         if not is_found:            
             return None
         else:
-            found_item = sorted_list[found_index]
-            is_found = (found_item == lower_item)
-            if is_found:                
-                return found_item
-            else:
-                return None
+            try:
+                found_item = sorted_list[found_index]
+                is_found = (found_item == lower_item)
+                if is_found:
+                    return found_item
+                else:
+                    return None
+            except Exception as e:
+                print(f'Finding message: [{item}], found index:[{found_index}]')
+                raise e
 
     def getTextWithinBrackets(
             start_bracket: str,

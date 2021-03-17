@@ -160,7 +160,7 @@ class Ignore:
         r"^\s*(RK4|RRT|Redhat\/Fedora|RLE)\s*$",
         r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)\s*$",
         r"^\s*(Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",
-        r"^\s*(URL|UV[s:]?|U & V|Uber)\s*$",
+        r"^\s*(URL|UV[s:]?|(\w )?&( \w)?|Uber)\s*$",
         r"^\s*(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)\s*$",
         r"^\s*(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)\s*$",
         r"^\s*(X(/Y|YZ)?|Xvid|XY|XZ|YCbCr(\s\(ITU\s?\d+?\))?)\s*$",
@@ -194,9 +194,10 @@ class Ignore:
         r"^\s*(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\))\s*$",
         r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",
         r"^\s*(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))\s*$",
-        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sin\(x\) \/ x|sqrt|sqrt\([\d]?\)|svn)\s*$",
+        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sqrt|sqrt\([\d]?\)|svn)\s*$",
         r"^\s*(TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)\s*$",
         r"[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
+        r"^(\w[\W]+)$",
     ]
 
     # , ""

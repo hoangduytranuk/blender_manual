@@ -399,8 +399,8 @@ class NoCaseDict(OrderedDict):
                 acceptable = (word_count >= k_word_count) and (word_count < int(k_word_count * 1.5))
             
             return_result = (1 if acceptable else 0)
-            if acceptable:
-                dd(f'simpleFuzzyTranslate(), validate(): looking for: [{k_part}] => found: [{item}]')
+            # if acceptable:
+            #     dd(f'simpleFuzzyTranslate(), validate(): looking for: [{k_part}] => found: [{item}]')
             return return_result, item
 
         def findListOfCandidates():
@@ -2637,6 +2637,7 @@ class TranslationFinder:
         return trans
 
     def translate(self, msg):
+        trans = None
         try:
             dd(f'calling findTranslation')
             is_fuzzy = False

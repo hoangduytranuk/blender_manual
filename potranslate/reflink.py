@@ -43,10 +43,9 @@ class TextStyle(Enum):
     RAW = 4
 
 pattern_list = [
-    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
-    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
     (cm.PYTHON_FORMAT, RefType.PYTHON_FORMAT),
     (cm.FUNCTION, RefType.FUNCTION),
+    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
     (cm.GA_REF, RefType.GA),
     (cm.AST_QUOTE, RefType.AST_QUOTE),
     (cm.DBL_QUOTE, RefType.DBL_QUOTE),
@@ -1138,12 +1137,14 @@ class RefList(defaultdict):
             dd(f'parseMessage(): IGNORED [{self.msg}]; is_full_path')
             return
 
-        trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-        has_ref = hasRef(self.msg)
-        is_accept = (trans and not has_ref and not is_fuzzy)
-        if is_accept:
-            self.setTranslation(trans, is_fuzzy, is_ignore)
-            return
+        is_simple_ref, is_complicated_ref = hasRef(self.msg)
+        has_ref = (is_complicated_ref or is_complicated_ref)
+        if not has_ref:
+            trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+            is_accept = (trans and not has_ref and not is_fuzzy)
+            if is_accept:
+                self.setTranslation(trans, is_fuzzy, is_ignore)
+                return
 
         self.findPattern(pattern_list)
 

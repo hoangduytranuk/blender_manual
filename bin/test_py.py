@@ -9284,12 +9284,16 @@ IOR
     def test_translate_0001(self):
         tf = TranslationFinder()
         t_list = [
-            "Transformations (translation/scale/rotation)",
+            "``sin(x)/x``",
+            # "``singing``",
+            # "``cosy``",
+            # "the mark was clearly visible all the way up to ``JPEG`` compression of 50%.",
+            "(De)select all particles' keys",
         ]
-        p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
+        # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
-            # m = p.findall(t)
-            # print(f'm:{m}')
+            # is_function = cm.FUNCTION.findall(t)
+            # print(f'is_function:[{is_function}]')
             # exit(0)
             ref_list = RefList(msg=t, keep_orig=False, tf=tf)
             ref_list.parseMessage()
