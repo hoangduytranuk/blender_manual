@@ -9288,7 +9288,7 @@ IOR
             # "``singing``",
             # "``cosy``",
             # "the mark was clearly visible all the way up to ``JPEG`` compression of 50%.",
-            "(De)select all particles' keys",
+            "also available from the 3D header in both *Object Mode* and *Edit Mode* :menuselection:`Object --> Snap` and :menuselection:`Mesh --> Snap`",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
