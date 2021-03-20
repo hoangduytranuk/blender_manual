@@ -189,7 +189,7 @@ class Ignore:
         r"^\s*[\%s\s\'\:]+$", # %s: %s
         r"^\s*(kConstantScope|kUniformScope|kUnknownScope|kVaryingScope|kVertexScope|kFacevaryingScope|kbd)\s*$",
         r"^\s*(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))\s*$",
-        r"^\s*(microfacet_ggx_refraction\(N, roughness, ior\)|mode=\'RENDER\'|mp[\d]+|msgstr|MPEG-4 \(divx\))\s*$",
+        r"^\s*(microfacet_ggx_refraction\(N, roughness, ior\)|mp[\d]+|msgstr|MPEG-4 \(divx\))\s*$",
         r"^\s*(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)\s*$",
         r"^\s*(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\))\s*$",
         r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
-home_dir = os.environ['HOME']
+home_dir = os.environ['DEV_TRAN']
 potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
 python_sites = '/usr/local/lib/python3.8/site-packages'
 # sys.path.append(potranslate_dir)
@@ -3827,7 +3827,65 @@ def isBalancedSymbol(symb_on, symb_off, txt):
     #
     # return (counter == 0) and not (off_happened_first)
 
+class POCache(defaultdict):
+    def __init__(self, file_path, extension):
+        self.cach_file = os.path.join(home_dir, 'pofilerecord.json')
+        self.file_list = []
+        self.file_path = file_path
+        self.extension = extension
 
+    def getFileList(self):
+        file_list = []      
+        for root, dirnames, filenames in os.walk(self.file_path):
+            if root.startswith('.'):
+                continue
+
+            for filename in filenames:
+                is_found  = (filename.lower().endswith(self.extension))
+                if not is_found:
+                    continue
+                full_path = os.path.join(root, filename)
+                is_file_readable = os.path.isfile(full_path)
+                if not is_file_readable:
+                    print(f'UNABLE to read:[{full_path}]')
+                                
+                self.file_list.append(full_path)
+
+    def loadPOFiles(self):
+        line_list = []
+        for f in self.file_list:
+            rec = POFileRecord(f)
+            data = c.load_po(f)
+            for index, m in enumerate(data):
+                if index == 0:
+                    continue
+                msgid = m.id
+                msgstr = m.string
+                rec.addLine(msgid, tran=msgstr)
+            entry = {f: rec}
+            self.update(entry)
+
+    def save(self):
+        writeJSON(self.cach_file, self)
+
+    def load(self):
+        data = readJSON(self.cach_file)
+        self.clear()
+        self.update(data)
+
+class POFileRecord(defaultdict):
+    def __init__(self, file_path):
+        self.file_name = file_path
+    
+    def addLines(self, lines):
+        for line in lines:
+            self.addLine(line)
+    
+    def addLine(self, line, tran=None):
+        tran_txt = (tran if tran else "")
+        entry = {line: tran}
+        self.update(entry)
+    
 class TextMap(OrderedDict):
     def __init__(self, text=None, dic=None):
         self.dictionary = dic
@@ -4335,7 +4393,7 @@ class test(object):
         self.translation_team="London, UK {}".format(self.your_email)
         self.language_code="vi"
         self.re_language_code="\"Language: \\\\n\"\n".format(self.language_code)
-
+        self.is_file_name_printed = False
         self.count=0
         self.dic = {
             #"^Standard image input.$":"Đầu vào tiêu chuẩn của hình ảnh.",
@@ -7040,7 +7098,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                 new_dic.update(entry)
             return new_dic
 
-        home_dir = os.environ['HOME']
+        home_dir = os.environ['DEV_TRAN']
         test_file1 = os.path.join(home_dir, 'blender_manual/prefix_and_filler.json')
         test_file2 = os.path.join(home_dir, 'blender_manual/suffix_transform.json')
         test_out_file = os.path.join(home_dir, 'testing.json')
@@ -7063,7 +7121,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # PP(dic)
 
     def test_0056(self):
-        home_dir = os.environ['HOME']
+        home_dir = os.environ['DEV_TRAN']
         test_file1 = os.path.join(home_dir, 'blender_manual/ref_dict_backup_0005.json')
         test_out_file = os.path.join(home_dir, 'testing.json')
 
@@ -7076,7 +7134,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
 
     # /Users/hoangduytran/blender_manual/sorted_temp05.json
     def test_0057(self):
-        home_dir = os.environ['HOME']
+        home_dir = os.environ['DEV_TRAN']
         to_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006.json')
         from_file = os.path.join(home_dir, 'blender_manual/sorted_temp05.json')
 
@@ -7148,7 +7206,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                     print('-'*10)
 
 
-        home_dir = os.environ['HOME']
+        home_dir = os.environ['DEV_TRAN']
         from_path = os.path.join(home_dir, 'blender_docs/locale/vi/LC_MESSAGES')
 
         untran_pat = re.compile(r'^(\s)?[\-]{2}\s')
@@ -7300,7 +7358,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                     print('-'*10)
 
 
-        home_dir = os.environ['HOME']
+        home_dir = os.environ['DEV_TRAN']
         from_path = os.path.join(home_dir, 'blender_docs/locale/vi/LC_MESSAGES')
         WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\_\<\>\(\)\`\*\"\|\']')
         SYMBOLS = re.compile(r'^[\W\s]+$')
@@ -7412,7 +7470,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         # return [[qs.strip('"') for qs in r[0].asList()] for r in matches]
 
     def sorting_temp_05(self):
-        home_dir = os.environ['HOME']
+        home_dir = os.environ['DEV_TRAN']
         dic_file = os.path.join(home_dir, 'blender_manual/ref_dict_0006_0001.json')
         temp_file = os.path.join(home_dir, 'blender_manual/sorted_temp05.json')
         out_file = os.path.join(home_dir, 'blender_manual/sorted_temp05_01.json')
@@ -7894,7 +7952,6 @@ IOR
                 for line in found_list:
                     parseBracket(pat, line, external_list)
 
-        home_dir = os.environ['HOME']
         from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
         p = re.compile(r'(?:^|\s)(\(.*\))')
 
@@ -8028,8 +8085,7 @@ IOR
         p1 = re.compile(pat)
         leading_pat = re.compile(leading)
 
-        home_dir = os.environ['HOME']
-        from_path = os.path.join(home_dir, 'Dev/tran/blender_docs/build/gettext')
+        from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
         total_list = []
         file_list = []
         for root, dirnames, filenames in os.walk(from_path):
@@ -9281,14 +9337,61 @@ IOR
         if changed:
             writeJSON(output_po_file, output_data)
 
+    def grep_line(self, p, txt_line, file_name):
+        found_dict = cm.patternMatchAllToDict(p, txt_line)
+
+        if found_dict:            
+            # if not self.is_file_name_printed:
+            #     print(f'[{file_name}]')
+            #     print('=' * 80)
+            #     self.is_file_name_printed = True
+            
+            # return_list = found_dict.values()
+            return_list = [txt_line]
+            return return_list
+        else:
+            return None
+
+    
+        
+    def grepPOT(self, root_txt):
+        from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
+        po_cach = POCache(from_path, ".pot")
+        # po_cach.getFileList()
+        # po_cach.loadPOFiles()
+        # po_cach.save()
+
+        po_cach.load()
+        count_dict = defaultdict(int)
+        word = r'\w+'
+        pat_txt = r'%s\s%s\s%s\s%s' % (word, root_txt, word, word)
+        p = re.compile(root_txt)
+
+        file_found=[]
+        for f, po_rec in po_cach.items():
+            for msgid, msgstr in po_rec.items():
+                found_list = self.grep_line(p, msgid, f)
+                if not found_list:
+                    continue
+                entry = (f, found_list)
+                file_found.append(entry)
+                for item in found_list:
+                    count_dict[item] += 1
+
+        r_list = list(count_dict.items())
+        r_list.sort(key=lambda x: x[1])
+        pprint(r_list)
+        pprint(file_found)
+        print(f'[{len(r_list)}] lines in [{len(file_found)}] files.')
+
     def test_translate_0001(self):
         tf = TranslationFinder()
         t_list = [
-            "``sin(x)/x``",
+            # "``sin(x)/x``",
             # "``singing``",
             # "``cosy``",
-            # "the mark was clearly visible all the way up to ``JPEG`` compression of 50%.",
-            "also available from the 3D header in both *Object Mode* and *Edit Mode* :menuselection:`Object --> Snap` and :menuselection:`Mesh --> Snap`",
+           # "applies to ``mode='RENDER'`` only",
+            "as determined by the order of its vertices",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
@@ -9301,6 +9404,8 @@ IOR
             trans = ref_list.getTranslation()
             print(f't:[{t}] => trans:[{trans}]')
 
+    
+
     def run(self):
         # self.matchingVIPOChangesToDict()
         # self.vipotoJSON()
@@ -9311,6 +9416,7 @@ IOR
         # self.sorting_temp_05()
         self.resort_dictionary()
         self.test_translate_0001()
+        # self.grepPOT(r'last select')
         # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()

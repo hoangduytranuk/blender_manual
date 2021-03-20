@@ -161,7 +161,7 @@ class NoCaseDict(OrderedDict):
     def __contains__(self, key):
         key = self.Key(key)
         is_there = super(NoCaseDict, self).__contains__(key)
-        dd(f'__contains__:[{key}], is_there:{is_there}')
+        # dd(f'__contains__:[{key}], is_there:{is_there}')
         return is_there
 
     def __setitem__(self, key, value):
@@ -414,33 +414,34 @@ class NoCaseDict(OrderedDict):
             found_list = []
             ss = index
             ee = index
-            dd(f'simpleFuzzyTranslate(): start index: [{index}]')
+            # dd(f'simpleFuzzyTranslate(): start index: [{index}]')
             for i in range(index-1, 0, -1):
                 item = key_list[i]
                 cond, found_item = validate(item)
                 is_break = (cond == -1)
                 if is_break:
-                    dd(f'simpleFuzzyTranslate(): traverse backward, stopped at: [{i}], item:[{item}]')
+                    # dd(f'simpleFuzzyTranslate(): traverse backward, stopped at: [{i}], item:[{item}]')
                     break
                 is_accepted = (cond == 1)
                 if is_accepted:
                     found_list.append(item)
             ss = i
-            dd(f'simpleFuzzyTranslate(): backward to index: [{i}]')
+            # dd(f'simpleFuzzyTranslate(): backward to index: [{i}]')
             for i in range(index, len(key_list)):
                 item = key_list[i]
                 cond, found_item = validate(item)
                 is_break = (cond == -1)
                 if is_break:
-                    dd(f'simpleFuzzyTranslate(): traverse forward, stopped at: [{i}], item:[{item}]')
+                    # dd(f'simpleFuzzyTranslate(): traverse forward, stopped at: [{i}], item:[{item}]')
                     break
                 is_accepted = (cond == 1)
                 if is_accepted:
                     found_list.append(item)
             ee = i
-            dd(f'simpleFuzzyTranslate(): forward to index: [{i}]')
+            # dd(f'simpleFuzzyTranslate(): forward to index: [{i}]')
             found_list.sort(key=lambda x: len(x), reverse=True)
-            if found_list:
+            # if found_list:
+            #     pas
                 # dd('Range looking at:')
                 # dd('---------')
                 # k_list_len = len(key_list)
@@ -450,11 +451,11 @@ class NoCaseDict(OrderedDict):
                 # dd(f'looking for: [{msg}]')
                 # pp(examine_part)
                 # dd('---------')
-                dd(f'simpleFuzzyTranslate(): found_list:')
-                dd('---------')
-                dd(f'looking for: [{msg}]')
-                pp(found_list)
-                dd('---------')
+                # dd(f'simpleFuzzyTranslate(): found_list:')
+                # dd('---------')
+                # dd(f'looking for: [{msg}]')
+                # pp(found_list)
+                # dd('---------')
 
             for found_item in found_list:
                 # matched_length = comparePartial(k, found_item)
@@ -473,11 +474,11 @@ class NoCaseDict(OrderedDict):
                 subset.append(entry)
 
             subset.sort(reverse=True)
-            dd(f'simpleFuzzyTranslate(): subset:')
-            dd('---------')
-            dd(f'looking for: [{msg}]')
-            pp(subset)
-            dd('---------')
+            # dd(f'simpleFuzzyTranslate(): subset:')
+            # dd('---------')
+            # dd(f'looking for: [{msg}]')
+            # pp(subset)
+            # dd('---------')
 
             return subset
 
@@ -1383,7 +1384,7 @@ class TranslationFinder:
         if tran_sub_text:
             return tran_sub_text, len(msg), search_dict.fuzzy_exp_var_chosen_record, 100
 
-        dd(f'tryFuzzyTranlation: looking for: [{msg}]')
+        # dd(f'tryFuzzyTranlation: looking for: [{msg}]')
         search_dict: NoCaseDict = None
         tran_sub_text, fuzzy_text, search_dict, matching_ratio, untran_word_dic = self.isInDictFuzzy(msg)
         has_abbrev = (tran_sub_text and (cm.ABBREV_PATTERN_PARSER.search(tran_sub_text) is not None))
@@ -1412,8 +1413,8 @@ class TranslationFinder:
 
         # generate all possible combinations of string lengths
         loc_map = self.genmap(msg)
-        dd('buildLocalTranslationDict() loc_map:')
-        pp(loc_map)
+        # dd('buildLocalTranslationDict() loc_map:')
+        # pp(loc_map)
 
         # translate them all if possible, store in local dict
         blank_msg = str(msg)
@@ -2773,6 +2774,13 @@ class TranslationFinder:
         return tran
 
     def translateRefWithLink(self, msg: str, ref_type: RefType):  # for things like :doc:`something <link>`, and :term:`something <link>`
+        def formValue(loc_orig, loc_tran):
+            if not tran:                
+                loc_value = f"{orig_txt} ()"
+            else:
+                loc_value = f"{orig_txt} ({tran})"
+            return loc_value
+
         ref_is_fuzzy = False
         ref_is_ignore = self.checkIgnore(msg)
         if ref_is_ignore:
@@ -2799,9 +2807,9 @@ class TranslationFinder:
                     # tran = self.recomposeAbbrevTranslation(orig_txt, tran)
                     is_abbrev = (cm.ABBREV_PATTERN_PARSER.search(tran) is not None)
                     if not is_abbrev:
-                        tran = f"{tran} -- {orig_txt}"
+                        tran = formValue(orig_txt, tran)
                 else:
-                    tran = f"-- {orig_txt}"
+                    tran = formValue(orig_txt, tran)
                 tran_txt = tran_txt[:s] + tran + tran_txt[e:]
         else:
             orig_txt = msg
@@ -2815,9 +2823,9 @@ class TranslationFinder:
                 # tran = self.recomposeAbbrevTranslation(orig_txt, tran)
                 is_abbrev = (cm.ABBREV_PATTERN_PARSER.search(tran) is not None)
                 if not is_abbrev:
-                    tran_txt = f"{tran} -- {orig_txt}"
+                    tran_txt = formValue(orig_txt, tran)
             else:
-                tran_txt = f" -- {orig_txt}"
+                tran_txt = formValue(orig_txt, tran)
         return tran_txt, ref_is_fuzzy, ref_is_ignore
 
     def translateMenuSelection(self, msg):

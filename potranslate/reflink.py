@@ -1138,7 +1138,7 @@ class RefList(defaultdict):
             return
 
         is_simple_ref, is_complicated_ref = hasRef(self.msg)
-        has_ref = (is_complicated_ref or is_complicated_ref)
+        has_ref = (is_simple_ref or is_complicated_ref)
         if not has_ref:
             trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
             is_accept = (trans and not has_ref and not is_fuzzy)

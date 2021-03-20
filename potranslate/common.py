@@ -75,7 +75,7 @@ class Common:
     FUZZY_KEY_LENGTH_RATIO = 0.3
     FUZZY_EXP_VAR = '$$$'
     FUZZY_EXP_VAR_PATTERN = re.compile(r'\s*\${3}\s*')
-    TRAN_REF_PATTERN = re.compile(r'\@\{(\w+?)\}')
+    TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
     PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
 
     WEAK_TRANS_MARKER = "#-1#"
@@ -154,7 +154,7 @@ class Common:
     path_with_leading_and_ending = r'%s|%s' % (word_first_with_leading_ending, sep_first)
     pat_full = r'^(%s)$' % (pat)
 
-    word = r'(\w+)'
+    word = r'([\w\#]+)'
     ignore_words = r'((M[ris]+|Dr|etc|e.g)[\.])'
     url_leading = r'^((https|file)\:)'
     path_sep = r'([\~\\\\////\\\/\_\-\.\:\*\?\=\{\}\|]{1,2})'
