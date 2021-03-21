@@ -9391,7 +9391,7 @@ IOR
             # "``singing``",
             # "``cosy``",
            # "applies to ``mode='RENDER'`` only",
-            "as determined by the order of its vertices",
+            "as for *Less*, all linked points are always selected, and of course, *More* cannot add any",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
