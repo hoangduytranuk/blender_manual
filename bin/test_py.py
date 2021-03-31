@@ -9450,7 +9450,8 @@ IOR
             # "but always parallel to the horizontal axis",
             # "Keeps the horizontal axis level file flying.",
             # "for these settings",
-            "but for these, you have meshes!",
+            # "but for these, you have meshes!",
+            "but inside the Blender Window",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
