@@ -9449,7 +9449,8 @@ IOR
             # "take grid and Grease Pencil into account",
             # "but always parallel to the horizontal axis",
             # "Keeps the horizontal axis level file flying.",
-            "for these settings",
+            # "for these settings",
+            "but for these, you have meshes!",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:

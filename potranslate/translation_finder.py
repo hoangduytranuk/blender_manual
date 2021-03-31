@@ -241,10 +241,11 @@ class LocationObserver(OrderedDict):
     def translated(self, s: int, e: int):
         del_list=[]
         for current_loc, txt in self.distance_map.items():
-            c_s, c_e = current_loc
-            is_start_overlapped = (s >= c_s) and (s <= c_e)
-            is_end_overlapped = (e >= c_s) and (e <= c_e)
-            is_overlapped = (is_start_overlapped or is_end_overlapped)
+            cs, ce = current_loc
+            left_ovrlap = (cs >= s) and (ce <= e)
+            right_ovrlap = (cs >= s) and (cs <= e)
+            within = (cs >= s) and (ce <= e)
+            is_overlapped = (left_ovrlap or right_ovrlap or within)
             if is_overlapped:
                 del_list.append(current_loc)
         for del_loc in del_list:
@@ -1519,38 +1520,19 @@ class TranslationFinder:
 
         loc_translated_list = list(loc_translated_dict.items())
         loc_translated_list.sort(reverse=True)
-        temp_tran = str(current_translation)
-        try:
-            dd(f'translatedListToText(): txt:[{current_translation}]')
-            dd('-----------------')
-            pp(loc_translated_list)
-            dd('-----------------')
 
-            for index, entry in enumerate(loc_translated_list):
-                local_location, v = entry
-                loc_orig, loc_tran_txt = v
+        dd(f'translatedListToText(): txt:[{current_translation}]')
+        dd('-----------------')
+        pp(loc_translated_list)
+        dd('-----------------')
 
-                loc_ss, loc_ee = local_location
-                temp_part = temp_tran[loc_ss: loc_ee]
+        for loc, v in loc_translated_list:
+            orig_txt, loc_tran_txt = v
+            s, e = loc
 
-                is_translated = (cm.FILLER_CHAR in temp_part)
-                if is_translated:
-                    # dd(f'translatedListToText: Consider overlapped/translated [{temp_part}]')
-                    continue
-
-                loc_left = current_translation[:loc_ss]
-                loc_right = current_translation[loc_ee:]
-                current_translation = loc_left + loc_tran_txt + loc_right
-
-                blank_dist = (loc_ee - loc_ss)
-                blank_part = (cm.FILLER_CHAR * blank_dist)
-                temp_tran = temp_tran[:loc_ss] + blank_part + temp_tran[loc_ee:]
-                is_finished = not (loc_left or loc_right)
-                if is_finished:
-                    break
-        except Exception as e:
-            print(f'translatedListToText(): current_translation = [{current_translation}]')
-            raise e
+            loc_left = current_translation[:s]
+            loc_right = current_translation[e:]
+            current_translation = loc_left + loc_tran_txt + loc_right
         dd(f'translatedListToText: original [{orig}]')
         dd(f'translatedListToText: translated [{current_translation}]')
         return current_translation
