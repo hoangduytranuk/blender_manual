@@ -130,7 +130,7 @@ class Ignore:
         r"^\s*(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)\s*$",
         r"^\s*(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)\s*$",
         r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
-        r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?$",
+        r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
         r"^\s*(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
         r"^\s*(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*$",
         r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|de|debian|Delta([\s][\w])?)\s*$",
@@ -177,7 +177,8 @@ class Ignore:
         r"^\s*\:sup\:\`™\`$",
         r"^\s*\|([\w\-\_]+)\|$",
         r"^\s*\|[^\|]+\|$",  # |tick|cross|
-        r"^\s*(bItasc|bin|bit[s]?|bl\*er|blendcache_[filename]|blender \-[drE]+([\s]+help)?|blender_doc|blender_api)\s*$",
+        r"^blender_api[:]?",
+        r"^\s*(bItasc|bin|bit[s]?|bl\*er|blendcache_[filename]|blender_doc|blender_api)\s*$",
         r"^\s*(bpy\.(context|data|ops)|bpy\.([\w\.\-\_]+)|byte([s]?))\s*$",
         r"^\s*(cd|mkdir|ctrl)\s*$",
         r"^\s*(dam|deg|developer\.blender\.org|dir\(\)|dm|dx)\s*$",

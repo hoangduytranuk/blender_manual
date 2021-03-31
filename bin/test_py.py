@@ -9312,7 +9312,7 @@ IOR
         input_po_file=os.path.join(home, "working_txt.txt")
         
         input_po_data =readJSON(input_po_file)        
-        dict_path = os.path.join(home_dir, 'ref_dict_0006_0002.json')
+        # dict_path = os.path.join(home_dir, 'ref_dict_0006_0002.json')
 
         tf = TranslationFinder()
         input_dict = tf.getDict()
@@ -9346,13 +9346,11 @@ IOR
             #     print('=' * 80)
             #     self.is_file_name_printed = True
             
-            # return_list = found_dict.values()
-            return_list = [txt_line]
+            return_list = found_dict.values()
+            # return_list = [txt_line]
             return return_list
         else:
             return None
-
-    
         
     def grepPOT(self, root_txt):
         from_path = os.path.join(home_dir, 'blender_docs/build/gettext')
@@ -9363,26 +9361,76 @@ IOR
 
         po_cach.load()
         count_dict = defaultdict(int)
-        word = r'\w+'
-        pat_txt = r'%s\s%s\s%s\s%s' % (word, root_txt, word, word)
-        p = re.compile(root_txt)
+        word = r'(\w+)'
+        possible_word = r'(\s?(%s)\s?)?' % (word)
+        pats = []
+        pat_txt = r'%s' % (root_txt)
+        p = re.compile(pat_txt)
+        pats.append(p)
+        
+        pat_txt = r'%s\b%s\b' % (possible_word, root_txt)
+        p = re.compile(pat_txt)
+        pats.append(p)
+        
+        pat_txt = r'%s\b%s\b%s' % (possible_word, root_txt, possible_word)
+        p = re.compile(pat_txt)
+        pats.append(p)
+
+        pat_txt = r'%s\b%s\b%s%s' % (possible_word, root_txt, possible_word, possible_word)
+        p = re.compile(pat_txt)
+        pats.append(p)
 
         file_found=[]
+        entry_found=[]
+        loc_found=[]
+        entry_count = 0
         for f, po_rec in po_cach.items():
+            loc_found=[]
             for msgid, msgstr in po_rec.items():
-                found_list = self.grep_line(p, msgid, f)
-                if not found_list:
-                    continue
-                entry = (f, found_list)
-                file_found.append(entry)
-                for item in found_list:
-                    count_dict[item] += 1
+                loc_found=[]
+                for p in pats:
+                    found_list = cm.patternMatchAllToDict(p, msgid)
+                    if not found_list:
+                        continue
+                    if f not in file_found:
+                        file_found.append(f)
+                                        
+                    entry = (f, msgid)
+                    if not entry in entry_found:
+                        entry_found.append(entry)
+
+                    for loc, item in found_list.items():
+                        if loc in loc_found:
+                            continue
+
+                        count_dict[item] += 1
+                        loc_found.append(loc)
 
         r_list = list(count_dict.items())
         r_list.sort(key=lambda x: x[1])
-        pprint(r_list)
+        pprint(entry_found)
         pprint(file_found)
-        print(f'[{len(r_list)}] lines in [{len(file_found)}] files.')
+        pprint(r_list)
+        print(f'[{len(entry_found)}] lines in [{len(file_found)}] files.')
+
+    def test_globals(self):
+        class test_var():
+            def __init__(self):
+                self.var_1 = 'One'
+                self.var_2 = 'Two'
+
+            def __repr__(self):
+                sl = [
+                    self.var_1,
+                    self.var_2
+                ]
+                string = '; '.join(sl)
+                return string
+
+        x = test_var()
+        # k = locals().keys()
+        print(x)
+        # print(k)
 
     def test_translate_0001(self):
         tf = TranslationFinder()
@@ -9391,7 +9439,17 @@ IOR
             # "``singing``",
             # "``cosy``",
            # "applies to ``mode='RENDER'`` only",
-            "as for *Less*, all linked points are always selected, and of course, *More* cannot add any",
+           #  ":kbd:`Shift-LMB` or :kbd:`Shift-RMB` used for multiple node selection",
+            # "besides the first one",
+            # "For a list of available render engines, run ``blender -E help``.",
+            # "``~/blender_docs/build/html``",
+            # "take objects into account",
+            # "turn not your attention to"
+            # "turned not yours attentions to"
+            # "take grid and Grease Pencil into account",
+            # "but always parallel to the horizontal axis",
+            # "Keeps the horizontal axis level file flying.",
+            "for these settings",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
@@ -9404,9 +9462,8 @@ IOR
             trans = ref_list.getTranslation()
             print(f't:[{t}] => trans:[{trans}]')
 
-    
-
     def run(self):
+        # self.test_globals()
         # self.matchingVIPOChangesToDict()
         # self.vipotoJSON()
         # self.test_0074()
@@ -9416,7 +9473,7 @@ IOR
         # self.sorting_temp_05()
         self.resort_dictionary()
         self.test_translate_0001()
-        # self.grepPOT(r'last select')
+        # self.grepPOT(r'for these')
         # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()

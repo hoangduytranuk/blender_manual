@@ -29,8 +29,9 @@ from reftype import RefType
 
 
 class TranslationState(Enum):
-    ACCEPTABLE = 0
-    FUZZY = 1
+    UNTRANSLATED = 0
+    ACCEPTABLE = 1
+    FUZZY = 2
     IGNORED = 3
     REMOVE = 4
 
@@ -96,7 +97,7 @@ class RefItem:
         self.text: str = txt
         self.translation: str = None
         self.old_translation: str = None
-        self.translation_state: TranslationState = TranslationState.ACCEPTABLE
+        self.translation_state: TranslationState = TranslationState.UNTRANSLATED
         self.translation_include_original: bool = keep_orig
         self.reftype: RefType = ref_type
         self.text_style: TextStyle = TextStyle.NORMAL
@@ -402,7 +403,7 @@ class RefList(defaultdict):
     def __init__(self, msg=None, pat=None, keep_orig=False, tf=None):
         self.msg = msg
         self.translation = None
-        self.translation_state = TranslationState.ACCEPTABLE
+        self.translation_state = TranslationState.UNTRANSLATED
         self.pattern = pat
         self.keep_original = keep_orig
         self.tf = tf
@@ -801,9 +802,9 @@ class RefList(defaultdict):
             dd("ref_text:", txt)
 
     def findTextOutsideRefs(self):
-        # has_ref = (len(self) > 0)
-        # if not has_ref:
-        #     return
+        has_ref = (len(self) > 0)
+        if not has_ref:
+            return
 
         temp_msg = str(self.msg)
         v: RefRecord = None
@@ -1132,19 +1133,15 @@ class RefList(defaultdict):
 
     def parseMessage(self):
 
+        trans = self.tf.isInDict(self.msg)
+        if trans:
+            self.setTranslation(trans, False, False)
+            return
+
         is_link_path = cm.isLinkPath(self.msg)
         if is_link_path:
             dd(f'parseMessage(): IGNORED [{self.msg}]; is_full_path')
             return
-
-        is_simple_ref, is_complicated_ref = hasRef(self.msg)
-        has_ref = (is_simple_ref or is_complicated_ref)
-        if not has_ref:
-            trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
-            is_accept = (trans and not has_ref and not is_fuzzy)
-            if is_accept:
-                self.setTranslation(trans, is_fuzzy, is_ignore)
-                return
 
         self.findPattern(pattern_list)
 
@@ -1336,13 +1333,28 @@ class RefList(defaultdict):
             is_math = (ref_type == RefType.MATH)
             is_class = (ref_type == RefType.CLASS)
             is_sup = (ref_type == RefType.SUP)
-            is_ignore = (is_math or is_class or is_sup)
+            is_function = (ref_type == RefType.FUNCTION)
+            is_mod = (ref_type == RefType.MOD)
+            is_func = (ref_type == RefType.FUNC)
+            is_lineno = (ref_type == RefType.LINENOS)
+
+            is_ignore = (is_math or
+                         is_class or
+                         is_sup or
+                         is_function or
+                         is_mod or
+                         is_func or
+                         is_lineno)
             if is_ignore:
                 continue
 
             self.translateRefItem(item)
 
     def translateRefList(self):
+
+        is_translated = (self.translation_state != TranslationState.UNTRANSLATED)
+        if is_translated:
+            return
 
         tran_text = None
         has_ref = (len(self) > 0)

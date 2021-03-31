@@ -73,8 +73,8 @@ class Common:
     FUZZY_RATIO_INCREMENT = 5
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.3
-    FUZZY_EXP_VAR = '$$$'
-    FUZZY_EXP_VAR_PATTERN = re.compile(r'\s*\${3}\s*')
+    SENT_STRUCT_SYMB = '$$$'
+    SENT_STRUCT_PAT = re.compile(r'\s*\${3}\s*')
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
     PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
 
@@ -267,7 +267,9 @@ class Common:
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
 
     punctuals = r'([\\\/\.\,\:\;\!\?\"\*\'\`]+)'
+    basic_punctuals = r'([\.\,\`]+)'
     PUNCTUALS = re.compile(punctuals)
+    BASIC_PUNCTUALS = re.compile(basic_punctuals)
 
     begin_punctuals = r'^%s' % (punctuals)
     end_punctuals = r'%s$' % (punctuals)
@@ -385,7 +387,7 @@ class Common:
     CHARACTERS = re.compile(r'\w+')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
-    SYMBOLS = re.compile(r'[^a-zA-Z0-9\s]+')
+    SYMBOLS = re.compile(r'[\W]+')
     SPACES = re.compile(r'\s+')
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
@@ -802,28 +804,28 @@ class Common:
         'now since': '',
         'now that': '',
         'now that\'s what I call': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
-        '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
+        # '': '',
 
     }
     common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
@@ -2079,7 +2081,7 @@ class Common:
         return rev_remain
 
     def splitExpVar(item, k):
-        i_list = item.split(Common.FUZZY_EXP_VAR)
+        i_list = item.split(Common.SENT_STRUCT_SYMB)
 
         i_left = i_list[0]
         i_right = i_list[1]
@@ -2278,6 +2280,14 @@ class Common:
             pass
         return match_percent
 
+    def isFullyTranslated(txt):
+        is_all_filler_and_spaces = (Common.FILLER_CHAR_AND_SPACE_ONLY_PATTERN.search(txt) is not None)
+        return is_all_filler_and_spaces
+
+    def isTranslated(txt):
+        is_overlapped = (Common.FILLER_CHAR_PATTERN.search(txt) is not None)
+        return is_overlapped
+
     def debugging(txt):
         # msg = 'between root and tip'
         # msg = 'Profile Brush'
@@ -2294,7 +2304,7 @@ class Common:
         # msg = "Material Library VX"
         # msg = "Equals"
         # msg = "fig-mesh-screw-angle"
-        msg = "ignoring!"
+        msg = "take grid and Grease Pencil into account"
         # is_debug = (msg and txt and (msg.lower() in txt.lower()))
         is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))

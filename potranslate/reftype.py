@@ -18,6 +18,8 @@ class RefType(Enum):
     MATH = ":math:"
     MENUSELECTION = ":menuselection:"
     MOD = ":mod:"
+    METHOD = ":meth:"
+    FUNC = ":func:"
     REF = ":ref:"
     SUP = ":sup:"
     TERM = ":term:"
