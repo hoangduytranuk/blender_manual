@@ -236,39 +236,34 @@ class TranslationEntry():
 
 class LocationObserver(OrderedDict):
     def __init__(self, msg):
-        self
+        self.blank = msg
 
     def translated(self, s: int, e: int):
-        del_list=[]
-        for current_loc, txt in self.distance_map.items():
-            cs, ce = current_loc
-            left_ovrlap = (ce <= s) and (ce <= e)
-            right_ovrlap = (cs <= e) and (ce >= e)
-            within = (cs >= s) and (ce <= e)
-            is_overlapped = (left_ovrlap or right_ovrlap or within)
-            if is_overlapped:
-                del_list.append(current_loc)
-        for del_loc in del_list:
-            del self.distance_map[del_loc]
+        blk = (cm.FILLER_CHAR * (e - s))
+        left = self.blank[:s]
+        right = self.blank[e:]
+        self.blank = left + blk + right
 
     def translatedLoc(self, loc: tuple):
         ss, ee = loc
         self.translated(ss, ee)
 
-    def isTranslatedLoc(self, loc: tuple):
-        is_in = (loc in self.distance_map)
-        return not is_in
-
     def isTranslated(self, s: int, e: int):
-        loc = (s, e)
-        return self.isTranslatedLoc(loc)
+        part = self.blank[s:e]
+        is_dirty = (cm.FILLER_CHAR_PATTERN.search(part) is not None)
+        return is_dirty
+
+    def isTranslatedLoc(self, loc: tuple):
+        s, e = loc
+        return self.isTranslated(s, e)
 
     def isFullyTranslated(self):
-        is_fully_done = not bool(self.distance_map)
+        is_fully_done = (cm.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
         return is_fully_done
 
     def getUntranDict(self):
-        return self.distance_map
+        untran_dict = cm.findInvert(cm.FILLER_CHAR_INVERT, self.blank)
+        return untran_dict
 
 class NoCaseDict(OrderedDict):
 
