@@ -235,15 +235,15 @@ class TranslationEntry():
         self.fuzzy_rate = fuzzy_rate
 
 class LocationObserver(OrderedDict):
-    def __init__(self, dist_map: dict):
-        self.distance_map = OrderedDict(dist_map)
+    def __init__(self, msg):
+        self
 
     def translated(self, s: int, e: int):
         del_list=[]
         for current_loc, txt in self.distance_map.items():
             cs, ce = current_loc
-            left_ovrlap = (cs >= s) and (ce <= e)
-            right_ovrlap = (cs >= s) and (cs <= e)
+            left_ovrlap = (ce <= s) and (ce <= e)
+            right_ovrlap = (cs <= e) and (ce >= e)
             within = (cs >= s) and (ce <= e)
             is_overlapped = (left_ovrlap or right_ovrlap or within)
             if is_overlapped:
@@ -1456,8 +1456,8 @@ class TranslationFinder:
 
             left_rat = fuzzy_compare_part(left, msg, is_start=True)
             right_rat = fuzzy_compare_part(right, msg, is_start=False)
-            is_acceptable_left = (left_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
-            is_acceptable_right = (right_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+            is_acceptable_left = (left_rat >= cm.FUZZY_ACCEPTABLE_RATIO)
+            is_acceptable_right = (right_rat >= cm.FUZZY_ACCEPTABLE_RATIO)
             is_found = (is_acceptable_left and is_acceptable_right)
             if not is_found:
                 continue
@@ -1472,6 +1472,8 @@ class TranslationFinder:
 
         selective_list.sort(reverse=True)
         selective_entry = selective_list[0]
+
+
         rat, left, right, struct_pat, k_loc = selective_entry
 
         s_wcount = len(left.split())
@@ -1481,6 +1483,8 @@ class TranslationFinder:
         has_puncts = (cm.BASIC_PUNCTUALS.search(k_mid) is not None)
         if has_puncts:
             return None
+
+        dd(f'getSentStruct(), found: [{selective_entry}] for [{msg}]')
 
         tran = self.struct_dict[struct_pat]
         m = cm.SENT_STRUCT_PAT.search(tran)
@@ -1495,6 +1499,7 @@ class TranslationFinder:
 
         k_mid_tran = self.simpleBlindTranslation(k_mid)
         if k_mid_tran:
+            dd(f'getSentStruct(), found translation for: [{k_mid}] => [{k_mid_tran}]')
             t_mid = k_mid_tran
 
         # self, struct_dict, dict_pat, dict_index, k_loc, key, k_left, k_mid, k_right, tran, t_loc, t_left, t_mid, t_right):
@@ -1517,6 +1522,8 @@ class TranslationFinder:
             initially will be untranslated text
         '''
         orig = str(current_translation)
+        observer = LocationObserver(loc_translated_dict)
+
 
         loc_translated_list = list(loc_translated_dict.items())
         loc_translated_list.sort(reverse=True)
@@ -1527,12 +1534,21 @@ class TranslationFinder:
         dd('-----------------')
 
         for loc, v in loc_translated_list:
+            is_translated = observer.isTranslatedLoc(loc)
+            if is_translated:
+                continue
+
             orig_txt, loc_tran_txt = v
             s, e = loc
-
             loc_left = current_translation[:s]
             loc_right = current_translation[e:]
             current_translation = loc_left + loc_tran_txt + loc_right
+
+            observer.translatedLoc(loc)
+            is_fully_translated = observer.isFullyTranslated()
+            if is_fully_translated:
+                break
+
         dd(f'translatedListToText: original [{orig}]')
         dd(f'translatedListToText: translated [{current_translation}]')
         return current_translation

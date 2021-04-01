@@ -106,7 +106,7 @@ class Ignore:
         r"^\s*([-]{2}([\w-]+)*)\s*$",
         r"^\s*([\w\_\-]+\(([^\(\)]+)?\))\s*$", # function_name(param1, param2)
         r"^\s*([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)\s*$",
-        r"^\s*([\d]D)\s*$",
+        r"^\W?(\dD)\W?$",
         r"^\s*([\"\'][\.\s]?[\S]{1}[\"\'])\s*$",
         r"^\s*(#fmod\(frame, 24\) / 24)\s*$",
         r"^\s*(([\w]+)?([\.][\w]+)+)\s*$", # bpy.context, bpy.context.object

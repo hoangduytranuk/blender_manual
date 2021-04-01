@@ -7178,7 +7178,12 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
         new_dic = OrderedDict(sorting)
         for t_k, t_v in to_dic.items():
-            entry = {t_k:t_v}
+            # is_remove = (t_k and not t_v)
+            # if is_remove:
+            #     print(f'REMOVING: [{t_k}]')
+            #     continue
+
+            entry = {t_k: t_v}
             new_dic.update(entry)
 
         writeJSON(to_file, new_dic)
@@ -9451,7 +9456,12 @@ IOR
             # "Keeps the horizontal axis level file flying.",
             # "for these settings",
             # "but for these, you have meshes!",
-            "but inside the Blender Window",
+            # "but inside the Blender Window",
+            # "but remain on all its other objects",
+            # "but still considered close enough to be keyed",
+            # "but the surface appears to be 3D, why is it only 2D?",
+            # "but you can animate them as soft bodies which take deflection into account",
+            "but you may recalculate the number of control points in *Particle Edit Mode*",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
@@ -9475,7 +9485,7 @@ IOR
         # self.sorting_temp_05()
         self.resort_dictionary()
         self.test_translate_0001()
-        # self.grepPOT(r'for these')
+        # self.grepPOT(r'remain')
         # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()
