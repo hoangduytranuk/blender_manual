@@ -31,6 +31,7 @@ DEBUG=True
 # DEBUG=False
 DIC_LOWER_CASE=True
 
+
 # DIC_LOWER_CASE=False
 
 #logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -54,6 +55,34 @@ def dd(*args, **kwargs):
 # def dd(*args, **kwargs):
 #     if DEBUG:
 #         logging.info(args, kwargs)
+
+
+class MatcherRecord(OrderedDict):
+    def __init__(self, s: int = -1, e: int = -1, txt: str = None, matcher_record : re.Match = None):
+        self.s = (s if not matcher_record else matcher_record.start())
+        self.e = (e if not matcher_record else matcher_record.end())
+        self.txt = (txt if not matcher_record else matcher_record.group(0))
+
+        if not matcher_record:
+            return
+
+        orig = matcher_record.group(0)
+        for g in matcher_record.groups():
+            if g:
+                i_s = orig.find(g)
+                ss = i_s + s
+                ee = ss + len(g)
+                self.addSubMatch(ss, ee, g)
+
+    def addSubMatch(self, s: int, e: int, txt: str):
+        loc = (s, e)
+        entry = {loc: txt}
+        self.update(entry)
+
+    def getOriginAsEntry(self):
+        loc = (self.s, self.e)
+        entry = {loc, self.txt}
+        return entry
 
 
 class Common:
@@ -1125,38 +1154,12 @@ class Common:
         return None, None
 
     def patternMatchAllAsDictNoDelay(pat: re.Pattern, text: str) -> dict:
-        try:
-            return_dict = {}
-            one_pattern=[]
-            is_text_printed = False
-            for m in pat.finditer(text):
-                # if not is_text_printed:
-                #     print(f'patternMatchAllAsDictNoDelay: text:{text}')
-                #     print(f'patternMatchAllAsDictNoDelay: pattern:{pat.pattern}')
-                #     is_text_printed = True
-
-                s = m.start()
-                e = m.end()
-                orig = m.group(0)
-                original = (s, e, orig)
-                entry = ((s, e), orig)
-                one_pattern.append(entry)
-                for g in m.groups():
-                    if g:
-                        i_s = orig.find(g)
-                        ss = i_s + s
-                        ee = ss + len(g)
-                        entry = ((ss, ee), g)
-                        one_pattern.append(entry)
-                dict_entry = {s: one_pattern}
-                return_dict.update(dict_entry)
-                one_pattern = []
-        except Exception as e:
-            dd("patternMatchAll")
-            dd("pattern:", pat)
-            dd("text:", text)
-            dd(e)
-        # print(f'patternMatchAllAsDictNoDelay: return_dict:{return_dict}')
+        return_dict = {}
+        for m in pat.finditer(text):
+            match_record = MatcherRecord(matcher_record=m)
+            s = match_record.s
+            dict_entry = {s: match_record}
+            return_dict.update(dict_entry)
         return return_dict
 
     def findInvert(pattern:re.Pattern, text:str, is_removing_surrounding_none_alphas=False):
@@ -1754,7 +1757,7 @@ class Common:
                 txt_line = txt_line.replace(end_bracket, replace_internal_end_bracket)
 
             loc = (ss, ee)
-            entry = {ss: [(loc, txt_line)]}
+            entry = {loc: txt_line}
             sentence_list.update(entry)
             return True
 

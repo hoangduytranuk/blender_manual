@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 import os
 import sys
-home_dir = os.environ['DEV_TRAN']
-potranslate_dir = os.path.join(home_dir + "blender_manual/potranslate")
-python_sites = '/usr/local/lib/python3.8/site-packages'
-# sys.path.append(potranslate_dir)
-# sys.path.append(python_sites)
 
 import json
 from collections import OrderedDict, defaultdict
@@ -42,7 +37,8 @@ from sphinx_intl import catalog as c
 from time import gmtime, strftime, time
 from pytz import timezone
 # import enchant as ENC
-from common import Common as cm
+from common import Common as cm, MatcherRecord
+
 from reflink import RefList, TranslationState
 from pprint import pprint
 from urlextract import URLExtract as URLX
@@ -7171,47 +7167,45 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
     def resort_dictionary(self):
         home_dir = os.environ['BLENDER_GITHUB']
         from_file = os.path.join(home_dir, 'ref_dict_0006_0003.json')
-        to_file = os.path.join(home_dir, 'ref_dict_0006_0001.json')
+        to_file = os.path.join(home_dir, 'ref_dict_0006_0002.json')
 
         to_dic = readJSON(from_file)
-        l_case_dic = {}
-        clean_dic = {}
-        for k, v in to_dic.items():
-            l_k = k.lower()
-            is_in = (l_k in l_case_dic)
-            if is_in:
-                old_val = to_dic[k]
-                print(f'duplicated: [{k}] with old_val:[{old_val}]; new_val[{v}]')
-
-            l_v = v.lower()
-            l_entry = {l_k: l_v}
-            l_case_dic.update(l_entry)
-
-            entry = {k: v}
-            clean_dic.update(entry)
-
-        sorting = sorted(list(l_case_dic.items()), key=lambda x: x[0].lower())
-        new_dic = OrderedDict(sorting)
-        out_file = os.path.join(home_dir, 'temp_dict.json')
-        writeJSON(out_file, new_dic)
-
-        sorting = sorted(list(clean_dic.items()), key=lambda x: x[0].lower())
-        new_dic = OrderedDict(sorting)
-        writeJSON(to_file, new_dic)
-
-        # sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
+        # l_case_dic = {}
+        # clean_dic = {}
+        # for k, v in to_dic.items():
+        #     l_k = k.lower()
+        #     is_in = (l_k in l_case_dic)
+        #     if is_in:
+        #         old_val = to_dic[k]
+        #         print(f'duplicated: [{k}] with old_val:[{old_val}]; new_val[{v}]')
+        #
+        #     l_v = v.lower()
+        #     l_entry = {l_k: l_v}
+        #     l_case_dic.update(l_entry)
+        #
+        #     entry = {k: v}
+        #     clean_dic.update(entry)
+        #
+        # sorting = sorted(list(l_case_dic.items()), key=lambda x: x[0].lower())
         # new_dic = OrderedDict(sorting)
+        # out_file = os.path.join(home_dir, 'temp_dict.json')
+        # writeJSON(out_file, new_dic)
         #
-        # for t_k, t_v in to_dic.items():
-        #     # is_remove = (t_k and not t_v)
-        #     # if is_remove:
-        #     #     print(f'REMOVING: [{t_k}]')
-        #     #     continue
-        #
-        #     entry = {t_k: t_v}
-        #     new_dic.update(entry)
-        #
+        # sorting = sorted(list(clean_dic.items()), key=lambda x: x[0].lower())
+        # new_dic = OrderedDict(sorting)
         # writeJSON(to_file, new_dic)
+
+        sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
+        new_dic = OrderedDict(sorting)
+
+        for t_k, t_v in to_dic.items():
+            entry = {t_k: t_v}
+            new_dic.update(entry)
+
+        sorting = sorted(list(new_dic.items()), key=lambda x: x[0].lower())
+        new_dic = OrderedDict(sorting)
+
+        writeJSON(to_file, new_dic)
 
     # from leven import levenshtein as LEV
     def test_0059(self):
@@ -9468,7 +9462,7 @@ IOR
             # "``sin(x)/x``",
             # "``singing``",
             # "``cosy``",
-            "controlling that there is no sliding off original position",
+            "the expression ``0 + (cos(frame / 8) * 4)``",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
@@ -9481,7 +9475,17 @@ IOR
             trans = ref_list.getTranslation()
             print(f't:[{t}] => trans:[{trans}]')
 
+    def test_abbr(self):
+        abbr_txt = ":abbr:`SSAO (Screen Space Ambient Occlusion)`"
+        m:
+        m = cm.patternMatchAllAsDictNoDelay(cm.ABBREV_PATTERN_PARSER, abbr_txt)
+        if not m:
+            return None
+        print(f'{m.g}')
+        print_=(f'abbr_dict: [{abbr_dict}]')
+
     def run(self):
+        self.test_abbr()
         # self.test_globals()
         # self.matchingVIPOChangesToDict()
         # self.vipotoJSON()
@@ -9490,9 +9494,9 @@ IOR
         # self.plistToText()
         # self.test_binary_search()
         # self.sorting_temp_05()
-        self.resort_dictionary()
+        # self.resort_dictionary()
         # self.test_translate_0001()
-        # self.grepPOT(r'connected')
+        # self.grepPOT(r'corrective')
         # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()

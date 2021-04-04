@@ -340,11 +340,6 @@ class NoCaseDict(OrderedDict):
 
     def __setitem__(self, key, value):
         lkey_key = Key(key)
-        is_there = (lkey_key in self)
-        cm.debugging(key)
-        if is_there:
-            entry={key: value}
-            dd(f'[{entry}] is already HERE!')
         super(NoCaseDict, self).__setitem__(lkey_key, value)
 
         is_sent_struct = (cm.SENT_STRUCT_PAT.search(key) is not None)
@@ -1374,11 +1369,11 @@ class TranslationFinder:
         # sort out by the number of spaces (indicating word counts) rather than by common string length
         part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=True)    # this is how to sort with multi keys, in brackets
         # part_list.sort(key=lambda x: (x[1].count(' ')), reverse=True)
-        # dd('genmap():')
-        # dd('-' * 80)
-        # pp(part_list)
-        # dd('-' * 80)
-        # dd(f'for []{msg}')
+        dd('genmap():')
+        dd('-' * 80)
+        pp(part_list)
+        dd('-' * 80)
+        dd(f'for []{msg}')
         return part_list
 
     def translateBreakupSentences(self, msg):

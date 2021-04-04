@@ -212,6 +212,7 @@ class Ignore:
         "nuke (.chan)",
         #"a (alpha)",
         "(*x*\\ :sup:",
+        "0 + (cos(frame / 8) * 4)",
         #"+x, +y, +z, -x, -y, -z",
         #"",
         #"",

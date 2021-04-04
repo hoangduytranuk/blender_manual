@@ -8,7 +8,7 @@ from common import Common as cm
 from common import dd, pp
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
-from translation_finder import TranslationFinder
+from translation_finder import TranslationFinder, LocationObserver
 # from pyparsing import nestedExpr
 from enum import Enum
 from reftype import RefType
@@ -762,6 +762,30 @@ class RefList(defaultdict):
 
     def findPattern(self, pattern_list: list):
         count_item = 0
+        preparsed_location = {}
+
+        p: re.Pattern = None
+        ref_type: RefType = None
+        m: re.Match = None
+        msg = self.msg
+        for index, item in enumerate(pattern_list):
+            p, ref_type = item
+            is_bracket = (ref_type == RefType.ARCH_BRACKET)
+            if is_bracket:
+                found_dict = cm.getTextWithinBrackets('(', ')', msg, is_include_bracket=False)
+            else:
+                found_dict = cm.patternMatchAllToDict(p, msg)
+            preparsed_location.update(found_dict)
+
+            # m = p.search(self.msg)
+            # if m:
+            #     txt = m.group(0)
+            #     s = m.start()
+            #     e = m.end()
+            #     loc = (s, e)
+            #     entry={loc: (txt, ref_type)}
+            #     preparsed_location.update(entry)
+
         remain_to_be_parsed = str(self.msg)
         for index, item in enumerate(pattern_list):
             p, ref_type = item
@@ -1256,6 +1280,7 @@ class RefList(defaultdict):
                 ref_item.setTranlation(None, False, True)
                 return
 
+            dd(f'translateRefItem: to be translated [{ref_txt}]')
             ref_type = ref_item.reftype
             is_kbd = (ref_type == RefType.KBD)
             is_abbr = (ref_type == RefType.ABBR)
