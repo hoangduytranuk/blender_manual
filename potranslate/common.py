@@ -2288,6 +2288,35 @@ class Common:
         is_overlapped = (Common.FILLER_CHAR_PATTERN.search(txt) is not None)
         return is_overlapped
 
+    def patchingBeforeReturn(left, right, patch_txt, orig_txt):
+
+        is_in_valid = not (left or right)
+        if is_in_valid:
+            return patch_txt
+
+        patch_txt_right = patch_txt_left = ''
+        s = 0
+        e = len(left)
+
+        if s < e:
+            patch_txt_left = patch_txt[s:e]
+
+        e = len(orig_txt)
+        s = e - len(right)
+        if s < e:
+            patch_txt_right = patch_txt[s:e]
+
+        is_patching_left = (patch_txt_left != left)
+        is_patching_right = (patch_txt_right != right)
+
+        return_text = patch_txt
+        if is_patching_left:
+            return_text = left + patch_txt
+        if is_patching_right:
+            return_text = patch_txt + right
+
+        return return_text
+
     def debugging(txt):
         # msg = 'between root and tip'
         # msg = 'Profile Brush'
@@ -2304,7 +2333,7 @@ class Common:
         # msg = "Material Library VX"
         # msg = "Equals"
         # msg = "fig-mesh-screw-angle"
-        msg = "take grid and Grease Pencil into account"
+        msg = "Context"
         # is_debug = (msg and txt and (msg.lower() in txt.lower()))
         is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))

@@ -132,7 +132,7 @@ class Ignore:
         r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
         r"^\s*(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
-        r"^\s*(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*$",
+        r"^\s*(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*|(command_line-args)$",
         r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|de|debian|Delta([\s][\w])?)\s*$",
         r"^\s*([^\w]+log.*wm.*)\s*$",
         r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",

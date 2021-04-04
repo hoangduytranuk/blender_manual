@@ -220,7 +220,7 @@ class SenStructDict(OrderedDict):
         return sent_struct
 
     def __setitem__(self, key, value):
-        lkey_key = Key(key)
+        lkey_key = Key(key)        
         super(SenStructDict, self).__setitem__(lkey_key, value)
 
         k_struct = self.parseStruct(key)
@@ -235,8 +235,9 @@ class TranslationEntry():
         self.fuzzy_rate = fuzzy_rate
 
 class LocationObserver(OrderedDict):
-    def __init__(self, msg):
-        self.blank = msg
+    def __init__(self, msg, tran_finder=None):
+        self.blank = str(msg)
+        self.tf: TranslationFinder = tran_finder
 
     def translated(self, s: int, e: int):
         blk = (cm.FILLER_CHAR * (e - s))
@@ -264,6 +265,46 @@ class LocationObserver(OrderedDict):
     def getUntranDict(self):
         untran_dict = cm.findInvert(cm.FILLER_CHAR_INVERT, self.blank)
         return untran_dict
+
+    def translateLoc(self, loc: tuple):
+        s, e = loc
+        return self.translatePart(s, e)
+
+    def translatePart(self, s: int, e: int):
+        is_translated = self.isTranslated(s, e)
+        if is_translated:
+            return None
+
+        txt = self.blank[s:e]
+        is_ignore = ig.isIgnored(txt)
+        if is_ignore:
+            return None
+
+        tran_sub_text, fuzzy_len, matching_ratio = self.tf.tryFuzzyTranlation(txt)
+        if tran_sub_text:
+            return tran_sub_text
+        else:
+            return None
+
+    def translateLocByWords(self, loc: tuple):
+        s, e = loc
+        return self.translatePartByWords(s, e)
+
+    def translatePartByWords(self, s: int, e: int):
+        is_translated = self.isTranslated(s, e)
+        if is_translated:
+            return None
+
+        txt = self.blank[s:e]
+        is_ignore = ig.isIgnored(txt)
+        if is_ignore:
+            return None
+
+        tran_sub_text = self.tf.translateWords(txt)
+        if tran_sub_text:
+            return tran_sub_text
+        else:
+            return None
 
 class NoCaseDict(OrderedDict):
 
@@ -299,12 +340,18 @@ class NoCaseDict(OrderedDict):
 
     def __setitem__(self, key, value):
         lkey_key = Key(key)
+        is_there = (lkey_key in self)
+        cm.debugging(key)
+        if is_there:
+            entry={key: value}
+            dd(f'[{entry}] is already HERE!')
         super(NoCaseDict, self).__setitem__(lkey_key, value)
+
         is_sent_struct = (cm.SENT_STRUCT_PAT.search(key) is not None)
         if is_sent_struct:
             entry={key: value}
             self.sentence_struct_dict.update(entry)
-
+        
         # fuzz_metaphone = self.mtx.phonetics(key)
         # fuzz_entry = (fuzz_metaphone, key, value)
         # self.fuzzy_keys.append(fuzz_metaphone)
@@ -667,7 +714,7 @@ class NoCaseDict(OrderedDict):
         if not is_accepted:
             perfect_match_percent = cm.matchTextPercent(k, selected_item)
             is_accepted = (perfect_match_percent > cm.FUZZY_PERFECT_MATCH_PERCENT)
-            dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]')
+            dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]; is_accepted:[{is_accepted}]')
             if not is_accepted:
                 return_tran = None
                 rat = 0
@@ -1226,6 +1273,7 @@ class TranslationFinder:
         original_text = str(msg)
         selective_list = []
         try:
+            start_non_alpha, mid, end_non_alpha = cm.getTextWithin(msg)
             for f, params in self.tran_find_func_list:
                 f_name = f.__name__
                 dd(f'findByReduction(): trying function:[{f_name}]')
@@ -1240,6 +1288,8 @@ class TranslationFinder:
             sorted_selective_list = list(sorted(selective_list, key=OP.itemgetter(0, 1), reverse=True))
             chosen_entry = sorted_selective_list[0]
             cover_length, new_text_length, new_text, trans, function_name = chosen_entry
+
+            trans = cm.patchingBeforeReturn(start_non_alpha, end_non_alpha, trans, txt)
             dd(f'findByReduction: looking for: [{msg}] trans:[{trans}] function_name:[{function_name}]')
         except Exception as e:
             print(f'findByReduction() msg:{msg}')
@@ -1321,8 +1371,15 @@ class TranslationFinder:
             raise e
 
         part_list = list(loc_dic.items())
-        sorted_partlist = sorted(part_list, key=lambda x: len(x[1]), reverse=True)
-        return sorted_partlist
+        # sort out by the number of spaces (indicating word counts) rather than by common string length
+        part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=True)    # this is how to sort with multi keys, in brackets
+        # part_list.sort(key=lambda x: (x[1].count(' ')), reverse=True)
+        # dd('genmap():')
+        # dd('-' * 80)
+        # pp(part_list)
+        # dd('-' * 80)
+        # dd(f'for []{msg}')
+        return part_list
 
     def translateBreakupSentences(self, msg):
         if not msg:
@@ -1517,7 +1574,7 @@ class TranslationFinder:
             initially will be untranslated text
         '''
         orig = str(current_translation)
-        observer = LocationObserver(loc_translated_dict)
+        observer = LocationObserver(current_translation)
 
 
         loc_translated_list = list(loc_translated_dict.items())
@@ -1551,65 +1608,32 @@ class TranslationFinder:
     def simpleBlindTranslation(self, msg):
         translated_dict = OrderedDict()
         map = self.genmap(msg)
-        observer = LocationObserver(map)
+        observer = LocationObserver(msg, tran_finder=self)
 
         for loc, txt in map:
-            is_translated = observer.isTranslatedLoc(loc)
-            if is_translated:
-                continue
+            is_fully_translated = observer.isFullyTranslated()
+            if is_fully_translated:
+                break
 
-            is_ignore = ig.isIgnored(txt)
-            if is_ignore:
-                observer.translatedLoc(loc)
-                is_fully_translated = observer.isFullyTranslated()
-                if is_fully_translated:
-                    break
-                else:
-                    continue
-
-            tran_sub_text, fuzzy_len, matching_ratio = self.tryFuzzyTranlation(txt)
+            tran_sub_text = observer.translateLoc(loc)
             if tran_sub_text:
                 entry = {loc: (txt, tran_sub_text)}
                 translated_dict.update(entry)
-
-                observer.translatedLoc(loc)
-                is_fully_translated = observer.isFullyTranslated()
-                if is_fully_translated:
-                    break
 
         if not translated_dict:
             return None
 
-        is_fully_translated = observer.isFullyTranslated()
-        if is_fully_translated:
-            trans = self.translatedListToText(translated_dict, str(msg))
-            return trans
-
         untran_dict = observer.getUntranDict()
-        observer = LocationObserver(untran_dict)
+        observer = LocationObserver(msg, tran_finder=self)
         for loc, txt in untran_dict.items():
-            is_translated = observer.isTranslatedLoc(loc)
-            if is_translated:
-                continue
+            is_fully_translated = observer.isFullyTranslated()
+            if is_fully_translated:
+                break
 
-            is_ignore = ig.isIgnored(txt)
-            if is_ignore:
-                observer.translatedLoc(loc)
-                is_fully_translated = observer.isFullyTranslated()
-                if is_fully_translated:
-                    break
-                else:
-                    continue
-
-            tran_sub_text = self.translateWords(txt)
+            tran_sub_text = observer.translateLocByWords(loc)
             if tran_sub_text:
                 entry = {loc: (txt, tran_sub_text)}
                 translated_dict.update(entry)
-
-                observer.translatedLoc(loc)
-                is_fully_translated = observer.isFullyTranslated()
-                if is_fully_translated:
-                    break
 
         trans = self.translatedListToText(translated_dict, str(msg))
         has_tran = (trans and (trans != msg))
@@ -1651,7 +1675,7 @@ class TranslationFinder:
             return tran_sub_text, fuzzy_len, matching_ratio
         else:
             search_dict.addCache(msg, False)
-            dd(f'tryFuzzyTranlation: UNABLE TO FIND: [{msg}]')
+            # dd(f'tryFuzzyTranlation: UNABLE TO FIND: [{msg}]')
             return None, fuzzy_len, 0
 
     def fillBlank(self, ss, ee, blanker):
@@ -1666,7 +1690,7 @@ class TranslationFinder:
 
         local_translated_dict = [] # for quick, local translation
         loc_map = self.genmap(msg)
-        observer = LocationObserver(loc_map)
+        observer = LocationObserver(msg)
 
         for loc, orig_sub_text in loc_map:
             is_translated = observer.isTranslatedLoc(loc)
@@ -2682,12 +2706,15 @@ class TranslationFinder:
         return txt, None, cover_length
 
     def removeByPatternListAndCheck(self, txt, part_list, at):
+
+
         cover_length = 0
         tran = self.isInDict(txt)
         if tran:
             cover_length = len(txt)
             return txt, tran, cover_length
 
+        start_non_alpha, mid, end_non_alpha = cm.getTextWithin(txt)
         is_at_start = (at == cm.START_WORD)
         is_at_end = (at == cm.END_WORD)
         test_text = str(txt)

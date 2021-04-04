@@ -7171,22 +7171,47 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
     def resort_dictionary(self):
         home_dir = os.environ['BLENDER_GITHUB']
         from_file = os.path.join(home_dir, 'ref_dict_0006_0003.json')
-        to_file = os.path.join(home_dir, 'ref_dict_0006_0002.json')
+        to_file = os.path.join(home_dir, 'ref_dict_0006_0001.json')
 
         to_dic = readJSON(from_file)
+        l_case_dic = {}
+        clean_dic = {}
+        for k, v in to_dic.items():
+            l_k = k.lower()
+            is_in = (l_k in l_case_dic)
+            if is_in:
+                old_val = to_dic[k]
+                print(f'duplicated: [{k}] with old_val:[{old_val}]; new_val[{v}]')
 
-        sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
+            l_v = v.lower()
+            l_entry = {l_k: l_v}
+            l_case_dic.update(l_entry)
+
+            entry = {k: v}
+            clean_dic.update(entry)
+
+        sorting = sorted(list(l_case_dic.items()), key=lambda x: x[0].lower())
         new_dic = OrderedDict(sorting)
-        for t_k, t_v in to_dic.items():
-            # is_remove = (t_k and not t_v)
-            # if is_remove:
-            #     print(f'REMOVING: [{t_k}]')
-            #     continue
+        out_file = os.path.join(home_dir, 'temp_dict.json')
+        writeJSON(out_file, new_dic)
 
-            entry = {t_k: t_v}
-            new_dic.update(entry)
-
+        sorting = sorted(list(clean_dic.items()), key=lambda x: x[0].lower())
+        new_dic = OrderedDict(sorting)
         writeJSON(to_file, new_dic)
+
+        # sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
+        # new_dic = OrderedDict(sorting)
+        #
+        # for t_k, t_v in to_dic.items():
+        #     # is_remove = (t_k and not t_v)
+        #     # if is_remove:
+        #     #     print(f'REMOVING: [{t_k}]')
+        #     #     continue
+        #
+        #     entry = {t_k: t_v}
+        #     new_dic.update(entry)
+        #
+        # writeJSON(to_file, new_dic)
 
     # from leven import levenshtein as LEV
     def test_0059(self):
@@ -9443,25 +9468,7 @@ IOR
             # "``sin(x)/x``",
             # "``singing``",
             # "``cosy``",
-           # "applies to ``mode='RENDER'`` only",
-           #  ":kbd:`Shift-LMB` or :kbd:`Shift-RMB` used for multiple node selection",
-            # "besides the first one",
-            # "For a list of available render engines, run ``blender -E help``.",
-            # "``~/blender_docs/build/html``",
-            # "take objects into account",
-            # "turn not your attention to"
-            # "turned not yours attentions to"
-            # "take grid and Grease Pencil into account",
-            # "but always parallel to the horizontal axis",
-            # "Keeps the horizontal axis level file flying.",
-            # "for these settings",
-            # "but for these, you have meshes!",
-            # "but inside the Blender Window",
-            # "but remain on all its other objects",
-            # "but still considered close enough to be keyed",
-            # "but the surface appears to be 3D, why is it only 2D?",
-            # "but you can animate them as soft bodies which take deflection into account",
-            "but you may recalculate the number of control points in *Particle Edit Mode*",
+            "controlling that there is no sliding off original position",
         ]
         # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')        
         for t in t_list:
@@ -9484,8 +9491,8 @@ IOR
         # self.test_binary_search()
         # self.sorting_temp_05()
         self.resort_dictionary()
-        self.test_translate_0001()
-        # self.grepPOT(r'remain')
+        # self.test_translate_0001()
+        # self.grepPOT(r'connected')
         # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()

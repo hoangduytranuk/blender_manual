@@ -676,6 +676,9 @@ class RefList(defaultdict):
                     raise Exception(f'findOnePattern: v_len is NOT EXPECTED: {v_len}. Expected from 1->3 only')
 
                 (o_ss, o_ee), o_txt = orig
+                is_ignored = ig.isIgnored(o_txt)
+                if is_ignored:
+                    continue
 
                 # cm.debugging(o_txt)
                 is_checking_for_path = (actual_ref_type == RefType.REF) or \
