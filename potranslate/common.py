@@ -8,6 +8,7 @@ sys.path.append(po_tran_path)
 # sys.path.append('/usr/local/lib/python3.8/site-packages')
 
 # print(f'common sys.path: {sys.path}')
+from enum import Enum
 import os
 import re
 import inspect
@@ -56,6 +57,12 @@ def dd(*args, **kwargs):
 #     if DEBUG:
 #         logging.info(args, kwargs)
 
+class OverLappingState(Enum):
+    NONE = 0
+    LEFT = 1
+    RIGHT = 2
+    BOTH = 3
+    WITHIN = 4
 
 class MatcherRecord(OrderedDict):
     def __init__(self, s: int = -1, e: int = -1, txt: str = None, matcher_record : re.Match = None):
@@ -74,16 +81,40 @@ class MatcherRecord(OrderedDict):
                 ee = ss + len(g)
                 self.addSubMatch(ss, ee, g)
 
+    def __repr__(self):
+        string = ""
+        m_loc = (self.s, self.e)
+        m_entry = {m_loc: self.txt}
+        string += str(m_entry) + '; '
+        for entry in self.items():
+            string += str(entry)
+            # string += 'sub loc:[' + str(loc) + ': ' + txt + ']; '
+        return string
+
     def addSubMatch(self, s: int, e: int, txt: str):
         loc = (s, e)
         entry = {loc: txt}
         self.update(entry)
 
-    def getOriginAsEntry(self):
+    def getOriginAsTuple(self):
         loc = (self.s, self.e)
-        entry = {loc, self.txt}
+        entry = (loc, self.txt)
         return entry
 
+    def getOriginLoc(self):
+        loc = (self.s, self.e)
+        return loc
+
+    def getSubEntryByIndex(self, index: int):
+        try:
+            l = self.getSubEntriesAsList()
+            return l[index]
+        except Exception as e:
+            return None
+
+    def getSubEntriesAsList(self):
+        l = list(self.items())
+        return l
 
 class Common:
     total_files = 1358
@@ -185,7 +216,9 @@ class Common:
 
     word = r'([\w\#]+)'
     ignore_words = r'((M[ris]+|Dr|etc|e.g)[\.])'
-    url_leading = r'^((https|file)\:)'
+    url_leading = r'((http|https|file)\:\/\/)'
+    URL_LEADING_PATTERN = re.compile(url_leading, re.I)
+
     path_sep = r'([\~\\\\////\\\/\_\-\.\:\*\?\=\{\}\|]{1,2})'
     leading_hyphens = r'(^[-]+)'
     ref_tag = r'(^:%s:$)' % (word)
@@ -418,6 +451,9 @@ class Common:
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
     SYMBOLS = re.compile(r'[\W]+')
     SPACES = re.compile(r'\s+')
+    START_SPACES = re.compile(r'^\s+')
+    END_SPACES = re.compile(r'\s+$')
+
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
     THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
@@ -987,8 +1023,9 @@ class Common:
             'tới',
         ]
         def lowercase(loc_text_dict, new_str):
-            for loc, text in ga_ref_dic.items():
-                s, e = loc
+            mm: MatcherRecord = None
+            for loc, mm in ga_ref_dic.items():
+                (s, e), text = mm.getOriginAsTuple()
                 lcase_text = text.lower()
                 left_part = new_str[:s]
                 right_part = new_str[e:]
@@ -1030,11 +1067,11 @@ class Common:
                         new_str = new_str.upper()
 
         # ensure ref keywords ':doc:' is always lowercase
-        ga_ref_dic = Common.patternMatchAllToDict(Common.GA_REF_PART, new_str)
+        ga_ref_dic = Common.patternMatchAll(Common.GA_REF_PART, new_str)
         new_str = lowercase(ga_ref_dic, new_str)
         for lcase_word in WORD_SHOULD_BE_LOWER:
             p = re.compile(r'\b%s\b' % lcase_word)
-            p_list = Common.patternMatchAllToDict(p, new_str)
+            p_list = Common.patternMatchAll(p, new_str)
             new_str = lowercase(p_list, new_str)
 
         return new_str
@@ -1111,56 +1148,17 @@ class Common:
         msg = msg.replace("\\\"", "\"")
         return msg
 
-    def patternMatchAllToDict(pat, text):
-        matching_list = {}
-        for m in pat.finditer(text):
-            orig = m.group(0)
-            s = m.start()
-            e = m.end()
-            loc = (s, e)
-            entry = {loc: orig}
-            matching_list.update(entry)
-        return matching_list
-
     def patternMatchAll(pat, text):
-        try:
-            # itor = pat.finditer(text)
-            # print("itor", type(itor))
-            # print("dir", dir(itor))
-
-            for m in pat.finditer(text):
-                original = ()
-                break_down = []
-
-                s = m.start()
-                e = m.end()
-                orig = m.group(0)
-                original = (s, e, orig)
-
-                for g in m.groups():
-                    if g:
-                        i_s = orig.find(g)
-                        ss = i_s + s
-                        ee = ss + len(g)
-                        v=(ss, ee, g)
-                        break_down.append(v)
-                yield original, break_down
-
-        except Exception as e:
-            dd("patternMatchAll")
-            dd("pattern:", pat)
-            dd("text:", text)
-            dd(e)
-        return None, None
-
-    def patternMatchAllAsDictNoDelay(pat: re.Pattern, text: str) -> dict:
         return_dict = {}
         for m in pat.finditer(text):
             match_record = MatcherRecord(matcher_record=m)
             s = match_record.s
-            dict_entry = {s: match_record}
+            e = match_record.e
+            loc = (s, e)
+            dict_entry = {loc: match_record}
             return_dict.update(dict_entry)
         return return_dict
+
 
     def findInvert(pattern:re.Pattern, text:str, is_removing_surrounding_none_alphas=False):
         '''
@@ -1198,17 +1196,16 @@ class Common:
             pat = pattern
 
         found_list = []
+        mm : MatcherRecord = None
+        matched_list = Common.patternMatchAll(pat, text)
         if not invert_required:
-            matched_list = Common.patternMatchAllToDict(pat, text)
-            for loc, invert_word in matched_list.items():
+            for mmloc, mm in matched_list.items():
+                loc, invert_word = mm.getOriginAsTuple()
                 if not invert_word.strip():
                     continue
                 entry = (loc, invert_word)
                 found_list.append(entry)
         else:
-            # 1: find that matched pattern, with locations
-            matched_list = Common.patternMatchAllToDict(pat, text)
-
             # 2: extract location list
             loc_list = matched_list.keys()
 
@@ -1485,31 +1482,6 @@ class Common:
     def getFileCreatedTime(filename):
         return time.ctime( os.path.getctime(filename))
 
-    def getMsgAsDict(txt):
-        result_dict={}
-        if not txt:
-            return result_dict
-
-        parsed_list = Common.patternMatchAllToDict(Common.QUOTED_MSG_PATTERN, txt)
-        print(f'getMsgAsDict:{parsed_list}')
-        count=0
-        entry=None
-        msgid_part = msgstr_part = None
-        for loc, v in parsed_list.items():
-            msg = v[1:-1]
-            msg = msg.replace('"', '\\"')
-            msg = msg.replace("'", "\\'")
-            is_even_line_index = (count % 2 == 0)
-            if is_even_line_index:
-                msgid_part = msg
-            else:
-                msgstr_part = msg
-                entry = {msgid_part: msgstr_part}
-                print(f'getMsgAsDict entry:{entry}')
-                result_dict.update(entry)
-            count += 1
-        return result_dict
-
     def removeLeadingTrailingSymbs(txt):
         def cleanForward(txt, pair_dict, leading_set):
             if not leading_set:
@@ -1623,11 +1595,11 @@ class Common:
         p_str = f'\{symb_on}([^\{symb_on}\{symb_off}]+)\{symb_off}'
         p_exp = r'%s' % (p_str.replace("\\\\", "\\"))
         pattern = re.compile(p_exp)
-        p_list = Common.patternMatchAllToDict(pattern, txt)
+        p_list = Common.patternMatchAll(pattern, txt)
         has_p_list = (len(p_list) > 0)
         if has_p_list:
             temp_txt = str(txt)
-            for loc, txt in p_list.items():
+            for loc, mm in p_list.items():
                 s, e = loc
                 left = temp_txt[:s]
                 right = temp_txt[e:]
@@ -1635,23 +1607,6 @@ class Common:
             return not ((symb_on in temp_txt) or (symb_off in temp_txt))
         else:
             return True
-        # default_last_i = 0xffffffff
-        # counter = 0
-        # last_i = default_last_i
-        # off_happened_first = False
-        # for i, c in enumerate(text):
-        #     is_on = (i != last_i) and (c == symb_on)
-        #     if is_on:
-        #         counter += 1
-        #         last_i = i
-        #     else:
-        #         is_off = (i != last_i) and (c == symb_off)
-        #         if is_off:
-        #             off_happened_first = (last_i == default_last_i)
-        #             counter -= 1
-        #             last_i = i
-        #
-        # return (counter == 0) and not (off_happened_first)
 
     def hasAbbr(txt):
         abbr_str = RefType.ABBR.value
@@ -1662,34 +1617,20 @@ class Common:
         if not abbr_txt:
             return None, None, None
 
-        has_abbr = Common.hasAbbr(abbr_txt)
-        if not has_abbr:
-            return None, None, None
-
-        abbr_dict = Common.patternMatchAllAsDictNoDelay(Common.ABBREV_PATTERN_PARSER, abbr_txt)
+        abbr_dict = Common.patternMatchAll(Common.ABBREV_PATTERN_PARSER, abbr_txt)
         if not abbr_dict:
             return None, None, None
 
         abbrev_orig_rec = abbrev_part = exp_part = None
-        for k, v in abbr_dict.items():
-            abbrev_rec = None
-            for index, item in enumerate(v):
-                loc, txt = item
-                if index == 0:
-                    abbrev_orig_rec = item
-                if index == 1:
-                    abbrev_rec = item
+        mm: MatcherRecord = None
 
-            if not abbrev_rec:
-                continue
-
-            loc, txt = abbrev_rec
-            found_texts = Common.ABBR_TEXT_ALL.findall(txt)
-            has_abbrev_components = (found_texts and len(found_texts) > 0 and found_texts[0])
-            if has_abbrev_components:
-                abbrev_tuple = found_texts[0]
-                abbrev_part, exp_part = abbrev_tuple
-                print(f'extractAbbr => abbrev_part:{abbrev_part}, exp_part:{exp_part}')
+        for s, mm in abbr_dict.items():
+            abbrev_orig_rec = mm.getOriginAsTuple()
+            l = mm.getSubEntriesAsList()
+            for loc, txt in l:
+                found_texts = Common.ABBR_TEXT_ALL.findall(txt)
+                first_entry = found_texts[0]
+                abbrev_part, exp_part = first_entry
 
         return abbrev_orig_rec, abbrev_part, exp_part
 
@@ -1756,8 +1697,8 @@ class Common:
             if is_replace_internal_bracket:
                 txt_line = txt_line.replace(end_bracket, replace_internal_end_bracket)
 
-            loc = (ss, ee)
-            entry = {loc: txt_line}
+            mm = MatcherRecord(s=ss, e=ee, txt=txt_line)
+            entry = {ss: mm}
             sentence_list.update(entry)
             return True
 
@@ -1780,11 +1721,8 @@ class Common:
         word_dict={}
         m_list = p.finditer(text)
         for m in m_list:
-            s = m.start()
-            e = m.end()
-            w = m.group(0)
-            loc = (s, e)
-            entry = {loc: w}
+            mm = MatcherRecord(matcher_record=m)
+            entry = {mm.s: mm}
             word_dict.update(entry)
 
         if not word_dict:
@@ -1793,10 +1731,11 @@ class Common:
         # detecting where start/end and take the locations
         debug_len = 20
         q = deque()
+        mm: MatcherRecord = None
         if is_same_brakets:
-            for loc, bracket in word_dict.items():
-                s, e = loc
-                is_bracket = (bracket == start_bracket)
+            for loc, mm in word_dict.items():
+                s, e = mm.getOriginLoc()
+                is_bracket = (mm.txt == start_bracket)
                 if is_bracket:
                     if not q:
                         q.append(s)
@@ -1805,8 +1744,9 @@ class Common:
                         if not is_finished:
                             continue
         else:
-            for loc, bracket in word_dict.items():
-                s, e = loc
+            for loc, mm in word_dict.items():
+                s, e = mm.getOriginLoc()
+                bracket = mm.txt
                 is_open = (bracket == start_bracket)
                 is_close = (bracket == end_bracket)
                 if is_open:
@@ -2150,7 +2090,7 @@ class Common:
             return False
 
         blank_orig_txt = str(orig_txt)
-        orig_word_dict = Common.patternMatchAllToDict(Common.CHARACTERS, orig_txt)
+        orig_word_dict = Common.patternMatchAll(Common.CHARACTERS, orig_txt)
         orig_word_list = list(orig_word_dict.items())
 
         new_txt_word_dict = Common.patternMatchAllToDict(Common.CHARACTERS, new_txt)
@@ -2159,8 +2099,9 @@ class Common:
         remain_word_dict={}
         i = 0
         try:
-            for i, orig_entry in enumerate(orig_word_list):
-                orig_loc, orig_word = orig_entry
+            for i, entry in enumerate(orig_word_list):
+                orig_loc, mm = entry
+                (s, e), orig_word = mm.getOriginAsTuple()
                 is_in_new = isInNewFuzzy(orig_word)
                 if is_in_new:
                     continue
@@ -2319,6 +2260,72 @@ class Common:
             return_text = patch_txt + right
 
         return return_text
+
+    def isBetweenRange(number, range_s, range_e):
+        is_between = (range_s <= number <= range_e)
+        return is_between
+
+    def isOverlappedLoc(locf, loct):
+        fs, fe = locf
+        ts, te = loct
+        is_ovrlap = Common.isOverlapped(fs, fe, ts, te)
+        return is_ovrlap
+
+    def isOverlapped(fs, fe, ts, te):
+        is_fs_between = (ts <= fs <= te)
+        is_fe_between = (ts <= fe <= te)
+        is_ovrlap = (is_fs_between or is_fe_between)
+        return is_ovrlap
+
+    def stripSpaces(txt):
+        start = 0
+        end = 0
+        leading_spaces: re.Match = Common.START_SPACES.search(txt)
+        if leading_spaces:
+            start = leading_spaces.end()
+
+        trailing_spaces: re.Match = Common.END_SPACES.search(txt)
+        if trailing_spaces:
+            end = trailing_spaces.start()
+
+        end_count = 0
+        if end:
+            end_count=(len(txt) - end)
+        else:
+            end = len(txt)
+        return_txt = txt[start: end]
+        return start, end_count, return_txt
+
+    def subtractText(minuend_loc, minuend, subtrahend_loc, subtrahend):
+        this_s, this_e = minuend_loc
+        other_s, other_e = subtrahend_loc
+
+        min_start = min(this_s, other_s)
+        max_end = max(this_e, other_e)
+        mask_orig = (' ' * max_end)
+
+        start_part = (Common.FILLER_CHAR * min_start)
+        other_part = (Common.FILLER_CHAR * (other_e - other_s))
+        mask = start_part + mask_orig[min_start:]
+        mask = mask[:other_s] + other_part + mask[other_e:]
+
+        this_part = mask[this_s: this_e]
+        # spaces to keep, FILLER_CHAR to remove
+        this_txt = minuend
+        list_of_remain = Common.patternMatchAll(Common.SPACES, this_part)
+        this_txt_dict = {}
+        for loc, mm in list_of_remain:
+            (s, e), txt_part = mm.getOriginAsTuple()
+            is_not_worth_keeping = (Common.SYMBOLS_ONLY.search(txt_part) is not None)
+            if is_not_worth_keeping:
+                continue
+
+            start_count, end_count, new_txt_part = Common.stripSpaces(txt_part)
+            new_loc = (s + start_count, e - end_count)
+            entry = {new_loc: new_txt_part}
+            this_txt_dict.update(entry)
+        # this list could be empty, in which case remove left part, keep the right part (A - B = empty => keep B only)
+        return this_txt_dict
 
     def debugging(txt):
         # msg = 'between root and tip'

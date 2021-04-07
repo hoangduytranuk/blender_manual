@@ -4,14 +4,15 @@ import sys
 # sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
 
 import re
-from common import Common as cm
-from common import dd, pp
+from common import Common as cm, MatcherRecord, OverLappingState, dd, pp
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from translation_finder import TranslationFinder, LocationObserver
 # from pyparsing import nestedExpr
 from enum import Enum
 from reftype import RefType
+from copy import copy, deepcopy
+
 '''
 :abbr:`
 :class:`
@@ -44,9 +45,9 @@ class TextStyle(Enum):
     RAW = 4
 
 pattern_list = [
+    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
     (cm.PYTHON_FORMAT, RefType.PYTHON_FORMAT),
     (cm.FUNCTION, RefType.FUNCTION),
-    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
     (cm.GA_REF, RefType.GA),
     (cm.AST_QUOTE, RefType.AST_QUOTE),
     (cm.DBL_QUOTE, RefType.DBL_QUOTE),
@@ -212,8 +213,9 @@ class RefItem:
 
     def getTextForKeyboard(self):
         item_list = {}
-        for orig, _ in cm.patternMatchAll(cm.KEYBOARD_SEP, self.getText()):
-            s, e, txt = orig
+        found_dict = cm.patternMatchAll(cm.KEYBOARD_SEP, self.getText())
+        for loc, mm in found_dict.items():
+            (s, e), txt = mm.getOriginAsTuple()
             entry = {s: (s, e, txt)}
             item_list.update(entry)
         return item_list
@@ -243,6 +245,105 @@ class RefItem:
             item_list.update(entry)
         return item_list
 
+    def isOverlapped(self, other):
+        this_s = self.start
+        this_e = self.end
+
+        other_s = other.start
+        other_e = other.end
+
+        is_start_ovrlap = (other_s <= this_s <= other_e)
+        is_end_overlap = (other_s <= this_e <= other_e)
+        is_overlap = (is_start_ovrlap or is_end_overlap)
+
+        # max_end = max(this_e, other_e)
+        # mask = (' ' * max_end)
+        #
+        # other_part = (cm.FILLER_CHAR * other_e - other_s)
+        # mask_left = mask[:other_s] + other_part + mask[other_e:]
+        # this_part = mask[this_s: this_e]
+        # is_overlap = (cm.FILLER_CHAR_PATTERN.search(this_part) is not None)
+        return is_overlap
+
+    def coverDistance(self):
+        this_s = self.start
+        this_e = self.end
+        this_covering_distance = (this_e - this_s)
+        return this_covering_distance
+
+    def compareCoveringDistance(self, other, is_less=False, is_equal=False):
+        this_covering_distance = self.coverDistance()
+        other_covering_distance = other.coverDistance()
+        if is_less and not is_equal:
+            return_result = (this_covering_distance < other_covering_distance)
+        elif is_less and is_equal:
+            return_result = (this_covering_distance <= other_covering_distance)
+        elif not is_less and not is_equal:
+            return_result = (this_covering_distance > other_covering_distance)
+        elif not is_less and is_equal:
+            return_result = (this_covering_distance >= other_covering_distance)
+        return return_result
+
+    def __lt__(self, other):
+        return self.compareCoveringDistance(other, is_less=True)
+
+    def __le__(self, other):
+        return self.compareCoveringDistance(other, is_less=True, is_equal=True)
+
+    def __gt__(self, other):
+        return self.compareCoveringDistance(other, is_less=False)
+
+    def __ge__(self, other):
+        return self.compareCoveringDistance(other, is_less=False, is_equal=True)
+
+    def __sub__(self, other):
+        '''
+            subtract this from the other by reducing text length and change locations
+            :param other    other instance of RefItem
+        '''
+
+        this_s = self.start
+        this_e = self.end
+
+        other_s = other.start
+        other_e = other.end
+
+        min_start = min(this_s, other_s)
+        max_end = max(this_e, other_e)
+        mask_orig = (' ' * max_end)
+
+        start_part = (cm.FILLER_CHAR * min_start)
+        other_part = (cm.FILLER_CHAR * other_e - other_s)
+        mask = start_part + mask_orig[min_start:]
+        mask = mask[:other_s] + other_part + mask[other_e:]
+
+        this_part = mask[this_s: this_e]
+        # spaces to keep, FILLER_CHAR to remove
+        this_txt = self.text
+        list_of_remain = cm.patternMatchAll(cm.SPACES, this_part)
+        this_keeping_txt_list = []
+        for loc, mm in list_of_remain:
+            (s, e), spaces = mm.getOriginAsTuple()
+            txt_part = this_txt[s:e]
+            is_not_worth_keeping = (cm.SYMBOLS_ONLY.search(txt_part) is not None)
+            if is_not_worth_keeping:
+                continue
+
+            start_count, end_count, new_txt_part = cm.stripSpaces(txt_part)
+            new_loc = (s + start_count, e - end_count)
+            entry = (new_loc, new_txt_part)
+            this_keeping_txt_list.append(entry)
+
+        result_list = []
+        for loc, remain_txt in this_keeping_txt_list:
+            copy_of_this: RefItem = deepcopy(self)
+            s, e = loc
+            copy_of_this.setValues(start=s, end=e, txt=remain_txt)
+            result_list.append(copy_of_this)
+
+        # this list could be empty, in which case remove left part, keep the right part (A - B = empty => keep B only)
+        return result_list
+
 
 class RefRecord:
     def __init__(self, origin: RefItem = None, reflist: list = [], pat=None):
@@ -261,6 +362,11 @@ class RefRecord:
                     result += str(i)
                 result += "}"
         return result
+
+    def setValues(self, origin: RefItem = None, reflist: list = [], pat=None):
+        self.origin: RefItem = origin
+        self.reflist: list = reflist
+        self.pattern: str = pat
 
     def getTranslateStateList(self):
         state_list = []
@@ -289,6 +395,28 @@ class RefRecord:
 
         is_ignore = has_ignored and not (has_fuzzy or has_acceptable)
         return is_ignore
+
+    def isOverLapped(self, other):
+        this_orig = self.getOrigin()
+        other_orig = other.getOrigin()
+        is_ovrlap = this_orig.isOverlapped(other_orig)
+        return is_ovrlap
+
+    def __sub__(self, other):
+        result_list = []
+
+        this_orig = self.getOrigin()
+        other_orig = other.getOrigin()
+        result_orig_list = this_orig - other_orig
+
+        for orig_item in result_orig_list:
+            new_entry: RefRecord = deepcopy(self)
+            new_entry.setValues(origin=orig_item, reflist=[])
+            result_list.append(new_entry)
+
+        return result_list
+        # this_ref_list = self.getRefList()
+        # other_ref_list = other.getRefList()
 
     def isIquivalent(self, other):
         if other is None:
@@ -398,6 +526,11 @@ class RefRecord:
         is_empty = (s == -1) or (e == -1)
         return is_empty
 
+    def subtract(self, other):
+        this_origin: RefItem = self.origin
+        this_ref_list = self.getRefList()
+        other_origin: RefItem = other.origin
+        other_ref_list = other.getRefList()
 
 class RefList(defaultdict):
     def __init__(self, msg=None, pat=None, keep_orig=False, tf=None):
@@ -600,31 +733,30 @@ class RefList(defaultdict):
 
     def extractTextFromTextWithLink(self, k: str, loc:tuple, ref_type: RefType):
         dd(f'extractTextFromTextWithLink: k:{k}; loc:{loc} ref_type:{ref_type}')
-        found_list = cm.patternMatchAllToDict(cm.REF_WITH_LINK, k)
-        list_length = len(found_list)
-        if list_length > 2:
-            dd(f'extractTextFromTextWithLink: REWORKING using REF_WITH_HTML_LINK: {k}')
-            found_list = cm.patternMatchAllToDict(cm.REF_WITH_HTML_LINK, k)
 
-        link_loc = None
+        has_html = (cm.URL_LEADING_PATTERN.search(k) is not None)
+        ref_link_find_pattern = (cm.REF_WITH_HTML_LINK if has_html else cm.REF_WITH_LINK)
+        found_dict = cm.patternMatchAll(ref_link_find_pattern, k)
+        if not found_dict:
+            return None, None
+
+        mmtxt: MatcherRecord = None
+        mmlink: MatcherRecord = None
         txt = k
         actual_loc = loc
-        for index, (f_loc, word) in enumerate(found_list.items()):
-            # print(f'extractTextFromTextWithLink: f_lock:{f_loc}; word:{word}')
-            if index == 0:
-                txt_loc = f_loc
-                txt = word
-                o_s, o_e = loc
-                t_s, t_e = txt_loc
-                a_s = (o_s + t_s)
-                a_e = a_s + len(txt)
-                actual_loc = (a_s, a_e)
-                dd(f'extractTextFromTextWithLink: list_length:{list_length}; index:{index} actual_loc:{actual_loc}; txt:{txt}; ref_type:{ref_type}')
-            if index == 1:
-                link_loc = loc
-                link = word
-                dd(f'extractTextFromTextWithLink: list_length:{list_length}; index:{index} link_loc:{link_loc}; link:{link}; ref_type:{ref_type}')
-        dd('-' * 30)
+        try:
+            mm_list = list(found_dict.items())
+            txtloc, mmtxt = mm_list[0]
+            (ts, te), txt = mmtxt.getOriginAsTuple()
+            (os, oe) = loc
+            ac_s = (os + ts)
+            ac_e = (ac_s + len(txt))
+            actual_loc = (ac_s, ac_e)
+
+            linkloc, mmlink = mm_list[1]
+            (ls, le), link = mmlink.getOriginAsTuple()
+        except Exception as e:
+            pass
         return txt, actual_loc
 
     def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType):
@@ -644,37 +776,15 @@ class RefList(defaultdict):
             if is_bracket:
                 found_dict = cm.getTextWithinBrackets('(', ')', msg, is_include_bracket=False)
             else:
-                found_dict = cm.patternMatchAllAsDictNoDelay(pattern, msg)
+                found_dict = cm.patternMatchAll(pattern, msg)
 
             if not found_dict:
                 return None
 
-            for k, v in found_dict.items():
-                v_len = len(v)
-                if v_len == 3:
-                    orig, sub_type, sub_content = v
-                    sub_type_loc, sub_type_txt = sub_type
-                    if is_python:
-                        actual_ref_type = RefType.PYTHON_FORMAT
-                    elif is_function:
-                        actual_ref_type = RefType.FUNCTION
-                    else:
-                        actual_ref_type = RefType.getRef(sub_type_txt)
-                elif v_len == 2:
-                    orig, sub_content = v
-                    actual_ref_type = reftype
-                elif v_len == 1:
-                    sub_content = None
-                    actual_ref_type = reftype
-                    sub_type = None
-                    if is_bracket:
-                        sub_content = v[0]
-                        orig = v[0]
-                    else:
-                        orig, sub_content = v
-                else:
-                    raise Exception(f'findOnePattern: v_len is NOT EXPECTED: {v_len}. Expected from 1->3 only')
-
+            found_list = list(found_dict.items())
+            mm: MatcherRecord = None
+            for loc, mm in found_list:
+                orig = mm.getOriginAsTuple()
                 (o_ss, o_ee), o_txt = orig
                 is_ignored = ig.isIgnored(o_txt)
                 if is_ignored:
@@ -692,6 +802,18 @@ class RefList(defaultdict):
                     dd(f'findOnePattern() IGNORE: [{o_txt}]; is_path = TRUE')
                     continue
 
+                sub_content = mm.getSubEntryByIndex(0)
+                if not sub_content:
+                    sub_content = orig
+                else:
+                    mm_len = len(mm)
+                    has_ref_type = (mm_len > 1)
+                    if has_ref_type:
+                        loc, reftext = sub_content
+                        actual_ref_type = RefType.getRef(reftext)
+                        sub_content = mm.getSubEntryByIndex(1)
+
+
                 (sub_ss, sub_ee), sub_txt = sub_content
 
                 is_doc = (actual_ref_type == RefType.DOC)
@@ -702,6 +824,7 @@ class RefList(defaultdict):
                     actual_sub_txt, actual_loc = self.extractTextFromTextWithLink(sub_txt, (sub_ss, sub_ee), actual_ref_type)
                     sub_txt = actual_sub_txt
                     sub_ss, sub_ee = actual_loc
+
 
                 orig_ref_item = RefItem(o_ss, o_ee, o_txt, ref_type=actual_ref_type)
                 ref_item = RefItem(sub_ss, sub_ee, sub_txt, ref_type=actual_ref_type)
@@ -760,7 +883,59 @@ class RefList(defaultdict):
 
         return loc_keep_list
 
+    def removeBlanksFromEntry(self, ref_record: RefRecord):
+        def remove_blank_from_refitem(ref_item: RefItem):
+            new_ref_rec_list=[]
+
+            os, oe, otxt = ref_item.getValues()
+            has_blank = (cm.FILLER_CHAR in otxt)
+            if not has_blank:
+                return new_ref_rec_list
+
+            new_ref_item: RefItem = None
+            part_list = cm.findInvert(cm.FILLER_CHAR_PATTERN, otxt)
+            for loc, ntxt in part_list.items():
+                new_ref_item = copy(ref_item)
+                strip_s, strip_e, strip_txt = cm.stripSpaces(ntxt)
+                s, e = loc
+                ns = os + s + strip_s
+                ne = ns + len(strip_txt)
+                new_ref_item.setValues(ns, ne, strip_txt)
+
+        new_ref_rec_list=[]
+
+
+        new_ref_item = RefItem(start=ns, end=ne, txt=strip_txt)
+        new_ref_rec.origin = new_ref_item
+        new_ref_rec.reflist = []
+        new_ref_rec_list.append(new_ref_rec)
+
+        return new_ref_rec_list
+
+
     def findPattern(self, pattern_list: list):
+        def cleanupIfNeeded():
+            del_list = []
+            new_list = []
+            new_rec: RefRecord = None
+            for s, ref_record in self.items():
+                update_list = self.removeBlanksFromEntry(ref_record)
+                if not update_list:
+                    continue
+
+                del_list.append(s)
+                for new_rec in update_list:
+                    orig = new_rec.getOrigin()
+                    ss = orig.start
+                    new_entry = {ss: new_rec}
+                    new_list.append(new_entry)
+
+            for k in del_list:
+                del self[k]
+
+            for entry in new_list:
+                self.update(entry)
+
         count_item = 0
         preparsed_location = {}
 
@@ -768,24 +943,7 @@ class RefList(defaultdict):
         ref_type: RefType = None
         m: re.Match = None
         msg = self.msg
-        for index, item in enumerate(pattern_list):
-            p, ref_type = item
-            is_bracket = (ref_type == RefType.ARCH_BRACKET)
-            if is_bracket:
-                found_dict = cm.getTextWithinBrackets('(', ')', msg, is_include_bracket=False)
-            else:
-                found_dict = cm.patternMatchAllToDict(p, msg)
-            preparsed_location.update(found_dict)
-
-            # m = p.search(self.msg)
-            # if m:
-            #     txt = m.group(0)
-            #     s = m.start()
-            #     e = m.end()
-            #     loc = (s, e)
-            #     entry={loc: (txt, ref_type)}
-            #     preparsed_location.update(entry)
-
+        pattern_list.reverse()
         remain_to_be_parsed = str(self.msg)
         for index, item in enumerate(pattern_list):
             p, ref_type = item
@@ -803,13 +961,14 @@ class RefList(defaultdict):
                 right = remain_to_be_parsed[e:]
                 remain_to_be_parsed = left + blank_str + right
 
-            diff_list = self.diff(one_list)
-            self.update(diff_list)
+            self.update(one_list)
 
+        cleanupIfNeeded()
         sorted_list = sorted(list(self.items()))
         self.clear()
         self.update(sorted_list)
         return count_item
+
 
     def testRecord(self, record: RefRecord):
         valid = (record is not None)
@@ -843,12 +1002,9 @@ class RefList(defaultdict):
             temp_msg = temp_msg[:os] + blind + temp_msg[oe:]
 
         # 2. Remove text outside blank areas
-        for origin, bkdown in cm.patternMatchAll(cm.NEGATE_FIND_WORD, temp_msg):
-            is_end = (origin is None)
-            if is_end:
-                break
-
-            s, e, orig = origin
+        temp_dict = cm.patternMatchAll(cm.NEGATE_FIND_WORD, temp_msg)
+        for loc, mm in temp_dict.items():
+            (s, e), orig = mm.getOriginAsTuple()
             left, orig_txt, right = cm.getTextWithin(orig)
             if not orig_txt:
                 continue

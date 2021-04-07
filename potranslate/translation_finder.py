@@ -9,7 +9,7 @@ import io
 import os
 import re
 import math as ma
-from common import Common as cm
+from common import Common as cm, MatcherRecord
 from common import dd, pp
 from ignore import Ignore as ig
 import json
@@ -1342,25 +1342,26 @@ class TranslationFinder:
             return dist_list
 
         part_list = []
-        loc_dic = cm.patternMatchAllToDict(cm.SPACE_WORD_SEP, msg)
-        word_list = list(loc_dic.values())
-        loc_list = list(loc_dic.keys())
-        max = len(loc_list)
+        matched_dict = cm.patternMatchAll(cm.SPACE_WORD_SEP, msg)
+        matched_list = list(matched_dict.items())
+        max = len(matched_dict)
+        loc_dic = {}
         try:
-            dist_dict = genListOfDistance(max)
-            dist_dict.sort(reverse=True)
-            for loc in dist_dict:
-                s, e = loc
+            start_mm: MatcherRecord = None
+            end_mm: MatcherRecord = None
+            dist_list = genListOfDistance(max)
+            dist_list.sort(reverse=True)
+            for dist in dist_list:
+                from_index, to_index = dist
+                start_loc, start_mm = matched_list[from_index]
+                end_loc, end_mm = matched_list[to_index]
 
-                sub_loc_list = loc_list[s:e+1]
-                sub_word_list = word_list[s:e+1]
+                ss1, ee1 = start_loc
+                ss2, ee2 = end_loc
+                sentence = msg[ss1: ee2]
 
-                sent = ' '.join(sub_word_list)
-                ss1, _= sub_loc_list[0]
-                _, ss2 = sub_loc_list[len(sub_word_list)-1]
-
-                sub_loc = (ss1, ss2)
-                entry = {sub_loc: sent}
+                sub_loc = (ss1, ee2)
+                entry = {sub_loc: sentence}
                 loc_dic.update(entry)
         except Exception as e:
             raise e
@@ -1384,8 +1385,9 @@ class TranslationFinder:
         count_translated = 0
         translation = str(msg)
         result_list = OrderedDict()
-        text_list = cm.patternMatchAllToDict(cm.COMMON_SENTENCE_BREAKS, msg)
-        for loc, t in text_list.items():
+        text_list = cm.patternMatchAll(cm.COMMON_SENTENCE_BREAKS, msg)
+        for loc, mm in text_list.items():
+            (s, e), t = mm.getOriginAsTuple()
             tran = self.isInDict(t)
             count_translated += (1 if tran else 0)
             count_untranslated += (1 if not tran else 0)
@@ -1648,7 +1650,6 @@ class TranslationFinder:
         if tran_sub_text:
             return tran_sub_text, len(msg), 100
 
-        # dd(f'tryFuzzyTranlation: looking for: [{msg}]')
         search_dict: NoCaseDict = None
         has_abbrev = False
         tran_sub_text, fuzzy_text, search_dict, matching_ratio, untran_word_dic = self.isInDictFuzzy(msg)
@@ -2864,12 +2865,9 @@ class TranslationFinder:
         word_list = cm.WORD_ONLY_FIND.findall(msg)
 
         dd(f'word_list: {word_list}')
-        for origin, breakdown in cm.patternMatchAll(cm.WORD_ONLY_FIND, msg):
-            is_end = (origin is None)
-            if is_end:
-                break
-
-            o_s, o_e, o_txt = origin
+        result_dict = cm.patternMatchAll(cm.WORD_ONLY_FIND, msg)
+        for loc, mm in result_dict.items():
+            (o_s, o_e), o_txt = mm.getOriginAsTuple()
             is_possessive = o_txt.endswith("'s")
             if is_possessive:
                 o_txt = o_txt[:-2]
@@ -2953,8 +2951,9 @@ class TranslationFinder:
         orig = str(msg)
         trans = str(msg)
         cm.debugging(msg)
-        for orig, breakdown in cm.patternMatchAll(cm.KEYBOARD_SEP, msg):
-            s, e, txt = orig
+        result_dict = cm.patternMatchAll(cm.KEYBOARD_SEP, msg)
+        for loc, mm in result_dict.items():
+            (s, e), txt = mm.getOriginAsTuple()
             # has_dic = (txt in TranslationFinder.KEYBOARD_TRANS_DIC)
             has_dic = (txt in self.kbd_dict)
             if not has_dic:
@@ -3165,37 +3164,34 @@ class TranslationFinder:
             'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
         '''
         tran_txt = str(msg)
-        all_matches = cm.patternMatchAllAsDictNoDelay(cm.ABBR_TEXT, msg)
+        all_matches = cm.patternMatchAll(cm.ABBR_TEXT, msg)
         if not all_matches:
             return None, False, False
 
-        return_list = []
-        tran = str(msg)
         is_fuzzy_list = []
         is_ignore_list = []
-        matched_list = all_matches.values()
-        for item_list in matched_list:
-            list_length = len(item_list)
-            has_sub_item = (list_length > 1)
-            if has_sub_item:
-                loc, abbrev_explain_txt = item_list[1]
-            else:
-                loc, abbrev_explain_txt = item_list[0]
+        mm: MatcherRecord = None
+        all_matches_list = list(all_matches.items())
+        first_match = all_matches_list[0]
+        loc, mm = first_match
 
-            s, e = loc
-            tran, is_fuzzy, is_ignore = self.translate(abbrev_explain_txt)
-            is_fuzzy_list.append(is_fuzzy)
-            is_ignore_list.append(is_ignore)
+        (ss, ee), orig = mm.getOriginAsTuple()
+        first_entry = mm.getSubEntryByIndex(0)
+        loc, abbrev_explain_txt = first_entry
 
-            if is_ignore:
-                continue
+        tran, is_fuzzy, is_ignore = self.translate(abbrev_explain_txt)
+        is_fuzzy_list.append(is_fuzzy)
+        is_ignore_list.append(is_ignore)
 
-            valid = (tran and (tran != abbrev_explain_txt))
-            if valid:
-                entry = f"{abbrev_explain_txt} -- {tran}"
-            else:
-                entry = f"{abbrev_explain_txt} -- "
-            tran_txt = tran_txt[:s] + entry + tran_txt[e:]
+        if is_ignore:
+            return None, False, False
+
+        valid = (tran and (tran != abbrev_explain_txt))
+        if valid:
+            entry = f"{abbrev_explain_txt} -- {tran}"
+        else:
+            entry = f"{abbrev_explain_txt} -- "
+        tran_txt = tran_txt[:s] + entry + tran_txt[e:]
 
         some_ignore = (True in is_ignore_list)
         some_not_ignore = (False not in is_ignore_list)
