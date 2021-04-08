@@ -77,7 +77,7 @@ class MatcherRecord(OrderedDict):
         for g in matcher_record.groups():
             if g:
                 i_s = orig.find(g)
-                ss = i_s + s
+                ss = i_s + self.s
                 ee = ss + len(g)
                 self.addSubMatch(ss, ee, g)
 

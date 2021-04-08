@@ -12,7 +12,7 @@ from translation_finder import TranslationFinder, LocationObserver
 from enum import Enum
 from reftype import RefType
 from copy import copy, deepcopy
-
+from err import ErrorMessages as er
 '''
 :abbr:`
 :class:`
@@ -103,6 +103,7 @@ class RefItem:
         self.reftype: RefType = ref_type
         self.text_style: TextStyle = TextStyle.NORMAL
         self.converted_to_abbr = False
+        self.extra_list=[]
 
     def __repr__(self):
         result = "(" + str(self.start) + ", " + \
@@ -126,6 +127,13 @@ class RefItem:
                    (self.text == other.text) and \
                    (self.reftype == other.reftype)
         return is_equal
+
+    def extraItemCount(self):
+        return len(self.extra_list)
+
+    def hasExtraItems(self):
+        count = self.extraItemCount()
+        return (count > 0)
 
     def isIquivalent(self, other):
         if not other:
@@ -245,104 +253,34 @@ class RefItem:
             item_list.update(entry)
         return item_list
 
-    def isOverlapped(self, other):
-        this_s = self.start
-        this_e = self.end
+    def removeBlankFromText(self):
+        new_ref_rec_list=[]
 
-        other_s = other.start
-        other_e = other.end
+        has_blank = (cm.FILLER_CHAR in self.text)
+        if not has_blank:
+            return new_ref_rec_list
 
-        is_start_ovrlap = (other_s <= this_s <= other_e)
-        is_end_overlap = (other_s <= this_e <= other_e)
-        is_overlap = (is_start_ovrlap or is_end_overlap)
+        new_ref_item: RefItem = None
+        part_dict = cm.findInvert(cm.FILLER_CHAR_PATTERN, self.text)
+        part_list = list(part_dict.items())
+        part_list.reverse()
 
-        # max_end = max(this_e, other_e)
-        # mask = (' ' * max_end)
-        #
-        # other_part = (cm.FILLER_CHAR * other_e - other_s)
-        # mask_left = mask[:other_s] + other_part + mask[other_e:]
-        # this_part = mask[this_s: this_e]
-        # is_overlap = (cm.FILLER_CHAR_PATTERN.search(this_part) is not None)
-        return is_overlap
+        count=len(part_list)
+        for index, entry in enumerate(part_list):
 
-    def coverDistance(self):
-        this_s = self.start
-        this_e = self.end
-        this_covering_distance = (this_e - this_s)
-        return this_covering_distance
-
-    def compareCoveringDistance(self, other, is_less=False, is_equal=False):
-        this_covering_distance = self.coverDistance()
-        other_covering_distance = other.coverDistance()
-        if is_less and not is_equal:
-            return_result = (this_covering_distance < other_covering_distance)
-        elif is_less and is_equal:
-            return_result = (this_covering_distance <= other_covering_distance)
-        elif not is_less and not is_equal:
-            return_result = (this_covering_distance > other_covering_distance)
-        elif not is_less and is_equal:
-            return_result = (this_covering_distance >= other_covering_distance)
-        return return_result
-
-    def __lt__(self, other):
-        return self.compareCoveringDistance(other, is_less=True)
-
-    def __le__(self, other):
-        return self.compareCoveringDistance(other, is_less=True, is_equal=True)
-
-    def __gt__(self, other):
-        return self.compareCoveringDistance(other, is_less=False)
-
-    def __ge__(self, other):
-        return self.compareCoveringDistance(other, is_less=False, is_equal=True)
-
-    def __sub__(self, other):
-        '''
-            subtract this from the other by reducing text length and change locations
-            :param other    other instance of RefItem
-        '''
-
-        this_s = self.start
-        this_e = self.end
-
-        other_s = other.start
-        other_e = other.end
-
-        min_start = min(this_s, other_s)
-        max_end = max(this_e, other_e)
-        mask_orig = (' ' * max_end)
-
-        start_part = (cm.FILLER_CHAR * min_start)
-        other_part = (cm.FILLER_CHAR * other_e - other_s)
-        mask = start_part + mask_orig[min_start:]
-        mask = mask[:other_s] + other_part + mask[other_e:]
-
-        this_part = mask[this_s: this_e]
-        # spaces to keep, FILLER_CHAR to remove
-        this_txt = self.text
-        list_of_remain = cm.patternMatchAll(cm.SPACES, this_part)
-        this_keeping_txt_list = []
-        for loc, mm in list_of_remain:
-            (s, e), spaces = mm.getOriginAsTuple()
-            txt_part = this_txt[s:e]
-            is_not_worth_keeping = (cm.SYMBOLS_ONLY.search(txt_part) is not None)
-            if is_not_worth_keeping:
-                continue
-
-            start_count, end_count, new_txt_part = cm.stripSpaces(txt_part)
-            new_loc = (s + start_count, e - end_count)
-            entry = (new_loc, new_txt_part)
-            this_keeping_txt_list.append(entry)
-
-        result_list = []
-        for loc, remain_txt in this_keeping_txt_list:
-            copy_of_this: RefItem = deepcopy(self)
+            loc, ntxt = entry
+            strip_s, strip_e, strip_txt = cm.stripSpaces(ntxt)
             s, e = loc
-            copy_of_this.setValues(start=s, end=e, txt=remain_txt)
-            result_list.append(copy_of_this)
+            ns = self.start + s + strip_s
+            ne = ns + len(strip_txt)
 
-        # this list could be empty, in which case remove left part, keep the right part (A - B = empty => keep B only)
-        return result_list
+            is_first_item = (index == 0)
+            if is_first_item:
+                self.setValues(ns, ne, strip_txt)
+            else:
+                new_ref_item = copy(self)
+                new_ref_item.setValues(ns, ne, strip_txt)
+                self.extra_list.append(new_ref_item)
 
 
 class RefRecord:
@@ -526,11 +464,18 @@ class RefRecord:
         is_empty = (s == -1) or (e == -1)
         return is_empty
 
-    def subtract(self, other):
-        this_origin: RefItem = self.origin
-        this_ref_list = self.getRefList()
-        other_origin: RefItem = other.origin
-        other_ref_list = other.getRefList()
+    def removeBlankFromText(self):
+        if self.origin:
+            self.origin.removeBlankFromText()
+            if self.origin.hasExtraItems():
+                raise ValueError(er.UNEXPECTED_ADDITIONAL_REF_RECORD)
+
+        if self.reflist:
+            ref_item: RefItem = None
+            for ref_item in self.reflist:
+                ref_item.removeBlankFromText()
+                if ref_item.hasExtraItems():
+                    raise ValueError(er.UNEXPECTED_ADDITIONAL_REF_RECORD)
 
 class RefList(defaultdict):
     def __init__(self, msg=None, pat=None, keep_orig=False, tf=None):
@@ -746,6 +691,11 @@ class RefList(defaultdict):
         actual_loc = loc
         try:
             mm_list = list(found_dict.items())
+            item_count = len(mm_list)
+            is_ignore = (item_count != 2)
+            if is_ignore:
+                return None, None
+
             txtloc, mmtxt = mm_list[0]
             (ts, te), txt = mmtxt.getOriginAsTuple()
             (os, oe) = loc
@@ -822,9 +772,12 @@ class RefList(defaultdict):
                 sub_text_might_have_link = sub_txt and (is_bracket or is_doc or is_ref or is_ga)
                 if sub_text_might_have_link:
                     actual_sub_txt, actual_loc = self.extractTextFromTextWithLink(sub_txt, (sub_ss, sub_ee), actual_ref_type)
-                    sub_txt = actual_sub_txt
-                    sub_ss, sub_ee = actual_loc
-
+                    has_sub_txt = (actual_sub_txt is not None)
+                    has_actual_loc = (actual_loc is not None)
+                    has_link = (has_sub_txt and has_actual_loc)
+                    if has_link:
+                        sub_txt = actual_sub_txt
+                        sub_ss, sub_ee = actual_loc
 
                 orig_ref_item = RefItem(o_ss, o_ee, o_txt, ref_type=actual_ref_type)
                 ref_item = RefItem(sub_ss, sub_ee, sub_txt, ref_type=actual_ref_type)
@@ -883,62 +836,13 @@ class RefList(defaultdict):
 
         return loc_keep_list
 
-    def removeBlanksFromEntry(self, ref_record: RefRecord):
-        def remove_blank_from_refitem(ref_item: RefItem):
-            new_ref_rec_list=[]
-
-            os, oe, otxt = ref_item.getValues()
-            has_blank = (cm.FILLER_CHAR in otxt)
-            if not has_blank:
-                return new_ref_rec_list
-
-            new_ref_item: RefItem = None
-            part_list = cm.findInvert(cm.FILLER_CHAR_PATTERN, otxt)
-            for loc, ntxt in part_list.items():
-                new_ref_item = copy(ref_item)
-                strip_s, strip_e, strip_txt = cm.stripSpaces(ntxt)
-                s, e = loc
-                ns = os + s + strip_s
-                ne = ns + len(strip_txt)
-                new_ref_item.setValues(ns, ne, strip_txt)
-
-        new_ref_rec_list=[]
-
-
-        new_ref_item = RefItem(start=ns, end=ne, txt=strip_txt)
-        new_ref_rec.origin = new_ref_item
-        new_ref_rec.reflist = []
-        new_ref_rec_list.append(new_ref_rec)
-
-        return new_ref_rec_list
-
-
     def findPattern(self, pattern_list: list):
         def cleanupIfNeeded():
-            del_list = []
-            new_list = []
-            new_rec: RefRecord = None
+            ref_record: RefRecord = None
             for s, ref_record in self.items():
-                update_list = self.removeBlanksFromEntry(ref_record)
-                if not update_list:
-                    continue
-
-                del_list.append(s)
-                for new_rec in update_list:
-                    orig = new_rec.getOrigin()
-                    ss = orig.start
-                    new_entry = {ss: new_rec}
-                    new_list.append(new_entry)
-
-            for k in del_list:
-                del self[k]
-
-            for entry in new_list:
-                self.update(entry)
+                ref_record.removeBlankFromText()
 
         count_item = 0
-        preparsed_location = {}
-
         p: re.Pattern = None
         ref_type: RefType = None
         m: re.Match = None
