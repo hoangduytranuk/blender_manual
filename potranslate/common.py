@@ -1,47 +1,23 @@
-#!/usr/bin/env python3
 import os
-import html #for escaping html
-import sys
-home_dir=os.environ['HOME']
-po_tran_path = os.path.join(home_dir, 'blender_manual/potranslate')
-sys.path.append(po_tran_path)
-# sys.path.append('/usr/local/lib/python3.8/site-packages')
-
-# print(f'common sys.path: {sys.path}')
-from enum import Enum
-import os
-import re
-import inspect
-import copy as cp
-from collections import OrderedDict, defaultdict
-from pprint import pprint, pp, pformat
+import operator as OP
+from re import Pattern, Match, compile
+from collections import OrderedDict
+from pprint import pp
 import hashlib
 import time
 from reftype import RefType
 from collections import deque
-# from nltk.corpus import wordnet as wn
 from fuzzywuzzy import fuzz
+from bisect import bisect_left
+from matcher import MatcherRecord
 from urlextract import URLExtract as URLX
-from bisect import bisect_left, bisect_right
-# import spacy
-
-# import Levenshtein as LE
-#import logging
+import operator
+import re
+import copy as CP
 
 DEBUG=True
 # DEBUG=False
 DIC_LOWER_CASE=True
-
-
-# DIC_LOWER_CASE=False
-
-#logging.basicConfig(filename='/home/htran/app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
-
-# def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
-#     if DEBUG:
-#         pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
-#         if len(args) == 0:
-#             print('-' * 30)
 
 def dd(*args, **kwargs):
     if DEBUG:
@@ -49,72 +25,193 @@ def dd(*args, **kwargs):
         if len(args) == 0:
             print('-' * 80)
 
-# def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
-#     if DEBUG:
-#         logging.info(pformat(args))
-#
-# def dd(*args, **kwargs):
-#     if DEBUG:
-#         logging.info(args, kwargs)
+KEYBOARD_TRANS_DIC = {
+    r'\bWheelUp\b': "Lăn Bánh Xe về Trước (WheelUp)",
+    r'\bWheelDown\b': "Lăn Bánh Xe về Sau (WheelDown)",
+    r'\bWheel\b': 'Bánh Xe (Wheel)',
+    "NumpadPlus": "Dấu Cộng (+) Bàn Số (NumpadPlus)",
+    "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
+    "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
+    "NumpadDelete": "Dấu Xóa/Del Bàn Số (NumpadDelete)",
+    "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadPeriod)",
+    "Numpad0": "Số 0 Bàn Số (Numpad0)",
+    "Numpad1": "Số 1 Bàn Số (Numpad1)",
+    "Numpad2": "Số 2 Bàn Số (Numpad2)",
+    "Numpad3": "Số 3 Bàn Số (Numpad3)",
+    "Numpad4": "Số 4 Bàn Số (Numpad4)",
+    "Numpad5": "Số 5 Bàn Số (Numpad5)",
+    "Numpad6": "Số 6 Bàn Số (Numpad6)",
+    "Numpad7": "Số 7 Bàn Số (Numpad7)",
+    "Numpad8": "Số 8 Bàn Số (Numpad8)",
+    "Numpad9": "Số 9 Bàn Số (Numpad9)",
+    "Spacebar": "Dấu Cách (Spacebar)",
+    r'\bDown\b': "Xuống (Down)",
+    r'\bUp\b': "Lên (Up)",
+    r'\bComma\b': "Dấu Phẩy (Comma)",
+    r'\bMinus\b': "Dấu Trừ (Minus)",
+    r'\bPlus\b': "Dấu Cộng (Plus)",
+    "Left": "Trái (Left)",
+    "=": "Dấu Bằng (=)",
+    "Equals": "Dấu Bằng (=)",
+    "Right": "Phải (Right)",
+    "Backslash": "Dấu Chéo Ngược (Backslash)",
+    r'\bSlash\b': "Dấu Chéo (Slash)",
+    "AccentGrave": "Dấu Huyền (AccentGrave)",
+    "Delete": "Xóa (Delete)",
+    "Period": "Dấu Chấm (Period)",
+    "Comma": "Dấu Phẩy (Comma)",
+    "PageDown": "Trang Xuống (PageDown)",
+    "PageUp": "Trang Lên (PageUp)",
+    "PgDown": "Trang Xuống (PgDown)",
+    "PgUp": "Trang Lên (PgUp)",
+    "OSKey": "Phím Hệ Điều Hành (OSKey)",
+    "Slash": "Dấu Chéo (Slash)",
+    "Minus": "Dấu Trừ (Minus)",
+    "Plus": "Dấu Cộng (Plus)",
+    "Down": "Xuống (Down)",
+    "Up": "Lên (Up)",
+    "MMB": "NCG (MMB)",
+    "LMB": "NCT (LMB)",
+    "RMB": "NCP (RMB)",
+    "Pen": "Bút (Pen)"
+}
 
-class OverLappingState(Enum):
-    NONE = 0
-    LEFT = 1
-    RIGHT = 2
-    BOTH = 3
-    WITHIN = 4
+KEYBOARD_TRANS_DIC_PURE = {
+    "OSKey": "Phím Hệ Điều Hành (OSKey)",
+    "WheelUp": "Lăn Bánh Xe về Trước (WheelUp)",
+    "WheelDown": "Lăn Bánh Xe về Sau (WheelDown)",
+    "Wheel": "Bánh Xe (Wheel)",
+    "NumpadPlus": "Dấu Cộng (+) Bàn Số (NumpadPlus)",
+    "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
+    "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
+    "NumpadDelete": "Dấu Xóa/Del Bàn Số (NumpadDelete)",
+    "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadPeriod)",
+    "NumpadAsterisk": "Dấu Sao (*) Bàn Số (NumpadAsterisk)",
+    "Numpad0": "Số 0 Bàn Số (Numpad0)",
+    "Numpad1": "Số 1 Bàn Số (Numpad1)",
+    "Numpad2": "Số 2 Bàn Số (Numpad2)",
+    "Numpad3": "Số 3 Bàn Số (Numpad3)",
+    "Numpad4": "Số 4 Bàn Số (Numpad4)",
+    "Numpad5": "Số 5 Bàn Số (Numpad5)",
+    "Numpad6": "Số 6 Bàn Số (Numpad6)",
+    "Numpad7": "Số 7 Bàn Số (Numpad7)",
+    "Numpad8": "Số 8 Bàn Số (Numpad8)",
+    "Numpad9": "Số 9 Bàn Số (Numpad9)",
+    "Spacebar": "Dấu Cách (Spacebar)",
+    "Down": "Xuống (Down)",
+    "Up": "Lên (Up)",
+    "Comma": "Dấu Phẩy (Comma)",
+    "Minus": "Dấu Trừ (Minus)",
+    "Plus": "Dấu Cộng (Plus)",
+    "Left": "Trái (Left)",
+    "=": "Dấu Bằng (=)",
+    "Equals": "Dấu Bằng (=)",
+    "Right": "Phải (Right)",
+    "Backslash": "Dấu Chéo Ngược (Backslash)",
+    "Slash": "Dấu Chéo (Slash)",
+    "AccentGrave": "Dấu Huyền (AccentGrave)",
+    "Delete": "Xóa (Delete)",
+    "Period": "Dấu Chấm (Period)",
+    "PageDown": "Trang Xuống (PageDown)",
+    "PageUp": "Trang Lên (PageUp)",
+    "PgDown": "Trang Xuống (PgDown)",
+    "PgUp": "Trang Lên (PgUp)",
+    "OSKey": "Phím Hệ Điều Hành (OSKey)",
+    "MMB": "NCG (MMB)",
+    "LMB": "NCT (LMB)",
+    "RMB": "NCP (RMB)",
+    "Pen": "Bút (Pen)"
+}
 
-class MatcherRecord(OrderedDict):
-    def __init__(self, s: int = -1, e: int = -1, txt: str = None, matcher_record : re.Match = None):
-        self.s = (s if not matcher_record else matcher_record.start())
-        self.e = (e if not matcher_record else matcher_record.end())
-        self.txt = (txt if not matcher_record else matcher_record.group(0))
+numeric_prefix = 'hằng/lần thứ/bộ/bậc'
+numeric_postfix = 'mươi/lần/bậc'
+numeral_dict = {
+    '@{1t}': 'ức',
+    '@{1b}': 'tỉ',
+    '@{1m}': 'triệu',
+    '@{1k}': 'nghìn',
+    '@{1h}': 'trăm',
+    '@{10}': 'chục/mươi/mười',
+    '@{0}': 'không/vô/mươi',
+    '@{1}': 'một/nhất/đầu tiên',
+    '@{2}': 'hai/nhì/nhị/phó/thứ/giây đồng hồ',
+    '@{3}': 'ba/tam',
+    '@{4}': 'bốn/tứ/tư',
+    '@{5}': 'năm/lăm/nhăm/Ngũ',
+    '@{6}': 'Sáu/Lục',
+    '@{7}': 'Bảy/Thất',
+    '@{8}': 'Số tám/bát',
+    '@{9}': 'Chín/cửu',
+}
 
-        if not matcher_record:
-            return
+numeric_trans = {
+    'a|an': '@{1} con/cái/thằng',
+    'zero|none|empty|nullary': '@{0}',
+    'one|first|monuple|unary': '@{1}',
+    'two|second|couple|binary': '@{2}',
+    'three|third|triple|ternary': '@{3}',
+    'four(th)?|quadruple|Quaternary': '@{4}',
+    'five|fifth|quintuple|Quinary': '@{5}',
+    'six(th)?|sextuple|Senary': '@{6}',
+    'seven(th)?|septuple|Septenary': '@{7}',
+    'eight(th)?|octa|octal|octet|octuple|Octonary': '@{8}',
+    'nine(th)?|nonuple|Novenary|nonary': '@{9}',
+    'ten(th)?|decimal|decuple|Denary': '@{10}',
+    'eleven(th)?|undecuple|hendecuple': 'Mười @{1}',
+    'twelve(th)?|doudecuple': 'Mười @{2}',
+    'thirteen(th)?|tredecuple': 'Mười @{3}',
+    'fourteen(th)?|quattuordecuple': 'Mười @{4}',
+    'fifteen(th)?|quindecuple': 'Mười @{5}',
+    'sixteen(th)?|sexdecuple': 'Mười @{6}',
+    'seventeen(th)?|septendecuple': 'Mười @{7}',
+    'eighteen(th)?|octodecuple': 'Mười @{8}',
+    'nineteen(th)?|novemdecuple': 'Mười @{9}',
+    '(twent(y|ie(s|th))+?)|vigintuple': '@{2} @{10}',
+    '(thirt(y|ie(s|th))+?)|trigintuple': '@{3} @{10}',
+    '(fort(y|ie(s|th))+?)|quadragintuple': '@{4} @{10}',
+    '(fift(y|ie(s|th))+?)|quinquagintuple': '@{5} @{10}',
+    '(sixt(y|ie(s|th))+?)|sexagintuple': '@{6} @{10}',
+    '(sevent(y|ie(s|th))+?)|septuagintuple': '@{7} @{10}',
+    '(eight(y|ie(s|th))+?)|octogintuple': '@{8} @{10}',
+    '(ninet(y|ie(s|th))+?)|nongentuple': '@{9} @{10}',
+    '(hundred(s|th)?)|centuple': '@{1h}',
+    '(thousand(s|th)?)|milluple': '@{1k}',
+    'million(s|th)?': '@{1m}',
+    'billion(s|th)?': '@{1t}',
+    'trillion(s|th)?': '@{1t}',
+}
 
-        orig = matcher_record.group(0)
-        for g in matcher_record.groups():
-            if g:
-                i_s = orig.find(g)
-                ss = i_s + self.s
-                ee = ss + len(g)
-                self.addSubMatch(ss, ee, g)
+class LocationObserver(OrderedDict):
+    def __init__(self, msg, tran_finder=None):
+        self.blank = str(msg)
 
-    def __repr__(self):
-        string = ""
-        m_loc = (self.s, self.e)
-        m_entry = {m_loc: self.txt}
-        string += str(m_entry) + '; '
-        for entry in self.items():
-            string += str(entry)
-            # string += 'sub loc:[' + str(loc) + ': ' + txt + ']; '
-        return string
+    def markAsUsed(self, s: int, e: int):
+        blk = (Common.FILLER_CHAR * (e - s))
+        left = self.blank[:s]
+        right = self.blank[e:]
+        self.blank = left + blk + right
 
-    def addSubMatch(self, s: int, e: int, txt: str):
-        loc = (s, e)
-        entry = {loc: txt}
-        self.update(entry)
+    def markedLocAsUsed(self, loc: tuple):
+        ss, ee = loc
+        self.markAsUsed(ss, ee)
 
-    def getOriginAsTuple(self):
-        loc = (self.s, self.e)
-        entry = (loc, self.txt)
-        return entry
+    def isUsed(self, s: int, e: int):
+        part = self.blank[s:e]
+        is_dirty = (Common.FILLER_PARTS.search(part) is not None)
+        return is_dirty
 
-    def getOriginLoc(self):
-        loc = (self.s, self.e)
-        return loc
+    def isLocUsed(self, loc: tuple):
+        s, e = loc
+        return self.isUsed(s, e)
 
-    def getSubEntryByIndex(self, index: int):
-        try:
-            l = self.getSubEntriesAsList()
-            return l[index]
-        except Exception as e:
-            return None
+    def isCompletelyUsed(self):
+        is_fully_done = (Common.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
+        return is_fully_done
 
-    def getSubEntriesAsList(self):
-        l = list(self.items())
-        return l
+    def getUnmarkedPartsAsDict(self):
+        untran_dict = Common.findInvert(Common.FILLER_PARTS, self.blank, is_removing_surrounding_none_alphas=True)
+        return untran_dict
+
 
 class Common:
     total_files = 1358
@@ -355,7 +452,7 @@ class Common:
 
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
-    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)[\`]+[\_]*')
+    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
     GA_REF_ONLY = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
     OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
@@ -369,11 +466,11 @@ class Common:
     ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    AST_QUOTE = re.compile(r"(?<!\w)\*([^\*]+)(?:\b)\*")
+    AST_QUOTE = re.compile(r"(?<!\w)(\*+)([^\*]+)(?:\b)(\*+)")
     # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    DBL_QUOTE = re.compile(r'(?<!\\")"(.*?)"')
+    DBL_QUOTE = re.compile(r'(?<!\\")(")(.*?)(")')
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
-    SNG_QUOTE = re.compile(r"(?<!\w)\'([^\']+)(?:\b)\'")
+    SNG_QUOTE = re.compile(r"(?<!\w)(\')([^\']+)(?:\b)(\')")
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
 
@@ -417,6 +514,9 @@ class Common:
     filler_char_and_space_pattern_str = r'[%s\s]+' % (FILLER_CHAR)
     FILLER_CHAR_INVERT = re.compile(filler_char_and_space_pattern_str)
 
+    filler_parts = r'\s?([%s]+)\s?' % (FILLER_CHAR)
+    FILLER_PARTS = re.compile(filler_parts)
+
     filler_char_and_space_pattern_str = r'^[\s%s]+$' % FILLER_CHAR
     FILLER_CHAR_AND_SPACE_ONLY_PATTERN = re.compile(filler_char_and_space_pattern_str)
 
@@ -427,8 +527,8 @@ class Common:
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
     ABBR_TEXT_ALL = re.compile(r'([^\(]+[\w])\s\(([^\)]+)\)')
-    REF_WITH_LINK = re.compile(r'([^\<\>\(\)]+)(\s[\<\(]([^\<\>\(\)]+)[\)\>])?')
-    REF_WITH_HTML_LINK = re.compile(r'([^\<\>]+)(\s[\<]([^\<\>]+)[\>])?')
+    REF_WITH_LINK = re.compile(r'([^\<\>\(\)]+)\s+?([\<\(]([^\<\>\(\)]+)[\)\>])?')
+    REF_WITH_HTML_LINK = re.compile(r'([^\<\>]+)\s+?(\<([^\<\>]+)\>)?')
 
     IS_A_PURE_LINK = re.compile(r'^(?P<sep>[\/\-\\\.])?[^.*(?P=sep)]+(.*(?P=sep).*[^(?P=sep)]+){2,}$')
 
@@ -474,6 +574,8 @@ class Common:
     FILE_NAME_WITH_EXTENSION = re.compile(r'(?:[^\+\-\=\s])[\w\-\_\*]+\.\w+$')
     WORD_SPLITTER = None
     # nlp = spacy.load('en_core_web_sm')
+
+    REF_TYPE_NAME_TO_REGISTER_STARTER_PAT = re.compile(r'(_QUOTE|_BRACKET)')
 
     verb_with_ending_y = [
         'aby', 'bay', 'buy', 'cry', 'dry', 'fly', 'fry', 'guy', 'hay',
@@ -1152,15 +1254,20 @@ class Common:
         return_dict = {}
         for m in pat.finditer(text):
             match_record = MatcherRecord(matcher_record=m)
-            s = match_record.s
-            e = match_record.e
-            loc = (s, e)
+            first_record = list(match_record.items())[0]
+            loc, _ = first_record
             dict_entry = {loc: match_record}
             return_dict.update(dict_entry)
+            count = len(match_record.getSubEntriesAsList())
+            # dd(f'patternMatchAll: added entry:{dict_entry}, count:{count}')
+        # dd(f'patternMatchAll: entries: {dict_entry}; total length:{len(return_dict)}')
         return return_dict
 
 
-    def findInvert(pattern:re.Pattern, text:str, is_removing_surrounding_none_alphas=False):
+    def findInvert(pattern, text:str,
+                   is_removing_surrounding_none_alphas=False,
+                   to_matcher_record=False,
+                   new_root_location=None):
         '''
         findInvert:
             Find list of words that are NOT matching the pattern.
@@ -1180,34 +1287,75 @@ class Common:
         :return:
             list of words that are NOT matching the pattern input
         '''
-        is_string = (isinstance(pattern, str))
-        is_pattern = (isinstance(pattern, re.Pattern))
-        is_acceptable = (is_string or is_pattern)
-        if not is_acceptable:
-            raise ValueError(f'{pattern} is invalid. Only accept string or re.Pattern types.')
+
+        def dealWithOptions(mm_found_list):
+            result_list = []
+            mm_record: MatcherRecord = None
+            backup_mm_copy: MatcherRecord = None
+            for found_loc, found_txt, mm_record in mm_found_list:
+                backup_mm_copy = CP.deepcopy(mm_record)
+                sub_loc = sub_txt = left = right = None
+                have_sub_record = False
+                # 1. Tried to open the record with all expected entries and see if all are there
+                # if not, then take the alternative approach to get sub-elements in the exception handling section
+                try:
+                    mm_record_list = mm_record.getSubEntriesAsList()
+                    found_loc, found_txt =mm_record_list[0]
+                    left_loc, left = mm_record_list[1]
+                    sub_loc, sub_txt = mm_record_list[2]
+                    right_loc, right = mm_record_list[3]
+                except Exception as e:
+                    sub_loc, left, sub_txt, right, sub_record = Common.getTextWithinWithDiffLoc(found_txt, to_matcher_record=True)
+                    is_all_non_alpha = (not bool(sub_txt))
+                    if is_all_non_alpha:
+                       continue
+
+                    mm_record.addSubRecordFromAnother(sub_record)
+
+                have_sub_record = (bool(left) or bool(right))
+                if is_removing_surrounding_none_alphas:
+                    index_to_use = (2 if have_sub_record else 0)
+                    mm_record.setMainToUseExistingIndex(index_to_use)
+
+                if new_root_location:
+                    mm_record.updateMasterLoc(new_root_location)
+
+                actual_loc = (mm_record.s, mm_record.e)
+                if to_matcher_record:
+                    entry=(actual_loc, mm_record)
+                else:
+                    entry=(actual_loc, mm_record.txt)
+                result_list.append(entry)
+            return result_list
+        try:
+            is_string = (isinstance(pattern, str))
+            is_pattern = (isinstance(pattern, Pattern))
+            is_acceptable = (is_string or is_pattern)
+            if not is_acceptable:
+                raise ValueError(f'{pattern} is invalid. Only accept string or re.Pattern types.')
+        except Exception as e:
+            raise e
 
         invert_required = False
+        pat = pattern
         if is_string:
             # form the invert character pattern
-            pat_string = r'[^%s]+' % pattern
-            pat = re.compile(pat_string)
+            pat_string = r'(%s)(\w[^%s]+\w)(%s)' % (pattern, pattern, pattern)
+            pat = compile(pat_string)
         else:
             invert_required = True
-            pat = pattern
 
         found_list = []
         mm : MatcherRecord = None
-        matched_list = Common.patternMatchAll(pat, text)
+        matched_dict = Common.patternMatchAll(pat, text)
         if not invert_required:
-            for mmloc, mm in matched_list.items():
-                loc, invert_word = mm.getOriginAsTuple()
-                if not invert_word.strip():
-                    continue
-                entry = (loc, invert_word)
+            for mmloc, mm in matched_dict.items():
+                loc, found_txt = mm.getOriginAsTuple()
+                entry = (loc, found_txt, mm)
                 found_list.append(entry)
         else:
             # 2: extract location list
-            loc_list = matched_list.keys()
+            loc_list = matched_dict.keys()
 
             # 3: extract invert locations, using the location list above
             invert_loc_list = []
@@ -1220,28 +1368,24 @@ class Common:
             we = len(text)
             if (ws < we):
                 invert_loc_list.append((ws, we))
-            # dd(f'invert_loc_list:{invert_loc_list}')
 
             # 4: using the invert location list, extract words, exclude empties.
             for ws, we in invert_loc_list:
-                invert_word = text[ws:we]
-                left, mid, right = Common.getTextWithin(invert_word)
-                is_empty = (not bool(mid))
-                if is_empty:
-                    continue
-
+                found_txt = text[ws:we]
                 loc = (ws, we)
-                entry = (loc, invert_word)
+                mm = MatcherRecord(s=ws, e=we, txt=found_txt)
+                entry = (loc, found_txt, mm)
                 found_list.append(entry)
 
-        found_list.sort(reverse=True)
-        temp_dict = OrderedDict(found_list)
+        result_list_final = dealWithOptions(found_list)
+        result_list_final.sort(key=OP.itemgetter(0), reverse=True)
+        return_dict = OrderedDict(result_list_final)
         dd('findInvert() found_list:')
         dd('-' * 30)
-        pp(found_list)
+        pp(return_dict)
         dd('-' * 30)
 
-        return temp_dict
+        return return_dict
 
     def getListOfLocation(find_list):
         loc_list = {}
@@ -1677,10 +1821,15 @@ class Common:
             replace_internal_end_bracket:str = None
     ) -> list:
 
-        def pop_q() -> bool:
+        def pop_q(pop_s, pop_e) -> bool:
             last_s = q.pop()
-            ss = (last_s if is_include_bracket else last_s + 1)
-            ee = (e if is_include_bracket else e - 1)
+            orig_txt = text[last_s:pop_e]
+            orig_s = last_s
+            orig_e = pop_e
+
+            ss = (last_s if is_include_bracket else last_s + len(start_bracket))
+            ee = (pop_e if is_include_bracket else pop_s)
+
             txt_line = text[ss:ee]
             if not txt_line:
                 return False
@@ -1689,77 +1838,95 @@ class Common:
             if is_replace_internal_bracket:
                 txt_line = txt_line.replace(start_bracket, replace_internal_start_bracket)
 
-            if is_same_brakets:
-                sentence_list.append(txt_line)
-                False
-
-            is_replace_internal_bracket = (replace_internal_end_bracket and (end_bracket in txt_line))
-            if is_replace_internal_bracket:
-                txt_line = txt_line.replace(end_bracket, replace_internal_end_bracket)
-
-            mm = MatcherRecord(s=ss, e=ee, txt=txt_line)
-            entry = {ss: mm}
+            loc = (orig_s, orig_e)
+            entry = {loc: orig_txt}
             sentence_list.update(entry)
             return True
 
+        def getBracketList():
+            # 1. find positions of start bracket
+            if is_same_brakets:
+                p_txt = r'\%s' % start_bracket
+            else:
+                p_txt = r'\%s|\%s' % (start_bracket, end_bracket)
+
+            p = re.compile(p_txt)
+
+            # split at the boundary of start and end brackets
+            brk_list=[]
+            m_list = p.finditer(text)
+            for m in m_list:
+                ss = m.start()
+                ee = m.end()
+                brk = m.group(0)
+                entry=(ss, ee, brk)
+                brk_list.append(entry)
+            return brk_list
+
+        def getSentenceList():
+            bracket_list = getBracketList()
+            if not bracket_list:
+                return sentence_list
+
+            # detecting where start/end and take the locations
+            mm: MatcherRecord = None
+            if is_same_brakets:
+                for s, e, bracket in bracket_list:
+                    is_bracket = (bracket == start_bracket)
+                    if is_bracket:
+                        if not q:
+                            q.append(s)
+                        else:
+                            is_finished = pop_q(s, e)
+                            if not is_finished:
+                                continue
+            else:
+                for s, e, bracket in bracket_list:
+                    is_open = (bracket == start_bracket)
+                    is_close = (bracket == end_bracket)
+                    if is_open:
+                        q.append(s)
+                    if is_close:
+                        if not q:
+                            continue
+                        else:
+                            is_finished = pop_q(s, e)
+                            if not is_finished:
+                                continue
+            return sentence_list
+
+        sentence_list = {}
+        q = deque()
+        s: int = -1
+        e: int = -1
+        last_s: int = -1
         is_same_brakets = (start_bracket == end_bracket)
         if is_same_brakets:
             print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
                   f'ERRORS might occurs!')
 
-        sentence_list = {}
+        sentence_list = getSentenceList()
+        result_dict = OrderedDict()
+        sorted_sentence_list = list(sentence_list.items())
+        sorted_sentence_list.sort()
+        obs: LocationObserver = None
+        for index, (sub_loc, sub_txt) in enumerate(sorted_sentence_list):
+            is_first = (index == 0)
+            if is_first:
+                obs = LocationObserver(msg=sub_txt)
 
-        # 1. find positions of start bracket
-        if is_same_brakets:
-            p_txt = r'\%s' % start_bracket
-        else:
-            p_txt = r'\%s|\%s' % (start_bracket, end_bracket)
+            is_covered = obs.isLocUsed(sub_loc)
+            if is_covered:
+                continue
 
-        p = re.compile(p_txt, flags=re.I|re.M)
+            part_dict = Common.findInvert(Common.FILLER_PARTS,
+                                          sub_txt,
+                                          is_removing_surrounding_none_alphas=True,
+                                          to_matcher_record=True,
+                                          new_root_location=sub_loc)
+            result_dict.update(part_dict)
 
-        # split at the boundary of start and end brackets
-        word_dict={}
-        m_list = p.finditer(text)
-        for m in m_list:
-            mm = MatcherRecord(matcher_record=m)
-            entry = {mm.s: mm}
-            word_dict.update(entry)
-
-        if not word_dict:
-            return sentence_list
-
-        # detecting where start/end and take the locations
-        debug_len = 20
-        q = deque()
-        mm: MatcherRecord = None
-        if is_same_brakets:
-            for loc, mm in word_dict.items():
-                s, e = mm.getOriginLoc()
-                is_bracket = (mm.txt == start_bracket)
-                if is_bracket:
-                    if not q:
-                        q.append(s)
-                    else:
-                        is_finished = pop_q()
-                        if not is_finished:
-                            continue
-        else:
-            for loc, mm in word_dict.items():
-                s, e = mm.getOriginLoc()
-                bracket = mm.txt
-                is_open = (bracket == start_bracket)
-                is_close = (bracket == end_bracket)
-                if is_open:
-                    q.append(s)
-                if is_close:
-                    if not q:
-                        continue
-                    else:
-                        is_finished = pop_q()
-                        if not is_finished:
-                            continue
-
-        temp_list = list(sentence_list.items())
+        temp_list = list(result_dict.items())
         temp_list.reverse()
         sentence_list = OrderedDict(temp_list)
         return sentence_list
@@ -2093,7 +2260,7 @@ class Common:
         orig_word_dict = Common.patternMatchAll(Common.CHARACTERS, orig_txt)
         orig_word_list = list(orig_word_dict.items())
 
-        new_txt_word_dict = Common.patternMatchAllToDict(Common.CHARACTERS, new_txt)
+        new_txt_word_dict = Common.patternMatchAll(Common.CHARACTERS, new_txt)
         new_txt_word_list = list(orig_word_dict.items())
 
         remain_word_dict={}
@@ -2118,14 +2285,47 @@ class Common:
 
         return remain_word_dict
 
-    def getTextWithin(msg):
+    def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
         # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
         left_part = Common.getNoneAlphaPart(msg, is_start=True)
         right_part = Common.getNoneAlphaPart(msg, is_start=False)
         ss = len(left_part)
         ee = (-len(right_part) if right_part else len(msg))
         mid_part = msg[ss:ee]
-        return left_part, mid_part, right_part
+        length_ee = len(right_part)
+        diff_loc = (ss, length_ee)
+
+        main_record: MatcherRecord = None
+        if to_matcher_record:
+            ls=0
+            le=ss
+            ms=le
+            me=ms + len(mid_part)
+            rs=me
+            re=rs + len(right_part)
+
+            main_record=MatcherRecord(s=0, e=len(msg), txt=msg)
+            if left_part:
+                main_record.addSubMatch(ls, le, left_part)
+                test_txt = left_part[ls: le]
+            else:
+                main_record.addSubMatch(-1, -1, None)
+            if mid_part:
+                main_record.addSubMatch(ms, me, mid_part)
+                test_txt = left_part[ms: me]
+            else:
+                main_record.addSubMatch(ls, re, msg)
+            if right_part:
+                main_record.addSubMatch(rs, re, right_part)
+                test_txt = left_part[rs: re]
+            else:
+                main_record.addSubMatch(-1, -1, None)
+
+        return diff_loc, left_part, mid_part, right_part, main_record
+
+    def getTextWithin(msg):
+        diff_loc, left, mid, right,_ = Common.getTextWithinWithDiffLoc(msg)
+        return left, mid, right
 
     def replaceWord(orig_word: str, new_word: str, replace_word: str) -> str:
 
@@ -2239,16 +2439,10 @@ class Common:
             return patch_txt
 
         patch_txt_right = patch_txt_left = ''
-        s = 0
-        e = len(left)
-
-        if s < e:
-            patch_txt_left = patch_txt[s:e]
-
-        e = len(orig_txt)
-        s = e - len(right)
-        if s < e:
-            patch_txt_right = patch_txt[s:e]
+        if left:
+            patch_txt_left = patch_txt[:len(left)]
+        if right:
+            patch_txt_right = patch_txt[-len(right)]
 
         is_patching_left = (patch_txt_left != left)
         is_patching_right = (patch_txt_right != right)

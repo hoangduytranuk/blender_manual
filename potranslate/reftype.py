@@ -1,11 +1,35 @@
 from enum import Enum
 
+class OverLappingState(Enum):
+    NONE = 0
+    LEFT = 1
+    RIGHT = 2
+    BOTH = 3
+    WITHIN = 4
+
+class TranslationState(Enum):
+    UNTRANSLATED = 0
+    ACCEPTABLE = 1
+    FUZZY = 2
+    IGNORED = 3
+    REMOVE = 4
+
+class TextStyle(Enum):
+    NORMAL = 0
+    ITALIC = 1
+    BOLD = 2
+    BOX = 3
+    RAW = 4
+
 class RefType(Enum):
     PYTHON_FORMAT = "%"
     FUNCTION = "func"
     GA = "\`"
     ARCH_BRACKET = "()"
+    ARCH_BRACKET_OPEN = "("
+    ARCH_BRACKET_CLOSE = ")"
     AST_QUOTE = "*"
+    DBL_AST_QUOTE = "**"
     DBL_QUOTE = "\""
     SNG_QUOTE = "'"
     MM = ":MM:"
