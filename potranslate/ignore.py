@@ -2,8 +2,7 @@ import sys
 import re
 from os import sep as dirsep
 from os.path import pathsep
-from common import Common as cm
-from common import DEBUG, dd, pp
+from common import Common as cm, DEBUG, dd, pp, MatcherRecord
 
 class Ignore:
 
@@ -132,7 +131,7 @@ class Ignore:
         r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|curv(\w+)\-(bezier|nurbs|POLYLINE)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
         r"^\s*(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
-        r"^\s*(Ctrl|Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*|(command_line-args)$",
+        r"^\s*(Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*|(command_line-args)$",
         r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|de|debian|Delta([\s][\w])?)\s*$",
         r"^\s*([^\w]+log.*wm.*)\s*$",
         r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",
@@ -364,6 +363,9 @@ class Ignore:
         #     dd("GA trimmed from:", orig_msg, msg)
 
         try:
+            is_mm = isinstance(msg, MatcherRecord)
+            if is_mm:
+                dd('debug')
             find_msg = msg.lower()
             is_keep = Ignore.isKeep(find_msg)
             if is_keep:

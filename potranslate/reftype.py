@@ -56,8 +56,6 @@ class RefType(Enum):
         for name, member in cls.__members__.items():
             if member.value == string_value:
                 return member
-            if ('func' in string_value.lower()):
-                return cls.FUNCTION
         return None
 
 '''

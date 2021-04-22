@@ -11,6 +11,7 @@ from fuzzywuzzy import fuzz
 from bisect import bisect_left
 from matcher import MatcherRecord
 from urlextract import URLExtract as URLX
+from err import ErrorMessages as ER
 import operator
 import re
 import copy as CP
@@ -184,21 +185,53 @@ numeric_trans = {
 class LocationObserver(OrderedDict):
     def __init__(self, msg, tran_finder=None):
         self.blank = str(msg)
+        self.marked_loc={}
+
+    def markListAsUsed(self, loc_list:list):
+        for loc in loc_list:
+            self.markLocAsUsed(loc)
 
     def markAsUsed(self, s: int, e: int):
+        loc = (s, e)
+        is_already_marked = (loc in self.marked_loc)
+        if is_already_marked:
+            return
+
+        marked_loc_entry = {loc: self.blank[s:e]}
         blk = (Common.FILLER_CHAR * (e - s))
         left = self.blank[:s]
         right = self.blank[e:]
         self.blank = left + blk + right
+        self.marked_loc.update(marked_loc_entry)
 
-    def markedLocAsUsed(self, loc: tuple):
+    def markLocAsUsed(self, loc: tuple):
         ss, ee = loc
         self.markAsUsed(ss, ee)
+
+    def isPartlyUsed(self, s: int, e: int):
+        part = self.blank[s:e]
+        is_dirty = (Common.FILLER_PARTS.search(part) is not None)
+        is_fully_used = (Common.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
+        return (is_dirty and not is_fully_used)
+
+    def isLocPartlyUsed(self, loc: tuple):
+        s, e = loc
+        return self.isPartlyUsed(s, e)
+
+    def isLocFullyUsed(self, loc: tuple):
+        s, e = loc
+        return self.isFullyUsed(s, e)
+
+    def isFullyUsed(self, s:int, e:int):
+        part = self.blank[s:e]
+        is_all_used = (Common.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
+        return is_all_used
 
     def isUsed(self, s: int, e: int):
         part = self.blank[s:e]
         is_dirty = (Common.FILLER_PARTS.search(part) is not None)
-        return is_dirty
+        is_fully_used = (Common.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
+        return (is_dirty and is_fully_used)
 
     def isLocUsed(self, loc: tuple):
         s, e = loc
@@ -209,9 +242,8 @@ class LocationObserver(OrderedDict):
         return is_fully_done
 
     def getUnmarkedPartsAsDict(self):
-        untran_dict = Common.findInvert(Common.FILLER_PARTS, self.blank, is_removing_surrounding_none_alphas=True)
+        untran_dict = Common.findInvert(Common.FILLER_PARTS, self.blank)
         return untran_dict
-
 
 class Common:
     total_files = 1358
@@ -423,7 +455,11 @@ class Common:
 
     GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
     ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^\`]+)[\`]+')
+    ABBREV_PATTERN_PARSER_FULL = re.compile(r'^:abbr:[\`]+([^\`]+)[\`]+$')
     ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
+
+    ABBREV_FRONT=re.compile(r':abbr:[\`]+\(')
+    GA_BACK=re.compile(r'\)[\`]+')
 
     punctuals = r'([\\\/\.\,\:\;\!\?\"\*\'\`]+)'
     basic_punctuals = r'([\.\,\`]+)'
@@ -575,7 +611,7 @@ class Common:
     WORD_SPLITTER = None
     # nlp = spacy.load('en_core_web_sm')
 
-    REF_TYPE_NAME_TO_REGISTER_STARTER_PAT = re.compile(r'(_QUOTE|_BRACKET)')
+    BRACKET_OR_QUOTE_REF = re.compile(r'(_QUOTE|_BRACKET)')
 
     verb_with_ending_y = [
         'aby', 'bay', 'buy', 'cry', 'dry', 'fly', 'fry', 'guy', 'hay',
@@ -1258,16 +1294,13 @@ class Common:
             loc, _ = first_record
             dict_entry = {loc: match_record}
             return_dict.update(dict_entry)
-            count = len(match_record.getSubEntriesAsList())
+            # count = len(match_record.getSubEntriesAsList())
             # dd(f'patternMatchAll: added entry:{dict_entry}, count:{count}')
         # dd(f'patternMatchAll: entries: {dict_entry}; total length:{len(return_dict)}')
         return return_dict
 
 
-    def findInvert(pattern, text:str,
-                   is_removing_surrounding_none_alphas=False,
-                   to_matcher_record=False,
-                   new_root_location=None):
+    def findInvert(pattern, text:str):
         '''
         findInvert:
             Find list of words that are NOT matching the pattern.
@@ -1278,64 +1311,60 @@ class Common:
             the re.compile(d) pattern to use to find/replace
         :param text:
             the string of text that words are to be found
-        :param is_remove_empty:
-            If this is set to True, removing empty strings while processing,
-            and these empty strings (or just contain spaces) won't be
-            in the returning list
-        :param is_removing_surrounding_none_alphas:
-            removing empty spaces and symbols surrounding words
         :return:
             list of words that are NOT matching the pattern input
         '''
 
-        def dealWithOptions(mm_found_list):
-            result_list = []
-            mm_record: MatcherRecord = None
-            backup_mm_copy: MatcherRecord = None
-            for found_loc, found_txt, mm_record in mm_found_list:
-                backup_mm_copy = CP.deepcopy(mm_record)
-                sub_loc = sub_txt = left = right = None
-                have_sub_record = False
-                # 1. Tried to open the record with all expected entries and see if all are there
-                # if not, then take the alternative approach to get sub-elements in the exception handling section
-                try:
-                    mm_record_list = mm_record.getSubEntriesAsList()
-                    found_loc, found_txt =mm_record_list[0]
-                    left_loc, left = mm_record_list[1]
-                    sub_loc, sub_txt = mm_record_list[2]
-                    right_loc, right = mm_record_list[3]
-                except Exception as e:
-                    sub_loc, left, sub_txt, right, sub_record = Common.getTextWithinWithDiffLoc(found_txt, to_matcher_record=True)
-                    is_all_non_alpha = (not bool(sub_txt))
-                    if is_all_non_alpha:
-                       continue
+        # def dealWithOptions(mm_found_list, root_loc):
+        #     result_list = []
+        #     mm_record: MatcherRecord = None
+        #     backup_mm_copy: MatcherRecord = None
+        #     for index, entry in enumerate(mm_found_list):
+        #         found_loc, found_txt, mm_record = entry
+        #         try:
+        #             if root_loc:
+        #                 mm_record.updateMasterLoc(root_loc)
+        #
+        #             mm_record_list = mm_record.getSubEntriesAsList()
+        #             left_loc, left = mm_record_list[1]
+        #             sub_loc, sub_txt = mm_record_list[2]
+        #             right_loc, right = mm_record_list[3]
+        #         except Exception as e:
+        #             dd(f'Using getTextWithinWithDiffLoc() to get sub-records for MatcherRecord')
+        #             sub_loc, left, sub_txt, right, sub_record = Common.getTextWithinWithDiffLoc(found_txt, to_matcher_record=True)
+        #             is_all_non_alpha = (not bool(sub_txt))
+        #             if is_all_non_alpha:
+        #                 dd(f'getTextWithinWithDiffLoc() indicate all text are non-alpha-numeric, IGNORED!')
+        #                 continue
+        #
+        #             mm_record.addSubRecordFromAnother(sub_record)
+        #
+        #         have_sub_record = (bool(left) or bool(right))
+        #         if is_removing_surrounding_none_alphas:
+        #             index_to_use = (2 if have_sub_record else 0)
+        #             mm_record.setMainToUseExistingTextInIndex(index_to_use)
+        #
+        #         has_new_root_location = bool(new_root_location)
+        #         if has_new_root_location:
+        #             mm_record.updateMasterLoc(new_root_location)
+        #
+        #         actual_loc = (mm_record.s, mm_record.e)
+        #         if to_matcher_record:
+        #             entry=(actual_loc, mm_record)
+        #         else:
+        #             entry=(actual_loc, mm_record.txt)
+        #         result_list.append(entry)
+        #     return result_list
+        # try:
+        #     is_string = (isinstance(pattern, str))
+        #     is_pattern = (isinstance(pattern, Pattern))
+        #     is_acceptable = (is_string or is_pattern)
+        #     if not is_acceptable:
+        #         raise ValueError(f'{pattern} is invalid. Only accept string or re.Pattern types.')
+        # except Exception as e:
+        #     raise e
 
-                    mm_record.addSubRecordFromAnother(sub_record)
-
-                have_sub_record = (bool(left) or bool(right))
-                if is_removing_surrounding_none_alphas:
-                    index_to_use = (2 if have_sub_record else 0)
-                    mm_record.setMainToUseExistingIndex(index_to_use)
-
-                if new_root_location:
-                    mm_record.updateMasterLoc(new_root_location)
-
-                actual_loc = (mm_record.s, mm_record.e)
-                if to_matcher_record:
-                    entry=(actual_loc, mm_record)
-                else:
-                    entry=(actual_loc, mm_record.txt)
-                result_list.append(entry)
-            return result_list
-        try:
-            is_string = (isinstance(pattern, str))
-            is_pattern = (isinstance(pattern, Pattern))
-            is_acceptable = (is_string or is_pattern)
-            if not is_acceptable:
-                raise ValueError(f'{pattern} is invalid. Only accept string or re.Pattern types.')
-        except Exception as e:
-            raise e
-
+        is_string = isinstance(pattern, str)
         invert_required = False
         pat = pattern
         if is_string:
@@ -1350,8 +1379,10 @@ class Common:
         matched_dict = Common.patternMatchAll(pat, text)
         if not invert_required:
             for mmloc, mm in matched_dict.items():
+                mm.type = RefType.TEXT
+                mm.pattern = pat
                 loc, found_txt = mm.getOriginAsTuple()
-                entry = (loc, found_txt, mm)
+                entry = (loc, mm)
                 found_list.append(entry)
         else:
             # 2: extract location list
@@ -1374,17 +1405,17 @@ class Common:
                 found_txt = text[ws:we]
                 loc = (ws, we)
                 mm = MatcherRecord(s=ws, e=we, txt=found_txt)
-                entry = (loc, found_txt, mm)
+                mm.type = RefType.TEXT
+                mm.pattern = pat
+                entry = (loc, mm)
                 found_list.append(entry)
 
-        result_list_final = dealWithOptions(found_list)
-        result_list_final.sort(key=OP.itemgetter(0), reverse=True)
-        return_dict = OrderedDict(result_list_final)
+        found_list.sort(key=OP.itemgetter(0), reverse=True)
+        return_dict = OrderedDict(found_list)
         dd('findInvert() found_list:')
         dd('-' * 30)
         pp(return_dict)
         dd('-' * 30)
-
         return return_dict
 
     def getListOfLocation(find_list):
@@ -1823,7 +1854,7 @@ class Common:
 
         def pop_q(pop_s, pop_e) -> bool:
             last_s = q.pop()
-            orig_txt = text[last_s:pop_e]
+            orig_txt = obs.blank[last_s:pop_e]
             orig_s = last_s
             orig_e = pop_e
 
@@ -1839,8 +1870,9 @@ class Common:
                 txt_line = txt_line.replace(start_bracket, replace_internal_start_bracket)
 
             loc = (orig_s, orig_e)
-            entry = {loc: orig_txt}
-            sentence_list.update(entry)
+            entry = (loc, orig_txt)
+            sentence_list.append(entry)
+            obs.markLocAsUsed(loc)
             return True
 
         def getBracketList():
@@ -1895,7 +1927,49 @@ class Common:
                                 continue
             return sentence_list
 
-        sentence_list = {}
+        def removeBrackets(mm: MatcherRecord):
+            bracket_pattern_txt = r'(\%s)?([^\%s\%s]+)(\%s)?' % (start_bracket, start_bracket, end_bracket, end_bracket)
+            bracket_pattern = re.compile(bracket_pattern_txt)
+            # print(f'main mm: {mm}')
+            main_txt = mm.getMainText()
+            sub_mm: MatcherRecord = None
+            # Common.debugging(main_txt)
+            try:
+                found_dict = Common.patternMatchAll(bracket_pattern, main_txt)
+                found_list = list(found_dict.items())
+                if not found_list:
+                    return False
+
+                count = len(found_list)
+                is_valid = (count < 2)
+                if not is_valid:
+                    raise ValueError(ER.TOO_MANY_SUB_ITEM)
+                sub_loc, sub_mm = found_list[0]
+                mm.addSubRecordFromAnother(sub_mm)
+                # print(f'sub_mm list: {found_list}')
+                return True
+            except Exception as e:
+                dd('removeBrackets():')
+                dd(mm)
+                dd(e)
+                raise e
+
+        def updateRecordsUsingSubLoc(dict_list, rootloc):
+            for mmloc, mm in dict_list.items():
+                is_same = (mmloc == rootloc)
+                if is_same:
+                    continue
+                mm.type = RefType.TEXT
+                # print(rootloc, mmloc, mm)
+                rs, re  = rootloc
+                ms, me = mmloc
+                dist = me-ms
+                new_ms = ms + rs
+                new_me = new_ms + dist
+                mm.updateMasterLoc(new_ms, new_me)
+
+
+        sentence_list = []
         q = deque()
         s: int = -1
         e: int = -1
@@ -1905,31 +1979,30 @@ class Common:
             print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
                   f'ERRORS might occurs!')
 
+        obs = LocationObserver(msg=text)
         sentence_list = getSentenceList()
         result_dict = OrderedDict()
-        sorted_sentence_list = list(sentence_list.items())
-        sorted_sentence_list.sort()
-        obs: LocationObserver = None
-        for index, (sub_loc, sub_txt) in enumerate(sorted_sentence_list):
-            is_first = (index == 0)
-            if is_first:
-                obs = LocationObserver(msg=sub_txt)
 
-            is_covered = obs.isLocUsed(sub_loc)
-            if is_covered:
-                continue
-
+        for index, (sub_loc, sub_txt) in enumerate(sentence_list):
             part_dict = Common.findInvert(Common.FILLER_PARTS,
-                                          sub_txt,
-                                          is_removing_surrounding_none_alphas=True,
-                                          to_matcher_record=True,
-                                          new_root_location=sub_loc)
-            result_dict.update(part_dict)
+                                          sub_txt)
+            updateRecordsUsingSubLoc(part_dict, sub_loc)
+            for loc, mm in part_dict.items():
+                new_loc = (mm.s, mm.e)
+                test_text = text[mm.s: mm.e]
+                new_entry = {new_loc: mm}
+                result_dict.update(new_entry)
 
-        temp_list = list(result_dict.items())
-        temp_list.reverse()
-        sentence_list = OrderedDict(temp_list)
-        return sentence_list
+        remove_list=[]
+        for loc, mm in result_dict.items():
+            is_ok = removeBrackets(mm)
+            if not is_ok:
+                remove_list.append(loc)
+
+        for loc in remove_list:
+            del result_dict[loc]
+
+        return result_dict
 
     def removingNonAlpha(original_word: str):
         default_loc = (0, 0)
@@ -2521,25 +2594,20 @@ class Common:
         # this list could be empty, in which case remove left part, keep the right part (A - B = empty => keep B only)
         return this_txt_dict
 
+    def jointText(orig: str, tran: str, loc: tuple):
+        if not bool(tran):
+            return orig
+
+        s, e = loc
+        left = orig[:s]
+        right = orig[e:]
+        orig = left + tran + right
+        return orig
+
     def debugging(txt):
-        # msg = 'between root and tip'
-        # msg = 'Profile Brush'
-        # msg = ' reversed...'
-        # msg = "BLENDER_SYSTEM_SCRIPTS"
-        # msg = "command-line arguments"
-        # msg = "Factory Settings"
-        # msg = "limbs"
-        # msg = "data-block"
-        # msg = "Object"
-        # msg = "and"
-        # msg = "larger "
-        # msg = "right-click-select"
-        # msg = "Material Library VX"
-        # msg = "Equals"
-        # msg = "fig-mesh-screw-angle"
-        msg = "Context"
-        # is_debug = (msg and txt and (msg.lower() in txt.lower()))
-        is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        msg = "and without another"
+        is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        # is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
             print(f'Debugging text: {msg} at line txt:{txt}')

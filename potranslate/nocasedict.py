@@ -400,7 +400,7 @@ class NoCaseDict(OrderedDict):
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
-        cm.debugging(k)
+        # cm.debugging(k)
         k_length = len(k)
         k_word_list = k.split()
         k_word_count = len(k_word_list)

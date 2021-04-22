@@ -1,17 +1,17 @@
 import os
 import re
 from common import Common as cm, LocationObserver, KEYBOARD_TRANS_DIC, KEYBOARD_TRANS_DIC_PURE, numeric_trans
-from matcher import MatcherRecord
 from common import dd, pp
 from ignore import Ignore as ig
 import json
 from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
-from reftype import RefType
+from reftype import RefType, TranslationState
 import operator as OP
 from fuzzywuzzy import fuzz
 from nocasedict import NoCaseDict
 from sentence import SentStructRecord
+from matcher import MatcherRecord
 
 class TranslationEntry():
     def __init__(self, untran_txt=None, tran_txt=None, txt_loc=None, fuzzy_rate=None):
@@ -229,6 +229,13 @@ class TranslationFinder:
         c.dump_po(file_path, data_cat)
 
     def genmap(self, msg):
+        def simplifiesMatchedRecords():
+            mm: MatcherRecord = None
+            for loc, mm in matched_list:
+                txt = mm.txt
+                entry = {loc: txt}
+                loc_dic.update(entry)
+
         def genListOfDistance(max):
             dist_list = []
             for s in range(0, max):
@@ -248,8 +255,6 @@ class TranslationFinder:
         max = len(matched_dict)
         loc_dic = {}
         try:
-            start_mm: MatcherRecord = None
-            end_mm: MatcherRecord = None
             dist_list = genListOfDistance(max)
             dist_list.sort(reverse=True)
             for dist in dist_list:
@@ -267,6 +272,7 @@ class TranslationFinder:
         except Exception as e:
             raise e
 
+        simplifiesMatchedRecords()
         part_list = list(loc_dic.items())
         # sort out by the number of spaces (indicating word counts) rather than by common string length
         part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=True)    # this is how to sort with multi keys, in brackets
@@ -309,7 +315,8 @@ class TranslationFinder:
 
     def replacingUsingDic(self, local_dict_list: list, un_tran_dict: dict, text: str) -> str:
         def translateUntranslatedList(untran_dict: dict):
-            for remain_loc, un_tran_txt in untran_dict.items():
+            for remain_loc, un_tran_mm in untran_dict.items():
+                un_tran_txt = un_tran_mm.txt
                 is_ignore = ig.isIgnored(un_tran_txt)
                 if is_ignore:
                     print(f'replacingUsingDic: IGNORING: un_tran_txt:[{un_tran_txt}]')
@@ -493,7 +500,7 @@ class TranslationFinder:
             loc_right = current_translation[e:]
             current_translation = loc_left + loc_tran_txt + loc_right
 
-            observer.markedLocAsUsed(loc)
+            observer.markLocAsUsed(loc)
             is_fully_translated = observer.isCompletelyUsed()
             if is_fully_translated:
                 break
@@ -558,7 +565,8 @@ class TranslationFinder:
         if untran_word_dic and not has_abbrev:
             untran_word_list = list(untran_word_dic.items())
             untran_word_list.sort(reverse=True)
-            for loc, un_tran_word in untran_word_list:
+            for loc, un_tran_mm in untran_word_list:
+                un_tran_word = un_tran_mm.txt
                 tran_word_text, fuzzy_word_text, search_dict, matching_word_ratio, untran_sub_word_dic = self.isInDictFuzzy(un_tran_word)
                 if tran_word_text:
                     tran_sub_text = tran_sub_text.lower().replace(un_tran_word, tran_word_text)
@@ -595,7 +603,7 @@ class TranslationFinder:
 
             is_ignore = ig.isIgnored(orig_sub_text)
             if is_ignore:
-                observer.markedLocAsUsed(loc)
+                observer.markLocAsUsed(loc)
                 is_fully_translated = observer.isCompletelyUsed()
                 if is_fully_translated:
                     break
@@ -623,7 +631,7 @@ class TranslationFinder:
                 local_dict_entry = (matching_ratio, cover_length, loc, orig_sub_text, tran_sub_text)
                 local_translated_dict.append(local_dict_entry)
 
-                observer.markedLocAsUsed(loc)
+                observer.markLocAsUsed(loc)
                 is_fully_translated = observer.isCompletelyUsed()
                 if is_fully_translated:
                     break
@@ -1235,6 +1243,9 @@ class TranslationFinder:
             print(msg)
             raise Exception(msg)
 
+        is_matcher = isinstance(msg, MatcherRecord)
+        if is_matcher:
+            dd('debug')
         is_ignore = (not msg) or ig.isIgnored(msg)
         if is_ignore:
             return None, matched_text, search_dict, 0, untran_word_dic
@@ -1331,7 +1342,8 @@ class TranslationFinder:
     def translateWords(self, txt: str):
         word_list_dict = cm.findInvert(cm.SYMBOLS, txt)
         temp_tran = str(txt)
-        for loc, word in word_list_dict.items():
+        for loc, mm in word_list_dict.items():
+            word = mm.txt
             tran_sub_text, matched_text, matching_ratio = self.tryFuzzyTranlation(word)
             if tran_sub_text:
                 ss, ee = loc
@@ -1393,13 +1405,14 @@ class TranslationFinder:
 
         for separator in separator_list:
             temp_masking_text = str(txt)
-            found_dict = cm.findInvert(separator, txt, is_removing_surrounding_none_alphas=True)
+            found_dict = cm.findInvert(separator, txt)
             if not found_dict:
                 continue
 
             translated_dict = {}
             translation = str(txt)
-            for loc, orig_txt in found_dict.items():
+            for loc, mm in found_dict.items():
+                orig_txt = mm.txt
                 s, e = loc
 
                 is_ignore = ig.isIgnored(orig_txt)
@@ -1847,21 +1860,20 @@ class TranslationFinder:
             print(f'ERROR: {e} - msg:[{msg}], trans:[{trans}]')
             raise e
 
-    def translateKeyboard(self, msg):
+    def translateKeyboard(self, mm: MatcherRecord):
+        msg = mm.getSubText()
         orig = str(msg)
         trans = str(msg)
-        cm.debugging(msg)
         result_dict = cm.patternMatchAll(cm.KEYBOARD_SEP, msg)
-        for loc, mm in result_dict.items():
-            (s, e), txt = mm.getOriginAsTuple()
+        for sub_loc, sub_mm in result_dict.items():
+            txt = sub_mm.txt
             has_dic = (txt in self.kbd_dict)
             if not has_dic:
                 continue
 
             tr = self.kbd_dict[txt]
-            ll = trans[:s]
-            rr = trans[e:]
-            trans = ll + tr + rr
+            if tr:
+                trans = cm.jointText(trans, tr, sub_loc)
 
         is_fuzzy = False
         is_ignore = False
@@ -1869,7 +1881,10 @@ class TranslationFinder:
         if is_the_same:
             trans = None
             is_fuzzy = True
-        return trans, is_fuzzy, is_ignore
+        main_txt = mm.getMainText()
+        trans = cm.jointText(main_txt, trans, mm.getSubLoc())
+        mm.setTranlation(trans, is_fuzzy, is_ignore)
+        return True
 
     def checkIgnore(self, msg):
         is_pure_path = (cm.PURE_PATH.search(msg) is not None)
@@ -1880,14 +1895,32 @@ class TranslationFinder:
         is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not (is_keep or is_keep_contain))
         return is_ignore
 
-    def translateQuoted(self, msg, is_reversed=False, ref_type=None):
-        is_fuzzy = False
-        is_ignore = self.checkIgnore(msg)
-        if is_ignore:
-            return None, is_fuzzy, is_ignore
+    def translateQuoted(self, mm: MatcherRecord):
+        def formatTran(current_untran, current_tran):
+            starter = mm.getStarter()
+            ender = mm.getEnder()
+            explanation_part = f'({starter}{current_untran}{ender})'
+            abbrev_part = f'{starter}{current_tran}{ender}'
+            body = f'{abbrev_part} {explanation_part}'
+            tran = f':abbr:`{body}`'
+            return tran
+
+        msg = mm.getSubText()
+        # is_fuzzy = False
+        # is_ignore = self.checkIgnore(msg)
+        # if is_ignore:
+        #     return False
 
         tran, is_fuzzy, is_ignore = self.translate(msg)
-        return tran, is_fuzzy, is_ignore
+        if is_ignore:
+            return
+
+        if not tran:
+            tran = ""
+
+        tran = formatTran(msg, tran)
+        mm.setTranlation(tran, is_fuzzy, is_ignore)
+        return True
 
     def recomposeAbbrevTranslation(self, msg, tran):
         has_tran = (tran and not tran is None)
@@ -1908,71 +1941,119 @@ class TranslationFinder:
         tran = cm.removeOriginal(msg, tran)
         return tran
 
-    def translateRefWithLink(self, msg: str, ref_type: RefType):  # for things like :doc:`something <link>`, and :term:`something <link>`
-        ref_is_fuzzy = False
-        ref_is_ignore = self.checkIgnore(msg)
-        if ref_is_ignore:
-            return None, ref_is_fuzzy, ref_is_ignore
+    def translateRefWithLink(self, mm: MatcherRecord):
+        def formatTran(current_untran, current_tran):
+            ref_type: RefType = mm.type
+            has_ref = bool(ref_type)
+            has_valid_ref_type = (has_ref and isinstance(ref_type, RefType))
+            is_text_type = (has_valid_ref_type and ref_type == RefType.TEXT)
+            is_bracket_or_quote = (has_valid_ref_type and (cm.BRACKET_OR_QUOTE_REF.search(ref_type.name) is not None))
+            is_ignore_type = (is_text_type or is_bracket_or_quote)
+            is_formatting = (not is_ignore_type)
+            if not is_formatting:
+                return current_tran
 
-        translation = str(msg)
-        found_dict = cm.findInvert(cm.REF_LINK, msg)
-        found_dict_list = list(found_dict.items())
-        found_dict_list.reverse()
-        for loc, orig_txt in found_dict_list:
-            tran, is_fuzzy, is_ignore = self.translate(orig_txt)
-            if not tran:
-                continue
+            new_tran = f'{current_tran} ({current_untran})'
+            return new_tran
 
-            s, e = loc
-            left = translation[:s]
-            right = translation[e:]
-            translation = left + tran + right
+        formatted_tran = None
+        is_fuzzy = is_ignore = False
+        tran = None
+        msg = mm.getSubText()
+        has_ref_link = (cm.REF_LINK.search(msg) is not None)
+        if not has_ref_link:
+            tran, is_fuzzy, is_ignore = self.translate(msg)
+            mm.setTranlation(tran, is_fuzzy, is_ignore)
+        else:
+            found_dict = cm.findInvert(cm.REF_LINK, msg)
+            for sub_loc, sub_mm in found_dict.items():
+                sub_txt = sub_mm.getMainText()
+                sub_tran, is_fuzzy, is_ignore = self.translate(sub_txt)
+                sub_tran_formatted = formatTran(sub_txt, sub_tran)
+                formatted_tran = cm.jointText(msg, sub_tran_formatted, sub_loc)
+                tran = formatted_tran
+                break
+        if tran:
+            main_txt = mm.getMainText()
+            sub_loc = mm.getSubLoc()
+            if not formatted_tran:
+                formatted_tran = formatTran(msg, tran)
+            main_tran = cm.jointText(main_txt, formatted_tran, sub_loc)
+            mm.setTranlation(main_tran, is_fuzzy, is_ignore)
+        return bool(tran)
 
-        return translation, is_fuzzy, is_ignore
 
-    def translateMenuSelection(self, msg):
-        men_is_fuzzy = False
-        men_is_ignore = False
-        tran_txt = str(msg)
-        fuzzy_count = 0
-        ignore_count = 0
-        word_list = cm.findInvert(cm.MENU_SEP, msg)
-        word_count = len(word_list)
-        for loc, word in word_list.items():
-            s, e = loc
-            tran, is_fuzzy, is_ignore = self.translate(word)
-            fuzzy_count += (1 if is_fuzzy else 0)
-            ignore_count += (1 if is_ignore else 0)
-            if is_ignore:
-                continue
 
-            has_abbr = cm.hasAbbr(tran)
+    def translateMenuSelection(self, mm: MatcherRecord):
+        def formatAbbrevTran(current_untran, current_tran):
+            has_abbr = cm.hasAbbr(current_tran)
             if has_abbr:
-                abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(tran)
-                loc, abbr_txt = abbr_marker
-                orig_loc, orig_txt = abbr_orig
-                os, oe = orig_loc
-                left = tran[:os]
-                right = tran[oe:]
-                tran = left + abbr_txt + right
-                dd('debug translateMenuSelection hasAbbr')
-
-            is_tran_valid = (tran and (tran != word))
-            if is_tran_valid:
-                entry = f"{tran} ({word})"
+                abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(current_tran)
+                return_tran = cm.removeOriginal(current_untran, abbr_exp)
+                return return_tran
             else:
-                entry = f"({word})"
+                return current_tran
 
-            left = tran_txt[:s]
-            right = tran_txt[e:]
-            tran_txt = left + entry + right
+        def translateMenuItem(loc_word_list):
+            for loc, mnu_item_mm in loc_word_list.items():
+                sub_txt: str = mnu_item_mm.txt
 
-        men_is_fuzzy = (fuzzy_count > 0)
-        men_is_ignore = (ignore_count == word_count)
+                left, mid, right = cm.getTextWithin(sub_txt)
+                tran, is_fuzzy, is_ignore = self.translate(mid)
 
-        return tran_txt, men_is_fuzzy, men_is_ignore
+                has_left_right = (bool(left) or bool(right))
+                valid_tran = (bool(tran) is not is_ignore)
+                must_combine = (valid_tran and has_left_right)
+                if must_combine:
+                    tran = left + tran + right
 
-    def translateAbbrev(self, msg: str) -> list:
+                if is_ignore:
+                    continue
+
+                tran = formatAbbrevTran(sub_txt, tran)
+
+                is_tran_valid = (tran and (tran != sub_txt))
+                if is_tran_valid:
+                    is_sub_text_bracketed = sub_txt.startswith('(') and sub_txt.endswith(')')
+                    if is_sub_text_bracketed:
+                        tran_txt = f"{tran} {sub_txt}"
+                    else:
+                        tran_txt = f"{tran} ({sub_txt})"
+                else:
+                    tran_txt = f"({sub_txt})"
+
+                mnu_item_mm.setTranlation(tran_txt, is_fuzzy, is_ignore)
+
+        msg = mm.getSubText()
+
+        word_list = cm.findInvert(cm.MENU_SEP, msg)
+        translateMenuItem(word_list)
+
+        mm_main_txt = mm.getMainText()
+        trans = str(mm_main_txt)
+        tran_state_list=[]
+        for loc, mnu_item_mm in word_list.items():
+            trans = cm.jointText(trans, mnu_item_mm.translation, loc)
+            tran_state_list.append(mnu_item_mm.translation_state)
+
+        temp_tran_txt = mm.getSubText()
+        word_list = list(word_list.items())
+        for loc, mnu_item_mm in word_list:
+            tran_txt = mnu_item_mm.translation
+            temp_tran_txt = cm.jointText(temp_tran_txt, tran_txt, loc)
+
+        main_tran = mm.txt
+        sub_loc = mm.getSubLoc()
+        final_tran = cm.jointText(main_tran, temp_tran_txt, sub_loc)
+
+        is_fuzzy = (TranslationState.FUZZY in tran_state_list)
+        is_ignore = (TranslationState.IGNORED in tran_state_list)
+
+        actual_ignore = ((not is_fuzzy) and is_ignore)
+        mm.setTranlation(final_tran, is_fuzzy, actual_ignore)
+        return True
+
+    def translateAbbrev(self, mm: MatcherRecord) -> list:
         '''
             translateAbbrev: Routine to parse abbreviation entry, such as:
             :abbr:`JONSWAP (JOint North Sea WAve Project)`.
@@ -1986,44 +2067,52 @@ class TranslationFinder:
             'JONSWAP (JOint North Sea WAve Project -- <translation part>)' if has translationm, else
             'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
         '''
+
+        def removeAbbrevInTran(current_tran):
+            if not current_tran:
+                return None
+
+            abbrev_dict = cm.patternMatchAll(cm.ABBREV_PATTERN_PARSER, current_tran)
+            if not abbrev_dict:
+                return current_tran
+
+            new_tran = str(current_tran)
+            abbrev_dict_list = list(abbrev_dict.items())
+            abbrev_dict_list.reverse()
+            for loc, mm in abbrev_dict_list:
+                abbr_txt = mm.getMainText()
+                abbr_loc = (mm.s, mm.e)
+                abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(abbr_txt)
+                new_tran = cm.jointText(new_tran, exp_part, abbr_loc)
+            return new_tran
+
+        msg = mm.getSubText()
         tran_txt = str(msg)
+        first_match_mm: MatcherRecord = None
         all_matches = cm.patternMatchAll(cm.ABBR_TEXT, msg)
         if not all_matches:
-            return None, False, False
+            return False
 
-        is_fuzzy_list = []
-        is_ignore_list = []
-        mm: MatcherRecord = None
         all_matches_list = list(all_matches.items())
         first_match = all_matches_list[0]
-        loc, mm = first_match
+        first_match_loc, first_match_mm = first_match
 
-        (ss, ee), orig = mm.getOriginAsTuple()
-        first_entry = mm.getSubEntryByIndex(0)
-        loc, abbrev_explain_txt = first_entry
-
+        abbrev_loc, abbrev_explain_txt = first_match_mm.getSubEntryByIndex(1)
         tran, is_fuzzy, is_ignore = self.translate(abbrev_explain_txt)
-        is_fuzzy_list.append(is_fuzzy)
-        is_ignore_list.append(is_ignore)
 
-        if is_ignore:
-            return None, False, False
-
+        tran = removeAbbrevInTran(tran)
         valid = (tran and (tran != abbrev_explain_txt))
         if valid:
             translation = f"{abbrev_explain_txt}: {tran}"
         else:
             translation = f"{abbrev_explain_txt}: "
 
-        tran_txt = tran_txt[:ss] + translation + tran_txt[ee:]
-
-        some_ignore = (True in is_ignore_list)
-        some_not_ignore = (False not in is_ignore_list)
-        some_fuzzy = (True not in is_fuzzy_list)
-
-        is_ignore = some_ignore and not (some_not_ignore or some_fuzzy)
-        is_fuzzy = (True in is_fuzzy_list)
-        return tran_txt, is_fuzzy, is_ignore
+        tran_txt = cm.jointText(msg, translation, abbrev_loc)
+        main_txt = mm.getMainText()
+        sub_loc = mm.getSubLoc()
+        final_tran = cm.jointText(main_txt, tran_txt, sub_loc)
+        mm.setTranlation(final_tran, is_fuzzy, is_ignore)
+        return True
 
     def translateOSLAttrrib(self, msg: str):
         if not msg:
