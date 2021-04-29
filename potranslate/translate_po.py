@@ -30,7 +30,7 @@ from translation_finder import TranslationFinder as tf
 from ignore import Ignore as ig
 from collections import OrderedDict, defaultdict
 import json
-from reflist import RefList, RefRecord, RefItem
+from reflist import RefList
 from reftype import RefType
 from sphinx_intl import catalog as c
 from pyparsing import *

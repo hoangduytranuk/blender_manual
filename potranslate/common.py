@@ -10,11 +10,11 @@ from collections import deque
 from fuzzywuzzy import fuzz
 from bisect import bisect_left
 from matcher import MatcherRecord
-from urlextract import URLExtract as URLX
 from err import ErrorMessages as ER
 import operator
 import re
 import copy as CP
+from definition import Definitions as df
 
 DEBUG=True
 # DEBUG=False
@@ -26,166 +26,21 @@ def dd(*args, **kwargs):
         if len(args) == 0:
             print('-' * 80)
 
-KEYBOARD_TRANS_DIC = {
-    r'\bWheelUp\b': "Lăn Bánh Xe về Trước (WheelUp)",
-    r'\bWheelDown\b': "Lăn Bánh Xe về Sau (WheelDown)",
-    r'\bWheel\b': 'Bánh Xe (Wheel)',
-    "NumpadPlus": "Dấu Cộng (+) Bàn Số (NumpadPlus)",
-    "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
-    "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
-    "NumpadDelete": "Dấu Xóa/Del Bàn Số (NumpadDelete)",
-    "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadPeriod)",
-    "Numpad0": "Số 0 Bàn Số (Numpad0)",
-    "Numpad1": "Số 1 Bàn Số (Numpad1)",
-    "Numpad2": "Số 2 Bàn Số (Numpad2)",
-    "Numpad3": "Số 3 Bàn Số (Numpad3)",
-    "Numpad4": "Số 4 Bàn Số (Numpad4)",
-    "Numpad5": "Số 5 Bàn Số (Numpad5)",
-    "Numpad6": "Số 6 Bàn Số (Numpad6)",
-    "Numpad7": "Số 7 Bàn Số (Numpad7)",
-    "Numpad8": "Số 8 Bàn Số (Numpad8)",
-    "Numpad9": "Số 9 Bàn Số (Numpad9)",
-    "Spacebar": "Dấu Cách (Spacebar)",
-    r'\bDown\b': "Xuống (Down)",
-    r'\bUp\b': "Lên (Up)",
-    r'\bComma\b': "Dấu Phẩy (Comma)",
-    r'\bMinus\b': "Dấu Trừ (Minus)",
-    r'\bPlus\b': "Dấu Cộng (Plus)",
-    "Left": "Trái (Left)",
-    "=": "Dấu Bằng (=)",
-    "Equals": "Dấu Bằng (=)",
-    "Right": "Phải (Right)",
-    "Backslash": "Dấu Chéo Ngược (Backslash)",
-    r'\bSlash\b': "Dấu Chéo (Slash)",
-    "AccentGrave": "Dấu Huyền (AccentGrave)",
-    "Delete": "Xóa (Delete)",
-    "Period": "Dấu Chấm (Period)",
-    "Comma": "Dấu Phẩy (Comma)",
-    "PageDown": "Trang Xuống (PageDown)",
-    "PageUp": "Trang Lên (PageUp)",
-    "PgDown": "Trang Xuống (PgDown)",
-    "PgUp": "Trang Lên (PgUp)",
-    "OSKey": "Phím Hệ Điều Hành (OSKey)",
-    "Slash": "Dấu Chéo (Slash)",
-    "Minus": "Dấu Trừ (Minus)",
-    "Plus": "Dấu Cộng (Plus)",
-    "Down": "Xuống (Down)",
-    "Up": "Lên (Up)",
-    "MMB": "NCG (MMB)",
-    "LMB": "NCT (LMB)",
-    "RMB": "NCP (RMB)",
-    "Pen": "Bút (Pen)"
-}
-
-KEYBOARD_TRANS_DIC_PURE = {
-    "OSKey": "Phím Hệ Điều Hành (OSKey)",
-    "WheelUp": "Lăn Bánh Xe về Trước (WheelUp)",
-    "WheelDown": "Lăn Bánh Xe về Sau (WheelDown)",
-    "Wheel": "Bánh Xe (Wheel)",
-    "NumpadPlus": "Dấu Cộng (+) Bàn Số (NumpadPlus)",
-    "NumpadMinus": "Dấu Trừ (-) Bàn Số (NumpadMinus)",
-    "NumpadSlash": "Dấu Chéo (/) Bàn Số (NumpadSlash)",
-    "NumpadDelete": "Dấu Xóa/Del Bàn Số (NumpadDelete)",
-    "NumpadPeriod": "Dấu Chấm (.) Bàn Số (NumpadPeriod)",
-    "NumpadAsterisk": "Dấu Sao (*) Bàn Số (NumpadAsterisk)",
-    "Numpad0": "Số 0 Bàn Số (Numpad0)",
-    "Numpad1": "Số 1 Bàn Số (Numpad1)",
-    "Numpad2": "Số 2 Bàn Số (Numpad2)",
-    "Numpad3": "Số 3 Bàn Số (Numpad3)",
-    "Numpad4": "Số 4 Bàn Số (Numpad4)",
-    "Numpad5": "Số 5 Bàn Số (Numpad5)",
-    "Numpad6": "Số 6 Bàn Số (Numpad6)",
-    "Numpad7": "Số 7 Bàn Số (Numpad7)",
-    "Numpad8": "Số 8 Bàn Số (Numpad8)",
-    "Numpad9": "Số 9 Bàn Số (Numpad9)",
-    "Spacebar": "Dấu Cách (Spacebar)",
-    "Down": "Xuống (Down)",
-    "Up": "Lên (Up)",
-    "Comma": "Dấu Phẩy (Comma)",
-    "Minus": "Dấu Trừ (Minus)",
-    "Plus": "Dấu Cộng (Plus)",
-    "Left": "Trái (Left)",
-    "=": "Dấu Bằng (=)",
-    "Equals": "Dấu Bằng (=)",
-    "Right": "Phải (Right)",
-    "Backslash": "Dấu Chéo Ngược (Backslash)",
-    "Slash": "Dấu Chéo (Slash)",
-    "AccentGrave": "Dấu Huyền (AccentGrave)",
-    "Delete": "Xóa (Delete)",
-    "Period": "Dấu Chấm (Period)",
-    "PageDown": "Trang Xuống (PageDown)",
-    "PageUp": "Trang Lên (PageUp)",
-    "PgDown": "Trang Xuống (PgDown)",
-    "PgUp": "Trang Lên (PgUp)",
-    "OSKey": "Phím Hệ Điều Hành (OSKey)",
-    "MMB": "NCG (MMB)",
-    "LMB": "NCT (LMB)",
-    "RMB": "NCP (RMB)",
-    "Pen": "Bút (Pen)"
-}
-
-numeric_prefix = 'hằng/lần thứ/bộ/bậc'
-numeric_postfix = 'mươi/lần/bậc'
-numeral_dict = {
-    '@{1t}': 'ức',
-    '@{1b}': 'tỉ',
-    '@{1m}': 'triệu',
-    '@{1k}': 'nghìn',
-    '@{1h}': 'trăm',
-    '@{10}': 'chục/mươi/mười',
-    '@{0}': 'không/vô/mươi',
-    '@{1}': 'một/nhất/đầu tiên',
-    '@{2}': 'hai/nhì/nhị/phó/thứ/giây đồng hồ',
-    '@{3}': 'ba/tam',
-    '@{4}': 'bốn/tứ/tư',
-    '@{5}': 'năm/lăm/nhăm/Ngũ',
-    '@{6}': 'Sáu/Lục',
-    '@{7}': 'Bảy/Thất',
-    '@{8}': 'Số tám/bát',
-    '@{9}': 'Chín/cửu',
-}
-
-numeric_trans = {
-    'a|an': '@{1} con/cái/thằng',
-    'zero|none|empty|nullary': '@{0}',
-    'one|first|monuple|unary': '@{1}',
-    'two|second|couple|binary': '@{2}',
-    'three|third|triple|ternary': '@{3}',
-    'four(th)?|quadruple|Quaternary': '@{4}',
-    'five|fifth|quintuple|Quinary': '@{5}',
-    'six(th)?|sextuple|Senary': '@{6}',
-    'seven(th)?|septuple|Septenary': '@{7}',
-    'eight(th)?|octa|octal|octet|octuple|Octonary': '@{8}',
-    'nine(th)?|nonuple|Novenary|nonary': '@{9}',
-    'ten(th)?|decimal|decuple|Denary': '@{10}',
-    'eleven(th)?|undecuple|hendecuple': 'Mười @{1}',
-    'twelve(th)?|doudecuple': 'Mười @{2}',
-    'thirteen(th)?|tredecuple': 'Mười @{3}',
-    'fourteen(th)?|quattuordecuple': 'Mười @{4}',
-    'fifteen(th)?|quindecuple': 'Mười @{5}',
-    'sixteen(th)?|sexdecuple': 'Mười @{6}',
-    'seventeen(th)?|septendecuple': 'Mười @{7}',
-    'eighteen(th)?|octodecuple': 'Mười @{8}',
-    'nineteen(th)?|novemdecuple': 'Mười @{9}',
-    '(twent(y|ie(s|th))+?)|vigintuple': '@{2} @{10}',
-    '(thirt(y|ie(s|th))+?)|trigintuple': '@{3} @{10}',
-    '(fort(y|ie(s|th))+?)|quadragintuple': '@{4} @{10}',
-    '(fift(y|ie(s|th))+?)|quinquagintuple': '@{5} @{10}',
-    '(sixt(y|ie(s|th))+?)|sexagintuple': '@{6} @{10}',
-    '(sevent(y|ie(s|th))+?)|septuagintuple': '@{7} @{10}',
-    '(eight(y|ie(s|th))+?)|octogintuple': '@{8} @{10}',
-    '(ninet(y|ie(s|th))+?)|nongentuple': '@{9} @{10}',
-    '(hundred(s|th)?)|centuple': '@{1h}',
-    '(thousand(s|th)?)|milluple': '@{1k}',
-    'million(s|th)?': '@{1m}',
-    'billion(s|th)?': '@{1t}',
-    'trillion(s|th)?': '@{1t}',
-}
-
 class LocationObserver(OrderedDict):
-    def __init__(self, msg, tran_finder=None):
+    def __init__(self, msg):
         self.blank = str(msg)
         self.marked_loc={}
+
+    def getTextAt(self, s: int, e: int):
+        try:
+            txt = self.blank[s:e]
+            return txt
+        except Exception as e:
+            return None
+
+    def getTextAtLoc(self, loc: tuple):
+        (s, e) = loc
+        return self.getTextAt(s, e)
 
     def markListAsUsed(self, loc_list:list):
         for loc in loc_list:
@@ -198,7 +53,7 @@ class LocationObserver(OrderedDict):
             return
 
         marked_loc_entry = {loc: self.blank[s:e]}
-        blk = (Common.FILLER_CHAR * (e - s))
+        blk = (df.FILLER_CHAR * (e - s))
         left = self.blank[:s]
         right = self.blank[e:]
         self.blank = left + blk + right
@@ -210,8 +65,8 @@ class LocationObserver(OrderedDict):
 
     def isPartlyUsed(self, s: int, e: int):
         part = self.blank[s:e]
-        is_dirty = (Common.FILLER_PARTS.search(part) is not None)
-        is_fully_used = (Common.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
+        is_dirty = (df.FILLER_PARTS.search(part) is not None)
+        is_fully_used = (df.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
         return (is_dirty and not is_fully_used)
 
     def isLocPartlyUsed(self, loc: tuple):
@@ -224,828 +79,27 @@ class LocationObserver(OrderedDict):
 
     def isFullyUsed(self, s:int, e:int):
         part = self.blank[s:e]
-        is_all_used = (Common.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
+        is_all_used = (df.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
         return is_all_used
 
     def isUsed(self, s: int, e: int):
         part = self.blank[s:e]
-        is_dirty = (Common.FILLER_PARTS.search(part) is not None)
-        is_fully_used = (Common.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
-        return (is_dirty and is_fully_used)
+        is_dirty = (df.FILLER_PARTS.search(part) is not None)
+        return is_dirty
 
     def isLocUsed(self, loc: tuple):
         s, e = loc
         return self.isUsed(s, e)
 
     def isCompletelyUsed(self):
-        is_fully_done = (Common.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
+        is_fully_done = (df.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
         return is_fully_done
 
     def getUnmarkedPartsAsDict(self):
-        untran_dict = Common.findInvert(Common.FILLER_PARTS, self.blank)
+        untran_dict = Common.findInvert(df.FILLER_PARTS, self.blank, is_reversed=True)
         return untran_dict
 
 class Common:
-    total_files = 1358
-    file_count = 0
-    PAGE_SIZE = 20 * 4096
-    MAX_FUZZY_LIST = 100
-    MAX_FUZZY_TEST_LENGTH = 0.5
-    FUZZY_ACCEPTABLE_RATIO = 90
-    FUZZY_MODERATE_ACCEPTABLE_RATIO = 85
-    FUZZY_LOW_ACCEPTABLE_RATIO = 70
-    FUZZY_VERY_LOW_ACCEPTABLE_RATIO = 45
-    FUZZY_PERFECT_MATCH_PERCENT = 60
-
-    APOSTROPHE_CHAR = "'"
-    MAX_FUZZY_ACCEPTABLE_RATIO = 95
-    FUZZY_RATIO_INCREMENT = 5
-    AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
-    FUZZY_KEY_LENGTH_RATIO = 0.3
-    SENT_STRUCT_SYMB = '$$$'
-    SENT_STRUCT_PAT = re.compile(r'\s*\${3}\s*')
-    TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
-    PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
-
-    WEAK_TRANS_MARKER = "#-1#"
-    debug_current_file_count = 0
-    debug_max_file_count = 5
-    debug_file = None
-
-    # debug_file = 'addons/3d_view'
-    # debug_file = 'animation/armatures/posing/bone_constraints/introduction' # e.g.
-    # debug_file = 'animation/armatures/posing/bone_constraints/inverse_kinematics/introduction' # kbd WheelDown/Up
-    # debug_file = "video_editing/sequencer/strips/effects/subtract"
-    # debug_file = "video_editing/introduction"
-    # debug_file = "about/contribute/index"
-    # debug_file="interface/window_system/topbar"
-    # debug_file = "advanced/app_templates"
-    # debug_file = "modeling/empties"
-    # debug_file = "animation/armatures/posing/editing"
-    # debug_file = "index"
-    # debug_file = "animation/constraints/relationship/shrinkwrap"
-    # debug_file = "getting_started/about/community"
-    # debug_file = "animation/actions"
-    # debug_file = "video_editing/sequencer/strips/transitions/wipe" # :ref:`easings <editors-graph-fcurves-settings-easing>`
-    # debug_file = "about/contribute/editing"
-    # debug_file = "about/contribute/build/windows"
-    # debug_file = "about/contribute/build/macos"
-    # debug_file = "about/contribute/guides/maintenance_guide"
-    # debug_file = "about/contribute/guides/markup_guide" # debugging :term: :abbr:, ``:kbd:`LMB```, ``*Mirror*``, ``:menuselection:`3D View --> Add --> Mesh --> Monkey```
-    # debug_file = "about"
-    # debug_file = "about/contribute/install/windows"
-    # debug_file = "about/license" # (online) or URL (in print) to manual
-    # debug_file = "addons/3d_view/3d_navigation" # debugging :menuselection:
-    # debug_file = "addons/add_curve/index"
-    # debug_file = "addons/add_curve/ivy_gen"
-    # debug_file = "addons/import_export/anim_nuke_chan"
-    # debug_file = "addons/node/node_wrangler"
-    # debug_file = "addons/object/carver"
-    # debug_file = "advanced/command_line/arguments" # trouble some file
-    # debug_file = "advanced/command_line/introduction"
-    # debug_file = "advanced/command_line/launch/macos"
-    # debug_file = "animation/armatures/bones/editing/properties"
-    # debug_file = "animation/constraints/relationship/shrinkwrap"
-    # debug_file = "animation/constraints/tracking/damped_track"
-    # debug_file = "compositing/types/color/color_balance"
-    # debug_file = "compositing/types/color/hue_saturation"
-    # debug_file = "editors/dope_sheet/introduction" # Pan the view vertically (values) or horizontally (time) with click and drag (:kbd:`MMB`).
-    # debug_file = "editors/graph_editor/channels" # Box Select: (:kbd:`LMB` drag) or :kbd:`B` (:kbd:`LMB` drag)
-    # debug_file = "editors/preferences/system"
-    # debug_file = "editors/texture_node/types/converter/rgb_to_bw"
-    # debug_file = "editors/timeline"
-    # debug_file = "editors/uv/introduction"
-    # debug_file = "files/media/image_formats"
-    # debug_file = "getting_started/about/history"
-    # debug_file = "grease_pencil/modes/draw/tool_settings/line"
-    # debug_file = "interface/controls/nodes/editing"
-    # debug_file = "manual/modeling/meshes/primitives"
-    # debug_file = "modeling/meshes/editing/vertices"
-    # debug_file = "modeling/meshes/structure"
-    # debug_file = "modeling/surfaces/structure"
-    # debug_file = "movie_clip/tracking/clip/properties/stabilization/introduction"
-    # debug_file = "render/shader_nodes/textures/white_noise"
-    # debug_file = "scene_layout/object/selecting"
-    # debug_file = "scene_layout/scene/properties"
-    # debug_file = "sculpt_paint/sculpting/hide_mask"
-    # debug_file = "sculpt_paint/weight_paint/editing"
-    # debug_file = "video_editing/sequencer/properties/strip"
-    # debug_file = "video_editing/sequencer/strips/movie_image"
-
-    leading=r'([\`\<]+)'
-    ending=r'([\`\>]+)'
-    word = r'([\w\d\#]+)'
-    sep = r'([<>\\\/\-\_\.{}:]+)'
-    sep_first = r'((%s(%s%s)+)+)' % (sep, word, sep)
-    word_first = r'((%s(%s%s)+)+%s?)' % (word, sep, word, sep)
-    word_first_with_leading_ending = r'(%s%s%s)' % (leading, word_first, ending)
-    pat = r'%s|%s' % (word_first, sep_first)
-    path_with_leading_and_ending = r'%s|%s' % (word_first_with_leading_ending, sep_first)
-    pat_full = r'^(%s)$' % (pat)
-
-    word = r'([\w\#]+)'
-    ignore_words = r'((M[ris]+|Dr|etc|e.g)[\.])'
-    url_leading = r'((http|https|file)\:\/\/)'
-    URL_LEADING_PATTERN = re.compile(url_leading, re.I)
-
-    path_sep = r'([\~\\\\////\\\/\_\-\.\:\*\?\=\{\}\|]{1,2})'
-    leading_hyphens = r'(^[-]+)'
-    ref_tag = r'(^:%s:$)' % (word)
-    single_hyphen = r'(^%s[-:*_\/]%s$)' % (word, word)
-    number_format = r'(\d+[.]\d+)'
-    hour_format = r'(%s:%s(:%s)?([.]%s)?)' % (word, word, word, word)
-    whatever = r'(%s?)[*]{1}(%s?)' % (word, word)
-    file_extension = r'^([.]%s)$' % (word)
-    return_linefeed = r'^(\\[nr])$'
-    bold_word = r'^(\*%s\*)$' % (word)
-    not_allowed = r'(?!(%s|%s|%s|%s|%s|%s|%s|%s))' % (ignore_words, bold_word, leading_hyphens, single_hyphen, ref_tag, hour_format, number_format, return_linefeed)
-    path = r'(%s|%s)?((%s(%s)?%s)+)+' % (word, path_sep, path_sep, path_sep, word)
-    variable = r'[\w_-]+'
-    api_path = r'((%s\.%s)+)+' % (variable, variable)
-    blender_api = r'^(blender_api\:%s)$' % (api_path)
-
-    extension_0001 = r'(%s\.%s)' % (word, word)
-    extension_0002 = r'(%s\.%s)' % (whatever, word)
-    extension_0003 = r'(%s\.%s)' % (word, whatever)
-    extension_0004 = r'(%s\.%s)' % (whatever, whatever)
-
-    ending_extension = r'(%s|%s|%s|%s)' \
-                       % ( \
-                           extension_0001, \
-                           extension_0002, \
-                           extension_0003, \
-                           extension_0004,
-                       )
-    path_def = r'^(%s|%s)%s?(%s)?$' % (path, url_leading, path_sep, ending_extension)
-    # path_def = r'^%s(%s)%s?$' % (not_allowed, path, path_sep)
-    path_pattern = r'%s(%s|%s|%s)' % (not_allowed, path_def, file_extension, blender_api)
-    PATH_CHECKER = re.compile(path_pattern, flags=re.I)
-
-    # meta_char_list = "[].^$*+?{}()\|"
-    METACHAR_PATTERN = re.compile(r'[\[\]\.\^\$\*\+\?\{\}\(\)\\\|]', re.M)
-    PREFIX_END = r'[^0-9@#.,]'
-    NUMBER_TOKEN = r'[0-9@#.,E+]'
-
-    PREFIX_PATTERN = r"(?P<prefix>(?:'[^']*'|%s)*)" % PREFIX_END
-    NUMBER_PATTERN = r"(?P<number>%s*)" % NUMBER_TOKEN
-    SUFFIX_PATTERN = r"(?P<suffix>.*)"
-
-    NUMBER_RE = re.compile(r"%s%s%s" % (PREFIX_PATTERN, NUMBER_PATTERN,
-                                        SUFFIX_PATTERN))
-    WHITESPACE = re.compile('[\n\r\t\v\f]')
-    EMAIL_ADDRESS = re.compile(r"^\s*.+@[^\.].*\.[a-z]{2,}$")      # start to end
-    DOC_LINK = re.compile(r'^(\/\w+)+$')
-
-    WORD_SEPARATION = re.compile('('
-                      r'\s+|'                                 # any whitespace
-                      r'[^\s\w]*\w+[a-zA-Z]-(?=\w+[a-zA-Z])|'  # hyphenated words
-                      r'(?<=[\w\!\"\'\&\.\,\?])-{2,}(?=\w)'   # em-dash
-                      ')')
-
-    REF_PATH = re.compile(r'^\w+([\-\.]\w+){1,}$')
-    DOC_PATH = re.compile(r'^(\/\w+)+$')
-
-    KBD='kbd'
-    MNU='menuselection'
-    DOC='doc'
-    ABBREV='abbr'
-    STD_REF='std-ref'
-    X_REF = 'xref'
-    REF_URI='refuri'
-    GUI_LAB = 'guilabel'
-    TAG_ABBR='abbreviation'
-    TAG_NAME='tagname'
-    CLASS='classes'
-
-    # var = r'[\w\_\.\-]+'
-    # param = r'(%s(\,(\s+)?)?)+' % (var)
-    # funct = r'^(%s\((%s)?\))$' % (var, param)
-    var = r'[\w\_\.\-]+'
-    param = r'(%s(\,(\s+)?)?)+' % (var)
-    multiple = r'^\w+\(s\)$'
-    ga_multi = r'([\`]+)?'
-    funct = r'^%s(%s\((%s)?\))%s$' % (ga_multi, var, param, ga_multi)
-    FUNCTION = re.compile(funct)
-
-    email = r'(<)?(\w+@\w+(?:\.\w+)+)(?(1)>|$)'
-    sentence_elements = r'([^\.\,\:\!]+)'
-    not_follow_by_a_space = r'(?!\s)'
-    follow_by_a_space_or_end = r'(?:(\s|$))'
-    not_precede_by_a_space = r'(?<![\s\d])'
-    # setence_break_pat_txt = r'%s%s%s' % (not_precede_by_a_space, sentence_elements, follow_by_a_space_or_end)
-    setence_break_pat_txt = r'%s%s' % (sentence_elements, follow_by_a_space_or_end)
-    COMMON_SENTENCE_BREAKS = re.compile(setence_break_pat_txt)
-
-    TRIMMABLE_ENDING = re.compile(r'([\s\.\,\:\!]+)$')
-    TRIMMABLE_BEGINNING=re.compile(r'^([\s\.\,]+)')
-    TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
-    HEADING_WITH_PUNCT = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]')
-
-    TRAILING_WITH_PUNCT_MULTI = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+$')
-    HEADING_WITH_PUNCT_MULTI = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\*\?\-\+\/\#\&]+')
-
-    REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\;\<\`\-\+\/\#\&]+')
-    REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\;\`\-\+\/\#\&\,\.]+$')
-
-    RETAIN_FIRST_CHAR = re.compile(r'^[\*\'\"]+')
-    RETAIN_LAST_CHAR = re.compile(r'[\*\'\"]+$')
-
-    LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
-    TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
-
-    GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
-    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^\`]+)[\`]+')
-    ABBREV_PATTERN_PARSER_FULL = re.compile(r'^:abbr:[\`]+([^\`]+)[\`]+$')
-    ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
-
-    ABBREV_FRONT=re.compile(r':abbr:[\`]+\(')
-    GA_BACK=re.compile(r'\)[\`]+')
-
-    punctuals = r'([\\\/\.\,\:\;\!\?\"\*\'\`]+)'
-    basic_punctuals = r'([\.\,\`]+)'
-    PUNCTUALS = re.compile(punctuals)
-    BASIC_PUNCTUALS = re.compile(basic_punctuals)
-
-    begin_punctuals = r'^%s' % (punctuals)
-    end_punctuals = r'%s$' % (punctuals)
-    single = r'{1}'
-    punctual_single = r'(%s%s)' % (punctuals, single)
-    end_punctual_single = r'%s$' % (punctual_single)
-    begin_punctual_single = r'^%s' % (punctual_single)
-
-    BEGIN_PUNCTUAL_MULTI = re.compile(begin_punctuals)
-    BEGIN_PUNCTUAL_SINGLE = re.compile(begin_punctual_single)
-    ENDS_PUNCTUAL_MULTI = re.compile(end_punctuals)
-    ENDS_PUNCTUAL_SINGLE = re.compile(end_punctual_single)
-
-    WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
-    REF_SEP = ' -- '
-    NON_WORD_ONLY = re.compile(r'^([\W]+)$')
-    NON_WORD = re.compile(r'([\W]+)')
-    NON_WORD_ENDING = re.compile(r'([\W]+)$')
-    NON_WORD_STARTING = re.compile(r'^([\W]+)')
-    TRANSLATABLE_CHARACTERS = re.compile(r'[a-zA-Z]+')
-
-    GA_REF_PART = re.compile(r':[\w]+:')
-    # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
-    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    GA_REF_ONLY = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
-    #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
-    OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
-    COLON_CHAR = re.compile(r'\:')
-    # this (something ... ) can have other links inside of it as well as others
-    # the greedy but more accurate is r'[\(]+(.*)?[\)]+'
-    # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
-    ARCH_BRAKET_SINGLE_FULL = re.compile(r'\b\(([^\)]+)\)\b')
-    #ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
-    ARCH_BRAKET_MULTI = re.compile(r'\b\((.*?)\)\b')
-    ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
-
-    # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    AST_QUOTE = re.compile(r"(?<!\w)(\*+)([^\*]+)(?:\b)(\*+)")
-    # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    DBL_QUOTE = re.compile(r'(?<!\\")(")(.*?)(")')
-    # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
-    SNG_QUOTE = re.compile(r"(?<!\w)(\')([^\']+)(?:\b)(\')")
-    DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
-    WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
-
-    LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
-    MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
-    MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
-    MENU_SEP = re.compile(r'\s?([\-]+\>)\s?')
-
-    ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
-    REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
-    REF_PART = re.compile(r'([<(][^<>()]+[>)])')
-    END_WITH_REF = re.compile(r'([<][^<>]+[>])$')
-    HYPHEN_REF_LINK = re.compile(r'^(\w+)(\-\w+){2,}$')
-    LINK_ALL = re.compile(r'^([/][\w_]+)+$')
-    MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
-
-    path_sep = r'[\\\/\-\_\.]'
-    PATH_SEP = re.compile(path_sep)
-    NON_PATH_SEP = re.compile(r'^[^\\\/\-\_\.]+$')
-
-    WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
-    NON_WORD_FIND = re.compile(r'\W+')
-    WORD_START_REMAIN = re.compile(r'^\w+')
-    WORD_END_REMAIN = re.compile(r'\w+$')
-
-    ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
-    MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
-    MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
-    MENU_EX_PART = re.compile(r'(\s?[\-]{2}\>\s?)')
-
-    KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
-    KEYBOARD_SEP = re.compile(r'[^\-]+')
-    SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
-    ALPHA_NUMERICAL = re.compile(r'[\w]+')
-    EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
-    OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
-    FILLER_CHAR='¶'
-    filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
-    FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
-
-    filler_char_and_space_pattern_str = r'[%s\s]+' % (FILLER_CHAR)
-    FILLER_CHAR_INVERT = re.compile(filler_char_and_space_pattern_str)
-
-    filler_parts = r'\s?([%s]+)\s?' % (FILLER_CHAR)
-    FILLER_PARTS = re.compile(filler_parts)
-
-    filler_char_and_space_pattern_str = r'^[\s%s]+$' % FILLER_CHAR
-    FILLER_CHAR_AND_SPACE_ONLY_PATTERN = re.compile(filler_char_and_space_pattern_str)
-
-    filler_char_all_pattern_str = r'^[%s\s]+$' % FILLER_CHAR
-    FILLER_CHAR_ALL_PATTERN = re.compile(filler_char_all_pattern_str)
-
-    NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
-    NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
-    ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
-    ABBR_TEXT_ALL = re.compile(r'([^\(]+[\w])\s\(([^\)]+)\)')
-    REF_WITH_LINK = re.compile(r'([^\<\>\(\)]+)\s+?([\<\(]([^\<\>\(\)]+)[\)\>])?')
-    REF_WITH_HTML_LINK = re.compile(r'([^\<\>]+)\s+?(\<([^\<\>]+)\>)?')
-
-    IS_A_PURE_LINK = re.compile(r'^(?P<sep>[\/\-\\\.])?[^.*(?P=sep)]+(.*(?P=sep).*[^(?P=sep)]+){2,}$')
-
-    REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
-    TERM_LINK = re.compile(r'([^\`]+)\<?[^\`]+\>?')
-    PURE_PATH = re.compile(r'^(([\/\\][\w]+)([\/\\][\w]+)*)+[\/\\]?$')
-    PURE_REF = re.compile(r'^([\w]+([\-][\w]+)+)+$')
-    API_REF = re.compile(r'^blender_api:.*$')
-
-    SPACE_WORD_SEP = re.compile(r'[\S]+')
-    ACCEPTABLE_WORD = re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
-
-    QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
-
-    BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
-
-    # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
-    CHARACTERS = re.compile(r'\w+')
-    WORD_SEP = re.compile(r'[^\W]+')
-    SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
-    SYMBOLS = re.compile(r'[\W]+')
-    SPACES = re.compile(r'\s+')
-    START_SPACES = re.compile(r'^\s+')
-    END_SPACES = re.compile(r'\s+$')
-
-    NOT_SYMBOLS = re.compile(r'[\w]+')
-    SPACE_SEP_WORD = re.compile(r'[^\s]+')
-    THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
-    MULTI_SPACES = re.compile(r'[\s]{2,}')
-    HYPHEN = re.compile(r'[\-]')
-    SPACE_SEP = re.compile(r'\s')
-
-    START_WORD = '^'
-    END_WORD = '$'
-    BOTH_START_AND_END = '^$'
-
-    START_WORD_SYMBOLS = re.compile(r'^\W+')
-    END_WORD_SYMBOLS = re.compile(r'\W+$')
-
-    EN_DUP_ENDING = re.compile(r'[aeiou]\w{1}$')
-
-    FILE_EXTENSION = re.compile(r'^[\.//]\w{2,}$')
-    FILE_NAME_WITH_EXTENSION = re.compile(r'(?:[^\+\-\=\s])[\w\-\_\*]+\.\w+$')
-    WORD_SPLITTER = None
-    # nlp = spacy.load('en_core_web_sm')
-
-    BRACKET_OR_QUOTE_REF = re.compile(r'(_QUOTE|_BRACKET)')
-
-    verb_with_ending_y = [
-        'aby', 'bay', 'buy', 'cry', 'dry', 'fly', 'fry', 'guy', 'hay',
-        'joy', 'key', 'lay', 'pay', 'ply', 'pry', 'ray', 'say', 'shy',
-        'sky', 'spy', 'toy', 'try', 'ally', 'baby', 'body', 'bray', 'buoy',
-        'bury', 'busy', 'cloy', 'copy', 'defy', 'deny', 'eddy', 'envy',
-        'espy', 'flay', 'fray', 'gray', 'grey', 'levy', 'obey', 'okay',
-        'pity', 'play', 'pray', 'prey', 'rely', 'scry', 'slay',
-        'spay', 'stay', 'sway', 'tidy', 'vary', 'allay', 'alloy', 'annoy',
-        'apply', 'array', 'assay', 'bandy', 'belay', 'belly', 'berry',
-        'bogey', 'bully', 'caddy', 'candy', 'carry', 'chevy', 'chivy',
-        'colly', 'curry', 'dally', 'decay', 'decoy', 'decry', 'deify', 'delay',
-        'dirty', 'dizzy', 'dummy', 'edify', 'empty', 'enjoy', 'ensky', 'epoxy',
-        'essay', 'fancy', 'ferry', 'foray', 'glory', 'harry', 'honey', 'hurry',
-        'imply', 'inlay', 'jelly', 'jimmy', 'jolly', 'lobby', 'marry', 'mosey',
-        'muddy', 'palsy', 'parry', 'party', 'putty', 'query', 'rally', 'ready',
-        'reify', 'relay', 'repay', 'reply', 'retry', 'savvy', 'splay', 'spray',
-        'stray', 'study', 'stymy', 'sully', 'tally', 'tarry', 'toady', 'unify',
-        'unsay', 'weary', 'worry', 'aerify', 'argufy', 'basify', 'benday',
-        'betray', 'bewray', 'bloody', 'canopy', 'chivvy', 'citify', 'codify',
-        'comply', 'convey', 'convoy', 'curtsy', 'defray', 'deploy', 'descry',
-        'dismay', 'embody', 'employ', 'flurry', 'gasify', 'jockey', 'minify',
-        'mislay', 'modify', 'monkey', 'motley', 'mutiny', 'nazify', 'notify',
-        'occupy', 'ossify', 'outcry', 'pacify', 'parlay', 'parley', 'parody',
-        'prepay', 'purify', 'purvey', 'quarry', 'ramify', 'rarefy', 'rarify',
-        'ratify', 'rebury', 'recopy', 'remedy', 'replay', 'sashay', 'scurry',
-        'shimmy', 'shinny', 'steady', 'supply', 'survey', 'tumefy', 'typify',
-        'uglify', 'verify', 'vilify', 'vinify', 'vivify', 'volley', 'waylay',
-        'whinny', 'acetify', 'acidify', 'amnesty', 'amplify', 'atrophy', 'autopsy',
-        'beatify', 'blarney', 'calcify', 'carnify', 'certify', 'clarify', 'company',
-        'crucify', 'curtsey', 'dandify', 'destroy', 'dignify', 'disobey', 'display',
-        'dulcify', 'falsify', 'fancify', 'fantasy', 'fortify', 'gainsay', 'glorify',
-        'gratify', 'holiday', 'horrify', 'jellify', 'jollify', 'journey', 'justify',
-        'lignify', 'liquefy', 'liquify', 'magnify', 'metrify', 'misally', 'misplay',
-        'mollify', 'mortify', 'mummify', 'mystify', 'nigrify', 'nitrify', 'nullify',
-        'opacify', 'outplay', 'outstay', 'overfly', 'overjoy', 'overlay', 'overpay',
-        'petrify', 'pillory', 'portray', 'putrefy', 'qualify', 'rectify', 'remarry',
-        'reunify', 'satisfy', 'scarify', 'signify', 'specify', 'stupefy', 'terrify',
-        'testify', 'tourney', 'verbify', 'versify', 'vitrify', 'alkalify', 'ammonify',
-        'beautify', 'bioassay', 'causeway', 'classify', 'corduroy', 'denazify', 'detoxify',
-        'disarray', 'downplay', 'emulsify', 'esterify', 'etherify', 'fructify', 'gentrify',
-        'humidify', 'identify', 'lapidify', 'misapply', 'miscarry', 'multiply', 'overplay',
-        'overstay', 'prettify', 'prophesy', 'quantify', 'redeploy', 'revivify', 'rigidify',
-        'sanctify', 'saponify', 'simplify', 'solidify', 'stratify', 'stultify', 'travesty',
-        'underlay', 'underpay', 'accompany', 'butterfly', 'decalcify', 'decertify', 'demulsify',
-        'demystify', 'denitrify', 'devitrify', 'disembody', 'diversify', 'electrify', 'exemplify',
-        'frenchify', 'indemnify', 'intensify', 'inventory', 'microcopy', 'objectify', 'overweary',
-        'personify', 'photocopy', 'preachify', 'preoccupy', 'speechify', 'syllabify', 'underplay',
-        'blackberry', 'complexify', 'declassify', 'dehumidify', 'dillydally', 'disqualify',
-        'dissatisfy', 'intermarry', 'oversupply', 'reclassify', 'saccharify', 'understudy',
-        'hypertrophy', 'misidentify', 'oversimplify', 'transmogrify', 'interstratify',
-    ]
-
-    verb_with_ending_s = [
-        'Bus', 'Gas', 'Bias', 'Boss', 'Buss', 'Cuss', 'Diss', 'Doss', 'Fuss', 'Hiss',
-        'Kiss', 'Mass', 'Mess', 'Miss', 'Muss', 'Pass', 'Sass', 'Suds', 'Toss', 'Amass',
-        'Bless', 'Class', 'Cross', 'Degas', 'Dress', 'Floss', 'Focus', 'Glass', 'Gloss',
-        'Grass', 'Gross', 'Guess', 'Press', 'Truss', 'Access', 'Assess', 'Bypass', 'Callus',
-        'Canvas', 'Caress', 'Caucus', 'Census', 'Chorus', 'Egress', 'Emboss', 'Harass',
-        'Obsess', 'Precis', 'Recess', 'Rumpus', 'Schuss', 'Stress', 'Address', 'Aggress',
-        'Callous', 'Canvass', 'Compass', 'Concuss', 'Confess', 'Degauss', 'Depress', 'Digress',
-        'Discuss', 'Dismiss', 'Engross', 'Express', 'Harness', 'Impress', 'Nonplus', 'Oppress',
-        'Percuss', 'Possess', 'Precess', 'Premiss', 'Process', 'Profess', 'Redress', 'Refocus',
-        'Regress', 'Repress', 'Succuss', 'Summons', 'Surpass', 'Teargas', 'Trellis', 'Uncross',
-        'Undress', 'Witness', 'Bollocks', 'Buttress', 'Compress', 'Distress', 'Outclass', 'Outguess',
-        'Progress', 'Reassess', 'Suppress', 'Trespass', 'Waitress', 'Backcross', 'Embarrass',
-        'Encompass', 'Overdress', 'Repossess', 'Reprocess', 'Unharness', 'Verdigris', 'Crisscross',
-        'Decompress', 'Dispossess', 'Eyewitness', 'Misaddress', 'Overstress', 'Prepossess', 'Rendezvous',
-        'Retrogress', 'Transgress', 'Disembarrass',
-    ]
-
-    common_prefixes = [
-        'a', 'an', 'co', 'de', 'en', 'ex', 'il', 'im', 'in', 'ir', 'in',
-        'un', 'up', 'com', 'con', 'dis', 'non', 'pre', 'pro', 'sub', 'sym',
-        'syn', 'tri', 'uni', 'ante', 'anti', 'auto', 'homo', 'mono', 'omni',
-        'post', 'tele', 'extra', 'homeo', 'hyper', 'inter', 'intra', 'intro',
-        'macro', 'micro', 'trans', 'circum', 'contra', 'contro', 'hetero',
-    ]
-    
-    common_prefix_trans = {
-        'auto': (START_WORD, 'tự động'),
-        'pre': (START_WORD, 'tiền/trước'),
-    }
-
-    noun_001 = 'sự/chỗ/phần/vùng/bản/cái/mức/độ/tính/sự/phép'
-    noun_002 = 'mọi/nhiều/những/các/phần/bản/sự/chỗ'
-    noun_003 = 'chủ nghĩa/tính/trường phái'
-    noun_0004 = 'mọi/những chỗ/cái/các/nhiều/một số/vài vật/bộ/trình/người/viên/nhà/máy/phần/bản/cái/con/trình/bộ/người/viên/vật'
-    adj_0001 = 'trong/thuộc/có tính/sự/chỗ/phần/trạng thái'
-    adj_0002 = 'trong/là/nói một cách/có tính/theo'
-    adv_0001 = 'đáng/có khả năng/thể'
-    past_0001 = 'đã/bị/được'
-
-    common_sufix_trans = {
-        's': (START_WORD, noun_0004),
-        'ed': (START_WORD, past_0001),
-        'es': (START_WORD, noun_0004),
-        'er': (END_WORD, 'hơn/trình/bộ/người/viên/nhà'),
-        'ic': (START_WORD, 'giống/liên quan đến/hoạt động trong'),
-        'or': (START_WORD, noun_0004),
-        'al': (START_WORD, adj_0001),
-        'inal': (START_WORD, adj_0001),
-        'ly': (START_WORD, adj_0002),
-        'ty': (START_WORD, adj_0001),
-        '(s)': (START_WORD, 'những/các'),
-        'ers': (START_WORD, noun_0004),
-        'ies': (START_WORD, noun_0004),
-        'ier': (END_WORD, 'hơn'),
-        '\'s': (START_WORD, 'của'),
-        'ors': (START_WORD, noun_0004),
-        'est': (END_WORD, 'nhất'),
-        'dom': (START_WORD, noun_001),
-        'ful': (START_WORD, 'có/rất/nhiều'),
-        'nce': (START_WORD, noun_001),
-        'ily': (START_WORD, adj_0002),
-        'ity': (START_WORD, noun_001),
-        'ive': (START_WORD, adj_0001),
-        'ish': (START_WORD, 'hơi hơi/có xu hướng/gần giống'),
-        'ism': (START_WORD, noun_003),
-        'isms': (START_WORD, noun_003),
-        'als': (START_WORD, noun_0004),
-        'ure': (START_WORD, noun_001),
-        '\'ll': (START_WORD, 'sẽ'),
-        'able': (START_WORD, adv_0001),
-        'ably': (START_WORD, adv_0001),
-        'ence': (START_WORD, noun_001),
-        'doms': (START_WORD, noun_001),
-        'ible': (START_WORD, adv_0001),
-        'ibly': (START_WORD, adv_0001),
-        'iest': (END_WORD, 'nhất'),
-        'sion': (START_WORD, noun_001),
-        'tion': (START_WORD, noun_001),
-        'ness': (START_WORD, noun_001),
-        'ency': (START_WORD, noun_001),
-        'ment': (START_WORD, noun_001),
-        'less': (START_WORD, 'vô/không/phi'),
-        'like': (START_WORD, 'Thích/Giống Như/Tương Tự'),
-        'than': (END_WORD, 'hơn'),
-        'ures': (START_WORD, noun_001),
-        'lable': (START_WORD, adv_0001),
-        'ities': (START_WORD, noun_002),
-        'iness': (START_WORD, noun_001),
-        'ation': (START_WORD, noun_001),
-        'ively': (START_WORD, adj_0002),
-        'ments': (START_WORD, noun_001),
-        'ption': (START_WORD, noun_001),
-        'ations': (START_WORD, noun_002),
-        'encies': (START_WORD, noun_002),
-        'ization': (START_WORD, noun_001),
-        'isation': (START_WORD, noun_001),
-        'izations': (START_WORD, noun_002),
-        'isations': (START_WORD, noun_002),
-    }
-
-    common_suffixes_replace_dict = {
-        'a': list(sorted(
-            [
-                'ic',
-             ],
-            key=lambda x: len(x), reverse=True)),
-        'e': list(sorted(
-            ['able', 'ation', 'ations', 'ion', 'ions',
-             'ity', 'ities', 'ing', 'ings', 'ously', 'ous', 'ive', 'ily',
-             'ively', 'or', 'ors', 'iness', 'ature',
-             'atures', 'ition', 'itions', 'itiveness',
-             'itivenesses', 'itively', 'ative', 'atives',
-             'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
-             'al', 'ally', 'als', 'iast', 'iasts', 'iastic', 'ial', 'y',
-             'ary', 'ingly', 'ian', 'inal', 'ten'
-             ],
-            key=lambda x: len(x), reverse=True)),
-        't': list(sorted(
-            ['ce','cy', 'ssion', 'ssions'],
-            key=lambda x: len(x), reverse=True)),
-        'x': list(sorted(
-            ['ce','ces', ],
-            key=lambda x: len(x), reverse=True)),
-        'y':list(sorted(
-            ['ies', 'ied', 'ier', 'iers', 'iest', 'ily', 'ic', 'ical', 'ically', 'iness', 'inesses',
-             'ication', 'ications',
-             ],
-            key=lambda x: len(x), reverse=True)),
-        'ion':['ively'],
-        'be':list(sorted(
-            ['ption', 'ptions',],
-            key=lambda x: len(x), reverse=True)),
-        'de':list(sorted(
-            ['sible', 'sion', 'sions', 'sive' ],
-            key=lambda x: len(x), reverse=True)),
-        'ce':list(sorted(
-            ['tific', 'tist', 'tists'],
-            key=lambda x: len(x), reverse=True)), # science, scientific, scientist, scientists
-        'ate':['ant'],
-        'cy':['t'],
-        'ze':['s'],
-        'te':list(sorted(
-            ['cy', 'ry'],
-            key=lambda x: len(x), reverse=True)),
-        'le':['ility'],
-        'le':list(sorted(
-            ['ility', 'ilities', ],
-            key=lambda x: len(x), reverse=True)),
-       'ic':list(sorted(
-           ['ism', 'isms', ],
-           key=lambda x: len(x), reverse=True)),
-    }
-
-    common_allowed_appostrophes = {
-        "'": ['ll', 've', ', ', 's', 'd', ' ', '.'] # keep this sorted in length
-    }
-
-    common_suffixes = [
-        'd', 'r', 'y', 's', 't', 'al', 'an', 'ce', 'cy', 'de', 'er', 'es', 'or', 'th', 'ic', 'ly',
-        'ed', 'en', 'er', 'ic', 'ly', 'ry', 'st', 'ty', 'ze', 'ze', '\'s', '\'t', '\'m', 'als', 'ate',
-        'age', 'aging', 'ages', 'ated', 'ates', 'ces', 'dom', 'ors', 'ers', 'est', 'eer', 'ial', 'ked',
-        'ian', 'ism', 'ied', 'ier', 'iers', 'ion', 'ity', 'ics', 'ies', 'like', 'ful', 'less', 'ant',
-        'ent', 'ary', 'ful', 'nce', 'ous', 'ive', 'ism', 'isms', 'ing', 'inal', 'ily', 'ity', 'ize',
-        'ise', 'ish', 'ite', 'ful', 'ten', 'ual', 'ure', 'ous', '(s)', '\'re', '\'ve', '\'ll', 'n\'t',
-        'ally', 'ator', 'ants', 'ance', 'doms', 'ence', 'ency', 'ents', 'ings', 'ures', 'ions', 'sion',
-        'sions', 'sive', 'iest', 'iast', 'iasts', 'iastic', 'lier', 'less', 'liest', 'ment', 'ness',
-        'ning', 'sion', 'ship', 'able', 'ably', 'ible', 'ical', 'ally', 'ious', 'less', 'ally', 'ward',
-        'wise', 'ency', 'ators', 'sible', 'ively', 'ility', 'ually', 'ingly', 'ption', 'ation', 'iness',
-        'ities', 'ition', 'itive', 'ments', 'sions', 'ssion', 'ships', 'aries', 'ature', 'ingly', 'izing',
-        'ising', 'iness', 'ional', 'lable', 'ously', 'ptions', 'ility', 'ilities', 'itives', 'itions',
-        'ication', 'ications', 'atures', 'ations', 'aceous', 'nesses', 'iously', 'ically', 'encies',
-        'ssions', 'itively', 'ization', 'isation', 'itiveness', 'itivenesses', 'perception', 'perceive',
-        'tific', 'tist', 'tists'
-    ]
-
-    common_infix = [
-        '-',
-    ]
-
-    common_conjuctions = {
-        'a minute later': '',
-        'accordingly': '',
-        'actually': '',
-        'after': '',
-        'after a while': '',
-        'after a short time': '',
-        'afterward': '',
-        'also': '',
-        'and': '',
-        'another': '',
-        'as an example': '',
-        'as a result': '',
-        'as soon as': '',
-        'at last': '',
-        'at length': '',
-        'because': '',
-        'because of this': '',
-        'before': '',
-        'besides': '',
-        'briefly': '',
-        'but': '',
-        'consequently': '',
-        'conversely': '',
-        'equally': '',
-        'finally': '',
-        'first': '',
-        'first of all': '',
-        'first and last': '',
-        'first time': '',
-        'at first': '',
-        'firstly': '',
-        'for example': '',
-        'for instance': '',
-        'for this purpose': '',
-        'for this reason': '',
-        'fourth': '',
-        'from here on': '',
-        'further': '',
-        'furthermore': '',
-        'gradually': '',
-        'hence': '',
-        'however': '',
-        'how are you': '',
-        'in addition': '',
-        'in conclusion': '',
-        'in contrast': '',
-        'in fact': '',
-        'in short': '',
-        'in spite of': '',
-        'in spite of this': '',
-        'despite of': '',
-        'despite of this': '',
-        'in summary': '',
-        'in the end': '',
-        'whereas': '',
-        'whomever': '',
-        'whoever': '',
-        'in the meanwhile': '',
-        'in the meantime': '',
-        'in the same manner': '',
-        'in the sameway': '',
-        'just as important': '',
-        'of equal importance': '',
-        'on the contrary': '',
-        'on the following day': '',
-        'on the other hand': '',
-        'other hands': '',
-        'otherwise': '',
-        'on purpose': '',
-        'on the head': '',
-        'hit the nail on the head': '',
-        'least': '',
-        'the least I can': '',
-        'in the least': '',
-        'last': '',
-        'the last of': '',
-        'last of all': '',
-        'lastly': '',
-        'later': '',
-        'later on': '',
-        'meanwhile': '',
-        'moreover': '',
-        'nevertheless': '',
-        'next': '',
-        'next to': '',
-        'nonetheless': '',
-        'now': '',
-        'nor': '',
-        'neither': '',
-        'or': '',
-        'when': '',
-        'while': '',
-        'presently': '',
-        'second': '',
-        'similarly': '',
-        'since': '',
-        'since then': '',
-        'so': '',
-        'so much': '',
-        'so many': '',
-        'soon': '',
-        'so soon': '',
-        'very soon': '',
-        'as soon as possible': '',
-        'as much as possible': '',
-        'as many as possible': '',
-        'as long as possible': '',
-        'still': '',
-        'subsequently': '',
-        'such as': '',
-        'such that': '',
-        'as such': '',
-        'the next week': '',
-        'then': '',
-        'thereafter': '',
-        'there and then': '',
-        'therefore': '',
-        'and thus': '',
-        'thus': '',
-        'to be specific': '',
-        'to begin with': '',
-        'to be precise': '',
-        'to be exact': '',
-        'to illustrate': '',
-        'to repeat': '',
-        'to sum up': '',
-        'too': '',
-        'ultimately': '',
-        'what': '',
-        'with this in mind': '',
-        'with that in mind': '',
-        'yet': '',
-        'not yet': '',
-        'and yet': '',
-        'although': '',
-        'as if': '',
-        'although': '',
-        'as though': '',
-        'even': '',
-        'even if': '',
-        'even though': '',
-        'if': '',
-        'if only if': '',
-        'if only': '',
-        'if when': '',
-        'if then': '',
-        'if you can': '',
-        'if I can': '',
-        'if it is possible': '',
-        'inasmuch': '',
-        'in order that': '',
-        'just as': '',
-        'lest': 'hầu cho không/e ngại/rằng',
-        'now and then': '',
-        'for now': '',
-        'for now that is': '',
-        'so for now': '',
-        'but for now': '',
-        'now since': '',
-        'now that': '',
-        'now that\'s what I call': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-        # '': '',
-
-    }
-    common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
-    common_prefix_translation = list(sorted( list(common_prefix_trans.items()), key=lambda x: len(x[0]), reverse=True))
-
-    ascending_sorted = list(sorted(common_prefixes))
-    common_prefix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
-
-    ascending_sorted = list(sorted(common_suffixes))
-    common_suffix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
-
-    ascending_sorted = list(sorted(common_infix))
-    common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
-
-    numberal = r"\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|((thir|four|fif|six|seven|eigh|nine)teen)|((twen|thir|four|fif|six|seven|eigh|nine)ty)|(hundred|thousand|(mil|tril)lion))[s]?\b"
-    urlx_engine = URLX()
-
     def isPath(txt: str) -> bool:
         def insertTextOutsideEntry():
             is_valid = (ee > ss)
@@ -1061,11 +115,11 @@ class Common:
         if not txt:
             return False
 
-        is_path = (Common.PATH_CHECKER.search(txt) is not None)
+        is_path = (df.PATH_CHECKER.search(txt) is not None)
         if is_path:
             return True
 
-        urls = Common.urlx_engine.find_urls(txt, get_indices=True)
+        urls = df.urlx_engine.find_urls(txt, get_indices=True)
         if not urls:
             return False
 
@@ -1093,15 +147,15 @@ class Common:
         # 3. Find out if text outside are but all symbols (non-alpha), which means they are discardable (non-translatable)
         is_ignorable = True
         for loc, text_outside in text_outside_url_list.items():
-            is_all_symbols = Common.SYMBOLS_ONLY.search(text_outside)
+            is_all_symbols = df.SYMBOLS_ONLY.search(text_outside)
             if not is_all_symbols:
                 is_ignorable = False
 
         return is_ignorable
 
     def isLinkPath(txt: str) -> bool:
-        # is_file_extension = Common.FILE_EXTENSION.search(txt)
-        # is_file_name = Common.FILE_NAME_WITH_EXTENSION.search(txt)
+        # is_file_extension = df.FILE_EXTENSION.search(txt)
+        # is_file_name = df.FILE_NAME_WITH_EXTENSION.search(txt)
         is_path = Common.isPath(txt)
         if is_path:
             return True
@@ -1117,7 +171,7 @@ class Common:
         if not is_verb_cutoff:
             return False
 
-        is_dup = (Common.EN_DUP_ENDING.search(txt) is not None)
+        is_dup = (df.EN_DUP_ENDING.search(txt) is not None)
         return is_dup
 
     def replaceArchedQuote(txt):
@@ -1128,10 +182,10 @@ class Common:
         return new_txt
 
     def hasOriginal(msg, tran):
-        orig_list = Common.ALPHA_NUMERICAL.findall(msg)
+        orig_list = df.ALPHA_NUMERICAL.findall(msg)
         orig_set = "".join(orig_list)
 
-        tran_list = Common.ALPHA_NUMERICAL.findall(tran)
+        tran_list = df.ALPHA_NUMERICAL.findall(tran)
         tran_set = "".join(tran_list)
 
         has_orig = (orig_set in tran_set)
@@ -1141,7 +195,7 @@ class Common:
         return has_orig
 
     def isSpecialTerm(msg: str):
-        is_special = (Common.SPECIAL_TERM.search(msg) is not None)
+        is_special = (df.SPECIAL_TERM.search(msg) is not None)
         return is_special
 
     def matchCase(from_str : str , to_str : str):
@@ -1179,8 +233,8 @@ class Common:
         first_char = from_str[0]
         remain_part = from_str[1:]
 
-        from_str_has_multi_words = (Common.SYMBOLS.search(from_str) is not None)
-        to_str_has_multi_words = (Common.SYMBOLS.search(to_str) is not None)
+        from_str_has_multi_words = (df.SYMBOLS.search(from_str) is not None)
+        to_str_has_multi_words = (df.SYMBOLS.search(to_str) is not None)
 
         from_string_is_to_first_upper = (first_char.isupper() and remain_part.islower())
         to_string_is_to_first_upper = not (from_str_has_multi_words or to_str_has_multi_words)
@@ -1205,7 +259,7 @@ class Common:
                         new_str = new_str.upper()
 
         # ensure ref keywords ':doc:' is always lowercase
-        ga_ref_dic = Common.patternMatchAll(Common.GA_REF_PART, new_str)
+        ga_ref_dic = Common.patternMatchAll(df.GA_REF_PART, new_str)
         new_str = lowercase(ga_ref_dic, new_str)
         for lcase_word in WORD_SHOULD_BE_LOWER:
             p = re.compile(r'\b%s\b' % lcase_word)
@@ -1216,19 +270,19 @@ class Common:
 
     def beginAndEndPunctuation(msg, is_single=False):
         if is_single:
-            begin_with_punctuations = (Common.BEGIN_PUNCTUAL_SINGLE.search(msg) is not None)
-            ending_with_punctuations = (Common.ENDS_PUNCTUAL_SINGLE.search(msg) is not None)
+            begin_with_punctuations = (df.BEGIN_PUNCTUAL_SINGLE.search(msg) is not None)
+            ending_with_punctuations = (df.ENDS_PUNCTUAL_SINGLE.search(msg) is not None)
             if begin_with_punctuations:
-                msg = Common.BEGIN_PUNCTUAL_SINGLE.sub("", msg)
+                msg = df.BEGIN_PUNCTUAL_SINGLE.sub("", msg)
             if ending_with_punctuations:
-                msg = Common.ENDS_PUNCTUAL_SINGLE.sub("", msg)
+                msg = df.ENDS_PUNCTUAL_SINGLE.sub("", msg)
         else:
-            begin_with_punctuations = (Common.BEGIN_PUNCTUAL_MULTI.search(msg) is not None)
-            ending_with_punctuations = (Common.ENDS_PUNCTUAL_MULTI.search(msg) is not None)
+            begin_with_punctuations = (df.BEGIN_PUNCTUAL_MULTI.search(msg) is not None)
+            ending_with_punctuations = (df.ENDS_PUNCTUAL_MULTI.search(msg) is not None)
             if begin_with_punctuations:
-                msg = Common.BEGIN_PUNCTUAL_MULTI.sub("", msg)
+                msg = df.BEGIN_PUNCTUAL_MULTI.sub("", msg)
             if ending_with_punctuations:
-                msg = Common.ENDS_PUNCTUAL_MULTI.sub("", msg)
+                msg = df.ENDS_PUNCTUAL_MULTI.sub("", msg)
 
         return msg, begin_with_punctuations, ending_with_punctuations
 
@@ -1256,7 +310,6 @@ class Common:
 
                 p = r' ({}{})'.format(msg, end)
                 trans = re.sub(p, "", trans, flags=re.I)
-
 
             for end in endings:
                 p = r'{}{} --'.format(msg, end)
@@ -1286,21 +339,31 @@ class Common:
         msg = msg.replace("\\\"", "\"")
         return msg
 
+    def patternMatch(pat: re.Pattern, text) -> MatcherRecord:
+        m = pat.search(text)
+        is_found = (m is not None)
+        if not is_found:
+            return None
+
+        match_record = MatcherRecord(matcher_record=m)
+        return match_record
+
     def patternMatchAll(pat, text):
         return_dict = {}
-        for m in pat.finditer(text):
-            match_record = MatcherRecord(matcher_record=m)
-            first_record = list(match_record.items())[0]
-            loc, _ = first_record
-            dict_entry = {loc: match_record}
-            return_dict.update(dict_entry)
-            # count = len(match_record.getSubEntriesAsList())
-            # dd(f'patternMatchAll: added entry:{dict_entry}, count:{count}')
-        # dd(f'patternMatchAll: entries: {dict_entry}; total length:{len(return_dict)}')
+        try:
+            for m in pat.finditer(text):
+                match_record = MatcherRecord(matcher_record=m)
+                match_record.pattern = pat
+                loc = match_record.getMainLoc()
+                dict_entry = {loc: match_record}
+                return_dict.update(dict_entry)
+        except Exception as e:
+            print(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
+            raise e
         return return_dict
 
 
-    def findInvert(pattern, text:str):
+    def findInvert(pattern, text:str, is_reversed=False):
         '''
         findInvert:
             Find list of words that are NOT matching the pattern.
@@ -1314,55 +377,6 @@ class Common:
         :return:
             list of words that are NOT matching the pattern input
         '''
-
-        # def dealWithOptions(mm_found_list, root_loc):
-        #     result_list = []
-        #     mm_record: MatcherRecord = None
-        #     backup_mm_copy: MatcherRecord = None
-        #     for index, entry in enumerate(mm_found_list):
-        #         found_loc, found_txt, mm_record = entry
-        #         try:
-        #             if root_loc:
-        #                 mm_record.updateMasterLoc(root_loc)
-        #
-        #             mm_record_list = mm_record.getSubEntriesAsList()
-        #             left_loc, left = mm_record_list[1]
-        #             sub_loc, sub_txt = mm_record_list[2]
-        #             right_loc, right = mm_record_list[3]
-        #         except Exception as e:
-        #             dd(f'Using getTextWithinWithDiffLoc() to get sub-records for MatcherRecord')
-        #             sub_loc, left, sub_txt, right, sub_record = Common.getTextWithinWithDiffLoc(found_txt, to_matcher_record=True)
-        #             is_all_non_alpha = (not bool(sub_txt))
-        #             if is_all_non_alpha:
-        #                 dd(f'getTextWithinWithDiffLoc() indicate all text are non-alpha-numeric, IGNORED!')
-        #                 continue
-        #
-        #             mm_record.addSubRecordFromAnother(sub_record)
-        #
-        #         have_sub_record = (bool(left) or bool(right))
-        #         if is_removing_surrounding_none_alphas:
-        #             index_to_use = (2 if have_sub_record else 0)
-        #             mm_record.setMainToUseExistingTextInIndex(index_to_use)
-        #
-        #         has_new_root_location = bool(new_root_location)
-        #         if has_new_root_location:
-        #             mm_record.updateMasterLoc(new_root_location)
-        #
-        #         actual_loc = (mm_record.s, mm_record.e)
-        #         if to_matcher_record:
-        #             entry=(actual_loc, mm_record)
-        #         else:
-        #             entry=(actual_loc, mm_record.txt)
-        #         result_list.append(entry)
-        #     return result_list
-        # try:
-        #     is_string = (isinstance(pattern, str))
-        #     is_pattern = (isinstance(pattern, Pattern))
-        #     is_acceptable = (is_string or is_pattern)
-        #     if not is_acceptable:
-        #         raise ValueError(f'{pattern} is invalid. Only accept string or re.Pattern types.')
-        # except Exception as e:
-        #     raise e
 
         is_string = isinstance(pattern, str)
         invert_required = False
@@ -1403,6 +417,11 @@ class Common:
             # 4: using the invert location list, extract words, exclude empties.
             for ws, we in invert_loc_list:
                 found_txt = text[ws:we]
+                left, mid, right = Common.getTextWithin(found_txt)
+                is_empty = (not bool(mid))
+                if is_empty:
+                    continue
+
                 loc = (ws, we)
                 mm = MatcherRecord(s=ws, e=we, txt=found_txt)
                 mm.type = RefType.TEXT
@@ -1410,12 +429,14 @@ class Common:
                 entry = (loc, mm)
                 found_list.append(entry)
 
-        found_list.sort(key=OP.itemgetter(0), reverse=True)
+        if is_reversed:
+            found_list.sort(key=OP.itemgetter(0), reverse=True)
+
         return_dict = OrderedDict(found_list)
-        dd('findInvert() found_list:')
-        dd('-' * 30)
-        pp(return_dict)
-        dd('-' * 30)
+        # dd('findInvert() found_list:')
+        # dd('-' * 30)
+        # pp(return_dict)
+        # dd('-' * 30)
         return return_dict
 
     def getListOfLocation(find_list):
@@ -1473,7 +494,7 @@ class Common:
     def getTextListForMenu(text_entry):
         entry_list = []
 
-        matched_list = Common.findInvert(Common.MENU_SEP, text_entry)
+        matched_list = Common.findInvert(df.MENU_SEP, text_entry, is_reversed=True)
         for loc, mtxt in matched_list.items():
             ss, ee = loc
             entry=(ss, ee, mtxt)
@@ -1518,8 +539,8 @@ class Common:
         return u_case
 
     def isTextuallySimilar(from_txt, to_txt):
-        from_list = Common.WORD_ONLY_FIND.findall(from_txt.lower())
-        to_list = Common.WORD_ONLY_FIND.findall(to_txt.lower())
+        from_list = df.WORD_ONLY_FIND.findall(from_txt.lower())
+        to_list = df.WORD_ONLY_FIND.findall(to_txt.lower())
 
         # convert list to set of words, non-repeating
         to_set = "".join(to_list)
@@ -1547,8 +568,8 @@ class Common:
         if not is_valid:
             return False
 
-        from_list = Common.WORD_ONLY_FIND.findall(from_txt.lower())
-        to_list = Common.WORD_ONLY_FIND.findall(to_txt.lower())
+        from_list = df.WORD_ONLY_FIND.findall(from_txt.lower())
+        to_list = df.WORD_ONLY_FIND.findall(to_txt.lower())
 
         # convert list to set of words, non-repeating
         to_set = "".join(to_list)
@@ -1559,8 +580,8 @@ class Common:
         return is_same
 
     def isTextuallySubsetOf(msg, tran):
-        msg_list = Common.WORD_ONLY_FIND.findall(msg.lower())
-        tran_list = Common.WORD_ONLY_FIND.findall(tran.lower())
+        msg_list = df.WORD_ONLY_FIND.findall(msg.lower())
+        tran_list = df.WORD_ONLY_FIND.findall(tran.lower())
         msg_str = "".join(msg_list)
         tran_str = "".join(tran_list)
 
@@ -1644,7 +665,7 @@ class Common:
     # 23.3k99 gold badges9393 silver badges126
     def sha256sum(filename):
         h = hashlib.sha256()
-        b = bytearray(Common.PAGE_SIZE) # PAGE_SIZE = 20 * 4096, original 128*1024
+        b = bytearray(df.PAGE_SIZE) # PAGE_SIZE = 20 * 4096, original 128*1024
         mv = memoryview(b)
         with open(filename, 'rb', buffering=0) as f:
             for n in iter(lambda : f.readinto(mv), 0):
@@ -1749,11 +770,11 @@ class Common:
             pair_dict.update(entry_1)
             pair_dict.update(entry_2)
 
-        leading_set = Common.REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
+        leading_set = df.REMOVABLE_SYMB_FULLSET_FRONT.findall(txt)
         if leading_set:
             leading_set = leading_set[0]
 
-        trailing_set = Common.REMOVABLE_SYMB_FULLSET_BACK.findall(txt)
+        trailing_set = df.REMOVABLE_SYMB_FULLSET_BACK.findall(txt)
         if trailing_set:
             trailing_set = trailing_set[0]
 
@@ -1792,7 +813,7 @@ class Common:
         if not abbr_txt:
             return None, None, None
 
-        abbr_dict = Common.patternMatchAll(Common.ABBREV_PATTERN_PARSER, abbr_txt)
+        abbr_dict = Common.patternMatchAll(df.ABBREV_PATTERN_PARSER, abbr_txt)
         if not abbr_dict:
             return None, None, None
 
@@ -1803,7 +824,7 @@ class Common:
             abbrev_orig_rec = mm.getOriginAsTuple()
             l = mm.getSubEntriesAsList()
             for loc, txt in l:
-                found_texts = Common.ABBR_TEXT_ALL.findall(txt)
+                found_texts = df.ABBR_TEXT_ALL.findall(txt)
                 first_entry = found_texts[0]
                 abbrev_part, exp_part = first_entry
 
@@ -1979,13 +1000,13 @@ class Common:
             print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
                   f'ERRORS might occurs!')
 
-        obs = LocationObserver(msg=text)
+        obs = LocationObserver(text)
         sentence_list = getSentenceList()
         result_dict = OrderedDict()
 
         for index, (sub_loc, sub_txt) in enumerate(sentence_list):
-            part_dict = Common.findInvert(Common.FILLER_PARTS,
-                                          sub_txt)
+            part_dict = Common.findInvert(df.FILLER_PARTS,
+                                          sub_txt, is_reversed=True)
             updateRecordsUsingSubLoc(part_dict, sub_loc)
             for loc, mm in part_dict.items():
                 new_loc = (mm.s, mm.e)
@@ -2004,6 +1025,27 @@ class Common:
 
         return result_dict
 
+    def removeSurroundingSpaces(self, txt_loc, txt):
+        start_spc_mm: MatcherRecord = Common.patternMatch(df.START_SPACES, txt)
+        end_spc_mm: MatcherRecord = Common.patternMatch(df.END_SPACES, txt)
+
+        (ts, te) = txt_loc
+        ns = ts
+        ne = te
+        ntxt = txt
+        if start_spc_mm:
+            (ss, se) = start_spc_mm.getMainLoc()
+            diff = (se - ss)
+            ns += diff
+            ntxt = ntxt[diff:]
+        if end_spc_mm:
+            (es, ee) = end_spc_mm.getMainLoc()
+            diff = (ee - es)
+            ne -= diff
+            ntxt = ntxt[:-diff]
+        n_loc = (ns, ne)
+        return (n_loc, ntxt)
+
     def removingNonAlpha(original_word: str):
         default_loc = (0, 0)
         is_empty_word = (original_word is None) or (len(original_word) == 0)
@@ -2016,12 +1058,12 @@ class Common:
 
         left_part = original_word[0:s]
         right_part = original_word[e:max_len]
-        matcher = Common.WORD_END_REMAIN.search(left_part)
+        matcher = df.WORD_END_REMAIN.search(left_part)
         if matcher:
             grp = matcher.group(0)
             s -= len(grp)
 
-        matcher = Common.WORD_START_REMAIN.search(right_part)
+        matcher = df.WORD_START_REMAIN.search(right_part)
         if matcher:
             grp = matcher.group(0)
             e += len(grp)
@@ -2068,12 +1110,12 @@ class Common:
             left_part = original_word[0:ss]
             right_part = original_word[ee:max_len]
 
-            matcher = Common.WORD_END_REMAIN.search(left_part)
+            matcher = df.WORD_END_REMAIN.search(left_part)
             if matcher:
                 grp = matcher.group(0)
                 ss -= len(grp)
 
-            matcher = Common.WORD_START_REMAIN.search(right_part)
+            matcher = df.WORD_START_REMAIN.search(right_part)
             if matcher:
                 grp = matcher.group(0)
                 ee += len(grp)
@@ -2119,7 +1161,7 @@ class Common:
         def error_msg(item, text_string):
             return f'Imbalanced parenthesis! Near the "{item}" text_string:[{text_string}]'
 
-        _tokenizer = Common.ARCH_BRACKET_SPLIT.split
+        _tokenizer = df.ARCH_BRACKET_SPLIT.split
         def tokenize(text_line: str):
             return list(filter(None, _tokenizer(text_line)))
 
@@ -2169,7 +1211,7 @@ class Common:
         def isFuzzilyInList(word_to_find, word_list):
             for word in word_list:
                 ratio = fuzz.ratio(word, word_to_find)
-                acceptable = (ratio >= Common.FUZZY_ACCEPTABLE_RATIO)
+                acceptable = (ratio >= df.FUZZY_ACCEPTABLE_RATIO)
                 if acceptable:
                     return True
             return False
@@ -2229,20 +1271,14 @@ class Common:
 
         # expecting to find fuzzy_txt within orig_txt, try to locate the range
         orig_txt_copy = str(orig_txt)
-        orig_word_list = Common.findInvert(Common.SPACES, orig_txt)
-        fuzzy_word_list = Common.findInvert(Common.SPACES, fuzzy_txt)
+        orig_word_list = Common.findInvert(df.SPACES, orig_txt)
+        fuzzy_word_list = Common.findInvert(df.SPACES, fuzzy_txt)
 
         fuzzy_locs = list(fuzzy_word_list.keys())
-        fuzzy_locs.reverse()
-
         fuzzy_words = list(fuzzy_word_list.values())
-        fuzzy_words.reverse()
 
         orig_locs = list(orig_word_list.keys())
-        orig_locs.reverse()
-
         orig_words = list(orig_word_list.values())
-        orig_words.reverse()
 
         remain_dict = OrderedDict()
         is_finished = False
@@ -2250,7 +1286,7 @@ class Common:
             try:
                 fuzzy_word = fuzzy_words[index]
                 ratio = fuzz.ratio(orig_word, fuzzy_word)
-                sounds_similar = (ratio >= Common.FUZZY_ACCEPTABLE_RATIO)
+                sounds_similar = (ratio >= df.FUZZY_ACCEPTABLE_RATIO)
                 if sounds_similar:
                     continue
 
@@ -2264,7 +1300,7 @@ class Common:
         return rev_remain
 
     def splitExpVar(item, k):
-        i_list = item.split(Common.SENT_STRUCT_SYMB)
+        i_list = item.split(df.SENT_STRUCT_SYMB)
 
         i_left = i_list[0]
         i_right = i_list[1]
@@ -2283,7 +1319,7 @@ class Common:
         i_exp_word_count_total = (i_left_word_count + i_right_word_count)
 
         k_length = len(k)
-        k_word_list = Common.SPACES.split(k)
+        k_word_list = df.SPACES.split(k)
         k_word_count = len(k_word_list)
 
         is_less_than_expected = (k_word_count < i_exp_word_count_total)
@@ -2312,9 +1348,9 @@ class Common:
 
         non_alnum_part = ""
         if is_start:
-            non_alpha = Common.START_WORD_SYMBOLS.search(msg)
+            non_alpha = df.START_WORD_SYMBOLS.search(msg)
         else:
-            non_alpha = Common.END_WORD_SYMBOLS.search(msg)
+            non_alpha = df.END_WORD_SYMBOLS.search(msg)
 
         if non_alpha:
             non_alnum_part = non_alpha.group(0)
@@ -2324,16 +1360,16 @@ class Common:
         def isInNewFuzzy(search_word):
             for loc, word in new_txt_word_list:
                 match_rat = fuzz.ratio(word, search_word)
-                is_same = (match_rat >= Common.FUZZY_MODERATE_ACCEPTABLE_RATIO)
+                is_same = (match_rat >= df.FUZZY_MODERATE_ACCEPTABLE_RATIO)
                 if is_same:
                     return True
             return False
 
         blank_orig_txt = str(orig_txt)
-        orig_word_dict = Common.patternMatchAll(Common.CHARACTERS, orig_txt)
+        orig_word_dict = Common.patternMatchAll(df.CHARACTERS, orig_txt)
         orig_word_list = list(orig_word_dict.items())
 
-        new_txt_word_dict = Common.patternMatchAll(Common.CHARACTERS, new_txt)
+        new_txt_word_dict = Common.patternMatchAll(df.CHARACTERS, new_txt)
         new_txt_word_list = list(orig_word_dict.items())
 
         remain_word_dict={}
@@ -2408,12 +1444,12 @@ class Common:
             ee = ss + len(new_word)
             left_part = orig_word[:ss]
             right_part = orig_word[ee:]
-            matcher = Common.WORD_END_REMAIN.search(left_part)
+            matcher = df.WORD_END_REMAIN.search(left_part)
             if matcher:
                 grp = matcher.group(0)
                 ss -= len(grp)
 
-            matcher = Common.WORD_START_REMAIN.search(right_part)
+            matcher = df.WORD_START_REMAIN.search(right_part)
             if matcher:
                 grp = matcher.group(0)
                 ee += len(grp)
@@ -2470,7 +1506,7 @@ class Common:
                 w1 = l1[i]
                 w2 = l2[i]
                 word_percent = Common.matchWordPercent(w1, w2)
-                is_tool_small = (word_percent <= Common.FUZZY_PERFECT_MATCH_PERCENT)
+                is_tool_small = (word_percent <= df.FUZZY_PERFECT_MATCH_PERCENT)
                 if is_tool_small:
                     break
                 match_percent += (l1_per_each_word * word_percent / 100)
@@ -2498,11 +1534,11 @@ class Common:
         return match_percent
 
     def isFullyTranslated(txt):
-        is_all_filler_and_spaces = (Common.FILLER_CHAR_AND_SPACE_ONLY_PATTERN.search(txt) is not None)
+        is_all_filler_and_spaces = (df.FILLER_CHAR_AND_SPACE_ONLY_PATTERN.search(txt) is not None)
         return is_all_filler_and_spaces
 
     def isTranslated(txt):
-        is_overlapped = (Common.FILLER_CHAR_PATTERN.search(txt) is not None)
+        is_overlapped = (df.FILLER_CHAR_PATTERN.search(txt) is not None)
         return is_overlapped
 
     def patchingBeforeReturn(left, right, patch_txt, orig_txt):
@@ -2547,11 +1583,11 @@ class Common:
     def stripSpaces(txt):
         start = 0
         end = 0
-        leading_spaces: re.Match = Common.START_SPACES.search(txt)
+        leading_spaces: re.Match = df.START_SPACES.search(txt)
         if leading_spaces:
             start = leading_spaces.end()
 
-        trailing_spaces: re.Match = Common.END_SPACES.search(txt)
+        trailing_spaces: re.Match = df.END_SPACES.search(txt)
         if trailing_spaces:
             end = trailing_spaces.start()
 
@@ -2571,19 +1607,19 @@ class Common:
         max_end = max(this_e, other_e)
         mask_orig = (' ' * max_end)
 
-        start_part = (Common.FILLER_CHAR * min_start)
-        other_part = (Common.FILLER_CHAR * (other_e - other_s))
+        start_part = (df.FILLER_CHAR * min_start)
+        other_part = (df.FILLER_CHAR * (other_e - other_s))
         mask = start_part + mask_orig[min_start:]
         mask = mask[:other_s] + other_part + mask[other_e:]
 
         this_part = mask[this_s: this_e]
         # spaces to keep, FILLER_CHAR to remove
         this_txt = minuend
-        list_of_remain = Common.patternMatchAll(Common.SPACES, this_part)
+        list_of_remain = Common.patternMatchAll(df.SPACES, this_part)
         this_txt_dict = {}
         for loc, mm in list_of_remain:
             (s, e), txt_part = mm.getOriginAsTuple()
-            is_not_worth_keeping = (Common.SYMBOLS_ONLY.search(txt_part) is not None)
+            is_not_worth_keeping = (df.SYMBOLS_ONLY.search(txt_part) is not None)
             if is_not_worth_keeping:
                 continue
 
@@ -2603,6 +1639,111 @@ class Common:
         right = orig[e:]
         orig = left + tran + right
         return orig
+
+    def patStructToListOfWords(txt):
+        mm: MatcherRecord = None
+        struct_pat_dict = Common.patternMatchAll(df.SENT_STRUCT_PAT, txt)
+        struct_pat_list = list(struct_pat_dict.items())
+
+        struct_txt_dict = Common.findInvert(df.SENT_STRUCT_PAT, txt)
+        struct_txt_dict_list = list(struct_txt_dict.items())
+
+        list_of_words = []
+        for loc, mm in struct_pat_list:
+            entry = (mm.getMainLoc(), mm.getMainText())
+            list_of_words.append(entry)
+
+        for loc, mm in struct_txt_dict_list:
+            entry = (mm.getMainLoc(), mm.getMainText())
+            list_of_words.append(entry)
+
+        list_of_words.sort()
+        return list_of_words
+
+    def formPattern(list_of_words: list):
+        pat = ""
+        # (?<=\S)\s+$
+        for loc, txt in list_of_words:
+            is_any = (df.SENT_STRUCT_SYMB in txt)
+            txt = (f'\s?(.*\S)\s?' if is_any else f'({txt})')
+            pat += txt
+
+        pattern_txt = r'^%s$' % (pat)
+        return_pat = re.compile(pattern_txt)
+        return return_pat
+
+    def creatSentRecogniserPatternRecordPair(key, value):
+        recog_pattern = Common.creatSentRecogniserPattern(key)
+        record_mm, record_txt_list = Common.createSentRecogniserRecord(value)
+        return {recog_pattern: (key, value, record_mm, record_txt_list)}
+
+    def creatSentRecogniserPattern(key):
+        the_txt_word_list = Common.patStructToListOfWords(key)
+        recog_pattern = Common.formPattern(the_txt_word_list)
+        return recog_pattern
+
+    def createSentRecogniserRecord(the_txt):
+        the_txt_word_list = Common.patStructToListOfWords(the_txt)
+        mm = MatcherRecord(txt=the_txt)
+        mm.initUsingList(the_txt_word_list)
+        return mm, the_txt_word_list
+
+    def genmap(msg):
+        def simplifiesMatchedRecords():
+            mm: MatcherRecord = None
+            for loc, mm in matched_list:
+                txt = mm.txt
+                entry = {loc: txt}
+                loc_dic.update(entry)
+
+        def genListOfDistance(max):
+            dist_list = []
+            for s in range(0, max):
+                for e in range(0, max):
+                    is_valid = (s < e)
+                    if not is_valid:
+                        continue
+
+                    entry = (s, e)
+                    if entry not in dist_list:
+                        dist_list.append(entry)
+            return dist_list
+
+        part_list = []
+        matched_dict = Common.patternMatchAll(df.SPACE_WORD_SEP, msg)
+        matched_list = list(matched_dict.items())
+        max = len(matched_dict)
+        loc_dic = {}
+        try:
+            dist_list = genListOfDistance(max)
+            dist_list.sort(reverse=True)
+            for dist in dist_list:
+                from_index, to_index = dist
+                start_loc, start_mm = matched_list[from_index]
+                end_loc, end_mm = matched_list[to_index]
+
+                ss1, ee1 = start_loc
+                ss2, ee2 = end_loc
+                sentence = msg[ss1: ee2]
+
+                sub_loc = (ss1, ee2)
+                entry = {sub_loc: sentence}
+                loc_dic.update(entry)
+        except Exception as e:
+            dd(f'genmap():{e}')
+            raise e
+
+        simplifiesMatchedRecords()
+        part_list = list(loc_dic.items())
+        # sort out by the number of spaces (indicating word counts) rather than by common string length
+        part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=True)    # this is how to sort with multi keys, in brackets
+        # part_list.sort(key=lambda x: (x[1].count(' ')), reverse=True)
+        # dd('genmap():')
+        # dd('-' * 80)
+        # pp(part_list)
+        # dd('-' * 80)
+        # dd(f'for []{msg}')
+        return part_list
 
     def debugging(txt):
         msg = "and without another"

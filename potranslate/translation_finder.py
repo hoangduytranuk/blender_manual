@@ -1,6 +1,7 @@
 import os
 import re
-from common import Common as cm, LocationObserver, KEYBOARD_TRANS_DIC, KEYBOARD_TRANS_DIC_PURE, numeric_trans
+from definition import Definitions as df
+from common import Common as cm, LocationObserver
 from common import dd, pp
 from ignore import Ignore as ig
 import json
@@ -8,9 +9,7 @@ from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
 from reftype import RefType, TranslationState
 import operator as OP
-from fuzzywuzzy import fuzz
 from nocasedict import NoCaseDict
-from sentence import SentStructRecord
 from matcher import MatcherRecord
 
 class TranslationEntry():
@@ -19,50 +18,6 @@ class TranslationEntry():
         self.tran_txt = tran_txt
         self.loc = txt_loc
         self.fuzzy_rate = fuzzy_rate
-
-class ExtLocationObserver(LocationObserver):
-    def __init__(self, msg, tf=None):
-        super.__init__(msg, tran_finder=tf)
-
-    def markLoc(self, loc: tuple):
-        s, e = loc
-        return self.translatePart(s, e)
-
-    def translatePart(self, s: int, e: int):
-        is_translated = self.isUsed(s, e)
-        if is_translated:
-            return None
-
-        txt = self.blank[s:e]
-        is_ignore = ig.isIgnored(txt)
-        if is_ignore:
-            return None
-
-        tran_sub_text, fuzzy_len, matching_ratio = self.tf.tryFuzzyTranlation(txt)
-        if tran_sub_text:
-            return tran_sub_text
-        else:
-            return None
-
-    def translateLocByWords(self, loc: tuple):
-        s, e = loc
-        return self.translatePartByWords(s, e)
-
-    def translatePartByWords(self, s: int, e: int):
-        is_translated = self.isUsed(s, e)
-        if is_translated:
-            return None
-
-        txt = self.blank[s:e]
-        is_ignore = ig.isIgnored(txt)
-        if is_ignore:
-            return None
-
-        tran_sub_text = self.tf.translateWords(txt)
-        if tran_sub_text:
-            return tran_sub_text
-        else:
-            return None
 
 class TranslationFinder:
     def __init__(self):
@@ -94,9 +49,9 @@ class TranslationFinder:
             (self.translationByRemovingSymbols, ('txt', None, None)),              # (txt)
             (self.translationByReplacingSymbolsWithSpaces, ('txt', None, None)),   # (txt)
             # self.symbolsRemoval,                            # (new_txt)
-            (self.removeByPatternListAndCheck, ('txt', cm.common_suffix_sorted, cm.END_WORD)),               # (txt, cm.common_suffix_sorted, cm.END_WORD)
-            (self.removeByPatternListAndCheck, ('txt', cm.common_suffix_sorted, cm.START_WORD)),               # (txt, cm.common_prefix_sorted, cm.START_WORD)
-            (self.removeBothByPatternListAndCheck, ('txt', cm.common_prefix_sorted, cm.common_suffix_sorted)),           # (txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+            (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.END_WORD)),               # (txt, cm.common_suffix_sorted, df.END_WORD)
+            (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.START_WORD)),               # (txt, cm.common_prefix_sorted, df.START_WORD)
+            (self.removeBothByPatternListAndCheck, ('txt', df.common_prefix_sorted, df.common_suffix_sorted)),           # (txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
             # output: new_txt, trans, cover_length
             # ------------------------------------
             # self.findDictByRemoveCommonPrePostFixes,        # (txt)
@@ -112,7 +67,7 @@ class TranslationFinder:
         # pp(self.struct_dict)
 
     def initNumericalPatternList(self):
-        for pat_txt, tran_txt in numeric_trans.items():
+        for pat_txt, tran_txt in df.numeric_trans.items():
             pattern_text = r'\b(%s)\b' % (pat_txt)
             pat = re.compile(pattern_text, flags=re.I)
             entry=(pat, tran_txt)
@@ -130,7 +85,7 @@ class TranslationFinder:
         def find_tran(en_txt):
             try:
                 tran = pat_search(en_txt)
-                iter = cm.TRAN_REF_PATTERN.finditer(tran)
+                iter = df.TRAN_REF_PATTERN.finditer(tran)
                 for m in iter:
                     abbrev_txt = m.group(0)
                     try:
@@ -149,7 +104,7 @@ class TranslationFinder:
         loc, stripped_word = cm.removingNonAlpha(msg)
         translation = find_tran(stripped_word)
         if translation:
-            translation = f'{TranslationFinder.numeric_prefix} {translation} {TranslationFinder.numeric_postfix}'
+            translation = f'{df.numeric_prefix} {translation} {df.numeric_postfix}'
             is_diff = (stripped_word != msg)
             if is_diff:
                 translation = msg.replace(msg, stripped_word)
@@ -220,69 +175,13 @@ class TranslationFinder:
     def loadDictionary(self):
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
-        self.kbd_dict = NoCaseDict(KEYBOARD_TRANS_DIC_PURE)
-        self.master_dic_list.fuzzy_keys.sort()
-        self.master_dic_list.fuzzy_dict.sort(key=lambda x: x[0])
+        self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
+        # self.master_dic_list.fuzzy_keys.sort()
+        # self.master_dic_list.fuzzy_dict.sort(key=lambda x: x[0])
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
         c.dump_po(file_path, data_cat)
-
-    def genmap(self, msg):
-        def simplifiesMatchedRecords():
-            mm: MatcherRecord = None
-            for loc, mm in matched_list:
-                txt = mm.txt
-                entry = {loc: txt}
-                loc_dic.update(entry)
-
-        def genListOfDistance(max):
-            dist_list = []
-            for s in range(0, max):
-                for e in range(0, max):
-                    is_valid = (s < e)
-                    if not is_valid:
-                        continue
-
-                    entry = (s, e)
-                    if entry not in dist_list:
-                        dist_list.append(entry)
-            return dist_list
-
-        part_list = []
-        matched_dict = cm.patternMatchAll(cm.SPACE_WORD_SEP, msg)
-        matched_list = list(matched_dict.items())
-        max = len(matched_dict)
-        loc_dic = {}
-        try:
-            dist_list = genListOfDistance(max)
-            dist_list.sort(reverse=True)
-            for dist in dist_list:
-                from_index, to_index = dist
-                start_loc, start_mm = matched_list[from_index]
-                end_loc, end_mm = matched_list[to_index]
-
-                ss1, ee1 = start_loc
-                ss2, ee2 = end_loc
-                sentence = msg[ss1: ee2]
-
-                sub_loc = (ss1, ee2)
-                entry = {sub_loc: sentence}
-                loc_dic.update(entry)
-        except Exception as e:
-            raise e
-
-        simplifiesMatchedRecords()
-        part_list = list(loc_dic.items())
-        # sort out by the number of spaces (indicating word counts) rather than by common string length
-        part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=True)    # this is how to sort with multi keys, in brackets
-        # part_list.sort(key=lambda x: (x[1].count(' ')), reverse=True)
-        dd('genmap():')
-        dd('-' * 80)
-        pp(part_list)
-        dd('-' * 80)
-        dd(f'for []{msg}')
-        return part_list
 
     def translateBreakupSentences(self, msg):
         if not msg:
@@ -292,7 +191,7 @@ class TranslationFinder:
         count_translated = 0
         translation = str(msg)
         result_list = OrderedDict()
-        text_list = cm.patternMatchAll(cm.COMMON_SENTENCE_BREAKS, msg)
+        text_list = cm.patternMatchAll(df.COMMON_SENTENCE_BREAKS, msg)
         for loc, mm in text_list.items():
             (s, e), t = mm.getOriginAsTuple()
             tran = self.isInDict(t)
@@ -368,107 +267,6 @@ class TranslationFinder:
             dd(f'temp_translation:[{temp_translation}]')
             return temp_translation
 
-    def getSentStruct(self, msg):
-        def fuzzy_compare_part(part, txt, is_start=False):
-            try:
-                if not part:
-                    return 100
-
-                w_count = len(part.split())
-                txt_list = txt.split()
-                txt_part_list = (txt_list[:w_count] if is_start else txt_list[-w_count:])
-                txt_part = ' '.join(txt_part_list)
-                rat = fuzz.ratio(part, txt_part)
-                return rat
-            except Exception as e:
-                return 0
-
-        def split_txt(s_count, e_count, txt):
-            word_list = txt.split()
-            w_len = len(word_list)
-            left = right = mid = ''
-            if s_count:
-                left = word_list[:s_count]
-                left = ' '.join(left)
-
-            if e_count:
-                right = word_list[-e_count:]
-                right = ' '.join(right)
-                mid = word_list[s_count: -e_count]
-            else:
-                e_count = w_len
-                mid = word_list[s_count: e_count]
-
-            mid = ' '.join(mid)
-            return left, mid, right
-
-        selective_list = []
-
-        for index, struct_pat in enumerate(self.struct_dict.keys()):
-            m = cm.SENT_STRUCT_PAT.search(struct_pat)
-            s = m.start()
-            e = m.end()
-            left = struct_pat[:s]
-            right = struct_pat[e:]
-
-            left_rat = fuzzy_compare_part(left, msg, is_start=True)
-            right_rat = fuzzy_compare_part(right, msg, is_start=False)
-            is_acceptable_left = (left_rat >= cm.FUZZY_ACCEPTABLE_RATIO)
-            is_acceptable_right = (right_rat >= cm.FUZZY_ACCEPTABLE_RATIO)
-            is_found = (is_acceptable_left and is_acceptable_right)
-            if not is_found:
-                continue
-
-            rat = fuzz.ratio(struct_pat, msg)
-            selective_entry = (rat, left, right, struct_pat, (s, e))
-            selective_list.append(selective_entry)
-
-        is_found = bool(selective_list)
-        if not is_found:
-            return None
-
-        selective_list.sort(reverse=True)
-        selective_entry = selective_list[0]
-
-        rat, left, right, struct_pat, k_loc = selective_entry
-
-        s_wcount = len(left.split())
-        e_wcount = len(right.split())
-        k_left, k_mid, k_right = split_txt(s_wcount, e_wcount, msg)
-
-        has_puncts = (cm.BASIC_PUNCTUALS.search(k_mid) is not None)
-        if has_puncts:
-            return None
-
-        dd(f'getSentStruct(), found: [{selective_entry}] for [{msg}]')
-
-        tran = self.struct_dict[struct_pat]
-        m = cm.SENT_STRUCT_PAT.search(tran)
-        ts = m.start()
-        te = m.end()
-        t_loc = (ts, te)
-        left = tran[:ts]
-        right = tran[te:]
-        s_wcount = len(left.split())
-        e_wcount = len(right.split())
-        t_left, t_mid, t_right = split_txt(s_wcount, e_wcount, tran)
-
-        k_mid_tran = self.simpleBlindTranslation(k_mid)
-        if k_mid_tran:
-            dd(f'getSentStruct(), found translation for: [{k_mid}] => [{k_mid_tran}]')
-            t_mid = k_mid_tran
-
-        # self, struct_dict, dict_pat, dict_index, k_loc, key, k_left, k_mid, k_right, tran, t_loc, t_left, t_mid, t_right):
-        sent_struct = SentStructRecord(
-            self.struct_dict,
-            struct_pat,
-            index,
-            msg, k_loc, k_left, k_mid, k_right,
-            tran, t_loc, t_left, t_mid, t_right,
-            bool(k_mid_tran)
-        )
-        return sent_struct
-
     def translatedListToText(self, loc_translated_dict: dict, current_translation) -> str:
         '''
         :param loc_translated_dict:
@@ -511,33 +309,38 @@ class TranslationFinder:
 
     def simpleBlindTranslation(self, msg):
         translated_dict = OrderedDict()
-        map = self.genmap(msg)
-        observer = ExtLocationObserver(msg, tf=self)
+        map = cm.genmap(msg)
+        obs = LocationObserver(str(msg))
 
         for loc, txt in map:
-            is_fully_translated = observer.isCompletelyUsed()
+            is_fully_translated = obs.isCompletelyUsed()
             if is_fully_translated:
                 break
 
-            tran_sub_text = observer.markLoc(loc)
+            is_used = obs.isLocUsed(loc)
+            if is_used:
+                continue
+
+            orig_txt = obs.getTextAtLoc(loc)
+
+            tran_sub_text, fuzzy_len, matching_ratio = self.tryFuzzyTranlation(orig_txt)
             if tran_sub_text:
+                obs.markLocAsUsed(loc)
                 entry = {loc: (txt, tran_sub_text)}
                 translated_dict.update(entry)
 
         if not translated_dict:
             return None
 
-        untran_dict = observer.getUnmarkedPartsAsDict()
-        observer = LocationObserver(msg, tran_finder=self)
-        for loc, txt in untran_dict.items():
-            is_fully_translated = observer.isCompletelyUsed()
-            if is_fully_translated:
-                break
-
-            tran_sub_text = observer.translateLocByWords(loc)
-            if tran_sub_text:
-                entry = {loc: (txt, tran_sub_text)}
-                translated_dict.update(entry)
+        is_fully_translated = obs.isCompletelyUsed()
+        if not is_fully_translated:
+            untran_dict = obs.getUnmarkedPartsAsDict()
+            for loc, mm in untran_dict.items():
+                txt = mm.txt
+                tran_sub_text = self.translateWords(txt)
+                if tran_sub_text:
+                    entry = {loc: (txt, tran_sub_text)}
+                    translated_dict.update(entry)
 
         trans = self.translatedListToText(translated_dict, str(msg))
         has_tran = (trans and (trans != msg))
@@ -561,7 +364,7 @@ class TranslationFinder:
         has_abbrev = False
         tran_sub_text, fuzzy_text, search_dict, matching_ratio, untran_word_dic = self.isInDictFuzzy(msg)
         if bool(tran_sub_text):
-            has_abbrev = (cm.ABBREV_PATTERN_PARSER.search(tran_sub_text) is not None)
+            has_abbrev = (df.ABBREV_PATTERN_PARSER.search(tran_sub_text) is not None)
         if untran_word_dic and not has_abbrev:
             untran_word_list = list(untran_word_dic.items())
             untran_word_list.sort(reverse=True)
@@ -584,7 +387,7 @@ class TranslationFinder:
 
     def fillBlank(self, ss, ee, blanker):
         blank_len = (ee - ss)
-        blank_str = (cm.FILLER_CHAR * blank_len)
+        blank_str = (df.FILLER_CHAR * blank_len)
         blank_left = blanker[:ss]
         blank_right = blanker[ee:]
         blanker = blank_left + blank_str + blank_right
@@ -593,7 +396,7 @@ class TranslationFinder:
     def buildLocalTranslationDict(self, msg):
 
         local_translated_dict = [] # for quick, local translation
-        loc_map = self.genmap(msg)
+        loc_map = cm.genmap(msg)
         observer = LocationObserver(msg)
 
         for loc, orig_sub_text in loc_map:
@@ -610,20 +413,11 @@ class TranslationFinder:
                 else:
                     continue
 
-            tran_sub_text = None
-            # cm.debugging(orig_sub_text)
-            sent_struct = self.getSentStruct(orig_sub_text)
-            is_tran_sent_struct = bool(sent_struct)
-            if is_tran_sent_struct:
-                is_tran = sent_struct.km_translated
-                tran_sub_text = (sent_struct.getTranslated() if is_tran else sent_struct.getNonTranslated())
-
+            tran_sub_text = self.isInDict(orig_sub_text)
             if not tran_sub_text:
-                tran_sub_text = self.isInDict(orig_sub_text)
+                tran_sub_text, cover_length, matching_ratio = self.tryFuzzyTranlation(orig_sub_text)
                 if not tran_sub_text:
-                    tran_sub_text, cover_length, matching_ratio = self.tryFuzzyTranlation(orig_sub_text)
-                    if not tran_sub_text:
-                        tran_sub_text = self.translateNumerics(orig_sub_text)
+                    tran_sub_text = self.translateNumerics(orig_sub_text)
 
             if tran_sub_text:
                 matching_ratio = 100
@@ -704,13 +498,13 @@ class TranslationFinder:
 
         msg_head = msg_trail = None
 
-        msg_trail = cm.TRAILING_WITH_PUNCT_MULTI.search(msg)
+        msg_trail = df.TRAILING_WITH_PUNCT_MULTI.search(msg)
         if msg_trail:
             msg_trail = msg_trail.group(0)
         else:
             msg_trail = ''
 
-        msg_head = cm.HEADING_WITH_PUNCT_MULTI.search(msg)
+        msg_head = df.HEADING_WITH_PUNCT_MULTI.search(msg)
         if msg_head:
             msg_head = msg_head.group(0)
         else:
@@ -724,8 +518,8 @@ class TranslationFinder:
 
         new_msg = cm.removeLeadingTrailingSymbs(msg)
         # new_msg = str(msg)
-        # new_msg = cm.HEADING_WITH_PUNCT_MULTI.sub('', new_msg)
-        # new_msg = cm.TRAILING_WITH_PUNCT_MULTI.sub('', new_msg)
+        # new_msg = df.HEADING_WITH_PUNCT_MULTI.sub('', new_msg)
+        # new_msg = df.TRAILING_WITH_PUNCT_MULTI.sub('', new_msg)
         return new_msg
 
     def cleanBothEntries(self, msg, tran):
@@ -829,7 +623,7 @@ class TranslationFinder:
     def getKeyboardOriginal(self, text):
         # kbd_def_val = list(KEYBOARD_TRANS_DIC.values())
         orig_txt = str(text)
-        for k, kbd_val in KEYBOARD_TRANS_DIC_PURE.items():
+        for k, kbd_val in df.KEYBOARD_TRANS_DIC_PURE.items():
             is_in_text = (kbd_val in text)
             if is_in_text:
                 text = text.replace(kbd_val, k)
@@ -1150,8 +944,8 @@ class TranslationFinder:
         return po_cat_dic
 
     def setupKBDDicList(self):
-        kbd_l_case = dict((k.lower(), v) for k, v in KEYBOARD_TRANS_DIC.items())
-        KEYBOARD_TRANS_DIC.update(kbd_l_case)
+        kbd_l_case = dict((k.lower(), v) for k, v in df.KEYBOARD_TRANS_DIC.items())
+        df.KEYBOARD_TRANS_DIC.update(kbd_l_case)
 
     def writeJSONDic(self, dict_list=None, file_name=None):
         dic = {}
@@ -1257,6 +1051,12 @@ class TranslationFinder:
             matching_ratio = 100.0
         else:
             tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
+            if not tran:
+                forward_slashes = df.FORWARD_SLASH.search(msg)
+                has_forward_slashes = (forward_slashes is not None)
+                if has_forward_slashes:
+                    msg = msg.replace('/', ' ')
+                    tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
 
         if tran:
             tran = search_dict.replaceTranRef(tran)
@@ -1264,6 +1064,7 @@ class TranslationFinder:
             cm.debugging(msg)
             dd(f'isInDictFuzzy: [{msg}] => [{tran}]')
         else:
+
             tran = None
         return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 
@@ -1323,7 +1124,7 @@ class TranslationFinder:
         return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:
-        new_txt, subcount = cm.SYMBOLS.subn('', txt)
+        new_txt, subcount = df.SYMBOLS.subn('', txt)
         cover_length = 0
         if subcount > 0:
             is_ignore = ig.isIgnored(new_txt)
@@ -1340,11 +1141,11 @@ class TranslationFinder:
         return txt, None, cover_length
 
     def translateWords(self, txt: str):
-        word_list_dict = cm.findInvert(cm.SYMBOLS, txt)
+        word_list_dict = cm.findInvert(df.SYMBOLS, txt, is_reversed=True)
         temp_tran = str(txt)
         for loc, mm in word_list_dict.items():
             word = mm.txt
-            tran_sub_text, matched_text, matching_ratio = self.tryFuzzyTranlation(word)
+            tran_sub_text, cover_length, matching_ratio = self.tryFuzzyTranlation(word)
             if tran_sub_text:
                 ss, ee = loc
                 left = temp_tran[:ss]
@@ -1354,7 +1155,7 @@ class TranslationFinder:
         return (temp_tran if has_tran else None)
 
     def translationByReplacingSymbolsWithSpaces(self, txt: str):
-        new_txt, subcount = cm.SYMBOLS.subn(' ', txt)
+        new_txt, subcount = df.SYMBOLS.subn(' ', txt)
         cover_length = 0
         trans = None
         orig_txt = txt
@@ -1382,30 +1183,21 @@ class TranslationFinder:
     def tryToFindTranslation(self, txt: str) -> str:
         cover_length = 0
         separator_list = [
-            cm.SPACES,
-            cm.SYMBOLS,
+            df.SPACES,
+            df.SYMBOLS,
         ]
         selective_list = []
 
         input_txt = str(txt)
-        sent_struct = self.getSentStruct(txt)
-        is_tran_sent_struct = bool(sent_struct)
-        if is_tran_sent_struct:
-            txt = sent_struct.km_txt
 
         new_text, trans, cover_length = self.findByReduction(txt)
         is_found_trans = (trans and not trans == txt)
         if is_found_trans:
-            if is_tran_sent_struct:
-                sent_struct.tm_txt = trans
-                txt = input_txt
-                trans = sent_struct.getTranslated()
-
             return txt, trans, cover_length
 
         for separator in separator_list:
             temp_masking_text = str(txt)
-            found_dict = cm.findInvert(separator, txt)
+            found_dict = cm.findInvert(separator, txt, is_reversed=True)
             if not found_dict:
                 continue
 
@@ -1459,28 +1251,18 @@ class TranslationFinder:
 
         if not selective_list:
             txt = input_txt
-            if is_tran_sent_struct:
-                translation = sent_struct.getNonTranslated()
-                cover_length = len(input_txt)
-            else:
-                translation = None
-                cover_length = 0
+            translation = None
+            cover_length = 0
         else:
             sorted_selective_list = list(sorted(selective_list, reverse=True))
             chosen_entry = sorted_selective_list[0]
             cover_length, txt, translation = chosen_entry
 
-            if is_tran_sent_struct:
-                sent_struct.tm_txt = translation
-                txt = input_txt
-                translation = sent_struct.getTranslated()
-                cover_length = len(input_txt)
-
         return txt, translation, cover_length
 
     def removeStarAndEndingPunctuations(self, txt):
-        new_txt = cm.ENDS_PUNCTUAL_MULTI.sub('', txt)
-        new_txt = cm.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
+        new_txt = df.ENDS_PUNCTUAL_MULTI.sub('', txt)
+        new_txt = df.BEGIN_PUNCTUAL_MULTI.sub('', new_txt)
 
         cover_length = 0
         # dd(f'removeStarAndEndingPunctuations: {txt} => {new_txt}')
@@ -1493,8 +1275,7 @@ class TranslationFinder:
 
     def fixTranslationWithKnowsPrefixSuffixes(self, txt, trans, is_prefix=False):
         new_txt = str(trans)
-        # pp(cm.common_sufix_translation)
-        fix_translation_list = (cm.common_prefix_translation if is_prefix else cm.common_sufix_translation)
+        fix_translation_list = (df.common_prefix_translation if is_prefix else df.common_sufix_translation)
         for fix_term, (position, add_translation) in fix_translation_list:
 
             if is_prefix:
@@ -1505,8 +1286,8 @@ class TranslationFinder:
             if not has_fix_term:
                 continue
 
-            is_at_front = (position == cm.START_WORD)
-            is_at_end = (position == cm.END_WORD)
+            is_at_front = (position == df.START_WORD)
+            is_at_end = (position == df.END_WORD)
             is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
             is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
@@ -1550,7 +1331,7 @@ class TranslationFinder:
         if ig.isIgnored(clipped_txt):
             return None, None
 
-        for replacement_word, ending_list in cm.common_suffixes_replace_dict.items():
+        for replacement_word, ending_list in df.common_suffixes_replace_dict.items():
             for ending in ending_list:
                 part_matched = (part == ending)
                 if not part_matched:
@@ -1624,14 +1405,14 @@ class TranslationFinder:
             return txt, tran, cover_length
 
         start_non_alpha, mid, end_non_alpha = cm.getTextWithin(txt)
-        is_at_start = (at == cm.START_WORD)
-        is_at_end = (at == cm.END_WORD)
+        is_at_start = (at == df.START_WORD)
+        is_at_end = (at == df.END_WORD)
         test_text = str(txt)
         cover_length = 0
         if is_at_start:
-            test_text = cm.NON_WORD_STARTING.sub("", test_text)
+            test_text = df.NON_WORD_STARTING.sub("", test_text)
         elif is_at_end:
-            test_text = cm.NON_WORD_ENDING.sub("", test_text)
+            test_text = df.NON_WORD_ENDING.sub("", test_text)
 
         word_len = len(test_text)
         text_before_cutoff = str(test_text)
@@ -1648,11 +1429,11 @@ class TranslationFinder:
             #     dd(f'removeByPatternListAndCheck: part: {part}; test_text:{test_text}; has_start:{has_start}; has_end:{has_end}')
             if has_start:
                 test_text = text_before_cutoff[part_len:]
-                test_text = cm.NON_WORD_STARTING.sub("", test_text)
+                test_text = df.NON_WORD_STARTING.sub("", test_text)
                 # dd(f'removeByPatternListAndCheck: has_start: {part}; test_text:{test_text}')
             elif has_end:
                 test_text = text_before_cutoff[:-part_len]
-                test_text = cm.NON_WORD_ENDING.sub("", test_text)
+                test_text = df.NON_WORD_ENDING.sub("", test_text)
                 # dd(f'removeByPatternListAndCheck: has_end: {part}; test_text:{test_text}')
             else:
                 continue
@@ -1723,11 +1504,11 @@ class TranslationFinder:
             return txt, None
 
     def isNonGATranslatedFully(self, msg, trans):
-        is_ga = (cm.GA_PATTERN_PARSER.search(msg) is not None)
+        is_ga = (df.GA_PATTERN_PARSER.search(msg) is not None)
         if is_ga:
             return True
 
-        is_ga = (cm.GA_PATTERN_PARSER.search(trans) is not None)
+        is_ga = (df.GA_PATTERN_PARSER.search(trans) is not None)
         if is_ga:
             return True
 
@@ -1775,10 +1556,10 @@ class TranslationFinder:
         trans_list = []
         trans = str(msg)
 
-        word_list = cm.WORD_ONLY_FIND.findall(msg)
+        word_list = df.WORD_ONLY_FIND.findall(msg)
 
         dd(f'word_list: {word_list}')
-        result_dict = cm.patternMatchAll(cm.WORD_ONLY_FIND, msg)
+        result_dict = cm.patternMatchAll(df.WORD_ONLY_FIND, msg)
         for loc, mm in result_dict.items():
             (o_s, o_e), o_txt = mm.getOriginAsTuple()
             is_possessive = o_txt.endswith("'s")
@@ -1807,7 +1588,7 @@ class TranslationFinder:
 
     def removeTheWord(self, trans):
         try:
-            trans = cm.THE_WORD.sub("", trans)
+            trans = df.THE_WORD.sub("", trans)
         except Exception as e:
             pass
         return trans
@@ -1816,20 +1597,25 @@ class TranslationFinder:
         trans = None
         old_msg = str(msg)
         try:
-            sent_struct = self.getSentStruct(msg)
-            is_tran_sent_struct = bool(sent_struct)
-            if is_tran_sent_struct:
-                msg = sent_struct.km_txt
+            # sent_struct = self.getSentStruct(msg)
+            # is_tran_sent_struct = bool(sent_struct)
+            # if is_tran_sent_struct:
+            #     is_fully_translated = sent_struct.isFullyTranslated(msg)
+            #     if is_fully_translated:
+            #         trans = sent_struct.getTranslated()
+            #         return (trans, False, False)
+            #     else:
+            #         msg = sent_struct.km_txt
 
             dd(f'calling findTranslation')
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
                 trans = None
-                if is_tran_sent_struct:
-                    is_ignore = False
-                    trans = sent_struct.getNonTranslated()
-                return (trans, False, is_ignore)
+                # if is_tran_sent_struct:
+                #     is_ignore = False
+                #     trans = sent_struct.getNonTranslated()
+                # return (trans, False, is_ignore)
 
             if not trans:
                 dd(f'calling tryFuzzyTranlation')
@@ -1842,19 +1628,19 @@ class TranslationFinder:
                 is_fuzzy = True
 
             if trans:
-                is_same = (trans == msg)
-                if is_same:
-                    trans = None
-                    if is_tran_sent_struct:
-                        trans = sent_struct.getNonTranslated()
-                else:
-                    if is_tran_sent_struct:
-                        sent_struct.tm_txt = trans
-                        trans = sent_struct.getTranslated()
-
-                    dd(f'calling removeTheWord')
-                    trans = self.removeTheWord(trans)
-                    trans = cm.matchCase(msg, trans)
+                # is_same = (trans == msg)
+                # if is_same:
+                #     trans = None
+                #     if is_tran_sent_struct:
+                #         trans = sent_struct.getNonTranslated()
+                # else:
+                #     if is_tran_sent_struct:
+                #         sent_struct.tm_txt = trans
+                #         trans = sent_struct.getTranslated()
+                #
+                dd(f'calling removeTheWord')
+                trans = self.removeTheWord(trans)
+                trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
             print(f'ERROR: {e} - msg:[{msg}], trans:[{trans}]')
@@ -1864,7 +1650,7 @@ class TranslationFinder:
         msg = mm.getSubText()
         orig = str(msg)
         trans = str(msg)
-        result_dict = cm.patternMatchAll(cm.KEYBOARD_SEP, msg)
+        result_dict = cm.patternMatchAll(df.KEYBOARD_SEP, msg)
         for sub_loc, sub_mm in result_dict.items():
             txt = sub_mm.txt
             has_dic = (txt in self.kbd_dict)
@@ -1887,9 +1673,9 @@ class TranslationFinder:
         return True
 
     def checkIgnore(self, msg):
-        is_pure_path = (cm.PURE_PATH.search(msg) is not None)
-        is_pure_ref = (cm.PURE_REF.search(msg) is not None)
-        is_api_ref = (cm.API_REF.search(msg) is not None)
+        is_pure_path = (df.PURE_PATH.search(msg) is not None)
+        is_pure_ref = (df.PURE_REF.search(msg) is not None)
+        is_api_ref = (df.API_REF.search(msg) is not None)
         is_keep = (ig.isKeep(msg))
         is_keep_contain = (ig.isKeepContains(msg))
         is_ignore = (is_pure_path or is_pure_ref or is_api_ref) and (not (is_keep or is_keep_contain))
@@ -1927,7 +1713,7 @@ class TranslationFinder:
         if not has_tran:
             return tran
 
-        has_abbr = (cm.ABBREV_CONTENT_PARSER.search(tran) is not None)
+        has_abbr = (df.ABBREV_CONTENT_PARSER.search(tran) is not None)
         if not has_abbr:
             return tran
 
@@ -1947,7 +1733,7 @@ class TranslationFinder:
             has_ref = bool(ref_type)
             has_valid_ref_type = (has_ref and isinstance(ref_type, RefType))
             is_text_type = (has_valid_ref_type and ref_type == RefType.TEXT)
-            is_bracket_or_quote = (has_valid_ref_type and (cm.BRACKET_OR_QUOTE_REF.search(ref_type.name) is not None))
+            is_bracket_or_quote = (has_valid_ref_type and (df.BRACKET_OR_QUOTE_REF.search(ref_type.name) is not None))
             is_ignore_type = (is_text_type or is_bracket_or_quote)
             is_formatting = (not is_ignore_type)
             if not is_formatting:
@@ -1959,13 +1745,19 @@ class TranslationFinder:
         formatted_tran = None
         is_fuzzy = is_ignore = False
         tran = None
+        is_using_main = False
         msg = mm.getSubText()
-        has_ref_link = (cm.REF_LINK.search(msg) is not None)
+        has_sub_text = bool(msg)
+        if not has_sub_text:
+            is_using_main = True
+            msg = mm.getMainText()
+
+        has_ref_link = (df.REF_LINK.search(msg) is not None)
         if not has_ref_link:
             tran, is_fuzzy, is_ignore = self.translate(msg)
             mm.setTranlation(tran, is_fuzzy, is_ignore)
         else:
-            found_dict = cm.findInvert(cm.REF_LINK, msg)
+            found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
             for sub_loc, sub_mm in found_dict.items():
                 sub_txt = sub_mm.getMainText()
                 sub_tran, is_fuzzy, is_ignore = self.translate(sub_txt)
@@ -1975,14 +1767,15 @@ class TranslationFinder:
                 break
         if tran:
             main_txt = mm.getMainText()
-            sub_loc = mm.getSubLoc()
+            if is_using_main:
+                sub_loc = mm.getMainLoc()
+            else:
+                sub_loc = mm.getSubLoc()
             if not formatted_tran:
                 formatted_tran = formatTran(msg, tran)
             main_tran = cm.jointText(main_txt, formatted_tran, sub_loc)
             mm.setTranlation(main_tran, is_fuzzy, is_ignore)
         return bool(tran)
-
-
 
     def translateMenuSelection(self, mm: MatcherRecord):
         def formatAbbrevTran(current_untran, current_tran):
@@ -2026,7 +1819,7 @@ class TranslationFinder:
 
         msg = mm.getSubText()
 
-        word_list = cm.findInvert(cm.MENU_SEP, msg)
+        word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
         translateMenuItem(word_list)
 
         mm_main_txt = mm.getMainText()
@@ -2072,7 +1865,7 @@ class TranslationFinder:
             if not current_tran:
                 return None
 
-            abbrev_dict = cm.patternMatchAll(cm.ABBREV_PATTERN_PARSER, current_tran)
+            abbrev_dict = cm.patternMatchAll(df.ABBREV_PATTERN_PARSER, current_tran)
             if not abbrev_dict:
                 return current_tran
 
@@ -2089,7 +1882,7 @@ class TranslationFinder:
         msg = mm.getSubText()
         tran_txt = str(msg)
         first_match_mm: MatcherRecord = None
-        all_matches = cm.patternMatchAll(cm.ABBR_TEXT, msg)
+        all_matches = cm.patternMatchAll(df.ABBR_TEXT, msg)
         if not all_matches:
             return False
 
@@ -2121,7 +1914,7 @@ class TranslationFinder:
         tran_txt = str(msg)
         is_fuzzy_list=[]
         is_ignore_list=[]
-        word_list_dict = cm.findInvert(cm.COLON_CHAR, tran_txt)
+        word_list_dict = cm.findInvert(df.COLON_CHAR, tran_txt, is_reversed=True)
         word_list_count = len(word_list_dict)
         for loc, orig_txt in word_list_dict.items():
             s, e = loc

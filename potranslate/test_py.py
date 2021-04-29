@@ -20,10 +20,12 @@ from sphinx_intl import catalog as c
 from pytz import timezone
 from common import Common as cm
 from matcher import MatcherRecord
+from definition import Definitions as df
 
-from reflist import RefList, TranslationState
 from pprint import pprint
 from reftype import RefType
+from reflist import RefList
+import copy as CP
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -5701,18 +5703,6 @@ class test(object):
         print(word_list, new_word_list)
         print(new_text)
 
-    #re.compile(r"((Wheel)|(Numpad)|(MMB)|(LMB)|(RMB)|(Period))")
-    def translateKeyBoard(self, k):
-        has_keyboard_def = (cm.KEYBOARD_DEF.search(k) != None)
-        if (not has_keyboard_def):
-            return k
-
-        has_translatable_def = (cm.SPECIAL_DEF.search(k))
-        if (not has_translatable_def):
-            return k
-
-        new_k = cm.translateKeyboardDef(k)
-        return new_k
 
     def test_0023(self):
         t = ":kbd:`Shift-MMB`, :kbd:`Ctrl-Numpad2`, :kbd:`Ctrl-Numpad4`, :kbd:`Ctrl-Numpad6`, :kbd:`Ctrl-Numpad8`"
@@ -5730,14 +5720,6 @@ class test(object):
         for tt in t:
             is_end_with_symbol = (p.search(tt) != None)
             print("{}; is_end_with_symbol:{}".format(tt, is_end_with_symbol))
-
-    def test_0025(self):
-        item_to_find = "The translations are licensed under the same :doc:`License  as the original."
-        list_item = "The translations are licensed under the same :doc:`/about/license` as the original."
-        distance = DS(item_to_find, list_item)
-        print("item_to_find:{}".format(item_to_find))
-        print("list_item:{}".format(list_item))
-        print("distance:{}".format(distance))
 
     def test_0026(self):
         pat="(\w+)(_[\w]+)*"
@@ -7560,7 +7542,7 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
                         continue
 
                     # looking for :.*:, ie. :abbr:
-                    has_ref = (cm.GA_REF_PART.search(k) is not None)
+                    has_ref = (df.GA_REF_PART.search(k) is not None)
                     if has_ref: # leave the old ref as is
                         continue
 
@@ -7933,7 +7915,7 @@ IOR
         path_pattern = r'^(%s)%s?$' % (path, path_sep)
         # pat_full = r'^(((\w+)?(\:)?)|([\.]{1,2})?(\w+){2,})+([*\.](\w{2,5})|[\*])?$'
 
-        PATH_CHECKER = cm.PATH_CHECKER
+        PATH_CHECKER = df.PATH_CHECKER
 
         file_list = []
         list_of_brackets = []
@@ -8370,12 +8352,12 @@ IOR
         has_left = bool(i_left and k_left)
         if has_left:
             left_ratio = fuzz.ratio(i_left, k_left)
-            is_left_match = (left_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+            is_left_match = (left_ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
 
         has_right = bool(i_right and k_right)
         if has_right:
             right_ratio = fuzz.ratio(i_right, k_right)
-            is_right_match = (right_ratio >= cm.FUZZY_ACCEPTABLE_RATIO)
+            is_right_match = (right_ratio >= df.FUZZY_ACCEPTABLE_RATIO)
 
         is_equal = (has_left or has_right) and (is_left_match and is_right_match)
         if is_equal:
@@ -8998,8 +8980,8 @@ IOR
         # for t, _ in t_dict.items():
         # output_list = {}
         for t in t_list:
-            # # iter = cm.pattern MENU_SEP.finditer(t)
-            # matched_list = cm.findInvert(cm.MENU_SEP, t)
+            # # iter = df.pattern MENU_SEP.finditer(t)
+            # matched_list = df.findInvert(df.MENU_SEP, t)
             # for loc, mtxt in matched_list.items():
             #     entry = (loc, mtxt)
             #     print(entry)
@@ -9052,7 +9034,7 @@ IOR
         #     print(f"\"{k}\": \"{v.strip()}\",")
 
         # print(f't:[{t}]')
-        # m_list = cm.COMMON_SENTENCE_BREAKS.findall(t)
+        # m_list = df.COMMON_SENTENCE_BREAKS.findall(t)
         # pprint(m_list)
         #
         # doc = nlp(t)
@@ -9320,7 +9302,7 @@ IOR
         else:
             return None
         
-    def grepPOT(self, root_txt, is_sub_group=False, separator=None, is_translate=False):
+    def grepPOT(self, pattern, is_sub_group=False, separator=None, is_translate=False, is_considering_side_words=False):
         def isRemove(txt: str):
             remove_list=[
                 '\'',
@@ -9359,27 +9341,42 @@ IOR
         count_dict = defaultdict(int)
 
         pats = []
-        pats.append(root_txt)
-        # word = r'(\w+)'
-        # possible_word = r'(\s?(%s)\s?)?' % (word)
-        # pats = []
-        # pat_txt = r'%s' % (root_txt)
-        # p = re.compile(pat_txt)
-        # pats.append(p)
-        #
-        # pat_txt = r'%s\b%s\b' % (possible_word, root_txt)
-        # p = re.compile(pat_txt)
-        # pats.append(p)
-        #
-        # pat_txt = r'%s\b%s\b%s' % (possible_word, root_txt, possible_word)
-        # p = re.compile(pat_txt)
-        # pats.append(p)
-        #
-        # pat_txt = r'%s\b%s\b%s%s' % (possible_word, root_txt, possible_word, possible_word)
-        # p = re.compile(pat_txt)
-        # pats.append(p)
+        is_compile_required = isinstance(pattern, str)
+        if is_compile_required:
+            if is_considering_side_words:
+                word = r'(\w+)'
+                possible_word = r'(\s?(%s)\s?)?' % (word)
+                pats = []
+                pat_txt = r'%s' % (pattern)
+                p = re.compile(pat_txt)
+                pats.append(p)
 
-        tf = (TranslationFinder() if is_translate else None)
+                pat_txt = r'%s\b%s\b' % (possible_word, pattern)
+                p = re.compile(pat_txt)
+                pats.append(p)
+
+                pat_txt = r'%s\b%s\b%s' % (possible_word, pattern, possible_word)
+                p = re.compile(pat_txt)
+                pats.append(p)
+
+                pat_txt = r'%s\b%s\b%s%s' % (possible_word, pattern, possible_word, possible_word)
+                p = re.compile(pat_txt)
+                pats.append(p)
+
+                pat_txt = r'(\s?(%s)\s?)?' % (pattern)
+                p = re.compile(pat_txt)
+                pats.append(p)
+            else:
+                pat_txt = r'%s' % (pattern)
+                p = re.compile(pat_txt)
+                pats.append(p)
+        else:
+            pats.append(pattern)
+
+        tf = None
+        if is_translate:
+            tf = (TranslationFinder() if is_translate else None)
+
         file_found=[]
         entry_found=[]
         loc_found=[]
@@ -9463,7 +9460,7 @@ IOR
 
     def test_abbr(self):
         abbr_txt = ":abbr:`SSAO (Screen Space Ambient Occlusion)` and this :abbr:`NDOF (N-Degrees of Freedom)`"
-        all_matches = cm.patternMatchAll(cm.ABBR_TEXT, abbr_txt)
+        all_matches = cm.patternMatchAll(df.ABBR_TEXT, abbr_txt)
         all_match_list = list(all_matches.items())
         first_match = all_match_list[0]
         s, mm = first_match
@@ -9471,7 +9468,7 @@ IOR
         (sub_ss, sub_ee), txt = mm.getSubEntryByIndex(0)
         print(f'typeof[{type(all_matches)}]')
         exit(0)
-        m = cm.patternMatchAllAsDictNoDelay(cm.ABBREV_PATTERN_PARSER, abbr_txt)
+        m = cm.patternMatchAllAsDictNoDelay(df.ABBREV_PATTERN_PARSER, abbr_txt)
         if not m:
             return None
 
@@ -9593,28 +9590,6 @@ IOR
                     print('-' * 3)
             print('-' * 80)
 
-    def test_re(self):
-        # t = '(this one (and that) one)'
-        #
-        # # pstart = re.compile(r'^(\()(.*)')
-        # # pend = re.compile(r'(.*)(\)$)')
-        # pstart_and_end = re.compile(r'^(\()?(.*)(\)?$)')
-        # # start_list = cm.patternMatchAll(pstart, t)
-        # # end_list = cm.patternMatchAll(pend, t)
-        # start_and_end_list = cm.patternMatchAll(pstart_and_end, t)
-        # print(start_and_end_list)
-        # print(start_list)
-        # print(end_list)
-        #
-        # ptxt=r"(\%s)?(.*)(\%s)?" % ('(', ')')
-        # # p = re.compile(".*?\((.*?)\)")
-        # p =re.compile(ptxt)
-        # ll = p.findall(t)
-        # print(ll)
-        # print(len(ll[0]))
-        t = "(bracket (within bracket) and without) 'single' \"double\" :doc:`Editing </about/contribute/editing>` ``master`` ``:term:`Manifold``` **you should always** and *Usage Information* Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``) (also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`). :ref:`ui-undo-redo-adjust-last-operation` :ref:`roll rotation <armature-bone-roll>` :doc:`pose library </animation/armatures/properties/pose_library>` (bracket another (within bracket another) and without another)"
-        f = t[356:397]
-        print(f'[{f}]')
 
     def test_find_invert(self):
         # t = 'begin (testing string)'
@@ -9637,8 +9612,403 @@ IOR
         # found_dict = cm.patternMatchAll(pat, t)
         # print(found_dict)
 
+    def test_forward_slashes(self):
+        t = "Front/Camera Mapping"
+        p = re.compile(r'[\w\s]?([\/]+)[\w\s]?')
+        l = cm.patternMatchAll(p, t)
+        print(l)
+
+    def test_translate_json_file(self):
+        git_hub = os.environ['BLENDER_GITHUB']
+        home = f'{git_hub}/..'
+        input_file= os.path.join(home, "blender_manual/test_txt.json")
+        output_file = os.path.join(home, "blender_manual/test_tran_txt.json")
+        input_data = readJSON(input_file)
+
+        tf = TranslationFinder()
+        output_data={}
+        error=False
+        for msgid, msgstr in input_data.items():
+            try:
+                ref_list = RefList(msg=msgid, keep_orig=False, tf=tf)
+                ref_list.parseMessage()
+                ref_list_to_list = list(ref_list.items())
+                ref_list_to_list.sort()
+                ref_list.translate()
+                trans = ref_list.getTranslation()
+                entry={msgid: trans}
+                output_data.update(entry)
+            except Exception as ee:
+                error=True
+                print(ee)
+                raise ee
+        if not error:
+            writeJSON(output_file, output_data)
+
+    def test_re(self):
+        from sentence import StructRecogniser as SR
+        # class StructRecogniser():
+        #     '''
+        #         paragraph.StructRecogniser
+        #         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+        #         This class recognise an entry of dictionary as a sentence structure which will be in the form:
+        #             dict_sl = "chang\\w+ $$$ to $$$"
+        #             dict_tl = "chuyển đổi từ $$$ sang thành $$$",
+        #
+        #         This structure will help to recognise and translate commonly know structures, such as:
+        #             src_sl_txt = "changes the structure from CONSTRUCTIVE to DECONSTRUCTIVE"
+        #
+        #         - the class will set flag 'is_sent_struct' to True if the 'dict_sl' containing '$$$' to help identifying
+        #         a dictionary entry is a sentence structure or not
+        #         - the structure 'something $$$...' will be converted to a pattern (dict_sl) to recognise the
+        #         sentences like 'src_sl_txt'. This pattern can be used to store in the 'sent_struct_dictionary' to help
+        #         parsing text parts during translation.
+        #         - once found, and parsed, the class can automatically generate the correct MatchRecord structure,
+        #             self.sent_tl_rec
+        #         ready to be used, translated. It also output the text that needed to be further translated, parsed etc,
+        #         like reflist, for instance.
+        #     '''
+        #     def __init__(self, dict_sl_txt=None, dict_tl_txt=None, tran_sl_txt=None, translation_engine=None):
+        #         self.is_sent_struct=False
+        #         # key in dictionary, in the form 'chang\\w+ $$$ to $$$'
+        #         self.dict_sl_txt: str = dict_sl_txt
+        #
+        #         # translation of key in dictionary, in the form 'đổi  $$$ sang thành $$$'
+        #         self.dict_tl_txt: str = None
+        #         if dict_tl_txt:
+        #             self.dict_tl_txt: str = u'%s' % (dict_tl_txt)
+        #
+        #         # text in found in source language which matched the sentence structure pattern
+        #         self.tran_sl_txt: str = None
+        #         if tran_sl_txt:
+        #             self.tran_sl_txt = tran_sl_txt
+        #
+        #         # text that is the result of structure translation
+        #         self.tran_tl_txt: str = None
+        #
+        #         # pattern to recognise the sentence structure in the source language text, which will use
+        #         # the preset translation
+        #         self.recog_pattern: re.Pattern = None
+        #
+        #         self.dict_sl_rec: MatcherRecord = None
+        #         self.dict_tl_rec: MatcherRecord = None
+        #         self.sent_sl_rec: MatcherRecord = None
+        #         self.sent_tl_rec: MatcherRecord = None
+        #         self.tf = translation_engine
+        #
+        #         self.setupRecords()
+        #
+        #     def __repr__(self):
+        #         string = "\n{!r}".format(self.__dict__)
+        #         return string
+        #
+        #     def isSentenceStructure(self):
+        #         return self.is_sent_struct
+        #
+        #     def setUpOneRecord(self, the_txt):
+        #         the_txt_word_list = cm.creatSentRecogniserPattern(the_txt)
+        #         mm = MatcherRecord(txt=the_txt)
+        #         mm.initUsingList(the_txt_word_list)
+        #         return mm, the_txt_word_list
+        #
+        #     def setupRecords(self):
+        #         try:
+        #             # self.dict_sl_rec, dict_sl_txt_word_list = self.setUpOneRecord(self.dict_sl_txt)
+        #             # self.recog_pattern = cm.formPattern(dict_sl_txt_word_list)
+        #             #
+        #             # self.dict_tl_rec, dict_tl_txt_word_list = self.setUpOneRecord(self.dict_tl_txt)
+        #
+        #             dict_tl_list = self.dict_tl_rec.getSubEntriesAsList()
+        #             sent_tl_list = CP.deepcopy(dict_tl_list)
+        #
+        #             self.sent_tl_rec = CP.copy(self.dict_tl_rec)
+        #             self.sent_tl_rec.clear()
+        #             self.sent_tl_rec.update(sent_tl_list)
+        #
+        #
+        #             self.is_sent_struct = True
+        #         except Exception as e:
+        #             # print(f'setupDictRecord() [{self}] ERROR:{e}')
+        #             self.is_sent_struct = False
+        #         self.setupSentSLRecord()
+        #
+        #     def setupSentSLRecord(self):
+        #         sl_rec: MatcherRecord = None
+        #         try:
+        #             sl_rec = cm.patternMatch(self.recog_pattern, self.tran_sl_txt)
+        #             list_of_words = sl_rec.getSubEntriesAsList()
+        #             interested_part = list_of_words[1:]
+        #             sl_rec.clear()
+        #             sl_rec.update(interested_part)
+        #         except Exception as e:
+        #             if not self.tran_sl_txt:
+        #                 return
+        #             sl_rec = MatcherRecord(txt=self.tran_sl_txt)
+        #         self.sent_sl_rec = sl_rec
+        #
+        #     def getListOfTextsNeededToTranslate(self):
+        #         '''
+        #             using the index for $$$ in the 'sent_sl_rec' to identify the text
+        #             required (unknown) to be translated
+        #             tran_list hold the tuple (loc, txt), this will be held in the 'sent_tl_rec'
+        #             eventually
+        #         '''
+        #
+        #         def getListOfAnythingPosition(mm_record: MatcherRecord):
+        #             '''
+        #                 Find list of indexes where $$$ is mentioned in the parsed external text
+        #             '''
+        #             post=[]
+        #             try:
+        #                 mm_record_word_list = mm_record.getSubEntriesAsList()
+        #                 for index, entry in enumerate(mm_record_word_list):
+        #                     (loc, txt) = entry
+        #                     is_filler = (df.SENT_STRUCT_PAT.search(txt) is not None)
+        #                     if not is_filler:
+        #                         continue
+        #
+        #                     post.append(index)
+        #             except Exception as e:
+        #                 pass
+        #                 # print(f'getListOfTextNeededToTranslate(); mm_record:[{mm_record}]; ERROR:[{e}]')
+        #             return post
+        #
+        #         def getInitialListOfTextsToBeTranslated():
+        #             # run through the dictionary's source language indexes, where $$$ was
+        #             # note: we are not in the loop where location and length of strings for each element is relevant
+        #             # these should be dealt with later
+        #             for index, from_index in enumerate(dict_sl_any_index_list):
+        #                 # to target index of $$$ in the dictionary target language, where $$$ was
+        #                 to_index = dict_tl_any_index_list[index]
+        #
+        #                 # extract untranslated text out of external sentence where $$$ supposedly occupied
+        #                 # this will give you texts supposedly to be translated:
+        #                 # such as:
+        #                 #           the structure from CONSTRUCTIVE
+        #                 #           DECONSTRUCTIVE
+        #                 untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
+        #
+        #                 # location and text where $$$ was in the external sentence, this will help us to identify start
+        #                 # location. The END location, however, will be the length of text (any_s + txt_length)
+        #                 any_loc, any_txt = sent_tl_list[to_index]
+        #                 txt_length = len(untran_txt)
+        #                 (any_s, any_e) = any_loc
+        #                 new_loc = (any_s, any_s + txt_length)
+        #                 new_entry = (new_loc, untran_txt)
+        #
+        #                 # insert into the correct position, but offsets of next text items will be out of sync
+        #                 new_sent_tl_list.pop(to_index)
+        #                 new_sent_tl_list.insert(to_index, new_entry)
+        #
+        #         def correctTextsOffsets():
+        #             # now correct offsets for subsequent texts
+        #             corrected_sent_tl_list=[]
+        #             correct_sent_tl_txt_list=[]
+        #             ls = le = 0
+        #             test_dict = OrderedDict(new_sent_tl_list)
+        #             txt_list = test_dict.values()
+        #             test_full_txt = ''.join(txt_list)
+        #             for index, (loc, txt) in enumerate(new_sent_tl_list):
+        #                 ts, te = loc
+        #                 txt_length = len(txt)
+        #                 le = (ls + txt_length)
+        #                 new_loc = (ls, le)
+        #                 new_entry = (new_loc, txt)
+        #                 test_txt = test_full_txt[ls: le]
+        #                 corrected_sent_tl_list.append(new_entry)
+        #                 is_entry_untranslated = (index in dict_tl_any_index_list)
+        #                 if is_entry_untranslated:
+        #                     text_to_translate_list.append(new_entry)
+        #                 correct_sent_tl_txt_list.append(txt)
+        #                 ls = le
+        #
+        #             ntxt = "".join(correct_sent_tl_txt_list)
+        #             ns = 0
+        #             ne = len(ntxt)
+        #             # Note, the s, e here is a temporal value, this will have to matched up with the originally parsed location
+        #             n_mm = MatcherRecord(s=ns, e=ne, txt=ntxt)
+        #             n_mm.appendSubRecords(corrected_sent_tl_list)
+        #             self.sent_tl_rec = n_mm
+        #
+        #         text_to_translate_list=[]
+        #         dict_sl_any_index_list = None
+        #         dict_tl_any_index_list = None
+        #         sent_sl_list_of_txt = None
+        #         sent_tl_list = None
+        #         try:
+        #             dict_sl_any_index_list = getListOfAnythingPosition(self.dict_sl_rec)
+        #             # indexes of $$$ in the dictionary's target language entry in the form of [int, int...]
+        #             dict_tl_any_index_list = getListOfAnythingPosition(self.dict_tl_rec)
+        #
+        #             # list of text in the external source language sentence, with untranslated text
+        #             sent_sl_list_of_txt = self.sent_sl_rec.getSubEntriesAsList()
+        #             # list of texts in external source language sentence, with untranslated text, but will be
+        #             # replaced with translated parts from the dictionary target language ie. text on both sides of $$$
+        #             sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
+        #
+        #             # make a copy here for easy observation during debugging
+        #             new_sent_tl_list = CP.copy(sent_tl_list)
+        #
+        #             getInitialListOfTextsToBeTranslated()
+        #             correctTextsOffsets()
+        #             print('')
+        #         except Exception as e:
+        #             try:
+        #                 loc = self.sent_sl_rec.getMainLoc()
+        #                 txt = self.sent_sl_rec.getMainText()
+        #                 entry=(loc, txt)
+        #                 text_to_translate_list.append(entry)
+        #             except Exception as ee:
+        #                 pass
+        #         return text_to_translate_list
+        #
+        #     def setTlTranslation(self, trans_list: list):
+        #         tl_txt = self.sent_tl_rec.txt
+        #         trans_list.sort(reverse=True)
+        #         for loc, tran_txt in trans_list:
+        #             tl_txt = cm.jointText(tl_txt, tran_txt, loc)
+        #         self.sent_tl_rec.txt = tl_txt
+        #
+        #     def getTranslation(self):
+        #         try:
+        #             return self.sent_tl_rec.txt
+        #         except Exception as e:
+        #             return ""
+        #
+        #     def translate(self):
+        #         try:
+        #             if self.is_sent_struct:
+        #                 list_of_text_to_be_translated = self.getListOfTextsNeededToTranslate()
+        #             else:
+        #                 main_entry = self.sent_sl_rec.getMainEntry()
+        #                 list_of_text_to_be_translated=[main_entry]
+        #
+        #             tran_list=[]
+        #             for loc, txt in list_of_text_to_be_translated:
+        #                 tran = self.translateText(txt)
+        #                 if tran:
+        #                     entry=(loc, tran)
+        #                     tran_list.append(entry)
+        #             self.setTlTranslation(tran_list)
+        #         except Exception as e:
+        #             pass
+        #
+        #     def translateText(self, txt):
+        #         try:
+        #             ref_list = RefList(msg=txt, keep_orig=False, tf=self.tf)
+        #             ref_list.parseMessage()
+        #             ref_list_to_list = list(ref_list.items())
+        #             ref_list_to_list.sort()
+        #             ref_list.translate()
+        #             trans = ref_list.getTranslation()
+        #             return trans
+        #         except Exception as e:
+        #             print(f'translateText(): {e}')
+        #             return None
+
+
+        # t = "(bracket (within bracket) and without) 'single' \"double\" :doc:`Editing </about/contribute/editing>` ``master`` ``:term:`Manifold``` **you should always** and *Usage Information* Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``) (also :kbd:`Shift-W` :menuselection:`--> (Deform, ...)`). :ref:`ui-undo-redo-adjust-last-operation` :ref:`roll rotation <armature-bone-roll>` :doc:`pose library </animation/armatures/properties/pose_library>` (bracket another (within bracket another) and without another)"
+        # dict_sl = "chang\\w+ $$$ to $$$"
+        # dict_tl = "đổi từ $$$ sang thành $$$",
+        # src_sl_txt = "changes the structure from CONSTRUCTIVE to DECONSTRUCTIVE"
+        #
+        # dict_sl = "e.g: $$$"
+        # dict_tl = "ví dụ: $$$ chẳng hạn",
+        # src_sl_txt = "e.g: modeling and not modelling, color and not colour"
+        #
+        # dict_sl = "turn\\w+? $$$ attention\\w+? to"
+        # dict_tl = "dồn sự tập trung/quan/chú tâm $$$ đến/tới/vào",
+        # src_sl_txt = "It is recommended to pay attention to image resolution and color depth when mixing and matching images."
+        #
+        # # "turn\\w+? $$$ attention\\w+? to": "dồn sự tập trung/quan/chú tâm $$$ đến/tới/vào",
+        # # "turn\\w+? not $$$ attention\\w? to": "không nên/chớ dồn sự tập trung/quan/chú tâm $$$ đến/tới/vào",
+        #
+        # # "e.g. $$$": "ví dụ $$$ chẳng hạn",
+        # # v_txt = u'%s' % (v)
+        #
+        # dict_sl = "e.g. $$$"
+        # dict_tl = "ví dụ $$$ chẳng hạn",
+        # src_sl_txt = "e.g. modeling and :abbr:`NMDL (not modelling)`, color and not colour"
+
+        dict_sl = "turn\\w+? not $$$ attention\\w+? to $$$"
+        dict_tl = "ngừng việc/đừng/chớ dồn sự tập trung/quan/chú tâm $$$ đến/tới/vào $$$",
+        src_sl_txt = "turning not our attentions to the ear."
+        tf = TranslationFinder()
+
+        # s_recog = StructRecogniser(dict_sl_txt=dict_sl,
+        #                            dict_tl_txt=dict_tl,
+        #                            tran_sl_txt=src_sl_txt,
+        #                            translation_engine=tf)
+        # s_recog.translate()
+        # tran = s_recog.getTranslation()
+        # print(f'from: {src_sl_txt}')
+        # print(f'to: {tran}')
+
+        s_recog = SR(tran_sl_txt=src_sl_txt,
+                    translation_engine=tf)
+        # s_recog.setupRecords()
+        s_recog.translate()
+        tran = s_recog.getTranslation()
+        print(f'tran:{tran}')
+        # list_of_text_to_be_translated = s_recog.getListOfTextsNeededToTranslate()
+
+        # found_list = s_recog.recog_pattern.findall(src_sl_txt)
+        # s_recog.tran_sl_txt = src_sl_txt
+
+        # if s_recog.sent_tl_rec:
+        #     final_txt = s_recog.sent_tl_rec.txt
+        #     for loc, txt in list_of_text_to_be_translated:
+        #         (ss, se) = loc
+        #         actual_txt = final_txt[ss: se]
+        #         print(actual_txt)
+        #
+        #     print(f'sentence: [{final_txt}]')
+        #
+        # print('to be translated:')
+        # print(list_of_text_to_be_translated)
+
+        # mm_rec_dict = cm.patternMatchAll(df.SENT_STRUCT_PAT, struct_pat)
+        # # print(f'[{mm_rec_dict}]')
+        #
+        # k_list = cm.findInvert(df.SENT_STRUCT_PAT, struct_pat)
+        # # v_list = cm.findInvert(df.SENT_STRUCT_PAT, v_txt)
+        # #
+        # # k_pat_list = []
+        # # k_list = list(k_list.items())
+        # # k_list.sort()
+        # # for k_loc, k_mm in k_list:
+        # #     k_txt = k_mm.getMainText()
+        # #     k_pat_list.append(f'({k_txt})')
+        # tp_txt = df.SENT_STRUCT_PAT.sub('(.*)', struct_pat)
+        # tp_txt = f'({tp_txt})'
+        # tp_txt = r'%s' % (tp_txt)
+        # tp = re.compile(tp_txt)
+        # # tp = re.compile(r'(change)(.*)(to)(.*)')
+        # tp_word_list = patStructToListOfWords(struct_pat)
+        # tp = formPattern(tp_word_list)
+        # tp_mm = MatcherRecord()
+        # tp_mm.initUsingList(tp_word_list, original_text=struct_pat, pattern=tp)
+        # tfound_dict = cm.patternMatchAll(tp, t)
+        # print(tfound_dict)
+
+        # v_pat_list = []
+        # v_list = list(v_list.items())
+        # v_list.sort()
+        # for v_loc, v_mm in v_list:
+        #     v_txt = v_mm.getMainText()
+        #     v_pat_list.append(f'({v_txt})')
+        #
+        # v_pat_list.sort(reverse=False)
+        # vp = re.compile(u'(.*)'.join(v_pat_list))
+        # vp = re.compile(u'(đổi từ)(.*)(sang thành)(.*)')
+        # vtxt = u'%s' % (v)
+        # vp_word_list = patStructToListOfWords(vtxt)
+        # vp_mm = MatcherRecord()
+        # vp_mm.initUsingList(vp_word_list)
+        # print(vp_word_list)
 
     def test_translate_0001(self, text_list=None):
+        from paragraph import Paragraph as PR
         tf = TranslationFinder()
         if not text_list:
             t_list = [
@@ -9672,46 +10042,93 @@ IOR
                 # "Generally, **you should always translate exactly what is in the text**,",
                 # "Otherwise you will get a warning: ``'locale' is not under version control as present situation``",
                 # "'locale' is this word"
-                "``:abbr:`SSAO (Screen Space Ambient Occlusion)``` (bracket (within bracket) and without) 'single' \"double\" :doc:`Editing </about/contribute/editing>` " \
-                "``master`` ``:term:`Manifold``` **you should always** and *Usage Information* " \
-                "Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``) " \
-                "``:menuselection:`3D Viewport --> Add --> Mesh --> Monkey``` " \
-                "(also :kbd:`Shift-W` :kbd:`Ctrl-0`, :kbd:`Shift-Ctrl-=`, :kbd:`Ctrl-Minus`, :kbd:`Shift-Ctrl-8`, :kbd:`Ctrl-Slash`, :kbd:`Shift-Ctrl-Comma`, :kbd:`Shift-Ctrl-Period` :menuselection:`--> (Deform, ...)`), :menuselection:`--> Ambient Occlusion`" \
-                ":ref:`ui-undo-redo-adjust-last-operation` " \
-                ":ref:`roll rotation <armature-bone-roll>` " \
-                ":doc:`pose library </animation/armatures/properties/pose_library>` (bracket another (within bracket another) and without another) with some free text",
-                # "(bracket (within bracket) and without) and  (bracket another (within bracket another) and without another) with some free text"
+                # "``:abbr:`SSAO (Screen Space Ambient Occlusion)``` (bracket (within bracket) and without) 'single' \"double\" :doc:`Editing </about/contribute/editing>` " \
+                # "``master`` ``:term:`Manifold``` **you should always** and *Usage Information* " \
+                # "Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``) " \
+                # "``:menuselection:`3D Viewport --> Add --> Mesh --> Monkey``` " \
+                # "(also :kbd:`Shift-W` :kbd:`Ctrl-0`, :kbd:`Shift-Ctrl-=`, :kbd:`Ctrl-Minus`, :kbd:`Shift-Ctrl-8`, :kbd:`Ctrl-Slash`, :kbd:`Shift-Ctrl-Comma`, :kbd:`Shift-Ctrl-Period` :menuselection:`--> (Deform, ...)`), :menuselection:`--> Ambient Occlusion`" \
+                # ":ref:`ui-undo-redo-adjust-last-operation` " \
+                # ":ref:`roll rotation <armature-bone-roll>` " \
+                # ":doc:`pose library </animation/armatures/properties/pose_library>` (bracket another (within bracket another) and without another) with some free text",
+                # "(bracket (within bracket) and without) and  (bracket another (within bracket another) and without another) with some free text",
+                # "depending on the particle system's render settings, see :doc:`Visualization </physics/particles/emitter/render>`",
+                # "Generally, ",
+                # "depending on the particle system's render settings, see :doc:`Visualization </physics/particles/emitter/render>`",
+                # "``diffuse_ramp(N, colors[8])``",
+                # "``ambient_occlusion()``",
+                # "Result(s)",
+                # "down/right arrow icon",
+                # "down/up arrow peak icon",
+                # "e.g. \".R\"/\".L\", or \"_right\"/\"_left\" ...",
+                # "e.g. \"handL\"/ \"handR\" will not work!",
+                # "quadruple",
+                # "e.g. 50 frames"
+                # "e.g. Sky Texture node",
+                # "e.g. Linear, Bézier, Quadratic, etc.",
+                # "e.g. Turing and above",
+                # "e.g. ``*-0001.jpg``, ``*-0002.jpg``, ``*-0003.jpg``, etc, of any image format",
+                # "e.g. ``.png`` will list all PNG files",
+                # "e.g. all hydrogen atoms form one instancing vertices structure",
+                # "e.g. an Armature modifier or any deformation modifier",
+                # "e.g. an edge",
+                # "e.g. an empty or camera",
+                # "e.g. anger or surprise",
+                # "e.g. any non-parallel vector",
+                # "e.g. arms, legs, spines, fingers...",
+                # "e.g. at points where edges make an acute turn",
+                # "e.g. because the library file was moved or renamed after linking from it",
+                # "e.g. changing ``file_01.blend`` to ``file_02.blend``",
+                # "changing ``file_01.blend`` to ``file_02.blend``",
+                # "e.g. changing ``file_01.blend`` to ``file_02.blend``",
+                # "her object",
+                # "e.g. circles",
+                "e.g. diffuse color",
             ]
+
         else:
             t_list = text_list
 
-        # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
-        result_list=[]
         try:
             for t in t_list:
-                test_txt = t[185:190]
-                # is_function = cm.FUNCTION.findall(t)
-                # print(f'is_function:[{is_function}]')
-                # exit(0)
-                try:
-                    ref_list = RefList(msg=t, keep_orig=False, tf=tf)
-                    ref_list.parseMessage()
-                    ref_list_to_list = list(ref_list.items())
-                    ref_list_to_list.sort()
-                    ref_list.translate()
-                    trans = ref_list.getTranslation()
-                    entry=(t, trans)
-                    result_list.append(entry)
-                except Exception as ee:
-                    print(ee)
-                    print('*' * 30)
-                # print(f't:[{t}] => trans:[{trans}]')
+                pr = PR(txt=t, translation_engine=tf)
+                tran = pr.translate()
+                print(tran)
+
         except Exception as e:
-            pass
-        print(f'-' * 80)
-        pp(result_list)
+            print(e)
+
+        # # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
+        # result_list=[]
+        # try:
+        #     for t in t_list:
+        #         # test_txt = t[185:190]
+        #         # is_function = cm.FUNCTION.findall(t)
+        #         # print(f'is_function:[{is_function}]')
+        #         # exit(0)
+        #         try:
+        #             ref_list = RefList(msg=t, keep_orig=False, tf=tf)
+        #             ref_list.parseMessage()
+        #             ref_list_to_list = list(ref_list.items())
+        #             ref_list_to_list.sort()
+        #             ref_list.translate()
+        #             trans = ref_list.getTranslation()
+        #             entry=(t, trans)
+        #             result_list.append(entry)
+        #         except Exception as ee:
+        #             print(ee)
+        #             print('*' * 30)
+        #         # print(f't:[{t}] => trans:[{trans}]')
+        # except Exception as e:
+        #     pass
+        # print(f'-' * 80)
+        # for t, tran in result_list:
+        #     msg = t.replace('"', '\\"')
+        #     sent_translation = tran.replace('"', '\\"')
+        #     output = f'"{msg}": "{sent_translation}",'
+        #     print(output)
 
     def run(self):
+        # self.test_forward_slashes()
         # self.test_find_invert()
         # self.test_re()
         # self.test_parsing_link()
@@ -9728,14 +10145,21 @@ IOR
         # self.plistToText()
         # self.test_binary_search()
         # self.sorting_temp_05()
-        # self.resort_dictionary()
+        self.resort_dictionary()
+        # self.test_translate_json_file()
+        self.test_translate_0001()
         # t_list = self.grepPOT(re.compile(r'[^\w\s\-\_\;]+(\w)[\w\s\-\_\.\,\;]+(\w)[^\w\s\-\_\.\,\;]+'))
         # self.test_translate_0001(text_list=t_list)
-        self.test_translate_0001()
         # mnu_p = re.compile(r':menuselection:[`]([^`]+)[`]')
         # sep_pat = re.compile(r'\s?(-->)\s?')
         # self.grepPOT(mnu_p, is_sub_group=True, separator=sep_pat, is_translate=True)
-        # self.grepPOT(cm.GA_REF, is_sub_group=True)
+        # p = re.compile(r'(?!(\w[\.\,]\w))(\w[^\.\,]+\S)[\.\,](\s|$)')
+        # self.grepPOT(p, is_sub_group=True)
+        # self.grepPOT(df.GA_REF, is_sub_group=True)
+        # simple_bracket = re.compile(r'\s?\([^\(\)]+\)\s?')
+        # self.grepPOT(simple_bracket, is_sub_group=False)
+        # self.grepPOT(df.FUNCTION, is_sub_group=False)
+        # self.grepPOT('have more', is_considering_side_words=True)
         # self.cleanWorkingTextFile()
         # self.translatePO()
         # self.test_0063()

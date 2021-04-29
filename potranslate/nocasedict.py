@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from common import Common as cm, dd, pp
+from definition import Definitions as df
 from key import Key
 from fuzzywuzzy import fuzz
 from math import ceil
@@ -70,15 +71,12 @@ class NoCaseDict(OrderedDict):
         lkey_key = Key(key)
         super(NoCaseDict, self).__setitem__(lkey_key, value)
 
-        is_sent_struct = (cm.SENT_STRUCT_PAT.search(key) is not None)
-        if is_sent_struct:
-            entry={key: value}
+        is_sentence_structure = (df.SENT_STRUCT_PAT.search(key) is not None)
+        if is_sentence_structure:
+            # print(f'{key} => {value}')
+            entry=cm.creatSentRecogniserPatternRecordPair(key, value)
             self.sentence_struct_dict.update(entry)
-
-        # fuzz_metaphone = self.mtx.phonetics(key)
-        # fuzz_entry = (fuzz_metaphone, key, value)
-        # self.fuzzy_keys.append(fuzz_metaphone)
-        # self.fuzzy_dict.append(fuzz_entry)
+            # print(f'{entry}')
 
         if self.is_operational:
             self.is_dirty = True
@@ -96,12 +94,31 @@ class NoCaseDict(OrderedDict):
     def get(self, k, default=None):
         return self[k] if k in self else default
 
+    def getSentStructPattern(self, key):
+        selective_match = []
+        for pat, value in self.sentence_struct_dict.items():
+            is_match = (pat.search(key) is not None)
+            if is_match:
+                (dict_sl_key, dict_tl_txt, dict_tl_mm_record, dict_tl_list) = value
+                match_rate = fuzz.ratio(dict_sl_key, key)
+                entry=(match_rate, pat, value)
+                selective_match.append(entry)
+
+        if selective_match:
+            selective_match.sort(reverse=True)
+            first_entry = selective_match[0]
+            (match_rate, pat, value) = first_entry
+            return (pat, value)
+        else:
+            value = (None, None, None, None)
+            return (None, value)
+
     def replaceTranRef(self, tran):
         is_finished = False
         new_tran = str(tran)
         last_found_ref=[]
         while not is_finished:
-            matcher = cm.TRAN_REF_PATTERN.search(new_tran)
+            matcher = df.TRAN_REF_PATTERN.search(new_tran)
             is_finished = (matcher is None)
             if is_finished:
                 break
@@ -112,11 +129,16 @@ class NoCaseDict(OrderedDict):
             else:
                 last_found_ref.append(ref_found)
 
+            dict_selected = self
             has_ref = (ref_found in self)
             if not has_ref:
-                continue
+                has_ref = (ref_found in df.numeral_dict)
+                if not has_ref:
+                    continue
+                else:
+                    dict_selected = df.numeral_dict
 
-            tran_for_ref = self[ref_found]
+            tran_for_ref = dict_selected[ref_found]
             new_tran = new_tran.replace(ref_found, tran_for_ref)
 
         return new_tran
@@ -143,7 +165,7 @@ class NoCaseDict(OrderedDict):
 
             # matched_length = cm.getLeadingMatchCount(from_item, to_item)
             matched_ratio = fuzz.ratio(from_item, to_item)
-            acceptable = (matched_ratio >= cm.FUZZY_ACCEPTABLE_RATIO)
+            acceptable = (matched_ratio >= df.FUZZY_ACCEPTABLE_RATIO)
             if acceptable:
                 return matched_ratio
 
@@ -169,7 +191,7 @@ class NoCaseDict(OrderedDict):
                 for from_index, from_word in enumerate(from_item_word_list):
                     to_word = to_item_word_list[from_index]
                     matched_ratio = fuzz.ratio(from_word, to_word)
-                    acceptable = (matched_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                    acceptable = (matched_ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
                     if acceptable:
                         total_match_ratio += (matched_ratio / from_item_word_list_length)
                         entry = (matched_ratio, from_word, to_word)
@@ -205,10 +227,10 @@ class NoCaseDict(OrderedDict):
 
         def fuzzyCompareString(loc_item):
             match_rat = fuzz.ratio(loc_item, k)
-            is_equal = (match_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+            is_equal = (match_rat >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
             if not is_equal:
                 match_rat = wordFuzzyCompare(loc_item)
-                is_equal = (match_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                is_equal = (match_rat >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
             if is_equal:
                 return 0, match_rat
             elif loc_item < k:
@@ -274,30 +296,6 @@ class NoCaseDict(OrderedDict):
                     hi = mid
             return -1
 
-        # def isTranRef(l_item):
-        #     matcher = cm.TRAN_REF_PATTERN.search(l_item)
-        #     is_tran_ref = (matcher is not None)
-        #     if not is_tran_ref:
-        #         return False, None, None
-        #
-        #     ss = matcher.start()
-        #     ee = matcher.end()
-        #     l_item_left = l_item[:ss].casefold()
-        #     l_item_right = l_item[ee:].casefold()
-        #
-        #     is_k_started_same = (k[:ss].casefold() == l_item_left)
-        #     is_k_ended_same = (k[ee:].casefold() == l_item_right)
-        #
-        #     is_match = (is_k_started_same and is_k_ended_same)
-        #     if not is_match:
-        #         return False, None, None
-        #
-        #     loc = (ss, ee)
-        #     item_mid_part = l_item[ss:ee]
-        #     k_mid_part = k[ss:ee]
-        #     translation
-        #     return is_match, l_item_left, l_item_right, mid_part, loc,
-
         def validate(item):
             item_part = item[:k_matching_length]
             is_found = (item_part.lower() == k_part.lower())
@@ -308,7 +306,7 @@ class NoCaseDict(OrderedDict):
                 item_len = len(item)
                 acceptable = (item_len == k_length)
             else:
-                is_tran_ref = (cm.TRAN_REF_PATTERN.search(item) is not None)
+                is_tran_ref = (df.TRAN_REF_PATTERN.search(item) is not None)
                 word_count = len(item.split())
                 acceptable = (word_count >= k_word_count) and (word_count < int(k_word_count * 1.5))
 
@@ -374,7 +372,7 @@ class NoCaseDict(OrderedDict):
             for found_item in found_list:
                 # matched_length = comparePartial(k, found_item)
                 ratio = fuzz.ratio(found_item, k)
-                is_found = (ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                is_found = (ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
                 if not is_found:
                     # perfect_match_percent = cm.matchTextPercent(k, found_item)
                     # is_accepted = (perfect_match_percent > cm.FUZZY_PERFECT_MATCH_PERCENT)
@@ -400,7 +398,9 @@ class NoCaseDict(OrderedDict):
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
-        # cm.debugging(k)
+        key_list = list(self.keys())
+        subset = key_list
+
         k_length = len(k)
         k_word_list = k.split()
         k_word_count = len(k_word_list)
@@ -411,18 +411,16 @@ class NoCaseDict(OrderedDict):
             first_word = k_word_list[0]
             first_word_len = len(first_word)
             is_two_small = (first_word_len < 3)
-            k_matching_length = int(ceil(first_word_len * cm.MAX_FUZZY_TEST_LENGTH))
+            k_matching_length = int(ceil(first_word_len * df.MAX_FUZZY_TEST_LENGTH))
             if is_two_small:
                 try:
                     second_word = k_word_list[1]
                     second_word_len = len(second_word)
-                    k_matching_length = int(ceil((first_word_len + second_word_len + 1) * cm.MAX_FUZZY_TEST_LENGTH))
+                    k_matching_length = int(ceil((first_word_len + second_word_len + 1) * df.MAX_FUZZY_TEST_LENGTH))
                 except Exception as e:
                     pass
 
-        key_list = list(self.keys())
-        subset = key_list
-        max_k_length = int(k_length * cm.FUZZY_KEY_LENGTH_RATIO)
+        max_k_length = int(k_length * df.FUZZY_KEY_LENGTH_RATIO)
         k_part = k[:k_matching_length]
         subset = findListOfCandidates()
         found_candidates = (len(subset) > 0)
@@ -433,10 +431,10 @@ class NoCaseDict(OrderedDict):
             return return_tran, selected_item, rat, untran_word_dic
 
         matched_ratio, selected_item = subset[0]
-        is_accepted = (matched_ratio >= cm.FUZZY_MODERATE_ACCEPTABLE_RATIO)
+        is_accepted = (matched_ratio >= df.FUZZY_MODERATE_ACCEPTABLE_RATIO)
         if not is_accepted:
             perfect_match_percent = cm.matchTextPercent(k, selected_item)
-            is_accepted = (perfect_match_percent > cm.FUZZY_PERFECT_MATCH_PERCENT)
+            is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
             dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]; is_accepted:[{is_accepted}]')
             if not is_accepted:
                 return_tran = None
@@ -453,7 +451,7 @@ class NoCaseDict(OrderedDict):
         except Exception as e:
             dd(e)
             dd(f'FAILED TO REPLACE: [{lower_msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
-            can_accept = (matched_ratio >= cm.FUZZY_ACCEPTABLE_RATIO)
+            can_accept = (matched_ratio >= df.FUZZY_ACCEPTABLE_RATIO)
             if can_accept:
                 translation = translation_txt
 
@@ -477,27 +475,6 @@ class NoCaseDict(OrderedDict):
 
     def fuzzyTranslate(self, msg):
 
-        # def getFuzzyTranslationUsingStringMatch():
-        #     # Application of StringMatch class, using default args
-        #     titlematch = StringMatch(source_titles, target_titles)
-        #     titlematch.tokenize()
-        #     match_df = titlematch.match(output_fmt='dict')
-        #
-        #     k_set = [k]
-        #     titlematch = StringMatch(subset, k_set)
-        #     titlematch.tokenize()
-        #     match_df = titlematch.match(output_fmt='dict')
-        #     dd('match_df:')
-        #     dd('-' * 80)
-        #     for subset_index, v in match_df.items():
-        #         _, matched_ratio = v[0]
-        #         matched_ratio *= 100
-        #         is_acceptable = (matched_ratio >= cm.AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO)
-        #         if is_acceptable:
-        #             entry = (matched_ratio, subset[subset_index])
-        #             selectable_list.append(entry)
-        #             dd(entry)
-
         def compareExpressContruct(item, k):
             i_left, i_right, k_left, k_right = cm.splitExpVar(item, k)
             is_left_match = is_right_match = True
@@ -505,12 +482,12 @@ class NoCaseDict(OrderedDict):
             has_left = bool(i_left and k_left)
             if has_left:
                 left_ratio = fuzz.ratio(i_left, k_left)
-                is_left_match = (left_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                is_left_match = (left_ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
 
             has_right = bool(i_right and k_right)
             if has_right:
                 right_ratio = fuzz.ratio(i_right, k_right)
-                is_right_match = (right_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                is_right_match = (right_ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
 
             is_equal = (has_left or has_right) and (is_left_match and is_right_match)
             if is_equal:
@@ -524,7 +501,7 @@ class NoCaseDict(OrderedDict):
             item_has_expr_contruct = False
             if is_fuzzy:
                 calc_ratio = fuzz.ratio(item, k)
-                is_sounded_similar = (calc_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+                is_sounded_similar = (calc_ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
 
                 if is_sounded_similar:
                     return 0, calc_ratio
@@ -577,7 +554,7 @@ class NoCaseDict(OrderedDict):
                     value, fuzzy_ratio = compareString(item, test_length)
                     is_acceptable = (value == 0)
                     if is_acceptable:
-                        is_acceptable_ratio = (fuzzy_ratio > cm.FUZZY_VERY_LOW_ACCEPTABLE_RATIO)
+                        is_acceptable_ratio = (fuzzy_ratio > df.FUZZY_VERY_LOW_ACCEPTABLE_RATIO)
                         if is_acceptable_ratio:
                             match_leading_count = getMatchingLeadingCount(item)
                             entry=(match_leading_count, fuzzy_ratio, item)
@@ -588,7 +565,7 @@ class NoCaseDict(OrderedDict):
                 working_list.sort()
                 working_list.reverse()
                 for match_leading_count, temp_ratio, tem_text in working_list:
-                    is_acceptable_ratio = (temp_ratio >= cm.FUZZY_ACCEPTABLE_RATIO)
+                    is_acceptable_ratio = (temp_ratio >= df.FUZZY_ACCEPTABLE_RATIO)
                     if is_acceptable_ratio:
                         entry = (match_leading_count, temp_ratio, tem_text)
                         is_in_new_list = (entry in new_list)
@@ -671,7 +648,7 @@ class NoCaseDict(OrderedDict):
             return None, None, 0
 
         number_of_possible_fuzzy_entries = len(subset)
-        is_too_large_subset = (number_of_possible_fuzzy_entries > cm.MAX_FUZZY_LIST)
+        is_too_large_subset = (number_of_possible_fuzzy_entries > df.MAX_FUZZY_LIST)
         if is_too_large_subset:
             return None, None, 0
 

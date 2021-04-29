@@ -10,27 +10,108 @@ class MatcherRecordType(Enum):
     RIGHT_SYMBOL = 3
     INVALID = 4
 
+REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
+
 class MatcherRecord(OrderedDict):
-    def __init__(self, s=-1, e=-1, txt=None, matcher_record=None):
-        self.s = (s if not matcher_record else matcher_record.start())
-        self.e = (e if not matcher_record else matcher_record.end())
-        self.txt = (txt if not matcher_record else matcher_record.group(0))
-        self.pattern = None
-        self.type = None
-        self.translation = None
-        self.translation_state = TranslationState.UNTRANSLATED
+    def __init__(self, s=-1, e=-1, txt=None, matcher_record: re.Match =None):
+        self.__s = -1
+        self.__e = -1
+        self.__txt = None
+        self.__pattern = None
+        self.__type = None
+        self.__translation = None
+        self.__translation_state = TranslationState.UNTRANSLATED
+        # self.__list_of_forward_slashes = []
 
-        if not matcher_record:
-            self.addSubMatch(self.s, self.e, self.txt)
-            return
+        actual_s = (matcher_record.start() if matcher_record else s)
+        actual_e = (matcher_record.end() if matcher_record else e)
+        actual_txt = (matcher_record.group(0) if matcher_record else txt)
 
-        start = 0
-        end = len(matcher_record.regs)
-        s = e = 0
-        for index in range(start, end):
-            rs, re = matcher_record.regs[index]
-            txt = matcher_record.group(index)
-            self.addSubMatch(rs, re, txt)
+        is_init_txt = ((not matcher_record) and bool(actual_txt))
+        is_location_added = not ((actual_s == -1) or (actual_e == -1))
+        is_init_location = (is_init_txt and not is_location_added)
+        if is_init_location:
+            actual_s = 0
+            actual_e = len(actual_txt)
+
+        self.s = actual_s
+        self.e = actual_e
+        self.txt = actual_txt
+
+        if matcher_record:
+            start = 0
+            end = len(matcher_record.regs)
+            s = e = 0
+            for index in range(start, end):
+                rs, re = matcher_record.regs[index]
+                txt = matcher_record.group(index)
+                self.addSubMatch(rs, re, txt)
+        else:
+            self.addSubMatch(actual_s, actual_e, actual_txt)
+
+    @property
+    def s(self):
+        return self.__s
+
+    @s.setter
+    def s(self, new_s):
+        self.__s = new_s
+
+    @property
+    def e(self):
+        return self.__e
+
+    @e.setter
+    def e(self, new_e):
+        self.__e = new_e
+
+    @property
+    def txt(self):
+        return self.__txt
+
+    @txt.setter
+    def txt(self, new_txt):
+        self.__txt = new_txt
+
+    @property
+    def pattern(self):
+        return self.__pattern
+
+    @pattern.setter
+    def pattern(self, new_pattern):
+        self.__pattern = new_pattern
+
+    @property
+    def type(self):
+        return self.__type
+
+    @type.setter
+    def type(self, new_type):
+        self.__type = new_type
+
+    @property
+    def translation(self):
+        return self.__translation
+
+    @translation.setter
+    def translation(self, new_translation):
+        self.__translation = new_translation
+
+    @property
+    def translation_state(self):
+        return self.__translation_state
+
+    @translation_state.setter
+    def translation_state(self, new_translation_state):
+        self.__translation_state = new_translation_state
+
+    @property
+    def list_of_forward_slashes(self):
+        return self.__list_of_forward_slashes
+
+    @list_of_forward_slashes.setter
+    def list_of_forward_slashes(self, new_list_of_forward_slashes):
+        self.__list_of_forward_slashes = new_list_of_forward_slashes
 
     def __repr__(self):
         string = ""
@@ -39,6 +120,40 @@ class MatcherRecord(OrderedDict):
         except Exception as e:
             pass
         return string
+
+    # this is for use with SentStruct, do not change
+    def initUsingList(self, list_of_loc_and_txt, original_text=None, pattern=None):
+        try:
+            if not original_text:
+                temp_dict = OrderedDict(list_of_loc_and_txt)
+                text_list = temp_dict.values()
+                original_text = ' '.join(text_list)
+
+            list_len = len(list_of_loc_and_txt)
+            (fs, fe), first_txt = list_of_loc_and_txt[0]
+            (ls, le), last_txt = list_of_loc_and_txt[list_len-1]
+            self.txt = original_text
+            self.s = fs
+            self.e = le
+            self.pattern = pattern
+            self.clear()
+            self.update(list_of_loc_and_txt)
+        except Exception as e:
+            print(f'initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]')
+            raise e
+
+    def appendSubRecords(self, sub_rec_list):
+        current_list = self.getSubEntriesAsList()
+        current_list.extend(sub_rec_list)
+        self.clear()
+        self.update(current_list)
+
+    def takeForwardSlashesOff(self):
+        try:
+            msg = self.txt
+            cm.REF_LINK
+        except Exception as e:
+            pass
 
     def updateMasterLoc(self, s, e):
         self.s = s
@@ -120,6 +235,13 @@ class MatcherRecord(OrderedDict):
             loc, txt = l[comp_index]
             ll = [loc, txt]
             return ll[sub_index]
+        except Exception as e:
+            return None
+
+    def getMainEntry(self):
+        try:
+            l = self.getSubEntriesAsList()
+            return l[0]
         except Exception as e:
             return None
 

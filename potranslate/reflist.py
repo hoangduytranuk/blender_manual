@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 import re
 from translation_finder import TranslationFinder
+from definition import Definitions as df
 from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from reftype import RefType
-from refrecord import RefRecord
 from reftype import TranslationState
-from refitem import RefItem
 import copy as CP
 import operator as OP
 '''
@@ -26,13 +25,13 @@ import operator as OP
 :term:`
 '''
 pattern_list = [
-    (cm.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
-    (cm.PYTHON_FORMAT, RefType.PYTHON_FORMAT),
-    (cm.FUNCTION, RefType.FUNCTION),
-    (cm.AST_QUOTE, RefType.AST_QUOTE),
-    (cm.DBL_QUOTE, RefType.DBL_QUOTE),
-    (cm.SNG_QUOTE, RefType.SNG_QUOTE),
-    (cm.GA_REF, RefType.GA),
+    (df.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
+    (df.PYTHON_FORMAT, RefType.PYTHON_FORMAT),
+    (df.FUNCTION, RefType.FUNCTION),
+    (df.AST_QUOTE, RefType.AST_QUOTE),
+    (df.DBL_QUOTE, RefType.DBL_QUOTE),
+    (df.SNG_QUOTE, RefType.SNG_QUOTE),
+    (df.GA_REF, RefType.GA),
 ]
 
 def hasRef(txt) -> bool:
@@ -109,14 +108,12 @@ class RefList(defaultdict):
 
     def getTranslationStateList(self):
         translation_state_list=[]
-        v : RefRecord = None
         translation_state_list.append(self.translation_state)
         for loc, mm in self.items():
             translation_state_list.append(mm.translation_state)
         return translation_state_list
 
     def isFuzzy(self):
-        v:RefRecord = None
         state_list = self.getTranslationStateList()
         has_fuzzy = (TranslationState.FUZZY in state_list)
         has_ignored = (TranslationState.IGNORED in state_list)
@@ -154,9 +151,8 @@ class RefList(defaultdict):
             return None
 
     def setParentForChildren(self):
-        ref_record: RefRecord = None
-        for k, ref_record in self.items():
-            ref_record.parent = self
+        for k, mm in self.items():
+            mm.parent = self
 
     def findOnePattern(self, local_obs: LocationObserver, msg: str, pattern: re.Pattern, reftype: RefType):
         def setLocationSubMain(dict_list: dict):
@@ -207,22 +203,6 @@ class RefList(defaultdict):
                 print(e)
                 raise e
             return local_found_dict
-
-        def lengthOfParsedText(x):
-            mm: MatcherRecord
-            loc, mm = x
-            if mm.txt:
-                text_length = len(mm.txt)
-            else:
-                text_length = 0
-            return text_length
-
-        def getPartlyUsedText(loc: tuple):
-            s, e = loc
-            part_txt = local_obs.blank[s:e]
-            part_dict = cm.findInvert(cm.FILLER_PARTS, part_txt)
-            return part_dict
-
 
         ignored_dict={}
         entry_orig = entry_type_or_open_symbol = entry_sub = entry_close_symbol = None
@@ -299,58 +279,18 @@ class RefList(defaultdict):
                 print(e)
                 raise e
 
-    def findPattern(self, pattern_list: list):
+    def findPattern(self, pattern_list: list, txt: str):
         count_item = 0
         pattern_list.reverse()
-        obs = LocationObserver(self.msg)
+        obs = LocationObserver(txt)
         for index, item in enumerate(pattern_list):
             p, ref_type = item
             self.findOnePattern(obs, obs.blank, p, ref_type)
-        print('final:')
-        pp(self)
-        print('end_final')
+        # print('final:')
+        # pp(self)
+        # print('end_final')
         self.validateFoundEntries()
         return count_item, obs.getUnmarkedPartsAsDict()
-
-
-    def findRefRecord(self, msg, entry_index, is_using_first_anyway=False, is_reversed_list=False):
-        has_record = (len(self) > 0)
-        if not has_record:
-            return None
-
-        is_ignore = ig.isIgnored(msg)
-        if is_ignore:
-            return None
-
-        k_list = list(self.keys())
-        k_len = len(k_list)
-        if is_reversed_list:
-            k_list = list(reversed(k_list))
-
-        for k in k_list:
-            v = self[k]
-            v_txt = v.getOriginText()
-            is_ignore = ig.isIgnored(v_txt)
-            if is_ignore:
-                return None
-
-            is_in_left = cm.isTextuallySubsetOf(v_txt, msg)
-            is_in_right = cm.isTextuallySubsetOf(msg, v_txt)
-            is_matched = (is_in_left or is_in_right)
-            if is_matched:
-                dd("found_matched_ref:", v_txt, " for:", msg)
-                return v
-
-        if (entry_index < k_len):
-            k = k_list[entry_index]
-            v = self[k]
-        elif (is_using_first_anyway and (k_len > 0)):
-            k = k_list[0]
-            v = self[k]
-        else:
-            v = None
-        return v
-
 
     def addUnparsedDict(self, unparsed_dict: dict):
         mm: MatcherRecord = None
@@ -389,7 +329,8 @@ class RefList(defaultdict):
             dd(f'parseMessage(): IGNORED [{self.msg}]; is_full_path')
             return
 
-        count, unparsed_dict = self.findPattern(pattern_list)
+        local_msg = str(self.msg)
+        count, unparsed_dict = self.findPattern(pattern_list, local_msg)
         self.addUnparsedDict(unparsed_dict)
         # # **** should break up sentences here
         # self.findTextOutsideRefs()
@@ -399,13 +340,9 @@ class RefList(defaultdict):
     def translateMatcherRecord(self, mm: MatcherRecord):
         sub_loc: tuple = None
         try:
-            try:
-                ref_txt = mm.getSubText()
-                sub_loc = mm.getSubLoc()
-                ref_type = mm.type
-            except Exception as e:
-                print(mm)
-                raise e
+            ref_txt = mm.getSubText()
+            sub_loc = mm.getSubLoc()
+            ref_type = mm.type
 
             is_kbd = (ref_type == RefType.KBD)
             is_abbr = (ref_type == RefType.ABBR)
@@ -418,12 +355,13 @@ class RefList(defaultdict):
 
             # ----------
             is_ast = (ref_type == RefType.AST_QUOTE)
+            is_dbl_ast_quote = (ref_type == RefType.DBL_AST_QUOTE)
             is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
             is_sng_quote = (ref_type == RefType.SNG_QUOTE)
             is_python_format = (ref_type == RefType.PYTHON_FORMAT)
             is_function = (ref_type == RefType.FUNCTION)
 
-            is_quoted = (is_ast or is_dbl_quote or is_sng_quote)
+            is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote)
 
             converted_to_abbr = False
             if is_kbd:
@@ -448,8 +386,8 @@ class RefList(defaultdict):
                 #     return
                 #
                 # dd(f'translateRefItem: anything else: {ref_txt}')
-                # is_ref_path = (is_ref and cm.REF_PATH.search(ref_txt) is not None)
-                # is_doc_path = (is_doc and cm.DOC_PATH.search(ref_txt) is not None)
+                # is_ref_path = (is_ref and df.REF_PATH.search(ref_txt) is not None)
+                # is_doc_path = (is_doc and df.DOC_PATH.search(ref_txt) is not None)
                 # is_ignore_path = (is_ref_path or is_doc_path)
                 # if is_ignore_path:
                 #     return
@@ -470,11 +408,11 @@ class RefList(defaultdict):
         has_ref = (len(self) > 0)
 
         if not has_ref:
-            trans, is_fuzzy, is_ignore = self.tf.translate(self.msg)
+            trans, is_fuzzy, is_ignore = self.tf.translate(tran_text)
             if trans:
                 if self.keep_original:
                     trans = cm.matchCase(self.msg, trans)
-                    tran_text = f'{trans} -- {self.msg}'
+                    tran_text = f'{trans} -- {tran_text}'
                 else:
                     tran_text = trans
             self.setTranslation(tran_text, is_fuzzy, is_ignore)
@@ -484,7 +422,7 @@ class RefList(defaultdict):
             for k, mm_record in tran_required_reversed_list:
                 self.translateMatcherRecord(mm_record)
 
-            sent_translation = str(self.msg)
+            sent_translation = tran_text
             for mm_loc, mm_record in tran_required_reversed_list:
                 tran = mm_record.translation
                 has_translation = bool(tran)
@@ -492,8 +430,9 @@ class RefList(defaultdict):
                     continue
                 sent_translation = cm.jointText(sent_translation, tran, mm_loc)
 
-            print(f'Finished translation: for:[{self.msg}]')
-            print(f'Finished translation: tran:[{sent_translation}]')
+            is_fuzzy = self.isFuzzy()
+            is_ignore = self.isIgnore()
+            self.setTranslation(sent_translation, is_fuzzy, is_ignore)
 
 
     def getListOfRefType(self, request_list_of_ref_type):
