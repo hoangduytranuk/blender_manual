@@ -260,7 +260,6 @@ class TranslationFinder:
         has_translation = not (temp_translation == text)
         if not has_translation:
             dd(f'replacingUsingDic(): text:[{text}]')
-            print(f'NO translation')
             return None
         else:
             dd(f'replacingUsingDic(): text:[{text}]')
@@ -1442,9 +1441,9 @@ class TranslationFinder:
             should_have_duplicated_ending = cm.shouldHaveDuplicatedEnding(part, test_text)
             if should_have_duplicated_ending:
                 chopped_txt, tran = self.replaceEndings(part, test_text)
-                fix_tran = bool((chopped_txt) and \
-                                (chopped_txt not in cm.verb_with_ending_y) and \
-                                (chopped_txt not in cm.verb_with_ending_s))
+                not_ending_y = (chopped_txt and (chopped_txt not in df.verb_with_ending_y))
+                not_ending_s = (chopped_txt and (chopped_txt not in df.verb_with_ending_s))
+                fix_tran = (not_ending_y and not_ending_s)
                 if tran:
                     cover_length = len(text_before_cutoff)
                     if fix_tran:
@@ -1465,8 +1464,8 @@ class TranslationFinder:
                 fix_tran = True
                 chopped_txt, tran = self.replaceEndings(part, test_text)
                 fix_tran = bool((chopped_txt) and \
-                                (chopped_txt not in cm.verb_with_ending_y) and \
-                                (chopped_txt not in cm.verb_with_ending_s))
+                                (chopped_txt not in df.verb_with_ending_y) and \
+                                (chopped_txt not in df.verb_with_ending_s))
                 if tran:
                     cover_length = len(text_before_cutoff)
                     if fix_tran:

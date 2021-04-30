@@ -10082,7 +10082,8 @@ IOR
                 # "e.g. changing ``file_01.blend`` to ``file_02.blend``",
                 # "her object",
                 # "e.g. circles",
-                "e.g. diffuse color",
+                # "e.g. diffuse color",
+                "e.g. enabling Z means \"XY plane\", etc.",
             ]
 
         else:
