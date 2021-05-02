@@ -7,9 +7,9 @@ def preparse():
                 p, ref_type = item
                 is_bracket = (ref_type == RefType.ARCH_BRACKET)
                 if is_bracket:
-                    found_dict = cm.getTextWithinBrackets('(', ')', self.msg, is_include_bracket=False)
+                    found_dict = cm.getTextWithinBrackets('(', ')', self.sl_txt, is_include_bracket=False)
                 else:
-                    found_dict = cm.patternMatchAll(p, self.msg)
+                    found_dict = cm.patternMatchAll(p, self.sl_txt)
                 for loc, mm in found_dict.items():
                     m_loc, found_text = mm.getOriginAsTuple()
                     entry = (importance_level, m_loc, found_text, ref_type, p)

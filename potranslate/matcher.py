@@ -37,6 +37,7 @@ class MatcherRecord(OrderedDict):
         self.s = actual_s
         self.e = actual_e
         self.txt = actual_txt
+        self.children = None
 
         if matcher_record:
             start = 0

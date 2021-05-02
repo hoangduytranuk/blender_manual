@@ -10007,8 +10007,19 @@ IOR
         # vp_mm.initUsingList(vp_word_list)
         # print(vp_word_list)
 
+    def test_sorted_list(self):
+        ls=[]
+        for x in range(0, 10):
+            loc=(x, x+2)
+            txt = 'a' + str(x)
+            entry=(loc, txt)
+            ls.append(entry)
+        ls.sort(reverse=True)
+        print(ls)
+
     def test_translate_0001(self, text_list=None):
         from paragraph import Paragraph as PR
+        from sentence import StructRecogniser as SR
         tf = TranslationFinder()
         if not text_list:
             t_list = [
@@ -10083,17 +10094,22 @@ IOR
                 # "her object",
                 # "e.g. circles",
                 # "e.g. diffuse color",
-                "e.g. enabling Z means \"XY plane\", etc.",
+                # "e.g. enabling Z means \"XY plane\", etc.",
+                # "it collides with other objects in the environment. To ensure proper simulation, there are several items that have to be set up and working together:",
+                "e.g. fast fluid flow colliding with obstacle",
             ]
 
         else:
             t_list = text_list
 
         try:
+            done_dict={}
             for t in t_list:
-                pr = PR(txt=t, translation_engine=tf)
-                tran = pr.translate()
-                print(tran)
+                sr = SR(translation_engine=tf, processed_dict=done_dict)
+                tran = sr.parseAndTranslateText(t)
+                # pr = PR(txt=t, translation_engine=tf)
+                # tran = pr.parseText()
+                print(f'[{t}] => [{tran}]')
 
         except Exception as e:
             print(e)
@@ -10129,6 +10145,7 @@ IOR
         #     print(output)
 
     def run(self):
+        # self.test_sorted_list()
         # self.test_forward_slashes()
         # self.test_find_invert()
         # self.test_re()
@@ -10146,7 +10163,7 @@ IOR
         # self.plistToText()
         # self.test_binary_search()
         # self.sorting_temp_05()
-        self.resort_dictionary()
+        # self.resort_dictionary()
         # self.test_translate_json_file()
         self.test_translate_0001()
         # t_list = self.grepPOT(re.compile(r'[^\w\s\-\_\;]+(\w)[\w\s\-\_\.\,\;]+(\w)[^\w\s\-\_\.\,\;]+'))

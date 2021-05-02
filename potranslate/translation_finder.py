@@ -1825,13 +1825,13 @@ class TranslationFinder:
         trans = str(mm_main_txt)
         tran_state_list=[]
         for loc, mnu_item_mm in word_list.items():
-            trans = cm.jointText(trans, mnu_item_mm.translation, loc)
+            trans = cm.jointText(trans, mnu_item_mm.tl_txt, loc)
             tran_state_list.append(mnu_item_mm.translation_state)
 
         temp_tran_txt = mm.getSubText()
         word_list = list(word_list.items())
         for loc, mnu_item_mm in word_list:
-            tran_txt = mnu_item_mm.translation
+            tran_txt = mnu_item_mm.tl_txt
             temp_tran_txt = cm.jointText(temp_tran_txt, tran_txt, loc)
 
         main_tran = mm.txt

@@ -358,7 +358,7 @@ class Common:
                 dict_entry = {loc: match_record}
                 return_dict.update(dict_entry)
         except Exception as e:
-            print(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
+            print(f'patternMatchAll() pattern:[{pat}]; text:[{text}] error:{e}')
             raise e
         return return_dict
 
@@ -1688,7 +1688,7 @@ class Common:
         mm.initUsingList(the_txt_word_list)
         return mm, the_txt_word_list
 
-    def genmap(msg):
+    def genmap(msg, is_reverse=True):
         def simplifiesMatchedRecords():
             mm: MatcherRecord = None
             for loc, mm in matched_list:
@@ -1704,7 +1704,8 @@ class Common:
                     if not is_valid:
                         continue
 
-                    entry = (s, e)
+                    distance = (e - s)
+                    entry = (distance, s, e)
                     if entry not in dist_list:
                         dist_list.append(entry)
             return dist_list
@@ -1716,15 +1717,16 @@ class Common:
         loc_dic = {}
         try:
             dist_list = genListOfDistance(max)
-            dist_list.sort(reverse=True)
-            for dist in dist_list:
-                from_index, to_index = dist
+            dist_list.sort(reverse=is_reverse)
+            for entry in dist_list:
+                distance, from_index, to_index = entry
                 start_loc, start_mm = matched_list[from_index]
                 end_loc, end_mm = matched_list[to_index]
 
                 ss1, ee1 = start_loc
                 ss2, ee2 = end_loc
                 sentence = msg[ss1: ee2]
+                word_count = (ee2 - ss1)
 
                 sub_loc = (ss1, ee2)
                 entry = {sub_loc: sentence}
@@ -1736,7 +1738,7 @@ class Common:
         simplifiesMatchedRecords()
         part_list = list(loc_dic.items())
         # sort out by the number of spaces (indicating word counts) rather than by common string length
-        part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=True)    # this is how to sort with multi keys, in brackets
+        # part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=is_reverse)    # this is how to sort with multi keys, in brackets
         # part_list.sort(key=lambda x: (x[1].count(' ')), reverse=True)
         # dd('genmap():')
         # dd('-' * 80)

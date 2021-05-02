@@ -5,6 +5,7 @@ import re
 import copy as CP
 from reflist import RefList
 from collections import OrderedDict
+from reftype import TranslationState as TS
 
 class StructRecogniser():
     '''
@@ -27,7 +28,14 @@ class StructRecogniser():
         ready to be used, translated. It also output the text that needed to be further translated, parsed etc,
         like reflist, for instance.
     '''
-    def __init__(self, root_loc=None, dict_sl_txt=None, dict_tl_txt=None, tran_sl_txt=None, recog_pattern=None, dict_tl_rec=None, translation_engine=None):
+    def __init__(self, root_loc=None,
+                 dict_sl_txt=None,
+                 dict_tl_txt=None,
+                 tran_sl_txt=None,
+                 recog_pattern=None,
+                 dict_tl_rec=None,
+                 translation_engine=None,
+                 processed_dict=None):
         self.is_sent_struct=False
         # key in dictionary, in the form 'chang\\w+ $$$ to $$$'
         self.dict_sl_txt: str = dict_sl_txt
@@ -56,16 +64,22 @@ class StructRecogniser():
         self.tf = translation_engine
         self.root_location = root_loc
         self.text_list_to_be_translated = None
-
-        self.setupRecords()
-        self.text_list_to_be_translated = self.getListOfTextsNeededToTranslate()
+        self.processed_list: dict = processed_dict
+        self.text_list_to_be_translated = None
 
     def __repr__(self):
         string = "\n{!r}".format(self.__dict__)
         return string
 
+    def getDict(self):
+        return self.tf.getDict()
+
     def isSentenceStructure(self):
         return self.is_sent_struct
+
+    def addBooleanToListItem(self, list_entry):
+        (loc, txt) = list_entry
+        return (loc, (txt, False))
 
     def setupRecords(self):
         dict_tl_list = None
@@ -84,12 +98,12 @@ class StructRecogniser():
             sent_tl_list = CP.deepcopy(dict_tl_list)
 
             self.sent_tl_rec = CP.copy(self.dict_tl_rec)
+
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
             # print(f'setupDictRecord() [{self}] ERROR:{e}')
             self.is_sent_struct = False
-
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
 
@@ -103,11 +117,9 @@ class StructRecogniser():
             sl_rec.update(interested_part)
             self.sent_sl_rec = sl_rec
         except Exception as e:
-            if not self.tran_sl_txt:
-                return
-            self.sent_sl_rec = MatcherRecord(txt=self.tran_sl_txt)
-            self.sent_tl_rec = MatcherRecord(txt=self.tran_sl_txt)
-            print('')
+            if bool(self.tran_sl_txt):
+                self.sent_sl_rec = MatcherRecord(txt=self.tran_sl_txt)
+                self.sent_tl_rec = MatcherRecord(txt=self.tran_sl_txt)
 
     def getListOfTextsNeededToTranslate(self):
         '''
@@ -153,18 +165,19 @@ class StructRecogniser():
                 new_entry = (untran_loc, untran_txt)
 
                 # insert into the correct position, but offsets of next text items will be out of sync
-                new_sent_tl_list.pop(to_index)
-                new_sent_tl_list.insert(to_index, new_entry)
+                (cloc, ctxt) = sent_tl_list.pop(to_index)
+                sent_tl_list.insert(to_index, new_entry)
+
 
         def correctTextsOffsets():
             # now correct offsets for subsequent texts
             corrected_sent_tl_list=[]
             correct_sent_tl_txt_list=[]
             ls = le = 0
-            test_dict = OrderedDict(new_sent_tl_list)
+            test_dict = OrderedDict(sent_tl_list)
             txt_list = test_dict.values()
             test_full_txt = ''.join(txt_list)
-            for index, (loc, txt) in enumerate(new_sent_tl_list):
+            for index, (loc, txt) in enumerate(sent_tl_list):
                 ts, te = loc
                 txt_length = len(txt)
                 le = (ls + txt_length)
@@ -172,6 +185,7 @@ class StructRecogniser():
                 new_entry = (new_loc, txt)
                 test_txt = test_full_txt[ls: le]
                 corrected_sent_tl_list.append(new_entry)
+
                 is_entry_untranslated = (index in dict_tl_any_index_list)
                 if is_entry_untranslated:
                     text_to_translate_list.append(new_entry)
@@ -185,6 +199,9 @@ class StructRecogniser():
             n_mm = MatcherRecord(s=ns, e=ne, txt=ntxt)
             n_mm.appendSubRecords(corrected_sent_tl_list)
             self.sent_tl_rec = n_mm
+
+        if bool(self.text_list_to_be_translated):
+            return self.text_list_to_be_translated
 
         text_to_translate_list=[]
         dict_sl_any_index_list = None
@@ -202,11 +219,9 @@ class StructRecogniser():
             # replaced with translated parts from the dictionary target language ie. text on both sides of $$$
             sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
 
-            # make a copy here for easy observation during debugging
-            new_sent_tl_list = CP.copy(sent_tl_list)
-
             getInitialListOfTextsToBeTranslated()
             correctTextsOffsets()
+
             if not text_to_translate_list:
                 raise ValueError('List empty for SOME REASONS! Move to next section.')
             print('')
@@ -250,7 +265,8 @@ class StructRecogniser():
             else:
                 main_entry = self.sent_sl_rec.getMainEntry()
                 list_of_text_to_be_translated=[main_entry]
-            return list_of_text_to_be_translated
+            self.text_list_to_be_translated = list_of_text_to_be_translated
+            return self.text_list_to_be_translated
 
     def usePrevTran(self, prev_tran_list):
         try:
@@ -270,19 +286,101 @@ class StructRecogniser():
         except Exception as e:
             return 0
 
+    def makeNonSRRecord(self, txt, root_location):
+        sr = self.reproduce()
+        sr.__init__(root_loc=root_location,
+                         tran_sl_txt=txt,
+                         translation_engine=self.tf,
+                         processed_dict=self.processed_list)
+        sr.setupRecords()
+        sr.getTextListTobeTranslated()
+        return sr
+
+    def makeSRRecord(self, txt, root_location):
+        dict_sl_pat, (dict_sltxt, dict_tltxt, dict_tl_mm_record, dict_tl_list) = self.getDict().getSentStructPattern(txt)
+        if dict_sl_pat:
+            print(f'IS STRUCTURE:{txt} => {dict_tltxt}')
+            sr = self.reproduce()
+            sr.__init__(root_loc=root_location,
+                        dict_sl_txt=dict_sltxt,
+                        dict_tl_txt=dict_tltxt,
+                        tran_sl_txt=txt,
+                        recog_pattern=dict_sl_pat,
+                        dict_tl_rec=dict_tl_mm_record,
+                        translation_engine=self.tf,
+                        processed_dict=self.processed_list
+                        )
+            sr.setupRecords()
+            sr.getTextListTobeTranslated()
+            return sr
+        else:
+            return None
+
+    def parseAndTranslateText(self, txt):
+        map = cm.genmap(txt)
+        obs = LocationObserver(txt)
+        parsed_list=[]
+        for loc, sub_txt in map:
+            is_finish = obs.isCompletelyUsed()
+            if is_finish:
+                break
+
+            is_used = obs.isLocUsed(loc)
+            if is_used:
+                continue
+
+            sr = self.makeSRRecord(sub_txt, loc)
+            if sr:
+                entry = (loc, sr)
+                parsed_list.append(entry)
+                obs.markLocAsUsed(loc)
+                self.processed_list.update({loc: sub_txt})
+
+        un_tran = obs.getUnmarkedPartsAsDict()
+        mm_record: MatcherRecord = None
+        for loc, mm_record in un_tran.items():
+            sub_txt = mm_record.txt
+            sr = self.makeNonSRRecord(sub_txt, loc)
+            entry = (loc, sr)
+            parsed_list.append(entry)
+            obs.markLocAsUsed(loc)
+            self.processed_list.update({loc: sub_txt})
+
+        parsed_list.sort(reverse=True)
+        translation = str(txt)
+        for loc, sr in parsed_list:
+            tran = sr.translate()
+            if tran:
+                translation = cm.jointText(translation, tran, loc)
+        return translation
+
     def translate(self):
+        def addTranEntry(txt_loc, txt_sl, txt_tl):
+            is_valid = (bool(txt_tl) and (txt_tl != txt_sl))
+            if is_valid:
+                entry=(txt_loc, tran)
+                tran_list.append(entry)
+
         try:
             tran_list=[]
-            for loc, txt in self.text_list_to_be_translated:
-                tran = self.translateText(txt)
-                is_valid = (bool(tran) and (tran != txt))
-                if tran:
-                    entry=(loc, tran)
-                    tran_list.append(entry)
+            list_needed_to_translate = self.getListOfTextsNeededToTranslate()
+            for loc, txt in list_needed_to_translate:
+                is_already_parsed = (txt in self.processed_list.values())
+                if is_already_parsed:
+                    tran = self.translateText(txt)
+                    addTranEntry(loc, txt, tran)
+                    continue
+                else:
+                    tran = self.parseAndTranslateText(txt)
+                    addTranEntry(loc, txt, tran)
+
             if tran_list:
                 self.setTlTranslation(tran_list)
+                return self.getTranslation()
+            else:
+                return None
         except Exception as e:
-            pass
+            return None
 
     def translateText(self, txt):
         try:
@@ -295,66 +393,3 @@ class StructRecogniser():
             print(f'translateText(): {e}')
             return None
 
-    # def translatePart(self, msg):
-    #     map = cm.genmap(msg)
-    #     obs = LocationObserver(msg)
-    #
-    #     translated_entries = []
-    #     for loc, txt in map:
-    #         is_fully_translated = obs.isCompletelyUsed()
-    #         if is_fully_translated:
-    #             break
-    #
-    #         is_used = obs.isLocUsed(loc)
-    #         if is_used:
-    #             continue
-    #
-    #         orig_txt = obs.getTextAtLoc(loc)
-    #         dict_sl_pat, (dict_sltxt, dict_tltxt, dict_tl_mm_record, dict_tl_list) = self.tf.getDict().getSentStructPattern(txt)
-    #         if dict_sl_pat:
-    #             sr = self.reproduce()
-    #             sr.dict_sl_txt=dict_sltxt
-    #             sr.dict_tl_txt=dict_tltxt
-    #             sr.tran_sl_txt=orig_txt
-    #             sr.recog_pattern=dict_sl_pat
-    #             sr.dict_tl_rec=dict_tl_mm_record
-    #             sr.tf=self.tf
-    #         else:
-    #             sr = self.reproduce()
-    #             sr.tran_sl_txt=orig_txt
-    #             sr.tf=self.tf
-    #         sr.setupRecords()
-    #
-    #         try:
-    #             if sr.is_sent_struct:
-    #                 sub_list_of_text_to_be_translated = sr.getListOfTextsNeededToTranslate()
-    #             else:
-    #                 main_entry = sr.sent_sl_rec.getMainEntry()
-    #                 sub_list_of_text_to_be_translated=[main_entry]
-    #
-    #             tran_list=[]
-    #             for sub_loc, sub_txt in sub_list_of_text_to_be_translated:
-    #                 sub_tran = self.translateText(sub_txt)
-    #                 is_valid = (bool(sub_tran) and (sub_tran != sub_txt))
-    #                 if is_valid:
-    #                     sub_entry=(sub_loc, sub_tran)
-    #                     tran_list.append(sub_entry)
-    #             sr.setTlTranslation(tran_list)
-    #         except Exception as e:
-    #             pass
-    #
-    #         tran = sr.getTranslation()
-    #         if tran:
-    #             obs.markLocAsUsed(loc)
-    #             covering_length = len(txt)
-    #             entry = (loc, covering_length, txt, tran)
-    #             translated_entries.append(entry)
-    #
-    #     # there shouldn't be any part not translated at this point
-    #     if not translated_entries:
-    #         return None
-    #     else:
-    #         translation = str(msg)
-    #         for loc, covering_length, sl_txt, tl_txt in translated_entries:
-    #             translation = cm.jointText(translation, tl_txt, loc)
-    #         return translation
