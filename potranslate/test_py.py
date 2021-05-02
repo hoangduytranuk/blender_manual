@@ -10095,8 +10095,8 @@ IOR
                 # "e.g. circles",
                 # "e.g. diffuse color",
                 # "e.g. enabling Z means \"XY plane\", etc.",
-                # "it collides with other objects in the environment. To ensure proper simulation, there are several items that have to be set up and working together:",
-                "e.g. fast fluid flow colliding with obstacle",
+                "it collides with other objects in the environment. To ensure proper simulation, there are several items that have to be set up and working together:",
+                # "e.g. fast fluid flow colliding with obstacle",
             ]
 
         else:
@@ -10163,7 +10163,7 @@ IOR
         # self.plistToText()
         # self.test_binary_search()
         # self.sorting_temp_05()
-        # self.resort_dictionary()
+        self.resort_dictionary()
         # self.test_translate_json_file()
         self.test_translate_0001()
         # t_list = self.grepPOT(re.compile(r'[^\w\s\-\_\;]+(\w)[\w\s\-\_\.\,\;]+(\w)[^\w\s\-\_\.\,\;]+'))
