@@ -10095,8 +10095,11 @@ IOR
                 # "e.g. circles",
                 # "e.g. diffuse color",
                 # "e.g. enabling Z means \"XY plane\", etc.",
-                "it collides with other objects in the environment. To ensure proper simulation, there are several items that have to be set up and working together:",
+                # "it collides with other objects in the environment. To ensure proper simulation, there are several items that have to be set up and working together:",
                 # "e.g. fast fluid flow colliding with obstacle",
+                # "e.g. for rigged objects",
+                # "e.g. from a \"hand\" mesh towards a \"full body\" one",
+                "e.g. from goal = 0 to goal = 0.5",
             ]
 
         else:
@@ -10105,11 +10108,13 @@ IOR
         try:
             done_dict={}
             for t in t_list:
-                sr = SR(translation_engine=tf, processed_dict=done_dict)
-                tran = sr.parseAndTranslateText(t)
-                # pr = PR(txt=t, translation_engine=tf)
-                # tran = pr.parseText()
-                print(f'[{t}] => [{tran}]')
+                tran = tf.isInDict(t)
+                if not tran:
+                    sr = SR(translation_engine=tf, processed_dict=done_dict)
+                    tran = sr.parseAndTranslateText(t)
+                tran = tran.replace('"', '\\"')
+                t = t.replace('"', '\\"')
+                print(f'"{t}": "{tran}",')
 
         except Exception as e:
             print(e)

@@ -1092,21 +1092,21 @@ class TranslationFinder:
             tran = self.translateNumerics(msg)
 
         if not tran:
-            msg_length = len(msg)
-            left, stripped_msg, right = cm.getTextWithin(msg)
-            is_already_done = (left == "" and right == "")
-            if is_already_done:
-                return None
+            # msg_length = len(msg)
+            # left, stripped_msg, right = cm.getTextWithin(msg)
+            # is_already_done = (left == "" and right == "")
+            # if is_already_done:
+            #     return None
+            #
+            # is_ignore = (not stripped_msg) or (ig.isIgnored(stripped_msg))
+            # if is_ignore:
+            #     return None
 
-            is_ignore = (not stripped_msg) or (ig.isIgnored(stripped_msg))
-            if is_ignore:
-                return None
-
-            is_found = (stripped_msg in search_dict)
+            is_found = (msg in search_dict)
             if is_found:
-                tran = search_dict[stripped_msg]
+                tran = search_dict[msg]
             else:
-                tran = self.translateNumerics(stripped_msg)
+                tran = self.translateNumerics(msg)
 
         if tran:
             tran = search_dict.replaceTranRef(tran)
@@ -1703,6 +1703,8 @@ class TranslationFinder:
         if not tran:
             tran = ""
 
+        tran = self.removeAbbrevInTran(tran)
+        tran = cm.removeOriginal(msg, tran)
         tran = formatTran(msg, tran)
         mm.setTranlation(tran, is_fuzzy, is_ignore)
         return True
@@ -1845,6 +1847,21 @@ class TranslationFinder:
         mm.setTranlation(final_tran, is_fuzzy, actual_ignore)
         return True
 
+    def removeAbbrevInTran(self, current_tran):
+        if not current_tran:
+            return None
+
+        abbrev_mm = cm.patternMatch(df.ABBREV_PATTERN_PARSER, current_tran)
+        if not abbrev_mm:
+            return current_tran
+
+        new_tran = str(current_tran)
+        (abbr_loc, abbr_txt) = abbrev_mm.getSubEntryByIndex(0)
+        abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(abbr_txt)
+        new_tran = f'{abbrev_part} {exp_part}'
+        # new_tran = cm.jointText(new_tran, exp_part, abbr_loc)
+        return new_tran
+
     def translateAbbrev(self, mm: MatcherRecord) -> list:
         '''
             translateAbbrev: Routine to parse abbreviation entry, such as:
@@ -1860,24 +1877,6 @@ class TranslationFinder:
             'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
         '''
 
-        def removeAbbrevInTran(current_tran):
-            if not current_tran:
-                return None
-
-            abbrev_dict = cm.patternMatchAll(df.ABBREV_PATTERN_PARSER, current_tran)
-            if not abbrev_dict:
-                return current_tran
-
-            new_tran = str(current_tran)
-            abbrev_dict_list = list(abbrev_dict.items())
-            abbrev_dict_list.reverse()
-            for loc, mm in abbrev_dict_list:
-                abbr_txt = mm.getMainText()
-                abbr_loc = (mm.s, mm.e)
-                abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(abbr_txt)
-                new_tran = cm.jointText(new_tran, exp_part, abbr_loc)
-            return new_tran
-
         msg = mm.getSubText()
         tran_txt = str(msg)
         first_match_mm: MatcherRecord = None
@@ -1892,7 +1891,7 @@ class TranslationFinder:
         abbrev_loc, abbrev_explain_txt = first_match_mm.getSubEntryByIndex(1)
         tran, is_fuzzy, is_ignore = self.translate(abbrev_explain_txt)
 
-        tran = removeAbbrevInTran(tran)
+        tran = self.removeAbbrevInTran(tran)
         valid = (tran and (tran != abbrev_explain_txt))
         if valid:
             translation = f"{abbrev_explain_txt}: {tran}"

@@ -511,6 +511,7 @@ class Definitions:
     MULTI_SPACES = re.compile(r'[\s]{2,}')
     HYPHEN = re.compile(r'[\-]')
     SPACE_SEP = re.compile(r'\s')
+    FULL_STOP_PUNCT_IN_BETWEEN = re.compile(r'\w\.\s[A-Z\d]')
 
     START_WORD = '^'
     END_WORD = '$'

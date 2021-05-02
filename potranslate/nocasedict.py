@@ -5,6 +5,7 @@ from key import Key
 from fuzzywuzzy import fuzz
 from math import ceil
 import operator as OP
+import re
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -97,12 +98,20 @@ class NoCaseDict(OrderedDict):
     def getSentStructPattern(self, key):
         selective_match = []
         for pat, value in self.sentence_struct_dict.items():
-            is_match = (pat.search(key) is not None)
-            if is_match:
-                (dict_sl_key, dict_tl_txt, dict_tl_mm_record, dict_tl_list) = value
-                match_rate = fuzz.ratio(dict_sl_key, key)
-                entry=(match_rate, pat, value)
-                selective_match.append(entry)
+            matcher = pat.search(key)
+            is_match = (matcher is not None)
+            if not is_match:
+                continue
+
+            matching_part = matcher.group(0)
+            is_match = (df.FULL_STOP_PUNCT_IN_BETWEEN.search(matching_part) is None)
+            if not is_match:
+                continue
+
+            (dict_sl_key, dict_tl_txt, dict_tl_mm_record, dict_tl_list) = value
+            match_rate = fuzz.ratio(dict_sl_key, key)
+            entry=(match_rate, pat, value)
+            selective_match.append(entry)
 
         if selective_match:
             selective_match.sort(reverse=True)
