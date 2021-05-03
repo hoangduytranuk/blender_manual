@@ -1,4 +1,17 @@
 from enum import Enum
+class SentStructMode(Enum):
+    ANY = ''
+    NO_PUNCTUATION = 'np'
+    ONE_WORD_ONLY = 'm1'
+    MAXIMUM_TWO = 'm2'
+    NO_CONJUNCTIVES = 'nc'
+
+    @classmethod
+    def getName(cls, string_value: str):
+        for name, member in cls.__members__.items():
+            if member.value == string_value:
+                return member
+        return cls.ANY
 
 class OverLappingState(Enum):
     NONE = 0

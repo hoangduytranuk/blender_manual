@@ -15,6 +15,7 @@ import operator
 import re
 import copy as CP
 from definition import Definitions as df
+from reftype import SentStructMode as SMODE
 
 DEBUG=True
 # DEBUG=False
@@ -1464,35 +1465,6 @@ class Common:
             final_part = left_part + replace_word + right_part
         return final_part
 
-    # def getSentenceList(input_text:str) -> list:
-    #     t_list = {}
-    #     doc = Common.nlp(input_text)
-    #     sen = []
-    #     last_e = 0
-    #     for token in doc:
-    #         is_punct = (token.pos_ == 'PUNCT')
-    #         if not is_punct:
-    #             txt = token.text
-    #             sen.append(token.text)
-    #             continue
-    #
-    #         if not sen:
-    #             continue
-    #
-    #         sen_text = ' '.join(sen)
-    #         ss = input_text.find(sen_text, last_e)
-    #         is_error = (ss < 0)
-    #         if is_error:
-    #             raise ValueError(f'Common.getSentenceList(): Unable to find text [{sen_text}] in [{input_text}]')
-    #
-    #         ee = ss + len(sen_text)
-    #         last_e = ee
-    #         loc = (ss, ee)
-    #         entry = {loc: sen_text}
-    #         t_list.update(entry)
-    #         sen = []
-    #
-    #     return t_list
 
     def matchTextPercent(t1: str, t2: str):
         match_percent = 0.0
@@ -1640,6 +1612,13 @@ class Common:
         orig = left + tran + right
         return orig
 
+    def wordCount(txt):
+        try:
+            l = txt.split()
+            return len(l)
+        except Exception as e:
+            return 0
+
     def patStructToListOfWords(txt):
         mm: MatcherRecord = None
         struct_pat_dict = Common.patternMatchAll(df.SENT_STRUCT_PAT, txt)
@@ -1660,6 +1639,18 @@ class Common:
         list_of_words.sort()
         return list_of_words
 
+    def formPatternForAny(list_of_words: list):
+        pat = ""
+        # (?<=\S)\s+$
+        for loc, txt in list_of_words:
+            is_any = (df.SENT_STRUCT_SYMB in txt)
+            txt = (f'\s?(.*\S)\s?' if is_any else f'{txt}')
+            pat += txt
+
+        pattern_txt = r'^%s$' % (pat)
+        return_pat = re.compile(pattern_txt)
+        return return_pat
+
     def formPattern(list_of_words: list):
         pat = ""
         # (?<=\S)\s+$
@@ -1677,14 +1668,37 @@ class Common:
         record_mm, record_txt_list = Common.createSentRecogniserRecord(value)
         return {recog_pattern: (key, value, record_mm, record_txt_list)}
 
+    def createSentRecogniserAnyPattern(key):
+        the_txt_word_list = Common.patStructToListOfWords(key)
+        recog_any_pattern = Common.formPatternForAny(the_txt_word_list)
+        return recog_any_pattern
+
     def creatSentRecogniserPattern(key):
         the_txt_word_list = Common.patStructToListOfWords(key)
         recog_pattern = Common.formPattern(the_txt_word_list)
         return recog_pattern
 
-    def createSentRecogniserRecord(the_txt):
+    def createSentRecogniserRecord(the_value):
+        is_tuple = isinstance(the_value, tuple)
+        if is_tuple:
+            (the_txt, matcher) = the_value
+        else:
+            the_txt = the_value
+
+        mode = SMODE.ANY
         the_txt_word_list = Common.patStructToListOfWords(the_txt)
+        if is_tuple:
+            groups = matcher.groups()
+            group_len = len(groups)
+
+            has_mode = (group_len > 2)
+            if has_mode:
+                mode_initiator = groups[2]
+                mode = SMODE.getName(mode_initiator)
+
         mm = MatcherRecord(txt=the_txt)
+        mm.smode = mode
+
         mm.initUsingList(the_txt_word_list)
         return mm, the_txt_word_list
 

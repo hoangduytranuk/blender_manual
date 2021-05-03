@@ -175,7 +175,7 @@ class Definitions:
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.3
     SENT_STRUCT_SYMB = '$$$'
-    SENT_STRUCT_PAT = re.compile(r'(\${3})')
+    SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?)')
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
     PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
 
@@ -388,6 +388,10 @@ class Definitions:
     end_punctual_single = r'%s$' % (punctual_single)
     begin_punctual_single = r'^%s' % (punctual_single)
 
+    simple_basic_punctuals = r'([\.\,\!\;]+)'
+    end_punctual_in_mid_sentence = r'^%s\s?$' % (simple_basic_punctuals)
+    BEGIN_AND_END_BASIC_PUNCTUAL_IN_MID_SENT = re.compile(end_punctual_in_mid_sentence)
+
     BEGIN_PUNCTUAL_MULTI = re.compile(begin_punctuals)
     BEGIN_PUNCTUAL_SINGLE = re.compile(begin_punctual_single)
     ENDS_PUNCTUAL_MULTI = re.compile(end_punctuals)
@@ -511,7 +515,15 @@ class Definitions:
     MULTI_SPACES = re.compile(r'[\s]{2,}')
     HYPHEN = re.compile(r'[\-]')
     SPACE_SEP = re.compile(r'\s')
-    FULL_STOP_PUNCT_IN_BETWEEN = re.compile(r'\w\.\s[A-Z\d]')
+
+    full_stop_in_middle = r'(\w[\.]\s[A-Z\d])'
+    comma_in_middle = r'(\w\,\s[a-z\d])'
+    punct_in_between_txt = r'(%s|%s)' % (full_stop_in_middle, comma_in_middle)
+    punct_in_between_txt = r'%s' % (comma_in_middle)
+    PUNCT_IN_BETWEEN = re.compile(punct_in_between_txt)
+
+    basic_conjunctions = r'\b(for|and|nor|but|or|yet|so)\b'
+    BASIC_CONJUNCT = re.compile(basic_conjunctions)
 
     START_WORD = '^'
     END_WORD = '$'

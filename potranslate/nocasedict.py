@@ -72,10 +72,11 @@ class NoCaseDict(OrderedDict):
         lkey_key = Key(key)
         super(NoCaseDict, self).__setitem__(lkey_key, value)
 
-        is_sentence_structure = (df.SENT_STRUCT_PAT.search(key) is not None)
+        matcher = df.SENT_STRUCT_PAT.search(key)
+        is_sentence_structure = (matcher is not None)
         if is_sentence_structure:
-            # print(f'{key} => {value}')
-            entry=cm.creatSentRecogniserPatternRecordPair(key, value)
+            # print(f'SENT_STRUCT_PAT: {key} => {value}')
+            entry=cm.creatSentRecogniserPatternRecordPair(key, (value, matcher))
             self.sentence_struct_dict.update(entry)
             # print(f'{entry}')
 
@@ -96,19 +97,57 @@ class NoCaseDict(OrderedDict):
         return self[k] if k in self else default
 
     def getSentStructPattern(self, key):
+        from reftype import SentStructMode as SMODE
+        from matcher import MatcherRecord as MR
+
+        def isMatchedStructMode(mm_record, matched_part):
+            structure_mode = mm_record.smode
+            is_required_further_checking = (structure_mode != SMODE.ANY)
+            if not is_required_further_checking:
+                return True
+
+            is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
+            if is_no_punctuation:
+                no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
+                return no_punct
+
+            is_one_word = (structure_mode == SMODE.ONE_WORD_ONLY)
+            if is_one_word:
+                wc = cm.wordCount(matched_part)
+                return (wc == 1)
+
+            is_maximum_two_words = (structure_mode == SMODE.MAXIMUM_TWO)
+            if is_maximum_two_words:
+                wc = cm.wordCount(matched_part)
+                return (wc <= 2)
+                # print(f'is_maximum_two_words')
+
+            is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
+            if is_no_conjunctives:
+                print(f'is_no_conjunctives')
+
+            return False
+
         selective_match = []
         for pat, value in self.sentence_struct_dict.items():
             matcher = pat.search(key)
+
             is_match = (matcher is not None)
             if not is_match:
                 continue
 
-            matching_part = matcher.group(0)
-            is_match = (df.FULL_STOP_PUNCT_IN_BETWEEN.search(matching_part) is None)
-            if not is_match:
+            (dict_sl_key, dict_tl_value, dict_tl_mm_record, dict_tl_list) = value
+            any_recog_pat = cm.createSentRecogniserAnyPattern(dict_sl_key)
+            m = any_recog_pat.search(key)
+            grp_list = m.groups()
+            matched_part = m.group(1)
+            # (dict_tl_txt, tl_matcher) = dict_tl_value
+            # groups = matcher.groups()
+
+            is_accept = isMatchedStructMode(dict_tl_mm_record, matched_part)
+            if not is_accept:
                 continue
 
-            (dict_sl_key, dict_tl_txt, dict_tl_mm_record, dict_tl_list) = value
             match_rate = fuzz.ratio(dict_sl_key, key)
             entry=(match_rate, pat, value)
             selective_match.append(entry)

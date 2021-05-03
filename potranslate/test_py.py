@@ -10020,7 +10020,7 @@ IOR
     def test_translate_0001(self, text_list=None):
         from paragraph import Paragraph as PR
         from sentence import StructRecogniser as SR
-        tf = TranslationFinder()
+
         if not text_list:
             t_list = [
                 # "``sin(x)/x``",
@@ -10099,25 +10099,21 @@ IOR
                 # "e.g. fast fluid flow colliding with obstacle",
                 # "e.g. for rigged objects",
                 # "e.g. from a \"hand\" mesh towards a \"full body\" one",
-                "e.g. from goal = 0 to goal = 0.5",
+                # "e.g. from goal = 0 to goal = 0.5",
+                # "e.g. gas simulations can add noise",
+                "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
+                # "this is a virtually one chance",
             ]
 
         else:
             t_list = text_list
 
-        try:
-            done_dict={}
-            for t in t_list:
-                tran = tf.isInDict(t)
-                if not tran:
-                    sr = SR(translation_engine=tf, processed_dict=done_dict)
-                    tran = sr.parseAndTranslateText(t)
-                tran = tran.replace('"', '\\"')
-                t = t.replace('"', '\\"')
-                print(f'"{t}": "{tran}",')
-
-        except Exception as e:
-            print(e)
+        tf = TranslationFinder()
+        for t in t_list:
+            pr = PR(t, translation_engine=tf)
+            pr.translate()
+            output = pr.getTranslation()
+            print(output)
 
         # # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
         # result_list=[]

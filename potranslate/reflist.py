@@ -184,7 +184,6 @@ class RefList(defaultdict):
                     new_mm_list.append(new_entry)
                 mm.clear()
                 mm.update(new_mm_list)
-            dd('complete one pattern')
 
         def getMatches(pat: re.Pattern, find_txt: str, ref: RefType):
             local_found_dict = {}

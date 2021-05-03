@@ -1,7 +1,7 @@
 import re
 from collections import OrderedDict
 from enum import Enum
-from reftype import TranslationState, RefType
+from reftype import TranslationState, RefType, SentStructMode
 
 class MatcherRecordType(Enum):
     MASTER = 0
@@ -21,6 +21,7 @@ class MatcherRecord(OrderedDict):
         self.__type = None
         self.__translation = None
         self.__translation_state = TranslationState.UNTRANSLATED
+        self.__sentence_structure_mode = SentStructMode.ANY
         # self.__list_of_forward_slashes = []
 
         actual_s = (matcher_record.start() if matcher_record else s)
@@ -49,6 +50,14 @@ class MatcherRecord(OrderedDict):
                 self.addSubMatch(rs, re, txt)
         else:
             self.addSubMatch(actual_s, actual_e, actual_txt)
+
+    @property
+    def smode(self):
+        return self.__sentence_structure_mode
+
+    @smode.setter
+    def smode(self, new_mode):
+        self.__sentence_structure_mode = new_mode
 
     @property
     def s(self):
