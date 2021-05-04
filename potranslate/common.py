@@ -1762,7 +1762,7 @@ class Common:
         return part_list
 
     def debugging(txt):
-        msg = "and without another"
+        msg = "can add noise"
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         # is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))

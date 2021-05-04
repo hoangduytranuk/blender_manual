@@ -5,7 +5,6 @@ from key import Key
 from fuzzywuzzy import fuzz
 from math import ceil
 import operator as OP
-import re
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -98,7 +97,6 @@ class NoCaseDict(OrderedDict):
 
     def getSentStructPattern(self, key):
         from reftype import SentStructMode as SMODE
-        from matcher import MatcherRecord as MR
 
         def isMatchedStructMode(mm_record, matched_part):
             structure_mode = mm_record.smode
@@ -122,7 +120,7 @@ class NoCaseDict(OrderedDict):
                 return (wc <= 2)
                 # print(f'is_maximum_two_words')
 
-            is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
+            is_no_conjunctives = (structure_mode == SMODE.NO_CíONJUNCTIVES)
             if is_no_conjunctives:
                 print(f'is_no_conjunctives')
 
@@ -194,6 +192,9 @@ class NoCaseDict(OrderedDict):
     def clearCache(self):
         self.local_cache.clear()
 
+    def addCacheEntry(self, entry: tuple):
+        self.local_cache.update(entry)
+
     def addCache(self, item, result):
         entry = {item: result}
         self.local_cache.update(entry)
@@ -247,7 +248,7 @@ class NoCaseDict(OrderedDict):
             except Exception as e:
                 pass
 
-            acceptable = (total_match_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
+            acceptable = (total_match_ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
             # if is_k_single_word:
             #     acceptable = (total_match_ratio >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
             # else:
@@ -313,31 +314,6 @@ class NoCaseDict(OrderedDict):
                 if is_equal:
                     return mid
 
-                # if not is_equal:
-                #     value, match_rat = fuzzyCompareString(item)
-                #     can_look_around = (match_rat > 50)
-                #     # match_rat = fuzz.ratio(item, k)
-                #     is_equal = (match_rat >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
-                #     if is_equal:
-                #         return mid
-                #     elif can_look_around:
-                #         max_back = max(mid - 100, 0)
-                #         max_forth = min(mid + 100, hi)
-                #         rate, i, found_item = linearSearch(k_list[max_back:max_forth])
-                #         actual_rate = fuzz.ratio(found_item, looking_for)
-                #         is_equal = (actual_rate >= cm.FUZZY_LOW_ACCEPTABLE_RATIO)
-                #         if is_equal:
-                #             index = max_back + i
-                #             test_item = k_list[index] # for debugging purposes
-                #             return index
-                #         elif value < 0:
-                #             lo = mid + 1
-                #         else:
-                #             hi = mid
-                #     elif value < 0:
-                #         lo = mid + 1
-                #     else:
-                #         hi = mid
                 elif item < k:
                     lo = mid + 1
                 else:
@@ -398,48 +374,18 @@ class NoCaseDict(OrderedDict):
                 if is_accepted:
                     found_list.append(item)
             ee = i
-            # dd(f'simpleFuzzyTranslate(): forward to index: [{i}]')
             found_list.sort(key=lambda x: len(x), reverse=True)
-            # if found_list:
-            #     pas
-            # dd('Range looking at:')
-            # dd('---------')
-            # k_list_len = len(key_list)
-            # # ss = min(ss+1, k_list_len)
-            # # ee = max(0, ee-1)
-            # examine_part = key_list[ss:ee]
-            # dd(f'looking for: [{msg}]')
-            # pp(examine_part)
-            # dd('---------')
-            # dd(f'simpleFuzzyTranslate(): found_list:')
-            # dd('---------')
-            # dd(f'looking for: [{msg}]')
-            # pp(found_list)
-            # dd('---------')
 
             for found_item in found_list:
-                # matched_length = comparePartial(k, found_item)
                 ratio = fuzz.ratio(found_item, k)
                 is_found = (ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
                 if not is_found:
-                    # perfect_match_percent = cm.matchTextPercent(k, found_item)
-                    # is_accepted = (perfect_match_percent > cm.FUZZY_PERFECT_MATCH_PERCENT)
-                    # dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => found_item:[{found_item}]')
-                    # if not is_accepted:
-                    #     dd('simpleFuzzyTranslate(): perfect_match_percent TOO LOW, IGNORED')
-                    #     continue
                     continue
 
                 entry = (ratio, found_item)
                 subset.append(entry)
 
             subset.sort(reverse=True)
-            # dd(f'simpleFuzzyTranslate(): subset:')
-            # dd('---------')
-            # dd(f'looking for: [{msg}]')
-            # pp(subset)
-            # dd('---------')
-
             return subset
 
         untran_word_dic = {}
@@ -483,7 +429,7 @@ class NoCaseDict(OrderedDict):
         if not is_accepted:
             perfect_match_percent = cm.matchTextPercent(k, selected_item)
             is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
-            dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]; is_accepted:[{is_accepted}]')
+            # dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]; is_accepted:[{is_accepted}]')
             if not is_accepted:
                 return_tran = None
                 rat = 0
@@ -717,7 +663,7 @@ class NoCaseDict(OrderedDict):
         return tran, first_text_selected, matching_ratio
 
     def __delitem__(self, key):
-        key = self.Key(key)
+        key = Key(key)
         # dd(f'__delitem__:[{key}]')
         try:
             super(NoCaseDict, self).__delitem__(key)

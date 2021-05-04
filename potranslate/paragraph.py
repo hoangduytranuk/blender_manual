@@ -28,7 +28,11 @@ class Paragraph(list):
             tran = self.tf.isInDict(self.sl_txt)
             if not tran:
                 sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict)
-                tran = sr.parseAndTranslateText(self.sl_txt)
+                loc = (0, len(self.sl_txt))
+                tran = sr.parseAndTranslateText(loc, self.sl_txt)
+                if tran:
+                    cache_entry = {self.sl_txt: tran}
+                    self.tf.getDict().addCacheEntry(cache_entry)
             self.tl_txt = tran
         except Exception as e:
             print(e)

@@ -1092,15 +1092,13 @@ class TranslationFinder:
             tran = self.translateNumerics(msg)
 
         if not tran:
-            # msg_length = len(msg)
-            # left, stripped_msg, right = cm.getTextWithin(msg)
-            # is_already_done = (left == "" and right == "")
-            # if is_already_done:
-            #     return None
-            #
-            # is_ignore = (not stripped_msg) or (ig.isIgnored(stripped_msg))
-            # if is_ignore:
-            #     return None
+            msg_length = len(msg)
+            left, mid, right = cm.getTextWithin(msg)
+            is_quoted = (left and right) and (left == right)
+            if is_quoted:
+                return None
+            else:
+                msg = mid
 
             is_found = (msg in search_dict)
             if is_found:
