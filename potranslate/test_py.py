@@ -9749,7 +9749,7 @@ IOR
                 # "e.g. from a \"hand\" mesh towards a \"full body\" one",
                 # "e.g. from goal = 0 to goal = 0.5",
                 # "e.g. gas simulations can add noise",
-                "e.g. gas simulations can add noise,",
+                "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
                 # "e.g. gas simulations can add noise,",
                 # "this is a virtually one chance",
                 # "e.g. grids, particles",
