@@ -9765,36 +9765,6 @@ IOR
             output = pr.getTranslation()
             print(output)
 
-        # # p = re.compile(r'(?:\s|^)(%\w)(?:\W|$)')
-        # result_list=[]
-        # try:
-        #     for t in t_list:
-        #         # test_txt = t[185:190]
-        #         # is_function = cm.FUNCTION.findall(t)
-        #         # print(f'is_function:[{is_function}]')
-        #         # exit(0)
-        #         try:
-        #             ref_list = RefList(msg=t, keep_orig=False, tf=tf)
-        #             ref_list.parseMessage()
-        #             ref_list_to_list = list(ref_list.items())
-        #             ref_list_to_list.sort()
-        #             ref_list.translate()
-        #             trans = ref_list.getTranslation()
-        #             entry=(t, trans)
-        #             result_list.append(entry)
-        #         except Exception as ee:
-        #             print(ee)
-        #             print('*' * 30)
-        #         # print(f't:[{t}] => trans:[{trans}]')
-        # except Exception as e:
-        #     pass
-        # print(f'-' * 80)
-        # for t, tran in result_list:
-        #     msg = t.replace('"', '\\"')
-        #     sent_translation = tran.replace('"', '\\"')
-        #     output = f'"{msg}": "{sent_translation}",'
-        #     print(output)
-
     def run(self):
         # self.test_sorted_list()
         # self.test_forward_slashes()
