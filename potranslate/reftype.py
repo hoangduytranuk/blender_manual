@@ -5,6 +5,7 @@ class SentStructMode(Enum):
     ONE_WORD_ONLY = 'm1'
     MAXIMUM_TWO = 'm2'
     NO_CONJUNCTIVES = 'nc'
+    NO_FULL_STOP = 'nfs'
 
     @classmethod
     def getName(cls, string_value: str):

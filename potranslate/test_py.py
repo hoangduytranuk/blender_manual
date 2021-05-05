@@ -9400,9 +9400,12 @@ IOR
                         entry_found.append(entry)
 
                     for loc, mm in found_list.items():
-                        if is_sub_group:
-                            p_loc, p_txt = mm.getSubEntryByIndex(2)
-                        else:
+                        try:
+                            if is_sub_group:
+                                p_loc, p_txt = mm.getSubEntryByIndex(2)
+                            else:
+                                p_loc, p_txt = mm.getSubEntryByIndex(0)
+                        except Exception as e:
                             p_loc, p_txt = mm.getSubEntryByIndex(0)
 
                         if p_loc in loc_found:
@@ -9646,14 +9649,17 @@ IOR
             writeJSON(output_file, output_data)
 
     def test_re(self):
-        from sentence import StructRecogniser as SR
-        s_recog = SR(tran_sl_txt=src_sl_txt,
-                    translation_engine=tf)
-        # s_recog.setupRecords()
-        s_recog.translate()
-        tran = s_recog.getTranslation()
-        print(f'tran:{tran}')
-
+        # from sentence import StructRecogniser as SR
+        # s_recog = SR(tran_sl_txt=src_sl_txt,
+        #             translation_engine=tf)
+        # # s_recog.setupRecords()
+        # s_recog.translate()
+        # tran = s_recog.getTranslation()
+        # print(f'tran:{tran}')
+        p = re.compile('^(the more )\\s?(.*)\\s?( the better )\\s?(.*\\S)\\s?$')
+        t = 'The more *temporal resolution* the stabilizer has to work on, the better the results.'
+        m = p.search(t)
+        print(m)
 
     def test_sorted_list(self):
         ls=[]
@@ -9749,10 +9755,19 @@ IOR
                 # "e.g. from a \"hand\" mesh towards a \"full body\" one",
                 # "e.g. from goal = 0 to goal = 0.5",
                 # "e.g. gas simulations can add noise",
-                "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
+                # "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
                 # "e.g. gas simulations can add noise,",
                 # "this is a virtually one chance",
                 # "e.g. grids, particles",
+                # "The more *temporal resolution* the stabilizer has to work on, the better the results.",
+                # "the more characters a single text object has, the slower the object will respond interactively.",
+                # "e.g. if the constrained bone is named \"arm\", it will use and only use the action's bone channel named \"arm\"...",
+                # "e.g. if the term is the name of a tool",
+                # "e.g. in *XYZ Euler* mode that is the Y axis",
+                # "e.g. in simulations using *Boids* physics",
+                # "e.g. its location, rotation, scale",
+                # "e.g. its parent, hook, armature, etc.",
+                # "e.g. just after adding the first UV map to the mesh",
             ]
 
         else:
@@ -9793,6 +9808,7 @@ IOR
         # sep_pat = re.compile(r'\s?(-->)\s?')
         # self.grepPOT(mnu_p, is_sub_group=True, separator=sep_pat, is_translate=True)
         # p = re.compile(r'(?!(\w[\.\,]\w))(\w[^\.\,]+\S)[\.\,](\s|$)')
+        # p = re.compile(r'\w+\s\w+\s(chance)\s\w+\s\w+')
         # self.grepPOT(p, is_sub_group=True)
         # self.grepPOT(df.GA_REF, is_sub_group=True)
         # simple_bracket = re.compile(r'\s?\([^\(\)]+\)\s?')

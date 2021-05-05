@@ -1,6 +1,7 @@
 from common import Common as cm, dd, pp, LocationObserver
 from translation_finder import TranslationFinder
 from sentence import StructRecogniser as SR
+from nocasedict import NoCaseDict as NDIC
 
 class Paragraph(list):
     def __init__(self, txt, translation_engine=None):
@@ -8,7 +9,7 @@ class Paragraph(list):
         # self.msg = "To view your changes, build the manual :doc:`as instructed </about/contribute/build/index>`. Keep in mind that you can also build only the chapter you just edited to view it quickly. Open the generated ``.html`` files inside the ``build/html`` folder using your web browser, or refresh the page if you have it open already."
         self.tl_txt = None
         self.tf = translation_engine
-        self.parsed_dict = {}
+        self.parsed_dict = NDIC()
 
     def formatOutput(self):
         try:

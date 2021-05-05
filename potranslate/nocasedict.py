@@ -98,33 +98,48 @@ class NoCaseDict(OrderedDict):
     def getSentStructPattern(self, key):
         from reftype import SentStructMode as SMODE
 
-        def isMatchedStructMode(mm_record, matched_part):
-            structure_mode = mm_record.smode
-            is_required_further_checking = (structure_mode != SMODE.ANY)
-            if not is_required_further_checking:
-                return True
+        def isMatchedStructMode(pat_matched_text_pair_list):
+            is_ok_list=[]
+            for structure_mode, matched_part in pat_matched_text_pair_list:
+                is_any = (structure_mode == SMODE.ANY)
+                if is_any:
+                    is_ok_list.append(True)
+                    continue
 
-            is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
-            if is_no_punctuation:
-                no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
-                return no_punct
+                is_no_full_stop = (structure_mode == SMODE.NO_FULL_STOP)
+                if is_no_full_stop:
+                    no_fullstop = (df.FULLSTOP_IN_BETWEEN.search(matched_part) is None)
+                    is_ok_list.append(no_fullstop)
+                    continue
 
-            is_one_word = (structure_mode == SMODE.ONE_WORD_ONLY)
-            if is_one_word:
-                wc = cm.wordCount(matched_part)
-                return (wc == 1)
+                is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
+                if is_no_punctuation:
+                    no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
+                    is_ok_list.append(no_punct)
+                    continue
 
-            is_maximum_two_words = (structure_mode == SMODE.MAXIMUM_TWO)
-            if is_maximum_two_words:
-                wc = cm.wordCount(matched_part)
-                return (wc <= 2)
-                # print(f'is_maximum_two_words')
+                is_one_word = (structure_mode == SMODE.ONE_WORD_ONLY)
+                if is_one_word:
+                    wc = cm.wordCount(matched_part)
+                    is_one_word = (wc == 1)
+                    is_ok_list.append(is_one_word)
+                    continue
 
-            is_no_conjunctives = (structure_mode == SMODE.NO_CíONJUNCTIVES)
-            if is_no_conjunctives:
-                print(f'is_no_conjunctives')
+                is_maximum_two_words = (structure_mode == SMODE.MAXIMUM_TWO)
+                if is_maximum_two_words:
+                    wc = cm.wordCount(matched_part)
+                    is_max_two = (wc <= 2)
+                    is_ok_list.append(is_max_two)
+                    continue
 
-            return False
+                is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
+                if is_no_conjunctives:
+                    no_conjunctives = (df.SEVEN_BASIC_CONJUNCTS.search(matched_part) is None)
+                    is_ok_list.append(no_conjunctives)
+                    continue
+
+            ok = (False not in is_ok_list)
+            return ok
 
         selective_match = []
         for pat, value in self.sentence_struct_dict.items():
@@ -137,12 +152,19 @@ class NoCaseDict(OrderedDict):
             (dict_sl_key, dict_tl_value, dict_tl_mm_record, dict_tl_list) = value
             any_recog_pat = cm.createSentRecogniserAnyPattern(dict_sl_key)
             m = any_recog_pat.search(key)
-            grp_list = m.groups()
-            matched_part = m.group(1)
-            # (dict_tl_txt, tl_matcher) = dict_tl_value
-            # groups = matcher.groups()
+            matched_txt_grp_list = list(m.groups())
 
-            is_accept = isMatchedStructMode(dict_tl_mm_record, matched_part)
+            any_pattern_list = df.SENT_STRUCT_PAT.findall(dict_sl_key)
+
+            pattern_and_matched_text_pair_list = []
+            for index, matched_txt in enumerate(matched_txt_grp_list):
+                sl_any_pattern_tuple = any_pattern_list[index]
+                pattern_condition_signature = sl_any_pattern_tuple[2]
+                mode = SMODE.getName(pattern_condition_signature)
+                entry = (mode, matched_txt)
+                pattern_and_matched_text_pair_list.append(entry)
+
+            is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
             if not is_accept:
                 continue
 

@@ -1603,14 +1603,16 @@ class Common:
         return this_txt_dict
 
     def jointText(orig: str, tran: str, loc: tuple):
+        backup = [str(orig), str(tran)]
         if not bool(tran):
             return orig
 
+        new_str = str(orig)
         s, e = loc
-        left = orig[:s]
-        right = orig[e:]
-        orig = left + tran + right
-        return orig
+        left = new_str[:s]
+        right = new_str[e:]
+        new_str = left + tran + right
+        return new_str
 
     def wordCount(txt):
         try:
@@ -1644,11 +1646,12 @@ class Common:
         # (?<=\S)\s+$
         for loc, txt in list_of_words:
             is_any = (df.SENT_STRUCT_SYMB in txt)
-            txt = (f'\s?(.*\S)\s?' if is_any else f'{txt}')
+            # txt = (f'\s?(.*\S)\s?' if is_any else f'{txt}')
+            txt = (f'\s?(.*)\s?' if is_any else f'{txt}')
             pat += txt
 
         pattern_txt = r'^%s$' % (pat)
-        return_pat = re.compile(pattern_txt)
+        return_pat = re.compile(pattern_txt, re.I)
         return return_pat
 
     def formPattern(list_of_words: list):
@@ -1656,11 +1659,12 @@ class Common:
         # (?<=\S)\s+$
         for loc, txt in list_of_words:
             is_any = (df.SENT_STRUCT_SYMB in txt)
-            txt = (f'\s?(.*\S)\s?' if is_any else f'({txt})')
+            # txt = (f'\s?(.*\S)\s?' if is_any else f'({txt})')
+            txt = (f'\s?(.*)\s?' if is_any else f'({txt})')
             pat += txt
 
         pattern_txt = r'^%s$' % (pat)
-        return_pat = re.compile(pattern_txt)
+        return_pat = re.compile(pattern_txt, re.I)
         return return_pat
 
     def creatSentRecogniserPatternRecordPair(key, value):
@@ -1678,6 +1682,17 @@ class Common:
         recog_pattern = Common.formPattern(the_txt_word_list)
         return recog_pattern
 
+    def getStructureModeFromTheMatcher(matcher: re.Match):
+        mode = SMODE.ANY
+        groups = list(matcher.groups())
+        group_len = len(groups)
+
+        has_mode = (group_len > 2)
+        if has_mode:
+            mode_initiator = groups[2]
+            mode = SMODE.getName(mode_initiator)
+        return mode
+
     def createSentRecogniserRecord(the_value):
         is_tuple = isinstance(the_value, tuple)
         if is_tuple:
@@ -1688,13 +1703,7 @@ class Common:
         mode = SMODE.ANY
         the_txt_word_list = Common.patStructToListOfWords(the_txt)
         if is_tuple:
-            groups = matcher.groups()
-            group_len = len(groups)
-
-            has_mode = (group_len > 2)
-            if has_mode:
-                mode_initiator = groups[2]
-                mode = SMODE.getName(mode_initiator)
+            mode = Common.getStructureModeFromTheMatcher(matcher)
 
         mm = MatcherRecord(txt=the_txt)
         mm.smode = mode

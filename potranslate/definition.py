@@ -519,11 +519,11 @@ class Definitions:
     full_stop_in_middle = r'(\w[\.]\s[A-Z\d])'
     comma_in_middle = r'(\w\,\s[a-z\d])'
     punct_in_between_txt = r'(%s|%s)' % (full_stop_in_middle, comma_in_middle)
-    punct_in_between_txt = r'%s' % (comma_in_middle)
     PUNCT_IN_BETWEEN = re.compile(punct_in_between_txt)
+    FULLSTOP_IN_BETWEEN = re.compile(full_stop_in_middle)
 
     basic_conjunctions = r'\b(for|and|nor|but|or|yet|so)\b'
-    BASIC_CONJUNCT = re.compile(basic_conjunctions)
+    SEVEN_BASIC_CONJUNCTS = re.compile(basic_conjunctions)
 
     START_WORD = '^'
     END_WORD = '$'
