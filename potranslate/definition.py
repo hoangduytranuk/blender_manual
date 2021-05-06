@@ -525,6 +525,8 @@ class Definitions:
     basic_conjunctions = r'\b(for|and|nor|but|or|yet|so)\b'
     SEVEN_BASIC_CONJUNCTS = re.compile(basic_conjunctions)
 
+    MAXWORD_UPTO_PAT = re.compile(f'^m[x]?(\d+)$')
+
     START_WORD = '^'
     END_WORD = '$'
     BOTH_START_AND_END = '^$'

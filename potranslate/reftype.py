@@ -2,8 +2,7 @@ from enum import Enum
 class SentStructMode(Enum):
     ANY = ''
     NO_PUNCTUATION = 'np'
-    ONE_WORD_ONLY = 'm1'
-    MAXIMUM_TWO = 'm2'
+    MAX_UPTO = 'mx'
     NO_CONJUNCTIVES = 'nc'
     NO_FULL_STOP = 'nfs'
 

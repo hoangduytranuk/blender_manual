@@ -100,7 +100,7 @@ class NoCaseDict(OrderedDict):
 
         def isMatchedStructMode(pat_matched_text_pair_list):
             is_ok_list=[]
-            for structure_mode, matched_part in pat_matched_text_pair_list:
+            for structure_mode, matched_part, pattern_condition_signature, matcher in pat_matched_text_pair_list:
                 is_any = (structure_mode == SMODE.ANY)
                 if is_any:
                     is_ok_list.append(True)
@@ -118,18 +118,12 @@ class NoCaseDict(OrderedDict):
                     is_ok_list.append(no_punct)
                     continue
 
-                is_one_word = (structure_mode == SMODE.ONE_WORD_ONLY)
-                if is_one_word:
+                is_max_upto = (structure_mode == SMODE.MAX_UPTO)
+                if is_max_upto:
+                    mx_word_count = int(matcher.group(1))
                     wc = cm.wordCount(matched_part)
-                    is_one_word = (wc == 1)
-                    is_ok_list.append(is_one_word)
-                    continue
-
-                is_maximum_two_words = (structure_mode == SMODE.MAXIMUM_TWO)
-                if is_maximum_two_words:
-                    wc = cm.wordCount(matched_part)
-                    is_max_two = (wc <= 2)
-                    is_ok_list.append(is_max_two)
+                    is_max_upto = (wc <= mx_word_count)
+                    is_ok_list.append(is_max_upto)
                     continue
 
                 is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
@@ -157,11 +151,16 @@ class NoCaseDict(OrderedDict):
             any_pattern_list = df.SENT_STRUCT_PAT.findall(dict_sl_key)
 
             pattern_and_matched_text_pair_list = []
+            max_word_count=1
             for index, matched_txt in enumerate(matched_txt_grp_list):
                 sl_any_pattern_tuple = any_pattern_list[index]
                 pattern_condition_signature = sl_any_pattern_tuple[2]
-                mode = SMODE.getName(pattern_condition_signature)
-                entry = (mode, matched_txt)
+                max_up_to = df.MAXWORD_UPTO_PAT.search(pattern_condition_signature)
+                if bool(max_up_to):
+                    mode = SMODE.MAX_UPTO
+                else:
+                    mode = SMODE.getName(pattern_condition_signature)
+                entry = (mode, matched_txt, pattern_condition_signature, max_up_to)
                 pattern_and_matched_text_pair_list.append(entry)
 
             is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)

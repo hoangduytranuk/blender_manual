@@ -9768,6 +9768,13 @@ IOR
                 # "e.g. its location, rotation, scale",
                 # "e.g. its parent, hook, armature, etc.",
                 # "e.g. just after adding the first UV map to the mesh",
+                # "e.g. lip-sync to audio track",
+                # "e.g. negative local Y on the taper curve",
+                # "e.g. normal maps",
+                # "e.g. on a laptop",
+                # "e.g. on a stage",
+                # "e.g. one for the '3D Viewport' and the 'Image editor'",
+                "e.g. pressing the 'Screw' button again",
             ]
 
         else:

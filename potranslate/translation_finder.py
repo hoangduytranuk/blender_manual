@@ -1541,7 +1541,7 @@ class TranslationFinder:
         if has_translation:
             # print(f'result of isInDict:[{orig_msg}] => [{trans}] => is_found: [{is_found}]')
             trans = cm.removeOriginal(msg, trans)
-            trans = self.removeTheWord(trans)
+            trans = cm.removeTheWord(trans)
         else:
             trans = None
         if trans is None:
@@ -1581,13 +1581,6 @@ class TranslationFinder:
                 se = trans[e:]
                 trans = st + trans_word + se
 
-        return trans
-
-    def removeTheWord(self, trans):
-        try:
-            trans = df.THE_WORD.sub("", trans)
-        except Exception as e:
-            pass
         return trans
 
     def translate(self, msg):
@@ -1636,7 +1629,7 @@ class TranslationFinder:
                 #         trans = sent_struct.getTranslated()
                 #
                 dd(f'calling removeTheWord')
-                trans = self.removeTheWord(trans)
+                trans = cm.removeTheWord(trans)
                 trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:

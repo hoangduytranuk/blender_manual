@@ -239,12 +239,20 @@ class Common:
 
         from_string_is_to_first_upper = (first_char.isupper() and remain_part.islower())
         to_string_is_to_first_upper = not (from_str_has_multi_words or to_str_has_multi_words)
+        source_word_count = (len(from_str.split()))
+        target_word_count = (len(to_str.split()))
 
         is_first_upper = (first_char.isupper() and remain_part.islower())
         if is_first_upper:
             first_char = new_str[0].upper()
-            remain_part = new_str[1:].lower()
-            new_str = first_char + remain_part
+            both_have_multi_words = (source_word_count > 1) and (target_word_count > 1)
+            both_only_have_one_word = (source_word_count == 1) and (target_word_count == 1)
+            is_first_only = (both_only_have_one_word or both_have_multi_words)
+            if is_first_only:
+                remain_part = new_str[1:].lower()
+                new_str = first_char + remain_part
+            else:
+                new_str = new_str.title()
         else:
             is_lower = (from_str.islower())
             if is_lower:
@@ -1601,6 +1609,13 @@ class Common:
             this_txt_dict.update(entry)
         # this list could be empty, in which case remove left part, keep the right part (A - B = empty => keep B only)
         return this_txt_dict
+
+    def removeTheWord(trans):
+        try:
+            trans = df.THE_WORD.sub("", trans)
+        except Exception as e:
+            pass
+        return trans
 
     def jointText(orig: str, tran: str, loc: tuple):
         backup = [str(orig), str(tran)]
