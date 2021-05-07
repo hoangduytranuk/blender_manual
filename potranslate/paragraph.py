@@ -22,6 +22,10 @@ class Paragraph(list):
             return None
 
     def getTranslation(self):
+        # return self.formatOutput()
+        return self.tl_txt
+
+    def getTextAndTranslation(self):
         return self.formatOutput()
 
     def translate(self):

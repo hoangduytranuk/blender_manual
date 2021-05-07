@@ -9622,6 +9622,8 @@ IOR
         print(l)
 
     def test_translate_json_file(self):
+        from paragraph import Paragraph as PR
+
         git_hub = os.environ['BLENDER_GITHUB']
         home = f'{git_hub}/..'
         input_file= os.path.join(home, "blender_manual/test_txt.json")
@@ -9630,22 +9632,14 @@ IOR
 
         tf = TranslationFinder()
         output_data={}
-        error=False
         for msgid, msgstr in input_data.items():
-            try:
-                ref_list = RefList(msg=msgid, keep_orig=False, tf=tf)
-                ref_list.parseMessage()
-                ref_list_to_list = list(ref_list.items())
-                ref_list_to_list.sort()
-                ref_list.translate()
-                trans = ref_list.getTranslation()
-                entry={msgid: trans}
-                output_data.update(entry)
-            except Exception as ee:
-                error=True
-                print(ee)
-                raise ee
-        if not error:
+            pr = PR(msgid, translation_engine=tf)
+            pr.translate()
+            trans = pr.getTranslation()
+            entry={msgid: trans}
+            output_data.update(entry)
+
+        if output_data:
             writeJSON(output_file, output_data)
 
     def test_re(self):
@@ -9774,7 +9768,11 @@ IOR
                 # "e.g. on a laptop",
                 # "e.g. on a stage",
                 # "e.g. one for the '3D Viewport' and the 'Image editor'",
-                "e.g. pressing the 'Screw' button again",
+                # "e.g. the columns of a Greek temple, the trees in a garden, the desks in a classroom",
+                # "e.g. the §guiding domain§ is of type *Gas* while the §actual domain§ with the §guiding effect§ in it is of type *Liquid*",
+                # "while the actual domain with the guiding effect in it is of type"
+                # "e.g. to make them :doc:`follow a curve </modeling/modifiers/deform/curve>`",
+                "e.g. two cones sharing the vertex at the apex",
             ]
 
         else:
@@ -9784,7 +9782,8 @@ IOR
         for t in t_list:
             pr = PR(t, translation_engine=tf)
             pr.translate()
-            output = pr.getTranslation()
+            # output = pr.getTranslation()
+            output = pr.getTextAndTranslation()
             print(output)
 
     def run(self):
@@ -9816,7 +9815,11 @@ IOR
         # self.grepPOT(mnu_p, is_sub_group=True, separator=sep_pat, is_translate=True)
         # p = re.compile(r'(?!(\w[\.\,]\w))(\w[^\.\,]+\S)[\.\,](\s|$)')
         # p = re.compile(r'\w+\s\w+\s(chance)\s\w+\s\w+')
-        # self.grepPOT(p, is_sub_group=True)
+        # word = r'(\w+\s)?'
+        # l_txt = r'(modifier)'
+        # p_txt = r'%s%s%s%s%s' % (word, word, word, word, l_txt)
+        # p = re.compile(p_txt)
+        # self.grepPOT(p, is_sub_group=False)
         # self.grepPOT(df.GA_REF, is_sub_group=True)
         # simple_bracket = re.compile(r'\s?\([^\(\)]+\)\s?')
         # self.grepPOT(simple_bracket, is_sub_group=False)

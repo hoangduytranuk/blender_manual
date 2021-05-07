@@ -38,6 +38,7 @@ class RefType(Enum):
     PYTHON_FORMAT = "%"
     FUNCTION = "func"
     GA = "\`"
+    BLANK_QUOTE = "§"
     ARCH_BRACKET = "()"
     ARCH_BRACKET_OPEN = "("
     ARCH_BRACKET_CLOSE = ")"

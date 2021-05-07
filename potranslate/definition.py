@@ -1,5 +1,6 @@
 import os
 import re
+from reftype import RefType
 from urlextract import URLExtract as URLX
 class Definitions:
     KEYBOARD_TRANS_DIC = {
@@ -173,7 +174,7 @@ class Definitions:
     MAX_FUZZY_ACCEPTABLE_RATIO = 95
     FUZZY_RATIO_INCREMENT = 5
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
-    FUZZY_KEY_LENGTH_RATIO = 0.3
+    FUZZY_KEY_LENGTH_RATIO = 0.4
     SENT_STRUCT_SYMB = '$$$'
     SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?)')
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
@@ -428,6 +429,7 @@ class Definitions:
     SNG_QUOTE = re.compile(r"(?<!\w)(\')([^\']+)(?:\b)(\')")
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
+    BLANK_QUOTE = re.compile(r"(?<!\w)(\§)([^\§]+)(?:\b)(\§)")
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
@@ -1306,3 +1308,14 @@ class Definitions:
 
     keep_contains_list.sort()
     keep_list.sort()
+
+    pattern_list = [
+        (ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
+        (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
+        (FUNCTION, RefType.FUNCTION),
+        (AST_QUOTE, RefType.AST_QUOTE),
+        (DBL_QUOTE, RefType.DBL_QUOTE),
+        (SNG_QUOTE, RefType.SNG_QUOTE),
+        (BLANK_QUOTE, RefType.BLANK_QUOTE),
+        (GA_REF, RefType.GA),
+    ]

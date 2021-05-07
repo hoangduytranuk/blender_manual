@@ -24,35 +24,9 @@ import operator as OP
 :sup:`
 :term:`
 '''
-pattern_list = [
-    (df.ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
-    (df.PYTHON_FORMAT, RefType.PYTHON_FORMAT),
-    (df.FUNCTION, RefType.FUNCTION),
-    (df.AST_QUOTE, RefType.AST_QUOTE),
-    (df.DBL_QUOTE, RefType.DBL_QUOTE),
-    (df.SNG_QUOTE, RefType.SNG_QUOTE),
-    (df.GA_REF, RefType.GA),
-]
 
-def hasRef(txt) -> bool:
-    simple_flag = False
-    complicated_flag = False
-    for pat, ref_type in pattern_list:
-        has_ref = (pat.search(txt) is not None)
-        is_function = (ref_type == RefType.FUNCTION)
-        is_ga = (ref_type == RefType.GA)
 
-        has_simple_ref = (has_ref and not (is_function or is_ga))
-        has_complicated_ref = (has_ref and (is_function or is_ga))
-        if has_simple_ref:
-            simple_flag = True
-        else:
-            simple_flag = False
 
-        if has_complicated_ref:
-            complicated_flag = True
-
-    return simple_flag, complicated_flag
 
 
 # :MM:
@@ -329,7 +303,7 @@ class RefList(defaultdict):
             return
 
         local_msg = str(self.msg)
-        count, unparsed_dict = self.findPattern(pattern_list, local_msg)
+        count, unparsed_dict = self.findPattern(df.pattern_list, local_msg)
         self.addUnparsedDict(unparsed_dict)
         # # **** should break up sentences here
         # self.findTextOutsideRefs()
@@ -343,6 +317,7 @@ class RefList(defaultdict):
             sub_loc = mm.getSubLoc()
             ref_type = mm.type
 
+            is_blank_quote = (ref_type == RefType.BLANK_QUOTE)
             is_kbd = (ref_type == RefType.KBD)
             is_abbr = (ref_type == RefType.ABBR)
             is_menu = (ref_type == RefType.MENUSELECTION)
@@ -360,7 +335,7 @@ class RefList(defaultdict):
             is_python_format = (ref_type == RefType.PYTHON_FORMAT)
             is_function = (ref_type == RefType.FUNCTION)
 
-            is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote)
+            is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
 
             converted_to_abbr = False
             if is_kbd:

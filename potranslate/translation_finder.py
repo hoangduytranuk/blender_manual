@@ -975,6 +975,13 @@ class TranslationFinder:
             raise e
 
     def loadJSONDic(self, file_name=None):
+        def sentStructKeyFunction(item):
+            pat: re.Pattern = None
+            value: tuple = None
+            (pat, value) = item
+            key = pat.pattern
+            return key
+
         return_dic = None
         try:
             if not file_name:
@@ -991,17 +998,19 @@ class TranslationFinder:
                 # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
                 dic = json.load(in_file)
             length = len(dic)
-            dd(f'loadJSONDic - loaded dic, length:{length}')
-            lcase_dict = {}
-            for k, v in dic.items():
-                entry = {k.lower(): v}
-                lcase_dict.update(entry)
-            dict_list = list(lcase_dict.items())
-            sorted_dict_list = list(sorted(dict_list))
-            temp_dict = OrderedDict(sorted_dict_list)
-            return_dic = NoCaseDict(temp_dict)
-            # cm.testDict(return_dic)
-
+            sorted_dict = OrderedDict(sorted(dic.items()))
+            # dd(f'loadJSONDic - loaded dic, length:{length}')
+            # lcase_dict = {}
+            # for k, v in dic.items():
+            #     entry = {k.lower(): v}
+            #     lcase_dict.update(entry)
+            # dict_list = list(lcase_dict.items())
+            # sorted_dict_list = list(sorted(dict_list))
+            # temp_dict = OrderedDict(sorted_dict_list)
+            return_dic = NoCaseDict(sorted_dict)
+            sent_struct_list = list(return_dic.sentence_struct_dict.items())
+            sent_struct_list.sort(key=sentStructKeyFunction)
+            return_dic.sentence_struct_dict = OrderedDict(sent_struct_list)
         except Exception as e:
             dd("Exception occurs while performing loadJSONDic()")
             dd(e)
@@ -1587,17 +1596,7 @@ class TranslationFinder:
         trans = None
         old_msg = str(msg)
         try:
-            # sent_struct = self.getSentStruct(msg)
-            # is_tran_sent_struct = bool(sent_struct)
-            # if is_tran_sent_struct:
-            #     is_fully_translated = sent_struct.isFullyTranslated(msg)
-            #     if is_fully_translated:
-            #         trans = sent_struct.getTranslated()
-            #         return (trans, False, False)
-            #     else:
-            #         msg = sent_struct.km_txt
-
-            dd(f'calling findTranslation')
+            dd(f'calling findTranslation [{msg}]')
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
@@ -1608,27 +1607,22 @@ class TranslationFinder:
                 # return (trans, False, is_ignore)
 
             if not trans:
-                dd(f'calling tryFuzzyTranlation')
+                dd(f'calling tryFuzzyTranlation [{msg}]')
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg)
                 is_fuzzy = bool(trans)
 
+            # if not trans:
+            #     dd(f'calling blindTranslation [{msg}]')
+            #     trans, untran_dict = self.getDict().blindTranslate(msg)
+            #     is_fuzzy = True
+            #
             if not trans:
-                dd(f'calling blindTranslation')
+                dd(f'calling blindTranslation [{msg}]')
                 trans = self.blindTranslation(msg)
                 is_fuzzy = True
 
             if trans:
-                # is_same = (trans == msg)
-                # if is_same:
-                #     trans = None
-                #     if is_tran_sent_struct:
-                #         trans = sent_struct.getNonTranslated()
-                # else:
-                #     if is_tran_sent_struct:
-                #         sent_struct.tm_txt = trans
-                #         trans = sent_struct.getTranslated()
-                #
-                dd(f'calling removeTheWord')
+                dd(f'calling removeTheWord [{trans}]')
                 trans = cm.removeTheWord(trans)
                 trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
@@ -1673,8 +1667,9 @@ class TranslationFinder:
 
     def translateQuoted(self, mm: MatcherRecord):
         def formatTran(current_untran, current_tran):
-            starter = mm.getStarter()
-            ender = mm.getEnder()
+            starter = ("" if is_blank_quote else mm.getStarter())
+            ender = ("" if is_blank_quote else mm.getEnder())
+
             explanation_part = f'({starter}{current_untran}{ender})'
             abbrev_part = f'{starter}{current_tran}{ender}'
             body = f'{abbrev_part} {explanation_part}'
@@ -1682,6 +1677,7 @@ class TranslationFinder:
             return tran
 
         msg = mm.getSubText()
+        is_blank_quote = (mm.type == RefType.BLANK_QUOTE)
         # is_fuzzy = False
         # is_ignore = self.checkIgnore(msg)
         # if is_ignore:

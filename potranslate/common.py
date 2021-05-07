@@ -39,6 +39,66 @@ class LocationObserver(OrderedDict):
         except Exception as e:
             return None
 
+    def getTextAtLoc(self, loc):
+        (s, e) = loc
+        return self.getTextAt(s, e)
+
+    def isLeftOverlapped(self, loc):
+        '''
+        Check to see if a location is overlapped on the left side
+        :param loc: location to be test
+        :return:
+            True if location is used and overlapped on left
+            False if location it NOT USED, or not overlapped on left
+        '''
+        if not self.isLocUsed(loc):
+            return False
+
+        ls, le = loc
+        try:
+            current_char = self.blank[ls]
+            left_char = self.blank[ls - 1]
+            is_ovrlap = (current_char == df.FILLER_CHAR) and (left_char == df.FILLER_CHAR)
+            return is_ovrlap
+        except Exception as e:
+            return False
+
+    def isRightOverlapped(self, loc):
+        '''
+        Check to see if a location is overlapped on the right side
+        :param loc: location to be test
+        :return:
+            True if location is used and overlapped on right
+            False if location it NOT USED, or not overlapped on right
+        '''
+        if not self.isLocUsed(loc):
+            return False
+
+        ls, le = loc
+        try:
+            current_char = self.blank[le]
+            left_char = self.blank[le + 1]
+            is_ovrlap = (current_char == df.FILLER_CHAR) and (left_char == df.FILLER_CHAR)
+            return is_ovrlap
+        except Exception as e:
+            return False
+
+    def isUsableLoc(self, loc):
+        '''
+        Check to see if a loc is used and is contained within, but not overlapped either on left or right
+        :param loc: location to be tested
+        :return:
+            True if location is used and not overlapped left or right
+            False if location it NOT USED, or is overlapped on left or on right
+        '''
+        if not self.isLocUsed(loc):
+            return True
+
+        is_left_ovrlap = self.isLeftOverlapped(loc)
+        is_right_ovrlap = self.isRightOverlapped(loc)
+        ok = not (is_left_ovrlap or is_right_ovrlap)
+        return ok
+
     def getTextAtLoc(self, loc: tuple):
         (s, e) = loc
         return self.getTextAt(s, e)
@@ -1726,10 +1786,35 @@ class Common:
         mm.initUsingList(the_txt_word_list)
         return mm, the_txt_word_list
 
+    def getRefDictList(txt) -> dict:
+        obs = LocationObserver(txt)
+        local_found_dict_list = {}
+        for pat, ref_type in df.pattern_list:
+            local_found_dict = None
+            is_bracket = (ref_type == RefType.ARCH_BRACKET)
+            if is_bracket:
+                local_found_dict = Common.getTextWithinBrackets('(', ')', txt, is_include_bracket=False)
+            else:
+                local_found_dict = Common.patternMatchAll(pat, txt)
+
+            if local_found_dict:
+                local_found_dict_list.update(local_found_dict)
+                loc_list = local_found_dict.keys()
+                for loc in loc_list:
+                    obs.markLocAsUsed(loc)
+
+        return_dict = OrderedDict(sorted(local_found_dict_list.items(), reverse=True))
+
+        return (return_dict, obs)
+
     def genmap(msg, is_reverse=True):
         def simplifiesMatchedRecords():
             mm: MatcherRecord = None
             for loc, mm in matched_list:
+                can_location_be_used = obs.isUsableLoc(loc)
+                if not can_location_be_used:
+                    continue
+
                 txt = mm.txt
                 entry = {loc: txt}
                 loc_dic.update(entry)
@@ -1749,6 +1834,10 @@ class Common:
             return dist_list
 
         part_list = []
+        obs: LocationObserver = None
+        ref_dict_list, obs = Common.getRefDictList(msg)
+        occupied_list = ref_dict_list.keys()
+
         matched_dict = Common.patternMatchAll(df.SPACE_WORD_SEP, msg)
         matched_list = list(matched_dict.items())
         max = len(matched_dict)
@@ -1767,6 +1856,15 @@ class Common:
                 word_count = (ee2 - ss1)
 
                 sub_loc = (ss1, ee2)
+                # obs_test_txt = obs.getTextAtLoc(sub_loc)
+                # msg_text_txt = msg[ss1: ee2]
+                # msg_to_end = msg[ee2:]
+                # msg_to_begin = msg[:ss1]
+
+                can_location_be_used = obs.isUsableLoc(sub_loc)
+                if not can_location_be_used:
+                    continue
+
                 entry = {sub_loc: sentence}
                 loc_dic.update(entry)
         except Exception as e:
@@ -1775,15 +1873,42 @@ class Common:
 
         simplifiesMatchedRecords()
         part_list = list(loc_dic.items())
-        # sort out by the number of spaces (indicating word counts) rather than by common string length
-        # part_list.sort(key=lambda x: (x[1].count(' '), len(x[1])), reverse=is_reverse)    # this is how to sort with multi keys, in brackets
-        # part_list.sort(key=lambda x: (x[1].count(' ')), reverse=True)
-        # dd('genmap():')
-        # dd('-' * 80)
-        # pp(part_list)
-        # dd('-' * 80)
-        # dd(f'for []{msg}')
         return part_list
+
+    def dictKeyFunction(item):
+        is_pattern = (isinstance(item, re.Pattern))
+        is_string = (isinstance(item, str))
+        is_matcher = (isinstance(item, re.Match))
+        if is_pattern:
+            key = item.pattern
+        if is_matcher:
+            key = item.re.pattern
+        if is_string:
+            key = item
+        return key
+
+    def binarySearch(sorted_list, find_txt, key=None):
+        def basicKeyFunction(found_item):
+            try:
+                return found_item
+            except Exception as e:
+                return ""
+
+        extract_function = (key if key else basicKeyFunction)
+        lo = 0
+        hi = len(sorted_list) - 1
+        while lo < hi:
+            mid = (lo + hi) // 2
+            list_item = extract_function(sorted_list[mid])
+            finding_item = extract_function(find_txt)
+            is_equal = (list_item == finding_item)
+            if is_equal:
+                return mid
+            elif list_item < finding_item:
+                lo = mid + 1
+            else:
+                hi = mid
+        return -1
 
     def debugging(txt):
         msg = "can add noise"

@@ -1,4 +1,4 @@
-def preparse():
+        def preparse():
             parsed_entries = []
             # remain_to_be_parsed = str(self.msg)
             # preparsing, just get location, text, type, pattern parsed
@@ -57,39 +57,9 @@ def preparse():
         parsed_list = preparse()
         nondup_list = removeDuplicates(parsed_list)
         count_item = len(nondup_list)
-        #
-        #
-        #
-        #     one_list: RefList = self.findOnePattern(remain_to_be_parsed, p, ref_type)
-        #     is_empty = (one_list is None) or (len(one_list) == 0)
-        #     if is_empty:
-        #         continue
-        #
-        #     count_item += len(one_list)
-        #     ref_record:RefRecord = None
-        #     for k, v in one_list.items():
-        #         origin: RefItem = v.getOrigin()
-        #         s, e = origin.getLocation()
-        #         loc = (s, e)
-        #         cover_length = (e - s)
-        #         entry = ((loc, cover_length), v)
-        #         parsed_entries.append(entry)
-        #         # blank_str = (cm.FILLER_CHAR * (e-s))
-        #         # left = remain_to_be_parsed[:s]
-        #         # right = remain_to_be_parsed[e:]
-        #         # remain_to_be_parsed = left + blank_str + right
-        #
-        #     # diff_list = self.diff(one_list)
-        #     # self.update(diff_list)
-        # parsed_entries.sort()
-        # # now sort out which one needed (not overlapped),
-        # # sorted_list = sorted(list(self.items()))
-        # # self.clear()
-        # # self.update(sorted_list)
-        # keep_list = self.filteringParsedEntries(parsed_entries)
 
 
-def filteringParsedEntries(self, parsed_list):
+    def filteringParsedEntries(self, parsed_list):
         def checkOverlapped(current_entry: RefRecord):
             overlap_list=[]
             old_entry:RefRecord = None

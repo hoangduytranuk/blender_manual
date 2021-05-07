@@ -7,6 +7,7 @@ from reflist import RefList
 from collections import OrderedDict
 import inspect as INP
 from nocasedict import NoCaseDict as NDIC
+from ignore import Ignore as ig
 
 class StructRecogniser():
     '''
@@ -68,6 +69,7 @@ class StructRecogniser():
         self.text_list_to_be_translated = None
         self.processed_list: NDIC = processed_dict
         self.text_list_to_be_translated = None
+        self.local_dict = NDIC()
 
     def __repr__(self):
         string = "\n{!r}".format(self.__dict__)
@@ -368,6 +370,7 @@ class StructRecogniser():
 
     def makeNonSRRecord(self, txt, root_location):
         sr = self.reproduce()
+        print(f'IS TEXT:{txt} => {txt}')
         sr.__init__(
             root_loc=root_location,
             tran_sl_txt=txt,
@@ -381,7 +384,7 @@ class StructRecogniser():
         try:
             dict_sl_pat, (dict_sltxt, dict_tlvalue, dict_tl_mm_record, dict_tl_list) = self.getDict().getSentStructPattern(txt)
             if dict_sl_pat:
-                print(f'IS STRUCTURE:{txt} => {dict_tlvalue}')
+                print(f'IS STRUCTURE:{txt} => tl:{dict_tlvalue} pat:{dict_sl_pat}')
                 sr = self.reproduce()
                 sr.__init__(root_loc=root_location,
                             dict_sl_txt=dict_sltxt,
@@ -393,7 +396,8 @@ class StructRecogniser():
                             processed_dict=self.processed_list
                             )
                 sr.setupRecords()
-                sr.getTextListTobeTranslated()
+                need_tran = sr.getTextListTobeTranslated()
+                print(f'needed tran:[{need_tran}]')
                 return sr
             else:
                 return None
@@ -421,7 +425,7 @@ class StructRecogniser():
                     continue
 
                 entry = {sub_txt: tran}
-                self.updateProcessed(entry)
+                self.local_dict.update(entry)
 
                 sub_left, sub_mid, sub_right = cm.getTextWithin(sub_txt)
                 is_add_mid = (sub_left or sub_right)
@@ -430,8 +434,7 @@ class StructRecogniser():
 
                 tran_left, tran_mid, tran_right = cm.getTextWithin(tran)
                 entry = {sub_mid: tran_mid}
-                self.updateProcessed(entry)
-
+                self.local_dict.update(entry)
 
         def makeSRStructFirst(current_unproc_map):
             count = 0
@@ -442,6 +445,11 @@ class StructRecogniser():
 
                 is_used = obs.isLocUsed(sr_loc)
                 if is_used:
+                    continue
+
+                is_ignore = ig.isIgnored(sr_sub_txt)
+                if is_ignore:
+                    processed(sr_loc, sr_sub_txt, None)
                     continue
 
                 # cm.debugging(sub_txt)
@@ -461,12 +469,15 @@ class StructRecogniser():
         parsed_list=[]
         translated_list=[]
 
-        # preTranslate(map)
         makeSRStructFirst(map)
         un_tran = obs.getUnmarkedPartsAsDict()
         mm_record: MatcherRecord = None
         for non_sr_loc, mm_record in un_tran.items():
             sub_txt = mm_record.txt
+            is_ignore = ig.isIgnored(sub_txt)
+            if is_ignore:
+                continue
+
             sr = self.makeNonSRRecord(sub_txt, non_sr_loc)
             list_of_txt_to_be_tran = sr.getTextListTobeTranslated()
             for tran_loc, txt in list_of_txt_to_be_tran:
