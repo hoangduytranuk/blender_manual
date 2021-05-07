@@ -9693,7 +9693,7 @@ IOR
                 # "``:term:`Manifold``` -- Links to an entry in the :doc:`Glossary </glossary/index>`."
                 # "especially :ref:`NURBS <curve-nurbs>` ones"
                 # ":doc:`NLA </editors/nla/introduction>`.",
-                # "`Radiosity (computer graphics) <https://en.wikipedia.org/wiki/Radiosity_%28computer_graphics%29>`__"
+                "`Radiosity (computer graphics) <https://en.wikipedia.org/wiki/Radiosity_%28computer_graphics%29>`__"
                 # "`MPEG-4(DivX) <https://en.wikipedia.org/wiki/MPEG-4>`__",
                 # "like the :doc:`\"limit\" ones </animation/constraints/transform/limit_location>`",
                 # "like e.g. the :doc:`\"copy\" ones </animation/constraints/transform/copy_location>`).",
@@ -9772,7 +9772,7 @@ IOR
                 # "e.g. the §guiding domain§ is of type *Gas* while the §actual domain§ with the §guiding effect§ in it is of type *Liquid*",
                 # "while the actual domain with the guiding effect in it is of type"
                 # "e.g. to make them :doc:`follow a curve </modeling/modifiers/deform/curve>`",
-                "e.g. two cones sharing the vertex at the apex",
+                # "e.g. two cones sharing the vertex at the apex",
             ]
 
         else:

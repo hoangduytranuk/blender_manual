@@ -1,8 +1,7 @@
 import os
 import operator as OP
-from re import Pattern, Match, compile
+from re import compile
 from collections import OrderedDict
-from pprint import pp
 import hashlib
 import time
 from reftype import RefType
@@ -11,11 +10,10 @@ from fuzzywuzzy import fuzz
 from bisect import bisect_left
 from matcher import MatcherRecord
 from err import ErrorMessages as ER
-import operator
 import re
-import copy as CP
 from definition import Definitions as df
 from reftype import SentStructMode as SMODE
+from pprint import pprint as pp
 
 DEBUG=True
 # DEBUG=False
@@ -162,17 +160,6 @@ class LocationObserver(OrderedDict):
 
 class Common:
     def isPath(txt: str) -> bool:
-        def insertTextOutsideEntry():
-            is_valid = (ee > ss)
-            if not is_valid:
-                return False
-
-            text_outside_url = txt[ss:ee]
-            ex_loc = (ss, ee)
-            entry = {ex_loc: text_outside_url}
-            text_outside_url_list.update(entry)
-            return True
-
         if not txt:
             return False
 
@@ -185,29 +172,18 @@ class Common:
             return False
 
         # 1. Find the list of urls and put into dictionary so locations can be extracted, uing keys
-        url_loc_list = {}
+        obs = LocationObserver(txt)
         for url, loc in urls:
-            url_length = len(url)
-            entry = {loc: url}
-            url_loc_list.update(entry)
-
+            obs.markLocAsUsed(loc)
 
         # 2. find all the text outside the links and see if they are just spaces and symbols only, which can be classified as
         # IGNORABLE
-        text_outside_url_list = {}
-        ss = 0
-        for loc in url_loc_list.keys():
-            s, e = loc
-            ee = s
-            insertTextOutsideEntry()
-            ss = e
-        url = url_loc_list[loc]
-        ee = len(url)
-        insertTextOutsideEntry()
+        text_outside_url_list = obs.getUnmarkedPartsAsDict()
 
         # 3. Find out if text outside are but all symbols (non-alpha), which means they are discardable (non-translatable)
         is_ignorable = True
-        for loc, text_outside in text_outside_url_list.items():
+        for loc, text_outside_mm in text_outside_url_list.items():
+            text_outside = text_outside_mm.txt
             is_all_symbols = df.SYMBOLS_ONLY.search(text_outside)
             if not is_all_symbols:
                 is_ignorable = False
