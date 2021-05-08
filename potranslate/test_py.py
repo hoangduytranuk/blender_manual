@@ -9530,9 +9530,15 @@ IOR
         # s_recog.translate()
         # tran = s_recog.getTranslation()
         # print(f'tran:{tran}')
-        p = re.compile('^(the more )\\s?(.*)\\s?( the better )\\s?(.*\\S)\\s?$')
-        t = 'The more *temporal resolution* the stabilizer has to work on, the better the results.'
-        m = p.search(t)
+        # p = re.compile('^(the more )\\s?(.*)\\s?( the better )\\s?(.*\\S)\\s?$')
+        # t = 'The more *temporal resolution* the stabilizer has to work on, the better the results.'
+        # m = p.search(t)
+        # print(m)
+
+        t = 'frame in cache'
+        basic_conjunctions = r'\b(for|and|nor|of|in|out|but|or|yet|so)\b'
+        BASIC_CONJUNCTS = re.compile(basic_conjunctions)
+        m = BASIC_CONJUNCTS.search(t)
         print(m)
 
     def test_sorted_list(self):
@@ -9657,7 +9663,7 @@ IOR
                 # "e.g. when the §Edge Split§ Modifier is applied",
                 # "e.g. when using it as §path§...",
                 # "e.g. with 100 particles in the §target system§, and an *Amount* value of ``0.1``, it can generate either up to 15 or 5 instances, instead of the 10 expected",
-                "i.e. Object Data, Modifier",
+                "i.e. all §F-curves§ for a bone, instead of per §F-curve§",
             ]
 
         else:

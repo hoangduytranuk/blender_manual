@@ -403,7 +403,7 @@ class StructRecogniser():
             if is_ignore:
                 return None
 
-            print(f'IS STRUCTURE:{txt} => tl:{dict_tlvalue} pat:{dict_sl_pat}')
+            print(f'IS STRUCTURE:{txt} => sl:{dict_sltxt} tl:{dict_tlvalue} pat:{dict_sl_pat}')
             sr = self.reproduce()
             sr.__init__(root_loc=root_location,
                         dict_sl_txt=dict_sltxt,
@@ -416,8 +416,8 @@ class StructRecogniser():
                         glob_sr=self.global_sr_list
                         )
             sr.setupRecords()
-            # need_tran = sr.getTextListTobeTranslated()
-            # print(f'needed tran:[{need_tran}]')
+            need_tran = sr.getTextListTobeTranslated()
+            print(f'needed tran:[{need_tran}]')
             self.global_sr_list.update({sr.tran_sl_txt: sr})
             return sr
         except Exception as e:

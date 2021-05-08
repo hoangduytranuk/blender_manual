@@ -64,6 +64,8 @@ class TranslationFinder:
         self.numerical_pat_list = []
         self.initNumericalPatternList()
         self.loadDictionary()
+        self.getDict().createSentenceStructureDict()
+
         self.struct_dict = self.getDict().sentence_struct_dict
         # pp(self.struct_dict)
 
@@ -998,7 +1000,9 @@ class TranslationFinder:
                 # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
                 dic = json.load(in_file)
             length = len(dic)
-            sorted_dict = OrderedDict(sorted(dic.items()))
+            item_dict = list(dic.items())
+            item_dict_sorted = list(sorted(item_dict))
+            sorted_dict = OrderedDict(item_dict_sorted)
             # dd(f'loadJSONDic - loaded dic, length:{length}')
             # lcase_dict = {}
             # for k, v in dic.items():
@@ -1084,8 +1088,9 @@ class TranslationFinder:
         # if is_ignore:
         #     return None
 
-        is_blank_quote = (df.BLANK_QUOTE.search(msg) is not None)
-        if is_blank_quote:
+        left, mid, right = cm.getTextWithin(msg)
+        is_quoted = (left and right) and ((left == right) or right.startswith(left))
+        if is_quoted:
             return None
 
         search_dict = self.getDict(local_dict=dic_to_use)

@@ -4,11 +4,15 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -303,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620438478383</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well.">
+      <created>1620477102060</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1620477102060</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -330,14 +341,15 @@
     <MESSAGE value="Added binarySearch with key as a function, with a provision of default array index extraction. This will allows reusabilities in the future. Plus, LocationObserver has the ability to check if a location in the string is usable or not, ie. not overlapped with an used one. Genmap has the ability to filter out all references, marking them as used, before allocating a breakdown of sentences, so it will not break a reference in the middle of it, but will take it as a whole." />
     <MESSAGE value="Reuse of LocationObserver in Common.isPath to simpify the code." />
     <MESSAGE value="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes" />
+    <MESSAGE value="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9537</line>
+          <line>9543</line>
           <option name="timeStamp" value="1789" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -347,12 +359,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>484</line>
+          <line>493</line>
           <option name="timeStamp" value="1933" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>472</line>
+          <line>481</line>
           <option name="timeStamp" value="1943" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -372,7 +384,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9677</line>
+          <line>9683</line>
           <option name="timeStamp" value="1984" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -407,33 +419,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>374</line>
+          <line>383</line>
           <option name="timeStamp" value="2069" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>170</line>
-          <option name="timeStamp" value="2070" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>127</line>
-          <option name="timeStamp" value="2077" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>119</line>
-          <option name="timeStamp" value="2078" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>113</line>
-          <option name="timeStamp" value="2079" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
           <line>137</line>
           <option name="timeStamp" value="2080" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>228</line>
+          <option name="timeStamp" value="2093" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/translation_finder.py</url>
+          <line>1093</line>
+          <option name="timeStamp" value="2117" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

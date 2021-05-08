@@ -72,15 +72,6 @@ class NoCaseDict(OrderedDict):
         lkey_key = Key(key)
         super(NoCaseDict, self).__setitem__(lkey_key, value)
 
-        matcher = df.SENT_STRUCT_PAT.search(key)
-        is_sentence_structure = (matcher is not None)
-        if is_sentence_structure:
-            # print(f'SENT_STRUCT_PAT: {key} => {value}')
-            value = self.replaceTranRef(value)
-            entry=cm.creatSentRecogniserPatternRecordPair(key, (value, matcher))
-            self.sentence_struct_dict.update(entry)
-            # print(f'{entry}')
-
         if self.is_operational:
             self.is_dirty = True
 
@@ -95,6 +86,19 @@ class NoCaseDict(OrderedDict):
             dd(f'{fname} {e}')
             return None
 
+    def createSentenceStructureDict(self):
+        for key, value in self.items():
+            matcher = df.SENT_STRUCT_PAT.search(key)
+            is_sentence_structure = (matcher is not None)
+            if not is_sentence_structure:
+                continue
+
+            # print(f'SENT_STRUCT_PAT: {key} => {value}')
+            value = self.replaceTranRef(value)
+            entry = cm.creatSentRecogniserPatternRecordPair(key, (value, matcher))
+            self.sentence_struct_dict.update(entry)
+            # print(f'{entry}')
+
     def get(self, k, default=None):
         return self[k] if k in self else default
 
@@ -103,41 +107,37 @@ class NoCaseDict(OrderedDict):
 
         def isMatchedStructMode(pat_matched_text_pair_list):
             is_ok_list=[]
-            for structure_mode, matched_part, pattern_condition_signature, matcher in pat_matched_text_pair_list:
-                is_any = (structure_mode == SMODE.ANY)
-                if is_any:
-                    is_ok_list.append(True)
-                    continue
+            for structure_mode, matched_part, pattern_condition_signature, cond_list in pat_matched_text_pair_list:
+                for structure_mode, mx_word_count in cond_list:
+                    is_any = (structure_mode == SMODE.ANY)
+                    if is_any:
+                        is_ok_list.append(True)
+                        continue
 
-                is_no_full_stop = (structure_mode == SMODE.NO_FULL_STOP)
-                if is_no_full_stop:
-                    no_fullstop = (df.FULLSTOP_IN_BETWEEN.search(matched_part) is None)
-                    is_ok_list.append(no_fullstop)
-                    continue
+                    is_no_full_stop = (structure_mode == SMODE.NO_FULL_STOP)
+                    if is_no_full_stop:
+                        no_fullstop = (df.FULLSTOP_IN_BETWEEN.search(matched_part) is None)
+                        is_ok_list.append(no_fullstop)
+                        continue
 
-                is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
-                if is_no_punctuation:
-                    no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
-                    no_ending_punct = (df.ENDING_WITH_PUNCT.search(matched_part) is None)
-                    is_no_punct = (no_punct and no_ending_punct)
-                    is_ok_list.append(is_no_punct)
-                    continue
+                    is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
+                    if is_no_punctuation:
+                        no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
+                        is_ok_list.append(no_punct)
+                        continue
 
-                is_max_upto = (structure_mode == SMODE.MAX_UPTO)
-                if is_max_upto:
-                    no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
-                    no_ending_punct = (df.ENDING_WITH_PUNCT.search(matched_part) is None)
-                    mx_word_count = int(matcher.group(1))
-                    wc = cm.wordCount(matched_part)
-                    is_max_upto = (wc <= mx_word_count) and (no_punct) and (no_ending_punct)
-                    is_ok_list.append(is_max_upto)
-                    continue
+                    is_max_upto = (structure_mode == SMODE.MAX_UPTO)
+                    if is_max_upto:
+                        wc = cm.wordCount(matched_part)
+                        is_max_upto = (wc <= mx_word_count)
+                        is_ok_list.append(is_max_upto)
+                        continue
 
-                is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
-                if is_no_conjunctives:
-                    no_conjunctives = (df.SEVEN_BASIC_CONJUNCTS.search(matched_part) is None)
-                    is_ok_list.append(no_conjunctives)
-                    continue
+                    is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
+                    if is_no_conjunctives:
+                        no_conjunctives = (df.BASIC_CONJUNCTS.search(matched_part) is None)
+                        is_ok_list.append(no_conjunctives)
+                        continue
 
             ok = (False not in is_ok_list)
             return ok
@@ -179,13 +179,22 @@ class NoCaseDict(OrderedDict):
             max_word_count=1
             for index, matched_txt in enumerate(matched_txt_grp_list):
                 sl_any_pattern_tuple = any_pattern_list[index]
-                pattern_condition_signature = sl_any_pattern_tuple[2]
-                max_up_to = df.MAXWORD_UPTO_PAT.search(pattern_condition_signature)
-                if bool(max_up_to):
-                    mode = SMODE.MAX_UPTO
-                else:
-                    mode = SMODE.getName(pattern_condition_signature)
-                entry = (mode, matched_txt, pattern_condition_signature, max_up_to)
+                pattern_condition_signature = sl_any_pattern_tuple[2:]
+                condition_list = []
+                count=0
+                for cond in pattern_condition_signature:
+                    is_extended_condition = cond.startswith('/')
+                    if is_extended_condition:
+                        cond = cond[1:]
+                    is_maxupto = df.MAXWORD_UPTO_PAT.search(cond)
+                    if bool(is_maxupto):
+                        grp = is_maxupto.group(1)
+                        count = int(grp)
+                        mode = SMODE.MAX_UPTO
+                    else:
+                        mode = SMODE.getName(cond)
+                    condition_list.append((mode, count))
+                entry = (mode, matched_txt, pattern_condition_signature, condition_list)
                 pattern_and_matched_text_pair_list.append(entry)
 
             is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)

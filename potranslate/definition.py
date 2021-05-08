@@ -176,7 +176,7 @@ class Definitions:
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.4
     SENT_STRUCT_SYMB = '$$$'
-    SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?)')
+    SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?(\/\w+)*)')
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
     PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
 
@@ -528,10 +528,10 @@ class Definitions:
     ending_punct = r'(\w[\,\.!]+$)'
     ENDING_WITH_PUNCT = re.compile(ending_punct)
 
-    basic_conjunctions = r'\b(for|and|nor|but|or|yet|so)\b'
-    SEVEN_BASIC_CONJUNCTS = re.compile(basic_conjunctions)
+    basic_conjunctions = r'\b(for|and|nor|in|out|but|or|yet|so)\b'
+    BASIC_CONJUNCTS = re.compile(basic_conjunctions)
 
-    MAXWORD_UPTO_PAT = re.compile(f'^m[x]?(\d+)$')
+    MAXWORD_UPTO_PAT = re.compile(r'^mx(\d+)$')
 
     START_WORD = '^'
     END_WORD = '$'

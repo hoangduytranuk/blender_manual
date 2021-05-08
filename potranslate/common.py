@@ -1900,7 +1900,7 @@ class Common:
         return -1
 
     def debugging(txt):
-        msg = "can add noise"
+        msg = "below the"
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         # is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
