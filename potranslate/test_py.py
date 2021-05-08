@@ -9656,7 +9656,8 @@ IOR
                 # "e.g. §vertices/edges/faces§ for meshes, control points for §curves/surfaces§, §strokes/points§ for §Grease Pencil§, etc.",
                 # "e.g. when the §Edge Split§ Modifier is applied",
                 # "e.g. when using it as §path§...",
-                "e.g. when using subdivision surface",
+                # "e.g. with 100 particles in the §target system§, and an *Amount* value of ``0.1``, it can generate either up to 15 or 5 instances, instead of the 10 expected",
+                "i.e. Object Data, Modifier",
             ]
 
         else:

@@ -525,6 +525,9 @@ class Definitions:
     PUNCT_IN_BETWEEN = re.compile(punct_in_between_txt)
     FULLSTOP_IN_BETWEEN = re.compile(full_stop_in_middle)
 
+    ending_punct = r'(\w[\,\.!]+$)'
+    ENDING_WITH_PUNCT = re.compile(ending_punct)
+
     basic_conjunctions = r'\b(for|and|nor|but|or|yet|so)\b'
     SEVEN_BASIC_CONJUNCTS = re.compile(basic_conjunctions)
 

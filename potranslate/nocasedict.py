@@ -118,15 +118,18 @@ class NoCaseDict(OrderedDict):
                 is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
                 if is_no_punctuation:
                     no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
-                    is_ok_list.append(no_punct)
+                    no_ending_punct = (df.ENDING_WITH_PUNCT.search(matched_part) is None)
+                    is_no_punct = (no_punct and no_ending_punct)
+                    is_ok_list.append(is_no_punct)
                     continue
 
                 is_max_upto = (structure_mode == SMODE.MAX_UPTO)
                 if is_max_upto:
                     no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
+                    no_ending_punct = (df.ENDING_WITH_PUNCT.search(matched_part) is None)
                     mx_word_count = int(matcher.group(1))
                     wc = cm.wordCount(matched_part)
-                    is_max_upto = (wc <= mx_word_count) and (no_punct)
+                    is_max_upto = (wc <= mx_word_count) and (no_punct) and (no_ending_punct)
                     is_ok_list.append(is_max_upto)
                     continue
 
