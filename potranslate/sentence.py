@@ -1,4 +1,4 @@
-from common import Common as cm, LocationObserver
+from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
 from definition import Definitions as df
 import re
@@ -37,7 +37,9 @@ class StructRecogniser():
                  recog_pattern=None,
                  dict_tl_rec=None,
                  translation_engine=None,
-                 processed_dict=None):
+                 processed_dict=None,
+                 glob_sr=None
+                 ):
         self.is_sent_struct=False
         # key in dictionary, in the form 'chang\\w+ $$$ to $$$'
         self.dict_sl_txt: str = dict_sl_txt
@@ -70,6 +72,7 @@ class StructRecogniser():
         self.processed_list: NDIC = processed_dict
         self.text_list_to_be_translated = None
         self.local_dict = NDIC()
+        self.global_sr_list=glob_sr
 
     def __repr__(self):
         string = "\n{!r}".format(self.__dict__)
@@ -106,8 +109,6 @@ class StructRecogniser():
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
@@ -123,7 +124,7 @@ class StructRecogniser():
             self.sent_sl_rec = sl_rec
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
+            dd(f'{fname} {e}')
 
             if bool(self.tran_sl_txt):
                 self.sent_sl_rec = MatcherRecord(txt=self.tran_sl_txt)
@@ -152,7 +153,8 @@ class StructRecogniser():
 
                     post.append(index)
             except Exception as e:
-                print(f'{self.__dict__} {e}')
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
 
                 # print(f'getListOfTextNeededToTranslate(); mm_record:[{mm_record}]; ERROR:[{e}]')
             return post
@@ -213,7 +215,7 @@ class StructRecogniser():
                 return new_entry, next_entry
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                print(f'{fname} {e}')
+                dd(f'{fname} {e}')
                 return None, None
 
         def correctTextsOffsets():
@@ -283,7 +285,7 @@ class StructRecogniser():
                 text_to_translate_list.append(entry)
             except Exception as ee:
                 fname = INP.currentframe().f_code.co_name
-                print(f'{fname} {ee}')
+                dd(f'{fname} {ee}')
 
         return text_to_translate_list
 
@@ -365,45 +367,62 @@ class StructRecogniser():
             return translated_count
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
+            dd(f'{fname} {e}')
             return 0
 
     def makeNonSRRecord(self, txt, root_location):
         sr = self.reproduce()
         print(f'IS TEXT:{txt} => {txt}')
+        current_processed_list = self.processed_list.keys()
+        is_ignore = (txt in current_processed_list)
+        if is_ignore:
+            dd(f'makeNonSRRecord: [{txt}] is already processed')
+            return None
+
         sr.__init__(
             root_loc=root_location,
             tran_sl_txt=txt,
             translation_engine=self.tf,
-            processed_dict=self.processed_list)
+            processed_dict=self.processed_list,
+            glob_sr=self.global_sr_list
+        )
         sr.setupRecords()
         sr.getTextListTobeTranslated()
+        self.global_sr_list.update({sr.tran_sl_txt: sr})
         return sr
 
     def makeSRRecord(self, txt, root_location):
         try:
             dict_sl_pat, (dict_sltxt, dict_tlvalue, dict_tl_mm_record, dict_tl_list) = self.getDict().getSentStructPattern(txt)
-            if dict_sl_pat:
-                print(f'IS STRUCTURE:{txt} => tl:{dict_tlvalue} pat:{dict_sl_pat}')
-                sr = self.reproduce()
-                sr.__init__(root_loc=root_location,
-                            dict_sl_txt=dict_sltxt,
-                            dict_tl_value=dict_tlvalue,
-                            tran_sl_txt=txt,
-                            recog_pattern=dict_sl_pat,
-                            dict_tl_rec=dict_tl_mm_record,
-                            translation_engine=self.tf,
-                            processed_dict=self.processed_list
-                            )
-                sr.setupRecords()
-                need_tran = sr.getTextListTobeTranslated()
-                print(f'needed tran:[{need_tran}]')
-                return sr
-            else:
+            current_processed_list = self.processed_list.keys()
+            is_already_processed = (dict_sltxt in current_processed_list)
+            is_ignore = (not dict_sl_pat) or (is_already_processed)
+            if is_already_processed:
+                dd(f'makeSRRecord: [{txt}] is already processed')
+
+            if is_ignore:
                 return None
+
+            print(f'IS STRUCTURE:{txt} => tl:{dict_tlvalue} pat:{dict_sl_pat}')
+            sr = self.reproduce()
+            sr.__init__(root_loc=root_location,
+                        dict_sl_txt=dict_sltxt,
+                        dict_tl_value=dict_tlvalue,
+                        tran_sl_txt=txt,
+                        recog_pattern=dict_sl_pat,
+                        dict_tl_rec=dict_tl_mm_record,
+                        translation_engine=self.tf,
+                        processed_dict=self.processed_list,
+                        glob_sr=self.global_sr_list
+                        )
+            sr.setupRecords()
+            # need_tran = sr.getTextListTobeTranslated()
+            # print(f'needed tran:[{need_tran}]')
+            self.global_sr_list.update({sr.tran_sl_txt: sr})
+            return sr
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
+            dd(f'{fname} {e}')
 
 
     def parseAndTranslateText(self, orig_loc: int, txt: str):
@@ -447,12 +466,6 @@ class StructRecogniser():
                 if is_used:
                     continue
 
-                is_ignore = ig.isIgnored(sr_sub_txt)
-                if is_ignore:
-                    processed(sr_loc, sr_sub_txt, None)
-                    continue
-
-                # cm.debugging(sub_txt)
                 sr = self.makeSRRecord(sr_sub_txt, sr_loc)
                 if sr:
                     entry = (sr_loc, sr)
@@ -460,6 +473,33 @@ class StructRecogniser():
                     processed(sr_loc, sr_sub_txt, None)
                     count += 1
             print(count)
+
+        def makeNonSR():
+            un_tran = obs.getUnmarkedPartsAsDict()
+            mm_record: MatcherRecord = None
+
+            for non_sr_loc, mm_record in un_tran.items():
+                sub_txt = mm_record.txt
+
+                is_ignore = ig.isIgnored(sub_txt)
+                if is_ignore:
+                    continue
+
+                sr = self.makeNonSRRecord(sub_txt, non_sr_loc)
+                if not sr:
+                    continue
+
+                list_of_txt_to_be_tran = sr.getTextListTobeTranslated()
+                for tran_loc, txt in list_of_txt_to_be_tran:
+                    (non_sr_s, non_sr_e) = non_sr_loc
+                    (tran_loc_s, tran_loc_e) = tran_loc
+                    diff_length = (tran_loc_e - tran_loc_s)
+                    actual_loc_s = non_sr_s + tran_loc_s
+                    actual_loc_e = actual_loc_s + diff_length
+                    actual_loc = (actual_loc_s, actual_loc_e)
+                    entry = (actual_loc, sr)
+                    parsed_list.append(entry)
+                processed(non_sr_loc, sub_txt, None)
 
         translation = str(txt)
         origin = str(txt)
@@ -470,26 +510,7 @@ class StructRecogniser():
         translated_list=[]
 
         makeSRStructFirst(map)
-        un_tran = obs.getUnmarkedPartsAsDict()
-        mm_record: MatcherRecord = None
-        for non_sr_loc, mm_record in un_tran.items():
-            sub_txt = mm_record.txt
-            is_ignore = ig.isIgnored(sub_txt)
-            if is_ignore:
-                continue
-
-            sr = self.makeNonSRRecord(sub_txt, non_sr_loc)
-            list_of_txt_to_be_tran = sr.getTextListTobeTranslated()
-            for tran_loc, txt in list_of_txt_to_be_tran:
-                (non_sr_s, non_sr_e) = non_sr_loc
-                (tran_loc_s, tran_loc_e) = tran_loc
-                diff_length = (tran_loc_e - tran_loc_s)
-                actual_loc_s = non_sr_s + tran_loc_s
-                actual_loc_e = actual_loc_s + diff_length
-                actual_loc = (actual_loc_s, actual_loc_e)
-                entry = (actual_loc, sr)
-                parsed_list.append(entry)
-            processed(non_sr_loc, sub_txt, None)
+        makeNonSR()
 
         parsed_list.sort(reverse=True)
         for sr_parsed_loc, sr in parsed_list:
@@ -540,7 +561,7 @@ class StructRecogniser():
                 return None
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
+            dd(f'{fname} {e}')
             return None
 
     def translateText(self, txt):

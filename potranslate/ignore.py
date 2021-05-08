@@ -5,6 +5,7 @@ from os.path import pathsep
 from common import Common as cm, DEBUG, dd, pp
 from matcher import MatcherRecord
 from definition import Definitions as df
+import inspect as INP
 
 class Ignore:
 
@@ -84,9 +85,12 @@ class Ignore:
                                }
                 dd("IGNORING:", msg)
                 pp(dict_ignore)
+
             return is_ignore
         except Exception as e:
-            print(f'ERROR: {e}, msg:{msg}')
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'msg:{msg}')
             raise e
 
     def isIgnoredIfStartsWith(text_line : str):
@@ -142,8 +146,9 @@ class Ignore:
             else:
                 return False
         except Exception as e:
-            dd(e)
-            dd("isIgnoredWord ERROR:", text_line, " pattern:", pattern)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'text_line:[{text_line}]; pattern:[{pattern}]')
         return False
 
     def isDosCommand(text):

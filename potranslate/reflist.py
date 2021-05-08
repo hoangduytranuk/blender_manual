@@ -10,6 +10,8 @@ from reftype import RefType
 from reftype import TranslationState
 import copy as CP
 import operator as OP
+import inspect as INP
+
 '''
 :abbr:`
 :class:`
@@ -129,7 +131,7 @@ class RefList(defaultdict):
             mm.parent = self
 
     def findOnePattern(self, local_obs: LocationObserver, msg: str, pattern: re.Pattern, reftype: RefType):
-        def setLocationSubMain(dict_list: dict):
+        def setReftypeAndUsingSubTextLocation(dict_list: dict):
             for main_loc, mm in dict_list.items():
                 new_mm_list=[]
                 mm_list_of_items = mm.getSubEntriesAsList()
@@ -167,63 +169,33 @@ class RefList(defaultdict):
                     local_found_dict = cm.getTextWithinBrackets('(', ')', find_txt, is_include_bracket=False)
                 else:
                     local_found_dict = cm.patternMatchAll(pat, find_txt)
-                    setLocationSubMain(local_found_dict)
+                    setReftypeAndUsingSubTextLocation(local_found_dict)
             except Exception as e:
-                print(pat)
-                print(find_txt)
-                print(ref)
-                print(local_found_dict)
-                print(e)
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
+                dd(pat)
+                dd(find_txt)
+                dd(ref)
+                dd(local_found_dict)
                 raise e
             return local_found_dict
-
-        ignored_dict={}
-        entry_orig = entry_type_or_open_symbol = entry_sub = entry_close_symbol = None
 
         valid_msg = (msg is not None) and (len(msg) > 0)
         valid_pattern = (pattern is not None)
         valid = valid_msg and valid_pattern
-        mm: MatcherRecord = None
-        sub_mm: MatcherRecord = None
-        loc = None
         if not valid:
-            return ignored_dict
+            return
         try:
             found_dict = getMatches(pattern, msg, reftype)
-            if not found_dict:
-                return
-        except Exception as exception:
-            dd("RefList.findOnePattern()")
-            dd("pattern:", pattern)
-            dd("text:", msg)
-            dd(f'mm: [{mm}]; loc: [{loc}]')
-            dd(exception)
-            raise exception
+            if found_dict:
+                self.update(found_dict)
+            local_obs.markLocListAsUsed( found_dict.keys() )
+        except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'{msg}: [{found_dict}];')
+            raise e
 
-
-        found_list = list(found_dict.items())
-        for loc, mm in found_list:
-            is_parsed_location = local_obs.isLocUsed(loc)
-            if is_parsed_location:
-                print(f'findOnePattern() PARSED: {loc}, {mm} => IGNORED.')
-                is_parsed_location = local_obs.isLocUsed(loc) # for debugging
-                continue
-
-            entry_type = mm.type
-            actual_ref_type = (entry_type if entry_type else reftype)
-
-            sub_txt = mm.getSubText()
-            is_keyboard = (actual_ref_type == RefType.KBD)
-            is_ignored = ((not is_keyboard) and ig.isIgnored(sub_txt))
-            if is_ignored:
-                local_obs.markLocAsUsed(loc)
-                continue
-
-            mm.pattern = pattern
-            entry = {(mm.s, mm.e): mm}
-            self.update(entry)
-            local_obs.markLocAsUsed(loc)
-        return
 
     def isEmpty(self):
         is_empty = (len(self) == 0)
@@ -248,20 +220,20 @@ class RefList(defaultdict):
                     raise ValueError(f'validateFoundEntries(): problem with sub_record: {mm}, main-text extracted doesn\'t match the part in the msg')
 
             except Exception as e:
-                print(loc, mm)
-                print(e)
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
+                dd(loc, mm)
                 raise e
 
     def findPattern(self, pattern_list: list, txt: str):
         count_item = 0
+        obs = LocationObserver(txt)
         pattern_list.reverse()
         obs = LocationObserver(txt)
+
         for index, item in enumerate(pattern_list):
             p, ref_type = item
             self.findOnePattern(obs, obs.blank, p, ref_type)
-        # print('final:')
-        # pp(self)
-        # print('end_final')
         self.validateFoundEntries()
         return count_item, obs.getUnmarkedPartsAsDict()
 
@@ -305,9 +277,12 @@ class RefList(defaultdict):
         local_msg = str(self.msg)
         count, unparsed_dict = self.findPattern(df.pattern_list, local_msg)
         self.addUnparsedDict(unparsed_dict)
-        # # **** should break up sentences here
-        # self.findTextOutsideRefs()
         dd('Finishing parseMessage:')
+        dd('-' * 80)
+        for loc, mm_rec in self.items():
+            dd(f'{loc}')
+            dd(f'{mm_rec.txt}')
+            dd('-' * 80)
 
 
     def translateMatcherRecord(self, mm: MatcherRecord):
@@ -354,23 +329,14 @@ class RefList(defaultdict):
             elif is_osl_attrib or is_python_format or is_function:
                 return
             else:
-                # is_ignore = cm.isLinkPath(ref_txt)
-                # if is_ignore:
-                #     ref_item.setTranlation(None, False, True)
-                #     return
-                #
-                # dd(f'translateRefItem: anything else: {ref_txt}')
-                # is_ref_path = (is_ref and df.REF_PATH.search(ref_txt) is not None)
-                # is_doc_path = (is_doc and df.DOC_PATH.search(ref_txt) is not None)
-                # is_ignore_path = (is_ref_path or is_doc_path)
-                # if is_ignore_path:
-                #     return
                 ok = self.tf.translateRefWithLink(mm)
 
             # mm_tran = cm.jointText(ref_txt, tran, sub_loc)
             # mm.setTranlation(mm_tran, is_fuzzy, is_ignore)
         except Exception as e:
-            print(f'ERROR! translateRefItem(), ref_item:{mm}, ref_type:{ref_type}, ERROR: {e}')
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            print(f'ref_item:{mm}, ref_type:{ref_type}')
 
     def translate(self):
         mm_record: MatcherRecord = None

@@ -5,6 +5,7 @@ from key import Key
 from fuzzywuzzy import fuzz
 from math import ceil
 import operator as OP
+import inspect as INP
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -90,7 +91,8 @@ class NoCaseDict(OrderedDict):
             dd(f'__getitem__:[{key}], value:[{value}]')
             return value
         except Exception as e:
-            dd(f'Exception __getitem__:{e}')
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
             return None
 
     def get(self, k, default=None):
@@ -155,7 +157,8 @@ class NoCaseDict(OrderedDict):
                 return (None, None)
 
         selective_match = []
-        for pat, value in self.sentence_struct_dict.items():
+        for entry in self.sentence_struct_dict.items():
+            (pat, value) = entry
             matcher = pat.search(key)
 
             is_match = (matcher is not None)
@@ -384,9 +387,10 @@ class NoCaseDict(OrderedDict):
             translation = lower_msg.replace(new_selected, translation_txt)
             untran_word_dic = cm.getRemainedWord(lower_msg, new_selected)
         except Exception as e:
-            dd(e)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
             dd(f'FAILED TO REPLACE: [{lower_msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
-            can_accept = (matched_ratio >= df.acceptable_rate)
+            can_accept = (matched_ratio >= acceptable_rate)
             if can_accept:
                 translation = translation_txt
 
@@ -415,8 +419,8 @@ class NoCaseDict(OrderedDict):
             if self.is_operational:
                 self.is_dirty = True
         except Exception as e:
-            dd(f'__delitem__ Exception :{e}')
-
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
         new_set = NoCaseDict()

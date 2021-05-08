@@ -14,6 +14,7 @@ import re
 from definition import Definitions as df
 from reftype import SentStructMode as SMODE
 from pprint import pprint as pp
+import inspect as INP
 
 DEBUG=True
 # DEBUG=False
@@ -29,6 +30,13 @@ class LocationObserver(OrderedDict):
     def __init__(self, msg):
         self.blank = str(msg)
         self.marked_loc={}
+
+    def markLocListAsUsed(self, loc_list: list):
+        try:
+            for loc in loc_list:
+                self.markLocAsUsed(loc)
+        except Exception as e:
+            pass
 
     def getTextAt(self, s: int, e: int):
         try:
@@ -191,17 +199,20 @@ class Common:
         return is_ignorable
 
     def isLinkPath(txt: str) -> bool:
-        # is_file_extension = df.FILE_EXTENSION.search(txt)
-        # is_file_name = df.FILE_NAME_WITH_EXTENSION.search(txt)
+        is_blank_quote = df.BLANK_QUOTE_FULL.search(txt)
+        if is_blank_quote:
+            return False
+
         is_path = Common.isPath(txt)
         if is_path:
             return True
 
         left, mid, right = Common.getTextWithin(txt)
         is_path = Common.isPath(mid)
-        return is_path
-        # is_path_link = (is_file_extension or is_file_name or is_path)
-        # return is_path_link
+        if is_path:
+            return True
+        else:
+            return False
 
     def shouldHaveDuplicatedEnding(cutoff_part, txt):
         is_verb_cutoff = (cutoff_part in ['ed', 'ing', 'es'])
@@ -308,8 +319,8 @@ class Common:
         new_str = lowercase(ga_ref_dic, new_str)
         for lcase_word in WORD_SHOULD_BE_LOWER:
             p = re.compile(r'\b%s\b' % lcase_word)
-            p_list = Common.patternMatchAll(p, new_str)
-            new_str = lowercase(p_list, new_str)
+            p_list_dic = Common.patternMatchAll(p, new_str)
+            new_str = lowercase(p_list_dic, new_str)
 
         return new_str
 
@@ -403,7 +414,9 @@ class Common:
                 dict_entry = {loc: match_record}
                 return_dict.update(dict_entry)
         except Exception as e:
-            print(f'patternMatchAll() pattern:[{pat}]; text:[{text}] error:{e}')
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
             raise e
         return return_dict
 
@@ -577,9 +590,10 @@ class Common:
                     l_case_remain.update({k: v})
             u_case.update(l_case_remain)
         except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
             dd("k:", k)
             dd("v:", k)
-            dd(e)
             raise e
         return u_case
 
@@ -686,15 +700,7 @@ class Common:
                     if not is_same:
                         raise Exception("ERROR in location calculation for: [", txt, "] at start:", last_s, " end:", i+1, " in:[", msg, "]")
                 except Exception as e:
-                    continue
-                    # msg = "Unbalanced pair [{},{}] at location:{}, message:[{}]".format(open_char, close_char, i, msg)
-                    # print(e)
-                    # raise Exception(msg)
-
-        # has_unprocessed_pair = (len(b_list) > 0)
-        # if has_unprocessed_pair:
-        #     # msg = "Unbalanced pair [{},{}] at location:{}, message:[{}]".format(open_char, close_char, b_list, msg)
-        #     # raise Exception(msg)
+                    pass
 
         has_loc_list = (len(loc_list) > 0)
         if not has_loc_list:
@@ -906,7 +912,9 @@ class Common:
                 else:
                     return None
             except Exception as e:
-                print(f'Finding message: [{item}], found index:[{found_index}]')
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
+                dd(f'Finding message: [{item}], found index:[{found_index}]')
                 raise e
 
     def getTextWithinBrackets(
@@ -952,13 +960,18 @@ class Common:
 
             # split at the boundary of start and end brackets
             brk_list=[]
-            m_list = p.finditer(text)
-            for m in m_list:
-                ss = m.start()
-                ee = m.end()
-                brk = m.group(0)
-                entry=(ss, ee, brk)
-                brk_list.append(entry)
+            try:
+                m_list = p.finditer(text)
+                for m in m_list:
+                    ss = m.start()
+                    ee = m.end()
+                    brk = m.group(0)
+                    entry=(ss, ee, brk)
+                    brk_list.append(entry)
+            except Exception as e:
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
+                raise e
             return brk_list
 
         def getSentenceList():
@@ -1015,9 +1028,8 @@ class Common:
                 # print(f'sub_mm list: {found_list}')
                 return True
             except Exception as e:
-                dd('removeBrackets():')
-                dd(mm)
-                dd(e)
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
                 raise e
 
         def updateRecordsUsingSubLoc(dict_list, rootloc):
@@ -1042,7 +1054,7 @@ class Common:
         last_s: int = -1
         is_same_brakets = (start_bracket == end_bracket)
         if is_same_brakets:
-            print(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
+            dd(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
                   f'ERRORS might occurs!')
 
         obs = LocationObserver(text)
@@ -1168,6 +1180,8 @@ class Common:
             loc = (ss, ee)
             return loc, original_word[ss:ee]
         except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
             raise e
 
         return (-1, -1), new_word
@@ -1542,7 +1556,7 @@ class Common:
                 c2 = t2[i]
                 is_matched = (c1 == c2)
                 if not is_matched:
-                    # print(f'stopped at [{i}], c1:[{c1}], c2:[{c2}]')
+                    # dd(f'stopped at [{i}], c1:[{c1}], c2:[{c2}]')
                     break
                 match_percent += lc
         except Exception as e:
@@ -1702,7 +1716,7 @@ class Common:
             pat += txt
 
         pattern_txt = r'^%s$' % (pat)
-        return_pat = re.compile(pattern_txt, re.I)
+        return_pat = re.compile(pattern_txt, re.IGNORECASE)
         return return_pat
 
     def formPattern(list_of_words: list):
@@ -1778,9 +1792,7 @@ class Common:
                 loc_list = local_found_dict.keys()
                 for loc in loc_list:
                     obs.markLocAsUsed(loc)
-
         return_dict = OrderedDict(sorted(local_found_dict_list.items(), reverse=True))
-
         return (return_dict, obs)
 
     def genmap(msg, is_reverse=True):
@@ -1844,7 +1856,8 @@ class Common:
                 entry = {sub_loc: sentence}
                 loc_dic.update(entry)
         except Exception as e:
-            dd(f'genmap():{e}')
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
             raise e
 
         simplifiesMatchedRecords()
@@ -1892,4 +1905,4 @@ class Common:
         # is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
-            print(f'Debugging text: {msg} at line txt:{txt}')
+            dd(f'Debugging text: {msg} at line txt:{txt}')

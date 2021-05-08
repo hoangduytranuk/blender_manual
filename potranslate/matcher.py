@@ -2,6 +2,7 @@ import re
 from collections import OrderedDict
 from enum import Enum
 from reftype import TranslationState, RefType, SentStructMode
+import inspect as INP
 
 class MatcherRecordType(Enum):
     MASTER = 0
@@ -22,7 +23,6 @@ class MatcherRecord(OrderedDict):
         self.__translation = None
         self.__translation_state = TranslationState.UNTRANSLATED
         self.__sentence_structure_mode = SentStructMode.ANY
-        # self.__list_of_forward_slashes = []
 
         actual_s = (matcher_record.start() if matcher_record else s)
         actual_e = (matcher_record.end() if matcher_record else e)
@@ -149,6 +149,8 @@ class MatcherRecord(OrderedDict):
             self.clear()
             self.update(list_of_loc_and_txt)
         except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
             print(f'initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]')
             raise e
 

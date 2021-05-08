@@ -268,7 +268,7 @@ class Definitions:
     number_format = r'(\d+[.]\d+)'
     hour_format = r'(%s:%s(:%s)?([.]%s)?)' % (word, word, word, word)
     whatever = r'(%s?)[*]{1}(%s?)' % (word, word)
-    file_extension = r'^([.]%s)$' % (word)
+    file_extension = r'([.]%s{2,5})$' % (word)
     return_linefeed = r'^(\\[nr])$'
     bold_word = r'^(\*%s\*)$' % (word)
     not_allowed = r'(?!(%s|%s|%s|%s|%s|%s|%s|%s))' % (ignore_words, bold_word, leading_hyphens, single_hyphen, ref_tag, hour_format, number_format, return_linefeed)
@@ -430,6 +430,7 @@ class Definitions:
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
     BLANK_QUOTE = re.compile(r"(?<!\w)(\§)([^\§]+)(?:\b)(\§)")
+    BLANK_QUOTE_FULL = re.compile(r"^(?<!\w)(\§)([^\§]+)(?:\b)(\§)$")
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
@@ -1201,6 +1202,7 @@ class Definitions:
     keep_list = [
         "_right",
         "_left",
+        "vertices/edges/faces",
         "(translation/scale/rotation)",
         "translation/scale/rotation",
         "path/curve-deform",

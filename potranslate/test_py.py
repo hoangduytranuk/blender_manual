@@ -18,13 +18,13 @@ from fuzzywuzzy import fuzz
 
 from sphinx_intl import catalog as c
 from pytz import timezone
-from common import Common as cm
+from common import Common as cm, dd, pp
 from matcher import MatcherRecord
 from definition import Definitions as df
 
-from pprint import pprint
-from reftype import RefType
+from reftype import RefType, TranslationState
 from reflist import RefList
+import inspect as INP
 import copy as CP
 
 alphabets= "([A-Za-z])"
@@ -3751,10 +3751,10 @@ def patternMatchAllAsDictNoDelay(pat, text):
                     entry = {(ss, ee): g}
                     return_dict.update(entry)
     except Exception as e:
-        _("patternMatchAll")
-        _("pattern:", pat)
-        _("text:", text)
-        _(e)
+        fname = INP.currentframe().f_code.co_name
+        dd(f'{fname} {e}')
+        dd("pattern:", pat)
+        dd("text:", text)
     return return_dict
 
 def patternMatchAllToDict(pat, text):
@@ -3768,7 +3768,7 @@ def patternMatchAllToDict(pat, text):
         matching_list.update(entry)
     return matching_list
 
-REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s\:\!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
+REMOVABLE_SYMB_FULLSET_FRONT = re.compile(r'^[\s:!\'$\"\\\(\{\|\[\*\?\<\`\-\+\/\#\&]+')
 REMOVABLE_SYMB_FULLSET_BACK = re.compile(r'[\s\:\!\'$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&\,\.]+$')
 
 def removeLeadingTrailingSymbs(txt):
@@ -4451,8 +4451,9 @@ class test(object):
                     _("[{}] matched [{}]".format(text_line, x))
                     return True
         except Exception as e:
-            _(e)
-            _("isIgnoredWord ERROR:", text_line)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'text_line:[{text_line}]')
         return False
 
     def timeNow(self):
@@ -4481,7 +4482,9 @@ class test(object):
                 in_file.close()
             return data
         except Exception as e:
-            print("Exception readText:{}".format(file_path))
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'file_path:{file_path}')
             raise e
 
     def getByKeyword(self, keyword, text):
@@ -5005,54 +5008,6 @@ class test(object):
         C:\\blender_docs
         with space in front build/html/contents_quicky.html
         '''
-
-        # word_list = getTextWithinBracket('(', ')', t, is_include_bracket=False, replace_internal_start_bracket='[', replace_internal_end_bracket=']')
-        # print(word_list)
-
-        # print(t)
-        # # p = re.compile(r'(?P<word>[^\\\/]+)([\\\/]{1,2}(?P=word))*?(?P<ext>\.[\w]{2,5})')
-        # p = re.compile(r'(?:[^\\\/\:\s]+?[/\\])*\w+\.\w{2,5}')
-        # # m = p.search(t)
-        # m = p.findall(long_t)
-        # print(m)
-
-        # p = re.compile(r'(?!\).*?\()\(.*?\)')
-        # p = re.compile(r'(?:(?!\).*?\().)*')
-        # print(t)
-        # m = p.findall(t)
-        # print(m)
-        # from collections import deque
-        # word_dict={}
-        # m_list = re.finditer(r'\(|\)', t)
-        # for m in m_list:
-        #     s = m.start()
-        #     e = m.end()
-        #     w = m.group(0)
-        #     entry = {(s, e): w}
-        #     word_dict.update(entry)
-        #
-        # print(word_dict)
-        #
-        # sentence_list = []
-        # q = deque()
-        # for loc, bracket in word_dict.items():
-        #     s, e = loc
-        #     is_open = (bracket == '(')
-        #     is_close = (bracket == ')')
-        #     if is_open:
-        #         q.append(s)
-        #     if is_close:
-        #         if not q:
-        #             raise Exception(f'Invalid close bracket at {s, e}')
-        #         last_s = q.pop()
-        #         ss = last_s + 1
-        #         ee = e - 1
-        #         txt_line = t[ss:ee]
-        #         sentence_list.append(txt_line)
-        # print(sentence_list)
-
-        # print(word_list)
-
         # t_dict = {0: [{(0, 3): '"D"'}, {(1, 2): 'D'}], 15: [{(15, 21): '"dash"'}, {(16, 20): 'dash'}], 23: [{(23, 26): '"G"'}, {(24, 25): 'G'}], 38: [{(38, 43): '"gap"'}, {(39, 42): 'gap'}]}
         # t_dict = {11: [{(11, 56): ':menuselection:`View --> Show Curve Extremes`'}, {(11, 26): ':menuselection:'}, {(27, 55): 'View --> Show Curve Extremes'}]}
         t_dict = {10: [((10, 16), '*Path*'), ((11, 15), 'Path')]}
@@ -5413,19 +5368,6 @@ class test(object):
         is_found = ((res % 5) == 0)
         if (is_found):
             print("Found", "34 / 65 / 11")
-
-    def test_0019(self):
-        po_file="/home/htran/blender_documentations/blender_docs/locale/vi/LC_MESSAGES/modeling/meshes/editing/vertices.po"
-        po_data = c.load_po(po_file)
-        s2=":menuselection:Mesh --> Vertices"
-        found_list=[]
-        for m in po_data:
-            s1=m.id
-            distance = DS(s1, s2)
-            found_list.append((distance, s1))
-            #print("distance:{}; s1=[{}]; s2=[{}]".format(distance, s1, s2))
-        sorted_found_list=sorted(found_list)
-        pp(sorted_found_list)
 
 
     def test_0020(self):
@@ -5798,10 +5740,10 @@ class test(object):
                         v=(ss, ee, g)
                         break_down.append(v)
         except Exception as e:
-            _("patternMatchAll")
-            _("pattern:", pat)
-            _("text:", text)
-            _(e)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd("pattern:", pat)
+            dd("text:", text)
         return original, break_down
 
     #def patternMatchAll(self, pat, text):
@@ -5923,77 +5865,6 @@ class test(object):
         print("exit from entry_list:", entry_list)
         return entry_list
 
-
-    def refEntry(self, ref_list):
-        entry_list = {}
-        k, v = None, None
-        v_len = -1
-        s = e = ss = se = xs = xe = 0
-        txt = xtype = origin_entry = type_entry = text_entry = None
-        try:
-            for k, v in ref_list.items():
-                orig = v[0]
-                o_s, o_e, o_txt = orig
-                key = o_s
-                entry={o_s:[(o_s, o_e, o_txt)]}
-                entry_list.update(entry)
-                #print("ORIGINAL ENTRY:", entry)
-                v_len = len(v)
-                s, e, txt, xtype = None, None, None, None
-                if (v_len == 1):
-                    #print("v_len == 1")
-                    #print(v_len, v)
-                    s, e, txt = orig
-                    text_entry = (s, e, txt)
-                elif (v_len == 2):
-                    origin_entry, text_entry = v
-                    s, e, txt = text_entry
-                elif (v_len == 3):  # :kbd:,
-                    origin_entry, type_entry, text_entry = v
-                    xs, xe, xtype = type_entry
-                    s, e, txt = text_entry
-                else:
-                    raise Exception("Impossible List, there are more items than expected!")
-
-
-                has_xtype = (xtype is not None)
-                has_menu = has_xtype and ("menuselection" in xtype)
-                has_abbr = has_xtype and ("abbr" in xtype)
-                has_kbd = has_xtype and ("kbd" in xtype)
-                uri_list = self.patternMatchAll(LINK_WITH_URI, txt)
-                has_uri = (len(uri_list) > 0)
-                if has_uri and not (has_abbr or has_menu):
-                    print("has_uri and not has_abbr")
-                    uri_entry_list = self.getTextListForURI(text_entry, uri_list)
-                    entry_list[key].append(uri_entry_list)
-                    #print("has_uri:", uri_entry_list)
-                elif has_xtype:
-                    if has_abbr:
-                        print("has_abbr")
-                        abbr_list = self.getTextListForABBR(text_entry)
-                        entry_list[key].append(abbr_list)
-                        print(entry_list[key])
-                    elif has_menu:
-                        print("has_menu")
-                        menu_text_list = self.getTextListForMenu(text_entry)
-                        pp(menu_text_list)
-                        entry_list[key].append(menu_text_list)
-                    elif has_kbd:
-                        has_commond_keyboard = NORMAL_KEYBOARD_COMBINATION.search(o_txt)
-                        if (has_commond_keyboard):
-                            print("has_commond_keyboard:", o_txt)
-                            print(has_commond_keyboard)
-                    else:
-                        print("has_xtype but NOT ABBR OR MENU:", txt)
-                        entry_list[key].append([text_entry])
-                else:
-                    entry_list[key].append([text_entry])
-        except Exception as e:
-            print(ref_list)
-            print("k, v, v_len")
-            print(k, v, v_len)
-            raise e
-        return entry_list
 
     def filteredTextList(self, ref_list, norm_list):
         loc_ref_list = self.getListOfLocation(ref_list)
@@ -7801,6 +7672,7 @@ IOR
         #         print(m)
 
         t_list = {"Security": ""}
+        tf = TranslationFinder()
         tran_list={}
         for k, v in t_list.items():
             tran, fuzzy, ignore = tf.translate(k)
@@ -8342,8 +8214,9 @@ IOR
                 list_of_places.append(loc)
             return list_of_places
         except Exception as e:
-            print(f'original_word:{original_word}, new_word:{new_word}')
-            print(e)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'original_word:{original_word}, new_word:{new_word}')
             raise e
 
     def compareExpressContruct(self, item, k, is_fuzz=False):
@@ -9302,7 +9175,7 @@ IOR
         else:
             return None
         
-    def grepPOT(self, pattern, is_sub_group=False, separator=None, is_translate=False, is_considering_side_words=False):
+    def grepPOT(self, pattern, is_sub_group=False, separator=None, is_translate=False, is_considering_side_words=False, using_function=None):
         def isRemove(txt: str):
             remove_list=[
                 '\'',
@@ -9387,52 +9260,59 @@ IOR
             loc_found=[]
             for msgid, msgstr in po_rec.items():
                 loc_found=[]
-                for p in pats:
-                    found_list = cm.patternMatchAll(p, msgid)
-                    if not found_list:
-                        continue
-
-                    if f not in file_found:
-                        file_found.append(f)
-
-                    entry = (f, msgid)
-                    if not entry in entry_found:
-                        entry_found.append(entry)
-
-                    for loc, mm in found_list.items():
-                        try:
-                            if is_sub_group:
-                                p_loc, p_txt = mm.getSubEntryByIndex(2)
-                            else:
-                                p_loc, p_txt = mm.getSubEntryByIndex(0)
-                        except Exception as e:
-                            p_loc, p_txt = mm.getSubEntryByIndex(0)
-
-                        if p_loc in loc_found:
+                if using_function:
+                    found_entries = using_function(msgid)
+                    if found_entries:
+                        if f not in file_found:
+                            file_found.append(f)
+                        text_list.extend(found_entries)
+                else:
+                    for p in pats:
+                        found_list = cm.patternMatchAll(p, msgid)
+                        if not found_list:
                             continue
 
-                        # if isRemove(p_txt):
-                        #     continue
+                        if f not in file_found:
+                            file_found.append(f)
 
-                        if separator:
-                            is_sep = bool(separator)
-                            is_sep_text = (is_sep and isinstance(separator, str))
-                            is_sep_pattern = (is_sep and isinstance(separator, re.Pattern))
+                        entry = (f, msgid)
+                        if not entry in entry_found:
+                            entry_found.append(entry)
 
-                            if is_sep_text:
-                                item_list = p_txt.split(separator)
-                            elif is_sep_pattern:
-                                item_list = separator.split(p_txt)
-                            else:
-                                item_list = [p_txt]
-
-                            for item in item_list:
-                                insertFoundItem(item)
-                        else:
-                            insertFoundItem(p_txt)
-                            if is_sub_group:
+                        for loc, mm in found_list.items():
+                            try:
+                                if is_sub_group:
+                                    p_loc, p_txt = mm.getSubEntryByIndex(2)
+                                else:
+                                    p_loc, p_txt = mm.getSubEntryByIndex(0)
+                            except Exception as e:
                                 p_loc, p_txt = mm.getSubEntryByIndex(0)
+
+                            if p_loc in loc_found:
+                                continue
+
+                            # if isRemove(p_txt):
+                            #     continue
+
+                            if separator:
+                                is_sep = bool(separator)
+                                is_sep_text = (is_sep and isinstance(separator, str))
+                                is_sep_pattern = (is_sep and isinstance(separator, re.Pattern))
+
+                                if is_sep_text:
+                                    item_list = p_txt.split(separator)
+                                elif is_sep_pattern:
+                                    item_list = separator.split(p_txt)
+                                else:
+                                    item_list = [p_txt]
+
+                                for item in item_list:
+                                    insertFoundItem(item)
+                            else:
                                 insertFoundItem(p_txt)
+                                if is_sub_group:
+                                    p_loc, p_txt = mm.getSubEntryByIndex(0)
+                                    insertFoundItem(p_txt)
 
         r_list = list(count_dict.items())
         r_list.sort(key=lambda x: x[1])
@@ -9693,7 +9573,7 @@ IOR
                 # "``:term:`Manifold``` -- Links to an entry in the :doc:`Glossary </glossary/index>`."
                 # "especially :ref:`NURBS <curve-nurbs>` ones"
                 # ":doc:`NLA </editors/nla/introduction>`.",
-                "`Radiosity (computer graphics) <https://en.wikipedia.org/wiki/Radiosity_%28computer_graphics%29>`__"
+                # "`Radiosity (computer graphics) <https://en.wikipedia.org/wiki/Radiosity_%28computer_graphics%29>`__"
                 # "`MPEG-4(DivX) <https://en.wikipedia.org/wiki/MPEG-4>`__",
                 # "like the :doc:`\"limit\" ones </animation/constraints/transform/limit_location>`",
                 # "like e.g. the :doc:`\"copy\" ones </animation/constraints/transform/copy_location>`).",
@@ -9773,6 +9653,10 @@ IOR
                 # "while the actual domain with the guiding effect in it is of type"
                 # "e.g. to make them :doc:`follow a curve </modeling/modifiers/deform/curve>`",
                 # "e.g. two cones sharing the vertex at the apex",
+                # "e.g. §vertices/edges/faces§ for meshes, control points for §curves/surfaces§, §strokes/points§ for §Grease Pencil§, etc.",
+                # "e.g. when the §Edge Split§ Modifier is applied",
+                # "e.g. when using it as §path§...",
+                "e.g. when using subdivision surface",
             ]
 
         else:
@@ -9785,6 +9669,12 @@ IOR
             # output = pr.getTranslation()
             output = pr.getTextAndTranslation()
             print(output)
+
+    def grepPOTFindPath(self, txt):
+        ref_dict_list, obs = cm.getRefDictList(txt)
+        for entry in ref_dict_list:
+            print(entry)
+        return ref_dict_list
 
     def run(self):
         # self.test_sorted_list()
@@ -9819,7 +9709,8 @@ IOR
         # l_txt = r'(modifier)'
         # p_txt = r'%s%s%s%s%s' % (word, word, word, word, l_txt)
         # p = re.compile(p_txt)
-        # self.grepPOT(p, is_sub_group=False)
+        # self.grepPOTFindPath(t)
+        # self.grepPOT(None, using_function=self.grepPOTFindPath)
         # self.grepPOT(df.GA_REF, is_sub_group=True)
         # simple_bracket = re.compile(r'\s?\([^\(\)]+\)\s?')
         # self.grepPOT(simple_bracket, is_sub_group=False)

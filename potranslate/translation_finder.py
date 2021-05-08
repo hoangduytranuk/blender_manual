@@ -11,6 +11,7 @@ from reftype import RefType, TranslationState
 import operator as OP
 from nocasedict import NoCaseDict
 from matcher import MatcherRecord
+import inspect as INP
 
 class TranslationEntry():
     def __init__(self, untran_txt=None, tran_txt=None, txt_loc=None, fuzzy_rate=None):
@@ -144,8 +145,9 @@ class TranslationFinder:
                 dd(f'findByReduction: looking for: [{msg}] trans:[{trans}] function_name:[{function_name}]')
                 return new_text, trans, cover_length
         except Exception as e:
-            print(f'findByReduction() msg:{msg}')
-            print(e)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'msg:{msg}')
             raise e
 
     @property
@@ -225,8 +227,9 @@ class TranslationFinder:
                     # cm.debugging(un_tran_txt)
                     _, tran_sub_text, covered_length = self.tryToFindTranslation(un_tran_txt)
                 except Exception as e:
-                    print(f'replacingUsingDic() findByReduction: un_tran_txt:[{un_tran_txt}]')
-                    print(e)
+                    fname = INP.currentframe().f_code.co_name
+                    dd(f'{fname} {e}')
+                    dd(f'un_tran_txt:[{un_tran_txt}]')
                     raise e
 
                 has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
@@ -248,7 +251,8 @@ class TranslationFinder:
             try:
                 translateUntranslatedList(un_tran_dict)
             except Exception as e:
-                print(e)
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
                 raise e
 
         local_dict_list.sort(key=OP.itemgetter(0), reverse=True)    # sort by matching ratio
@@ -482,14 +486,8 @@ class TranslationFinder:
                 self.addMasterDict(k, v)
             else:
                 self.addBackupDictEntry(k, v)
-        elif is_string:
-            raise Exception(error_msg)
-            # if is_master:
-            #     self.addMasterDict(k, v)
-            # else:
-            #     self.addBackupDictEntry(k, v)
         else:
-            raise Exception(error_msg)
+            raise ValueError(error_msg)
 
     def getHeadAndTailPuncts(self, msg):
         if not msg:
@@ -971,7 +969,9 @@ class TranslationFinder:
             with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         except Exception as e:
-            dd("Exception writeDictionary Length of read dictionary:{}".format(len(dic)))
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f"Length of read dictionary:{len(dic)}")
             raise e
 
     def loadJSONDic(self, file_name=None):
@@ -1012,8 +1012,9 @@ class TranslationFinder:
             sent_struct_list.sort(key=sentStructKeyFunction)
             return_dic.sentence_struct_dict = OrderedDict(sent_struct_list)
         except Exception as e:
-            dd("Exception occurs while performing loadJSONDic()")
-            dd(e)
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f"Exception occurs while performing loadJSONDic({file_path})")
             return_dic = NoCaseDict()
 
         return return_dic
@@ -1042,7 +1043,7 @@ class TranslationFinder:
 
         if not search_dict:
             msg = 'isInDictFuzzy(): NO Dictionary is available. Stopped'
-            print(msg)
+            dd(msg)
             raise Exception(msg)
 
         is_matcher = isinstance(msg, MatcherRecord)
@@ -1079,8 +1080,12 @@ class TranslationFinder:
 
     def isInDict(self, msg, dic_to_use=None):
         tran = None
-        is_ignore = ig.isIgnored(msg)
-        if is_ignore:
+        # is_ignore = ig.isIgnored(msg)
+        # if is_ignore:
+        #     return None
+
+        is_blank_quote = (df.BLANK_QUOTE.search(msg) is not None)
+        if is_blank_quote:
             return None
 
         search_dict = self.getDict(local_dict=dic_to_use)
@@ -1608,18 +1613,17 @@ class TranslationFinder:
 
             if not trans:
                 dd(f'calling tryFuzzyTranlation [{msg}]')
-                trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg)
+                trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg, )
                 is_fuzzy = bool(trans)
 
+            if not trans:
+                dd(f'calling SimpleBlindTranslation [{msg}]')
+                trans = self.simpleBlindTranslation(msg)
+                is_fuzzy = True
             # if not trans:
             #     dd(f'calling blindTranslation [{msg}]')
-            #     trans, untran_dict = self.getDict().blindTranslate(msg)
+            #     trans = self.blindTranslation(msg)
             #     is_fuzzy = True
-            #
-            if not trans:
-                dd(f'calling blindTranslation [{msg}]')
-                trans = self.blindTranslation(msg)
-                is_fuzzy = True
 
             if trans:
                 dd(f'calling removeTheWord [{trans}]')
@@ -1627,7 +1631,9 @@ class TranslationFinder:
                 trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
-            print(f'ERROR: {e} - msg:[{msg}], trans:[{trans}]')
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+            dd(f'msg:[{msg}], trans:[{trans}]')
             raise e
 
     def translateKeyboard(self, mm: MatcherRecord):
