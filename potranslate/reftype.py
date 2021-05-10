@@ -1,15 +1,22 @@
 from enum import Enum
+import re
 class SentStructMode(Enum):
-    ANY = ''
-    NO_PUNCTUATION = 'np'
-    MAX_UPTO = 'mx'
-    NO_CONJUNCTIVES = 'nc'
-    NO_FULL_STOP = 'nfs'
+    ANY = re.compile(r'^.*$', re.I)
+    ORDERED_GROUP = re.compile(r'^\d+$', re.I)
+    NO_PUNCTUATION = re.compile(r'^np$', re.I)
+    MAX_UPTO = re.compile(r'^mx$', re.I)
+    NO_CONJUNCTIVES = re.compile(r'^nc$', re.I)
+    NO_FULL_STOP = re.compile(r'^nfs$', re.I)
 
     @classmethod
     def getName(cls, string_value: str):
         for name, member in cls.__members__.items():
-            if member.value == string_value:
+            is_any = (member == cls.ANY)
+            if is_any:
+                continue
+
+            is_match = (member.value.search(string_value) is not None)
+            if bool(is_match):
                 return member
         return cls.ANY
 

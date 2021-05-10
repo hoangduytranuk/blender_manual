@@ -1716,21 +1716,23 @@ class Common:
             pat += txt
 
         pattern_txt = r'^%s$' % (pat)
-        return_pat = re.compile(pattern_txt, re.IGNORECASE)
-        return return_pat
+        return pattern_txt
 
     def formPattern(list_of_words: list):
         pat = ""
         # (?<=\S)\s+$
+        txt: str = None
         for loc, txt in list_of_words:
             is_any = (df.SENT_STRUCT_SYMB in txt)
-            # txt = (f'\s?(.*\S)\s?' if is_any else f'({txt})')
+            # var_order_digit = txt[2:]
+            # has_var_order = (var_order_digit.isdigit())
+            # if has_var_order:
+            #     txt = (f'\s?(\S+)\s?' if is_any else f'({txt})')
+            # else:
             txt = (f'\s?(.*)\s?' if is_any else f'({txt})')
             pat += txt
-
         pattern_txt = r'^%s$' % (pat)
-        return_pat = re.compile(pattern_txt, re.I)
-        return return_pat
+        return pattern_txt
 
     def creatSentRecogniserPatternRecordPair(key, value):
         recog_pattern = Common.creatSentRecogniserPattern(key)

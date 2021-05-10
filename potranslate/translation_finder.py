@@ -68,6 +68,8 @@ class TranslationFinder:
 
         self.struct_dict = self.getDict().sentence_struct_dict
         # pp(self.struct_dict)
+        # is_in = ('a * b' in self.getDict())
+        # dd('')
 
     def initNumericalPatternList(self):
         for pat_txt, tran_txt in df.numeric_trans.items():

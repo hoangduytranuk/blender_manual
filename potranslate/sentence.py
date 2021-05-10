@@ -8,6 +8,7 @@ from collections import OrderedDict
 import inspect as INP
 from nocasedict import NoCaseDict as NDIC
 from ignore import Ignore as ig
+import operator as OP
 
 class StructRecogniser():
     '''
@@ -109,9 +110,14 @@ class StructRecogniser():
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
+
+        print('')
 
     def setupSentSLRecord(self):
         sl_rec: MatcherRecord = None
@@ -160,11 +166,10 @@ class StructRecogniser():
             return post
 
         def getInitialListOfTextsToBeTranslated():
-            # run through the dictionary's source language indexes, where $$$ was
-            # note: we are not in the loop where location and length of strings for each element is relevant
-            # these should be dealt with later
+            # to target index of $$$ in the dictionary target language, where $$$ was
+            dict_sl_list = self.dict_sl_rec.getSubEntriesAsList()
+            order_queue = {}
             for index, from_index in enumerate(dict_sl_any_index_list):
-                # to target index of $$$ in the dictionary target language, where $$$ was
                 to_index = dict_tl_any_index_list[index]
 
                 # extract untranslated text out of external sentence where $$$ supposedly occupied
@@ -173,22 +178,43 @@ class StructRecogniser():
                 #           the structure from CONSTRUCTIVE
                 #           DECONSTRUCTIVE
                 untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
+                any_tl_loc, any_tl_pattern_txt = sent_tl_list[to_index]
+                any_sl_loc, any_sl_pattern_txt = dict_sl_list[from_index]
+
+                is_sl_order = df.ORDERED_VAR_PAT.search(any_sl_pattern_txt)
+                is_tl_order = df.ORDERED_VAR_PAT.search(any_tl_pattern_txt)
+                is_order = (is_sl_order and is_tl_order)
+                if is_order:
+                    any_tl_pat = is_tl_order.group(1)
+                    any_sl_pat = is_sl_order.group(1)
+                    is_matching = (any_tl_pat == any_sl_pat)
+                    if not is_matching:
+                        new_entry = {any_sl_pat: (untran_loc,  untran_txt)}
+                        order_queue.update(new_entry)
+                        continue
+
+                # new_entry = (untran_loc, (any_tl_pattern_txt, untran_txt))
                 new_entry = (untran_loc, untran_txt)
 
                 # insert into the correct position, but offsets of next text items will be out of sync
                 (cloc, ctxt) = sent_tl_list.pop(to_index)
                 sent_tl_list.insert(to_index, new_entry)
 
-                new_entry, next_entry = moveEndingPunctuationsIfNeeded(to_index)
-                can_put_changes_back = (new_entry and next_entry)
-                if not can_put_changes_back:
-                    continue
-
-                sent_tl_list.pop(to_index+1)
-                sent_tl_list.insert(to_index+1, next_entry)
-
-                sent_tl_list.pop(to_index)
-                sent_tl_list.insert(to_index, new_entry)
+            if order_queue:
+                new_sent_tl_list=[]
+                for current_untran_loc, tl_pat_or_txt in sent_tl_list:
+                    is_order = df.ORDERED_VAR_PAT.search(tl_pat_or_txt)
+                    if is_order:
+                        order_pat = is_order.group(1)
+                        (untran_loc, untran_txt) = order_queue[order_pat]
+                        entry = (untran_loc, untran_txt)
+                        new_sent_tl_list.append(entry)
+                    else:
+                        entry = (current_untran_loc, tl_pat_or_txt)
+                        new_sent_tl_list.append(entry)
+                return new_sent_tl_list
+            else:
+                return sent_tl_list
 
         def moveEndingPunctuationsIfNeeded(to_index):
             try:
@@ -219,7 +245,6 @@ class StructRecogniser():
                 return None, None
 
         def correctTextsOffsets():
-            # now correct offsets for subsequent texts
             corrected_sent_tl_list=[]
             correct_sent_tl_txt_list=[]
             ls = le = 0
@@ -234,7 +259,6 @@ class StructRecogniser():
                 new_entry = (new_loc, txt)
                 test_txt = test_full_txt[ls: le]
                 corrected_sent_tl_list.append(new_entry)
-
                 is_entry_untranslated = (index in dict_tl_any_index_list)
                 if is_entry_untranslated:
                     text_to_translate_list.append(new_entry)
@@ -252,6 +276,8 @@ class StructRecogniser():
         if bool(self.text_list_to_be_translated):
             return self.text_list_to_be_translated
 
+        corrected_ordered_dict={}
+        ordered_dict = {}
         text_to_translate_list=[]
         dict_sl_any_index_list = None
         dict_tl_any_index_list = None
@@ -268,7 +294,7 @@ class StructRecogniser():
             # replaced with translated parts from the dictionary target language ie. text on both sides of $$$
             sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
 
-            getInitialListOfTextsToBeTranslated()
+            sent_tl_list = getInitialListOfTextsToBeTranslated()
             correctTextsOffsets()
 
             if not text_to_translate_list:

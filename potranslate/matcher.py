@@ -23,6 +23,7 @@ class MatcherRecord(OrderedDict):
         self.__translation = None
         self.__translation_state = TranslationState.UNTRANSLATED
         self.__sentence_structure_mode = SentStructMode.ANY
+        self.__order_list = None
 
         actual_s = (matcher_record.start() if matcher_record else s)
         actual_e = (matcher_record.end() if matcher_record else e)
@@ -50,6 +51,14 @@ class MatcherRecord(OrderedDict):
                 self.addSubMatch(rs, re, txt)
         else:
             self.addSubMatch(actual_s, actual_e, actual_txt)
+
+    @property
+    def order_list(self):
+        return self.__order_list
+
+    @order_list.setter
+    def order_list(self, new_list):
+        self.__order_list = new_list
 
     @property
     def smode(self):
