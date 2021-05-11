@@ -71,7 +71,7 @@ class StructRecogniser():
 
         # pattern to recognise the sentence structure in the source language text, which will use
         # the preset translation
-        self.recog_pattern: re.Pattern = recog_pattern
+        self.recog_pattern: str = recog_pattern
 
         self.sent_sl_rec: MatcherRecord = None
         self.sent_tl_rec: MatcherRecord = None
@@ -104,7 +104,7 @@ class StructRecogniser():
                 self.dict_sl_rec, self.dict_sl_wordlist = cm.createSentRecogniserRecord(self.dict_sl_txt)
 
             if not self.recog_pattern:
-                self.recog_pattern = self.formPattern(self.dict_sl_wordlist)
+                self.recog_pattern = re.compile(cm.formPattern(self.dict_sl_wordlist), flags=re.I)
 
             if not self.dict_tl_rec:
                 self.dict_tl_rec, dict_tl_list = cm.createSentRecogniserRecord(self.dict_tl_txt)
@@ -128,7 +128,9 @@ class StructRecogniser():
     def setupSentSLRecord(self):
         sl_rec: MatcherRecord = None
         try:
-            sl_rec = cm.patternMatch(self.recog_pattern, self.tran_sl_txt)
+            match_dict = cm.patternMatchAll(self.recog_pattern, self.tran_sl_txt)
+            match_dict_list = list(match_dict.items())
+            sl_loc, sl_rec = match_dict_list[0]
             list_of_words = sl_rec.getSubEntriesAsList()
             interested_part = list_of_words[1:]
             sl_rec.clear()

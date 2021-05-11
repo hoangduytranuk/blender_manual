@@ -9595,7 +9595,7 @@ IOR
                 # "e.g. from a \"hand\" mesh towards a \"full body\" one",
                 # "e.g. from goal = 0 to goal = 0.5",
                 # "e.g. gas simulations can add noise",
-                "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
+                # "e.g. §gas simulations§ can add §noise§, §liquid simulations§ can add a §mesh§ or §secondary particles§ or both",
                 # "e.g. gas simulations can add noise,",
                 # "this is a virtually one chance",
                 # "e.g. grids, particles",
@@ -9625,7 +9625,7 @@ IOR
                 # "e.g. with 100 particles in the §target system§, and an *Amount* value of ``0.1``, it can generate either up to 15 or 5 instances, instead of the 10 expected",
                 # "i.e. as if both object's origins were at the same place",
                 # "object's origins",
-                # "i.e. behaving like polylines",
+                "i.e. behaving like polylines",
             ]
 
         else:

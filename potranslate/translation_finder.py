@@ -182,8 +182,6 @@ class TranslationFinder:
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
         self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
-        # self.master_dic_list.fuzzy_keys.sort()
-        # self.master_dic_list.fuzzy_dict.sort(key=lambda x: x[0])
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
@@ -987,6 +985,7 @@ class TranslationFinder:
             return key
 
         return_dic = None
+        sent_struct_original_set = {}
         try:
             if not file_name:
                 dd(f'loadJSONDic - file_name is None.')
@@ -1001,22 +1000,12 @@ class TranslationFinder:
             with open(file_path) as in_file:
                 # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
                 dic = json.load(in_file)
-            length = len(dic)
-            item_dict = list(dic.items())
-            item_dict_sorted = list(sorted(item_dict))
-            sorted_dict = OrderedDict(item_dict_sorted)
-            # dd(f'loadJSONDic - loaded dic, length:{length}')
-            # lcase_dict = {}
-            # for k, v in dic.items():
-            #     entry = {k.lower(): v}
-            #     lcase_dict.update(entry)
-            # dict_list = list(lcase_dict.items())
-            # sorted_dict_list = list(sorted(dict_list))
-            # temp_dict = OrderedDict(sorted_dict_list)
-            return_dic = NoCaseDict(sorted_dict)
-            sent_struct_list = list(return_dic.sentence_struct_dict.items())
-            sent_struct_list.sort(key=sentStructKeyFunction)
-            return_dic.sentence_struct_dict = OrderedDict(sent_struct_list)
+
+            # temp_set = [(x, y) for (x, y) in dic.items() if df.SENT_STRUCT_START_SYMB in x]
+            # sent_struct_original_set = OrderedDict(temp_set)
+            #
+            return_dic = NoCaseDict(dic)
+            # return_dic.sentence_struct_dict = sent_struct_original_set
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
             dd(f'{fname} {e}')

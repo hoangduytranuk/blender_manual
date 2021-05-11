@@ -73,7 +73,7 @@ class NoCaseDict(OrderedDict):
     def __setitem__(self, key, value):
         lkey_key = Key(key)
         super(NoCaseDict, self).__setitem__(lkey_key, value)
-
+        self.local_keys.append(key.lower())
         if self.is_operational:
             self.is_dirty = True
 
@@ -93,11 +93,8 @@ class NoCaseDict(OrderedDict):
             (pat, val) = item
             return pat.pattern
 
-        # keys = list(self.keys())
-        temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
-        temp_set.sort()
         temp_dict={}
-        # for key, value in self.items():
+        temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
         for key, value in temp_set:
             value = self.replaceTranRef(value)
             key_pattern = cm.creatSentRecogniserPattern(key)
@@ -210,7 +207,7 @@ class NoCaseDict(OrderedDict):
                 selective_match.sort(reverse=True)
                 first_entry = selective_match[0]
                 (match_rate, pat, value) = first_entry
-                pattern = re.compile(pat)
+                pattern = re.compile(pat, flags=re.I)
                 return (pattern, value)
             else:
                 value = (None, None, None, None, None, None)
@@ -351,7 +348,7 @@ class NoCaseDict(OrderedDict):
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
-        key_list = list(self.keys())
+        key_list = self.local_keys
         subset = key_list
 
         k_length = len(k)
