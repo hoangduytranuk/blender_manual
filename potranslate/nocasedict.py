@@ -7,7 +7,7 @@ from math import ceil
 import operator as OP
 import inspect as INP
 import re
-from reftype import SentStructModeRecord as SMODEREC
+from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -113,8 +113,6 @@ class NoCaseDict(OrderedDict):
         return self[k] if k in self else default
 
     def getSentStructPattern(self, key):
-        from reftype import SentStructMode as SMODE
-
         def isMatchedStructMode(pat_matched_text_pair_list):
             is_ok_list=[]
             (s_mode_dict, input_txt_list) = pat_matched_text_pair_list
@@ -190,7 +188,7 @@ class NoCaseDict(OrderedDict):
             selective_match = []
             list_of_sent_struct = list(self.sentence_struct_dict.items())
             for pat, value in list_of_sent_struct:
-                matcher = re.search(pat, key)
+                matcher = re.search(pat, key, flags=re.I)
 
                 is_match = (matcher is not None)
                 if not is_match:

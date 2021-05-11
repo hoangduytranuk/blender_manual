@@ -4011,52 +4011,7 @@ def split_into_sentences(text):
     sentences = sentences[:-1]
     sentences = [s.strip() for s in sentences]
 
-#import AdvancedHTMLParser as AH
-#from sphinx_intl import catalog as c
-#from Levenshtein import distance as DS
-#from PO.common import Common as cm
-#from nltk import sent_tokenize
-
-#p =re.compile(r':[\w]+:\`(?![\s\)\\.(]+)([\w \-]+)(\<([^<]+)\>)*(?<!([\s\:]))\`')
-#GA_REF = re.compile(r'(:[\w]+:)*[\`]+(?![\s\)\.\(]+)([^\`\("\'\*\<]+)(((\s\<([^<]+)\>)*)|(\(([^(]+)\))*)(?<!([\s\:]))([\`]+)([\_]+)*')
-#GA_REF = re.compile(r'(:\w+:)*[\`]+([^\`\<\>\<\(\)]+)(((\s\<([^\<\>]+)\>)*)|(\(([^(]+)\))*)(?<!([\s\:]))([\`]+)([\_]+)*')
-#GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`\<\>\(\)]+)(((\s\<([^\<\>]+)\>)*)|(\([^\(\)]+\)))[\`]+')
-
-GA_REF = re.compile(r'[\`]*(:\w+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
-#ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,\`]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
-AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-DBL_QUOTE = re.compile(r'[\"]+(?![\s\.\,\`]+)([^\"]+)[\"]+(?<!([\s\.\,]))')
-SNG_QUOTE = re.compile(r'[\']+(?![\`\s\.(s|re|ll|t)]+)([^\']+)[\']+')
-
-LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+\w+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
-MENU_PART = re.compile(r'(?![\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
-
-WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
-
-ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
-MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
-MENU_TYPE = re.compile(r'^([\`]*:menuselection:[\`]+([^\`]+)[\`]+)$')
-KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
-KEYBOARD_SEP = re.compile(r'[^\-]+')
-
-WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_]+)\b')
-REF_SEP = ' -- '
-NON_WORD_ONLY = re.compile(r'^([\W]+)$')
-NON_WORD = re.compile(r'([\W]+)')
-
-
 DEBUG=True
-
-
-def pp(object, stream=None, indent=1, width=80, depth=None, *args, compact=False):
-    if DEBUG:
-        pprint(object, stream=stream, indent=indent, width=width, depth=depth, *args, compact=compact)
-        print('-' * 30)
-
-def _(*args, **kwargs):
-    if DEBUG:
-        print(args, kwargs)
-        print('-' * 30)
 
 ignore_list = [
         "(htt)([ps]{1}).*",
@@ -9640,7 +9595,7 @@ IOR
                 # "e.g. from a \"hand\" mesh towards a \"full body\" one",
                 # "e.g. from goal = 0 to goal = 0.5",
                 # "e.g. gas simulations can add noise",
-                # "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
+                "e.g. gas simulations can add noise, liquid simulations can add a mesh or secondary particles or both",
                 # "e.g. gas simulations can add noise,",
                 # "this is a virtually one chance",
                 # "e.g. grids, particles",
@@ -9668,7 +9623,7 @@ IOR
                 # "e.g. when the §Edge Split§ Modifier is applied",
                 # "e.g. when using it as §path§...",
                 # "e.g. with 100 particles in the §target system§, and an *Amount* value of ``0.1``, it can generate either up to 15 or 5 instances, instead of the 10 expected",
-                "i.e. as if both object's origins were at the same place",
+                # "i.e. as if both object's origins were at the same place",
                 # "object's origins",
                 # "i.e. behaving like polylines",
             ]

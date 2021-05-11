@@ -4,9 +4,9 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Reimplementing the notations for sentence structure controlling variables, using ${order_number/mode1/mode2...} instead of the simple $$$/mode, or $$1 before. This will allow greater, and more accurate controls of how each conditions affects the result of text fragment selection.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added the case-insensitivity to the getSentStructPattern in nocasedict.py, so the comparisons will not stop because of the case differences between dictionary entries and the input text fragments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
@@ -330,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620735890068</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Corrected the wrong index usage ibn the getInitialListOfTextsToBeTranslated, dict_sl_smode_list must use 'from_index' instead.">
+      <created>1620738077774</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1620738077774</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -361,34 +368,36 @@
     <MESSAGE value="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern." />
     <MESSAGE value="First stage getting the ordered variables $$1 $$2 etc.. working" />
     <MESSAGE value="Reimplementing the notations for sentence structure controlling variables, using ${order_number/mode1/mode2...} instead of the simple $$$/mode, or $$1 before. This will allow greater, and more accurate controls of how each conditions affects the result of text fragment selection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reimplementing the notations for sentence structure controlling variables, using ${order_number/mode1/mode2...} instead of the simple $$$/mode, or $$1 before. This will allow greater, and more accurate controls of how each conditions affects the result of text fragment selection." />
+    <MESSAGE value="Corrected the wrong index usage ibn the getInitialListOfTextsToBeTranslated, dict_sl_smode_list must use 'from_index' instead." />
+    <MESSAGE value="Added the case-insensitivity to the getSentStructPattern in nocasedict.py, so the comparisons will not stop because of the case differences between dictionary entries and the input text fragments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the case-insensitivity to the getSentStructPattern in nocasedict.py, so the comparisons will not stop because of the case differences between dictionary entries and the input text fragments." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9428</line>
+          <line>9383</line>
           <option name="timeStamp" value="1789" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9385</line>
+          <line>9340</line>
           <option name="timeStamp" value="1868" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>432</line>
+          <line>430</line>
           <option name="timeStamp" value="1933" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9125</line>
+          <line>9080</line>
           <option name="timeStamp" value="1971" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9123</line>
+          <line>9078</line>
           <option name="timeStamp" value="1972" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -398,7 +407,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9587</line>
+          <line>9542</line>
           <option name="timeStamp" value="1984" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
