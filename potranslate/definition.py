@@ -176,6 +176,7 @@ class Definitions:
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.4
     SENT_STRUCT_START_SYMB = '${'
+    SENT_STRUCT_POSITION_PRIORITY_WEIGHT = 15
 
     regular_var = r'(\$\{([^\{\}]+)?\})'
     REGULAR_VAR_PAT = re.compile(regular_var)

@@ -9,6 +9,7 @@ class SentStructModeRecord:
 
 class SentStructMode(Enum):
     ANY = re.compile(r'^.*$', re.I)
+    POSITION_PRIORITY = re.compile(r'^pp$', re.I)
     ORDERED_GROUP = re.compile(r'^\d+$', re.I)
     NO_PUNCTUATION = re.compile(r'^np$', re.I)
     MAX_UPTO = re.compile(r'^mx$', re.I)

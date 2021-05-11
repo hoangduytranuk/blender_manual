@@ -9625,7 +9625,7 @@ IOR
                 # "e.g. with 100 particles in the §target system§, and an *Amount* value of ``0.1``, it can generate either up to 15 or 5 instances, instead of the 10 expected",
                 # "i.e. as if both object's origins were at the same place",
                 # "object's origins",
-                "i.e. behaving like polylines",
+                "i.e. between the two §light gray§ lines",
             ]
 
         else:

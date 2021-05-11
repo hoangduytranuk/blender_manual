@@ -131,6 +131,12 @@ class NoCaseDict(OrderedDict):
                         is_ok_list.append(True)
                         continue
 
+                    is_position_priority = (structure_mode == SMODE.POSITION_PRIORITY)
+                    if is_position_priority:
+                        smode_rec.extra_param = df.SENT_STRUCT_POSITION_PRIORITY_WEIGHT
+                        is_ok_list.append(True)
+                        continue
+
                     is_ordered = (structure_mode == SMODE.ORDERED_GROUP)
                     if is_ordered:
                         is_ok_list.append(True)

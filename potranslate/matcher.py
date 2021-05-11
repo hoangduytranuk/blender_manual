@@ -1,7 +1,7 @@
 import re
 from collections import OrderedDict
 from enum import Enum
-from reftype import TranslationState, RefType, SentStructMode
+from reftype import TranslationState, RefType, SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 import inspect as INP
 
 class MatcherRecordType(Enum):
@@ -233,6 +233,40 @@ class MatcherRecord(OrderedDict):
     def getSubEntriesAsList(self):
         l = list(self.items())
         return l
+
+    def hasMode(self, mode_looking_for: SMODE, is_include_location=False):
+        list_modes = self.getListOfModes()
+        sent_struct_mode_record: SMODEREC = None
+        is_found = False
+        for smode_loc, sent_struct_mode_record_list in list_modes:
+            for sent_struct_mode_record in sent_struct_mode_record_list:
+                is_found = (sent_struct_mode_record.smode == mode_looking_for)
+                if not is_found:
+                    continue
+
+                loc = (smode_loc if is_include_location else None)
+                entry = (is_found, loc)
+                return entry
+
+        loc = (smode_loc if is_include_location else None)
+        entry = (is_found, loc)
+        return entry
+
+    def getListOfModes(self):
+        list_of_modes = []
+        smode_dict: OrderedDict = None
+        try:
+            smode_dict = self.smode
+            for smode_loc, value in smode_dict.items():
+                (pat_txt, sent_struct_mode_record) = value
+                if not sent_struct_mode_record:
+                    continue
+
+                entry = (smode_loc, sent_struct_mode_record)
+                list_of_modes.append(entry)
+        except Exception as e:
+            pass
+        return list_of_modes
 
     def setComponent(self, comp_index, sub_index=None, new_value=None):
         l = self.getSubEntriesAsList()
