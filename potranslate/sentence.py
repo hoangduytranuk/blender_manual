@@ -183,7 +183,7 @@ class StructRecogniser():
                 #           DECONSTRUCTIVE
                 untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
                 dict_tl_pat_txt, dict_tl_smode_item = dict_tl_smode_list[to_index]
-                dict_sl_pat_txt, dict_sl_smode_item = dict_sl_smode_list[to_index]
+                dict_sl_pat_txt, dict_sl_smode_item = dict_sl_smode_list[from_index]
                 tl_mode_rec:SMODEREC = dict_tl_smode_item[0]
                 sl_mode_rec:SMODEREC = dict_sl_smode_item[0]
 
