@@ -1,5 +1,12 @@
 from enum import Enum
 import re
+
+class SentStructModeRecord:
+    def __init__(self, smode_txt=None, smode=None, extra_param=None):
+        self.smode_txt: str = smode_txt
+        self.smode: SentStructModeRecord = smode
+        self.extra_param = extra_param
+
 class SentStructMode(Enum):
     ANY = re.compile(r'^.*$', re.I)
     ORDERED_GROUP = re.compile(r'^\d+$', re.I)

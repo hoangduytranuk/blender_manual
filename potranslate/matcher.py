@@ -22,7 +22,7 @@ class MatcherRecord(OrderedDict):
         self.__type = None
         self.__translation = None
         self.__translation_state = TranslationState.UNTRANSLATED
-        self.__sentence_structure_mode = SentStructMode.ANY
+        self.__sentence_structure_mode: dict = None
         self.__order_list = None
 
         actual_s = (matcher_record.start() if matcher_record else s)
@@ -255,7 +255,11 @@ class MatcherRecord(OrderedDict):
         try:
             loc, txt = l[comp_index]
             ll = [loc, txt]
-            return ll[sub_index]
+            has_sub_index = not (sub_index is None)
+            if has_sub_index:
+                return ll[sub_index]
+            else:
+                return ll
         except Exception as e:
             return None
 

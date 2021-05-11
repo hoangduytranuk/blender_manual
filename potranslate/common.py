@@ -12,7 +12,7 @@ from matcher import MatcherRecord
 from err import ErrorMessages as ER
 import re
 from definition import Definitions as df
-from reftype import SentStructMode as SMODE
+from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 from pprint import pprint as pp
 import inspect as INP
 
@@ -1358,42 +1358,6 @@ class Common:
         rev_remain = OrderedDict(reversed_remain)
         return rev_remain
 
-    def splitExpVar(item, k):
-        i_list = item.split(df.SENT_STRUCT_SYMB)
-
-        i_left = i_list[0]
-        i_right = i_list[1]
-        i_left_len = len(i_left)
-        i_right_len = len(i_right)
-
-        i_left_list = i_right_list = []
-        if i_left:
-            i_left_list = i_left.split()
-
-        if i_right:
-            i_right_list = i_right.split()
-
-        i_left_word_count = len(i_left_list)
-        i_right_word_count = len(i_right_list)
-        i_exp_word_count_total = (i_left_word_count + i_right_word_count)
-
-        k_length = len(k)
-        k_word_list = df.SPACES.split(k)
-        k_word_count = len(k_word_list)
-
-        is_less_than_expected = (k_word_count < i_exp_word_count_total)
-        if is_less_than_expected:
-            return i_left, i_right, None, None
-
-        k_left = k_right = ""
-        if i_left_word_count:
-            k_left = ' '.join(k_word_list[:i_left_word_count])
-
-        if i_right_word_count:
-            k_right = ' '.join(k_word_list[i_right_word_count:])
-
-        return i_left, i_right, k_left, k_right
-
     def getListOfVariations(txt):
         list_var = []
         for i in range(len(txt), 0, -1):
@@ -1706,29 +1670,12 @@ class Common:
         list_of_words.sort()
         return list_of_words
 
-    def formPatternForAny(list_of_words: list):
-        pat = ""
-        # (?<=\S)\s+$
-        for loc, txt in list_of_words:
-            is_any = (df.SENT_STRUCT_SYMB in txt)
-            # txt = (f'\s?(.*\S)\s?' if is_any else f'{txt}')
-            txt = (f'\s?(.*)\s?' if is_any else f'{txt}')
-            pat += txt
-
-        pattern_txt = r'^%s$' % (pat)
-        return pattern_txt
-
     def formPattern(list_of_words: list):
         pat = ""
         # (?<=\S)\s+$
         txt: str = None
         for loc, txt in list_of_words:
-            is_any = (df.SENT_STRUCT_SYMB in txt)
-            # var_order_digit = txt[2:]
-            # has_var_order = (var_order_digit.isdigit())
-            # if has_var_order:
-            #     txt = (f'\s?(\S+)\s?' if is_any else f'({txt})')
-            # else:
+            is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
             txt = (f'\s?(.*)\s?' if is_any else f'({txt})')
             pat += txt
         pattern_txt = r'^%s$' % (pat)
@@ -1737,44 +1684,55 @@ class Common:
     def creatSentRecogniserPatternRecordPair(key, value):
         recog_pattern = Common.creatSentRecogniserPattern(key)
         record_mm, record_txt_list = Common.createSentRecogniserRecord(value)
-        return {recog_pattern: (key, value, record_mm, record_txt_list)}
-
-    def createSentRecogniserAnyPattern(key):
-        the_txt_word_list = Common.patStructToListOfWords(key)
-        recog_any_pattern = Common.formPatternForAny(the_txt_word_list)
-        return recog_any_pattern
+        return {recog_pattern: (key, record_mm, record_txt_list)}
 
     def creatSentRecogniserPattern(key):
         the_txt_word_list = Common.patStructToListOfWords(key)
         recog_pattern = Common.formPattern(the_txt_word_list)
         return recog_pattern
 
-    def getStructureModeFromTheMatcher(matcher: re.Match):
-        mode = SMODE.ANY
-        groups = list(matcher.groups())
-        group_len = len(groups)
+    def getStructureModeFromTheMatcher(element_txt):
+        mm_rec: MatcherRecord = None
+        smode_list=[]
+        try:
+            mode_flag_components = [x for x in element_txt.split('/') if x]
+            for mode_txt in mode_flag_components:
+                extra_param = 0
+                mode = SMODE.getName(mode_txt)
+                is_any = (mode == SMODE.ANY)
+                is_order = (mode == SMODE.ORDERED_GROUP)
+                if is_any:
+                    is_max_up_to = df.MAX_VAR_PAT.search(mode_txt)
+                    if is_max_up_to:
+                        mode = SMODE.MAX_UPTO
+                        extra_param = int(is_max_up_to.group(2))
+                elif is_order:
+                    extra_param = int(mode_txt)
+                # mode_entry = (mode, extra_param)
+                mode_entry = SMODEREC(smode_txt=mode_txt, smode=mode, extra_param=extra_param)
+                smode_list.append(mode_entry)
+        except Exception as e:
+            pass
+        return smode_list
 
-        has_mode = (group_len > 2)
-        if has_mode:
-            mode_initiator = groups[2]
-            mode = SMODE.getName(mode_initiator)
-        return mode
-
-    def createSentRecogniserRecord(the_value):
-        is_tuple = isinstance(the_value, tuple)
-        if is_tuple:
-            (the_txt, matcher) = the_value
-        else:
-            the_txt = the_value
-
-        mode = SMODE.ANY
+    def createSentRecogniserRecord(the_txt):
+        mode_list = [SMODE.ANY]
         the_txt_word_list = Common.patStructToListOfWords(the_txt)
-        if is_tuple:
-            mode = Common.getStructureModeFromTheMatcher(matcher)
-
+        the_smode_dict = OrderedDict()
+        for txt_loc, txt in the_txt_word_list:
+            match = df.SENT_STRUCT_PAT.search(txt)
+            if match:
+                matched_group = [x for x in match.groups() if x]
+                item_count = len(matched_group)
+                item_index = max(0, item_count-1)
+                pat_txt = matched_group[item_index]
+                mode_and_param_list = Common.getStructureModeFromTheMatcher(pat_txt)
+            else:
+                mode_and_param_list = None
+            entry= {txt_loc: (txt, mode_and_param_list)}
+            the_smode_dict.update(entry)
         mm = MatcherRecord(txt=the_txt)
-        mm.smode = mode
-
+        mm.smode = the_smode_dict
         mm.initUsingList(the_txt_word_list)
         return mm, the_txt_word_list
 

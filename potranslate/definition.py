@@ -175,18 +175,18 @@ class Definitions:
     FUZZY_RATIO_INCREMENT = 5
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.4
-    SENT_STRUCT_SYMB = '$$'
+    SENT_STRUCT_START_SYMB = '${'
 
-    ordered_var = r'(\${2}(\d+))'
-    ORDERED_VAR_PAT = re.compile(ordered_var)
-
-    regular_var = r'(\${3}(\w+))'
+    regular_var = r'(\$\{([^\{\}]+)?\})'
     REGULAR_VAR_PAT = re.compile(regular_var)
 
-    extra_mode = r'(\/\w+)*'
+    max_var_pat_txt = r'(MX(\d+))'
+    MAX_VAR_PAT = re.compile(max_var_pat_txt)
+
+    extra_mode = r'(\/([^\/]+))*'
     VAR_EXTRA_MODE = re.compile(extra_mode)
 
-    sent_struct_pat_txt = r'(%s|%s)%s' % (ordered_var, regular_var, extra_mode)
+    sent_struct_pat_txt = r'%s' % (regular_var)
     # SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?(\/\w+)*)')
     SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
 

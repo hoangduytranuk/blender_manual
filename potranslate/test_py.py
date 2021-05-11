@@ -8240,19 +8240,6 @@ IOR
         else:
             return 1, None, None, None, None
 
-    def test_loc_remain(self):
-        item = 'take up $$$'
-        k = 'taking up courage'
-
-        item = 'this is the $$$'
-        item = 'this is the'
-        k = 'This is the command you will always use when building the docs'
-        is_matched, i_left, i_right, k_left, k_right = self.compareExpressContruct(item, k)
-        print(f'is_matched:[{is_matched}], i_left:[{i_left}], i_right:[{i_right}], k_left:[{k_left}], k_right:[{k_right}]')
-        # ratio = fuzz.ratio(item, k)
-        # print(f'item:[{item}], k:[{k}], ratio:[{ratio}]')
-
-
 
     def plistToText(self):
         home = self.getHome()
@@ -9535,11 +9522,29 @@ IOR
         # m = p.search(t)
         # print(m)
 
-        t = 'frame in cache'
-        basic_conjunctions = r'\b(for|and|nor|of|in|out|but|or|yet|so)\b'
-        BASIC_CONJUNCTS = re.compile(basic_conjunctions)
-        m = BASIC_CONJUNCTS.search(t)
-        print(m)
+        # t = 'frame in cache'
+        # basic_conjunctions = r'\b(for|and|nor|of|in|out|but|or|yet|so)\b'
+        # BASIC_CONJUNCTS = re.compile(basic_conjunctions)
+        # m = BASIC_CONJUNCTS.search(t)
+        # print(m)
+
+        ordered_var = r'(\${2}(\d+))'
+        ORDERED_VAR_PAT = re.compile(ordered_var)
+
+        regular_var = r'(\${3}(\w+))'
+        REGULAR_VAR_PAT = re.compile(regular_var)
+
+        extra_mode = r'(\/(\w+))*'
+        VAR_EXTRA_MODE = re.compile(extra_mode)
+
+        sent_struct_pat_txt = r'(%s|%s)%s' % (ordered_var, regular_var, extra_mode)
+        # SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?(\/\w+)*)')
+        SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
+
+        dict_entry = {"$$1/NP/NC/MX3's $$2": "$$2 của $$1",}
+        sl_txt = "object's origins"
+
+
 
     def test_sorted_list(self):
         ls=[]
@@ -9663,8 +9668,8 @@ IOR
                 # "e.g. when the §Edge Split§ Modifier is applied",
                 # "e.g. when using it as §path§...",
                 # "e.g. with 100 particles in the §target system§, and an *Amount* value of ``0.1``, it can generate either up to 15 or 5 instances, instead of the 10 expected",
-                # "i.e. as if both object's origins were at the same place",
-                "object's origins",
+                "i.e. as if both object's origins were at the same place",
+                # "object's origins",
             ]
 
         else:

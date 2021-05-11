@@ -4,7 +4,7 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="First stage getting the ordered variables $$1 $$2 etc.. working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
@@ -13,10 +13,8 @@
       <change beforePath="$PROJECT_DIR$/reftype.py" beforeDir="false" afterPath="$PROJECT_DIR$/reftype.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620505868649</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="First stage getting the ordered variables $$1 $$2 etc.. working">
+      <created>1620610556210</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1620610556210</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,125 +356,96 @@
     <MESSAGE value="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes" />
     <MESSAGE value="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well." />
     <MESSAGE value="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern." />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern." />
+    <MESSAGE value="First stage getting the ordered variables $$1 $$2 etc.. working" />
+    <option name="LAST_COMMIT_MESSAGE" value="First stage getting the ordered variables $$1 $$2 etc.. working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9543</line>
+          <line>9428</line>
           <option name="timeStamp" value="1789" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9518</line>
+          <line>9385</line>
           <option name="timeStamp" value="1868" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>519</line>
+          <line>432</line>
           <option name="timeStamp" value="1933" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>507</line>
-          <option name="timeStamp" value="1943" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9265</line>
+          <line>9125</line>
           <option name="timeStamp" value="1971" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9263</line>
+          <line>9123</line>
           <option name="timeStamp" value="1972" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1006</line>
+          <line>1062</line>
           <option name="timeStamp" value="1982" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9684</line>
+          <line>9587</line>
           <option name="timeStamp" value="1984" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>198</line>
+          <line>245</line>
           <option name="timeStamp" value="1988" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>175</line>
+          <line>222</line>
           <option name="timeStamp" value="2002" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/ignore.py</url>
-          <line>89</line>
+          <line>93</line>
           <option name="timeStamp" value="2035" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>449</line>
-          <option name="timeStamp" value="2062" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>515</line>
+          <line>593</line>
           <option name="timeStamp" value="2066" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>404</line>
-          <option name="timeStamp" value="2067" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>156</line>
-          <option name="timeStamp" value="2080" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>1095</line>
-          <option name="timeStamp" value="2118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>238</line>
-          <option name="timeStamp" value="2160" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
           <line>254</line>
-          <option name="timeStamp" value="2195" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>217</line>
           <option name="timeStamp" value="2260" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>376</line>
-          <option name="timeStamp" value="2266" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>315</line>
+          <line>352</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>263</line>
-          <option name="timeStamp" value="2269" />
+          <line>304</line>
+          <option name="timeStamp" value="2345" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>261</line>
-          <option name="timeStamp" value="2270" />
+          <line>223</line>
+          <option name="timeStamp" value="2351" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>221</line>
+          <option name="timeStamp" value="2352" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>214</line>
+          <option name="timeStamp" value="2365" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

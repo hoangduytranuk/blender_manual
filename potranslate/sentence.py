@@ -9,6 +9,7 @@ import inspect as INP
 from nocasedict import NoCaseDict as NDIC
 from ignore import Ignore as ig
 import operator as OP
+from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 
 class StructRecogniser():
     '''
@@ -32,11 +33,19 @@ class StructRecogniser():
         like reflist, for instance.
     '''
     def __init__(self, root_loc=None,
-                 dict_sl_txt=None,
-                 dict_tl_value=None,
-                 tran_sl_txt=None,
                  recog_pattern=None,
+
+                 dict_sl_txt=None,
+                 dict_sl_word_list=None,
+                 dict_sl_rec=None,
+
+                 dict_tl_txt=None,
+                 dict_tl_word_list=None,
                  dict_tl_rec=None,
+
+                 tran_sl_txt = None,
+                 tran_tl_txt = None,
+
                  translation_engine=None,
                  processed_dict=None,
                  glob_sr=None
@@ -44,27 +53,26 @@ class StructRecogniser():
         self.is_sent_struct=False
         # key in dictionary, in the form 'chang\\w+ $$$ to $$$'
         self.dict_sl_txt: str = dict_sl_txt
+        self.dict_sl_rec: MatcherRecord = dict_sl_rec
+        self.dict_sl_wordlist = dict_sl_word_list
+
+        self.dict_tl_rec: MatcherRecord = dict_tl_rec
+        self.dict_tl_wordlist = dict_tl_word_list
 
         # translation of key in dictionary, in the form 'đổi  $$$ sang thành $$$'
         self.dict_tl_txt: str = None
-        if dict_tl_value:
-            (dict_tl_txt, re_match_pattern) = dict_tl_value
-            self.dict_tl_txt: str = u'%s' % (dict_tl_txt)
+        if dict_tl_txt:
+            self.dict_tl_txt = u'%s' % (dict_tl_txt)
 
         # text in found in source language which matched the sentence structure pattern
-        self.tran_sl_txt: str = None
-        if tran_sl_txt:
-            self.tran_sl_txt = tran_sl_txt
-
+        self.tran_sl_txt: str = tran_sl_txt
         # text that is the result of structure translation
-        self.tran_tl_txt: str = None
+        self.tran_tl_txt: str = tran_tl_txt
 
         # pattern to recognise the sentence structure in the source language text, which will use
         # the preset translation
         self.recog_pattern: re.Pattern = recog_pattern
 
-        self.dict_sl_rec: MatcherRecord = None
-        self.dict_tl_rec: MatcherRecord = dict_tl_rec
         self.sent_sl_rec: MatcherRecord = None
         self.sent_tl_rec: MatcherRecord = None
         self.tf = translation_engine
@@ -92,19 +100,19 @@ class StructRecogniser():
     def setupRecords(self):
         dict_tl_list = None
         try:
-            self.dict_sl_rec, dict_sl_list = cm.createSentRecogniserRecord(self.dict_sl_txt)
+            if not self.dict_sl_rec:
+                self.dict_sl_rec, self.dict_sl_wordlist = cm.createSentRecogniserRecord(self.dict_sl_txt)
 
             if not self.recog_pattern:
-                self.recog_pattern = self.formPattern(dict_sl_list)
+                self.recog_pattern = self.formPattern(self.dict_sl_wordlist)
 
             if not self.dict_tl_rec:
                 self.dict_tl_rec, dict_tl_list = cm.createSentRecogniserRecord(self.dict_tl_txt)
 
-            if not dict_tl_list:
-                dict_tl_list = self.dict_tl_rec.getSubEntriesAsList()
+            if not self.dict_tl_wordlist:
+                self.dict_tl_wordlist = self.dict_tl_rec.getSubEntriesAsList()
 
-            sent_tl_list = CP.deepcopy(dict_tl_list)
-
+            sent_tl_list = CP.deepcopy(self.dict_tl_wordlist)
             self.sent_tl_rec = CP.copy(self.dict_tl_rec)
 
             self.sent_tl_rec.clear()
@@ -116,8 +124,6 @@ class StructRecogniser():
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
-
-        print('')
 
     def setupSentSLRecord(self):
         sl_rec: MatcherRecord = None
@@ -144,30 +150,28 @@ class StructRecogniser():
             eventually
         '''
 
-        def getListOfAnythingPosition(mm_record: MatcherRecord):
+        def getListOfAnythingPosition(word_list):
             '''
                 Find list of indexes where $$$ is mentioned in the parsed external text
             '''
-            post=[]
+            index_list=[]
             try:
-                mm_record_word_list = mm_record.getSubEntriesAsList()
-                for index, entry in enumerate(mm_record_word_list):
-                    (loc, txt) = entry
-                    is_filler = (df.SENT_STRUCT_PAT.search(txt) is not None)
+                for index, (txt_loc, txt) in enumerate(word_list):
+                    is_filler = (txt.startswith(df.SENT_STRUCT_START_SYMB))
                     if not is_filler:
                         continue
 
-                    post.append(index)
+                    index_list.append(index)
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
                 dd(f'{fname} {e}')
 
-                # print(f'getListOfTextNeededToTranslate(); mm_record:[{mm_record}]; ERROR:[{e}]')
-            return post
+            return index_list
 
         def getInitialListOfTextsToBeTranslated():
             # to target index of $$$ in the dictionary target language, where $$$ was
-            dict_sl_list = self.dict_sl_rec.getSubEntriesAsList()
+            dict_sl_smode_list = list(self.dict_sl_rec.smode.values())
+            dict_tl_smode_list = list(self.dict_tl_rec.smode.values())
             order_queue = {}
             for index, from_index in enumerate(dict_sl_any_index_list):
                 to_index = dict_tl_any_index_list[index]
@@ -178,18 +182,20 @@ class StructRecogniser():
                 #           the structure from CONSTRUCTIVE
                 #           DECONSTRUCTIVE
                 untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
-                any_tl_loc, any_tl_pattern_txt = sent_tl_list[to_index]
-                any_sl_loc, any_sl_pattern_txt = dict_sl_list[from_index]
+                dict_tl_pat_txt, dict_tl_smode_item = dict_tl_smode_list[to_index]
+                dict_sl_pat_txt, dict_sl_smode_item = dict_sl_smode_list[to_index]
+                tl_mode_rec:SMODEREC = dict_tl_smode_item[0]
+                sl_mode_rec:SMODEREC = dict_sl_smode_item[0]
 
-                is_sl_order = df.ORDERED_VAR_PAT.search(any_sl_pattern_txt)
-                is_tl_order = df.ORDERED_VAR_PAT.search(any_tl_pattern_txt)
+                is_sl_order = (sl_mode_rec.smode == SMODE.ORDERED_GROUP)
+                is_tl_order = (tl_mode_rec.smode == SMODE.ORDERED_GROUP)
                 is_order = (is_sl_order and is_tl_order)
                 if is_order:
-                    any_tl_pat = is_tl_order.group(1)
-                    any_sl_pat = is_sl_order.group(1)
-                    is_matching = (any_tl_pat == any_sl_pat)
+                    tl_order = tl_mode_rec.extra_param
+                    sl_order = sl_mode_rec.extra_param
+                    is_matching = (sl_order == tl_order)
                     if not is_matching:
-                        new_entry = {any_sl_pat: (untran_loc,  untran_txt)}
+                        new_entry = {sl_order: (untran_loc,  untran_txt)}
                         order_queue.update(new_entry)
                         continue
 
@@ -203,10 +209,11 @@ class StructRecogniser():
             if order_queue:
                 new_sent_tl_list=[]
                 for current_untran_loc, tl_pat_or_txt in sent_tl_list:
-                    is_order = df.ORDERED_VAR_PAT.search(tl_pat_or_txt)
+                    is_order = df.REGULAR_VAR_PAT.search(tl_pat_or_txt)
                     if is_order:
-                        order_pat = is_order.group(1)
-                        (untran_loc, untran_txt) = order_queue[order_pat]
+                        ord_group_list = is_order.groups()
+                        order = int(ord_group_list[1])
+                        (untran_loc, untran_txt) = order_queue[order]
                         entry = (untran_loc, untran_txt)
                         new_sent_tl_list.append(entry)
                     else:
@@ -284,9 +291,9 @@ class StructRecogniser():
         sent_sl_list_of_txt = None
         sent_tl_list = None
         try:
-            dict_sl_any_index_list = getListOfAnythingPosition(self.dict_sl_rec)
+            dict_sl_any_index_list = getListOfAnythingPosition(self.dict_sl_wordlist)
             # indexes of $$$ in the dictionary's target language entry in the form of [int, int...]
-            dict_tl_any_index_list = getListOfAnythingPosition(self.dict_tl_rec)
+            dict_tl_any_index_list = getListOfAnythingPosition(self.dict_tl_wordlist)
 
             # list of text in the external source language sentence, with untranslated text
             sent_sl_list_of_txt = self.sent_sl_rec.getSubEntriesAsList()
@@ -419,9 +426,9 @@ class StructRecogniser():
 
     def makeSRRecord(self, txt, root_location):
         try:
-            dict_sl_pat, (dict_sltxt, dict_tlvalue, dict_tl_mm_record, dict_tl_list) = self.getDict().getSentStructPattern(txt)
+            dict_sl_pat, (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = self.getDict().getSentStructPattern(txt)
             current_processed_list = self.processed_list.keys()
-            is_already_processed = (dict_sltxt in current_processed_list)
+            is_already_processed = (dict_sl_txt in current_processed_list)
             is_ignore = (not dict_sl_pat) or (is_already_processed)
             if is_already_processed:
                 dd(f'makeSRRecord: [{txt}] is already processed')
@@ -429,14 +436,19 @@ class StructRecogniser():
             if is_ignore:
                 return None
 
-            print(f'IS STRUCTURE:{txt} => sl:{dict_sltxt} tl:{dict_tlvalue} pat:{dict_sl_pat}')
+            print(f'IS STRUCTURE:{txt} => sl:{dict_sl_txt} tl:{dict_tl_txt} pat:{dict_sl_pat}')
             sr = self.reproduce()
             sr.__init__(root_loc=root_location,
-                        dict_sl_txt=dict_sltxt,
-                        dict_tl_value=dict_tlvalue,
+                        dict_sl_txt=dict_sl_txt,
+                        dict_sl_word_list=dict_sl_word_list,
+                        dict_sl_rec=dict_sl_mm,
+
+                        dict_tl_rec=dict_tl_mm,
+                        dict_tl_word_list=dict_tl_word_list,
+                        dict_tl_txt=dict_tl_txt,
+
                         tran_sl_txt=txt,
                         recog_pattern=dict_sl_pat,
-                        dict_tl_rec=dict_tl_mm_record,
                         translation_engine=self.tf,
                         processed_dict=self.processed_list,
                         glob_sr=self.global_sr_list

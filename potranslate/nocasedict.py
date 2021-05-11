@@ -7,6 +7,7 @@ from math import ceil
 import operator as OP
 import inspect as INP
 import re
+from reftype import SentStructModeRecord as SMODEREC
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -93,23 +94,18 @@ class NoCaseDict(OrderedDict):
             return pat.pattern
 
         # keys = list(self.keys())
-        temp_set = [(x, y) for (x, y) in self.items() if "1's $" in x]
+        temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
         temp_set.sort()
         temp_dict={}
         # for key, value in self.items():
         for key, value in temp_set:
-            # matcher = df.SENT_STRUCT_PAT.search(key)
-            # is_sentence_structure = (matcher is not None)
-            # if not is_sentence_structure:
-            #     continue
-
-            # print(f'SENT_STRUCT_PAT: {key} => {value}')
             value = self.replaceTranRef(value)
-            matcher = df.SENT_STRUCT_PAT.search(key)
-            entry = cm.creatSentRecogniserPatternRecordPair(key, (value, matcher))
+            key_pattern = cm.creatSentRecogniserPattern(key)
+            dict_sl_mm, dict_sl_word_list = cm.createSentRecogniserRecord(key)
+            dict_tl_mm, dict_tl_word_list = cm.createSentRecogniserRecord(value)
+
+            entry = {key_pattern: (key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm)}
             temp_dict.update(entry)
-        # temp_dict_list = list(temp_dict.items())
-        # temp_dict_list_sorted = list(sorted(temp_dict_list, key=tempDictKey))
         temp_dict = OrderedDict(sorted(temp_dict.items()))
         self.sentence_struct_dict = NoCaseDict(temp_dict)
 
@@ -121,8 +117,20 @@ class NoCaseDict(OrderedDict):
 
         def isMatchedStructMode(pat_matched_text_pair_list):
             is_ok_list=[]
-            for structure_mode, matched_part, pattern_condition_signature, cond_list in pat_matched_text_pair_list:
-                for structure_mode, mx_word_count in cond_list:
+            (s_mode_dict, input_txt_list) = pat_matched_text_pair_list
+            s_mode_dict_list = list(s_mode_dict.values())
+            for index, matched_part in enumerate(input_txt_list):
+                smode_item = s_mode_dict_list[index]
+                (dict_sl_txt, structure_mode_list) = smode_item
+                is_txt_only = (structure_mode_list is None)
+                if is_txt_only:
+                    continue
+
+                smode_rec: SMODEREC = None
+                for smode_rec in structure_mode_list:
+                    structure_mode = smode_rec.smode
+                    extra_param = smode_rec.extra_param
+
                     is_any = (structure_mode == SMODE.ANY)
                     if is_any:
                         is_ok_list.append(True)
@@ -148,7 +156,7 @@ class NoCaseDict(OrderedDict):
                     is_max_upto = (structure_mode == SMODE.MAX_UPTO)
                     if is_max_upto:
                         wc = cm.wordCount(matched_part)
-                        is_max_upto = (wc <= mx_word_count)
+                        is_max_upto = (wc <= extra_param)
                         is_ok_list.append(is_max_upto)
                         continue
 
@@ -188,41 +196,15 @@ class NoCaseDict(OrderedDict):
                 if not is_match:
                     continue
 
-                (dict_sl_key, dict_tl_value, dict_tl_mm_record, dict_tl_list) = value
-                any_recog_pat = cm.createSentRecogniserAnyPattern(dict_sl_key)
-                any_grp_match = re.search(any_recog_pat, key)
-                matched_txt_grp_list = list(any_grp_match.groups())
-
-                any_pattern_list = df.SENT_STRUCT_PAT.findall(dict_sl_key)
-
-                pattern_and_matched_text_pair_list = []
-                max_word_count=1
-                for index, matched_txt in enumerate(matched_txt_grp_list):
-                    sl_any_pattern_tuple = any_pattern_list[index]
-                    pat_cond_sig = sl_any_pattern_tuple[2:]
-                    filtered_pat_cond_sig = [x for x in pat_cond_sig if x]
-                    condition_list = []
-                    count=0
-                    for cond in filtered_pat_cond_sig:
-                        is_extended_condition = cond.startswith('/')
-                        if is_extended_condition:
-                            cond = cond[1:]
-                        is_maxupto = df.MAXWORD_UPTO_PAT.search(cond)
-                        if bool(is_maxupto):
-                            grp = is_maxupto.group(1)
-                            count = int(grp)
-                            mode = SMODE.MAX_UPTO
-                        else:
-                            mode = SMODE.getName(cond)
-                        condition_list.append((mode, count))
-                    entry = (mode, matched_txt, filtered_pat_cond_sig, condition_list)
-                    pattern_and_matched_text_pair_list.append(entry)
-
+                matched_text_group = matcher.groups()
+                (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
+                s_mode_list = dict_sl_mm.smode
+                pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group)
                 is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
                 if not is_accept:
                     continue
 
-                match_rate = fuzz.ratio(dict_sl_key, key)
+                match_rate = fuzz.ratio(dict_sl_txt, key)
                 entry=(match_rate, pat, value)
                 selective_match.append(entry)
 
@@ -233,7 +215,7 @@ class NoCaseDict(OrderedDict):
                 pattern = re.compile(pat)
                 return (pattern, value)
             else:
-                value = (None, None, None, None)
+                value = (None, None, None, None, None, None)
                 return (None, value)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
