@@ -4,16 +4,9 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Removed the code reporting exception in setupRecords() for obvious reason when handling text components only instead. Turn on the debugging code for the pattern selective table to allow watching what has been selected and what is on top of the table, ie, what is selected.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="First stage enabling the searching for combined words using a separator, such as a forward slash (ie. hiding/unhiding), first separate them out, second removing ending 'ing' to put back 'e', becoming hide/unhide and find them individually before combining the translations back. Moving lots of code from translation_finder.py over to nocasedict.py but will probably removed later. Too SLOW. Noted though a small change in the simpleFuzzyTranslate() - removed binary search part and compiling key_list on fly using [x for x in dict.keys() if x.startswith(k_part) and len(x.split()) &lt;= k_word_count * 1.5]. This code COULD prove to be slower. WILL need for testing and verify.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620778238594</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="First stage enabling the searching for combined words using a separator, such as a forward slash (ie. hiding/unhiding), first separate them out, second removing ending 'ing' to put back 'e', becoming hide/unhide and find them individually before combining the translations back. Moving lots of code from translation_finder.py over to nocasedict.py but will probably removed later. Too SLOW. Noted though a small change in the simpleFuzzyTranslate() - removed binary search part and compiling key_list on fly using [x for x in dict.keys() if x.startswith(k_part) and len(x.split()) &lt;= k_word_count * 1.5]. This code COULD prove to be slower. WILL need for testing and verify.">
+      <created>1620845517084</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1620845517084</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -397,7 +397,8 @@
     <MESSAGE value="Simplify the code for loading dictionary. Ensure that a lower key set is embedded within the NoCaseDict, allowing the fuzzy translation to search for a smaller set accurately, plus inserted the NO-CASE flag for recog_pattern, allowing the splitting of input text accucrately, using recog_pattern." />
     <MESSAGE value="Thinking about the possibility of a new param in sent-structure, position priority, giving the control about the fuzzy weight with regards to the position of param in the sentence. Not yet clear the direction of implementation, so temporary pausing. Enable local_keys sorted after loading the Dictionary." />
     <MESSAGE value="Removed the code reporting exception in setupRecords() for obvious reason when handling text components only instead. Turn on the debugging code for the pattern selective table to allow watching what has been selected and what is on top of the table, ie, what is selected." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed the code reporting exception in setupRecords() for obvious reason when handling text components only instead. Turn on the debugging code for the pattern selective table to allow watching what has been selected and what is on top of the table, ie, what is selected." />
+    <MESSAGE value="First stage enabling the searching for combined words using a separator, such as a forward slash (ie. hiding/unhiding), first separate them out, second removing ending 'ing' to put back 'e', becoming hide/unhide and find them individually before combining the translations back. Moving lots of code from translation_finder.py over to nocasedict.py but will probably removed later. Too SLOW. Noted though a small change in the simpleFuzzyTranslate() - removed binary search part and compiling key_list on fly using [x for x in dict.keys() if x.startswith(k_part) and len(x.split()) &lt;= k_word_count * 1.5]. This code COULD prove to be slower. WILL need for testing and verify." />
+    <option name="LAST_COMMIT_MESSAGE" value="First stage enabling the searching for combined words using a separator, such as a forward slash (ie. hiding/unhiding), first separate them out, second removing ending 'ing' to put back 'e', becoming hide/unhide and find them individually before combining the translations back. Moving lots of code from translation_finder.py over to nocasedict.py but will probably removed later. Too SLOW. Noted though a small change in the simpleFuzzyTranslate() - removed binary search part and compiling key_list on fly using [x for x in dict.keys() if x.startswith(k_part) and len(x.split()) &lt;= k_word_count * 1.5]. This code COULD prove to be slower. WILL need for testing and verify." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -414,7 +415,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>464</line>
+          <line>479</line>
           <option name="timeStamp" value="1933" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -469,48 +470,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>557</line>
-          <option name="timeStamp" value="2427" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>555</line>
-          <option name="timeStamp" value="2439" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>562</line>
-          <option name="timeStamp" value="2440" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>800</line>
+          <line>835</line>
           <option name="timeStamp" value="2448" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>811</line>
+          <line>846</line>
           <option name="timeStamp" value="2449" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>797</line>
+          <line>832</line>
           <option name="timeStamp" value="2450" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>551</line>
-          <option name="timeStamp" value="2451" />
+          <line>631</line>
+          <option name="timeStamp" value="2466" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>528</line>
-          <option name="timeStamp" value="2452" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>588</line>
-          <option name="timeStamp" value="2456" />
+          <line>623</line>
+          <option name="timeStamp" value="2467" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

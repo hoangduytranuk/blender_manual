@@ -53,6 +53,7 @@ class NoCaseDict(OrderedDict):
         self.fuzzy_exp_var_chosen_record = None
         self.global_text_match = {}
         self.local_cache = {}
+        self.local_keylist_cache = {}
         self.local_cache_timer = -1
         self.local_cache_timer_started = False
         self.sentence_struct_dict = {}
@@ -375,6 +376,14 @@ class NoCaseDict(OrderedDict):
             else:
                 return found_list
 
+        def isKeyListTextValid(x):
+            is_same = (k == x.lower())
+            is_starts_with_k_part  = (x.startswith(k_part))
+            is_word_len_acceptable = (len(x.split()) <= k_word_count * 1.5)
+            key_len = len(x)
+            is_total_len_acceptable = (0.5 <= key_len <= k_length * 1.5)
+            return is_same or (is_starts_with_k_part and is_word_len_acceptable and is_total_len_acceptable)
+
         untran_word_dic = {}
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
@@ -404,7 +413,13 @@ class NoCaseDict(OrderedDict):
         max_k_length = int(first_word_len * 0.5)
         k_part = first_word[:max_k_length]
 
-        key_list = [x for x in self.local_keys if x.startswith(k_part) and len(x.split()) <= k_word_count * 1.5]
+        # key_list = [x for x in self.local_keys if x.startswith(k_part)]
+        is_cached = (k in self.local_keylist_cache)
+        if is_cached:
+            key_list = self.local_keylist_cache[k]
+        else:
+            key_list = list(filter(isKeyListTextValid, self.local_keys))
+            self.local_keylist_cache.update({k: key_list})
         pp(key_list)
 
         subset = key_list
@@ -539,32 +554,44 @@ class NoCaseDict(OrderedDict):
         return None, None
 
     def getTranBySlittingSymbols(self, txt):
-        word_list_dict, has_splitted_words = cm.splitWordAt(df.NON_SPACE_SYMBOLS, txt)
-        if not has_splitted_words:
-            return None
-
-        collect_list = []
-        try:
-            for word_loc, word_mm in word_list_dict.items():
-                word = word_mm.txt
-                tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
-                if not tran:
-                    chopped_txt, tran = self.findByChangeSuffix(word)
+        def findTran(word_list):
+            collect_list = []
+            try:
+                for word_loc, word_mm in word_list.items():
+                    word = word_mm.txt
+                    tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
                     if not tran:
-                        continue
-                entry = (word_loc, tran)
-                collect_list.append(entry)
-        except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
-        if not collect_list:
-            return None
+                        chopped_txt, tran = self.findByChangeSuffix(word)
+                        if not tran:
+                            continue
+                    entry = (word_loc, tran)
+                    collect_list.append(entry)
+            except Exception as e:
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname} {e}')
 
-        translation = str(txt)
-        collect_list.sort(reverse=True)
-        for loc, tran in collect_list:
-            translation = cm.jointText(translation, tran, loc)
-        return translation
+            if not collect_list:
+                return None
+
+            translation = str(txt)
+            collect_list.sort(reverse=True)
+            for loc, tran in collect_list:
+                translation = cm.jointText(translation, tran, loc)
+            return translation
+
+        pattern_list = [
+            df.NON_SPACE_SYMBOLS,
+            df.SYMBOLS,
+        ]
+        for pat in pattern_list:
+            word_list_dict, has_splitted_words = cm.splitWordAt(pat, txt)
+            if not word_list_dict:
+                continue
+
+            tran = findTran(word_list_dict)
+            if tran:
+                return tran
+        return None
 
     def blindTranslate(self, txt):
         dd(f'blindTranslate() : [{txt}]')
@@ -572,6 +599,14 @@ class NoCaseDict(OrderedDict):
         obs = LocationObserver(txt)
         resolved_list=[]
         for local_loc, local_txt in txt_map:
+            is_done = obs.isCompletelyUsed()
+            if is_done:
+                break
+
+            is_used = obs.isLocUsed(local_loc)
+            if is_used:
+                continue
+
             tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(local_txt)
             if not tran:
                 tran = self.getTranBySlittingSymbols(local_txt)
