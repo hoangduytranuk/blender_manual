@@ -211,6 +211,9 @@ class NoCaseDict(OrderedDict):
 
             if selective_match:
                 selective_match.sort(reverse=True)
+                dd('-' * 80)
+                pp(selective_match)
+                dd('-' * 80)
                 first_entry = selective_match[0]
                 (match_rate, pat, value) = first_entry
                 pattern = re.compile(pat, flags=re.I)

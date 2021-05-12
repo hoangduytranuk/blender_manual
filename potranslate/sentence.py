@@ -118,9 +118,8 @@ class StructRecogniser():
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
-
+            # fname = INP.currentframe().f_code.co_name
+            # dd(f'{fname} {e}')
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()

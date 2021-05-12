@@ -4,14 +4,11 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Simplify the code for loading dictionary. Ensure that a lower key set is embedded within the NoCaseDict, allowing the fuzzy translation to search for a smaller set accurately, plus inserted the NO-CASE flag for recog_pattern, allowing the splitting of input text accucrately, using recog_pattern.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Thinking about the possibility of a new param in sent-structure, position priority, giving the control about the fuzzy weight with regards to the position of param in the sentence. Not yet clear the direction of implementation, so temporary pausing. Enable local_keys sorted after loading the Dictionary.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reftype.py" beforeDir="false" afterPath="$PROJECT_DIR$/reftype.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -348,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620753265807</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Thinking about the possibility of a new param in sent-structure, position priority, giving the control about the fuzzy weight with regards to the position of param in the sentence. Not yet clear the direction of implementation, so temporary pausing. Enable local_keys sorted after loading the Dictionary.">
+      <created>1620768594414</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620768594414</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -382,7 +386,8 @@
     <MESSAGE value="Corrected the wrong index usage ibn the getInitialListOfTextsToBeTranslated, dict_sl_smode_list must use 'from_index' instead." />
     <MESSAGE value="Added the case-insensitivity to the getSentStructPattern in nocasedict.py, so the comparisons will not stop because of the case differences between dictionary entries and the input text fragments." />
     <MESSAGE value="Simplify the code for loading dictionary. Ensure that a lower key set is embedded within the NoCaseDict, allowing the fuzzy translation to search for a smaller set accurately, plus inserted the NO-CASE flag for recog_pattern, allowing the splitting of input text accucrately, using recog_pattern." />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplify the code for loading dictionary. Ensure that a lower key set is embedded within the NoCaseDict, allowing the fuzzy translation to search for a smaller set accurately, plus inserted the NO-CASE flag for recog_pattern, allowing the splitting of input text accucrately, using recog_pattern." />
+    <MESSAGE value="Thinking about the possibility of a new param in sent-structure, position priority, giving the control about the fuzzy weight with regards to the position of param in the sentence. Not yet clear the direction of implementation, so temporary pausing. Enable local_keys sorted after loading the Dictionary." />
+    <option name="LAST_COMMIT_MESSAGE" value="Thinking about the possibility of a new param in sent-structure, position priority, giving the control about the fuzzy weight with regards to the position of param in the sentence. Not yet clear the direction of implementation, so temporary pausing. Enable local_keys sorted after loading the Dictionary." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -399,7 +404,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>433</line>
+          <line>436</line>
           <option name="timeStamp" value="1933" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -439,12 +444,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>595</line>
+          <line>594</line>
           <option name="timeStamp" value="2066" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>354</line>
+          <line>353</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -454,23 +459,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>356</line>
+          <line>359</line>
           <option name="timeStamp" value="2392" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>359</line>
+          <line>362</line>
           <option name="timeStamp" value="2393" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>211</line>
-          <option name="timeStamp" value="2408" />
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>416</line>
+          <option name="timeStamp" value="2417" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>207</line>
-          <option name="timeStamp" value="2415" />
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>422</line>
+          <option name="timeStamp" value="2419" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>
