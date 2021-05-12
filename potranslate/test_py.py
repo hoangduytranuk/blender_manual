@@ -9626,7 +9626,8 @@ IOR
                 # "i.e. as if both object's origins were at the same place",
                 # "object's origins",
                 # "i.e. first child and parent",
-                "then you must first use the environment you have created",
+                # "i.e. from more complex to simpler",
+                "i.e. hiding/unhiding in one mode affects the other mode too",
             ]
 
         else:

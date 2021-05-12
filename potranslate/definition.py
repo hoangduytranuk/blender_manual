@@ -521,6 +521,7 @@ class Definitions:
     CHARACTERS = re.compile(r'\w+')
     WORD_SEP = re.compile(r'[^\W]+')
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
+    NON_SPACE_SYMBOLS = re.compile(r'[^\s\w\d]+')
     SYMBOLS = re.compile(r'[\W]+')
     SPACES = re.compile(r'\s+')
     START_SPACES = re.compile(r'^\s+')
@@ -1120,7 +1121,7 @@ class Definitions:
         r"^\s*(jpg|png|int)\s*$",
         r"^\s*(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)\s*$",
         r"^\s*(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))\s*$",
-        r"^\s*(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2|Arctan2|sRGB)\s*$",
+        r"^\s*(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2|Arctan2)\s*$",
         r"^\s*(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)\s*$",
         r"^\s*Alembic([\s\W|abc]+)\s*$",
         r"^\s*(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)\s*$",
@@ -1150,10 +1151,7 @@ class Definitions:
         r"^\s*(\%\d+[\w]?)\s*$", # %14s
         r"^\s*(\%[d](x%[d])?)\s*$", # %dx%d
         r"^\s*\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
-        r"^\s*(RGB\, HSV\, YUV\, YCbCr|RIFF|RONIN|Ryan Inch|Return)\s*$",
-        r'^(\,\s)?(RGB[A]?)(\s(byte))?$',
-        r'^(RGB[A]?)[\s]?(byte)?$',
-        r'^(RGB[A]?)\([^\)]+\)$',
+        r"^\s*(RONIN|Ryan Inch|Return)\s*$",
         r"^\s*(RK4|RRT|Redhat\/Fedora|RLE)\s*$",
         r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)\s*$",
         r"^\s*(Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",

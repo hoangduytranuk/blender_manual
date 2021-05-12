@@ -1643,6 +1643,18 @@ class Common:
         new_str = left + tran + right
         return new_str
 
+    def splitWordAt(pattern: str, txt: str):
+        is_char = isinstance(pattern, str)
+        is_pat = isinstance(pattern, re.Pattern)
+        try:
+            pat = (re.compile(pattern) if is_char else pattern)
+            txt_dict = Common.findInvert(pat, txt)
+            return txt_dict, (len(txt_dict) > 1)
+        except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+        return ({}, False)
+
     def wordCount(txt):
         try:
             l = txt.split()
