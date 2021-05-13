@@ -107,6 +107,7 @@ class NoCaseDict(OrderedDict):
 
         temp_dict={}
         temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
+        # temp_set = [(x, y) for (x, y) in self.items() if '${`' in x]
         for key, value in temp_set:
             value = self.replaceTranRef(value)
             key_pattern = cm.creatSentRecogniserPattern(key)
@@ -140,6 +141,12 @@ class NoCaseDict(OrderedDict):
 
                     is_any = (structure_mode == SMODE.ANY)
                     if is_any:
+                        is_ok_list.append(True)
+                        continue
+
+                    is_pattern = (structure_mode == SMODE.PATTERN)
+                    if is_pattern:
+                        # the pattern embedded already matched, before gets to this point
                         is_ok_list.append(True)
                         continue
 

@@ -1704,8 +1704,19 @@ class Common:
         # (?<=\S)\s+$
         txt: str = None
         for loc, txt in list_of_words:
+            emb_pat = None
             is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
-            txt = (f'\s?(.*)\s?' if is_any else f'({txt})')
+            if is_any:
+                txt = r'(\s?(.*)\s?)'
+
+                embedded = df.SENT_EMBEDDED_PAT.search(txt)
+                is_embedded = (embedded is not None)
+                if is_embedded:
+                    emb_pat_txt = embedded.group(1)
+                    emb_pat = r'\s?(%s)\s?' % (emb_pat_txt)
+                    txt = emb_pat
+            else:
+                txt = r'({%s})' % (txt)
             pat += txt
         pattern_txt = r'^%s$' % (pat)
         return pattern_txt

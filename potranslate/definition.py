@@ -177,6 +177,8 @@ class Definitions:
     FUZZY_KEY_LENGTH_RATIO = 0.4
     SENT_STRUCT_START_SYMB = '${'
     SENT_STRUCT_POSITION_PRIORITY_WEIGHT = 15
+    SENT_EMBEDDED_PAT=re.compile(r'\$\{\`([^`]+)\`\}')
+    SENT_EMBEDDED_PAT_RECOGNISER=re.compile(r'\`([^`]+)\`')
 
     regular_var = r'(\$\{([^\{\}]+)?\})'
     REGULAR_VAR_PAT = re.compile(regular_var)
