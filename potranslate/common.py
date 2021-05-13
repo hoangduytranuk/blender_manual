@@ -414,10 +414,11 @@ class Common:
                 dict_entry = {loc: match_record}
                 return_dict.update(dict_entry)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
-            dd(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
-            raise e
+            pass
+            # fname = INP.currentframe().f_code.co_name
+            # dd(f'{fname} {e}')
+            # dd(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
+            # raise e
         return return_dict
 
 
@@ -1654,6 +1655,22 @@ class Common:
             fname = INP.currentframe().f_code.co_name
             dd(f'{fname} {e}')
         return ({}, False)
+
+    def splitWordAtToList(pattern: str, txt: str):
+        is_char = isinstance(pattern, str)
+        is_pat = isinstance(pattern, re.Pattern)
+        word_list=[]
+        try:
+            pat = (re.compile(pattern) if is_char else pattern)
+            txt_dict = Common.findInvert(pat, txt)
+            for loc, word_mm in txt_dict.items():
+                entry=(loc, word_mm.txt)
+                word_list.append(entry)
+            return word_list
+        except Exception as e:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname} {e}')
+        return word_list
 
     def wordCount(txt):
         try:

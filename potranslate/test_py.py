@@ -9627,7 +9627,8 @@ IOR
                 # "object's origins",
                 # "i.e. first child and parent",
                 # "i.e. from more complex to simpler",
-                "i.e. hiding/unhiding in one mode affects the other mode too",
+                # "i.e. §hiding/unhiding§ in one mode affects the other §mode§ too",
+                "i.e. if you make a parallelepiped out of a cube by modifying its dimensions in *Object Mode*, you will still have a cube-shaped bone...",
             ]
 
         else:

@@ -543,7 +543,7 @@ class Definitions:
     ending_punct = r'(\w[\,\.!]+$)'
     ENDING_WITH_PUNCT = re.compile(ending_punct)
 
-    basic_conjunctions = r'\b(for|and|nor|in|out|but|or|yet|so)\b'
+    basic_conjunctions = r'\b(for|and|nor|in|by|out|but|or|yet|so)\b'
     BASIC_CONJUNCTS = re.compile(basic_conjunctions)
 
     MAXWORD_UPTO_PAT = re.compile(r'^mx(\d+)$')

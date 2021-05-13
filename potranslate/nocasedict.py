@@ -7,6 +7,7 @@ from math import ceil
 import operator as OP
 import inspect as INP
 import re
+import time
 from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 
 # class CaseInsensitiveDict(dict):
@@ -376,13 +377,52 @@ class NoCaseDict(OrderedDict):
             else:
                 return found_list
 
-        def isKeyListTextValid(x):
-            is_same = (k == x.lower())
-            is_starts_with_k_part  = (x.startswith(k_part))
-            is_word_len_acceptable = (len(x.split()) <= k_word_count * 1.5)
-            key_len = len(x)
+        def isKeyListTextValid(dict_item):
+            is_same = (k == dict_item.lower())
+            is_starts_with_k_part  = (dict_item.startswith(k_part))
+            is_word_len_acceptable = (len(dict_item.split()) <= k_word_count * 1.5)
+            key_len = len(dict_item)
             is_total_len_acceptable = (0.5 <= key_len <= k_length * 1.5)
             return is_same or (is_starts_with_k_part and is_word_len_acceptable and is_total_len_acceptable)
+
+        def binSearchFunction(item):
+            return item[:max_k_length]
+
+        def simpleKeyListGetting():
+            def findInRange(start_index, end_index, step):
+                local_found=[]
+                for i in range(start_index, end_index, step):
+                    dict_item = dict_keys[i]
+                    is_found = isKeyListTextValid(dict_item)
+                    if is_found:
+                        local_found.append(dict_item)
+                    else:
+                        dict_part = binSearchFunction(dict_item)
+                        is_match = (dict_part == k_part)
+                        if not is_match:
+                            break
+                        else:
+                            continue
+                return local_found
+
+            found_list=[]
+            dict_keys = self.local_keys
+            index = cm.binarySearch(dict_keys, k, key=binSearchFunction)
+            is_found = (index >= 0)
+            if not is_found:
+                return found_list
+
+            before_items = dict_keys[index-10: index]
+            after_items = dict_keys[index: index+10]
+            test_item = dict_keys[index]
+            dict_key_len = len(dict_keys)
+
+            start_stop_at=None
+            found_before = findInRange(index, 0, -1)
+            found_after = findInRange(index+1, dict_key_len, 1)
+            found_list.extend(found_before)
+            found_list.extend(found_after)
+            return found_list
 
         untran_word_dic = {}
         left, k, right = cm.getTextWithin(msg)
@@ -410,7 +450,10 @@ class NoCaseDict(OrderedDict):
 
         first_word = k_word_list[0]
         first_word_len = len(first_word)
-        max_k_length = int(first_word_len * 0.5)
+        if is_k_single_word:
+            max_k_length = int(first_word_len * 0.5)
+        else:
+            max_k_length = int(first_word_len * 0.8)
         k_part = first_word[:max_k_length]
 
         # key_list = [x for x in self.local_keys if x.startswith(k_part)]
@@ -418,9 +461,13 @@ class NoCaseDict(OrderedDict):
         if is_cached:
             key_list = self.local_keylist_cache[k]
         else:
-            key_list = list(filter(isKeyListTextValid, self.local_keys))
+            tic = time.perf_counter()
+            # key_list = list(filter(isKeyListTextValid, self.local_keys))
+            key_list = simpleKeyListGetting()
+            tok = time.perf_counter()
+            taken = (tok - tic)
             self.local_keylist_cache.update({k: key_list})
-        pp(key_list)
+        # pp(key_list)
 
         subset = key_list
 
@@ -475,6 +522,9 @@ class NoCaseDict(OrderedDict):
                 fname = INP.currentframe().f_code.co_name
                 dd(f'{fname} Unable to locate translation for {msg}')
                 translation = None
+
+        if translation:
+            translation = self.replaceTranRef(translation)
 
         return translation, selected_item, matched_ratio, untran_word_dic
 
@@ -554,44 +604,84 @@ class NoCaseDict(OrderedDict):
         return None, None
 
     def getTranBySlittingSymbols(self, txt):
-        def findTran(word_list):
-            collect_list = []
+        def findTran(txt):
+            ft_map = cm.genmap(txt)
+            ft_obs = LocationObserver(txt)
             try:
-                for word_loc, word_mm in word_list.items():
-                    word = word_mm.txt
-                    tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
-                    if not tran:
-                        chopped_txt, tran = self.findByChangeSuffix(word)
-                        if not tran:
-                            continue
-                    entry = (word_loc, tran)
-                    collect_list.append(entry)
+                ft_translated_list = []
+                ft_translation = str(txt)
+                for ft_loc, ft_word in ft_map:
+                    if ft_obs.isCompletelyUsed():
+                        break
+
+                    if ft_obs.isLocUsed(ft_loc):
+                        continue
+
+                    ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
+                    if ft_tran:
+                        ft_obs.markLocAsUsed(ft_loc)
+                        entry=(ft_loc, ft_tran)
+                        ft_translated_list.append(entry)
+                    else:
+                        chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
+                        if ft_tran:
+                            ft_obs.markLocAsUsed(ft_loc)
+                            entry=(ft_loc, ft_tran)
+                            ft_translated_list.append(entry)
+
+                ft_translated_list.sort(reverse=True)
+                for ft_loc, ft_tran in ft_translated_list:
+                    translation = cm.jointText(ft_translation, ft_tran, ft_loc)
+
+                is_translated = not (ft_translation == txt)
+                return_tran = (ft_translation if is_translated else None)
+                un_tran_list = ft_obs.getUnmarkedPartsAsDict()
+
+                fname = INP.currentframe().f_code.co_name
+                dd(f'{fname}: [{txt}]=>[{ft_translation}]')
+                return return_tran, un_tran_list
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
                 dd(f'{fname} {e}')
+            return None, ft_obs.getUnmarkedPartsAsDict()
 
-            if not collect_list:
-                return None
-
-            translation = str(txt)
-            collect_list.sort(reverse=True)
-            for loc, tran in collect_list:
-                translation = cm.jointText(translation, tran, loc)
-            return translation
+        def isAllSingleWords(word_list):
+            for loc, txt in word_list:
+                wc = len(txt.split())
+                is_single = (wc == 1)
+                if not is_single:
+                    return False
+            return True
 
         pattern_list = [
-            df.NON_SPACE_SYMBOLS,
             df.SYMBOLS,
+            df.NON_SPACE_SYMBOLS,
         ]
+        translation = str(txt)
+        translated_list = []
         for pat in pattern_list:
-            word_list_dict, has_splitted_words = cm.splitWordAt(pat, txt)
-            if not word_list_dict:
+            word_list = cm.splitWordAtToList(pat, txt)
+            if not word_list:
                 continue
 
-            tran = findTran(word_list_dict)
-            if tran:
-                return tran
-        return None
+            for loc, txt in word_list:
+                tran, untran_dict = findTran(txt)
+                is_translated = (tran != txt)
+                if is_translated:
+                    entry = (loc, tran)
+                    translated_list.append(entry)
+
+        translated_list.sort(reverse=True)
+        for loc, tran in translated_list:
+            translation = cm.jointText(translation, tran, loc)
+
+        is_translated = (translation != txt)
+        if is_translated:
+            fname = INP.currentframe().f_code.co_name
+            dd(f'{fname}: [{txt}]=>[{translation}]')
+            return translation
+        else:
+            return None
 
     def blindTranslate(self, txt):
         dd(f'blindTranslate() : [{txt}]')

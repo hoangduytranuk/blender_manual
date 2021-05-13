@@ -406,7 +406,7 @@ class StructRecogniser():
 
     def makeNonSRRecord(self, txt, root_location):
         sr = self.reproduce()
-        print(f'IS TEXT:{txt} => {txt}')
+        print(f'IS TEXT:[{txt}]')
         current_processed_list = self.processed_list.keys()
         is_ignore = (txt in current_processed_list)
         if is_ignore:
@@ -437,7 +437,7 @@ class StructRecogniser():
             if is_ignore:
                 return None
 
-            print(f'IS STRUCTURE:{txt} => sl:{dict_sl_txt} tl:{dict_tl_txt} pat:{dict_sl_pat}')
+            print(f'IS STRUCTURE:[{txt}] => sl:[{dict_sl_txt}] tl:[{dict_tl_txt}] pat:[{dict_sl_pat}]')
             sr = self.reproduce()
             sr.__init__(root_loc=root_location,
                         dict_sl_txt=dict_sl_txt,
@@ -456,7 +456,7 @@ class StructRecogniser():
                         )
             sr.setupRecords()
             need_tran = sr.getTextListTobeTranslated()
-            print(f'needed tran:[{need_tran}]')
+            print(f'needed tran:{need_tran}')
             self.global_sr_list.update({sr.tran_sl_txt: sr})
             return sr
         except Exception as e:
