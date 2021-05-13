@@ -4,13 +4,12 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Improved the caching of key_list, so next search won't need to find it again, improving the search time. Corrected the problem in blindTranslte() which text placement messed up due to obs is not being used, leading to previous text being overwritten.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -375,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620851808411</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()">
+      <created>1620921074864</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620921074864</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -413,7 +419,8 @@
     <MESSAGE value="Removed the code reporting exception in setupRecords() for obvious reason when handling text components only instead. Turn on the debugging code for the pattern selective table to allow watching what has been selected and what is on top of the table, ie, what is selected." />
     <MESSAGE value="First stage enabling the searching for combined words using a separator, such as a forward slash (ie. hiding/unhiding), first separate them out, second removing ending 'ing' to put back 'e', becoming hide/unhide and find them individually before combining the translations back. Moving lots of code from translation_finder.py over to nocasedict.py but will probably removed later. Too SLOW. Noted though a small change in the simpleFuzzyTranslate() - removed binary search part and compiling key_list on fly using [x for x in dict.keys() if x.startswith(k_part) and len(x.split()) &lt;= k_word_count * 1.5]. This code COULD prove to be slower. WILL need for testing and verify." />
     <MESSAGE value="Improved the caching of key_list, so next search won't need to find it again, improving the search time. Corrected the problem in blindTranslte() which text placement messed up due to obs is not being used, leading to previous text being overwritten." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved the caching of key_list, so next search won't need to find it again, improving the search time. Corrected the problem in blindTranslte() which text placement messed up due to obs is not being used, leading to previous text being overwritten." />
+    <MESSAGE value="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -470,58 +477,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>594</line>
+          <line>591</line>
           <option name="timeStamp" value="2066" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>353</line>
+          <line>350</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>909</line>
+          <line>911</line>
           <option name="timeStamp" value="2385" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>925</line>
-          <option name="timeStamp" value="2448" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>936</line>
-          <option name="timeStamp" value="2449" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>922</line>
-          <option name="timeStamp" value="2450" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>721</line>
-          <option name="timeStamp" value="2503" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>724</line>
-          <option name="timeStamp" value="2504" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>713</line>
-          <option name="timeStamp" value="2509" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>705</line>
-          <option name="timeStamp" value="2512" />
+          <url>file://$PROJECT_DIR$/translation_finder.py</url>
+          <line>337</line>
+          <option name="timeStamp" value="2520" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
           <line>660</line>
-          <option name="timeStamp" value="2518" />
+          <option name="timeStamp" value="2525" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>664</line>
+          <option name="timeStamp" value="2526" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/translation_finder.py</url>
+          <line>966</line>
+          <option name="timeStamp" value="2537" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

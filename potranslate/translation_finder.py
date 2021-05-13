@@ -327,15 +327,15 @@ class TranslationFinder:
                 if tran_word_text:
                     tran_sub_text = tran_sub_text.lower().replace(un_tran_word, tran_word_text)
 
-        has_translation = bool(tran_sub_text)
         fuzzy_len = (len(fuzzy_text) if fuzzy_text else 0)
-        if has_translation:
+        fname = INP.currentframe().f_code.co_name
+        if tran_sub_text:
             search_dict.addCache(msg, tran_sub_text)
-            dd(f'tryFuzzyTranlation: found: [{tran_sub_text}], matching_ratio:[{matching_ratio}]')
+            dd(f'{fname} msg:[{msg}] tran_sub_text:[{tran_sub_text}] [{matching_ratio}]')
             return tran_sub_text, fuzzy_len, matching_ratio
         else:
             search_dict.addCache(msg, False)
-            # dd(f'tryFuzzyTranlation: UNABLE TO FIND: [{msg}]')
+            dd(f'{fname} UNABLE TO FIND msg:[{msg}]')
             return None, fuzzy_len, 0
 
     def fillBlank(self, ss, ee, blanker):
@@ -388,21 +388,23 @@ class TranslationFinder:
         return local_translated_dict, untran_dict
 
     def blindTranslation(self, msg):
-        # dd(f'blindTranslation() msg:[{msg}]')
-        # new_text, trans, cover_length = self.findByReduction(msg)
-        # is_found_trans = (trans and not trans == msg)
-        # if is_found_trans:
-        #     return trans
-
-        local_translated_dict, local_untranslated_dic = self.buildLocalTranslationDict(msg)
-
-        # use the translated (longest first) to replace all combination,
-        # translate by reduction for ones could not, to form the final translation for the variation
-        # translated_dic will be sorted in length by default.
-        # using safe translation length and unsafe translation length to sort so one with both highest values
-        # are floated on top once sorted. Pick the one at the top list, ignore the rest
-        translation = self.replacingUsingDic(local_translated_dict, local_untranslated_dic, msg)
-        return translation
+        tran = self.getDict().blindTranslate(msg)
+        return tran
+        # # dd(f'blindTranslation() msg:[{msg}]')
+        # # new_text, trans, cover_length = self.findByReduction(msg)
+        # # is_found_trans = (trans and not trans == msg)
+        # # if is_found_trans:
+        # #     return trans
+        #
+        # local_translated_dict, local_untranslated_dic = self.buildLocalTranslationDict(msg)
+        #
+        # # use the translated (longest first) to replace all combination,
+        # # translate by reduction for ones could not, to form the final translation for the variation
+        # # translated_dic will be sorted in length by default.
+        # # using safe translation length and unsafe translation length to sort so one with both highest values
+        # # are floated on top once sorted. Pick the one at the top list, ignore the rest
+        # translation = self.replacingUsingDic(local_translated_dict, local_untranslated_dic, msg)
+        # return translation
 
     def addDictEntry(self, msg_list, is_master=False):
         if not msg_list:
@@ -962,7 +964,7 @@ class TranslationFinder:
         else:
             tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
             if not tran:
-                tran, untran_word_dic = search_dict.blindTranslate(msg)
+                tran = search_dict.blindTranslate(msg)
 
         if tran:
             tran = search_dict.replaceTranRef(tran)
@@ -970,7 +972,6 @@ class TranslationFinder:
             cm.debugging(msg)
             dd(f'isInDictFuzzy: [{msg}] => [{tran}]')
         else:
-
             tran = None
         return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 

@@ -136,9 +136,6 @@ class StructRecogniser():
             sl_rec.update(interested_part)
             self.sent_sl_rec = sl_rec
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
-
             if bool(self.tran_sl_txt):
                 self.sent_sl_rec = MatcherRecord(txt=self.tran_sl_txt)
                 self.sent_tl_rec = MatcherRecord(txt=self.tran_sl_txt)

@@ -603,69 +603,72 @@ class NoCaseDict(OrderedDict):
                 return clipped_txt, tran
         return None, None
 
-    def getTranBySlittingSymbols(self, txt):
-        def findTran(txt):
-            ft_map = cm.genmap(txt)
-            ft_obs = LocationObserver(txt)
-            try:
-                ft_translated_list = []
-                ft_translation = str(txt)
-                for ft_loc, ft_word in ft_map:
-                    if ft_obs.isCompletelyUsed():
-                        break
+    def tranByPartitioning(self, sl_txt):
+        fname = INP.currentframe().f_code.co_name
+        ft_map = cm.genmap(sl_txt)
+        ft_obs = LocationObserver(sl_txt)
+        try:
+            ft_translated_list = []
+            ft_translation = str(sl_txt)
+            for ft_loc, ft_word in ft_map:
+                if ft_obs.isCompletelyUsed():
+                    break
 
-                    if ft_obs.isLocUsed(ft_loc):
+                if ft_obs.isLocUsed(ft_loc):
+                    continue
+
+                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
+                if ft_tran:
+                    ft_obs.markLocAsUsed(ft_loc)
+                    entry=(ft_loc, ft_tran)
+                    ft_translated_list.append(entry)
+                else:
+                    wc = len(ft_word.split())
+                    is_single_word = (wc == 1)
+                    if not is_single_word:
                         continue
 
-                    ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
+                    chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
                     if ft_tran:
                         ft_obs.markLocAsUsed(ft_loc)
                         entry=(ft_loc, ft_tran)
                         ft_translated_list.append(entry)
-                    else:
-                        chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
-                        if ft_tran:
-                            ft_obs.markLocAsUsed(ft_loc)
-                            entry=(ft_loc, ft_tran)
-                            ft_translated_list.append(entry)
 
-                ft_translated_list.sort(reverse=True)
-                for ft_loc, ft_tran in ft_translated_list:
-                    translation = cm.jointText(ft_translation, ft_tran, ft_loc)
+            ft_translated_list.sort(reverse=True)
+            for ft_loc, ft_tran in ft_translated_list:
+                ft_translation = cm.jointText(ft_translation, ft_tran, ft_loc)
 
-                is_translated = not (ft_translation == txt)
-                return_tran = (ft_translation if is_translated else None)
-                un_tran_list = ft_obs.getUnmarkedPartsAsDict()
+            is_translated = (ft_translation != sl_txt)
+            return_tran = (ft_translation if is_translated else None)
+            dd(f'{fname}: [{sl_txt}]=>[{ft_translation}]')
+        except Exception as e:
+            return_tran = None
+            dd(f'{fname} {e}')
+        un_tran_list = ft_obs.getUnmarkedPartsAsDict()
+        return return_tran, un_tran_list
 
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}: [{txt}]=>[{ft_translation}]')
-                return return_tran, un_tran_list
-            except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
-            return None, ft_obs.getUnmarkedPartsAsDict()
-
-        def isAllSingleWords(word_list):
-            for loc, txt in word_list:
-                wc = len(txt.split())
-                is_single = (wc == 1)
-                if not is_single:
-                    return False
-            return True
+    def getTranBySlittingSymbols(self, input_txt):
+        fname = INP.currentframe().f_code.co_name
 
         pattern_list = [
-            df.SYMBOLS,
             df.NON_SPACE_SYMBOLS,
+            df.SYMBOLS,
         ]
-        translation = str(txt)
+        translation = str(input_txt)
         translated_list = []
+        selective_list = []
+
+        tran, untran_dict = self.tranByPartitioning(input_txt)
+        if tran:
+            return tran
+
         for pat in pattern_list:
-            word_list = cm.splitWordAtToList(pat, txt)
+            word_list = cm.splitWordAtToList(pat, input_txt)
             if not word_list:
                 continue
 
             for loc, txt in word_list:
-                tran, untran_dict = findTran(txt)
+                tran, untran_dict = self.tranByPartitioning(txt)
                 is_translated = (tran != txt)
                 if is_translated:
                     entry = (loc, tran)
@@ -675,55 +678,16 @@ class NoCaseDict(OrderedDict):
         for loc, tran in translated_list:
             translation = cm.jointText(translation, tran, loc)
 
-        is_translated = (translation != txt)
+        is_translated = (translation != input_txt)
         if is_translated:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}: [{txt}]=>[{translation}]')
+            dd(f'{fname}: input_txt:[{input_txt}]=>[{translation}]')
             return translation
         else:
             return None
 
     def blindTranslate(self, txt):
-        dd(f'blindTranslate() : [{txt}]')
-        txt_map = cm.genmap(txt)
-        obs = LocationObserver(txt)
-        resolved_list=[]
-        for local_loc, local_txt in txt_map:
-            is_done = obs.isCompletelyUsed()
-            if is_done:
-                break
-
-            is_used = obs.isLocUsed(local_loc)
-            if is_used:
-                continue
-
-            tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(local_txt)
-            if not tran:
-                tran = self.getTranBySlittingSymbols(local_txt)
-                if not tran:
-                    continue
-
-            obs.markLocAsUsed(local_loc)
-            tran = self.replaceTranRef(tran)
-            entry=(local_loc, local_txt, tran)
-            resolved_list.append(entry)
-
-        if not resolved_list:
-            return None
-
-        un_tran_dic = obs.getUnmarkedPartsAsDict()
-        translation = str(txt)
-        resolved_list.sort(reverse=True)
-        for local_loc, local_txt, tran in resolved_list:
-            translation = cm.jointText(translation, tran, local_loc)
-        is_ok = (translation != txt)
-        if is_ok:
-            dd(f'blindTranslate() [{txt}]: [{translation}]')
-            return translation, un_tran_dic
-        else:
-            dd(f'blindTranslate() FAILED TO FIND TRANSLATION FOR: [{txt}]')
-            return None, un_tran_dic
-
+        tran, untran_dict = self.tranByPartitioning(txt)
+        return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:
         new_txt, subcount = df.SYMBOLS.subn('', txt)
