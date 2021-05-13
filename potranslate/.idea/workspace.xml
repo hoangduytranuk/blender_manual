@@ -4,12 +4,11 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Introduced tranByPartitioning into nocasedict.py. This is a generic routine that can be used throughout the code.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reftype.py" beforeDir="false" afterPath="$PROJECT_DIR$/reftype.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -381,7 +380,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620921074864</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Introduced tranByPartitioning into nocasedict.py. This is a generic routine that can be used throughout the code.">
+      <created>1620930204973</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1620930204974</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -420,7 +426,8 @@
     <MESSAGE value="First stage enabling the searching for combined words using a separator, such as a forward slash (ie. hiding/unhiding), first separate them out, second removing ending 'ing' to put back 'e', becoming hide/unhide and find them individually before combining the translations back. Moving lots of code from translation_finder.py over to nocasedict.py but will probably removed later. Too SLOW. Noted though a small change in the simpleFuzzyTranslate() - removed binary search part and compiling key_list on fly using [x for x in dict.keys() if x.startswith(k_part) and len(x.split()) &lt;= k_word_count * 1.5]. This code COULD prove to be slower. WILL need for testing and verify." />
     <MESSAGE value="Improved the caching of key_list, so next search won't need to find it again, improving the search time. Corrected the problem in blindTranslte() which text placement messed up due to obs is not being used, leading to previous text being overwritten." />
     <MESSAGE value="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()" />
+    <MESSAGE value="Introduced tranByPartitioning into nocasedict.py. This is a generic routine that can be used throughout the code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduced tranByPartitioning into nocasedict.py. This is a generic routine that can be used throughout the code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -437,7 +444,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>529</line>
+          <line>535</line>
           <option name="timeStamp" value="1933" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -497,18 +504,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>660</line>
+          <line>666</line>
           <option name="timeStamp" value="2525" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>664</line>
+          <line>670</line>
           <option name="timeStamp" value="2526" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
           <line>966</line>
           <option name="timeStamp" value="2537" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>147</line>
+          <option name="timeStamp" value="2539" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

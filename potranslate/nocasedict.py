@@ -143,6 +143,12 @@ class NoCaseDict(OrderedDict):
                         is_ok_list.append(True)
                         continue
 
+                    is_digits_only = (structure_mode == SMODE.NUMBER_ONLY)
+                    if is_digits_only:
+                        is_number = (df.NUMBERS.search(matched_part) is not None)
+                        is_ok_list.append(is_number)
+                        continue
+
                     is_position_priority = (structure_mode == SMODE.POSITION_PRIORITY)
                     if is_position_priority:
                         smode_rec.extra_param = df.SENT_STRUCT_POSITION_PRIORITY_WEIGHT
