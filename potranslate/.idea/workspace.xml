@@ -4,14 +4,17 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added NUMBER_ONLY (nbr) to recognise the number only words.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added PATTERN recognition, allowing patterns to be embedded within the ANY sentence structure variables, ie. ${`(pattern_txt)`}. This allows patterns, such as 'be edited' =&gt; '${`(be|been|were|was|is|are)`} edited', extends the possibilities of using this preset in many circumstances">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ignore.py" beforeDir="false" afterPath="$PROJECT_DIR$/ignore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reftype.py" beforeDir="false" afterPath="$PROJECT_DIR$/reftype.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paragraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/paragraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -397,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620932088989</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added PATTERN recognition, allowing patterns to be embedded within the ANY setence structure variables, ie. ${`(pattern_txt)`}. This allows patterns, such as 'be edited' =&gt; '${`(be|been|were|was|is|are)`} edited', extends the possibilities of using this preset in many circumstances">
+      <created>1620945680567</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1620945680567</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -438,34 +448,30 @@
     <MESSAGE value="Turned out my original binarySearch method and array back/forthward for gathering items from the local_keys IS FAR quicker (thousand times) then the filtering method - using time.perf_counter() to work out the time-before and time-after (then subtract). Corrected also the sharing variable names within the getTranBySlittingSymbols(), in SimpleBlindTranslation()" />
     <MESSAGE value="Introduced tranByPartitioning into nocasedict.py. This is a generic routine that can be used throughout the code." />
     <MESSAGE value="Added NUMBER_ONLY (nbr) to recognise the number only words." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added NUMBER_ONLY (nbr) to recognise the number only words." />
+    <MESSAGE value="Added PATTERN recognition, allowing patterns to be embedded within the ANY setence structure variables, ie. ${`(pattern_txt)`}. This allows patterns, such as 'be edited' =&gt; '${`(be|been|were|was|is|are)`} edited', extends the possibilities of using this preset in many circumstances" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added PATTERN recognition, allowing patterns to be embedded within the ANY setence structure variables, ie. ${`(pattern_txt)`}. This allows patterns, such as 'be edited' =&gt; '${`(be|been|were|was|is|are)`} edited', extends the possibilities of using this preset in many circumstances" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9383</line>
+          <line>9325</line>
           <option name="timeStamp" value="1789" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9340</line>
+          <line>9282</line>
           <option name="timeStamp" value="1868" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>542</line>
-          <option name="timeStamp" value="1933" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9080</line>
+          <line>9022</line>
           <option name="timeStamp" value="1971" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9078</line>
+          <line>9020</line>
           <option name="timeStamp" value="1972" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -475,7 +481,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9542</line>
+          <line>9484</line>
           <option name="timeStamp" value="1984" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -495,83 +501,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>591</line>
-          <option name="timeStamp" value="2066" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>350</line>
+          <line>375</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>911</line>
+          <line>817</line>
           <option name="timeStamp" value="2385" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>337</line>
+          <line>283</line>
           <option name="timeStamp" value="2520" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>673</line>
-          <option name="timeStamp" value="2525" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>677</line>
-          <option name="timeStamp" value="2526" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>154</line>
-          <option name="timeStamp" value="2539" />
+          <line>492</line>
+          <option name="timeStamp" value="2629" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>302</line>
-          <option name="timeStamp" value="2565" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>301</line>
-          <option name="timeStamp" value="2566" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>129</line>
-          <option name="timeStamp" value="2567" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>181</line>
-          <option name="timeStamp" value="2568" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>174</line>
-          <option name="timeStamp" value="2569" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>249</line>
-          <option name="timeStamp" value="2572" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>228</line>
-          <option name="timeStamp" value="2574" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>136</line>
-          <option name="timeStamp" value="2575" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>225</line>
-          <option name="timeStamp" value="2576" />
+          <line>514</line>
+          <option name="timeStamp" value="2633" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

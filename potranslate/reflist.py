@@ -172,7 +172,7 @@ class RefList(defaultdict):
                     setReftypeAndUsingSubTextLocation(local_found_dict)
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 dd(pat)
                 dd(find_txt)
                 dd(ref)
@@ -192,7 +192,7 @@ class RefList(defaultdict):
             local_obs.markLocListAsUsed( found_dict.keys() )
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'{msg}: [{found_dict}];')
             raise e
 
@@ -221,7 +221,7 @@ class RefList(defaultdict):
 
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 dd(loc, mm)
                 raise e
 
@@ -235,10 +235,12 @@ class RefList(defaultdict):
             p, ref_type = item
             self.findOnePattern(obs, obs.blank, p, ref_type)
         self.validateFoundEntries()
-        dd('List of refs found:')
-        dd('-' * 80)
-        pp(self)
-        dd('-' * 80)
+
+        if len(self):
+            dd('List of refs found:')
+            dd('-' * 80)
+            pp(self)
+            dd('-' * 80)
         return count_item, obs.getUnmarkedPartsAsDict()
 
     def addUnparsedDict(self, unparsed_dict: dict):
@@ -281,12 +283,13 @@ class RefList(defaultdict):
         local_msg = str(self.msg)
         count, unparsed_dict = self.findPattern(df.pattern_list, local_msg)
         self.addUnparsedDict(unparsed_dict)
-        dd('Finishing parseMessage:')
-        dd('-' * 80)
-        for loc, mm_rec in self.items():
-            dd(f'{loc}')
-            dd(f'{mm_rec.txt}')
+        if len(self):
+            dd('Finishing parseMessage:')
             dd('-' * 80)
+            for loc, mm_rec in self.items():
+                dd(f'{loc}')
+                dd(f'{mm_rec.txt}')
+                dd('-' * 80)
 
 
     def translateMatcherRecord(self, mm: MatcherRecord):
@@ -339,7 +342,7 @@ class RefList(defaultdict):
             # mm.setTranlation(mm_tran, is_fuzzy, is_ignore)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             print(f'ref_item:{mm}, ref_type:{ref_type}')
 
     def translate(self):

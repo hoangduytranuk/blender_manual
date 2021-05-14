@@ -55,6 +55,9 @@ class NoCaseDict(OrderedDict):
         self.global_text_match = {}
         self.local_cache = {}
         self.local_keylist_cache = {}
+        self.local_text_and_chosen_sent_struct_list = {}
+        self.local_pattern_and_value_for_sent_struct_list = {}
+
         self.local_cache_timer = -1
         self.local_cache_timer_started = False
         self.sentence_struct_dict = {}
@@ -93,20 +96,22 @@ class NoCaseDict(OrderedDict):
         key = Key(key)
         try:
             value = super(NoCaseDict, self).__getitem__(key)
-            dd(f'__getitem__:[{key}], value:[{value}]')
+            # dd(f'__getitem__:[{key}], value:[{value}]')
             return value
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             return None
 
     def createSentenceStructureDict(self):
-        def tempDictKey(item):
-            (pat, val) = item
-            return pat.pattern
+        def isSentStruct(item):
+            (k, v) = item
+            is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
+            return is_sent_struct
 
         temp_dict={}
-        temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
+        temp_set = list(filter(isSentStruct, self.items()))
+        # temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
         # temp_set = [(x, y) for (x, y) in self.items() if '${`' in x]
         for key, value in temp_set:
             value = self.replaceTranRef(value)
@@ -195,32 +200,32 @@ class NoCaseDict(OrderedDict):
             ok = (False not in is_ok_list)
             return ok
 
-        def getListOfPossibleKeys():
-            selective_match=[]
-            for pat, value in self.sentence_struct_dict.items():
-                pattern_txt = pat.pattern
-                rat = fuzz.ratio(pattern_txt, key)
-                possible_entry = (rat, (pat, value))
-                selective_match.append(possible_entry)
-            selective_match.sort(reverse=True)
-            if selective_match:
-                rat, pat, value = selective_match[0]
-                if pat.search(key):
-                    return (pat, value)
-                else:
-                    return (None, None)
-            else:
-                return (None, None)
+        def filterKeyChosenSet(pat_item):
+            match = re.compile(pat_item, flags=re.I).search(key)
+            is_found = (match is not None )
+            return is_found
 
         try:
-            selective_match = []
-            list_of_sent_struct = list(self.sentence_struct_dict.items())
-            for pat, value in list_of_sent_struct:
-                matcher = re.search(pat, key, flags=re.I)
+            klower = key.lower()
+            has_cached_key_value_set = (klower in self.local_text_and_chosen_sent_struct_list)
+            if has_cached_key_value_set:
+                set_value = self.local_text_and_chosen_sent_struct_list[klower]
+                (pat, value) = set_value
+                return (pat, value)
 
-                is_match = (matcher is not None)
-                if not is_match:
-                    continue
+            selective_match = []
+            key_list = self.sentence_struct_dict.keys()
+            # pat_list = [x for x in pat_list if 'i\\.e\\.' in x]
+            chosen_key_list = list(filter(filterKeyChosenSet, key_list))
+
+            if not chosen_key_list:
+                value = (None, None, None, None, None, None)
+                return (None, value)
+
+            # list_of_sent_struct = list(self.sentence_struct_dict.items())
+            for pat in chosen_key_list:
+                value = self.sentence_struct_dict[pat]
+                matcher = re.search(pat, key, flags=re.I)
 
                 matched_text_group = matcher.groups()
                 (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
@@ -234,21 +239,21 @@ class NoCaseDict(OrderedDict):
                 entry=(match_rate, pat, value)
                 selective_match.append(entry)
 
-            if selective_match:
-                selective_match.sort(reverse=True)
-                dd('-' * 80)
-                pp(selective_match)
-                dd('-' * 80)
-                first_entry = selective_match[0]
-                (match_rate, pat, value) = first_entry
-                pattern = re.compile(pat, flags=re.I)
-                return (pattern, value)
-            else:
-                value = (None, None, None, None, None, None)
-                return (None, value)
+            selective_match.sort(reverse=True)
+            dd('-' * 80)
+            pp(selective_match)
+            dd('-' * 80)
+            first_entry = selective_match[0]
+            (match_rate, pat, value) = first_entry
+            pattern = re.compile(pat, flags=re.I)
+
+            cached_entry = {klower: (pattern, value)}
+            self.local_text_and_chosen_sent_struct_list.update(cached_entry)
+
+            return (pattern, value)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             raise e
 
     def replaceTranRef(self, tran):
@@ -513,7 +518,7 @@ class NoCaseDict(OrderedDict):
             untran_word_dic = cm.getRemainedWord(lower_msg, new_selected)
         except Exception as e:
             # fname = INP.currentframe().f_code.co_name
-            # dd(f'{fname} {e}')
+            # dd(f'{fname}() {e}')
             dd(f'FAILED TO REPLACE: [{lower_msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
             can_accept = (matched_ratio >= acceptable_rate)
             if can_accept:
@@ -533,7 +538,7 @@ class NoCaseDict(OrderedDict):
                 untran_word_dic = cm.getRemainedWord(lower_msg, selected_item)
             else:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} Unable to locate translation for {msg}')
+                dd(f'{fname}() Unable to locate translation for {msg}')
                 translation = None
 
         if translation:
@@ -550,7 +555,7 @@ class NoCaseDict(OrderedDict):
                 self.is_dirty = True
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
         new_set = NoCaseDict()
@@ -617,11 +622,16 @@ class NoCaseDict(OrderedDict):
         return None, None
 
     def tranByPartitioning(self, sl_txt):
+        def markTranslated(txt_loc, sl_txt, tl_txt):
+            ft_obs.markLocAsUsed(txt_loc)
+            entry=(txt_loc, tl_txt)
+            ft_translated_list.append(entry)
+
         fname = INP.currentframe().f_code.co_name
         ft_map = cm.genmap(sl_txt)
         ft_obs = LocationObserver(sl_txt)
+        ft_translated_list = []
         try:
-            ft_translated_list = []
             ft_translation = str(sl_txt)
             for ft_loc, ft_word in ft_map:
                 if ft_obs.isCompletelyUsed():
@@ -630,11 +640,9 @@ class NoCaseDict(OrderedDict):
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
-                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO)
+                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate( ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO )
                 if ft_tran:
-                    ft_obs.markLocAsUsed(ft_loc)
-                    entry=(ft_loc, ft_tran)
-                    ft_translated_list.append(entry)
+                    markTranslated(ft_loc, ft_word, ft_tran)
                 else:
                     wc = len(ft_word.split())
                     is_single_word = (wc == 1)
@@ -643,9 +651,7 @@ class NoCaseDict(OrderedDict):
 
                     chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
                     if ft_tran:
-                        ft_obs.markLocAsUsed(ft_loc)
-                        entry=(ft_loc, ft_tran)
-                        ft_translated_list.append(entry)
+                        markTranslated(ft_loc, ft_word, ft_tran)
 
             ft_translated_list.sort(reverse=True)
             for ft_loc, ft_tran in ft_translated_list:
@@ -653,10 +659,11 @@ class NoCaseDict(OrderedDict):
 
             is_translated = (ft_translation != sl_txt)
             return_tran = (ft_translation if is_translated else None)
-            dd(f'{fname}: [{sl_txt}]=>[{ft_translation}]')
+
+            dd(f'{fname}() msg:[{sl_txt}] tran_sub_text:[{ft_translation}]')
         except Exception as e:
             return_tran = None
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
         un_tran_list = ft_obs.getUnmarkedPartsAsDict()
         return return_tran, un_tran_list
 
@@ -693,7 +700,7 @@ class NoCaseDict(OrderedDict):
 
         is_translated = (translation != input_txt)
         if is_translated:
-            dd(f'{fname}: input_txt:[{input_txt}]=>[{translation}]')
+            dd(f'{fname}(): input_txt:[{input_txt}]=>[{translation}]')
             return translation
         else:
             return None
@@ -993,6 +1000,6 @@ class NoCaseDict(OrderedDict):
                 return new_text, trans, cover_length
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'msg:{msg}')
             raise e

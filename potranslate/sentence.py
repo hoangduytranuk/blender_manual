@@ -119,7 +119,7 @@ class StructRecogniser():
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
@@ -141,6 +141,7 @@ class StructRecogniser():
                 self.sent_tl_rec = MatcherRecord(txt=self.tran_sl_txt)
 
     def getListOfTextsNeededToTranslate(self):
+        fname = INP.currentframe().f_code.co_name
         '''
             using the index for $$$ in the 'sent_sl_rec' to identify the text
             required (unknown) to be translated
@@ -149,6 +150,7 @@ class StructRecogniser():
         '''
 
         def getListOfAnythingPosition(word_list):
+            fname = INP.currentframe().f_code.co_name
             '''
                 Find list of indexes where $$$ is mentioned in the parsed external text
             '''
@@ -162,11 +164,13 @@ class StructRecogniser():
                     index_list.append(index)
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
 
             return index_list
 
         def getInitialListOfTextsToBeTranslated():
+            fname = INP.currentframe().f_code.co_name
+
             # to target index of $$$ in the dictionary target language, where $$$ was
             dict_sl_smode_list = list(self.dict_sl_rec.smode.values())
             dict_tl_smode_list = list(self.dict_tl_rec.smode.values())
@@ -222,6 +226,7 @@ class StructRecogniser():
                 return sent_tl_list
 
         def moveEndingPunctuationsIfNeeded(to_index):
+            fname = INP.currentframe().f_code.co_name
             try:
                 new_entry = sent_tl_list[to_index]
                 new_loc, new_txt = new_entry
@@ -246,10 +251,12 @@ class StructRecogniser():
                 return new_entry, next_entry
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 return None, None
 
         def correctTextsOffsets():
+            fname = INP.currentframe().f_code.co_name
+
             corrected_sent_tl_list=[]
             correct_sent_tl_txt_list=[]
             ls = le = 0
@@ -306,8 +313,9 @@ class StructRecogniser():
                 raise ValueError('List empty for SOME REASONS! Move to next section.')
             print('')
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
+            print(f'{fname}() {e}')
+            # if self.is_sent_struct:
+            #     exit(0)
             try:
                 main_loc = self.sent_sl_rec.getMainLoc()
                 main_txt = self.sent_sl_rec.getMainText()
@@ -316,7 +324,7 @@ class StructRecogniser():
                 text_to_translate_list.append(entry)
             except Exception as ee:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {ee}')
+                dd(f'{fname}() {ee}')
 
         return text_to_translate_list
 
@@ -326,10 +334,12 @@ class StructRecogniser():
 
     def setTlTranslation(self, trans_list: list):
         tl_txt = self.sent_tl_rec.txt
+        tl_txt_len = len(tl_txt)
         trans_list.sort(reverse=True)
         for loc, tran_txt in trans_list:
             tl_txt = cm.jointText(tl_txt, tran_txt, loc)
         self.sent_tl_rec.txt = tl_txt
+        self.sent_tl_rec.e = len(self.sent_tl_rec.txt)
         self.updateProcessed({self.sent_sl_rec.txt: self.sent_tl_rec.txt})
 
     def getTranFromProcessed(self, txt):
@@ -398,7 +408,7 @@ class StructRecogniser():
             return translated_count
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             return 0
 
     def makeNonSRRecord(self, txt, root_location):
@@ -458,7 +468,7 @@ class StructRecogniser():
             return sr
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
 
 
     def parseAndTranslateText(self, orig_loc: int, txt: str):
@@ -597,7 +607,7 @@ class StructRecogniser():
                 return None
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             return None
 
     def translateText(self, txt):
@@ -609,6 +619,6 @@ class StructRecogniser():
             return trans
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            print(f'{fname} {e}')
+            print(f'{fname}() {e}')
             return None
 

@@ -89,7 +89,7 @@ class Ignore:
             return is_ignore
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'msg:{msg}')
             raise e
 
@@ -147,7 +147,7 @@ class Ignore:
                 return False
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'text_line:[{text_line}]; pattern:[{pattern}]')
         return False
 

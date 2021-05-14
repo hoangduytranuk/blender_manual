@@ -416,7 +416,7 @@ class Common:
         except Exception as e:
             pass
             # fname = INP.currentframe().f_code.co_name
-            # dd(f'{fname} {e}')
+            # dd(f'{fname}() {e}')
             # dd(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
             # raise e
         return return_dict
@@ -592,7 +592,7 @@ class Common:
             u_case.update(l_case_remain)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd("k:", k)
             dd("v:", k)
             raise e
@@ -914,7 +914,7 @@ class Common:
                     return None
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 dd(f'Finding message: [{item}], found index:[{found_index}]')
                 raise e
 
@@ -971,7 +971,7 @@ class Common:
                     brk_list.append(entry)
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 raise e
             return brk_list
 
@@ -1030,7 +1030,7 @@ class Common:
                 return True
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 raise e
 
         def updateRecordsUsingSubLoc(dict_list, rootloc):
@@ -1182,7 +1182,7 @@ class Common:
             return loc, original_word[ss:ee]
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             raise e
 
         return (-1, -1), new_word
@@ -1653,7 +1653,7 @@ class Common:
             return txt_dict, (len(txt_dict) > 1)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
         return ({}, False)
 
     def splitWordAtToList(pattern: str, txt: str):
@@ -1669,7 +1669,7 @@ class Common:
             return word_list
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
         return word_list
 
     def wordCount(txt):
@@ -1707,7 +1707,7 @@ class Common:
             emb_pat = None
             is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
             if is_any:
-                txt = r'(\s?(.*)\s?)'
+                txt = r'\s?(.*)\s?'
 
                 embedded = df.SENT_EMBEDDED_PAT.search(txt)
                 is_embedded = (embedded is not None)
@@ -1716,7 +1716,7 @@ class Common:
                     emb_pat = r'\s?(%s)\s?' % (emb_pat_txt)
                     txt = emb_pat
             else:
-                txt = r'({%s})' % (txt)
+                txt = r'(%s)' % (txt)
             pat += txt
         pattern_txt = r'^%s$' % (pat)
         return pattern_txt
@@ -1857,7 +1857,7 @@ class Common:
                 loc_dic.update(entry)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             raise e
 
         simplifiesMatchedRecords()

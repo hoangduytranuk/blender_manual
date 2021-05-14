@@ -22,7 +22,7 @@ class Paragraph(list):
             return output
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             return None
 
     def getTranslation(self):
@@ -33,6 +33,8 @@ class Paragraph(list):
         return self.formatOutput()
 
     def translate(self):
+        fname = INP.currentframe().f_code.co_name
+
         try:
             tran = self.tf.isInDict(self.sl_txt)
             if not tran:
@@ -40,17 +42,19 @@ class Paragraph(list):
                 loc = (0, len(self.sl_txt))
                 tran = sr.parseAndTranslateText(loc, self.sl_txt)
                 if tran:
-                    tran = cm.removeTheWord(tran)
+                    # tran = cm.removeTheWord(tran)
                     cache_entry = {self.sl_txt: tran}
                     self.tf.getDict().addCacheEntry(cache_entry)
             self.tl_txt = tran
             sr: SR = None
-            for txt, sr in self.sr_global_dict.items():
-                dd('-' * 80)
-                dd(f'pattern:{sr.recog_pattern.pattern}; [{sr.dict_sl_rec.txt} => {sr.dict_tl_rec.txt}]')
-                dd(f'dict_sl_rec:{sr.sent_sl_rec.txt};')
-                dd(f'sent_tl_rec:{sr.sent_tl_rec.txt};')
-                dd(f'text_list_to_be_translated:{sr.getTextListTobeTranslated()};')
+            # for txt, sr in self.sr_global_dict.items():
+            #     dd('-' * 80)
+            #     dd(f'{fname}()')
+            #     dd(f'pattern:{sr.recog_pattern.pattern}; [{sr.dict_sl_rec.txt} => {sr.dict_tl_rec.txt}]')
+            #     dd(f'dict_sl_rec:{sr.sent_sl_rec.txt};')
+            #     dd(f'sent_tl_rec:{sr.sent_tl_rec.txt};')
+            #     dd(f':{sr.getTextListTobeTranslated()};')
+            dd(f'{fname}() from:[{self.sl_txt}]=>[{self.tl_txt}]')
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')

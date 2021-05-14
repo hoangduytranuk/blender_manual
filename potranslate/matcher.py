@@ -159,7 +159,7 @@ class MatcherRecord(OrderedDict):
             self.update(list_of_loc_and_txt)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             print(f'initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]')
             raise e
 

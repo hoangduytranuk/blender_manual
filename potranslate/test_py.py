@@ -3752,7 +3752,7 @@ def patternMatchAllAsDictNoDelay(pat, text):
                     return_dict.update(entry)
     except Exception as e:
         fname = INP.currentframe().f_code.co_name
-        dd(f'{fname} {e}')
+        dd(f'{fname}() {e}')
         dd("pattern:", pat)
         dd("text:", text)
     return return_dict
@@ -4407,7 +4407,7 @@ class test(object):
                     return True
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'text_line:[{text_line}]')
         return False
 
@@ -4438,7 +4438,7 @@ class test(object):
             return data
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'file_path:{file_path}')
             raise e
 
@@ -5696,7 +5696,7 @@ class test(object):
                         break_down.append(v)
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd("pattern:", pat)
             dd("text:", text)
         return original, break_down
@@ -8170,7 +8170,7 @@ IOR
             return list_of_places
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'original_word:{original_word}, new_word:{new_word}')
             raise e
 

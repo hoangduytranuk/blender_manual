@@ -178,7 +178,7 @@ class TranslationFinder:
                     _, tran_sub_text, covered_length = self.tryToFindTranslation(un_tran_txt)
                 except Exception as e:
                     fname = INP.currentframe().f_code.co_name
-                    dd(f'{fname} {e}')
+                    dd(f'{fname}() {e}')
                     dd(f'un_tran_txt:[{un_tran_txt}]')
                     raise e
 
@@ -202,7 +202,7 @@ class TranslationFinder:
                 translateUntranslatedList(un_tran_dict)
             except Exception as e:
                 fname = INP.currentframe().f_code.co_name
-                dd(f'{fname} {e}')
+                dd(f'{fname}() {e}')
                 raise e
 
         local_dict_list.sort(key=OP.itemgetter(0), reverse=True)    # sort by matching ratio
@@ -331,11 +331,11 @@ class TranslationFinder:
         fname = INP.currentframe().f_code.co_name
         if tran_sub_text:
             search_dict.addCache(msg, tran_sub_text)
-            dd(f'{fname} msg:[{msg}] tran_sub_text:[{tran_sub_text}] [{matching_ratio}]')
+            dd(f'{fname}() msg:[{msg}] tran_sub_text:[{tran_sub_text}] [{matching_ratio}]')
             return tran_sub_text, fuzzy_len, matching_ratio
         else:
             search_dict.addCache(msg, False)
-            dd(f'{fname} UNABLE TO FIND msg:[{msg}]')
+            dd(f'{fname}() UNABLE TO FIND msg:[{msg}]')
             return None, fuzzy_len, 0
 
     def fillBlank(self, ss, ee, blanker):
@@ -880,7 +880,7 @@ class TranslationFinder:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f"Length of read dictionary:{len(dic)}")
             raise e
 
@@ -916,7 +916,7 @@ class TranslationFinder:
             # return_dic.sentence_struct_dict = sent_struct_original_set
         except Exception as e:
             fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f"Exception occurs while performing loadJSONDic({file_path})")
             return_dic = NoCaseDict()
 
@@ -931,6 +931,8 @@ class TranslationFinder:
         return search_dict
 
     def isInDictFuzzy(self, msg, dic_to_use=None):
+        fname = INP.currentframe().f_code.co_name
+
         untran_word_dic = {}
         # cm.debugging(msg)
         matched_text = msg
@@ -967,11 +969,12 @@ class TranslationFinder:
                 tran = search_dict.blindTranslate(msg)
 
         if tran:
-            tran = search_dict.replaceTranRef(tran)
+            # tran = search_dict.replaceTranRef(tran)
             tran = cm.matchCase(msg, tran)
-            cm.debugging(msg)
-            dd(f'isInDictFuzzy: [{msg}] => [{tran}]')
+            # cm.debugging(msg)
+            dd(f'{fname}() [{msg}] => [{tran}]')
         else:
+            dd(f'{fname}() Unable to find translation for: [{msg}]')
             tran = None
         return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 
@@ -1197,41 +1200,34 @@ class TranslationFinder:
         return trans
 
     def translate(self, msg):
+        fname = INP.currentframe().f_code.co_name
+
         trans = None
         old_msg = str(msg)
         try:
-            dd(f'calling findTranslation [{msg}]')
+            dd(f'{fname}() calling findTranslation [{msg}]')
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
                 trans = None
-                # if is_tran_sent_struct:
-                #     is_ignore = False
-                #     trans = sent_struct.getNonTranslated()
-                # return (trans, False, is_ignore)
 
             if not trans:
-                dd(f'calling tryFuzzyTranlation [{msg}]')
+                dd(f'{fname}() calling tryFuzzyTranlation [{msg}]')
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg, )
                 is_fuzzy = bool(trans)
 
             if not trans:
-                dd(f'calling SimpleBlindTranslation [{msg}]')
+                dd(f'{fname}() calling SimpleBlindTranslation [{msg}]')
                 trans = self.simpleBlindTranslation(msg)
                 is_fuzzy = True
-            # if not trans:
-            #     dd(f'calling blindTranslation [{msg}]')
-            #     trans = self.blindTranslation(msg)
-            #     is_fuzzy = True
 
             if trans:
-                dd(f'calling removeTheWord [{trans}]')
+                dd(f'{fname}() calling removeTheWord [{trans}]')
                 trans = cm.removeTheWord(trans)
                 trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname} {e}')
+            dd(f'{fname}() {e}')
             dd(f'msg:[{msg}], trans:[{trans}]')
             raise e
 
