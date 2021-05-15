@@ -9628,7 +9628,7 @@ IOR
                 # "i.e. first child and parent",
                 # "i.e. from more complex to simpler",
                 # "i.e. §hiding/unhiding§ in one mode affects the other §mode§ too",
-                "i.e. it cannot be edited anymore from the Action/Graph Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
+                "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
                 # "be edited",
             ]
 

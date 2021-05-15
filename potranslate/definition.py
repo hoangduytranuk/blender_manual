@@ -394,12 +394,16 @@ class Definitions:
     GA_BACK=re.compile(r'\)[\`]+')
 
     punctuals = r'([\\\/\.\,\:\;\!\?\"\*\'\`]+)'
-    basic_punctuals = r'([\.\,\`]+)'
+    basic_punctuals = r'([\.\,]+)'
+
     PUNCTUALS = re.compile(punctuals)
     BASIC_PUNCTUALS = re.compile(basic_punctuals)
 
     begin_punctuals = r'^%s' % (punctuals)
     end_punctuals = r'%s$' % (punctuals)
+    begin_basic_punctuals = r'^%s' % (basic_punctuals)
+    end_basic_punctuals = r'%s$' % (basic_punctuals)
+
     single = r'{1}'
     punctual_single = r'(%s%s)' % (punctuals, single)
     end_punctual_single = r'%s$' % (punctual_single)
@@ -413,6 +417,10 @@ class Definitions:
     BEGIN_PUNCTUAL_SINGLE = re.compile(begin_punctual_single)
     ENDS_PUNCTUAL_MULTI = re.compile(end_punctuals)
     ENDS_PUNCTUAL_SINGLE = re.compile(end_punctual_single)
+
+    BEGIN_BASIC_PUNCTUAL = re.compile(begin_basic_punctuals)
+    END_BASIC_PUNCTUAL = re.compile(end_basic_punctuals)
+
 
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
     REF_SEP = ' -- '

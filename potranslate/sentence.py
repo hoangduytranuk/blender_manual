@@ -512,14 +512,14 @@ class StructRecogniser():
                 if is_used:
                     continue
 
-                left, mid, right = cm.getTextWithin(sr_sub_txt)
-                has_non_alphanum = (left or right)
-                if has_non_alphanum:
+                is_ended_punct = df.END_BASIC_PUNCTUAL.search(sr_sub_txt)
+                if is_ended_punct:
+                    end_punct = is_ended_punct.group(0)
                     (sr_s, sr_e) = sr_loc
-                    sr_s += len(left)
-                    sr_e -= len(right)
+                    len_of_punct = len(end_punct)
+                    sr_e -= len_of_punct
+                    sr_sub_txt = sr_sub_txt[:-len_of_punct]
                     sr_loc = (sr_s, sr_e)
-                    sr_sub_txt = mid
 
                 sr = self.makeSRRecord(sr_sub_txt, sr_loc)
                 if sr:
