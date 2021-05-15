@@ -512,6 +512,15 @@ class StructRecogniser():
                 if is_used:
                     continue
 
+                left, mid, right = cm.getTextWithin(sr_sub_txt)
+                has_non_alphanum = (left or right)
+                if has_non_alphanum:
+                    (sr_s, sr_e) = sr_loc
+                    sr_s += len(left)
+                    sr_e -= len(right)
+                    sr_loc = (sr_s, sr_e)
+                    sr_sub_txt = mid
+
                 sr = self.makeSRRecord(sr_sub_txt, sr_loc)
                 if sr:
                     entry = (sr_loc, sr)
