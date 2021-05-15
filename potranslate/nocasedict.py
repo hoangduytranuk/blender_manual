@@ -239,6 +239,10 @@ class NoCaseDict(OrderedDict):
                 entry=(match_rate, pat, value)
                 selective_match.append(entry)
 
+            if not selective_match:
+                value = (None, None, None, None, None, None)
+                return (None, value)
+
             selective_match.sort(reverse=True)
             dd('-' * 80)
             pp(selective_match)
