@@ -4,15 +4,16 @@ from re import compile
 from collections import OrderedDict
 import hashlib
 import time
-from reftype import RefType
 from collections import deque
 from fuzzywuzzy import fuzz
 from bisect import bisect_left
 from matcher import MatcherRecord
 from err import ErrorMessages as ER
 import re
-from definition import Definitions as df
-from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
+from definition import Definitions as df, \
+    SentStructMode as SMODE, \
+    SentStructModeRecord as SMODEREC, \
+    RefType
 from pprint import pprint as pp
 import inspect as INP
 
@@ -164,6 +165,10 @@ class LocationObserver(OrderedDict):
 
     def getUnmarkedPartsAsDict(self):
         untran_dict = Common.findInvert(df.FILLER_PARTS, self.blank, is_reversed=True)
+        return untran_dict
+
+    def getRawUnmarkedPartsAsDict(self):
+        untran_dict = Common.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
         return untran_dict
 
 class Common:
@@ -404,6 +409,74 @@ class Common:
         match_record = MatcherRecord(matcher_record=m)
         return match_record
 
+    # def correctTextListWithoutSpaces(loc_txt_list):
+    #     try:
+    #         temp_dict = OrderedDict(loc_txt_list)
+    #         loc_list = temp_dict.values()
+    #         list_length = len(temp_dict)
+    #
+    #         last_loc = loc_list[list_length-1]
+    #         (ls, le) = last_loc
+    #
+    #         q_list=[]
+    #         problem_list=[]
+    #         blank_str = (' ' * list_length)
+    #         for index, (loc, txt) in enumerate(list(temp_dict.items())):
+    #             has_end_space = has_start_space = False
+    #
+    #             left, mid, right = Common.getTextWithin(txt)
+    #
+    #             (ls, le) = loc
+    #             is_first = (index == 0)
+    #             is_last = (index >= list_length-1)
+    #             is_mid = (not (is_first and is_last))
+    #
+    #             check_end = (is_first or is_mid)
+    #             check_begin = (is_last or is_mid)
+    #
+    #             if check_end:
+    #                 has_end_space = (right and (df.SYMBOLS_ONLY.search(right) is not None))
+    #
+    #             if check_begin:
+    #                 has_start_space = (left and (df.SYMBOLS_ONLY.search(left) is not None))
+    #
+    #             if is_first:
+    #                 q_list.append((index, txt))
+    #                 q_list.append((index, has_end_space))
+    #                 if not has_end_space:
+    #                     problem_list.append(index)
+    #             elif is_mid:
+    #                 q_list.append((index, has_start_space))
+    #                 if not has_start_space:
+    #
+    #                 q_list.append((index, txt))
+    #                 q_list.append((index, has_end_space))
+    #             elif is_last:
+    #                 q_list.append((index, has_start_space))
+    #                 q_list.append((index, txt))
+    #
+    #         for (index, item) in q_list:
+    #
+    #
+    #         new_list=[]
+    #         status_list=[]
+    #         txt: str = None
+    #         for loc, txt in loc_txt_list:
+    #             has_start_space = (df.START_SPACES.search(txt) is not None)
+    #             has_end_space = (df.END_SPACES.search(txt) is not None)
+    #             status_entry = (loc, (has_start_space, has_end_space, txt))
+    #
+    #     except Exception as e:
+    #         return loc_txt_list
+
+    def jointTextsWithSingleSpaceInBetween(text_list):
+        try:
+            first_try = ' '.join(text_list)
+            final_string = re.sub(r'\s{2}', ' ', first_try)
+            return final_string
+        except Exception as e:
+            return text_list
+
     def patternMatchAll(pat, text):
         return_dict = {}
         try:
@@ -422,7 +495,7 @@ class Common:
         return return_dict
 
 
-    def findInvert(pattern, text:str, is_reversed=False):
+    def findInvert(pattern, text:str, is_reversed=False, is_removing_symbols=True):
         '''
         findInvert:
             Find list of words that are NOT matching the pattern.
@@ -476,10 +549,12 @@ class Common:
             # 4: using the invert location list, extract words, exclude empties.
             for ws, we in invert_loc_list:
                 found_txt = text[ws:we]
-                left, mid, right = Common.getTextWithin(found_txt)
-                is_empty = (not bool(mid))
-                if is_empty:
-                    continue
+
+                if is_removing_symbols:
+                    left, mid, right = Common.getTextWithin(found_txt)
+                    is_empty = (not bool(mid))
+                    if is_empty:
+                        continue
 
                 loc = (ws, we)
                 mm = MatcherRecord(s=ws, e=we, txt=found_txt)
@@ -1332,9 +1407,9 @@ class Common:
         # expecting to find fuzzy_txt within orig_txt, try to locate the range
         orig_txt_copy = str(orig_txt)
         orig_word_list = Common.findInvert(df.SPACES, orig_txt)
-        fuzzy_word_list = Common.findInvert(df.SPACES, fuzzy_txt)
+        fuzzy_word_list = Common.findInvert(df.SPACES, fuzzy_txt, is_removing_symbols=False)
 
-        fuzzy_locs = list(fuzzy_word_list.keys())
+        # fuzzy_locs = list(fuzzy_word_list.keys())
         fuzzy_words = list(fuzzy_word_list.values())
 
         orig_locs = list(orig_word_list.keys())
@@ -1684,7 +1759,7 @@ class Common:
         struct_pat_dict = Common.patternMatchAll(df.SENT_STRUCT_PAT, txt)
         struct_pat_list = list(struct_pat_dict.items())
 
-        struct_txt_dict = Common.findInvert(df.SENT_STRUCT_PAT, txt)
+        struct_txt_dict = Common.findInvert(df.SENT_STRUCT_PAT, txt, is_removing_symbols=False)
         struct_txt_dict_list = list(struct_txt_dict.items())
 
         list_of_words = []
@@ -1700,25 +1775,32 @@ class Common:
         return list_of_words
 
     def formPattern(list_of_words: list):
-        pat = ""
+        final_pat = ""
         # (?<=\S)\s+$
         txt: str = None
+        pattern_list=[]
         for loc, txt in list_of_words:
             emb_pat = None
             is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
             if is_any:
-                txt = r'\s?(.*)\s?'
+                pat_txt = r'\s?(.+?)\s?'
 
-                embedded = df.SENT_EMBEDDED_PAT.search(txt)
-                is_embedded = (embedded is not None)
-                if is_embedded:
-                    emb_pat_txt = embedded.group(1)
-                    emb_pat = r'\s?(%s)\s?' % (emb_pat_txt)
-                    txt = emb_pat
+                is_ending_with = df.ENDING_WITH.search(txt)
+                if is_ending_with:
+                    endings = df.ENDING_WITH_PART.search(txt)
+                    ending_part = endings.group(0)
+                    pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
+
+                pattern_embedded = df.PATTERN_PART.search(txt)
+                if pattern_embedded:
+                    emb_pat_txt = pattern_embedded.group(1)
+                    pat_txt = r'\s?(%s)\s?' % (emb_pat_txt)
             else:
-                txt = r'(%s)' % (txt)
-            pat += txt
-        pattern_txt = r'^%s$' % (pat)
+                pat_txt = r'(%s)' % (txt)
+            pattern_list.append(pat_txt)
+        final_pat = "".join(pattern_list)
+        simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
+        pattern_txt = r'^%s$' % (simplified_pat)
         return pattern_txt
 
     def creatSentRecogniserPatternRecordPair(key, value):
@@ -1741,6 +1823,8 @@ class Common:
                 mode = SMODE.getName(mode_txt)
                 is_any = (mode == SMODE.ANY)
                 is_order = (mode == SMODE.ORDERED_GROUP)
+                is_pattern = (mode == SMODE.PATTERN)
+                is_ending_with = (mode == SMODE.ENDING_WITH)
                 if is_any:
                     is_max_up_to = df.MAX_VAR_PAT.search(mode_txt)
                     if is_max_up_to:
@@ -1748,7 +1832,13 @@ class Common:
                         extra_param = int(is_max_up_to.group(2))
                 elif is_order:
                     extra_param = int(mode_txt)
-                # mode_entry = (mode, extra_param)
+                elif is_pattern:
+                    mode_txt_match = df.PATTERN_PART.search(mode_txt)
+                    mode_txt = mode_txt_match.group(1)
+                elif is_ending_with:
+                    ending_match = df.ENDING_WITH_PART.search(mode_txt)
+                    mode_txt = ending_match.group(1)
+
                 mode_entry = SMODEREC(smode_txt=mode_txt, smode=mode, extra_param=extra_param)
                 smode_list.append(mode_entry)
         except Exception as e:
@@ -1773,7 +1863,7 @@ class Common:
             the_smode_dict.update(entry)
         mm = MatcherRecord(txt=the_txt)
         mm.smode = the_smode_dict
-        mm.initUsingList(the_txt_word_list)
+        mm.initUsingList(the_txt_word_list, original_text=the_txt)
         return mm, the_txt_word_list
 
     def getRefDictList(txt) -> dict:
@@ -1899,10 +1989,37 @@ class Common:
                 hi = mid
         return -1
 
+    def removeDuplicationFromlistLocText(list_of_loc_txt: list):
+        try:
+            list_length = len(list_of_loc_txt)
+            last_item = list_of_loc_txt[list_length-1]
+            (last_loc, last_txt) = last_item
+
+            (last_s, last_e) = last_loc
+            blank_string = (' ' * last_e)
+            obs = LocationObserver(blank_string)
+
+            list_of_indexes_to_be_removed = []
+
+            temp_dict = OrderedDict(list_of_loc_txt)
+            list_of_loc = temp_dict.keys()
+            for index, temp_loc in enumerate(list_of_loc):
+                if obs.isLocUsed(temp_loc):
+                    list_of_indexes_to_be_removed.append(index)
+                obs.markLocAsUsed(temp_loc)
+
+            list_of_indexes_to_be_removed.sort(reverse=True)
+            for index in list_of_indexes_to_be_removed:
+                list_of_loc_txt.pop(index)
+        except Exception as e:
+            pass
+
+        return list_of_loc_txt
+
     def debugging(txt):
-        msg = "below the"
-        is_debug = (msg and txt and (msg.lower() in txt.lower()))
-        # is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        msg = "the corresponding strips"
+        # is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
             dd(f'Debugging text: {msg} at line txt:{txt}')

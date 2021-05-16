@@ -20,9 +20,7 @@ from sphinx_intl import catalog as c
 from pytz import timezone
 from common import Common as cm, dd, pp
 from matcher import MatcherRecord
-from definition import Definitions as df
-
-from reftype import RefType, TranslationState
+from definition import Definitions as df, RefType, TranslationState
 from reflist import RefList
 import inspect as INP
 import copy as CP
@@ -9628,8 +9626,9 @@ IOR
                 # "i.e. first child and parent",
                 # "i.e. from more complex to simpler",
                 # "i.e. §hiding/unhiding§ in one mode affects the other §mode§ too",
-                "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
+                # "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
                 # "be edited",
+                "the corresponding strips",
             ]
 
         else:

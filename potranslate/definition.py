@@ -1,7 +1,67 @@
 import os
 import re
-from reftype import RefType
+from enum import Enum
 from urlextract import URLExtract as URLX
+
+class OverLappingState(Enum):
+    NONE = 0
+    LEFT = 1
+    RIGHT = 2
+    BOTH = 3
+    WITHIN = 4
+
+class TranslationState(Enum):
+    UNTRANSLATED = 0
+    ACCEPTABLE = 1
+    FUZZY = 2
+    IGNORED = 3
+    REMOVE = 4
+
+class TextStyle(Enum):
+    NORMAL = 0
+    ITALIC = 1
+    BOLD = 2
+    BOX = 3
+    RAW = 4
+
+class RefType(Enum):
+    PYTHON_FORMAT = "%"
+    FUNCTION = "func"
+    GA = "\`"
+    BLANK_QUOTE = "§"
+    ARCH_BRACKET = "()"
+    ARCH_BRACKET_OPEN = "("
+    ARCH_BRACKET_CLOSE = ")"
+    AST_QUOTE = "*"
+    DBL_AST_QUOTE = "**"
+    DBL_QUOTE = "\""
+    SNG_QUOTE = "'"
+    MM = ":MM:"
+    ABBR = ":abbr:"
+    CLASS = ":class:"
+    DOC = ":doc:"
+    GUILABEL = ":guilabel:"
+    KBD = ":kbd:"
+    LINENOS = ":linenos:"
+    MATH = ":math:"
+    MENUSELECTION = ":menuselection:"
+    MOD = ":mod:"
+    METHOD = ":meth:"
+    FUNC = ":func:"
+    REF = ":ref:"
+    SUP = ":sup:"
+    TERM = ":term:"
+    OSL_ATTRIB = "w:w"
+    TEXT = "generic_text"
+    FILLER = "filler"
+
+    @classmethod
+    def getRef(cls, string_value: str):
+        for name, member in cls.__members__.items():
+            if member.value == string_value:
+                return member
+        return None
+
 class Definitions:
     KEYBOARD_TRANS_DIC = {
         r'\bWheelUp\b': "Lăn Bánh Xe về Trước (WheelUp)",
@@ -130,6 +190,7 @@ class Definitions:
         'three|third|triple|ternary': '@{3}',
         'four(th)?|quadruple|Quaternary': '@{4}',
         'five|fifth|quintuple|Quinary': '@{5}',
+        'five|fifth|quintuple|Quinary': '@{5}',
         'six(th)?|sextuple|Senary': '@{6}',
         'seven(th)?|septuple|Septenary': '@{7}',
         'eight(th)?|octa|octal|octet|octuple|Octonary': '@{8}',
@@ -175,10 +236,10 @@ class Definitions:
     FUZZY_RATIO_INCREMENT = 5
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.4
+
+    # sentence structure patterns
     SENT_STRUCT_START_SYMB = '${'
     SENT_STRUCT_POSITION_PRIORITY_WEIGHT = 15
-    SENT_EMBEDDED_PAT=re.compile(r'\$\{\`([^`]+)\`\}')
-    SENT_EMBEDDED_PAT_RECOGNISER=re.compile(r'\`([^`]+)\`')
 
     regular_var = r'(\$\{([^\{\}]+)?\})'
     REGULAR_VAR_PAT = re.compile(regular_var)
@@ -193,8 +254,24 @@ class Definitions:
     # SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?(\/\w+)*)')
     SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
 
+    ANY = re.compile(r'^.*$', re.I)
+    ENDING_WITH = re.compile(r'ED\([^\(\)]+\)', re.I)
+    ENDING_WITH_PART = re.compile(r'\(([^\(\)]+)\)', re.I)
+
+    PATTERN = re.compile(r'^\`([^\`]+)\`$', re.I)
+    PATTERN_PART = re.compile(r'\`([^\`]+)\`')
+
+    NUMBER_ONLY = re.compile(r'^nbr$', re.I)
+    POSITION_PRIORITY = re.compile(r'^pp$', re.I)
+    ORDERED_GROUP = re.compile(r'^\d+$', re.I)
+    NO_PUNCTUATION = re.compile(r'^np$', re.I)
+    MAX_UPTO = re.compile(r'^mx$', re.I)
+    NO_CONJUNCTIVES = re.compile(r'^nc$', re.I)
+    NO_FULL_STOP = re.compile(r'^nfs$', re.I)
+
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
     PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
+
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -1346,3 +1423,40 @@ class Definitions:
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (GA_REF, RefType.GA),
     ]
+
+class SentStructModeRecord:
+    def __init__(self, smode_txt=None, smode=None, extra_param=None):
+        self.smode_txt: str = smode_txt
+        self.smode: SentStructModeRecord = smode
+        self.extra_param = extra_param
+
+
+'''
+    ABBREV_TEXT_REVERSE = re.compile(r'([^\(]+)\s\(([^\)]+)\)')
+    REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
+    MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
+'''
+
+class SentStructMode(Enum):
+    ANY = Definitions.ANY
+    ENDING_WITH = Definitions.ENDING_WITH
+    PATTERN = Definitions.PATTERN
+    NUMBER_ONLY = Definitions.NUMBER_ONLY
+    POSITION_PRIORITY = Definitions.POSITION_PRIORITY
+    ORDERED_GROUP = Definitions.ORDERED_GROUP
+    NO_PUNCTUATION = Definitions.NO_PUNCTUATION
+    MAX_UPTO = Definitions.MAX_UPTO
+    NO_CONJUNCTIVES = Definitions.NO_CONJUNCTIVES
+    NO_FULL_STOP = Definitions.NO_FULL_STOP
+
+    @classmethod
+    def getName(cls, string_value: str):
+        for name, member in cls.__members__.items():
+            is_any = (member == cls.ANY)
+            if is_any:
+                continue
+
+            is_match = (member.value.search(string_value) is not None)
+            if bool(is_match):
+                return member
+        return cls.ANY

@@ -9,7 +9,7 @@ import inspect as INP
 from nocasedict import NoCaseDict as NDIC
 from ignore import Ignore as ig
 import operator as OP
-from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
+from definition import Definitions as df, SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 
 class StructRecogniser():
     '''
@@ -132,8 +132,9 @@ class StructRecogniser():
             sl_loc, sl_rec = match_dict_list[0]
             list_of_words = sl_rec.getSubEntriesAsList()
             interested_part = list_of_words[1:]
+            unique_interested_part = cm.removeDuplicationFromlistLocText(interested_part)
             sl_rec.clear()
-            sl_rec.update(interested_part)
+            sl_rec.update(unique_interested_part)
             self.sent_sl_rec = sl_rec
         except Exception as e:
             if bool(self.tran_sl_txt):
@@ -254,22 +255,33 @@ class StructRecogniser():
                 dd(f'{fname}() {e}')
                 return None, None
 
-        def correctTextsOffsets():
+        def correctTextsOffsets(senttl_list):
             fname = INP.currentframe().f_code.co_name
 
             corrected_sent_tl_list=[]
             correct_sent_tl_txt_list=[]
             ls = le = 0
-            test_dict = OrderedDict(sent_tl_list)
+            test_dict = OrderedDict(senttl_list)
             txt_list = test_dict.values()
-            test_full_txt = ''.join(txt_list)
-            for index, (loc, txt) in enumerate(sent_tl_list):
+            new_sent_tl_txt = ''.join(txt_list)
+
+            # current_sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
+            # sent_tl_txt = self.sent_tl_rec.txt
+            # current_sent_tl_list.sort(reverse=True)
+            #
+            # for index, (current_loc, current_txt) in enumerate(current_sent_tl_list):
+            #     is_any_place = (df.SENT_STRUCT_PAT.search(current_txt) is not None)
+            #     if is_any_place:
+            #         (new_txt_loc, new_txt) = senttl_list[index]
+            #         current_sent_tl_txt = cm.jointText(sent_tl_txt, new_txt, current_loc)
+
+            for index, (loc, txt) in enumerate(senttl_list):
                 ts, te = loc
                 txt_length = len(txt)
                 le = (ls + txt_length)
                 new_loc = (ls, le)
                 new_entry = (new_loc, txt)
-                test_txt = test_full_txt[ls: le]
+                test_txt = new_sent_tl_txt[ls: le]
                 corrected_sent_tl_list.append(new_entry)
                 is_entry_untranslated = (index in dict_tl_any_index_list)
                 if is_entry_untranslated:
@@ -277,11 +289,10 @@ class StructRecogniser():
                 correct_sent_tl_txt_list.append(txt)
                 ls = le
 
-            ntxt = "".join(correct_sent_tl_txt_list)
             ns = 0
-            ne = len(ntxt)
+            ne = len(new_sent_tl_txt)
             # Note, the s, e here is a temporal value, this will have to matched up with the originally parsed location
-            n_mm = MatcherRecord(s=ns, e=ne, txt=ntxt)
+            n_mm = MatcherRecord(s=ns, e=ne, txt=new_sent_tl_txt)
             n_mm.appendSubRecords(corrected_sent_tl_list)
             self.sent_tl_rec = n_mm
 
@@ -307,7 +318,7 @@ class StructRecogniser():
             sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
 
             sent_tl_list = getInitialListOfTextsToBeTranslated()
-            correctTextsOffsets()
+            correctTextsOffsets(sent_tl_list)
 
             if not text_to_translate_list:
                 raise ValueError('List empty for SOME REASONS! Move to next section.')
@@ -512,6 +523,7 @@ class StructRecogniser():
                 if is_used:
                     continue
 
+                cm.debugging(sr_sub_txt)
                 is_ended_punct = df.END_BASIC_PUNCTUAL.search(sr_sub_txt)
                 if is_ended_punct:
                     end_punct = is_ended_punct.group(0)

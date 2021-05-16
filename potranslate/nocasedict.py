@@ -1,6 +1,8 @@
 from collections import OrderedDict
 from common import Common as cm, dd, pp, LocationObserver
-from definition import Definitions as df
+from definition import Definitions as df, \
+    SentStructMode as SMODE, \
+    SentStructModeRecord as SMODEREC
 from key import Key
 from fuzzywuzzy import fuzz
 from math import ceil
@@ -8,7 +10,6 @@ import operator as OP
 import inspect as INP
 import re
 import time
-from reftype import SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -106,7 +107,9 @@ class NoCaseDict(OrderedDict):
     def createSentenceStructureDict(self):
         def isSentStruct(item):
             (k, v) = item
-            is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
+            # is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
+            # is_sent_struct = (re.search(r'^the \$\{.*ing', k) is not None)
+            is_sent_struct = (df.ENDING_WITH.search(k) is not None)
             return is_sent_struct
 
         temp_dict={}
@@ -144,32 +147,10 @@ class NoCaseDict(OrderedDict):
                     structure_mode = smode_rec.smode
                     extra_param = smode_rec.extra_param
 
-                    is_any = (structure_mode == SMODE.ANY)
-                    if is_any:
-                        is_ok_list.append(True)
-                        continue
-
-                    is_pattern = (structure_mode == SMODE.PATTERN)
-                    if is_pattern:
-                        # the pattern embedded already matched, before gets to this point
-                        is_ok_list.append(True)
-                        continue
-
                     is_digits_only = (structure_mode == SMODE.NUMBER_ONLY)
                     if is_digits_only:
                         is_number = (df.NUMBERS.search(matched_part) is not None)
                         is_ok_list.append(is_number)
-                        continue
-
-                    is_position_priority = (structure_mode == SMODE.POSITION_PRIORITY)
-                    if is_position_priority:
-                        smode_rec.extra_param = df.SENT_STRUCT_POSITION_PRIORITY_WEIGHT
-                        is_ok_list.append(True)
-                        continue
-
-                    is_ordered = (structure_mode == SMODE.ORDERED_GROUP)
-                    if is_ordered:
-                        is_ok_list.append(True)
                         continue
 
                     is_no_full_stop = (structure_mode == SMODE.NO_FULL_STOP)
@@ -225,13 +206,31 @@ class NoCaseDict(OrderedDict):
             # list_of_sent_struct = list(self.sentence_struct_dict.items())
             for pat in chosen_key_list:
                 value = self.sentence_struct_dict[pat]
-                matcher = re.search(pat, key, flags=re.I)
+                pattern = re.compile(pat, flags=re.I)
+                # match_list = re.findall(pat, key)
+                matcher_dict = cm.patternMatchAll(pattern, key)
+                first_mm_record = list(matcher_dict.values())[0]
+                loc_text_list = first_mm_record.getSubEntriesAsList()
+                interest_part = loc_text_list[1:]
+                unique_parts = cm.removeDuplicationFromlistLocText(interest_part)
+                temp_dict = OrderedDict(unique_parts)
 
-                matched_text_group = matcher.groups()
+                matched_text_group = temp_dict.values()
+
+                # matched_text_group = matcher.groups()
                 (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
                 s_mode_list = dict_sl_mm.smode
+                is_pattern_checking_mode = (SMODE.getName(pat) is not None)
+                # if is_pattern_checking_mode:
+                #     first_item = matched_text_group[0]
+                #     new_group = [first_item]
+                #     matched_text_group = new_group
                 pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group)
-                is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
+                try:
+                    is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
+                except Exception as e:
+                    is_accept = False
+
                 if not is_accept:
                     continue
 

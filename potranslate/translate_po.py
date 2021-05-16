@@ -31,7 +31,7 @@ from ignore import Ignore as ig
 from collections import OrderedDict, defaultdict
 import json
 from reflist import RefList
-from reftype import RefType
+from definition import RefType
 from sphinx_intl import catalog as c
 from pyparsing import *
 from babel.messages.catalog import Message, Catalog

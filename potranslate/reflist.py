@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 import re
 from translation_finder import TranslationFinder
-from definition import Definitions as df
+from definition import Definitions as df, RefType, TranslationState
 from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
-from reftype import RefType
-from reftype import TranslationState
-import copy as CP
+
 import operator as OP
 import inspect as INP
 

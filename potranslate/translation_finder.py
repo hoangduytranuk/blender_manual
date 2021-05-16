@@ -7,7 +7,7 @@ from ignore import Ignore as ig
 import json
 from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
-from reftype import RefType, TranslationState
+from definition import RefType, TranslationState
 import operator as OP
 from nocasedict import NoCaseDict
 from matcher import MatcherRecord

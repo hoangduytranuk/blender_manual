@@ -1,7 +1,11 @@
 import re
 from collections import OrderedDict
 from enum import Enum
-from reftype import TranslationState, RefType, SentStructMode as SMODE, SentStructModeRecord as SMODEREC
+from definition import Definitions as df, \
+    TranslationState, \
+    RefType, \
+    SentStructMode as SMODE, \
+    SentStructModeRecord as SMODEREC
 import inspect as INP
 
 class MatcherRecordType(Enum):
