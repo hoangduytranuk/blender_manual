@@ -672,7 +672,7 @@ class Common:
                     l_case_remain.update({k: v})
             u_case.update(l_case_remain)
         except Exception as e:
-            df.LOG(f'{e}; k:[{k}] v:[{v}]')
+            df.LOG(f'{e}; k:[{k}] v:[{v}]', error=True)
             raise e
         return u_case
 
@@ -991,7 +991,7 @@ class Common:
                 else:
                     return None
             except Exception as e:
-                df.LOG(f'[{e}]; Finding message: [{item}], found index:[{found_index}]')
+                df.LOG(f'[{e}]; Finding message: [{item}], found index:[{found_index}]', error=True)
                 raise e
 
     def getTextWithinBrackets(
@@ -1046,7 +1046,7 @@ class Common:
                     entry=(ss, ee, brk)
                     brk_list.append(entry)
             except Exception as e:
-                df.LOG(f'{e}')
+                df.LOG(f'{e}', error=True)
                 raise e
             return brk_list
 
@@ -1104,7 +1104,7 @@ class Common:
                 # print(f'sub_mm list: {found_list}')
                 return True
             except Exception as e:
-                df.LOG(f'{e}')
+                df.LOG(f'{e}', error=True)
                 raise e
 
         def updateRecordsUsingSubLoc(dict_list, rootloc):
@@ -1255,7 +1255,7 @@ class Common:
             loc = (ss, ee)
             return loc, original_word[ss:ee]
         except Exception as e:
-            df.LOG(f'{e}')
+            df.LOG(f'{e}', error=True)
             raise e
 
         return (-1, -1), new_word
@@ -1724,8 +1724,7 @@ class Common:
             txt_dict = Common.findInvert(pat, txt)
             return txt_dict, (len(txt_dict) > 1)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e}', error=True)
         return ({}, False)
 
     def splitWordAtToList(pattern: str, txt: str):
@@ -1740,7 +1739,7 @@ class Common:
                 word_list.append(entry)
             return word_list
         except Exception as e:
-            df.LOG(f'{e}')
+            df.LOG(f'{e}', error=True)
         return word_list
 
     def wordCount(txt):
@@ -1945,7 +1944,7 @@ class Common:
                 entry = {sub_loc: sentence}
                 loc_dic.update(entry)
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             raise e
 
         simplifiesMatchedRecords()

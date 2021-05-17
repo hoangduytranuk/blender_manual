@@ -31,7 +31,7 @@ from ignore import Ignore as ig
 from collections import OrderedDict, defaultdict
 import json
 from reflist import RefList
-from definition import RefType
+from definition import RefType, Definitions as df
 from sphinx_intl import catalog as c
 from pyparsing import *
 from babel.messages.catalog import Message, Catalog
@@ -505,8 +505,7 @@ def doctree_resolved(app, doctree, docname):
         c.dump_po(output_path, new_po_cat)
         # dd('DEBUG')
     except Exception as e:
-        dd(e)
-        print(f'STOPPED, e=[{e}]')
+        df.LOG(f'{e}', error=True)
 
 
 def runAppOrNot():

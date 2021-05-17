@@ -88,7 +88,7 @@ class Ignore:
 
             return is_ignore
         except Exception as e:
-            df.LOG(f'{e}; msg:{msg}')
+            df.LOG(f'{e}; msg:{msg}', error=True)
             raise e
 
     def isIgnoredIfStartsWith(text_line : str):
@@ -143,7 +143,7 @@ class Ignore:
             else:
                 return False
         except Exception as e:
-            df.LOG(f'{e}; text_line:[{text_line}]; pattern:[{pattern}]')
+            df.LOG(f'{e}; text_line:[{text_line}]; pattern:[{pattern}]', error=True)
         return False
 
     def isDosCommand(text):

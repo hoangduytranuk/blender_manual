@@ -162,7 +162,7 @@ class MatcherRecord(OrderedDict):
             self.clear()
             self.update(list_of_loc_and_txt)
         except Exception as e:
-            df.LOG(f'{e}; initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]')
+            df.LOG(f'{e}; initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]', error=True)
             raise e
 
     def appendSubRecords(self, sub_rec_list):

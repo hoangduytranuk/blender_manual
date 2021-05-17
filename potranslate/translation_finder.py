@@ -177,9 +177,7 @@ class TranslationFinder:
                     # cm.debugging(un_tran_txt)
                     _, tran_sub_text, covered_length = self.tryToFindTranslation(un_tran_txt)
                 except Exception as e:
-                    fname = INP.currentframe().f_code.co_name
-                    dd(f'{fname}() {e}')
-                    dd(f'un_tran_txt:[{un_tran_txt}]')
+                    df.LOG(f'{e} un_tran_txt:[{un_tran_txt}]', error=True)
                     raise e
 
                 has_tran = (tran_sub_text and not (tran_sub_text == un_tran_txt))
@@ -201,8 +199,7 @@ class TranslationFinder:
             try:
                 translateUntranslatedList(un_tran_dict)
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
+                df.LOG(f'{e}', error=True)
                 raise e
 
         local_dict_list.sort(key=OP.itemgetter(0), reverse=True)    # sort by matching ratio
@@ -425,7 +422,7 @@ class TranslationFinder:
                 try:
                     k, v = entry
                 except Exception as e:
-                    print(e, error_msg)
+                    df.LOG(f'{e}', error=True)
                     k = entry
                     v = None
                 if is_master:
@@ -879,7 +876,7 @@ class TranslationFinder:
             with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         except Exception as e:
-            df.LOG(f'{e}; Length of read dictionary:{len(dic)}')
+            df.LOG(f'{e}; Length of read dictionary:{len(dic)}', error=True)
             raise e
 
     def loadJSONDic(self, file_name=None):
@@ -913,7 +910,7 @@ class TranslationFinder:
             return_dic = NoCaseDict(dic)
             # return_dic.sentence_struct_dict = sent_struct_original_set
         except Exception as e:
-            df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_path})')
+            df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_path})', error=True)
             return_dic = NoCaseDict()
 
         return return_dic
@@ -1223,7 +1220,7 @@ class TranslationFinder:
                 trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
-            df.LOG(f'{e}; msg:[{msg}], trans:[{trans}]')
+            df.LOG(f'{e}; msg:[{msg}], trans:[{trans}]', error=True)
             raise e
 
     def translateKeyboard(self, mm: MatcherRecord):

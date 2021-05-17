@@ -100,8 +100,7 @@ class NoCaseDict(OrderedDict):
             # dd(f'__getitem__:[{key}], value:[{value}]')
             return value
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e}', error=True)
             return None
 
     def createSentenceStructureDict(self):
@@ -255,7 +254,7 @@ class NoCaseDict(OrderedDict):
 
             return (pattern, value)
         except Exception as e:
-            df.LOG(f'{e};')
+            df.LOG(f'{e};', error=True)
             raise e
 
     def replaceTranRef(self, tran):
@@ -556,7 +555,7 @@ class NoCaseDict(OrderedDict):
             if self.is_operational:
                 self.is_dirty = True
         except Exception as e:
-            df.LOG(f'{e};')
+            df.LOG(f'{e};', error=True)
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
         new_set = NoCaseDict()
@@ -664,7 +663,7 @@ class NoCaseDict(OrderedDict):
             dd(f'{fname}() msg:[{sl_txt}] tran_sub_text:[{ft_translation}]')
         except Exception as e:
             return_tran = None
-            df.LOG(f'{e};')
+            df.LOG(f'{e};', error=True)
         un_tran_list = ft_obs.getUnmarkedPartsAsDict()
         return return_tran, un_tran_list
 
@@ -1000,5 +999,5 @@ class NoCaseDict(OrderedDict):
                 dd(f'findByReduction: looking for: [{msg}] trans:[{trans}] function_name:[{function_name}]')
                 return new_text, trans, cover_length
         except Exception as e:
-            df.LOG(f'{e}; msg:{msg}')
+            df.LOG(f'{e}; msg:{msg}', error=True)
             raise e

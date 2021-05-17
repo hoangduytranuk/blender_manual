@@ -119,7 +119,7 @@ class StructRecogniser():
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e}', error=True)
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
@@ -164,7 +164,7 @@ class StructRecogniser():
 
                     index_list.append(index)
             except Exception as e:
-                df.LOG(e)
+                df.LOG(e, error=True)
 
             return index_list
 
@@ -267,7 +267,7 @@ class StructRecogniser():
                 next_entry = (next_loc, next_txt)
                 return new_entry, next_entry
             except Exception as e:
-                df.LOG(e)
+                df.LOG(e, error=True)
                 return None, None
 
         # def getTranSLFullTextList():
@@ -368,7 +368,7 @@ class StructRecogniser():
                 raise ValueError('List empty for SOME REASONS! Move to next section.')
             print('')
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             # if self.is_sent_struct:
             #     exit(0)
             try:
@@ -378,7 +378,7 @@ class StructRecogniser():
                 entry=(main_loc, main_txt)
                 text_to_translate_list.append(entry)
             except Exception as ee:
-                df.LOG(ee)
+                df.LOG(ee, error=True)
 
         return text_to_translate_list
 
@@ -414,7 +414,7 @@ class StructRecogniser():
             tran = left + tran + right
             return tran
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             return None
 
     def updateProcessed(self, entry):
@@ -425,7 +425,7 @@ class StructRecogniser():
         try:
             return self.sent_tl_rec.txt
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             return ""
 
     # @classmethod
@@ -463,7 +463,7 @@ class StructRecogniser():
                 self.setTlTranslation(tran_list)
             return translated_count
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             return 0
 
     def makeNonSRRecord(self, txt, root_location):
@@ -522,7 +522,7 @@ class StructRecogniser():
             self.global_sr_list.update({sr.tran_sl_txt: sr})
             return sr
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
 
 
     def parseAndTranslateText(self, orig_loc: int, txt: str):
@@ -670,7 +670,7 @@ class StructRecogniser():
             else:
                 return None
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             return None
 
     def translateText(self, txt):

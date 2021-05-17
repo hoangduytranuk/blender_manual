@@ -169,12 +169,7 @@ class RefList(defaultdict):
                     local_found_dict = cm.patternMatchAll(pat, find_txt)
                     setReftypeAndUsingSubTextLocation(local_found_dict)
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
-                dd(pat)
-                dd(find_txt)
-                dd(ref)
-                dd(local_found_dict)
+                df.LOG(f'{e}; pat:[{pat}]; find_txt:[{find_txt}]; ref:[{ref}]; local_found_dict:[{local_found_dict}];', error=True)
                 raise e
             return local_found_dict
 
@@ -189,9 +184,7 @@ class RefList(defaultdict):
                 self.update(found_dict)
             local_obs.markLocListAsUsed( found_dict.keys() )
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'{msg}: [{found_dict}];')
+            df.LOG(f'{e} msg:[{msg}]; found_dict:[{found_dict}]', error=True)
             raise e
 
 
@@ -218,9 +211,7 @@ class RefList(defaultdict):
                     raise ValueError(f'validateFoundEntries(): problem with sub_record: {mm}, main-text extracted doesn\'t match the part in the msg')
 
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
-                dd(loc, mm)
+                df.LOG(f'{e} loc:[{loc}]; mm:[{mm}]', error=True)
                 raise e
 
     def findPattern(self, pattern_list: list, txt: str):
@@ -339,9 +330,7 @@ class RefList(defaultdict):
             # mm_tran = cm.jointText(ref_txt, tran, sub_loc)
             # mm.setTranlation(mm_tran, is_fuzzy, is_ignore)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            print(f'ref_item:{mm}, ref_type:{ref_type}')
+            df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
 
     def translate(self):
         mm_record: MatcherRecord = None

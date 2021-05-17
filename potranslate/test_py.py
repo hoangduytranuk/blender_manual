@@ -3749,10 +3749,8 @@ def patternMatchAllAsDictNoDelay(pat, text):
                     entry = {(ss, ee): g}
                     return_dict.update(entry)
     except Exception as e:
-        fname = INP.currentframe().f_code.co_name
-        dd(f'{fname}() {e}')
-        dd("pattern:", pat)
-        dd("text:", text)
+        df.LOG(f'{e} pattern:[{pat}]; text:[{text}]', error=True)
+
     return return_dict
 
 def patternMatchAllToDict(pat, text):
@@ -4404,9 +4402,7 @@ class test(object):
                     _("[{}] matched [{}]".format(text_line, x))
                     return True
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'text_line:[{text_line}]')
+            df.LOG(f'{e} text_line:[{text_line}]', error=True)
         return False
 
     def timeNow(self):
@@ -4435,9 +4431,7 @@ class test(object):
                 in_file.close()
             return data
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'file_path:{file_path}')
+            df.LOG(f'{e} file_path:{file_path}', error=True)
             raise e
 
     def getByKeyword(self, keyword, text):
@@ -5693,10 +5687,7 @@ class test(object):
                         v=(ss, ee, g)
                         break_down.append(v)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd("pattern:", pat)
-            dd("text:", text)
+            df.LOG(f'{e} pattern:{pat}; text:[{text}]', error=True)
         return original, break_down
 
     #def patternMatchAll(self, pat, text):
@@ -8167,9 +8158,7 @@ IOR
                 list_of_places.append(loc)
             return list_of_places
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'original_word:{original_word}, new_word:{new_word}')
+            df.LOG(f'{e} original_word:{original_word}; new_word:[{new_word}]', error=True)
             raise e
 
     def compareExpressContruct(self, item, k, is_fuzz=False):
@@ -9626,9 +9615,10 @@ IOR
                 # "i.e. first child and parent",
                 # "i.e. from more complex to simpler",
                 # "i.e. §hiding/unhiding§ in one mode affects the other §mode§ too",
-                "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
+                # "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
                 # "be edited",
                 # "the corresponding strips",
+                "i.e. it is as if the other metas were \"included\" or joined into the base one",
             ]
 
         else:

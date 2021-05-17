@@ -20,7 +20,7 @@ class Paragraph(list):
             output = f'"{orig}": "{tran}",'
             return output
         except Exception as e:
-            df.LOG(e)
+            df.LOG(e, error=True)
             return None
 
     def getTranslation(self):
@@ -54,4 +54,4 @@ class Paragraph(list):
             #     dd(f':{sr.getTextListTobeTranslated()};')
             df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
         except Exception as e:
-            df.LOG(f'{e};')
+            df.LOG(f'{e};', error=True)
