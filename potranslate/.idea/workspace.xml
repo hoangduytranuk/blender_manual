@@ -4,17 +4,17 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Corrected the implementation of the ending punctuations as previously committed, using only END_BASIC_PUNCTUAL check.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Corrected the problem with 'spaces' in the sentences being ignored. This is down to the findInvert() in common.py automatically IGNORING the white spaces (ie. contains only symbols). Now, Common.findInvert() got a new 'is_removing_symbols=True' by default, so to ensure the old code is working as was, but allowing the change of behaviour, as in getRawUnmarkedPartsAsDict() within the LocationObserver() class. This change is also used in patStructToListOfWords() to get texts that are NOT SENT_STRUCT_PAT. All this changes is marked with the introduction of 'the ${1/ED(ing|ive|ed)/MX1} ${2/MX1}': '${2} ${1}' entry in the ref_dict_0006_0002.json.">
+      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ignore.py" beforeDir="false" afterPath="$PROJECT_DIR$/ignore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reftype.py" beforeDir="false" afterPath="$PROJECT_DIR$/reftype.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paragraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/paragraph.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translate_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/translate_po.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
@@ -429,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621077907324</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Corrected the problem with 'spaces' in the sentences being ignored. This is down to the findInvert() in common.py automatically IGNORING the white spaces (ie. contains only symbols). Now, Common.findInvert() got a new 'is_removing_symbols=True' by default, so to ensure the old code is working as was, but allowing the change of behaviour, as in getRawUnmarkedPartsAsDict() within the LocationObserver() class. This change is also used in patStructToListOfWords() to get texts that are NOT SENT_STRUCT_PAT. All this changes is marked with the introduction of 'the ${1/ED(ing|ive|ed)/MX1} ${2/MX1}': '${2} ${1}' entry in the ref_dict_0006_0002.json.">
+      <created>1621187664499</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1621187664499</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -474,7 +481,8 @@
     <MESSAGE value="Corrected an error in the     def getSentStructPattern(self, key) (nocasedict.py)" />
     <MESSAGE value="Corrected the offset of location and text in makeSRStructFirst() (sentence.py) to cater for keywords that contain symbols on either side of the text, such as 'Action/Graph Editors,', noticed the comma punctuation at the end." />
     <MESSAGE value="Corrected the implementation of the ending punctuations as previously committed, using only END_BASIC_PUNCTUAL check." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected the implementation of the ending punctuations as previously committed, using only END_BASIC_PUNCTUAL check." />
+    <MESSAGE value="Corrected the problem with 'spaces' in the sentences being ignored. This is down to the findInvert() in common.py automatically IGNORING the white spaces (ie. contains only symbols). Now, Common.findInvert() got a new 'is_removing_symbols=True' by default, so to ensure the old code is working as was, but allowing the change of behaviour, as in getRawUnmarkedPartsAsDict() within the LocationObserver() class. This change is also used in patStructToListOfWords() to get texts that are NOT SENT_STRUCT_PAT. All this changes is marked with the introduction of 'the ${1/ED(ing|ive|ed)/MX1} ${2/MX1}': '${2} ${1}' entry in the ref_dict_0006_0002.json." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected the problem with 'spaces' in the sentences being ignored. This is down to the findInvert() in common.py automatically IGNORING the white spaces (ie. contains only symbols). Now, Common.findInvert() got a new 'is_removing_symbols=True' by default, so to ensure the old code is working as was, but allowing the change of behaviour, as in getRawUnmarkedPartsAsDict() within the LocationObserver() class. This change is also used in patStructToListOfWords() to get texts that are NOT SENT_STRUCT_PAT. All this changes is marked with the introduction of 'the ${1/ED(ing|ive|ed)/MX1} ${2/MX1}': '${2} ${1}' entry in the ref_dict_0006_0002.json." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -501,7 +509,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1138</line>
+          <line>1137</line>
           <option name="timeStamp" value="1982" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -511,17 +519,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>227</line>
+          <line>236</line>
           <option name="timeStamp" value="2002" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/ignore.py</url>
-          <line>93</line>
+          <line>91</line>
           <option name="timeStamp" value="2035" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>386</line>
+          <line>431</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -535,29 +543,29 @@
           <option name="timeStamp" value="2520" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>205</line>
-          <option name="timeStamp" value="2775" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>294</line>
-          <option name="timeStamp" value="2785" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1411</line>
+          <line>1409</line>
           <option name="timeStamp" value="2801" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>309</line>
-          <option name="timeStamp" value="2802" />
+          <line>166</line>
+          <option name="timeStamp" value="2862" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>291</line>
-          <option name="timeStamp" value="2804" />
+          <line>234</line>
+          <option name="timeStamp" value="2907" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>309</line>
+          <option name="timeStamp" value="2911" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>218</line>
+          <option name="timeStamp" value="2912" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

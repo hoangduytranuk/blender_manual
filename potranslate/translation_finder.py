@@ -879,9 +879,7 @@ class TranslationFinder:
             with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
                 json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f"Length of read dictionary:{len(dic)}")
+            df.LOG(f'{e}; Length of read dictionary:{len(dic)}')
             raise e
 
     def loadJSONDic(self, file_name=None):
@@ -915,9 +913,7 @@ class TranslationFinder:
             return_dic = NoCaseDict(dic)
             # return_dic.sentence_struct_dict = sent_struct_original_set
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f"Exception occurs while performing loadJSONDic({file_path})")
+            df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_path})')
             return_dic = NoCaseDict()
 
         return return_dic
@@ -1227,8 +1223,7 @@ class TranslationFinder:
                 trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
-            dd(f'{fname}() {e}')
-            dd(f'msg:[{msg}], trans:[{trans}]')
+            df.LOG(f'{e}; msg:[{msg}], trans:[{trans}]')
             raise e
 
     def translateKeyboard(self, mm: MatcherRecord):

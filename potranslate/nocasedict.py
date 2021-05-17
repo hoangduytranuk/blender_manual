@@ -107,9 +107,9 @@ class NoCaseDict(OrderedDict):
     def createSentenceStructureDict(self):
         def isSentStruct(item):
             (k, v) = item
-            # is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
+            is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
             # is_sent_struct = (re.search(r'^the \$\{.*ing', k) is not None)
-            is_sent_struct = (df.ENDING_WITH.search(k) is not None)
+            # is_sent_struct = (df.ENDING_WITH.search(k) is not None)
             return is_sent_struct
 
         temp_dict={}
@@ -255,8 +255,7 @@ class NoCaseDict(OrderedDict):
 
             return (pattern, value)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e};')
             raise e
 
     def replaceTranRef(self, tran):
@@ -557,8 +556,7 @@ class NoCaseDict(OrderedDict):
             if self.is_operational:
                 self.is_dirty = True
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e};')
 
     def getSetByWordCountInRange(self, from_count, to_count, first_word_list=None, is_reversed=False):
         new_set = NoCaseDict()
@@ -666,7 +664,7 @@ class NoCaseDict(OrderedDict):
             dd(f'{fname}() msg:[{sl_txt}] tran_sub_text:[{ft_translation}]')
         except Exception as e:
             return_tran = None
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e};')
         un_tran_list = ft_obs.getUnmarkedPartsAsDict()
         return return_tran, un_tran_list
 
@@ -1002,7 +1000,5 @@ class NoCaseDict(OrderedDict):
                 dd(f'findByReduction: looking for: [{msg}] trans:[{trans}] function_name:[{function_name}]')
                 return new_text, trans, cover_length
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'msg:{msg}')
+            df.LOG(f'{e}; msg:{msg}')
             raise e

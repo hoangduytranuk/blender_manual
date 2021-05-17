@@ -8,7 +8,6 @@ import inspect as INP
 class Paragraph(list):
     def __init__(self, txt, translation_engine=None):
         self.sl_txt = txt
-        # self.msg = "To view your changes, build the manual :doc:`as instructed </about/contribute/build/index>`. Keep in mind that you can also build only the chapter you just edited to view it quickly. Open the generated ``.html`` files inside the ``build/html`` folder using your web browser, or refresh the page if you have it open already."
         self.tl_txt = None
         self.tf = translation_engine
         self.parsed_dict = NDIC()
@@ -21,8 +20,7 @@ class Paragraph(list):
             output = f'"{orig}": "{tran}",'
             return output
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(e)
             return None
 
     def getTranslation(self):
@@ -54,7 +52,6 @@ class Paragraph(list):
             #     dd(f'dict_sl_rec:{sr.sent_sl_rec.txt};')
             #     dd(f'sent_tl_rec:{sr.sent_tl_rec.txt};')
             #     dd(f':{sr.getTextListTobeTranslated()};')
-            dd(f'{fname}() from:[{self.sl_txt}]=>[{self.tl_txt}]')
+            df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e};')

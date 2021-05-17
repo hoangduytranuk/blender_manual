@@ -2,6 +2,7 @@ import os
 import re
 from enum import Enum
 from urlextract import URLExtract as URLX
+import utils as UT
 
 class OverLappingState(Enum):
     NONE = 0
@@ -63,6 +64,11 @@ class RefType(Enum):
         return None
 
 class Definitions:
+    HOME = os.environ['DEV_TRAN']
+    log_path = os.path.join(HOME, 'logme.log')
+
+    LOG = UT.get_logger(log_path)
+
     KEYBOARD_TRANS_DIC = {
         r'\bWheelUp\b': "Lăn Bánh Xe về Trước (WheelUp)",
         r'\bWheelDown\b': "Lăn Bánh Xe về Sau (WheelDown)",
@@ -1429,13 +1435,6 @@ class SentStructModeRecord:
         self.smode_txt: str = smode_txt
         self.smode: SentStructModeRecord = smode
         self.extra_param = extra_param
-
-
-'''
-    ABBREV_TEXT_REVERSE = re.compile(r'([^\(]+)\s\(([^\)]+)\)')
-    REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
-    MENU_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)\-\>]+)(?<!\s)')
-'''
 
 class SentStructMode(Enum):
     ANY = Definitions.ANY

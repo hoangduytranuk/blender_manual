@@ -128,6 +128,7 @@ class StructRecogniser():
         sl_rec: MatcherRecord = None
         try:
             match_dict = cm.patternMatchAll(self.recog_pattern, self.tran_sl_txt)
+
             match_dict_list = list(match_dict.items())
             sl_loc, sl_rec = match_dict_list[0]
             list_of_words = sl_rec.getSubEntriesAsList()
@@ -151,7 +152,6 @@ class StructRecogniser():
         '''
 
         def getListOfAnythingPosition(word_list):
-            fname = INP.currentframe().f_code.co_name
             '''
                 Find list of indexes where $$$ is mentioned in the parsed external text
             '''
@@ -164,67 +164,83 @@ class StructRecogniser():
 
                     index_list.append(index)
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
+                df.LOG(e)
 
             return index_list
 
         def getInitialListOfTextsToBeTranslated():
-            fname = INP.currentframe().f_code.co_name
+            try:
+                # to target index of $$$ in the dictionary target language, where $$$ was
+                dict_sl_smode_list = list(self.dict_sl_rec.smode.values())
+                dict_tl_smode_list = list(self.dict_tl_rec.smode.values())
+                order_queue = {}
+                any_list=[]
+                for index, from_index in enumerate(dict_sl_any_index_list):
+                    to_index = dict_tl_any_index_list[index]
+                    df.LOG(f'dict_tl_any_index_list[index]:[{dict_tl_any_index_list}] [index{index}] => to_index:{to_index}')
+                    # extract untranslated text out of external sentence where $$$ supposedly occupied
+                    # this will give you texts supposedly to be translated:
+                    # such as:
+                    #           the structure from CONSTRUCTIVE
+                    #           DECONSTRUCTIVE
+                    df.LOG(f'sent_sl_list_of_txt[from_index]:[{sent_sl_list_of_txt}] [from_index{from_index}] => sent_sl_list_of_txt[from_index]:{sent_sl_list_of_txt[from_index]}')
+                    untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
+                    dict_tl_pat_txt, dict_tl_smode_item = dict_tl_smode_list[to_index]
+                    dict_sl_pat_txt, dict_sl_smode_item = dict_sl_smode_list[from_index]
+                    tl_mode_rec:SMODEREC = dict_tl_smode_item[0]
+                    sl_mode_rec:SMODEREC = dict_sl_smode_item[0]
 
-            # to target index of $$$ in the dictionary target language, where $$$ was
-            dict_sl_smode_list = list(self.dict_sl_rec.smode.values())
-            dict_tl_smode_list = list(self.dict_tl_rec.smode.values())
-            order_queue = {}
-            for index, from_index in enumerate(dict_sl_any_index_list):
-                to_index = dict_tl_any_index_list[index]
-
-                # extract untranslated text out of external sentence where $$$ supposedly occupied
-                # this will give you texts supposedly to be translated:
-                # such as:
-                #           the structure from CONSTRUCTIVE
-                #           DECONSTRUCTIVE
-                untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
-                dict_tl_pat_txt, dict_tl_smode_item = dict_tl_smode_list[to_index]
-                dict_sl_pat_txt, dict_sl_smode_item = dict_sl_smode_list[from_index]
-                tl_mode_rec:SMODEREC = dict_tl_smode_item[0]
-                sl_mode_rec:SMODEREC = dict_sl_smode_item[0]
-
-                is_sl_order = (sl_mode_rec.smode == SMODE.ORDERED_GROUP)
-                is_tl_order = (tl_mode_rec.smode == SMODE.ORDERED_GROUP)
-                is_order = (is_sl_order and is_tl_order)
-                if is_order:
-                    tl_order = tl_mode_rec.extra_param
-                    sl_order = sl_mode_rec.extra_param
-                    is_matching = (sl_order == tl_order)
-                    if not is_matching:
-                        new_entry = {sl_order: (untran_loc,  untran_txt)}
-                        order_queue.update(new_entry)
-                        continue
-
-                # new_entry = (untran_loc, (any_tl_pattern_txt, untran_txt))
-                new_entry = (untran_loc, untran_txt)
-
-                # insert into the correct position, but offsets of next text items will be out of sync
-                (cloc, ctxt) = sent_tl_list.pop(to_index)
-                sent_tl_list.insert(to_index, new_entry)
-
-            if order_queue:
-                new_sent_tl_list=[]
-                for current_untran_loc, tl_pat_or_txt in sent_tl_list:
-                    is_order = df.REGULAR_VAR_PAT.search(tl_pat_or_txt)
+                    is_sl_order = (sl_mode_rec.smode == SMODE.ORDERED_GROUP)
+                    is_tl_order = (tl_mode_rec.smode == SMODE.ORDERED_GROUP)
+                    is_order = (is_sl_order and is_tl_order)
                     if is_order:
-                        ord_group_list = is_order.groups()
-                        order = int(ord_group_list[1])
-                        (untran_loc, untran_txt) = order_queue[order]
-                        entry = (untran_loc, untran_txt)
-                        new_sent_tl_list.append(entry)
+                        tl_order = tl_mode_rec.extra_param
+                        sl_order = sl_mode_rec.extra_param
+                        is_matching = (sl_order == tl_order)
+                        if not is_matching:
+                            new_entry = {tl_order: untran_txt}
+                            order_queue.update(new_entry)
+                            continue
+
+                    # new_entry = (untran_loc, (any_tl_pattern_txt, untran_txt))
+                    new_entry = (untran_loc, untran_txt)
+
+                    # insert into the correct position, but offsets of next text items will be out of sync
+                    # (cloc, ctxt) = sent_tl_list.pop(to_index)
+                    # sent_tl_list.insert(to_index, new_entry)
+                    any_list.append(new_entry)
+
+                if order_queue:
+                    sorted_queue = list(order_queue.items())
+                    sorted_queue.sort()
+
+                    new_sent_tl_list = []
+                    if any_list:
+                        raise ValueError(f'UNHANDLED situation: have ORDER QUEUE [{order_queue}] and ANY LIST: [{any_list}]')
+                        # # for current_untran_loc, tl_pat_or_txt in sent_tl_list:
+                        # for current_untran_loc, tl_pat_or_txt in any_list:
+                        #     is_order = df.REGULAR_VAR_PAT.search(tl_pat_or_txt)
+                        #     if is_order:
+                        #         ord_group_list = is_order.groups()
+                        #         order = int(ord_group_list[1])
+                        #         (untran_loc, untran_txt) = order_queue[order]
+                        #         entry = (untran_loc, untran_txt)
+                        #         new_sent_tl_list.append(entry)
+                        #     else:
+                        #         entry = (current_untran_loc, tl_pat_or_txt)
+                        #         new_sent_tl_list.append(entry)
+                        # df.LOG(f'RETURN new_sent_tl_list:{new_sent_tl_list}')
+                        # return new_sent_tl_list
                     else:
-                        entry = (current_untran_loc, tl_pat_or_txt)
-                        new_sent_tl_list.append(entry)
-                return new_sent_tl_list
-            else:
-                return sent_tl_list
+                        return sorted_queue
+                else:
+                    # df.LOG(f'RETURN sent_tl_list:{sent_tl_list}')
+                    # return sent_tl_list
+                    return any_list
+
+            except Exception as e:
+                df.LOG(e, error=True)
+                raise e
 
         def moveEndingPunctuationsIfNeeded(to_index):
             fname = INP.currentframe().f_code.co_name
@@ -251,43 +267,72 @@ class StructRecogniser():
                 next_entry = (next_loc, next_txt)
                 return new_entry, next_entry
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
+                df.LOG(e)
                 return None, None
 
+        # def getTranSLFullTextList():
+        #     obs = LocationObserver(self.tran_sl_txt)
+        #     copy_of_tran_sl_rec = CP.deepcopy(self.sent_sl_rec.getSubEntriesAsList())
+        #     temp_dict = OrderedDict(copy_of_tran_sl_rec)
+        #     loc_list = temp_dict.keys()
+        #     obs.markListAsUsed(loc_list)
+        #     remaining_txt_list = obs.getRawUnmarkedPartsAsList()
+        #
+        #     copy_of_tran_sl_rec.extend(remaining_txt_list)
+        #     copy_of_tran_sl_rec.sort()
+        #
+        #     return copy_of_tran_sl_rec
+
         def correctTextsOffsets(senttl_list):
-            fname = INP.currentframe().f_code.co_name
+            def creatTLTextList():
+                any_index_list=[]
+                dict_tl_txt = self.dict_tl_rec.txt
+                dict_tl_list = cm.patStructToListOfWords(dict_tl_txt, removing_symbols=False)
 
-            corrected_sent_tl_list=[]
-            correct_sent_tl_txt_list=[]
-            ls = le = 0
-            test_dict = OrderedDict(senttl_list)
-            txt_list = test_dict.values()
-            new_sent_tl_txt = ''.join(txt_list)
+                sent_tl_index = 0
+                new_list = []
+                senttl_list_length = len(senttl_list)
+                for index, (loc, tl_txt) in enumerate(dict_tl_list):
+                    (ls, le) = loc
+                    is_pattern = (df.SENT_STRUCT_PAT.search(tl_txt) is not None)
+                    if is_pattern:
+                        senttl_loc, actual_tl_txt = senttl_list[sent_tl_index]
+                        sent_tl_index = max(sent_tl_index + 1, senttl_list_length - 1)
+                        any_index_list.append(index)
+                    else:
+                        actual_tl_txt = tl_txt
 
-            # current_sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
-            # sent_tl_txt = self.sent_tl_rec.txt
-            # current_sent_tl_list.sort(reverse=True)
-            #
-            # for index, (current_loc, current_txt) in enumerate(current_sent_tl_list):
-            #     is_any_place = (df.SENT_STRUCT_PAT.search(current_txt) is not None)
-            #     if is_any_place:
-            #         (new_txt_loc, new_txt) = senttl_list[index]
-            #         current_sent_tl_txt = cm.jointText(sent_tl_txt, new_txt, current_loc)
+                    new_le = ls + len(actual_tl_txt)
+                    new_loc = (ls, new_le)
+                    new_entry = (new_loc, actual_tl_txt)
+                    new_list.append(new_entry)
+                df.LOG(f'RETURN new_list:[{new_list}]; any_index_list:[{any_index_list}]')
+                return new_list, any_index_list
 
-            for index, (loc, txt) in enumerate(senttl_list):
-                ts, te = loc
-                txt_length = len(txt)
-                le = (ls + txt_length)
-                new_loc = (ls, le)
-                new_entry = (new_loc, txt)
-                test_txt = new_sent_tl_txt[ls: le]
-                corrected_sent_tl_list.append(new_entry)
-                is_entry_untranslated = (index in dict_tl_any_index_list)
-                if is_entry_untranslated:
-                    text_to_translate_list.append(new_entry)
-                correct_sent_tl_txt_list.append(txt)
-                ls = le
+            def correctIndexOfTLTextList(the_new_list, any_index_list):
+                df.LOG(f'the_new_list:[{the_new_list}]; any_index_list:[{any_index_list}]')
+                index_corrected=[]
+                tran_required_list = []
+                ls = le = 0
+                for index, (loc, txt) in enumerate(the_new_list):
+                    txt_length = len(txt)
+                    le = (ls + txt_length)
+                    new_loc = (ls, le)
+                    new_entry = (new_loc, txt)
+                    index_corrected.append(new_entry)
+                    is_entry_untranslated = (index in any_index_list)
+                    if is_entry_untranslated:
+                        tran_required_list.append(new_entry)
+                    ls = le
+                df.LOG(f'RETURN index_corrected:[{index_corrected}]; tran_required_list:[{tran_required_list}]')
+                return index_corrected, tran_required_list
+
+            new_tl_txt_list, any_index_list = creatTLTextList()
+            corrected_sent_tl_list, text_to_translate_list  = correctIndexOfTLTextList(new_tl_txt_list, any_index_list)
+
+            temp_dict = OrderedDict(corrected_sent_tl_list)
+            txt_list = (temp_dict.values())
+            new_sent_tl_txt = "".join(txt_list)
 
             ns = 0
             ne = len(new_sent_tl_txt)
@@ -295,13 +340,12 @@ class StructRecogniser():
             n_mm = MatcherRecord(s=ns, e=ne, txt=new_sent_tl_txt)
             n_mm.appendSubRecords(corrected_sent_tl_list)
             self.sent_tl_rec = n_mm
+            return text_to_translate_list
 
         if bool(self.text_list_to_be_translated):
             return self.text_list_to_be_translated
 
-        corrected_ordered_dict={}
-        ordered_dict = {}
-        text_to_translate_list=[]
+        text_to_translate_list=None
         dict_sl_any_index_list = None
         dict_tl_any_index_list = None
         sent_sl_list_of_txt = None
@@ -317,14 +361,14 @@ class StructRecogniser():
             # replaced with translated parts from the dictionary target language ie. text on both sides of $$$
             sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
 
-            sent_tl_list = getInitialListOfTextsToBeTranslated()
-            correctTextsOffsets(sent_tl_list)
+            any_list = getInitialListOfTextsToBeTranslated()
+            text_to_translate_list = correctTextsOffsets(any_list)
 
             if not text_to_translate_list:
                 raise ValueError('List empty for SOME REASONS! Move to next section.')
             print('')
         except Exception as e:
-            print(f'{fname}() {e}')
+            df.LOG(e)
             # if self.is_sent_struct:
             #     exit(0)
             try:
@@ -334,8 +378,7 @@ class StructRecogniser():
                 entry=(main_loc, main_txt)
                 text_to_translate_list.append(entry)
             except Exception as ee:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {ee}')
+                df.LOG(ee)
 
         return text_to_translate_list
 
@@ -371,6 +414,7 @@ class StructRecogniser():
             tran = left + tran + right
             return tran
         except Exception as e:
+            df.LOG(e)
             return None
 
     def updateProcessed(self, entry):
@@ -381,6 +425,7 @@ class StructRecogniser():
         try:
             return self.sent_tl_rec.txt
         except Exception as e:
+            df.LOG(e)
             return ""
 
     # @classmethod
@@ -418,8 +463,7 @@ class StructRecogniser():
                 self.setTlTranslation(tran_list)
             return translated_count
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(e)
             return 0
 
     def makeNonSRRecord(self, txt, root_location):
@@ -478,8 +522,7 @@ class StructRecogniser():
             self.global_sr_list.update({sr.tran_sl_txt: sr})
             return sr
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(e)
 
 
     def parseAndTranslateText(self, orig_loc: int, txt: str):
@@ -627,8 +670,7 @@ class StructRecogniser():
             else:
                 return None
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(e)
             return None
 
     def translateText(self, txt):
@@ -639,7 +681,6 @@ class StructRecogniser():
             trans = ref_list.getTranslation()
             return trans
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            print(f'{fname}() {e}')
+            df.LOG(e)
             return None
 

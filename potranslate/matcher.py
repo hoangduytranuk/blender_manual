@@ -162,9 +162,7 @@ class MatcherRecord(OrderedDict):
             self.clear()
             self.update(list_of_loc_and_txt)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            print(f'initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]')
+            df.LOG(f'{e}; initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]')
             raise e
 
     def appendSubRecords(self, sub_rec_list):
@@ -172,13 +170,6 @@ class MatcherRecord(OrderedDict):
         current_list.extend(sub_rec_list)
         self.clear()
         self.update(current_list)
-
-    def takeForwardSlashesOff(self):
-        try:
-            msg = self.txt
-            cm.REF_LINK
-        except Exception as e:
-            pass
 
     def updateMasterLoc(self, s, e):
         self.s = s

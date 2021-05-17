@@ -10,6 +10,7 @@ from bisect import bisect_left
 from matcher import MatcherRecord
 from err import ErrorMessages as ER
 import re
+
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
     SentStructModeRecord as SMODEREC, \
@@ -166,6 +167,14 @@ class LocationObserver(OrderedDict):
     def getUnmarkedPartsAsDict(self):
         untran_dict = Common.findInvert(df.FILLER_PARTS, self.blank, is_reversed=True)
         return untran_dict
+
+    def getRawUnmarkedPartsAsList(self):
+        untran_dict = Common.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
+        txt_loc_list=[]
+        for loc, txt_mm in untran_dict.items():
+            entry=(loc, txt_mm.txt)
+            txt_loc_list.append(entry)
+        return txt_loc_list
 
     def getRawUnmarkedPartsAsDict(self):
         untran_dict = Common.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
@@ -488,10 +497,7 @@ class Common:
                 return_dict.update(dict_entry)
         except Exception as e:
             pass
-            # fname = INP.currentframe().f_code.co_name
-            # dd(f'{fname}() {e}')
-            # dd(f'patternMatchAll() pattern:[{pat}]; text:[{text}]')
-            # raise e
+            # df.LOG(e)
         return return_dict
 
 
@@ -666,10 +672,7 @@ class Common:
                     l_case_remain.update({k: v})
             u_case.update(l_case_remain)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd("k:", k)
-            dd("v:", k)
+            df.LOG(f'{e}; k:[{k}] v:[{v}]')
             raise e
         return u_case
 
@@ -988,9 +991,7 @@ class Common:
                 else:
                     return None
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
-                dd(f'Finding message: [{item}], found index:[{found_index}]')
+                df.LOG(f'[{e}]; Finding message: [{item}], found index:[{found_index}]')
                 raise e
 
     def getTextWithinBrackets(
@@ -1045,8 +1046,7 @@ class Common:
                     entry=(ss, ee, brk)
                     brk_list.append(entry)
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
+                df.LOG(f'{e}')
                 raise e
             return brk_list
 
@@ -1104,8 +1104,7 @@ class Common:
                 # print(f'sub_mm list: {found_list}')
                 return True
             except Exception as e:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() {e}')
+                df.LOG(f'{e}')
                 raise e
 
         def updateRecordsUsingSubLoc(dict_list, rootloc):
@@ -1256,8 +1255,7 @@ class Common:
             loc = (ss, ee)
             return loc, original_word[ss:ee]
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e}')
             raise e
 
         return (-1, -1), new_word
@@ -1424,10 +1422,9 @@ class Common:
                 sounds_similar = (ratio >= df.FUZZY_ACCEPTABLE_RATIO)
                 if sounds_similar:
                     continue
-
-                insertEntryIntoRemainDict()
             except Exception as e:
-                insertEntryIntoRemainDict()
+                pass
+            insertEntryIntoRemainDict()
 
         reversed_remain = list(remain_dict.items())
         reversed_remain.reverse()
@@ -1743,8 +1740,7 @@ class Common:
                 word_list.append(entry)
             return word_list
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(f'{e}')
         return word_list
 
     def wordCount(txt):
@@ -1754,12 +1750,12 @@ class Common:
         except Exception as e:
             return 0
 
-    def patStructToListOfWords(txt):
+    def patStructToListOfWords(txt, removing_symbols=True):
         mm: MatcherRecord = None
         struct_pat_dict = Common.patternMatchAll(df.SENT_STRUCT_PAT, txt)
         struct_pat_list = list(struct_pat_dict.items())
 
-        struct_txt_dict = Common.findInvert(df.SENT_STRUCT_PAT, txt, is_removing_symbols=False)
+        struct_txt_dict = Common.findInvert(df.SENT_STRUCT_PAT, txt, is_removing_symbols=removing_symbols)
         struct_txt_dict_list = list(struct_txt_dict.items())
 
         list_of_words = []
@@ -1789,7 +1785,8 @@ class Common:
                 if is_ending_with:
                     endings = df.ENDING_WITH_PART.search(txt)
                     ending_part = endings.group(0)
-                    pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
+                    # pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
+                    pat_txt = r'\s?(.+?%s)\s' % (ending_part)
 
                 pattern_embedded = df.PATTERN_PART.search(txt)
                 if pattern_embedded:
@@ -1799,8 +1796,10 @@ class Common:
                 pat_txt = r'(%s)' % (txt)
             pattern_list.append(pat_txt)
         final_pat = "".join(pattern_list)
-        simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
+        # simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
+        simplified_pat = final_pat.replace('\\s?( )\\s?', '\\s?')
         pattern_txt = r'^%s$' % (simplified_pat)
+        # df.LOG(pattern_txt, error=False)
         return pattern_txt
 
     def creatSentRecogniserPatternRecordPair(key, value):
@@ -1946,8 +1945,7 @@ class Common:
                 entry = {sub_loc: sentence}
                 loc_dic.update(entry)
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
+            df.LOG(e)
             raise e
 
         simplifiesMatchedRecords()

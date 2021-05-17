@@ -88,9 +88,7 @@ class Ignore:
 
             return is_ignore
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'msg:{msg}')
+            df.LOG(f'{e}; msg:{msg}')
             raise e
 
     def isIgnoredIfStartsWith(text_line : str):
@@ -117,7 +115,7 @@ class Ignore:
             m = p.search(text_line)
             is_found = (m != None)
             if (is_found):
-                dd("[{}] matched [{}], escaped [{}]".format(text_line, x, escape_x))
+                df.LOG(f'text_line:[{text_line}]; p:[{p}] m:[{m}]')
                 return True
         return False
 
@@ -135,7 +133,6 @@ class Ignore:
                 m = re.compile(pattern, flags=re.I)
                 df.runtime_ignore_list.append(m)
 
-
         pattern = None
         try:
             for m in df.runtime_ignore_list:
@@ -146,9 +143,7 @@ class Ignore:
             else:
                 return False
         except Exception as e:
-            fname = INP.currentframe().f_code.co_name
-            dd(f'{fname}() {e}')
-            dd(f'text_line:[{text_line}]; pattern:[{pattern}]')
+            df.LOG(f'{e}; text_line:[{text_line}]; pattern:[{pattern}]')
         return False
 
     def isDosCommand(text):
