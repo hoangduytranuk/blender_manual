@@ -406,10 +406,11 @@ class NoCaseDict(OrderedDict):
             found_list = []
             for found_item in key_list:
                 ratio = fuzz.ratio(found_item, k)
-                entry = (ratio, found_item)
+                partial_ratio = fuzz.partial_ratio(found_item, k)
+                entry = (ratio, partial_ratio, found_item)
                 found_list.append(entry)
-            found_list.sort(reverse=True)
             if found_list:
+                found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
                 return [found_list[0]]
             else:
                 return found_list
@@ -517,8 +518,8 @@ class NoCaseDict(OrderedDict):
             selected_item = None
             return return_tran, selected_item, rat, untran_word_dic
 
-        matched_ratio, selected_item = subset[0]
-        is_accepted = (matched_ratio >= acceptable_rate)
+        matched_ratio, partial_ratio, selected_item = subset[0]
+        is_accepted = (partial_ratio >= acceptable_rate)
         if not is_accepted:
             perfect_match_percent = cm.matchTextPercent(k, selected_item)
             is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
@@ -563,7 +564,7 @@ class NoCaseDict(OrderedDict):
         if translation:
             translation = self.replaceTranRef(translation)
 
-        return translation, selected_item, matched_ratio, untran_word_dic
+        return translation, selected_item, partial_ratio, untran_word_dic
 
     def __delitem__(self, key):
         key = Key(key)

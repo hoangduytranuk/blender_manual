@@ -9618,7 +9618,8 @@ IOR
                 # "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
                 # "be edited",
                 # "the corresponding strips",
-                "i.e. it just snaps to the B-value like an extreme exponential transition",
+                # "i.e. it will bake all steps that can be baked individually with the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type at once",
+                "i.e. it will be \"played\" reversed...",
             ]
 
         else:
