@@ -107,7 +107,7 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = (re.search(r'^the \$\{.*ing', k) is not None)
+            # is_sent_struct = (re.search(r'^it is as if', k) is not None)
             # is_sent_struct = (df.ENDING_WITH.search(k) is not None)
             return is_sent_struct
 
@@ -123,7 +123,7 @@ class NoCaseDict(OrderedDict):
 
             entry = {key_pattern: (key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm)}
             temp_dict.update(entry)
-        temp_dict = OrderedDict(sorted(temp_dict.items()))
+        temp_dict = OrderedDict(sorted(list(temp_dict.items()), key=lambda x: len(x[0]), reverse=True))
         self.sentence_struct_dict = NoCaseDict(temp_dict)
 
     def get(self, k, default=None):

@@ -1949,6 +1949,8 @@ class Common:
 
         simplifiesMatchedRecords()
         part_list = list(loc_dic.items())
+        part_list.sort(key=lambda x: x[0])
+        part_list.sort(key=lambda x: len(x[1]), reverse=True)
         return part_list
 
     def dictKeyFunction(item):

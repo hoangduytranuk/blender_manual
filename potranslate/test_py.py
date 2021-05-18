@@ -9618,7 +9618,7 @@ IOR
                 # "i.e. it cannot be edited anymore from the §Action/Graph§ Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
                 # "be edited",
                 # "the corresponding strips",
-                "i.e. it is as if the other metas were \"included\" or joined into the base one",
+                "i.e. it just snaps to the B-value like an extreme exponential transition",
             ]
 
         else:

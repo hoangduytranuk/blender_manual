@@ -119,7 +119,7 @@ class StructRecogniser():
             self.sent_tl_rec.clear()
             self.sent_tl_rec.update(sent_tl_list)
         except Exception as e:
-            df.LOG(f'{e}', error=True)
+            # df.LOG(f'{e}', error=True)
             self.is_sent_struct = False
         self.is_sent_struct = bool(self.recog_pattern)
         self.setupSentSLRecord()
@@ -138,6 +138,7 @@ class StructRecogniser():
             sl_rec.update(unique_interested_part)
             self.sent_sl_rec = sl_rec
         except Exception as e:
+            df.LOG(f'{e}')
             if bool(self.tran_sl_txt):
                 self.sent_sl_rec = MatcherRecord(txt=self.tran_sl_txt)
                 self.sent_tl_rec = MatcherRecord(txt=self.tran_sl_txt)
@@ -175,6 +176,9 @@ class StructRecogniser():
                 dict_tl_smode_list = list(self.dict_tl_rec.smode.values())
                 order_queue = {}
                 any_list=[]
+                if not dict_tl_any_index_list:
+                    return any_list
+
                 for index, from_index in enumerate(dict_sl_any_index_list):
                     to_index = dict_tl_any_index_list[index]
                     df.LOG(f'dict_tl_any_index_list[index]:[{dict_tl_any_index_list}] [index{index}] => to_index:{to_index}')
@@ -362,11 +366,11 @@ class StructRecogniser():
             sent_tl_list = self.sent_tl_rec.getSubEntriesAsList()
 
             any_list = getInitialListOfTextsToBeTranslated()
-            text_to_translate_list = correctTextsOffsets(any_list)
-
-            if not text_to_translate_list:
-                raise ValueError('List empty for SOME REASONS! Move to next section.')
-            print('')
+            if any_list:
+                text_to_translate_list = correctTextsOffsets(any_list)
+            else:
+                self.sent_tl_rec.setTranslated()
+                text_to_translate_list = []
         except Exception as e:
             df.LOG(e, error=True)
             # if self.is_sent_struct:
@@ -518,8 +522,11 @@ class StructRecogniser():
                         )
             sr.setupRecords()
             need_tran = sr.getTextListTobeTranslated()
-            print(f'needed tran:{need_tran}')
-            self.global_sr_list.update({sr.tran_sl_txt: sr})
+            if need_tran:
+                df.LOG(f'needed tran:{need_tran}')
+                self.global_sr_list.update({sr.tran_sl_txt: sr})
+            else:
+                df.LOG(f'NO need translations, PROVIDED or LEAVE AS IS!')
             return sr
         except Exception as e:
             df.LOG(e, error=True)
@@ -576,6 +583,7 @@ class StructRecogniser():
                     sr_sub_txt = sr_sub_txt[:-len_of_punct]
                     sr_loc = (sr_s, sr_e)
 
+                dd(f'trying to make SR with: [{sr_sub_txt}]')
                 sr = self.makeSRRecord(sr_sub_txt, sr_loc)
                 if sr:
                     entry = (sr_loc, sr)
@@ -624,7 +632,11 @@ class StructRecogniser():
 
         parsed_list.sort(reverse=True)
         for sr_parsed_loc, sr in parsed_list:
-            tran = sr.translate()
+            is_translated = (sr.sent_tl_rec.isTranslated())
+            if is_translated:
+                tran = (sr.sent_tl_rec.txt)
+            else:
+                tran = sr.translate()
             if tran:
                 txt = sr.tran_sl_txt
                 collectTranslation(sr_parsed_loc, txt, tran)

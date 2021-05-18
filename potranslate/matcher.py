@@ -165,6 +165,30 @@ class MatcherRecord(OrderedDict):
             df.LOG(f'{e}; initUsingList(), list_of_loc_and_txt:[{list_of_loc_and_txt}]; original_text:[{original_text}]', error=True)
             raise e
 
+    def isIgnored(self):
+        state = (self.translation_state == TranslationState.IGNORED)
+        return state
+
+    def isFuzzy(self):
+        state = (self.translation_state == TranslationState.FUZZY)
+        return state
+
+    def isRemove(self):
+        state = (self.translation_state == TranslationState.REMOVE)
+        return state
+
+    def isUntranslated(self):
+        state = (self.translation_state == TranslationState.UNTRANSLATED)
+        return state
+
+    def isTranslated(self):
+        is_translated = (self.translation_state == TranslationState.ACCEPTABLE)
+        state = (self.isIgnored() or self.isRemove() or is_translated)
+        return state
+
+    def setTranslated(self):
+        self.translation_state == TranslationState.ACCEPTABLE
+
     def appendSubRecords(self, sub_rec_list):
         current_list = self.getSubEntriesAsList()
         current_list.extend(sub_rec_list)
