@@ -107,7 +107,8 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = (re.search(r'^it is as if', k) is not None)
+            # is_sent_struct = ('${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}' in k)
+            # is_sent_struct = (re.search(r'it is as if', k) is not None)
             # is_sent_struct = (df.ENDING_WITH.search(k) is not None)
             return is_sent_struct
 
@@ -257,33 +258,50 @@ class NoCaseDict(OrderedDict):
             df.LOG(f'{e};', error=True)
             raise e
 
+    def isTranRefRequiredFurtherUnpack(self, word):
+        matcher = df.TRAN_REF_PATTERN.search(word)
+        return (matcher is not None)
+
+    def replaceRefsForDict(self):
+        temp_dict = {}
+        for sl_txt, tl_txt in self.items():
+            new_tl_txt = self.replaceTranRef(tl_txt)
+            entry = {sl_txt: tl_txt}
+            temp_dict.update(entry)
+        self.clear()
+        self.update(temp_dict)
+
     def replaceTranRef(self, tran):
         is_finished = False
         new_tran = str(tran)
-        last_found_ref=[]
         while not is_finished:
-            matcher = df.TRAN_REF_PATTERN.search(new_tran)
-            is_finished = (matcher is None)
+            # 1. locate references in the translation text
+            found_ref_list = cm.patternMatchAll(df.TRAN_REF_PATTERN, new_tran)
+            is_finished = (not bool(found_ref_list))
             if is_finished:
                 break
-            ref_found = matcher.group(0)
-            is_seen_before = (ref_found in last_found_ref)
-            if is_seen_before:
-                raise ValueError(f'[{ref_found}] is occured again, SOMETHING IS WRONG in [{tran}]')
-            else:
-                last_found_ref.append(ref_found)
 
-            dict_selected = self
-            has_ref = (ref_found in self)
-            if not has_ref:
-                has_ref = (ref_found in df.numeral_dict)
+            # 2. locate translations for references found
+            ref_tran_dict = {}
+            for ref_loc, ref_mm in found_ref_list.items():
+                ref_found = ref_mm.txt
+                dict_selected = self
+                has_ref = (ref_found in dict_selected)
                 if not has_ref:
-                    continue
-                else:
-                    dict_selected = df.numeral_dict
+                    has_ref = (ref_found in df.numeral_dict)
+                    if not has_ref:
+                        msg = f'REFERENCE [{ref_found}] has no translation for it! Translation: [{tran}]'
+                        raise ValueError(msg)
+                    else:
+                        dict_selected = df.numeral_dict
 
-            tran_for_ref = dict_selected[ref_found]
-            new_tran = new_tran.replace(ref_found, tran_for_ref)
+                tran_for_ref = dict_selected[ref_found]
+                entry = {ref_found: tran_for_ref}
+                ref_tran_dict.update(entry)
+
+            # 3. replace references with ref's translations
+            for ref_found, tran_for_ref in ref_tran_dict.items():
+                new_tran = new_tran.replace(ref_found, tran_for_ref)
 
         return new_tran
 

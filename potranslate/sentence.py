@@ -201,10 +201,9 @@ class StructRecogniser():
                         tl_order = tl_mode_rec.extra_param
                         sl_order = sl_mode_rec.extra_param
                         is_matching = (sl_order == tl_order)
-                        if not is_matching:
-                            new_entry = {tl_order: untran_txt}
-                            order_queue.update(new_entry)
-                            continue
+                        new_entry = {tl_order: untran_txt}
+                        order_queue.update(new_entry)
+                        continue
 
                     # new_entry = (untran_loc, (any_tl_pattern_txt, untran_txt))
                     new_entry = (untran_loc, untran_txt)
@@ -301,7 +300,7 @@ class StructRecogniser():
                     is_pattern = (df.SENT_STRUCT_PAT.search(tl_txt) is not None)
                     if is_pattern:
                         senttl_loc, actual_tl_txt = senttl_list[sent_tl_index]
-                        sent_tl_index = max(sent_tl_index + 1, senttl_list_length - 1)
+                        sent_tl_index = min(sent_tl_index + 1, senttl_list_length - 1)
                         any_index_list.append(index)
                     else:
                         actual_tl_txt = tl_txt

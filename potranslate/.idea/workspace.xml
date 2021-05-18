@@ -4,13 +4,12 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Marked Exception report by df.LOG as error=True, to log into a file. See class Definitions: LOG declaration.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added the ability to NOT translate when translation is PRE-PROVIDED in the dictionary">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -445,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621285430850</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Added the ability to NOT translate when translation is PRE-PROVIDED in the dictionary">
+      <created>1621331541439</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1621331541439</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +474,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added commitCacheEntry, allowing a single dict entry to be added, for convenient" />
     <MESSAGE value="Added binarySearch with key as a function, with a provision of default array index extraction. This will allows reusabilities in the future. Plus, LocationObserver has the ability to check if a location in the string is usable or not, ie. not overlapped with an used one. Genmap has the ability to filter out all references, marking them as used, before allocating a breakdown of sentences, so it will not break a reference in the middle of it, but will take it as a whole." />
     <MESSAGE value="Reuse of LocationObserver in Common.isPath to simpify the code." />
     <MESSAGE value="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes" />
@@ -493,7 +498,8 @@
     <MESSAGE value="Corrected the problem with 'spaces' in the sentences being ignored. This is down to the findInvert() in common.py automatically IGNORING the white spaces (ie. contains only symbols). Now, Common.findInvert() got a new 'is_removing_symbols=True' by default, so to ensure the old code is working as was, but allowing the change of behaviour, as in getRawUnmarkedPartsAsDict() within the LocationObserver() class. This change is also used in patStructToListOfWords() to get texts that are NOT SENT_STRUCT_PAT. All this changes is marked with the introduction of 'the ${1/ED(ing|ive|ed)/MX1} ${2/MX1}': '${2} ${1}' entry in the ref_dict_0006_0002.json." />
     <MESSAGE value="Reworked the getListOfTextsNeededToTranslate() (in sentence.py) so getInitialListOfTextsToBeTranslated() will ONLY gets the set of texts in ANY positions, and later on, this list in inserted into the 'dict_tl_list' of text, to complete the full 'sent_tl_txt_list'. Also introduced utils.py, using df.LOG(msg) to log." />
     <MESSAGE value="Marked Exception report by df.LOG as error=True, to log into a file. See class Definitions: LOG declaration." />
-    <option name="LAST_COMMIT_MESSAGE" value="Marked Exception report by df.LOG as error=True, to log into a file. See class Definitions: LOG declaration." />
+    <MESSAGE value="Added the ability to NOT translate when translation is PRE-PROVIDED in the dictionary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to NOT translate when translation is PRE-PROVIDED in the dictionary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -540,17 +546,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>435</line>
+          <line>434</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>814</line>
+          <line>815</line>
           <option name="timeStamp" value="2385" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>280</line>
+          <line>281</line>
           <option name="timeStamp" value="2520" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -565,38 +571,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>238</line>
-          <option name="timeStamp" value="2907" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>222</line>
-          <option name="timeStamp" value="2912" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>372</line>
-          <option name="timeStamp" value="2917" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>528</line>
+          <line>527</line>
           <option name="timeStamp" value="2920" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>638</line>
-          <option name="timeStamp" value="2921" />
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>293</line>
+          <option name="timeStamp" value="2935" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>257</line>
+          <option name="timeStamp" value="2936" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>644</line>
-          <option name="timeStamp" value="2922" />
+          <line>241</line>
+          <option name="timeStamp" value="2944" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>667</line>
-          <option name="timeStamp" value="2923" />
+          <line>244</line>
+          <option name="timeStamp" value="2945" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>373</line>
+          <option name="timeStamp" value="2952" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>307</line>
+          <option name="timeStamp" value="2953" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>302</line>
+          <option name="timeStamp" value="2956" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>

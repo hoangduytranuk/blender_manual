@@ -129,6 +129,7 @@ class TranslationFinder:
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
         self.getDict().local_keys.sort()
+        # self.getDict().replaceRefsForDict()
         self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
 
     def flatPOFile(self, file_path):

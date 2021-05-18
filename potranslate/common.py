@@ -1785,7 +1785,7 @@ class Common:
                     endings = df.ENDING_WITH_PART.search(txt)
                     ending_part = endings.group(0)
                     # pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
-                    pat_txt = r'\s?(.+?%s)\s' % (ending_part)
+                    pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
 
                 pattern_embedded = df.PATTERN_PART.search(txt)
                 if pattern_embedded:
@@ -1795,8 +1795,8 @@ class Common:
                 pat_txt = r'(%s)' % (txt)
             pattern_list.append(pat_txt)
         final_pat = "".join(pattern_list)
-        # simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
-        simplified_pat = final_pat.replace('\\s?( )\\s?', '\\s?')
+        simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
+        simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
         return pattern_txt
@@ -2016,9 +2016,9 @@ class Common:
         return list_of_loc_txt
 
     def debugging(txt):
-        msg = "the corresponding strips"
-        # is_debug = (msg and txt and (msg.lower() in txt.lower()))
-        is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        msg = "@{mrkng} Đường Khâu"
+        is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        # is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
             dd(f'Debugging text: {msg} at line txt:{txt}')
