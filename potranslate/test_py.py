@@ -9619,7 +9619,9 @@ IOR
                 # "be edited",
                 # "the corresponding strips",
                 # "i.e. it will bake all steps that can be baked individually with the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type at once",
-                "i.e. it will be \"played\" reversed...",
+                # "i.e. less long thin triangles",
+                # "i.e. let the object give the particle a starting speed",
+                "parent's",
             ]
 
         else:
@@ -9640,6 +9642,7 @@ IOR
         return ref_dict_list
 
     def run(self):
+        # import cProfile
         # self.test_sorted_list()
         # self.test_forward_slashes()
         # self.test_find_invert()
@@ -9660,6 +9663,7 @@ IOR
         # self.sorting_temp_05()
         self.resort_dictionary()
         # self.test_translate_json_file()
+        # cProfile.run(self.test_translate_0001())
         self.test_translate_0001()
         # t_list = self.grepPOT(re.compile(r'[^\w\s\-\_\;]+(\w)[\w\s\-\_\.\,\;]+(\w)[^\w\s\-\_\.\,\;]+'))
         # self.test_translate_0001(text_list=t_list)

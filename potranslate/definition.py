@@ -623,6 +623,8 @@ class Definitions:
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
     THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
+    POSSESSIVE_APOS = re.compile(r'(\'s)\b')
+
     MULTI_SPACES = re.compile(r'[\s]{2,}')
     HYPHEN = re.compile(r'[\-]')
     SPACE_SEP = re.compile(r'\s')

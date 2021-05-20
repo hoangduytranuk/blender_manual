@@ -1700,6 +1700,7 @@ class Common:
     def removeTheWord(trans):
         try:
             trans = df.THE_WORD.sub("", trans)
+            trans = df.POSSESSIVE_APOS.sub("", trans)
         except Exception as e:
             pass
         return trans
@@ -1778,14 +1779,15 @@ class Common:
             emb_pat = None
             is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
             if is_any:
-                pat_txt = r'\s?(.+?)\s?'
+                pat_txt = r'\s?(.*?)\s?'
 
                 is_ending_with = df.ENDING_WITH.search(txt)
                 if is_ending_with:
                     endings = df.ENDING_WITH_PART.search(txt)
-                    ending_part = endings.group(0)
+                    ending_part = endings.group(1)
                     # pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
-                    pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
+                    pat_txt = r'\s?(\w+%s)\s?' % (ending_part)
+                    dd('')
 
                 pattern_embedded = df.PATTERN_PART.search(txt)
                 if pattern_embedded:
@@ -1797,6 +1799,14 @@ class Common:
         final_pat = "".join(pattern_list)
         simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
+
+        # test_txt= 'has no effect'
+        # match_1 = re.search(simplified_pat, test_txt)
+        # match_2 = re.compile(simplified_pat, flags=re.I)
+        # grp = match_2.findall(test_txt)
+        #
+        # match = Common.patternMatchAll(re.compile(simplified_pat, flags=re.I), test_txt)
+
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
         return pattern_txt

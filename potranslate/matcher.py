@@ -49,9 +49,22 @@ class MatcherRecord(OrderedDict):
             start = 0
             end = len(matcher_record.regs)
             s = e = 0
+            loc_dict={}
             for index in range(start, end):
-                rs, re = matcher_record.regs[index]
                 txt = matcher_record.group(index)
+
+                rs, re = matcher_record.regs[index]
+                is_found = ((rs >= 0) and (re >= 0))
+                if not is_found:
+                    continue
+
+                # is_over_lapped = (rs in loc_dict)
+                # if is_over_lapped:
+                #     continue
+
+                # loc_dict_entry={rs: re}
+                # loc_dict.update(loc_dict_entry)
+
                 self.addSubMatch(rs, re, txt)
         else:
             self.addSubMatch(actual_s, actual_e, actual_txt)

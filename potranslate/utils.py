@@ -1,7 +1,7 @@
 import inspect
 import logging
 import datetime
-
+import os
 
 class Colors:
     HEADER = '\033[95m'
@@ -30,7 +30,7 @@ def get_logger(filename):
         )
 
         if include_filename:
-            final_msg += f'\n{filename}'
+            final_msg += f'\n{os.path.basename(filename)}'
 
         if error:
             logging.warning(final_msg)

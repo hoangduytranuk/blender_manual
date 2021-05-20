@@ -164,7 +164,6 @@ class TranslationFinder:
 
         return translation, count_translated, count_untranslated
 
-
     def replacingUsingDic(self, local_dict_list: list, un_tran_dict: dict, text: str) -> str:
         def translateUntranslatedList(untran_dict: dict):
             for remain_loc, un_tran_mm in untran_dict.items():
@@ -328,6 +327,8 @@ class TranslationFinder:
         fuzzy_len = (len(fuzzy_text) if fuzzy_text else 0)
         fname = INP.currentframe().f_code.co_name
         if tran_sub_text:
+            tran_sub_text = cm.removeTheWord(tran_sub_text)
+            tran_sub_text = self.getDict().replaceTranRef(tran_sub_text)
             search_dict.addCache(msg, tran_sub_text)
             dd(f'{fname}() msg:[{msg}] tran_sub_text:[{tran_sub_text}] [{matching_ratio}]')
             return tran_sub_text, fuzzy_len, matching_ratio

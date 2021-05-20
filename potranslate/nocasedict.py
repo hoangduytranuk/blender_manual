@@ -106,8 +106,8 @@ class NoCaseDict(OrderedDict):
     def createSentenceStructureDict(self):
         def isSentStruct(item):
             (k, v) = item
-            is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = ('${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}' in k)
+            # is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
+            is_sent_struct = ('s)/MX1' in k)
             # is_sent_struct = (re.search(r'it is as if', k) is not None)
             # is_sent_struct = (df.ENDING_WITH.search(k) is not None)
             return is_sent_struct
@@ -116,6 +116,7 @@ class NoCaseDict(OrderedDict):
         temp_set = list(filter(isSentStruct, self.items()))
         # temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
         # temp_set = [(x, y) for (x, y) in self.items() if '${`' in x]
+        temp_list = sorted(temp_set, key=lambda x: len(x[0]), reverse=True)
         for key, value in temp_set:
             value = self.replaceTranRef(value)
             key_pattern = cm.creatSentRecogniserPattern(key)
@@ -125,6 +126,8 @@ class NoCaseDict(OrderedDict):
             entry = {key_pattern: (key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm)}
             temp_dict.update(entry)
         temp_dict = OrderedDict(sorted(list(temp_dict.items()), key=lambda x: len(x[0]), reverse=True))
+        # print_list = [(x, y[0]) for (x, y) in temp_dict.items()]
+        # pp(print_list, width=200)
         self.sentence_struct_dict = NoCaseDict(temp_dict)
 
     def get(self, k, default=None):
@@ -187,6 +190,7 @@ class NoCaseDict(OrderedDict):
             return is_found
 
         try:
+            default_value = (None, None, None, None, None, None, None)
             klower = key.lower()
             has_cached_key_value_set = (klower in self.local_text_and_chosen_sent_struct_list)
             if has_cached_key_value_set:
@@ -200,8 +204,10 @@ class NoCaseDict(OrderedDict):
             chosen_key_list = list(filter(filterKeyChosenSet, key_list))
 
             if not chosen_key_list:
-                value = (None, None, None, None, None, None)
-                return (None, value)
+                return (None, default_value)
+
+            df.LOG(f'matched key: [{key}]')
+            pp(chosen_key_list, width=200)
 
             # list_of_sent_struct = list(self.sentence_struct_dict.items())
             for pat in chosen_key_list:
@@ -209,9 +215,11 @@ class NoCaseDict(OrderedDict):
                 pattern = re.compile(pat, flags=re.I)
                 # match_list = re.findall(pat, key)
                 matcher_dict = cm.patternMatchAll(pattern, key)
-                first_mm_record = list(matcher_dict.values())[0]
-                loc_text_list = first_mm_record.getSubEntriesAsList()
+                sent_sl_record = list(matcher_dict.values())[0]
+                loc_text_list = sent_sl_record.getSubEntriesAsList()
                 interest_part = loc_text_list[1:]
+                if not interest_part:
+                    interest_part = loc_text_list
                 unique_parts = cm.removeDuplicationFromlistLocText(interest_part)
                 temp_dict = OrderedDict(unique_parts)
 
@@ -220,12 +228,12 @@ class NoCaseDict(OrderedDict):
                 # matched_text_group = matcher.groups()
                 (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
                 s_mode_list = dict_sl_mm.smode
-                is_pattern_checking_mode = (SMODE.getName(pat) is not None)
-                # if is_pattern_checking_mode:
-                #     first_item = matched_text_group[0]
-                #     new_group = [first_item]
-                #     matched_text_group = new_group
+                df.LOG(f'matched_text_group:[{matched_text_group}]')
                 pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group)
+                df.LOG(f'pattern_and_matched_text_pair_list:')
+                df.LOG('-' * 80)
+                pp(pattern_and_matched_text_pair_list)
+                df.LOG('-' * 80)
                 try:
                     is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
                 except Exception as e:
@@ -235,12 +243,15 @@ class NoCaseDict(OrderedDict):
                     continue
 
                 match_rate = fuzz.ratio(dict_sl_txt, key)
+                sent_sl_record.clear()
+                sent_sl_record.update(unique_parts)
+                value = (*value, sent_sl_record)
+
                 entry=(match_rate, pat, value)
                 selective_match.append(entry)
 
             if not selective_match:
-                value = (None, None, None, None, None, None)
-                return (None, value)
+                return (None, default_value)
 
             selective_match.sort(reverse=True)
             dd('-' * 80)
@@ -274,16 +285,20 @@ class NoCaseDict(OrderedDict):
     def replaceTranRef(self, tran):
         is_finished = False
         new_tran = str(tran)
+        # df.LOG(f'[{new_tran}]')
+        seen_list = {}
         while not is_finished:
             # 1. locate references in the translation text
-            found_ref_list = cm.patternMatchAll(df.TRAN_REF_PATTERN, new_tran)
-            is_finished = (not bool(found_ref_list))
+            found_ref_dict = cm.patternMatchAll(df.TRAN_REF_PATTERN, new_tran)
+            is_finished = (not bool(found_ref_dict))
             if is_finished:
                 break
 
             # 2. locate translations for references found
             ref_tran_dict = {}
-            for ref_loc, ref_mm in found_ref_list.items():
+            found_ref_list = list(found_ref_dict.items())
+            found_ref_list.sort(reverse=True)
+            for ref_loc, ref_mm in found_ref_list:
                 ref_found = ref_mm.txt
                 dict_selected = self
                 has_ref = (ref_found in dict_selected)
@@ -302,6 +317,7 @@ class NoCaseDict(OrderedDict):
             # 3. replace references with ref's translations
             for ref_found, tran_for_ref in ref_tran_dict.items():
                 new_tran = new_tran.replace(ref_found, tran_for_ref)
+            # df.LOG(f'[{new_tran}]')
 
         return new_tran
 
@@ -347,7 +363,7 @@ class NoCaseDict(OrderedDict):
                 word_count = len(item.split())
                 item_word_count_is_greater_or_equal_k_word_count = (word_count >= k_word_count)
                 item_word_count_is_smaller_than_allowable_k_word_count = (word_count <= allowed_k_word_count)
-                acceptable =  (item_word_count_is_greater_or_equal_k_word_count
+                acceptable = (item_word_count_is_greater_or_equal_k_word_count
                                and
                                item_word_count_is_smaller_than_allowable_k_word_count)
 
@@ -410,7 +426,10 @@ class NoCaseDict(OrderedDict):
                 entry = (ratio, partial_ratio, found_item)
                 found_list.append(entry)
             if found_list:
-                found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+                if is_k_single_word:
+                    found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+                else:
+                    found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
                 return [found_list[0]]
             else:
                 return found_list
@@ -519,7 +538,7 @@ class NoCaseDict(OrderedDict):
             return return_tran, selected_item, rat, untran_word_dic
 
         matched_ratio, partial_ratio, selected_item = subset[0]
-        is_accepted = (partial_ratio >= acceptable_rate)
+        is_accepted = ((partial_ratio >= acceptable_rate) if is_k_single_word else (matched_ratio >= acceptable_rate))
         if not is_accepted:
             perfect_match_percent = cm.matchTextPercent(k, selected_item)
             is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
@@ -624,20 +643,23 @@ class NoCaseDict(OrderedDict):
 
         for replacement_word, ending_list in df.common_suffixes_replace_dict.items():
             for ending in ending_list:
-                has_ending = txt.endswith(ending)
-                if not has_ending:
-                    continue
+                try:
+                    has_ending = txt.endswith(ending)
+                    if not has_ending:
+                        continue
 
-                clipping_len = len(ending)
-                clipped_txt = txt[:-clipping_len]
-                clipped_txt += replacement_word
+                    clipping_len = len(ending)
+                    clipped_txt = txt[:-clipping_len]
+                    clipped_txt += replacement_word
 
-                is_found = (clipped_txt in self)
-                if not is_found:
-                    continue
+                    is_found = (clipped_txt in self)
+                    if not is_found:
+                        continue
 
-                tran = self[clipped_txt]
-                return clipped_txt, tran
+                    tran = self[clipped_txt]
+                    return clipped_txt, tran
+                except Exception as e:
+                    df.LOG(f'{e}: replacement_word:[{replacement_word}] ending:[{ending}]; txt:[{txt}]')
         return None, None
 
     def tranByPartitioning(self, sl_txt):
@@ -650,6 +672,7 @@ class NoCaseDict(OrderedDict):
         ft_map = cm.genmap(sl_txt)
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
+        part_txt = None
         try:
             ft_translation = str(sl_txt)
             for ft_loc, ft_word in ft_map:
@@ -659,6 +682,7 @@ class NoCaseDict(OrderedDict):
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
+                part_txt = ft_word
                 ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate( ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO )
                 if ft_tran:
                     markTranslated(ft_loc, ft_word, ft_tran)
@@ -682,7 +706,7 @@ class NoCaseDict(OrderedDict):
             dd(f'{fname}() msg:[{sl_txt}] tran_sub_text:[{ft_translation}]')
         except Exception as e:
             return_tran = None
-            df.LOG(f'{e};', error=True)
+            df.LOG(f'{e}; [{sl_txt}] dealing with: [{part_txt}]', error=True)
         un_tran_list = ft_obs.getUnmarkedPartsAsDict()
         return return_tran, un_tran_list
 

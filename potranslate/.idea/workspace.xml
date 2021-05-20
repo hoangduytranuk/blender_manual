@@ -4,11 +4,16 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Tried method to add three positional parameters in sentence structure, ie. &quot;${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}&quot;: &quot;thử ${3} một ${2} ${1}&quot;, and it appeared to work alright. Still needed to test where any_list and order_queue both exists. Later!">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -457,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621353415225</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading.">
+      <created>1621362166943</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1621362166943</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,7 +492,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reuse of LocationObserver in Common.isPath to simpify the code." />
     <MESSAGE value="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes" />
     <MESSAGE value="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well." />
     <MESSAGE value="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern." />
@@ -505,44 +516,45 @@
     <MESSAGE value="Marked Exception report by df.LOG as error=True, to log into a file. See class Definitions: LOG declaration." />
     <MESSAGE value="Added the ability to NOT translate when translation is PRE-PROVIDED in the dictionary" />
     <MESSAGE value="Tried method to add three positional parameters in sentence structure, ie. &quot;${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}&quot;: &quot;thử ${3} một ${2} ${1}&quot;, and it appeared to work alright. Still needed to test where any_list and order_queue both exists. Later!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tried method to add three positional parameters in sentence structure, ie. &quot;${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}&quot;: &quot;thử ${3} một ${2} ${1}&quot;, and it appeared to work alright. Still needed to test where any_list and order_queue both exists. Later!" />
+    <MESSAGE value="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9312</line>
+          <line>9299</line>
           <option name="timeStamp" value="1789" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9269</line>
+          <line>9256</line>
           <option name="timeStamp" value="1868" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9009</line>
+          <line>8996</line>
           <option name="timeStamp" value="1971" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9007</line>
+          <line>8994</line>
           <option name="timeStamp" value="1972" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1137</line>
+          <line>1211</line>
           <option name="timeStamp" value="1982" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9471</line>
+          <line>9458</line>
           <option name="timeStamp" value="1984" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>236</line>
+          <line>250</line>
           <option name="timeStamp" value="2002" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -552,7 +564,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>434</line>
+          <line>535</line>
           <option name="timeStamp" value="2268" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -562,53 +574,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>281</line>
+          <line>277</line>
           <option name="timeStamp" value="2520" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1409</line>
-          <option name="timeStamp" value="2801" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>167</line>
-          <option name="timeStamp" value="2862" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>527</line>
-          <option name="timeStamp" value="2920" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>293</line>
-          <option name="timeStamp" value="2935" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>257</line>
-          <option name="timeStamp" value="2936" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>244</line>
+          <line>290</line>
           <option name="timeStamp" value="2945" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>729</line>
+          <option name="timeStamp" value="3056" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>373</line>
-          <option name="timeStamp" value="2952" />
+          <line>709</line>
+          <option name="timeStamp" value="3068" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>413</line>
-          <option name="timeStamp" value="2962" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>521</line>
-          <option name="timeStamp" value="2964" />
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>1702</line>
+          <option name="timeStamp" value="3082" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>
