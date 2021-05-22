@@ -821,7 +821,7 @@ class Definitions:
         'e': list(sorted(
             ['able', 'ation', 'ations', 'ion', 'ions',
              'ity', 'ities', 'ing', 'ings', 'ously', 'ous', 'ive', 'ily',
-             'ively', 'or', 'ors', 'iness', 'ature',
+             'ively', 'or', 'ors', 'iness', 'ature', 'er',
              'atures', 'ition', 'itions', 'itiveness',
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',

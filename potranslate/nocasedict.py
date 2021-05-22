@@ -4,7 +4,7 @@ from definition import Definitions as df, \
     SentStructMode as SMODE, \
     SentStructModeRecord as SMODEREC
 from key import Key
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz, process as fuzz_process
 from math import ceil
 import operator as OP
 import inspect as INP
@@ -107,7 +107,9 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             # is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            is_sent_struct = ('s)/MX1' in k)
+            is_sent_struct = ('er|ier' in k)
+            # if is_sent_struct:
+            #     dd(f'selected: [{item}]')
             # is_sent_struct = (re.search(r'it is as if', k) is not None)
             # is_sent_struct = (df.ENDING_WITH.search(k) is not None)
             return is_sent_struct
@@ -220,7 +222,9 @@ class NoCaseDict(OrderedDict):
                 interest_part = loc_text_list[1:]
                 if not interest_part:
                     interest_part = loc_text_list
-                unique_parts = cm.removeDuplicationFromlistLocText(interest_part)
+
+                list_of_dup_index = cm.getListOfDuplicatedLoc(interest_part)
+                unique_parts = cm.removeDuplicationFromlistLocText(interest_part, list_of_dup_index)
                 temp_dict = OrderedDict(unique_parts)
 
                 matched_text_group = temp_dict.values()
@@ -342,97 +346,44 @@ class NoCaseDict(OrderedDict):
         return (item in self.local_cache)
 
     def simpleFuzzyTranslate(self, msg: str, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO):
-        def getItemPart(item_txt):
-            item_word_list = item_txt.split()
-            item_first_word = item_word_list[0]
-            item_part = item_first_word[:max_k_length]
-            return item_part
-
-        def validate(item):
-            item_part = getItemPart(item)
-            is_found = (item_part.lower() == k_part.lower())
-            if not is_found:
-                return -1, None
-
-            allowable_length = (k_length * (1 + df.MAX_FUZZY_TEST_LENGTH))
-            if is_k_single_word:
-                item_len = len(item)
-                acceptable = (item_len <= allowable_length)
-            else:
-
-                word_count = len(item.split())
-                item_word_count_is_greater_or_equal_k_word_count = (word_count >= k_word_count)
-                item_word_count_is_smaller_than_allowable_k_word_count = (word_count <= allowed_k_word_count)
-                acceptable = (item_word_count_is_greater_or_equal_k_word_count
-                               and
-                               item_word_count_is_smaller_than_allowable_k_word_count)
-
-            return_result = (1 if acceptable else 0)
-            return return_result, item
-
-        def findListOfCandidates():
-            subset = []
-            index = cm.binarySearch(key_list, k, key=getItemPart)
-            is_found = (index >= 0)
-            if not is_found:
-                return subset
-
-            found_list = []
-            ss = index
-            ee = index
-            # dd(f'simpleFuzzyTranslate(): start index: [{index}]')
-            for i in range(index-1, 0, -1):
-                item = key_list[i]
-                cond, found_item = validate(item)
-                is_break = (cond == -1)
-                if is_break:
-                    # dd(f'simpleFuzzyTranslate(): traverse backward, stopped at: [{i}], item:[{item}]')
-                    break
-                is_accepted = (cond == 1)
-                if is_accepted:
-                    found_list.append(item)
-            ss = i
-            # dd(f'simpleFuzzyTranslate(): backward to index: [{i}]')
-            for i in range(index, len(key_list)):
-                item = key_list[i]
-                cond, found_item = validate(item)
-                is_break = (cond == -1)
-                if is_break:
-                    # dd(f'simpleFuzzyTranslate(): traverse forward, stopped at: [{i}], item:[{item}]')
-                    break
-                is_accepted = (cond == 1)
-                if is_accepted:
-                    found_list.append(item)
-            ee = i
-            found_list.sort(key=lambda x: len(x), reverse=True)
-
-            for found_item in found_list:
-                ratio = fuzz.ratio(found_item, k)
-                is_found = (ratio >= df.FUZZY_LOW_ACCEPTABLE_RATIO)
-                if not is_found:
-                    continue
-
-                entry = (ratio, found_item)
-                subset.append(entry)
-
-            subset.sort(reverse=True)
-            return subset
-
-        def simpleFindListOfCandidates():
-            found_list = []
-            for found_item in key_list:
-                ratio = fuzz.ratio(found_item, k)
-                partial_ratio = fuzz.partial_ratio(found_item, k)
-                entry = (ratio, partial_ratio, found_item)
-                found_list.append(entry)
-            if found_list:
-                if is_k_single_word:
-                    found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+        def getShorterKText():
+            shorter_kword_list=[]
+            for kword in k_word_list:
+                left, mid, right = cm.getTextWithin(kword)
+                possible_shorter_word = self.getByReduceKnownSuffix(mid)
+                if not possible_shorter_word:
+                    possible_shorter_word = kword
                 else:
-                    found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
-                return [found_list[0]]
-            else:
-                return found_list
+                    possible_shorter_word = (left + possible_shorter_word + right)
+                shorter_kword_list.append(possible_shorter_word)
+            possible_shorter_k = " ".join(shorter_kword_list)
+            return possible_shorter_k
+
+        def simpleFindListOfCandidates(possible_text_list):
+            found_list = []
+            shorter_k = getShorterKText()
+            choice1 = fuzz_process.extractOne(shorter_k, possible_text_list)
+            choice2 = fuzz_process.extractOne(k, possible_text_list)
+            select1, ratio1 = choice1
+            select2, ratio2 = choice2
+            choice = ((select1, ratio1) if (ratio1 > ratio2) else (select2, ratio2))
+            if choice:
+                found_list.append(choice)
+            return found_list
+
+            # for found_item in key_list:
+            #     ratio = fuzz.ratio(found_item, k)
+            #     partial_ratio = fuzz.partial_ratio(found_item, k)
+            #     entry = (ratio, partial_ratio, found_item)
+            #     found_list.append(entry)
+            # if found_list:
+            #     if is_k_single_word:
+            #         found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+            #     else:
+            #         found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
+            #     return [found_list[0]]
+            # else:
+            #     return found_list
 
         def isKeyListTextValid(dict_item):
             is_same = (k == dict_item.lower())
@@ -469,12 +420,7 @@ class NoCaseDict(OrderedDict):
             if not is_found:
                 return found_list
 
-            before_items = dict_keys[index-10: index]
-            after_items = dict_keys[index: index+10]
-            test_item = dict_keys[index]
             dict_key_len = len(dict_keys)
-
-            start_stop_at=None
             found_before = findInRange(index, 0, -1)
             found_after = findInRange(index+1, dict_key_len, 1)
             found_list.extend(found_before)
@@ -482,6 +428,8 @@ class NoCaseDict(OrderedDict):
             return found_list
 
         untran_word_dic = {}
+        default_result = (None, None, 0, untran_word_dic)
+
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
@@ -489,21 +437,6 @@ class NoCaseDict(OrderedDict):
         k_word_list = k.split()
         k_word_count = len(k_word_list)
         is_k_single_word = (k_word_count == 1)
-        allowed_k_word_count = int(k_word_count * 1.7)
-
-        k_matching_length = int(ceil(k_length * 0.5))
-        if not is_k_single_word:
-            first_word = k_word_list[0]
-            first_word_len = len(first_word)
-            is_two_small = (first_word_len < 3)
-            k_matching_length = int(ceil(first_word_len * df.MAX_FUZZY_TEST_LENGTH))
-            if is_two_small:
-                try:
-                    second_word = k_word_list[1]
-                    second_word_len = len(second_word)
-                    k_matching_length = int(ceil((first_word_len + second_word_len + 1) * df.MAX_FUZZY_TEST_LENGTH))
-                except Exception as e:
-                    pass
 
         first_word = k_word_list[0]
         first_word_len = len(first_word)
@@ -518,36 +451,29 @@ class NoCaseDict(OrderedDict):
         if is_cached:
             key_list = self.local_keylist_cache[k]
         else:
-            tic = time.perf_counter()
-            # key_list = list(filter(isKeyListTextValid, self.local_keys))
+            # tic = time.perf_counter()
             key_list = simpleKeyListGetting()
-            tok = time.perf_counter()
-            taken = (tok - tic)
+            # tok = time.perf_counter()
+            # taken = (tok - tic)
             self.local_keylist_cache.update({k: key_list})
-        # pp(key_list)
 
-        subset = key_list
-
-        # subset = findListOfCandidates()
-        subset = simpleFindListOfCandidates()
+        subset = simpleFindListOfCandidates(key_list)
         found_candidates = (len(subset) > 0)
         if not found_candidates:
-            return_tran = None
-            rat = 0
-            selected_item = None
-            return return_tran, selected_item, rat, untran_word_dic
+            return default_result
 
-        matched_ratio, partial_ratio, selected_item = subset[0]
-        is_accepted = ((partial_ratio >= acceptable_rate) if is_k_single_word else (matched_ratio >= acceptable_rate))
+        selected_item, matched_ratio = subset[0]
+        is_accepted = (matched_ratio >= acceptable_rate)
         if not is_accepted:
-            perfect_match_percent = cm.matchTextPercent(k, selected_item)
-            is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
-            # dd(f'simpleFuzzyTranslate(): perfect_match_percent:[{perfect_match_percent}] k:[{k}] => selected_item:[{selected_item}]; is_accepted:[{is_accepted}]')
-            if not is_accepted:
-                return_tran = None
-                rat = 0
-                selected_item = None
-                return return_tran, selected_item, rat, untran_word_dic
+            return default_result
+
+        # matched_ratio, partial_ratio, selected_item = subset[0]
+        # is_accepted = ((partial_ratio >= acceptable_rate) if is_k_single_word else (matched_ratio >= acceptable_rate))
+        # if not is_accepted:
+        #     perfect_match_percent = cm.matchTextPercent(k, selected_item)
+        #     is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
+        #     if not is_accepted:
+        #         return default_result
 
         translation_txt = self[selected_item]
         lower_msg = msg.lower()
@@ -583,7 +509,7 @@ class NoCaseDict(OrderedDict):
         if translation:
             translation = self.replaceTranRef(translation)
 
-        return translation, selected_item, partial_ratio, untran_word_dic
+        return (translation, selected_item, matched_ratio, untran_word_dic)
 
     def __delitem__(self, key):
         key = Key(key)
@@ -630,17 +556,7 @@ class NoCaseDict(OrderedDict):
         new_set = self.getSetByWordCountInRange(1, word_count, first_word_list=first_word, is_reversed=is_reversed)
         return new_set
 
-    def findByChangeSuffix(self, txt):
-        def checkTranslationForText(test_text):
-            trans, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(test_text)
-            if trans:
-                return test_text, trans, True
-
-            # chopped_txt, trans = self.reduceDuplicatedEnding(test_text)
-            # if trans:
-            #     return chopped_txt, trans, True
-            return test_text, None, False
-
+    def getByReduceKnownSuffix(self, txt):
         for replacement_word, ending_list in df.common_suffixes_replace_dict.items():
             for ending in ending_list:
                 try:
@@ -650,17 +566,22 @@ class NoCaseDict(OrderedDict):
 
                     clipping_len = len(ending)
                     clipped_txt = txt[:-clipping_len]
-                    clipped_txt += replacement_word
-
                     is_found = (clipped_txt in self)
-                    if not is_found:
-                        continue
+                    if is_found:
+                        return clipped_txt
 
-                    tran = self[clipped_txt]
-                    return clipped_txt, tran
+                    clipped_txt += replacement_word
+                    is_found = (clipped_txt in self)
+                    if is_found:
+                        return clipped_txt
                 except Exception as e:
                     df.LOG(f'{e}: replacement_word:[{replacement_word}] ending:[{ending}]; txt:[{txt}]')
-        return None, None
+        return None
+
+    def findByChangeSuffix(self, txt):
+        clipped_txt = self.getByReduceKnownSuffix(txt)
+        tran = (self[clipped_txt] if clipped_txt else None)
+        return clipped_txt, tran
 
     def tranByPartitioning(self, sl_txt):
         def markTranslated(txt_loc, sl_txt, tl_txt):
@@ -668,7 +589,6 @@ class NoCaseDict(OrderedDict):
             entry=(txt_loc, tl_txt)
             ft_translated_list.append(entry)
 
-        fname = INP.currentframe().f_code.co_name
         ft_map = cm.genmap(sl_txt)
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
@@ -703,7 +623,6 @@ class NoCaseDict(OrderedDict):
             is_translated = (ft_translation != sl_txt)
             return_tran = (ft_translation if is_translated else None)
 
-            dd(f'{fname}() msg:[{sl_txt}] tran_sub_text:[{ft_translation}]')
         except Exception as e:
             return_tran = None
             df.LOG(f'{e}; [{sl_txt}] dealing with: [{part_txt}]', error=True)
@@ -711,39 +630,49 @@ class NoCaseDict(OrderedDict):
         return return_tran, un_tran_list
 
     def getTranBySlittingSymbols(self, input_txt):
-        fname = INP.currentframe().f_code.co_name
-
         pattern_list = [
             df.NON_SPACE_SYMBOLS,
             df.SYMBOLS,
         ]
         translation = str(input_txt)
-        translated_list = []
+        translated_list = {}
         selective_list = []
 
         tran, untran_dict = self.tranByPartitioning(input_txt)
         if tran:
             return tran
 
+        obs = LocationObserver(input_txt)
         for pat in pattern_list:
+            if obs.isCompletelyUsed():
+                break
+
             word_list = cm.splitWordAtToList(pat, input_txt)
             if not word_list:
                 continue
 
             for loc, txt in word_list:
+                if obs.isCompletelyUsed():
+                    break
+
+                if obs.isLocUsed(loc):
+                    continue
+
                 tran, untran_dict = self.tranByPartitioning(txt)
                 is_translated = (tran != txt)
                 if is_translated:
-                    entry = (loc, tran)
-                    translated_list.append(entry)
+                    obs.markLocAsUsed(loc)
+                    entry = {loc: tran}
+                    translated_list.update(entry)
 
+        translated_list = list(translated_list.items())
         translated_list.sort(reverse=True)
         for loc, tran in translated_list:
             translation = cm.jointText(translation, tran, loc)
 
         is_translated = (translation != input_txt)
         if is_translated:
-            dd(f'{fname}(): input_txt:[{input_txt}]=>[{translation}]')
+            df.LOG(f'input_txt:[{input_txt}]=>[{translation}]')
             return translation
         else:
             return None
@@ -993,19 +922,12 @@ class NoCaseDict(OrderedDict):
             is_patching_front = (is_at_front and not new_txt.startswith(add_translation))
             is_patching_end = (is_at_end and not new_txt.endswith(add_translation))
 
-            # dd(f'fixTranslationWithKnowsSuffixes: is_patching_front:{is_patching_front} is_patching_end:{is_patching_end} ')
-            # dd(f'txt:{txt}; fix_term:{fix_term}; position:{position}')
             if is_patching_front:
-                # dd(f'is_patching_front: add_translation={add_translation}')
-                # dd(f'is_patching_front: Befor adding; new_txt={new_txt}')
                 new_txt = add_translation + ' ' + new_txt
-                # dd(f'is_patching_front: new_txt={new_txt}')
                 return new_txt
 
             if is_patching_end:
-                # dd(f'is_patching_end: add_translation={add_translation}')
                 new_txt += ' ' + add_translation
-                # dd(f'is_patching_end: new_txt={new_txt}')
                 return new_txt
         return trans
 

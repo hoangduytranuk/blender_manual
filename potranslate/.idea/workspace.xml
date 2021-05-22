@@ -4,16 +4,14 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -469,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621362166943</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting.">
+      <created>1621514639861</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1621514639861</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -492,7 +497,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adding exception handling part to print the routine name automatically; Adding code to collect and print out the list of structure record parsed, and some minor changes" />
     <MESSAGE value="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well." />
     <MESSAGE value="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern." />
     <MESSAGE value="First stage getting the ordered variables $$1 $$2 etc.. working" />
@@ -517,90 +521,28 @@
     <MESSAGE value="Added the ability to NOT translate when translation is PRE-PROVIDED in the dictionary" />
     <MESSAGE value="Tried method to add three positional parameters in sentence structure, ie. &quot;${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}&quot;: &quot;thử ${3} một ${2} ${1}&quot;, and it appeared to work alright. Still needed to test where any_list and order_queue both exists. Later!" />
     <MESSAGE value="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading." />
+    <MESSAGE value="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9299</line>
-          <option name="timeStamp" value="1789" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9256</line>
-          <option name="timeStamp" value="1868" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>8996</line>
-          <option name="timeStamp" value="1971" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>8994</line>
-          <option name="timeStamp" value="1972" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1211</line>
-          <option name="timeStamp" value="1982" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>9458</line>
-          <option name="timeStamp" value="1984" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>250</line>
-          <option name="timeStamp" value="2002" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/ignore.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="2035" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>535</line>
-          <option name="timeStamp" value="2268" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>815</line>
-          <option name="timeStamp" value="2385" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>277</line>
-          <option name="timeStamp" value="2520" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>290</line>
-          <option name="timeStamp" value="2945" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>729</line>
-          <option name="timeStamp" value="3056" />
+          <line>371</line>
+          <option name="timeStamp" value="3128" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>709</line>
-          <option name="timeStamp" value="3068" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>363</line>
+          <option name="timeStamp" value="3129" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1702</line>
-          <option name="timeStamp" value="3082" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>566</line>
+          <option name="timeStamp" value="3131" />
         </line-breakpoint>
       </breakpoints>
-      <breakpoints-defaults>
-        <breakpoint type="python-line" />
-      </breakpoints-defaults>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -611,13 +553,13 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="k_list[mid-20:mid+20]" language="Python" />
-        <watch expression="k_list[mid-10:mid+10]" language="Python" />
-        <watch expression="k" language="Python" />
-        <watch expression="Ignore.keep_contains_list" language="Python" />
-        <watch expression="self" language="Python" />
+        <watch expression="k_list[mid-20:mid+20]" />
+        <watch expression="k_list[mid-10:mid+10]" />
+        <watch expression="k" />
+        <watch expression="Ignore.keep_contains_list" />
+        <watch expression="self" />
         <watch expression="sr_list" />
-        <watch expression="df.global_ref_dict_list" language="Python" />
+        <watch expression="df.global_ref_dict_list" />
       </configuration>
     </watches-manager>
   </component>

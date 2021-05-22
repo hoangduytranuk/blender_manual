@@ -326,9 +326,9 @@ class StructRecogniser():
                     new_loc = (ls, new_le)
                     new_entry = (new_loc, actual_tl_txt)
                     new_list.append(new_entry)
-                df.LOG(f'RETURN new_list:; any_index_list:')
-                pp(new_list, width=200)
-                pp(any_index_list, width=200)
+                # df.LOG(f'RETURN new_list:; any_index_list:')
+                # pp(new_list, width=200)
+                # pp(any_index_list, width=200)
 
                 return new_list, any_index_list
 
@@ -367,7 +367,7 @@ class StructRecogniser():
             n_mm = MatcherRecord(s=ns, e=ne, txt=new_sent_tl_txt)
             n_mm.appendSubRecords(corrected_sent_tl_list)
             self.sent_tl_rec = n_mm
-            df.LOG(f'return n_mm:[{n_mm}]')
+            # df.LOG(f'return n_mm:[{n_mm}]')
             return text_to_translate_list
 
         if bool(self.text_list_to_be_translated):
@@ -611,16 +611,17 @@ class StructRecogniser():
                 if is_used:
                     continue
 
-                tran = self.tf.isInDict(sr_sub_txt)
-                is_translated = (tran is not None)
-                if is_translated:
-                    sr = self.makeTranslatedSR(sr_loc, sr_sub_txt, tran)
-                    entry = (sr_loc, sr)
-                    parsed_list.append(entry)
-                    collectTranslation(sr_loc, sr_sub_txt, tran)
-                    continue
+                # tran = self.tf.isInDict(sr_sub_txt)
+                # is_translated = (tran is not None)
+                # if is_translated:
+                #     sr = self.makeTranslatedSR(sr_loc, sr_sub_txt, tran)
+                #     entry = (sr_loc, sr)
+                #     parsed_list.append(entry)
+                #     collectTranslation(sr_loc, sr_sub_txt, tran)
+                #     continue
 
-                cm.debugging(sr_sub_txt)
+                # cm.debugging(sr_sub_txt)
+                # removing the end punctuations
                 is_ended_punct = df.END_BASIC_PUNCTUAL.search(sr_sub_txt)
                 if is_ended_punct:
                     end_punct = is_ended_punct.group(0)
@@ -701,6 +702,7 @@ class StructRecogniser():
                 entry=(txt_loc, tran)
                 tran_list.append(entry)
                 entry = {txt_sl: txt_tl}
+                df.LOG(f'entry:[{entry}]')
                 self.updateProcessed(entry)
 
         try:

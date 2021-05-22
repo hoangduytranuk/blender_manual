@@ -1800,13 +1800,16 @@ class Common:
         simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
 
-        # test_txt= 'has no effect'
-        # match_1 = re.search(simplified_pat, test_txt)
-        # match_2 = re.compile(simplified_pat, flags=re.I)
-        # grp = match_2.findall(test_txt)
+        test_txt= 'shorter strokes finish earlier'
+        match_1 = re.search(simplified_pat, test_txt)
+        match_2 = re.compile(simplified_pat, flags=re.I)
+        grp = match_2.findall(test_txt)
         #
-        # match = Common.patternMatchAll(re.compile(simplified_pat, flags=re.I), test_txt)
+        match = Common.patternMatchAll(re.compile(simplified_pat, flags=re.I), test_txt)
 
+        is_match = (match or match_1 or match_2)
+        if is_match:
+            print('')
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
         return pattern_txt
@@ -1998,7 +2001,7 @@ class Common:
                 hi = mid
         return -1
 
-    def removeDuplicationFromlistLocText(list_of_loc_txt: list):
+    def getListOfDuplicatedLoc(list_of_loc_txt: list):
         try:
             list_length = len(list_of_loc_txt)
             last_item = list_of_loc_txt[list_length-1]
@@ -2016,6 +2019,15 @@ class Common:
                 if obs.isLocUsed(temp_loc):
                     list_of_indexes_to_be_removed.append(index)
                 obs.markLocAsUsed(temp_loc)
+        except Exception as e:
+            pass
+        return list_of_indexes_to_be_removed
+
+    def removeDuplicationFromlistLocText(list_of_loc_txt: list, list_of_removing_index=None):
+        try:
+            list_of_indexes_to_be_removed = list_of_removing_index
+            if not list_of_removing_index:
+                list_of_indexes_to_be_removed = Common.getListOfDuplicatedLoc()
 
             list_of_indexes_to_be_removed.sort(reverse=True)
             for index in list_of_indexes_to_be_removed:

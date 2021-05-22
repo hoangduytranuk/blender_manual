@@ -261,7 +261,7 @@ class TranslationFinder:
         translated_dict = OrderedDict()
         map = cm.genmap(msg)
         obs = LocationObserver(str(msg))
-
+        dic = self.getDict()
         for loc, txt in map:
             is_fully_translated = obs.isCompletelyUsed()
             if is_fully_translated:
@@ -279,15 +279,12 @@ class TranslationFinder:
                 entry = {loc: (txt, tran_sub_text)}
                 translated_dict.update(entry)
 
-        if not translated_dict:
-            return None
-
         is_fully_translated = obs.isCompletelyUsed()
         if not is_fully_translated:
             untran_dict = obs.getUnmarkedPartsAsDict()
             for loc, mm in untran_dict.items():
                 txt = mm.txt
-                tran_sub_text = self.translateWords(txt)
+                tran_sub_text = dic.getTranBySlittingSymbols(txt)
                 if tran_sub_text:
                     entry = {loc: (txt, tran_sub_text)}
                     translated_dict.update(entry)

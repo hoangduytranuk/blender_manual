@@ -9621,7 +9621,9 @@ IOR
                 # "i.e. it will bake all steps that can be baked individually with the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type at once",
                 # "i.e. less long thin triangles",
                 # "i.e. let the object give the particle a starting speed",
-                "parent's",
+                "shorter strokes finish earlier",
+                # "shorter strokes",
+                # "earlier",
             ]
 
         else:
@@ -9633,12 +9635,12 @@ IOR
             pr.translate()
             # output = pr.getTranslation()
             output = pr.getTextAndTranslation()
-            print(output)
+            df.LOG(output)
 
     def grepPOTFindPath(self, txt):
         ref_dict_list, obs = cm.getRefDictList(txt)
         for entry in ref_dict_list:
-            print(entry)
+            df.LOG(entry)
         return ref_dict_list
 
     def run(self):
