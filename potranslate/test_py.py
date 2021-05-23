@@ -9621,9 +9621,7 @@ IOR
                 # "i.e. it will bake all steps that can be baked individually with the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type at once",
                 # "i.e. less long thin triangles",
                 # "i.e. let the object give the particle a starting speed",
-                "shorter strokes finish earlier",
-                # "shorter strokes",
-                # "earlier",
+                "the Rest Pose/Base Rig",
             ]
 
         else:

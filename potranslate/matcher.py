@@ -58,6 +58,10 @@ class MatcherRecord(OrderedDict):
                 if not is_found:
                     continue
 
+                is_empty = not bool(txt.strip())
+                if is_empty:
+                    continue
+
                 # is_over_lapped = (rs in loc_dict)
                 # if is_over_lapped:
                 #     continue

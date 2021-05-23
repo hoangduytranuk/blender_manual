@@ -396,7 +396,7 @@ class StructRecogniser():
                 self.sent_tl_rec.setTranslated()
                 text_to_translate_list = []
         except Exception as e:
-            df.LOG(e, error=True)
+            # df.LOG(e, error=True)
             # if self.is_sent_struct:
             #     exit(0)
             try:

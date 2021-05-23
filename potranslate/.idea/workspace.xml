@@ -4,14 +4,14 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting.">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Using the getByReduceKnownSuffix() to cater for words that has extra ending, such as 'ier|er' etc.. using the common_suffixes_replace_dict in definition.py. This allows much higher ability to find the existing translation, also possibly helps with the introductions of extra sentence constructions later.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
@@ -474,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621514639861</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Using the getByReduceKnownSuffix() to cater for words that has extra ending, such as 'ier|er' etc.. using the common_suffixes_replace_dict in definition.py. This allows much higher ability to find the existing translation, also possibly helps with the introductions of extra sentence constructions later.">
+      <created>1621688721030</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1621688721030</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -497,7 +504,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added checking for ending with punctuations and added the pattern checks for no ending punctuations to the getSentStructPattern(), allowing the NO_FULL_STOP and NO_PUNCTUATION cases to check for no ending punctuations as well." />
     <MESSAGE value="Introduced the concept of multiple flags, and thus simplified check cases for each sentence structure mode. Each flag of checking mode is separated with a forward slash '/' and all results are stacked in a list. At the end, all flags are checked, if one is False then the whole expression is considered False and the fragment of text won't be selected for that pattern." />
     <MESSAGE value="First stage getting the ordered variables $$1 $$2 etc.. working" />
     <MESSAGE value="Reimplementing the notations for sentence structure controlling variables, using ${order_number/mode1/mode2...} instead of the simple $$$/mode, or $$1 before. This will allow greater, and more accurate controls of how each conditions affects the result of text fragment selection." />
@@ -522,25 +528,26 @@
     <MESSAGE value="Tried method to add three positional parameters in sentence structure, ie. &quot;${1/MX1} ${2/`\\w+(ial|al)`/NP/NC} ${3/`\\w+(ion)`/NP/NC}&quot;: &quot;thử ${3} một ${2} ${1}&quot;, and it appeared to work alright. Still needed to test where any_list and order_queue both exists. Later!" />
     <MESSAGE value="Changed the way the simpleFuzzyTranslate(), in nocasedict.py works, taking into account partial_fuzzy_ratio, which could be much higher for words with the same heading." />
     <MESSAGE value="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting." />
+    <MESSAGE value="Using the getByReduceKnownSuffix() to cater for words that has extra ending, such as 'ier|er' etc.. using the common_suffixes_replace_dict in definition.py. This allows much higher ability to find the existing translation, also possibly helps with the introductions of extra sentence constructions later." />
+    <option name="LAST_COMMIT_MESSAGE" value="Using the getByReduceKnownSuffix() to cater for words that has extra ending, such as 'ier|er' etc.. using the common_suffixes_replace_dict in definition.py. This allows much higher ability to find the existing translation, also possibly helps with the introductions of extra sentence constructions later." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>371</line>
-          <option name="timeStamp" value="3128" />
+          <line>667</line>
+          <option name="timeStamp" value="3135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>363</line>
-          <option name="timeStamp" value="3129" />
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>1275</line>
+          <option name="timeStamp" value="3170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>566</line>
-          <option name="timeStamp" value="3131" />
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>261</line>
+          <option name="timeStamp" value="3184" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

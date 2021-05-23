@@ -106,8 +106,8 @@ class NoCaseDict(OrderedDict):
     def createSentenceStructureDict(self):
         def isSentStruct(item):
             (k, v) = item
-            # is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            is_sent_struct = ('er|ier' in k)
+            is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
+            # is_sent_struct = ('LD(/)' in k)
             # if is_sent_struct:
             #     dd(f'selected: [{item}]')
             # is_sent_struct = (re.search(r'it is as if', k) is not None)
@@ -208,8 +208,8 @@ class NoCaseDict(OrderedDict):
             if not chosen_key_list:
                 return (None, default_value)
 
-            df.LOG(f'matched key: [{key}]')
-            pp(chosen_key_list, width=200)
+            # df.LOG(f'matched key: [{key}]')
+            # pp(chosen_key_list, width=200)
 
             # list_of_sent_struct = list(self.sentence_struct_dict.items())
             for pat in chosen_key_list:
@@ -222,7 +222,6 @@ class NoCaseDict(OrderedDict):
                 interest_part = loc_text_list[1:]
                 if not interest_part:
                     interest_part = loc_text_list
-
                 list_of_dup_index = cm.getListOfDuplicatedLoc(interest_part)
                 unique_parts = cm.removeDuplicationFromlistLocText(interest_part, list_of_dup_index)
                 temp_dict = OrderedDict(unique_parts)
@@ -232,12 +231,12 @@ class NoCaseDict(OrderedDict):
                 # matched_text_group = matcher.groups()
                 (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
                 s_mode_list = dict_sl_mm.smode
-                df.LOG(f'matched_text_group:[{matched_text_group}]')
+                # df.LOG(f'matched_text_group:[{matched_text_group}]')
                 pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group)
-                df.LOG(f'pattern_and_matched_text_pair_list:')
-                df.LOG('-' * 80)
-                pp(pattern_and_matched_text_pair_list)
-                df.LOG('-' * 80)
+                # df.LOG(f'pattern_and_matched_text_pair_list:')
+                # df.LOG('-' * 80)
+                # pp(pattern_and_matched_text_pair_list)
+                # df.LOG('-' * 80)
                 try:
                     is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
                 except Exception as e:
@@ -258,7 +257,7 @@ class NoCaseDict(OrderedDict):
                 return (None, default_value)
 
             selective_match.sort(reverse=True)
-            dd('-' * 80)
+            dd('Chosen:')
             pp(selective_match)
             dd('-' * 80)
             first_entry = selective_match[0]
@@ -359,31 +358,44 @@ class NoCaseDict(OrderedDict):
             possible_shorter_k = " ".join(shorter_kword_list)
             return possible_shorter_k
 
+        def generateFoundListFromSelectedKeyList(txt_to_compare):
+            found_list = []
+            for found_item in key_list:
+                ratio = fuzz.ratio(found_item, txt_to_compare)
+                partial_ratio = fuzz.partial_ratio(found_item, txt_to_compare)
+                entry = (ratio, partial_ratio, found_item)
+
+            found_list.append(entry)
+            if found_list:
+                if is_k_single_word:
+                    found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+                else:
+                    found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
+                return [found_list[0]]
+            else:
+                return found_list
+
+
         def simpleFindListOfCandidates(possible_text_list):
             found_list = []
             shorter_k = getShorterKText()
             choice1 = fuzz_process.extractOne(shorter_k, possible_text_list)
             choice2 = fuzz_process.extractOne(k, possible_text_list)
-            select1, ratio1 = choice1
-            select2, ratio2 = choice2
-            choice = ((select1, ratio1) if (ratio1 > ratio2) else (select2, ratio2))
+            if choice1:
+                select1, ratio1 = choice1
+
+            if choice2:
+                select2, ratio2 = choice2
+
+            has_both = (choice1 and choice2)
+            if has_both:
+                choice = (choice1 if (ratio1 > ratio2) else choice2)
+            else:
+                choice = (choice1 if choice1 else choice2)
+
             if choice:
                 found_list.append(choice)
             return found_list
-
-            # for found_item in key_list:
-            #     ratio = fuzz.ratio(found_item, k)
-            #     partial_ratio = fuzz.partial_ratio(found_item, k)
-            #     entry = (ratio, partial_ratio, found_item)
-            #     found_list.append(entry)
-            # if found_list:
-            #     if is_k_single_word:
-            #         found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
-            #     else:
-            #         found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
-            #     return [found_list[0]]
-            # else:
-            #     return found_list
 
         def isKeyListTextValid(dict_item):
             is_same = (k == dict_item.lower())
@@ -458,11 +470,18 @@ class NoCaseDict(OrderedDict):
             self.local_keylist_cache.update({k: key_list})
 
         subset = simpleFindListOfCandidates(key_list)
+        df.LOG(f'looking for: [{k}] found subset:')
+        df.LOG('-' * 80)
+        pp(subset)
+        df.LOG('*' * 80)
         found_candidates = (len(subset) > 0)
         if not found_candidates:
             return default_result
 
-        selected_item, matched_ratio = subset[0]
+        # matched_ratio, partial_ratio, selected_item  = subset[0]
+        # is_accepted = (matched_ratio >= acceptable_rate)
+        (selected_item, matched_ratio) = subset[0]
+        matched_ratio = fuzz.ratio(selected_item, k)
         is_accepted = (matched_ratio >= acceptable_rate)
         if not is_accepted:
             return default_result
@@ -589,6 +608,11 @@ class NoCaseDict(OrderedDict):
             entry=(txt_loc, tl_txt)
             ft_translated_list.append(entry)
 
+        # orig_txt = str(sl_txt)
+        # word_list = cm.splitWordAtToList(df.SYMBOLS, sl_txt)
+        # word_list_dict = OrderedDict(word_list)
+        # sl_txt = " ".join(word_list_dict.values())
+
         ft_map = cm.genmap(sl_txt)
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
@@ -602,9 +626,11 @@ class NoCaseDict(OrderedDict):
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
+                df.LOG(f'trying: [{ft_word}]')
                 part_txt = ft_word
                 ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate( ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO )
                 if ft_tran:
+                    df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)
                 else:
                     wc = len(ft_word.split())
@@ -638,6 +664,7 @@ class NoCaseDict(OrderedDict):
         translated_list = {}
         selective_list = []
 
+        return None
         tran, untran_dict = self.tranByPartitioning(input_txt)
         if tran:
             return tran

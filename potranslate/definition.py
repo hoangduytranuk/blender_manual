@@ -261,8 +261,10 @@ class Definitions:
     SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
 
     ANY = re.compile(r'^.*$', re.I)
+    EMBEDDED_WITH = re.compile(r'EMB\([^\(\)]+\)', re.I)
+    LEADING_WITH = re.compile(r'LD\([^\(\)]+\)', re.I)
     ENDING_WITH = re.compile(r'ED\([^\(\)]+\)', re.I)
-    ENDING_WITH_PART = re.compile(r'\(([^\(\)]+)\)', re.I)
+    CLAUSED_PART = re.compile(r'\(([^\(\)]+)\)', re.I)
 
     PATTERN = re.compile(r'^\`([^\`]+)\`$', re.I)
     PATTERN_PART = re.compile(r'\`([^\`]+)\`')
@@ -830,7 +832,7 @@ class Definitions:
              ],
             key=lambda x: len(x), reverse=True)),
         't': list(sorted(
-            ['ce','cy', 'ssion', 'ssions'],
+            ['ce','cy', 'ssion', 'ssions', 'sion', 'sions'],
             key=lambda x: len(x), reverse=True)),
         'x': list(sorted(
             ['ce','ces', ],
@@ -1310,6 +1312,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "/base",
         "_right",
         "_left",
         "vertices/edges/faces",

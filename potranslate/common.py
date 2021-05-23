@@ -1260,6 +1260,21 @@ class Common:
 
         return (-1, -1), new_word
 
+    def checkWordEndedBoundaries(txt: str, word_to_check: str, location: tuple):
+        map = Common.genmap(txt, is_removing_symbols=True)
+        selective_list = []
+        for map_loc, map_word in map:
+            is_selected = (word_to_check in map_word)
+            if not is_selected:
+                continue
+
+            rat = fuzz.ratio(map_word, word_to_check)
+            entry = (rat, map_loc, map_word)
+            selective_list.append(entry)
+        selective_list.sort(reverse=True)
+
+        return None
+
     def replaceStr(from_str: str, to_str: str, txt: str) -> str:
         '''
         Replace a sub-string (from_str) with another sub-string (to_str) in the
@@ -1733,7 +1748,7 @@ class Common:
         is_pat = isinstance(pattern, re.Pattern)
         word_list=[]
         try:
-            pat = (re.compile(pattern) if is_char else pattern)
+            pat = (re.compile(pattern, flags=re.I) if is_char else pattern)
             txt_dict = Common.findInvert(pat, txt)
             for loc, word_mm in txt_dict.items():
                 entry=(loc, word_mm.txt)
@@ -1781,13 +1796,21 @@ class Common:
             if is_any:
                 pat_txt = r'\s?(.*?)\s?'
 
+                is_embedded_with = df.EMBEDDED_WITH.search(txt)
                 is_ending_with = df.ENDING_WITH.search(txt)
-                if is_ending_with:
-                    endings = df.ENDING_WITH_PART.search(txt)
-                    ending_part = endings.group(1)
+                is_leading_with = df.LEADING_WITH.search(txt)
+                is_claused = (is_leading_with or is_ending_with or is_embedded_with)
+                if is_claused:
+                    embs = df.CLAUSED_PART.search(txt)
+                    emb_part = embs.group(1)
                     # pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
-                    pat_txt = r'\s?(\w+%s)\s?' % (ending_part)
-                    dd('')
+                    if is_ending_with:
+                        pat_txt = r'\s?([^%s]+%s)\s?' % (emb_part, emb_part)
+                    elif is_leading_with:
+                        pat_txt = r'\s?(%s[^%s]+)\s?' % (emb_part, emb_part)
+                    elif is_embedded_with:
+                        pat_txt = r'\s?([^%s]+%s[^%s]+)\s?' % (emb_part, emb_part, emb_part)
+                    # dd('')
 
                 pattern_embedded = df.PATTERN_PART.search(txt)
                 if pattern_embedded:
@@ -1800,16 +1823,16 @@ class Common:
         simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
 
-        test_txt= 'shorter strokes finish earlier'
-        match_1 = re.search(simplified_pat, test_txt)
-        match_2 = re.compile(simplified_pat, flags=re.I)
-        grp = match_2.findall(test_txt)
+        # test_txt= "the Rest Pose/Base Rig"
+        # match_1 = re.search(simplified_pat, test_txt)
+        # match_2 = re.compile(simplified_pat, flags=re.I)
+        # grp = match_2.findall(test_txt)
+        # #
+        # match = Common.patternMatchAll(re.compile(simplified_pat, flags=re.I), test_txt)
         #
-        match = Common.patternMatchAll(re.compile(simplified_pat, flags=re.I), test_txt)
-
-        is_match = (match or match_1 or match_2)
-        if is_match:
-            print('')
+        # is_match = (match or match_1 or match_2)
+        # if is_match:
+        #     print('')
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
         return pattern_txt
@@ -1847,7 +1870,7 @@ class Common:
                     mode_txt_match = df.PATTERN_PART.search(mode_txt)
                     mode_txt = mode_txt_match.group(1)
                 elif is_ending_with:
-                    ending_match = df.ENDING_WITH_PART.search(mode_txt)
+                    ending_match = df.CLAUSED_PART.search(mode_txt)
                     mode_txt = ending_match.group(1)
 
                 mode_entry = SMODEREC(smode_txt=mode_txt, smode=mode, extra_param=extra_param)
@@ -1896,7 +1919,7 @@ class Common:
         return_dict = OrderedDict(sorted(local_found_dict_list.items(), reverse=True))
         return (return_dict, obs)
 
-    def genmap(msg, is_reverse=True):
+    def genmap(msg, is_reverse=True, is_removing_symbols=False):
         def simplifiesMatchedRecords():
             mm: MatcherRecord = None
             for loc, mm in matched_list:
@@ -1927,7 +1950,9 @@ class Common:
         ref_dict_list, obs = Common.getRefDictList(msg)
         occupied_list = ref_dict_list.keys()
 
-        matched_dict = Common.patternMatchAll(df.SPACE_WORD_SEP, msg)
+        sep_pattern = (df.SPACE_WORD_SEP if not is_removing_symbols else df.SYMBOLS)
+        # matched_dict = Common.patternMatchAll(df.SPACE_WORD_SEP, msg)
+        matched_dict = Common.patternMatchAll(sep_pattern, msg)
         matched_list = list(matched_dict.items())
         max = len(matched_dict)
         loc_dic = {}
@@ -1941,15 +1966,11 @@ class Common:
 
                 ss1, ee1 = start_loc
                 ss2, ee2 = end_loc
+
                 sentence = msg[ss1: ee2]
                 word_count = (ee2 - ss1)
 
                 sub_loc = (ss1, ee2)
-                # obs_test_txt = obs.getTextAtLoc(sub_loc)
-                # msg_text_txt = msg[ss1: ee2]
-                # msg_to_end = msg[ee2:]
-                # msg_to_begin = msg[:ss1]
-
                 can_location_be_used = obs.isUsableLoc(sub_loc)
                 if not can_location_be_used:
                     continue
