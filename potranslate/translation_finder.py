@@ -4,7 +4,6 @@ from definition import Definitions as df
 from common import Common as cm, LocationObserver
 from common import dd, pp
 from ignore import Ignore as ig
-import json
 from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
 from definition import RefType, TranslationState
@@ -81,8 +80,6 @@ class TranslationFinder:
     def loadDictionary(self):
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
-        self.getDict().local_keys.sort()
-        # self.getDict().replaceRefsForDict()
         self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
 
     def flatPOFile(self, file_path):
@@ -490,20 +487,19 @@ class TranslationFinder:
         return text
 
     def reloadChosenDict(self, is_master=True):
+        file_path = (self.master_dic_file if is_master else self.master_dic_backup_file)
+        df.LOG(f'reloadChosenDict:{file_path}')
+        dic = cm.loadJSONDic(file_name=file_path)
+        ncase_dic = NoCaseDict(dic)
+        ncase_dic.local_keys.sort()
         if is_master:
-            dd(f'reloadChosenDict:{self.master_dic_file}')
-            self.master_dic = self.loadJSONDic(file_name=self.master_dic_file)
-            if not self.master_dic:
-                self.master_dic = {}
+            self.master_dic = ncase_dic
         else:
-            dd(f'reloadChosenDict:{self.master_dic_backup_file}')
-            self.backup_dic = self.loadJSONDic(file_name=self.master_dic_backup_file)
-            if not self.backup_dic:
-                self.backup_dic = {}
+            self.backup_dic = ncase_dic
 
     def saveMasterDict(self, to_file=None):
         file_path = (to_file if to_file else self.master_dic_file)
-        self.writeJSONDic(dict_list=self.master_dic, file_name=file_path)
+        cm.writeJSONDic(dict_list=self.master_dic, file_name=file_path)
 
     # def updateDict(self):
     #     from_file = '/Users/hoangduytran/blender_manual/ref_dict_0004.json'
@@ -799,70 +795,6 @@ class TranslationFinder:
     def setupKBDDicList(self):
         kbd_l_case = dict((k.lower(), v) for k, v in df.KEYBOARD_TRANS_DIC.items())
         df.KEYBOARD_TRANS_DIC.update(kbd_l_case)
-
-    def writeJSONDic(self, dict_list=None, file_name=None):
-        dic = {}
-        try:
-            if not file_name:
-                return
-
-            if not dict_list:
-                return
-
-            is_non_case_dic = isinstance(dict_list, NoCaseDict)
-            if is_non_case_dic:
-                dict: NoCaseDict = dict_list
-                is_dirty = dict.is_dirty
-                if not is_dirty:
-                    return
-            #
-            # if not os.path.isfile(file_name):
-            #     return
-
-            file_path = (self.master_dic_file if (file_name is None) else file_name)
-            dic = (self.master_dic if (dict_list is None) else dict_list)
-
-            with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
-                json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-        except Exception as e:
-            df.LOG(f'{e}; Length of read dictionary:{len(dic)}', error=True)
-            raise e
-
-    def loadJSONDic(self, file_name=None):
-        def sentStructKeyFunction(item):
-            pat: re.Pattern = None
-            value: tuple = None
-            (pat, value) = item
-            key = pat.pattern
-            return key
-
-        return_dic = None
-        sent_struct_original_set = {}
-        try:
-            if not file_name:
-                dd(f'loadJSONDic - file_name is None.')
-                return return_dic
-
-            if not os.path.isfile(file_name):
-                dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
-                return return_dic
-
-            file_path = (self.master_dic_file if (file_name is None) else file_name)
-            dic = {}
-            with open(file_path) as in_file:
-                # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
-                dic = json.load(in_file)
-
-            # temp_set = [(x, y) for (x, y) in dic.items() if df.SENT_STRUCT_START_SYMB in x]
-            # sent_struct_original_set = OrderedDict(temp_set)
-            #
-            return_dic = NoCaseDict(dic)
-            # return_dic.sentence_struct_dict = sent_struct_original_set
-        except Exception as e:
-            df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_path})', error=True)
-            return_dic = NoCaseDict()
-
-        return return_dic
 
     def getDict(self, local_dict=None):
         search_dict = (local_dict if local_dict else self.master_dic)

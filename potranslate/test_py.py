@@ -24,6 +24,7 @@ from definition import Definitions as df, RefType, TranslationState
 from reflist import RefList
 import inspect as INP
 import copy as CP
+import cProfile
 
 alphabets= "([A-Za-z])"
 prefixes = "(Mr|St|Mrs|Ms|Dr)[.]"
@@ -9505,7 +9506,7 @@ IOR
         if not text_list:
             t_list = [
                 # "for example: Half §UV Sphere§ works fine,",
-                "for object movements, alternate angles, etc.",
+                "framed F-curve icon",
             ]
 
         else:
@@ -9602,6 +9603,7 @@ IOR
 #     return tran
 
 x = test()
+# cProfile.run('x.run()')
 x.run()
 
 

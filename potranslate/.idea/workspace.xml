@@ -4,16 +4,11 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added the ability to embedded leading/mixing symbols (ED(..), LD(..), EMB(..))">
-      <change afterPath="$PROJECT_DIR$/observer.py" afterDir="false" />
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Many changes have been done in this version, mainly the pattern formation in common.py, and the processing in sentence.py. Learned that the pattern formation should be as relaxed and matched the original as possible, and NEVER remove spaces. This removing can be done much later, in fact, you don't really need to. Code is running VERY SLOW.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paragraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/paragraph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
@@ -492,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621774565975</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Many changes have been done in this version, mainly the pattern formation in common.py, and the processing in sentence.py. Learned that the pattern formation should be as relaxed and matched the original as possible, and NEVER remove spaces. This removing can be done much later, in fact, you don't really need to. Code is running VERY SLOW.">
+      <created>1622260773578</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1622260773578</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -515,7 +517,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="First stage getting the ordered variables $$1 $$2 etc.. working" />
     <MESSAGE value="Reimplementing the notations for sentence structure controlling variables, using ${order_number/mode1/mode2...} instead of the simple $$$/mode, or $$1 before. This will allow greater, and more accurate controls of how each conditions affects the result of text fragment selection." />
     <MESSAGE value="Corrected the wrong index usage ibn the getInitialListOfTextsToBeTranslated, dict_sl_smode_list must use 'from_index' instead." />
     <MESSAGE value="Added the case-insensitivity to the getSentStructPattern in nocasedict.py, so the comparisons will not stop because of the case differences between dictionary entries and the input text fragments." />
@@ -540,19 +541,20 @@
     <MESSAGE value="Enabled making SentTLRecord using the translated text obtained, so the portion that is ALREADY translated can be incorporated into the overall translation. This is implemented in the sentence.py (makeSentTLRecord, makeTranslatedSR and in parseAndTranslateText). MacherRecord also filtering the locations which are '-1', do not allow such records enter. Enabled removeTheWord (removing 'the' and '\'s' ending). Added sent_sl_record into the 'value' parameter when returning from CreateSentenceStructureDict (using the unique_parts), so later_on, we don't have to do it again. Corrected replaceTranRef() to sort the found_ref_list in reversed order, allowing all entries to correctly replaced in the translation string. Sorted the found_list in the simpleFindListOfCandidates, nocasedict.py, if the text is a single_word, or multi_word. Single word will be used the partial_ratio sorting, else overall ratio will be used in sorting." />
     <MESSAGE value="Using the getByReduceKnownSuffix() to cater for words that has extra ending, such as 'ier|er' etc.. using the common_suffixes_replace_dict in definition.py. This allows much higher ability to find the existing translation, also possibly helps with the introductions of extra sentence constructions later." />
     <MESSAGE value="Added the ability to embedded leading/mixing symbols (ED(..), LD(..), EMB(..))" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to embedded leading/mixing symbols (ED(..), LD(..), EMB(..))" />
+    <MESSAGE value="Many changes have been done in this version, mainly the pattern formation in common.py, and the processing in sentence.py. Learned that the pattern formation should be as relaxed and matched the original as possible, and NEVER remove spaces. This removing can be done much later, in fact, you don't really need to. Code is running VERY SLOW." />
+    <option name="LAST_COMMIT_MESSAGE" value="Many changes have been done in this version, mainly the pattern formation in common.py, and the processing in sentence.py. Learned that the pattern formation should be as relaxed and matched the original as possible, and NEVER remove spaces. This removing can be done much later, in fact, you don't really need to. Code is running VERY SLOW." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1137</line>
+          <line>1172</line>
           <option name="timeStamp" value="3170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>753</line>
+          <line>764</line>
           <option name="timeStamp" value="3187" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -577,53 +579,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>490</line>
+          <line>501</line>
           <option name="timeStamp" value="3365" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>457</line>
+          <line>468</line>
           <option name="timeStamp" value="3373" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>362</line>
-          <option name="timeStamp" value="3421" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>379</line>
-          <option name="timeStamp" value="3423" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>352</line>
-          <option name="timeStamp" value="3424" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>262</line>
-          <option name="timeStamp" value="3429" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>737</line>
+          <line>748</line>
           <option name="timeStamp" value="3430" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>545</line>
+          <line>556</line>
           <option name="timeStamp" value="3432" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1721</line>
-          <option name="timeStamp" value="3435" />
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>726</line>
+          <option name="timeStamp" value="3447" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1677</line>
-          <option name="timeStamp" value="3437" />
+          <url>file://$PROJECT_DIR$/translation_finder.py</url>
+          <line>1082</line>
+          <option name="timeStamp" value="3449" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>578</line>
+          <option name="timeStamp" value="3450" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>824</line>
+          <option name="timeStamp" value="3451" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

@@ -261,6 +261,9 @@ class Definitions:
     SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
 
     ANY = re.compile(r'^.*$', re.I)
+    NOT_EQUAL = re.compile(r'NE\([^\(\)]+\)', re.I)
+    NOT_TRAILING = re.compile(r'NT\([^\(\)]+\)', re.I)
+    NOT_LEADING = re.compile(r'NL\([^\(\)]+\)', re.I)
     EQUAL = re.compile(r'EQ\([^\(\)]+\)', re.I)
     EMBEDDED_WITH = re.compile(r'EMB\([^\(\)]+\)', re.I)
     LEADING_WITH = re.compile(r'LD\([^\(\)]+\)', re.I)
@@ -635,8 +638,8 @@ class Definitions:
     HYPHEN = re.compile(r'[\-]')
     SPACE_SEP = re.compile(r'\s')
 
-    full_stop_in_middle = r'(\w[\.]\s[A-Z\d])'
-    comma_in_middle = r'(\w\,\s[a-z\d])'
+    full_stop_in_middle = r'([\S][\.]\s[\S])'
+    comma_in_middle = r'([\S]\,\s[\S])'
     punct_in_between_txt = r'(%s|%s)' % (full_stop_in_middle, comma_in_middle)
     PUNCT_IN_BETWEEN = re.compile(punct_in_between_txt)
     FULLSTOP_IN_BETWEEN = re.compile(full_stop_in_middle)
@@ -1456,6 +1459,9 @@ class SentStructModeRecord:
 
 class SentStructMode(Enum):
     ANY = Definitions.ANY
+    NOT_EQUAL = Definitions.NOT_EQUAL
+    NOT_TRAILING = Definitions.NOT_TRAILING
+    NOT_LEADING = Definitions.NOT_LEADING
     EQUAL = Definitions.EQUAL
     TRAILING_WITH = Definitions.TRAILING_WITH
     LEADING_WITH = Definitions.LEADING_WITH

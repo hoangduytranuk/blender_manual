@@ -11,6 +11,7 @@ from matcher import MatcherRecord
 from err import ErrorMessages as ER
 import re
 from observer import LocationObserver
+import json
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -30,6 +31,40 @@ def dd(*args, **kwargs):
             print('-' * 80)
 
 class Common:
+    def writeJSONDic(dict_list=None, file_name=None):
+        try:
+            if not file_name:
+                return
+
+            if not dict_list:
+                return
+
+            with open(file_name, 'w+', newline='\n', encoding='utf8') as out_file:
+                json.dump(dict_list, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
+        except Exception as e:
+            df.LOG(f'{e}; Length of read dictionary:{len(dict_list)}', error=True)
+            raise e
+
+    def loadJSONDic(file_name=None):
+        return_dic = {}
+        try:
+            if not file_name:
+                dd(f'loadJSONDic - file_name is None.')
+                return return_dic
+
+            if not os.path.isfile(file_name):
+                dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
+                return return_dic
+
+            dic = {}
+            with open(file_name) as in_file:
+                # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
+                return_dic = json.load(in_file)
+        except Exception as e:
+            df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_name})', error=True)
+
+        return return_dic
+
     def isPath(txt: str) -> bool:
         if not txt:
             return False
@@ -1672,7 +1707,7 @@ class Common:
         # ending = r'(\s|$)?'
         embpart_terminator = r'(\s|\b|$)?'
         # embpart_terminator = ''
-        ending = r'(\b|$)?'
+        ending = r'(\W\b|$)?'
         leading = r'\s?'
         for loc, txt in list_of_words:
             emb_pat = None
@@ -1680,24 +1715,32 @@ class Common:
             if is_any:
                 pat_txt = r'(%s)' % (word_any)
 
+                not_equal = df.NOT_EQUAL.search(txt)
+                not_leading = df.NOT_LEADING.search(txt)
+                not_trailing = df.NOT_TRAILING.search(txt)
                 is_equal = df.EQUAL.search(txt)
                 is_embedded_with = df.EMBEDDED_WITH.search(txt)
                 is_ending_with = df.TRAILING_WITH.search(txt)
                 is_leading_with = df.LEADING_WITH.search(txt)
-                is_claused = (is_leading_with or is_ending_with or is_embedded_with or is_equal)
+                is_claused = bool(is_leading_with or is_ending_with or is_embedded_with or is_equal or not_equal or not_leading or not_trailing)
                 if is_claused:
                     embs = df.CLAUSED_PART.search(txt)
                     emb_part = embs.group(1)
                     if is_ending_with:
-                        pat_txt = r'%s(%s(%s)\s)' % (leading, word, emb_part)
+                        pat_txt = r'%s(%s(%s)%s)' % (leading, word, emb_part, ending)
                     elif is_leading_with:
-                        pat_txt = r'\s((%s)%s)%s' % (emb_part, word, ending)
+                        pat_txt = r'%s((%s)%s)%s' % (leading, emb_part, word, ending)
                     elif is_embedded_with:
-                        pat_txt = r'\b(%s(%s)%s)\b' % (leading, word, emb_part, word, ending)
+                        pat_txt = r'%s(%s(%s)%s)%s' % (leading, word, emb_part, word, ending)
                     elif is_equal:
                         pat_txt = r'%s(%s)%s' % (leading, emb_part, ending)
+                    elif not_leading:
+                        pat_txt = r'%s(?!(%s)\w+)%s' % (leading, emb_part, ending)
+                    elif not_trailing:
+                        pat_txt = r'%s(\w+(?<!(%s)))%s' % (leading, emb_part, ending)
+                    elif not_equal:
+                        pat_txt = r'%s(?!(%s)\w+)%s' % (leading, emb_part, ending)
                     # dd('')
-
                 pattern_embedded = df.PATTERN_PART.search(txt)
                 if pattern_embedded:
                     emb_pat_txt = pattern_embedded.group(1)
@@ -1711,9 +1754,9 @@ class Common:
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
 
         # test_pat = "".join(simplified_pat)
-        # test_txt= "filling only absolute pixels"
+        # test_txt= "Top View"
         #
-        # match_1 = re.search(test_pat, test_txt)
+        # match_1 = re.search(test_pat, test_txt, flags=re.I)
         # match_2 = re.compile(test_pat, flags=re.I)
         # grp = match_2.findall(test_pat)
         # #

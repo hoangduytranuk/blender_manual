@@ -1,3 +1,4 @@
+import os
 from collections import OrderedDict
 from common import Common as cm, dd, pp, LocationObserver
 from definition import Definitions as df, \
@@ -114,11 +115,21 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = ('ing|te' in k)
+            # is_sent_struct = ('EQ' in k)
             return is_sent_struct
+
+        def sortSentStruct(item):
+            (k, v) = item
+            return (k)
 
         temp_dict={}
         temp_set = list(filter(isSentStruct, self.items()))
+        # sorted_temp_set = sorted(temp_set, key=sortSentStruct, reverse=True)
+        # temp_dict = OrderedDict(sorted_temp_set)
+        # home = os.environ['BLENDER_GITHUB']
+        # path = os.path.join(home, "pat_struct_dict_0001.json")
+        # cm.writeJSONDic(temp_dict, path)
+        # exit(0)
         for key, value in temp_set:
             value = self.replaceTranRef(value)
             key_pattern = cm.creatSentRecogniserPattern(key)
@@ -725,7 +736,7 @@ class NoCaseDict(OrderedDict):
 
                 dd(f'trying: [{ft_word}]')
                 part_txt = ft_word
-                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate( ft_word, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
+                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(ft_word, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
                 if ft_tran:
                     # df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)
@@ -809,7 +820,9 @@ class NoCaseDict(OrderedDict):
             return None
 
     def blindTranslate(self, txt):
-        tran = self.getTranBySlittingSymbols(txt)
+        tran, un_tran_list = self.tranByPartitioning(txt)
+        if not tran:
+            tran = self.getTranBySlittingSymbols(txt)
         return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:
