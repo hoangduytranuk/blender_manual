@@ -40,7 +40,7 @@ class Paragraph(list):
                 loc = (0, len(self.sl_txt))
                 tran = sr.parseAndTranslateText(loc, self.sl_txt)
                 if tran:
-                    # tran = cm.removeTheWord(tran)
+                    tran = cm.removeTheWord(tran)
                     cache_entry = {self.sl_txt: tran}
                     self.tf.getDict().addCacheEntry(cache_entry)
             self.tl_txt = tran

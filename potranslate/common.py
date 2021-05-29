@@ -10,6 +10,7 @@ from bisect import bisect_left
 from matcher import MatcherRecord
 from err import ErrorMessages as ER
 import re
+from observer import LocationObserver
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -27,158 +28,6 @@ def dd(*args, **kwargs):
         print(args, kwargs)
         if len(args) == 0:
             print('-' * 80)
-
-class LocationObserver(OrderedDict):
-    def __init__(self, msg):
-        self.blank = str(msg)
-        self.marked_loc={}
-
-    def markLocListAsUsed(self, loc_list: list):
-        try:
-            for loc in loc_list:
-                self.markLocAsUsed(loc)
-        except Exception as e:
-            pass
-
-    def getTextAt(self, s: int, e: int):
-        try:
-            txt = self.blank[s:e]
-            return txt
-        except Exception as e:
-            return None
-
-    def getTextAtLoc(self, loc):
-        (s, e) = loc
-        return self.getTextAt(s, e)
-
-    def isLeftOverlapped(self, loc):
-        '''
-        Check to see if a location is overlapped on the left side
-        :param loc: location to be test
-        :return:
-            True if location is used and overlapped on left
-            False if location it NOT USED, or not overlapped on left
-        '''
-        if not self.isLocUsed(loc):
-            return False
-
-        ls, le = loc
-        try:
-            current_char = self.blank[ls]
-            left_char = self.blank[ls - 1]
-            is_ovrlap = (current_char == df.FILLER_CHAR) and (left_char == df.FILLER_CHAR)
-            return is_ovrlap
-        except Exception as e:
-            return False
-
-    def isRightOverlapped(self, loc):
-        '''
-        Check to see if a location is overlapped on the right side
-        :param loc: location to be test
-        :return:
-            True if location is used and overlapped on right
-            False if location it NOT USED, or not overlapped on right
-        '''
-        if not self.isLocUsed(loc):
-            return False
-
-        ls, le = loc
-        try:
-            current_char = self.blank[le]
-            left_char = self.blank[le + 1]
-            is_ovrlap = (current_char == df.FILLER_CHAR) and (left_char == df.FILLER_CHAR)
-            return is_ovrlap
-        except Exception as e:
-            return False
-
-    def isUsableLoc(self, loc):
-        '''
-        Check to see if a loc is used and is contained within, but not overlapped either on left or right
-        :param loc: location to be tested
-        :return:
-            True if location is used and not overlapped left or right
-            False if location it NOT USED, or is overlapped on left or on right
-        '''
-        if not self.isLocUsed(loc):
-            return True
-
-        is_left_ovrlap = self.isLeftOverlapped(loc)
-        is_right_ovrlap = self.isRightOverlapped(loc)
-        ok = not (is_left_ovrlap or is_right_ovrlap)
-        return ok
-
-    def getTextAtLoc(self, loc: tuple):
-        (s, e) = loc
-        return self.getTextAt(s, e)
-
-    def markListAsUsed(self, loc_list:list):
-        for loc in loc_list:
-            self.markLocAsUsed(loc)
-
-    def markAsUsed(self, s: int, e: int):
-        loc = (s, e)
-        is_already_marked = (loc in self.marked_loc)
-        if is_already_marked:
-            return
-
-        marked_loc_entry = {loc: self.blank[s:e]}
-        blk = (df.FILLER_CHAR * (e - s))
-        left = self.blank[:s]
-        right = self.blank[e:]
-        self.blank = left + blk + right
-        self.marked_loc.update(marked_loc_entry)
-
-    def markLocAsUsed(self, loc: tuple):
-        ss, ee = loc
-        self.markAsUsed(ss, ee)
-
-    def isPartlyUsed(self, s: int, e: int):
-        part = self.blank[s:e]
-        is_dirty = (df.FILLER_PARTS.search(part) is not None)
-        is_fully_used = (df.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
-        return (is_dirty and not is_fully_used)
-
-    def isLocPartlyUsed(self, loc: tuple):
-        s, e = loc
-        return self.isPartlyUsed(s, e)
-
-    def isLocFullyUsed(self, loc: tuple):
-        s, e = loc
-        return self.isFullyUsed(s, e)
-
-    def isFullyUsed(self, s:int, e:int):
-        part = self.blank[s:e]
-        is_all_used = (df.FILLER_CHAR_ALL_PATTERN.search(part) is not None)
-        return is_all_used
-
-    def isUsed(self, s: int, e: int):
-        part = self.blank[s:e]
-        is_dirty = (df.FILLER_PARTS.search(part) is not None)
-        return is_dirty
-
-    def isLocUsed(self, loc: tuple):
-        s, e = loc
-        return self.isUsed(s, e)
-
-    def isCompletelyUsed(self):
-        is_fully_done = (df.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
-        return is_fully_done
-
-    def getUnmarkedPartsAsDict(self):
-        untran_dict = Common.findInvert(df.FILLER_PARTS, self.blank, is_reversed=True)
-        return untran_dict
-
-    def getRawUnmarkedPartsAsList(self):
-        untran_dict = Common.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
-        txt_loc_list=[]
-        for loc, txt_mm in untran_dict.items():
-            entry=(loc, txt_mm.txt)
-            txt_loc_list.append(entry)
-        return txt_loc_list
-
-    def getRawUnmarkedPartsAsDict(self):
-        untran_dict = Common.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
-        return untran_dict
 
 class Common:
     def isPath(txt: str) -> bool:
@@ -213,6 +62,11 @@ class Common:
         return is_ignorable
 
     def isLinkPath(txt: str) -> bool:
+
+        invalid_combination = ('.,' in txt) or (' ' in txt)
+        if invalid_combination:
+            return False
+
         is_blank_quote = df.BLANK_QUOTE_FULL.search(txt)
         if is_blank_quote:
             return False
@@ -326,7 +180,15 @@ class Common:
                 else:
                     is_upper = (from_str.isupper())
                     if is_upper:
-                        new_str = new_str.upper()
+                        is_source_single_word = (source_word_count == 1)
+                        is_target_single_word = (target_word_count == 1)
+                        # is_both_single = (is_target_single_word and is_target_single_word)
+                        is_title_target = (is_source_single_word and not is_target_single_word)
+
+                        if is_title_target:
+                            new_str = new_str.title()
+                        else:
+                            new_str = new_str.upper()
 
         # ensure ref keywords ':doc:' is always lowercase
         ga_ref_dic = Common.patternMatchAll(df.GA_REF_PART, new_str)
@@ -1547,6 +1409,18 @@ class Common:
         diff_loc, left, mid, right,_ = Common.getTextWithinWithDiffLoc(msg)
         return left, mid, right
 
+    def getTextWinthinSpaces(msg):
+        start_spaces_match = df.START_SPACES.search(msg)
+        end_spaces_match = df.END_SPACES.search(msg)
+        left = ("" if not start_spaces_match else start_spaces_match.group(0))
+        right = ("" if not end_spaces_match else end_spaces_match.group(0))
+        length_left = len(left)
+        length_right = len(right)
+        length_right = (len(msg) if not length_right else -length_right)
+        mid = msg[length_left:length_right]
+
+        return left, mid, right
+
     def replaceWord(orig_word: str, new_word: str, replace_word: str) -> str:
 
         is_inclusive = (new_word in orig_word)
@@ -1767,6 +1641,7 @@ class Common:
 
     def patStructToListOfWords(txt, removing_symbols=True):
         mm: MatcherRecord = None
+        obs = LocationObserver(txt)
         struct_pat_dict = Common.patternMatchAll(df.SENT_STRUCT_PAT, txt)
         struct_pat_list = list(struct_pat_dict.items())
 
@@ -1776,6 +1651,7 @@ class Common:
         list_of_words = []
         for loc, mm in struct_pat_list:
             entry = (mm.getMainLoc(), mm.getMainText())
+            obs.markLocAsUsed(loc)
             list_of_words.append(entry)
 
         for loc, mm in struct_txt_dict_list:
@@ -1790,49 +1666,63 @@ class Common:
         # (?<=\S)\s+$
         txt: str = None
         pattern_list=[]
+        word = r'[\w_\-]+'
+        word_space = r'[\w\-_\s]+'
+        word_any = r'.*[\w\W]+.*(?<!\s)'
+        # ending = r'(\s|$)?'
+        embpart_terminator = r'(\s|\b|$)?'
+        # embpart_terminator = ''
+        ending = r'(\b|$)?'
+        leading = r'\s?'
         for loc, txt in list_of_words:
             emb_pat = None
             is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
             if is_any:
-                pat_txt = r'\s?(.*?)\s?'
+                pat_txt = r'(%s)' % (word_any)
 
+                is_equal = df.EQUAL.search(txt)
                 is_embedded_with = df.EMBEDDED_WITH.search(txt)
-                is_ending_with = df.ENDING_WITH.search(txt)
+                is_ending_with = df.TRAILING_WITH.search(txt)
                 is_leading_with = df.LEADING_WITH.search(txt)
-                is_claused = (is_leading_with or is_ending_with or is_embedded_with)
+                is_claused = (is_leading_with or is_ending_with or is_embedded_with or is_equal)
                 if is_claused:
                     embs = df.CLAUSED_PART.search(txt)
                     emb_part = embs.group(1)
-                    # pat_txt = r'\s?(.+?%s)\s?' % (ending_part)
                     if is_ending_with:
-                        pat_txt = r'\s?([^%s]+%s)\s?' % (emb_part, emb_part)
+                        pat_txt = r'%s(%s(%s)\s)' % (leading, word, emb_part)
                     elif is_leading_with:
-                        pat_txt = r'\s?(%s[^%s]+)\s?' % (emb_part, emb_part)
+                        pat_txt = r'\s((%s)%s)%s' % (emb_part, word, ending)
                     elif is_embedded_with:
-                        pat_txt = r'\s?([^%s]+%s[^%s]+)\s?' % (emb_part, emb_part, emb_part)
+                        pat_txt = r'\b(%s(%s)%s)\b' % (leading, word, emb_part, word, ending)
+                    elif is_equal:
+                        pat_txt = r'%s(%s)%s' % (leading, emb_part, ending)
                     # dd('')
 
                 pattern_embedded = df.PATTERN_PART.search(txt)
                 if pattern_embedded:
                     emb_pat_txt = pattern_embedded.group(1)
-                    pat_txt = r'\s?(%s)\s?' % (emb_pat_txt)
+                    pat_txt = r'(%s)' % (emb_pat_txt)
             else:
                 pat_txt = r'(%s)' % (txt)
             pattern_list.append(pat_txt)
+
         final_pat = "".join(pattern_list)
         simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
 
-        # test_txt= "the Rest Pose/Base Rig"
-        # match_1 = re.search(simplified_pat, test_txt)
-        # match_2 = re.compile(simplified_pat, flags=re.I)
-        # grp = match_2.findall(test_txt)
-        # #
-        # match = Common.patternMatchAll(re.compile(simplified_pat, flags=re.I), test_txt)
+        # test_pat = "".join(simplified_pat)
+        # test_txt= "filling only absolute pixels"
         #
-        # is_match = (match or match_1 or match_2)
+        # match_1 = re.search(test_pat, test_txt)
+        # match_2 = re.compile(test_pat, flags=re.I)
+        # grp = match_2.findall(test_pat)
+        # #
+        # match = Common.patternMatchAll(re.compile(test_pat, flags=re.I), test_txt)
+        #
+        # is_match = bool(match or match_1 or grp)
         # if is_match:
-        #     print('')
+        #     pass
+
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
         return pattern_txt
@@ -1855,21 +1745,26 @@ class Common:
             for mode_txt in mode_flag_components:
                 extra_param = 0
                 mode = SMODE.getName(mode_txt)
+
                 is_any = (mode == SMODE.ANY)
                 is_order = (mode == SMODE.ORDERED_GROUP)
                 is_pattern = (mode == SMODE.PATTERN)
-                is_ending_with = (mode == SMODE.ENDING_WITH)
-                if is_any:
-                    is_max_up_to = df.MAX_VAR_PAT.search(mode_txt)
-                    if is_max_up_to:
-                        mode = SMODE.MAX_UPTO
-                        extra_param = int(is_max_up_to.group(2))
+                is_trailing_with = (mode == SMODE.TRAILING_WITH)
+                is_leading_with = (mode == SMODE.LEADING_WITH)
+                is_embedded_with = (mode == SMODE.EMBEDDED_WITH)
+                is_claused = (is_leading_with or is_embedded_with or is_trailing_with)
+                is_max_up_to = (mode == SMODE.MAX_UPTO)
+
+                if is_max_up_to:
+                    max_up_to_match = df.MAX_VAR_PAT.search(mode_txt)
+                    max_up_value = max_up_to_match.group(2)
+                    extra_param = int(max_up_value)
                 elif is_order:
                     extra_param = int(mode_txt)
                 elif is_pattern:
                     mode_txt_match = df.PATTERN_PART.search(mode_txt)
                     mode_txt = mode_txt_match.group(1)
-                elif is_ending_with:
+                elif is_claused:
                     ending_match = df.CLAUSED_PART.search(mode_txt)
                     mode_txt = ending_match.group(1)
 
@@ -1945,6 +1840,12 @@ class Common:
                         dist_list.append(entry)
             return dist_list
 
+        def sortGetWordLen(item):
+            (loc, txt) = item
+            wc = len(txt.split())
+            txt_len = len(txt)
+            return (txt_len, wc)
+
         part_list = []
         obs: LocationObserver = None
         ref_dict_list, obs = Common.getRefDictList(msg)
@@ -1982,9 +1883,9 @@ class Common:
             raise e
 
         simplifiesMatchedRecords()
+
         part_list = list(loc_dic.items())
-        part_list.sort(key=lambda x: x[0])
-        part_list.sort(key=lambda x: len(x[1]), reverse=True)
+        part_list.sort(key=sortGetWordLen, reverse=True)
         return part_list
 
     def dictKeyFunction(item):

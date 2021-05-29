@@ -223,7 +223,7 @@ class RefList(defaultdict):
         for index, item in enumerate(pattern_list):
             p, ref_type = item
             self.findOnePattern(obs, obs.blank, p, ref_type)
-        self.validateFoundEntries()
+        # self.validateFoundEntries()
 
         if len(self):
             dd('List of refs found:')

@@ -46,8 +46,6 @@ class TranslationFinder:
         self.backup_dic_list: NoCaseDict = None
         self.kbd_dict = None
 
-        self.numerical_pat_list = []
-        self.initNumericalPatternList()
         self.loadDictionary()
         self.getDict().createSentenceStructureDict()
 
@@ -55,51 +53,6 @@ class TranslationFinder:
         # pp(self.struct_dict)
         # is_in = ('a * b' in self.getDict())
         # dd('')
-
-    def initNumericalPatternList(self):
-        for pat_txt, tran_txt in df.numeric_trans.items():
-            pattern_text = r'\b(%s)\b' % (pat_txt)
-            pat = re.compile(pattern_text, flags=re.I)
-            entry=(pat, tran_txt)
-            self.numerical_pat_list.append(entry)
-
-    def translateNumerics(self, msg:str):
-        def pat_search(local_en_txt):
-            for pat, tran in self.numerical_pat_list:
-                m = pat.search(local_en_txt)
-                is_matching = (m is not None)
-                if is_matching:
-                    return tran
-            return None
-
-        def find_tran(en_txt):
-            try:
-                tran = pat_search(en_txt)
-                iter = df.TRAN_REF_PATTERN.finditer(tran)
-                for m in iter:
-                    abbrev_txt = m.group(0)
-                    try:
-                        abbrev_tran_txt = TranslationFinder.numeral_dict[abbrev_txt]
-                        tran = tran.replace(abbrev_txt, abbrev_tran_txt)
-                    except Exception as e:
-                        pass
-                return tran
-            except Exception as e:
-                return None
-
-        is_single_word = (len(msg.split()) == 1)
-        if not is_single_word:
-            return None
-
-        loc, stripped_word = cm.removingNonAlpha(msg)
-        translation = find_tran(stripped_word)
-        if translation:
-            translation = f'{df.numeric_prefix} {translation} {df.numeric_postfix}'
-            is_diff = (stripped_word != msg)
-            if is_diff:
-                translation = msg.replace(msg, stripped_word)
-            dd(f'translateNumerics(): [{stripped_word}] => [{translation}]')
-        return translation
 
     @property
     def master_dic(self):
@@ -324,7 +277,6 @@ class TranslationFinder:
         fuzzy_len = (len(fuzzy_text) if fuzzy_text else 0)
         fname = INP.currentframe().f_code.co_name
         if tran_sub_text:
-            tran_sub_text = cm.removeTheWord(tran_sub_text)
             tran_sub_text = self.getDict().replaceTranRef(tran_sub_text)
             search_dict.addCache(msg, tran_sub_text)
             dd(f'{fname}() msg:[{msg}] tran_sub_text:[{tran_sub_text}] [{matching_ratio}]')
@@ -365,8 +317,6 @@ class TranslationFinder:
             tran_sub_text = self.isInDict(orig_sub_text)
             if not tran_sub_text:
                 tran_sub_text, cover_length, matching_ratio = self.tryFuzzyTranlation(orig_sub_text)
-                if not tran_sub_text:
-                    tran_sub_text = self.translateNumerics(orig_sub_text)
 
             if tran_sub_text:
                 matching_ratio = 100
@@ -996,8 +946,6 @@ class TranslationFinder:
         is_found = (msg in search_dict)
         if is_found:
             tran = search_dict[msg]
-        else:
-            tran = self.translateNumerics(msg)
 
         if not tran:
             msg_length = len(msg)
@@ -1011,8 +959,6 @@ class TranslationFinder:
             is_found = (msg in search_dict)
             if is_found:
                 tran = search_dict[msg]
-            else:
-                tran = self.translateNumerics(msg)
 
         if tran:
             tran = search_dict.replaceTranRef(tran)
@@ -1149,7 +1095,6 @@ class TranslationFinder:
         if has_translation:
             # print(f'result of isInDict:[{orig_msg}] => [{trans}] => is_found: [{is_found}]')
             trans = cm.removeOriginal(msg, trans)
-            trans = cm.removeTheWord(trans)
         else:
             trans = None
         if trans is None:
@@ -1192,31 +1137,25 @@ class TranslationFinder:
         return trans
 
     def translate(self, msg):
-        fname = INP.currentframe().f_code.co_name
-
         trans = None
         old_msg = str(msg)
         try:
-            dd(f'{fname}() calling findTranslation [{msg}]')
+            df.LOG(f'calling findTranslation [{msg}]')
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
                 trans = None
 
             if not trans:
-                dd(f'{fname}() calling tryFuzzyTranlation [{msg}]')
+                df.LOG(f'calling tryFuzzyTranlation [{msg}]')
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg, )
                 is_fuzzy = bool(trans)
 
             if not trans:
-                dd(f'{fname}() calling SimpleBlindTranslation [{msg}]')
+                df.LOG(f'calling SimpleBlindTranslation [{msg}]')
                 trans = self.simpleBlindTranslation(msg)
                 is_fuzzy = True
 
-            if trans:
-                dd(f'{fname}() calling removeTheWord [{trans}]')
-                trans = cm.removeTheWord(trans)
-                trans = cm.matchCase(msg, trans)
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
             df.LOG(f'{e}; msg:[{msg}], trans:[{trans}]', error=True)

@@ -261,9 +261,10 @@ class Definitions:
     SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
 
     ANY = re.compile(r'^.*$', re.I)
+    EQUAL = re.compile(r'EQ\([^\(\)]+\)', re.I)
     EMBEDDED_WITH = re.compile(r'EMB\([^\(\)]+\)', re.I)
     LEADING_WITH = re.compile(r'LD\([^\(\)]+\)', re.I)
-    ENDING_WITH = re.compile(r'ED\([^\(\)]+\)', re.I)
+    TRAILING_WITH = re.compile(r'ED\([^\(\)]+\)', re.I)
     CLAUSED_PART = re.compile(r'\(([^\(\)]+)\)', re.I)
 
     PATTERN = re.compile(r'^\`([^\`]+)\`$', re.I)
@@ -273,7 +274,7 @@ class Definitions:
     POSITION_PRIORITY = re.compile(r'^pp$', re.I)
     ORDERED_GROUP = re.compile(r'^\d+$', re.I)
     NO_PUNCTUATION = re.compile(r'^np$', re.I)
-    MAX_UPTO = re.compile(r'^mx$', re.I)
+    MAX_UPTO = re.compile(r'^mx\d+?$', re.I)
     NO_CONJUNCTIVES = re.compile(r'^nc$', re.I)
     NO_FULL_STOP = re.compile(r'^nfs$', re.I)
 
@@ -622,9 +623,12 @@ class Definitions:
     START_SPACES = re.compile(r'^\s+')
     END_SPACES = re.compile(r'\s+$')
 
+    common_multi_word_connectors = r'[\s\-]'
+    COMMON_WORD_SEPS = re.compile(common_multi_word_connectors)
+
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
-    THE_WORD = re.compile(r'\bthe\b[\s]?', re.I)
+    THE_WORD = re.compile(r'\bthe\b\s?', re.I)
     POSSESSIVE_APOS = re.compile(r'(\'s)\b')
 
     MULTI_SPACES = re.compile(r'[\s]{2,}')
@@ -640,8 +644,13 @@ class Definitions:
     ending_punct = r'(\w[\,\.!]+$)'
     ENDING_WITH_PUNCT = re.compile(ending_punct)
 
-    basic_conjunctions = r'\b(for|and|nor|in|by|out|that|then|but|or|yet|so)\b'
-    BASIC_CONJUNCTS = re.compile(basic_conjunctions)
+    basic_conjunctions = r'(for|and|nor|in|by|out|that|then|above|below|up|down|but|or|yet|so)'
+
+    basic_conjunctions_pat_txt = r'(\s|^)%s(\s|$)' % (basic_conjunctions)
+    BASIC_CONJUNCTS = re.compile(basic_conjunctions_pat_txt)
+
+    basic_conjunctions_only_pat_txt = r'^%s$' % (basic_conjunctions)
+    BASIC_CONJUNCTS_ONLY = re.compile(basic_conjunctions_only_pat_txt)
 
     MAXWORD_UPTO_PAT = re.compile(r'^mx(\d+)$')
 
@@ -823,7 +832,7 @@ class Definitions:
         'e': list(sorted(
             ['able', 'ation', 'ations', 'ion', 'ions',
              'ity', 'ities', 'ing', 'ings', 'ously', 'ous', 'ive', 'ily',
-             'ively', 'or', 'ors', 'iness', 'ature', 'er',
+             'ively', 'or', 'ors', 'iness', 'ature', 'er', 'ed', 'ied',
              'atures', 'ition', 'itions', 'itiveness',
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
@@ -864,6 +873,9 @@ class Definitions:
             key=lambda x: len(x), reverse=True)),
         'ic':list(sorted(
             ['ism', 'isms', ],
+            key=lambda x: len(x), reverse=True)),
+        '':list(sorted(
+            ['ed', 'ly', ],
             key=lambda x: len(x), reverse=True)),
     }
 
@@ -1226,7 +1238,7 @@ class Definitions:
         r"^\s*(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)\s*$",
         r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|curv(\w+)\-(bezier|nurbs|POLYLINE)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
-        r"^\s*(CCEN|CPU|CUDA|Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
+        r"^\s*(Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
         r"^\s*(Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*|(command_line-args)$",
         r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|de|debian|Delta([\s][\w])?)\s*$",
         r"^\s*([^\w]+log.*wm.*)\s*$",
@@ -1435,6 +1447,7 @@ class Definitions:
         (GA_REF, RefType.GA),
     ]
 
+
 class SentStructModeRecord:
     def __init__(self, smode_txt=None, smode=None, extra_param=None):
         self.smode_txt: str = smode_txt
@@ -1443,7 +1456,10 @@ class SentStructModeRecord:
 
 class SentStructMode(Enum):
     ANY = Definitions.ANY
-    ENDING_WITH = Definitions.ENDING_WITH
+    EQUAL = Definitions.EQUAL
+    TRAILING_WITH = Definitions.TRAILING_WITH
+    LEADING_WITH = Definitions.LEADING_WITH
+    EMBEDDED_WITH = Definitions.EMBEDDED_WITH
     PATTERN = Definitions.PATTERN
     NUMBER_ONLY = Definitions.NUMBER_ONLY
     POSITION_PRIORITY = Definitions.POSITION_PRIORITY

@@ -18,6 +18,7 @@ class MatcherRecordType(Enum):
 REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
 
 class MatcherRecord(OrderedDict):
+
     def __init__(self, s=-1, e=-1, txt=None, matcher_record: re.Match =None):
         self.__s = -1
         self.__e = -1
@@ -44,12 +45,17 @@ class MatcherRecord(OrderedDict):
         self.e = actual_e
         self.txt = actual_txt
         self.children = None
+        self.addRecord(matcher_record)
+
+    def addRecord(self, matcher_record):
+        blank_msg = str(self.txt)
 
         if matcher_record:
             start = 0
             end = len(matcher_record.regs)
             s = e = 0
             loc_dict={}
+            start_spaces = end_spaces = ""
             for index in range(start, end):
                 txt = matcher_record.group(index)
 
@@ -62,16 +68,9 @@ class MatcherRecord(OrderedDict):
                 if is_empty:
                     continue
 
-                # is_over_lapped = (rs in loc_dict)
-                # if is_over_lapped:
-                #     continue
-
-                # loc_dict_entry={rs: re}
-                # loc_dict.update(loc_dict_entry)
-
                 self.addSubMatch(rs, re, txt)
         else:
-            self.addSubMatch(actual_s, actual_e, actual_txt)
+            self.addSubMatch(self.s, self.e, self.txt)
 
     @property
     def order_list(self):
@@ -347,10 +346,16 @@ class MatcherRecord(OrderedDict):
         return self.getComponent(0, sub_index=0)
 
     def getSubText(self):
-        return self.getComponent(2, sub_index=1)
+        result = self.getComponent(2, sub_index=1)
+        if not result:
+            result = self.getComponent(1, sub_index=1)
+        return result
 
     def getSubLoc(self):
-        return self.getComponent(2, sub_index=0)
+        result = self.getComponent(2, sub_index=0)
+        if not result:
+            result = self.getComponent(1, sub_index=0)
+        return result
 
     def getType(self):
         sub_comp = self.getComponent(1, sub_index=1)

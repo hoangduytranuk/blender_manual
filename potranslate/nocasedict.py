@@ -3,13 +3,12 @@ from common import Common as cm, dd, pp, LocationObserver
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
     SentStructModeRecord as SMODEREC
+
 from key import Key
 from fuzzywuzzy import fuzz, process as fuzz_process
-from math import ceil
 import operator as OP
 import inspect as INP
 import re
-import time
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -52,6 +51,8 @@ class NoCaseDict(OrderedDict):
         # self.mtx = Metaphone()
         self.fuzzy_keys = []
         self.fuzzy_dict = []
+        self.numerical_pat_list = []
+
         self.fuzzy_exp_var_chosen_record = None
         self.global_text_match = {}
         self.local_cache = {}
@@ -70,15 +71,16 @@ class NoCaseDict(OrderedDict):
             self[key] = val
             # dd(f'__init__:[{key}], value:[{val}]')
         self.is_operational = True
+        self.initNumericalPatternList()
 
+        # self.tran_find_func_list = [
+        #     (self.translationByRemovingSymbols, ('txt', None, None)),              # (txt)
+        #     (self.translationByReplacingSymbolsWithSpaces, ('txt', None, None)),   # (txt)
+        #     (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.END_WORD)),               # (txt, cm.common_suffix_sorted, df.END_WORD)
+        #     (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.START_WORD)),               # (txt, cm.common_prefix_sorted, df.START_WORD)
+        #     (self.removeBothByPatternListAndCheck, ('txt', df.common_prefix_sorted, df.common_suffix_sorted)),           # (txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
+        # ]
 
-        self.tran_find_func_list = [
-            (self.translationByRemovingSymbols, ('txt', None, None)),              # (txt)
-            (self.translationByReplacingSymbolsWithSpaces, ('txt', None, None)),   # (txt)
-            (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.END_WORD)),               # (txt, cm.common_suffix_sorted, df.END_WORD)
-            (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.START_WORD)),               # (txt, cm.common_prefix_sorted, df.START_WORD)
-            (self.removeBothByPatternListAndCheck, ('txt', df.common_prefix_sorted, df.common_suffix_sorted)),           # (txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-        ]
 
     def __contains__(self, key):
         key = Key(key)
@@ -104,21 +106,19 @@ class NoCaseDict(OrderedDict):
             return None
 
     def createSentenceStructureDict(self):
+        def sortingKeyFunction(item):
+            (pattern, value_part) = item
+            pattern_length = len(pattern)
+            return pattern_length
+
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = ('LD(/)' in k)
-            # if is_sent_struct:
-            #     dd(f'selected: [{item}]')
-            # is_sent_struct = (re.search(r'it is as if', k) is not None)
-            # is_sent_struct = (df.ENDING_WITH.search(k) is not None)
+            # is_sent_struct = ('ing|te' in k)
             return is_sent_struct
 
         temp_dict={}
         temp_set = list(filter(isSentStruct, self.items()))
-        # temp_set = [(x, y) for (x, y) in self.items() if df.SENT_STRUCT_START_SYMB in x]
-        # temp_set = [(x, y) for (x, y) in self.items() if '${`' in x]
-        temp_list = sorted(temp_set, key=lambda x: len(x[0]), reverse=True)
         for key, value in temp_set:
             value = self.replaceTranRef(value)
             key_pattern = cm.creatSentRecogniserPattern(key)
@@ -127,7 +127,7 @@ class NoCaseDict(OrderedDict):
 
             entry = {key_pattern: (key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm)}
             temp_dict.update(entry)
-        temp_dict = OrderedDict(sorted(list(temp_dict.items()), key=lambda x: len(x[0]), reverse=True))
+        temp_dict = OrderedDict(sorted(list(temp_dict.items()), key=sortingKeyFunction, reverse=True))
         # print_list = [(x, y[0]) for (x, y) in temp_dict.items()]
         # pp(print_list, width=200)
         self.sentence_struct_dict = NoCaseDict(temp_dict)
@@ -136,10 +136,53 @@ class NoCaseDict(OrderedDict):
         return self[k] if k in self else default
 
     def getSentStructPattern(self, key):
+        def validate_NUMBER_ONLY(interest_part, matched_part, extra_param):
+            valid = (df.NUMBERS.search(matched_part) is not None)
+            return valid
+
+        def validate_NO_FULL_STOP(matcher_dict, matched_part, extra_param):
+            valid = (df.FULLSTOP_IN_BETWEEN.search(matched_part) is None)
+            return valid
+
+        def validate_NO_PUNCTUATION(interest_part, matched_part, extra_param):
+            valid = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
+            return valid
+
+        def validate_MAX_UPTO(interest_part, matched_part, extra_param):
+            wc = cm.wordCount(matched_part)
+            valid = (wc <= extra_param)
+            return valid
+
+        def validate_NO_CONJUNCTIVES(interest_part, matched_part, extra_param):
+            valid = (df.BASIC_CONJUNCTS.search(matched_part) is None)
+            # if valid:
+            #     grp = valid.groups()
+            return valid
+
+        def validate_EMBEDDED(interest_part, matched_part, extra_param):
+            valid = True
+            for loc, txt in interest_part:
+                is_leading_with_hyphen = (txt.startswith('-'))
+                if is_leading_with_hyphen:
+                    return False
+
+            return valid
+
         def isMatchedStructMode(pat_matched_text_pair_list):
             is_ok_list=[]
-            (s_mode_dict, input_txt_list) = pat_matched_text_pair_list
+            (s_mode_dict, input_txt_list, matcher_dict) = pat_matched_text_pair_list
             s_mode_dict_list = list(s_mode_dict.values())
+            check_list = {
+                SMODE.NUMBER_ONLY: validate_NUMBER_ONLY,
+                SMODE.NO_FULL_STOP: validate_NO_FULL_STOP,
+                SMODE.NO_PUNCTUATION: validate_NO_PUNCTUATION,
+                SMODE.MAX_UPTO: validate_MAX_UPTO,
+                SMODE.NO_CONJUNCTIVES: validate_NO_CONJUNCTIVES,
+                SMODE.EMBEDDED_WITH: validate_EMBEDDED,
+                SMODE.LEADING_WITH: validate_EMBEDDED,
+                SMODE.TRAILING_WITH: validate_EMBEDDED,
+            }
+
             for index, matched_part in enumerate(input_txt_list):
                 smode_item = s_mode_dict_list[index]
                 (dict_sl_txt, structure_mode_list) = smode_item
@@ -152,36 +195,15 @@ class NoCaseDict(OrderedDict):
                     structure_mode = smode_rec.smode
                     extra_param = smode_rec.extra_param
 
-                    is_digits_only = (structure_mode == SMODE.NUMBER_ONLY)
-                    if is_digits_only:
-                        is_number = (df.NUMBERS.search(matched_part) is not None)
-                        is_ok_list.append(is_number)
+                    is_checking = (structure_mode in check_list)
+                    if not is_checking:
                         continue
 
-                    is_no_full_stop = (structure_mode == SMODE.NO_FULL_STOP)
-                    if is_no_full_stop:
-                        no_fullstop = (df.FULLSTOP_IN_BETWEEN.search(matched_part) is None)
-                        is_ok_list.append(no_fullstop)
-                        continue
-
-                    is_no_punctuation = (structure_mode == SMODE.NO_PUNCTUATION)
-                    if is_no_punctuation:
-                        no_punct = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
-                        is_ok_list.append(no_punct)
-                        continue
-
-                    is_max_upto = (structure_mode == SMODE.MAX_UPTO)
-                    if is_max_upto:
-                        wc = cm.wordCount(matched_part)
-                        is_max_upto = (wc <= extra_param)
-                        is_ok_list.append(is_max_upto)
-                        continue
-
-                    is_no_conjunctives = (structure_mode == SMODE.NO_CONJUNCTIVES)
-                    if is_no_conjunctives:
-                        no_conjunctives = (df.BASIC_CONJUNCTS.search(matched_part) is None)
-                        is_ok_list.append(no_conjunctives)
-                        continue
+                    function = check_list[structure_mode]
+                    is_ok = function(matcher_dict, matched_part, extra_param)
+                    is_ok_list.append(is_ok)
+                    if not is_ok:
+                        df.LOG(f'function [{function.__name__}()] FAILED!')
 
             ok = (False not in is_ok_list)
             return ok
@@ -232,7 +254,7 @@ class NoCaseDict(OrderedDict):
                 (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
                 s_mode_list = dict_sl_mm.smode
                 # df.LOG(f'matched_text_group:[{matched_text_group}]')
-                pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group)
+                pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group, interest_part)
                 # df.LOG(f'pattern_and_matched_text_pair_list:')
                 # df.LOG('-' * 80)
                 # pp(pattern_and_matched_text_pair_list)
@@ -243,6 +265,12 @@ class NoCaseDict(OrderedDict):
                     is_accept = False
 
                 if not is_accept:
+                    dd(f'FAILED VALIDATION:')
+                    dd(f'pattern: [{pat}]')
+                    # pp(s_mode_list)
+                    # dd('-' * 80)
+                    # pp(interest_part)
+                    # dd('-' * 80)
                     continue
 
                 match_rate = fuzz.ratio(dict_sl_txt, key)
@@ -257,13 +285,19 @@ class NoCaseDict(OrderedDict):
                 return (None, default_value)
 
             selective_match.sort(reverse=True)
-            dd('Chosen:')
-            pp(selective_match)
-            dd('-' * 80)
             first_entry = selective_match[0]
             (match_rate, pat, value) = first_entry
-            pattern = re.compile(pat, flags=re.I)
 
+            dd(f'Chosen for: [{key}]')
+            dd('-' * 40)
+            dd(f'match_rate:[{match_rate}]')
+            dd(f'pattern:[{pat}]')
+            dd('value:')
+            dd('-' * 40)
+            pp(value)
+            dd('-' * 80)
+
+            pattern = re.compile(pat, flags=re.I)
             cached_entry = {klower: (pattern, value)}
             self.local_text_and_chosen_sent_struct_list.update(cached_entry)
 
@@ -344,16 +378,58 @@ class NoCaseDict(OrderedDict):
     def isInCache(self, item):
         return (item in self.local_cache)
 
+    def initNumericalPatternList(self):
+        for pat_txt, tran_txt in df.numeric_trans.items():
+            pattern_text = r'\b(%s)\b' % (pat_txt)
+            pat = re.compile(pattern_text, flags=re.I)
+            entry=(pat, tran_txt)
+            self.numerical_pat_list.append(entry)
+
+    def translateNumerics(self, msg:str):
+        def pat_search(local_en_txt):
+            for pat, tran in self.numerical_pat_list:
+                m = pat.search(local_en_txt)
+                is_matching = (m is not None)
+                if is_matching:
+                    return tran
+            return None
+
+        def find_tran(en_txt):
+            try:
+                tran = pat_search(en_txt)
+                iter = df.TRAN_REF_PATTERN.finditer(tran)
+                for m in iter:
+                    abbrev_txt = m.group(0)
+                    try:
+                        abbrev_tran_txt = df.numeral_dict[abbrev_txt]
+                        tran = tran.replace(abbrev_txt, abbrev_tran_txt)
+                    except Exception as e:
+                        pass
+                return tran
+            except Exception as e:
+                return None
+
+        is_single_word = (len(msg.split()) == 1)
+        if not is_single_word:
+            return None
+
+        loc, stripped_word = cm.removingNonAlpha(msg)
+        translation = find_tran(stripped_word)
+        if translation:
+            translation = f'{df.numeric_prefix} {translation} {df.numeric_postfix}'
+            is_diff = (stripped_word != msg)
+            if is_diff:
+                translation = msg.replace(msg, stripped_word)
+            dd(f'translateNumerics(): [{stripped_word}] => [{translation}]')
+        return translation
+
     def simpleFuzzyTranslate(self, msg: str, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO):
         def getShorterKText():
             shorter_kword_list=[]
             for kword in k_word_list:
-                left, mid, right = cm.getTextWithin(kword)
-                possible_shorter_word = self.getByReduceKnownSuffix(mid)
+                possible_shorter_word = self.getByReduceKnownSuffix(kword)
                 if not possible_shorter_word:
                     possible_shorter_word = kword
-                else:
-                    possible_shorter_word = (left + possible_shorter_word + right)
                 shorter_kword_list.append(possible_shorter_word)
             possible_shorter_k = " ".join(shorter_kword_list)
             return possible_shorter_k
@@ -376,25 +452,45 @@ class NoCaseDict(OrderedDict):
                 return found_list
 
 
-        def simpleFindListOfCandidates(possible_text_list):
+        def simpleFindListOfCandidates(possible_text_list, accept_rate):
             found_list = []
-            shorter_k = getShorterKText()
-            choice1 = fuzz_process.extractOne(shorter_k, possible_text_list)
-            choice2 = fuzz_process.extractOne(k, possible_text_list)
-            if choice1:
-                select1, ratio1 = choice1
 
-            if choice2:
-                select2, ratio2 = choice2
+            choice = fuzz_process.extractOne(k, possible_text_list)
+            if not choice:
+                return found_list
+
+            (txt, rat) = choice
+            is_accepted = (rat >= accept_rate)
+            if is_accepted:
+                found_list.append(choice)
+                return found_list
+
+            shorter_k = getShorterKText()
+            choice1 = choice
+            choice2 = fuzz_process.extractOne(k, possible_text_list)
 
             has_both = (choice1 and choice2)
+            has_one = (choice1 or choice2)
+            has_none = not (choice1 or choice2)
+
+            if has_none:
+                return found_list
+
             if has_both:
-                choice = (choice1 if (ratio1 > ratio2) else choice2)
-            else:
+                txt1, rat1 = choice1
+                rat1 = fuzz.ratio(txt1, k)
+
+                txt2, rat2 = choice2
+                rat2 = fuzz.ratio(txt2, k)
+                choice = (choice1 if (rat1 > rat2) else choice2)
+            else: # has one
                 choice = (choice1 if choice1 else choice2)
 
-            if choice:
-                found_list.append(choice)
+            # txt_choice, rat_choice = choice
+            # rat_choice = fuzz.ratio(txt_choice, k)
+            # choice = (txt_choice, rat_choice)
+            #
+            found_list.append(choice)
             return found_list
 
         def isKeyListTextValid(dict_item):
@@ -446,7 +542,7 @@ class NoCaseDict(OrderedDict):
         k = k.lower()
 
         k_length = len(k)
-        k_word_list = k.split()
+        k_word_list = df.COMMON_WORD_SEPS.split(k)
         k_word_count = len(k_word_list)
         is_k_single_word = (k_word_count == 1)
 
@@ -469,19 +565,17 @@ class NoCaseDict(OrderedDict):
             # taken = (tok - tic)
             self.local_keylist_cache.update({k: key_list})
 
-        subset = simpleFindListOfCandidates(key_list)
-        df.LOG(f'looking for: [{k}] found subset:')
-        df.LOG('-' * 80)
-        pp(subset)
-        df.LOG('*' * 80)
+        subset = simpleFindListOfCandidates(key_list, acceptable_rate)
         found_candidates = (len(subset) > 0)
         if not found_candidates:
             return default_result
 
         # matched_ratio, partial_ratio, selected_item  = subset[0]
         # is_accepted = (matched_ratio >= acceptable_rate)
-        (selected_item, matched_ratio) = subset[0]
-        matched_ratio = fuzz.ratio(selected_item, k)
+        (selected_item, original_ratio) = subset[0]
+        overall_ratio = fuzz.ratio(selected_item, k)
+        is_matching = (original_ratio == overall_ratio)
+        matched_ratio = (original_ratio if is_k_single_word else overall_ratio)
         is_accepted = (matched_ratio >= acceptable_rate)
         if not is_accepted:
             return default_result
@@ -495,6 +589,8 @@ class NoCaseDict(OrderedDict):
         #         return default_result
 
         translation_txt = self[selected_item]
+        report_msg = f'found: [{selected_item}] => [{translation_txt}]'
+        df.LOG(report_msg)
         lower_msg = msg.lower()
         try:
             loc, new_selected = cm.locRemain(lower_msg, selected_item)
@@ -617,6 +713,7 @@ class NoCaseDict(OrderedDict):
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
         part_txt = None
+        df.LOG(sl_txt)
         try:
             ft_translation = str(sl_txt)
             for ft_loc, ft_word in ft_map:
@@ -626,11 +723,11 @@ class NoCaseDict(OrderedDict):
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
-                df.LOG(f'trying: [{ft_word}]')
+                dd(f'trying: [{ft_word}]')
                 part_txt = ft_word
-                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate( ft_word, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO )
+                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate( ft_word, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
                 if ft_tran:
-                    df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
+                    # df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)
                 else:
                     wc = len(ft_word.split())
@@ -638,7 +735,10 @@ class NoCaseDict(OrderedDict):
                     if not is_single_word:
                         continue
 
-                    chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
+                    ft_tran = self.translateNumerics(ft_word)
+                    if not ft_tran:
+                        chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
+
                     if ft_tran:
                         markTranslated(ft_loc, ft_word, ft_tran)
 
@@ -664,11 +764,10 @@ class NoCaseDict(OrderedDict):
         translated_list = {}
         selective_list = []
 
-        return None
-        tran, untran_dict = self.tranByPartitioning(input_txt)
-        if tran:
-            return tran
-
+        # tran, untran_dict = self.tranByPartitioning(input_txt)
+        # if tran:
+        #     return tran
+        #
         obs = LocationObserver(input_txt)
         for pat in pattern_list:
             if obs.isCompletelyUsed():
@@ -694,6 +793,11 @@ class NoCaseDict(OrderedDict):
 
         translated_list = list(translated_list.items())
         translated_list.sort(reverse=True)
+        if translated_list:
+            df.LOG('translated_list:')
+            dd('-' * 40)
+            pp(translated_list)
+            dd('-' * 40)
         for loc, tran in translated_list:
             translation = cm.jointText(translation, tran, loc)
 
@@ -705,7 +809,7 @@ class NoCaseDict(OrderedDict):
             return None
 
     def blindTranslate(self, txt):
-        tran, untran_dict = self.tranByPartitioning(txt)
+        tran = self.getTranBySlittingSymbols(txt)
         return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:
