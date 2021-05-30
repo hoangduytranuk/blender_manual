@@ -1727,7 +1727,7 @@ class Common:
                     embs = df.CLAUSED_PART.search(txt)
                     emb_part = embs.group(1)
                     if is_ending_with:
-                        pat_txt = r'%s(%s(%s)%s)' % (leading, word, emb_part, ending)
+                        pat_txt = r'%s(%s%s)%s' % (leading, word, emb_part, ending)
                     elif is_leading_with:
                         pat_txt = r'%s((%s)%s)%s' % (leading, emb_part, word, ending)
                     elif is_embedded_with:

@@ -234,7 +234,9 @@ class StructRecogniser():
                         grp = sent_struct.groups()
                         order = int(grp[1])
                         txt = order_queue[order]
-                        any_list.append((loc, txt))
+                        any_list.append((loc, txt.strip()))
+                    df.LOG('SWAPPING any_list:')
+                    pp(any_list)
                 return any_list
             except Exception as e:
                 df.LOG(e, error=True)
@@ -256,47 +258,6 @@ class StructRecogniser():
                 dd('-' * 80)
                 raise e
 
-        def moveEndingPunctuationsIfNeeded(to_index):
-            fname = INP.currentframe().f_code.co_name
-            try:
-                new_entry = sent_tl_list[to_index]
-                new_loc, new_txt = new_entry
-
-                next_index = to_index+1
-                next_entry = sent_tl_list[next_index]
-
-                left, mid, right = cm.getTextWithin(new_txt)
-                is_ending_punctual = (df.BEGIN_AND_END_BASIC_PUNCTUAL_IN_MID_SENT.search(right) is not None)
-                if not is_ending_punctual:
-                    return None, None
-
-                new_entry = (new_loc, left + mid)
-                (next_loc, next_txt) = next_entry
-                nleft, nmid, nright = cm.getTextWithin(next_txt)
-                is_nright_spaces = (not bool(nright.strip()))
-                if is_nright_spaces:
-                    next_txt = nleft + nmid + right + nright
-                else:
-                    next_txt += next_txt + right
-                next_entry = (next_loc, next_txt)
-                return new_entry, next_entry
-            except Exception as e:
-                df.LOG(e, error=True)
-                return None, None
-
-        # def getTranSLFullTextList():
-        #     obs = LocationObserver(self.tran_sl_txt)
-        #     copy_of_tran_sl_rec = CP.deepcopy(self.sent_sl_rec.getSubEntriesAsList())
-        #     temp_dict = OrderedDict(copy_of_tran_sl_rec)
-        #     loc_list = temp_dict.keys()
-        #     obs.markListAsUsed(loc_list)
-        #     remaining_txt_list = obs.getRawUnmarkedPartsAsList()
-        #
-        #     copy_of_tran_sl_rec.extend(remaining_txt_list)
-        #     copy_of_tran_sl_rec.sort()
-        #
-        #     return copy_of_tran_sl_rec
-
         def correctTextsOffsets(senttl_list):
             def creatTLTextList():
                 any_index_list=[]
@@ -313,9 +274,6 @@ class StructRecogniser():
                     else:
                         actual_tl_txt = tl_txt
 
-                    # new_le = ls + len(actual_tl_txt)
-                    # new_loc = (ls, new_le)
-                    # new_entry = (new_loc, actual_tl_txt)
                     new_entry = (loc, actual_tl_txt)
                     new_list.append(new_entry)
                 df.LOG(f'RETURN new_list:; any_index_list:')

@@ -9505,10 +9505,9 @@ IOR
 
         if not text_list:
             t_list = [
-                # "for example: Half §UV Sphere§ works fine,",
-                "framed F-curve icon",
+                "for example: Half §UV Sphere§ works fine,",
+                # "further information: `File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>`__",
             ]
-
         else:
             t_list = text_list
 

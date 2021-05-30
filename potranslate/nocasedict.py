@@ -74,15 +74,6 @@ class NoCaseDict(OrderedDict):
         self.is_operational = True
         self.initNumericalPatternList()
 
-        # self.tran_find_func_list = [
-        #     (self.translationByRemovingSymbols, ('txt', None, None)),              # (txt)
-        #     (self.translationByReplacingSymbolsWithSpaces, ('txt', None, None)),   # (txt)
-        #     (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.END_WORD)),               # (txt, cm.common_suffix_sorted, df.END_WORD)
-        #     (self.removeByPatternListAndCheck, ('txt', df.common_suffix_sorted, df.START_WORD)),               # (txt, cm.common_prefix_sorted, df.START_WORD)
-        #     (self.removeBothByPatternListAndCheck, ('txt', df.common_prefix_sorted, df.common_suffix_sorted)),           # (txt, cm.common_prefix_sorted, cm.common_suffix_sorted)
-        # ]
-
-
     def __contains__(self, key):
         key = Key(key)
         is_there = super(NoCaseDict, self).__contains__(key)
@@ -445,28 +436,32 @@ class NoCaseDict(OrderedDict):
             possible_shorter_k = " ".join(shorter_kword_list)
             return possible_shorter_k
 
-        def generateFoundListFromSelectedKeyList(txt_to_compare):
+        def generateFoundListFromSelectedKeyList(txt_to_compare, possible_list):
             found_list = []
-            for found_item in key_list:
+            for found_item in possible_list:
                 ratio = fuzz.ratio(found_item, txt_to_compare)
                 partial_ratio = fuzz.partial_ratio(found_item, txt_to_compare)
                 entry = (ratio, partial_ratio, found_item)
+                found_list.append(entry)
 
-            found_list.append(entry)
             if found_list:
                 if is_k_single_word:
                     found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
                 else:
                     found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
-                return [found_list[0]]
+                selected_item = found_list[0]
+                (ratio, partial_ratio, chosen_txt) = selected_item
+                return_ratio = (partial_ratio if is_k_single_word else ratio)
+                return_entry = (chosen_txt, return_ratio)
+                return return_entry
             else:
-                return found_list
+                return None
 
 
         def simpleFindListOfCandidates(possible_text_list, accept_rate):
             found_list = []
 
-            choice = fuzz_process.extractOne(k, possible_text_list)
+            choice = generateFoundListFromSelectedKeyList(k, possible_text_list)
             if not choice:
                 return found_list
 

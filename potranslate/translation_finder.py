@@ -1,5 +1,7 @@
 import os
 import re
+import time
+
 from definition import Definitions as df
 from common import Common as cm, LocationObserver
 from common import dd, pp
@@ -45,9 +47,14 @@ class TranslationFinder:
         self.backup_dic_list: NoCaseDict = None
         self.kbd_dict = None
 
-        self.loadDictionary()
-        self.getDict().createSentenceStructureDict()
 
+        self.loadDictionary()
+
+
+        st_time = time.perf_counter()
+        self.getDict().createSentenceStructureDict()
+        ed_time = time.perf_counter()
+        p_time = (ed_time - st_time)
         self.struct_dict = self.getDict().sentence_struct_dict
         # pp(self.struct_dict)
         # is_in = ('a * b' in self.getDict())
@@ -333,21 +340,6 @@ class TranslationFinder:
     def blindTranslation(self, msg):
         tran = self.getDict().blindTranslate(msg)
         return tran
-        # # dd(f'blindTranslation() msg:[{msg}]')
-        # # new_text, trans, cover_length = self.findByReduction(msg)
-        # # is_found_trans = (trans and not trans == msg)
-        # # if is_found_trans:
-        # #     return trans
-        #
-        # local_translated_dict, local_untranslated_dic = self.buildLocalTranslationDict(msg)
-        #
-        # # use the translated (longest first) to replace all combination,
-        # # translate by reduction for ones could not, to form the final translation for the variation
-        # # translated_dic will be sorted in length by default.
-        # # using safe translation length and unsafe translation length to sort so one with both highest values
-        # # are floated on top once sorted. Pick the one at the top list, ignore the rest
-        # translation = self.replacingUsingDic(local_translated_dict, local_untranslated_dic, msg)
-        # return translation
 
     def addDictEntry(self, msg_list, is_master=False):
         if not msg_list:
@@ -409,9 +401,6 @@ class TranslationFinder:
             return msg
 
         new_msg = cm.removeLeadingTrailingSymbs(msg)
-        # new_msg = str(msg)
-        # new_msg = df.HEADING_WITH_PUNCT_MULTI.sub('', new_msg)
-        # new_msg = df.TRAILING_WITH_PUNCT_MULTI.sub('', new_msg)
         return new_msg
 
     def cleanBothEntries(self, msg, tran):
@@ -489,8 +478,13 @@ class TranslationFinder:
     def reloadChosenDict(self, is_master=True):
         file_path = (self.master_dic_file if is_master else self.master_dic_backup_file)
         df.LOG(f'reloadChosenDict:{file_path}')
+
         dic = cm.loadJSONDic(file_name=file_path)
+
+        # st_time = time.perf_counter()
         ncase_dic = NoCaseDict(dic)
+        # ed_time = time.perf_counter()
+        # p_time = (ed_time - st_time)
         ncase_dic.local_keys.sort()
         if is_master:
             self.master_dic = ncase_dic
@@ -1076,7 +1070,7 @@ class TranslationFinder:
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
-                trans = None
+                return (None, False, True)
 
             if not trans:
                 df.LOG(f'calling tryFuzzyTranlation [{msg}]')
@@ -1193,16 +1187,15 @@ class TranslationFinder:
             new_tran = f'{current_tran} ({current_untran})'
             return new_tran
 
-        formatted_tran = None
         is_fuzzy = is_ignore = False
         tran = None
-        is_using_main = False
-        msg = mm.getSubText()
-        has_sub_text = bool(msg)
-        if not has_sub_text:
-            is_using_main = True
-            msg = mm.getMainText()
 
+
+        is_using_main = False
+        msg = mm.getSubOrMain()
+        tran = str(msg)
+
+        unlink_collection = []
         has_ref_link = (df.REF_LINK.search(msg) is not None)
         if not has_ref_link:
             tran, is_fuzzy, is_ignore = self.translate(msg)
@@ -1212,19 +1205,21 @@ class TranslationFinder:
             for sub_loc, sub_mm in found_dict.items():
                 sub_txt = sub_mm.getMainText()
                 sub_tran, is_fuzzy, is_ignore = self.translate(sub_txt)
-                sub_tran_formatted = formatTran(sub_txt, sub_tran)
-                formatted_tran = cm.jointText(msg, sub_tran_formatted, sub_loc)
-                tran = formatted_tran
-                break
-        if tran:
+                valid = (not is_ignore) and bool(sub_tran)
+                if valid:
+                    sub_tran_formatted = formatTran(sub_txt, sub_tran)
+                    unlink_collection_entry = (sub_loc, sub_txt, sub_tran_formatted)
+
+        has_tran = (tran != msg)
+        if has_tran:
             main_txt = mm.getMainText()
             if is_using_main:
-                sub_loc = mm.getMainLoc()
+                loc = mm.getMainLoc()
             else:
-                sub_loc = mm.getSubLoc()
-            if not formatted_tran:
+                loc = mm.getSubLoc()
+            if tran:
                 formatted_tran = formatTran(msg, tran)
-            main_tran = cm.jointText(main_txt, formatted_tran, sub_loc)
+            main_tran = cm.jointText(main_txt, formatted_tran, loc)
             mm.setTranlation(main_tran, is_fuzzy, is_ignore)
         return bool(tran)
 

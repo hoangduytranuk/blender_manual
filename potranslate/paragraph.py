@@ -1,3 +1,5 @@
+import time
+
 from common import Common as cm, dd, pp, LocationObserver
 from translation_finder import TranslationFinder
 from sentence import StructRecogniser as SR
@@ -38,7 +40,11 @@ class Paragraph(list):
             if not tran:
                 sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
                 loc = (0, len(self.sl_txt))
+                st_time = time.perf_counter()
                 tran = sr.parseAndTranslateText(loc, self.sl_txt)
+                ed_time = time.perf_counter()
+                p_time = ed_time - st_time
+
                 if tran:
                     tran = cm.removeTheWord(tran)
                     cache_entry = {self.sl_txt: tran}
