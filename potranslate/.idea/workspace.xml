@@ -4,18 +4,17 @@
     <option name="SPLITTER_PROPORTION" value="0.46153846" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="Added tranByParitioning first, by separating in parts, long to short segments, to single, first before splitting by symbols">
+    <list default="true" id="eac9fd57-e359-4bc8-b318-a14b68da6b39" name="Default Changelist" comment="In the process correcting the translation translateRefWithLink() within translation_finder.py. Also debugging the performance bottle neck.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paragraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/paragraph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -503,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622317836349</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="In the process correcting the translation translateRefWithLink() within translation_finder.py. Also debugging the performance bottle neck.">
+      <created>1622412080830</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1622412080833</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -526,7 +532,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corrected the wrong index usage ibn the getInitialListOfTextsToBeTranslated, dict_sl_smode_list must use 'from_index' instead." />
     <MESSAGE value="Added the case-insensitivity to the getSentStructPattern in nocasedict.py, so the comparisons will not stop because of the case differences between dictionary entries and the input text fragments." />
     <MESSAGE value="Simplify the code for loading dictionary. Ensure that a lower key set is embedded within the NoCaseDict, allowing the fuzzy translation to search for a smaller set accurately, plus inserted the NO-CASE flag for recog_pattern, allowing the splitting of input text accucrately, using recog_pattern." />
     <MESSAGE value="Thinking about the possibility of a new param in sent-structure, position priority, giving the control about the fuzzy weight with regards to the position of param in the sentence. Not yet clear the direction of implementation, so temporary pausing. Enable local_keys sorted after loading the Dictionary." />
@@ -551,7 +556,8 @@
     <MESSAGE value="Added the ability to embedded leading/mixing symbols (ED(..), LD(..), EMB(..))" />
     <MESSAGE value="Many changes have been done in this version, mainly the pattern formation in common.py, and the processing in sentence.py. Learned that the pattern formation should be as relaxed and matched the original as possible, and NEVER remove spaces. This removing can be done much later, in fact, you don't really need to. Code is running VERY SLOW." />
     <MESSAGE value="Added tranByParitioning first, by separating in parts, long to short segments, to single, first before splitting by symbols" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tranByParitioning first, by separating in parts, long to short segments, to single, first before splitting by symbols" />
+    <MESSAGE value="In the process correcting the translation translateRefWithLink() within translation_finder.py. Also debugging the performance bottle neck." />
+    <option name="LAST_COMMIT_MESSAGE" value="In the process correcting the translation translateRefWithLink() within translation_finder.py. Also debugging the performance bottle neck." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -563,12 +569,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>759</line>
+          <line>778</line>
           <option name="timeStamp" value="3187" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>105</line>
+          <line>107</line>
           <option name="timeStamp" value="3324" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -588,33 +594,48 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>496</line>
+          <line>515</line>
           <option name="timeStamp" value="3365" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>743</line>
+          <line>762</line>
           <option name="timeStamp" value="3430" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>819</line>
+          <line>838</line>
           <option name="timeStamp" value="3451" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>1212</line>
-          <option name="timeStamp" value="3462" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/paragraph.py</url>
-          <line>47</line>
-          <option name="timeStamp" value="3468" />
+          <line>1216</line>
+          <option name="timeStamp" value="3471" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="3470" />
+          <line>1212</line>
+          <option name="timeStamp" value="3472" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reflist.py</url>
+          <line>287</line>
+          <option name="timeStamp" value="3478" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>288</line>
+          <option name="timeStamp" value="3489" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>296</line>
+          <option name="timeStamp" value="3490" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>259</line>
+          <option name="timeStamp" value="3501" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

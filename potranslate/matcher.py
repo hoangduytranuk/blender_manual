@@ -345,14 +345,6 @@ class MatcherRecord(OrderedDict):
     def getMainLoc(self):
         return self.getComponent(0, sub_index=0)
 
-    def getSubOrMain(self):
-        result = None
-        for i in range(2, 0, -1):
-            result = self.getComponent(i, sub_index=1)
-            if result:
-                break
-        return result
-
     def getSubText(self):
         result = self.getComponent(2, sub_index=1)
         if not result:

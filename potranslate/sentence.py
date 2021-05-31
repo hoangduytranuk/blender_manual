@@ -1,3 +1,5 @@
+import time
+
 from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
 from definition import Definitions as df
@@ -491,7 +493,11 @@ class StructRecogniser():
 
     def makeSRRecord(self, txt, root_location):
         try:
+            st_time = time.perf_counter()
             dict_sl_pat, (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm, sent_sl_mm) = self.getDict().getSentStructPattern(txt)
+            ed_time = time.perf_counter()
+            p_time = (ed_time - st_time)
+
             current_processed_list = self.processed_list.keys()
             is_already_processed = (dict_sl_txt in current_processed_list)
             is_ignore = (not dict_sl_pat) or (is_already_processed)
@@ -658,7 +664,11 @@ class StructRecogniser():
         wc = len(txt.split())
         is_single_word = (wc == 1)
         if not is_single_word:
+            st_time = time.perf_counter()
             makeSRStructFirst(map)
+            ed_time = time.perf_counter()
+            p_time = (ed_time - st_time)
+
         makeNonSR()
 
         parsed_list.sort(reverse=True)

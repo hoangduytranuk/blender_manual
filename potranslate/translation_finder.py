@@ -1190,9 +1190,12 @@ class TranslationFinder:
         is_fuzzy = is_ignore = False
         tran = None
 
-
         is_using_main = False
-        msg = mm.getSubOrMain()
+        msg = mm.getSubText()
+        if not msg:
+            msg = mm.getMainText()
+            is_using_main = True
+
         tran = str(msg)
 
         unlink_collection = []
@@ -1209,6 +1212,7 @@ class TranslationFinder:
                 if valid:
                     sub_tran_formatted = formatTran(sub_txt, sub_tran)
                     unlink_collection_entry = (sub_loc, sub_txt, sub_tran_formatted)
+                    unlink_collection.append(unlink_collection_entry)
 
         has_tran = (tran != msg)
         if has_tran:

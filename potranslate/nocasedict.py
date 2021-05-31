@@ -1,4 +1,5 @@
 import os
+import time
 from collections import OrderedDict
 from common import Common as cm, dd, pp, LocationObserver
 from definition import Definitions as df, \
@@ -106,7 +107,7 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = ('EQ' in k)
+            # is_sent_struct = ('} or ${' in k)
             return is_sent_struct
 
         def sortSentStruct(item):
@@ -210,8 +211,15 @@ class NoCaseDict(OrderedDict):
             ok = (False not in is_ok_list)
             return ok
 
-        def filterKeyChosenSet(pat_item):
-            match = re.compile(pat_item, flags=re.I).search(key)
+        def filterKeyByFuzzyCompare(pat_item):
+            pattern, value = pat_item
+            (dict_key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm) = value
+            rat = fuzz.ratio(key, dict_key)
+            return (rat, pattern)
+
+        def filterKeyByPattern(pat_item):
+            (rat, pattern) = pat_item
+            match = re.compile(pattern, flags=re.I).search(key)
             is_found = (match is not None )
             return is_found
 
@@ -225,9 +233,20 @@ class NoCaseDict(OrderedDict):
                 return (pat, value)
 
             selective_match = []
-            key_list = self.sentence_struct_dict.keys()
+            chosen_key_list = []
+            # key_list = self.sentence_struct_dict.keys()
+
             # pat_list = [x for x in pat_list if 'i\\.e\\.' in x]
-            chosen_key_list = list(filter(filterKeyChosenSet, key_list))
+            st_time = time.perf_counter()
+            fuzzy_set = list(map(filterKeyByFuzzyCompare, self.sentence_struct_dict.items()))
+            if fuzzy_set:
+                fuzzy_set.sort(reverse=True)
+                set_length = len(fuzzy_set)
+                max_len = min(5, set_length)
+                selection_set = fuzzy_set[:max_len]
+                chosen_key_list = list(filter(filterKeyByPattern, selection_set))
+            ed_time = time.perf_counter()
+            p_time = (ed_time - st_time)
 
             if not chosen_key_list:
                 return (None, default_value)
@@ -236,7 +255,7 @@ class NoCaseDict(OrderedDict):
             # pp(chosen_key_list, width=200)
 
             # list_of_sent_struct = list(self.sentence_struct_dict.items())
-            for pat in chosen_key_list:
+            for rat, pat in chosen_key_list:
                 value = self.sentence_struct_dict[pat]
                 pattern = re.compile(pat, flags=re.I)
                 # match_list = re.findall(pat, key)

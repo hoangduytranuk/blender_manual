@@ -2502,7 +2502,7 @@ zoom level <editors_3dview_navigation_zoom>
 ~/blender_docs
 ~/blender_docs/build/html
 ~/blender_docs/toos_maintenance
-~/software        
+~/software
 '''
 
 msg = "Adaptivity"
@@ -3814,7 +3814,7 @@ class POCache(defaultdict):
         self.extension = extension
 
     def getFileList(self):
-        file_list = []      
+        file_list = []
         for root, dirnames, filenames in os.walk(self.file_path):
             if root.startswith('.'):
                 continue
@@ -3827,7 +3827,7 @@ class POCache(defaultdict):
                 is_file_readable = os.path.isfile(full_path)
                 if not is_file_readable:
                     print(f'UNABLE to read:[{full_path}]')
-                                
+
                 self.file_list.append(full_path)
 
     def loadPOFiles(self):
@@ -3855,16 +3855,16 @@ class POCache(defaultdict):
 class POFileRecord(defaultdict):
     def __init__(self, file_path):
         self.file_name = file_path
-    
+
     def addLines(self, lines):
         for line in lines:
             self.addLine(line)
-    
+
     def addLine(self, line, tran=None):
         tran_txt = (tran if tran else "")
         entry = {line: tran}
         self.update(entry)
-    
+
 class TextMap(OrderedDict):
     def __init__(self, text=None, dic=None):
         self.dictionary = dic
@@ -4952,7 +4952,7 @@ class test(object):
             "which is more realistic). and (this (is the second one) but not here) and (another one)"
 
 
-        t = ''' 
+        t = '''
         C:\\blender_docs
         with space in front build/html/contents_quicky.html
         '''
@@ -6615,7 +6615,7 @@ Camera: ``POINT`` or ``VIEW`` or ``VPORT`` or (wip: ``INSERT(ATTRIB+XDATA)``)
         t = '''
         # SOME DESCRIPTIVE TITLE.# Copyright (C) : This page is licensed under a CC-BY-SA 4.0 Int. License# This file is distributed under the same license as the Blender 2.79 Manual# package.# Hoang Duy Tran <hoangduytran1960@gmail.com>, 2018.##, fuzzymsgid ""msgstr """Project-Id-Version: Blender 2.79 Manual 2.79\n""Report-Msgid-Bugs-To: \n""POT-Creation-Date: 2020-06-01 12:14+1000\n""PO-Revision-Date: 2020-06-14 04:43+0100\n""Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\n""Language: vi\n""Language-Team: London, UK <hoangduytran1960@gmail.com>\n""Plural-Forms: nplurals=1; plural=0\n""MIME-Version: 1.0\n""Content-Type: text/plain; charset=utf-8\n""Content-Transfer-Encoding: 8bit\n""Generated-By: Babel 2.8.0\n"#: ../../manual/about/index.rst:5msgid "Contribute Documentation"msgstr "Đóng Góp Tài Liệu -- Contribute Documentation"#: ../../manual/about/index.rst:7msgid "The Blender Manual is a community driven effort to which anyone can contribute. Whether you like to fix a tiny spelling mistake or rewrite an entire chapter, your help with the Blender manual is most welcome!"msgstr "Bản Hướng Dẫn Sử Dụng Blender là một cố gắng do cộng đồng điều vận và ai ai cũng có thể đóng góp phần mình vào được. Cho dù bạn muốn sửa đổi một lỗi đánh vần nhỏ, hoặc muốn viết lại toàn bộ nội dung của một chương đi chăng nữa, thì sự giúp đỡ của bạn với bản Hướng Dẫn Sử Dụng Blender cũng sẽ rất được hoan nghênh!"#: ../../manual/about/index.rst:11msgid "If you find an error in the documentation, please `report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__"msgstr "Nếu bạn tìm thấy một lỗi nào đó trong bản tài liệu thì xin làm ơn `báo cáo vấn đề -- report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__ cho chúng tôi biết"#: ../../manual/about/index.rst:14msgid "Get involved in discussions through the any of the project `Contacts`_"msgstr "Xin bạn hãy tham gia các cuộc bàn luận thông qua các `Đầu Mối Liên Lạc -- Contacts`_ của đề án"#: ../../manual/about/index.rst:20msgid "Getting Started"msgstr "Khởi Đầu -- Getting Started"#: ../../manual/about/index.rst:22msgid "The following guides lead you through the process."msgstr "Hướng dẫn sau đây sẽ dẫn dắt bạn qua toàn bộ quá trình."#: ../../manual/about/index.rst:35msgid "Guidelines"msgstr "Hướng Dẫn -- Guidelines"#: ../../manual/about/index.rst:46msgid "Translations"msgstr "Phiên Dịch -- Translations"#: ../../manual/about/index.rst:58msgid "Contacts"msgstr "Mối Liên Lạc -- Contacts"#: ../../manual/about/index.rst:60msgid "`Project Page <https://developer.blender.org/project/profile/53/>`__."msgstr "`Trang Của Đề Án -- Project Page <https://developer.blender.org/project/profile/53/>`__."#: ../../manual/about/index.rst:61msgid "An overview of the documentation project."msgstr "Một số khái quá về đề án viết tài liệu."#: ../../manual/about/index.rst:62msgid "`Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"msgstr "`Danh Sách Liên Lạc Thư Điện Tử -- Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"#: ../../manual/about/index.rst:63msgid "A mailing list for discussing ideas, and keeping track of progress."msgstr "Một bản danh sách liên lạc qua thư từ để bàn bạc các ý tưởng, đồng thời cũng là nơi để theo dõi sự tiến triển của của chúng."#: ../../manual/about/index.rst:65msgid "`Devtalk <https://devtalk.blender.org/c/documentation/12>`__"msgstr "`Trò Chuyện về Xây Dựng Phần Mềm -- Devtalk <https://devtalk.blender.org/c/documentation/12>`__"#: ../../manual/about/index.rst:65msgid "A forum based discussions on writing and translating documentation. This includes the user manual, wiki, release notes, and code docs."msgstr "Bàn luận trên diễn đàn về viết và dịch tài liệu. Tài liệu ở đây bao gồm bản hướng dẫn sử dụng, trang bách khoa toàn thư mở wiki, các các tài liều về mã nguồn."#: ../../manual/about/index.rst:67msgid ":ref:`blender-chat`"msgstr ""#: ../../manual/about/index.rst:68msgid "``#docs`` channel for informal discussions in real-time."msgstr "Kênh ``#docs`` (*tài liệu*) là kênh dùng cho các cuộc bàn bạc thân thiện, không chính thức, thời gian thật."#: ../../<generated>:1msgid "`Project Workboard <https://developer.blender.org/project/board/53/>`__"msgstr "`Bảng Phân Công Nhiệm Vụ Của Đề Án -- Project Workboard <https://developer.blender.org/project/board/53/>`__"#: ../../manual/about/index.rst:70msgid "Manage tasks such as bugs, todo lists, and future plans."msgstr "Quản lý các nhiệm vụ, như các lỗi trong phần mềm, danh sách những việc cần làm, và các kế hoạch trong tương lai."
 getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 2.79\\n""Report-Msgid-Bugs-To: \\n""POT-Creation-Date: 2020-06-01 12:14+1000\\n""PO-Revision-Date: 2020-06-14 04:43+0100\\n""Last-Translator: Hoang Duy Tran <hoangduytran1960@gmail.com>\\n""Language: vi\\n""Language-Team: London, UK <hoangduytran1960@gmail.com>\\n""Plural-Forms: nplurals=1; plural=0\\n""MIME-Version: 1.0\\n""Content-Type: text/plain; charset=utf-8\\n""Content-Transfer-Encoding: 8bit\\n""Generated-By: Babel 2.8.0\\n"#: ../../manual/about/index.rst:5msgid "Contribute Documentation"msgstr "Đóng Góp Tài Liệu -- Contribute Documentation"#: ../../manual/about/index.rst:7msgid "The Blender Manual is a community driven effort to which anyone can contribute. Whether you like to fix a tiny spelling mistake or rewrite an entire chapter, your help with the Blender manual is most welcome!"msgstr "Bản Hướng Dẫn Sử Dụng Blender là một cố gắng do cộng đồng điều vận và ai ai cũng có thể đóng góp phần mình vào được. Cho dù bạn muốn sửa đổi một lỗi đánh vần nhỏ, hoặc muốn viết lại toàn bộ nội dung của một chương đi chăng nữa, thì sự giúp đỡ của bạn với bản Hướng Dẫn Sử Dụng Blender cũng sẽ rất được hoan nghênh!"#: ../../manual/about/index.rst:11msgid "If you find an error in the documentation, please `report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__"msgstr "Nếu bạn tìm thấy một lỗi nào đó trong bản tài liệu thì xin làm ơn `báo cáo vấn đề -- report the problem <https://developer.blender.org/maniphest/task/edit/form/default/?project=PHID-PROJ-c4nvvrxuczix2326vlti>`__ cho chúng tôi biết"#: ../../manual/about/index.rst:14msgid "Get involved in discussions through the any of the project `Contacts`_"msgstr "Xin bạn hãy tham gia các cuộc bàn luận thông qua các `Đầu Mối Liên Lạc -- Contacts`_ của đề án"#: ../../manual/about/index.rst:20msgid "Getting Started"msgstr "Khởi Đầu -- Getting Started"#: ../../manual/about/index.rst:22msgid "The following guides lead you through the process."msgstr "Hướng dẫn sau đây sẽ dẫn dắt bạn qua toàn bộ quá trình."#: ../../manual/about/index.rst:35msgid "Guidelines"msgstr "Hướng Dẫn -- Guidelines"#: ../../manual/about/index.rst:46msgid "Translations"msgstr "Phiên Dịch -- Translations"#: ../../manual/about/index.rst:58msgid "Contacts"msgstr "Mối Liên Lạc -- Contacts"#: ../../manual/about/index.rst:60msgid "`Project Page <https://developer.blender.org/project/profile/53/>`__."msgstr "`Trang Của Đề Án -- Project Page <https://developer.blender.org/project/profile/53/>`__."#: ../../manual/about/index.rst:61msgid "An overview of the documentation project."msgstr "Một số khái quá về đề án viết tài liệu."#: ../../manual/about/index.rst:62msgid "`Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"msgstr "`Danh Sách Liên Lạc Thư Điện Tử -- Mailing list <https://lists.blender.org/mailman/listinfo/bf-docboard>`__"#: ../../manual/about/index.rst:63msgid "A mailing list for discussing ideas, and keeping track of progress."msgstr "Một bản danh sách liên lạc qua thư từ để bàn bạc các ý tưởng, đồng thời cũng là nơi để theo dõi sự tiến triển của của chúng."#: ../../manual/about/index.rst:65msgid "`Devtalk <https://devtalk.blender.org/c/documentation/12>`__"msgstr "`Trò Chuyện về Xây Dựng Phần Mềm -- Devtalk <https://devtalk.blender.org/c/documentation/12>`__"#: ../../manual/about/index.rst:65msgid "A forum based discussions on writing and translating documentation. This includes the user manual, wiki, release notes, and code docs."msgstr "Bàn luận trên diễn đàn về viết và dịch tài liệu. Tài liệu ở đây bao gồm bản hướng dẫn sử dụng, trang bách khoa toàn thư mở wiki, các các tài liều về mã nguồn."#: ../../manual/about/index.rst:67msgid ":ref:`blender-chat`"msgstr ""#: ../../manual/about/index.rst:68msgid "``#docs`` channel for informal discussions in real-time."msgstr "Kênh ``#docs`` (*tài liệu*) là kênh dùng cho các cuộc bàn bạc thân thiện, không chính thức, thời gian thật."#: ../../<generated>:1msgid "`Project Workboard <https://developer.blender.org/project/board/53/>`__"msgstr "`Bảng Phân Công Nhiệm Vụ Của Đề Án -- Project Workboard <https://developer.blender.org/project/board/53/>`__"#: ../../manual/about/index.rst:70msgid "Manage tasks such as bugs, todo lists, and future plans."msgstr "Quản lý \\"các nhiệm vụ\\", như các lỗi trong phần mềm, danh sách những việc cần làm, và các kế hoạch trong tương lai."
-                 
+
 
         '''
         # all_list = self.patternMatchAllToDict(MSG_WITH_ID_PATTERN, t)
@@ -7533,14 +7533,14 @@ getMsgAsDict:{(251, 4678): '""msgstr """Project-Id-Version: Blender 2.79 Manual 
         t = ":math:`\\lvert q \\rvert = \\sqrt{X^2 + Y^2 + Z^2 + W^2}`"
         t = '''
             To interact with Blender, scripts can make use of the tightly integrated :abbr:`API (Application Programming Interface)`.
-            To understand this, look at Fig. :ref:`fig-rig-bone-select-deselect`. 
-            With this script you'll notice we're doing some math with the object location and cursor, 
-            `Wikipedia <https://en.wikipedia.org/wiki/XYZ_file_format>`__ and 
+            To understand this, look at Fig. :ref:`fig-rig-bone-select-deselect`.
+            With this script you'll notice we're doing some math with the object location and cursor,
+            `Wikipedia <https://en.wikipedia.org/wiki/XYZ_file_format>`__ and
             `Open Babel <https://openbabel.org/docs/dev/FileFormats/XYZ_cartesian_coordinates_format.html>`__.
-            this works because both are 3D :class:`blender_api:mathutils.Vector` instances, a convenient 
-            class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied 
+            this works because both are 3D :class:`blender_api:mathutils.Vector` instances, a convenient
+            class provided by the :mod:`blender_api:mathutils` module which allows vectors to be multiplied
             by numbers and matrices.
-            :menuselection:`Pose --> Motion Paths`    
+            :menuselection:`Pose --> Motion Paths`
             :kbd:`Ctrl-I`
             ``MajorRadius``, ``MinorRadius``
             :doc:`Display panel page </animation/armatures/properties/display>`
@@ -7902,15 +7902,15 @@ IOR
                     # found_orig_with_leading = None
                     # if (s-1 >= 0):
                     #     found_orig_with_leading = text_line[s-1:e]
-                    
+
                     # is_considering = False
                     # if found_orig_with_leading:
                     #     is_considering = (leading_pat.search(found_orig_with_leading) is not None)
 
-                    # if is_considering:                        
+                    # if is_considering:
                     #     entry = (loc, found_orig, text_line)
                     #     result_list.append(entry)
-                
+
                 # m1 = p1.search(text_line)
                 # # m = p.findall(text_line)
 
@@ -7937,7 +7937,7 @@ IOR
                 is_new_line = (text_line != prev_text_line)
                 if is_new_line:
                     print(f'------ [{text_line}]')
-                    prev_text_line = text_line                    
+                    prev_text_line = text_line
 
                 print(f'[{found_orig}]')
                 entry=(text_line, found_orig)
@@ -8189,7 +8189,7 @@ IOR
         plist_file_path = os.path.join(home, 'Documents/Text Substitutions.plist')
         data = None
         with open(plist_file_path) as fd:
-            data = fd.read()        
+            data = fd.read()
         # print(data)
         entry_list = re.findall(r'<string>(.*?)<\/string>', data)
         dict_list = {}
@@ -8197,7 +8197,7 @@ IOR
         for index, entry in enumerate(entry_list):
             is_even = (index % 2 == 0)
             if is_even:
-                expand = entry                
+                expand = entry
                 # print(f'even:{entry}')
             else:
                 key = entry
@@ -8916,7 +8916,7 @@ IOR
             if is_tran_same:
                 print(f'msgid:[{msgid}] same translation:[{msgstr}] IGNORED')
                 continue
-            
+
             print(f'msgid:[{msgid}]')
             print(f'msgstr:[{trans}]')
             if not is_fuzzy:
@@ -9030,32 +9030,32 @@ IOR
         to_dic = readJSON(input_dict)
 
         diff_dict = {}
-        for m in input_po_data:            
+        for m in input_po_data:
             msgid = m.id
             msgstr = m.string
             is_id_empty = (not msgid)
             if is_id_empty:
                 continue
-            
+
             is_in_dict = (msgid in to_dic)
             if not is_in_dict:
                 diff_entry = {msgid: msgstr}
                 to_dic.update(diff_entry)
                 continue
-            
+
             dict_tran = (to_dic[msgid])
             is_tran_same = (msgstr.lower() == dict_tran.lower())
             if is_tran_same:
                 continue
-            
+
             msgid = msgid + '&U'
             diff_entry = {msgid: msgstr}
             to_dic.update(diff_entry)
-        
+
         diff_list = list(to_dic.items())
         diff_list.sort()
         diff_dict = OrderedDict(diff_list)
-        
+
         if diff_dict:
             writeJSON(output_po_file, diff_dict)
 
@@ -9063,8 +9063,8 @@ IOR
         home = os.environ['BLENDER_GITHUB']
         output_po_file=os.path.join(home, 'working_txt.json')
         input_po_file=os.path.join(home, "working_txt.txt")
-        
-        input_po_data =readJSON(input_po_file)        
+
+        input_po_data =readJSON(input_po_file)
         # dict_path = os.path.join(home_dir, 'ref_dict_0006_0002.json')
 
         tf = TranslationFinder()
@@ -9093,18 +9093,18 @@ IOR
     def grep_line(self, p, txt_line, file_name):
         found_dict = cm.patternMatchAll(p, txt_line)
 
-        if found_dict:            
+        if found_dict:
             # if not self.is_file_name_printed:
             #     print(f'[{file_name}]')
             #     print('=' * 80)
             #     self.is_file_name_printed = True
-            
+
             return_list = found_dict.values()
             # return_list = [txt_line]
             return return_list
         else:
             return None
-        
+
     def grepPOT(self, pattern, is_sub_group=False, separator=None, is_translate=False, is_considering_side_words=False, using_function=None):
         def isRemove(txt: str):
             remove_list=[
@@ -9505,8 +9505,9 @@ IOR
 
         if not text_list:
             t_list = [
-                "for example: Half §UV Sphere§ works fine,",
-                # "further information: `File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>`__",
+                # "for example: Half §UV Sphere§ works fine,",
+                "further information: `File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>`__",
+                # "high IOR or no mirror IOR for easier effect.",
             ]
         else:
             t_list = text_list

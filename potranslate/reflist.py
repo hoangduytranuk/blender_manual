@@ -284,8 +284,7 @@ class RefList(defaultdict):
     def translateMatcherRecord(self, mm: MatcherRecord):
         sub_loc: tuple = None
         try:
-            ref_txt = mm.getSubText()
-            sub_loc = mm.getSubLoc()
+            ref_txt = mm.txt
             ref_type = mm.type
 
             is_blank_quote = (ref_type == RefType.BLANK_QUOTE)

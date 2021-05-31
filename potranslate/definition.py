@@ -591,7 +591,7 @@ class Definitions:
     filler_char_and_space_pattern_str = r'^[\s%s]+$' % FILLER_CHAR
     FILLER_CHAR_AND_SPACE_ONLY_PATTERN = re.compile(filler_char_and_space_pattern_str)
 
-    filler_char_all_pattern_str = r'^[%s\s]+$' % FILLER_CHAR
+    filler_char_all_pattern_str = r'^[%s\s\W]+$' % FILLER_CHAR
     FILLER_CHAR_ALL_PATTERN = re.compile(filler_char_all_pattern_str)
 
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
