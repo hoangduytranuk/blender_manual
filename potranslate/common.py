@@ -102,7 +102,7 @@ class Common:
         if invalid_combination:
             return False
 
-        is_blank_quote = df.BLANK_QUOTE_FULL.search(txt)
+        is_blank_quote = df.BLANK_QUOTE_ABS.search(txt)
         if is_blank_quote:
             return False
 
@@ -1365,41 +1365,31 @@ class Common:
         return non_alnum_part
 
     def getRemainedWord(orig_txt: str, new_txt: str):
-        def isInNewFuzzy(search_word):
-            for loc, word in new_txt_word_list:
-                match_rat = fuzz.ratio(word, search_word)
+        def findMatchingWordInNewTxt(search_word):
+            for new_loc, new_txt_segment in new_txt_map:
+                match_rat = fuzz.ratio(new_txt_segment, search_word)
                 is_same = (match_rat >= df.FUZZY_MODERATE_ACCEPTABLE_RATIO)
                 if is_same:
                     return True
             return False
 
-        blank_orig_txt = str(orig_txt)
-        orig_word_dict = Common.patternMatchAll(df.CHARACTERS, orig_txt)
-        orig_word_list = list(orig_word_dict.items())
+        new_txt_map = Common.genmap(new_txt)
+        obs = LocationObserver(orig_txt)
+        map = Common.genmap(orig_txt)
+        for loc, orig_txt_segment in map:
+            is_fully_translated = obs.isCompletelyUsed()
+            if is_fully_translated:
+                break
 
-        new_txt_word_dict = Common.patternMatchAll(df.CHARACTERS, new_txt)
-        new_txt_word_list = list(orig_word_dict.items())
+            is_used = obs.isLocUsed(loc)
+            if is_used:
+                continue
 
-        remain_word_dict={}
-        i = 0
-        try:
-            for i, entry in enumerate(orig_word_list):
-                orig_loc, mm = entry
-                (s, e), orig_word = mm.getOriginAsTuple()
-                is_in_new = isInNewFuzzy(orig_word)
-                if is_in_new:
-                    continue
+            is_in_selection = findMatchingWordInNewTxt(orig_txt_segment)
+            if is_in_selection:
+                obs.markLocAsUsed(loc)
 
-                entry = {orig_loc: orig_word}
-                remain_word_dict.append(entry)
-
-        except Exception as e:
-            max = len(orig_word)
-            if i < max:
-                remain_sub_list = orig_word_list[i:]
-                remain_sub_dict = OrderedDict(remain_sub_list)
-                remain_word_dict.update(remain_sub_dict)
-
+        remain_word_dict = obs.getUnmarkedPartsAsDict()
         return remain_word_dict
 
     def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
@@ -1837,6 +1827,14 @@ class Common:
         mm.smode = the_smode_dict
         mm.initUsingList(the_txt_word_list, original_text=the_txt)
         return mm, the_txt_word_list
+
+    def isRef(txt) -> bool:
+        for pat in df.pattern_list_absolute:
+            matcher = pat.search(txt)
+            is_found = (matcher is not None)
+            if is_found:
+                return True
+        return False
 
     def getRefDictList(txt) -> dict:
         obs = LocationObserver(txt)

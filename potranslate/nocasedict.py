@@ -11,6 +11,7 @@ from fuzzywuzzy import fuzz, process as fuzz_process
 import operator as OP
 import inspect as INP
 import re
+from ignore import Ignore as ig
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -107,7 +108,7 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = ('} or ${' in k)
+            # is_sent_struct = ('} tool' in k)
             return is_sent_struct
 
         def sortSentStruct(item):
@@ -215,13 +216,20 @@ class NoCaseDict(OrderedDict):
             pattern, value = pat_item
             (dict_key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm) = value
             rat = fuzz.ratio(key, dict_key)
+            # part_rat = fuzz.partial_ratio(key, dict_key)
+            # return (rat, part_rat, pattern)
             return (rat, pattern)
+
 
         def filterKeyByPattern(pat_item):
             (rat, pattern) = pat_item
             match = re.compile(pattern, flags=re.I).search(key)
             is_found = (match is not None )
             return is_found
+
+        def sortFuzzy(item):
+            (rat, pattern) = item
+            return (rat)
 
         try:
             default_value = (None, None, None, None, None, None, None)
@@ -240,9 +248,9 @@ class NoCaseDict(OrderedDict):
             st_time = time.perf_counter()
             fuzzy_set = list(map(filterKeyByFuzzyCompare, self.sentence_struct_dict.items()))
             if fuzzy_set:
-                fuzzy_set.sort(reverse=True)
+                fuzzy_set.sort(key=sortFuzzy, reverse=True)
                 set_length = len(fuzzy_set)
-                max_len = min(5, set_length)
+                max_len = min(df.MAX_SENT_STRUCT_CHOSEN, set_length)
                 selection_set = fuzzy_set[:max_len]
                 chosen_key_list = list(filter(filterKeyByPattern, selection_set))
             ed_time = time.perf_counter()
@@ -563,11 +571,17 @@ class NoCaseDict(OrderedDict):
         untran_word_dic = {}
         default_result = (None, None, 0, untran_word_dic)
 
+        if ig.isIgnored(msg):
+            return default_result
+
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
+        if ig.isIgnored(k):
+            return default_result
+
         k_length = len(k)
-        k_word_list = df.COMMON_WORD_SEPS.split(k)
+        k_word_list = [x for x in df.COMMON_WORD_SEPS.split(k) if x]
         k_word_count = len(k_word_list)
         is_k_single_word = (k_word_count == 1)
 
@@ -601,7 +615,7 @@ class NoCaseDict(OrderedDict):
         overall_ratio = fuzz.ratio(selected_item, k)
         is_matching = (original_ratio == overall_ratio)
         matched_ratio = (original_ratio if is_k_single_word else overall_ratio)
-        is_accepted = (matched_ratio >= acceptable_rate)
+        is_accepted = (matched_ratio > acceptable_rate)
         if not is_accepted:
             return default_result
 
@@ -625,26 +639,20 @@ class NoCaseDict(OrderedDict):
             # fname = INP.currentframe().f_code.co_name
             # dd(f'{fname}() {e}')
             dd(f'FAILED TO REPLACE: [{lower_msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
-            can_accept = (matched_ratio >= acceptable_rate)
-            if can_accept:
-                translation = translation_txt
+            translation = translation_txt
 
-                left, mid, right = cm.getTextWithin(lower_msg)
-                had_the_same_right = (right and translation.endswith(right))
-                had_the_same_left = (left and translation.startswith(left))
+            left, mid, right = cm.getTextWithin(lower_msg)
+            had_the_same_right = (right and translation.endswith(right))
+            had_the_same_left = (left and translation.startswith(left))
 
-                if left and not had_the_same_left:
-                    translation = left + translation
+            if left and not had_the_same_left:
+                translation = left + translation
 
-                if right and not had_the_same_right:
-                    translation = translation + right
+            if right and not had_the_same_right:
+                translation = translation + right
 
-                dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
-                untran_word_dic = cm.getRemainedWord(lower_msg, selected_item)
-            else:
-                fname = INP.currentframe().f_code.co_name
-                dd(f'{fname}() Unable to locate translation for {msg}')
-                translation = None
+            dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
+            untran_word_dic = cm.getRemainedWord(lower_msg, selected_item)
 
         if translation:
             translation = self.replaceTranRef(translation)

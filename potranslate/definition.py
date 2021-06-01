@@ -226,13 +226,16 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
 
+    split_sent_seg_txt = r'\s?([,\.-]+\s)'
+    SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
+
     total_files = 1358
     file_count = 0
     PAGE_SIZE = 20 * 4096
     MAX_FUZZY_LIST = 100
     MAX_FUZZY_TEST_LENGTH = 0.5
     FUZZY_ACCEPTABLE_RATIO = 90
-    FUZZY_MODERATE_ACCEPTABLE_RATIO = 85
+    FUZZY_MODERATE_ACCEPTABLE_RATIO = 90
     FUZZY_LOW_ACCEPTABLE_RATIO = 70
     FUZZY_VERY_LOW_ACCEPTABLE_RATIO = 45
     FUZZY_PERFECT_MATCH_PERCENT = 60
@@ -243,7 +246,8 @@ class Definitions:
     AWESOME_COSSIM_FUZZY_ACCEPTABLE_RATIO = 50
     FUZZY_KEY_LENGTH_RATIO = 0.4
 
-    # sentence structure patterns
+    # sentence structure patternssent
+    MAX_SENT_STRUCT_CHOSEN = 15
     SENT_STRUCT_START_SYMB = '${'
     SENT_STRUCT_POSITION_PRIORITY_WEIGHT = 15
 
@@ -282,8 +286,11 @@ class Definitions:
     NO_FULL_STOP = re.compile(r'^nfs$', re.I)
 
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
-    PYTHON_FORMAT = re.compile(r'(?:\s|^)(\'?%\w\')(?:\W|$)')
 
+    python_format_txt = r'(?:\s|^)(\'?%\w\')(?:\W|$)'
+    python_format_txt_absolute = r'^%s$' % (python_format_txt)
+    PYTHON_FORMAT = re.compile(python_format_txt)
+    PYTHON_FORMAT_ABS = re.compile(python_format_txt_absolute)
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -444,7 +451,9 @@ class Definitions:
     ga_multi = r'([\`]+)?'
     # funct = r'^%s(%s\((%s)?\))%s$' % (ga_multi, var, param, ga_multi)
     funct = r'%s(%s\((%s[^\(\)]+)?\))%s' % (ga_multi, var, var, ga_multi)
-    FUNCTION = re.compile(funct)
+    funct_pat_txt = r'^%s$' % (funct)
+    FUNCTION = re.compile(funct_pat_txt)
+    FUNCTION_ABS = FUNCTION
 
     FORWARD_SLASH = re.compile(r'[\w\s]?([\/]+)[\w\s]?')
 
@@ -522,28 +531,46 @@ class Definitions:
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    GA_REF_ONLY = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
+    GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
+
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
     OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
     COLON_CHAR = re.compile(r'\:')
     # this (something ... ) can have other links inside of it as well as others
     # the greedy but more accurate is r'[\(]+(.*)?[\)]+'
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
-    ARCH_BRAKET_SINGLE_FULL = re.compile(r'\b\(([^\)]+)\)\b')
+    arch_bracket_single_txt = r'\(([^\)\(]+)\)'
+    arch_bracket_single_full = r'\b%s\b' % (arch_bracket_single_txt)
+    arch_bracket_single_absolute = r'^%s$' % (arch_bracket_single_txt)
+    ARCH_BRAKET_SINGLE_FULL = re.compile(arch_bracket_single_full)
+    ARCH_BRAKET_SINGLE_ABS = re.compile(arch_bracket_single_absolute)
+
     #ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
     ARCH_BRAKET_MULTI = re.compile(r'\b\((.*?)\)\b')
     ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    AST_QUOTE = re.compile(r"(?<!\w)(\*+)([^\*]+)(?:\b)(\*+)")
+    ast_quote_txt = r'(?<!\w)([\*]+)([^\*]+)([\*]+)'
+    ast_quote_txt_absolute = r'^%s$' % (ast_quote_txt)
+    AST_QUOTE = re.compile(ast_quote_txt)
+    AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
+
     # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    DBL_QUOTE = re.compile(r'(?<!\\")(")(.*?)(")')
+    dbl_quote_txt = r'(?<!\\")(")(.*?)(")'
+    dbl_quote_txt_abs = r'^%s$' % (dbl_quote_txt)
+    DBL_QUOTE = re.compile(dbl_quote_txt)
+    DBL_QUOTE_ABS = re.compile(dbl_quote_txt_abs)
+
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
-    SNG_QUOTE = re.compile(r"(?<!\w)(\')([^\']+)(?:\b)(\')")
+    single_quote_txt = r"(?<!\w)(\')([^\']+)(?:\b)(\')"
+    single_quote_txt_absolute = r'^%s$' % (single_quote_txt)
+    SNG_QUOTE = re.compile(single_quote_txt)
+    SNG_QUOTE_ABS = re.compile(single_quote_txt_absolute)
+
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
     BLANK_QUOTE = re.compile(r"(?<!\w)(\§)([^\§]+)(?:\b)(\§)")
-    BLANK_QUOTE_FULL = re.compile(r"^(?<!\w)(\§)([^\§]+)(?:\b)(\§)$")
+    BLANK_QUOTE_ABS = re.compile(r"^(?<!\w)(\§)([^\§]+)(?:\b)(\§)$")
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
@@ -626,7 +653,7 @@ class Definitions:
     START_SPACES = re.compile(r'^\s+')
     END_SPACES = re.compile(r'\s+$')
 
-    common_multi_word_connectors = r'[\s\-]'
+    common_multi_word_connectors = r'[\s\-\,]'
     COMMON_WORD_SEPS = re.compile(common_multi_word_connectors)
 
     NOT_SYMBOLS = re.compile(r'[\w]+')
@@ -1254,7 +1281,7 @@ class Definitions:
         r"^\s*(Lennard\-Jones|LimbNode|Laplace Beltrami|Lightwave Point Cache \(\.mdd\)|Linux|Log|Look[\s]?Dev(HDRIs)?)\s*$",
         r"^\s*MPEG([\-|\d]+)|MPEG H.264|MPEG-4\(DivX\)|MatCaps$",
         r"^\s*(MIS|MPlayer|(MS|Microsoft)?[-]?Windows|MacBook [\`]+Retina[\`]+|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)\s*$",
-        r"^\s*(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)\s*$",
+        r"^\s*(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|hardware-ndof|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)\s*$",
         r"^\s*(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR|Ozone|OptiX)\s*$",
         r"^\s*PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
         r"^\s*(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2|Preetham(\s?\d+)?|Python(\:\s[\.\%s]+)?)\s*$",
@@ -1450,6 +1477,14 @@ class Definitions:
         (GA_REF, RefType.GA),
     ]
 
+    pattern_list_absolute = [
+        ARCH_BRAKET_SINGLE_ABS,
+        PYTHON_FORMAT_ABS,
+        FUNCTION_ABS,
+        AST_QUOTE_ABS,
+        DBL_QUOTE_ABS,
+        SNG_QUOTE_ABS,
+    ]
 
 class SentStructModeRecord:
     def __init__(self, smode_txt=None, smode=None, extra_param=None):

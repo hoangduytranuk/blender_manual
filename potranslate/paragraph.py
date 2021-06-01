@@ -36,20 +36,33 @@ class Paragraph(list):
         fname = INP.currentframe().f_code.co_name
 
         try:
-            tran = self.tf.isInDict(self.sl_txt)
-            if not tran:
-                sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
-                loc = (0, len(self.sl_txt))
-                st_time = time.perf_counter()
-                tran = sr.parseAndTranslateText(loc, self.sl_txt)
-                ed_time = time.perf_counter()
-                p_time = ed_time - st_time
-
+            input_txt = self.sl_txt
+            txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
+            dd('TRANSLATING LIST OF SEGMENTS:')
+            pp(txt_list)
+            dd('-' * 80)
+            tran_list = []
+            for loc, mm in txt_list.items():
+                orig_txt = mm.txt
+                tran = self.tf.isInDict(orig_txt)
+                if not tran:
+                    sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
+                    tran = sr.parseAndTranslateText(loc, orig_txt)
                 if tran:
                     tran = cm.removeTheWord(tran)
                     cache_entry = {self.sl_txt: tran}
                     self.tf.getDict().addCacheEntry(cache_entry)
-            self.tl_txt = tran
+                    tran_list_entry = (loc, orig_txt, tran)
+                    tran_list.append(tran_list_entry)
+
+            translation = str(input_txt)
+            if tran_list:
+                tran_list.sort(reverse=True)
+                for loc, orig_txt, tran in tran_list:
+                    translation = cm.jointText(translation, tran, loc)
+
+                self.tl_txt = translation
+
             sr: SR = None
             # for txt, sr in self.sr_global_dict.items():
             #     dd('-' * 80)

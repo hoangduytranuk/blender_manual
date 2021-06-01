@@ -853,9 +853,8 @@ class TranslationFinder:
         # if is_ignore:
         #     return None
 
-        left, mid, right = cm.getTextWithin(msg)
-        is_quoted = (left and right) and ((left == right) or right.startswith(left))
-        if is_quoted:
+        is_ref = cm.isRef(msg)
+        if is_ref:
             return None
 
         search_dict = self.getDict(local_dict=dic_to_use)
@@ -1199,10 +1198,13 @@ class TranslationFinder:
         tran = str(msg)
 
         unlink_collection = []
+        tran_filled = False
         has_ref_link = (df.REF_LINK.search(msg) is not None)
         if not has_ref_link:
             tran, is_fuzzy, is_ignore = self.translate(msg)
-            mm.setTranlation(tran, is_fuzzy, is_ignore)
+            valid = (not is_ignore) and bool(tran)
+            if valid:
+                mm.setTranlation(tran, is_fuzzy, is_ignore)
         else:
             found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
             for sub_loc, sub_mm in found_dict.items():
@@ -1211,19 +1213,20 @@ class TranslationFinder:
                 valid = (not is_ignore) and bool(sub_tran)
                 if valid:
                     sub_tran_formatted = formatTran(sub_txt, sub_tran)
-                    unlink_collection_entry = (sub_loc, sub_txt, sub_tran_formatted)
-                    unlink_collection.append(unlink_collection_entry)
-
-        has_tran = (tran != msg)
+                    # unlink_collection_entry = (sub_loc, sub_txt, sub_tran_formatted)
+                    tran = cm.jointText(tran, sub_tran_formatted, sub_loc)
+                    tran_filled = True
+                    # unlink_collection.append(unlink_collection_entry)
+        has_tran = (tran and not (tran == msg))
         if has_tran:
             main_txt = mm.getMainText()
             if is_using_main:
                 loc = mm.getMainLoc()
             else:
                 loc = mm.getSubLoc()
-            if tran:
-                formatted_tran = formatTran(msg, tran)
-            main_tran = cm.jointText(main_txt, formatted_tran, loc)
+            if not tran_filled:
+                tran = formatTran(msg, tran)
+            main_tran = cm.jointText(main_txt, tran, loc)
             mm.setTranlation(main_tran, is_fuzzy, is_ignore)
         return bool(tran)
 

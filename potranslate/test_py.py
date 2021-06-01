@@ -9505,9 +9505,8 @@ IOR
 
         if not text_list:
             t_list = [
-                # "for example: Half §UV Sphere§ works fine,",
-                "further information: `File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf <https://wiki.blender.org/wiki/File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf>`__",
-                # "high IOR or no mirror IOR for easier effect.",
+                "in case the end frame is very high for no reason",
+                # "(Save As...)",
             ]
         else:
             t_list = text_list
