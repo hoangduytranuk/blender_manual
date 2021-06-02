@@ -73,9 +73,9 @@ class Common:
         if is_path:
             return True
 
-        urls = df.urlx_engine.find_urls(txt, get_indices=True)
-        if not urls:
-            return False
+        # urls = df.urlx_engine.find_urls(txt, get_indices=True)
+        # if not urls:
+        #     return False
 
         # 1. Find the list of urls and put into dictionary so locations can be extracted, uing keys
         obs = LocationObserver(txt)

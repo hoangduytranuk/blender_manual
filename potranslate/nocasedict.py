@@ -587,10 +587,18 @@ class NoCaseDict(OrderedDict):
 
         first_word = k_word_list[0]
         first_word_len = len(first_word)
+        is_a_single_char_word = (first_word_len == 1)
+        can_add_second_word = (is_a_single_char_word and k_word_count > 1)
+        if can_add_second_word:
+            word_list = k_word_list[:2]
+            first_word = ' '.join(word_list)
+            first_word_len = len(first_word)
+
         if is_k_single_word:
             max_k_length = int(first_word_len * 0.5)
         else:
             max_k_length = int(first_word_len * 0.8)
+        max_k_length = max(1, min(max_k_length, len(first_word)))
         k_part = first_word[:max_k_length]
 
         # key_list = [x for x in self.local_keys if x.startswith(k_part)]

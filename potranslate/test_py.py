@@ -5791,7 +5791,7 @@ class test(object):
         entry_list = []
 
         s, e, txt = text_entry
-        abbr_list = self.patternMatchAll(LINK_WITH_URI, txt)
+        abbr_list = self.patternMatchAll(df.LINK_WITH_URI, txt)
         has_abbr = (len(abbr_list) > 0)
         if has_abbr:
             for abbr_k, abbr_v in abbr_list.items():
@@ -9505,7 +9505,7 @@ IOR
 
         if not text_list:
             t_list = [
-                "in case the end frame is very high for no reason",
+                "in other words, a path animation",
                 # "(Save As...)",
             ]
         else:

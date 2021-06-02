@@ -1,7 +1,7 @@
 import os
 import re
 from enum import Enum
-from urlextract import URLExtract as URLX
+# from urlextract import URLExtract as URLX
 import utils as UT
 
 class OverLappingState(Enum):
@@ -247,7 +247,7 @@ class Definitions:
     FUZZY_KEY_LENGTH_RATIO = 0.4
 
     # sentence structure patternssent
-    MAX_SENT_STRUCT_CHOSEN = 15
+    MAX_SENT_STRUCT_CHOSEN = 20
     SENT_STRUCT_START_SYMB = '${'
     SENT_STRUCT_POSITION_PRIORITY_WEIGHT = 15
 
@@ -1134,7 +1134,7 @@ class Definitions:
     common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
 
     numberal = r"\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|((thir|four|fif|six|seven|eigh|nine)teen)|((twen|thir|four|fif|six|seven|eigh|nine)ty)|(hundred|thousand|(mil|tril)lion))[s]?\b"
-    urlx_engine = URLX()
+    # urlx_engine = URLX()
 
     NUMBERS = re.compile(r"^\s*(([\d]+)([\,\.]?[\s]?[\d]+)*)+$")
 
