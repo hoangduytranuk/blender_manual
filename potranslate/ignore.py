@@ -38,16 +38,7 @@ class Ignore:
         if not msg:
             return True
 
-        # orig_msg = str(msg)
-        # ex_ga_msg = cm.EXCLUDE_GA.findall(msg)
-        # if (len(ex_ga_msg) > 0):
-        #     msg = ex_ga_msg[0]
-        #     dd("GA trimmed from:", orig_msg, msg)
-
         try:
-            is_mm = isinstance(msg, MatcherRecord)
-            if is_mm:
-                dd('debug')
             find_msg = msg.lower()
             is_keep = Ignore.isKeep(find_msg)
             if is_keep:

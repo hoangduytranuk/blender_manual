@@ -9505,7 +9505,7 @@ IOR
 
         if not text_list:
             t_list = [
-                "in other words, a path animation",
+                "in other words, it transforms smooth strokes into jagged polylines",
                 # "(Save As...)",
             ]
         else:

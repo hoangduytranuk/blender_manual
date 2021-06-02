@@ -73,9 +73,9 @@ class Common:
         if is_path:
             return True
 
-        # urls = df.urlx_engine.find_urls(txt, get_indices=True)
-        # if not urls:
-        #     return False
+        urls = df.urlx_engine.find_urls(txt, get_indices=True)
+        if not urls:
+            return False
 
         # 1. Find the list of urls and put into dictionary so locations can be extracted, uing keys
         obs = LocationObserver(txt)
@@ -97,7 +97,6 @@ class Common:
         return is_ignorable
 
     def isLinkPath(txt: str) -> bool:
-
         invalid_combination = ('.,' in txt) or (' ' in txt)
         if invalid_combination:
             return False
@@ -109,6 +108,10 @@ class Common:
         is_path = Common.isPath(txt)
         if is_path:
             return True
+
+        is_url = df.urlx_engine.has_urls(txt)
+        if is_url:
+            return False
 
         left, mid, right = Common.getTextWithin(txt)
         is_path = Common.isPath(mid)
