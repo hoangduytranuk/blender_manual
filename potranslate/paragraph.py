@@ -32,9 +32,22 @@ class Paragraph(list):
     def getTextAndTranslation(self):
         return self.formatOutput()
 
-    def translate(self):
-        fname = INP.currentframe().f_code.co_name
+    def translateAsIs(self):
+        try:
+            orig_txt = self.sl_txt
+            tran = self.tf.isInDict(orig_txt)
+            if not tran:
+                sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
+                loc = (0, len(orig_txt))
+                tran = sr.parseAndTranslateText(loc, orig_txt)
+            if tran:
+                tran = cm.removeTheWord(tran)
+                self.tl_txt = tran
+                df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
+        except Exception as e:
+            df.LOG(f'{e};', error=True)
 
+    def translateSplitUp(self):
         try:
             input_txt = self.sl_txt
             txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
@@ -71,6 +84,6 @@ class Paragraph(list):
             #     dd(f'dict_sl_rec:{sr.sent_sl_rec.txt};')
             #     dd(f'sent_tl_rec:{sr.sent_tl_rec.txt};')
             #     dd(f':{sr.getTextListTobeTranslated()};')
-            df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
+            # df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
         except Exception as e:
             df.LOG(f'{e};', error=True)

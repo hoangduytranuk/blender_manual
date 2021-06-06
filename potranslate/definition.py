@@ -248,7 +248,11 @@ class Definitions:
 
     # sentence structure patternssent
     MAX_SENT_STRUCT_CHOSEN = 20
+    sent_struct_start_symb_txt = r'\$\{'
     SENT_STRUCT_START_SYMB = '${'
+
+    SENT_STRUCT_START_SYMB_PAT = re.compile(sent_struct_start_symb_txt, flags=re.I)
+
     SENT_STRUCT_POSITION_PRIORITY_WEIGHT = 15
 
     regular_var = r'(\$\{([^\{\}]+)?\})'
@@ -531,7 +535,7 @@ class Definitions:
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*$')
+    GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*(?:\W|$)?$')
 
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
     OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
@@ -541,7 +545,7 @@ class Definitions:
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
     arch_bracket_single_txt = r'\(([^\)\(]+)\)'
     arch_bracket_single_full = r'\b%s\b' % (arch_bracket_single_txt)
-    arch_bracket_single_absolute = r'^%s$' % (arch_bracket_single_txt)
+    arch_bracket_single_absolute = r'^%s(?:\W|$)?$' % (arch_bracket_single_txt)
     ARCH_BRAKET_SINGLE_FULL = re.compile(arch_bracket_single_full)
     ARCH_BRAKET_SINGLE_ABS = re.compile(arch_bracket_single_absolute)
 
@@ -551,26 +555,28 @@ class Definitions:
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
     ast_quote_txt = r'(?<!\w)([\*]+)([^\*]+)([\*]+)'
-    ast_quote_txt_absolute = r'^%s$' % (ast_quote_txt)
+    ast_quote_txt_absolute = r'^%s(?:\W|$)?$' % (ast_quote_txt)
     AST_QUOTE = re.compile(ast_quote_txt)
     AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
 
     # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
     dbl_quote_txt = r'(?<!\\")(")(.*?)(")'
-    dbl_quote_txt_abs = r'^%s$' % (dbl_quote_txt)
+    dbl_quote_txt_abs = r'^%s(?:\W|$)?$' % (dbl_quote_txt)
     DBL_QUOTE = re.compile(dbl_quote_txt)
     DBL_QUOTE_ABS = re.compile(dbl_quote_txt_abs)
 
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
     single_quote_txt = r"(?<!\w)(\')([^\']+)(?:\b)(\')"
-    single_quote_txt_absolute = r'^%s$' % (single_quote_txt)
+    single_quote_txt_absolute = r'^%s(?:\W|$)?$' % (single_quote_txt)
     SNG_QUOTE = re.compile(single_quote_txt)
     SNG_QUOTE_ABS = re.compile(single_quote_txt_absolute)
-
+    BLANK_QUOTE_MARK = '§'
     DBL_QUOTE_SLASH = re.compile(r'\\[\"]+(?![\s\.\,\`]+)([^\\\"]+)\\[\"]+(?<!([\s\.\,]))')
     WORD_WITHOUT_QUOTE = re.compile(r'^[\'\"\*]*([^\'\"\*]+)[\'\"\*]*$')
-    BLANK_QUOTE = re.compile(r"(?<!\w)(\§)([^\§]+)(?:\b)(\§)")
-    BLANK_QUOTE_ABS = re.compile(r"^(?<!\w)(\§)([^\§]+)(?:\b)(\§)$")
+    blank_quote_txt = r'(?<!\w)(\%s)([^\%s]+)(?:\b)(\%s)' % (BLANK_QUOTE_MARK, BLANK_QUOTE_MARK, BLANK_QUOTE_MARK)
+    blank_quote_txt_abs = r'^%s(?:\W|$)?$' % (blank_quote_txt)
+    BLANK_QUOTE = re.compile(blank_quote_txt)
+    BLANK_QUOTE_ABS = re.compile(blank_quote_txt_abs)
 
     LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
     MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
@@ -591,8 +597,8 @@ class Definitions:
 
     WORD_ONLY_FIND = re.compile(r'\b[\w\-\_\']+\b')
     NON_WORD_FIND = re.compile(r'\W+')
-    WORD_START_REMAIN = re.compile(r'^\w+')
-    WORD_END_REMAIN = re.compile(r'\w+$')
+    WORD_START_REMAIN = re.compile(r'^\w+', flags=re.I)
+    WORD_END_REMAIN = re.compile(r'\w+$', flags=re.I)
 
     ENDS_WITH_EXTENSION = re.compile(r'\.([\w]{2,5})$')
     MENU_KEYBOARD = re.compile(r':(kbd|menuselection):')
@@ -674,7 +680,7 @@ class Definitions:
     ending_punct = r'(\w[\,\.!]+$)'
     ENDING_WITH_PUNCT = re.compile(ending_punct)
 
-    basic_conjunctions = r'(for|and|nor|in|by|out|that|then|above|below|up|down|but|or|yet|so)'
+    basic_conjunctions = r'(for|and|nor|in|by|out|that|then|above|below|up|down|but|or|yet|so|etc(\W+)?)'
 
     basic_conjunctions_pat_txt = r'(\s|^)%s(\s|$)' % (basic_conjunctions)
     BASIC_CONJUNCTS = re.compile(basic_conjunctions_pat_txt)
@@ -1484,6 +1490,7 @@ class Definitions:
         AST_QUOTE_ABS,
         DBL_QUOTE_ABS,
         SNG_QUOTE_ABS,
+        BLANK_QUOTE_ABS,
     ]
 
 class SentStructModeRecord:

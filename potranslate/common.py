@@ -1116,6 +1116,9 @@ class Common:
         new_tran = left + current_trans + right
         return new_tran
 
+    def isStrEQ(str1: str, str2: str):
+        return (str1.lower() == str2.lower())
+
     def locRemain(original_word: str, new_word: str) -> list:
         '''
         locRemain:
@@ -1130,11 +1133,14 @@ class Common:
         '''
         # REWRITE THIS, MAKE IT SHORTER
         try:
-            max_len = len(original_word)
-            ss = original_word.find(new_word)
+            temp_from = original_word.lower()
+            temp_to = new_word.lower()
+
+            max_len = len(temp_from)
+            ss = temp_from.find(new_word)
             ee = ss + len(new_word)
 
-            found_test = original_word[ss:ee]
+            found_test = temp_from[ss:ee]
             ok = (found_test == new_word)
             if not ok:
                 raise Exception(f'FAILED TO LOCATE [{new_word}] in [{original_word}]')
@@ -2002,6 +2008,9 @@ class Common:
             pass
 
         return list_of_loc_txt
+
+    def createMatcherRecord(mm: re.Match):
+        return MatcherRecord(matcher_record=mm)
 
     def debugging(txt):
         msg = "@{mrkng} Đường Khâu"

@@ -1,3 +1,5 @@
+import concurrent.futures
+
 import os
 import time
 from collections import OrderedDict
@@ -107,9 +109,20 @@ class NoCaseDict(OrderedDict):
 
         def isSentStruct(item):
             (k, v) = item
-            is_sent_struct = (df.SENT_STRUCT_START_SYMB in k)
-            # is_sent_struct = ('} tool' in k)
+            is_sent_struct = (df.SENT_STRUCT_START_SYMB_PAT.search(k) is not None)
+            # is_sent_struct = ('some more $' in k)
             return is_sent_struct
+
+        def createDictEntry(data):
+            (key, value) = data
+            value = self.replaceTranRef(value)
+            key_pattern = cm.creatSentRecogniserPattern(key)
+            dict_sl_mm, dict_sl_word_list = cm.createSentRecogniserRecord(key)
+            dict_tl_mm, dict_tl_word_list = cm.createSentRecogniserRecord(value)
+
+            value = (key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm)
+            entry = (key_pattern, value)
+            return entry
 
         def sortSentStruct(item):
             (k, v) = item
@@ -117,23 +130,14 @@ class NoCaseDict(OrderedDict):
 
         temp_dict={}
         temp_set = list(filter(isSentStruct, self.items()))
-        # sorted_temp_set = sorted(temp_set, key=sortSentStruct, reverse=True)
-        # temp_dict = OrderedDict(sorted_temp_set)
-        # home = os.environ['BLENDER_GITHUB']
-        # path = os.path.join(home, "pat_struct_dict_0001.json")
-        # cm.writeJSONDic(temp_dict, path)
-        # exit(0)
-        for key, value in temp_set:
-            value = self.replaceTranRef(value)
-            key_pattern = cm.creatSentRecogniserPattern(key)
-            dict_sl_mm, dict_sl_word_list = cm.createSentRecogniserRecord(key)
-            dict_tl_mm, dict_tl_word_list = cm.createSentRecogniserRecord(value)
 
-            entry = {key_pattern: (key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm)}
-            temp_dict.update(entry)
-        temp_dict = OrderedDict(sorted(list(temp_dict.items()), key=sortingKeyFunction, reverse=True))
-        # print_list = [(x, y[0]) for (x, y) in temp_dict.items()]
-        # pp(print_list, width=200)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            found_results = executor.map(createDictEntry, temp_set)
+
+        found_list = list(found_results)
+        found_list.sort(key=sortingKeyFunction, reverse=True)
+
+        temp_dict = OrderedDict(found_list)
         self.sentence_struct_dict = NoCaseDict(temp_dict)
 
     def get(self, k, default=None):
@@ -212,125 +216,103 @@ class NoCaseDict(OrderedDict):
             ok = (False not in is_ok_list)
             return ok
 
-        def filterKeyByFuzzyCompare(pat_item):
-            pattern, value = pat_item
-            (dict_key, dict_sl_word_list, dict_sl_mm, value, dict_tl_word_list, dict_tl_mm) = value
-            rat = fuzz.ratio(key, dict_key)
-            # part_rat = fuzz.partial_ratio(key, dict_key)
-            # return (rat, part_rat, pattern)
-            return (rat, pattern)
+        def filterKeyByTextAndPattern(item):
+            (txt, pattern, value) = item
+            match = re.compile(pattern, flags=re.I).search(txt)
+            return (match, pattern, value)
+
+        def filterByFuzzyCompare(item):
+            (txt, pattern, matcher, value) = item
+            orig_pat_txt = value[0]
+            ratio = fuzz.ratio(txt, orig_pat_txt)
+            return (ratio, txt, pattern, matcher, value)
+
+        def findMatchingPattern(txt, pattern_list):
+            map_args = [(txt, pattern, value) for (pattern, value) in pattern_list]
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_results = executor.map(filterKeyByTextAndPattern, map_args)
+
+            found_list=[]
+            for result in found_results:
+                (matcher, pattern, value) = result
+                if matcher:
+                    found_list.append(result)
+                    # df.LOG(f'FOUND: [{result}]')
+
+            is_found = bool(found_list)
+            if not is_found:
+                return (None, None, None)
+
+            # df.LOG(f'found_list:')
+            # pp(found_list)
+
+            map_args = [(txt, pattern, matcher, value) for (matcher, pattern, value) in found_list]
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_results = executor.map(filterByFuzzyCompare, map_args)
 
 
-        def filterKeyByPattern(pat_item):
-            (rat, pattern) = pat_item
-            match = re.compile(pattern, flags=re.I).search(key)
-            is_found = (match is not None )
-            return is_found
+            found_result_list = list(found_results)
+            found_result_list.sort(reverse=True)
 
-        def sortFuzzy(item):
-            (rat, pattern) = item
-            return (rat)
+            found_item = found_result_list[0]
+            (ratio, txt, pattern, matcher, value) = found_item
+            return_item = (pattern, matcher, value)
+
+            df.LOG(f'SORTED found_results:')
+            pp(found_item)
+
+            return return_item
 
         try:
             default_value = (None, None, None, None, None, None, None)
-            klower = key.lower()
-            has_cached_key_value_set = (klower in self.local_text_and_chosen_sent_struct_list)
-            if has_cached_key_value_set:
-                set_value = self.local_text_and_chosen_sent_struct_list[klower]
-                (pat, value) = set_value
-                return (pat, value)
+            # has_cached_key_value_set = (klower in self.local_text_and_chosen_sent_struct_list)
+            # if has_cached_key_value_set:
+            #     set_value = self.local_text_and_chosen_sent_struct_list[klower]
+            #     (pat, value) = set_value
+            #     return (pat, value)
 
-            selective_match = []
-            chosen_key_list = []
-            # key_list = self.sentence_struct_dict.keys()
+            st_counter = time.perf_counter()
+            (pattern, matcher, value) = findMatchingPattern(key, self.sentence_struct_dict.items())
+            et_counter = time.perf_counter()
+            p_time = (et_counter - st_counter)
 
-            # pat_list = [x for x in pat_list if 'i\\.e\\.' in x]
-            st_time = time.perf_counter()
-            fuzzy_set = list(map(filterKeyByFuzzyCompare, self.sentence_struct_dict.items()))
-            if fuzzy_set:
-                fuzzy_set.sort(key=sortFuzzy, reverse=True)
-                set_length = len(fuzzy_set)
-                max_len = min(df.MAX_SENT_STRUCT_CHOSEN, set_length)
-                selection_set = fuzzy_set[:max_len]
-                chosen_key_list = list(filter(filterKeyByPattern, selection_set))
-            ed_time = time.perf_counter()
-            p_time = (ed_time - st_time)
-
-            if not chosen_key_list:
+            if not pattern:
                 return (None, default_value)
 
-            # df.LOG(f'matched key: [{key}]')
-            # pp(chosen_key_list, width=200)
+            sent_sl_record = cm.createMatcherRecord(matcher)
+            loc_text_list = sent_sl_record.getSubEntriesAsList()
+            interest_part = loc_text_list[1:]
+            if not interest_part:
+                interest_part = loc_text_list
+            list_of_dup_index = cm.getListOfDuplicatedLoc(interest_part)
+            unique_parts = cm.removeDuplicationFromlistLocText(interest_part, list_of_dup_index)
+            temp_dict = OrderedDict(unique_parts)
 
-            # list_of_sent_struct = list(self.sentence_struct_dict.items())
-            for rat, pat in chosen_key_list:
-                value = self.sentence_struct_dict[pat]
-                pattern = re.compile(pat, flags=re.I)
-                # match_list = re.findall(pat, key)
-                matcher_dict = cm.patternMatchAll(pattern, key)
-                sent_sl_record = list(matcher_dict.values())[0]
-                loc_text_list = sent_sl_record.getSubEntriesAsList()
-                interest_part = loc_text_list[1:]
-                if not interest_part:
-                    interest_part = loc_text_list
-                list_of_dup_index = cm.getListOfDuplicatedLoc(interest_part)
-                unique_parts = cm.removeDuplicationFromlistLocText(interest_part, list_of_dup_index)
-                temp_dict = OrderedDict(unique_parts)
+            matched_text_group = temp_dict.values()
 
-                matched_text_group = temp_dict.values()
+            (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
+            s_mode_list = dict_sl_mm.smode
+            pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group, interest_part)
+            # df.LOG(f'pattern_and_matched_text_pair_list:')
+            # df.LOG('-' * 80)
+            # pp(pattern_and_matched_text_pair_list)
+            # df.LOG('-' * 80)
+            try:
+                is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
+            except Exception as e:
+                is_accept = False
 
-                # matched_text_group = matcher.groups()
-                (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm) = value
-                s_mode_list = dict_sl_mm.smode
-                # df.LOG(f'matched_text_group:[{matched_text_group}]')
-                pattern_and_matched_text_pair_list = (s_mode_list, matched_text_group, interest_part)
-                # df.LOG(f'pattern_and_matched_text_pair_list:')
-                # df.LOG('-' * 80)
-                # pp(pattern_and_matched_text_pair_list)
-                # df.LOG('-' * 80)
-                try:
-                    is_accept = isMatchedStructMode(pattern_and_matched_text_pair_list)
-                except Exception as e:
-                    is_accept = False
-
-                if not is_accept:
-                    dd(f'FAILED VALIDATION:')
-                    dd(f'pattern: [{pat}]')
-                    # pp(s_mode_list)
-                    # dd('-' * 80)
-                    # pp(interest_part)
-                    # dd('-' * 80)
-                    continue
-
-                match_rate = fuzz.ratio(dict_sl_txt, key)
-                sent_sl_record.clear()
-                sent_sl_record.update(unique_parts)
-                value = (*value, sent_sl_record)
-
-                entry=(match_rate, pat, value)
-                selective_match.append(entry)
-
-            if not selective_match:
+            if not is_accept:
+                dd(f'FAILED VALIDATION:')
+                dd(f'pattern: [{value[0]}]')
                 return (None, default_value)
 
-            selective_match.sort(reverse=True)
-            first_entry = selective_match[0]
-            (match_rate, pat, value) = first_entry
-
-            dd(f'Chosen for: [{key}]')
-            dd('-' * 40)
-            dd(f'match_rate:[{match_rate}]')
-            dd(f'pattern:[{pat}]')
-            dd('value:')
-            dd('-' * 40)
-            pp(value)
-            dd('-' * 80)
-
-            pattern = re.compile(pat, flags=re.I)
-            cached_entry = {klower: (pattern, value)}
-            self.local_text_and_chosen_sent_struct_list.update(cached_entry)
-
-            return (pattern, value)
+            sent_sl_record.clear()
+            sent_sl_record.update(unique_parts)
+            # cached_entry = {klower: (pattern, value)}
+            # self.local_text_and_chosen_sent_struct_list.update(cached_entry)
+            # return_value = (pattern, (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm, sent_sl_record)
+            return (pattern, (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm, sent_sl_record))
         except Exception as e:
             df.LOG(f'{e};', error=True)
             raise e
@@ -638,18 +620,17 @@ class NoCaseDict(OrderedDict):
         translation_txt = self[selected_item]
         report_msg = f'found: [{selected_item}] => [{translation_txt}]'
         df.LOG(report_msg)
-        lower_msg = msg.lower()
         try:
-            loc, new_selected = cm.locRemain(lower_msg, selected_item)
-            translation = lower_msg.replace(new_selected, translation_txt)
-            untran_word_dic = cm.getRemainedWord(lower_msg, new_selected)
+            loc, new_selected = cm.locRemain(msg, selected_item)
+            translation = msg.replace(new_selected, translation_txt)
+            untran_word_dic = cm.getRemainedWord(msg, new_selected)
         except Exception as e:
             # fname = INP.currentframe().f_code.co_name
             # dd(f'{fname}() {e}')
-            dd(f'FAILED TO REPLACE: [{lower_msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
+            dd(f'FAILED TO REPLACE: [{msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
             translation = translation_txt
 
-            left, mid, right = cm.getTextWithin(lower_msg)
+            left, mid, right = cm.getTextWithin(msg)
             had_the_same_right = (right and translation.endswith(right))
             had_the_same_left = (left and translation.startswith(left))
 
@@ -660,7 +641,7 @@ class NoCaseDict(OrderedDict):
                 translation = translation + right
 
             dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
-            untran_word_dic = cm.getRemainedWord(lower_msg, selected_item)
+            untran_word_dic = cm.getRemainedWord(msg, selected_item)
 
         if translation:
             translation = self.replaceTranRef(translation)

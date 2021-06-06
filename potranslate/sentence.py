@@ -493,10 +493,13 @@ class StructRecogniser():
 
     def makeSRRecord(self, txt, root_location):
         try:
-            st_time = time.perf_counter()
-            dict_sl_pat, (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm, sent_sl_mm) = self.getDict().getSentStructPattern(txt)
-            ed_time = time.perf_counter()
-            p_time = (ed_time - st_time)
+            # st_time = time.perf_counter()
+            # (dict_sl_pat, (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm, sent_sl_mm))
+            (dict_sl_pat, extra_value) = self.getDict().getSentStructPattern(txt)
+            (dict_sl_txt, dict_sl_word_list, dict_sl_mm, dict_tl_txt, dict_tl_word_list, dict_tl_mm, sent_sl_mm) = extra_value
+
+            # ed_time = time.perf_counter()
+            # p_time = (ed_time - st_time)
 
             current_processed_list = self.processed_list.keys()
             is_already_processed = (dict_sl_txt in current_processed_list)
