@@ -225,8 +225,12 @@ class Definitions:
         'billion(s|th)?': '@{1t}',
         'trillion(s|th)?': '@{1t}',
     }
+    ignore_txt_list = [
+        "manual/images",
+        "material:index",
+    ]
 
-    split_sent_seg_txt = r'\s?([,\.-]+\s)'
+    split_sent_seg_txt = r'\s?([\,\.\-\;]+\s)'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
 
     total_files = 1358
@@ -269,7 +273,7 @@ class Definitions:
     SENT_STRUCT_PAT = re.compile(sent_struct_pat_txt)
 
     ANY = re.compile(r'^.*$', re.I)
-    NOT_EQUAL = re.compile(r'NE\([^\(\)]+\)', re.I)
+    EXCLUDE = re.compile(r'EX\([^\(\)]+\)', re.I)
     NOT_TRAILING = re.compile(r'NT\([^\(\)]+\)', re.I)
     NOT_LEADING = re.compile(r'NL\([^\(\)]+\)', re.I)
     EQUAL = re.compile(r'EQ\([^\(\)]+\)', re.I)
@@ -554,7 +558,7 @@ class Definitions:
     ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    ast_quote_txt = r'(?<!\w)([\*]+)([^\*]+)([\*]+)'
+    ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
     ast_quote_txt_absolute = r'^%s(?:\W|$)?$' % (ast_quote_txt)
     AST_QUOTE = re.compile(ast_quote_txt)
     AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
@@ -659,7 +663,7 @@ class Definitions:
     START_SPACES = re.compile(r'^\s+')
     END_SPACES = re.compile(r'\s+$')
 
-    common_multi_word_connectors = r'[\s\-\,]'
+    common_multi_word_connectors = r'[\s\-\,\/]'
     COMMON_WORD_SEPS = re.compile(common_multi_word_connectors)
 
     NOT_SYMBOLS = re.compile(r'[\w]+')
@@ -868,7 +872,7 @@ class Definitions:
         'e': list(sorted(
             ['able', 'ation', 'ations', 'ion', 'ions',
              'ity', 'ities', 'ing', 'ings', 'ously', 'ous', 'ive', 'ily',
-             'ively', 'or', 'ors', 'iness', 'ature', 'er', 'ed', 'ied',
+             'ively', 'or', 'ors', 'iness', 'ature', 'er', 'en', 'ed', 'ied',
              'atures', 'ition', 'itions', 'itiveness',
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
@@ -1266,7 +1270,7 @@ class Definitions:
         r"^\s*(jpg|png|int)\s*$",
         r"^\s*(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)\s*$",
         r"^\s*(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))\s*$",
-        r"^\s*(mov|location[0]|cd|ch|hm|asin|um|tan|self|atan|atan2|Arctan2)\s*$",
+        r"^\s*(mov|location[0]|cd|ch|hm|asin|um|tan|atan|atan2|Arctan2|motorsep)\s*$",
         r"^\s*(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)\s*$",
         r"^\s*Alembic([\s\W|abc]+)\s*$",
         r"^\s*(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)\s*$",
@@ -1360,6 +1364,8 @@ class Definitions:
     ]
 
     keep_list = [
+        "Cycles Only",
+        "yellow/green/purple",
         "/base",
         "_right",
         "_left",
@@ -1469,6 +1475,11 @@ class Definitions:
         # "",
     ]
 
+    symbol_splitting_pattern_list = [
+        NON_SPACE_SYMBOLS,
+        SYMBOLS,
+    ]
+
     keep_contains_list.sort()
     keep_list.sort()
 
@@ -1501,7 +1512,7 @@ class SentStructModeRecord:
 
 class SentStructMode(Enum):
     ANY = Definitions.ANY
-    NOT_EQUAL = Definitions.NOT_EQUAL
+    EXCLUDE = Definitions.EXCLUDE
     NOT_TRAILING = Definitions.NOT_TRAILING
     NOT_LEADING = Definitions.NOT_LEADING
     EQUAL = Definitions.EQUAL

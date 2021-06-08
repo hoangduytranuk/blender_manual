@@ -48,6 +48,10 @@ class Ignore:
             if is_allowed_contains:
                 return False
 
+            is_ignore_outright = (find_msg in df.ignore_txt_list)
+            if is_ignore_outright:
+                return True
+
             is_ref_link = is_function = is_ignore_word = is_dos_command = is_ignore_start = False
 
             is_ref_link = cm.isLinkPath(find_msg)
@@ -129,7 +133,7 @@ class Ignore:
             for m in df.runtime_ignore_list:
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    dd(f'isIgnoredWord: pattern:[{m.pattern}] [{text_line}]')
+                    # dd(f'isIgnoredWord: pattern:[{m.pattern}] [{text_line}]')
                     return True
             else:
                 return False

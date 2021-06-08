@@ -241,7 +241,7 @@ class TranslationFinder:
             untran_dict = obs.getUnmarkedPartsAsDict()
             for loc, mm in untran_dict.items():
                 txt = mm.txt
-                tran_sub_text = dic.getTranBySlittingSymbols(txt)
+                tran_sub_text = dic.translateBySlittingSymbols(txt)
                 if tran_sub_text:
                     entry = {loc: (txt, tran_sub_text)}
                     translated_dict.update(entry)

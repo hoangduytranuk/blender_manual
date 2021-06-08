@@ -225,11 +225,11 @@ class RefList(defaultdict):
             self.findOnePattern(obs, obs.blank, p, ref_type)
         # self.validateFoundEntries()
 
-        if len(self):
-            dd('List of refs found:')
-            dd('-' * 80)
-            pp(self)
-            dd('-' * 80)
+        # if len(self):
+        #     dd('List of refs found:')
+        #     dd('-' * 80)
+        #     pp(self)
+        #     dd('-' * 80)
         return count_item, obs.getUnmarkedPartsAsDict()
 
     def addUnparsedDict(self, unparsed_dict: dict):

@@ -110,7 +110,7 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB_PAT.search(k) is not None)
-            # is_sent_struct = ('some more $' in k)
+            # is_sent_struct = ('EX(' in k)
             return is_sent_struct
 
         def createDictEntry(data):
@@ -144,30 +144,49 @@ class NoCaseDict(OrderedDict):
         return self[k] if k in self else default
 
     def getSentStructPattern(self, key):
-        def validate_NUMBER_ONLY(interest_part, matched_part, extra_param):
+        def validate_NUMBER_ONLY(args):
+            smode_rec, interest_part, matched_part, extra_param = args
             valid = (df.NUMBERS.search(matched_part) is not None)
             return valid
 
-        def validate_NO_FULL_STOP(matcher_dict, matched_part, extra_param):
+        def validate_NO_FULL_STOP(args):
+            smode_rec, interest_part, matched_part, extra_param = args
             valid = (df.FULLSTOP_IN_BETWEEN.search(matched_part) is None)
             return valid
 
-        def validate_NO_PUNCTUATION(interest_part, matched_part, extra_param):
+        def validate_NO_PUNCTUATION(args):
+            smode_rec, interest_part, matched_part, extra_param = args
             valid = (df.PUNCT_IN_BETWEEN.search(matched_part) is None)
             return valid
 
-        def validate_MAX_UPTO(interest_part, matched_part, extra_param):
+        def validate_MAX_UPTO(args):
+            smode_rec, interest_part, matched_part, extra_param = args
             wc = cm.wordCount(matched_part)
             valid = (wc <= extra_param)
             return valid
 
-        def validate_NO_CONJUNCTIVES(interest_part, matched_part, extra_param):
+        def validate_NO_CONJUNCTIVES(args):
+            smode_rec, interest_part, matched_part, extra_param = args
             valid = (df.BASIC_CONJUNCTS.search(matched_part) is None)
             # if valid:
             #     grp = valid.groups()
             return valid
 
-        def validate_EMBEDDED(interest_part, matched_part, extra_param):
+        def validate_EXCLUDE(args):
+            smode_rec, interest_part, matched_part, extra_param = args
+
+            ex_txt = smode_rec.smode_txt
+            embs = df.CLAUSED_PART.search(ex_txt)
+            ex_value = embs.group(1)
+            pat = re.compile(ex_value, flags=re.I)
+
+            strip_matched_part = matched_part.strip()
+            match = pat.search(strip_matched_part)
+            valid = (match is None)
+            return valid
+
+        def validate_EMBEDDED(args):
+            smode_rec, interest_part, matched_part, extra_param = args
             valid = True
             for loc, txt in interest_part:
                 is_leading_with_hyphen = (txt.startswith('-'))
@@ -189,6 +208,7 @@ class NoCaseDict(OrderedDict):
                 SMODE.EMBEDDED_WITH: validate_EMBEDDED,
                 SMODE.LEADING_WITH: validate_EMBEDDED,
                 SMODE.TRAILING_WITH: validate_EMBEDDED,
+                SMODE.EXCLUDE: validate_EXCLUDE,
             }
 
             for index, matched_part in enumerate(input_txt_list):
@@ -208,7 +228,8 @@ class NoCaseDict(OrderedDict):
                         continue
 
                     function = check_list[structure_mode]
-                    is_ok = function(matcher_dict, matched_part, extra_param)
+                    args = (smode_rec, matcher_dict, matched_part, extra_param)
+                    is_ok = function(args)
                     is_ok_list.append(is_ok)
                     if not is_ok:
                         df.LOG(f'function [{function.__name__}()] FAILED!')
@@ -562,6 +583,7 @@ class NoCaseDict(OrderedDict):
         if ig.isIgnored(k):
             return default_result
 
+        has_path_char = (df.PATH_CHAR.search(k) is not None)
         k_length = len(k)
         k_word_list = [x for x in df.COMMON_WORD_SEPS.split(k) if x]
         k_word_count = len(k_word_list)
@@ -604,7 +626,7 @@ class NoCaseDict(OrderedDict):
         (selected_item, original_ratio) = subset[0]
         overall_ratio = fuzz.ratio(selected_item, k)
         is_matching = (original_ratio == overall_ratio)
-        matched_ratio = (original_ratio if is_k_single_word else overall_ratio)
+        matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
         is_accepted = (matched_ratio > acceptable_rate)
         if not is_accepted:
             return default_result
@@ -720,16 +742,15 @@ class NoCaseDict(OrderedDict):
         tran = (self[clipped_txt] if clipped_txt else None)
         return clipped_txt, tran
 
+    def singleOutputFuzzyTranslation(self, txt):
+        tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(txt, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
+        return tran
+
     def tranByPartitioning(self, sl_txt):
         def markTranslated(txt_loc, sl_txt, tl_txt):
             ft_obs.markLocAsUsed(txt_loc)
             entry=(txt_loc, tl_txt)
             ft_translated_list.append(entry)
-
-        # orig_txt = str(sl_txt)
-        # word_list = cm.splitWordAtToList(df.SYMBOLS, sl_txt)
-        # word_list_dict = OrderedDict(word_list)
-        # sl_txt = " ".join(word_list_dict.values())
 
         ft_map = cm.genmap(sl_txt)
         ft_obs = LocationObserver(sl_txt)
@@ -747,7 +768,7 @@ class NoCaseDict(OrderedDict):
 
                 dd(f'trying: [{ft_word}]')
                 part_txt = ft_word
-                ft_tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(ft_word, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
+                ft_tran = self.singleOutputFuzzyTranslation(ft_word)
                 if ft_tran:
                     # df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)
@@ -757,9 +778,11 @@ class NoCaseDict(OrderedDict):
                     if not is_single_word:
                         continue
 
-                    ft_tran = self.translateNumerics(ft_word)
+                    ft_tran = self.translateBySlittingSymbols(ft_word, find_translation_function=self.singleOutputFuzzyTranslation)
                     if not ft_tran:
-                        chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
+                        ft_tran = self.translateNumerics(ft_word)
+                        if not ft_tran:
+                            chopped_txt, ft_tran = self.findByChangeSuffix(ft_word)
 
                     if ft_tran:
                         markTranslated(ft_loc, ft_word, ft_tran)
@@ -777,11 +800,11 @@ class NoCaseDict(OrderedDict):
         un_tran_list = ft_obs.getUnmarkedPartsAsDict()
         return return_tran, un_tran_list
 
-    def getTranBySlittingSymbols(self, input_txt):
-        pattern_list = [
-            df.NON_SPACE_SYMBOLS,
-            df.SYMBOLS,
-        ]
+    def singleOutputTranByPartitioning(self, txt):
+        tran, untran_dict = self.tranByPartitioning(txt)
+        return tran
+
+    def translateBySlittingSymbols(self, input_txt, find_translation_function=None):
         translation = str(input_txt)
         translated_list = {}
         selective_list = []
@@ -791,7 +814,7 @@ class NoCaseDict(OrderedDict):
         #     return tran
         #
         obs = LocationObserver(input_txt)
-        for pat in pattern_list:
+        for pat in df.symbol_splitting_pattern_list:
             if obs.isCompletelyUsed():
                 break
 
@@ -806,8 +829,9 @@ class NoCaseDict(OrderedDict):
                 if obs.isLocUsed(loc):
                     continue
 
-                tran, untran_dict = self.tranByPartitioning(txt)
-                is_translated = (tran != txt)
+                trans_find_function = (self.singleOutputTranByPartitioning(txt) if not find_translation_function else find_translation_function)
+                tran = trans_find_function(txt)
+                is_translated = (tran and tran != txt)
                 if is_translated:
                     obs.markLocAsUsed(loc)
                     entry = {loc: tran}
@@ -833,7 +857,7 @@ class NoCaseDict(OrderedDict):
     def blindTranslate(self, txt):
         tran, un_tran_list = self.tranByPartitioning(txt)
         if not tran:
-            tran = self.getTranBySlittingSymbols(txt)
+            tran = self.translateBySlittingSymbols(txt)
         return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:

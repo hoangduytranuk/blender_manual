@@ -1714,14 +1714,15 @@ class Common:
             if is_any:
                 pat_txt = r'(%s)' % (word_any)
 
-                not_equal = df.NOT_EQUAL.search(txt)
+                is_excluded = df.EXCLUDE.search(txt)
                 not_leading = df.NOT_LEADING.search(txt)
                 not_trailing = df.NOT_TRAILING.search(txt)
                 is_equal = df.EQUAL.search(txt)
                 is_embedded_with = df.EMBEDDED_WITH.search(txt)
                 is_ending_with = df.TRAILING_WITH.search(txt)
                 is_leading_with = df.LEADING_WITH.search(txt)
-                is_claused = bool(is_leading_with or is_ending_with or is_embedded_with or is_equal or not_equal or not_leading or not_trailing)
+                is_claused = bool(is_leading_with or is_ending_with or is_embedded_with or is_equal or is_excluded or not_leading or not_trailing)
+                is_accepting_not_equal = (is_excluded and not (is_equal or is_ending_with or is_leading_with or is_embedded_with))
                 if is_claused:
                     embs = df.CLAUSED_PART.search(txt)
                     emb_part = embs.group(1)
@@ -1737,7 +1738,7 @@ class Common:
                         pat_txt = r'%s(?!(%s)\w+)%s' % (leading, emb_part, ending)
                     elif not_trailing:
                         pat_txt = r'%s(\w+(?<!(%s)))%s' % (leading, emb_part, ending)
-                    elif not_equal:
+                    elif is_accepting_not_equal:
                         pat_txt = r'%s(?!(%s)\w+)%s' % (leading, emb_part, ending)
                     # dd('')
                 pattern_embedded = df.PATTERN_PART.search(txt)
@@ -1753,7 +1754,7 @@ class Common:
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
 
         # test_pat = "".join(simplified_pat)
-        # test_txt= "Top View"
+        # test_txt= "**not** the orientation",
         #
         # match_1 = re.search(test_pat, test_txt, flags=re.I)
         # match_2 = re.compile(test_pat, flags=re.I)

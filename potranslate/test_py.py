@@ -13,6 +13,7 @@ from pprint import pprint as PP
 # import html
 import subprocess as sub
 
+import ignore
 from translation_finder import TranslationFinder
 from ignore import Ignore as IG
 from fuzzywuzzy import fuzz
@@ -58,78 +59,170 @@ class test(object):
 
         writeJSON(to_file, new_dic)
 
+    # def grepPOTFindPath(self, txt):
+    #     ref_dict_list, obs = cm.getRefDictList(txt)
+    #     for entry in ref_dict_list:
+    #         df.LOG(entry)
+    #     return ref_dict_list
+
+    def findRefText(selfI):
+        from reflist import RefList
+        from ignore import Ignore as ig
+        def addDict(txt):
+            selected_list.update({txt.strip(): ""})
+
+        def printRef(mm):
+            # print(mm.type)
+            txt = mm.getSubText()
+            if not txt:
+                txt = mm.getMainText()
+            txt = (df.FILLER_CHAR_PATTERN.sub("", txt))
+
+
+            is_math = (mm.type == RefType.MATH)
+            is_keyboard = (mm.type == RefType.KBD)
+            is_ignore = (is_keyboard or is_math)
+            if is_ignore:
+                return
+
+            is_ignore = ig.isIgnored(txt)
+            if is_ignore:
+                print(f'IGNORED: [{txt}]')
+                return
+
+            entry=None
+            has_ref_link = (df.REF_LINK.search(txt) is not None)
+            has_menu_sep = (df.MENU_SEP.search(txt) is not None)
+            if has_ref_link:
+                found_dict = cm.findInvert(df.REF_LINK, txt, is_reversed=True)
+                for sub_loc, sub_mm in found_dict.items():
+                    sub_txt = sub_mm.getMainText()
+                    is_in_dict = (sub_txt in dict)
+                    if not is_in_dict:
+                        addDict(sub_txt)
+            elif has_menu_sep:
+                word_list = cm.findInvert(df.MENU_SEP, txt, is_reversed=True)
+                for loc, mnu_item_mm in word_list.items():
+                    sub_txt: str = mnu_item_mm.txt
+                    left, mid, right = cm.getTextWithin(sub_txt)
+                    is_in_dict = (mid in dict)
+                    if not is_in_dict:
+                        addDict(sub_txt)
+            else:
+                is_in_dict = (txt in dict)
+                if not is_in_dict:
+                    addDict(txt)
+
+        def filterOneLine(m):
+            id = m.id
+            if not id:
+                return
+
+            # print(id)
+            ref = RefList(msg= id, tf=tf)
+            ref.findPattern(df.pattern_list, id)
+            for loc, mm in ref.items():
+                printRef(mm)
+
+        selected_list = {}
+        tf = TranslationFinder()
+        dict = tf.getDict()
+        home = os.environ['BLENDER_MAN_EN']
+        file_name = 'build/gettext/blender_manual.pot'
+        file_path = os.path.join(home, file_name)
+        data = c.load_po(file_path)
+        data_list = [x for x in data]
+        for m in data_list:
+            filterOneLine(m)
+
+        home = os.environ['HOME']
+        output_file = os.path.join(home, "untran.json")
+        cm.writeJSONDic(selected_list, output_file)
+
+
 
     def test_translate_0001(self, text_list=None):
-        from paragraph_cy import Paragraph as PR
+        from paragraph import Paragraph as PR
         from sentence import StructRecogniser as SR
 
         if not text_list:
             t_list = [
-                # "like a theater stage",
-                # "like an armature or shape key",
-                # "like an empty instancing a collection containing instances of some other collections",
-                # "like bleed for baking",
-                # "like cameras, lights, etc.",
-                # "like circles, squares, and so on",
-                # "like e.g. a cube with all its six faces",
-                # "like e.g. from a shading node",
-                # "like e.g. the :doc:`\"copy\" ones </animation/constraints/transform/copy_location>`",
-                # "like e.g. the main blend-file *Open* one",
-                # "like images, textures, materials, lights and world shaders",
-                # "like in the real world due to friction between the colliding surfaces",
-                # "like invisible meta objects",
-                # "like mesh, curve, camera...",
-                # "like object modifiers do",
-                # "like opening or saving a blend-file",
-                # "like parenting the hand to the head",
-                # "like seen in the sphere above",
-                # "like simulating a human ear lit from behind",
-                # "like textures and symmetry",
-                # "like the *X-Axis Mirror* editing tool",
-                # "like the :doc:`\"limit\" ones </animation/constraints/transform/limit_location>`",
-                # "like the Arc tool",
-                # "like the color of the coordinate axes in the 3D Viewport",
-                # "like the copy/paste buttons, and snapping type",
-                # "like the ones present in normal screws that you can buy in hardware stores",
-                # "like the ones used for wood; as shown in the example at the beginning of this page",
-                # "like the result of fluid simulations",
-                # "like the single property :ref:`driver variables <drivers-variables>`",
-                # "like the yellow/green/purple colors of animated/driven ones",
-                # "like three minutes for a mesh with 4,000 points",
-                # "like thumbnails",
-                # "like trees, humans, etc.",
-                # "like with some modes of the :ref:`Displace modifier <bpy.types.DisplaceModifier>`",
-                # "limbs",
-                # "limbs, spines, tails, fingers, faces...",
-                # "lime green",
-                # "limitation of FFmpeg",
-                # "linked and instantiated",
-                # "linking",
-                # "list of GCN generations",
-                # "list of Nvidia graphics cards",
-                # "listed below",
-                # "listed from top to bottom",
-                # "listed with corresponding operator functions",
-                # "lists",
-                # "literally",
-                # "little jiggle",
-                # "loaded in the preferences",
-                # "local target's axes",
-                # "local, system and user paths",
-                # "locale/fr",
-                # "located in the Properties, *Modifiers* tab",
-                # "location 0, 0, 0",
-                # "location and rotation in the virtual space",
-                # "location, rotation and scale",
-                # "location, rotation or scale along/around one of its axes",
-                # "location, rotation, scale",
-                # "location, scale or rotation",
-                # "location[0]",
-                # "locks pie menu",
-                # "loolarge",
-                # "lower is faster",
-                # "lower right corner",
-                # "lowers the simulation stability a little so use only when necessary",
+                "**not** the orientation, which is always perpendicular to the face",
+                # "**not** the orientation",
+                # "Center",
+                # "Scripted Expression",
+                # "confirm on release",
+                # "3 boxes with dashed outline",
+                # "operator",
+                # ":kbd:`LMB` drag",
+                # ":kbd:`LMB` or the :kbd:`Pen` tip",
+                # ":kbd:`Shift-LMB` on the chain icon to the right",
+                # ":kbd:`Shift-Spacebar` for play",
+                # ":kbd:`Shift` extends, :kbd:`Ctrl` expands",
+                # "Add",
+                # "Armature",
+                # "File",
+                # "Key",
+                # "Movie Clip Editor",
+                # "UV Editor",
+                # "Developer Extras",
+                # "Fireflies",
+                # "IOR",
+                # "NDOF",
+                # "Object Origin",
+                # "Pixel",
+                # "see also",
+                # "A Render Layer could be substituted for the Image layer, and the",
+                # "A typical method to create the fake depth-shaded image is by using a linear blend texture for all objects in the scene or by using the",
+                # "Add Constraint",
+                # "Add Constraint (with Targets)",
+                # "Affects all selection modes.",
+                # "Agent",
+                # "Alembic",
+                # "All these formats support compression which can be important when rendering out animations.",
+                # "Appears in the :ref:`bpy.ops.screen.redo_last` panel.",
+                # "Attribute Combine",
+                # "Attribute Combine XYZ Node",
+                # "Attribute Convert",
+                # "Attribute Curve Map",
+                # "Attribute Remove",
+                # "Attribute Separate",
+                # "Attribute Separate XYZ Node",
+                # "Attribute Transfer",
+                # "Attribute Vector Rotate Node",
+                # "Automatically Pack Resources",
+                # "Average Tracks",
+                # "Axon D",
+                # "BSDF (Bidirectional Scattering Distribution Function)",
+                # "BSDF (Bidirectional scattering distribution function)",
+                # "BSSRDF (Bidirectional subsurface scattering distribution function)",
+                # "Blender 2.78",
+                # "Blender Development, general information and helpful links.",
+                # "Blender goes Open Source, 1st Blender Conference.",
+                # "Blue minus Luminance",
+                # "Box outline",
+                # "Bézier curve icon",
+                # "CAD",
+                # "Computer-Aided Design",
+                # "Computer-Generated Imagery",
+                # "Central Processing Unit",
+                # "Compute Unified Device Architecture",
+                # "Cameras & Markers (.py)",
+                # "Clemens Barth et al. --",
+                # "Collada, ...",
+                # "Collection Properties",
+                # "Continuing our previous example, imagine that, having initially laid the box flat on the tabletop, you now cut it into smaller pieces, somehow stretch and/or shrink those pieces, and then arrange them in some way upon a photograph that is also lying on that tabletop.",
+                # "Copy Grease Pencil Effects",
+                # "Copy Modifiers",
+                # "Copy UV Maps",
+                # "CoreAudio",
+                # "Corner Rounding",
+                # "Courant–Friedrichs–Lewy",
+                # "Crease Threshold",
+                # "Ctrl Shift C",
+                # "Current POV syntax is closer to C than Python, so anything that follows two slash character",
+                # "Curve Edit",
+                # "Curve to Mesh",
             ]
         else:
             t_list = text_list
@@ -143,87 +236,41 @@ class test(object):
             output = pr.getTextAndTranslation()
             df.LOG(output)
 
-    # def grepPOTFindPath(self, txt):
-    #     ref_dict_list, obs = cm.getRefDictList(txt)
-    #     for entry in ref_dict_list:
-    #         df.LOG(entry)
-    #     return ref_dict_list
+    def test_0001(self):
+        word = r'[\w_\-]+'
+        word_space = r'[\w\-_\s]+'
+        word_any = r'.*[\w\W]+.*(?<!\s)'
+        # ending = r'(\s|$)?'
+        embpart_terminator = r'(\s|\b|$)?'
+        # embpart_terminator = ''
+        ending = r'(\W\b|$)?'
+        leading = r'\s?'
+
+        # ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
+        any_part_txt = r'(%s)' % (word_any)
+        not_emb_part = r'(the|a|an)'
+        not_eq_part = r'%s(?!(%s)\w+)%s' % (leading, not_emb_part, ending)
+        ending_emb_part = r'ion'
+        ending_part = r'%s(%s%s)%s' % (leading, word, ending_emb_part, ending)
+
+        final_pat = r'%s%s' % (not_eq_part, ending_part)
+        simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
+        simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
+
+        simplified_pat = r'(\w+)\s?(\w+(ion))'
+        pat = re.compile(simplified_pat, flags=re.I)
+
+        t = "**not** the orientation"
+        m = pat.search(t)
+        print(m)
 
     def run(self):
-        import cProfile
-        # self.test_sorted_list()
-        # self.test_forward_slashes()
-        # self.test_find_invert()
-        # self.test_re()
-        # self.test_parsing_link()
-        # self.test_ref_link()
-        # self.test_remove_blank()
-        # self.test_ref_link()
-        # self.test_bracket()
-        # self.test_abbr()
-        # self.test_globals()
-        # self.matchingVIPOChangesToDict()
-        # self.vipotoJSON()
-        # self.test_0074()
-        # self.test_0073()
-        # self.plistToText()
-        # self.test_binary_search()
-        # self.sorting_temp_05()
+        # self.test_0001()
+        # import cProfile
+        # self.findRefText()
         self.resort_dictionary()
-        # self.test_translate_json_file()
-        # cProfile.run(self.test_translate_0001())
         self.test_translate_0001()
-        # t_list = self.grepPOT(re.compile(r'[^\w\s\-\_\;]+(\w)[\w\s\-\_\.\,\;]+(\w)[^\w\s\-\_\.\,\;]+'))
-        # self.test_translate_0001(text_list=t_list)
-        # mnu_p = re.compile(r':menuselection:[`]([^`]+)[`]')
-        # sep_pat = re.compile(r'\s?(-->)\s?')
-        # self.grepPOT(mnu_p, is_sub_group=True, separator=sep_pat, is_translate=True)
-        # p = re.compile(r'(?!(\w[\.\,]\w))(\w[^\.\,]+\S)[\.\,](\s|$)')
-        # p = re.compile(r'\w+\s\w+\s(chance)\s\w+\s\w+')
-        # word = r'(\w+\s)?'
-        # l_txt = r'(modifier)'
-        # p_txt = r'%s%s%s%s%s' % (word, word, word, word, l_txt)
-        # p = re.compile(p_txt)
-        # self.grepPOTFindPath(t)
-        # self.grepPOT(None, using_function=self.grepPOTFindPath)
-        # self.grepPOT(df.GA_REF, is_sub_group=True)
-        # simple_bracket = re.compile(r'\s?\([^\(\)]+\)\s?')
-        # self.grepPOT(simple_bracket, is_sub_group=False)
-        # self.grepPOT(df.FUNCTION, is_sub_group=False)
-        # self.grepPOT('have more', is_considering_side_words=True)
-        # self.cleanWorkingTextFile()
-        # self.translatePO()
-        # self.test_0063()
-        # print(self.recur(4))
-        # self.parseSVG()
-        # self.translate_po_file()
-        # self.test_pattern_0001()
-        # self.test_insert_abbr()
-        # self.test_capt_0001()
-        # self.test_refs_0001()
-        # self.test_0064()
-        # self.test_0066()
-        # self.test_0067()
-        # self.test_0068()
-        # self.test_0069()
-        # self.test_0070()
-        # self.test_0072()
-        # self.test_0071()
-        # self.cleanDictionary()
-        # self.diffPOTFile()
-        # self.test_loc_remain()
-        # self.mergeVIPOFiles()
 
-
-# # trans_finder = TranslationFinder()
-# def tranRef(msg, is_keep_original):
-#     ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
-#     ref_list.parseMessage()
-#     ref_list.translateRefList()
-#     tran = ref_list.getTranslation()
-#     trans_finder.addDictEntry((msg, tran))
-#     print("Got translation from REF_LIST")
-#     return tran
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')

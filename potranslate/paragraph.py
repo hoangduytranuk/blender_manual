@@ -48,6 +48,23 @@ class Paragraph(list):
             df.LOG(f'{e};', error=True)
 
     def translateSplitUp(self):
+        def translateOneRecord(item):
+            (loc, mm) = item
+            orig_txt = mm.txt
+            tran = self.tf.isInDict(orig_txt)
+            if not tran:
+                sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
+                tran = sr.parseAndTranslateText(loc, orig_txt)
+
+            if tran:
+                tran = cm.removeTheWord(tran)
+                cache_entry = {self.sl_txt: tran}
+                self.tf.getDict().addCacheEntry(cache_entry)
+                tran_list_entry = (loc, orig_txt, tran)
+                return tran_list_entry
+            else:
+                return None
+
         try:
             input_txt = self.sl_txt
             txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
@@ -55,18 +72,9 @@ class Paragraph(list):
             pp(txt_list)
             dd('-' * 80)
             tran_list = []
-            for loc, mm in txt_list.items():
-                orig_txt = mm.txt
-                tran = self.tf.isInDict(orig_txt)
-                if not tran:
-                    sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
-                    tran = sr.parseAndTranslateText(loc, orig_txt)
-                if tran:
-                    tran = cm.removeTheWord(tran)
-                    cache_entry = {self.sl_txt: tran}
-                    self.tf.getDict().addCacheEntry(cache_entry)
-                    tran_list_entry = (loc, orig_txt, tran)
-                    tran_list.append(tran_list_entry)
+
+            temp_tran_list = map(translateOneRecord, txt_list.items())
+            tran_list = [x for x in temp_tran_list if bool(x)]
 
             translation = str(input_txt)
             if tran_list:
