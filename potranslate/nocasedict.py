@@ -110,7 +110,7 @@ class NoCaseDict(OrderedDict):
         def isSentStruct(item):
             (k, v) = item
             is_sent_struct = (df.SENT_STRUCT_START_SYMB_PAT.search(k) is not None)
-            # is_sent_struct = ('EX(' in k)
+            # is_sent_struct = ('EQ(Edit' in k)
             return is_sent_struct
 
         def createDictEntry(data):
@@ -238,9 +238,12 @@ class NoCaseDict(OrderedDict):
             return ok
 
         def filterKeyByTextAndPattern(item):
-            (txt, pattern, value) = item
-            match = re.compile(pattern, flags=re.I).search(txt)
-            return (match, pattern, value)
+            try:
+                (txt, pattern, value) = item
+                match = re.compile(pattern, flags=re.I).search(txt)
+                return (match, pattern, value)
+            except Exception as e:
+                df.LOG(f'[{e}]; item:[{item}]')
 
         def filterByFuzzyCompare(item):
             (txt, pattern, matcher, value) = item

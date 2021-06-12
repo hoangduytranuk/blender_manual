@@ -230,7 +230,7 @@ class Definitions:
         "material:index",
     ]
 
-    split_sent_seg_txt = r'\s?([\,\.\-\;]+\s)'
+    split_sent_seg_txt = r'\s?([\,\.\-\;]+\s)|([\(\)])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
 
     total_files = 1358
@@ -276,11 +276,11 @@ class Definitions:
     EXCLUDE = re.compile(r'EX\([^\(\)]+\)', re.I)
     NOT_TRAILING = re.compile(r'NT\([^\(\)]+\)', re.I)
     NOT_LEADING = re.compile(r'NL\([^\(\)]+\)', re.I)
-    EQUAL = re.compile(r'EQ\([^\(\)]+\)', re.I)
+    EQUAL = re.compile(r'EQ\((.*)\)', re.I)
     EMBEDDED_WITH = re.compile(r'EMB\([^\(\)]+\)', re.I)
     LEADING_WITH = re.compile(r'LD\([^\(\)]+\)', re.I)
     TRAILING_WITH = re.compile(r'ED\([^\(\)]+\)', re.I)
-    CLAUSED_PART = re.compile(r'\(([^\(\)]+)\)', re.I)
+    CLAUSED_PART = re.compile(r'\((.*)\)', re.I)
 
     PATTERN = re.compile(r'^\`([^\`]+)\`$', re.I)
     PATTERN_PART = re.compile(r'\`([^\`]+)\`')
@@ -538,6 +538,7 @@ class Definitions:
 
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
+    # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
     GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
     GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*(?:\W|$)?$')
 
@@ -684,7 +685,7 @@ class Definitions:
     ending_punct = r'(\w[\,\.!]+$)'
     ENDING_WITH_PUNCT = re.compile(ending_punct)
 
-    basic_conjunctions = r'(for|and|nor|in|by|out|that|then|above|below|up|down|but|or|yet|so|etc(\W+)?)'
+    basic_conjunctions = r'(for|to|is|are|was|were|and|nor|in|by|out|that|then|above|below|up|down|but|or|yet|so|etc(\W+)?)'
 
     basic_conjunctions_pat_txt = r'(\s|^)%s(\s|$)' % (basic_conjunctions)
     BASIC_CONJUNCTS = re.compile(basic_conjunctions_pat_txt)
@@ -1364,7 +1365,7 @@ class Definitions:
     ]
 
     keep_list = [
-        "Cycles Only",
+        "cycles only",
         "yellow/green/purple",
         "/base",
         "_right",

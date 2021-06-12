@@ -871,19 +871,11 @@ class TranslationFinder:
         is_found = (msg in search_dict)
         if is_found:
             tran = search_dict[msg]
-
-        if not tran:
-            msg_length = len(msg)
+        else:
             left, mid, right = cm.getTextWithin(msg)
-            is_quoted = (left and right) and (left == right)
-            if is_quoted:
-                return None
-            else:
-                msg = mid
-
-            is_found = (msg in search_dict)
+            is_found = (mid in search_dict)
             if is_found:
-                tran = search_dict[msg]
+                tran = search_dict[mid]
 
         if tran:
             tran = search_dict.replaceTranRef(tran)
@@ -1069,6 +1061,10 @@ class TranslationFinder:
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
+                return (None, False, True)
+
+            is_single_char = (len(msg) < 2)
+            if is_single_char:
                 return (None, False, True)
 
             if not trans:
@@ -1275,22 +1271,15 @@ class TranslationFinder:
         word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
         translateMenuItem(word_list)
 
-        mm_main_txt = mm.getMainText()
-        trans = str(mm_main_txt)
+        trans = str(msg)
         tran_state_list=[]
         for loc, mnu_item_mm in word_list.items():
-            trans = cm.jointText(trans, mnu_item_mm.tl_txt, loc)
+            trans = cm.jointText(trans, mnu_item_mm.translation, loc)
             tran_state_list.append(mnu_item_mm.translation_state)
-
-        temp_tran_txt = mm.getSubText()
-        word_list = list(word_list.items())
-        for loc, mnu_item_mm in word_list:
-            tran_txt = mnu_item_mm.tl_txt
-            temp_tran_txt = cm.jointText(temp_tran_txt, tran_txt, loc)
 
         main_tran = mm.txt
         sub_loc = mm.getSubLoc()
-        final_tran = cm.jointText(main_tran, temp_tran_txt, sub_loc)
+        final_tran = cm.jointText(main_tran, trans, sub_loc)
 
         is_fuzzy = (TranslationState.FUZZY in tran_state_list)
         is_ignore = (TranslationState.IGNORED in tran_state_list)
