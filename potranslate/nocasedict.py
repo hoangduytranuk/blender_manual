@@ -755,23 +755,32 @@ class NoCaseDict(OrderedDict):
             entry=(txt_loc, tl_txt)
             ft_translated_list.append(entry)
 
+        def translateMap(the_map_entry):
+            (loc, the_text) = the_map_entry
+            tran = self.singleOutputFuzzyTranslation(the_text)
+            return (loc, the_text, tran)
+
         ft_map = cm.genmap(sl_txt)
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
         part_txt = None
         df.LOG(sl_txt)
         try:
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_results = executor.map(translateMap, ft_map)
+
             ft_translation = str(sl_txt)
-            for ft_loc, ft_word in ft_map:
+            for (ft_loc, ft_word, ft_tran) in found_results:
                 if ft_obs.isCompletelyUsed():
                     break
 
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
-                dd(f'trying: [{ft_word}]')
-                part_txt = ft_word
-                ft_tran = self.singleOutputFuzzyTranslation(ft_word)
+                df.LOG(f'found: {[{ft_word}]} => [{ft_tran}]')
+                # dd(f'trying: [{ft_word}]')
+                # part_txt = ft_word
+                # ft_tran = self.singleOutputFuzzyTranslation(ft_word)
                 if ft_tran:
                     # df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)

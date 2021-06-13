@@ -699,7 +699,6 @@ class StructRecogniser():
                 entry=(txt_loc, tran)
                 tran_list.append(entry)
                 entry = {txt_sl: txt_tl}
-                df.LOG(f'entry:[{entry}]')
                 self.updateProcessed(entry)
 
         try:

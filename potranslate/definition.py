@@ -1365,6 +1365,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "toggle/enable/disable",
         "cycles only",
         "yellow/green/purple",
         "/base",
