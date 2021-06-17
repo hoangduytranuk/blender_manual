@@ -144,14 +144,6 @@ class MatcherRecord(OrderedDict):
     def translation_state(self, new_translation_state):
         self.__translation_state = new_translation_state
 
-    @property
-    def list_of_forward_slashes(self):
-        return self.__list_of_forward_slashes
-
-    @list_of_forward_slashes.setter
-    def list_of_forward_slashes(self, new_list_of_forward_slashes):
-        self.__list_of_forward_slashes = new_list_of_forward_slashes
-
     def __repr__(self):
         string = ""
         try:
@@ -359,11 +351,7 @@ class MatcherRecord(OrderedDict):
 
     def getType(self):
         sub_comp = self.getComponent(1, sub_index=1)
-        is_valid = (bool(sub_comp) and isinstance(sub_comp, RefType))
-        if is_valid:
-            return sub_comp
-        else:
-            return None
+        return sub_comp
 
     def getStarter(self):
         sub_comp = self.getComponent(1, sub_index=1)

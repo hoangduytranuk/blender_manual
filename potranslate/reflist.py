@@ -54,6 +54,9 @@ class RefList(defaultdict):
         self.keep_original = keep_orig
         self.tf = tf
 
+    def reproduce(self):
+        return self.__class__()
+
     def getTranslation(self):
         return self.translation
 
@@ -128,7 +131,7 @@ class RefList(defaultdict):
         for k, mm in self.items():
             mm.parent = self
 
-    def findOnePattern(self, local_obs: LocationObserver, msg: str, pattern: re.Pattern, reftype: RefType):
+    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType):
         def setReftypeAndUsingSubTextLocation(dict_list: dict):
             for main_loc, mm in dict_list.items():
                 new_mm_list=[]
@@ -178,11 +181,11 @@ class RefList(defaultdict):
         valid = valid_msg and valid_pattern
         if not valid:
             return
+        found_dict = OrderedDict()
         try:
             found_dict = getMatches(pattern, msg, reftype)
             if found_dict:
                 self.update(found_dict)
-            local_obs.markLocListAsUsed( found_dict.keys() )
         except Exception as e:
             df.LOG(f'{e} msg:[{msg}]; found_dict:[{found_dict}]', error=True)
             raise e
@@ -192,45 +195,47 @@ class RefList(defaultdict):
         is_empty = (len(self) == 0)
         return is_empty
 
-    def validateFoundEntries(self):
+    def cleanupBrackets(self):
         mm: MatcherRecord = None
+        remove_list = []
+        obs = LocationObserver(self.msg)
         for loc, mm in self.items():
-            mm_list_of_records = mm.getSubEntriesAsList()
-            try:
-                (main_s, main_e), main_txt = mm_list_of_records[0]
-                (sub_s, sub_e), sub_txt = mm_list_of_records[2]
+            ref_type = mm.type
+            is_bracket = (ref_type == RefType.ARCH_BRACKET)
+            if is_bracket:
+                continue
 
-                valid_sub_txt = main_txt[sub_s: sub_e]
-                is_valid = (valid_sub_txt == sub_txt)
-                if not valid_sub_txt:
-                    raise ValueError(f'validateFoundEntries(): problem with sub_record: {mm}, sub-text extracted doesn\'t match the main-text')
+            obs.markLocAsUsed(loc)
 
-                valid_main_txt = self.msg[main_s: main_e]
-                is_valid = (valid_main_txt == main_txt)
-                if not valid_sub_txt:
-                    raise ValueError(f'validateFoundEntries(): problem with sub_record: {mm}, main-text extracted doesn\'t match the part in the msg')
+        for loc, mm in self.items():
+            ref_type = mm.type
+            is_bracket = (ref_type == RefType.ARCH_BRACKET)
+            if not is_bracket:
+                continue
 
-            except Exception as e:
-                df.LOG(f'{e} loc:[{loc}]; mm:[{mm}]', error=True)
-                raise e
+            is_fully_used = obs.isLocFullyUsed(loc)
+            if is_fully_used:
+                dd(f'REMOVING: [{mm}]')
+                remove_list.append(loc)
+
+        for loc in remove_list:
+            del self[loc]
 
     def findPattern(self, pattern_list: list, txt: str):
         count_item = 0
-        obs = LocationObserver(txt)
         pattern_list.reverse()
-        obs = LocationObserver(txt)
-
         for index, item in enumerate(pattern_list):
             p, ref_type = item
-            self.findOnePattern(obs, obs.blank, p, ref_type)
-        # self.validateFoundEntries()
+            self.findOnePattern(txt, p, ref_type)
 
-        if len(self):
-            dd('List of refs found:')
-            dd('-' * 80)
-            pp(self)
-            dd('-' * 80)
-        return count_item, obs.getUnmarkedPartsAsDict()
+        self.cleanupBrackets()
+
+        # if len(self):
+        #     dd('List of refs found:')
+        #     dd('-' * 80)
+        #     pp(self)
+        #     dd('-' * 80)
+        return count_item
 
     def addUnparsedDict(self, unparsed_dict: dict):
         mm: MatcherRecord = None
@@ -270,8 +275,15 @@ class RefList(defaultdict):
             return
 
         local_msg = str(self.msg)
-        count, unparsed_dict = self.findPattern(df.pattern_list, local_msg)
+        cm.debugging(local_msg)
+        count = self.findPattern(df.pattern_list, local_msg)
+
+        obs = LocationObserver(self.msg)
+        for loc, mm in self.items():
+            obs.markLocAsUsed(loc)
+        unparsed_dict = obs.getUnmarkedPartsAsDict()
         self.addUnparsedDict(unparsed_dict)
+
         if len(self):
             dd('Finishing parseMessage:')
             dd('-' * 80)
@@ -281,12 +293,13 @@ class RefList(defaultdict):
                 dd('-' * 80)
 
 
-    def translateMatcherRecord(self, mm: MatcherRecord):
+    def translateMatcherRecord(self, mm: MatcherRecord, is_translating_arch_bracket=True):
         sub_loc: tuple = None
         try:
             ref_txt = mm.txt
             ref_type = mm.type
 
+            is_arch_bracket = (ref_type == RefType.ARCH_BRACKET)
             is_blank_quote = (ref_type == RefType.BLANK_QUOTE)
             is_kbd = (ref_type == RefType.KBD)
             is_abbr = (ref_type == RefType.ABBR)
@@ -296,6 +309,7 @@ class RefList(defaultdict):
             is_doc = (ref_type == RefType.DOC)
             is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
             is_term = (ref_type == RefType.TERM)
+            is_math = (ref_type == RefType.MATH)
 
             # ----------
             is_ast = (ref_type == RefType.AST_QUOTE)
@@ -306,6 +320,10 @@ class RefList(defaultdict):
             is_function = (ref_type == RefType.FUNCTION)
 
             is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
+
+            is_ignore = (is_osl_attrib or is_python_format or is_function or is_math)
+            if is_ignore:
+                return
 
             converted_to_abbr = False
             if is_kbd:
@@ -321,15 +339,25 @@ class RefList(defaultdict):
                 dd(f'translateRefItem: is_quoted:{ref_txt}')
                 ok = self.tf.translateQuoted(mm)
                 converted_to_abbr = True
-            elif is_osl_attrib or is_python_format or is_function:
-                return
+            elif is_arch_bracket:
+                ok = self.translateArchBracket(mm)
             else:
                 ok = self.tf.translateRefWithLink(mm)
 
-            # mm_tran = cm.jointText(ref_txt, tran, sub_loc)
-            # mm.setTranlation(mm_tran, is_fuzzy, is_ignore)
         except Exception as e:
             df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
+
+    def translateArchBracket(self, mm: MatcherRecord):
+        (trans, is_fuzzy, is_ignore) = self.tf.translate(mm.txt)
+        mm.setTranlation(trans, is_fuzzy, is_ignore)
+        # r_list: RefList = self.reproduce()
+        # r_list.__init__(msg = mm.txt, tf=self.tf)
+        # r_list.parseMessage()
+        # r_list.translate()
+        # translation = r_list.getTranslation()
+        # mm.setTranlation(translation, r_list.isFuzzy(), r_list.isIgnore())
+        # return bool(translation)
+        return bool(trans)
 
     def translate(self):
         mm_record: MatcherRecord = None
@@ -341,6 +369,7 @@ class RefList(defaultdict):
         has_ref = (len(self) > 0)
 
         if not has_ref:
+            return
             trans, is_fuzzy, is_ignore = self.tf.translate(tran_text)
             if trans:
                 if self.keep_original:

@@ -230,7 +230,7 @@ class Definitions:
         "material:index",
     ]
 
-    split_sent_seg_txt = r'\s?([\,\.\-\;]+\s)|([\(\)])'
+    split_sent_seg_txt = r'\s?([\,\.\-\;](?<!(e\.g\.|etc\.))\s)|([\(\)])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
 
     total_files = 1358
@@ -282,8 +282,11 @@ class Definitions:
     TRAILING_WITH = re.compile(r'ED\([^\(\)]+\)', re.I)
     CLAUSED_PART = re.compile(r'\((.*)\)', re.I)
 
-    PATTERN = re.compile(r'^\`([^\`]+)\`$', re.I)
-    PATTERN_PART = re.compile(r'\`([^\`]+)\`')
+    emb_pat_char = r'\¡'
+    emb_pat_part_txt = r'%s([^%s]+)%s' % (emb_pat_char, emb_pat_char, emb_pat_char)
+    emb_pat_txt = r'^%s$' % (emb_pat_part_txt)
+    PATTERN = re.compile(emb_pat_part_txt, re.I)
+    PATTERN_PART = re.compile(emb_pat_part_txt)
 
     NUMBER_ONLY = re.compile(r'^nbr$', re.I)
     POSITION_PRIORITY = re.compile(r'^pp$', re.I)
@@ -539,8 +542,12 @@ class Definitions:
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*(?:\W|$)?$')
+    NOT_SPACE= r'(?![\s]+)'
+    GA_SYMB = r'\`'
+    ga_value_ref_pat_txt = r'[%s]+(%s+[^%s]+%s)[%s]+' % (GA_SYMB, NOT_SPACE, GA_SYMB, NOT_SPACE, GA_SYMB)
+    ga_ref_pat_txt = r'[\`]*(:[^\:]+:)*%s[\_]*' % (ga_value_ref_pat_txt)
+    GA_REF = re.compile(ga_ref_pat_txt)
+    GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+?)(?<!([\s\:]))[\`]+[\_]*(?:\W|$)?$')
 
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
     OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')

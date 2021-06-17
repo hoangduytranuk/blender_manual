@@ -835,9 +835,18 @@ class Common:
             return True
 
     def hasAbbr(txt):
-        abbr_str = RefType.ABBR.value
-        has_abbr = (abbr_str in txt)
-        return has_abbr
+        # msg = ":abbr:`kiến tạo/sửa đổi (create/modify)`"
+        ga_dict = Common.patternMatchAll(df.GA_REF, txt)
+        if not ga_dict:
+            return False
+
+        mm: MatcherRecord = None
+        mm = list(ga_dict.values())[0]
+        type_txt = mm.getType()
+        ref_type = RefType.getRef(type_txt)
+        is_abbrev = (ref_type == RefType.ABBR)
+
+        return is_abbrev
 
     def extractAbbr(abbr_txt):
         if not abbr_txt:
@@ -894,10 +903,58 @@ class Common:
                 df.LOG(f'[{e}]; Finding message: [{item}], found index:[{found_index}]', error=True)
                 raise e
 
+    def removeStartEndBrackets(input_txt, start_bracket=None, end_bracket=None):
+        try:
+            str_len = len(input_txt)
+            start_loc = 0
+            end_loc = str_len
+
+            s_brk = (start_bracket if start_bracket else '(')
+            e_brk = (end_bracket if end_bracket else ')')
+
+            bracket_pattern_txt = r'([\%s\%s])' % (s_brk, e_brk)
+            bracket_pattern = re.compile(bracket_pattern_txt)
+            found_dict = Common.patternMatchAll(bracket_pattern, input_txt)
+            found_list = list(found_dict.items())
+            if not found_list:
+                orig_loc = (start_loc, end_loc)
+                orig_entry = (orig_loc, input_txt)
+                return orig_entry
+
+            q = deque()
+            for loc, mm in found_dict.items():
+                brk = mm.txt
+                is_open = (brk == s_brk)
+                is_close = (brk == e_brk)
+                current_entry = (loc, brk)
+                if is_open:
+                    q.append(current_entry)
+                if is_close:
+                    if not q:
+                        continue
+
+                    q_entry = q.pop()
+                    (cs, ce), cbrk = current_entry
+                    (qs, qe), qbrk = q_entry
+                    is_start_string_bracket = (qs == 0)
+                    is_end_string_bracket = (ce == str_len)
+                    is_remove_start_and_end = (is_start_string_bracket and is_end_string_bracket)
+                    if is_remove_start_and_end:
+                        start_loc = qs + len(start_bracket)
+                        end_loc = ce - len(end_bracket)
+                        break
+            new_txt = input_txt[start_loc: end_loc]
+            new_loc = (start_loc, end_loc)
+            return (new_loc, new_txt)
+
+        except Exception as e:
+            df.LOG(f'{e} [{input_txt}]', error=True)
+            raise e
+
     def getTextWithinBrackets(
             start_bracket: str,
             end_bracket: str,
-            text:str,
+            input_txt:str,
             is_include_bracket:bool =False,
             replace_internal_start_bracket:str = None,
             replace_internal_end_bracket:str = None
@@ -905,70 +962,57 @@ class Common:
 
         def pop_q(pop_s, pop_e) -> bool:
             last_s = q.pop()
-            orig_txt = obs.blank[last_s:pop_e]
-            orig_s = last_s
-            orig_e = pop_e
+            ss = last_s
+            ee = pop_e
 
-            ss = (last_s if is_include_bracket else last_s + len(start_bracket))
-            ee = (pop_e if is_include_bracket else pop_s)
-
-            txt_line = text[ss:ee]
+            # for 'function()', do not store as a bracketed text
+            txt_line = input_txt[ss:ee]
             if not txt_line:
                 return False
 
-            is_replace_internal_bracket = (replace_internal_start_bracket and (start_bracket in txt_line))
-            if is_replace_internal_bracket:
-                txt_line = txt_line.replace(start_bracket, replace_internal_start_bracket)
-
-            loc = (orig_s, orig_e)
-            entry = (loc, orig_txt)
+            loc = (ss, ee)
+            entry = (loc, txt_line)
             sentence_list.append(entry)
-            obs.markLocAsUsed(loc)
             return True
 
         def getBracketList():
-            # 1. find positions of start bracket
-            if is_same_brakets:
-                p_txt = r'\%s' % start_bracket
-            else:
-                p_txt = r'\%s|\%s' % (start_bracket, end_bracket)
-
-            p = re.compile(p_txt)
-
             # split at the boundary of start and end brackets
-            brk_list=[]
             try:
-                m_list = p.finditer(text)
-                for m in m_list:
-                    ss = m.start()
-                    ee = m.end()
-                    brk = m.group(0)
-                    entry=(ss, ee, brk)
-                    brk_list.append(entry)
+                # 1. find positions of start bracket
+                if is_same_brakets:
+                    p_txt = r'\%s' % start_bracket
+                else:
+                    p_txt = r'[\%s\%s]' % (start_bracket, end_bracket)
+
+                p = re.compile(p_txt)
+                brk_list = Common.patternMatchAll(p, input_txt)
+                return brk_list, p
             except Exception as e:
-                df.LOG(f'{e}', error=True)
+                df.LOG(f'{e} [{input_txt}]', error=True)
                 raise e
             return brk_list
 
         def getSentenceList():
-            bracket_list = getBracketList()
+            bracket_list, pattern = getBracketList()
             if not bracket_list:
-                return sentence_list
+                return sentence_list, pattern
 
             # detecting where start/end and take the locations
             mm: MatcherRecord = None
             if is_same_brakets:
-                for s, e, bracket in bracket_list:
+                for loc, mm in bracket_list.items():
+                    s, e = loc
+                    bracket = mm.txt
                     is_bracket = (bracket == start_bracket)
                     if is_bracket:
                         if not q:
                             q.append(s)
                         else:
-                            is_finished = pop_q(s, e)
-                            if not is_finished:
-                                continue
+                            pop_q(s, e)
             else:
-                for s, e, bracket in bracket_list:
+                for loc, mm in bracket_list.items():
+                    s, e = loc
+                    bracket = mm.txt
                     is_open = (bracket == start_bracket)
                     is_close = (bracket == end_bracket)
                     if is_open:
@@ -977,85 +1021,57 @@ class Common:
                         if not q:
                             continue
                         else:
-                            is_finished = pop_q(s, e)
-                            if not is_finished:
-                                continue
-            return sentence_list
+                            pop_q(s, e)
+            return sentence_list, pattern
 
-        def removeBrackets(mm: MatcherRecord):
-            bracket_pattern_txt = r'(\%s)?([^\%s\%s]+)(\%s)?' % (start_bracket, start_bracket, end_bracket, end_bracket)
-            bracket_pattern = re.compile(bracket_pattern_txt)
-            # print(f'main mm: {mm}')
-            main_txt = mm.getMainText()
-            sub_mm: MatcherRecord = None
-            # Common.debugging(main_txt)
-            try:
-                found_dict = Common.patternMatchAll(bracket_pattern, main_txt)
-                found_list = list(found_dict.items())
-                if not found_list:
-                    return False
+        def sortSentencesFunction(item):
+            (loc, txt) = item
+            sort_key = (len(txt), loc)
+            return sort_key
 
-                count = len(found_list)
-                is_valid = (count < 2)
-                if not is_valid:
-                    raise ValueError(ER.TOO_MANY_SUB_ITEM)
-                sub_loc, sub_mm = found_list[0]
-                mm.addSubRecordFromAnother(sub_mm)
-                # print(f'sub_mm list: {found_list}')
-                return True
-            except Exception as e:
-                df.LOG(f'{e}', error=True)
-                raise e
-
-        def updateRecordsUsingSubLoc(dict_list, rootloc):
-            for mmloc, mm in dict_list.items():
-                is_same = (mmloc == rootloc)
-                if is_same:
-                    continue
-                mm.type = RefType.TEXT
-                # print(rootloc, mmloc, mm)
-                rs, re  = rootloc
-                ms, me = mmloc
-                dist = me-ms
-                new_ms = ms + rs
-                new_me = new_ms + dist
-                mm.updateMasterLoc(new_ms, new_me)
-
-
+        output_dict = OrderedDict()
         sentence_list = []
         q = deque()
-        s: int = -1
-        e: int = -1
-        last_s: int = -1
+        txt_len = len(input_txt)
         is_same_brakets = (start_bracket == end_bracket)
         if is_same_brakets:
             dd(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
                   f'ERRORS might occurs!')
 
-        obs = LocationObserver(text)
-        sentence_list = getSentenceList()
-        result_dict = OrderedDict()
+        sentence_list, pattern = getSentenceList()
+        if not sentence_list:
+            return output_dict
 
-        for index, (sub_loc, sub_txt) in enumerate(sentence_list):
-            part_dict = Common.findInvert(df.FILLER_PARTS,
-                                          sub_txt, is_reversed=True)
-            updateRecordsUsingSubLoc(part_dict, sub_loc)
-            for loc, mm in part_dict.items():
-                new_loc = (mm.s, mm.e)
-                test_text = text[mm.s: mm.e]
-                new_entry = {new_loc: mm}
-                result_dict.update(new_entry)
+        loc_list=[]
+        obs = LocationObserver(input_txt)
+        sentence_list.sort(key=sortSentencesFunction, reverse=True)
+        for loc, txt in sentence_list:
+            is_finished = obs.isCompletelyUsed()
+            if is_finished:
+                break
 
-        remove_list=[]
-        for loc, mm in result_dict.items():
-            is_ok = removeBrackets(mm)
-            if not is_ok:
-                remove_list.append(loc)
+            is_used = obs.isLocUsed(loc)
+            if is_used:
+                continue
 
-        for loc in remove_list:
-            del result_dict[loc]
+            if not is_include_bracket:
+                (sub_loc, actual_txt) = Common.removeStartEndBrackets(txt, start_bracket=start_bracket, end_bracket=end_bracket)
+                (cs, ce) = loc
+                (ss, se) = sub_loc
+                actual_loc = (cs + ss, cs + se)
+            else:
+                actual_loc = loc
+                actual_txt = txt
 
-        return result_dict
+            obs.markLocAsUsed(loc)
+            (ss, ee) = actual_loc
+            mm = MatcherRecord(s=ss, e=ee, txt=actual_txt)
+            mm.pattern = pattern
+            mm.type = RefType.ARCH_BRACKET
+            dict_entry = {actual_loc: mm}
+            output_dict.update(dict_entry)
+
+        return output_dict
 
     def removeSurroundingSpaces(self, txt_loc, txt):
         start_spc_mm: MatcherRecord = Common.patternMatch(df.START_SPACES, txt)
@@ -2014,7 +2030,7 @@ class Common:
         return MatcherRecord(matcher_record=mm)
 
     def debugging(txt):
-        msg = "@{mrkng} Đường Khâu"
+        msg = "Target Velocity, a"
         is_debug = (msg and txt and (msg.lower() in txt.lower()))
         # is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))

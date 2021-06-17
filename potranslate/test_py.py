@@ -139,41 +139,20 @@ class test(object):
         output_file = os.path.join(home, "untran.json")
         cm.writeJSONDic(selected_list, output_file)
 
-
-
-    def test_translate_0001(self, text_list=None):
-        from paragraph import Paragraph as PR
-        from sentence import StructRecogniser as SR
-
-        if not text_list:
-            t_list = [
-                # ":menuselection:`Pose --> Scale Envelope Distance`",
-"Validation",
-# "Value refers to each vector in the set.",
-# "Van der Waals",
-# "Vector handles",
-# "Vertex",
-# "Vertex Paint Brush",
-# "Vertex or Edge select modes",
-# "Vesta",
-# "Viewing the animation from a different perspective can help you see the animation with .",
-# "Viewport Display` panel",
-# "Viewport Display`, enable *Wireframe*",
-# "Viewport Renders",
-# "Vorbis",
-# "Voxels",
-            ]
-        else:
-            t_list = text_list
+    def findUnknownRefs(self):
+        home = os.environ['BLENDER_MAN_EN']
+        file_name = 'build/gettext/blender_manual.pot'
+        file_path = os.path.join(home, file_name)
 
         tf = TranslationFinder()
-        for t in t_list:
-            pr = PR(t, translation_engine=tf)
-            # pr.translateAsIs()
-            pr.translateSplitUp()
-            # output = pr.getTranslation()
-            output = pr.getTextAndTranslation()
-            df.LOG(output)
+        backup_dict = tf.backup_dic_list
+        data = c.load_po(file_path)
+        for m in data:
+            id = m.id
+            ref = RefList(msg=id, tf=tf)
+            ref.parseMessage()
+            ref.translate()
+        tf.writeBackupDict()
 
     def test_0001(self):
         word = r'[\w_\-]+'
@@ -203,10 +182,32 @@ class test(object):
         m = pat.search(t)
         print(m)
 
+    def test_translate_0001(self, text_list=None):
+        from paragraph import Paragraph as PR
+        from sentence import StructRecogniser as SR
+
+        if not text_list:
+            t_list = [
+
+            ]
+        else:
+            t_list = text_list
+
+        tf = TranslationFinder()
+        for t in t_list:
+            pr = PR(t, translation_engine=tf)
+            # pr.translateAsIs()
+            pr.translateSplitUp()
+            # output = pr.getTranslation()
+            output = pr.getTextAndTranslation()
+            df.LOG(output)
+        tf.writeBackupDict()
+
     def run(self):
         # self.test_0001()
         # import cProfile
         # self.findRefText()
+        # self.findUnknownRefs()
         self.resort_dictionary()
         self.test_translate_0001()
 

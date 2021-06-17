@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Corrected the error in translateMenuSelection">
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Added the ability to perform translations for segments of strings (from map), concurrently, before finally check for valid and blocking off the rest. This might proved to be wasteful for some operations but might shorten the overall timing in others. It will has to wait and see which is more benefit.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/err.py" beforeDir="false" afterPath="$PROJECT_DIR$/err.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref_dict_backup_0005_0001.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_backup_0005_0001.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +52,28 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.19831933" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test_py">
+    <configuration name="common" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="potranslate" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/common.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test_py" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="potranslate" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -72,6 +98,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.test_py" />
+        <item itemvalue="Python.common" />
       </list>
     </recent_temporary>
   </component>
@@ -119,8 +146,25 @@
       <option name="project" value="LOCAL" />
       <updated>1623513434755</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added the ability to perform translations for segments of strings (from map), concurrently, before finally check for valid and blocking off the rest. This might proved to be wasteful for some operations but might shorten the overall timing in others. It will has to wait and see which is more benefit.">
+      <created>1623606351019</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1623606351019</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -140,14 +184,15 @@
     <MESSAGE value="Before moving to Cython" />
     <MESSAGE value="Cleaned out the test_py.py, added the EXCLUDE clause in the sentence structure, which is validated in the validate_EXCLUDE, taking the matched_part and the smode_txt, in nocasedict.py. Added ignore_txt_list to allow text directly placed into the ignore list, bypassing the cumbersome regular expression list. Grouped the arguments of validation functions into one tuple, to avoid changes in the interface too much. Check to see if the txt to be translated in simpleFuzzyTranslate has a PATH CHAR (/) in it. This forces the evaluation of fuzzy ratio to take the overall rate rather than the partial ratio (considering it to be two words), also added forward slash to be a part of splitter components here (COMMON_WORD_SEP). Tried to shorten the for loops using map and list comprehension in paragraph.py." />
     <MESSAGE value="Corrected the error in translateMenuSelection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected the error in translateMenuSelection" />
+    <MESSAGE value="Added the ability to perform translations for segments of strings (from map), concurrently, before finally check for valid and blocking off the rest. This might proved to be wasteful for some operations but might shorten the overall timing in others. It will has to wait and see which is more benefit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to perform translations for segments of strings (from map), concurrently, before finally check for valid and blocking off the rest. This might proved to be wasteful for some operations but might shorten the overall timing in others. It will has to wait and see which is more benefit." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1775</line>
+          <line>1791</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -155,7 +200,24 @@
           <line>340</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>2037</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/translation_finder.py</url>
+          <line>1290</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">

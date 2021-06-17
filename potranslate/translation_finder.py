@@ -412,27 +412,29 @@ class TranslationFinder:
         tran = cm.cleanSlashesQuote(tran)
         msg = cm.cleanSlashesQuote(msg)
 
-        has_tran = (tran is not None)
-        if has_tran:
-            tran = cm.removeOriginal(msg, tran)
-            msg, tran = self.cleanBothEntries(msg, tran)
-        else:
-            msg = self.cleanOneEntry(msg)
+        # has_tran = (tran is not None)
+        # if has_tran:
+        #     tran = cm.removeOriginal(msg, tran)
+        #     msg, tran = self.cleanBothEntries(msg, tran)
+        # else:
+        #     msg = self.cleanOneEntry(msg)
+        #     tran = ""
+        #
+        # is_in = (msg in dict_list)
+        # if not is_in:
+        #     msg, tran = self.cleanBothEntries(msg, tran)
+        #     is_in = (msg in dict_list)
+        #
+        # if is_in:
+        #     current_tran = dict_list[msg]
+        #     is_diff = (current_tran != tran)
+        #     if is_diff:
+        #         del dict_list[msg]
+        #     else:
+        #         return
+
+        if not tran:
             tran = ""
-
-        is_in = (msg in dict_list)
-        if not is_in:
-            msg, tran = self.cleanBothEntries(msg, tran)
-            is_in = (msg in dict_list)
-
-        if is_in:
-            current_tran = dict_list[msg]
-            is_diff = (current_tran != tran)
-            if is_diff:
-                del dict_list[msg]
-            else:
-                return
-
         entry = {msg: tran}
         dict_list.update(entry)
         print(f'Added dict:[{msg}], [{tran}] to {indicator} file: [{dicfile_path}] ')
@@ -451,7 +453,7 @@ class TranslationFinder:
             self.writeBackupDict()
 
     def writeDict(self, dic_file, dic_list, indicator=''):
-        self.writeJSONDic(dict_list=dic_list, file_name=dic_file)
+        cm.writeJSONDic(dict_list=dic_list, file_name=dic_file)
 
     def writeBackupDict(self):
         dict_stat = self.writeDict(self.master_dic_backup_file, self.backup_dic, indicator='BACKUP')
@@ -1067,6 +1069,9 @@ class TranslationFinder:
             if is_single_char:
                 return (None, False, True)
 
+            # if not trans:
+            #     self.addBackupDictEntry(msg, None)
+
             if not trans:
                 df.LOG(f'calling tryFuzzyTranlation [{msg}]')
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg, )
@@ -1240,14 +1245,7 @@ class TranslationFinder:
             for loc, mnu_item_mm in loc_word_list.items():
                 sub_txt: str = mnu_item_mm.txt
 
-                left, mid, right = cm.getTextWithin(sub_txt)
-                tran, is_fuzzy, is_ignore = self.translate(mid)
-
-                has_left_right = (bool(left) or bool(right))
-                valid_tran = (bool(tran) is not is_ignore)
-                must_combine = (valid_tran and has_left_right)
-                if must_combine:
-                    tran = left + tran + right
+                tran, is_fuzzy, is_ignore = self.translate(sub_txt)
 
                 if is_ignore:
                     continue
@@ -1266,27 +1264,32 @@ class TranslationFinder:
 
                 mnu_item_mm.setTranlation(tran_txt, is_fuzzy, is_ignore)
 
-        msg = mm.getSubText()
+        try:
+            cm.debugging(mm.txt)
+            msg = mm.getSubText()
 
-        word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
-        translateMenuItem(word_list)
+            word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
+            translateMenuItem(word_list)
 
-        trans = str(msg)
-        tran_state_list=[]
-        for loc, mnu_item_mm in word_list.items():
-            trans = cm.jointText(trans, mnu_item_mm.translation, loc)
-            tran_state_list.append(mnu_item_mm.translation_state)
+            trans = str(msg)
+            tran_state_list=[]
+            for loc, mnu_item_mm in word_list.items():
+                trans = cm.jointText(trans, mnu_item_mm.translation, loc)
+                tran_state_list.append(mnu_item_mm.translation_state)
 
-        main_tran = mm.txt
-        sub_loc = mm.getSubLoc()
-        final_tran = cm.jointText(main_tran, trans, sub_loc)
+            main_tran = mm.txt
+            sub_loc = mm.getSubLoc()
+            final_tran = cm.jointText(main_tran, trans, sub_loc)
 
-        is_fuzzy = (TranslationState.FUZZY in tran_state_list)
-        is_ignore = (TranslationState.IGNORED in tran_state_list)
+            is_fuzzy = (TranslationState.FUZZY in tran_state_list)
+            is_ignore = (TranslationState.IGNORED in tran_state_list)
 
-        actual_ignore = ((not is_fuzzy) and is_ignore)
-        mm.setTranlation(final_tran, is_fuzzy, actual_ignore)
-        return True
+            actual_ignore = ((not is_fuzzy) and is_ignore)
+            mm.setTranlation(final_tran, is_fuzzy, actual_ignore)
+            return True
+        except Exception as e:
+            df.LOG(f'{e} [{mm}]')
+            raise e
 
     def removeAbbrevInTran(self, current_tran):
         if not current_tran:

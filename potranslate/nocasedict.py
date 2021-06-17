@@ -232,7 +232,7 @@ class NoCaseDict(OrderedDict):
                     is_ok = function(args)
                     is_ok_list.append(is_ok)
                     if not is_ok:
-                        df.LOG(f'function [{function.__name__}()] FAILED!')
+                        df.LOG(f'function [{function.__name__}()] FAILED! matched_part:[{matched_part}], extra_param:[{extra_param}]')
 
             ok = (False not in is_ok_list)
             return ok
@@ -282,7 +282,7 @@ class NoCaseDict(OrderedDict):
             (ratio, txt, pattern, matcher, value) = found_item
             return_item = (pattern, matcher, value)
 
-            df.LOG(f'SORTED found_results:')
+            df.LOG(f'SORTED found_results for [{key}]')
             pp(found_item)
 
             return return_item
