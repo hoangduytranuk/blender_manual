@@ -17,8 +17,16 @@ class Paragraph(list):
 
     def formatOutput(self):
         try:
-            tran = self.tl_txt.replace('"', '\\"')
-            orig = self.sl_txt.replace('"', '\\"')
+            tran = self.tl_txt
+            if tran:
+                tran = tran.replace('\\', '\\\\')
+                tran = tran.replace('"', '\\"')
+            else:
+                tran = ""
+
+            orig = self.sl_txt
+            orig = orig.replace('\\', '\\\\')
+            orig = orig.replace('"', '\\"')
             output = f'"{orig}": "{tran}",'
             return output
         except Exception as e:

@@ -688,9 +688,14 @@ class StructRecogniser():
         for sr_parsed_loc, sr in parsed_list:
             tran = sr.getTranslation()
             translation = cm.jointText(translation, tran, sr_parsed_loc)
-        df.LOG(f'OBTAIN TRANSLATION: origin:[{origin}] translation:[{translation}]')
-        processed(orig_loc, origin, translation)
-        return translation
+
+        is_valid = (translation and translation != origin)
+        if not is_valid:
+            return None
+        else:
+            df.LOG(f'OBTAIN TRANSLATION: origin:[{origin}] translation:[{translation}]')
+            processed(orig_loc, origin, translation)
+            return translation
 
     def translate(self):
         def addTranEntry(txt_loc, txt_sl, txt_tl):
@@ -714,10 +719,10 @@ class StructRecogniser():
                 is_processed = (txt in self.processed_list)
                 if is_processed:
                     tran = self.translateText(txt)
-                    addTranEntry(loc, txt, tran)
                 else:
                     tran = self.parseAndTranslateText(loc, txt)
-                    addTranEntry(loc, txt, tran)
+
+                addTranEntry(loc, txt, tran)
                 if tran:
                     tran = cm.matchCase(txt, tran)
 

@@ -1085,7 +1085,7 @@ class TranslationFinder:
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
             df.LOG(f'{e}; msg:[{msg}], trans:[{trans}]', error=True)
-            raise e
+            return (None, False, True)
 
     def translateKeyboard(self, mm: MatcherRecord):
         msg = mm.getSubText()

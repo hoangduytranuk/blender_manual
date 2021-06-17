@@ -746,8 +746,12 @@ class NoCaseDict(OrderedDict):
         return clipped_txt, tran
 
     def singleOutputFuzzyTranslation(self, txt):
-        tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(txt, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
-        return tran
+        try:
+            tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(txt, acceptable_rate=df.FUZZY_MODERATE_ACCEPTABLE_RATIO )
+            return tran
+        except Exception as e:
+            df.LOG(f'{e} [{txt}]')
+            return None
 
     def tranByPartitioning(self, sl_txt):
         def markTranslated(txt_loc, sl_txt, tl_txt):
@@ -799,12 +803,15 @@ class NoCaseDict(OrderedDict):
                     if ft_tran:
                         markTranslated(ft_loc, ft_word, ft_tran)
 
-            ft_translated_list.sort(reverse=True)
-            for ft_loc, ft_tran in ft_translated_list:
-                ft_translation = cm.jointText(ft_translation, ft_tran, ft_loc)
+            if ft_translated_list:
+                ft_translated_list.sort(reverse=True)
+                for ft_loc, ft_tran in ft_translated_list:
+                    ft_translation = cm.jointText(ft_translation, ft_tran, ft_loc)
 
-            is_translated = (ft_translation != sl_txt)
-            return_tran = (ft_translation if is_translated else None)
+                is_translated = (ft_translation != sl_txt)
+                return_tran = (ft_translation if is_translated else None)
+            else:
+                return_tran = None
 
         except Exception as e:
             return_tran = None
@@ -821,49 +828,58 @@ class NoCaseDict(OrderedDict):
         translated_list = {}
         selective_list = []
 
-        # tran, untran_dict = self.tranByPartitioning(input_txt)
-        # if tran:
-        #     return tran
-        #
-        obs = LocationObserver(input_txt)
-        for pat in df.symbol_splitting_pattern_list:
-            if obs.isCompletelyUsed():
-                break
-
-            word_list = cm.splitWordAtToList(pat, input_txt)
-            if not word_list:
-                continue
-
-            for loc, txt in word_list:
+        try:
+            obs = LocationObserver(input_txt)
+            for pat in df.symbol_splitting_pattern_list:
                 if obs.isCompletelyUsed():
                     break
 
-                if obs.isLocUsed(loc):
+                word_list = cm.splitWordAtToList(pat, input_txt)
+                if not word_list:
                     continue
 
-                trans_find_function = (self.singleOutputTranByPartitioning(txt) if not find_translation_function else find_translation_function)
-                tran = trans_find_function(txt)
-                is_translated = (tran and tran != txt)
-                if is_translated:
-                    obs.markLocAsUsed(loc)
-                    entry = {loc: tran}
-                    translated_list.update(entry)
+                for loc, txt in word_list:
+                    if obs.isCompletelyUsed():
+                        break
 
-        translated_list = list(translated_list.items())
-        translated_list.sort(reverse=True)
-        if translated_list:
+                    if obs.isLocUsed(loc):
+                        continue
+
+                    trans_find_function = (self.singleOutputTranByPartitioning if not find_translation_function else find_translation_function)
+                    try:
+                        tran = trans_find_function(txt)
+                    except Exception as ee:
+                        df.LOG(f'{trans_find_function.__name__} [{ee}]; [{input_txt}]')
+                        tran = None
+
+                    is_translated = (tran and tran != txt)
+                    if is_translated:
+                        obs.markLocAsUsed(loc)
+                        entry = {loc: tran}
+                        translated_list.update(entry)
+
+            if not translated_list:
+                return None
+
+            translated_list = list(translated_list.items())
+            translated_list.sort(reverse=True)
+
             df.LOG('translated_list:')
             dd('-' * 40)
             pp(translated_list)
             dd('-' * 40)
-        for loc, tran in translated_list:
-            translation = cm.jointText(translation, tran, loc)
 
-        is_translated = (translation != input_txt)
-        if is_translated:
-            df.LOG(f'input_txt:[{input_txt}]=>[{translation}]')
-            return translation
-        else:
+            for loc, tran in translated_list:
+                translation = cm.jointText(translation, tran, loc)
+
+            is_translated = (translation != input_txt)
+            if is_translated:
+                df.LOG(f'input_txt:[{input_txt}]=>[{translation}]')
+                return translation
+            else:
+                return None
+        except Exception as e:
+            df.LOG(f'{e} [{input_txt}]')
             return None
 
     def blindTranslate(self, txt):
