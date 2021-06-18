@@ -829,6 +829,7 @@ class NoCaseDict(OrderedDict):
         return tran
 
     def translateBySlittingSymbols(self, input_txt, find_translation_function=None):
+        df.LOG(f'[{input_txt}]')
         translation = str(input_txt)
         translated_list = {}
         selective_list = []
@@ -850,6 +851,7 @@ class NoCaseDict(OrderedDict):
                     if obs.isLocUsed(loc):
                         continue
 
+                    df.LOG(f'{loc} => {txt}')
                     trans_find_function = (self.singleOutputTranByPartitioning if not find_translation_function else find_translation_function)
                     try:
                         tran = trans_find_function(txt)

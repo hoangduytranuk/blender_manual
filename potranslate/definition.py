@@ -674,6 +674,8 @@ class Definitions:
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
     NON_SPACE_SYMBOLS = re.compile(r'[^\s\w\d]+')
     SYMBOLS = re.compile(r'[\W]+')
+    UNDER_SCORE = re.compile(r'[\_]+')
+
     SPACES = re.compile(r'\s+')
     START_SPACES = re.compile(r'^\s+')
     END_SPACES = re.compile(r'\s+$')
@@ -1324,7 +1326,7 @@ class Definitions:
         r"^\s*(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)\s*$",
         r"^\s*(X(/Y|YZ)?|Xvid|XY|XZ|YCbCr(\s\(ITU\s?\d+?\))?)\s*$",
         r"^\s*(Y(CC)?|YCbCr(\s\(Jpeg\))?|Z(ip)?|ZIPS)\s*$",
-        r"^\s*(\w+(_\w+)+)\s*$", # MASK_MT_add
+        # r"^\s*(\w+(_\w+)+)\s*$", # MASK_MT_add
         r"^\s*[\-]*\d+(\.[\w]{2,5})\s*$",  # -0001.jpg
         r"^\s*[\W]{1}$",
         r"^\s*\w([\s]?[<]?[\*\/\+\-\=][>]?[\s]?\w)+\s*$",  # A * B + C; A -> B
@@ -1494,6 +1496,7 @@ class Definitions:
     symbol_splitting_pattern_list = [
         NON_SPACE_SYMBOLS,
         SYMBOLS,
+        UNDER_SCORE,
     ]
 
     keep_contains_list.sort()

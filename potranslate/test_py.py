@@ -188,10 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "particle:age",
-                # "particle:angular_velocity",
-                # "particle:index",
-                # "particle:lifetime",
+                "particle:lifetime",
                 # "particle:location",
                 # "particle:size",
                 # "particle:velocity",

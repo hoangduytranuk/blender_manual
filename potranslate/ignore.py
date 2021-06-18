@@ -78,7 +78,7 @@ class Ignore:
                                "is_function": is_function,
                                "is_ref_link": is_ref_link
                                }
-                dd("IGNORING:", msg)
+                dd(f"IGNORING: [{msg}]")
                 pp(dict_ignore)
 
             return is_ignore
@@ -130,10 +130,10 @@ class Ignore:
 
         pattern = None
         try:
-            for m in df.runtime_ignore_list:
+            for index, m in enumerate(df.runtime_ignore_list):
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    # dd(f'isIgnoredWord: pattern:[{m.pattern}] [{text_line}]')
+                    dd(f'isIgnoredWord: [{index}] pattern:[{m.pattern}] text_line:[{text_line}]')
                     return True
             else:
                 return False
