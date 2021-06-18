@@ -1087,6 +1087,31 @@ class TranslationFinder:
             df.LOG(f'{e}; msg:[{msg}], trans:[{trans}]', error=True)
             return (None, False, True)
 
+    def translateAttrib(self, mm: MatcherRecord):
+        def formatResult(orig_txt, tran_list):
+            translation = str(orig_txt)
+            tran_list.sort(reverse=True)
+            for loc, sl_txt, tl_txt in tran_list:
+                if tl_txt:
+                    translation = cm.jointText(translation, tl_txt, loc)
+            return translation
+
+        orig_txt = str(mm.txt)
+        translated_list=[]
+        sub_list = mm.getSubEntriesAsList()
+        interested_part = sub_list[1:]
+        for loc, sl_txt in interested_part:
+            (tl_txt, is_fuzzy, is_ignore) = self.translate(sl_txt)
+            entry = (loc, sl_txt, tl_txt)
+            translated_list.append(entry)
+
+        translation = formatResult(orig_txt, translated_list)
+        mm.setTranlation(translation, True, False)
+        return True
+
+        return False
+
+
     def translateKeyboard(self, mm: MatcherRecord):
         msg = mm.getSubText()
         orig = str(msg)

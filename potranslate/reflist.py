@@ -318,6 +318,7 @@ class RefList(defaultdict):
             is_sng_quote = (ref_type == RefType.SNG_QUOTE)
             is_python_format = (ref_type == RefType.PYTHON_FORMAT)
             is_function = (ref_type == RefType.FUNCTION)
+            is_attrib = (ref_type == RefType.ATTRIB)
 
             is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
 
@@ -339,6 +340,9 @@ class RefList(defaultdict):
                 dd(f'translateRefItem: is_quoted:{ref_txt}')
                 ok = self.tf.translateQuoted(mm)
                 converted_to_abbr = True
+            elif is_attrib:
+                dd(f'translateRefItem: is_attrib:{ref_txt}')
+                ok = self.tf.translateAttrib(mm)
             elif is_arch_bracket:
                 ok = self.translateArchBracket(mm)
             else:

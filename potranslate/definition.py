@@ -55,6 +55,7 @@ class RefType(Enum):
     OSL_ATTRIB = "w:w"
     TEXT = "generic_text"
     FILLER = "filler"
+    ATTRIB = "var:var"
 
     @classmethod
     def getRef(cls, string_value: str):
@@ -226,6 +227,7 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
     ignore_txt_list = [
+        "object-proxy",
         "manual/images",
         "material:index",
     ]
@@ -538,6 +540,11 @@ class Definitions:
     NON_WORD_ENDING = re.compile(r'([\W]+)$')
     NON_WORD_STARTING = re.compile(r'^([\W]+)')
     TRANSLATABLE_CHARACTERS = re.compile(r'[a-zA-Z]+')
+
+    attrib_pat_txt = r'(%s)\:(%s)' % (var, var)
+    attrib_pat_abs_txt = r'^(%s)$' % (attrib_pat_txt)
+    ATTRIB_REF = re.compile(attrib_pat_abs_txt)
+    ATTRIB_REF_ABS = ATTRIB_REF
 
     GA_REF_PART = re.compile(r':[\w]+:')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
@@ -1500,6 +1507,7 @@ class Definitions:
         (DBL_QUOTE, RefType.DBL_QUOTE),
         (SNG_QUOTE, RefType.SNG_QUOTE),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
+        (ATTRIB_REF, RefType.ATTRIB),
         (GA_REF, RefType.GA),
     ]
 
@@ -1511,6 +1519,7 @@ class Definitions:
         DBL_QUOTE_ABS,
         SNG_QUOTE_ABS,
         BLANK_QUOTE_ABS,
+        ATTRIB_REF_ABS,
     ]
 
 class SentStructModeRecord:

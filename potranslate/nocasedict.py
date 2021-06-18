@@ -574,8 +574,13 @@ class NoCaseDict(OrderedDict):
             found_list.extend(found_after)
             return found_list
 
+
         untran_word_dic = {}
         default_result = (None, None, 0, untran_word_dic)
+
+        is_ref = cm.isRef(msg)
+        if is_ref:
+            return default_result
 
         if ig.isIgnored(msg):
             return default_result
