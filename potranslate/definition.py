@@ -1361,6 +1361,8 @@ class Definitions:
         ]
 
     ignore_txt_list = [
+        "sin(x)/x",
+        "sid",
         "sculpt_mask_clear-data",
         "screw spring example.blend",
         "screw hardware example.blend",
