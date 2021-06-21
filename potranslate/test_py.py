@@ -188,9 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "scene settings",
-                # "scene's active camera",
-                # "scene-wide bounce settings",
+                "scene-wide bounce settings",
                 # "screw hardware example.blend",
                 # "screw spring example.blend",
                 # "sculpt_mask_clear-data",
