@@ -188,24 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                # "wear",
-                # "weight = 1",
-                # "weight groups",
-                # "weight maps",
-                # "weighted",
-                # "wet paint",
-                # "wetmap",
-                # "which are not already parented",
-                # "while panicked",
-                # "white ring",
-                # "whitespace",
-                # "whole bones",
-                # "wire removal",
-                # "yadif",
-                # "zero level",
-                # "zero weights/radii",
-                # "zoom level",
-                # "{base path}/{file name}{frame number}.{extension}"
+                "{§base path§}/{§file name§}{§frame number§}.{§extension§}"
             ]
         else:
             t_list = text_list

@@ -227,7 +227,7 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
 
-    split_sent_seg_txt = r'\s?([\,\.\-\;](?<!(e\.g\.|etc\.))\s)|([\(\)])'
+    split_sent_seg_txt = r'\s?([\,\.\-\;](?<!(e\.g\.|etc\.))\s)|([\(\)]|[{}])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
 
     total_files = 1358
@@ -1361,6 +1361,7 @@ class Definitions:
         ]
 
     ignore_txt_list = [
+        "yadif",
         "ui-eyedropper",
         "ui_template_list diff",
         "translucent(N)",
