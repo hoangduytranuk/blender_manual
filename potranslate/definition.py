@@ -1361,6 +1361,7 @@ class Definitions:
         ]
 
     ignore_txt_list = [
+        "quaternion",
         "prefs-index",
         "prefs-menu",
         "object-proxy",

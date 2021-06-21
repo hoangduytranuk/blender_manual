@@ -188,11 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "quad only",
-                # "quaternion is normalized",
-                # "rabbit",
-                # "randomly",
-                # "rating system performs",
+                "rating system performs",
                 # "rays",
                 # "re-textured",
                 # "real-world",
