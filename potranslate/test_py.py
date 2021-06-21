@@ -188,14 +188,6 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "visually",
-                # "volume objects",
-                # "volume shader",
-                # "wake",
-                # "walking",
-                # "wall-thickness",
-                # "walls",
-                # "wave factor",
                 # "wear",
                 # "weight = 1",
                 # "weight groups",
