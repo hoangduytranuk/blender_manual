@@ -188,14 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "sRGB Color Space",
-                # "same thing",
-                # "same-named pose",
-                # "scale transformation",
-                # "scaled",
-                # "scene dicing rate",
-                # "scene linear",
-                # "scene settings",
+                "scene settings",
                 # "scene's active camera",
                 # "scene-wide bounce settings",
                 # "screw hardware example.blend",
