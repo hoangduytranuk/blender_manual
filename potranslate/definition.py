@@ -1361,6 +1361,10 @@ class Definitions:
         ]
 
     ignore_txt_list = [
+        "svn add /path/to/file",
+        "svn rm /path/to/file",
+        "sudo nano /etc/paths",
+        "supported platforms",
         "sin(x)/x",
         "sid",
         "sculpt_mask_clear-data",
