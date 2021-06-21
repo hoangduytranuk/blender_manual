@@ -188,15 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "relative file path",
-                # "remarks",
-                # "rendered shading",
-                # "rendering animation",
-                # "rendering camera",
-                # "rendering to videos",
-                # "resets",
-                # "retinal rivalry areas",
-                # "reversed order",
+                "reversed order",
                 # "ribbon",
                 # "right within the UI controls",
                 # "rings of influence",
