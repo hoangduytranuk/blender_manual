@@ -188,15 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "rating system performs",
-                # "rays",
-                # "re-textured",
-                # "real-world",
-                # "recently",
-                # "register an extension prefix",
-                # "regrouping",
-                # "relations page",
-                # "relative file path",
+                "relative file path",
                 # "remarks",
                 # "rendered shading",
                 # "rendering animation",
