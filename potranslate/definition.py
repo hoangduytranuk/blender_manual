@@ -1361,6 +1361,9 @@ class Definitions:
         ]
 
     ignore_txt_list = [
+        "sculpt_mask_clear-data",
+        "screw spring example.blend",
+        "screw hardware example.blend",
         "quaternion",
         "prefs-index",
         "prefs-menu",

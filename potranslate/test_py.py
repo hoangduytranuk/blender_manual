@@ -188,19 +188,6 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "scene-wide bounce settings",
-                # "screw hardware example.blend",
-                # "screw spring example.blend",
-                # "sculpt_mask_clear-data",
-                # "sea level",
-                # "see example blend-file",
-                # "see the example on GitHub",
-                # "see this",
-                # "sees",
-                # "selecting in the 3D View",
-                # "selection ring",
-                # "several independent websites",
-                # "several modes",
                 # "shader socket",
                 # "shading nodes",
                 # "shallow link",
