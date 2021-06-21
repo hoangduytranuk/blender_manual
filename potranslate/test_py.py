@@ -188,10 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "primitive shape",
-                # "procedural texture nodes",
-                # "procedurally",
-                # "properties switching/enabling/disabling",
+                "properties switching/enabling/disabling",
                 # "property in mapping",
                 # "pseudo line",
                 # "pulls",

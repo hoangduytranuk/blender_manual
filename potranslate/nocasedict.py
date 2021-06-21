@@ -769,7 +769,7 @@ class NoCaseDict(OrderedDict):
             tran = self.singleOutputFuzzyTranslation(the_text)
             return (loc, the_text, tran)
 
-        ft_map = cm.genmap(sl_txt)
+        ft_map = cm.genmap(sl_txt, using_pattern=df.SPACE_SEP_WORD_AND_FSLASH)
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
         part_txt = None
@@ -779,7 +779,8 @@ class NoCaseDict(OrderedDict):
                 found_results = executor.map(translateMap, ft_map)
 
             ft_translation = str(sl_txt)
-            for (ft_loc, ft_word, ft_tran) in found_results:
+            found_result_list = list(found_results)
+            for (ft_loc, ft_word, ft_tran) in found_result_list:
                 if ft_obs.isCompletelyUsed():
                     break
 

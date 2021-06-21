@@ -226,13 +226,6 @@ class Definitions:
         'billion(s|th)?': '@{1t}',
         'trillion(s|th)?': '@{1t}',
     }
-    ignore_txt_list = [
-        "prefs-index",
-        "prefs-menu",
-        "object-proxy",
-        "manual/images",
-        "material:index",
-    ]
 
     split_sent_seg_txt = r'\s?([\,\.\-\;](?<!(e\.g\.|etc\.))\s)|([\(\)])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
@@ -679,6 +672,7 @@ class Definitions:
     UNDER_SCORE = re.compile(r'[\_]+')
 
     SPACES = re.compile(r'\s+')
+
     START_SPACES = re.compile(r'^\s+')
     END_SPACES = re.compile(r'\s+$')
 
@@ -687,6 +681,8 @@ class Definitions:
 
     NOT_SYMBOLS = re.compile(r'[\w]+')
     SPACE_SEP_WORD = re.compile(r'[^\s]+')
+    SPACE_SEP_WORD_AND_FSLASH = re.compile(r'[^\s\/]+')
+
     THE_WORD = re.compile(r'\bthe\b\s?', re.I)
     POSSESSIVE_APOS = re.compile(r'(\'s)\b')
 
@@ -1364,7 +1360,15 @@ class Definitions:
         r"^(\w[\W]+)$",
         ]
 
-    # , ""
+    ignore_txt_list = [
+        "prefs-index",
+        "prefs-menu",
+        "object-proxy",
+        "manual/images",
+        "material:index",
+    ]
+
+# , ""
     ignore_start_with_list = [
         # "bpy", "bpy", "bl_info", "dx",
         #"", "", "", "", "",
@@ -1383,6 +1387,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "switching/enabling/disabling",
         "toggle/enable/disable",
         "cycles only",
         "yellow/green/purple",

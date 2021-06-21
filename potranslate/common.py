@@ -1881,7 +1881,7 @@ class Common:
         return_dict = OrderedDict(sorted(local_found_dict_list.items(), reverse=True))
         return (return_dict, obs)
 
-    def genmap(msg, is_reverse=True, is_removing_symbols=False):
+    def genmap(msg, is_reverse=True, is_removing_symbols=False, using_pattern=None):
         def simplifiesMatchedRecords():
             mm: MatcherRecord = None
             for loc, mm in matched_list:
@@ -1919,8 +1919,8 @@ class Common:
         occupied_list = ref_dict_list.keys()
 
         sep_pattern = (df.SPACE_WORD_SEP if not is_removing_symbols else df.SYMBOLS)
-        # matched_dict = Common.patternMatchAll(df.SPACE_WORD_SEP, msg)
-        matched_dict = Common.patternMatchAll(sep_pattern, msg)
+        actual_pattern = (using_pattern if using_pattern else sep_pattern)
+        matched_dict = Common.patternMatchAll(actual_pattern, msg)
         matched_list = list(matched_dict.items())
         max = len(matched_dict)
         loc_dic = {}
