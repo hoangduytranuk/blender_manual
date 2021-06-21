@@ -188,9 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "reversed order",
-                # "ribbon",
-                # "right within the UI controls",
+                "right within the UI controls",
                 # "rings of influence",
                 # "ripple edit",
                 # "roll rotation",
