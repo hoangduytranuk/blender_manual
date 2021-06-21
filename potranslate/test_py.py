@@ -188,17 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                # "pose marker",
-                # "poses",
-                # "pre-distort",
-                # "precision control",
-                # "predators",
-                # "prefs-index",
-                # "prefs-menu",
-                # "pressure stylus",
-                # "previews",
-                # "previous pages",
-                # "primitive shape",
+                "primitive shape",
                 # "procedural texture nodes",
                 # "procedurally",
                 # "properties switching/enabling/disabling",

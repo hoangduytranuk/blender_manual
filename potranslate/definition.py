@@ -227,6 +227,8 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
     ignore_txt_list = [
+        "prefs-index",
+        "prefs-menu",
         "object-proxy",
         "manual/images",
         "material:index",
