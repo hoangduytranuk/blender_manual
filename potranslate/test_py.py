@@ -188,11 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "properties switching/enabling/disabling",
-                # "property in mapping",
-                # "pseudo line",
-                # "pulls",
-                # "quad only",
+                "quad only",
                 # "quaternion is normalized",
                 # "rabbit",
                 # "randomly",
