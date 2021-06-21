@@ -188,16 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "right within the UI controls",
-                # "rings of influence",
-                # "ripple edit",
-                # "roll rotation",
-                # "roofs",
-                # "root bone",
-                # "root handle",
-                # "root of the bone",
-                # "rotation pivot point",
-                # "sRGB Color Space",
+                "sRGB Color Space",
                 # "same thing",
                 # "same-named pose",
                 # "scale transformation",
