@@ -1361,6 +1361,14 @@ class Definitions:
         ]
 
     ignore_txt_list = [
+        "ui-eyedropper",
+        "ui_template_list diff",
+        "translucent(N)",
+        "topbar-app_menu",
+        "topbar-render",
+        "top -o %MEM",
+        "top -o MEM",
+        "tool-annotate",
         "svn add /path/to/file",
         "svn rm /path/to/file",
         "sudo nano /etc/paths",

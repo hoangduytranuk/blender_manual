@@ -787,12 +787,11 @@ class NoCaseDict(OrderedDict):
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
-                df.LOG(f'found: {[{ft_word}]} => [{ft_tran}]')
                 # dd(f'trying: [{ft_word}]')
                 # part_txt = ft_word
                 # ft_tran = self.singleOutputFuzzyTranslation(ft_word)
                 if ft_tran:
-                    # df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
+                    df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)
                 else:
                     wc = len(ft_word.split())
@@ -830,41 +829,49 @@ class NoCaseDict(OrderedDict):
         return tran
 
     def translateBySlittingSymbols(self, input_txt, find_translation_function=None):
+        def splitByPattern(arg):
+            (pat, txt) = arg
+            word_list = cm.splitWordAtToList(pat, input_txt)
+            return word_list
+
         df.LOG(f'[{input_txt}]')
         translation = str(input_txt)
         translated_list = {}
         selective_list = []
 
         try:
+
+            arg_list = [(pat, input_txt) for pat in df.symbol_splitting_pattern_list]
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_results = executor.map(splitByPattern, arg_list)
+
+            found_result_list = list(found_results)
+            group_list = []
+            for sub_list in found_result_list:
+                group_list.extend(sub_list)
+            temp_dict = OrderedDict(group_list)
+
             obs = LocationObserver(input_txt)
-            for pat in df.symbol_splitting_pattern_list:
+            for loc, txt in temp_dict.items():
                 if obs.isCompletelyUsed():
                     break
 
-                word_list = cm.splitWordAtToList(pat, input_txt)
-                if not word_list:
+                if obs.isLocUsed(loc):
                     continue
 
-                for loc, txt in word_list:
-                    if obs.isCompletelyUsed():
-                        break
+                # df.LOG(f'{loc} => {txt}')
+                trans_find_function = (self.singleOutputTranByPartitioning if not find_translation_function else find_translation_function)
+                try:
+                    tran = trans_find_function(txt)
+                except Exception as ee:
+                    df.LOG(f'{trans_find_function.__name__} [{ee}]; [{input_txt}]')
+                    tran = None
 
-                    if obs.isLocUsed(loc):
-                        continue
-
-                    df.LOG(f'{loc} => {txt}')
-                    trans_find_function = (self.singleOutputTranByPartitioning if not find_translation_function else find_translation_function)
-                    try:
-                        tran = trans_find_function(txt)
-                    except Exception as ee:
-                        df.LOG(f'{trans_find_function.__name__} [{ee}]; [{input_txt}]')
-                        tran = None
-
-                    is_translated = (tran and tran != txt)
-                    if is_translated:
-                        obs.markLocAsUsed(loc)
-                        entry = {loc: tran}
-                        translated_list.update(entry)
+                is_translated = (tran and tran != txt)
+                if is_translated:
+                    obs.markLocAsUsed(loc)
+                    entry = {loc: tran}
+                    translated_list.update(entry)
 
             if not translated_list:
                 return None
@@ -892,8 +899,8 @@ class NoCaseDict(OrderedDict):
 
     def blindTranslate(self, txt):
         tran, un_tran_list = self.tranByPartitioning(txt)
-        if not tran:
-            tran = self.translateBySlittingSymbols(txt)
+        # if not tran:
+        #     tran = self.translateBySlittingSymbols(txt)
         return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:

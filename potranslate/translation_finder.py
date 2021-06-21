@@ -1077,10 +1077,10 @@ class TranslationFinder:
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg, )
                 is_fuzzy = bool(trans)
 
-            if not trans:
-                df.LOG(f'calling SimpleBlindTranslation [{msg}]')
-                trans = self.simpleBlindTranslation(msg)
-                is_fuzzy = True
+            # if not trans:
+            #     df.LOG(f'calling SimpleBlindTranslation [{msg}]')
+            #     trans = self.simpleBlindTranslation(msg)
+            #     is_fuzzy = True
 
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:
