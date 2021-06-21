@@ -188,19 +188,6 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "particle:lifetime",
-                # "particle:location",
-                # "particle:size",
-                # "particle:velocity",
-                # "pass through",
-                # "per-light override",
-                # "perfectly still",
-                # "performed manually",
-                # "physics simulations",
-                # "pivot point page",
-                # "played",
-                # "points in between",
-                # "pose library feature",
                 # "pose marker",
                 # "poses",
                 # "pre-distort",
