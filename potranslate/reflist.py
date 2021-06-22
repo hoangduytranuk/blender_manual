@@ -8,6 +8,8 @@ from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from sentence import StructRecogniser as SR
 from nocasedict import NoCaseDict as NDIC
+import random
+import string
 
 import operator as OP
 import inspect as INP
@@ -308,7 +310,7 @@ class RefList(defaultdict):
                 dd('-' * 80)
 
     def translateOneText(self, input_txt):
-        sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
+        sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict, ref_list=self)
         loc = (0, len(input_txt))
         trans = sr.parseAndTranslateText(loc, input_txt)
         is_fuzzy = sr.isFuzzy()
@@ -320,6 +322,60 @@ class RefList(defaultdict):
         return trans, is_fuzzy, is_ignore
 
     def translate(self):
+        def restoreMaskingString(trans, mask_list):
+            if trans:
+                new_tran = str(trans)
+                mask_list_with_loc = []
+                mm: MatcherRecord = None
+                for loc, new_mask, mm_txt, mm in mask_list:
+                    ss = trans.find(new_mask)
+                    ee = ss + len(new_mask)
+                    mm_tran = mm.translation
+                    valid_tran = (mm_tran and mm_tran != mm_txt)
+                    if not valid_tran:
+                        mm_tran = mm_txt
+                    mask_loc = (ss, ee)
+                    mask_list_with_loc_entry = (mask_loc, mm_txt, mm_tran)
+                    mask_list_with_loc.append(mask_list_with_loc_entry)
+
+                mask_list_with_loc.sort(reverse=True)
+
+                for (mask_loc, mm_txt, mm_tran) in mask_list_with_loc:
+                    new_tran = cm.jointText(new_tran, mm_tran, mask_loc)
+            else:
+                new_tran = str(self.msg)
+                ref_list = list(self.items())
+                ref_list.sort(reverse=True)
+                for loc, mm in ref_list:
+                    trans_txt = mm.translation
+                    if trans_txt:
+                        new_tran = cm.jointText(new_tran, trans_txt, loc)
+                return new_tran
+
+
+            return new_tran
+
+        def genMasks(txt):
+            temp_txt = str(txt)
+            mask_table = []
+            letters = string.digits
+            for loc, mm in self.items():
+                mm_type = mm.type
+                is_txt = (mm_type == RefType.TEXT)
+                if is_txt:
+                    continue
+
+                mm_txt = mm.txt
+                txt_len = len(mm_txt)
+                new_mask = (''.join(random.choice(letters) for i in range(txt_len)))
+                mask_table_entry = (loc, new_mask, mm_txt, mm)
+                mask_table.append(mask_table_entry)
+
+                temp_txt = cm.jointText(temp_txt, new_mask, loc)
+
+            return temp_txt, mask_table
+
+
         mm_record: MatcherRecord = None
         is_translated = (self.translation_state != TranslationState.UNTRANSLATED)
         if is_translated:
@@ -330,24 +386,37 @@ class RefList(defaultdict):
         has_ref = (len(self) > 0)
 
         if not has_ref:
-            self.translateOneText(input_txt)
+            sent_translation, is_fuzzy, is_ignore = self.translateOneText(input_txt)
         else:
             tran_required_reversed_list = list(self.items())
             tran_required_reversed_list.sort(reverse=True)
             for k, mm_record in tran_required_reversed_list:
+                is_ref = (mm_record.type != RefType.TEXT)
+                if not is_ref:
+                    continue
                 self.translateMatcherRecord(mm_record)
 
-            sent_translation = tran_text
-            for mm_loc, mm_record in tran_required_reversed_list:
-                tran = mm_record.translation
-                has_translation = bool(tran)
-                if not has_translation:
-                    continue
-                sent_translation = cm.jointText(sent_translation, tran, mm_loc)
+            masking_string, masked_list = genMasks(input_txt)
+            trans, is_fuzzy, is_ignore = self.translateOneText(masking_string)
+            sent_translation = restoreMaskingString(trans, masked_list)
 
-            is_fuzzy = self.isFuzzy()
-            is_ignore = self.isIgnore()
-            self.setTranslation(sent_translation, is_fuzzy, is_ignore)
+            # print(sent_translation)
+            # tran_required_reversed_list = list(self.items())
+            # tran_required_reversed_list.sort(reverse=True)
+            # for k, mm_record in tran_required_reversed_list:
+            #     self.translateMatcherRecord(mm_record)
+            #
+            # sent_translation = tran_text
+            # for mm_loc, mm_record in tran_required_reversed_list:
+            #     tran = mm_record.translation
+            #     has_translation = bool(tran)
+            #     if not has_translation:
+            #         continue
+            #     sent_translation = cm.jointText(sent_translation, tran, mm_loc)
+            #
+            # is_fuzzy = self.isFuzzy()
+            # is_ignore = self.isIgnore()
+        self.setTranslation(sent_translation, is_fuzzy, is_ignore)
 
     def translateMatcherRecord(self, mm: MatcherRecord, is_translating_arch_bracket=True):
         sub_loc: tuple = None

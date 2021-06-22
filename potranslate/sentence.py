@@ -48,7 +48,9 @@ class StructRecogniser():
 
                  translation_engine=None,
                  processed_dict=None,
-                 glob_sr=None
+                 glob_sr=None,
+
+                 ref_list=None,
                  ):
         self.is_sent_struct=False
         # key in dictionary, in the form 'chang\\w+ $$$ to $$$'
@@ -84,6 +86,7 @@ class StructRecogniser():
         self.global_sr_list=glob_sr
         self.ignore_list = []
         self.fuzzy_list = []
+        self.ref_list = ref_list
 
     def __repr__(self):
         string = "\n{!r}".format(self.__dict__)
@@ -96,11 +99,11 @@ class StructRecogniser():
         self.fuzzy_list.append(value)
 
     def isIgnore(self):
-        is_ignore = (self.ignore_list and False not in self.ignore_list)
+        is_ignore = bool(self.ignore_list) and (False not in self.ignore_list)
         return is_ignore
 
     def isFuzzy(self):
-        is_fuzzy = (self.fuzzy_list and True in self.fuzzy_list)
+        is_fuzzy = bool(self.fuzzy_list) and (True in self.fuzzy_list)
         return is_fuzzy
 
     def getDict(self):

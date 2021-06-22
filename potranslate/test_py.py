@@ -188,14 +188,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "\"D\" stands for \"dash\", \"G\" stands for \"gap\"; see also `Dashed Line`_",
-                # "\"Overlay\" in figure",
-                # "\"X\" icon",
-                # "\"You have to select a string of connected vertices too\"",
-                # "\"auto\"",
-                # "\"big\" joint",
-                # "\"bone heat\" algorithm",
-                # "\"closest\" can be a bit ambiguous",
+                "\"closest\" can be a bit ambiguous",
                 # "\"moving\"",
                 # "\"radial\" falloff",
                 # "\"small\" joint",

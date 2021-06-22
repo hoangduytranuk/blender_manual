@@ -850,9 +850,6 @@ class TranslationFinder:
 
     def isInDict(self, msg, dic_to_use=None):
         tran = None
-        # is_ignore = ig.isIgnored(msg)
-        # if is_ignore:
-        #     return None
 
         is_ref = cm.isRef(msg)
         if is_ref:

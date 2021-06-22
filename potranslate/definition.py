@@ -625,6 +625,10 @@ class Definitions:
     ALPHA_NUMERICAL = re.compile(r'[\w]+')
     EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
     OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
+    REF_FILLER_CHAR = '¢'
+    ref_filler_char_pat_txt = r'[%s]+' % (REF_FILLER_CHAR)
+    REF_FILLER_PAT = re.compile(ref_filler_char_pat_txt)
+
     FILLER_CHAR='¶'
     filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
     FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
