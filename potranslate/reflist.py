@@ -469,10 +469,11 @@ class RefList(defaultdict):
 
         tran, is_fuzzy, is_ignore = self.translateOneText(msg)
         if is_ignore:
-            return
+            return False
 
         if not tran:
-            tran = ""
+            mm.setTranlation(None, is_fuzzy, is_ignore)
+            return False
 
         tran = self.removeAbbrevInTran(tran)
         tran = cm.removeOriginal(msg, tran)

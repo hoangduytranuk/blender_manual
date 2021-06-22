@@ -3,6 +3,7 @@ from common import Common as cm, dd, pp, LocationObserver
 from sentence import StructRecogniser as SR
 from definition import Definitions as df
 from reflist import RefList
+from ignore import Ignore as ig
 
 class Paragraph(list):
     def __init__(self, txt, translation_engine=None):
@@ -39,6 +40,10 @@ class Paragraph(list):
 
     def translateText(self, txt):
         try:
+            is_ignore = ig.isIgnored(txt)
+            if is_ignore:
+                return None
+
             ref_list = RefList(msg=txt, keep_orig=False, tf=self.tf)
             ref_list.parseMessage()
             ref_list.translate()
@@ -67,8 +72,7 @@ class Paragraph(list):
             orig_txt = mm.txt
             tran = self.tf.isInDict(orig_txt)
             if not tran:
-                sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
-                tran = sr.parseAndTranslateText(loc, orig_txt)
+                tran = self.translateText(orig_txt)
 
             if tran:
                 tran = cm.removeTheWord(tran)
@@ -99,13 +103,5 @@ class Paragraph(list):
                 self.tl_txt = translation
 
             sr: SR = None
-            # for txt, sr in self.sr_global_dict.items():
-            #     dd('-' * 80)
-            #     dd(f'{fname}()')
-            #     dd(f'pattern:{sr.recog_pattern.pattern}; [{sr.dict_sl_rec.txt} => {sr.dict_tl_rec.txt}]')
-            #     dd(f'dict_sl_rec:{sr.sent_sl_rec.txt};')
-            #     dd(f'sent_tl_rec:{sr.sent_tl_rec.txt};')
-            #     dd(f':{sr.getTextListTobeTranslated()};')
-            # df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
         except Exception as e:
             df.LOG(f'{e};', error=True)

@@ -1360,7 +1360,9 @@ class Definitions:
         r"^(\w[\W]+)$",
         ]
 
+    # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "\"agent\"",
         "yadif",
         "ui-eyedropper",
         "ui_template_list diff",
