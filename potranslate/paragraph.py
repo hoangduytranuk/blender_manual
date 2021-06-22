@@ -1,19 +1,16 @@
 import time
-
 from common import Common as cm, dd, pp, LocationObserver
-from translation_finder import TranslationFinder
 from sentence import StructRecogniser as SR
-from nocasedict import NoCaseDict as NDIC
 from definition import Definitions as df
-import inspect as INP
+from reflist import RefList
 
 class Paragraph(list):
     def __init__(self, txt, translation_engine=None):
         self.sl_txt = txt
         self.tl_txt = None
         self.tf = translation_engine
-        self.parsed_dict = NDIC()
-        self.sr_global_dict = NDIC()
+        # self.parsed_dict = NDIC()
+        # self.sr_global_dict = NDIC()
 
     def formatOutput(self):
         try:
@@ -40,14 +37,23 @@ class Paragraph(list):
     def getTextAndTranslation(self):
         return self.formatOutput()
 
+    def translateText(self, txt):
+        try:
+            ref_list = RefList(msg=txt, keep_orig=False, tf=self.tf)
+            ref_list.parseMessage()
+            ref_list.translate()
+            trans = ref_list.getTranslation()
+            return trans
+        except Exception as e:
+            df.LOG(e)
+            return None
+
     def translateAsIs(self):
         try:
             orig_txt = self.sl_txt
             tran = self.tf.isInDict(orig_txt)
             if not tran:
-                sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
-                loc = (0, len(orig_txt))
-                tran = sr.parseAndTranslateText(loc, orig_txt)
+                tran = self.translateText(orig_txt)
             if tran:
                 tran = cm.removeTheWord(tran)
                 self.tl_txt = tran

@@ -188,7 +188,8 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "{§base path§}/{§file name§}{§frame number§}.{§extension§}"
+                # "(Crepuscular Rays)",
+                "\"You have to select a string of connected vertices too\""
             ]
         else:
             t_list = text_list
@@ -196,8 +197,8 @@ class test(object):
         tf = TranslationFinder()
         for t in t_list:
             pr = PR(t, translation_engine=tf)
-            # pr.translateAsIs()
-            pr.translateSplitUp()
+            pr.translateAsIs()
+            # pr.translateSplitUp()
             # output = pr.getTranslation()
             output = pr.getTextAndTranslation()
             df.LOG(output)

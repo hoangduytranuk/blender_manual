@@ -6,6 +6,8 @@ from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
+from sentence import StructRecogniser as SR
+from nocasedict import NoCaseDict as NDIC
 
 import operator as OP
 import inspect as INP
@@ -53,6 +55,10 @@ class RefList(defaultdict):
         self.pattern = pat
         self.keep_original = keep_orig
         self.tf = tf
+
+        self.parsed_dict = NDIC()
+        self.sr_global_dict = NDIC()
+
 
     def reproduce(self):
         return self.__class__()
@@ -237,6 +243,15 @@ class RefList(defaultdict):
         #     dd('-' * 80)
         return count_item
 
+    def getListOfRefType(self, request_list_of_ref_type):
+        ref_list=[]
+        for mm_loc, mm in self.items():
+            type = mm.type
+            is_found = (type in request_list_of_ref_type)
+            if is_found:
+                ref_list.append(mm)
+        return ref_list
+
     def addUnparsedDict(self, unparsed_dict: dict):
         mm: MatcherRecord = None
         for uloc, mm in unparsed_dict.items():
@@ -292,6 +307,47 @@ class RefList(defaultdict):
                 dd(f'{mm_rec.txt}')
                 dd('-' * 80)
 
+    def translateOneText(self, input_txt):
+        sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict)
+        loc = (0, len(input_txt))
+        trans = sr.parseAndTranslateText(loc, input_txt)
+        is_fuzzy = sr.isFuzzy()
+        is_ignore = sr.isIgnore()
+        if trans:
+            # trans = cm.matchCase(input_txt, trans)
+            if self.keep_original:
+                trans = f'{trans} -- {input_txt}'
+        return trans, is_fuzzy, is_ignore
+
+    def translate(self):
+        mm_record: MatcherRecord = None
+        is_translated = (self.translation_state != TranslationState.UNTRANSLATED)
+        if is_translated:
+            return
+
+        input_txt = self.msg
+        tran_text = str(self.msg)
+        has_ref = (len(self) > 0)
+
+        if not has_ref:
+            self.translateOneText(input_txt)
+        else:
+            tran_required_reversed_list = list(self.items())
+            tran_required_reversed_list.sort(reverse=True)
+            for k, mm_record in tran_required_reversed_list:
+                self.translateMatcherRecord(mm_record)
+
+            sent_translation = tran_text
+            for mm_loc, mm_record in tran_required_reversed_list:
+                tran = mm_record.translation
+                has_translation = bool(tran)
+                if not has_translation:
+                    continue
+                sent_translation = cm.jointText(sent_translation, tran, mm_loc)
+
+            is_fuzzy = self.isFuzzy()
+            is_ignore = self.isIgnore()
+            self.setTranslation(sent_translation, is_fuzzy, is_ignore)
 
     def translateMatcherRecord(self, mm: MatcherRecord, is_translating_arch_bracket=True):
         sub_loc: tuple = None
@@ -329,30 +385,31 @@ class RefList(defaultdict):
             converted_to_abbr = False
             if is_kbd:
                 dd(f'translateRefItem: is_kbd:{ref_txt}')
-                ok = self.tf.translateKeyboard(mm)
+                ok = self.translateKeyboard(mm)
             elif is_abbr:
                 dd(f'translateRefItem: is_abbr:{ref_txt}')
-                ok = self.tf.translateAbbrev(mm)
+                ok = self.translateAbbrev(mm)
             elif is_menu:
                 dd(f'translateRefItem: is_menu:{ref_txt}')
-                ok = self.tf.translateMenuSelection(mm)
+                ok = self.translateMenuSelection(mm)
             elif is_quoted:
                 dd(f'translateRefItem: is_quoted:{ref_txt}')
-                ok = self.tf.translateQuoted(mm)
-                converted_to_abbr = True
+                ok = self.translateQuoted(mm)
             elif is_attrib:
                 dd(f'translateRefItem: is_attrib:{ref_txt}')
-                ok = self.tf.translateAttrib(mm)
+                ok = self.translateAttrib(mm)
             elif is_arch_bracket:
                 ok = self.translateArchBracket(mm)
             else:
-                ok = self.tf.translateRefWithLink(mm)
+                ok = self.translateRefWithLink(mm)
 
         except Exception as e:
             df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
 
+
     def translateArchBracket(self, mm: MatcherRecord):
-        (trans, is_fuzzy, is_ignore) = self.tf.translate(mm.txt)
+        input_txt = mm.txt
+        trans, is_fuzzy, is_ignore = self.translateOneText(input_txt)
         mm.setTranlation(trans, is_fuzzy, is_ignore)
         # r_list: RefList = self.reproduce()
         # r_list.__init__(msg = mm.txt, tf=self.tf)
@@ -363,52 +420,291 @@ class RefList(defaultdict):
         # return bool(translation)
         return bool(trans)
 
-    def translate(self):
-        mm_record: MatcherRecord = None
-        is_translated = (self.translation_state != TranslationState.UNTRANSLATED)
-        if is_translated:
+
+    def translateKeyboard(self, mm: MatcherRecord):
+        msg = mm.getSubText()
+        orig = str(msg)
+        trans = str(msg)
+        kbd_dict = self.tf.kbd_dict
+
+        result_dict = cm.patternMatchAll(df.KEYBOARD_SEP, msg)
+        for sub_loc, sub_mm in result_dict.items():
+            txt = sub_mm.txt
+            has_dic = (txt in kbd_dict)
+            if not has_dic:
+                continue
+
+            tr = kbd_dict[txt]
+            if tr:
+                trans = cm.jointText(trans, tr, sub_loc)
+
+        is_fuzzy = False
+        is_ignore = False
+        is_the_same = (orig == trans)
+        if is_the_same:
+            trans = None
+            is_fuzzy = True
+        main_txt = mm.getMainText()
+        trans = cm.jointText(main_txt, trans, mm.getSubLoc())
+        mm.setTranlation(trans, is_fuzzy, is_ignore)
+        return True
+
+    def translateQuoted(self, mm: MatcherRecord):
+        def formatTran(current_untran, current_tran):
+            starter = ("" if is_blank_quote else mm.getStarter())
+            ender = ("" if is_blank_quote else mm.getEnder())
+
+            explanation_part = f'({starter}{current_untran}{ender})'
+            abbrev_part = f'{starter}{current_tran}{ender}'
+            body = f'{abbrev_part} {explanation_part}'
+            tran = f':abbr:`{body}`'
+            return tran
+
+        msg = mm.getSubText()
+        is_blank_quote = (mm.type == RefType.BLANK_QUOTE)
+        # is_fuzzy = False
+        # is_ignore = self.checkIgnore(msg)
+        # if is_ignore:
+        #     return False
+
+        tran, is_fuzzy, is_ignore = self.translateOneText(msg)
+        if is_ignore:
             return
 
-        tran_text = str(self.msg)
-        has_ref = (len(self) > 0)
+        if not tran:
+            tran = ""
 
-        if not has_ref:
-            return
-            trans, is_fuzzy, is_ignore = self.tf.translate(tran_text)
-            if trans:
-                if self.keep_original:
-                    trans = cm.matchCase(self.msg, trans)
-                    tran_text = f'{trans} -- {tran_text}'
-                else:
-                    tran_text = trans
-            self.setTranslation(tran_text, is_fuzzy, is_ignore)
+        tran = self.removeAbbrevInTran(tran)
+        tran = cm.removeOriginal(msg, tran)
+        tran = formatTran(msg, tran)
+        mm.setTranlation(tran, is_fuzzy, is_ignore)
+        return True
+
+    def translateRefWithLink(self, mm: MatcherRecord):
+        def formatTran(current_untran, current_tran):
+            ref_type: RefType = mm.type
+            has_ref = bool(ref_type)
+            has_valid_ref_type = (has_ref and isinstance(ref_type, RefType))
+            is_text_type = (has_valid_ref_type and ref_type == RefType.TEXT)
+            is_bracket_or_quote = (has_valid_ref_type and (df.BRACKET_OR_QUOTE_REF.search(ref_type.name) is not None))
+            is_ignore_type = (is_text_type or is_bracket_or_quote)
+            is_formatting = (not is_ignore_type)
+            if not is_formatting:
+                return current_tran
+
+            new_tran = f'{current_tran} ({current_untran})'
+            return new_tran
+
+        is_fuzzy = is_ignore = False
+        tran = None
+
+        is_using_main = False
+        msg = mm.getSubText()
+        if not msg:
+            msg = mm.getMainText()
+            is_using_main = True
+
+        tran = str(msg)
+
+        unlink_collection = []
+        tran_filled = False
+        has_ref_link = (df.REF_LINK.search(msg) is not None)
+        if not has_ref_link:
+            tran, is_fuzzy, is_ignore = self.translateOneText(msg)
+            valid = (not is_ignore) and bool(tran)
+            if valid:
+                mm.setTranlation(tran, is_fuzzy, is_ignore)
         else:
-            tran_required_reversed_list = list(self.items())
-            tran_required_reversed_list.sort(reverse=True)
-            for k, mm_record in tran_required_reversed_list:
-                self.translateMatcherRecord(mm_record)
+            found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
+            for sub_loc, sub_mm in found_dict.items():
+                sub_txt = sub_mm.getMainText()
+                sub_tran, is_fuzzy, is_ignore = self.translateOneText(sub_txt)
+                valid = (not is_ignore) and bool(sub_tran)
+                if valid:
+                    sub_tran_formatted = formatTran(sub_txt, sub_tran)
+                    # unlink_collection_entry = (sub_loc, sub_txt, sub_tran_formatted)
+                    tran = cm.jointText(tran, sub_tran_formatted, sub_loc)
+                    tran_filled = True
+                    # unlink_collection.append(unlink_collection_entry)
+        has_tran = (tran and not (tran == msg))
+        if has_tran:
+            main_txt = mm.getMainText()
+            if is_using_main:
+                loc = mm.getMainLoc()
+            else:
+                loc = mm.getSubLoc()
+            if not tran_filled:
+                tran = formatTran(msg, tran)
+            main_tran = cm.jointText(main_txt, tran, loc)
+            mm.setTranlation(main_tran, is_fuzzy, is_ignore)
+        return bool(tran)
 
-            sent_translation = tran_text
-            for mm_loc, mm_record in tran_required_reversed_list:
-                tran = mm_record.translation
-                has_translation = bool(tran)
-                if not has_translation:
+    def translateMenuSelection(self, mm: MatcherRecord):
+        def formatAbbrevTran(current_untran, current_tran):
+            has_abbr = cm.hasAbbr(current_tran)
+            if has_abbr:
+                abbr_orig, abbr_marker, abbr_exp = cm.extractAbbr(current_tran)
+                return_tran = cm.removeOriginal(current_untran, abbr_exp)
+                return return_tran
+            else:
+                return current_tran
+
+        def translateMenuItem(loc_word_list):
+            for loc, mnu_item_mm in loc_word_list.items():
+                sub_txt: str = mnu_item_mm.txt
+
+                tran, is_fuzzy, is_ignore = self.translateOneText(sub_txt)
+
+                if is_ignore:
                     continue
-                sent_translation = cm.jointText(sent_translation, tran, mm_loc)
 
-            is_fuzzy = self.isFuzzy()
-            is_ignore = self.isIgnore()
-            self.setTranslation(sent_translation, is_fuzzy, is_ignore)
+                tran = formatAbbrevTran(sub_txt, tran)
 
+                is_tran_valid = (tran and (tran != sub_txt))
+                if is_tran_valid:
+                    is_sub_text_bracketed = sub_txt.startswith('(') and sub_txt.endswith(')')
+                    if is_sub_text_bracketed:
+                        tran_txt = f"{tran} {sub_txt}"
+                    else:
+                        tran_txt = f"{tran} ({sub_txt})"
+                else:
+                    tran_txt = f"({sub_txt})"
 
-    def getListOfRefType(self, request_list_of_ref_type):
-        ref_list=[]
-        for mm_loc, mm in self.items():
-            type = mm.type
-            is_found = (type in request_list_of_ref_type)
-            if is_found:
-                ref_list.append(mm)
-        return ref_list
+                mnu_item_mm.setTranlation(tran_txt, is_fuzzy, is_ignore)
 
+        try:
+            cm.debugging(mm.txt)
+            msg = mm.getSubText()
 
+            word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
+            translateMenuItem(word_list)
 
+            trans = str(msg)
+            tran_state_list=[]
+            for loc, mnu_item_mm in word_list.items():
+                trans = cm.jointText(trans, mnu_item_mm.translation, loc)
+                tran_state_list.append(mnu_item_mm.translation_state)
+
+            main_tran = mm.txt
+            sub_loc = mm.getSubLoc()
+            final_tran = cm.jointText(main_tran, trans, sub_loc)
+
+            is_fuzzy = (TranslationState.FUZZY in tran_state_list)
+            is_ignore = (TranslationState.IGNORED in tran_state_list)
+
+            actual_ignore = ((not is_fuzzy) and is_ignore)
+            mm.setTranlation(final_tran, is_fuzzy, actual_ignore)
+            return True
+        except Exception as e:
+            df.LOG(f'{e} [{mm}]')
+            raise e
+
+    def removeAbbrevInTran(self, current_tran):
+        if not current_tran:
+            return None
+
+        abbrev_mm = cm.patternMatch(df.ABBREV_PATTERN_PARSER, current_tran)
+        if not abbrev_mm:
+            return current_tran
+
+        new_tran = str(current_tran)
+        (abbr_loc, abbr_txt) = abbrev_mm.getSubEntryByIndex(0)
+        abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(abbr_txt)
+        new_tran = f'{abbrev_part} {exp_part}'
+        # new_tran = cm.jointText(new_tran, exp_part, abbr_loc)
+        return new_tran
+
+    def translateAbbrev(self, mm: MatcherRecord) -> list:
+        '''
+            translateAbbrev: Routine to parse abbreviation entry, such as:
+            :abbr:`JONSWAP (JOint North Sea WAve Project)`.
+            The routine will capture the part within brackets and translating
+            that part, rejoins the translation with original text:
+            'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
+        :param msg:
+            text which contains the part within grave accents (GA), ie.
+            JONSWAP (JOint North Sea WAve Project)
+        :return:
+            'JONSWAP (JOint North Sea WAve Project -- <translation part>)' if has translationm, else
+            'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
+        '''
+
+        msg = mm.getSubText()
+        tran_txt = str(msg)
+        first_match_mm: MatcherRecord = None
+        all_matches = cm.patternMatchAll(df.ABBR_TEXT, msg)
+        if not all_matches:
+            return False
+
+        all_matches_list = list(all_matches.items())
+        first_match = all_matches_list[0]
+        first_match_loc, first_match_mm = first_match
+
+        abbrev_loc, abbrev_explain_txt = first_match_mm.getSubEntryByIndex(1)
+        tran, is_fuzzy, is_ignore = self.translateOneText(abbrev_explain_txt)
+
+        tran = self.removeAbbrevInTran(tran)
+        valid = (tran and (tran != abbrev_explain_txt))
+        if valid:
+            translation = f"{abbrev_explain_txt}: {tran}"
+        else:
+            translation = f"{abbrev_explain_txt}: "
+
+        tran_txt = cm.jointText(msg, translation, abbrev_loc)
+        main_txt = mm.getMainText()
+        sub_loc = mm.getSubLoc()
+        final_tran = cm.jointText(main_txt, tran_txt, sub_loc)
+        mm.setTranlation(final_tran, is_fuzzy, is_ignore)
+        return True
+
+    # def translateOSLAttrrib(self, msg: str):
+    #     if not msg:
+    #         return None, False, False
+    #
+    #     tran_txt = str(msg)
+    #     is_fuzzy_list=[]
+    #     is_ignore_list=[]
+    #     word_list_dict = cm.findInvert(df.COLON_CHAR, tran_txt, is_reversed=True)
+    #     word_list_count = len(word_list_dict)
+    #     for loc, orig_txt in word_list_dict.items():
+    #         s, e = loc
+    #         tran, is_fuzzy, is_ignore = self.translateOneText(orig_txt)
+    #         is_fuzzy_list.append(is_fuzzy)
+    #         is_ignore_list.append(is_ignore)
+    #         has_tran = (tran and tran != orig_txt)
+    #         if has_tran:
+    #             left = tran_txt[:s]
+    #             right = tran_txt[e:]
+    #             tran_txt = left + tran + right
+    #
+    #     has_tran = (tran_txt != msg)
+    #     if not has_tran:
+    #         tran_txt = f'{msg} -- '
+    #         return None, False, False
+    #     else:
+    #         is_fuzzy = (True in is_fuzzy_list)
+    #         is_ignore = (not is_fuzzy) and (True in is_ignore_list) and (False not in is_ignore_list)
+    #         tran_txt = f'{msg} ({tran_txt})'
+    #         return tran_txt, is_fuzzy, is_ignore
+
+    def translateAttrib(self, mm: MatcherRecord):
+        def formatResult(orig_txt, tran_list):
+            translation = str(orig_txt)
+            tran_list.sort(reverse=True)
+            for loc, sl_txt, tl_txt in tran_list:
+                if tl_txt:
+                    translation = cm.jointText(translation, tl_txt, loc)
+            return translation
+
+        orig_txt = str(mm.txt)
+        translated_list=[]
+        sub_list = mm.getSubEntriesAsList()
+        interested_part = sub_list[1:]
+        for loc, sl_txt in interested_part:
+            (tl_txt, is_fuzzy, is_ignore) = self.translateOneText(sl_txt)
+            entry = (loc, sl_txt, tl_txt)
+            translated_list.append(entry)
+
+        translation = formatResult(orig_txt, translated_list)
+        mm.setTranlation(translation, True, False)
+        return True

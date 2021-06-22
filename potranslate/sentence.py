@@ -2,15 +2,12 @@ import time
 
 from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
-from definition import Definitions as df
 import re
 import copy as CP
-from reflist import RefList
 from collections import OrderedDict
 import inspect as INP
 from nocasedict import NoCaseDict as NDIC
 from ignore import Ignore as ig
-import operator as OP
 from definition import Definitions as df, SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 
 class StructRecogniser():
@@ -85,10 +82,26 @@ class StructRecogniser():
         self.text_list_to_be_translated = None
         self.local_dict = NDIC()
         self.global_sr_list=glob_sr
+        self.ignore_list = []
+        self.fuzzy_list = []
 
     def __repr__(self):
         string = "\n{!r}".format(self.__dict__)
         return string
+
+    def setAddIgnore(self, value):
+        self.ignore_list.append(value)
+
+    def setAddFuzzy(self, value):
+        self.fuzzy_list.append(value)
+
+    def isIgnore(self):
+        is_ignore = (self.ignore_list and False not in self.ignore_list)
+        return is_ignore
+
+    def isFuzzy(self):
+        is_fuzzy = (self.fuzzy_list and True in self.fuzzy_list)
+        return is_fuzzy
 
     def getDict(self):
         return self.tf.getDict()
@@ -737,10 +750,9 @@ class StructRecogniser():
 
     def translateText(self, txt):
         try:
-            ref_list = RefList(msg=txt, keep_orig=False, tf=self.tf)
-            ref_list.parseMessage()
-            ref_list.translate()
-            trans = ref_list.getTranslation()
+            trans, is_fuzzy, is_ignore = self.tf.translate(txt)
+            self.setAddFuzzy(is_fuzzy)
+            self.setAddIgnore(is_ignore)
             return trans
         except Exception as e:
             df.LOG(e)
