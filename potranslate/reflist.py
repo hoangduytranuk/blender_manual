@@ -358,8 +358,11 @@ class RefList(defaultdict):
         def genMasks(txt):
             temp_txt = str(txt)
             mask_table = []
-            letters = string.digits
-            for loc, mm in self.items():
+            # letters = string.digits
+            item_list = list(self.items())
+            item_list.sort(reverse=True)
+
+            for index, (loc, mm) in enumerate(item_list):
                 mm_type = mm.type
                 is_txt = (mm_type == RefType.TEXT)
                 if is_txt:
@@ -367,7 +370,8 @@ class RefList(defaultdict):
 
                 mm_txt = mm.txt
                 txt_len = len(mm_txt)
-                new_mask = (''.join(random.choice(letters) for i in range(txt_len)))
+                # new_mask = (''.join(random.choice(letters) for i in range(txt_len)))
+                new_mask = f'{index}&&'
                 mask_table_entry = (loc, new_mask, mm_txt, mm)
                 mask_table.append(mask_table_entry)
 

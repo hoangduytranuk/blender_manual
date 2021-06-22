@@ -3,6 +3,7 @@
 import re
 import os
 import json
+import time
 from collections import OrderedDict, defaultdict
 
 import datetime
@@ -188,57 +189,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "\"closest\" can be a bit ambiguous",
-                # "\"moving\"",
-                # "\"radial\" falloff",
-                # "\"small\" joint",
-                # "#cos(frame)",
-                # "#frame / 20.0",
-                # "#python",
-                # "#sin(frame)",
-                # "(Crepuscular Rays)",
-                # "(Deform, ...)",
-                # "(Locked, ...)",
-                # "(Min + Max)/2",
-                # "(Multiply Vertex Group by Envelope, ...)",
-                # "(X)",
-                # "(origin, vertex_coordinates)",
-                # "(sin( )*4)",
-                # "**not** applicable for most data-blocks which have no file reference",
-                # "**not** by a newline",
-                # "*Center*",
-                # "*Expected* \\*",
-                # "*Mirror*",
-                # "*Scripted Expression*",
-                # "*confirm on release*",
-                # "*i* × *s* + *o*",
-                # "*undo*",
-                # "*x*\\ :sup:`e` + *y*\\ :sup:`e` + *z*\\ :sup:`e`",
-                # "+WT",
-                # "+WT2",
-                # "+q1",
-                # "+q11",
-                # "--log \"*undo*\"",
-                # "-E CYCLES",
-                # "-f -2",
-                # "-f 10",
-                # "-s 10 -e 500",
-                # "-t 2",
-                # "./datafiles/ ...",
-                # "./python/ ...",
-                # "1 - alpha",
-                # "1.0, 0.707 = sqrt(0.5), 0.354 = sqrt(2)/4, and 0.25",
-                # "16-bit",
-                # "1m 3mm",
-                # "1m, 3mm",
-                # "2.2mm + 5' / 3\" - 2yards",
-                # "20 °C",
-                # "2m 28.5cm",
-                # "32-bit",
-                # "4 × 8 bits",
-                # "5.969 - 0.215\\beta_{N} + 2.532\\beta_{N}^{2} -\n10.73\\beta_{N}^{3} + 5.574\\beta_{N}^{4} + 0.245\\beta_{N}^{5}\\right",
-                # "8-bit",
-                # ":doc:`operator </scene_layout/object/editing/link_transfer/transfer_mesh_data>` or :doc:`modifier </modeling/modifiers/modify/data_transfer>`",
+                ":doc:`operator </scene_layout/object/editing/link_transfer/transfer_mesh_data>` or :doc:`modifier </modeling/modifiers/modify/data_transfer>`",
                 # ":kbd:`Ctrl-LMB` drag",
                 # ":kbd:`Ctrl`",
                 # ":kbd:`G` to move",
@@ -299,6 +250,7 @@ class test(object):
         else:
             t_list = text_list
 
+        s_time = time.perf_counter()
         tf = TranslationFinder()
         for t in t_list:
             pr = PR(t, translation_engine=tf)
@@ -307,6 +259,9 @@ class test(object):
             # output = pr.getTranslation()
             output = pr.getTextAndTranslation()
             print(output)
+        e_time = time.perf_counter()
+        p_time = (e_time - s_time)
+        print(f'p_time:{p_time}')
         # tf.writeBackupDict()
 
     def run(self):
