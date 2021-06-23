@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import re
-from translation_finder import TranslationFinder
 from definition import Definitions as df, RefType, TranslationState
 from common import Common as cm, dd, pp, LocationObserver
 from matcher import MatcherRecord
@@ -8,11 +7,6 @@ from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from sentence import StructRecogniser as SR
 from nocasedict import NoCaseDict as NDIC
-import random
-import string
-
-import operator as OP
-import inspect as INP
 
 '''
 :abbr:`
@@ -587,6 +581,7 @@ class RefList(defaultdict):
             tran, is_fuzzy, is_ignore = self.translateOneText(msg)
             valid = (not is_ignore) and bool(tran)
             if valid:
+                tran = self.removeAbbrevInTran(tran)
                 mm.setTranlation(tran, is_fuzzy, is_ignore)
         else:
             found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
@@ -610,7 +605,8 @@ class RefList(defaultdict):
             if not tran_filled:
                 tran = formatTran(msg, tran)
             main_tran = cm.jointText(main_txt, tran, loc)
-            mm.setTranlation(main_tran, is_fuzzy, is_ignore)
+            tran = self.removeAbbrevInTran(main_tran)
+            mm.setTranlation(tran, is_fuzzy, is_ignore)
         return bool(tran)
 
     def translateMenuSelection(self, mm: MatcherRecord):

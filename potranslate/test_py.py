@@ -189,26 +189,9 @@ class test(object):
 
         if not text_list:
             t_list = [
-                ":doc:`operator </scene_layout/object/editing/link_transfer/transfer_mesh_data>` or :doc:`modifier </modeling/modifiers/modify/data_transfer>`",
-                # ":kbd:`Ctrl-LMB` drag",
-                # ":kbd:`Ctrl`",
-                # ":kbd:`G` to move",
-                # ":kbd:`NumpadMinus` -- eight times",
-                # ":kbd:`Shift-'` to replace existing links",
-                # ":kbd:`Shift-LMB` drag",
-                # ":kbd:`Wheel`",
-                # ":kbd:`Z` key",
-                # ":menuselection:`Add --> Armature`",
-                # ":menuselection:`Armature --> Viewport Display` panel",
-                # ":menuselection:`File --> New`",
-                # ":menuselection:`Key --> Keyframe Type`",
-                # ":menuselection:`Properties --> Bone --> Deform Panel`",
-                # ":menuselection:`UV Editor --> UV --> Export UV Layout`",
-                # ":ref:`Developer Extras <prefs-interface-dev-extras>` only",
-                # ":term:`Fireflies`",
-                # ":term:`IOR`",
-                # "@CTRL",
-                # "@DEF",
+
+                "@CTRL",
+                "@DEF",
                 # "Agent",
                 # "Axon D",
                 # "COR",
@@ -252,16 +235,21 @@ class test(object):
 
         s_time = time.perf_counter()
         tf = TranslationFinder()
+        out_put_list=[]
         for t in t_list:
             pr = PR(t, translation_engine=tf)
             # pr.translateAsIs()
             pr.translateSplitUp()
             # output = pr.getTranslation()
             output = pr.getTextAndTranslation()
-            print(output)
+            out_put_list.append(output)
+
         e_time = time.perf_counter()
         p_time = (e_time - s_time)
         print(f'p_time:{p_time}')
+        for o in out_put_list:
+            print(o)
+
         # tf.writeBackupDict()
 
     def run(self):

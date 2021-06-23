@@ -1366,6 +1366,8 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "@CTRL",
+        "@DEF",
         "*x*\\ :sup:`e` + *y*\\ :sup:`e` + *z*\\ :sup:`e`",
         "+WT",
         "+WT2",
