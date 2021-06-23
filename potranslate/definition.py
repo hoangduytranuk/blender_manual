@@ -228,7 +228,7 @@ class Definitions:
     }
 
     split_sent_seg_txt = r'\s?([\,\.\-\;](?<!(e\.g\.|etc\.))\s)|([\(\)]|[{}])'
-    SPLIT_SENT_PAT = re.compile(split_sent_seg_txt)
+    SPLIT_SENT_PAT = re.compile(split_sent_seg_txt, flags=re.I)
 
     total_files = 1358
     file_count = 0

@@ -189,9 +189,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "DolphinDream",
-                # "E.g. depending on the rest position of your elbow, it may be from (0 to 160) or from (-45 to 135).",
-                # "E.g. explaining how mesh smoothing algorithms work is unnecessary, but the blending types of a Mix node do need a mathematical explanation.",
+                "E.g. explaining how mesh smoothing algorithms work is unnecessary, but the blending types of a Mix node do need a mathematical explanation.",
                 # "Enabling previews adds 65536 bytes to the size of each blend-file (unless it is compressed).",
                 # "Eoan, Focal",
                 # "Excludes the collection from the current view layer -- affects both 3D Viewport and render -- non-chaining.",
@@ -216,7 +214,6 @@ class test(object):
             pr = PR(t, translation_engine=tf)
             # pr.translateAsIs()
             pr.translateSplitUp()
-            # output = pr.getTranslation()
             output = pr.getTextAndTranslation()
             out_put_list.append(output)
 
