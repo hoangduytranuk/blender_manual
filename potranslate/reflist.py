@@ -429,7 +429,7 @@ class RefList(defaultdict):
         input_txt = self.msg
         has_ref = ref_map.hasMarkedLoc()
         if not has_ref:
-            sent_translation, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
+            sent_translation = self.translateOneLineOfText(input_txt)
         else:
             tran_required_reversed_list = list(self.items())
             tran_required_reversed_list.sort(reverse=True)
@@ -444,8 +444,8 @@ class RefList(defaultdict):
                 trans = self.translateOneLineOfText(masking_string)
                 sent_translation = restoreMaskingString(trans, masked_list)
 
-            is_fuzzy = self.isFuzzy()
-            is_ignore = self.isIgnore()
+        is_fuzzy = self.isFuzzy()
+        is_ignore = self.isIgnore()
         self.setTranslation(sent_translation, is_fuzzy, is_ignore)
 
     def translateMatcherRecord(self, mm: MatcherRecord, is_translating_arch_bracket=True):

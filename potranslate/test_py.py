@@ -189,7 +189,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                # "and by extension, the Material Preview mode",
+                "and by extension, the Material Preview mode",
                 # "and hence take it \"away\" from its \"keyed position\"",
                 # "and the *Offset* value described below, too",
                 # "and use *Object Transform*",
