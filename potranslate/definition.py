@@ -227,7 +227,7 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
 
-    split_sent_seg_txt = r'\s?([\,\.\-\;](?<!((e\.g|etc|fig)\.))\s)|([\(\)]|[{}])'
+    split_sent_seg_txt = r'\s?([\,\.\-\;]+(?<!((e\.g|etc|fig)\.))\s)|([\(\)]|[{}])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt, flags=re.I)
 
     total_files = 1358
@@ -1366,7 +1366,27 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
-        "FFmpeg -b:v",
+        "monado",
+        "melanin :math:`0.25`",
+        "melanin :math:`0.5`",
+        "melanin :math:`0.75`",
+        "melanin :math:`0`",
+        "melanin :math:`1`",
+        "metaplane",
+        "metathing",
+        "julien deswaef",
+        "k1 - k4",
+        "lwpolyline",
+        "length2dbp1d",
+        "lichtso",
+        "mtext",
+        "intel",
+        "imaginer",
+        "fweeb",
+        "geo",
+        "hs + v",
+        "hv + s",
+        "ffmpeg -b:v",
         "eoan, focal",
         "dolphindream",
         "dealga mcardle",
