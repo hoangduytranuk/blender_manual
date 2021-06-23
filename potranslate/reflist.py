@@ -401,7 +401,7 @@ class RefList(defaultdict):
                 trans = mm_record.translation
                 has_tran = bool(trans)
                 if has_tran:
-                    cm.jointText(tran_text, trans, loc)
+                    tran_text = cm.jointText(tran_text, trans, loc)
             return tran_text
 
         mm_record: MatcherRecord = None

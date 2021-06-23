@@ -189,19 +189,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "Saves",
-                # "Saves some processing time and memory, but may reduce the quality of the result in some cases.",
-                # "Scalable Vector Graphics (.svg)",
-                # "Scale Thickness",
-                # "Scale Transforms",
-                # "Scribus",
-                # "See :ref:`ui-data-block`.",
-                # "See Fig. :ref:`fig-interface-redo-last-edit-mode` right",
-                # "See Fig. :ref:`fig-mesh-screw-interactive-panel`",
-                # "See Fig. :ref:`fig-mesh-screw-interactive-panel`.",
-                # "See Fig. :ref:`fig-mesh-screw-profile`.",
-                # "See Fig. :ref:`fig-mesh-screw-start`.",
-                # "See `Unit Circle <https://en.wikipedia.org/wiki/Unit_circle>`__.",
+                "See `Unit Circle <https://en.wikipedia.org/wiki/Unit_circle>`__.",
                 # "See the Fig. :ref:`fig-mesh-screw-circle`.",
                 # "Self-Collision",
                 # "Shared Tex Space",
