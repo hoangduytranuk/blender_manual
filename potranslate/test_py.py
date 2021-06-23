@@ -189,16 +189,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "E.g. explaining how mesh smoothing algorithms work is unnecessary, but the blending types of a Mix node do need a mathematical explanation.",
-                # "Enabling previews adds 65536 bytes to the size of each blend-file (unless it is compressed).",
-                # "Eoan, Focal",
-                # "Excludes the collection from the current view layer -- affects both 3D Viewport and render -- non-chaining.",
-                # "Expected",
-                # "FFmpeg -b:v",
-                # "Fades",
-                # "Fig. :ref:`fig-meta-ball-example`",
-                # "Fig. :ref:`fig-softbody-collision-plane1`",
-                # "Fig. :ref:`fig-softbody-collision-plane2`",
+                "Fig. :ref:`fig-softbody-collision-plane2`",
                 # "Fweeb",
                 # "GEO",
                 # "HS + V",

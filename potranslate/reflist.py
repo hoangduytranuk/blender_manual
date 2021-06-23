@@ -310,7 +310,7 @@ class RefList(defaultdict):
         is_fuzzy = sr.isFuzzy()
         is_ignore = sr.isIgnore()
         if trans:
-            # trans = cm.matchCase(input_txt, trans)
+            trans = cm.matchCase(input_txt, trans)
             if self.keep_original:
                 trans = f'{trans} -- {input_txt}'
         return trans, is_fuzzy, is_ignore

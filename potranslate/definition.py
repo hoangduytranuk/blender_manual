@@ -227,7 +227,7 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
 
-    split_sent_seg_txt = r'\s?([\,\.\-\;](?<!(e\.g\.|etc\.))\s)|([\(\)]|[{}])'
+    split_sent_seg_txt = r'\s?([\,\.\-\;](?<!((e\.g|etc|fig)\.))\s)|([\(\)]|[{}])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt, flags=re.I)
 
     total_files = 1358
@@ -1366,6 +1366,8 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "FFmpeg -b:v",
+        "eoan, focal",
         "dolphindream",
         "dealga mcardle",
         "dci-p3",
