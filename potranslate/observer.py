@@ -251,6 +251,10 @@ class LocationObserver(OrderedDict):
         self.blank = left + blk + right
         self.marked_loc.update(marked_loc_entry)
 
+    def hasMarkedLoc(self):
+        marked_loc_length = len(self.marked_loc)
+        return (marked_loc_length > 0)
+
     def markLocAsUsed(self, loc: tuple):
         ss, ee = loc
         self.markAsUsed(ss, ee)

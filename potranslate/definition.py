@@ -1366,6 +1366,41 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "acos",
+        "``send_field``",
+        "``b``",
+        "``g``",
+        "``r``",
+        "``.png``",
+        "``.tga``",
+        "``.xyz``",
+        "`doi 10.1111/j.1467-8659.2010.01805.x <https://doi.org/10.1111/j.1467-8659.2010.01805.x>`__",
+        "`file:atvbuggy.zip <https://wiki.blender.org/wiki/file:atvbuggy.zip>`__",
+        "x, y & z",
+        "x, y, z",
+        "x, z",
+        "yz",
+        "[\"agent\"]",
+        "[\"prop_name\"]",
+        "\\max(1.0 - melanin, 0.0001)",
+        "\\n",
+        "doi 10.1111/j.1467-8659.2010.01805.x",
+        "file:atvbuggy.zip",
+        "\"u & v\"",
+        "wasapi",
+        "wahooney",
+        "vis",
+        "van der waals",
+        "vesta",
+        "udims",
+        "trumanblending",
+        "the pixelary",
+        "skinify guy",
+        "stan pancakes",
+        "stanford bunny",
+        "steamvr",
+        "subdivr",
+        "subdivv",
         "scribus",
         "sl",
         "sv + h",
@@ -1642,6 +1677,7 @@ class Definitions:
         BLANK_QUOTE_ABS,
         ATTRIB_REF_ABS,
     ]
+    global_ref_map = None
 
 class SentStructModeRecord:
     def __init__(self, smode_txt=None, smode=None, extra_param=None):

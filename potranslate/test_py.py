@@ -189,16 +189,44 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "See `Unit Circle <https://en.wikipedia.org/wiki/Unit_circle>`__.",
-                # "See the Fig. :ref:`fig-mesh-screw-circle`.",
-                # "Self-Collision",
-                # "Shared Tex Space",
-                # "Skinify Guy",
-                # "Stan Pancakes",
-                # "Stanford Bunny",
-                # "SteamVR",
-                # "SubDivR",
-                # "SubDivV",
+                # "and by extension, the Material Preview mode",
+                # "and hence take it \"away\" from its \"keyed position\"",
+                # "and the *Offset* value described below, too",
+                # "and use *Object Transform*",
+                # "and/or the :ref:`context menu <editors-outliner-editing-context_menu>`",
+                # "and/or the `context menu`_, see below",
+                # "antonioya",
+                # "any number 0 or greater, nominal value is 1.0",
+                # "any number greater than 0, nominal value is 1.0",
+                # "any number, the nominal value is 0",
+                # "applies to *Plane*, *Circle* and *Grid*",
+                # "as for *Less*, all linked points are always selected, and of course, *More* cannot add any",
+                # "as usual, :kbd:`LMB` to select, :kbd:`RMB` to deselect",
+                # "as usual, cancel the move with :kbd:`RMB`, or :kbd:`Esc`",
+                # "as well as helping to keep the animation of related objects together in the NLA editor for instance",
+                # "as well as helping to keep the animation of related objects together in the NLA for instance",
+                # "as with texture baking",
+                # "as you can see it in the *Transform* panel, in the 3D Viewport's Sidebar",
+                # "assign, select...",
+                # "assuming *Preserve Volume* is enabled",
+                # "assuming the mesh has a uniform density",
+                # "at 0.5, it gives a *Minkowski 1/2*",
+                # "at 4.0, it gives a *Minkowski 4*, at 10.0, a *Chebychev*",
+                # "at frame 200",
+                # "at frame 65",
+                # "at the top left side",
+                # "at the top/bottom of the editor area",
+                # "at the upper left corner",
+                # "atomic, van der Waals or as specified in the custom data file [predefined]",
+                # "attempting to load a library built for a different version of Python, or loading a 32-bit library on a 64-bit system",
+                # "audio strips can still be loaded normally",
+                # "author's Github repository",
+                # "auto/fixed, and number",
+                # "automatic curve handles",
+                # "available from the context menu, *Vertices*, *Edges* and *Faces* menus",
+                # "available in distortion mode only",
+                # "available in reconstruction mode only",
+                # "axis locking page",
             ]
         else:
             t_list = text_list
@@ -208,8 +236,8 @@ class test(object):
         out_put_list=[]
         for t in t_list:
             pr = PR(t, translation_engine=tf)
-            # pr.translateAsIs()
-            pr.translateSplitUp()
+            pr.translateAsIs()
+            # pr.translateSplitUp()
             output = pr.getTextAndTranslation()
             out_put_list.append(output)
 

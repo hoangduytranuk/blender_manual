@@ -7,6 +7,7 @@ from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict
 from sentence import StructRecogniser as SR
 from nocasedict import NoCaseDict as NDIC
+import concurrent.futures
 
 '''
 :abbr:`
@@ -226,20 +227,13 @@ class RefList(defaultdict):
             del self[loc]
 
     def findPattern(self, pattern_list: list, txt: str):
-        count_item = 0
         pattern_list.reverse()
         for index, item in enumerate(pattern_list):
             p, ref_type = item
             self.findOnePattern(txt, p, ref_type)
 
         self.cleanupBrackets()
-
-        # if len(self):
-        #     dd('List of refs found:')
-        #     dd('-' * 80)
-        #     pp(self)
-        #     dd('-' * 80)
-        return count_item
+        return len(self)
 
     def getListOfRefType(self, request_list_of_ref_type):
         ref_list=[]
@@ -276,6 +270,8 @@ class RefList(defaultdict):
             self.update(entry)
 
     def parseMessage(self):
+        if ig.isIgnored(self.msg):
+            return
 
         trans = self.tf.isInDict(self.msg)
         if trans:
@@ -291,10 +287,10 @@ class RefList(defaultdict):
         cm.debugging(local_msg)
         count = self.findPattern(df.pattern_list, local_msg)
 
-        obs = LocationObserver(self.msg)
+        df.global_ref_map = LocationObserver(self.msg)
         for loc, mm in self.items():
-            obs.markLocAsUsed(loc)
-        unparsed_dict = obs.getUnmarkedPartsAsDict()
+            df.global_ref_map.markLocAsUsed(loc)
+        unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict()
         self.addUnparsedDict(unparsed_dict)
 
         if len(self):
@@ -305,21 +301,41 @@ class RefList(defaultdict):
                 dd(f'{mm_rec.txt}')
                 dd('-' * 80)
 
-    def translateOneText(self, input_txt):
-        trans = self.tf.isInDict(input_txt)
-        if trans:
-            return trans, False, False
-
+    def createSRAndTranslateSegment(self, segment):
+        (loc, mm) = segment
+        input_txt = mm.txt
         sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict, ref_list=self)
-        loc = (0, len(input_txt))
         trans = sr.parseAndTranslateText(loc, input_txt)
         is_fuzzy = sr.isFuzzy()
         is_ignore = sr.isIgnore()
         if trans:
             trans = cm.matchCase(input_txt, trans)
-            if self.keep_original:
-                trans = f'{trans} -- {input_txt}'
-        return trans, is_fuzzy, is_ignore
+        return (loc, input_txt, trans, is_fuzzy, is_ignore)
+
+    def translateOneLineOfText(self, input_txt):
+        trans = self.tf.isInDict(input_txt)
+        if trans:
+            return trans, False, False
+
+        txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
+        dd('TRANSLATING LIST OF SEGMENTS:')
+        pp(txt_list)
+        dd('-' * 80)
+        tran_list = []
+
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            found_results = executor.map(self.createSRAndTranslateSegment, txt_list.items())
+
+        found_result_list = list(found_results)
+
+        tran_list = [(loc, trans) for (loc, input_txt, trans, is_fuzzy, is_ignore) in found_result_list if bool(trans)]
+        translation = str(input_txt)
+        if tran_list:
+            tran_list.sort(reverse=True)
+            for (loc, trans) in tran_list:
+                translation = cm.jointText(translation, trans, loc)
+
+        return translation
 
     def translate(self):
         def restoreMaskingString(trans, mask_list):
@@ -409,23 +425,23 @@ class RefList(defaultdict):
         if is_translated:
             return
 
+        ref_map = df.global_ref_map
         input_txt = self.msg
-        has_ref = (len(self) > 0)
-
+        has_ref = ref_map.hasMarkedLoc()
         if not has_ref:
-            sent_translation, is_fuzzy, is_ignore = self.translateOneText(input_txt)
+            sent_translation, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
         else:
             tran_required_reversed_list = list(self.items())
             tran_required_reversed_list.sort(reverse=True)
             translateRefRecords(tran_required_reversed_list)
-            getTextDirectTranslations(tran_required_reversed_list)
+            # getTextDirectTranslations(tran_required_reversed_list)
 
             is_all_translated = self.isAllTranslated()
             if is_all_translated:
                 sent_translation = collectTranslationsFromRefRecords(tran_required_reversed_list)
             else:
                 masking_string, masked_list = genMasks(input_txt)
-                trans, is_fuzzy, is_ignore = self.translateOneText(masking_string)
+                trans = self.translateOneLineOfText(masking_string)
                 sent_translation = restoreMaskingString(trans, masked_list)
 
             is_fuzzy = self.isFuzzy()
@@ -492,7 +508,7 @@ class RefList(defaultdict):
 
     def translateArchBracket(self, mm: MatcherRecord):
         input_txt = mm.txt
-        trans, is_fuzzy, is_ignore = self.translateOneText(input_txt)
+        trans, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
         mm.setTranlation(trans, is_fuzzy, is_ignore)
         # r_list: RefList = self.reproduce()
         # r_list.__init__(msg = mm.txt, tf=self.tf)
@@ -550,7 +566,7 @@ class RefList(defaultdict):
         # if is_ignore:
         #     return False
 
-        tran, is_fuzzy, is_ignore = self.translateOneText(msg)
+        tran, is_fuzzy, is_ignore = self.translateOneLineOfText(msg)
         if is_ignore:
             return False
 
@@ -594,7 +610,7 @@ class RefList(defaultdict):
         tran_filled = False
         has_ref_link = (df.REF_LINK.search(msg) is not None)
         if not has_ref_link:
-            tran, is_fuzzy, is_ignore = self.translateOneText(msg)
+            tran, is_fuzzy, is_ignore = self.translateOneLineOfText(msg)
             valid = (not is_ignore) and bool(tran)
             if valid:
                 tran = self.removeAbbrevInTran(tran)
@@ -603,7 +619,7 @@ class RefList(defaultdict):
             found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
             for sub_loc, sub_mm in found_dict.items():
                 sub_txt = sub_mm.getMainText()
-                sub_tran, is_fuzzy, is_ignore = self.translateOneText(sub_txt)
+                sub_tran, is_fuzzy, is_ignore = self.translateOneLineOfText(sub_txt)
                 valid = (not is_ignore) and bool(sub_tran)
                 if valid:
                     sub_tran_formatted = formatTran(sub_txt, sub_tran)
@@ -639,7 +655,7 @@ class RefList(defaultdict):
             for loc, mnu_item_mm in loc_word_list.items():
                 sub_txt: str = mnu_item_mm.txt
 
-                tran, is_fuzzy, is_ignore = self.translateOneText(sub_txt)
+                tran, is_fuzzy, is_ignore = self.translateOneLineOfText(sub_txt)
 
                 if is_ignore:
                     continue
@@ -727,7 +743,7 @@ class RefList(defaultdict):
         first_match_loc, first_match_mm = first_match
 
         abbrev_loc, abbrev_explain_txt = first_match_mm.getSubEntryByIndex(1)
-        tran, is_fuzzy, is_ignore = self.translateOneText(abbrev_explain_txt)
+        tran, is_fuzzy, is_ignore = self.translateOneLineOfText(abbrev_explain_txt)
 
         tran = self.removeAbbrevInTran(tran)
         valid = (tran and (tran != abbrev_explain_txt))
@@ -787,7 +803,7 @@ class RefList(defaultdict):
         sub_list = mm.getSubEntriesAsList()
         interested_part = sub_list[1:]
         for loc, sl_txt in interested_part:
-            (tl_txt, is_fuzzy, is_ignore) = self.translateOneText(sl_txt)
+            (tl_txt, is_fuzzy, is_ignore) = self.translateOneLineOfText(sl_txt)
             entry = (loc, sl_txt, tl_txt)
             translated_list.append(entry)
 
