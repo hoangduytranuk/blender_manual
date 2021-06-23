@@ -86,11 +86,13 @@ class RefList(defaultdict):
         return final_state
 
     def getTranslationStateList(self):
-        translation_state_list=[]
-        translation_state_list.append(self.translation_state)
-        for loc, mm in self.items():
-            translation_state_list.append(mm.translation_state)
+        translation_state_list=[mm.translation_state for loc, mm in self.items()]
         return translation_state_list
+
+    def isAllTranslated(self):
+        state_list = self.getTranslationStateList()
+        is_all_translated = not (TranslationState.UNTRANSLATED in state_list)
+        return is_all_translated
 
     def isFuzzy(self):
         state_list = self.getTranslationStateList()
@@ -304,6 +306,10 @@ class RefList(defaultdict):
                 dd('-' * 80)
 
     def translateOneText(self, input_txt):
+        trans = self.tf.isInDict(input_txt)
+        if trans:
+            return trans, False, False
+
         sr = SR(translation_engine=self.tf, processed_dict=self.parsed_dict, glob_sr=self.sr_global_dict, ref_list=self)
         loc = (0, len(input_txt))
         trans = sr.parseAndTranslateText(loc, input_txt)
@@ -344,9 +350,6 @@ class RefList(defaultdict):
                     trans_txt = mm.translation
                     if trans_txt:
                         new_tran = cm.jointText(new_tran, trans_txt, loc)
-                return new_tran
-
-
             return new_tran
 
         def genMasks(txt):
@@ -373,6 +376,33 @@ class RefList(defaultdict):
 
             return temp_txt, mask_table
 
+        def getTextDirectTranslations(ref_list):
+            for loc, mm_record in ref_list:
+                is_txt = (mm_record.type == RefType.TEXT)
+                if not is_txt:
+                    continue
+                mm_txt = mm_record.txt
+                tran = self.tf.isInDict(mm_txt)
+                is_translated = bool(tran)
+                if is_translated:
+                    mm_record.setTranlation(tran, False, False)
+
+        def translateRefRecords(ref_list):
+            for loc, mm_record in ref_list:
+                is_ref = (mm_record.type != RefType.TEXT)
+                if not is_ref:
+                    continue
+                self.translateMatcherRecord(mm_record)
+
+        def collectTranslationsFromRefRecords(ref_list):
+            tran_text = str(self.msg)
+            mm_record: MatcherRecord = None
+            for loc, mm_record in ref_list:
+                trans = mm_record.translation
+                has_tran = bool(trans)
+                if has_tran:
+                    cm.jointText(tran_text, trans, loc)
+            return tran_text
 
         mm_record: MatcherRecord = None
         is_translated = (self.translation_state != TranslationState.UNTRANSLATED)
@@ -380,7 +410,6 @@ class RefList(defaultdict):
             return
 
         input_txt = self.msg
-        tran_text = str(self.msg)
         has_ref = (len(self) > 0)
 
         if not has_ref:
@@ -388,32 +417,19 @@ class RefList(defaultdict):
         else:
             tran_required_reversed_list = list(self.items())
             tran_required_reversed_list.sort(reverse=True)
-            for k, mm_record in tran_required_reversed_list:
-                is_ref = (mm_record.type != RefType.TEXT)
-                if not is_ref:
-                    continue
-                self.translateMatcherRecord(mm_record)
+            translateRefRecords(tran_required_reversed_list)
+            getTextDirectTranslations(tran_required_reversed_list)
 
-            masking_string, masked_list = genMasks(input_txt)
-            trans, is_fuzzy, is_ignore = self.translateOneText(masking_string)
-            sent_translation = restoreMaskingString(trans, masked_list)
+            is_all_translated = self.isAllTranslated()
+            if is_all_translated:
+                sent_translation = collectTranslationsFromRefRecords(tran_required_reversed_list)
+            else:
+                masking_string, masked_list = genMasks(input_txt)
+                trans, is_fuzzy, is_ignore = self.translateOneText(masking_string)
+                sent_translation = restoreMaskingString(trans, masked_list)
 
-            # print(sent_translation)
-            # tran_required_reversed_list = list(self.items())
-            # tran_required_reversed_list.sort(reverse=True)
-            # for k, mm_record in tran_required_reversed_list:
-            #     self.translateMatcherRecord(mm_record)
-            #
-            # sent_translation = tran_text
-            # for mm_loc, mm_record in tran_required_reversed_list:
-            #     tran = mm_record.translation
-            #     has_translation = bool(tran)
-            #     if not has_translation:
-            #         continue
-            #     sent_translation = cm.jointText(sent_translation, tran, mm_loc)
-            #
-            # is_fuzzy = self.isFuzzy()
-            # is_ignore = self.isIgnore()
+            is_fuzzy = self.isFuzzy()
+            is_ignore = self.isIgnore()
         self.setTranslation(sent_translation, is_fuzzy, is_ignore)
 
     def translateMatcherRecord(self, mm: MatcherRecord, is_translating_arch_bracket=True):
