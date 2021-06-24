@@ -313,9 +313,13 @@ class RefList(defaultdict):
         return (loc, input_txt, trans, is_fuzzy, is_ignore)
 
     def translateOneLineOfText(self, input_txt):
+        is_ignore = ig.isIgnored(input_txt)
+        if is_ignore:
+            return None
+
         trans = self.tf.isInDict(input_txt)
         if trans:
-            return trans, False, False
+            return trans
 
         txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
         dd('TRANSLATING LIST OF SEGMENTS:')
@@ -339,7 +343,7 @@ class RefList(defaultdict):
 
     def translate(self):
         def restoreMaskingString(trans, mask_list):
-            if trans:
+            if bool(trans):
                 new_tran = str(trans)
                 mask_list_with_loc = []
                 mm: MatcherRecord = None
@@ -603,8 +607,6 @@ class RefList(defaultdict):
         if not msg:
             msg = mm.getMainText()
             is_using_main = True
-
-        tran = str(msg)
 
         unlink_collection = []
         tran_filled = False
