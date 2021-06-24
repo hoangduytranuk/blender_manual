@@ -104,7 +104,8 @@ class NoCaseDict(OrderedDict):
     def createSentenceStructureDict(self):
         def sortingKeyFunction(item):
             (pattern, value_part) = item
-            pattern_length = len(pattern)
+            dict_sl_txt = value_part[0]
+            pattern_length = len(dict_sl_txt)
             return pattern_length
 
         def isSentStruct(item):
@@ -124,11 +125,6 @@ class NoCaseDict(OrderedDict):
             entry = (key_pattern, value)
             return entry
 
-        def sortSentStruct(item):
-            (k, v) = item
-            return (k)
-
-        temp_dict={}
         temp_set = list(filter(isSentStruct, self.items()))
 
         with concurrent.futures.ThreadPoolExecutor() as executor:

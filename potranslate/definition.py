@@ -1366,7 +1366,15 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
-        "Antonio Vazquez"
+        "bullseye",
+        "bpy",
+        "bpy.",
+        "bpy.app.debug = true",
+        "brikbot",
+        "blender -d",
+        "blender -r",
+        "blendcache_[filename]",
+        "antonio vazquez"
         "antonioya",
         "acos",
         "``send_field``",
