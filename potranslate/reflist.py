@@ -611,10 +611,6 @@ class RefList(defaultdict):
         has_ref_link = (df.REF_LINK.search(msg) is not None)
         if not has_ref_link:
             tran, is_fuzzy, is_ignore = self.translateOneLineOfText(msg)
-            valid = (not is_ignore) and bool(tran)
-            if valid:
-                tran = self.removeAbbrevInTran(tran)
-                mm.setTranlation(tran, is_fuzzy, is_ignore)
         else:
             found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
             for sub_loc, sub_mm in found_dict.items():
