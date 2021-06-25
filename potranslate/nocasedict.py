@@ -141,7 +141,9 @@ class NoCaseDict(OrderedDict):
             entry = (key_pattern, value)
             return entry
 
-        temp_set = list(loaded_dict.items())
+        is_use_subset = bool(df.ss_map)
+        temp_set = (list(df.ss_map.items()) if is_use_subset else list(loaded_dict.items()))
+
         with concurrent.futures.ThreadPoolExecutor() as executor:
             found_results = executor.map(createDictEntry, temp_set)
 

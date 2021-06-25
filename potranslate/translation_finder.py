@@ -1077,7 +1077,7 @@ class TranslationFinder:
 
             if not trans:
                 df.LOG(f'calling tryFuzzyTranlation [{msg}]')
-                trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg, )
+                trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg)
                 is_fuzzy = bool(trans)
 
             # if not trans:

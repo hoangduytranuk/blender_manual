@@ -1689,6 +1689,16 @@ class Definitions:
         ATTRIB_REF_ABS,
     ]
     global_ref_map = None
+    ss_map = {
+        "click(\\w+)? on ${} and ${} until ${}": "bấm vào ${} và ${} cho đến khi ${}",
+        "${} with ${}": "${} với ${}",
+        "the ${1/EQ(yellow|black|white|red|green|blue|grey|gray|orange)} ${2}": "${2} ${1}",
+        "the ${EQ(yellow|black|white|red|green|blue|grey|gray|orange)} arrow ${}": "mũi tên ${} ${}",
+        "${} while ${}": "${} trong khi ${}",
+        "the ${} in ${} of ${}": "${} trong ${} của ${}",
+        "bottom left ${}": "${} dưới cùng bên trái",
+        "using ${}": "sử dụng ${}",
+    }
 
 class SentStructModeRecord:
     def __init__(self, smode_txt=None, smode=None, extra_param=None):

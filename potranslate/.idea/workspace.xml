@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Fixed the returning values of translateOneLineOfText in reflist.py. The code IS REALLY slow">
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref_dict_ss_0001.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_ss_0001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,13 +108,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622672549482</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Before moving to Cython">
-      <created>1622981701069</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1622981701070</updated>
     </task>
     <task id="LOCAL-00004" summary="Cleaned out the test_py.py, added the EXCLUDE clause in the sentence structure, which is validated in the validate_EXCLUDE, taking the matched_part and the smode_txt, in nocasedict.py. Added ignore_txt_list to allow text directly placed into the ignore list, bypassing the cumbersome regular expression list. Grouped the arguments of validation functions into one tuple, to avoid changes in the interface too much. Check to see if the txt to be translated in simpleFuzzyTranslate has a PATH CHAR (/) in it. This forces the evaluation of fuzzy ratio to take the overall rate rather than the partial ratio (considering it to be two words), also added forward slash to be a part of splitter components here (COMMON_WORD_SEP). Tried to shorten the for loops using map and list comprehension in paragraph.py.">
       <created>1623177044576</created>
@@ -447,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624605374888</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json.">
+      <created>1624622344251</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1624622344251</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -473,7 +478,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="simplify lots of redundant uses of code" />
     <MESSAGE value="Obtained translations for 'wave factor'" />
     <MESSAGE value="Finished list of ref text, part 1" />
     <MESSAGE value="Swapped the order of units, Paragraph first, splitting texts into segments, or not, then RefList parsing to spit out references, then for each piece of text, apply the sentence.py (SR) rules on it and translate." />
@@ -498,7 +502,8 @@
     <MESSAGE value="Translated to 'by specifying an object to use'" />
     <MESSAGE value="Fixed an error in the translateOneLineOfText, returning a tuple instead of a single string" />
     <MESSAGE value="Fixed the returning values of translateOneLineOfText in reflist.py. The code IS REALLY slow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the returning values of translateOneLineOfText in reflist.py. The code IS REALLY slow" />
+    <MESSAGE value="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json." />
+    <option name="LAST_COMMIT_MESSAGE" value="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -510,12 +515,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>351</line>
+          <line>353</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>2037</line>
+          <line>2038</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -539,9 +544,24 @@
           <option name="timeStamp" value="281" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/translation_finder.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="284" />
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>634</line>
+          <option name="timeStamp" value="288" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>577</line>
+          <option name="timeStamp" value="289" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>556</line>
+          <option name="timeStamp" value="290" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>1982</line>
+          <option name="timeStamp" value="293" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

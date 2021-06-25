@@ -1979,7 +1979,8 @@ class Common:
         hi = len(sorted_list) - 1
         while lo < hi:
             mid = (lo + hi) // 2
-            list_item = extract_function(sorted_list[mid])
+            mid_item = sorted_list[mid]
+            list_item = extract_function(mid_item)
             finding_item = extract_function(find_txt)
             is_equal = (list_item == finding_item)
             if is_equal:
