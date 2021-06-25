@@ -27,8 +27,26 @@ from definition import Definitions as df, RefType, TranslationState
 from reflist import RefList
 import inspect as INP
 import copy as CP
-import cProfile
+import cProfile, pstats, io
 
+def profile(fnc):
+
+    def inner(*args, **kwargs):
+        pr = cProfile.Profile()
+        pr.enable()
+        retval = fnc(*args, **kwargs)
+        pr.disable()
+
+        s = io.StringIO()
+        # sortby = 'cumulative'
+        sortby = 'ncalls'
+        ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+        ps.print_stats()
+        print(s.getvalue())
+
+        return retval
+
+    return inner
 
 def readJSON(file_path):
     with open(file_path) as in_file:
@@ -183,14 +201,15 @@ class test(object):
         m = pat.search(t)
         print(m)
 
+    @profile
     def test_translate_0001(self, text_list=None):
         from paragraph import Paragraph as PR
         from sentence import StructRecogniser as SR
 
         if not text_list:
             t_list = [
-                "clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl` until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``",
-                # "color/weight depending on surface type",
+                # "clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl` until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``",
+                "color/weight depending on surface type",
                 # "combined, red, green, blue, luminance",
                 # "combing, adding, cutting, moving, etc.",
                 # "compare this to the XYZ coordinates in 3D",

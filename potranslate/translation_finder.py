@@ -28,6 +28,8 @@ class TranslationFinder:
         self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0002.json")
         self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0005_0001.json")
         self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0005.json")
+        self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.json")
+
 
         self.vipo_dic_path = os.path.join(home_dir, "gui/2.80/po/vi.po")
         self.vipo_dic_list = None  # not used
@@ -44,6 +46,8 @@ class TranslationFinder:
         self.dic_list = None
         self.master_dic_list: NoCaseDict = None
         self.backup_dic_list: NoCaseDict = None
+        self.sent_struct_dict_list: NoCaseDict = None
+
         self.kbd_dict = None
 
 
@@ -51,7 +55,7 @@ class TranslationFinder:
 
 
         st_time = time.perf_counter()
-        self.getDict().createSentenceStructureDict()
+        self.getDict().createSentenceStructureDict(self.sent_struct_dict_list)
         ed_time = time.perf_counter()
         p_time = (ed_time - st_time)
         self.struct_dict = self.getDict().sentence_struct_dict
@@ -87,6 +91,8 @@ class TranslationFinder:
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
         self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
+        self.sent_struct_dict_list = NoCaseDict()
+        self.sent_struct_dict_list.loadData(self.sent_struct_file, is_lower=False)
 
     def flatPOFile(self, file_path):
         data_cat = c.load_po(file_path)
@@ -480,17 +486,17 @@ class TranslationFinder:
         file_path = (self.master_dic_file if is_master else self.master_dic_backup_file)
         df.LOG(f'reloadChosenDict:{file_path}')
 
-        dic = cm.loadJSONDic(file_name=file_path)
-
-        # st_time = time.perf_counter()
-        ncase_dic = NoCaseDict(dic)
-        # ed_time = time.perf_counter()
-        # p_time = (ed_time - st_time)
-        ncase_dic.local_keys.sort()
+        # dic = cm.loadJSONDic(file_name=file_path)
+        # data = [(k.lower(), v) for (k, v) in dic.items()]
+        # data.sort()
+        # ord_dict = OrderedDict(data)
+        # ncase_dic = NoCaseDict(ord_dict)
+        dic_instance = NoCaseDict()
         if is_master:
-            self.master_dic = ncase_dic
+            self.master_dic = dic_instance
         else:
-            self.backup_dic = ncase_dic
+            self.backup_dic = dic_instance
+        dic_instance.loadData(file_path)
 
     def saveMasterDict(self, to_file=None):
         file_path = (to_file if to_file else self.master_dic_file)
@@ -865,12 +871,13 @@ class TranslationFinder:
         if tran_sub_text:
             return tran_sub_text
 
+        temp_msg = msg.lower()
         left = right = ""
-        is_found = (msg in search_dict)
+        is_found = (temp_msg in search_dict)
         if is_found:
-            tran = search_dict[msg]
+            tran = search_dict[temp_msg]
         else:
-            left, mid, right = cm.getTextWithin(msg)
+            left, mid, right = cm.getTextWithin(temp_msg)
             is_found = (mid in search_dict)
             if is_found:
                 tran = search_dict[mid]

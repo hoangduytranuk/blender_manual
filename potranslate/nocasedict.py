@@ -51,7 +51,7 @@ class NoCaseDict(OrderedDict):
     def __init__(self, data=None):
         self.is_dirty = False
         self.is_operational = False
-        self.local_keys = []
+        # self.local_keys = []
         # self.sdx = Soundex()
         # self.mtx = Metaphone()
         self.fuzzy_keys = []
@@ -64,10 +64,10 @@ class NoCaseDict(OrderedDict):
         self.local_keylist_cache = {}
         self.local_text_and_chosen_sent_struct_list = {}
         self.local_pattern_and_value_for_sent_struct_list = {}
+        self.sentence_struct_dict = None
 
         self.local_cache_timer = -1
         self.local_cache_timer_started = False
-        self.sentence_struct_dict = {}
 
         super(NoCaseDict, self).__init__()
         if data is None:
@@ -78,30 +78,46 @@ class NoCaseDict(OrderedDict):
         self.is_operational = True
         self.initNumericalPatternList()
 
-    def __contains__(self, key):
-        key = Key(key)
-        is_there = super(NoCaseDict, self).__contains__(key)
-        # dd(f'__contains__:[{key}], is_there:{is_there}')
-        return is_there
 
-    def __setitem__(self, key, value):
-        lkey_key = Key(key)
-        super(NoCaseDict, self).__setitem__(lkey_key, value)
-        self.local_keys.append(key.lower())
-        if self.is_operational:
-            self.is_dirty = True
+    # def __contains__(self, key):
+    #     is_there = (key.lower() in self.proxy)
+    #     # key = Key(key)
+    #     # is_there = super(NoCaseDict, self).__contains__(key)
+    #     # # dd(f'__contains__:[{key}], is_there:{is_there}')
+    #     return is_there
+    #
+    # def __setitem__(self, key, value):
+    #     super(NoCaseDict, self).__setitem__(key, value)
+    #     self.proxy[key] = key
+    #     # lkey_key = Key(key)
+    #     # super(NoCaseDict, self).__setitem__(lkey_key, value)
+    #     # self.local_keys.append(key.lower())
+    #     # if self.is_operational:
+    #     #     self.is_dirty = True
+    #
+    # def __getitem__(self, key):
+    #     key = self.proxy[key.lower()]
+    #     return super(NoCaseDict, self).__getitem__(key)
+    #
+    #     # key = Key(key)
+    #     # try:
+    #     #     value = super(NoCaseDict, self).__getitem__(key)
+    #     #     # dd(f'__getitem__:[{key}], value:[{value}]')
+    #     #     return value
+    #     # except Exception as e:
+    #     #     df.LOG(f'{e}', error=True)
+    #     #     return None
+    def loadData(self, file_path, is_lower=True):
+        dic = cm.loadJSONDic(file_name=file_path)
+        if is_lower:
+            data = [(k.lower(), v) for (k, v) in dic.items()]
+        else:
+            data = list(dic.items())
 
-    def __getitem__(self, key):
-        key = Key(key)
-        try:
-            value = super(NoCaseDict, self).__getitem__(key)
-            # dd(f'__getitem__:[{key}], value:[{value}]')
-            return value
-        except Exception as e:
-            df.LOG(f'{e}', error=True)
-            return None
+        data.sort()
+        self.update(data)
 
-    def createSentenceStructureDict(self):
+    def createSentenceStructureDict(self, loaded_dict):
         def sortingKeyFunction(item):
             (pattern, value_part) = item
             dict_sl_txt = value_part[0]
@@ -125,8 +141,7 @@ class NoCaseDict(OrderedDict):
             entry = (key_pattern, value)
             return entry
 
-        temp_set = list(filter(isSentStruct, self.items()))
-
+        temp_set = list(loaded_dict.items())
         with concurrent.futures.ThreadPoolExecutor() as executor:
             found_results = executor.map(createDictEntry, temp_set)
 
@@ -557,7 +572,7 @@ class NoCaseDict(OrderedDict):
                 return local_found
 
             found_list=[]
-            dict_keys = self.local_keys
+            dict_keys = self.keys()
             index = cm.binarySearch(dict_keys, k, key=binSearchFunction)
             is_found = (index >= 0)
             if not is_found:
