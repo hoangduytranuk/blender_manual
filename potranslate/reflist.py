@@ -313,13 +313,9 @@ class RefList(defaultdict):
         return (loc, input_txt, trans, is_fuzzy, is_ignore)
 
     def translateOneLineOfText(self, input_txt):
-        is_ignore = ig.isIgnored(input_txt)
-        if is_ignore:
-            return None
-
         trans = self.tf.isInDict(input_txt)
         if trans:
-            return trans
+            return trans, False, False
 
         txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
         dd('TRANSLATING LIST OF SEGMENTS:')
@@ -332,14 +328,20 @@ class RefList(defaultdict):
 
         found_result_list = list(found_results)
 
-        tran_list = [(loc, trans) for (loc, input_txt, trans, is_fuzzy, is_ignore) in found_result_list if bool(trans)]
+        tran_list = [(loc, trans, is_fuzzy, is_ignore) for (loc, input_txt, trans, is_fuzzy, is_ignore) in found_result_list if bool(trans)]
         translation = str(input_txt)
+        is_ignore_list=[]
+        is_fuzzy_list=[]
         if tran_list:
             tran_list.sort(reverse=True)
-            for (loc, trans) in tran_list:
+            for (loc, trans, is_fuzzy, is_ignore) in tran_list:
+                is_ignore_list.append(is_ignore)
+                is_fuzzy_list.append(is_fuzzy)
                 translation = cm.jointText(translation, trans, loc)
 
-        return translation
+        is_ignore = (False not in is_ignore_list)
+        is_fuzzy = (True in is_fuzzy_list)
+        return (translation, is_fuzzy, is_ignore)
 
     def translate(self):
         def restoreMaskingString(trans, mask_list):
@@ -433,7 +435,7 @@ class RefList(defaultdict):
         input_txt = self.msg
         has_ref = ref_map.hasMarkedLoc()
         if not has_ref:
-            sent_translation = self.translateOneLineOfText(input_txt)
+            sent_translation, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
         else:
             tran_required_reversed_list = list(self.items())
             tran_required_reversed_list.sort(reverse=True)
@@ -445,7 +447,7 @@ class RefList(defaultdict):
                 sent_translation = collectTranslationsFromRefRecords(tran_required_reversed_list)
             else:
                 masking_string, masked_list = genMasks(input_txt)
-                trans = self.translateOneLineOfText(masking_string)
+                trans, is_fuzzy, is_ignore = self.translateOneLineOfText(masking_string)
                 sent_translation = restoreMaskingString(trans, masked_list)
 
         is_fuzzy = self.isFuzzy()

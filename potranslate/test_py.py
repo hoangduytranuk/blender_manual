@@ -189,19 +189,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "check the Outliner in Fig. :ref:`fig-rig-bone-connected-root`",
-                "check the Outliner in Fig. :ref:`fig-rig-bone-disconnected-tip`",
-                # "checkbox, collection only",
-                # "children move and emit more or less like their respective parents",
-                # "chosen from the hook list",
-                # "circle selection",
-                # "clamping to a fixed number of frames instead",
-                # "click on the number and edit the value",
-                # "clicking at the *eye* to set its visibility",
-                # "clicking on the edges",
-                # "clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl` until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``",
-                # "closed",
-                # "cm, m, ...",
+                "clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl` until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``",
                 # "color/weight depending on surface type",
                 # "combined, red, green, blue, luminance",
                 # "combing, adding, cutting, moving, etc.",

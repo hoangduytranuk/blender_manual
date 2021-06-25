@@ -1366,6 +1366,7 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "cm, m, ...",
         "bullseye",
         "bpy",
         "bpy.",
