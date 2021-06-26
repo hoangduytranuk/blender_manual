@@ -3,10 +3,8 @@ from collections import OrderedDict
 from enum import Enum
 from definition import Definitions as df, \
     TranslationState, \
-    RefType, \
     SentStructMode as SMODE, \
     SentStructModeRecord as SMODEREC
-import inspect as INP
 
 class MatcherRecordType(Enum):
     MASTER = 0
@@ -15,7 +13,7 @@ class MatcherRecordType(Enum):
     RIGHT_SYMBOL = 3
     INVALID = 4
 
-REF_LINK = re.compile(r'[\s]?[\<]([^\<\>]+)[\>][\s]?')
+REF_LINK = re.compile(r'[\s]?[<]([^<>]+)[>][\s]?')
 
 class MatcherRecord(OrderedDict):
 
@@ -195,7 +193,7 @@ class MatcherRecord(OrderedDict):
         return state
 
     def setTranslated(self):
-        self.translation_state == TranslationState.ACCEPTABLE
+        self.translation_state = TranslationState.ACCEPTABLE
 
     def appendSubRecords(self, sub_rec_list):
         current_list = self.getSubEntriesAsList()
@@ -265,6 +263,7 @@ class MatcherRecord(OrderedDict):
         list_modes = self.getListOfModes()
         sent_struct_mode_record: SMODEREC = None
         is_found = False
+        smode_loc = None
         for smode_loc, sent_struct_mode_record_list in list_modes:
             for sent_struct_mode_record in sent_struct_mode_record_list:
                 is_found = (sent_struct_mode_record.smode == mode_looking_for)
@@ -351,6 +350,10 @@ class MatcherRecord(OrderedDict):
 
     def getType(self):
         sub_comp = self.getComponent(1, sub_index=1)
+        return sub_comp
+
+    def getTypeLoc(self):
+        sub_comp = self.getComponent(1, sub_index=0)
         return sub_comp
 
     def getStarter(self):

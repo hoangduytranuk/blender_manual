@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json.">
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Added getTypeLoc() in matcher.py, also working out how to cleaned up the sentence structure dict entries to try creating something similar to looking up the fuzzy dicts, using binarySearch()">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/potranslate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/potranslate.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_ss_0001.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_ss_0001.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +41,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.19831933" />
   </component>
@@ -108,13 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622672549482</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Cleaned out the test_py.py, added the EXCLUDE clause in the sentence structure, which is validated in the validate_EXCLUDE, taking the matched_part and the smode_txt, in nocasedict.py. Added ignore_txt_list to allow text directly placed into the ignore list, bypassing the cumbersome regular expression list. Grouped the arguments of validation functions into one tuple, to avoid changes in the interface too much. Check to see if the txt to be translated in simpleFuzzyTranslate has a PATH CHAR (/) in it. This forces the evaluation of fuzzy ratio to take the overall rate rather than the partial ratio (considering it to be two words), also added forward slash to be a part of splitter components here (COMMON_WORD_SEP). Tried to shorten the for loops using map and list comprehension in paragraph.py.">
-      <created>1623177044576</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1623177044576</updated>
     </task>
     <task id="LOCAL-00005" summary="Corrected the error in translateMenuSelection">
       <created>1623513434755</created>
@@ -452,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624622344251</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Trying to replace the sentence structure dictionary with a manually selected list of required structure. Before considering a new method for working out best matched structure to use">
+      <created>1624644463285</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1624644463286</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -478,8 +473,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Obtained translations for 'wave factor'" />
-    <MESSAGE value="Finished list of ref text, part 1" />
     <MESSAGE value="Swapped the order of units, Paragraph first, splitting texts into segments, or not, then RefList parsing to spit out references, then for each piece of text, apply the sentence.py (SR) rules on it and translate." />
     <MESSAGE value="Corrected the translation for splitting lines up in paragraph.py, also corrected the translateQuoted() when no translations can be obtained" />
     <MESSAGE value="Thought of a method for swapping references, using  numeric mnemonic replacements in places of references, restoring the list of mnemonics after the translation is completed by first found locations of the mnemonics in the translation string, then replace them with the translation texts from mm of refs. The code runs SLOW!" />
@@ -503,65 +496,17 @@
     <MESSAGE value="Fixed an error in the translateOneLineOfText, returning a tuple instead of a single string" />
     <MESSAGE value="Fixed the returning values of translateOneLineOfText in reflist.py. The code IS REALLY slow" />
     <MESSAGE value="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json." />
-    <option name="LAST_COMMIT_MESSAGE" value="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json." />
+    <MESSAGE value="Trying to replace the sentence structure dictionary with a manually selected list of required structure. Before considering a new method for working out best matched structure to use" />
+    <MESSAGE value="Added getTypeLoc() in matcher.py, also working out how to cleaned up the sentence structure dict entries to try creating something similar to looking up the fuzzy dicts, using binarySearch()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added getTypeLoc() in matcher.py, also working out how to cleaned up the sentence structure dict entries to try creating something similar to looking up the fuzzy dicts, using binarySearch()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1791</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>353</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>2038</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test_py.py</url>
-          <line>256</line>
-          <option name="timeStamp" value="270" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>352</line>
-          <option name="timeStamp" value="274" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>367</line>
-          <option name="timeStamp" value="275" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>574</line>
-          <option name="timeStamp" value="281" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>634</line>
-          <option name="timeStamp" value="288" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>577</line>
-          <option name="timeStamp" value="289" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>556</line>
-          <option name="timeStamp" value="290" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1982</line>
-          <option name="timeStamp" value="293" />
+          <line>319</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -578,5 +523,9 @@
         <watch expression="self.(0, 3) (4563464064)" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
