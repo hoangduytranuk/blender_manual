@@ -1366,6 +1366,8 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "cwolf3d",
+        "cos",
         "cm, m, ...",
         "bullseye",
         "bpy",
@@ -1523,6 +1525,11 @@ class Definitions:
         "object-proxy",
         "manual/images",
         "material:index",
+        "diffuse(N)",
+        "distance^2",
+        "diurnal",
+        "doi:10.1111/j.1467-8659.2011.01976.x",
+        "dommetysk",
     ]
 
 # , ""
@@ -1690,14 +1697,8 @@ class Definitions:
     ]
     global_ref_map = None
     ss_map = {
-        "click(\\w+)? on ${} and ${} until ${}": "nhấp chuột vào ${} và ${} cho đến khi ${}",
-        "${} with ${}": "${} với ${}",
-        "the ${1/EQ(yellow|black|white|red|green|blue|grey|gray|orange)} ${2}": "${2} ${1}",
-        "the ${EQ(yellow|black|white|red|green|blue|grey|gray|orange)} arrow ${}": "mũi tên ${} ${}",
-        "${} while ${}": "${} trong khi ${}",
-        "the ${} in ${} of ${}": "${} trong ${} của ${}",
-        "bottom left ${}": "${} dưới cùng bên trái",
-        "using ${}": "sử dụng ${}",
+        "all ${NP}": "toàn bộ các ${}",
+        "see ${}": "xin xem thêm bài ${}",
     }
 
 class SentStructModeRecord:
