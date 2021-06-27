@@ -360,7 +360,7 @@ class test(object):
         # import cProfile
         # self.findRefText()
         # self.findUnknownRefs()
-        # self.resort_dictionary()
+        self.resort_dictionary()
         self.test_translate_0001()
         # self.cleanSS()
 

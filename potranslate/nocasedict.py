@@ -385,17 +385,18 @@ class NoCaseDict(OrderedDict):
             found_ref_list.sort(reverse=True)
             for ref_loc, ref_mm in found_ref_list:
                 ref_found = ref_mm.txt
+                lcase_ref_found = ref_found.lower()
                 dict_selected = self
-                has_ref = (ref_found in dict_selected)
+                has_ref = (lcase_ref_found in dict_selected)
                 if not has_ref:
-                    has_ref = (ref_found in df.numeral_dict)
+                    has_ref = (lcase_ref_found in df.numeral_dict)
                     if not has_ref:
                         msg = f'REFERENCE [{ref_found}] has no translation for it! Translation: [{tran}]'
                         raise ValueError(msg)
                     else:
                         dict_selected = df.numeral_dict
 
-                tran_for_ref = dict_selected[ref_found]
+                tran_for_ref = dict_selected[lcase_ref_found]
                 entry = {ref_found: tran_for_ref}
                 ref_tran_dict.update(entry)
 
