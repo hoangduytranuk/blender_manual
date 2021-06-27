@@ -574,7 +574,7 @@ class NoCaseDict(OrderedDict):
                 return local_found
 
             found_list=[]
-            dict_keys = self.keys()
+            dict_keys = list(self.keys())
             index = cm.binarySearch(dict_keys, k, key=binSearchFunction)
             is_found = (index >= 0)
             if not is_found:

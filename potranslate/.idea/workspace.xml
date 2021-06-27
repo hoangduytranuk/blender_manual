@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Added getTypeLoc() in matcher.py, also working out how to cleaned up the sentence structure dict entries to try creating something similar to looking up the fuzzy dicts, using binarySearch()">
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Back to test_translate_0001">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_ss_0001.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_ss_0001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,13 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622672549482</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added the ability to perform translations for segments of strings (from map), concurrently, before finally check for valid and blocking off the rest. This might proved to be wasteful for some operations but might shorten the overall timing in others. It will has to wait and see which is more benefit.">
-      <created>1623606351019</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1623606351019</updated>
     </task>
     <task id="LOCAL-00007" summary="Tried to obtain untranslated ref-texts into backup dict, and on the way, corrected a few things, staring off with braket parsing in common.py, then branched off the translation for bracket, ideally, this should repeat the whole reflist functionality. It would be much better if bracketed texts are treated first, right from the beginning.">
       <created>1623891422090</created>
@@ -445,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624751589678</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Back to test_translate_0001">
+      <created>1624752871337</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1624752871337</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -471,7 +470,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Swapped the order of units, Paragraph first, splitting texts into segments, or not, then RefList parsing to spit out references, then for each piece of text, apply the sentence.py (SR) rules on it and translate." />
     <MESSAGE value="Corrected the translation for splitting lines up in paragraph.py, also corrected the translateQuoted() when no translations can be obtained" />
     <MESSAGE value="Thought of a method for swapping references, using  numeric mnemonic replacements in places of references, restoring the list of mnemonics after the translation is completed by first found locations of the mnemonics in the translation string, then replace them with the translation texts from mm of refs. The code runs SLOW!" />
     <MESSAGE value="Thought of a method for swapping references, using a numeric mnemonic replacements in places of reference, storing the list of mnemonic after the translation is completed by first found location of the mnemonics in the translation string, then replace them with the translation texts of refs. The code runs SLOW!" />
@@ -496,10 +494,23 @@
     <MESSAGE value="Attaching profile (using @profile) above the def test_translate_0001 in test_py.py. Also cleaned up the nocasedict.py, using ordinary dictionary, use list comprehension to lower the data before putting data into the dictionary, using parameter switch to flag when this is required. Extract and store the sentence structure to a separate JSON file, ref_dict_ss_0001.json (backup in ref_dict_ss_0002.json). Removed '${' entries from the ref_dict_0006_0003.json." />
     <MESSAGE value="Trying to replace the sentence structure dictionary with a manually selected list of required structure. Before considering a new method for working out best matched structure to use" />
     <MESSAGE value="Added getTypeLoc() in matcher.py, also working out how to cleaned up the sentence structure dict entries to try creating something similar to looking up the fuzzy dicts, using binarySearch()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added getTypeLoc() in matcher.py, also working out how to cleaned up the sentence structure dict entries to try creating something similar to looking up the fuzzy dicts, using binarySearch()" />
+    <MESSAGE value="Back to test_translate_0001" />
+    <option name="LAST_COMMIT_MESSAGE" value="Back to test_translate_0001" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>556</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>575</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
