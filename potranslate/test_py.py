@@ -201,69 +201,6 @@ class test(object):
         m = pat.search(t)
         print(m)
 
-    # @profile
-    def test_translate_0001(self, text_list=None):
-        from paragraph import Paragraph as PR
-        from sentence import StructRecogniser as SR
-
-        if not text_list:
-            t_list = [
-                "clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl` until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``",
-                # "color/weight depending on surface type",
-                # "combined, red, green, blue, luminance",
-                # "combing, adding, cutting, moving, etc.",
-                # "compare this to the XYZ coordinates in 3D",
-                # "compared to the left one",
-                # "complete particles or single keys",
-                # "configured in the preferences",
-                # "connected by selected edges",
-                # "connected to the root group input and output",
-                # "constitutive elements like vertices, control vertices, and where they are in space",
-                # "containing",
-                # "containing the TOC for that section",
-                # "control points minus 1",
-                # "controlling that there is no sliding off original position",
-                # "converted to/from meshes",
-                # "converting meshes to curves",
-                # "cos",
-                # "cube mesh object",
-                # "cwolf3d",
-                # "cyan lines",
-                # "cyclical",
-                # "dabs are separated according to *Spacing*",
-                # "dark gray / orange diamond",
-                # "deceleration, friction, dampening",
-                # "depending on the particle system's render settings, see :doc:`Visualization </physics/particles/emitter/render>`",
-                # "deselects all other objects",
-                # "differs",
-                # "diffuse(N)",
-                # "distance^2",
-                # "diurnal",
-                # "doi:10.1111/j.1467-8659.2011.01976.x",
-                # "dommetysk",
-                # "drags",
-            ]
-        else:
-            t_list = text_list
-
-        s_time = time.perf_counter()
-        tf = TranslationFinder()
-        out_put_list=[]
-        for t in t_list:
-            pr = PR(t, translation_engine=tf)
-            pr.translateAsIs()
-            # pr.translateSplitUp()
-            output = pr.getTextAndTranslation()
-            out_put_list.append(output)
-
-        e_time = time.perf_counter()
-        p_time = (e_time - s_time)
-        print(f'p_time:{p_time}')
-        for o in out_put_list:
-            print(o)
-
-        # tf.writeBackupDict()
-
     def loadData(self, file_path, is_lower=True):
         return_dict = OrderedDict()
         dic = cm.loadJSONDic(file_name=file_path)
@@ -353,6 +290,70 @@ class test(object):
             pp(cleaned_group_list)
             dd('*' * 30)
 
+    # @profile
+    def test_translate_0001(self, text_list=None):
+        from paragraph import Paragraph as PR
+        from sentence import StructRecogniser as SR
+
+        if not text_list:
+            t_list = [
+                "clicking on the red arrow shown with the object and moving while using shortcut :kbd:`Ctrl` until the info in the bottom left corner of the 3D Viewport displays ``D. -3.0000 (3.0000) Global``",
+                # "color/weight depending on surface type",
+                # "combined, red, green, blue, luminance",
+                # "combing, adding, cutting, moving, etc.",
+                # "compare this to the XYZ coordinates in 3D",
+                # "compared to the left one",
+                # "complete particles or single keys",
+                # "configured in the preferences",
+                # "connected by selected edges",
+                # "connected to the root group input and output",
+                # "constitutive elements like vertices, control vertices, and where they are in space",
+                # "containing",
+                # "containing the TOC for that section",
+                # "control points minus 1",
+                # "controlling that there is no sliding off original position",
+                # "converted to/from meshes",
+                # "converting meshes to curves",
+                # "cos",
+                # "cube mesh object",
+                # "cwolf3d",
+                # "cyan lines",
+                # "cyclical",
+                # "dabs are separated according to *Spacing*",
+                # "dark gray / orange diamond",
+                # "deceleration, friction, dampening",
+                # "depending on the particle system's render settings, see :doc:`Visualization </physics/particles/emitter/render>`",
+                # "deselects all other objects",
+                # "differs",
+                # "diffuse(N)",
+                # "distance^2",
+                # "diurnal",
+                # "doi:10.1111/j.1467-8659.2011.01976.x",
+                # "dommetysk",
+                # "drags",
+            ]
+        else:
+            t_list = text_list
+
+        s_time = time.perf_counter()
+        tf = TranslationFinder()
+        out_put_list=[]
+        for t in t_list:
+            pr = PR(t, translation_engine=tf)
+            pr.translateAsIs()
+            # pr.translateSplitUp()
+            output = pr.getTextAndTranslation()
+            out_put_list.append(output)
+
+        e_time = time.perf_counter()
+        p_time = (e_time - s_time)
+        print(f'p_time:{p_time}')
+        for o in out_put_list:
+            print(o)
+
+        # tf.writeBackupDict()
+
+
 
     def run(self):
         # self.test_0001()
@@ -360,8 +361,8 @@ class test(object):
         # self.findRefText()
         # self.findUnknownRefs()
         # self.resort_dictionary()
-        # self.test_translate_0001()
-        self.cleanSS()
+        self.test_translate_0001()
+        # self.cleanSS()
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')
