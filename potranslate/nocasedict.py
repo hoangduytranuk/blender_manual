@@ -65,6 +65,7 @@ class NoCaseDict(OrderedDict):
         self.local_text_and_chosen_sent_struct_list = {}
         self.local_pattern_and_value_for_sent_struct_list = {}
         self.sentence_struct_dict = None
+        self.sentence_struct_dict_simple = None
 
         self.local_cache_timer = -1
         self.local_cache_timer_started = False
@@ -141,6 +142,12 @@ class NoCaseDict(OrderedDict):
             entry = (key_pattern, value)
             return entry
 
+        def composeTempSSDict(item):
+            (key, value) = item
+            dict_sl_txt = value[0]
+            entry = (dict_sl_txt, key)
+            return entry
+
         is_use_subset = bool(df.ss_map)
         temp_set = (list(df.ss_map.items()) if is_use_subset else list(loaded_dict.items()))
 
@@ -148,10 +155,23 @@ class NoCaseDict(OrderedDict):
             found_results = executor.map(createDictEntry, temp_set)
 
         found_list = list(found_results)
+
         found_list.sort(key=sortingKeyFunction, reverse=True)
 
         temp_dict = OrderedDict(found_list)
         self.sentence_struct_dict = NoCaseDict(temp_dict)
+
+        # with concurrent.futures.ThreadPoolExecutor() as executor:
+        #     found_results = executor.map(composeTempSSDict, list(temp_dict.items()))
+        #
+        # tem_ss_dict_list = list(found_results)
+        # ss_temp_dict = OrderedDict(tem_ss_dict_list)
+        #
+        # simple_ss_dict = cm.simplifiedSS(ss_temp_dict)
+        #
+        # self.sentence_struct_dict_simple = simple_ss_dict
+
+
 
     def get(self, k, default=None):
         return self[k] if k in self else default
@@ -300,6 +320,22 @@ class NoCaseDict(OrderedDict):
 
             return return_item
 
+        def findSimpleSS(find_item: str, simple_dict_list: OrderedDict):
+            def fuzzyRatioCompute(item):
+                (simple_key, complex_key) = item
+                rat = fuzz.ratio(find_item, simple_key)
+                return_entry = (rat, (simple_key, complex_key))
+                return return_entry
+
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_results = executor.map(fuzzyRatioCompute, simple_dict_list.items())
+
+            found_results_list = list(found_results)
+            found_results_list.sort(reverse=True)
+            found_item = (found_results_list[0])
+            (rat, simple_key, complex_key) = found_item
+            return complex_key
+
         try:
             default_value = (None, None, None, None, None, None, None)
             # has_cached_key_value_set = (klower in self.local_text_and_chosen_sent_struct_list)
@@ -307,6 +343,12 @@ class NoCaseDict(OrderedDict):
             #     set_value = self.local_text_and_chosen_sent_struct_list[klower]
             #     (pat, value) = set_value
             #     return (pat, value)
+
+            # s_time = time.perf_counter()
+            # pat_key = findSimpleSS(key, self.sentence_struct_dict_simple)
+            # e_time = time.perf_counter()
+            # p_time = (e_time - s_time)
+            # print(p_time)
 
             st_counter = time.perf_counter()
             (pattern, matcher, value) = findMatchingPattern(key, self.sentence_struct_dict.items())

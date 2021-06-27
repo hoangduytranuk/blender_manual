@@ -2030,6 +2030,86 @@ class Common:
     def createMatcherRecord(mm: re.Match):
         return MatcherRecord(matcher_record=mm)
 
+    def simplifiedSS(ss_dict):
+        def getOrEntries(txt):
+            mm: MatcherRecord = None
+            any_part = r'([^()`]+)?'
+            bracketted_part = r'(\(([^\(\)]+)\))|\`([^\`]+)\`'
+            pat_txt = r'%s(%s)%s' % (any_part, bracketted_part, any_part)
+            pat = re.compile(pat_txt)
+            part_match_dict = Common.patternMatchAll(pat, txt)
+            found_parts = []
+            for loc, mm in part_match_dict.items():
+                txt_loc = mm.getSubLoc()
+                txt = mm.getSubText()
+                if not txt:
+                    txt = mm.getType()
+                    txt_loc = mm.getTypeLoc()
+
+                or_list = txt.split('|')
+                is_or_list = (len(or_list) > 1)
+                if not is_or_list:
+                    continue
+
+                entry = (txt_loc, or_list)
+                found_parts.append(entry)
+            return found_parts
+
+        def composeSubEntries(orig_txt_list, loc, or_list):
+            new_line_list = []
+            for orig_txt in orig_txt_list:
+                for or_clause in or_list:
+                    new_line = Common.jointText(orig_txt, or_clause, loc)
+                    new_line_list.append(new_line)
+            return new_line_list
+
+        def cleanLine(old_line):
+            clean_new_k_pat_txt = r'[()`\[\]\^\\]'
+            clean_spaces_pat_txt = r'[\s]+'
+            clean_spaces_pat = re.compile(clean_spaces_pat_txt)
+            clean_new_k_pat = re.compile(clean_new_k_pat_txt)
+
+            # has_spaces = ('\\s' in old_line)
+            # if has_spaces:
+            #     dd('debug')
+            new_line = old_line.replace('\\s', ' ')
+
+            new_line = clean_new_k_pat.sub('', new_line)
+            new_line = clean_spaces_pat.sub(' ', new_line)
+            new_line = new_line.strip()
+            return new_line
+
+        rep_keywords = r'(\/?(\d|ED|LD|EX|EQ|NP|NC|MX\d+|\\w|\+|\?|\\d|\\W))'
+        re_pat_txt = r'(\$\{)|%s?|(\})' % (rep_keywords)
+        pat = re.compile(re_pat_txt)
+
+        # home_dir = os.environ['BLENDER_GITHUB']
+        # sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.json")
+        # ss_dict = self.loadData(sent_struct_file, is_lower=False)
+
+        simplified_dict = OrderedDict()
+        for k, v in ss_dict.items():
+            # dd(f'orig:[{k}]')
+            new_k = pat.sub("", k)
+            is_or = ('|' in new_k)
+            if is_or:
+                found_or_list = getOrEntries(new_k)
+                found_or_list.sort(reverse=True)
+
+                group_of_new_lines=[new_k]
+                for loc, or_list in found_or_list:
+                    new_group = composeSubEntries(group_of_new_lines, loc, or_list)
+                    group_of_new_lines = new_group
+            else:
+                group_of_new_lines = [new_k]
+
+            cleaned_group = map(cleanLine, group_of_new_lines)
+            cleaned_group_list = list(cleaned_group)
+            simple_entries = [(simple_key, v) for simple_key in cleaned_group_list]
+            simplified_dict.update(simple_entries)
+
+        return simplified_dict
+
     def debugging(txt):
         msg = "Target Velocity, a"
         is_debug = (msg and txt and (msg.lower() in txt.lower()))

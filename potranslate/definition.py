@@ -1690,7 +1690,7 @@ class Definitions:
     ]
     global_ref_map = None
     ss_map = {
-        "click(\\w+)? on ${} and ${} until ${}": "bấm vào ${} và ${} cho đến khi ${}",
+        "click(\\w+)? on ${} and ${} until ${}": "nhấp chuột vào ${} và ${} cho đến khi ${}",
         "${} with ${}": "${} với ${}",
         "the ${1/EQ(yellow|black|white|red|green|blue|grey|gray|orange)} ${2}": "${2} ${1}",
         "the ${EQ(yellow|black|white|red|green|blue|grey|gray|orange)} arrow ${}": "mũi tên ${} ${}",
