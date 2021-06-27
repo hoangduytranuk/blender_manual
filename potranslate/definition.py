@@ -1366,6 +1366,7 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "exp",
         "cwolf3d",
         "cos",
         "cm, m, ...",
@@ -1529,6 +1530,7 @@ class Definitions:
         "distance^2",
         "diurnal",
         "doi:10.1111/j.1467-8659.2011.01976.x",
+        "my_scripts",
         "dommetysk",
     ]
 
@@ -1697,8 +1699,21 @@ class Definitions:
     ]
     global_ref_map = None
     ss_map = {
-        "all ${NP}": "toàn bộ các ${}",
-        "see ${}": "xin xem thêm bài ${}",
+        "e\\.g\\. ${}": "@{eg}",
+        "e\\.g\\: ${}": "@{eg}",
+        "everything ${}": "mọi cái ${}",
+        "not ${NC} yet": "chưa ${}",
+        "${} or ${}": "${} hoặc ${}",
+        "${} in ${}": "${} trong ${}",
+        "${} is ${}": "${} thì/là/được ${}",
+        "${} buttons": "các nút bấm ${}",
+        "${} and ${}": "${} và ${}",
+        "${} (am|are|is|was|were) not ${}": "${} đã không phải là/được ${}",
+        "except ${}": "ngoại trừ ${}",
+        "if ${} is set to ${}": "nếu ${} được bố trí/đặt là ${}",
+        "in which case ${NP}": "nếu trong trường hợp đó thì ${}",
+        "${} orientation": "định hướng ${}",
+
     }
 
 class SentStructModeRecord:
