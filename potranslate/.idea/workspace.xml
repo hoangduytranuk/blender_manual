@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts.">
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Corrected the error where references lost leading and trailing spaces when reattach to the translation at the end, by uisng 'SPACE' for blank_str in the correctIndexOfTLTextList() (sentence.py) instead of FILLER_CHAR. Using FILLER_CHAR for joining segments only, so we can remove the FILLER_CHARs by empties later on.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
@@ -56,6 +59,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.19831933" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RunManager">
@@ -89,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622672549482</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added dictionary translations to 'relative file path'">
-      <created>1624269800174</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1624269800174</updated>
     </task>
     <task id="LOCAL-00017" summary="Added dictionary translations to 'reversed order'">
       <created>1624270986072</created>
@@ -433,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624892973849</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Corrected the error where references lost leading and trailing spaces when reattach to the translation at the end, by uisng 'SPACE' for blank_str in the correctIndexOfTLTextList() (sentence.py) instead of FILLER_CHAR. Using FILLER_CHAR for joining segments only, so we can remove the FILLER_CHARs by empties later on.">
+      <created>1624901076041</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1624901076041</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -459,7 +463,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added translations upto 'Samples: 8' plus add ability to check for translated versions first before actually committed to SR" />
     <MESSAGE value="Correct a mistake in the collectTranslationsFromRefRecords, reflist.py, which doesn't return the translation result" />
     <MESSAGE value="Change the order of splitting sentences, so this action occurs at the translating, after parsing has been completed, which removes the presence of refs, avoiding the splitting errors" />
     <MESSAGE value="Change the order of splitting sentences, so this action occurs at the translating, after parsing has been completed, which removes the presence of refs, avoiding the splitting errors, which could occurs in the middle of a reference entry" />
@@ -484,25 +487,41 @@
     <MESSAGE value="Translation terms upto 'human perception'" />
     <MESSAGE value="Translation terms upto 'i.e. Bézier with Bézier, NURBS with NURBS'" />
     <MESSAGE value="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts." />
+    <MESSAGE value="Corrected the error where references lost leading and trailing spaces when reattach to the translation at the end, by uisng 'SPACE' for blank_str in the correctIndexOfTLTextList() (sentence.py) instead of FILLER_CHAR. Using FILLER_CHAR for joining segments only, so we can remove the FILLER_CHARs by empties later on." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected the error where references lost leading and trailing spaces when reattach to the translation at the end, by uisng 'SPACE' for blank_str in the correctIndexOfTLTextList() (sentence.py) instead of FILLER_CHAR. Using FILLER_CHAR for joining segments only, so we can remove the FILLER_CHARs by empties later on." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>342</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>328</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/reflist.py</url>
           <line>1</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>388</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>360</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>1714</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>418</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/common.py</url>
+          <line>455</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

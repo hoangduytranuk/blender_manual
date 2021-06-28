@@ -1723,7 +1723,7 @@ class Common:
         embpart_terminator = r'(\s|\b|$)?'
         # embpart_terminator = ''
         ending = r'(\W\b|$)?'
-        leading = r'\s?'
+        leading = r'(\W\b|^)?'
         for loc, txt in list_of_words:
             emb_pat = None
             is_any = (df.SENT_STRUCT_PAT.search(txt) is not None)
@@ -1792,7 +1792,7 @@ class Common:
         return {recog_pattern: (key, record_mm, record_txt_list)}
 
     def creatSentRecogniserPattern(key):
-        the_txt_word_list = Common.patStructToListOfWords(key)
+        the_txt_word_list = Common.patStructToListOfWords(key, removing_symbols=False)
         recog_pattern = Common.formPattern(the_txt_word_list)
         return recog_pattern
 

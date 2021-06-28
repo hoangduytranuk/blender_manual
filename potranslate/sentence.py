@@ -675,7 +675,12 @@ class StructRecogniser():
                     parsed_list.append(entry)
                 processed(non_sr_loc, sub_txt, None)
 
+        translation = self.tf.isInDict(txt)
+        if translation:
+            return translation
+
         translation = str(txt)
+
         origin = str(txt)
         sr: StructRecogniser = None
 

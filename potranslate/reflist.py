@@ -426,6 +426,11 @@ class RefList(defaultdict):
                     tran_text = cm.jointText(tran_text, trans, loc)
             return tran_text
 
+        sent_translation = self.tf.isInDict(self.msg)
+        if sent_translation:
+            self.setTranslation(sent_translation, False, False)
+            return
+
         mm_record: MatcherRecord = None
         is_translated = (self.translation_state != TranslationState.UNTRANSLATED)
         if is_translated:
