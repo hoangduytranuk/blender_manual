@@ -297,7 +297,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "extruded",
+                "human perception",
             ]
         else:
             t_list = text_list

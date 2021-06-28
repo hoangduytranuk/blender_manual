@@ -1366,6 +1366,10 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
+        "henyey_greenstein(g)",
+        "glTF",
+        "glTF 2.0 (.glb, .gltf)",
+        "fmod",
         "exp",
         "cwolf3d",
         "cos",
@@ -1699,21 +1703,27 @@ class Definitions:
     ]
     global_ref_map = None
     ss_map = {
-        "e\\.g\\. ${}": "@{eg}",
-        "e\\.g\\: ${}": "@{eg}",
-        "everything ${}": "mọi cái ${}",
-        "not ${NC} yet": "chưa ${}",
-        "${} or ${}": "${} hoặc ${}",
-        "${} in ${}": "${} trong ${}",
-        "${} is ${}": "${} thì/là/được ${}",
-        "${} buttons": "các nút bấm ${}",
-        "${} and ${}": "${} và ${}",
-        "${} (am|are|is|was|were) not ${}": "${} đã không phải là/được ${}",
-        "except ${}": "ngoại trừ ${}",
-        "if ${} is set to ${}": "nếu ${} được bố trí/đặt là ${}",
-        "in which case ${NP}": "nếu trong trường hợp đó thì ${}",
-        "${} orientation": "định hướng ${}",
-
+        "human ${NC}": "${} của con người",
+        # "for example\\W? ${}": "lấy ví dụ, ${}, chẳng hạn",
+        # "for ${NP/NC}": "để đạt được/dành cho/đối với ${}",
+        # "${} per ${}": "${} mỗi một ${}",
+        # "${NP/NC/MX3} bone": "xương ${}",
+        # "factor = ${MX1}": "hệ số = ${}",
+        # "factor of ${NP/NC}": "hệ số ${}",
+        # "e\\.g\\. ${}": "@{eg}",
+        # "e\\.g\\: ${}": "@{eg}",
+        # "everything ${}": "mọi cái ${}",
+        # "not ${NC} yet": "chưa ${}",
+        # "${} or ${}": "${} hoặc ${}",
+        # "${} in ${}": "${} trong ${}",
+        # "${} is ${}": "${} thì/là/được ${}",
+        # "${} buttons": "các nút bấm ${}",
+        # "${} and ${}": "${} và ${}",
+        # "${} (am|are|is|was|were) not ${}": "${} đã không phải là/được ${}",
+        # "except ${}": "ngoại trừ ${}",
+        # "if ${} is set to ${}": "nếu ${} được bố trí/đặt là ${}",
+        # "in which case ${NP}": "nếu trong trường hợp đó thì ${}",
+        # "${} orientation": "định hướng ${}",
     }
 
 class SentStructModeRecord:
