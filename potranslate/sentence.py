@@ -276,17 +276,17 @@ class StructRecogniser():
                 dd('-' * 80)
                 raise e
 
-        def correctTextsOffsets(senttl_list):
+        def correctTextsOffsets(any_list):
             def creatTLTextList():
                 any_index_list=[]
                 sent_tl_index = 0
                 new_list = []
-                senttl_list_length = len(senttl_list)
+                senttl_list_length = len(any_list)
                 for index, (loc, tl_txt) in enumerate(dict_tl_list):
                     (ls, le) = loc
                     is_pattern = (df.SENT_STRUCT_PAT.search(tl_txt) is not None)
                     if is_pattern:
-                        senttl_loc, actual_tl_txt = senttl_list[sent_tl_index]
+                        senttl_loc, actual_tl_txt = any_list[sent_tl_index]
                         sent_tl_index = min(sent_tl_index + 1, senttl_list_length - 1)
                         any_index_list.append(index)
                     else:
@@ -324,19 +324,23 @@ class StructRecogniser():
                             continue
 
                         new_loc = (ls, le)
-                        blank_str = cm.jointText(blank_str, mid, new_loc)
+                        blank_str = cm.jointText(blank_str, mid + df.FILLER_CHAR, new_loc)
 
                     temp_list = cm.findInvert(df.FILLER_CHAR_PATTERN, blank_str)
-                    for loc, mm in temp_list.items():
-                        entry = (loc, mm.txt)
+                    ac_s = ac_e = 0
+                    for index, (loc, mm) in enumerate(list(temp_list.items())):
+                        txt = mm.txt
+                        ac_e = (ac_s + len(txt))
+                        loc = (ac_s, ac_e)
+                        entry = (loc, txt)
                         corrected_list.append(entry)
+                        ac_s = ac_e
 
-                    for index, entry in enumerate(corrected_list):
                         is_entry_untranslated = (index in any_index_list)
                         if is_entry_untranslated:
                             tran_required_list.append(entry)
 
-                    the_new_tl_txt = blank_str.replace(df.FILLER_CHAR, ' ')
+                    the_new_tl_txt = blank_str.replace(df.FILLER_CHAR, '')
                 except Exception as e:
                     df.LOG(e)
                 df.LOG('corrected_list for translation:')

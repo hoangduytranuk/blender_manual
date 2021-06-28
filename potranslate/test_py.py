@@ -297,15 +297,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "i.e. Bézier with Bézier, NURBS with NURBS",
-                # "i.e. IK Constraint",
-                # "i.e. Object Data, Modifier",
-                # "i.e. Solo and NLA Muting",
-                # "i.e. Z coordinates in current view space",
-                # "i.e. ``camera_for_shot_ZXY_36x24.chan``",
-                # "i.e. a frame which doesn't have any previous frame in the cache",
-                # "i.e. a linear curve",
-                # "i.e. a set of close keyframes with linear interpolation",
+                "i.e. a set of close keyframes with linear interpolation",
                 # "i.e. a set of detected feature edges",
                 # "i.e. above/below the curve",
                 # "i.e. all *Generate*, some *Modify* and some *Simulate* modifiers cannot come before the *Multiresolution* one",
