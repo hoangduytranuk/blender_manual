@@ -227,7 +227,7 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
 
-    split_sent_seg_txt = r'\s?([\,\.\-\;]+(?<!((e\.g|etc|fig)\.))\s)|([\(\)]|[{}])'
+    split_sent_seg_txt = r'\s?([\,\.\-\;]+(?<!((e\.g|i\.e|etc|fig)\.))\s)|([\(\)]|[{}])'
     SPLIT_SENT_PAT = re.compile(split_sent_seg_txt, flags=re.I)
 
     total_files = 1358
@@ -1703,9 +1703,17 @@ class Definitions:
     ]
     global_ref_map = None
     ss_map = {
-        "human ${NC}": "${} của con người",
+        "${NP/NC} with ${NP/NC}": "${} với ${}",
+        # "i\\.e ${}": "@{ie}",
+        # "i\\.e\\. for ${}": "@{ie} cho/đối với ${}",
+        "i\\.e\\. ${}": "@{ie}",
+        "i\\.e\\; ${}": "@{ie}",
+        # "${} to ${}": "${} với/vào ${}",
+        # "current ${}": "${} hiện tại",
+        # "human ${NC}": "${} của con người",
         # "for example\\W? ${}": "lấy ví dụ, ${}, chẳng hạn",
         # "for ${NP/NC}": "để đạt được/dành cho/đối với ${}",
+        # "${} for ${}": "${} cho/đối với ${}",
         # "${} per ${}": "${} mỗi một ${}",
         # "${NP/NC/MX3} bone": "xương ${}",
         # "factor = ${MX1}": "hệ số = ${}",
@@ -1718,7 +1726,9 @@ class Definitions:
         # "${} in ${}": "${} trong ${}",
         # "${} is ${}": "${} thì/là/được ${}",
         # "${} buttons": "các nút bấm ${}",
-        # "${} and ${}": "${} và ${}",
+        # "${} and ${}": "${} và/đồng thời/rồi ${}",
+        # "that doesn't have ${NP}": "tức cái không có ${}",
+        # "${} field": "ô ${}",
         # "${} (am|are|is|was|were) not ${}": "${} đã không phải là/được ${}",
         # "except ${}": "ngoại trừ ${}",
         # "if ${} is set to ${}": "nếu ${} được bố trí/đặt là ${}",
