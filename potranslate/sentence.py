@@ -311,7 +311,7 @@ class StructRecogniser():
                 corrected_list = []
                 try:
                     dict_tl_txt_len = len(dict_tl_txt)
-                    blank_str = (df.FILLER_CHAR * dict_tl_txt_len)
+                    blank_str = (' ' * dict_tl_txt_len)
 
                     the_new_list_reversed = sorted(the_new_list, reverse=True)
                     for loc, txt in the_new_list_reversed:

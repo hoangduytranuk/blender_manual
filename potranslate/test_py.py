@@ -297,10 +297,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "i.e. a set of close keyframes with linear interpolation",
-                # "i.e. a set of detected feature edges",
-                # "i.e. above/below the curve",
-                # "i.e. all *Generate*, some *Modify* and some *Simulate* modifiers cannot come before the *Multiresolution* one",
+                "i.e. all *Generate*, some *Modify* and some *Simulate* modifiers cannot come before the *Multiresolution* one",
                 # "i.e. all F-curves for a bone, instead of per F-curve",
                 # "i.e. also behaving like polylines",
                 # "i.e. angle between faces forming that edge",

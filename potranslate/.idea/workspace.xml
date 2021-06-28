@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Translation terms upto 'i.e. Bézier with Bézier, NURBS with NURBS'">
-      <change beforePath="$PROJECT_DIR$/../.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" />
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
@@ -91,13 +89,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622672549482</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Added dictionary translations to 'rating system performs'">
-      <created>1624269345165</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1624269345165</updated>
     </task>
     <task id="LOCAL-00016" summary="Added dictionary translations to 'relative file path'">
       <created>1624269800174</created>
@@ -435,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624861996399</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts.">
+      <created>1624892973849</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1624892973849</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -461,7 +459,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added translations upto 'Samples: 8'" />
     <MESSAGE value="added translations upto 'Samples: 8' plus add ability to check for translated versions first before actually committed to SR" />
     <MESSAGE value="Correct a mistake in the collectTranslationsFromRefRecords, reflist.py, which doesn't return the translation result" />
     <MESSAGE value="Change the order of splitting sentences, so this action occurs at the translating, after parsing has been completed, which removes the presence of refs, avoiding the splitting errors" />
@@ -486,15 +483,26 @@
     <MESSAGE value="Translation terms upto 'extruded'" />
     <MESSAGE value="Translation terms upto 'human perception'" />
     <MESSAGE value="Translation terms upto 'i.e. Bézier with Bézier, NURBS with NURBS'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Translation terms upto 'i.e. Bézier with Bézier, NURBS with NURBS'" />
+    <MESSAGE value="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/sentence.py</url>
-          <line>335</line>
-          <option name="timeStamp" value="11" />
+          <line>342</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sentence.py</url>
+          <line>328</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reflist.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1246,6 +1246,7 @@ class Definitions:
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
     ignore_list = [
+        r'^\d+&&$',   # internal ref placeholders
         r'^[\W\d]+$',   # symbols and numbersr
         # r'([\.](org|com|uk|ac))$',
         # r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
@@ -1742,6 +1743,12 @@ class Definitions:
         # "if ${} is set to ${}": "nếu ${} được bố trí/đặt là ${}",
         # "in which case ${NP}": "nếu trong trường hợp đó thì ${}",
         # "${} orientation": "định hướng ${}",
+        "some ${}": "một số/vài các ${}",
+        "and some ${}": "và một số/vài các ${}",
+        "the ${} one": "cái ${}",
+        "${NP/NC/MX2} modifier(\\w+)?": "bộ điều chỉnh ${}",
+        "${} of ${}": "${} của ${}",
+        "all ${}": "toàn bộ ${}",
     }
 
 class SentStructModeRecord:
