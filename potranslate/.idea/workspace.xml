@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Corrected the parsing errors using patterns in recognizing sentence structures, especially with 'ED(ies)', for instance, where parsing returns the 'ies' as a separate entry in the result, which is wrong, when the intention is to recognise such a word with ending 'ies', but expecting returning the whole word. Achieving this by setting  Common.patStructToListOfWords(key, removing_symbols=False) in the creatSentRecogniserPattern() in common.py, forcing the space characters becomes the vital part of the pattern created.">
+    <list default="true" id="f8d71050-5aca-455b-b568-5a75fb80d73e" name="Default Changelist" comment="Translated to 'in the *Cloth* panel'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../working_txt.pages" beforeDir="false" afterPath="$PROJECT_DIR$/../working_txt.pages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,13 +91,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622672549482</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Added dictionary translations to 'right within the UI controls'">
-      <created>1624273090462</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1624273090462</updated>
     </task>
     <task id="LOCAL-00019" summary="Added dictionary translations to 'sRGB Color Space'">
       <created>1624274148900</created>
@@ -434,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624913811324</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Translated to 'in the *Cloth* panel'">
+      <created>1624951245696</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1624951245696</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -460,7 +461,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change the order of splitting sentences, so this action occurs at the translating, after parsing has been completed, which removes the presence of refs, avoiding the splitting errors" />
     <MESSAGE value="Change the order of splitting sentences, so this action occurs at the translating, after parsing has been completed, which removes the presence of refs, avoiding the splitting errors, which could occurs in the middle of a reference entry" />
     <MESSAGE value="Corrected the error in 'not has_ref' situation, too many expected return values" />
     <MESSAGE value="Cleaned up the translateRefWithLink in reflist.py, removed redundant codes. Translated to 'as you can see it in the..'" />
@@ -485,7 +485,8 @@
     <MESSAGE value="Corrected the way correctIndexOfTLTextList() working out the new locations, by forcefully adding df.FILLER_CHAR after text segments when composing the dict_tl_txt with any_txt. Use findInvert(df.FILLER_CHAR_PATTERN) should be able to work out the correct new location of texts." />
     <MESSAGE value="Corrected the error where references lost leading and trailing spaces when reattach to the translation at the end, by uisng 'SPACE' for blank_str in the correctIndexOfTLTextList() (sentence.py) instead of FILLER_CHAR. Using FILLER_CHAR for joining segments only, so we can remove the FILLER_CHARs by empties later on." />
     <MESSAGE value="Corrected the parsing errors using patterns in recognizing sentence structures, especially with 'ED(ies)', for instance, where parsing returns the 'ies' as a separate entry in the result, which is wrong, when the intention is to recognise such a word with ending 'ies', but expecting returning the whole word. Achieving this by setting  Common.patStructToListOfWords(key, removing_symbols=False) in the creatSentRecogniserPattern() in common.py, forcing the space characters becomes the vital part of the pattern created." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected the parsing errors using patterns in recognizing sentence structures, especially with 'ED(ies)', for instance, where parsing returns the 'ies' as a separate entry in the result, which is wrong, when the intention is to recognise such a word with ending 'ies', but expecting returning the whole word. Achieving this by setting  Common.patStructToListOfWords(key, removing_symbols=False) in the creatSentRecogniserPattern() in common.py, forcing the space characters becomes the vital part of the pattern created." />
+    <MESSAGE value="Translated to 'in the *Cloth* panel'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Translated to 'in the *Cloth* panel'" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -506,19 +507,9 @@
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1714</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>418</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/common.py</url>
-          <line>455</line>
-          <option name="timeStamp" value="25" />
+          <url>file://$PROJECT_DIR$/reflist.py</url>
+          <line>625</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

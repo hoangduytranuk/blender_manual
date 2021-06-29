@@ -615,36 +615,36 @@ class RefList(defaultdict):
             msg = mm.getMainText()
             is_using_main = True
 
-        unlink_collection = []
+        tran_collection = []
         tran_filled = False
+        tran = None
         has_ref_link = (df.REF_LINK.search(msg) is not None)
         if not has_ref_link:
             tran, is_fuzzy, is_ignore = self.translateOneLineOfText(msg)
+            valid = (bool(tran) and not is_ignore)
+            if valid:
+                tran = formatTran(msg, tran)
         else:
             found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
-            for sub_loc, sub_mm in found_dict.items():
-                sub_txt = sub_mm.getMainText()
-                sub_tran, is_fuzzy, is_ignore = self.translateOneLineOfText(sub_txt)
-                valid = (not is_ignore) and bool(sub_tran)
-                if valid:
-                    sub_tran_formatted = formatTran(sub_txt, sub_tran)
-                    # unlink_collection_entry = (sub_loc, sub_txt, sub_tran_formatted)
-                    tran = cm.jointText(tran, sub_tran_formatted, sub_loc)
-                    tran_filled = True
-                    # unlink_collection.append(unlink_collection_entry)
-        has_tran = (tran and not (tran == msg))
+            found_dict_list = list(found_dict.items())
+            found_entry = found_dict_list[0]
+            (sub_loc, sub_mm) = found_entry
+
+            sub_txt = sub_mm.getMainText()
+            tran, is_fuzzy, is_ignore = self.translateOneLineOfText(sub_txt)
+            valid = (bool(tran) and not is_ignore)
+            if valid:
+                tran = formatTran(sub_txt, tran)
+                tran = cm.jointText(msg, tran, sub_loc)
+
+        has_tran = bool(tran)
         if has_tran:
-            main_txt = mm.getMainText()
-            if is_using_main:
-                loc = mm.getMainLoc()
-            else:
-                loc = mm.getSubLoc()
-            if not tran_filled:
-                tran = formatTran(msg, tran)
-            main_tran = cm.jointText(main_txt, tran, loc)
-            tran = self.removeAbbrevInTran(main_tran)
-            mm.setTranlation(tran, is_fuzzy, is_ignore)
-        return bool(tran)
+            translation = str(mm.getMainText())
+            loc = (mm.getMainLoc() if is_using_main else mm.getSubLoc())
+            tran = self.removeAbbrevInTran(tran)
+            translation = cm.jointText(translation, tran, loc)
+            mm.setTranlation(translation, is_fuzzy, is_ignore)
+        return has_tran
 
     def translateMenuSelection(self, mm: MatcherRecord):
         def formatAbbrevTran(current_untran, current_tran):
