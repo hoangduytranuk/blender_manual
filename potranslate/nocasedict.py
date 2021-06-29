@@ -69,6 +69,7 @@ class NoCaseDict(OrderedDict):
 
         self.local_cache_timer = -1
         self.local_cache_timer_started = False
+        self.original_data_set=None
 
         super(NoCaseDict, self).__init__()
         if data is None:
@@ -108,8 +109,17 @@ class NoCaseDict(OrderedDict):
     #     # except Exception as e:
     #     #     df.LOG(f'{e}', error=True)
     #     #     return None
+    def rm(self, key):
+        k = key.lower()
+        super(NoCaseDict, self).__delitem__(k)
+
+    def saveData(self, data_set, file_path):
+        cm.writeJSONDic(dict_list=data_set, file_name=file_path)
+
     def loadData(self, file_path, is_lower=True):
         dic = cm.loadJSONDic(file_name=file_path)
+        self.original_data_set = OrderedDict(dic)
+
         if is_lower:
             data = [(k.lower(), v) for (k, v) in dic.items()]
         else:

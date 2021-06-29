@@ -297,94 +297,123 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "i.e. ignoring existing overrides on data-blocks properties",
-                # "i.e. including all scenes",
-                # "i.e. independently from the armature transformations in *Object Mode*",
-                # "i.e. invert negative ones",
-                # "i.e. it cannot be edited anymore from the Action/Graph Editors, unless you enter \"Tweak Mode\" on the corresponding strips later",
-                # "i.e. it is as if the other metas were \"included\" or joined into the base one",
-                # "i.e. it is bilaterally symmetrical",
-                # "i.e. it is expected to give reproducible results across several import/export cycles",
-                # "i.e. it just snaps to the B-value like an extreme exponential transition",
-                # "i.e. it will bake all steps that can be baked individually with the :ref:`Modular <bpy.types.FluidDomainSettings.cache_type>` cache type at once",
-                # "i.e. it will be \"played\" reversed...",
-                # "i.e. its default pivot point, when it is the only selected one",
-                # "i.e. less long thin triangles",
-                # "i.e. let the object give the particle a starting speed",
-                # "i.e. let the surface normal give the particle a starting speed",
-                # "i.e. link and override overrides from another library file, etc.",
-                # "i.e. location, rotation or scale",
-                # "i.e. making action cyclic",
-                # "i.e. mesh, particles, noise",
-                # "i.e. modifier has no effect",
-                # "i.e. move objects or deform geometry",
-                # "i.e. multiple F-curves of the same type",
-                # "i.e. normal bone posing",
-                # "i.e. normal maps",
-                # "i.e. object data-blocks",
-                # "i.e. one object",
-                # "i.e. one or two...",
-                # "i.e. only the paths of keyed bones at a given frame get a yellow dot at this frame",
-                # "i.e. parallel to Z",
-                # "i.e. parent relationships",
-                # "i.e. parent's",
-                # "i.e. particles whose keypoints are hidden",
-                # "i.e. perpendicular to the original curve plane",
-                # "i.e. reverses the weight values of this group",
-                # "i.e. right-angled triangles sharing their hypotenuses",
-                # "i.e. sentences can have their own lines",
-                # "i.e. set rotation to dynamic/constant",
-                # "i.e. shape keys and modifiers",
-                # "i.e. shorter strokes finish earlier",
-                # "i.e. shorter strokes start later",
-                # "i.e. straight down a camera or light",
-                # "i.e. tangent to the curve at the owner's position",
-                # "i.e. that is, have no active action, drivers, and NLA tracks or strips",
-                # "i.e. the Rest Pose/Base Rig",
-                # "i.e. the UV map",
-                # "i.e. the adjacent points will be directly linked, joined, once the intermediary ones are deleted",
-                # "i.e. the adjacent rows will be directly linked, joined, once the intermediary ones are deleted",
-                # "i.e. the bone will be of the color of the bottommost valid state",
-                # "i.e. the chain's transformations above the bone",
-                # "i.e. the control points following or preceding the selected ones along the curve",
-                # "i.e. the current reference only",
-                # "i.e. the direction perpendicular to the tangent line",
-                # "i.e. the distance before this constraint is applied",
-                # "i.e. the global stamp switch setting",
-                # "i.e. the mesh is this times bigger than the base simulation",
-                # "i.e. the modification of one bone does not affect the others",
-                # "i.e. the owner just gets the properties defined at frame 0 of the linked action...",
-                # "i.e. the particle simulation is this times bigger than the base simulation",
-                # "i.e. the rotation around the Y axis of the bone",
-                # "i.e. the selection *must* define a valid loop, see below",
-                # "i.e. the start point will become the end one, and *vice versa*",
-                # "i.e. the start point will become the end one, and vice versa",
-                # "i.e. the unconnected edges of a mesh",
-                # "i.e. the vertex is kept at its original position",
-                # "i.e. the world surface shader defined for the scene",
-                # "i.e. their root will become their tip, and vice versa",
-                # "i.e. they keep a constant rotation relatively to their parent",
-                # "i.e. they will move proportionally relative to the location of the selected element",
-                # "i.e. they will never \"go outside\" of a stroke or \"jump\" to another stroke in the same object",
-                # "i.e. this avoids having the second *Armature* modifier deform the result of the first one...",
-                # "i.e. time between strokes drawing",
-                # "i.e. to \"paint\" them",
-                # "i.e. to a specific object, or to a specific material/light/etc.",
-                # "i.e. transforming a parent bone will not affect its children",
-                # "i.e. two, three or four",
-                # "i.e. unlink the underlying F-curve data-block from this action data-block",
-                # "i.e. unlinked to the result of the spin extrusion",
-                # "i.e. using the *Keep Offset* option while parenting",
-                # "i.e. video games!",
-                # "i.e. when it is enabled, the \"positive\" side will be kept, instead of the \"negative\" one",
-                # "i.e. when some linked-in objects may have previously been used to develop a set of reusable assets",
-                # "i.e. will be applied last",
-                # "i.e. with non-uniform scaling",
-                # "i.e. with suffixes like \".R\", \".right\", \".L\", etc.",
-                # "i.e. without a Display Manager",
-                # "i.e. you can't use it e.g. to animate the colors of a material in the Properties...",
-                # "i.e. you cannot delete both U and V rows at the same time",
-                # "i.e. you copy only selected bones' pose",
+                "in the *Cloth* panel",
+                # "in the *Graph Editor*",
+                # "in the *Render* menu",
+                # "in the *Soft Body Edges* panel",
+                # "in the :doc:`Field Weights panel </physics/particles/emitter/force_field>`",
+                # "in the :ref:`bpy.ops.screen.redo_last` panel",
+                # "in the :ref:`bpy.ops.screen.redo_last` panel, displayed after the tool is called",
+                # "inside the yellow strip",
+                # "keeps",
+                # "kg/m\ :sup:`3`",
+                # "kinks",
+                # "less \"contrast\"",
+                # "like 256 × 256",
+                # "like an armature or shape key",
+                # "lists",
+                # "location[0]",
+                # "loolarge",
+                # "made by Daniel Martinez Lara",
+                # "made by motorsep",
+                # "mano-wii",
+                # "meta-androcto",
+                # "metalliandy",
+                # "modifiers, shape keys, hooks, etc.",
+                # "molecules, crystals, clusters, particles, surfaces, etc.",
+                # "monkeys look identical in viewport, no modifiers",
+                # "more \"contrast\"",
+                # "more complex?",
+                # "more contrast than Actual Distance",
+                # "more flexible \"attachment\" to the goal",
+                # "more iterations",
+                # "more noise but faster rendering",
+                # "more precisely, those whose quantitative invisibility is equal to 0",
+                # "most of the time, an empty",
+                # "most useful while tweaking an established cycle",
+                # "motion flow like solving",
+                # "mouse cursor icon",
+                # "mouse, trackball, trackpad",
+                # "move only the selected bone",
+                # "move, rotate, scale, etc.",
+                # "move, rotate, scale, extrude",
+                # "move, scale, etc.",
+                # "movie and sound",
+                # "multiple icons",
+                # "multiple splines",
+                # "multiplied by the *Default* goal",
+                # "multiply by -1.0",
+                # "must be manually created",
+                # "must specify *Subtype*",
+                # "named \"Constraint\"",
+                # "named ``Aim``",
+                # "named ``Ctrl``",
+                # "named ``Widgets``",
+                # "namely: *Face Angle Convex*, *Face Angle Concave*, *Edge Length*",
+                # "nearly",
+                # "nearly...",
+                # "negative number",
+                # "negative numbers",
+                # "negative strength",
+                # "negative/positive",
+                # "neither of which is very free alone",
+                # "never show tessellation",
+                # "new features behind a lock, $95",
+                # "next tracking frame",
+                # "no ``.001`` numeric counter append",
+                # "no change to fully follow the hook",
+                # "no change to fully follows the hook",
+                # "no drag for example",
+                # "no edges yet",
+                # "no modifiers applied",
+                # "no need for X server on Linux for example",
+                # "no occlusion",
+                # "no select mode needed here...",
+                # "no vanishing points",
+                # "no vertices assigned to it",
+                # "no way to control each char size independently",
+                # "non-proxy",
+                # "normals will be constant",
+                # "normals will be interpolated",
+                # "not a very recommended option, as the meta is only visible at render time!",
+                # "not all were listed, mind you...",
+                # "not assigned to any polygons",
+                # "not box select, lasso, circle select, etc.",
+                # "not for *Around Current Frame* Onion-skinning method",
+                # "not for Add brush",
+                # "not hidden by other mesh parts",
+                # "not including header text",
+                # "not just the wave shape",
+                # "not just when holding :kbd:`Ctrl`",
+                # "not meshes in general",
+                # "not necessarily green",
+                # "not offset far away from it, you can e.g. :ref:`Set Origin to Geometry <bpy.ops.object.origin_set>`",
+                # "not on the cloth object",
+                # "not on the vertices",
+                # "not only renders",
+                # "not perfectly matched",
+                # "not supported by all data types",
+                # "not the Translucency BSDFs",
+                # "not the cloth object",
+                # "not the curve itself",
+                # "not the leading path",
+                # "not the whole curve",
+                # "not using any textures",
+                # "notably DVDs",
+                # "note its position relative to the background grid",
+                # "note that *Mix Factor* is still used",
+                # "note that a Bézier circle is not a pure circle",
+                # "note that only two bones are selected and hence copied",
+                # "note: you can replace :kbd:`Ctrl` with :kbd:`Shift`",
+                # "nothing else, so any other properties of the strips, like length don't matter",
+                # "notice the ``bpy.context`` prefix is implicit",
+                # "notice the edges?",
+                # "now Bone.002 is its root, and Bone is its tip",
+                # "now called *Preserve Volume* in the UI",
+                # "now referred as \"the resources\"",
+                # "number between 0 and 1",
+                # "number of faces and face order",
+                # "numbered",
             ]
         else:
             t_list = text_list
@@ -392,6 +421,10 @@ class test(object):
         s_time = time.perf_counter()
         tf = TranslationFinder()
         out_put_list=[]
+        # remove_list=[]
+        # dict_list = tf.getDict().original_data_set
+        changed=False
+        rm_count = 0
         for t in t_list:
             pr = PR(t, translation_engine=tf)
             pr.translateAsIs()
@@ -403,7 +436,48 @@ class test(object):
         p_time = (e_time - s_time)
         print(f'p_time:{p_time}')
         for o in out_put_list:
+            # print(o + ',')
             print(o)
+
+        #     is_here = tf.isInDict(t)
+        #     if not is_here:
+        #         o = t.replace('"', '\\"')
+        #         entry=f'"{o}"'
+        #         out_put_list.append(entry)
+        #         dd(f'NEED WORKS: [{t}]')
+        #     else:
+        #         dd(f'DONE: [{t}]')
+        #         rm_count += 1
+        # if rm_count:
+        #     dd(f'removed: [{rm_count}]')
+
+            # without_ie_txt = t.replace('i.e. ', '')
+            # is_in = (without_ie_txt in dict_list)
+            # if is_in:
+            #     without_ie_tran_txt = dict_list[without_ie_txt]
+            #
+            # if without_ie_tran_txt:
+            #     k = 'i.e. ' + t
+            #     v = without_ie_tran_txt + ', chẳng hạn'
+            #     entry = {t: v}
+            #     # remove_list.append(without_ie_txt)
+            #     dd(f'UPDATE: [{entry}]')
+            #     dict_list.update(entry)
+            #     changed = True
+
+            # del dict_list[without_ie_txt]
+            # is_in = (without_ie_txt in dict_list)
+            # if is_in:
+            #     dd(f'unable to DEL:[{without_ie_txt}]')
+            # else:
+            #     dd(f'NEED WORKS: [{t}]')
+
+        # if changed:
+        #     home = os.environ['BLENDER_GITHUB']
+        #     temp_path = os.path.join(home, 'new_dict.json')
+        #     cm.writeJSONDic(dict_list=dict_list, file_name=temp_path)
+
+
 
         # tf.writeBackupDict()
 
