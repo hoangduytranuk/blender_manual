@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "quaternion is normalized",
+                "requires an §Armature§ modifier",
                 # "quite useful in game development and architecture areas",
             ]
         else:
@@ -383,11 +383,7 @@ class test(object):
         #     temp_path = os.path.join(home, 'new_dict.json')
         #     cm.writeJSONDic(dict_list=dict_list, file_name=temp_path)
 
-
-
         # tf.writeBackupDict()
-
-
 
     def run(self):
         # self.test_0001()
