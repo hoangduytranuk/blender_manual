@@ -585,9 +585,11 @@ class RefList(defaultdict):
             mm.setTranlation(None, is_fuzzy, is_ignore)
             return False
 
-        tran = self.removeAbbrevInTran(tran)
-        tran = cm.removeOriginal(msg, tran)
-        tran = formatTran(msg, tran)
+        is_abbrev = cm.patternMatch(df.ABBREV_PATTERN_PARSER, tran)
+        if not is_abbrev:
+            tran = cm.removeOriginal(msg, tran)
+            tran = formatTran(msg, tran)
+        
         mm.setTranlation(tran, is_fuzzy, is_ignore)
         return True
 

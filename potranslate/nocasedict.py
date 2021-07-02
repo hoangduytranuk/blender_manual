@@ -536,25 +536,29 @@ class NoCaseDict(OrderedDict):
             return possible_shorter_k
 
         def generateFoundListFromSelectedKeyList(txt_to_compare, possible_list):
-            found_list = []
-            for found_item in possible_list:
-                ratio = fuzz.ratio(found_item, txt_to_compare)
-                partial_ratio = fuzz.partial_ratio(found_item, txt_to_compare)
-                entry = (ratio, partial_ratio, found_item)
-                found_list.append(entry)
+            def getRatios(item):
+                ratio = fuzz.ratio(item, txt_to_compare)
+                partial_ratio = fuzz.partial_ratio(item, txt_to_compare)
+                entry = (ratio, partial_ratio, item)
+                return entry
 
-            if found_list:
-                if is_k_single_word:
-                    found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
-                else:
-                    found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
-                selected_item = found_list[0]
-                (ratio, partial_ratio, chosen_txt) = selected_item
-                return_ratio = (partial_ratio if is_k_single_word else ratio)
-                return_entry = (chosen_txt, return_ratio)
-                return return_entry
-            else:
+            if not possible_list:
                 return None
+
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                found_results = executor.map(getRatios, possible_list)
+
+            found_list = list(found_results)
+            if is_k_single_word:
+                found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+            else:
+                found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
+
+            selected_item = found_list[0]
+            (ratio, partial_ratio, chosen_txt) = selected_item
+            return_ratio = (partial_ratio if is_k_single_word else ratio)
+            return_entry = (chosen_txt, return_ratio)
+            return return_entry
 
 
         def simpleFindListOfCandidates(possible_text_list, accept_rate):
@@ -853,9 +857,6 @@ class NoCaseDict(OrderedDict):
                 if ft_obs.isLocUsed(ft_loc):
                     continue
 
-                # dd(f'trying: [{ft_word}]')
-                # part_txt = ft_word
-                # ft_tran = self.singleOutputFuzzyTranslation(ft_word)
                 if ft_tran:
                     df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)

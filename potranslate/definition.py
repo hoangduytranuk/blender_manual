@@ -1520,8 +1520,6 @@ class Definitions:
         "riff",
         "ring\\_count^{2} + ring\\_count",
         "rrggbb",
-        "screw hardware example.blend",
-        "screw spring example.blend",
         "scribus",
         "sculpt_mask_clear-data",
         "sergey sharybin",

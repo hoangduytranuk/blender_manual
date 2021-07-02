@@ -316,8 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "requires an §Armature§ modifier",
-                # "quite useful in game development and architecture areas",
+                "shown in the upper left corner of the §3D Viewport§",
             ]
         else:
             t_list = text_list
