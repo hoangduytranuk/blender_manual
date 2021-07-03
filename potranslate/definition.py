@@ -1537,6 +1537,7 @@ class Definitions:
         "sv + h",
         "svn add /path/to/file",
         "svn rm /path/to/file",
+        "syrux",
         "the pixelary",
         "tool-annotate",
         "top -o %mem",

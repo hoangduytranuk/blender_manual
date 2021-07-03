@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "shown in the upper left corner of the §3D Viewport§",
+                "§surface overrides§",
             ]
         else:
             t_list = text_list
