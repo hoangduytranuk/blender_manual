@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "§surface overrides§",
+                "*Deform* modifiers"
             ]
         else:
             t_list = text_list
