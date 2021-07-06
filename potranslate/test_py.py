@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "the §Text§ editor and §Python Console§"
+                "through a §distribution package§"
             ]
         else:
             t_list = text_list
