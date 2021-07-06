@@ -1551,6 +1551,7 @@ class Definitions:
         "udims",
         "ui-eyedropper",
         "van der waals",
+        "varkenvarken",
         "vesta",
         "vis",
         "wahooney",

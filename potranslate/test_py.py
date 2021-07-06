@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "through a §distribution package§"
+                "the *Axes*"
             ]
         else:
             t_list = text_list
