@@ -1539,12 +1539,10 @@ class Definitions:
         "syrux",
         "the pixelary",
         "tool-annotate",
-        "tool-annotate",
         "top -o %mem",
         "top -o mem",
         "topbar-app_menu",
         "topbar-render",
-        "translucent(N)",
         "translucent(n)",
         "trumanblending",
         "uberPOV",
@@ -1559,8 +1557,11 @@ class Definitions:
         "x, y & z",
         "x, y, z",
         "x, z",
+        "xaire",
         "yadif",
         "yz",
+        "zanqdo",
+        "zeffii",
     ]
 
 # , ""
@@ -1582,6 +1583,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "0D",
         "upper_arm",
         "switching/enabling/disabling",
         "toggle/enable/disable",

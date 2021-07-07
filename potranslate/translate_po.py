@@ -2,20 +2,7 @@
 #!/usr/local/bin/python3
 
 import sys
-# sys.path.append('/usr/local/lib/python3.7/site-packages')
-# sys.path.append('/Users/hoangduytran/blender_manual/potranslate')
-# print(sys.path)
 
-# sys.path.append('/home/htran/bin/python/PO')
-# sys.path.append('/home/htran/bin/python/base')
-# sys.path.append('/home/htran/bin/python/algorithm')
-# sys.path.append('/home/htran/bin/python/event')
-# sys.path.append('/usr/lib/python36.zip')
-# sys.path.append('/usr/lib/python3.6)
-# sys.path.append('/usr/lib/python3.6/lib-dynload')
-# sys.path.append('/usr/local/lib/python3.6/dist-packages')
-# sys.path.append('/usr/lib/python3/dist-packages')
-# sys.path.append('/usr/lib/python3.6/dist-packages')
 
 import os
 import re
@@ -39,7 +26,6 @@ import locale
 import datetime
 from time import gmtime, strftime, time
 from pytz import timezone
-# import Levenshtein as LE
 from pprint import pprint as PP
 
 try:
@@ -620,9 +606,9 @@ def build_finished(app, exeption):
 
 
 def setup(app):
-    app.connect('builder-inited', builder_inited)
+    # app.connect('builder-inited', builder_inited)
     app.connect('doctree-resolved', doctree_resolved)
-    app.connect('build-finished', build_finished)
+    # app.connect('build-finished', build_finished)
     # app.connect('env-updated', env_updated)
     # env-updated
 

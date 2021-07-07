@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "the §Line Sets§"
+                "the :ref:`snap tools <bpy.ops.view3d.snap>`"
             ]
         else:
             t_list = text_list
