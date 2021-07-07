@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "the *Axes*"
+                "the §Line Sets§"
             ]
         else:
             t_list = text_list
