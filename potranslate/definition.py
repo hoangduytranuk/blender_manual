@@ -932,7 +932,7 @@ class Definitions:
             ['ility', 'ilities', ],
             key=lambda x: len(x), reverse=True)),
         'ic':list(sorted(
-            ['ism', 'isms', ],
+            ['ism', 'isms', 'on'],
             key=lambda x: len(x), reverse=True)),
         '':list(sorted(
             ['ed', 'ly', ],
