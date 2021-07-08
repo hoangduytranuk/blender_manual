@@ -910,7 +910,8 @@ class Definitions:
              'ication', 'ications',
              ],
             key=lambda x: len(x), reverse=True)),
-        'ion':['ively'],
+        'ix': ['ices'],
+        'ion': ['ively'],
         'be':list(sorted(
             ['ption', 'ptions',],
             key=lambda x: len(x), reverse=True)),
@@ -937,6 +938,9 @@ class Definitions:
             ['ed', 'ly', ],
             key=lambda x: len(x), reverse=True)),
     }
+
+    common_suffixes_replace_dict_sorted = list(common_suffixes_replace_dict.items())
+    common_suffixes_replace_dict_sorted.sort(key=lambda x: len(x[0]))
 
     common_allowed_appostrophes = {
         "'": ['ll', 've', ', ', 's', 'd', ' ', '.'] # keep this sorted in length
@@ -1422,6 +1426,9 @@ class Definitions:
         "`doi 10.1111/j.1467-8659.2010.01805.x <https://doi.org/10.1111/j.1467-8659.2010.01805.x>`__",
         "`file:atvbuggy.zip <https://wiki.blender.org/wiki/file:atvbuggy.zip>`__",
         "acos",
+        "albedo",
+        "alembic",
+        "anime"
         "antonio vazquez"
         "antonioya",
         "blendcache_[filename]",
@@ -1548,7 +1555,7 @@ class Definitions:
         "topbar-render",
         "translucent(n)",
         "trumanblending",
-        "uberPOV",
+        "uberpov",
         "udims",
         "ui-eyedropper",
         "van der waals",

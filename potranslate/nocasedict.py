@@ -704,7 +704,8 @@ class NoCaseDict(OrderedDict):
         (selected_item, original_ratio) = subset[0]
         overall_ratio = fuzz.ratio(selected_item, k)
         is_matching = (original_ratio == overall_ratio)
-        matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
+        # matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
+        matched_ratio = (overall_ratio)
         is_accepted = (matched_ratio > acceptable_rate)
         if not is_accepted:
             return default_result
@@ -794,7 +795,8 @@ class NoCaseDict(OrderedDict):
         return new_set
 
     def getByReduceKnownSuffix(self, txt):
-        for replacement_word, ending_list in df.common_suffixes_replace_dict.items():
+        # for replacement_word, ending_list in df.common_suffixes_replace_dict.items():
+        for replacement_word, ending_list in df.common_suffixes_replace_dict_sorted:
             for ending in ending_list:
                 try:
                     has_ending = txt.endswith(ending)
@@ -803,12 +805,12 @@ class NoCaseDict(OrderedDict):
 
                     clipping_len = len(ending)
                     clipped_txt = txt[:-clipping_len]
-                    is_found = (clipped_txt in self)
+                    is_found = (clipped_txt.lower() in self)
                     if is_found:
                         return clipped_txt
 
                     clipped_txt += replacement_word
-                    is_found = (clipped_txt in self)
+                    is_found = (clipped_txt.lower() in self)
                     if is_found:
                         return clipped_txt
                 except Exception as e:
@@ -817,7 +819,7 @@ class NoCaseDict(OrderedDict):
 
     def findByChangeSuffix(self, txt):
         clipped_txt = self.getByReduceKnownSuffix(txt)
-        tran = (self[clipped_txt] if clipped_txt else None)
+        tran = (self[clipped_txt.lower()] if clipped_txt else None)
         return clipped_txt, tran
 
     def singleOutputFuzzyTranslation(self, txt):
