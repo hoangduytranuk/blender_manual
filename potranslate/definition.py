@@ -896,7 +896,7 @@ class Definitions:
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
              'al', 'ally', 'als', 'iast', 'iasts', 'iastic', 'ial', 'y',
-             'ary', 'ingly', 'ian', 'inal', 'ten'
+             'ary', 'ingly', 'ian', 'inal', 'ten',
              ],
             key=lambda x: len(x), reverse=True)),
         't': list(sorted(
@@ -935,7 +935,7 @@ class Definitions:
             ['ism', 'isms', 'on'],
             key=lambda x: len(x), reverse=True)),
         '':list(sorted(
-            ['ed', 'ly', ],
+            ['ed', 'ly', 'es'],
             key=lambda x: len(x), reverse=True)),
     }
 
@@ -1376,7 +1376,6 @@ class Definitions:
         # "",
         # "",
         # "",
-        # "",
         "#cos(frame)",
         "#frame / 20.0",
         "#python",
@@ -1439,6 +1438,9 @@ class Definitions:
         "bpy.app.debug = true",
         "brikbot",
         "bullseye",
+        "catmull-clark",
+        "catmull-rom",
+        "christensen-burley",
         "cm, m, ...",
         "collada, ...",
         "cor",
@@ -1593,6 +1595,8 @@ class Definitions:
     ]
 
     keep_list = [
+        "cycles modifier",
+        "cycles render device",
         "0D",
         "upper_arm",
         "switching/enabling/disabling",
