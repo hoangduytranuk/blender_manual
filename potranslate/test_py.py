@@ -316,7 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "Dropping",
+                "Substeps",
                 # "Detail Size/Percentage, Resolution :kbd:`Shift-D`"
                 # "DV",
                 # "DXF Type Mapping",
