@@ -803,11 +803,20 @@ class NoCaseDict(OrderedDict):
                     if not has_ending:
                         continue
 
-                    clipping_len = len(ending)
-                    clipped_txt = txt[:-clipping_len]
+                    clipping_len: int = len(ending)
+                    clipped_txt: str = txt[:-clipping_len]
                     is_found = (clipped_txt.lower() in self)
                     if is_found:
                         return clipped_txt
+
+                    last_char = clipped_txt[-1]
+                    double_last_char = (last_char * 2)
+                    is_duplicated_ending = (clipped_txt.endswith(double_last_char))
+                    if is_duplicated_ending:
+                        clipped_txt_reduced = clipped_txt[:-1]
+                        is_found = (clipped_txt_reduced.lower() in self)
+                        if is_found:
+                            return clipped_txt_reduced
 
                     clipped_txt += replacement_word
                     is_found = (clipped_txt.lower() in self)

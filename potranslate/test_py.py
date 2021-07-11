@@ -316,6 +316,7 @@ class test(object):
 
         if not text_list:
             t_list = [
+                "Dropping",
                 # "Detail Size/Percentage, Resolution :kbd:`Shift-D`"
                 # "DV",
                 # "DXF Type Mapping",
@@ -382,7 +383,7 @@ class test(object):
                 # "Disable objects instead of hiding",
                 # "Disable/Enable in View Layer",
                 # "Disclosure (small triangle icon)",
-                "Discretize Curve",
+                # "Discretize Curve",
                 # "Displacement/Vector Displacement",
                 # "Display Filter :kbd:`Ctrl-F`",
                 # "Display Groups in Outliner(s)",
