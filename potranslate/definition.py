@@ -896,7 +896,7 @@ class Definitions:
              'itivenesses', 'itively', 'ative', 'atives',
              'ant', 'ants', 'ator', 'ators', 'ure', 'ures',
              'al', 'ally', 'als', 'iast', 'iasts', 'iastic', 'ial', 'y',
-             'ary', 'ingly', 'ian', 'inal', 'ten',
+             'ary', 'ingly', 'ian', 'inal', 'ten', 'ize', 'ise',
              ],
             key=lambda x: len(x), reverse=True)),
         't': list(sorted(
