@@ -704,8 +704,8 @@ class NoCaseDict(OrderedDict):
         (selected_item, original_ratio) = subset[0]
         overall_ratio = fuzz.ratio(selected_item, k)
         is_matching = (original_ratio == overall_ratio)
-        # matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
-        matched_ratio = (overall_ratio)
+        matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
+        # matched_ratio = (overall_ratio)
         is_accepted = (matched_ratio > acceptable_rate)
         if not is_accepted:
             return default_result

@@ -42,7 +42,11 @@ def doctree_resolved(app, doctree, docname):
 
     try:
         for node, msg in extract_messages(doctree):
-            is_repeat = isKeepCopyOfOriginal(node)
+            last_char = msg[-1]
+            is_ending_stop = (last_char == '.')
+
+            is_suppose_to_repeat = isKeepCopyOfOriginal(node)
+            is_repeat = (is_suppose_to_repeat and not is_ending_stop)
             if is_repeat:
                 msg = msg.strip()
                 dd("=" * 80)
