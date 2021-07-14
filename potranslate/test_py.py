@@ -60,29 +60,87 @@ def writeJSON(file_path, data):
 class test(object):
 
     def resort_dictionary(self):
+        def splitULcase():
+            ucase_dict = {}
+            lcase_dict = {}
+            t_k: str = None
+            t_v: str = None
+            for t_k, t_v in to_dic.items():
+                entry = {t_k: t_v}
+                is_lower = t_k.islower()
+                if is_lower:
+                    lcase_dict.update(entry)
+                else:
+                    ucase_dict.update(entry)
+            return ucase_dict, lcase_dict
+
+        def makeTempLcaseDict(ucase_dict):
+            ucase_lower_temp_list = [(x.lower(), y) for x, y in ucase_dict.items()]
+            ucase_lower_temp_dict = OrderedDict(ucase_lower_temp_list)
+            return ucase_lower_temp_dict
+
+        def getRemoveAndUpdateList(ucase_dict, lcase_dict):
+            rm_from_lower_list=[]
+            upd_tran_with_lower_list=[]
+            for t_k, t_v in ucase_dict.items():
+                lcase_t_k = t_k.lower()
+                is_in_lower = (lcase_t_k in lcase_dict)
+                if not is_in_lower:
+                    continue
+
+                lcase_t_v = lcase_dict[lcase_t_k]
+                is_same = (lcase_t_v == t_v.lower())
+                if is_same:
+                    rm_from_lower_list.append(lcase_t_k)
+                else:
+                    upd_tran_with_lower_list.append(lcase_t_k)
+
+            return rm_from_lower_list, upd_tran_with_lower_list
+
+        def printRemoveList(rm_from_lower_list):
+            if not rm_from_lower_list:
+                return
+
+            for t_k in rm_from_lower_list:
+                print(f'REMOVE: "{t_k}":')
+
+        def printUpdTran(upd_tran_with_lower_list, lcase_list, ucase_lower_temp_dict):
+            if not upd_tran_with_lower_list:
+                return
+
+            dd(f'*' * 80)
+            dd(f'MERGED V:')
+            for t_k in upd_tran_with_lower_list:
+                lcase_list_v = lcase_list[t_k]
+                ucase_list_v = ucase_lower_temp_dict[t_k]
+                is_same = (lcase_list_v.lower() == ucase_list_v.lower())
+                if is_same:
+                    continue
+
+                merged_v = f'{ucase_list_v}/{lcase_list_v}'
+                print(f'"{t_k}": "{merged_v}",')
+
+        def updateToNewdict(sorted_list):
+            new_dic = OrderedDict()
+            for k, v in sorted_list:
+                entry = {k: v}
+                new_dic.update(entry)
+            return new_dic
+
+        def sortLower(item):
+            (k, v) = item
+            return k.lower()
+
         home_dir = os.environ['BLENDER_GITHUB']
         from_file = os.path.join(home_dir, 'ref_dict_0006_0003.json')
         to_file = os.path.join(home_dir, 'ref_dict_0006_0002.json')
 
         to_dic = readJSON(from_file)
 
-        sorting = sorted(list(to_dic.items()), key=lambda x: x[0].lower())
-        new_dic = OrderedDict(sorting)
+        sorted_list = sorted(list(to_dic.items()), key=sortLower)
+        new_dict = OrderedDict(sorted_list)
+        writeJSON(to_file, new_dict)
 
-        for t_k, t_v in to_dic.items():
-            entry = {t_k: t_v}
-            new_dic.update(entry)
-
-        sorting = sorted(list(new_dic.items()), key=lambda x: x[0].lower())
-        new_dic = OrderedDict(sorting)
-
-        writeJSON(to_file, new_dic)
-
-    # def grepPOTFindPath(self, txt):
-    #     ref_dict_list, obs = cm.getRefDictList(txt)
-    #     for entry in ref_dict_list:
-    #         df.LOG(entry)
-    #     return ref_dict_list
 
     def findRefText(selfI):
         from reflist import RefList
@@ -316,202 +374,88 @@ class test(object):
 
         if not text_list:
             t_list = [
-                # "attached.",
-                # "Detail Size/Percentage, Resolution :kbd:`Shift-D`"
-                # "DV",
-                # "DXF Type Mapping",
-                # "DXF to Curves",
-                # "DXF to Meshes",
-                # "Darkness",
-                # "Data Context",
-                # "Data Properties",
-                # "Data-Blocks Previews",
-                # "Decorators",
-                # "Decrease Kerning :kbd:`Alt-Left`",
-                # "Default Keymap",
-                # "Default Weight A/B",
-                # "Deform (Boolean)",
-                # "Deform Groups",
-                # "Deform horse example `blend-file <https://en.blender.org/uploads/a/a2/Apinzonf_Deform_Horse_example1.blend>`__.",
-                # "Deforming Bones",
-                # "Delay Viewport Updated",
-                # "Delete Active Keyframe",
-                # "Delete Duplicate Frames",
-                # "Delete Files :kbd:`Delete`, :kbd:`X`",
-                # "Delete Mesh Elements :kbd:`Shift-LMB`",
-                # "Delete Next Word :kbd:`Ctrl-Delete`",
-                # "Delete Points :kbd:`X`",
-                # "Delete Previous Word :kbd:`Ctrl-Backspace`",
-                # "Delete Strips :kbd:`X`",
-                # "Delete Unused Nodes",
-                # "Delete ``X`` :kbd:`X`, :kbd:`Delete`",
-                # "Deleting",
-                # "Deleting & Dissolving",
-                # "Deleting Vertex Groups",
-                # "Deleting a Material",
-                # "Deletion example.",
-                # "Denoise Amount",
-                # "Dependency Graph Debug",
-                # "Depth :kbd:`Ctrl`",
-                # "Depth Buffer Glitches",
-                # "Deselect All :kbd:`Alt-A`",
-                # "Deselecting Connected Bones",
-                # "Design Collection",
-                # "Design Properties:",
-                # "Design Year",
-                # "Designed In (min - max)",
-                # "Designer",
-                # "Detach Links :kbd:`Alt-D`, :kbd:`Alt-LMB` drag",
-                # "Detach Outputs",
-                # "Detail Size/Percentage, Resolution :kbd:`Shift-D`",
-                # "Details About Selecting",
-                # "Diagonals Falloff",
-                # "Diagrams of the miter patterns.",
-                # "Difference :kbd:`Ctrl-NumpadMinus`",
-                # "Difference :kbd:`Shift-Ctrl-NumpadMinus`",
-                # "Different Musgrave types with the same parameters.",
-                # "Diffuse Depth :guilabel:`Cycles Only`",
-                # "Diffuse, Glossy, Transmission",
-                # "Direct Approach",
-                # "Direct, Indirect",
-                # "Direct, Indirect, Color",
-                # "Direction :kbd:`Ctrl`",
-                # "Direction Control",
-                # "Direction Type",
-                # "Disable :term:`Multisampling`",
-                # "Disable Objects (only available if enabled in the preferences.)",
-                # "Disable objects instead of hiding",
-                # "Disable/Enable in View Layer",
-                # "Disclosure (small triangle icon)",
-                # "Discretize Curve",
-                # "Displacement/Vector Displacement",
-                # "Display Filter :kbd:`Ctrl-F`",
-                # "Display Groups in Outliner(s)",
-                # "Display Hidden (ghost icon)",
-                # "Display Options (funnel icon)",
-                # "Display Size X, Z",
-                # "Displaying",
-                # "Displays",
-                # "Dissolve :kbd:`Ctrl-X`",
-                # "Dissolve Erasing",
-                # "Dissolve Unselect :kbd:`Ctrl-X`",
-                # "Dissolve between :kbd:`Ctrl-X`",
-                # "Distance :guilabel:`Cycles Only`",
-                # "Distance Cull",
-                # "Distance X, Y, Z",
-                # "Distance X/Y/Z",
-                # "Distinction between Local and Visual",
-                # "Distort Nodes",
-                # "Distribute Objects",
-                # "Diurnal",
-                # "Divide :kbd:`Ctrl-Slash`",
-                # "Document Settings",
-                # "Doodads Settings",
-                # "Double-Sided / Backface Culling",
-                # "Drag & Dropping to 3D Viewport",
-                # "Draw Brushes",
-                # "Draw Curve :kbd:`Return`",
-                # "Draw a Continuous Line :kbd:`LMB` drag.",
-                # "Drawing Options",
-                # "Drawing Tools",
-                # "Drawing frame by frame",
-                # "Drawing free-hand strokes.",
-                # "Drawing strokes using *Stabilize Stroke*.",
-                # "Duplicate :kbd:`Alt-Spacebar`",
-                # "Duplicate Active Keyframe",
-                # "Duplicate Collections",
-                # "Duplicate Empty Keyframes",
-                # "Dynamic Brush Menus",
-                # "Dynamic Vertex Weights",
-                # "EC",
-                # "EWA (Elliptical Weighted Average)",
-                # "Edge Loops (All Boundaries)",
-                # "Edge Tag (in Edge select mode only)",
-                # "Edit Align :kbd:`Alt-X`",
-                # "Edit Bone Positions",
-                # "Edit Delete :kbd:`X`",
-                # "Edit Mesh Tools",
-                # "Edit Mode Matching (Advanced)",
-                # "Edit Mode Tools",
-                # "Edit Operator Source",
-                # "Editing Custom Split Normals",
-                # "Editing an Override",
-                # "Editing the Armature",
-                # "Editor Interface",
-                # "Editor Switch :kbd:`Ctrl-Alt-S`",
-                # "Eevee",
-                # "Effect Strips",
-                # "Effector Substeps",
-                # "Elasticity",
-                # "Ellipsoid (ellipsoidal volume, three-dimensional structure)",
-                # "Empty Space :guilabel:`Gas Only`",
-                # "Enable Collection (checkbox)",
-                # "Enable Collection (checkbox, collection only)",
-                # "Enable Strip Cache",
-                # "Enable/Disable in Renders",
-                # "Enable/Disable in Viewports",
-                # "Enabled",
-                # "Enabling & Disabling Add-ons",
-                # "Enabling Custom Split Normals",
-                # "End Location",
-                # "Endpoint U/V",
-                # "Endpoint, Shape",
-                # "Entering Coordinates",
-                # "Envelope Modifier",
-                # "Envelope scaling example.",
-                # "Environment Texture Node",
-                # "Epsilon",
-                # "Erase Brushes",
-                # "Euler",
-                # "Euler Angles",
-                # "Euler Modes",
-                # "Evaluated",
-                # "Even Thickness :guilabel:`Simple Mode`",
-                # "Example mesh flat (left) and smooth-shaded (right). `Sample blend-file <https://wiki.blender.org/wiki/File:25-manual-meshsmooth-example.blend>`__.",
-                # "Example of *Preserve Volume* effects. Note that the icosphere is deformed using the envelopes weights.",
-                # "Example of skinning methods.",
-                # "Example: Object Parent (Keep Transform)",
-                # "Examples of a curve with a radius of zero on one end and a radius of one on the other end.",
-                # "Examples of an empty with the force field attached.",
-                # "Examples of different spectra, settings adjusted for each.",
-                # "Examples of pose copy/paste.",
-                # "Examples of strokes using different types of Guides.",
-                "Examples of transforming parented/connected bones with Inherit Rotation disabled.",
-                "Examples of transforming parented/connected bones.",
-                "Expand Active Face Set",
-                "Expand All Items",
-                "Expand Mask by Curvature :kbd:`Shift-Alt-A`",
-                "Expand Mask by Topology :kbd:`Shift-A`",
-                "Experimental Tab",
-                "Export & Import",
-                "Export Options",
-                "Export Preset",
-                "Export ``ACIS`` Entities",
-                "Export into World Space",
-                "Exported UI Properties",
-                "Exporting Textured Meshes",
-                "Exporting a Shadeless (Unlit) Material",
-                "Exporting to Alembic Files",
-                "Exposure Node",
-                "Extend :kbd:`E`",
-                "Extend Options",
-                "Extend Parent :kbd:`Shift-[`, Extend Child :kbd:`Shift-]`",
-                "Extend Parent/Child",
-                "Extendable feature set",
-                "Extended",
-                "Extending Keyframes",
-                "External Links",
-                "External links",
-                "Extra Shading Pie Menu Items",
-                "Extreme (big pink diamond)",
-                "Extrude & Reshape",
-                "Extrude :kbd:`E`",
-                "Extruding Edges :kbd:`LMB`",
-                "Extrusion example.",
-                "Extrusion, Taper & Bevel",
-                "Eyedropper (pipette icon)",
-                "Eyedropper (pipette icon) :kbd:`E`",
-                "Eyes Following",
+                # "F-Keys (:kbd:`F5` - :kbd:`F8`)",
+                # "FBM (Fractal Brownian Motion)",
+                # "FFmpeg Audio Codecs",
+                # "FFmpeg Containers",
+                # "FFmpeg Video Codecs",
+                # "FK Limb Isolation",
+                # "FLIP Ratio :guilabel:`Simulation FLIP Only`:",
+                # "Face Bones",
+                # "Face Corner",
+                # "Faceforward",
+                # "Factor A, B",
+                # "Factor X, Y, Z",
+                # "Factor X/Y/Z",
+                # "Fake User (shield icon)",
+                # "Fallback Tool",
+                # "Fast Transformation",
+                # "Features",
+                # "Features of Note:",
+                # "File Formats",
+                # "File Size (min - max)",
+                # "File Types",
+                # "Files & Data System",
+                # "Fill Brushes",
+                # "Fill Region :kbd:`Shift-Ctrl-LMB`",
+                # "Fill Threshold (2D only)",
+                # "Fill between a tip and a root.",
+                # "Fill between roots.",
+                # "Fill between tips.",
+                # "Fill with only one bone joint selected.",
+                # "Fillet/Chamfer",
+                # "Filling Areas",
+                # "Filter (arrow icon)",
+                # "Filter ID Type (Orphan Data, Blender File)",
+                # "Filter Source",
+                # "Filter by Type (Orphan Data, Blender File)",
+                # "Final Considerations",
+                # "Find & Replace :kbd:`Ctrl-F`",
+                # "Find & Set Selection :kbd:`Ctrl-G`",
+                # "Find Node :kbd:`Ctrl-F`",
+                # "Find Text :kbd:`Ctrl-F`",
+                # "Find and Upload Assets Panel",
+                # "Finding Add-ons",
+                # "Finding Ungrouped Vertices",
+                # "Fingers Bones",
+                # "First and Last Copies merge example.",
+                # "Fit Preview in Window :kbd:`Home`",
+                # "Fixed Constraint",
+                # "Fixed Mode sample.",
+                # "Flat Faces :guilabel:`Complex Mode`",
+                # "Flatten Handles snapping example.",
+                # "Flip :kbd:`F`",
+                # "Flip Mode",
+                # "Flip UV",
+                # "Flip Visual Effect",
+                # "Flipped UV",
+                # "Float (gray)",
+                # "Float To Integer",
+                # "Fluid Properties",
+                # "Focal Distance",
+                # "Focal Distance/F-Stop/Focal Length",
+                # "Follow Leader Rule",
+                # "Font Size :kbd:`Ctrl-WheelUp`",
+                # "Fonts",
+                # "Footage, Image & Canvas",
+                # "Formatting",
+                # "Forward in History :kbd:`Down`",
+                # "Frame All Fit :kbd:`Shift-Home`",
+                # "Frame Cache",
+                # "Frame Controls",
+                # "Frame Selected :kbd:`NumpadPeriod`",
+                # "Frame Sequence Approach",
+                # "Frame Sequence Workflow",
+                # "Frame Start, End",
+                # "Frame Start/End",
+                # "Frames (only XYZ)",
+                # "Frames/Key",
+                # "Free (black handles)",
+                # "Free Only",
+                # "Free for Everyone",
+                # "Free-hand Drawing",
+                "Frequently Asked Questions",
+                # "Full Render, Selected to Active",
             ]
         else:
             t_list = text_list
@@ -586,7 +530,7 @@ class test(object):
         # self.findUnknownRefs()
         self.resort_dictionary()
         self.test_translate_0001()
-        # self.cleanSS()
+        # self.cleanSS()+
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')
