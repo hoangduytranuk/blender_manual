@@ -902,6 +902,9 @@ class Definitions:
         't': list(sorted(
             ['ce','cy', 'ssion', 'ssions', 'sion', 'sions'],
             key=lambda x: len(x), reverse=True)),
+        'ce': list(sorted(
+            ['t'],
+            key=lambda x: len(x), reverse=True)),
         'x': list(sorted(
             ['ce','ces', ],
             key=lambda x: len(x), reverse=True)),
@@ -1375,7 +1378,6 @@ class Definitions:
         # "",
         # "",
         # "",
-        # "",
         "#cos(frame)",
         "#frame / 20.0",
         "#python",
@@ -1472,6 +1474,8 @@ class Definitions:
         "geo",
         "gltf 2.0 (.glb, .gltf)",
         "gltf",
+        "gnome",
+        "height field",
         "henyey_greenstein(g)",
         "hs + v",
         "hv + s",
