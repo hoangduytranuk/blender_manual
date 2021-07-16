@@ -474,7 +474,7 @@ class test(object):
                 # "Join as Shapes (Transfer Mix)",
                 # "Join by Material",
                 # "Joining",
-                "Jump to End (|last|) :kbd:`Shift-Right`",
+                # "Jump to End (|last|) :kbd:`Shift-Right`",
                 # "Jump to Next Strip (Center) :kbd:`Alt-PageUp`",
                 # "Jump to Next Strip :kbd:`PageUp`",
                 # "Jump to Previous Strip (Center) :kbd:`Alt-PageDown`",
@@ -512,7 +512,7 @@ class test(object):
                 # "Layers, Bone Groups & Selection Sets",
                 # "Leaves",
                 # "Left :kbd:`Alt-Left`",
-                # "Left Arrow :kbd:`Backspace`, :kbd:`Alt-Left`",
+                "Left Arrow :kbd:`Backspace`, :kbd:`Alt-Left`",
             ]
         else:
             t_list = text_list
