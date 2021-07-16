@@ -65,11 +65,11 @@ class RefList(defaultdict):
 
     def getTranslationState(self):
         stat_list = self.getTranslationStateList()
-        
+
         is_fuzzy = (TranslationState.FUZZY in stat_list)
         is_ignore = (TranslationState.IGNORED in stat_list)
         is_accept = (TranslationState.ACCEPTABLE in stat_list)
-        
+
         state = 0
         if is_fuzzy:
             state += 1
@@ -218,8 +218,11 @@ class RefList(defaultdict):
             if not is_bracket:
                 continue
 
+            txt = mm.txt
+            is_ignored = ig.isIgnored(txt)
             is_fully_used = obs.isLocFullyUsed(loc)
-            if is_fully_used:
+            is_removed = (is_ignored or is_fully_used)
+            if is_removed:
                 dd(f'REMOVING: [{mm}]')
                 remove_list.append(loc)
 
@@ -322,9 +325,9 @@ class RefList(defaultdict):
         pp(txt_list)
         dd('-' * 80)
         tran_list = []
-
+        non_ignored_list = [(loc, mm) for (loc, mm) in txt_list.items() if not ig.isIgnored(mm.txt)]
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            found_results = executor.map(self.createSRAndTranslateSegment, txt_list.items())
+            found_results = executor.map(self.createSRAndTranslateSegment, non_ignored_list)
 
         found_result_list = list(found_results)
 
@@ -519,7 +522,12 @@ class RefList(defaultdict):
 
     def translateArchBracket(self, mm: MatcherRecord):
         input_txt = mm.txt
-        trans, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
+        is_ignored = ig.isIgnored(input_txt)
+        if is_ignored:
+            trans = None
+        else:
+            trans, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
+
         mm.setTranlation(trans, is_fuzzy, is_ignore)
         # r_list: RefList = self.reproduce()
         # r_list.__init__(msg = mm.txt, tf=self.tf)
@@ -589,7 +597,7 @@ class RefList(defaultdict):
         if not is_abbrev:
             tran = cm.removeOriginal(msg, tran)
             tran = formatTran(msg, tran)
-        
+
         mm.setTranlation(tran, is_fuzzy, is_ignore)
         return True
 

@@ -1705,13 +1705,6 @@ class Definitions:
         "october",
         "september",
         "xương",
-        "|first|",
-        "|last|",
-        "|next|",
-        "|pause|",
-        "|play|",
-        "|previous|",
-        "|rewind|",
         # "",
         # "",
     ]
