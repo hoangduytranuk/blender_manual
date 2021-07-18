@@ -1378,6 +1378,8 @@ class Definitions:
         # "",
         # "",
         # "",
+        # "",
+        # "",
         "#cos(frame)",
         "#frame / 20.0",
         "#python",
@@ -1506,6 +1508,7 @@ class Definitions:
         "motorsep",
         "mtext",
         "my_scripts",
+        "node wrangler",
         "nouveau",
         "object-proxy",
         "object:index",
@@ -1599,6 +1602,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "models/materials/brushes",
         "cycles modifier",
         "cycles render device",
         "0D",

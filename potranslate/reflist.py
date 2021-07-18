@@ -281,11 +281,6 @@ class RefList(defaultdict):
             self.setTranslation(trans, False, False)
             return
 
-        is_link_path = cm.isLinkPath(self.msg)
-        if is_link_path:
-            dd(f'parseMessage(): IGNORED [{self.msg}]; is_full_path')
-            return
-
         local_msg = str(self.msg)
         cm.debugging(local_msg)
         count = self.findPattern(df.pattern_list, local_msg)
