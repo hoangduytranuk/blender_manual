@@ -387,7 +387,7 @@ class test(object):
                 # "Open Authors Website",
                 # "Open File (folder icon)",
                 # "Open Recent :kbd:`Shift-Ctrl-O`",
-                "Open Text Block :kbd:`Alt-O`.",
+                # "Open Text Block :kbd:`Alt-O`.",
                 # "OpenColorIO Configuration",
                 # "OpenGL Depth Picking (Preferences)",
                 # "OpenVDB",

@@ -463,6 +463,7 @@ class RefList(defaultdict):
             ref_txt = mm.txt
             ref_type = mm.type
 
+            is_guilabel = (ref_type == RefType.GUILABEL)
             is_arch_bracket = (ref_type == RefType.ARCH_BRACKET)
             is_blank_quote = (ref_type == RefType.BLANK_QUOTE)
             is_kbd = (ref_type == RefType.KBD)
@@ -509,7 +510,8 @@ class RefList(defaultdict):
             elif is_arch_bracket:
                 ok = self.translateArchBracket(mm)
             else:
-                ok = self.translateRefWithLink(mm)
+                is_include_original = not( is_guilabel )
+                ok = self.translateRefWithLink(mm, is_include_original_txt=is_include_original)
 
         except Exception as e:
             df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
@@ -596,7 +598,7 @@ class RefList(defaultdict):
         mm.setTranlation(tran, is_fuzzy, is_ignore)
         return True
 
-    def translateRefWithLink(self, mm: MatcherRecord):
+    def translateRefWithLink(self, mm: MatcherRecord, is_include_original_txt=True):
         def formatTran(current_untran, current_tran):
             ref_type: RefType = mm.type
             has_ref = bool(ref_type)
@@ -608,7 +610,10 @@ class RefList(defaultdict):
             if not is_formatting:
                 return current_tran
 
-            new_tran = f'{current_tran} ({current_untran})'
+            if is_include_original_txt:
+                new_tran = f'{current_tran} ({current_untran})'
+            else:
+                new_tran = f'{current_tran})'
             return new_tran
 
         is_fuzzy = is_ignore = False
