@@ -539,8 +539,17 @@ class NoCaseDict(OrderedDict):
             def getRatios(item):
                 ratio = fuzz.ratio(item, txt_to_compare)
                 partial_ratio = fuzz.partial_ratio(item, txt_to_compare)
+
+                item_n_word = len(item.split())
+                txt_n_word = len(txt_to_compare.split())
+                is_diff = (item_n_word != txt_n_word)
+                if is_diff:
+                    ratio = 0
+                    partial_ratio = 0
+
                 entry = (ratio, partial_ratio, item)
                 return entry
+
 
             if not possible_list:
                 return None
@@ -706,7 +715,11 @@ class NoCaseDict(OrderedDict):
         is_matching = (original_ratio == overall_ratio)
         matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
         # matched_ratio = (overall_ratio)
-        is_accepted = (matched_ratio > acceptable_rate)
+
+        n_word_selected = len(selected_item.split())
+        is_diff_n_word = (k_word_count != n_word_selected)
+
+        is_accepted = (matched_ratio > acceptable_rate) and not (is_diff_n_word)
         if not is_accepted:
             return default_result
 
@@ -718,34 +731,37 @@ class NoCaseDict(OrderedDict):
         #     if not is_accepted:
         #         return default_result
 
-        translation_txt = self[selected_item]
-        report_msg = f'found: [{selected_item}] => [{translation_txt}]'
+        trans_txt = self[selected_item]
+        report_msg = f'found: [{selected_item}] => [{trans_txt}]'
         df.LOG(report_msg)
-        try:
-            loc, new_selected = cm.locRemain(msg, selected_item)
-            translation = msg.replace(new_selected, translation_txt)
-            untran_word_dic = cm.getRemainedWord(msg, new_selected)
-        except Exception as e:
-            # fname = INP.currentframe().f_code.co_name
-            # dd(f'{fname}() {e}')
-            dd(f'FAILED TO REPLACE: [{msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
-            translation = translation_txt
+        (repl_loc, replacing_part) = cm.bestMatchSectionString(selected_item, msg)
+        translation = cm.jointText(msg, trans_txt, repl_loc)
 
-            left, mid, right = cm.getTextWithin(msg)
-            had_the_same_right = (right and translation.endswith(right))
-            had_the_same_left = (left and translation.startswith(left))
-
-            if left and not had_the_same_left:
-                translation = left + translation
-
-            if right and not had_the_same_right:
-                translation = translation + right
-
-            dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
-            untran_word_dic = cm.getRemainedWord(msg, selected_item)
-
-        if translation:
-            translation = self.replaceTranRef(translation)
+        # try:
+        #     loc, new_selected = cm.locRemain(msg, selected_item)
+        #     translation = msg.replace(new_selected, translation_txt)
+        #     untran_word_dic = cm.getRemainedWord(msg, new_selected)
+        # except Exception as e:
+        #     report_msg = f'FAILED: [{selected_item}] => [{translation_txt}]'
+        #     translation = None
+        #     # fname = INP.currentframe().f_code.co_name
+        #     # dd(f'{fname}() {e}')
+        #     # dd(f'FAILED TO REPLACE: [{msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
+        #     # translation = translation_txt
+        #     #
+        #     # left, mid, right = cm.getTextWithin(msg)
+        #     # had_the_same_right = (right and translation.endswith(right))
+        #     # had_the_same_left = (left and translation.startswith(left))
+        #     #
+        #     # if left and not had_the_same_left:
+        #     #     translation = left + translation
+        #     #
+        #     # if right and not had_the_same_right:
+        #     #     translation = translation + right
+        #     #
+        #     # dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
+        #     # untran_word_dic = cm.getRemainedWord(msg, selected_item)
+        translation = self.replaceTranRef(translation)
 
         return (translation, selected_item, matched_ratio, untran_word_dic)
 

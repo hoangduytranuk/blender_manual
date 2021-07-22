@@ -12,6 +12,7 @@ from err import ErrorMessages as ER
 import re
 from observer import LocationObserver
 import json
+import concurrent.futures
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -2109,6 +2110,22 @@ class Common:
             simplified_dict.update(simple_entries)
 
         return simplified_dict
+
+    def bestMatchSectionString(match_str, in_str, target_ratio=None):
+        def fuzzyRatioCompute(item):
+            (loc, txt) = item
+            rat = fuzz.ratio(match_str, txt)
+            return_entry = (rat, (loc, txt))
+            return return_entry
+
+        in_str_map = Common.genmap(in_str)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            found_results = executor.map(fuzzyRatioCompute, in_str_map)
+
+        found_results_list = list(found_results)
+        found_results_list.sort(reverse=True)
+        matched_rate, selected_part = found_results_list[0]
+        return selected_part
 
     def debugging(txt):
         msg = "Target Velocity, a"
