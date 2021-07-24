@@ -661,6 +661,7 @@ class Definitions:
     API_REF = re.compile(r'^blender_api:.*$')
 
     SPACE_WORD_SEP = re.compile(r'[\S]+')
+    WORD_ONLY = re.compile(r'[\w]+')
     ACCEPTABLE_WORD = re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
 
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')

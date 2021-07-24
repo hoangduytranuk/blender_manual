@@ -840,8 +840,6 @@ class TranslationFinder:
             matching_ratio = 100.0
         else:
             tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
-            if not tran:
-                tran = search_dict.blindTranslate(msg)
 
         if tran:
             # tran = search_dict.replaceTranRef(tran)
@@ -1080,10 +1078,10 @@ class TranslationFinder:
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg)
                 is_fuzzy = bool(trans)
 
-            # if not trans:
-            #     df.LOG(f'calling SimpleBlindTranslation [{msg}]')
-            #     trans = self.simpleBlindTranslation(msg)
-            #     is_fuzzy = True
+            if not trans:
+                df.LOG(f'calling SimpleBlindTranslation [{msg}]')
+                trans = self.simpleBlindTranslation(msg)
+                is_fuzzy = True
 
             return (trans, is_fuzzy, is_ignore)
         except Exception as e:

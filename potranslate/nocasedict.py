@@ -525,6 +525,15 @@ class NoCaseDict(OrderedDict):
         return translation
 
     def simpleFuzzyTranslate(self, msg: str, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO):
+        def prepTranslation(selected_key):
+            trans_txt = self[selected_key]
+            report_msg = f'found: [{selected_key}] => [{trans_txt}]'
+            df.LOG(report_msg)
+            (repl_loc, replacing_part) = cm.bestMatchSectionString(selected_key, msg)
+            translation = cm.jointText(msg, trans_txt, repl_loc)
+            translation = self.replaceTranRef(translation)
+            return translation
+
         def getShorterKText():
             shorter_kword_list=[]
             for kword in k_word_list:
@@ -664,11 +673,23 @@ class NoCaseDict(OrderedDict):
         if ig.isIgnored(msg):
             return default_result
 
+        msg_lower = msg.lower()
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
 
         if ig.isIgnored(k):
             return default_result
+
+        is_in = (msg_lower in self)
+        if is_in:
+            translation = prepTranslation(msg_lower)
+            return (translation, msg, 100, untran_word_dic)
+        else:
+            is_in = (k in self)
+            if is_in:
+                trans = self[k]
+                translation = prepTranslation(k)
+                return (translation, k, 100, untran_word_dic)
 
         has_path_char = (df.PATH_CHAR.search(k) is not None)
         k_length = len(k)
@@ -730,39 +751,7 @@ class NoCaseDict(OrderedDict):
         #     is_accepted = (perfect_match_percent > df.FUZZY_PERFECT_MATCH_PERCENT)
         #     if not is_accepted:
         #         return default_result
-
-        trans_txt = self[selected_item]
-        report_msg = f'found: [{selected_item}] => [{trans_txt}]'
-        df.LOG(report_msg)
-        (repl_loc, replacing_part) = cm.bestMatchSectionString(selected_item, msg)
-        translation = cm.jointText(msg, trans_txt, repl_loc)
-
-        # try:
-        #     loc, new_selected = cm.locRemain(msg, selected_item)
-        #     translation = msg.replace(new_selected, translation_txt)
-        #     untran_word_dic = cm.getRemainedWord(msg, new_selected)
-        # except Exception as e:
-        #     report_msg = f'FAILED: [{selected_item}] => [{translation_txt}]'
-        #     translation = None
-        #     # fname = INP.currentframe().f_code.co_name
-        #     # dd(f'{fname}() {e}')
-        #     # dd(f'FAILED TO REPLACE: [{msg}] by [{selected_item}] with trans: [{translation_txt}], matched_ratio:[{matched_ratio}]')
-        #     # translation = translation_txt
-        #     #
-        #     # left, mid, right = cm.getTextWithin(msg)
-        #     # had_the_same_right = (right and translation.endswith(right))
-        #     # had_the_same_left = (left and translation.startswith(left))
-        #     #
-        #     # if left and not had_the_same_left:
-        #     #     translation = left + translation
-        #     #
-        #     # if right and not had_the_same_right:
-        #     #     translation = translation + right
-        #     #
-        #     # dd(f'SIMPLE PATCHING: left:[{left}] right:[{right}] trans: [{translation}]')
-        #     # untran_word_dic = cm.getRemainedWord(msg, selected_item)
-        translation = self.replaceTranRef(translation)
-
+        translation = prepTranslation(selected_item)
         return (translation, selected_item, matched_ratio, untran_word_dic)
 
     def __delitem__(self, key):

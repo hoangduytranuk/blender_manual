@@ -2118,7 +2118,7 @@ class Common:
             return_entry = (rat, (loc, txt))
             return return_entry
 
-        in_str_map = Common.genmap(in_str)
+        in_str_map = Common.genmap(in_str, using_pattern=df.WORD_ONLY)
         with concurrent.futures.ThreadPoolExecutor() as executor:
             found_results = executor.map(fuzzyRatioCompute, in_str_map)
 
