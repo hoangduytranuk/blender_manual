@@ -670,15 +670,9 @@ class NoCaseDict(OrderedDict):
         if is_ref:
             return default_result
 
-        if ig.isIgnored(msg):
-            return default_result
-
         msg_lower = msg.lower()
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
-
-        if ig.isIgnored(k):
-            return default_result
 
         is_in = (msg_lower in self)
         if is_in:
@@ -861,6 +855,7 @@ class NoCaseDict(OrderedDict):
         part_txt = None
         df.LOG(sl_txt)
         try:
+
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 found_results = executor.map(translateMap, ft_map)
 
@@ -990,10 +985,6 @@ class NoCaseDict(OrderedDict):
         new_txt, subcount = df.SYMBOLS.subn('', txt)
         cover_length = 0
         if subcount > 0:
-            is_ignore = ig.isIgnored(new_txt)
-            if is_ignore:
-                return txt, None, cover_length
-
             tran, selected_item, matched_ratio, untran_word_dic = self.simpleFuzzyTranslate(new_txt)
             if tran:
                 cover_length = len(txt)

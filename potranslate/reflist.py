@@ -219,10 +219,8 @@ class RefList(defaultdict):
                 continue
 
             txt = mm.txt
-            is_ignored = ig.isIgnored(txt)
             is_fully_used = obs.isLocFullyUsed(loc)
-            is_removed = (is_ignored or is_fully_used)
-            if is_removed:
+            if is_fully_used:
                 dd(f'REMOVING: [{mm}]')
                 remove_list.append(loc)
 
@@ -253,15 +251,10 @@ class RefList(defaultdict):
             (ms, me) = mm.getMainLoc()
             mtxt = mm.getMainText()
 
-            is_ignored = ig.isIgnored(mtxt)
-            if is_ignored:
-                continue
-
             left, mid, right = cm.getTextWithin(mtxt)
             is_all_symbols = (not bool(mid))
-            is_ignorable = ig.isIgnored(mid)
 
-            is_ignored = (is_all_symbols or is_ignorable)
+            is_ignored = (is_all_symbols)
             if is_ignored:
                 continue
 
@@ -273,9 +266,6 @@ class RefList(defaultdict):
             self.update(entry)
 
     def parseMessage(self):
-        if ig.isIgnored(self.msg):
-            return
-
         trans = self.tf.isInDict(self.msg)
         if trans:
             self.setTranslation(trans, False, False)
@@ -519,22 +509,9 @@ class RefList(defaultdict):
 
     def translateArchBracket(self, mm: MatcherRecord):
         input_txt = mm.txt
-        is_ignored = ig.isIgnored(input_txt)
-        if is_ignored:
-            trans = None
-        else:
-            trans, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
-
+        trans, is_fuzzy, is_ignore = self.translateOneLineOfText(input_txt)
         mm.setTranlation(trans, is_fuzzy, is_ignore)
-        # r_list: RefList = self.reproduce()
-        # r_list.__init__(msg = mm.txt, tf=self.tf)
-        # r_list.parseMessage()
-        # r_list.translate()
-        # translation = r_list.getTranslation()
-        # mm.setTranlation(translation, r_list.isFuzzy(), r_list.isIgnore())
-        # return bool(translation)
         return bool(trans)
-
 
     def translateKeyboard(self, mm: MatcherRecord):
         msg = mm.getSubText()

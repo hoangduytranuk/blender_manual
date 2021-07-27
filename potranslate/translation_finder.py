@@ -314,14 +314,14 @@ class TranslationFinder:
             if is_translated:
                 continue
 
-            is_ignore = ig.isIgnored(orig_sub_text)
-            if is_ignore:
-                observer.markLocAsUsed(loc)
-                is_fully_translated = observer.isCompletelyUsed()
-                if is_fully_translated:
-                    break
-                else:
-                    continue
+            # is_ignore = ig.isIgnored(orig_sub_text)
+            # if is_ignore:
+            #     observer.markLocAsUsed(loc)
+            #     is_fully_translated = observer.isCompletelyUsed()
+            #     if is_fully_translated:
+            #         break
+            #     else:
+            #         continue
 
             tran_sub_text = self.isInDict(orig_sub_text)
             if not tran_sub_text:
@@ -826,12 +826,12 @@ class TranslationFinder:
             dd(msg)
             raise Exception(msg)
 
-        is_matcher = isinstance(msg, MatcherRecord)
-        if is_matcher:
-            dd('debug')
-        is_ignore = (not msg) or ig.isIgnored(msg)
-        if is_ignore:
-            return None, matched_text, search_dict, 0, untran_word_dic
+        # is_matcher = isinstance(msg, MatcherRecord)
+        # if is_matcher:
+        #     dd('debug')
+        # is_ignore = (not msg) or ig.isIgnored(msg)
+        # if is_ignore:
+        #     return None, matched_text, search_dict, 0, untran_word_dic
 
         is_found = (msg in search_dict)
         if is_found:
@@ -985,9 +985,9 @@ class TranslationFinder:
 
         orig_word_list = msg.split()
         for word in orig_word_list:
-            is_ignored = ig.isIgnored(word)
-            if is_ignored:
-                continue
+            # is_ignored = ig.isIgnored(word)
+            # if is_ignored:
+            #     continue
             is_in_trans = (word in trans)
             if is_in_trans:
                 return False

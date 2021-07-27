@@ -40,10 +40,6 @@ class Paragraph(list):
 
     def translateText(self, txt):
         try:
-            is_ignore = ig.isIgnored(txt)
-            if is_ignore:
-                return None
-
             ref_list = RefList(msg=txt, keep_orig=False, tf=self.tf)
             ref_list.parseMessage()
             ref_list.translate()

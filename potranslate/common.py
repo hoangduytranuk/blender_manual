@@ -13,6 +13,7 @@ import re
 from observer import LocationObserver
 import json
 import concurrent.futures
+from ignore import Ignore as ig
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -1894,6 +1895,22 @@ class Common:
                 entry = {loc: txt}
                 loc_dic.update(entry)
 
+        def removeIgnoredEntries(input_list):
+            loc_obs = LocationObserver(msg)
+            non_ignore_list=[]
+            for loc, txt in input_list:
+                is_ignore = ig.isIgnored(txt)
+                if is_ignore:
+                    loc_obs.markLocAsUsed(loc)
+
+            for loc, txt in input_list:
+                is_ignored = loc_obs.isLocUsed(loc)
+                if is_ignored:
+                    continue
+                entry = (loc, txt)
+                non_ignore_list.append(entry)
+            return non_ignore_list
+
         def genListOfDistance(max):
             dist_list = []
             for s in range(0, max):
@@ -1954,7 +1971,9 @@ class Common:
 
         part_list = list(loc_dic.items())
         part_list.sort(key=sortGetWordLen, reverse=True)
-        return part_list
+        non_ignored_list = removeIgnoredEntries(part_list)
+
+        return non_ignored_list
 
     def dictKeyFunction(item):
         is_pattern = (isinstance(item, re.Pattern))

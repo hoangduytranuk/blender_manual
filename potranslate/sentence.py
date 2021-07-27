@@ -655,10 +655,6 @@ class StructRecogniser():
             for non_sr_loc, mm_record in un_tran.items():
                 sub_txt = mm_record.txt
 
-                is_ignore = ig.isIgnored(sub_txt)
-                if is_ignore:
-                    continue
-
                 sr = self.makeNonSRRecord(sub_txt, non_sr_loc)
                 if not sr:
                     continue
