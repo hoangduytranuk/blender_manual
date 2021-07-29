@@ -1380,7 +1380,6 @@ class Definitions:
         # "",
         # "",
         # "",
-        # "",
         "#cos(frame)",
         "#frame / 20.0",
         "#python",
@@ -1432,8 +1431,9 @@ class Definitions:
         "acos",
         "albedo",
         "alembic",
-        "anime"
-        "antonio vazquez"
+        "anime",
+        "anthony d'agostino",
+        "antonio vazquez",
         "antonioya",
         "blendcache_[filename]",
         "blender -d",
@@ -1754,6 +1754,15 @@ class Definitions:
     ]
     global_ref_map = None
     ss_map = {
+        "Syncing ${}": "${} đồng bộ hóa",
+        "System ${}": "${} hệ thống",
+        "${} Mode": "Chế độ ${}",
+        "Target ${}": "${} mục tiêu",
+        "Target for constraints": "Mục tiêu cho các ràng buộc",
+        "Target/Owner": "Mục tiêu/Chủ sở hữu",
+        "Teapot by Anthony D'Agostino": "Ấm trà của Anthony D'Agostino",
+        "Technical ${}": "${} kỹ thuật",
+        "Template ${}": "${} Mẫu",
         # "${} and ${}": "${} và ${}",
         # "${} for ${}": "${} cho/đối với ${}",
         # "${} model": "mô hình ${}",
@@ -1795,8 +1804,8 @@ class Definitions:
         # "${} from ${}": "${} từ ${} vậy",
         # "${} icon": "biểu tượng ${}",
         # "${} icons": "các biểu tượng ${}",
-        "${} in ${}": "${} trong ${}",
-        "${NP/NC/MX2} modifier(\\w+)?": "bộ điều chỉnh ${}",
+        # "${} in ${}": "${} trong ${}",
+        # "${NP/NC/MX2} modifier(\\w+)?": "bộ điều chỉnh ${}",
         # "${} is ${}": "${} thì/là/được ${}",
         # "${} of ${}": "${} của ${}",
         # "${} on ${}": "${} trên/ở/lên/vào/về ${}",
