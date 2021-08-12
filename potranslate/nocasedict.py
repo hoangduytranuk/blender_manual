@@ -912,6 +912,11 @@ class NoCaseDict(OrderedDict):
             word_list = cm.splitWordAtToList(pat, input_txt)
             return word_list
 
+        is_ignored = ig.isIgnored(input_txt)
+        if is_ignored:
+            df.LOG(f'IGNORED: [{input_txt}]')
+            return None
+
         df.LOG(f'[{input_txt}]')
         translation = str(input_txt)
         translated_list = {}
@@ -977,8 +982,6 @@ class NoCaseDict(OrderedDict):
 
     def blindTranslate(self, txt):
         tran, un_tran_list = self.tranByPartitioning(txt)
-        # if not tran:
-        #     tran = self.translateBySlittingSymbols(txt)
         return tran
 
     def translationByRemovingSymbols(self, txt: str) -> str:

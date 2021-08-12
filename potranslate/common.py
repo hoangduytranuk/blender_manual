@@ -1901,11 +1901,13 @@ class Common:
             for loc, txt in input_list:
                 is_ignore = ig.isIgnored(txt)
                 if is_ignore:
+                    df.LOG(f'IGNORED:[{txt}]')
                     loc_obs.markLocAsUsed(loc)
 
             for loc, txt in input_list:
                 is_ignored = loc_obs.isLocUsed(loc)
                 if is_ignored:
+                    df.LOG(f'IGNORED:[{txt}]')
                     continue
                 entry = (loc, txt)
                 non_ignore_list.append(entry)
