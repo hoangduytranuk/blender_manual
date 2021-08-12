@@ -1,0 +1,18 @@
+Your videos have been a wonderful source of help for me. Thank you so much. I have a question regarding to the declaration and retrieve of BooleanProperty variables that was made to 'toggle'
+
+
+I declared a variable of this type:
+
+    bpy.types.Scene.rm_ga = BoolProperty(name = '`', description = 'Grave Accent', default = False, update=boolUpdate)
+
+and then turn it to a toggle button in the Panel:
+
+row.prop(context.scene, 'rm_ga', toggle=True)
+
+When retrieve this in the Operator's execute:
+
+scene = context.scene
+rm_ga = scene.rm_ga
+
+the variable is ALWAYS 'True'. Where should I declare 'boolUpdate' function and how can the changes in 'boolUpdate' be accessed within the scope of Operator function, in order to reflect changes of the values (True, False) to the 'execute' function within the Operator? This 'boolUpdate' function, according to the API, requires a 'self, context' parameter, meaning that it must reside in a class. Do you have a video explaining this?
+

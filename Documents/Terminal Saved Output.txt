@@ -1,0 +1,150 @@
+Last login: Thu Jul  2 01:29:46 on ttys002
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Hoangs-MBP:~ hoangduytran$ python3
+Python 3.7.7 (default, Mar 10 2020, 15:43:03) 
+[Clang 11.0.0 (clang-1100.0.33.17)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> quit()
+Hoangs-MBP:~ hoangduytran$ brew 
+Example usage:
+  brew search [TEXT|/REGEX/]
+  brew info [FORMULA...]
+  brew install FORMULA...
+  brew update
+  brew upgrade [FORMULA...]
+  brew uninstall FORMULA...
+  brew list [FORMULA...]
+
+Troubleshooting:
+  brew config
+  brew doctor
+  brew install --verbose --debug FORMULA
+
+Contributing:
+  brew create [URL [--no-fetch]]
+  brew edit [FORMULA...]
+
+Further help:
+  brew commands
+  brew help [COMMAND]
+  man brew
+  https://docs.brew.sh
+Hoangs-MBP:~ hoangduytran$ brew help update
+Usage: brew update, up [options]
+
+Fetch the newest version of Homebrew and all formulae from GitHub using git(1)
+and perform any necessary migrations.
+
+        --merge                      Use git merge to apply updates (rather
+                                     than git rebase).
+    -f, --force                      Always do a slower, full update check (even
+                                     if unnecessary).
+    -v, --verbose                    Print the directories checked and git
+                                     operations performed.
+    -d, --debug                      Display a trace of all shell commands as
+                                     they are executed.
+    -h, --help                       Show this message.
+Hoangs-MBP:~ hoangduytran$ brew search python
+==> Formulae
+app-engine-python                 boost-python3                     ipython                           python ✔                          python-yq                         wxpython
+boost-python                      gst-python                        micropython                       python-markdown                   python@3.8
+==> Casks
+homebrew/cask/awips-python                                           homebrew/cask/kk7ds-python-runtime                                   homebrew/cask/mysql-connector-python
+Hoangs-MBP:~ hoangduytran$ python3
+Python 3.7.7 (default, Mar 10 2020, 15:43:03) 
+[Clang 11.0.0 (clang-1100.0.33.17)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> s = 'msgstr "this is \"ONE\" string"'
+>>> m = re.search(r'"(?<!\\).*?"', s)
+>>> m
+<re.Match object; span=(7, 17), match='"this is "'>
+>>> m = re.search(r'".*?"(?<!\\)', s)
+>>> m
+<re.Match object; span=(7, 17), match='"this is "'>
+>>> m = re.search(r'".*?"(?!\\)', s)
+>>> m
+<re.Match object; span=(7, 17), match='"this is "'>
+>>> m = re.search(r'".*?"', s)
+>>> m
+<re.Match object; span=(7, 17), match='"this is "'>
+>>> m = re.search(r'(?![\\])".*"', s)
+>>> m
+<re.Match object; span=(7, 29), match='"this is "ONE" string"'>
+>>> m = re.search(r'(?![\\])".*?"', s)
+>>> m
+<re.Match object; span=(7, 17), match='"this is "'>
+>>> m = re.search(r'(?![\\])".*"', s)
+>>> m = re.search(r'".*?"(?<!\\)', s)
+KeyboardInterrupt
+>>> s = 'msgstr "this is \"ONE\" string"\nmsgid "and this is \"TWO\" string"'
+>>> m = re.search(r'(?![\\])".*"', s)
+>>> m
+<re.Match object; span=(7, 29), match='"this is "ONE" string"'>
+>>> m = re.findall(r'(?![\\])".*"', s)
+>>> m
+['"this is "ONE" string"', '"and this is "TWO" string"']
+>>> m = re.findall(r'(?![\\])"(.*)"', s)
+>>> m
+['this is "ONE" string', 'and this is "TWO" string']
+>>> s1='this one. 2.2 is that one! and $2,100.00 is the cost'
+>>> s
+'msgstr "this is "ONE" string"\nmsgid "and this is "TWO" string"'
+>>> s1
+'this one. 2.2 is that one! and $2,100.00 is the cost'
+>>> s1='this one. 2.2 is that one! and $2,100.00 is the cost, but there is another: One Two Three there.'
+>>> m = re.findall(r'(?!\w[.,]\w)[^.,]\s?', s)
+>>> m
+['m', 's', 'g', 's', 't', 'r ', '"', 't', 'h', 'i', 's ', 'i', 's ', '"', 'O', 'N', 'E', '" ', 's', 't', 'r', 'i', 'n', 'g', '"\n', 'm', 's', 'g', 'i', 'd ', '"', 'a', 'n', 'd ', 't', 'h', 'i', 's ', 'i', 's ', '"', 'T', 'W', 'O', '" ', 's', 't', 'r', 'i', 'n', 'g', '"']
+>>> m = re.findall(r'(?!\w[.,]\w)[^.,]+\s?', s)
+>>> m
+['msgstr "this is "ONE" string"\nmsgid "and this is "TWO" string"']
+>>> m = re.findall(r'(?!\w[.,]\w)[^.,]+\s?', s1)
+>>> m
+['this one', ' 2', '2 is that one! and $2', '100', '00 is the cost', ' but there is another: One Two Three there']
+>>> m = re.findall(r'(?!\S[.,]\S)([^.,]+\s?)', s1)
+>>> m
+['this one', ' 2', '2 is that one! and $2', '100', '00 is the cost', ' but there is another: One Two Three there']
+>>> m = re.findall(r'(?<!\S)([^.,]+\s?)', s1)
+>>> m
+['this one', '2', 'is that one! and $2', 'is the cost', 'but there is another: One Two Three there']
+>>> m = re.findall(r'([^.,]+\s)', s1)
+>>> m
+['this ', '2 is that one! and ', '00 is the ', ' but there is another: One Two Three ']
+>>> m = re.findall(r'(?![\S])([^.,]+\s)', s1)
+>>> m
+[' is that one! and ', ' is the ', ' but there is another: One Two Three ']
+>>> m = re.findall(r'(?=[\S])([^.,]+\s)', s1)
+>>> m
+['this ', '2 is that one! and ', '00 is the ', 'but there is another: One Two Three ']
+>>> m = re.findall(r'(?=[\S]+)([^.,]+\s)', s1)
+>>> m
+['this ', '2 is that one! and ', '00 is the ', 'but there is another: One Two Three ']
+>>> m = re.findall(r'([^.,]+\s)', s1)
+>>> m
+['this ', '2 is that one! and ', '00 is the ', ' but there is another: One Two Three ']
+>>> m = re.findall(r'([^.,]+)\s', s1)
+>>> m
+['this', '2 is that one! and', '00 is the', ' but there is another: One Two Three']
+>>> m = re.findall(r'(.*)[.,]\s', s1)
+>>> m
+['this one. 2.2 is that one! and $2,100.00 is the cost']
+>>> m = re.findall(r'(.*?)[.,]\s', s1)
+>>> m
+['this one', '2.2 is that one! and $2,100.00 is the cost']
+>>> m = re.findall(r'(.*?)[.,:]\s', s1)
+>>> m
+['this one', '2.2 is that one! and $2,100.00 is the cost', 'but there is another']
+>>> m = re.findall(r'(.*?)[.,:!]\s', s1)
+>>> m
+['this one', '2.2 is that one', 'and $2,100.00 is the cost', 'but there is another']
+>>> m = re.findall(r'(.*?)[.,:!][\s$]', s1)
+>>> m
+['this one', '2.2 is that one', 'and $2,100.00 is the cost', 'but there is another']
+>>> m = re.findall(r'(.*?)[.,:!](?=\s|$)', s1)
+>>> m
+['this one', ' 2.2 is that one', ' and $2,100.00 is the cost', ' but there is another', ' One Two Three there']
+>>> m = re.findall(r'(?!=\s)(.*?)[.,:!](?=\s|$)', s1)

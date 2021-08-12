@@ -1,0 +1,54 @@
+Just by looking at the data, I see two classes needed to be created.
+
+class PersonRecord:
+	def __init__(self, firstname=None, lastname=None, score=-1):
+		self.first_name = firstname
+		self.last_name = lastname
+		self.score = score
+
+You can use @property and @first_name.setter (for example) for get/set methods. Search on the internet to find out how to use them.
+
+class PersonList(list):
+    
+    def textLineToPersonRecord(self, txt_line:str) -> PersonRecord:
+        # leave blank as an exercise
+
+	def parseFile(self, file_path):
+        text_line_list = []
+        with open(file_path) as f:
+            text_line_list = f.readlines()
+
+        for text_line in text_line_list:
+            person_record = self.textLineToPersonRecord(text_line)
+            if not person_record:
+                continue    # in case there is error in the parsing of the line
+            self.append(person_record)
+
+	def getListOfScores(self) -> list:
+		scr_list = []
+		for p_record in self:
+			scr_list.append(p_record.score)
+        return scr_list
+			
+	def lowestScore(self):
+		score_list = getListOfScores()
+		if not score_list:
+			return -1 #ERROR, nothing in the list
+		sorted_list = list(sorted(score_list, reverse=False))
+		return sorted[0]
+    
+    def highestScore(self):
+		score_list = getListOfScores()
+		if not score_list:
+			return -1 #ERROR, nothing in the list
+		sorted_list = list(sorted(score_list, reverse=True))
+		return sorted[0]
+
+home = os.environ['HOME']
+file_path = os.path.join(home, <some_path_to_the_CVS_file>)
+
+person_list = PersonList()
+p_list.parseFile(file_path)
+lowest_score = person_list.lowestScore()
+highest_score = person_list.highestScore()
+print(f'lowest_score:{lowest_score}; highest_score:{highest_score}')

@@ -1,0 +1,112 @@
+
+hoangduytran@Hoangs-MBP bin % 
+hoangduytran@Hoangs-MBP bin % ls -al ~/.ssh
+ls: /Users/hoangduytran/.ssh: No such file or directory
+hoangduytran@Hoangs-MBP bin % which ssh-keygen
+/usr/bin/ssh-keygen
+hoangduytran@Hoangs-MBP bin % ssh-keygen -t ed25519 -C "hoangduytran1960@googlemail.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/Users/hoangduytran/.ssh/id_ed25519): 
+Created directory '/Users/hoangduytran/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/hoangduytran/.ssh/id_ed25519.
+Your public key has been saved in /Users/hoangduytran/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:exgE3x8n3j6yjafCXewYMDC6Px7O6Ju50z1/K+m8Nj8 hoangduytran1960@googlemail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|      .          |
+|       oo.       |
+|       .oo. o .  |
+|      ..  oo =   |
+|       .S  oo..  |
+|      .  +  ..o  |
+|       o+o...*o  |
+|      .*+o=.B=E. |
+|     .B=+. *OO+o |
++----[SHA256]-----+
+hoangduytran@Hoangs-MBP bin % eval "$(ssh-agent -s)"
+Agent pid 2430
+hoangduytran@Hoangs-MBP bin % open open ~/.ssh/config
+The files /Users/hoangduytran/Dev/tran/blender_manual/bin/open and /Users/hoangduytran/.ssh/config do not exist.
+hoangduytran@Hoangs-MBP bin % touch ~/.ssh/config
+hoangduytran@Hoangs-MBP bin % vi ~/.ssh/config 
+hoangduytran@Hoangs-MBP bin % ssh-add -K ~/.ssh/id_ed25519
+Enter passphrase for /Users/hoangduytran/.ssh/id_ed25519: 
+Identity added: /Users/hoangduytran/.ssh/id_ed25519 (hoangduytran1960@googlemail.com)
+hoangduytran@Hoangs-MBP bin % which pbcopy
+/usr/bin/pbcopy
+hoangduytran@Hoangs-MBP bin % pbcopy < ~/.ssh/id_ed25519.pub 
+hoangduytran@Hoangs-MBP bin % ssh -T git@github.com
+The authenticity of host 'github.com (140.82.121.4)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com,140.82.121.4' (RSA) to the list of known hosts.
+Hi hoangduytran! You've successfully authenticated, but GitHub does not provide shell access.
+hoangduytran@Hoangs-MBP bin % cd $BLENDER_GITHUB
+hoangduytran@Hoangs-MBP blender_manual % git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .DS_Store
+	modified:   bin/convman
+	modified:   potranslate/.idea/workspace.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.idea/
+	.sorted_dict_simplified_0001.txt.swp
+
+no changes added to commit (use "git add" and/or "git commit -a")
+hoangduytran@Hoangs-MBP blender_manual % git add *
+hoangduytran@Hoangs-MBP blender_manual % git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   bin/convman
+	modified:   potranslate/.idea/workspace.xml
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .DS_Store
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.idea/
+	.sorted_dict_simplified_0001.txt.swp
+
+hoangduytran@Hoangs-MBP blender_manual % git commit -am 'Changed convman to generate gettext'
+[master 03d1eb1d3f] Changed convman to generate gettext
+ Committer: Hoang Duy Tran <hoangduytran@Hoangs-MBP.cust.communityfibre.co.uk>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 292 insertions(+), 803 deletions(-)
+ rewrite potranslate/.idea/workspace.xml (82%)
+hoangduytran@Hoangs-MBP blender_manual % git push
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 750 bytes | 750.00 KiB/s, done.
+Total 8 (delta 7), reused 0 (delta 0)
+remote: Resolving deltas: 100% (7/7), completed with 7 local objects.
+To https://github.com/hoangduytranuk/blender_manual
+   da1f62f261..03d1eb1d3f  master -> master
+hoangduytran@Hoangs-MBP blender_manual % 

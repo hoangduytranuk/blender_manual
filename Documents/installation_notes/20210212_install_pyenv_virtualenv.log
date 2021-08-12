@@ -1,0 +1,47 @@
+hoangduytran@Hoangs-MacBook-Pro ~ % brew install pyenv-virtualenv
+Updating Homebrew...
+==> Auto-updated Homebrew!
+Updated 2 taps (homebrew/core and homebrew/cask).
+==> New Formulae
+coin3d               dasel                ht-rust              libprelude           xcprojectlint
+curlie               datalad              libmd                rtl_433
+==> Updated Formulae
+Updated 4962 formulae.
+==> New Casks
+astah-uml        deskreen         gather           lightform        parsify          webull
+cakebrewjs       fspy             google-drive     mubu             vofa-plus
+==> Updated Casks
+Updated 235 casks.
+
+==> Downloading https://github.com/pyenv/pyenv-virtualenv/archive/v1.1.5.tar.gz
+==> Downloading from https://codeload.github.com/pyenv/pyenv-virtualenv/tar.gz/v1.1.5
+######################################################################## 100.0%
+==> ./install.sh
+==> Caveats
+To enable auto-activation add to your profile:
+  if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+==> Summary
+🍺  /usr/local/Cellar/pyenv-virtualenv/1.1.5: 22 files, 65.6KB, built in 4 seconds
+
+
+Hi Ron
+
+It's best to install Python modules for some particular project in a virtual environment. Try this:
+
+brew install pyenv-virtualenv
+
+cd your-project-directory
+# create a subdirectory for virtual environment
+virtualenv .venv
+# activate it in current terminal session
+source .venv/bin/activate
+# check that we're now using local Python:
+which python
+python --version
+# if you have your project's requirements in a file, install them from it:
+pip install -r requirements.txt
+# or just install sphinx
+pip install sphinx
+
+# now it should work
+python -msphinx.ext.intersphinx build/html/objects.inv

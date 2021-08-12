@@ -1,0 +1,64 @@
+There appear to be a lot to read on that wiki page for a new beginner. I would do something like this myself:
+
+-Make sure you can access to a command line window on your operating system, I would prefer to use Linux or OSx (Catalina) myself.
+-Make sure you have install 'svn' and 'git' command line tools. On Linux you will have to search for something like
+
+build essential
+say on Linux Mint, you would do two commands as here (https://tecadmin.net/install-development-tools-on-ubuntu/),
+
+sudo apt-get update; 
+sudo apt-get install build-essential
+On Catalina (OSx), you'll probably need to run
+
+sudo xcode-select --install
+
+then go here (https://docs.brew.sh/Installation) to install homebrew, after which you can use
+
+brew install svn
+Check also that you can run command 'msgfmt' on command line (ie. run
+
+which msgfmt
+this should display full path to the msgfmt tool for converting PO file to MO file, which blender needs).
+-Make a directory called 'blender-stuff' for instance, then cd into it. From there run:
+
+svn checkout https://svn.blender.org/svnroot/bf-translations/trunk/po
+You will see a po directory and in there, you should find all po files from other languages, including a root file 'blender.pot'. Perform (cd po) to change directory into this 'po' path.
+-Make a copy of 'blender.pot' to 'he.po' (ie.
+
+cp blender.pot he.po
+in this 'po' directory.
+-Using a good editor with po file support (highlights), I would encourage to install vscode (https://code.visualstudio.com/download). Make sure you download the extension for 'gettext' support.
+-Converting po file to mo file using
+
+msgfmt -o he.mo he.po
+mv he.mo <blender_installed_directory/version>/datafiles/locale/he/LC_MESSAGES/blender.mo
+-Start Blender, go into 'Edit->Preferences->Interface' and in the 'Translation' tab at the bottom, select your language.
+
+By the way, I saw an existing 'he.po' file in the current repository and a 'he.mo' in blender binary directory. So all you need to do is probably run
+
+msgmerge -o test_output.po he.po blender.pot
+to make sure the content of he.po is updated to the content of blender.pot, edit file 'test_output.po' and search out for
+
+#, fuzzy
+(translation and original text no longer matched or is considered incorrect)
+
+or
+
+msgstr ""
+(translation is NOT provided, meaning the English text will be defaulted - displayed - msgid(s) with special names, such as data types:
+
+int
+float
+boolean
+string
+or
+
+Cycles
+EEVEE
+Nvidia
+....
+should be left blank.
+
+An entry for the new language has to be added into '<blender_directory>/<version>/release/datafiles/locale/languages' and the file ''<blender_directory>/<version>/release/scripts/modules/bl_i18n_utils/settings.py'. I don't know if both has to be entered manually or not though. I think the only entry you need to insert is the one in the '<blender_directory>/<version>/release/scripts/modules/bl_i18n_utils/settings.py'.
+
+msgmerge -o $HOME/test_output.po $HOME/blender_manual/gui/2.9x/po/vi.po $HOME/po/blender.pot
