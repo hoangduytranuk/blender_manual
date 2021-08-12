@@ -590,7 +590,7 @@ class RefList(defaultdict):
             if is_include_original_txt:
                 new_tran = f'{current_tran} ({current_untran})'
             else:
-                new_tran = f'{current_tran})'
+                new_tran = f'{current_tran}'
             return new_tran
 
         is_fuzzy = is_ignore = False
