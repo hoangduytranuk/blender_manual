@@ -1,6 +1,5 @@
 import concurrent.futures
 
-import os
 import time
 from collections import OrderedDict
 from common import Common as cm, dd, pp, LocationObserver
@@ -13,7 +12,7 @@ from fuzzywuzzy import fuzz, process as fuzz_process
 import operator as OP
 import inspect as INP
 import re
-from ignore import Ignore as ig
+from textmap import TextMap as TM
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -849,7 +848,8 @@ class NoCaseDict(OrderedDict):
             tran = self.singleOutputFuzzyTranslation(the_text)
             return (loc, the_text, tran)
 
-        ft_map = cm.genmap(sl_txt, using_pattern=df.SPACE_SEP_WORD_AND_FSLASH)
+        tm = TM(sl_txt, using_pattern=df.SPACE_SEP_WORD_AND_FSLASH)
+        ft_map = tm.genmap()
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
         part_txt = None
@@ -912,10 +912,10 @@ class NoCaseDict(OrderedDict):
             word_list = cm.splitWordAtToList(pat, input_txt)
             return word_list
 
-        is_ignored = ig.isIgnored(input_txt)
-        if is_ignored:
-            df.LOG(f'IGNORED: [{input_txt}]')
-            return None
+        # is_ignored = ig.isIgnored(input_txt)
+        # if is_ignored:
+        #     df.LOG(f'IGNORED: [{input_txt}]')
+        #     return None
 
         df.LOG(f'[{input_txt}]')
         translation = str(input_txt)

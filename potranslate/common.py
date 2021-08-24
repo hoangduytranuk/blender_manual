@@ -14,6 +14,7 @@ from observer import LocationObserver
 import json
 import concurrent.futures
 from ignore import Ignore as ig
+from textmap import TextMap as TM
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -1185,7 +1186,8 @@ class Common:
         return (-1, -1), new_word
 
     def checkWordEndedBoundaries(txt: str, word_to_check: str, location: tuple):
-        map = Common.genmap(txt, is_removing_symbols=True)
+        tm = TM(txt, is_removing_symbols=True)
+        map = tm.genmap()
         selective_list = []
         for map_loc, map_word in map:
             is_selected = (word_to_check in map_word)
@@ -1400,9 +1402,12 @@ class Common:
                     return True
             return False
 
-        new_txt_map = Common.genmap(new_txt)
+        tm = TM(new_txt)
+        new_txt_map = tm.genmap()
         obs = LocationObserver(orig_txt)
-        map = Common.genmap(orig_txt)
+
+        tm1 = TM(orig_txt)
+        map = tm1.genmap()
         for loc, orig_txt_segment in map:
             is_fully_translated = obs.isCompletelyUsed()
             if is_fully_translated:
@@ -1883,99 +1888,100 @@ class Common:
         return_dict = OrderedDict(sorted(local_found_dict_list.items(), reverse=True))
         return (return_dict, obs)
 
-    def genmap(msg, is_reverse=True, is_removing_symbols=False, using_pattern=None):
-        def simplifiesMatchedRecords():
-            mm: MatcherRecord = None
-            for loc, mm in matched_list:
-                can_location_be_used = obs.isUsableLoc(loc)
-                if not can_location_be_used:
-                    continue
-
-                txt = mm.txt
-                entry = {loc: txt}
-                loc_dic.update(entry)
-
-        def removeIgnoredEntries(input_list):
-            loc_obs = LocationObserver(msg)
-            non_ignore_list=[]
-            for loc, txt in input_list:
-                is_ignore = ig.isIgnored(txt)
-                if is_ignore:
-                    df.LOG(f'IGNORED:[{txt}]')
-                    loc_obs.markLocAsUsed(loc)
-
-            for loc, txt in input_list:
-                is_ignored = loc_obs.isLocUsed(loc)
-                if is_ignored:
-                    df.LOG(f'IGNORED:[{txt}]')
-                    continue
-                entry = (loc, txt)
-                non_ignore_list.append(entry)
-            return non_ignore_list
-
-        def genListOfDistance(max):
-            dist_list = []
-            for s in range(0, max):
-                for e in range(0, max):
-                    is_valid = (s < e)
-                    if not is_valid:
-                        continue
-
-                    distance = (e - s)
-                    entry = (distance, s, e)
-                    if entry not in dist_list:
-                        dist_list.append(entry)
-            return dist_list
-
-        def sortGetWordLen(item):
-            (loc, txt) = item
-            wc = len(txt.split())
-            txt_len = len(txt)
-            return (txt_len, wc)
-
-        part_list = []
-        obs: LocationObserver = None
-        ref_dict_list, obs = Common.getRefDictList(msg)
-        occupied_list = ref_dict_list.keys()
-
-        sep_pattern = (df.SPACE_WORD_SEP if not is_removing_symbols else df.SYMBOLS)
-        actual_pattern = (using_pattern if using_pattern else sep_pattern)
-        matched_dict = Common.patternMatchAll(actual_pattern, msg)
-        matched_list = list(matched_dict.items())
-        max = len(matched_dict)
-        loc_dic = {}
-        try:
-            dist_list = genListOfDistance(max)
-            dist_list.sort(reverse=is_reverse)
-            for entry in dist_list:
-                distance, from_index, to_index = entry
-                start_loc, start_mm = matched_list[from_index]
-                end_loc, end_mm = matched_list[to_index]
-
-                ss1, ee1 = start_loc
-                ss2, ee2 = end_loc
-
-                sentence = msg[ss1: ee2]
-                word_count = (ee2 - ss1)
-
-                sub_loc = (ss1, ee2)
-                can_location_be_used = obs.isUsableLoc(sub_loc)
-                if not can_location_be_used:
-                    continue
-
-                entry = {sub_loc: sentence}
-                loc_dic.update(entry)
-        except Exception as e:
-            df.LOG(e, error=True)
-            raise e
-
-        simplifiesMatchedRecords()
-
-        part_list = list(loc_dic.items())
-        part_list.sort(key=sortGetWordLen, reverse=True)
-        non_ignored_list = removeIgnoredEntries(part_list)
-
-        return non_ignored_list
+    # def genmap(msg, is_reverse=True, is_removing_symbols=False, using_pattern=None):
+    #     def simplifiesMatchedRecords():
+    #         mm: MatcherRecord = None
+    #         for loc, mm in matched_list:
+    #             can_location_be_used = obs.isUsableLoc(loc)
+    #             if not can_location_be_used:
+    #                 continue
+    #
+    #             txt = mm.txt
+    #             entry = {loc: txt}
+    #             loc_dic.update(entry)
+    #
+    #     def removeIgnoredEntries(input_list):
+    #         loc_obs = LocationObserver(msg)
+    #         ignored = []
+    #         non_ignore_list=[]
+    #         for loc, txt in input_list:
+    #             is_ignore = ig.isIgnored(txt)
+    #             if is_ignore:
+    #                 df.LOG(f'IGNORED:[{txt}]')
+    #                 loc_obs.markLocAsUsed(loc)
+    #
+    #         for loc, txt in input_list:
+    #             is_ignored = loc_obs.isLocUsed(loc)
+    #             if is_ignored:
+    #                 df.LOG(f'IGNORED:[{txt}]')
+    #                 continue
+    #             entry = (loc, txt)
+    #             non_ignore_list.append(entry)
+    #         return non_ignore_list
+    #
+    #     def genListOfDistance(max):
+    #         dist_list = []
+    #         for s in range(0, max):
+    #             for e in range(0, max):
+    #                 is_valid = (s < e)
+    #                 if not is_valid:
+    #                     continue
+    #
+    #                 distance = (e - s)
+    #                 entry = (distance, s, e)
+    #                 if entry not in dist_list:
+    #                     dist_list.append(entry)
+    #         return dist_list
+    #
+    #     def sortGetWordLen(item):
+    #         (loc, txt) = item
+    #         wc = len(txt.split())
+    #         txt_len = len(txt)
+    #         return (txt_len, wc)
+    #
+    #     part_list = []
+    #     obs: LocationObserver = None
+    #     # ref_dict_list, obs = Common.getRefDictList(msg)
+    #     # occupied_list = ref_dict_list.keys()
+    #
+    #     sep_pattern = (df.SPACE_WORD_SEP if not is_removing_symbols else df.SYMBOLS)
+    #     actual_pattern = (using_pattern if using_pattern else sep_pattern)
+    #     matched_dict = Common.patternMatchAll(actual_pattern, msg)
+    #     matched_list = list(matched_dict.items())
+    #     max = len(matched_dict)
+    #     loc_dic = {}
+    #     try:
+    #         dist_list = genListOfDistance(max)
+    #         dist_list.sort(reverse=is_reverse)
+    #         for entry in dist_list:
+    #             distance, from_index, to_index = entry
+    #             start_loc, start_mm = matched_list[from_index]
+    #             end_loc, end_mm = matched_list[to_index]
+    #
+    #             ss1, ee1 = start_loc
+    #             ss2, ee2 = end_loc
+    #
+    #             sentence = msg[ss1: ee2]
+    #             # word_count = (ee2 - ss1)
+    #
+    #             sub_loc = (ss1, ee2)
+    #             can_location_be_used = obs.isUsableLoc(sub_loc)
+    #             if not can_location_be_used:
+    #                 continue
+    #
+    #             entry = {sub_loc: sentence}
+    #             loc_dic.update(entry)
+    #     except Exception as e:
+    #         df.LOG(e, error=True)
+    #         raise e
+    #
+    #     simplifiesMatchedRecords()
+    #
+    #     part_list = list(loc_dic.items())
+    #     part_list.sort(key=sortGetWordLen, reverse=True)
+    #     non_ignored_list = removeIgnoredEntries(part_list)
+    #
+    #     return non_ignored_list
 
     def dictKeyFunction(item):
         is_pattern = (isinstance(item, re.Pattern))
@@ -2139,7 +2145,8 @@ class Common:
             return_entry = (rat, (loc, txt))
             return return_entry
 
-        in_str_map = Common.genmap(in_str, using_pattern=df.WORD_ONLY)
+        tm = TM(in_str, using_pattern=df.WORD_ONLY)
+        in_str_map = tm.genmap()
         with concurrent.futures.ThreadPoolExecutor() as executor:
             found_results = executor.map(fuzzyRatioCompute, in_str_map)
 

@@ -174,41 +174,26 @@ class LocationObserver(OrderedDict):
         (s, e) = loc
         return self.getTextAt(s, e)
 
-    def isLeftOverlapped(self, loc):
+    def isOverlapped(self, loc, is_on_left=False):
         '''
-        Check to see if a location is overlapped on the left side
+        Check to see if a location is overlapped on the left/right side
         :param loc: location to be test
+        :is_on_left: boolean value, indicating to check on left, if True, else check on right
         :return:
-            True if location is used and overlapped on left
-            False if location it NOT USED, or not overlapped on left
+            True if location is used and overlapped
+            False if location it NOT USED, or not overlapped
         '''
         if not self.isLocUsed(loc):
             return False
 
         ls, le = loc
         try:
-            current_char = self.blank[ls]
-            left_char = self.blank[ls - 1]
-            is_ovrlap = (current_char == df.FILLER_CHAR) and (left_char == df.FILLER_CHAR)
-            return is_ovrlap
-        except Exception as e:
-            return False
-
-    def isRightOverlapped(self, loc):
-        '''
-        Check to see if a location is overlapped on the right side
-        :param loc: location to be test
-        :return:
-            True if location is used and overlapped on right
-            False if location it NOT USED, or not overlapped on right
-        '''
-        if not self.isLocUsed(loc):
-            return False
-
-        ls, le = loc
-        try:
-            current_char = self.blank[le]
-            left_char = self.blank[le + 1]
+            if is_on_left:
+                current_char = self.blank[ls]
+                left_char = self.blank[ls - 1]
+            else:
+                current_char = self.blank[le]
+                left_char = self.blank[le + 1]
             is_ovrlap = (current_char == df.FILLER_CHAR) and (left_char == df.FILLER_CHAR)
             return is_ovrlap
         except Exception as e:
@@ -225,8 +210,8 @@ class LocationObserver(OrderedDict):
         if not self.isLocUsed(loc):
             return True
 
-        is_left_ovrlap = self.isLeftOverlapped(loc)
-        is_right_ovrlap = self.isRightOverlapped(loc)
+        is_left_ovrlap = self.isOverlapped(loc, is_on_left=True)
+        is_right_ovrlap = self.isOverlapped(loc, is_on_left=False)
         ok = not (is_left_ovrlap or is_right_ovrlap)
         return ok
 

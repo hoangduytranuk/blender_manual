@@ -266,10 +266,10 @@ class RefList(defaultdict):
             self.update(entry)
 
     def parseMessage(self):
-        trans = self.tf.isInDict(self.msg)
-        if trans:
-            self.setTranslation(trans, False, False)
-            return
+        # trans = self.tf.isInDict(self.msg)
+        # if trans:
+        #     self.setTranslation(trans, False, False)
+        #     return
 
         local_msg = str(self.msg)
         cm.debugging(local_msg)
@@ -311,6 +311,9 @@ class RefList(defaultdict):
         dd('-' * 80)
         tran_list = []
         non_ignored_list = [(loc, mm) for (loc, mm) in txt_list.items() if not ig.isIgnored(mm.txt)]
+        if not non_ignored_list:
+            return None, False, True
+
         with concurrent.futures.ThreadPoolExecutor() as executor:
             found_results = executor.map(self.createSRAndTranslateSegment, non_ignored_list)
 
@@ -378,7 +381,7 @@ class RefList(defaultdict):
                 mm_txt = mm.txt
                 txt_len = len(mm_txt)
                 # new_mask = (''.join(random.choice(letters) for i in range(txt_len)))
-                new_mask = f'{index}&&'
+                new_mask = f'{index}{df.REF_MASK_STR}'
                 mask_table_entry = (loc, new_mask, mm_txt, mm)
                 mask_table.append(mask_table_entry)
 

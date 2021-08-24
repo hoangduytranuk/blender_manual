@@ -629,6 +629,8 @@ class Definitions:
     ref_filler_char_pat_txt = r'[%s]+' % (REF_FILLER_CHAR)
     REF_FILLER_PAT = re.compile(ref_filler_char_pat_txt)
 
+    REF_MASK_CHAR = '#'
+    REF_MASK_STR = f'{REF_MASK_CHAR * 2}'
     FILLER_CHAR='¶'
     filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
     FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
@@ -1370,7 +1372,7 @@ class Definitions:
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
         r'^[\W\d]+$',   # symbols and numbersr
         r'^[\w]\s?(\+|\-|\*|\/|\%|\=|\!\=|\>|\<|\>\=|\<\=|\=\=|\>\>|\<\<)\s?[\w]$', # A - B, A >= B
-        r'^\d+&&$',   # internal ref placeholders
+        r'^\d+%s$' % (REF_MASK_STR * 2),   # internal ref placeholders
         ]
 
     # MAKE SURE all entries in this table are in LOWERCASE

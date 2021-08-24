@@ -272,7 +272,7 @@ class Ignore:
             for index, m in enumerate(df.runtime_ignore_list):
                 is_found = (m.search(text_line) is not None)
                 if is_found:
-                    dd(f'isIgnoredWord: [{index}] pattern:[{m.pattern}] text_line:[{text_line}]')
+                    df.LOG(f'isIgnoredWord: [{index}] pattern:[{m.pattern}] text_line:[{text_line}]')
                     return True
             else:
                 return False

@@ -7,8 +7,8 @@ import copy as CP
 from collections import OrderedDict
 import inspect as INP
 from nocasedict import NoCaseDict as NDIC
-from ignore import Ignore as ig
 from definition import Definitions as df, SentStructMode as SMODE, SentStructModeRecord as SMODEREC
+from textmap import TextMap as TM
 
 class StructRecogniser():
     '''
@@ -681,7 +681,9 @@ class StructRecogniser():
         sr: StructRecogniser = None
 
         obs = LocationObserver(txt)
-        map = cm.genmap(txt)
+        tm = TM(txt)
+        map = tm.genmap()
+
         parsed_list=[]
         translated_list=[]
 

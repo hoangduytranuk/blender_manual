@@ -10,8 +10,8 @@ from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
 import operator as OP
 from nocasedict import NoCaseDict
-from matcher import MatcherRecord
 import inspect as INP
+from textmap import TextMap as TM
 
 class TranslationEntry():
     def __init__(self, untran_txt=None, tran_txt=None, txt_loc=None, fuzzy_rate=None):
@@ -221,7 +221,9 @@ class TranslationFinder:
 
     def simpleBlindTranslation(self, msg):
         translated_dict = OrderedDict()
-        map = cm.genmap(msg)
+
+        tm = TM(msg)
+        map = tm.genmap()
         obs = LocationObserver(str(msg))
         dic = self.getDict()
         for loc, txt in map:
@@ -306,7 +308,10 @@ class TranslationFinder:
     def buildLocalTranslationDict(self, msg):
 
         local_translated_dict = [] # for quick, local translation
-        loc_map = cm.genmap(msg)
+
+        tm = TM(msg)
+        loc_map = tm.genmap()
+
         observer = LocationObserver(msg)
 
         for loc, orig_sub_text in loc_map:
