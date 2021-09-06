@@ -8,6 +8,29 @@ class LocationObserver(OrderedDict):
         self.blank = str(msg)
         self.marked_loc={}
 
+    def markIgnoredAsUsed(self, ignore_dict):
+        try:
+            is_dict = isinstance(ignore_dict, dict)
+            if not is_dict:
+                return
+
+            valid = (ignore_dict is not None) and (len(ignore_dict) > 0)
+            if not valid:
+                return
+
+            for loc, txt in ignore_dict.items():
+                s = self.blank.find(txt)
+                is_found = (s >= 0)
+                if not is_found:
+                    continue
+
+                e = len(txt)
+                loc = (s, e)
+                self.markLocAsUsed(loc)
+
+        except Exception as e:
+            df.LOG(f'{e}')
+
     def getNoneAlphaPart(self, msg, is_start=True):
         if not msg:
             return ""
@@ -111,6 +134,11 @@ class LocationObserver(OrderedDict):
                 mm.type = RefType.TEXT
                 mm.pattern = pat
                 loc, found_txt = mm.getOriginAsTuple()
+
+                is_used = self.isLocUsed(loc)
+                if is_used:
+                    continue
+
                 entry = (loc, mm)
                 found_list.append(entry)
         else:
@@ -140,6 +168,10 @@ class LocationObserver(OrderedDict):
                         continue
 
                 loc = (ws, we)
+                is_used = self.isLocUsed(loc)
+                if is_used:
+                    continue
+
                 mm = MatcherRecord(s=ws, e=we, txt=found_txt)
                 mm.type = RefType.TEXT
                 mm.pattern = pat

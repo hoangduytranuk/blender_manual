@@ -225,6 +225,9 @@ class TranslationFinder:
         tm = TM(msg)
         map = tm.genmap()
         obs = LocationObserver(str(msg))
+
+        obs.markIgnoredAsUsed(tm.ignore_list)
+
         dic = self.getDict()
         for loc, txt in map:
             is_fully_translated = obs.isCompletelyUsed()
