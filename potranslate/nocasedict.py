@@ -973,6 +973,7 @@ class NoCaseDict(OrderedDict):
             is_translated = (translation != input_txt)
             if is_translated:
                 translation = self.replaceTranRef(translation)
+                translation = cm.matchCase(input_txt, translation)
                 df.LOG(f'input_txt:[{input_txt}]=>[{translation}]')
                 return translation
             else:
