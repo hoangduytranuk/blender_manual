@@ -132,7 +132,7 @@ class TranslationFinder:
                 un_tran_txt = un_tran_mm.txt
                 is_ignore = ig.isIgnored(un_tran_txt)
                 if is_ignore:
-                    print(f'replacingUsingDic: IGNORING: un_tran_txt:[{un_tran_txt}]')
+                    df.LOG(f'IGNORING: un_tran_txt:[{un_tran_txt}]')
                     continue
 
                 try:
@@ -150,7 +150,7 @@ class TranslationFinder:
                     local_dict_list.append(tran_dict_entry)
 
         location_database = []
-        dd(f'replacingUsingDic(): text:[{text}]')
+        df.LOG(f'text:[{text}]')
         dd('local_dict entering: -----------------')
         pp(local_dict_list)
         dd('-----------------')
@@ -172,11 +172,11 @@ class TranslationFinder:
         temp_translation = self.translatedListToText(local_dict, translation)
         has_translation = not (temp_translation == text)
         if not has_translation:
-            dd(f'replacingUsingDic(): text:[{text}]')
+            df.LOG(f'text:[{text}]')
             return None
         else:
-            dd(f'replacingUsingDic(): text:[{text}]')
-            dd(f'temp_translation:[{temp_translation}]')
+            df.LOG(f'text:[{text}]')
+            df.LOG(f'temp_translation:[{temp_translation}]')
             return temp_translation
 
     def translatedListToText(self, loc_translated_dict: dict, current_translation) -> str:
@@ -194,7 +194,7 @@ class TranslationFinder:
         loc_translated_list = list(loc_translated_dict.items())
         loc_translated_list.sort(reverse=True)
 
-        dd(f'translatedListToText(): txt:[{current_translation}]')
+        df.LOG(f'txt:[{current_translation}]')
         dd('-----------------')
         pp(loc_translated_list)
         dd('-----------------')
@@ -215,8 +215,8 @@ class TranslationFinder:
             if is_fully_translated:
                 break
 
-        dd(f'translatedListToText: original [{orig}]')
-        dd(f'translatedListToText: translated [{current_translation}]')
+        df.LOG(f'original [{orig}]')
+        df.LOG(f'translated [{current_translation}]')
         return current_translation
 
     def simpleBlindTranslation(self, msg):
@@ -264,6 +264,8 @@ class TranslationFinder:
             return None
 
     def tryFuzzyTranlation(self, msg):
+        cm.debugging(msg)
+
         search_dict: NoCaseDict = self.getDict()
         tran_sub_text = search_dict.findCache(msg)
 
@@ -272,6 +274,8 @@ class TranslationFinder:
             return None, len(msg), 0
 
         if tran_sub_text:
+            tran_sub_text = self.getDict().replaceTranRef(tran_sub_text)
+            search_dict.addCache(msg, tran_sub_text)
             return tran_sub_text, len(msg), 100
 
         search_dict: NoCaseDict = None

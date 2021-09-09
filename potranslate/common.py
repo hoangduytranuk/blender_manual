@@ -2156,9 +2156,9 @@ class Common:
         return selected_part
 
     def debugging(txt):
-        msg = "Target Velocity, a"
-        is_debug = (msg and txt and (msg.lower() in txt.lower()))
-        # is_debug = (msg and txt and (msg.lower() == txt.lower()))
+        msg = "Opposing"
+        # is_debug = (msg and txt and (msg.lower() in txt.lower()))
+        is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
             dd(f'Debugging text: {msg} at line txt:{txt}')

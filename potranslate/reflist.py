@@ -272,7 +272,7 @@ class RefList(defaultdict):
         #     return
 
         local_msg = str(self.msg)
-        cm.debugging(local_msg)
+        # cm.debugging(local_msg)
         count = self.findPattern(df.pattern_list, local_msg)
 
         df.global_ref_map = LocationObserver(self.msg)

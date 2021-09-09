@@ -1261,6 +1261,7 @@ class Definitions:
         # r'([\.](org|com|uk|ac))$',
         # r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
         # r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
+        r"^\w$",
         r"[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)",
         r"^(\w[\W]+)$",
         r"^\W?(\dD)\W?$",
@@ -1382,7 +1383,7 @@ class Definitions:
         # "",
         # "",
         # "",
-        # "",
+        "a, b",
         "#cos(frame)",
         "#frame / 20.0",
         "#python",
