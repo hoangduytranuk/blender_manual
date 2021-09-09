@@ -515,7 +515,7 @@ class test(object):
                 # "Trim Strokes End",
                 # "Twisted Torus by Paulo_Gomes",
                 # "Two Adjacent Quad Edges",
-                "Two Opposing Quad Edges",
+                # "Two Opposing Quad Edges",
                 # "Two Tri Edges",
                 # "Type A, B",
                 # "Type A, B, C",
@@ -537,7 +537,7 @@ class test(object):
                 # "Unified Selected/Active Colors",
                 # "Uniform, Size",
                 # "Unindent :kbd:`Shift-Tab`",
-                # "Unindent :kbd:`Shift-Tab`.",
+                "Unindent :kbd:`Shift-Tab`.",
                 # "Union :kbd:`Ctrl-NumpadPlus`",
             ]
         else:

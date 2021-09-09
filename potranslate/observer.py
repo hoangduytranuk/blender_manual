@@ -25,7 +25,7 @@ class LocationObserver(OrderedDict):
                     continue
 
                 e = len(txt)
-                loc = (s, e)
+                loc = (s, s + e)
                 self.markLocAsUsed(loc)
 
         except Exception as e:

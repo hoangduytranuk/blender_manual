@@ -1383,6 +1383,10 @@ class Definitions:
         # "",
         # "",
         # "",
+        # "",
+        # "",
+        # "",
+        "uni",
         "a, b",
         "#cos(frame)",
         "#frame / 20.0",
@@ -1618,6 +1622,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "undo/redo/history",
         "models/materials/brushes",
         "cycles modifier",
         "cycles render device",
