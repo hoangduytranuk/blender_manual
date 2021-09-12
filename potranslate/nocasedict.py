@@ -528,9 +528,9 @@ class NoCaseDict(OrderedDict):
             trans_txt = self[selected_key]
             report_msg = f'found: [{selected_key}] => [{trans_txt}]'
             df.LOG(report_msg)
-            (repl_loc, replacing_part) = cm.bestMatchSectionString(selected_key, msg)
-            translation = cm.jointText(msg, trans_txt, repl_loc)
-            translation = self.replaceTranRef(translation)
+            # (repl_loc, replacing_part) = cm.bestMatchSectionString(selected_key, msg)
+            # translation = cm.jointText(msg, trans_txt, repl_loc)
+            translation = self.replaceTranRef(trans_txt)
             return translation
 
         def getShorterKText():
@@ -566,10 +566,14 @@ class NoCaseDict(OrderedDict):
                 found_results = executor.map(getRatios, possible_list)
 
             found_list = list(found_results)
-            if is_k_single_word:
-                found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
-            else:
-                found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
+            # if is_k_single_word:
+            #     found_list.sort(key=OP.itemgetter(1, 0), reverse=True)
+            # else:
+            found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
+
+            if found_list:
+                df.LOG(f'FOUND_LIST: the acceptable RATE:{acceptable_rate}')
+                pp(found_list)
 
             selected_item = found_list[0]
             (ratio, partial_ratio, chosen_txt) = selected_item
@@ -680,7 +684,6 @@ class NoCaseDict(OrderedDict):
         else:
             is_in = (k in self)
             if is_in:
-                trans = self[k]
                 translation = prepTranslation(k)
                 return (translation, k, 100, untran_word_dic)
 
@@ -730,7 +733,7 @@ class NoCaseDict(OrderedDict):
         matched_ratio = (original_ratio if (is_k_single_word and not has_path_char) else overall_ratio)
         # matched_ratio = (overall_ratio)
 
-        n_word_selected = len(selected_item.split())
+        n_word_selected = len(df.WORD_SPLIT.split(selected_item))
         is_diff_n_word = (k_word_count != n_word_selected)
 
         is_accepted = (matched_ratio > acceptable_rate) and not (is_diff_n_word)

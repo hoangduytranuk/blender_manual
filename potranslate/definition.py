@@ -236,7 +236,7 @@ class Definitions:
     MAX_FUZZY_LIST = 100
     MAX_FUZZY_TEST_LENGTH = 0.5
     FUZZY_ACCEPTABLE_RATIO = 90
-    FUZZY_MODERATE_ACCEPTABLE_RATIO = 90
+    FUZZY_MODERATE_ACCEPTABLE_RATIO = 85
     FUZZY_LOW_ACCEPTABLE_RATIO = 70
     FUZZY_VERY_LOW_ACCEPTABLE_RATIO = 45
     FUZZY_PERFECT_MATCH_PERCENT = 60
@@ -264,6 +264,9 @@ class Definitions:
 
     extra_mode = r'(\/([^\/]+))*'
     VAR_EXTRA_MODE = re.compile(extra_mode)
+
+    word_boundary = r'[\/\n\s\:]'
+    WORD_SPLIT = re.compile(word_boundary)
 
     sent_struct_pat_txt = r'%s' % (regular_var)
     # SENT_STRUCT_PAT = re.compile(r'((\${3})(\w+)?(\/\w+)*)')
@@ -557,8 +560,9 @@ class Definitions:
     # this (something ... ) can have other links inside of it as well as others
     # the greedy but more accurate is r'[\(]+(.*)?[\)]+'
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
+    angle_bracket_single_txt = r'\<([^\<\>]+)[^\/]\>'
     arch_bracket_single_txt = r'\(([^\)\(]+)\)'
-    arch_bracket_single_full = r'\b%s\b' % (arch_bracket_single_txt)
+    arch_bracket_single_full = r'\b%s|%s\b' % (arch_bracket_single_txt, angle_bracket_single_txt)
     arch_bracket_single_absolute = r'^%s(?:\W|$)?$' % (arch_bracket_single_txt)
     ARCH_BRAKET_SINGLE_FULL = re.compile(arch_bracket_single_full)
     ARCH_BRAKET_SINGLE_ABS = re.compile(arch_bracket_single_absolute)
@@ -1384,7 +1388,7 @@ class Definitions:
         # "",
         # "",
         # "",
-        # "",
+        "vv",
         "steam",
         "uni",
         "a, b",

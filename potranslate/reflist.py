@@ -172,7 +172,7 @@ class RefList(defaultdict):
             try:
                 is_bracket = (ref == RefType.ARCH_BRACKET)
                 if is_bracket:
-                    local_found_dict = cm.getTextWithinBrackets('(', ')', find_txt, is_include_bracket=False)
+                    local_found_dict = cm.getTextWithinBrackets('<|(', '>|)', find_txt, is_include_bracket=False)
                 else:
                     local_found_dict = cm.patternMatchAll(pat, find_txt)
                     setReftypeAndUsingSubTextLocation(local_found_dict)

@@ -398,7 +398,7 @@ class test(object):
 # "Updating on Windows",
 # "Updating on macOS",
 # "Updating with DMG",
-"Updating with Steam",
+# "Updating with Steam",
 # "Updating with a Package Manager",
 # "Upgrade Graphics Driver",
 # "Use <original file path> (differs)|(identical)",
@@ -429,7 +429,7 @@ class test(object):
 # "Using the Poly Build Tool",
 # "Utilities Nodes",
 # "VR Scene Inspection",
-# "VV",
+"VV",
 # "Value (number)",
 # "Value Channel",
 # "Value to Normal Node",
@@ -507,7 +507,7 @@ class test(object):
 # "Weighted Edge Creases",
 # "Weighted Normal Modifier",
 # "Weights Menu",
-# "What renders faster, Nvidia or AMD, CUDA, OptiX or OpenCL?",
+"What renders faster, Nvidia or AMD, CUDA, OptiX or OpenCL?",
 # "White Balance Modifier",
 # "White Level :guilabel:`Compositor Only`",
 # "White Noise Texture Node",
@@ -552,6 +552,8 @@ class test(object):
 # "Wrap Methods",
 # "Writing Shaders",
 # "Writing Style Modules",
+# "alternative",
+# "altering",
             ]
         else:
             t_list = text_list

@@ -978,14 +978,14 @@ class Common:
             sentence_list.append(entry)
             return True
 
-        def getBracketList():
+        def getBracketList(start_brk, end_brk):
             # split at the boundary of start and end brackets
             try:
                 # 1. find positions of start bracket
                 if is_same_brakets:
-                    p_txt = r'\%s' % start_bracket
+                    p_txt = r'\%s' % start_brk
                 else:
-                    p_txt = r'[\%s\%s]' % (start_bracket, end_bracket)
+                    p_txt = r'[\%s\%s]' % (start_brk, end_brk)
 
                 p = re.compile(p_txt)
                 brk_list = Common.patternMatchAll(p, input_txt)
@@ -995,8 +995,8 @@ class Common:
                 raise e
             return brk_list
 
-        def getSentenceList():
-            bracket_list, pattern = getBracketList()
+        def getSentenceList(start_brk, end_brk):
+            bracket_list, pattern = getBracketList(start_brk, end_brk)
             if not bracket_list:
                 return sentence_list, pattern
 
@@ -1006,7 +1006,7 @@ class Common:
                 for loc, mm in bracket_list.items():
                     s, e = loc
                     bracket = mm.txt
-                    is_bracket = (bracket == start_bracket)
+                    is_bracket = (bracket == start_brk)
                     if is_bracket:
                         if not q:
                             q.append(s)
@@ -1016,8 +1016,8 @@ class Common:
                 for loc, mm in bracket_list.items():
                     s, e = loc
                     bracket = mm.txt
-                    is_open = (bracket == start_bracket)
-                    is_close = (bracket == end_bracket)
+                    is_open = (bracket == start_brk)
+                    is_close = (bracket == end_brk)
                     if is_open:
                         q.append(s)
                     if is_close:
@@ -1032,49 +1032,68 @@ class Common:
             sort_key = (len(txt), loc)
             return sort_key
 
-        output_dict = OrderedDict()
-        sentence_list = []
-        q = deque()
-        txt_len = len(input_txt)
-        is_same_brakets = (start_bracket == end_bracket)
-        if is_same_brakets:
-            dd(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
-                  f'ERRORS might occurs!')
+        def findUsingBracketSet(start_brk, end_brk):
+            output_dict = OrderedDict()
+            txt_len = len(input_txt)
 
-        sentence_list, pattern = getSentenceList()
-        if not sentence_list:
+            if is_same_brakets:
+                dd(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
+                   f'ERRORS might occurs!')
+
+            sentence_list, pattern = getSentenceList(start_brk, end_brk)
+            if not sentence_list:
+                return output_dict
+
+            loc_list = []
+            obs = LocationObserver(input_txt)
+            sentence_list.sort(key=sortSentencesFunction, reverse=True)
+            for loc, txt in sentence_list:
+                is_finished = obs.isCompletelyUsed()
+                if is_finished:
+                    break
+
+                is_used = obs.isLocUsed(loc)
+                if is_used:
+                    continue
+
+                if not is_include_bracket:
+                    (sub_loc, actual_txt) = Common.removeStartEndBrackets(txt, start_bracket=start_brk,
+                                                                          end_bracket=end_brk)
+                    (cs, ce) = loc
+                    (ss, se) = sub_loc
+                    actual_loc = (cs + ss, cs + se)
+                else:
+                    actual_loc = loc
+                    actual_txt = txt
+
+                obs.markLocAsUsed(loc)
+                (ss, ee) = actual_loc
+                mm = MatcherRecord(s=ss, e=ee, txt=actual_txt)
+                mm.pattern = pattern
+                mm.type = RefType.ARCH_BRACKET
+                dict_entry = {actual_loc: mm}
+                output_dict.update(dict_entry)
+
             return output_dict
 
-        loc_list=[]
-        obs = LocationObserver(input_txt)
-        sentence_list.sort(key=sortSentencesFunction, reverse=True)
-        for loc, txt in sentence_list:
-            is_finished = obs.isCompletelyUsed()
-            if is_finished:
-                break
+        result={}
+        is_same_brakets = False
+        q = None
+        sentence_list = None
+        start_bracket_list = start_bracket.split('|')
+        end_bracket_list = end_bracket.split('|')
+        for index in range(0, len(start_bracket_list)):
+            q = deque()
+            sentence_list = []
 
-            is_used = obs.isLocUsed(loc)
-            if is_used:
-                continue
+            start_brk = start_bracket_list[index]
+            end_brk = end_bracket_list[index]
+            is_same_brakets = (start_brk == end_brk)
+            result_set = findUsingBracketSet(start_brk, end_brk)
+            if result_set:
+                result.update(result_set)
 
-            if not is_include_bracket:
-                (sub_loc, actual_txt) = Common.removeStartEndBrackets(txt, start_bracket=start_bracket, end_bracket=end_bracket)
-                (cs, ce) = loc
-                (ss, se) = sub_loc
-                actual_loc = (cs + ss, cs + se)
-            else:
-                actual_loc = loc
-                actual_txt = txt
-
-            obs.markLocAsUsed(loc)
-            (ss, ee) = actual_loc
-            mm = MatcherRecord(s=ss, e=ee, txt=actual_txt)
-            mm.pattern = pattern
-            mm.type = RefType.ARCH_BRACKET
-            dict_entry = {actual_loc: mm}
-            output_dict.update(dict_entry)
-
-        return output_dict
+        return result
 
     def removeSurroundingSpaces(self, txt_loc, txt):
         start_spc_mm: MatcherRecord = Common.patternMatch(df.START_SPACES, txt)
@@ -2151,8 +2170,13 @@ class Common:
             found_results = executor.map(fuzzyRatioCompute, in_str_map)
 
         found_results_list = list(found_results)
-        found_results_list.sort(reverse=True)
-        matched_rate, selected_part = found_results_list[0]
+        if found_results:
+            found_results_list.sort(reverse=True)
+            matched_rate, selected_part = found_results_list[0]
+        else:
+            # either match all or they are all ignored
+            matched_rate = 100
+            selected_part = in_str
         return selected_part
 
     def debugging(txt):
