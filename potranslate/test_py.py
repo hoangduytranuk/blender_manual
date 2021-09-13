@@ -524,7 +524,7 @@ class test(object):
 # "Windows -- Nvidia",
 # "Windows -- Other GPU",
 # "Wipe Strip",
-"With Envelope Weights",
+# "With Envelope Weights",
 # "With Hotkeys",
 # "With Stiff Quads.",
 # "With Uniform Colors",
@@ -552,7 +552,7 @@ class test(object):
 # "Writing Shaders",
 # "Writing Style Modules",
 # "alternative",
-# "altering",
+"writing",
             ]
         else:
             t_list = text_list
