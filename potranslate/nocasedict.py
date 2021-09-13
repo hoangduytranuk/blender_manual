@@ -108,6 +108,19 @@ class NoCaseDict(OrderedDict):
     #     # except Exception as e:
     #     #     df.LOG(f'{e}', error=True)
     #     #     return None
+
+    def get(self, key):
+        try:
+            left, mid, right = cm.getTextWithin(key.lower())
+            trans_txt = self[mid]
+            translation = self.replaceTranRef(trans_txt)
+            translation = cm.matchCase(key, translation)
+            translation = left + translation + right
+            return translation
+        except Exception as e:
+            # df.LOG(f'{e}', error=True)
+            return None
+
     def rm(self, key):
         k = key.lower()
         super(NoCaseDict, self).__delitem__(k)
@@ -169,21 +182,6 @@ class NoCaseDict(OrderedDict):
 
         temp_dict = OrderedDict(found_list)
         self.sentence_struct_dict = NoCaseDict(temp_dict)
-
-        # with concurrent.futures.ThreadPoolExecutor() as executor:
-        #     found_results = executor.map(composeTempSSDict, list(temp_dict.items()))
-        #
-        # tem_ss_dict_list = list(found_results)
-        # ss_temp_dict = OrderedDict(tem_ss_dict_list)
-        #
-        # simple_ss_dict = cm.simplifiedSS(ss_temp_dict)
-        #
-        # self.sentence_struct_dict_simple = simple_ss_dict
-
-
-
-    def get(self, k, default=None):
-        return self[k] if k in self else default
 
     def getSentStructPattern(self, key):
         def validate_NUMBER_ONLY(args):
@@ -673,19 +671,13 @@ class NoCaseDict(OrderedDict):
         if is_ref:
             return default_result
 
+        translation = self.get(msg)
+        if translation:
+            return (translation, msg, 100, untran_word_dic)
+
         msg_lower = msg.lower()
         left, k, right = cm.getTextWithin(msg)
         k = k.lower()
-
-        is_in = (msg_lower in self)
-        if is_in:
-            translation = prepTranslation(msg_lower)
-            return (translation, msg, 100, untran_word_dic)
-        else:
-            is_in = (k in self)
-            if is_in:
-                translation = prepTranslation(k)
-                return (translation, k, 100, untran_word_dic)
 
         has_path_char = (df.PATH_CHAR.search(k) is not None)
         k_length = len(k)

@@ -818,8 +818,6 @@ class TranslationFinder:
         return search_dict
 
     def isInDictFuzzy(self, msg, dic_to_use=None):
-        fname = INP.currentframe().f_code.co_name
-
         untran_word_dic = {}
         # cm.debugging(msg)
         matched_text = msg
@@ -838,29 +836,17 @@ class TranslationFinder:
             dd(msg)
             raise Exception(msg)
 
-        # is_matcher = isinstance(msg, MatcherRecord)
-        # if is_matcher:
-        #     dd('debug')
-        # is_ignore = (not msg) or ig.isIgnored(msg)
-        # if is_ignore:
-        #     return None, matched_text, search_dict, 0, untran_word_dic
-
-        is_found = (msg in search_dict)
-        if is_found:
-            tran = search_dict[msg]
+        tran = search_dict.get(msg)
+        if tran:
             matched_text = msg
             matching_ratio = 100.0
         else:
             tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
 
         if tran:
-            # tran = search_dict.replaceTranRef(tran)
-            tran = cm.matchCase(msg, tran)
-            # cm.debugging(msg)
-            dd(f'{fname}() [{msg}] => [{tran}]')
+            df.LOG(f'[{msg}] => [{tran}]')
         else:
-            dd(f'{fname}() Unable to find translation for: [{msg}]')
-            tran = None
+            df.LOG(f'Unable to find translation for: [{msg}]')
         return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 
 
@@ -881,24 +867,7 @@ class TranslationFinder:
         if tran_sub_text:
             return tran_sub_text
 
-        temp_msg = msg.lower()
-        left = right = ""
-        is_found = (temp_msg in search_dict)
-        if is_found:
-            tran = search_dict[temp_msg]
-        else:
-            left, mid, right = cm.getTextWithin(temp_msg)
-            is_found = (mid in search_dict)
-            if is_found:
-                tran = search_dict[mid]
-
-        if tran:
-            tran = search_dict.replaceTranRef(tran)
-            tran = cm.matchCase(msg, tran)
-            tran = left + tran + right
-            dd(f'isInDict(): [{msg}] => [{tran}]')
-        else:
-            tran = None
+        tran = search_dict.get(msg)
         return tran
 
     def isInListByDict(self, msg, is_master):
