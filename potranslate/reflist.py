@@ -421,6 +421,17 @@ class RefList(defaultdict):
                     tran_text = cm.jointText(tran_text, trans, loc)
             return tran_text
 
+        def translateTextEntriesOnly():
+            for loc, mm in self.items():
+                is_txt = (mm.type == RefType.TEXT)
+                if not is_txt:
+                    continue
+
+                txt = mm.getSubText()
+                trans, is_fuzzy, is_ignore = self.translateOneLineOfText(txt)
+                mm.setTranlation(trans, is_fuzzy, is_ignore)
+
+
         sent_translation = self.tf.isInDict(self.msg)
         if sent_translation:
             self.setTranslation(sent_translation, False, False)
@@ -440,15 +451,15 @@ class RefList(defaultdict):
             tran_required_reversed_list = list(self.items())
             tran_required_reversed_list.sort(reverse=True)
             translateRefRecords(tran_required_reversed_list)
-            # getTextDirectTranslations(tran_required_reversed_list)
 
             is_all_translated = self.isAllTranslated()
-            if is_all_translated:
-                sent_translation = collectTranslationsFromRefRecords(tran_required_reversed_list)
-            else:
-                masking_string, masked_list = genMasks(input_txt)
-                trans, is_fuzzy, is_ignore = self.translateOneLineOfText(masking_string)
-                sent_translation = restoreMaskingString(trans, masked_list)
+            if not is_all_translated:
+                translateTextEntriesOnly()
+
+            sent_translation = collectTranslationsFromRefRecords(tran_required_reversed_list)
+            # masking_string, masked_list = genMasks(input_txt)
+            # trans, is_fuzzy, is_ignore = self.translateOneLineOfText(masking_string)
+            # sent_translation = restoreMaskingString(trans, masked_list)
 
         is_fuzzy = self.isFuzzy()
         is_ignore = self.isIgnore()
