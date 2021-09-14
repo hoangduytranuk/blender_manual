@@ -117,9 +117,13 @@ class NoCaseDict(OrderedDict):
                 return None
 
             trans_txt = self[mid]
-            translation = self.replaceTranRef(trans_txt)
-            translation = cm.matchCase(key, translation)
-            translation = left + translation + right
+            has_tran = bool(trans_txt)
+            if has_tran:
+                translation = self.replaceTranRef(trans_txt)
+                translation = cm.matchCase(key, translation)
+                translation = left + translation + right
+            else:
+                translation = None
             return translation
         except Exception as e:
             # df.LOG(f'{e}', error=True)
