@@ -354,6 +354,55 @@ class test(object):
             pp(cleaned_group_list)
             dd('*' * 30)
 
+    def cleanDict(self):
+        from observer import LocationObserver
+        def isInOrig(ref_txt, source_list):
+            for src_txt in source_list:
+                ref_txt = ref_txt.lower()
+                src_txt = src_txt.lower()
+                is_same = (src_txt in ref_txt)
+                if is_same:
+                    return True
+            return False
+
+        def getListOfUnrefText(txt, source_list=None, is_target=False):
+            output_list=[]
+            ref_list = RefList(msg=txt, keep_orig=False, tf=tf)
+            count = ref_list.findPattern(df.pattern_list, txt)
+
+            obs = LocationObserver(txt)
+            if not is_target:
+                for loc, mm in ref_list.items():
+                    obs.markLocAsUsed(loc)
+            else:
+                for loc, mm in RefList.items():
+                    ref_txt = mm.txt
+                    is_in_orig = isInOrig(ref_txt, source_list)
+                    if is_in_orig:
+                        obs.markLocAsUsed(loc)
+
+            unparsed_dict = obs.getUnmarkedPartsAsDict()
+            for loc, mm in unparsed_dict.items():
+                txt = mm.txt
+                output_list.append(txt)
+
+            return output_list
+
+        tf = TranslationFinder()
+        home_dir = os.environ['BLENDER_GITHUB']
+        sent_struct_file = os.path.join(home_dir, "ref_dict_0006_0003.json")
+        ss_dict = self.loadData(sent_struct_file, is_lower=False)
+        for k, v in ss_dict.items():
+            en_list = getListOfUnrefText(k)
+            vi_list = getListOfUnrefText(v)
+            print('*' * 80)
+            print(f'k: {k}')
+            print(f'EN: {en_list}')
+            print('-' * 40)
+            print(f'v: {v}')
+            print(f'VI: {vi_list}')
+            print('*' * 80)
+
     # @profile
     def test_translate_0001(self, text_list=None):
         from paragraph import Paragraph as PR
@@ -380,180 +429,93 @@ class test(object):
 
         if not text_list:
             t_list = [
-# "Universal Scene Description",
-# "Unlock Strips :kbd:`Shift-Alt-L`",
-# "Unpack File (bin icon)",
-# "Unsupported Data",
-# "Unsupported GNU version",
-# "Unused Linked Data-Blocks",
-# "Unused Local Data-Blocks",
-# "Unwrapping",
-# "Up Arrow :kbd:`P`, :kbd:`Alt-Up`",
-# "Updating Branches",
-# "Updating from Windows Installer File",
-# "Updating from Zip",
-# "Updating from blender.org",
-# "Updating from the Microsoft Store",
-# "Updating on Linux",
-# "Updating on Windows",
-# "Updating on macOS",
-# "Updating with DMG",
-# "Updating with Steam",
-# "Updating with a Package Manager",
-# "Upgrade Graphics Driver",
-# "Use <original file path> (differs)|(identical)",
-# "Use B-Bone Shape",
-# "Use Collection",
-# "Use Directories:",
-# "Use GPU for Thumbnails Rendering",
-# "Use Mask (mask icon)",
-# "Use Movie Frame Rate",
-# "Use Object Coordinates",
-# "Use Proxies",
-# "Use Resumable Cache",
-# "Use Sticks",
-# "Use Transparency",
-# "Use an alternate compiler",
-# "User Control on the Pipeline Definition",
-# "Using Groups for Selecting/Deselecting",
-# "Using Keyboard Shortcuts",
-# "Using Multiple Outputs",
-# "Using Paths",
-# "Using Rig Types (Advanced)",
-# "Using Simulation to Shape/Sculpt a Mesh",
-# "Using Texture Nodes",
-# "Using UV Maps",
-# "Using Vertex Groups",
-# "Using coordinates from Wikipedia.",
-# "Using the Image Editor",
-# "Using the Poly Build Tool",
-# "Utilities Nodes",
-# "VR Scene Inspection",
-# "Value (number)",
-# "Value Channel",
-# "Value to Normal Node",
-# "Variant",
-# "Vector (dark blue)",
-# "Vector (green handles)",
-# "Vector Input",
-# "Vector Output",
-# "Vector Type",
-# "Vector, Center, Axis, Angle, Rotation",
-# "Verlet",
-# "Vertex Color Layers",
-# "Vertex Color Mask",
-# "Vertex Color Node",
-# "Vertex Color Sources",
-# "Vertex Group A and B",
-# "Vertex Group A or B",
-# "Vertex Group A/B",
-# "Vertex Group Categories",
-# "Vertex Groups Panel",
-# "Vertex Groups Panel Controls",
-# "Vertex Groups Weights",
-# "Vertex Groups for Bones",
-# "Vertex Groups for Particles",
-# "Vertex Paint Options",
-# "Vertex Paint Tools",
-# "Vertex Parent example.",
-# "Vertex Velocities",
-# "Vertex Weight Proximity Modifier",
-# "Vertex Weight Transfer",
-# "Vertex group *group_name* is not valid",
-# "Vertex group locking",
-# "Vertex painting stroke points.",
-# "Vertical Alignment",
-# "Vertices Behind the Camera",
-# "Vertices X",
-# "Vertices Y",
-# "Vertices changed from X to Y",
-# "Video Tutorial",
-# "View (eye icon)",
-# "View Animation :kbd:`Ctrl-F11`",
-# "View Layer Panel",
-# "View Numpad :kbd:`Q`",
-# "View Options",
-# "View Render :kbd:`F11`",
-# "Viewing the Active Camera",
-# "Viewport Bounces",
-# "Viewport Preview",
-# "Viewport Step Rate",
-# "Viewport Stereo 3D",
-# "Viewport Visibility",
-# "Visual Transform to Pose",
-# "Volume Components",
-# "Volume Emission :guilabel:`Fire or Smoke Only`:",
-# "Volume File Format",
-# "Volume Info Node",
-# "Volume Min, Max",
-# "Volume Nodes",
-# "Volume Preserve",
-# "Voronoi",
-# "Voronoi Node",
-# "W",
-# "Wall Factory by dudecon, jambay",
-# "Wave Crest Potential Minimum",
-# "Wave Distortion Effect samples.",
-# "Wave Distortion Visual Effect",
-# "Waveform Off",
-# "Waveform On",
-# "Wavefront OBJ",
-# "Web3D X3D/VRML2",
-# "Weight :kbd:`W`",
-# "Weight Options",
-# "Weight Table",
-# "Weight from Slope",
-# "Weighted Edge Creases",
-# "Weighted Normal Modifier",
-# "Weights Menu",
-# "What renders faster, Nvidia or AMD, CUDA, OptiX or OpenCL?",
-# "White Balance Modifier",
-# "White Level :guilabel:`Compositor Only`",
-# "White Noise Texture Node",
-# "Why does a scene that renders on the CPU not render on the GPU?",
-# "Why is Blender unresponsive during rendering?",
-# "Widget (Boolean)",
-# "Width :kbd:`A`",
-# "Width Type :kbd:`M`",
-# "Window Menu",
-# "Window Options",
-# "Window Stereo 3D Display",
-# "Window System Introduction",
-# "Windows -- AMD",
-# "Windows -- Intel",
-# "Windows -- Nvidia",
-# "Windows -- Other GPU",
-# "Wipe Strip",
-# "With Envelope Weights",
-# "With Hotkeys",
-# "With Stiff Quads.",
-# "With Uniform Colors",
-# "With a Mask",
-# "With a factor of -0.5.",
-# "With a factor of -30.0.",
-# "With a factor of 0.5.",
-# "With a factor of 2.0.",
-# "With a factor of 2.5.",
-# "With a factor of 20.0.",
-# "With the Transform Gizmo",
-# "Without Stiff Quads.",
-# "Wood Node",
-# "Wood Type",
-# "Word double-click :kbd:`LMB`",
-# "Work Hours",
-# "Working with Content of Vertex Groups",
-# "Workspace Settings",
-# "World Environment",
-# "World Node",
-# "World Volume",
-# "World, Local",
-# "Would multiple GPUs increase available memory?",
-# "Wrap Methods",
-# "Writing Shaders",
-# "Writing Style Modules",
-# "alternative",
-"writing",
-            ]
+                # "X Axis, Y Axis, Z Axis",
+                # "X Rotation, Z Rotation",
+                # "X, Y, Z Axis",
+                # "X, Y, Z Plane",
+                # "X/Y Flip",
+                # "X/Y/Z Angle",
+                # "X/Y/Z Axis",
+                # "X/Y/Z Min, Max",
+                # "X/Y/Z Source Axis",
+                # "Your API Key",
+                # "Your First Armature",
+                # "Your computer accidentally turns off in the middle of rendering your movie!",
+                # "Z- (Down), Y-, X-, Z+ (Up), Y+, X+",
+                # "Zip",
+                # "Zoom :kbd:`Alt-V` :kbd:`V`",
+                # "Zoom :kbd:`Ctrl-MMB`, :kbd:`Wheel`",
+                # "Zoom :kbd:`Wheel`",
+                # "Zoom In (plus magnifying glass icon)",
+                # "Zoom In / Zoom Out",
+                # "Zoom In/Out :kbd:`Wheel`",
+                # "Zoom Out (minus magnifying glass icon)",
+                # "\\+ Non-Grouped Keyframes",
+                # "`(De)select First/Last`_",
+                # "`2.66 <https://www.blender.org/download/releases/2-66>`__ -- February 2013:",
+                # "`2.67 <https://www.blender.org/download/releases/2-67>`__ -- May 2013:",
+                # "`2.68 <https://www.blender.org/download/releases/2-68>`__ -- July 2013:",
+                # "`2.69 <https://www.blender.org/download/releases/2-69>`__ -- October 2013:",
+                # "`2.70 <https://www.blender.org/download/releases/2-70>`__ -- March 2014:",
+                # "`2.71 <https://www.blender.org/download/releases/2-71>`__ -- June 2014:",
+                # "`2.72 <https://www.blender.org/download/releases/2-72>`__ -- October 2014:",
+                # "`2.73 <https://www.blender.org/download/releases/2-73/>`__ -- January 2015:",
+                # "`2.74 <https://www.blender.org/download/releases/2-74/>`__ -- March 2015:",
+                # "`2.75 <https://www.blender.org/download/releases/2-75/>`__ -- July 2015:",
+                # "`2.76 <https://www.blender.org/download/releases/2-76/>`__ -- November 2015:",
+                # "`2.77 <https://www.blender.org/download/releases/2-77/>`__ -- March 2016:",
+                # "`2.78 <https://www.blender.org/download/releases/2-78/>`__ -- September 2016:",
+                # "`2.79 <https://www.blender.org/download/releases/2-79/>`__ -- September 2017:",
+                # "`2.80 <https://www.blender.org/download/releases/2-80>`__ -- July 2019:",
+                # "`2.81 <https://www.blender.org/download/releases/2-81/>`__ -- November 2019:",
+                # "`2.82 <https://www.blender.org/download/releases/2-82/>`__ -- February 2020:",
+                # "`2.83 <https://www.blender.org/download/releases/2-83/>`__ -- June 2020:",
+                # "`2.90 <https://www.blender.org/download/releases/2-90/>`__ -- August 2020:",
+                # "`2.91 <https://www.blender.org/download/releases/2-91/>`__ -- November 2020:",
+                # "`2.92 <https://www.blender.org/download/releases/2-92/>`__ -- February 2021:",
+                # "`2.93 <https://www.blender.org/download/releases/2-93/>`__ -- June 2021:",
+                # "`Cessen's Rigify Extensions <https://github.com/cessen/cessen_rigify_ext>`__",
+                # "`Daily Builds <https://builder.blender.org/download>`__",
+                # "`Developer Community <https://devtalk.blender.org>`__",
+                "`Docutils reStructuredText Reference <https://docutils.sourceforge.io/rst.html>`__",
+                # "`Edge Loops`_",
+                # "`Edge Ring`_",
+                # "`Experimental Rigs by Alexander Gavrilov <https://github.com/angavrilov/angavrilov-rigs>`__",
+                # "`Face Loops`_",
+                # "`Long-term Support <https://www.blender.org/download/lts/>`__",
+                # "`Python API Reference <https://docs.blender.org/api/current/>`__",
+                # "`QT rle / QT Animation <https://en.wikipedia.org/wiki/QuickTime_Animation>`__",
+                # "`Report a Bug <https://developer.blender.org/maniphest/task/edit/form/1/>`__",
+                # "`Select All by Trait`_",
+                # "`Select Control Point Row`_",
+                # "`Select Next/Previous`_",
+                # "`Shortest Path`_",
+                # "`Sphinx RST Primer <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`__",
+                # "`Stable Release <https://www.blender.org/download/>`__",
+                # "`Support <https://www.blender.org/support>`__",
+                # "`Tutorials <https://www.blender.org/support/tutorials>`__",
+                # "`User Communities <https://www.blender.org/community/>`__",
+                # "``+C``: Continue an interrupted render",
+                # "``+WT``: Limit the number of threads used",
+                # "``-D``: Hide image while rendering",
+                # "``/EXIT``: Close POV-Ray after rendering the image",
+                # "``bpy.context.object`` or ``bpy.context.active_object``",
+                # "``bpy.context.selected_objects``",
+                # "``color_picking``",
+                # "``faces.super_face``",
+                # "``file.blend``",
+                # "``found bundled python: {DIR}``",
+                # "``id`` (integer)",
+                # "``injected`` (special)",
+                # "``normal`` (vector)",
+                # "``rotation`` (vector)",
+                # "``scene_linear``",
+                # "glTF 2.0",
+                # "macOS -- Other GPU",
+                # "sRGB",
+                # "tap",
+                # "tinyCAD Mesh Tools",
+]
         else:
             t_list = text_list
 
@@ -621,6 +583,7 @@ class test(object):
         # tf.writeBackupDict()
 
     def run(self):
+        # self.cleanDict()
         # self.test_0001()
         # import cProfile
         # self.findRefText()

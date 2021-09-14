@@ -973,9 +973,11 @@ class Common:
             if not txt_line:
                 return False
 
-            loc = (ss, ee)
-            entry = (loc, txt_line)
-            sentence_list.append(entry)
+            is_ignore = ig.isIgnored(txt_line)
+            if not is_ignore:
+                loc = (ss, ee)
+                entry = (loc, txt_line)
+                sentence_list.append(entry)
             return True
 
         def getBracketList(start_brk, end_brk):
@@ -1675,10 +1677,9 @@ class Common:
         if not bool(tran):
             return orig
 
-        new_str = str(orig)
         s, e = loc
-        left = new_str[:s]
-        right = new_str[e:]
+        left = orig[:s]
+        right = orig[e:]
         new_str = left + tran + right
         return new_str
 

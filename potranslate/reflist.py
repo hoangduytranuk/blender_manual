@@ -55,6 +55,7 @@ class RefList(defaultdict):
 
         self.parsed_dict = NDIC()
         self.sr_global_dict = NDIC()
+        self.keep_abbr = True
 
 
     def reproduce(self):
@@ -204,6 +205,8 @@ class RefList(defaultdict):
         mm: MatcherRecord = None
         remove_list = []
         obs = LocationObserver(self.msg)
+
+        # marking NON-arched bracket places
         for loc, mm in self.items():
             ref_type = mm.type
             is_bracket = (ref_type == RefType.ARCH_BRACKET)
@@ -212,6 +215,7 @@ class RefList(defaultdict):
 
             obs.markLocAsUsed(loc)
 
+        # ignore if Non-bracket,
         for loc, mm in self.items():
             ref_type = mm.type
             is_bracket = (ref_type == RefType.ARCH_BRACKET)
@@ -704,11 +708,13 @@ class RefList(defaultdict):
         if not abbrev_mm:
             return current_tran
 
-        new_tran = str(current_tran)
         (abbr_loc, abbr_txt) = abbrev_mm.getSubEntryByIndex(0)
         abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(abbr_txt)
-        new_tran = f'{abbrev_part} {exp_part}'
-        # new_tran = cm.jointText(new_tran, exp_part, abbr_loc)
+        abbrev_part_decoded = f'{abbrev_part} {exp_part}'
+        abbs, abbe = abbr_loc
+        left = current_tran[:abbs]
+        right = current_tran[abbe:]
+        new_tran = left + abbrev_part_decoded + right
         return new_tran
 
     def translateAbbrev(self, mm: MatcherRecord) -> list:

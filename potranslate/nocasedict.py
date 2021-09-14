@@ -112,6 +112,10 @@ class NoCaseDict(OrderedDict):
     def get(self, key):
         try:
             left, mid, right = cm.getTextWithin(key.lower())
+            is_in = (mid in self)
+            if not is_in:
+                return None
+
             trans_txt = self[mid]
             translation = self.replaceTranRef(trans_txt)
             translation = cm.matchCase(key, translation)

@@ -1289,7 +1289,7 @@ class Definitions:
         r"^\s*(Bone[ABC]|COR\-|Cartesian|Bfont|ABC)\s*$",
         r"^\s*(Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
         r"^\s*(Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*|(command_line-args)$",
-        r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|de|debian|Delta([\s][\w])?)\s*$",
+        r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|debian|Delta([\s][\w])?)\s*$",
         r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",
         r"^\s*(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)\s*$",
         r"^\s*(F[\d]{1,2})\s*$", # F1-12
@@ -1351,6 +1351,7 @@ class Definitions:
         r"^\s*(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)\s*$",
         r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",
         r"^\s*(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))\s*$",
+        # r"^(s|es)|(\([\w]{1,2}\))$",
         r"^\s*(the quick|brown fox|jumps over|the lazy dog)\s*$",
         r"^\s*Alembic([\s\W|abc]+)\s*$",
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
@@ -1382,7 +1383,6 @@ class Definitions:
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
-        # "",
         # "",
         # "",
         # "",
@@ -1631,6 +1631,9 @@ class Definitions:
         "cycles modifier",
         "cycles render device",
         "0D",
+        "de",
+        "(de)",
+        "(de)select first/last",
         "upper_arm",
         "switching/enabling/disabling",
         "toggle/enable/disable",
