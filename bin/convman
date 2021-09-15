@@ -5,7 +5,10 @@ to_dir=~/Dev/tran/blender_docs_backup
 cd $BLENDER_MAN_EN
 #make -d -w -B -e SPHINXOPTS="-D language='vi'" 2>&1c
 make gettext
-#sphinx-intl update -p _build/gettext -l de -l ja
+# potranslate debug config for single_translate_po.py
+# run parameter: -M gettext "./manual" "build" -j auto -D language='en'
+# working dir: /Users/hoangduytran/Dev/tran/blender_docs
+#sphinx-intl update -p _build/gettext -l en -l de -l ja
 sphinx-build -b html -D language='en' ./manual "build/html/en"
 # make clean
 # export EX_PO_TRANS=True

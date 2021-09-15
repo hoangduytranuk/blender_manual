@@ -307,6 +307,10 @@ class RefList(defaultdict):
         return (loc, input_txt, trans, is_fuzzy, is_ignore)
 
     def translateOneLineOfText(self, input_txt):
+        is_ignore = ig.isIgnored(input_txt)
+        if is_ignore:
+            return None, False, True
+
         trans = self.tf.isInDict(input_txt)
         if trans:
             return trans, False, False
@@ -407,10 +411,15 @@ class RefList(defaultdict):
                     mm_record.setTranlation(tran, False, False)
 
         def translateRefRecords(ref_list):
+            non_txt_list = []
             for loc, mm_record in ref_list:
                 is_ref = (mm_record.type != RefType.TEXT)
                 if not is_ref:
                     continue
+                entry = (loc, mm_record)
+                non_txt_list.append(entry)
+
+            for loc, mm_record in non_txt_list:
                 self.translateMatcherRecord(mm_record)
 
         def collectTranslationsFromRefRecords(ref_list):

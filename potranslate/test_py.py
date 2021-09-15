@@ -465,7 +465,10 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "Excludes the collection from the current view layer -- affects both 3D Viewport and render -- non-chaining.",
+                # "Disables selection for the collection in all view layers -- affects 3D Viewport -- chaining.",
+                # "Disables the collection in all view layers -- affects 3D Viewport -- chaining.",
+                # "File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf",
+                "Move this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`. See Fig. :ref:`fig-mesh-screw-spindle`."
             ]
         else:
             t_list = text_list

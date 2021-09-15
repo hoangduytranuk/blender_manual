@@ -624,7 +624,7 @@ class Definitions:
     MENU_EX_PART = re.compile(r'(\s?[\-]{2}\>\s?)')
 
     KEYBOARD_TYPE = re.compile(r'^([\`]*:kbd:[\`]+([^\`]+)[\`]+)$')
-    KEYBOARD_SEP = re.compile(r'[^\-]+')
+    KEYBOARD_SEP = re.compile(r'[^\-\s]+')
     SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
     ALPHA_NUMERICAL = re.compile(r'[\w]+')
     EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
@@ -1375,6 +1375,7 @@ class Definitions:
         r'^(A \(Alpha\))$',
         r'^(GPL[\s\w][\d][+])$',
         r'^(\w+\d+)$',
+        r'^File\:[^:]+\.\w+$',
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
         r'^[\W\d]+$',   # symbols and numbersr
         r'^[\w]\s?(\+|\-|\*|\/|\%|\=|\!\=|\>|\<|\>\=|\<\=|\=\=|\>\>|\<\<)\s?[\w]$', # A - B, A >= B
@@ -1441,8 +1442,7 @@ class Definitions:
         "``g``",
         "``r``",
         "``send_field``",
-        "`doi 10.1111/j.1467-8659.2010.01805.x <https://doi.org/10.1111/j.1467-8659.2010.01805.x>`__",
-        "`file:atvbuggy.zip <https://wiki.blender.org/wiki/file:atvbuggy.zip>`__",
+        "doi 10.1111/j.1467-8659.2010.01805.x",
         "a, b",
         "acos",
         "albedo",

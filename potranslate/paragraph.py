@@ -52,6 +52,10 @@ class Paragraph(list):
     def translateAsIs(self):
         try:
             orig_txt = self.sl_txt
+            is_ignore = ig.isIgnored(orig_txt)
+            if is_ignore:
+                return
+
             tran = self.tf.isInDict(orig_txt)
             if not tran:
                 tran = self.translateText(orig_txt)
