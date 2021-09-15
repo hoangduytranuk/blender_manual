@@ -11,6 +11,62 @@ from observer import LocationObserver
 
 class Ignore:
 
+    def getNoneAlphaPart(msg, is_start=True):
+        if not msg:
+            return ""
+
+        non_alnum_part = ""
+        if is_start:
+            non_alpha = df.START_WORD_SYMBOLS.search(msg)
+        else:
+            non_alpha = df.END_WORD_SYMBOLS.search(msg)
+
+        if non_alpha:
+            non_alnum_part = non_alpha.group(0)
+        return non_alnum_part
+
+    def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
+        # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
+        left_part = Ignore.getNoneAlphaPart(msg, is_start=True)
+        right_part = Ignore.getNoneAlphaPart(msg, is_start=False)
+        ss = len(left_part)
+        ee = (-len(right_part) if right_part else len(msg))
+        mid_part = msg[ss:ee]
+        length_ee = len(right_part)
+        diff_loc = (ss, length_ee)
+
+        main_record: MatcherRecord = None
+        if to_matcher_record:
+            ls=0
+            le=ss
+            ms=le
+            me=ms + len(mid_part)
+            rs=me
+            re=rs + len(right_part)
+
+            main_record=MatcherRecord(s=0, e=len(msg), txt=msg)
+            if left_part:
+                main_record.addSubMatch(ls, le, left_part)
+                test_txt = left_part[ls: le]
+            else:
+                main_record.addSubMatch(-1, -1, None)
+            if mid_part:
+                main_record.addSubMatch(ms, me, mid_part)
+                test_txt = left_part[ms: me]
+            else:
+                main_record.addSubMatch(ls, re, msg)
+            if right_part:
+                main_record.addSubMatch(rs, re, right_part)
+                test_txt = left_part[rs: re]
+            else:
+                main_record.addSubMatch(-1, -1, None)
+
+        return diff_loc, left_part, mid_part, right_part, main_record
+
+    def getTextWithin(msg):
+        diff_loc, left, mid, right, _ = Ignore.getTextWithinWithDiffLoc(msg)
+        return left, mid, right
+
     def findInSortedList(item, sorted_list):
         if not sorted_list:
             return None
@@ -60,94 +116,38 @@ class Ignore:
         else:
             return False
 
+    def isPath(txt: str) -> bool:
+        if not txt:
+            return False
+
+        is_path = (df.PATH_CHECKER.search(txt) is not None)
+        if is_path:
+            return True
+
+        urls = df.urlx_engine.find_urls(txt, get_indices=True)
+        if not urls:
+            return False
+
+        # 1. Find the list of urls and put into dictionary so locations can be extracted, uing keys
+        obs = LocationObserver(txt)
+        for url, loc in urls:
+            obs.markLocAsUsed(loc)
+
+        # 2. find all the text outside the links and see if they are just spaces and symbols only, which can be classified as
+        # IGNORABLE
+        text_outside_url_list = obs.getUnmarkedPartsAsDict()
+
+        # 3. Find out if text outside are but all symbols (non-alpha), which means they are discardable (non-translatable)
+        is_ignorable = True
+        for loc, text_outside_mm in text_outside_url_list.items():
+            text_outside = text_outside_mm.txt
+            is_all_symbols = df.SYMBOLS_ONLY.search(text_outside)
+            if not is_all_symbols:
+                is_ignorable = False
+
+        return is_ignorable
+
     def isLinkPath(txt: str) -> bool:
-        def getNoneAlphaPart(msg, is_start=True):
-            if not msg:
-                return ""
-
-            non_alnum_part = ""
-            if is_start:
-                non_alpha = df.START_WORD_SYMBOLS.search(msg)
-            else:
-                non_alpha = df.END_WORD_SYMBOLS.search(msg)
-
-            if non_alpha:
-                non_alnum_part = non_alpha.group(0)
-            return non_alnum_part
-
-        def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
-            # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
-            left_part = getNoneAlphaPart(msg, is_start=True)
-            right_part = getNoneAlphaPart(msg, is_start=False)
-            ss = len(left_part)
-            ee = (-len(right_part) if right_part else len(msg))
-            mid_part = msg[ss:ee]
-            length_ee = len(right_part)
-            diff_loc = (ss, length_ee)
-
-            main_record: MatcherRecord = None
-            if to_matcher_record:
-                ls = 0
-                le = ss
-                ms = le
-                me = ms + len(mid_part)
-                rs = me
-                re = rs + len(right_part)
-
-                main_record = MatcherRecord(s=0, e=len(msg), txt=msg)
-                if left_part:
-                    main_record.addSubMatch(ls, le, left_part)
-                    test_txt = left_part[ls: le]
-                else:
-                    main_record.addSubMatch(-1, -1, None)
-                if mid_part:
-                    main_record.addSubMatch(ms, me, mid_part)
-                    test_txt = left_part[ms: me]
-                else:
-                    main_record.addSubMatch(ls, re, msg)
-                if right_part:
-                    main_record.addSubMatch(rs, re, right_part)
-                    test_txt = left_part[rs: re]
-                else:
-                    main_record.addSubMatch(-1, -1, None)
-
-            return diff_loc, left_part, mid_part, right_part, main_record
-
-        def isPath(txt: str) -> bool:
-            if not txt:
-                return False
-
-            is_path = (df.PATH_CHECKER.search(txt) is not None)
-            if is_path:
-                return True
-
-            urls = df.urlx_engine.find_urls(txt, get_indices=True)
-            if not urls:
-                return False
-
-            # 1. Find the list of urls and put into dictionary so locations can be extracted, uing keys
-            obs = LocationObserver(txt)
-            for url, loc in urls:
-                obs.markLocAsUsed(loc)
-
-            # 2. find all the text outside the links and see if they are just spaces and symbols only, which can be classified as
-            # IGNORABLE
-            text_outside_url_list = obs.getUnmarkedPartsAsDict()
-
-            # 3. Find out if text outside are but all symbols (non-alpha), which means they are discardable (non-translatable)
-            is_ignorable = True
-            for loc, text_outside_mm in text_outside_url_list.items():
-                text_outside = text_outside_mm.txt
-                is_all_symbols = df.SYMBOLS_ONLY.search(text_outside)
-                if not is_all_symbols:
-                    is_ignorable = False
-
-            return is_ignorable
-
-        def getTextWithin(msg):
-            diff_loc, left, mid, right, _ = getTextWithinWithDiffLoc(msg)
-            return left, mid, right
-
         invalid_combination = ('.,' in txt) or (' ' in txt)
         if invalid_combination:
             return False
@@ -156,7 +156,7 @@ class Ignore:
         if is_blank_quote:
             return False
 
-        is_path = isPath(txt)
+        is_path = Ignore.isPath(txt)
         if is_path:
             return True
 
@@ -164,8 +164,8 @@ class Ignore:
         if is_url:
             return False
 
-        left, mid, right = getTextWithin(txt)
-        is_path = isPath(mid)
+        left, mid, right = Ignore.getTextWithin(txt)
+        is_path = Ignore.isPath(mid)
         if is_path:
             return True
         else:
@@ -173,35 +173,36 @@ class Ignore:
 
 
     def isIgnored(msg):
-
         if not msg:
             return True
 
         try:
             find_msg = msg.lower()
-            is_keep = Ignore.isKeep(find_msg)
+            left, mid, right = Ignore.getTextWithin(find_msg)
+
+            is_keep = (Ignore.isKeep(find_msg) or Ignore.isKeep(mid))
             if is_keep:
                 return False
 
-            is_allowed_contains = Ignore.isKeepContains(find_msg)
+            is_allowed_contains = (Ignore.isKeepContains(find_msg) or Ignore.isKeepContains(mid))
             if is_allowed_contains:
                 return False
 
-            is_ignore_outright = (find_msg in df.ignore_txt_list)
+            is_ignore_outright = (find_msg in df.ignore_txt_list) or (mid in df.ignore_txt_list)
             if is_ignore_outright:
                 return True
 
             is_ref_link = is_function = is_ignore_word = is_dos_command = is_ignore_start = False
 
-            is_ref_link = Ignore.isLinkPath(find_msg)
+            is_ref_link = (Ignore.isLinkPath(find_msg) or Ignore.isLinkPath(mid))
             if not is_ref_link:
-                is_function = (df.FUNCTION.search(find_msg) is not None)
+                is_function = (df.FUNCTION.search(find_msg) is not None) or (df.FUNCTION.search(mid) is not None)
                 if not is_function:
-                    is_ignore_word = Ignore.isIgnoredWord(find_msg)
+                    is_ignore_word = Ignore.isIgnoredWord(find_msg) or Ignore.isIgnoredWord(mid)
                     if not is_ignore_word:
-                        is_dos_command = Ignore.isDosCommand(find_msg)
+                        is_dos_command = Ignore.isDosCommand(find_msg) or Ignore.isDosCommand(mid)
                         if not is_dos_command:
-                            is_ignore_start = Ignore.isIgnoredIfStartsWith(find_msg)
+                            is_ignore_start = Ignore.isIgnoredIfStartsWith(find_msg) or Ignore.isIgnoredIfStartsWith(mid)
 
             is_ignore = (is_function or
                         is_ignore_word or

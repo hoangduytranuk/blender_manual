@@ -1635,6 +1635,7 @@ class Definitions:
     ]
 
     keep_list = [
+        "non-chaining",
         "undo/redo/history",
         "models/materials/brushes",
         "cycles modifier",

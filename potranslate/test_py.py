@@ -465,7 +465,7 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "Clemens Barth et al. -- `Link to publication <https://doi.org/10.1021/jp501738c>`__",
+                "Excludes the collection from the current view layer -- affects both 3D Viewport and render -- non-chaining.",
             ]
         else:
             t_list = text_list
