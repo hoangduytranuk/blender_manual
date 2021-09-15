@@ -118,14 +118,14 @@ class NoCaseDict(OrderedDict):
             is_in = (k_lower in self)
             if is_in:
                 trans_txt = self[k_lower]
-                return trans_txt
+            else:
+                left, mid, right = cm.getTextWithin(k_lower)
+                is_in = (mid in self)
+                if not is_in:
+                    return None
+                else:
+                    trans_txt = self[mid]
 
-            left, mid, right = cm.getTextWithin(k_lower)
-            is_in = (mid in self)
-            if not is_in:
-                return None
-
-            trans_txt = self[mid]
             has_tran = bool(trans_txt)
             if has_tran:
                 translation = self.replaceTranRef(trans_txt)

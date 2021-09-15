@@ -409,18 +409,35 @@ class test(object):
 
         tf = TranslationFinder()
         home_dir = os.environ['BLENDER_GITHUB']
-        sent_struct_file = os.path.join(home_dir, "ref_dict_backup_0005_0001_working.json")
+        sent_struct_file = os.path.join(home_dir, "ref_dict_backup_0005_0002_working.json")
         ss_dict = self.loadData(sent_struct_file, is_lower=False)
         output_list = []
+        output_dict = {}
         for k, v in ss_dict.items():
+            # tran = tf.isInDict(k)
+            # if not tran:
+            #     entry = {k: v}
+            #     output_dict.update(entry)
             pr = PR(k, translation_engine=tf)
             pr.translateAsIs()
-            # pr.translateSplitUp()
-            output = pr.getTextAndTranslation()
-            output_list.append(output)
+            tran = pr.tl_txt
+            if not tran:
+                tran = ''
 
-        for entry in output_list:
-            print(entry)
+            entry = {k: tran}
+            output_dict.update(entry)
+
+            # # pr.translateSplitUp()
+            # output = pr.getTextAndTranslation()
+            # output_list.append(output)
+
+        # for entry in output_list:
+        #     print(entry)
+
+        if output_dict:
+            out_file = os.path.join(home_dir, "ref_dict_backup_0005_0003_working.json")
+            writeJSON(out_file, output_dict)
+
 
     # @profile
     def test_translate_0001(self, text_list=None):
@@ -537,10 +554,10 @@ class test(object):
         # import cProfile
         # self.findRefText()
         # self.findUnknownRefs()
-        self.resort_dictionary()
-        self.test_translate_0001()
+        # self.resort_dictionary()
+        # self.test_translate_0001()
         # self.cleanSS()+
-        # self.translate_backup_dict()
+        self.translate_backup_dict()
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')
