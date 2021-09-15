@@ -2,6 +2,9 @@ import concurrent.futures
 
 import time
 from collections import OrderedDict
+
+import packaging.requirements
+
 from common import Common as cm, dd, pp, LocationObserver
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -111,7 +114,13 @@ class NoCaseDict(OrderedDict):
 
     def get(self, key):
         try:
-            left, mid, right = cm.getTextWithin(key.lower())
+            k_lower = key.lower()
+            is_in = (k_lower in self)
+            if is_in:
+                trans_txt = self[k_lower]
+                return trans_txt
+
+            left, mid, right = cm.getTextWithin(k_lower)
             is_in = (mid in self)
             if not is_in:
                 return None

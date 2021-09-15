@@ -269,7 +269,7 @@ class RefList(defaultdict):
             entry = {uloc: mm}
             self.update(entry)
 
-    def parseMessage(self):
+    def parseMessage(self, is_ref_only=False):
         # trans = self.tf.isInDict(self.msg)
         # if trans:
         #     self.setTranslation(trans, False, False)
@@ -282,8 +282,10 @@ class RefList(defaultdict):
         df.global_ref_map = LocationObserver(self.msg)
         for loc, mm in self.items():
             df.global_ref_map.markLocAsUsed(loc)
-        unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict()
-        self.addUnparsedDict(unparsed_dict)
+
+        if not is_ref_only:
+            unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict()
+            self.addUnparsedDict(unparsed_dict)
 
         if len(self):
             dd('Finishing parseMessage:')
@@ -524,6 +526,129 @@ class RefList(defaultdict):
         except Exception as e:
             df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
 
+    def getComponentTexts(self):
+        def getKeyBoard(mm: MatcherRecord):
+            text_list=[]
+            msg = mm.getSubText()
+            result_dict = cm.patternMatchAll(df.KEYBOARD_SEP, msg)
+            for sub_loc, sub_mm in result_dict.items():
+                txt = sub_mm.txt
+                text_list.append(txt)
+            return text_list
+
+        def getQuoted(mm: MatcherRecord):
+            msg = mm.getSubText()
+            return [msg]
+
+        def getRefWithLink(mm: MatcherRecord):
+            msg = mm.getSubText()
+            if not msg:
+                msg = mm.txt
+
+            try:
+                # is_debug = (msg == '<name>')
+                # if is_debug:
+                #     print('debug')
+
+                has_ref_link = (df.REF_LINK.search(msg) is not None)
+                if not has_ref_link:
+                    return [msg]
+                else:
+                    found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
+                    if not found_dict:
+                        return []
+
+                    found_dict_list = list(found_dict.items())
+                    found_entry = found_dict_list[0]
+                    (sub_loc, sub_mm) = found_entry
+
+                    sub_txt = sub_mm.getMainText()
+                    return [sub_txt]
+            except Exception as e:
+                print(e)
+            return []
+
+        def getMenu(mm: MatcherRecord):
+            text_list=[]
+            msg = mm.getSubText()
+            word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
+            for loc, mnu_item_mm in word_list.items():
+                sub_txt: str = mnu_item_mm.txt
+                text_list.append(sub_txt)
+            return text_list
+
+        def getAbbrev(mm: MatcherRecord):
+            text_list = []
+            msg = mm.getSubText()
+            abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(msg)
+            text_list.append(exp_part)
+            return text_list
+
+        def getAttrib(mm: MatcherRecord):
+            text_list = []
+            sub_list = mm.getSubEntriesAsList()
+            interested_part = sub_list[1:]
+            for loc, sl_txt in interested_part:
+                text_list.append(sl_txt)
+            return text_list
+
+        def getBracket(mm: MatcherRecord):
+            return [mm.txt]
+
+        try:
+            result_list = []
+            for loc, mm in self.items():
+                ref_txt = mm.txt
+                ref_type = mm.type
+
+                is_guilabel = (ref_type == RefType.GUILABEL)
+                is_arch_bracket = (ref_type == RefType.ARCH_BRACKET)
+                is_blank_quote = (ref_type == RefType.BLANK_QUOTE)
+                is_kbd = (ref_type == RefType.KBD)
+                is_abbr = (ref_type == RefType.ABBR)
+                is_menu = (ref_type == RefType.MENUSELECTION)
+                is_ga = (ref_type == RefType.GA)
+                is_ref = (ref_type == RefType.REF)
+                is_doc = (ref_type == RefType.DOC)
+                is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
+                is_term = (ref_type == RefType.TERM)
+                is_math = (ref_type == RefType.MATH)
+
+                # ----------
+                is_ast = (ref_type == RefType.AST_QUOTE)
+                is_dbl_ast_quote = (ref_type == RefType.DBL_AST_QUOTE)
+                is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
+                is_sng_quote = (ref_type == RefType.SNG_QUOTE)
+                is_python_format = (ref_type == RefType.PYTHON_FORMAT)
+                is_function = (ref_type == RefType.FUNCTION)
+                is_attrib = (ref_type == RefType.ATTRIB)
+
+                is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
+                is_ignore = (is_osl_attrib or is_python_format or is_function or is_math)
+                if is_ignore:
+                    continue
+
+                if is_kbd:
+                    txt_list = getKeyBoard(mm)
+                elif is_abbr:
+                    txt_list = getAbbrev(mm)
+                elif is_menu:
+                    txt_list = getMenu(mm)
+                elif is_quoted:
+                    txt_list = getQuoted(mm)
+                elif is_attrib:
+                    txt_list = getAttrib(mm)
+                elif is_arch_bracket:
+                    txt_list = getBracket(mm)
+                else:
+                    txt_list = getRefWithLink(mm)
+
+                if txt_list:
+                    result_list.extend(txt_list)
+
+        except Exception as e:
+            df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
+        return result_list
 
     def translateArchBracket(self, mm: MatcherRecord):
         input_txt = mm.txt

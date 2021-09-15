@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92f564a6-4c22-4b92-b247-5244b2315ca6" name="Default Changelist" comment="Corrected the translate() routine in reflist.py to simplified the complexity introduced earlier.">
+    <list default="true" id="92f564a6-4c22-4b92-b247-5244b2315ca6" name="Default Changelist" comment="Corrected the get() routine in nocasedict.py to cater for empty translation text, in which case return None.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_translate_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/simple_translate_po.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref_dict_backup_0005_0001.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_backup_0005_0001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ref_dict_backup_0005_0001_working.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_backup_0005_0001_working.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +46,28 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test_py">
+    <configuration name="single_translate_po" type="PythonConfigurationType" factoryName="Python">
+      <module name="potranslate" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../blender_docs" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simple_translate_po.py" />
+      <option name="PARAMETERS" value="-M gettext &quot;./manual&quot; &quot;build&quot; -j auto -D language='en'" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test_py" type="PythonConfigurationType" factoryName="Python">
       <module name="potranslate" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -64,6 +89,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.test_py" />
+      <item itemvalue="Python.single_translate_po" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -200,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631605781442</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Corrected the get() routine in nocasedict.py to cater for empty translation text, in which case return None.">
+      <created>1631607121935</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1631607121935</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -233,7 +269,8 @@
     <MESSAGE value="Removed some definitions which can be inferred using fuzziness," />
     <MESSAGE value="Fixed the removeAbbrevInTran() in reflist.py to keep front/back of the original translation, remove only the coding ':abbrev:`..`' part, so to maintain the integrity of the original translation" />
     <MESSAGE value="Corrected the translate() routine in reflist.py to simplified the complexity introduced earlier." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected the translate() routine in reflist.py to simplified the complexity introduced earlier." />
+    <MESSAGE value="Corrected the get() routine in nocasedict.py to cater for empty translation text, in which case return None." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected the get() routine in nocasedict.py to cater for empty translation text, in which case return None." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -265,7 +302,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>948</line>
+          <line>957</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -275,12 +312,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>882</line>
+          <line>891</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>929</line>
+          <line>938</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -295,23 +332,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/nocasedict.py</url>
-          <line>681</line>
+          <line>690</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>721</line>
+          <line>846</line>
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>459</line>
+          <line>461</line>
           <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/reflist.py</url>
-          <line>307</line>
+          <line>309</line>
           <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reflist.py</url>
+          <line>649</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reflist.py</url>
+          <line>630</line>
+          <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/reflist.py</url>
+          <line>646</line>
+          <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/paragraph.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_py.py</url>
+          <line>480</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/nocasedict.py</url>
+          <line>117</line>
+          <option name="timeStamp" value="132" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
