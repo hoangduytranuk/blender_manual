@@ -465,23 +465,8 @@ class test(object):
 
         if not text_list:
             t_list = [
-                "\"D\" stands for \"dash\", \"G\" stands for \"gap\"; see also `Dashed Line`_",
-                # "\"Key 1\" ``1.0`` and \"Key 2\" ``0.8``",
-                # "\"Overlay\" in figure",
-                # "\"X\" icon",
-                # "\"You have to select a string of connected vertices too\"",
-                # "\"auto\"",
-                # "\"big\" joint",
-                # "\"bone heat\" algorithm",
-                # "\"closest\" can be a bit ambiguous",
-                # "\"copy\" ones",
-                # "\"hand drawn\", \"painted\", etc.",
-                # "\"limit\" ones",
-                # "\"moving\"",
-                # "\"radial\" falloff",
-                # "\"small\" joint",
-                # "'locale' is not under version control",
-]
+                "Clemens Barth et al. -- `Link to publication <https://doi.org/10.1021/jp501738c>`__",
+            ]
         else:
             t_list = text_list
 
@@ -554,10 +539,10 @@ class test(object):
         # import cProfile
         # self.findRefText()
         # self.findUnknownRefs()
-        # self.resort_dictionary()
-        # self.test_translate_0001()
+        self.resort_dictionary()
+        self.test_translate_0001()
         # self.cleanSS()+
-        self.translate_backup_dict()
+        # self.translate_backup_dict()
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')

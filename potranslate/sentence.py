@@ -746,8 +746,8 @@ class StructRecogniser():
                     tran = self.parseAndTranslateText(loc, txt)
 
                 addTranEntry(loc, txt, tran)
-                if tran:
-                    tran = cm.matchCase(txt, tran)
+                # if tran:
+                #     tran = cm.matchCase(txt, tran)
 
             if tran_list:
                 self.setTlTranslation(tran_list)

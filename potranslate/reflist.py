@@ -430,6 +430,9 @@ class RefList(defaultdict):
                     continue
 
                 txt = mm.getSubText()
+                if not txt:
+                    txt = mm.txt
+
                 trans, is_fuzzy, is_ignore = self.translateOneLineOfText(txt)
                 mm.setTranlation(trans, is_fuzzy, is_ignore)
 
