@@ -468,7 +468,9 @@ class test(object):
                 # "Disables selection for the collection in all view layers -- affects 3D Viewport -- chaining.",
                 # "Disables the collection in all view layers -- affects 3D Viewport -- chaining.",
                 # "File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf",
-                "Move this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`. See Fig. :ref:`fig-mesh-screw-spindle`."
+                # "Move this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`. See Fig. :ref:`fig-mesh-screw-spindle`.",
+                "If more realism is desired, the Mirror Modifier would be applied, resulting in a physical mirror and a complete head. You could then make both side physically different by editing one side and not the other. Unwrapping would produce a full set of UVs (for each side) and painting could thus be different for each side of the face, which is more realistic",
+
             ]
         else:
             t_list = text_list

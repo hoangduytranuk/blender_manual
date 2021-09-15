@@ -113,6 +113,7 @@ class NoCaseDict(OrderedDict):
     #     #     return None
 
     def get(self, key):
+        left, mid, right = None, None, None
         try:
             k_lower = key.lower()
             is_in = (k_lower in self)
@@ -130,7 +131,9 @@ class NoCaseDict(OrderedDict):
             if has_tran:
                 translation = self.replaceTranRef(trans_txt)
                 translation = cm.matchCase(key, translation)
-                translation = left + translation + right
+                has_sides = (left or right)
+                if has_sides:
+                    translation = left + translation + right
             else:
                 translation = None
             return translation
