@@ -3,6 +3,7 @@ from observer import LocationObserver
 from definition import Definitions as df
 from matcher import MatcherRecord
 from ignore import Ignore as ig
+from pattern_utils import PatternUtils as pu
 
 class TextMap(list):
     def __init__(self, txt: str,  is_reverse=True, is_removing_symbols=False, using_pattern=None):
@@ -80,19 +81,6 @@ class TextMap(list):
             loc_dict.update(entry)
         return loc_dict
 
-    def patternMatchAll(self, pat, text):
-        return_dict = {}
-        try:
-            for m in pat.finditer(text):
-                match_record = MatcherRecord(matcher_record=m)
-                match_record.pattern = pat
-                loc = match_record.getMainLoc()
-                dict_entry = {loc: match_record}
-                return_dict.update(dict_entry)
-        except Exception as e:
-            pass
-            # df.LOG(e)
-        return return_dict
 
     def genmap(self):
         part_list = []
@@ -100,7 +88,7 @@ class TextMap(list):
         self.obs = LocationObserver(self.msg)
         self.sep_pattern = (df.SPACE_WORD_SEP if not self.is_removing_symbols else df.SYMBOLS)
         self.actual_pattern = (self.using_pattern if self.using_pattern else self.sep_pattern)
-        self.matched_dict = self.patternMatchAll(self.actual_pattern, self.msg)
+        self.matched_dict = pu.patternMatchAll(self.actual_pattern, self.msg)
         self.matched_list = list(self.matched_dict.items())
         max = len(self.matched_dict)
         self.loc_dic = {}

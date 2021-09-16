@@ -8,7 +8,8 @@ from collections import defaultdict, OrderedDict
 from sentence import StructRecogniser as SR
 from nocasedict import NoCaseDict as NDIC
 import concurrent.futures
-
+from pattern_utils import PatternUtils as pu
+from string_utils import StringUtils as st
 '''
 :abbr:`
 :class:`
@@ -175,7 +176,7 @@ class RefList(defaultdict):
                 if is_bracket:
                     local_found_dict = cm.getTextWithinBrackets('<|(', '>|)', find_txt, is_include_bracket=False)
                 else:
-                    local_found_dict = cm.patternMatchAll(pat, find_txt)
+                    local_found_dict = pu.patternMatchAll(pat, find_txt)
                     setReftypeAndUsingSubTextLocation(local_found_dict)
             except Exception as e:
                 df.LOG(f'{e}; pat:[{pat}]; find_txt:[{find_txt}]; ref:[{ref}]; local_found_dict:[{local_found_dict}];', error=True)
@@ -255,7 +256,7 @@ class RefList(defaultdict):
             (ms, me) = mm.getMainLoc()
             mtxt = mm.getMainText()
 
-            left, mid, right = cm.getTextWithin(mtxt)
+            left, mid, right = st.getTextWithin(mtxt)
             is_all_symbols = (not bool(mid))
 
             is_ignored = (is_all_symbols)
@@ -315,7 +316,7 @@ class RefList(defaultdict):
         if trans:
             return trans, False, False
 
-        txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
+        txt_list = pu.findInvert(df.SPLIT_SENT_PAT, input_txt)
         dd('TRANSLATING LIST OF SEGMENTS:')
         pp(txt_list)
         dd('-' * 80)
@@ -542,7 +543,7 @@ class RefList(defaultdict):
         def getKeyBoard(mm: MatcherRecord):
             text_list=[]
             msg = mm.getSubText()
-            result_dict = cm.patternMatchAll(df.KEYBOARD_SEP, msg)
+            result_dict = pu.patternMatchAll(df.KEYBOARD_SEP, msg)
             for sub_loc, sub_mm in result_dict.items():
                 txt = sub_mm.txt
                 text_list.append(txt)
@@ -566,7 +567,7 @@ class RefList(defaultdict):
                 if not has_ref_link:
                     return [msg]
                 else:
-                    found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
+                    found_dict = pu.findInvert(df.REF_LINK, msg, is_reversed=True)
                     if not found_dict:
                         return []
 
@@ -583,7 +584,7 @@ class RefList(defaultdict):
         def getMenu(mm: MatcherRecord):
             text_list=[]
             msg = mm.getSubText()
-            word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
+            word_list = pu.findInvert(df.MENU_SEP, msg, is_reversed=True)
             for loc, mnu_item_mm in word_list.items():
                 sub_txt: str = mnu_item_mm.txt
                 text_list.append(sub_txt)
@@ -674,7 +675,7 @@ class RefList(defaultdict):
         trans = str(msg)
         kbd_dict = self.tf.kbd_dict
 
-        result_dict = cm.patternMatchAll(df.KEYBOARD_SEP, msg)
+        result_dict = pu.patternMatchAll(df.KEYBOARD_SEP, msg)
         for sub_loc, sub_mm in result_dict.items():
             txt = sub_mm.txt
             has_dic = (txt in kbd_dict)
@@ -767,7 +768,7 @@ class RefList(defaultdict):
             if valid:
                 tran = formatTran(msg, tran)
         else:
-            found_dict = cm.findInvert(df.REF_LINK, msg, is_reversed=True)
+            found_dict = pu.findInvert(df.REF_LINK, msg, is_reversed=True)
             found_dict_list = list(found_dict.items())
             found_entry = found_dict_list[0]
             (sub_loc, sub_mm) = found_entry
@@ -825,7 +826,7 @@ class RefList(defaultdict):
             cm.debugging(mm.txt)
             msg = mm.getSubText()
 
-            word_list = cm.findInvert(df.MENU_SEP, msg, is_reversed=True)
+            word_list = pu.findInvert(df.MENU_SEP, msg, is_reversed=True)
             translateMenuItem(word_list)
 
             trans = str(msg)
@@ -883,7 +884,7 @@ class RefList(defaultdict):
         msg = mm.getSubText()
         tran_txt = str(msg)
         first_match_mm: MatcherRecord = None
-        all_matches = cm.patternMatchAll(df.ABBR_TEXT, msg)
+        all_matches = pu.patternMatchAll(df.ABBR_TEXT, msg)
         if not all_matches:
             return False
 
@@ -915,7 +916,7 @@ class RefList(defaultdict):
     #     tran_txt = str(msg)
     #     is_fuzzy_list=[]
     #     is_ignore_list=[]
-    #     word_list_dict = cm.findInvert(df.COLON_CHAR, tran_txt, is_reversed=True)
+    #     word_list_dict = pu.findInvert(df.COLON_CHAR, tran_txt, is_reversed=True)
     #     word_list_count = len(word_list_dict)
     #     for loc, orig_txt in word_list_dict.items():
     #         s, e = loc

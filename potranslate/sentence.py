@@ -9,6 +9,8 @@ import inspect as INP
 from nocasedict import NoCaseDict as NDIC
 from definition import Definitions as df, SentStructMode as SMODE, SentStructModeRecord as SMODEREC
 from textmap import TextMap as TM
+from string_utils import StringUtils as st
+from pattern_utils import PatternUtils as pu
 
 class StructRecogniser():
     '''
@@ -157,7 +159,7 @@ class StructRecogniser():
             return
 
         try:
-            match_dict = cm.patternMatchAll(self.recog_pattern, self.tran_sl_txt)
+            match_dict = pu.patternMatchAll(self.recog_pattern, self.tran_sl_txt)
 
             match_dict_list = list(match_dict.items())
             sl_loc, sl_rec = match_dict_list[0]
@@ -425,7 +427,7 @@ class StructRecogniser():
             if tran:
                 return tran
 
-            left, mid, right = cm.getTextWithin(txt)
+            left, mid, right = st.getTextWithin(txt)
             is_valid = ((left or right) and (left != right))
             if not is_valid:
                 return None
@@ -594,12 +596,12 @@ class StructRecogniser():
                 entry = {sub_txt: tran}
                 self.local_dict.update(entry)
 
-                sub_left, sub_mid, sub_right = cm.getTextWithin(sub_txt)
+                sub_left, sub_mid, sub_right = st.getTextWithin(sub_txt)
                 is_add_mid = (sub_left or sub_right)
                 if not is_add_mid:
                     continue
 
-                tran_left, tran_mid, tran_right = cm.getTextWithin(tran)
+                tran_left, tran_mid, tran_right = st.getTextWithin(tran)
                 entry = {sub_mid: tran_mid}
                 self.local_dict.update(entry)
 

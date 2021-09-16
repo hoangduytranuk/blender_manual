@@ -1,6 +1,4 @@
 import os
-import operator as OP
-from re import compile
 from collections import OrderedDict
 import hashlib
 import time
@@ -8,13 +6,14 @@ from collections import deque
 from fuzzywuzzy import fuzz
 from bisect import bisect_left
 from matcher import MatcherRecord
-from err import ErrorMessages as ER
 import re
 from observer import LocationObserver
 import json
 import concurrent.futures
 from ignore import Ignore as ig
 from textmap import TextMap as TM
+from pattern_utils import PatternUtils as pu
+from string_utils import StringUtils as st
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -116,7 +115,7 @@ class Common:
         if is_url:
             return False
 
-        left, mid, right = Common.getTextWithin(txt)
+        left, mid, right = st.getTextWithin(txt)
         is_path = Common.isPath(mid)
         if is_path:
             return True
@@ -232,11 +231,11 @@ class Common:
                             new_str = new_str.upper()
 
         # ensure ref keywords ':doc:' is always lowercase
-        ga_ref_dic = Common.patternMatchAll(df.GA_REF_PART, new_str)
+        ga_ref_dic = pu.patternMatchAll(df.GA_REF_PART, new_str)
         new_str = lowercase(ga_ref_dic, new_str)
         for lcase_word in WORD_SHOULD_BE_LOWER:
             p = re.compile(r'\b%s\b' % lcase_word)
-            p_list_dic = Common.patternMatchAll(p, new_str)
+            p_list_dic = pu.patternMatchAll(p, new_str)
             new_str = lowercase(p_list_dic, new_str)
 
         return new_str
@@ -312,14 +311,7 @@ class Common:
         msg = msg.replace("\\\"", "\"")
         return msg
 
-    def patternMatch(pat: re.Pattern, text) -> MatcherRecord:
-        m = pat.search(text)
-        is_found = (m is not None)
-        if not is_found:
-            return None
 
-        match_record = MatcherRecord(matcher_record=m)
-        return match_record
 
     # def correctTextListWithoutSpaces(loc_txt_list):
     #     try:
@@ -336,7 +328,7 @@ class Common:
     #         for index, (loc, txt) in enumerate(list(temp_dict.items())):
     #             has_end_space = has_start_space = False
     #
-    #             left, mid, right = Common.getTextWithin(txt)
+    #             left, mid, right = st.getTextWithin(txt)
     #
     #             (ls, le) = loc
     #             is_first = (index == 0)
@@ -389,98 +381,7 @@ class Common:
         except Exception as e:
             return text_list
 
-    def patternMatchAll(pat, text):
-        return_dict = {}
-        try:
-            for m in pat.finditer(text):
-                match_record = MatcherRecord(matcher_record=m)
-                match_record.pattern = pat
-                loc = match_record.getMainLoc()
-                dict_entry = {loc: match_record}
-                return_dict.update(dict_entry)
-        except Exception as e:
-            pass
-            # df.LOG(e)
-        return return_dict
 
-
-    def findInvert(pattern, text:str, is_reversed=False, is_removing_symbols=True):
-        '''
-        findInvert:
-            Find list of words that are NOT matching the pattern.
-            can use to find words amongst puntuations for instance.
-            The routine uses internally declared FILLER_CHAR to mark the
-            boundaries of unmatched words and then SPLIT at these boundaries
-        :param pattern:
-            the re.compile(d) pattern to use to find/replace
-        :param text:
-            the string of text that words are to be found
-        :return:
-            list of words that are NOT matching the pattern input
-        '''
-
-        is_string = isinstance(pattern, str)
-        invert_required = False
-        pat = pattern
-        if is_string:
-            # form the invert character pattern
-            pat_string = r'(%s)(\w[^%s]+\w)(%s)' % (pattern, pattern, pattern)
-            pat = compile(pat_string)
-        else:
-            invert_required = True
-
-        found_list = []
-        mm : MatcherRecord = None
-        matched_dict = Common.patternMatchAll(pat, text)
-        if not invert_required:
-            for mmloc, mm in matched_dict.items():
-                mm.type = RefType.TEXT
-                mm.pattern = pat
-                loc, found_txt = mm.getOriginAsTuple()
-                entry = (loc, mm)
-                found_list.append(entry)
-        else:
-            # 2: extract location list
-            loc_list = matched_dict.keys()
-
-            # 3: extract invert locations, using the location list above
-            invert_loc_list = []
-            ws = we = 0
-            for s, e in loc_list:
-                we = s
-                if (ws < we):
-                    invert_loc_list.append((ws, we))
-                ws = e
-            we = len(text)
-            if (ws < we):
-                invert_loc_list.append((ws, we))
-
-            # 4: using the invert location list, extract words, exclude empties.
-            for ws, we in invert_loc_list:
-                found_txt = text[ws:we]
-
-                if is_removing_symbols:
-                    left, mid, right = Common.getTextWithin(found_txt)
-                    is_empty = (not bool(mid))
-                    if is_empty:
-                        continue
-
-                loc = (ws, we)
-                mm = MatcherRecord(s=ws, e=we, txt=found_txt)
-                mm.type = RefType.TEXT
-                mm.pattern = pat
-                entry = (loc, mm)
-                found_list.append(entry)
-
-        if is_reversed:
-            found_list.sort(key=OP.itemgetter(0), reverse=True)
-
-        return_dict = OrderedDict(found_list)
-        # dd('findInvert() found_list:')
-        # dd('-' * 30)
-        # pp(return_dict)
-        # dd('-' * 30)
-        return return_dict
 
     def getListOfLocation(find_list):
         loc_list = {}
@@ -824,7 +725,7 @@ class Common:
         p_str = f'\{symb_on}([^\{symb_on}\{symb_off}]+)\{symb_off}'
         p_exp = r'%s' % (p_str.replace("\\\\", "\\"))
         pattern = re.compile(p_exp)
-        p_list = Common.patternMatchAll(pattern, txt)
+        p_list = pu.patternMatchAll(pattern, txt)
         has_p_list = (len(p_list) > 0)
         if has_p_list:
             temp_txt = str(txt)
@@ -839,7 +740,7 @@ class Common:
 
     def hasAbbr(txt):
         # msg = ":abbr:`kiến tạo/sửa đổi (create/modify)`"
-        ga_dict = Common.patternMatchAll(df.GA_REF, txt)
+        ga_dict = pu.patternMatchAll(df.GA_REF, txt)
         if not ga_dict:
             return False
 
@@ -855,7 +756,7 @@ class Common:
         if not abbr_txt:
             return None, None, None
 
-        abbr_dict = Common.patternMatchAll(df.ABBREV_PATTERN_PARSER, abbr_txt)
+        abbr_dict = pu.patternMatchAll(df.ABBREV_PATTERN_PARSER, abbr_txt)
         if not abbr_dict:
             return None, None, None
 
@@ -917,7 +818,7 @@ class Common:
 
             bracket_pattern_txt = r'([\%s\%s])' % (s_brk, e_brk)
             bracket_pattern = re.compile(bracket_pattern_txt)
-            found_dict = Common.patternMatchAll(bracket_pattern, input_txt)
+            found_dict = pu.patternMatchAll(bracket_pattern, input_txt)
             found_list = list(found_dict.items())
             if not found_list:
                 orig_loc = (start_loc, end_loc)
@@ -990,7 +891,7 @@ class Common:
                     p_txt = r'[\%s\%s]' % (start_brk, end_brk)
 
                 p = re.compile(p_txt)
-                brk_list = Common.patternMatchAll(p, input_txt)
+                brk_list = pu.patternMatchAll(p, input_txt)
                 return brk_list, p
             except Exception as e:
                 df.LOG(f'{e} [{input_txt}]', error=True)
@@ -1400,20 +1301,6 @@ class Common:
             list_var.append(entry)
         return list_var
 
-    def getNoneAlphaPart(msg, is_start=True):
-        if not msg:
-            return ""
-
-        non_alnum_part = ""
-        if is_start:
-            non_alpha = df.START_WORD_SYMBOLS.search(msg)
-        else:
-            non_alpha = df.END_WORD_SYMBOLS.search(msg)
-
-        if non_alpha:
-            non_alnum_part = non_alpha.group(0)
-        return non_alnum_part
-
     def getRemainedWord(orig_txt: str, new_txt: str):
         def findMatchingWordInNewTxt(search_word):
             for new_loc, new_txt_segment in new_txt_map:
@@ -1444,128 +1331,6 @@ class Common:
 
         remain_word_dict = obs.getUnmarkedPartsAsDict()
         return remain_word_dict
-
-    def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
-        # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
-        left_part = Common.getNoneAlphaPart(msg, is_start=True)
-        right_part = Common.getNoneAlphaPart(msg, is_start=False)
-        ss = len(left_part)
-        ee = (-len(right_part) if right_part else len(msg))
-        mid_part = msg[ss:ee]
-        length_ee = len(right_part)
-        diff_loc = (ss, length_ee)
-
-        main_record: MatcherRecord = None
-        if to_matcher_record:
-            ls=0
-            le=ss
-            ms=le
-            me=ms + len(mid_part)
-            rs=me
-            re=rs + len(right_part)
-
-            main_record=MatcherRecord(s=0, e=len(msg), txt=msg)
-            if left_part:
-                main_record.addSubMatch(ls, le, left_part)
-                test_txt = left_part[ls: le]
-            else:
-                main_record.addSubMatch(-1, -1, None)
-            if mid_part:
-                main_record.addSubMatch(ms, me, mid_part)
-                test_txt = left_part[ms: me]
-            else:
-                main_record.addSubMatch(ls, re, msg)
-            if right_part:
-                main_record.addSubMatch(rs, re, right_part)
-                test_txt = left_part[rs: re]
-            else:
-                main_record.addSubMatch(-1, -1, None)
-
-        return diff_loc, left_part, mid_part, right_part, main_record
-
-    def getTextWithin(msg):
-        diff_loc, left, mid, right,_ = Common.getTextWithinWithDiffLoc(msg)
-        return left, mid, right
-
-    def getTextWinthinSpaces(msg):
-        start_spaces_match = df.START_SPACES.search(msg)
-        end_spaces_match = df.END_SPACES.search(msg)
-        left = ("" if not start_spaces_match else start_spaces_match.group(0))
-        right = ("" if not end_spaces_match else end_spaces_match.group(0))
-        length_left = len(left)
-        length_right = len(right)
-        length_right = (len(msg) if not length_right else -length_right)
-        mid = msg[length_left:length_right]
-
-        return left, mid, right
-
-    def replaceWord(orig_word: str, new_word: str, replace_word: str) -> str:
-
-        is_inclusive = (new_word in orig_word)
-        if is_inclusive:
-            ss = orig_word.find(new_word)
-            ee = ss + len(new_word)
-            left_part = orig_word[:ss]
-            right_part = orig_word[ee:]
-            matcher = df.WORD_END_REMAIN.search(left_part)
-            if matcher:
-                grp = matcher.group(0)
-                ss -= len(grp)
-
-            matcher = df.WORD_START_REMAIN.search(right_part)
-            if matcher:
-                grp = matcher.group(0)
-                ee += len(grp)
-
-            left_part = orig_word[:ss]
-            right_part = orig_word[ee:]
-            final_part = left_part + replace_word + right_part
-            return final_part
-        else:
-            left_part = Common.getNoneAlphaPart(orig_word, is_start=True)
-            right_part = Common.getNoneAlphaPart(orig_word, is_start=False)
-            final_part = left_part + replace_word + right_part
-        return final_part
-
-
-    def matchTextPercent(t1: str, t2: str):
-        match_percent = 0.0
-        try:
-            l1 = t1.split()
-            l2 = t2.split()
-            l1_count = len(l1)
-            l1_per_each_word = (100 / l1_count)
-
-            for i in range(0, l1_count):
-                w1 = l1[i]
-                w2 = l2[i]
-                word_percent = Common.matchWordPercent(w1, w2)
-                is_tool_small = (word_percent <= df.FUZZY_PERFECT_MATCH_PERCENT)
-                if is_tool_small:
-                    break
-                match_percent += (l1_per_each_word * word_percent / 100)
-        except Exception as e:
-            pass
-        return match_percent
-
-    def matchWordPercent(t1:str, t2:str):
-        match_percent = 0.0
-        try:
-            l1 = len(t1)
-            l2 = len(t2)
-
-            lx = max(l1, l2)
-            lc = 100 / lx
-            for i, c1 in enumerate(t1):
-                c2 = t2[i]
-                is_matched = (c1 == c2)
-                if not is_matched:
-                    # dd(f'stopped at [{i}], c1:[{c1}], c2:[{c2}]')
-                    break
-                match_percent += lc
-        except Exception as e:
-            pass
-        return match_percent
 
     def isFullyTranslated(txt):
         is_all_filler_and_spaces = (df.FILLER_CHAR_AND_SPACE_ONLY_PATTERN.search(txt) is not None)
@@ -1614,55 +1379,6 @@ class Common:
         is_ovrlap = (is_fs_between or is_fe_between)
         return is_ovrlap
 
-    def stripSpaces(txt):
-        start = 0
-        end = 0
-        leading_spaces: re.Match = df.START_SPACES.search(txt)
-        if leading_spaces:
-            start = leading_spaces.end()
-
-        trailing_spaces: re.Match = df.END_SPACES.search(txt)
-        if trailing_spaces:
-            end = trailing_spaces.start()
-
-        end_count = 0
-        if end:
-            end_count=(len(txt) - end)
-        else:
-            end = len(txt)
-        return_txt = txt[start: end]
-        return start, end_count, return_txt
-
-    def subtractText(minuend_loc, minuend, subtrahend_loc, subtrahend):
-        this_s, this_e = minuend_loc
-        other_s, other_e = subtrahend_loc
-
-        min_start = min(this_s, other_s)
-        max_end = max(this_e, other_e)
-        mask_orig = (' ' * max_end)
-
-        start_part = (df.FILLER_CHAR * min_start)
-        other_part = (df.FILLER_CHAR * (other_e - other_s))
-        mask = start_part + mask_orig[min_start:]
-        mask = mask[:other_s] + other_part + mask[other_e:]
-
-        this_part = mask[this_s: this_e]
-        # spaces to keep, FILLER_CHAR to remove
-        this_txt = minuend
-        list_of_remain = Common.patternMatchAll(df.SPACES, this_part)
-        this_txt_dict = {}
-        for loc, mm in list_of_remain:
-            (s, e), txt_part = mm.getOriginAsTuple()
-            is_not_worth_keeping = (df.SYMBOLS_ONLY.search(txt_part) is not None)
-            if is_not_worth_keeping:
-                continue
-
-            start_count, end_count, new_txt_part = Common.stripSpaces(txt_part)
-            new_loc = (s + start_count, e - end_count)
-            entry = {new_loc: new_txt_part}
-            this_txt_dict.update(entry)
-        # this list could be empty, in which case remove left part, keep the right part (A - B = empty => keep B only)
-        return this_txt_dict
 
     def removeTheWord(trans):
         try:
@@ -1716,27 +1432,6 @@ class Common:
         except Exception as e:
             return 0
 
-    def patStructToListOfWords(txt, removing_symbols=True):
-        mm: MatcherRecord = None
-        obs = LocationObserver(txt)
-        struct_pat_dict = Common.patternMatchAll(df.SENT_STRUCT_PAT, txt)
-        struct_pat_list = list(struct_pat_dict.items())
-
-        struct_txt_dict = Common.findInvert(df.SENT_STRUCT_PAT, txt, is_removing_symbols=removing_symbols)
-        struct_txt_dict_list = list(struct_txt_dict.items())
-
-        list_of_words = []
-        for loc, mm in struct_pat_list:
-            entry = (mm.getMainLoc(), mm.getMainText())
-            obs.markLocAsUsed(loc)
-            list_of_words.append(entry)
-
-        for loc, mm in struct_txt_dict_list:
-            entry = (mm.getMainLoc(), mm.getMainText())
-            list_of_words.append(entry)
-
-        list_of_words.sort()
-        return list_of_words
 
     def formPattern(list_of_words: list):
         final_pat = ""
@@ -1803,7 +1498,7 @@ class Common:
         # match_2 = re.compile(test_pat, flags=re.I)
         # grp = match_2.findall(test_pat)
         # #
-        # match = Common.patternMatchAll(re.compile(test_pat, flags=re.I), test_txt)
+        # match = pu.patternMatchAll(re.compile(test_pat, flags=re.I), test_txt)
         #
         # is_match = bool(match or match_1 or grp)
         # if is_match:
@@ -1812,6 +1507,28 @@ class Common:
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
         return pattern_txt
+
+    def patStructToListOfWords(txt, removing_symbols=True):
+        mm: MatcherRecord = None
+        obs = LocationObserver(txt)
+        struct_pat_dict = pu.patternMatchAll(df.SENT_STRUCT_PAT, txt)
+        struct_pat_list = list(struct_pat_dict.items())
+
+        struct_txt_dict = pu.findInvert(df.SENT_STRUCT_PAT, txt, is_removing_symbols=removing_symbols)
+        struct_txt_dict_list = list(struct_txt_dict.items())
+
+        list_of_words = []
+        for loc, mm in struct_pat_list:
+            entry = (mm.getMainLoc(), mm.getMainText())
+            obs.markLocAsUsed(loc)
+            list_of_words.append(entry)
+
+        for loc, mm in struct_txt_dict_list:
+            entry = (mm.getMainLoc(), mm.getMainText())
+            list_of_words.append(entry)
+
+        list_of_words.sort()
+        return list_of_words
 
     def creatSentRecogniserPatternRecordPair(key, value):
         recog_pattern = Common.creatSentRecogniserPattern(key)
@@ -1898,7 +1615,7 @@ class Common:
             if is_bracket:
                 local_found_dict = Common.getTextWithinBrackets('(', ')', txt, is_include_bracket=False)
             else:
-                local_found_dict = Common.patternMatchAll(pat, txt)
+                local_found_dict = pu.patternMatchAll(pat, txt)
 
             if local_found_dict:
                 local_found_dict_list.update(local_found_dict)
@@ -1966,7 +1683,7 @@ class Common:
     #
     #     sep_pattern = (df.SPACE_WORD_SEP if not is_removing_symbols else df.SYMBOLS)
     #     actual_pattern = (using_pattern if using_pattern else sep_pattern)
-    #     matched_dict = Common.patternMatchAll(actual_pattern, msg)
+    #     matched_dict = pu.patternMatchAll(actual_pattern, msg)
     #     matched_list = list(matched_dict.items())
     #     max = len(matched_dict)
     #     loc_dic = {}
@@ -2085,7 +1802,7 @@ class Common:
             bracketted_part = r'(\(([^\(\)]+)\))|\`([^\`]+)\`'
             pat_txt = r'%s(%s)%s' % (any_part, bracketted_part, any_part)
             pat = re.compile(pat_txt)
-            part_match_dict = Common.patternMatchAll(pat, txt)
+            part_match_dict = pu.patternMatchAll(pat, txt)
             found_parts = []
             for loc, mm in part_match_dict.items():
                 txt_loc = mm.getSubLoc()

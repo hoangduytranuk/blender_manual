@@ -28,6 +28,9 @@ from reflist import RefList
 import inspect as INP
 import copy as CP
 import cProfile, pstats, io
+from ignore import Ignore as ig
+from string_utils import StringUtils as st
+from pattern_utils import PatternUtils as pu
 
 # cd ../blender_docs
 # pip3 install --user -r requirements.txt 
@@ -184,10 +187,10 @@ class test(object):
                     if not is_in_dict:
                         addDict(sub_txt)
             elif has_menu_sep:
-                word_list = cm.findInvert(df.MENU_SEP, txt, is_reversed=True)
+                word_list = pu.findInvert(df.MENU_SEP, txt, is_reversed=True)
                 for loc, mnu_item_mm in word_list.items():
                     sub_txt: str = mnu_item_mm.txt
-                    left, mid, right = cm.getTextWithin(sub_txt)
+                    left, mid, right = st.getTextWithin(sub_txt)
                     is_in_dict = (mid in dict)
                     if not is_in_dict:
                         addDict(sub_txt)
@@ -284,7 +287,7 @@ class test(object):
             bracketted_part = r'(\(([^\(\)]+)\))|\`([^\`]+)\`'
             pat_txt = r'%s(%s)%s' % (any_part, bracketted_part, any_part)
             pat = re.compile(pat_txt)
-            part_match_dict = cm.patternMatchAll(pat, txt)
+            part_match_dict = pu.patternMatchAll(pat, txt)
             found_parts = []
             for loc, mm in part_match_dict.items():
                 txt_loc = mm.getSubLoc()
@@ -410,21 +413,39 @@ class test(object):
         tf = TranslationFinder()
         home_dir = os.environ['BLENDER_GITHUB']
         sent_struct_file = os.path.join(home_dir, "ref_dict_backup_0005_0002_working.json")
+        ignore_file = os.path.join(home_dir, "ref_dict_backup_0005_0001_ignore.json")
         ss_dict = self.loadData(sent_struct_file, is_lower=False)
         output_list = []
         output_dict = {}
+        ignore_dict = {}
+        dictionary = tf.getDict()
         for k, v in ss_dict.items():
             # tran = tf.isInDict(k)
             # if not tran:
             #     entry = {k: v}
             #     output_dict.update(entry)
-            pr = PR(k, translation_engine=tf)
-            pr.translateAsIs()
-            tran = pr.tl_txt
-            if not tran:
-                tran = ''
+            last_char = k[-1]
+            has_dot = (last_char == '.')
+            if has_dot:
+                k = k[:-1]
 
-            entry = {k: tran}
+            is_ignored = ig.isIgnored(k)
+            tran = dictionary.get(k)
+            is_in_dict = (tran is not None)
+            can_ignore = (is_ignored or is_in_dict)
+            if can_ignore:
+                entry = {k: v}
+                ignore_dict.update(entry)
+                continue
+
+
+            # pr = PR(k, translation_engine=tf)
+            # pr.translateAsIs()
+            # tran = pr.tl_txt
+            # if not tran:
+            #     tran = ''
+
+            entry = {k: v}
             output_dict.update(entry)
 
             # # pr.translateSplitUp()
@@ -434,8 +455,11 @@ class test(object):
         # for entry in output_list:
         #     print(entry)
 
+        if ignore_dict:
+            writeJSON(ignore_file, ignore_dict)
+
         if output_dict:
-            out_file = os.path.join(home_dir, "ref_dict_backup_0005_0003_working.json")
+            out_file = os.path.join(home_dir, "ref_dict_backup_0005_0004_working.json")
             writeJSON(out_file, output_dict)
 
 
@@ -469,8 +493,8 @@ class test(object):
                 # "Disables the collection in all view layers -- affects 3D Viewport -- chaining.",
                 # "File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf",
                 # "Move this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`. See Fig. :ref:`fig-mesh-screw-spindle`.",
-                "If more realism is desired, the Mirror Modifier would be applied, resulting in a physical mirror and a complete head. You could then make both side physically different by editing one side and not the other. Unwrapping would produce a full set of UVs (for each side) and painting could thus be different for each side of the face, which is more realistic",
-
+                # "Mickael Lozac'h et al. -- `Link to publication <https://doi.org/10.1002/ese3.174>`__",
+                "``anim_time_max`` -- Maximum number of seconds to show the animation for (in case the end frame is very high for no reason)."
             ]
         else:
             t_list = text_list
@@ -544,7 +568,7 @@ class test(object):
         # import cProfile
         # self.findRefText()
         # self.findUnknownRefs()
-        self.resort_dictionary()
+        # self.resort_dictionary()
         self.test_translate_0001()
         # self.cleanSS()+
         # self.translate_backup_dict()

@@ -12,6 +12,7 @@ import operator as OP
 from nocasedict import NoCaseDict
 import inspect as INP
 from textmap import TextMap as TM
+from pattern_utils import PatternUtils as pu
 
 class TranslationEntry():
     def __init__(self, untran_txt=None, tran_txt=None, txt_loc=None, fuzzy_rate=None):
@@ -106,7 +107,7 @@ class TranslationFinder:
         count_translated = 0
         translation = str(msg)
         result_list = OrderedDict()
-        text_list = cm.patternMatchAll(df.COMMON_SENTENCE_BREAKS, msg)
+        text_list = pu.patternMatchAll(df.COMMON_SENTENCE_BREAKS, msg)
         for loc, mm in text_list.items():
             (s, e), t = mm.getOriginAsTuple()
             tran = self.isInDict(t)
@@ -1010,7 +1011,7 @@ class TranslationFinder:
         word_list = df.WORD_ONLY_FIND.findall(msg)
 
         dd(f'word_list: {word_list}')
-        result_dict = cm.patternMatchAll(df.WORD_ONLY_FIND, msg)
+        result_dict = pu.patternMatchAll(df.WORD_ONLY_FIND, msg)
         for loc, mm in result_dict.items():
             (o_s, o_e), o_txt = mm.getOriginAsTuple()
             is_possessive = o_txt.endswith("'s")

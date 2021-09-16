@@ -50,7 +50,9 @@ def doctree_resolved(app, doctree, docname):
         return is_keep_original
 
     try:
+        changed = False
         for node, msg in extract_messages(doctree):
+            result_list = []
             last_char = msg[-1]
             is_ending_stop = (last_char == '.')
 
@@ -67,6 +69,13 @@ def doctree_resolved(app, doctree, docname):
             ref_list.parseMessage(is_ref_only=True)
             list_msg_to_check = ref_list.getComponentTexts()
 
+            if list_msg_to_check:
+                result_list.extend(list_msg_to_check)
+
+            is_included = (msg not in list_msg_to_check)
+            if is_included:
+               result_list.append(msg)
+
             # list_msg_to_check = []
             # if is_repeat:
             #     msg = msg.strip()
@@ -77,24 +86,26 @@ def doctree_resolved(app, doctree, docname):
             #         ref_txt = mm.txt
             #         list_msg_to_check.append(ref_txt)
 
-            if not list_msg_to_check:
-                continue
-
             print('-' * 80)
-            print(list_msg_to_check)
+            print(result_list)
 
             dict_list=[]
-            for msg in list_msg_to_check:
+            for msg in result_list:
                 tran = tf.isInDict(msg)
                 if not tran:
                     dict_list.append(msg)
                     tf.addBackupDictEntry(msg, "")
+                    changed = True
+        if changed:
+            tf.writeChosenDict(is_master=False)
+            changed = False
 
     except Exception as e:
         df.LOG(f'{e}', error=False)
 
 def build_finished(app, exeption):
-    tf.writeChosenDict(is_master=False)
+    # tf.writeChosenDict(is_master=False)
+    pass
 
 def setup(app):
     # app.connect('builder-inited', builder_inited)

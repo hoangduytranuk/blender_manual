@@ -4,6 +4,7 @@ from sentence import StructRecogniser as SR
 from definition import Definitions as df
 from reflist import RefList
 from ignore import Ignore as ig
+from pattern_utils import PatternUtils as pu
 
 class Paragraph(list):
     def __init__(self, txt, translation_engine=None):
@@ -85,7 +86,7 @@ class Paragraph(list):
 
         try:
             input_txt = self.sl_txt
-            txt_list = cm.findInvert(df.SPLIT_SENT_PAT, input_txt)
+            txt_list = pu.findInvert(df.SPLIT_SENT_PAT, input_txt)
             dd('TRANSLATING LIST OF SEGMENTS:')
             pp(txt_list)
             dd('-' * 80)

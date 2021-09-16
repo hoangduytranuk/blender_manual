@@ -13,9 +13,10 @@ from definition import Definitions as df, \
 from key import Key
 from fuzzywuzzy import fuzz, process as fuzz_process
 import operator as OP
-import inspect as INP
 import re
 from textmap import TextMap as TM
+from pattern_utils import PatternUtils as pu
+from string_utils import StringUtils as st
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -120,7 +121,7 @@ class NoCaseDict(OrderedDict):
             if is_in:
                 trans_txt = self[k_lower]
             else:
-                left, mid, right = cm.getTextWithin(k_lower)
+                left, mid, right = st.getTextWithin(k_lower)
                 is_in = (mid in self)
                 if not is_in:
                     return None
@@ -443,7 +444,7 @@ class NoCaseDict(OrderedDict):
         seen_list = {}
         while not is_finished:
             # 1. locate references in the translation text
-            found_ref_dict = cm.patternMatchAll(df.TRAN_REF_PATTERN, new_tran)
+            found_ref_dict = pu.patternMatchAll(df.TRAN_REF_PATTERN, new_tran)
             is_finished = (not bool(found_ref_dict))
             if is_finished:
                 break
@@ -696,7 +697,7 @@ class NoCaseDict(OrderedDict):
             return (translation, msg, 100, untran_word_dic)
 
         msg_lower = msg.lower()
-        left, k, right = cm.getTextWithin(msg)
+        left, k, right = st.getTextWithin(msg)
         k = k.lower()
 
         has_path_char = (df.PATH_CHAR.search(k) is not None)
@@ -1048,7 +1049,7 @@ class NoCaseDict(OrderedDict):
 
 
     def removeByPatternListAndCheck(self, txt, part_list, at):
-        start_non_alpha, mid, end_non_alpha = cm.getTextWithin(txt)
+        start_non_alpha, mid, end_non_alpha = st.getTextWithin(txt)
         is_at_start = (at == df.START_WORD)
         is_at_end = (at == df.END_WORD)
         test_text = str(txt)
@@ -1256,7 +1257,7 @@ class NoCaseDict(OrderedDict):
         original_text = str(msg)
         selective_list = []
         try:
-            start_non_alpha, mid, end_non_alpha = cm.getTextWithin(msg)
+            start_non_alpha, mid, end_non_alpha = st.getTextWithin(msg)
             for f, params in self.tran_find_func_list:
                 f_name = f.__name__
                 dd(f'findByReduction(): trying function:[{f_name}]')
