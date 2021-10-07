@@ -572,7 +572,8 @@ class Definitions:
     ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
+    # ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
+    ast_quote_txt = r'(\*+)([^\*]+)(\*+)'
     ast_quote_txt_absolute = r'^%s(?:\W|$)?$' % (ast_quote_txt)
     AST_QUOTE = re.compile(ast_quote_txt)
     AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
@@ -1795,6 +1796,7 @@ class Definitions:
         BLANK_QUOTE_ABS,
         ATTRIB_REF_ABS,
     ]
+
     global_ref_map = None
     ss_map = {
         "Syncing ${}": "${} đồng bộ hóa",
@@ -1937,6 +1939,7 @@ class Definitions:
         # "while ${}": "trong khi đang ${}",
         # "whose ${}": "${} của chúng",
     }
+
 
 class SentStructModeRecord:
     def __init__(self, smode_txt=None, smode=None, extra_param=None):

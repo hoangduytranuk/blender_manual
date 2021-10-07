@@ -11,6 +11,7 @@ from definition import Definitions as df, SentStructMode as SMODE, SentStructMod
 from textmap import TextMap as TM
 from string_utils import StringUtils as st
 from pattern_utils import PatternUtils as pu
+from gettext_within import GetTextWithin as gt
 
 class StructRecogniser():
     '''
@@ -427,7 +428,7 @@ class StructRecogniser():
             if tran:
                 return tran
 
-            left, mid, right = st.getTextWithin(txt)
+            left, mid, right = gt.getTextWithin(txt)
             is_valid = ((left or right) and (left != right))
             if not is_valid:
                 return None
@@ -596,12 +597,12 @@ class StructRecogniser():
                 entry = {sub_txt: tran}
                 self.local_dict.update(entry)
 
-                sub_left, sub_mid, sub_right = st.getTextWithin(sub_txt)
+                sub_left, sub_mid, sub_right = gt.getTextWithin(sub_txt)
                 is_add_mid = (sub_left or sub_right)
                 if not is_add_mid:
                     continue
 
-                tran_left, tran_mid, tran_right = st.getTextWithin(tran)
+                tran_left, tran_mid, tran_right = gt.getTextWithin(tran)
                 entry = {sub_mid: tran_mid}
                 self.local_dict.update(entry)
 

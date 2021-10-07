@@ -1,71 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92f564a6-4c22-4b92-b247-5244b2315ca6" name="Default Changelist" comment="Fixed get() in nocasedict.py to only patching left and right when they are there.">
+    <list default="true" id="92f564a6-4c22-4b92-b247-5244b2315ca6" name="Default Changelist" comment="Modularised string_utils.py and pattern_utils.py to split out dependencies so all codes can share common routines.">
+      <change afterPath="$PROJECT_DIR$/gettext_within.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common.py" beforeDir="false" afterPath="$PROJECT_DIR$/common.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/definition.py" beforeDir="false" afterPath="$PROJECT_DIR$/definition.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ignore.py" beforeDir="false" afterPath="$PROJECT_DIR$/ignore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nocasedict.py" beforeDir="false" afterPath="$PROJECT_DIR$/nocasedict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/matcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/observer.py" beforeDir="false" afterPath="$PROJECT_DIR$/observer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paragraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/paragraph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/common_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/definition.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/definition_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/doublelinkedlist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/doublelinkedlist_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/err.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/err_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/fuzzyexp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/fuzzyexp_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/ignore.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/ignore_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/key.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/key_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/matcher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/matcher_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/nocasedict.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/nocasedict_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/node_visitor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/node_visitor_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/observer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/observer_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/paragraph.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/paragraph_cy.cpython-39-darwin.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/paragraph_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/reflist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/reflist_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/reftype.py" beforeDir="false" afterPath="$PROJECT_DIR$/pattern_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/reftype_cy.pyx" beforeDir="false" afterPath="$PROJECT_DIR$/string_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/sentence.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/sentence_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/setup_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/stringmatch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/stringmatch_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/test_py.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/test_py_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/testing_subtract.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/testing_subtract_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/translate_po.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/translate_po_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/translation_finder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/translation_finder_cy.cpython-39-darwin.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/translation_finder_cy.pyx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyx/utils_cy.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pattern_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/pattern_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reflist.py" beforeDir="false" afterPath="$PROJECT_DIR$/reflist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reftype.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple_translate_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/simple_translate_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/string_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_py.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_py.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing_subtract.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/textmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/textmap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translation_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/translation_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0002.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0002.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ref_dict_0006_0003.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_0006_0003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_backup_0005_0001.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_backup_0005_0001.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ref_dict_backup_0005_0001_working.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ref_dict_backup_0005_0001_working.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,8 +93,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.test_py" />
       <item itemvalue="Python.single_translate_po" />
+      <item itemvalue="Python.test_py" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -332,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631721385912</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Modularised string_utils.py and pattern_utils.py to split out dependencies so all codes can share common routines.">
+      <created>1631803127036</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1631803127036</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,19 +328,20 @@
     <MESSAGE value="Temporary fixed isIgnored() in ignore.py to cope with symbols on either side of input text." />
     <MESSAGE value="Fixed the keyboards with space separators only." />
     <MESSAGE value="Fixed get() in nocasedict.py to only patching left and right when they are there." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed get() in nocasedict.py to only patching left and right when they are there." />
+    <MESSAGE value="Modularised string_utils.py and pattern_utils.py to split out dependencies so all codes can share common routines." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modularised string_utils.py and pattern_utils.py to split out dependencies so all codes can share common routines." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1714</line>
+          <line>1527</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1693</line>
+          <line>1506</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -399,7 +356,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1905</line>
+          <line>1718</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -409,7 +366,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1424</line>
+          <line>1237</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -429,7 +386,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/common.py</url>
-          <line>1889</line>
+          <line>1702</line>
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -471,6 +428,36 @@
           <url>file://$PROJECT_DIR$/paragraph.py</url>
           <line>44</line>
           <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ignore.py</url>
+          <line>186</line>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gettext_within.py</url>
+          <line>541</line>
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gettext_within.py</url>
+          <line>209</line>
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/gettext_within.py</url>
+          <line>420</line>
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_py.py</url>
+          <line>658</line>
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pattern_utils.py</url>
+          <line>149</line>
+          <option name="timeStamp" value="178" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

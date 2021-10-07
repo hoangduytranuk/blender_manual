@@ -41,6 +41,7 @@ class MatcherRecord(OrderedDict):
 
         self.s = actual_s
         self.e = actual_e
+        self.loc = f'({self.s}, {self.e})'
         self.txt = actual_txt
         self.children = None
         self.addRecord(matcher_record)
@@ -145,7 +146,8 @@ class MatcherRecord(OrderedDict):
     def __repr__(self):
         string = ""
         try:
-            string = "\n{!r}".format(self.__dict__)
+            # string = "\n{!r}".format(self.__dict__)
+            string += f'txt:"{self.txt}"\n'
         except Exception as e:
             pass
         return string

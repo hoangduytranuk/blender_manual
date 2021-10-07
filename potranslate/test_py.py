@@ -407,6 +407,33 @@ class test(object):
             print('*' * 80)
 
     # /Users/hoangduytran/Dev/tran/blender_manual/ref_dict_backup_0005_0001_working.json
+    def translate_backup_dict_using_google(self):
+        from googletrans import Translator
+        from paragraph import Paragraph as PR
+
+        home_dir = os.environ['BLENDER_GITHUB']
+        sent_struct_file = os.path.join(home_dir, "ref_dict_backup_0005_0002_working.json")
+        ignore_file = os.path.join(home_dir, "ref_dict_backup_0005_0001_ignore.json")
+        ss_dict = self.loadData(sent_struct_file, is_lower=False)
+        output_list = []
+        output_dict = {}
+        ignore_dict = {}
+        # dictionary = tf.getDict()
+        ts = Translator()
+        i = 0
+        last = 5
+        for k, v in ss_dict.items():
+            v = ts.translate(k, dest='vi', src='en')            
+            entry = {k: v.text}
+            output_dict.update(entry)
+            # i += 1
+            # if (i > last):
+            #     break
+
+        if output_dict:
+            out_file = os.path.join(home_dir, "ref_dict_backup_0005_0005_working.json")
+            writeJSON(out_file, output_dict)
+
     def translate_backup_dict(self):
         from paragraph import Paragraph as PR
 
@@ -461,7 +488,6 @@ class test(object):
         if output_dict:
             out_file = os.path.join(home_dir, "ref_dict_backup_0005_0004_working.json")
             writeJSON(out_file, output_dict)
-
 
     # @profile
     def test_translate_0001(self, text_list=None):
@@ -562,6 +588,83 @@ class test(object):
 
         # tf.writeBackupDict()
 
+    def test_code_0001(self):
+        from gettext_within import GetTextWithin as gt
+        t = [
+            '(this one text) and this is another (here).',
+            '(this one and that one).'
+        ]
+
+        for txt in t:
+            left, mid, right = gt.getTextWithin(txt)
+            print(f'left:{left}')
+            print(f'mid:{mid}')
+            print(f'right:{right}')
+            print('-' * 80)
+
+    def test_brk_pat(self):
+        def find_brackets(msg: str):
+            found_dict = pu.patternMatchAll(pattern, msg)
+            return found_dict
+
+        # get list of brackets in the text line, with location, state = UNKOWN
+        # mask off pairs that are (CONSUME)
+        #   - (SLINE)(BRK) .. (BRK)(space) (exlcude space)
+        #   - (space)(BRK) .. (BRK)(space) (exlcude space)
+        #   - (space)(BRK) .. (BRK)(ELINE) (exlcude space)
+        #
+        # remove if pairs are (REMOVE)
+        #   - (SLINE)(BRK) .. (BRK)(ELINE)
+        #   - (SLINE|NON-ALPHA+)(BRK) .. (BRK)(ELINE)
+        #   - (SLINE)(BRK) .. (BRK)(NON-ALPHA+|ELINE)
+        #   - (SLINE, NON-ALPHA+)(ALPHA) (exclude the alpha)
+        #   - (ALPHA)(NON-ALPHA+, ELINE) (exclude the alpha)
+
+        punctuation_txt = r'\.\,\!'
+        brk_same_set_txt = r'\:\`§"\'\*'
+        brk_open_set_txt = r'\[\(\<\{'
+        brk_close_set_txt = r'\]\)\>\}'
+        non_brk_txt = r'[^%s%s]' % (brk_open_set_txt, brk_close_set_txt)
+
+        brk_full_set = r'%s%s%s' % (brk_same_set_txt, brk_open_set_txt, brk_close_set_txt)
+        begin_or_space_txt = r'(^|\s)'
+        end_or_space_txt = r'(\s|$)'
+        begin_or_space_followed_by_brk_txt = r'%s[%s%s]+' % (begin_or_space_txt, brk_open_set_txt, brk_same_set_txt)
+        end_or_space_preceded_by_brk_txt = r'[%s%s]+%s' % (brk_close_set_txt, brk_same_set_txt, end_or_space_txt)
+
+        pat_txt = r'[%s%s%s%s]' % (brk_open_set_txt, brk_close_set_txt, brk_same_set_txt, punctuation_txt)
+        pattern = re.compile(pat_txt)
+
+        look_ahead_space_leading = r'(?\s)'
+        look_ahead_space_trailing = r'(?<\s)'
+
+        consume_1_txt = r'%s[%s](%s)+[%s]' % (begin_or_space_txt, brk_open_set_txt, non_brk_txt, brk_close_set_txt)
+
+        varifying_brk_pattern_txt = r'[%s]+' % (brk_full_set)
+        varifying_brk_pattern = re.compile(varifying_brk_pattern_txt)
+
+        test_list = [
+            '(Inside bracket) and (another set).',
+            "**1.00 -- January 1994:** Blender `in development <https://code.blender.org/2013/12/how-blender-started-twenty-years-ago/>`__ at animation studio NeoGeo.",
+            '(this is one bracket line).',
+            'No brackets at all line.'
+        ]
+
+        # find_all = df.AST_QUOTE.findall(test_txt)
+        # print(find_all)
+
+        for t in test_list:
+            ref_dict = RefList(t)
+            ref_dict.parseMessage(is_ref_only=False, include_brackets=True)
+            ref_list = list(ref_dict.items())
+            ref_list.sort()
+            print(ref_list)
+
+        # brk_dict = find_brackets(test_txt)
+        # print(brk_dict)
+
+
+
     def run(self):
         # self.cleanDict()
         # self.test_0001()
@@ -569,9 +672,12 @@ class test(object):
         # self.findRefText()
         # self.findUnknownRefs()
         # self.resort_dictionary()
-        self.test_translate_0001()
+        # self.test_translate_0001()
         # self.cleanSS()+
         # self.translate_backup_dict()
+        # self.translate_backup_dict_using_google()
+        # self.test_code_0001()
+        self.test_brk_pat()
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')

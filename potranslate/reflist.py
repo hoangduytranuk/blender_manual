@@ -9,6 +9,7 @@ from sentence import StructRecogniser as SR
 from nocasedict import NoCaseDict as NDIC
 import concurrent.futures
 from pattern_utils import PatternUtils as pu
+from gettext_within import GetTextWithin as gt
 from string_utils import StringUtils as st
 '''
 :abbr:`
@@ -57,7 +58,6 @@ class RefList(defaultdict):
         self.parsed_dict = NDIC()
         self.sr_global_dict = NDIC()
         self.keep_abbr = True
-
 
     def reproduce(self):
         return self.__class__()
@@ -138,7 +138,7 @@ class RefList(defaultdict):
         for k, mm in self.items():
             mm.parent = self
 
-    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType):
+    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType, include_brackets=False):
         def setReftypeAndUsingSubTextLocation(dict_list: dict):
             for main_loc, mm in dict_list.items():
                 new_mm_list=[]
@@ -174,7 +174,7 @@ class RefList(defaultdict):
             try:
                 is_bracket = (ref == RefType.ARCH_BRACKET)
                 if is_bracket:
-                    local_found_dict = cm.getTextWithinBrackets('<|(', '>|)', find_txt, is_include_bracket=False)
+                    local_found_dict = st.getTextWithinBrackets('<|(', '>|)', find_txt, is_include_bracket=include_brackets)
                 else:
                     local_found_dict = pu.patternMatchAll(pat, find_txt)
                     setReftypeAndUsingSubTextLocation(local_found_dict)
@@ -232,11 +232,11 @@ class RefList(defaultdict):
         for loc in remove_list:
             del self[loc]
 
-    def findPattern(self, pattern_list: list, txt: str):
+    def findPattern(self, pattern_list: list, txt: str, include_brackets=False):
         pattern_list.reverse()
         for index, item in enumerate(pattern_list):
             p, ref_type = item
-            self.findOnePattern(txt, p, ref_type)
+            self.findOnePattern(txt, p, ref_type, include_brackets=include_brackets)
 
         self.cleanupBrackets()
         return len(self)
@@ -256,12 +256,12 @@ class RefList(defaultdict):
             (ms, me) = mm.getMainLoc()
             mtxt = mm.getMainText()
 
-            left, mid, right = st.getTextWithin(mtxt)
-            is_all_symbols = (not bool(mid))
-
-            is_ignored = (is_all_symbols)
-            if is_ignored:
-                continue
+            # left, mid, right = gt.getTextWithin(mtxt)
+            # is_all_symbols = (not bool(mid))
+            #
+            # is_ignored = (is_all_symbols)
+            # if is_ignored:
+            #     continue
 
             mm = MatcherRecord(s=ms, e=me, txt=mtxt)
             mm.addSubMatch(-1, -1, None)
@@ -270,7 +270,7 @@ class RefList(defaultdict):
             entry = {uloc: mm}
             self.update(entry)
 
-    def parseMessage(self, is_ref_only=False):
+    def parseMessage(self, is_ref_only=False, include_brackets=False):
         # trans = self.tf.isInDict(self.msg)
         # if trans:
         #     self.setTranslation(trans, False, False)
@@ -278,14 +278,14 @@ class RefList(defaultdict):
 
         local_msg = str(self.msg)
         # cm.debugging(local_msg)
-        count = self.findPattern(df.pattern_list, local_msg)
+        count = self.findPattern(df.pattern_list, local_msg, include_brackets=include_brackets)
 
         df.global_ref_map = LocationObserver(self.msg)
         for loc, mm in self.items():
             df.global_ref_map.markLocAsUsed(loc)
 
         if not is_ref_only:
-            unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict()
+            unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict(removing_symbols=False)
             self.addUnparsedDict(unparsed_dict)
 
         if len(self):

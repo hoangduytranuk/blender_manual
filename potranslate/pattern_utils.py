@@ -1,9 +1,9 @@
+import re
+import operator as OP
 from matcher import MatcherRecord
 from definition import RefType
 from collections import OrderedDict
-import re
-from string_utils import StringUtils as st
-import operator as OP
+from definition import Definitions as df
 
 class PatternUtils:
 
@@ -17,6 +17,63 @@ class PatternUtils:
         return match_record
 
     def findInvert(pattern, text: str, is_reversed=False, is_removing_symbols=True):
+        def getNoneAlphaPart(msg, is_start=True):
+            if not msg:
+                return ""
+
+            non_alnum_part = ""
+            if is_start:
+                non_alpha = df.START_WORD_SYMBOLS.search(msg)
+            else:
+                non_alpha = df.END_WORD_SYMBOLS.search(msg)
+
+            if non_alpha:
+                non_alnum_part = non_alpha.group(0)
+            return non_alnum_part
+
+        def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
+            # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
+            left_part = getNoneAlphaPart(msg, is_start=True)
+            right_part = getNoneAlphaPart(msg, is_start=False)
+            ss = len(left_part)
+            ee = (-len(right_part) if right_part else len(msg))
+            mid_part = msg[ss:ee]
+            length_ee = len(right_part)
+            diff_loc = (ss, length_ee)
+
+            main_record: MatcherRecord = None
+            if to_matcher_record:
+                ls = 0
+                le = ss
+                ms = le
+                me = ms + len(mid_part)
+                rs = me
+                re = rs + len(right_part)
+
+                main_record = MatcherRecord(s=0, e=len(msg), txt=msg)
+                if left_part:
+                    main_record.addSubMatch(ls, le, left_part)
+                    test_txt = left_part[ls: le]
+                else:
+                    main_record.addSubMatch(-1, -1, None)
+                if mid_part:
+                    main_record.addSubMatch(ms, me, mid_part)
+                    test_txt = left_part[ms: me]
+                else:
+                    main_record.addSubMatch(ls, re, msg)
+                if right_part:
+                    main_record.addSubMatch(rs, re, right_part)
+                    test_txt = left_part[rs: re]
+                else:
+                    main_record.addSubMatch(-1, -1, None)
+
+            return diff_loc, left_part, mid_part, right_part, main_record
+
+        def getTextWithin(msg):
+            diff_loc, left, mid, right, _ = getTextWithinWithDiffLoc(msg)
+            return left, mid, right
+
+
         '''
         findInvert:
             Find list of words that are NOT matching the pattern.
@@ -61,10 +118,12 @@ class PatternUtils:
             for s, e in loc_list:
                 we = s
                 if (ws < we):
+                    test_txt = text[ws: we]
                     invert_loc_list.append((ws, we))
                 ws = e
             we = len(text)
             if (ws < we):
+                test_txt = text[ws: we]
                 invert_loc_list.append((ws, we))
 
             # 4: using the invert location list, extract words, exclude empties.
@@ -72,10 +131,14 @@ class PatternUtils:
                 found_txt = text[ws:we]
 
                 if is_removing_symbols:
-                    left, mid, right = st.getTextWithin(found_txt)
+                    left, mid, right = getTextWithin(found_txt)
                     is_empty = (not bool(mid))
                     if is_empty:
                         continue
+                    else:
+                        found_txt = mid
+                        ws += len(left)
+                        we -= len(right)
 
                 loc = (ws, we)
                 mm = MatcherRecord(s=ws, e=we, txt=found_txt)

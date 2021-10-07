@@ -150,8 +150,8 @@ class LocationObserver(OrderedDict):
         is_fully_done = (df.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
         return is_fully_done
 
-    def getUnmarkedPartsAsDict(self):
-        untran_dict = pu.findInvert(df.FILLER_PARTS, self.blank, is_reversed=True)
+    def getUnmarkedPartsAsDict(self, reversing=True, removing_symbols=False):
+        untran_dict = pu.findInvert(df.FILLER_PARTS, self.blank, is_reversed=reversing, is_removing_symbols=removing_symbols)
         return untran_dict
 
     def getRawUnmarkedPartsAsList(self):

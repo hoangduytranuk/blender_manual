@@ -14,6 +14,7 @@ from ignore import Ignore as ig
 from textmap import TextMap as TM
 from pattern_utils import PatternUtils as pu
 from string_utils import StringUtils as st
+from gettext_within import GetTextWithin as gt
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -115,7 +116,7 @@ class Common:
         if is_url:
             return False
 
-        left, mid, right = st.getTextWithin(txt)
+        left, mid, right = gt.getTextWithin(txt)
         is_path = Common.isPath(mid)
         if is_path:
             return True
@@ -328,7 +329,7 @@ class Common:
     #         for index, (loc, txt) in enumerate(list(temp_dict.items())):
     #             has_end_space = has_start_space = False
     #
-    #             left, mid, right = st.getTextWithin(txt)
+    #             left, mid, right = gt.getTextWithin(txt)
     #
     #             (ls, le) = loc
     #             is_first = (index == 0)
@@ -807,196 +808,8 @@ class Common:
                 df.LOG(f'[{e}]; Finding message: [{item}], found index:[{found_index}]', error=True)
                 raise e
 
-    def removeStartEndBrackets(input_txt, start_bracket=None, end_bracket=None):
-        try:
-            str_len = len(input_txt)
-            start_loc = 0
-            end_loc = str_len
 
-            s_brk = (start_bracket if start_bracket else '(')
-            e_brk = (end_bracket if end_bracket else ')')
 
-            bracket_pattern_txt = r'([\%s\%s])' % (s_brk, e_brk)
-            bracket_pattern = re.compile(bracket_pattern_txt)
-            found_dict = pu.patternMatchAll(bracket_pattern, input_txt)
-            found_list = list(found_dict.items())
-            if not found_list:
-                orig_loc = (start_loc, end_loc)
-                orig_entry = (orig_loc, input_txt)
-                return orig_entry
-
-            q = deque()
-            for loc, mm in found_dict.items():
-                brk = mm.txt
-                is_open = (brk == s_brk)
-                is_close = (brk == e_brk)
-                current_entry = (loc, brk)
-                if is_open:
-                    q.append(current_entry)
-                if is_close:
-                    if not q:
-                        continue
-
-                    q_entry = q.pop()
-                    (cs, ce), cbrk = current_entry
-                    (qs, qe), qbrk = q_entry
-                    is_start_string_bracket = (qs == 0)
-                    is_end_string_bracket = (ce == str_len)
-                    is_remove_start_and_end = (is_start_string_bracket and is_end_string_bracket)
-                    if is_remove_start_and_end:
-                        start_loc = qs + len(start_bracket)
-                        end_loc = ce - len(end_bracket)
-                        break
-            new_txt = input_txt[start_loc: end_loc]
-            new_loc = (start_loc, end_loc)
-            return (new_loc, new_txt)
-
-        except Exception as e:
-            df.LOG(f'{e} [{input_txt}]', error=True)
-            raise e
-
-    def getTextWithinBrackets(
-            start_bracket: str,
-            end_bracket: str,
-            input_txt:str,
-            is_include_bracket:bool =False,
-            replace_internal_start_bracket:str = None,
-            replace_internal_end_bracket:str = None
-    ) -> list:
-
-        def pop_q(pop_s, pop_e) -> bool:
-            last_s = q.pop()
-            ss = last_s
-            ee = pop_e
-
-            # for 'function()', do not store as a bracketed text
-            txt_line = input_txt[ss:ee]
-            if not txt_line:
-                return False
-
-            is_ignore = ig.isIgnored(txt_line)
-            if not is_ignore:
-                loc = (ss, ee)
-                entry = (loc, txt_line)
-                sentence_list.append(entry)
-            return True
-
-        def getBracketList(start_brk, end_brk):
-            # split at the boundary of start and end brackets
-            try:
-                # 1. find positions of start bracket
-                if is_same_brakets:
-                    p_txt = r'\%s' % start_brk
-                else:
-                    p_txt = r'[\%s\%s]' % (start_brk, end_brk)
-
-                p = re.compile(p_txt)
-                brk_list = pu.patternMatchAll(p, input_txt)
-                return brk_list, p
-            except Exception as e:
-                df.LOG(f'{e} [{input_txt}]', error=True)
-                raise e
-            return brk_list
-
-        def getSentenceList(start_brk, end_brk):
-            bracket_list, pattern = getBracketList(start_brk, end_brk)
-            if not bracket_list:
-                return sentence_list, pattern
-
-            # detecting where start/end and take the locations
-            mm: MatcherRecord = None
-            if is_same_brakets:
-                for loc, mm in bracket_list.items():
-                    s, e = loc
-                    bracket = mm.txt
-                    is_bracket = (bracket == start_brk)
-                    if is_bracket:
-                        if not q:
-                            q.append(s)
-                        else:
-                            pop_q(s, e)
-            else:
-                for loc, mm in bracket_list.items():
-                    s, e = loc
-                    bracket = mm.txt
-                    is_open = (bracket == start_brk)
-                    is_close = (bracket == end_brk)
-                    if is_open:
-                        q.append(s)
-                    if is_close:
-                        if not q:
-                            continue
-                        else:
-                            pop_q(s, e)
-            return sentence_list, pattern
-
-        def sortSentencesFunction(item):
-            (loc, txt) = item
-            sort_key = (len(txt), loc)
-            return sort_key
-
-        def findUsingBracketSet(start_brk, end_brk):
-            output_dict = OrderedDict()
-            txt_len = len(input_txt)
-
-            if is_same_brakets:
-                dd(f'getTextWithinBracket() - WARNING: start_bracket and end_braket is THE SAME {start_bracket}. '
-                   f'ERRORS might occurs!')
-
-            sentence_list, pattern = getSentenceList(start_brk, end_brk)
-            if not sentence_list:
-                return output_dict
-
-            loc_list = []
-            obs = LocationObserver(input_txt)
-            sentence_list.sort(key=sortSentencesFunction, reverse=True)
-            for loc, txt in sentence_list:
-                is_finished = obs.isCompletelyUsed()
-                if is_finished:
-                    break
-
-                is_used = obs.isLocUsed(loc)
-                if is_used:
-                    continue
-
-                if not is_include_bracket:
-                    (sub_loc, actual_txt) = Common.removeStartEndBrackets(txt, start_bracket=start_brk,
-                                                                          end_bracket=end_brk)
-                    (cs, ce) = loc
-                    (ss, se) = sub_loc
-                    actual_loc = (cs + ss, cs + se)
-                else:
-                    actual_loc = loc
-                    actual_txt = txt
-
-                obs.markLocAsUsed(loc)
-                (ss, ee) = actual_loc
-                mm = MatcherRecord(s=ss, e=ee, txt=actual_txt)
-                mm.pattern = pattern
-                mm.type = RefType.ARCH_BRACKET
-                dict_entry = {actual_loc: mm}
-                output_dict.update(dict_entry)
-
-            return output_dict
-
-        result={}
-        is_same_brakets = False
-        q = None
-        sentence_list = None
-        start_bracket_list = start_bracket.split('|')
-        end_bracket_list = end_bracket.split('|')
-        for index in range(0, len(start_bracket_list)):
-            q = deque()
-            sentence_list = []
-
-            start_brk = start_bracket_list[index]
-            end_brk = end_bracket_list[index]
-            is_same_brakets = (start_brk == end_brk)
-            result_set = findUsingBracketSet(start_brk, end_brk)
-            if result_set:
-                result.update(result_set)
-
-        return result
 
     def removeSurroundingSpaces(self, txt_loc, txt):
         start_spc_mm: MatcherRecord = Common.patternMatch(df.START_SPACES, txt)
@@ -1613,7 +1426,7 @@ class Common:
             local_found_dict = None
             is_bracket = (ref_type == RefType.ARCH_BRACKET)
             if is_bracket:
-                local_found_dict = Common.getTextWithinBrackets('(', ')', txt, is_include_bracket=False)
+                local_found_dict = st.getTextWithinBrackets('(', ')', txt, is_include_bracket=False)
             else:
                 local_found_dict = pu.patternMatchAll(pat, txt)
 
