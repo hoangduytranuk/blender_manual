@@ -603,9 +603,135 @@ class test(object):
             print('-' * 80)
 
     def test_brk_pat(self):
+        from enum import Enum
+        class RefRecStatus(Enum):
+            UNKOWN = 0
+            REMOVE_LEFT = 1
+            REMOVE_RIGHT = 2
+            REMOVE_BOTH = 3
+            REMOVE = 4
+            IGNORE = 5
+
+        def getNoneAlphaPart(msg, is_start=True):
+            if not msg:
+                return ""
+
+            non_alnum_part = ""
+            if is_start:
+                non_alpha = df.START_WORD_SYMBOLS.search(msg)
+            else:
+                non_alpha = df.END_WORD_SYMBOLS.search(msg)
+
+            if non_alpha:
+                non_alnum_part = non_alpha.group(0)
+            return non_alnum_part
+
+        def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
+            # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
+            left_part = getNoneAlphaPart(msg, is_start=True)
+            right_part = getNoneAlphaPart(msg, is_start=False)
+
+            ss = len(left_part)
+            ee = (-len(right_part) if right_part else len(msg))
+            mid_part = msg[ss:ee]
+            length_ee = len(right_part)
+            diff_loc = (ss, length_ee)
+
+            main_record: MatcherRecord = None
+            if to_matcher_record:
+                ls = 0
+                le = ss
+                ms = le
+                me = ms + len(mid_part)
+                rs = me
+                re = rs + len(right_part)
+
+                main_record = MatcherRecord(s=0, e=len(msg), txt=msg)
+                if left_part:
+                    main_record.addSubMatch(ls, le, left_part)
+                    test_txt = left_part[ls: le]
+                else:
+                    main_record.addSubMatch(-1, -1, None)
+                if mid_part:
+                    main_record.addSubMatch(ms, me, mid_part)
+                    test_txt = left_part[ms: me]
+                else:
+                    main_record.addSubMatch(ls, re, msg)
+                if right_part:
+                    main_record.addSubMatch(rs, re, right_part)
+                    test_txt = left_part[rs: re]
+                else:
+                    main_record.addSubMatch(-1, -1, None)
+
+            return diff_loc, left_part, mid_part, right_part, main_record
+
+        def findTextWithin(msg):
+            diff_loc, left_part, mid_part, right_part, main_record = getTextWithinWithDiffLoc(msg)
+            return left_part, mid_part, right_part
+
         def find_brackets(msg: str):
-            found_dict = pu.patternMatchAll(pattern, msg)
+            found_dict = pu.patternMatchAll(all_punct_pattern, msg)
             return found_dict
+
+        def getRefRecStatus(ref_rec: MatcherRecord, orig_msg: str, is_first=True) -> RefRecStatus:
+            try:
+                ref_type = ref_rec.type
+                is_text = (ref_type == RefType.TEXT) or (ref_type == RefType.ARCH_BRACKET)
+                # is_ref = (not is_text)
+
+                ref_main_txt = ref_rec.txt
+                is_all_non_alpha = non_alpha_only_pattern.search(ref_main_txt)
+                s = ref_rec.s
+                e = ref_rec.e
+                if is_all_non_alpha:
+                    return RefRecStatus.REMOVE, (s, e)
+                if is_text:
+                    state = RefRecStatus.UNKOWN
+                    left, mid, right = findTextWithin(ref_main_txt)
+                    has_left = bool(left)
+                    has_right = bool(right)
+                    has_mid = bool(mid) and (non_alpha_only_pattern.search(mid) is None)
+
+                    if has_left and not has_right:
+                        is_s_start = (s == 0)
+                        if is_s_start:
+                            state = RefRecStatus.REMOVE_LEFT
+                            s += len(left)
+                        else:
+                            state = RefRecStatus.IGNORE
+                    elif has_left and has_right:
+                        if has_mid:
+                            state = RefRecStatus.REMOVE_BOTH
+                            s += len(left)
+                            e -= len(right)
+                        else:
+                            state = RefRecStatus.REMOVE
+                    elif not has_left and has_right:
+                        e -= len(right)
+                        state = RefRecStatus.REMOVE_RIGHT
+                    # not (has_left or has_right)
+                else: # is_ref
+                    max_length = len(orig_msg)
+
+                return state, (s, e)
+            except Exception as e:
+                df.LOG(f'{e}: {ref_rec}')
+            
+        def parseRefList(ref_list: RefList, orig_msg: str):
+            try:
+                list_len = len(ref_list)
+                (first_ref_loc, first_ref_rec) = ref_list[0]
+                (last_ref_loc, last_ref_rec) = ref_list[list_len-1]
+
+                is_one_line = (first_ref_loc == last_ref_loc)
+
+                print(f'FIRST: {first_ref_rec}')
+                print(f'LAST: {last_ref_rec}')
+                first_state, first_loc = getRefRecStatus(first_ref_rec, orig_msg, is_first=True)
+                last_state, last_loc = getRefRecStatus(last_ref_rec, orig_msg, is_first=False)
+
+            except Exception as e:
+                df.LOG(f'{e}: {ref_list}')
 
         # get list of brackets in the text line, with location, state = UNKOWN
         # mask off pairs that are (CONSUME)
@@ -620,11 +746,13 @@ class test(object):
         #   - (SLINE, NON-ALPHA+)(ALPHA) (exclude the alpha)
         #   - (ALPHA)(NON-ALPHA+, ELINE) (exclude the alpha)
 
-        punctuation_txt = r'\.\,\!'
+        punctuation_txt = r'\.\,\!\:'
         brk_same_set_txt = r'\:\`§"\'\*'
         brk_open_set_txt = r'\[\(\<\{'
         brk_close_set_txt = r'\]\)\>\}'
-        non_brk_txt = r'[^%s%s]' % (brk_open_set_txt, brk_close_set_txt)
+        alpha_only_txt = r'[^%s%s%s%s]' % (brk_open_set_txt, brk_close_set_txt, brk_same_set_txt, punctuation_txt)
+        non_alpha_txt = r'[%s%s%s%s]' % (brk_open_set_txt, brk_close_set_txt, brk_same_set_txt, punctuation_txt)
+        non_alpha_only_txt = r'^%s$' % (non_alpha_txt)
 
         brk_full_set = r'%s%s%s' % (brk_same_set_txt, brk_open_set_txt, brk_close_set_txt)
         begin_or_space_txt = r'(^|\s)'
@@ -633,12 +761,22 @@ class test(object):
         end_or_space_preceded_by_brk_txt = r'[%s%s]+%s' % (brk_close_set_txt, brk_same_set_txt, end_or_space_txt)
 
         pat_txt = r'[%s%s%s%s]' % (brk_open_set_txt, brk_close_set_txt, brk_same_set_txt, punctuation_txt)
-        pattern = re.compile(pat_txt)
+        all_punct_pattern = re.compile(pat_txt)
+
+        unpackable_txt = r'[%s%s]' % (punctuation_txt, brk_same_set_txt)
+        unpackable_txt_only = r'^%s$' % (unpackable_txt)
+
+        punctuation_pat_txt = r'[%s]' % (punctuation_txt)
+        punctuation_only_txt = r'^%s$' % (punctuation_pat_txt)
+
+        unpackable_pattern = re.compile(unpackable_txt)
+        punctuation_only_pattern = re.compile(punctuation_only_txt)
+        non_alpha_only_pattern = re.compile(non_alpha_only_txt)
 
         look_ahead_space_leading = r'(?\s)'
         look_ahead_space_trailing = r'(?<\s)'
 
-        consume_1_txt = r'%s[%s](%s)+[%s]' % (begin_or_space_txt, brk_open_set_txt, non_brk_txt, brk_close_set_txt)
+        consume_1_txt = r'%s[%s](%s)+[%s]' % (begin_or_space_txt, brk_open_set_txt, alpha_only_txt, brk_close_set_txt)
 
         varifying_brk_pattern_txt = r'[%s]+' % (brk_full_set)
         varifying_brk_pattern = re.compile(varifying_brk_pattern_txt)
@@ -647,7 +785,9 @@ class test(object):
             '(Inside bracket) and (another set).',
             "**1.00 -- January 1994:** Blender `in development <https://code.blender.org/2013/12/how-blender-started-twenty-years-ago/>`__ at animation studio NeoGeo.",
             '(this is one bracket line).',
-            'No brackets at all line.'
+            # 'No brackets at all line.',
+            "\"You have to select a string of connected vertices too\".",
+            "\"Enabling previews adds 65536 bytes to the size of each blend-file (unless it is compressed).\"",
         ]
 
         # find_all = df.AST_QUOTE.findall(test_txt)
@@ -658,7 +798,7 @@ class test(object):
             ref_dict.parseMessage(is_ref_only=False, include_brackets=True)
             ref_list = list(ref_dict.items())
             ref_list.sort()
-            print(ref_list)
+            parseRefList(ref_list, t)
 
         # brk_dict = find_brackets(test_txt)
         # print(brk_dict)

@@ -41,10 +41,12 @@ class MatcherRecord(OrderedDict):
 
         self.s = actual_s
         self.e = actual_e
-        self.loc = f'({self.s}, {self.e})'
         self.txt = actual_txt
         self.children = None
         self.addRecord(matcher_record)
+
+    def loc(self):
+        return (self.s, self.e)
 
     def addRecord(self, matcher_record):
         blank_msg = str(self.txt)
@@ -146,8 +148,11 @@ class MatcherRecord(OrderedDict):
     def __repr__(self):
         string = ""
         try:
-            # string = "\n{!r}".format(self.__dict__)
-            string += f'txt:"{self.txt}"\n'
+            string = "\nMAIN-RECORD:\n{!r}".format(self.__dict__)
+            # string += f'txt:"{self.txt}"\n'
+            sub_list = self.getSubEntriesAsList()
+            if sub_list:
+                string += "\nSUB-LIST:\n{!r}\n".format(sub_list)
         except Exception as e:
             pass
         return string

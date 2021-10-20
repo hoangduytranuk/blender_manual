@@ -226,7 +226,7 @@ class RefList(defaultdict):
             txt = mm.txt
             is_fully_used = obs.isLocFullyUsed(loc)
             if is_fully_used:
-                dd(f'REMOVING: [{mm}]')
+                df.LOG(f'[{mm}] is encompassed within another ref.')
                 remove_list.append(loc)
 
         for loc in remove_list:

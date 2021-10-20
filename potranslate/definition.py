@@ -573,13 +573,14 @@ class Definitions:
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
     # ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
-    ast_quote_txt = r'(\*+)([^\*]+)(\*+)'
+    ast_quote_txt = r'(\*+)(\S[^\*]+\S)(\*+)'
     ast_quote_txt_absolute = r'^%s(?:\W|$)?$' % (ast_quote_txt)
     AST_QUOTE = re.compile(ast_quote_txt)
     AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
 
     # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    dbl_quote_txt = r'(?<!\\")(")(.*?)(")'
+    # dbl_quote_txt = r'(?<!\\")(")(\S.*?\S)(")'
+    dbl_quote_txt = r'(?<!\\")(")(\S[^\"]+\S)(")'
     dbl_quote_txt_abs = r'^%s(?:\W|$)?$' % (dbl_quote_txt)
     DBL_QUOTE = re.compile(dbl_quote_txt)
     DBL_QUOTE_ABS = re.compile(dbl_quote_txt_abs)
