@@ -5,7 +5,8 @@ from collections import OrderedDict
 
 import packaging.requirements
 
-from common import Common as cm, dd, pp, LocationObserver
+from common import Common as cm, LocationObserver
+from utils import dd, pp
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
     SentStructModeRecord as SMODEREC
@@ -51,7 +52,10 @@ from string_utils import StringUtils as st
 
 class NoCaseDict(OrderedDict):
 
-    def __init__(self, data=None):
+    def __init__(self,
+                 apply_case_matching_orig_txt=None,
+                 data=None):
+        self.apply_case_matching_orig_txt = (True if apply_case_matching_orig_txt else False)
         self.is_dirty = False
         self.is_operational = False
         # self.local_keys = []
@@ -131,7 +135,8 @@ class NoCaseDict(OrderedDict):
             has_tran = bool(trans_txt)
             if has_tran:
                 translation = self.replaceTranRef(trans_txt)
-                translation = cm.matchCase(key, translation)
+                if self.apply_case_matching_orig_txt:
+                    translation = cm.matchCase(key, translation)
                 has_sides = (left or right)
                 if has_sides:
                     translation = left + translation + right
@@ -141,10 +146,6 @@ class NoCaseDict(OrderedDict):
         except Exception as e:
             # df.LOG(f'{e}', error=True)
             return None
-
-    def rm(self, key):
-        k = key.lower()
-        super(NoCaseDict, self).__delitem__(k)
 
     def saveData(self, data_set, file_path):
         cm.writeJSONDic(dict_list=data_set, file_name=file_path)

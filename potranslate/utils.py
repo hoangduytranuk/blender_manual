@@ -2,6 +2,18 @@ import inspect
 import logging
 import datetime
 import os
+from pprint import pprint as pp
+
+DEBUG=False
+# DEBUG=False
+DIC_LOWER_CASE=True
+
+def dd(*args, **kwargs):
+    if DEBUG:
+        print(*args, sep='\n- ')
+        # print(args, kwargs)
+        # if len(args) > 0:
+        #     print('-' * 80)
 
 class Colors:
     HEADER = '\033[95m'
@@ -34,9 +46,9 @@ def get_logger(filename):
 
         if error:
             logging.warning(final_msg)
-            print(f"[ERROR] {final_msg}")
+            dd(f"[ERROR] {final_msg}")
         else:
-            print(final_msg)
+            dd(final_msg)
 
     return log
 

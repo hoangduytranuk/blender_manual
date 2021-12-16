@@ -10,7 +10,7 @@ import re
 # print("import fine so far")
 from ignore import Ignore as ig
 from common import Common as cm
-from common import DEBUG, dd, pp
+from utils import dd, pp
 from docutils import nodes
 from sphinx.util.nodes import extract_messages
 from translation_finder import TranslationFinder as tf

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 #cython: language_level=3
 import re
 import os
@@ -21,7 +21,8 @@ from fuzzywuzzy import fuzz
 
 from sphinx_intl import catalog as c
 from pytz import timezone
-from common import Common as cm, dd, pp
+from common import Common as cm
+from utils import dd, pp
 from matcher import MatcherRecord
 from definition import Definitions as df, RefType, TranslationState
 from reflist import RefList
@@ -588,6 +589,49 @@ class test(object):
 
         # tf.writeBackupDict()
 
+    def merge_po(self, from_po, to_po, out_po=None):
+        def make_key(msg):
+            k = m.id
+            k_ctx = m.context
+            return (k, k_ctx)
+
+        def make_value(msg):
+            v1 = msg.string
+            v2 = msg
+            return (v1, v2)
+
+        def po_to_dict(po_msg_list):
+            new_dict = {}
+            for m in po_msg_list:
+                key = make_key(m)
+                value = make_value(m)
+                entry = {key: value}
+                new_dict.update(entry)
+            return new_dict
+
+        def find_msg(msg_to_find, po_msg_list_to_find_in):
+            find_key = make_key(msg_to_find)
+            for m in po_msg_list_to_find_in:
+                current_key = make_key(m)
+                is_found = (current_key == find_key)
+                if not is_found:
+                    continue
+
+                
+            return None
+        try:
+            # to_po is normally the file with latest changes
+            # from_po is normally the file from SVN, with untranslated, but latest strings
+            from_po_msg = c.load_po(from_po)
+            to_po_msg = c.load_po(to_po)
+
+            for m in from_po_msg:
+                from_msgid = m.id
+
+        except Exception as e:
+            out_po_txt = (out_po if out_po else "")
+            df.LOG(f'ERROR: {e}; from_po:{from_po}, to_po:{to_po}, out_po:{out_po_txt}')
+
     def test_code_0001(self):
         from gettext_within import GetTextWithin as gt
         t = [
@@ -803,7 +847,134 @@ class test(object):
         # brk_dict = find_brackets(test_txt)
         # print(brk_dict)
 
+    def cleanKritaPOFile(self):
+        po_path = os.environ['KRITA_PO_FILE']
+        home_dir = os.environ['HOME']
+        out_file = os.path.join(home_dir, 'temp_krita.po')
 
+        po_data = c.load_po(po_path)
+        changed = False
+        for m in po_data:
+            is_fuzzy = m.fuzzy
+            if is_fuzzy:
+                print(type(m.flags))
+                m.string = ""
+                changed = True
+                m.flags.remove('fuzzy')
+            print(f'msgid: {m.id}')
+            print(f'msgstr: {m.string}')
+
+        if changed:
+            c.dump_po(out_file, po_data)
+
+    def correct_snippet_seq(self):
+        import plistlib as PL
+        import xml.etree.ElementTree as ET
+
+        home_dir = os.environ['HOME']
+        atom_home_dir = os.path.join(home_dir, '.atom')
+
+        in_plist_file = os.path.join(atom_home_dir, 'Text Substitutions 2.plist')
+        try:
+            v1 = v2 = 0
+            v1_max = 9999
+            v2_max = 9999
+            dict_list = {}
+            et_file = ET.parse(in_plist_file)
+            plist_root = et_file.getroot()
+            for array_tag in plist_root.findall('array'):
+                for dict_elem in array_tag.findall('dict'):
+                    keys = dict_elem.findall('key')
+                    strings = dict_elem.findall('string')
+                    phrase = strings[0].text
+                    short_cut = strings[1].text
+                    print(f'[{short_cut}] => [{phrase}]')
+                    dict_key = f'{v1:03}_{v2:04}'
+                    v1 += 1
+                    if v1 > v1_max:
+                        v1 = 0
+                        v2 += 1
+                        if v2 > v2_max:
+                            v2 = 0
+                    dict_value = (short_cut, phrase)
+                    dict_entry = {dict_key: dict_value}
+                    dict_list.update(dict_entry)
+                    print(dict_entry)
+
+            tab_one = ' '
+            tab_two = (tab_one * 2)
+            tab_three = (tab_one * 3)
+
+            out_file = os.path.join(home_dir, 'temp_snippets.cson')
+            with open(out_file, 'w') as outf:
+                for k, v in dict_list.items():
+                    prefix_txt, body_txt = v
+                    item_key = f"{tab_one}'{k}':"
+                    prefix = f"{tab_two}'prefix': '{prefix_txt}:'"
+                    body = f"{tab_two}'body': '{body_txt} $1'"
+                    line = f'{item_key}\n{prefix}\n{body}\n'
+                    outf.write(line)
+
+            print('Finished')
+        except Exception as e:
+            print(f'Exception: {e}')
+
+        # infile = os.path.join(home_dir, '.atom/snippets.cson')
+        # out_file = os.path.join(home_dir, 'temp_snippets.cson')
+        # old_lines=[]
+        # with open(infile, 'r') as inf:
+        #     l = inf.readlines()
+        # old_lines = list(l)
+        #
+        # v1 = 0
+        # v1_max = 999
+        # v2 = 0
+        # v2_max = 9999
+        # body_pat_txt = r"'body':"
+        # prefix_pat_txt = r"'prefix':"
+        # section_pat_txt = r'\d{3}_\d{4}'
+        # pat = re.compile(find_pattern, flags=re.I)
+        #
+        # new_lines=[]
+        # for l in old_lines:
+        #     is_found = (pat.search(l) is not None)
+        #     if not is_found:
+        #         new_lines.append(l)
+        #         print(f'unfound: {l}')
+        #     else:
+        #         v1 += 1
+        #         if v1 > v1_max:
+        #             v1 = 0
+        #             v2 += 1
+        #             if v2 > v2_max:
+        #                 v2 = 0
+        #
+        #         new_v = f'{v1:03}_{v2:04}'
+        #         # print(f'new_v: {new_v}')
+        #         new_l = pat.sub(new_v, l)
+        #         # print(f'new_l: {new_l}')
+        #         new_lines.append(new_l)
+        #         # print(f'new_lines:{new_lines}')
+        #         # exit(0)
+        # # print(new_lines)
+        # with open(out_file, 'w') as outf:
+        #     outf.writelines(new_lines)
+
+    def printEmptyPOLines(self):
+        # po_path = os.environ['KRITA_PO_FILE']
+        home_dir = os.environ['HOME']
+        po_path = os.path.join(home_dir, 'temp_krita.po')
+        
+        msg_data = c.load_po(po_path)
+
+        for index, m in enumerate(msg_data):
+            is_translated = bool(m.string)
+            if is_translated:
+                continue
+
+            msgid = m.id
+            msg = f'{index + 1}: [{msgid}]'
+            print(msg)
 
     def run(self):
         # self.cleanDict()
@@ -811,13 +982,17 @@ class test(object):
         # import cProfile
         # self.findRefText()
         # self.findUnknownRefs()
-        # self.resort_dictionary()
-        # self.test_translate_0001()
+        self.resort_dictionary()
+        self.test_translate_0001()
         # self.cleanSS()+
         # self.translate_backup_dict()
         # self.translate_backup_dict_using_google()
         # self.test_code_0001()
-        self.test_brk_pat()
+        # self.test_brk_pat()
+        # self.cleanKritaPOFile()
+        # self.correct_snippet_seq()
+        # self.printEmptyPOLines()
+
 
 x = test()
 # cProfile.run('x.run()', 'test_profile.dat')

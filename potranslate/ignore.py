@@ -1,7 +1,9 @@
 import re
 from os import sep as dirsep
+
+import utils
 from matcher import MatcherRecord
-from definition import Definitions as df
+from definition import Definitions as df, DEBUG
 from bisect import bisect_left
 from pprint import pprint as pp
 from observer import LocationObserver
@@ -74,7 +76,7 @@ class Ignore:
         has_brk = (start_check or end_check)
 
         if not has_brk:
-            return msg
+            return "", msg, ""
 
         start_pos = len(start_symb_set)
         for index in range(start_pos-1, -1, -1):
@@ -83,7 +85,6 @@ class Ignore:
             if not is_brk:
                 continue
 
-        start_pos = index
         diff_loc, left, mid, right, _ = Ignore.getTextWithinWithDiffLoc(msg)
         return left, mid, right
 
@@ -192,9 +193,11 @@ class Ignore:
             return False
 
 
-    def isIgnored(msg):
+    def isIgnored(msg, is_debug=False):
         if not msg:
             return True
+
+        utils.DEBUG = is_debug
 
         try:
             find_msg = msg.lower()
@@ -239,7 +242,7 @@ class Ignore:
                                "is_ref_link": is_ref_link
                                }
                 df.LOG(f"IGNORING: [{msg}]")
-                pp(dict_ignore)
+                df.LOG(dict_ignore)
 
             return is_ignore
         except Exception as e:

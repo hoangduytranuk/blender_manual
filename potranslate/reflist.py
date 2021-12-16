@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import re
 from definition import Definitions as df, RefType, TranslationState
-from common import Common as cm, dd, pp, LocationObserver
+from common import Common as cm, LocationObserver
+from utils import dd, pp
 from matcher import MatcherRecord
 from ignore import Ignore as ig
 from collections import defaultdict, OrderedDict

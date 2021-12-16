@@ -1,5 +1,6 @@
 import time
-from common import Common as cm, dd, pp, LocationObserver
+from common import Common as cm, LocationObserver
+from utils import dd, pp
 from sentence import StructRecogniser as SR
 from definition import Definitions as df
 from reflist import RefList
@@ -58,8 +59,8 @@ class Paragraph(list):
                 return
 
             tran = self.tf.isInDict(orig_txt)
-            if not tran:
-                tran = self.translateText(orig_txt)
+            # if not tran:
+            #     tran = self.translateText(orig_txt)
             if tran:
                 tran = cm.removeTheWord(tran)
                 self.tl_txt = tran

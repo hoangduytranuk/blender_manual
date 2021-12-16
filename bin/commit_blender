@@ -1,0 +1,74 @@
+#!/bin/bash
+# COMMENT=$1
+temp_file=$HOME/temp.log
+temp_file_1=$HOME/temp_001.log
+
+function convert279b_po_to_mo() {
+  cd $BLENDER_GIT_DIR; 
+  msgfmt -o "2.79b/blender.mo" "2.79b/vi.po";
+  cp "2.79b/blender.mo" "/Applications/Blender_2.79b/blender.app/Contents/Resources/2.79/datafiles/locale/vi/LC_MESSAGES/"
+}
+
+function convert301_po_to_mo() {
+  cd $BLENDER_GIT_DIR;
+
+  msgfmt -o "$BLENDER_MO_FILE" "$BLENDER_GIT_PO_FILE";
+  cp -f "$BLENDER_MO_FILE" "$BLENDER_PO_DIR";
+  cp -f "$BLENDER_MO_FILE" "$BLENDER_MO_FILE_HOME";
+}
+
+function copy_text_substitution_plist() {
+  orig_sub_file="$HOME/Downloads/Text Substitutions.plist";
+  if [[ -e "$orig_sub_file" ]]; then
+    cp "$orig_sub_file" "$BLENDER_GIT_DIR"; rm "$orig_sub_file";
+  fi
+}
+
+function get_date_time() {
+  DATE_TXT=`date +%d/%m/%Y`
+  TIME_TXT=`date +%H:%M`
+  TIME_MSG="today $DATE_TXT, time: $TIME_TXT"
+}
+
+function get_git_changed_file_list() {
+  copy_text_substitution_plist
+  cd $BLENDER_GIT_DIR;
+  git diff --name-only > $temp_file_1
+  git diff --name-only --staged >> $temp_file_1
+  cat $temp_file_1 | sort | uniq > $temp_file
+}
+
+function create_commit_msg(){
+  if [[ -n $FILE_LIST ]]; then
+    get_date_time
+    COMMIT_MSG="Add changes to $FILE_LIST;"
+    COMMIT_MSG="$COMMIT_MSG $TIME_MSG"
+    echo "commit message: $COMMIT_MSG"
+  else
+    COMMIT_MSG=""
+  fi
+}
+
+function form_file_string() {
+  file_list=$(get_file_list_as_string.py -f $temp_file)
+  export FILE_LIST="$file_list"
+}
+
+function commit_files() {
+  if [[ -n $COMMIT_MSG ]]; then
+    git commit -am "$COMMIT_MSG"
+  fi
+  git push
+}
+
+function process_file_list() {
+  convert301_po_to_mo
+  copy_text_substitution_plist
+  get_git_changed_file_list
+  form_file_string
+  create_commit_msg
+  commit_files
+}
+
+process_file_list
+

@@ -1,0 +1,10 @@
+#!/bin/bash -x
+# COMMENT=$1
+msgfmt -o $KRITA_MO_FILE $KRITA_PO_FILE; cp -f $KRITA_MO_FILE $KRITA_PO_DIR;
+cd $KRITA; git add trunk/l10n-kf5/vi/messages/krita/krita.po trunk/l10n-kf5/vi/messages/krita/krita.mo
+DATE_TXT=`date +%d/%m/%Y`
+TIME_TXT=`date +%H:%M`
+COMMIT_MSG="Add changes to krita.po and krita.mo, today $DATE_TXT, time: $TIME_TXT"
+# echo $COMMIT_MSG
+git commit -am "$COMMIT_MSG"
+git push

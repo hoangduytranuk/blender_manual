@@ -23,16 +23,6 @@ from definition import Definitions as df, \
 from pprint import pprint as pp
 import inspect as INP
 
-DEBUG=True
-# DEBUG=False
-DIC_LOWER_CASE=True
-
-def dd(*args, **kwargs):
-    if DEBUG:
-        print(args, kwargs)
-        if len(args) == 0:
-            print('-' * 80)
-
 class Common:
     def writeJSONDic(dict_list=None, file_name=None):
         try:
@@ -773,6 +763,46 @@ class Common:
                 abbrev_part, exp_part = first_entry
 
         return abbrev_orig_rec, abbrev_part, exp_part
+
+    def removeAbbr(msg):
+        try:
+            abbr_dict = pu.patternMatchAll(df.ABBREV_PATTERN_PARSER, msg)
+            if not abbr_dict:
+                return None
+
+            abbrev_orig_rec = abbrev_part = exp_part = None
+            mm: MatcherRecord = None
+
+            entries=[]
+            for mm_loc, mm in abbr_dict.items():
+                abbrev_orig_rec = mm.getOriginAsTuple()
+                l = mm.getSubEntriesAsList()
+                loc, txt = l[0]
+                found_texts = df.ABBR_TEXT_ALL.findall(txt)
+                first_entry = found_texts[0]
+                abbrev_part, exp_part = first_entry
+                entry = (mm_loc, abbrev_part, exp_part)
+                entries.append(entry)
+
+            is_replace = (len(entries) > 0)
+            if not is_replace:
+                return None
+
+            new_txt = str(msg)
+            sorted_entries = list(sorted(entries, reverse=True))
+            for mm_loc, abbrev_part, exp_part in sorted_entries:
+                ss, ee = mm_loc
+                left = new_txt[:ss]
+                right = new_txt[ee:]
+                replace_txt = f'{abbrev_part} ({exp_part})'
+                replace_txt = replace_txt.title()
+                new_txt = left + replace_txt + right
+                print(new_txt)
+            return new_txt
+
+        except Exception as e:
+            df.LOG(e)
+            return None
 
     def testDict(dic_to_use):
         key_list = list(dic_to_use.keys())

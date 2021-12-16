@@ -4,7 +4,7 @@ import time
 
 from definition import Definitions as df
 from common import Common as cm, LocationObserver
-from common import dd, pp
+from utils import dd, pp
 from ignore import Ignore as ig
 from collections import OrderedDict, defaultdict
 from sphinx_intl import catalog as c
@@ -22,7 +22,10 @@ class TranslationEntry():
         self.fuzzy_rate = fuzzy_rate
 
 class TranslationFinder:
-    def __init__(self):
+    def __init__(self,
+                 apply_case_matching_orig_txt=None
+                 ):
+        self.apply_case_matching_orig_txt = (True if apply_case_matching_orig_txt else False)
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['BLENDER_GITHUB']
@@ -92,7 +95,9 @@ class TranslationFinder:
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
         self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
-        self.sent_struct_dict_list = NoCaseDict()
+        self.sent_struct_dict_list = NoCaseDict(
+            apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
+        )
         self.sent_struct_dict_list.loadData(self.sent_struct_file, is_lower=False)
 
     def flatPOFile(self, file_path):
@@ -504,7 +509,9 @@ class TranslationFinder:
         # data.sort()
         # ord_dict = OrderedDict(data)
         # ncase_dic = NoCaseDict(ord_dict)
-        dic_instance = NoCaseDict()
+        dic_instance = NoCaseDict(
+            apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
+        )
         if is_master:
             self.master_dic = dic_instance
         else:
