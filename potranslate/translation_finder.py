@@ -29,7 +29,7 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['BLENDER_GITHUB']
-        self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0002.json")
+        self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0007.json")
         self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0005_0001.json")
         self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0005.json")
         self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.json")
@@ -504,11 +504,6 @@ class TranslationFinder:
         file_path = (self.master_dic_file if is_master else self.master_dic_backup_file)
         df.LOG(f'reloadChosenDict:{file_path}')
 
-        # dic = cm.loadJSONDic(file_name=file_path)
-        # data = [(k.lower(), v) for (k, v) in dic.items()]
-        # data.sort()
-        # ord_dict = OrderedDict(data)
-        # ncase_dic = NoCaseDict(ord_dict)
         dic_instance = NoCaseDict(
             apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
         )

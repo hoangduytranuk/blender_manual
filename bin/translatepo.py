@@ -24,9 +24,9 @@ class TranslatePO(POTaskBase):
         )
         self.tf = None
 
-    def replaceTranslationsFromFile(self, tf: TranslationFinder):
+    def loadDictFromFile(self):
         try:
-            dict_list = []
+            dict_list = {}
             tran_data = c.load_po(self.tran_file)
             for index, m in enumerate(tran_data):
                 is_first = (index == 0)
@@ -38,14 +38,10 @@ class TranslatePO(POTaskBase):
                 tran_ctx = m.context
                 tran_txt = m.string
 
-                entry=((lower_tran_id, tran_ctx), tran_txt)
-                dict_list.append(entry)
-            dict_list.sort()
-
-            dict_ptr: NoCaseDict = tf.master_dic_list
-            dict_ptr.clear()
-            dict_ptr.update(dict_list)
-
+                k = (lower_tran_id, tran_ctx)
+                entry={k: tran_txt}
+                dict_list.update(entry)
+            return dict_list
         except Exception as e:
             print(e)
             raise e
@@ -53,6 +49,8 @@ class TranslatePO(POTaskBase):
     def checkTranslation(self, orig_txt):
         tran = self.tf.isInDict(orig_txt)
         return (orig_txt, tran)
+
+    # def isDiffCases(self, msgid, msgstr, dict_tran=None):
 
     # def checkAndRemoveTranslated(self):
     #     tran_list = list(map(self.checkTranslation, t_list))
@@ -70,6 +68,9 @@ class TranslatePO(POTaskBase):
 
     # -s -f /Users/hoangduytran/bin -p "this" -ext ".xml"
     # -f /Users/hoangduytran/Dev/tran/blender_ui/2.79b/vi.po -tr -tran /Users/hoangduytran/test_283_no_abbrev_space_dot.po -fuz -o /Users/hoangduytran/retran_279b.po
+    # -rpl -f /Users/hoangduytran/test_283_no_abbrev_space_dot.po -of /Users/hoangduytran/test_283_20211217.po
+    #  -f /Users/hoangduytran/test_283_no_abbrev_space_dot.po -tr -fuz -o /Users/hoangduytran/retran_283.po
+    # -f /Users/hoangduytran/retran_283.po -tr -fuz -o /Users/hoangduytran/retran_283_0001.po
     def performTask(self):
         self.setFiles()
         msg_data = c.load_po(self.po_path)
@@ -77,62 +78,67 @@ class TranslatePO(POTaskBase):
         self.tf = TranslationFinder(
             apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
         )
+        dict_list = None
         use_external_translation = (self.tran_file is not None) and (os.path.isfile(self.tran_file))
         if use_external_translation:
-            self.replaceTranslationsFromFile(self.tf)
+            dict_list = self.loadDictFromFile()
 
-        ignore_words = ['Volume']
         changed = False
         # checkAndRemoveTranslated()
         for index, m in enumerate(msg_data):
+
             is_first_record = (index == 0)
             if is_first_record:
                 continue
 
-            # is_ignore = ig.isIgnored(m.id) or (m.id in ignore_words)
-            # if is_ignore:
-            #     continue
+            if self.filter_ignored:
+                is_ignore = ig.isIgnored(m.id)
+                if is_ignore:
+                    continue
 
             is_fuzzy = m.fuzzy
             msgid = m.id
             msgstr = m.string
             ctx = m.context
 
+            # is_debug = ("Target Range" in msgid)
+            # if is_debug:
+            #     print('Debug')
+            # is_not_emtpy = bool(msgstr)
+            # is_not_fuzzy = (not is_fuzzy)
+            # is_translated = (is_not_emtpy and is_not_fuzzy)
+            # if is_translated:
+            #     continue
+
+            dict_tran = None
             key = (msgid, ctx)
-            pr = PR(key, translation_engine=self.tf)
-            pr.translateAsIs()
-            dict_tran = pr.getTranslation()
-            if not dict_tran:
+            if dict_list:
+                has_tran = (key in dict_list)
+                dict_tran = (dict_list[key] if has_tran else None)
+            else:
+                pr = PR(msgid, translation_engine=self.tf)
+                pr.translateAsIs()
+                dict_tran = pr.getTranslation()
+
+            has_tran = bool(dict_tran)
+            if not has_tran:
                 continue
 
-            is_diff = (msgstr != dict_tran)
-            if is_diff:
-                msg = f'msgid:[{msgid}]\ndict:[{dict_tran}]\ncurrent:[{msgstr}]\n\n'
-                print(msg)
-
-            if not is_diff:
+            is_same = (msgid == dict_tran) or (msgstr == dict_tran)
+            if is_same:
                 continue
+
+            # is_id_lower =
+            msg = f'msgid:[{msgid}]\ndict:[{dict_tran}]\ncurrent:[{msgstr}]\n\n'
+            print(msg)
 
             m.string = dict_tran
-            #
-            # is_empty = (not m.string) or (len(m.string) == 0)
-            # is_translate = (is_fuzzy or is_empty)
-            #
-            # if not is_translate:
-            #     continue
-            #
-            #
-            # is_same = (output == m.id)
-            # if is_same:
-            #     continue
-            #
+
             set_fuzzy = (self.set_translation_fuzzy and not is_fuzzy)
             if set_fuzzy:
                 m.flags.add('fuzzy')
-            #
-            # m.string = output
-            changed = True
 
+            changed = True
             r = POResultRecord(index + 1, m.id, m.string)
             self.append(r)
 

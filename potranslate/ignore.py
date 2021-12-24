@@ -7,86 +7,9 @@ from definition import Definitions as df, DEBUG
 from bisect import bisect_left
 from pprint import pprint as pp
 from observer import LocationObserver
+from string_utils import StringUtils as st
 
 class Ignore:
-    def getNoneAlphaPart(msg, is_start=True):
-        if not msg:
-            return ""
-
-        non_alnum_part = ""
-        if is_start:
-            non_alpha = df.START_WORD_SYMBOLS.search(msg)
-        else:
-            non_alpha = df.END_WORD_SYMBOLS.search(msg)
-
-        if non_alpha:
-            non_alnum_part = non_alpha.group(0)
-        return non_alnum_part
-
-    def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
-        # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
-        left_part = Ignore.getNoneAlphaPart(msg, is_start=True)
-        right_part = Ignore.getNoneAlphaPart(msg, is_start=False)
-        ss = len(left_part)
-        ee = (-len(right_part) if right_part else len(msg))
-        mid_part = msg[ss:ee]
-        length_ee = len(right_part)
-        diff_loc = (ss, length_ee)
-
-        main_record: MatcherRecord = None
-        if to_matcher_record:
-            ls = 0
-            le = ss
-            ms = le
-            me = ms + len(mid_part)
-            rs = me
-            re = rs + len(right_part)
-
-            main_record = MatcherRecord(s=0, e=len(msg), txt=msg)
-            if left_part:
-                main_record.addSubMatch(ls, le, left_part)
-                test_txt = left_part[ls: le]
-            else:
-                main_record.addSubMatch(-1, -1, None)
-            if mid_part:
-                main_record.addSubMatch(ms, me, mid_part)
-                test_txt = left_part[ms: me]
-            else:
-                main_record.addSubMatch(ls, re, msg)
-            if right_part:
-                main_record.addSubMatch(rs, re, right_part)
-                test_txt = left_part[rs: re]
-            else:
-                main_record.addSubMatch(-1, -1, None)
-
-        return diff_loc, left_part, mid_part, right_part, main_record
-
-    def getTextWithin(msg):
-        start_brk_set = '{[(<'
-        end_brk_set = '}])>'
-
-        glob_obs = df.global_ref_map
-
-        start_symb_set = Ignore.getNoneAlphaPart(msg, is_start=True)
-        end_symb_set = Ignore.getNoneAlphaPart(msg, is_start=False)
-
-        start_check = [x for x in start_symb_set if x in start_brk_set]
-        end_check = [x for x in end_symb_set if x in end_brk_set]
-
-        has_brk = (start_check or end_check)
-
-        if not has_brk:
-            return "", msg, ""
-
-        start_pos = len(start_symb_set)
-        for index in range(start_pos-1, -1, -1):
-            c = start_symb_set[index]
-            is_brk = (c in start_brk_set)
-            if not is_brk:
-                continue
-
-        diff_loc, left, mid, right, _ = Ignore.getTextWithinWithDiffLoc(msg)
-        return left, mid, right
 
     def findInSortedList(item, sorted_list):
         if not sorted_list:
@@ -185,7 +108,7 @@ class Ignore:
         if is_url:
             return False
 
-        left, mid, right = Ignore.getTextWithin(txt)
+        left, mid, right = st.getTextWithin(txt)
         is_path = Ignore.isPath(mid)
         if is_path:
             return True
@@ -201,7 +124,7 @@ class Ignore:
 
         try:
             find_msg = msg.lower()
-            left, mid, right = Ignore.getTextWithin(find_msg)
+            left, mid, right = st.getTextWithin(find_msg)
 
             is_keep = (Ignore.isKeep(find_msg) or Ignore.isKeep(mid))
             if is_keep:

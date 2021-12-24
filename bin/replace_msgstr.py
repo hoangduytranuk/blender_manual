@@ -60,11 +60,13 @@ class ReplaceMSGSTR(POTaskBase):
     #         msg = f'"{txt}",'
     #         print(msg)
 
-
+# -f /Users/hoangduytran/Dev/tran/blender_ui/2.79b/vi.po -tr -tran /Users/hoangduytran/test_283_no_abbrev_space_dot.po -fuz -o /Users/hoangduytran/retran_279b.po
+# potask.py -ig -rpl -f /Users/hoangduytran/test_283_no_abbrev_space_dot.po -of /Users/hoangduytran/test_283_20211217.po
     def performTask(self):
         self.setFiles()
         DOT_CHAR = '.'
         SPACE_CHAR = ' '
+        COLON_CHAR = ':'
 
         msg_data = c.load_po(self.po_path)
 
@@ -75,6 +77,7 @@ class ReplaceMSGSTR(POTaskBase):
 
         end_dot_pat = re.compile(r'\.$')
         end_space_pat = re.compile(r' $')
+        end_colon_pat = re.compile(r':$')
         msgid : str = None
         msgstr: str = None
         changed = False
@@ -97,6 +100,13 @@ class ReplaceMSGSTR(POTaskBase):
             if is_empty:
                 continue
 
+            is_debug = ("Intersection Type:" in msgid)
+            if is_debug:
+                print('debug')
+
+            id_end_colon = (end_colon_pat.search(msgid) is not None)
+            str_end_colon = (end_colon_pat.search(msgstr) is not None)
+
             id_end_dot = (end_dot_pat.search(msgid) is not None)
             id_end_space = (end_space_pat.search(msgid) is not None)
             str_end_dot = (end_dot_pat.search(msgstr) is not None)
@@ -106,17 +116,22 @@ class ReplaceMSGSTR(POTaskBase):
             case_2 = (not id_end_dot and str_end_dot)
             case_3 = (id_end_space and not str_end_space)
             case_4 = (not id_end_space and str_end_space)
-            is_diff = (case_1 or case_2 or case_3 or case_4)
+            case_5 = (id_end_colon and not str_end_colon)
+            case_6 = (not id_end_colon and str_end_colon)
+
+            is_diff = (case_1 or case_2 or case_3 or case_4 or case_5 or case_6)
             if not is_diff:
                 continue
 
             new_msgstr = msgstr
             if case_1:
                 new_msgstr += DOT_CHAR
-            elif (case_2 or case_4):
+            elif (case_2 or case_4 or case_6):
                 new_msgstr = msgstr[:-1]
             elif case_3:
                 new_msgstr += SPACE_CHAR
+            elif case_5:
+                new_msgstr += COLON_CHAR
             else:
                 continue
             m.string = new_msgstr

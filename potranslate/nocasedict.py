@@ -88,42 +88,30 @@ class NoCaseDict(OrderedDict):
         self.initNumericalPatternList()
 
 
-    # def __contains__(self, key):
-    #     is_there = (key.lower() in self.proxy)
-    #     # key = Key(key)
-    #     # is_there = super(NoCaseDict, self).__contains__(key)
-    #     # # dd(f'__contains__:[{key}], is_there:{is_there}')
-    #     return is_there
-    #
-    # def __setitem__(self, key, value):
-    #     super(NoCaseDict, self).__setitem__(key, value)
-    #     self.proxy[key] = key
-    #     # lkey_key = Key(key)
-    #     # super(NoCaseDict, self).__setitem__(lkey_key, value)
-    #     # self.local_keys.append(key.lower())
-    #     # if self.is_operational:
-    #     #     self.is_dirty = True
-    #
-    # def __getitem__(self, key):
-    #     key = self.proxy[key.lower()]
-    #     return super(NoCaseDict, self).__getitem__(key)
-    #
-    #     # key = Key(key)
-    #     # try:
-    #     #     value = super(NoCaseDict, self).__getitem__(key)
-    #     #     # dd(f'__getitem__:[{key}], value:[{value}]')
-    #     #     return value
-    #     # except Exception as e:
-    #     #     df.LOG(f'{e}', error=True)
-    #     #     return None
+    def __contains__(self, key):
+        key = Key(key)
+        is_there = super(NoCaseDict, self).__contains__(key)
+        return is_there
+    
+    def __setitem__(self, key, value):
+        lkey_key = Key(key)
+        super(NoCaseDict, self).__setitem__(lkey_key, value)
+    
+    def __getitem__(self, key):
+        key = Key(key)
+        try:
+            value = super(NoCaseDict, self).__getitem__(key)
+            return value
+        except Exception as e:
+            df.LOG(f'{e}', error=True)
+            return None
 
     def get(self, key):
         left, mid, right = None, None, None
         try:
-            k_lower = key.lower()
-            is_in = (k_lower in self)
+            is_in = (key in self)
             if is_in:
-                trans_txt = self[k_lower]
+                trans_txt = self[key]
             else:
                 left, mid, right = st.getTextWithin(k_lower)
                 is_in = (mid in self)
@@ -152,15 +140,17 @@ class NoCaseDict(OrderedDict):
 
     def loadData(self, file_path, is_lower=True):
         dic = cm.loadJSONDic(file_name=file_path)
-        self.original_data_set = OrderedDict(dic)
+        # self.original_data_set = OrderedDict(dic)
+        data_list = list(dic.items())
+        data_list.sort()
+        self.update(data_list)
+        # if is_lower:
+        #     data = [(k.lower(), v) for (k, v) in dic.items()]
+        # else:
+        #     data = list(dic.items())
 
-        if is_lower:
-            data = [(k.lower(), v) for (k, v) in dic.items()]
-        else:
-            data = list(dic.items())
-
-        data.sort()
-        self.update(data)
+        # data.sort()
+        # self.update(data)
 
     def createSentenceStructureDict(self, loaded_dict):
         def sortingKeyFunction(item):
@@ -443,6 +433,7 @@ class NoCaseDict(OrderedDict):
         new_tran = str(tran)
         # df.LOG(f'[{new_tran}]')
         seen_list = {}
+        loc_found=[]
         while not is_finished:
             # 1. locate references in the translation text
             found_ref_dict = pu.patternMatchAll(df.TRAN_REF_PATTERN, new_tran)
@@ -455,6 +446,13 @@ class NoCaseDict(OrderedDict):
             found_ref_list = list(found_ref_dict.items())
             found_ref_list.sort(reverse=True)
             for ref_loc, ref_mm in found_ref_list:
+                is_done_once = (ref_loc in loc_found)
+                if is_done_once:
+                    msg = f'REFERENCE [{ref_mm.txt}] is recursive, exit!'
+                    raise ValueError(msg)
+                else:
+                    loc_found.append(ref_loc)
+
                 ref_found = ref_mm.txt
                 lcase_ref_found = ref_found.lower()
                 dict_selected = self

@@ -797,7 +797,6 @@ class Common:
                 replace_txt = f'{abbrev_part} ({exp_part})'
                 replace_txt = replace_txt.title()
                 new_txt = left + replace_txt + right
-                print(new_txt)
             return new_txt
 
         except Exception as e:

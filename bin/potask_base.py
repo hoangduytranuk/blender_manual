@@ -55,15 +55,19 @@ END_WORD_SYMBOLS = re.compile(r'\W+$')
 DOT_SPACES = re.compile(r'^[\s\.]+$')
 
 class POResultRecord(object):
-    def __init__(self, line_no, msgid, msgstr):
+    def __init__(self, line_no, msgid, msgstr, alternative_tran=None, alternative_label=None):
         self.line_no = line_no
         self.msgid = msgid
         self.msgstr = msgstr
+        self.alt_msgstr = alternative_tran
+        self.alt_lbl = (alternative_label if bool(alternative_label) else "alternative")
 
     def __repr__(self):
         self.msgid = ("" if not self.msgid else self.msgid)
         self.msgstr = ("" if not self.msgstr else self.msgstr)
-        txt = f'[{self.line_no}]; msgid:"{self.msgid}"; msgstr:"{self.msgstr}"'
+        txt = f'[{self.line_no}];\nmsgid:"{self.msgid}";\nmsgstr:"{self.msgstr}"'
+        if self.alt_msgstr:
+            txt += f'\n{self.alt_lbl}:[{self.alt_msgstr}]\n\n'
         return txt
 
 class POTaskBase(list):
@@ -177,7 +181,7 @@ class POTaskBase(list):
     def showResult(self):
         has_records = (len(self) > 0)
         if not has_records:
-            msg = f'Either NOTHING is found.'
+            msg = f'NOTHING is found.'
             print(msg)
             return
 

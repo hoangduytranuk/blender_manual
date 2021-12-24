@@ -34,6 +34,8 @@ class ClearPO(POTaskBase):
                 m.auto_comments = []
                 m.user_comments = []
                 m.locations = []
+                m.flags = ()
+
             changed = True
 
         is_output = (changed and bool(self.opo_path))

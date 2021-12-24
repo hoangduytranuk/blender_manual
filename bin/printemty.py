@@ -7,13 +7,16 @@ class PrintEmptyLine(POTaskBase):
     def __init__(self,
                  input_file=None,
                  output_to_file=None,
-                 validate_file=None
+                 validate_file=None,
+                 is_msgstr = None,
                  ):
         POTaskBase.__init__(
                 self,
                 input_file=input_file,
                 output_to_file=output_to_file,
-                validate_file=validate_file)
+                validate_file=validate_file,
+                is_msgstr=is_msgstr
+        )
 
     def performTask(self):
 
@@ -51,7 +54,8 @@ class PrintEmptyLine(POTaskBase):
             if self.count_number_of_lines:
                 self.line_count += 1
 
-            r = POResultRecord(index+1, msgid, "")
+            v = (m.string if self.is_msgstr else "")
+            r = POResultRecord(index+1, msgid, v)
             self.append(r)
         self.showResult()
 

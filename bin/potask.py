@@ -8,8 +8,11 @@ from greppo import GrepPO
 from translatepo import TranslatePO
 from rmabbr import RemoveAbbr
 from replace_msgstr import ReplaceMSGSTR
+from updatedict import UpdateDict
 
 # -tr -tran /Users/hoangduytran/Dev/tran/blender_ui/3x/vi.po -f /Users/hoangduytran/new_vi_mix_3_1_and_2_79_0001.po
+# -f /Users/hoangduytran/retran_283.po -tr -fuz -o /Users/hoangduytran/retran_283_0001.po
+# -tr -f /Users/hoangduytran/Dev/tran/blender_ui/3x/vi.po -tran /Users/hoangduytran/Dev/tran/blender_ui/merged.po -ig -cl
 
 parser = ArgumentParser()
 parser.add_argument("-f", "--from_file", dest="from_file", help="PO files to process.")
@@ -37,6 +40,7 @@ parser.add_argument("-rpl", "--replace_msgstr", dest="replace_msgstr", help="Rep
 parser.add_argument("-ext", "--extensions", dest="search_extensions", help="List of extensions to search for, separated by vertical bar '|', ie. '*.c|*.cpp|*.h'")
 parser.add_argument("-fuz", "--set_fuzzy", dest="set_translation_fuzzy", help="Set changed entry of translation to fuzzy, so can check for its accuracy later", action='store_const', const=True)
 parser.add_argument("-mcase", "--match_case", dest="apply_case_matching_orig_txt", help="Apply case matching with msgid when obtain translation from dictionary", action='store_const', const=True)
+parser.add_argument("-updict", "--update_dict", dest="update_dictionary", help="Update dictionary", action='store_const', const=True)
 
 args = parser.parse_args()
 
@@ -45,6 +49,7 @@ is_clearing=(True if args.clear_po else False)
 is_translating=(True if args.translate_po else False)
 is_remove_abbr = (True if args.remove_abbreviations else False)
 is_replace_msgstr = (True if args.replace_msgstr else False)
+is_update_dictionary = (True if args.update_dictionary else False)
 
 # ReplaceMSGSTR
 if is_clearing:
@@ -87,11 +92,20 @@ elif is_replace_msgstr:
                 input_file=args.from_file,
                 output_to_file=args.output_to_file
         )
+elif is_update_dictionary:
+        x = UpdateDict(
+                input_file=args.from_file,
+                output_to_file=args.output_to_file,
+                translation_file=args.translation_file,
+                set_translation_fuzzy=args.set_translation_fuzzy,
+                apply_case_matching_orig_txt=args.apply_case_matching_orig_txt
+        )
 else:
         x = PrintEmptyLine(
                 input_file=args.from_file,
                 output_to_file=args.output_to_file,
-                validate_file=args.validate_file
+                validate_file=args.validate_file,
+                is_msgstr=args.display_msgstr
                 )
 
 x.count_number_of_lines = (True if args.count_number_of_lines else False)
@@ -99,4 +113,5 @@ x.filter_ignored = (True if args.filter_ignored else False)
 
 x.performTask()
 # -s -dmid -mstr -p "Delta" -of /Users/hoangduytran/test_0001.po
+# -tr -f /Users/hoangduytran/Dev/tran/blender_ui/3x/vi.po -tran /Users/hoangduytran/Dev/tran/blender_ui/merged.po -ig -cl
 
