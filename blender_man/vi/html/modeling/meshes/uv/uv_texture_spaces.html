@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UVs &amp; Texture Space &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/uv/uv_texture_spaces.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Unwrapping" href="unwrapping/index.html" />
+    <link rel="prev" title="Các UV -- UVs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/index.html">Công Cụ -- Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting/index.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Các UV -- UVs</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">UVs &amp; Texture Space</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#uv-maps">UV Maps</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#texture-space">Texture Space</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#editing">Biên Soạn -- Editing</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#accessing">Accessing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="unwrapping/index.html">Unwrapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tools/index.html">Công Cụ -- Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="editing.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="workflows/index.html">Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="applying_image.html">Using UV Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+          <li><a href="index.html">Các UV -- UVs</a> &raquo;</li>
+      <li>UVs &amp; Texture Space</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uvs-texture-space">
+<h1>UVs &amp; Texture Space<a class="headerlink" href="#uvs-texture-space" title="Permalink to this headline"></a></h1>
+<section id="uv-maps">
+<span id="uv-maps-panel"></span><h2>UV Maps<a class="headerlink" href="#uv-maps" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id3">
+<img alt="../../../_images/modeling_meshes_uv_uv-texture-spaces_uv-maps.png" src="../../../_images/modeling_meshes_uv_uv-texture-spaces_uv-maps.png" />
+<figcaption>
+<p><span class="caption-text">The UV Maps panel in the Mesh tab.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the Mesh tab the UV maps panel contains a <a class="reference internal" href="../../../interface/controls/templates/list_view.html#ui-list-view"><span class="std std-ref">List view</span></a>
+that lists the UV maps created for this mesh.
+The selected map is displayed in the UV Editor.</p>
+<dl class="simple">
+<dt>Active Render</dt><dd><p>Click the camera icon to enable that UV texture for rendering.
+If no other map is explicitly specified.</p>
+</dd>
+<dt>Cộng Thêm <code class="docutils literal notranslate"><span class="pre">+</span></code> -- Add <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>Clicking the <em>Add</em> button duplicates the selected UV map.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>Note that each texture can be mapped to a specific UV layout.</p>
+</div>
+</section>
+<section id="texture-space">
+<span id="properties-texture-space"></span><span id="bpy-ops-curve-match-texture-space"></span><span id="bpy-types-mesh-texture-mesh"></span><span id="bpy-types-texspace"></span><h2>Texture Space<a class="headerlink" href="#texture-space" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Properties ‣ Object Data ‣ Texture Space</span></p>
+</dd>
+</dl>
+</div>
+<p>These are settings of the <a class="reference internal" href="../../../glossary/index.html#term-Texture-Space"><span class="xref std std-term">Texture Space</span></a> used by generated texture mapping.
+The visualization of the texture space can be activated in the <a class="reference internal" href="../../../scene_layout/object/properties/display.html"><span class="doc">Hiển Thị của Cổng Nhìn -- Viewport Display</span></a>.</p>
+<dl>
+<dt>Auto Texture Space</dt><dd><p>Adjusts the active object's texture space automatically when transforming the object.</p>
+<dl class="simple">
+<dt>Location, Size</dt><dd><p>If the texture space is not calculated automatically then you can define
+the location and size of the texture space relative to the base object.
+These can also be adjusted from the 3D Viewport, see <a class="reference internal" href="#editing">Editing</a> for more information.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl class="simple">
+<dt>Texture Mesh</dt><dd><p>Use another mesh for texture indices, the vertex of the two objects must be perfectly aligned.
+Otherwise the UV map will be distorted. Note that, this is only for mesh objects.</p>
+</dd>
+<dt>Match Texture Space</dt><dd><p>Modifies the <em>Location</em> and <em>Size</em> to match the objects bounding box.
+This disables Auto Texture Space. Note that, this is only for curve objects.</p>
+</dd>
+</dl>
+<section id="editing">
+<span id="properties-texture-space-editing"></span><h3>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Object ‣ Transform ‣ Scale/Move Texture Space</span></p>
+</dd>
+</dl>
+</div>
+<p>To modify the texture space from the 3D Viewport, enable
+<a class="reference internal" href="../../../scene_layout/object/editing/transform/texture_space.html#modeling-transform-edit-texture-space"><span class="std std-ref">Edit Texture Space</span></a> while transforming an object.</p>
+</section>
+<section id="accessing">
+<h3>Accessing<a class="headerlink" href="#accessing" title="Permalink to this headline"></a></h3>
+<p>The automatically calculated UV map can be accessed by an object's material through
+the <em>Generated</em> output of the <a class="reference internal" href="../../../render/shader_nodes/input/texture_coordinate.html"><span class="doc">Texture Coordinate Node</span></a>.
+This output can then be used to map any texture onto an object.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Generated texture spaces do not have rotation support, to overcome this,
+a <a class="reference internal" href="../../../render/shader_nodes/vector/mapping.html"><span class="doc">Mapping Node</span></a> can be used to rotate the UV map.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Các UV -- UVs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unwrapping/index.html" class="btn btn-neutral float-right" title="Unwrapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/uv/uv_texture_spaces.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/uv/uv_texture_spaces%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/meshes/uv/uv_texture_spaces.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

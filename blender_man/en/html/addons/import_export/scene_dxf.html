@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoCAD DXF &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/scene_dxf.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Camera Animation" href="anim_camera.html" />
+    <link rel="prev" title="BioVision Motion Capture (BVH)" href="anim_bvh.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Import-Export</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="node_shaders_info.html">Import &amp; Export of Node Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coat3D.html">3D-Coat Applink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_atomic.html">Atomic Blender (PDB/XYZ)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">AutoCAD DXF</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#import">Import</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#dxf-type-mapping">DXF Type Mapping</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#dxf-to-curves">DXF to Curves</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#dxf-to-meshes">DXF to Meshes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#missing-dxf-types">Missing DXF Types</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#properties">Properties</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#merge-options">Merge Options</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#line-thickness-and-width">Line Thickness and Width</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#optional-objects">Optional Objects</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#view-options">View Options</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#georeferencing">Georeferencing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#export">Export</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#supported-data">Supported Data</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#unsupported-data">Unsupported Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="anim_camera.html">Camera Animation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="paper_model.html">Paper Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pc2.html">Pointcache (pc2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_fbx.html">FBX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="images_as_planes.html">Images as Planes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="palettes.html">Import Palettes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape_mdd.html">NewTek MDD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_nuke_chan.html">Nuke Animation (chan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_stl.html">STL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve_svg.html">Scalable Vector Graphics (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_ply.html">Stanford PLY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_uv_layout.html">UV Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_obj.html">Wavefront OBJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_x3d.html">Web3D X3D/VRML2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_gltf2.html">glTF 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Add-ons</a> &raquo;</li>
+          <li><a href="index.html">Import-Export</a> &raquo;</li>
+      <li>AutoCAD DXF</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autocad-dxf">
+<h1>AutoCAD DXF<a class="headerlink" href="#autocad-dxf" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Category</dt>
+<dd class="field-odd"><p>Import-Export</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">File ‣ Import/Export ‣ AutoCAD DXF</span></p>
+</dd>
+</dl>
+</div>
+<section id="import">
+<span id="dxf-import"></span><h2>Import<a class="headerlink" href="#import" title="Permalink to this headline"></a></h2>
+<p>DXF layers are reflected as Blender groups. This importer uses a general purpose DXF library called “dxfgrabber”.</p>
+<section id="dxf-type-mapping">
+<h3>DXF Type Mapping<a class="headerlink" href="#dxf-type-mapping" title="Permalink to this headline"></a></h3>
+<p>To be as non-destructive as possible the importer aims to map as many DXF types to
+Blender curves as possible.</p>
+<section id="dxf-to-curves">
+<h4>DXF to Curves<a class="headerlink" href="#dxf-to-curves" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LINE</span></code> as <code class="docutils literal notranslate"><span class="pre">POLYLINE</span></code> curve (with the option to merge connecting lines).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(LW)POLYLINE</span></code>, <code class="docutils literal notranslate"><span class="pre">(LW)POLYGON</span></code> as <code class="docutils literal notranslate"><span class="pre">POLYLINE</span></code> curve if they have no bulges else as <code class="docutils literal notranslate"><span class="pre">BEZIER</span></code> curve.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARC</span></code>s, <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code>s and <code class="docutils literal notranslate"><span class="pre">ELLIPSE</span></code>s as <code class="docutils literal notranslate"><span class="pre">BEZIER</span></code> curves.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HELIX</span></code>es (3D) as <code class="docutils literal notranslate"><span class="pre">BEZIER</span></code> curves.</p></li>
+</ul>
+</section>
+<section id="dxf-to-meshes">
+<h4>DXF to Meshes<a class="headerlink" href="#dxf-to-meshes" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MESH</span></code> is mapped to a mesh object with a Subdivision Surface modifier, including the edge crease.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POLYFACE</span></code>s and <code class="docutils literal notranslate"><span class="pre">POLYMESH</span></code>es are imported to a mesh object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3DFACE</span></code> s, <code class="docutils literal notranslate"><span class="pre">SOLID</span></code> s, <code class="docutils literal notranslate"><span class="pre">POINT</span></code> s are imported into one combined mesh object
+per layer called <code class="docutils literal notranslate"><span class="pre">layername_3Dfaces</span></code>.</p></li>
+</ul>
+</section>
+<section id="missing-dxf-types">
+<h4>Missing DXF Types<a class="headerlink" href="#missing-dxf-types" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>Hatches</p></li>
+<li><p>Leader</p></li>
+</ul>
+</section>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h3>
+<section id="merge-options">
+<h4>Merge Options<a class="headerlink" href="#merge-options" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Blocks As</dt><dd><p>DXF Blocks can be imported as linked objects or group instances.
+Linked objects use parenting for DXF sub-blocks (blocks in blocks).</p>
+</dd>
+<dt>Parent Blocks to Bounding Boxes</dt><dd><p>Draw a bounding box around blocks.</p>
+</dd>
+<dt>Merged Objects</dt><dd><p>Since Blender (v2.71) is pretty slow at adding objects the user might want to
+merge similar DXF geometry to one object.</p>
+<dl class="simple">
+<dt>By Layer</dt><dd><p>Produces one object per layer; if there is mesh, curve, lamp, text data on one layer
+one object per layer and per Blender object.</p>
+</dd>
+<dt>By Layer and DXF Type</dt><dd><p>The second not only differentiates between Blender data types but also DXF types,
+such as <code class="docutils literal notranslate"><span class="pre">LWPOLYLINE</span></code> and <code class="docutils literal notranslate"><span class="pre">POLYLINE</span></code>.</p>
+</dd>
+<dt>By Layer and Closed No-bulge Polygons</dt><dd><p>Closed polylines with no bulge, that is no curved edges, can be merged to one single mesh.
+This makes sense when the DXF polylines have an extrusion and/or an elevation attribute,
+which basically describes a location/rotation/scale transformation.
+If this merge option is chosen, line thickness settings will be ignored/disabled.</p>
+</dd>
+<dt>By Layer and DXF-Type and Blocks</dt><dd><p>For DXF files with a block being referenced many times, this option allows to insert the same block many times
+with one instanced-face object instead of with one object for each time the block needs to be inserted.
+Unfortunately this works only for block inserts that are uniformly scaled.
+Non-uniformly scaled block inserts are being imported as defined in <em>Blocks As</em>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Combine <code class="docutils literal notranslate"><span class="pre">LINE</span></code> Entities to Polygons</dt><dd><p>Separated lines in DXF might be merged to one consecutive Blender poly curve.
+Similar to <em>Remove Doubles</em> but for curves.</p>
+</dd>
+</dl>
+</section>
+<section id="line-thickness-and-width">
+<h4>Line Thickness and Width<a class="headerlink" href="#line-thickness-and-width" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Represent Line Thickness/Width</dt><dd><p>DXF line attributes <em>thickness</em> and <em>width</em> have an effect on line in Z and X/Y direction respectively.
+A straight line might be turned to a cube by its attributes for instance.
+Therefore, in Blender these attributes are represented with curve extrusion, bevel and taper objects.</p>
+</dd>
+<dt>Merge by Attributes</dt><dd><p>If both <em>Merged Objects</em> and <em>Represent Line Thickness/Width</em> are activated
+the object merging needs to be extended to separate all lines width different thickness and width.
+With <em>Merge by Attributes</em> this separation option is also available without
+the actual representation of line thickness and width.</p>
+</dd>
+</dl>
+</section>
+<section id="optional-objects">
+<h4>Optional Objects<a class="headerlink" href="#optional-objects" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Import <code class="docutils literal notranslate"><span class="pre">TEXT</span></code></dt><dd><p>(<code class="docutils literal notranslate"><span class="pre">TEXT</span></code>, <code class="docutils literal notranslate"><span class="pre">MTEXT</span></code>)</p>
+</dd>
+<dt>Import <code class="docutils literal notranslate"><span class="pre">LIGHT</span></code></dt><dd><p>Including support for AutoCAD colors.</p>
+</dd>
+<dt>Export <code class="docutils literal notranslate"><span class="pre">ACIS</span></code> Entities</dt><dd><p>Export NURBS 3D geometry (<code class="docutils literal notranslate"><span class="pre">BODY</span></code>, <code class="docutils literal notranslate"><span class="pre">REGION</span></code>, <code class="docutils literal notranslate"><span class="pre">PLANESURFACE</span></code>, <code class="docutils literal notranslate"><span class="pre">SURFACE</span></code>, <code class="docutils literal notranslate"><span class="pre">3DSOLID</span></code>) to ACIS-Sat files,
+since this is the format AutoCAD stores NURBS to DXF.
+You are going to be notified about the amount of stored <code class="docutils literal notranslate"><span class="pre">.sat</span></code>/<code class="docutils literal notranslate"><span class="pre">.sab</span></code> files.</p>
+</dd>
+</dl>
+</section>
+<section id="view-options">
+<h4>View Options<a class="headerlink" href="#view-options" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Display Groups in Outliner(s)</dt><dd><p>Switch the Outliner display mode to <code class="docutils literal notranslate"><span class="pre">GROUPS</span></code> (DXF layers are mapped to groups).</p>
+</dd>
+<dt>Import DXF File to a New Scene</dt><dd><p>Todo.</p>
+</dd>
+<dt>Center Geometry to Scene</dt><dd><p>Center the imported geometry to the center of the scene;
+the offset information is stored as a custom property to the scene.</p>
+</dd>
+</dl>
+</section>
+<section id="georeferencing">
+<h4>Georeferencing<a class="headerlink" href="#georeferencing" title="Permalink to this headline"></a></h4>
+<p>Important: DXF files do not store any information about
+the coordinate system / spherical projection of its coordinates.
+Best practice is to know the coordinate system for your specific DXF file and
+enter this information in the DXF importer interface as follows:</p>
+<dl>
+<dt>Pyproj</dt><dd><p>Installation: Download (<a class="reference external" href="https://github.com/pyproj4/pyproj">Windows</a>,
+<a class="reference external" href="https://archive.arch.ethz.ch/ia/wp-content/uploads/2013/11/pyproj.zip">macOS</a>) Pyproj and copy it to your</p>
+<pre class="literal-block">AppData/ApplicationSupport Folder/Blender/3.1/scripts/modules/.</pre>
+<p>In case you need to compile your own binary refer to
+<a class="reference external" href="https://blenderartists.org/forum/showthread.php?323358-DXF-Importer&amp;p=2664492&amp;viewfull=1#post2664492">this post</a>
+on Blender Artists.</p>
+<p>Pyproj is a Python wrapper to the PROJ library, a well-known C library used to
+convert coordinates between different coordinate systems.
+Open source GIS libraries such as PROJ are used directly or indirectly by many authorities and
+therefore can be considered well-maintained.</p>
+<p>If Pyproj is available the DXF importer shows a selection of national coordinate systems
+but lets the user also to enter a custom EPSG / SRID code.
+It also stores the SRID as a custom property to the Blender scene.
+If a scene has already such an SRID property the coordinates are being converted from
+your DXF file to target coordinate system and therefore you <strong>must</strong> specify an SRID for the DXF file.
+If no SRID custom property is available the scene SRID is by default the same as the DXF SRID.</p>
+</dd>
+<dt>No Pyproj</dt><dd><p>In case Pyproj is not available the DXF importer will only use its built-in lat/lon to X/Y converter.
+For conversion the “transverse Mercator” projection is applied that inputs a lat/lon coordinate to be used
+as the center of the projection. The lat/lon coordinate is being added to your scene as a custom property.
+Subsequent imports will convert any lat/lon coordinates to the same georeference.</p>
+<p>Important: So far only lat/lon to X/Y conversion is supported.
+If you have a DXF file with Euclidean coordinates that refer to another lat/lon center
+the conversion is not (yet) supported.</p>
+</dd>
+<dt>Rules of thumb for choosing an SRID</dt><dd><p>if you have your data from OpenStreetMap or some similar GIS service website and
+exported it with QGIS or ArcGIS the coordinates are most likely in lat/lon then use WGS84 as
+your SRID with Pyproj or “spherical” if Pyproj is not available.
+For other DXF vector maps it’s very likely that they use local / national coordinate systems.</p>
+<p>Open the DXF with a text editor (it has many thousands of lines) and
+make an educated guess looking at some coordinates.
+DXF works with “group codes”, a name Autodesk invented for “key” as in key/value pairs.
+X has group code 10, Y has 20, Z has 30. If you find a pattern like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>10, newline, whitespace, whitespace, NUMBER, newline,
+20, newline, whitespace, whitespace, NUMBER, newline,
+30, newline, whitespace, whitespace, NUMBER
+</pre></div>
+</div>
+<p>then <code class="docutils literal notranslate"><span class="pre">NUMBER</span></code> will be most likely your coordinates.
+You can probably tell from the format and/or the range of the coordinates which coordinate system it should be.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="export">
+<span id="dxf-export"></span><h2>Export<a class="headerlink" href="#export" title="Permalink to this headline"></a></h2>
+<section id="supported-data">
+<h3>Supported Data<a class="headerlink" href="#supported-data" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Mesh face: <code class="docutils literal notranslate"><span class="pre">POLYFACE</span></code> or <code class="docutils literal notranslate"><span class="pre">3DFACE</span></code></p></li>
+<li><p>Mesh edge: <code class="docutils literal notranslate"><span class="pre">LINE</span></code></p></li>
+<li><p>Modifier (optionally)</p></li>
+</ul>
+</section>
+<section id="unsupported-data">
+<h3>Unsupported Data<a class="headerlink" href="#unsupported-data" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Mesh vertex: <code class="docutils literal notranslate"><span class="pre">POINT</span></code></p></li>
+<li><p>Curve: <code class="docutils literal notranslate"><span class="pre">LINE</span></code>s or <code class="docutils literal notranslate"><span class="pre">POLYLINE</span></code></p></li>
+<li><p>Curve NURBS: <code class="docutils literal notranslate"><span class="pre">curved-POLYLINE</span></code></p></li>
+<li><p>Text: <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> or (wip: <code class="docutils literal notranslate"><span class="pre">MTEXT</span></code>)</p></li>
+<li><p>Camera: <code class="docutils literal notranslate"><span class="pre">POINT</span></code> or <code class="docutils literal notranslate"><span class="pre">VIEW</span></code> or <code class="docutils literal notranslate"><span class="pre">VPORT</span></code> or (wip: <code class="docutils literal notranslate"><span class="pre">INSERT(ATTRIB+XDATA)</span></code>)</p></li>
+<li><p>Light: <code class="docutils literal notranslate"><span class="pre">POINT</span></code> or (wip: <code class="docutils literal notranslate"><span class="pre">INSERT(ATTRIB+XDATA)</span></code>)</p></li>
+<li><p>Empty: <code class="docutils literal notranslate"><span class="pre">POINT</span></code> or (wip: <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>)</p></li>
+<li><p>Object matrix: extrusion (<code class="docutils literal notranslate"><span class="pre">210-group</span></code>), rotation, elevation</p></li>
+<li><p>3D Viewport: (wip: <code class="docutils literal notranslate"><span class="pre">VIEW</span></code>, <code class="docutils literal notranslate"><span class="pre">VPORT</span></code>)</p></li>
+<li><p>Instancing vert: auto-instanced or (wip: <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>)</p></li>
+<li><p>Instancing frame: auto-instanced or (wip: <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>)</p></li>
+<li><p>Instancing group: auto-instanced or (wip: <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>)</p></li>
+<li><p>Material: <code class="docutils literal notranslate"><span class="pre">LAYER</span></code>, <code class="docutils literal notranslate"><span class="pre">COLOR</span></code> and <code class="docutils literal notranslate"><span class="pre">STYLE</span></code> properties</p></li>
+<li><p>Group: <code class="docutils literal notranslate"><span class="pre">BLOCK</span></code> and <code class="docutils literal notranslate"><span class="pre">INSERT</span></code></p></li>
+<li><p>Parenting: <code class="docutils literal notranslate"><span class="pre">BLOCK</span></code> and <code class="docutils literal notranslate"><span class="pre">INSERT</span></code></p></li>
+<li><p>Visibility status: <code class="docutils literal notranslate"><span class="pre">LAYER_on</span></code></p></li>
+<li><p>Frozen status: <code class="docutils literal notranslate"><span class="pre">LAYER_frozen</span></code></p></li>
+<li><p>Locked status: <code class="docutils literal notranslate"><span class="pre">LAYER_locked</span></code></p></li>
+<li><p>Surface</p></li>
+<li><p>Meta</p></li>
+<li><p>Armature</p></li>
+<li><p>Lattice</p></li>
+<li><p><abbr title="InterPOlated">IPO</abbr>/Animation</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="anim_bvh.html" class="btn btn-neutral float-left" title="BioVision Motion Capture (BVH)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="anim_camera.html" class="btn btn-neutral float-right" title="Camera Animation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/import_export/scene_dxf.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/import_export/scene_dxf%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Faddons/import_export/scene_dxf.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

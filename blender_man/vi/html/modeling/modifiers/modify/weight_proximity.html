@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertex Weight Proximity Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/modify/weight_proximity.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Weighted Normal Modifier" href="weighted_normal.html" />
+    <link rel="prev" title="Vertex Weight Mix Modifier" href="weight_mix.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#modify">Modify</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="data_transfer.html">Data Transfer Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_cache.html">Mesh Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_sequence_cache.html">Mesh Sequence Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="normal_edit.html">Normal Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_project.html">UV Project Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_warp.html">UV Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_edit.html">Vertex Weight Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_mix.html">Vertex Weight Mix Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vertex Weight Proximity Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#falloff">Suy Giảm Dần -- Falloff</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#influence">Tác Động/Ảnh Hưởng -- Influence</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="weighted_normal.html">Weighted Normal Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Vertex Weight Proximity Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vertex-weight-proximity-modifier">
+<span id="bpy-types-vertexweightproximitymodifier"></span><span id="index-0"></span><h1>Vertex Weight Proximity Modifier<a class="headerlink" href="#vertex-weight-proximity-modifier" title="Permalink to this headline"></a></h1>
+<p>This modifier sets the weights of the given vertex group,
+based on the distance between the object (or its vertices),
+and another target object (or its geometry).</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
+All values below 0.0 will be set to 0.0, and all values above 1.0 will be set to 1.0.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>You can view the modified weights in Weight Paint Mode.
+This also implies that you will have to disable the <em>Vertex Weight Proximity</em> modifier
+if you want to see the original weights of the vertex group you are editing.</p>
+</div>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-proximity_panel.png"><img alt="../../../_images/modeling_modifiers_modify_weight-proximity_panel.png" src="../../../_images/modeling_modifiers_modify_weight-proximity_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Vertex Weight Proximity modifier panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Vertex Group</dt><dd><p>The vertex group to affect.</p>
+</dd>
+<dt>Target Object</dt><dd><p>The object from which to compute distances.</p>
+</dd>
+<dt>Proximity Mode</dt><dd><dl>
+<dt>Object Distance</dt><dd><p>Use the distance between the modified mesh object and the target object as
+weight for all vertices in the affected vertex group.</p>
+</dd>
+<dt>Geometry Distance</dt><dd><p>Use the distance between each vertex and the target object, or its geometry.</p>
+<dl class="simple">
+<dt>Vertex</dt><dd><p>This will set each vertex's weight from its distance to the nearest vertex of the target object.</p>
+</dd>
+<dt>Edge</dt><dd><p>This will set each vertex's weight from its distance to the nearest edge of the target object.</p>
+</dd>
+<dt>Face -- Bề Mặt</dt><dd><p>This will set each vertex's weight from its distance to the nearest face of the target object.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If you enable more than one of them, the shortest distance will be used.
+If the target object has no geometry (e.g. an empty or camera),
+it will use the location of the object itself.</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt>Lowest</dt><dd><p>Distance mapping to 0.0 weight.</p>
+</dd>
+<dt>Highest</dt><dd><p>Distance mapping to 1.0 weight.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p><em>Lowest</em> can be set above <em>Highest</em> to reverse the mapping.</p>
+</div>
+<dl class="simple">
+<dt>Bình Thường Hóa Trọng Lượng</dt><dd><p>Scale the weights in the vertex group to keep the relative weight
+but the lowest and highest values follow the full 0 - 1 range.</p>
+</dd>
+</dl>
+<section id="falloff">
+<h3>Suy Giảm Dần -- Falloff<a class="headerlink" href="#falloff" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Thể Loại -- Type</dt><dd><p>Type of mapping.</p>
+<dl class="simple">
+<dt>Linear</dt><dd><p>No mapping.</p>
+</dd>
+<dt>Custom Curve</dt><dd><p>Allows you to manually define the mapping using a curve.</p>
+</dd>
+<dt>Sharp, Smooth, Root and Sphere</dt><dd><p>These are classical mapping functions, from spikiest to roundest.</p>
+</dd>
+<dt>Random</dt><dd><p>Uses a random value for each vertex.</p>
+</dd>
+<dt>Median Step</dt><dd><p>Creates binary weights (0.0 or 1.0), with 0.5 as cutting value.</p>
+</dd>
+</dl>
+</dd>
+<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;--&gt;</span></code></dt><dd><p>Inverts the falloff.</p>
+</dd>
+</dl>
+</section>
+<section id="influence">
+<h3>Tác Động/Ảnh Hưởng -- Influence<a class="headerlink" href="#influence" title="Permalink to this headline"></a></h3>
+<p>Those settings are the same for the three <em>Vertex Weight</em> modifiers,
+see the <a class="reference internal" href="weight_edit.html#modeling-modifiers-weight-edit-influence-mask-options"><span class="std std-ref">Vertex Weight Edit modifier</span></a> page.</p>
+</section>
+</section>
+<section id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<p>This example shows the usage of distance from a target object to dynamically control
+a <a class="reference internal" href="../deform/wave.html"><span class="doc">Wave</span></a> modifier with a modified vertex group:</p>
+<div class="peertube_wrapper" style="">
+<iframe allowfullscreen="true" src="https://video.blender.org/videos/embed/579d7bd1-3f25-4441-ad7e-2d52667845c1" style="height: 315px; width: 560px">
+</iframe></div><p><a class="reference external" href="https://wiki.blender.org/wiki/File:ManModifiersWeightVGroupEx.blend">The blend-file</a>, TEST_1 scene.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="weight_mix.html" class="btn btn-neutral float-left" title="Vertex Weight Mix Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="weighted_normal.html" class="btn btn-neutral float-right" title="Weighted Normal Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/modify/weight_proximity.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/modify/weight_proximity%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/modifiers/modify/weight_proximity.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

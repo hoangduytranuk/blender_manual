@@ -59,12 +59,12 @@ class Paragraph(list):
                 return
 
             tran = self.tf.isInDict(orig_txt)
-            # if not tran:
-            #     tran = self.translateText(orig_txt)
+            if not tran:
+                tran = self.translateText(orig_txt)
             if tran:
                 tran = cm.removeTheWord(tran)
                 self.tl_txt = tran
-                df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
+                # df.LOG(f'from:[{self.sl_txt}]=>[{self.tl_txt}]')
         except Exception as e:
             df.LOG(f'{e};', error=True)
 

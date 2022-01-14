@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Điều Tra Cảnh Thực Tế Ảo -- VR Scene Inspection &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/3d_view/vr_scene_inspection.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Thêm Đường Cong" href="../add_curve/index.html" />
+    <link rel="prev" title="Góc Nhìn đã Lưu -- Stored Views" href="stored_views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Liệt Kê Hạng Mục của các Trình Bổ Sung -- Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Góc Nhìn 3D -- 3D View</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="3d_navigation.html">Điều Hướng 3D -- 3D Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math_vis_console.html">Bàn Giao Tiếp Diễn Họa Toán Học -- Math Vis Console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="measureit.html">Đo Lường Nó -- MeasureIt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="stored_views.html">Góc Nhìn đã Lưu -- Stored Views</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Điều Tra Cảnh Thực Tế Ảo -- VR Scene Inspection</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#activation">Kích Hoạt -- Activation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#interface">Giao Diện -- Interface</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#vr-session">Phiên Sử Dụng <abbr title="VR">Thực Tế Ảo</abbr> -- VR Session</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#view">Góc Nhìn -- View</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#landmarks">Địa Ranh -- Landmarks</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#action-maps"><abbr title="bố trí">Ánh Xạ Hành Động</abbr> -- Action Maps</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viewport-feedback">Phản Hồi trên Cổng Nhìn -- Viewport Feedback</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Thêm Đường Cong</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Cộng Thêm Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation -- Hoạt Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Máy Quay Phim -- Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Xây Dựng -- Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../import_export/index.html">Nhập-Xuất Khẩu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Bố Trí Ánh Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh -- Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object -- Vật Thể</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Sơn -- Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render -- Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Dựng Giàn Điều Khiển</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Bộ Phối Hình -- Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">Hệ Thống -- System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Công Cụ về Phim Video</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+          <li><a href="index.html">Góc Nhìn 3D -- 3D View</a> &raquo;</li>
+      <li>Điều Tra Cảnh Thực Tế Ảo -- VR Scene Inspection</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vr-scene-inspection">
+<h1>Điều Tra Cảnh Thực Tế Ảo -- VR Scene Inspection<a class="headerlink" href="#vr-scene-inspection" title="Permalink to this headline"></a></h1>
+<p>Trình bổ sung <abbr title="Scene Inspection">Điều Tra Cảnh</abbr> Thực Tế Ảo, <abbr title="Virtual Reality -- Thực Tế Ảo">VR</abbr>, bộc lộ và mở rộng chức năng bản địa đặc thù về thực tế ảo của Blender trong giao diện người dùng. Bộ chức năng này hiện chỉ giới hạn ở mức cho phép duyệt thảo, điều tra cảnh của các trường hợp sử dụng. Những trường hợp sử dụng cao cấp hơn cũng có thể được kích hoạt thông qua sự phát triển tiếp tục bên trong Blender.</p>
+<p>Sự hỗ trợ về thực tế ảo trong Blender được dựa trêm nền tảng tiêu chuẩn kỹ thuật OpenXR và nó đòi hỏi một số bước sắp đặt phải được thi hành. Những đòi hỏi này được giải thích trong phần <a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-head-mounted-displays"><span class="std std-ref">Head-Mounted Displays</span></a>, viết tắt là <abbr title="Head-Mounted Displays: Bộ Hiển Thị Gắn Trên Đầu">HMD</abbr>.</p>
+<section id="activation">
+<h2>Kích Hoạt -- Activation<a class="headerlink" href="#activation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Mở Blender và chuyển đến <abbr title="Preferences">Cấu Hình</abbr>, sau đó đến thẻ <abbr title="Add-ons">Trình Bổ Sung</abbr>.</p></li>
+<li><p>Bấm chuột vào <abbr title="3D View">Góc Nhìn 3D</abbr>, rồi tiếp đó vào, <abbr title="VR Scene Inspection">Điều Tra Cảnh Thực Tế Ảo</abbr> để bật tính năng, cho phép tập lệnh hoạt động.</p></li>
+</ul>
+</section>
+<section id="interface">
+<h2>Giao Diện -- Interface<a class="headerlink" href="#interface" title="Permalink to this headline"></a></h2>
+<p>Nằm trong <span class="menuselection">Cổng Nhìn 3D (3D Viewport) ‣ Thanh Bên (Sidebar) ‣ thẻ Thực Tế Ảo (VR tab)</span>.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_interface.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_interface.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_interface.jpg" style="width: 220px;" /></a>
+</figure>
+<section id="vr-session">
+<h3>Phiên Sử Dụng <abbr title="VR">Thực Tế Ảo</abbr> -- VR Session<a class="headerlink" href="#vr-session" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_vr-session.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_vr-session.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_vr-session.jpg" style="width: 220px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Khởi Động Phiên <abbr title="VR">Thực Tế Ảo</abbr> -- Start VR Session</dt><dd><p>Thử thiết lập kết nối với một nền tảng OpenXR để phân hưởng cổng chiếu với một <a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-head-mounted-displays"><span class="std std-ref">HMD</span></a>.</p>
+</dd>
+<dt>Giám Sát -- Tracking</dt><dd><dl class="simple">
+<dt>Theo Vị Trí -- Positional</dt><dd><p>Duy giám sát các thay đổi về xoay chiều của đầu mà thôi, không cho phép HMD tác động đến vị trí của <abbr title="viewer">quan sát viên</abbr> trong không gian ảo.</p>
+</dd>
+<dt>Tuyệt Đối -- Absolute</dt><dd><p>Bỏ qua dịch chuyển mắt, cái mà theo lệ thường, được thêm vào để đặt <abbr title="viewer">quan sát viên</abbr> chính xác tại <abbr title="landmarks">địa mốc</abbr>. Điều này cho phép tọa độ gốc của giám sát được xác định một cách độc lập với vị trí của <abbr title="Head-Mounted Displays: Bộ Hiển Thị Gắn Trên Đầu">HMD</abbr>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Hành Động Người Dùng Điều Khiển -- Use Controller Actions</dt><dd><p>Bật các hành động điều khiển mặc định để điều hướng cổng chiếu, giám sát điều khiển và các <abbr title="các tương tác xúc giác">haptics</abbr>.</p>
+</dd>
+</dl>
+</section>
+<section id="view">
+<h3>Góc Nhìn -- View<a class="headerlink" href="#view" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_view.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_view.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_view.jpg" style="width: 220px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Hiển Thị -- Show</dt><dd><dl class="simple">
+<dt>Sàn -- Floor</dt><dd><p>Bật/Tắt mặt phẳng nền trong góc nhìn <abbr title="VR">Thực Tế Ảo</abbr>.</p>
+</dd>
+<dt>Chú Thích -- Annotations</dt><dd><p>Bật/Tắt các nét vẽ chú thích trong góc nhìn <abbr title="VR">Thực Tế Ảo</abbr>.</p>
+</dd>
+<dt>Lựa Chọn -- Selection</dt><dd><p>Đặt khả năng hiển thị các <abbr title="selection outlines">đường viền vùng lựa chọn</abbr> trong <abbr title="VR view">góc nhìn VR</abbr>.</p>
+</dd>
+<dt>Điều Khiển -- Controllers</dt><dd><p>Set visibility of VR motion controllers.
+Requires enabling the <a class="reference internal" href="#vr-session">Use Controller Actions</a> option.</p>
+</dd>
+<dt>Vẽ Lồng Tùy Chỉnh -- Custom Overlays</dt><dd><p>Set visibility of custom operator drawing (e.g. default teleport beam).</p>
+</dd>
+</dl>
+</dd>
+<dt>Phong Cách của Bộ Điều Khiển -- Controller Style</dt><dd><p>Phong cách diễn họa bộ điều khiển chuyển động VR ưa thích.</p>
+</dd>
+<dt>Đặt Khoảng Tầm Nhìn Bắt Đầu/Kết Thúc -- Clip Start/End</dt><dd><p>Giá trị của khoảng đầu và cuối cho tầm nhìn trong <abbr title="VR view">Góc Nhìn Thực Tế Ảo</abbr>, <a class="reference internal" href="../../editors/3dview/sidebar.html#dview-view-clip"><span class="std std-ref">tựa như trong Cổng Nhìn 3D -- as in the 3D Viewport</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="landmarks">
+<h3>Địa Ranh -- Landmarks<a class="headerlink" href="#landmarks" title="Permalink to this headline"></a></h3>
+<p>Địa ranh được sử dụng để lưu các tư thế cơ sở <abbr title="reusable">tái khả dụng</abbr> (vị trí và xoay chiều) cho <abbr title="viewer">quan sát viên</abbr> trong <abbr title="virtual space">không gian ảo</abbr>. Ngoài ra, chúng ta còn có thể đặt <abbr title="base viewer reference scale">tỷ lệ tham chiếu quan sát viên cơ sở</abbr> cho các địa danh với thể loại <abbr title="Custom Object">Vật Thể Tùy Chỉnh</abbr> và <abbr title="Custom Pose">Tư Thế Tùy Chỉnh</abbr>.</p>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_landmarks.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_landmarks.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_landmarks.jpg" style="width: 220px;" /></a>
+</figure>
+<dl>
+<dt>Địa Ranh -- Landmark</dt><dd><p>Một góc nhìn trong <a class="reference internal" href="../../interface/controls/templates/list_view.html#ui-list-view"><span class="std std-ref">bảng liệt kê -- list view</span></a>.</p>
+<dl class="simple">
+<dt>Địa Ranh được Chọn -- Selected Landmark</dt><dd><p>Xác định xem những sắp đặt nào về địa danh sẽ được hiển thị bên dưới danh sách. Thay đổi địa ranh được chọn sẽ không gây ảnh hưởng gì đến <abbr title="VR view">Góc Nhìn Thực Tế Ảo</abbr>.</p>
+</dd>
+<dt>Activate <code class="docutils literal notranslate"><span class="pre">〇</span></code></dt><dd><p>Kích hoạt một địa ranh, làm cho nó thay đổi tư thế cơ sở của <abbr title="VR view">Góc Nhìn Thực Tế Ảo</abbr>.</p>
+</dd>
+<dt>Cộng Thêm <code class="docutils literal notranslate"><span class="pre">+</span></code> -- Add <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>Kiến tạo một địa ranh.</p>
+</dd>
+<dt>Xóa <code class="docutils literal notranslate"><span class="pre">-</span></code> -- Remove <code class="docutils literal notranslate"><span class="pre">-</span></code></dt><dd><p>Delete the selected landmark.</p>
+</dd>
+<dt>Add from Session <code class="docutils literal notranslate"><span class="pre">⊕</span></code></dt><dd><p>Create a landmark from the viewer pose of the running VR session.</p>
+</dd>
+<dt>Landmark Controls <code class="docutils literal notranslate"><span class="pre">v</span></code></dt><dd><dl class="simple">
+<dt>Add Landmark from Camera</dt><dd><p>Add a new landmark from the active camera object.</p>
+</dd>
+<dt>Update Custom Landmark</dt><dd><p>Update the selected landmark from the current VR viewer pose.</p>
+</dd>
+<dt>Cursor to Landmark</dt><dd><p>Move the 3D Cursor to the selected landmark.</p>
+</dd>
+<dt>Scene Camera to Landmark</dt><dd><p>Position the scene camera at the selected landmark.</p>
+</dd>
+<dt>Camera from Landmark</dt><dd><p>Create a new camera from the selected landmark.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Thể Loại -- Type</dt><dd><dl class="simple">
+<dt>Máy Quay Phim của Cảnh -- Scene Camera</dt><dd><p>Đi theo <a class="reference internal" href="../../scene_layout/scene/properties.html#scene-camera"><span class="std std-ref">máy quay phim đang hoạt động của cảnh -- scene's active camera</span></a> để xác định tư thế cơ sở của <abbr title="viewer">quan sát viên</abbr>.</p>
+</dd>
+<dt>Vật Thể Tùy Chọn -- Custom Object</dt><dd><p>Đặt một máy quay phim tùy định nào đó để xác định tư thế cơ sở của <abbr title="viewer">quan sát viên</abbr>.</p>
+</dd>
+<dt>Tư Thế Tùy Chọn -- Custom Pose</dt><dd><p>Xác định vị trí và xoay chiều để sử dụng làm tư thế cơ sở của <abbr title="viewer">quan sát viên</abbr> một cách thủ công.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="action-maps">
+<h3><abbr title="bố trí">Ánh Xạ Hành Động</abbr> -- Action Maps<a class="headerlink" href="#action-maps" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_action-maps.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_action-maps.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_action-maps.jpg" style="width: 220px;" /></a>
+</figure>
+<dl>
+<dt>Gamepad</dt><dd><p>Lấy dữ liệu cung cấp đầu vào từ gamepad (<abbr title="Bộ điều khiển Xbox của Microsoft">Microsoft Xbox Controller</abbr>) thay vì từ bộ điều khiển chuyển động cho các hành động VR, như <abbr title="viewport navigation">điều hướng cổng chiếu</abbr> chẳng hạn.</p>
+</dd>
+<dt>Định Dạng -- Extensions</dt><dd><p>Enable additional controller bindings to ensure correct input-to-action mappings.
+Note that a given extension may not be supported by all
+<a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-head-mounted-displays"><span class="std std-ref">VR platforms</span></a>.</p>
+<dl class="simple">
+<dt>HP Reverb G2</dt><dd><p>Enable bindings for the HP Reverb G2 controllers.</p>
+</dd>
+<dt>HTC Vive Cosmos</dt><dd><p>Enable bindings for the HTC Vive Cosmos controllers.</p>
+</dd>
+<dt>Huawei</dt><dd><p>Enable bindings for the Huawei controllers.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="viewport-feedback">
+<h3>Phản Hồi trên Cổng Nhìn -- Viewport Feedback<a class="headerlink" href="#viewport-feedback" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_viewport-feedback.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_viewport-feedback.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_viewport-feedback.jpg" style="width: 220px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Hiển Thị Máy Quay Phim <abbr title="VR">Thực Tế Ảo</abbr> -- Show VR Camera</dt><dd><p>Vẽ một chỉ dấu cho tư thế của <abbr title="viewer">quan sát viên</abbr> <abbr title="VR">Thực Tế Ảo</abbr> hiện tại (vị trí và góc xoay chiều trong không gian ảo) trong <abbr title="3D Viewport">Cổng Nhìn 3D</abbr> hiện nay.</p>
+</dd>
+<dt>Hiển Thị các Điều Khiển VR -- Show VR Controllers</dt><dd><p>Draw indicators of tracked VR motion controllers in the current 3D viewport.
+Requires enabling the <a class="reference internal" href="#vr-session">Use Controller Actions</a> option.</p>
+</dd>
+<dt>Hiển Thị Địa Ranh -- Landmarks</dt><dd><p>Draw <a class="reference internal" href="#landmarks">landmark</a> indicators in the current 3D Viewport.</p>
+</dd>
+<dt>Xem Phiên Hoạt Động <abbr title="VR">Thực Tế Ảo</abbr> -- Mirror VR Session</dt><dd><p>Bắt <abbr title="3D Viewport">Cổng Nhìn 3D</abbr> hiện tại đi theo phối cảnh của góc nhìn <abbr title="VR">Thực Tế Ảo</abbr>.</p>
+</dd>
+</dl>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Hạng Mục -- Category</dt>
+<dd class="field-odd"><p>Góc Nhìn 3D -- 3D View</p>
+</dd>
+<dt class="field-even">Miêu Tả -- Description</dt>
+<dd class="field-even"><p>Quan sát cổng nhìn với kính thực tế ảo (các bộ hiển thị đeo ở đầu).</p>
+</dd>
+<dt class="field-odd">Vị Trí/Địa Điểm -- Location</dt>
+<dd class="field-odd"><p><span class="menuselection">Cổng Nhìn 3D (3D Viewport) ‣ Thanh Bên (Sidebar) ‣ thẻ Thực Tế Ảo (VR tab)</span></p>
+</dd>
+<dt class="field-even">Tập Tin -- File</dt>
+<dd class="field-even"><p>viewport_vr_preview folder</p>
+</dd>
+<dt class="field-odd">Tác Giả -- Author</dt>
+<dd class="field-odd"><p>Julian Eisel, Sebastian Koenig, Peter Kim</p>
+</dd>
+<dt class="field-even">Người Bảo Trì -- Maintainer</dt>
+<dd class="field-even"><p>Julian Eisel, Peter Kim</p>
+</dd>
+<dt class="field-odd">Giấy Phép -- License</dt>
+<dd class="field-odd"><p><abbr title="GNU General Public License: Giấy Phép Công Chứng Phổ Thông GNU">GPL</abbr></p>
+</dd>
+<dt class="field-even">Mức Hỗ Trợ -- Support Level</dt>
+<dd class="field-even"><p>Chính Thức</p>
+</dd>
+<dt class="field-odd">Ghi Chú -- Note</dt>
+<dd class="field-odd"><p>Trình bổ sung này được <abbr title="bundled: kèm theo">gói cùng</abbr> với Blender.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stored_views.html" class="btn btn-neutral float-left" title="Góc Nhìn đã Lưu -- Stored Views" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../add_curve/index.html" class="btn btn-neutral float-right" title="Thêm Đường Cong" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/3d_view/vr_scene_inspection.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/3d_view/vr_scene_inspection%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Faddons/3d_view/vr_scene_inspection.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

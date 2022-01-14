@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Settings &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/cycles/world_settings.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Object Settings" href="object_settings/index.html" />
+    <link rel="prev" title="Debug" href="render_settings/debug.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Tuần Hoàn -- Cycles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">World Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mist-pass">Mist Pass</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ray-visibility">Ray Visibility</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#tricks">Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Sắp Đặt -- Settings</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#surface">Bề Mặt -- Surface</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#volume">Thể Tích -- Volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="object_settings/index.html">Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_settings.html">Sắp Đặt về Nguyên Vật Liệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_settings.html">Light Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu_rendering.html">GPU Rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html">Experimental Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="baking.html">Render Baking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optimizations/index.html">Optimizing Renders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Tuần Hoàn -- Cycles</a> &raquo;</li>
+      <li>World Settings</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="world-settings">
+<span id="bpy-types-worldlighting"></span><span id="bpy-types-cyclesworldsettings"></span><h1>World Settings<a class="headerlink" href="#world-settings" title="Permalink to this headline"></a></h1>
+<section id="mist-pass">
+<span id="bpy-types-worldmistsettings"></span><h2>Mist Pass<a class="headerlink" href="#mist-pass" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Mist Pass</span></p>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The mist pass must be enabled in the View Layer tab
+of the <a class="reference internal" href="../../editors/properties_editor.html"><span class="doc">Properties Editor</span></a>
+before the settings below are available in the World tab.</p>
+</div>
+<p>Mist can greatly enhance the illusion of depth in your rendering. To create mist,
+Blender generates a render layer with a depth map ranging between 0.0 and 1.0
+that can be used in the Compositor to generate a mist effect.</p>
+<dl class="simple" id="bpy-types-worldmistsettings-start">
+<dt>Start</dt><dd><p>The distance from the camera at which the mist starts to fade in.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-worldmistsettings-depth">
+<dt>Depth</dt><dd><p>The distance from <em>Start</em> of the mist, that it fades in over.
+Objects further from the camera than <em>Start + Depth</em> are completely hidden by the mist.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-worldmistsettings-falloff">
+<dt>Suy Giảm Dần -- Falloff</dt><dd><p>The curve function that controls the rate of change of the mist's strength further and further into the distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Quadratic</dt>
+<dd class="field-odd"><p>Uses the same calculation as light falloff (<span class="math notranslate nohighlight">\(1\over{x^2}\)</span>) and provides the smoothest
+transition from transparent (0.0) to opaque (1.0).</p>
+</dd>
+<dt class="field-even">Linear</dt>
+<dd class="field-even"><p>Has a steeper start than quadratic (<span class="math notranslate nohighlight">\(1\over{x}\)</span>).</p>
+</dd>
+<dt class="field-odd">Inverse Quadratic</dt>
+<dd class="field-odd"><p>Has the steepest start (<span class="math notranslate nohighlight">\(1\over{\sqrt{x}}\)</span>) and approaches 1.0 faster than the other two functions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>A visualization can be activated in the <span class="menuselection">Camera ‣ Viewport Display</span> panel.</p>
+</div>
+<figure class="align-default" id="id4">
+<img alt="../../_images/render_cycles_world-settings_mist-example1-BI.jpg" src="../../_images/render_cycles_world-settings_mist-example1-BI.jpg" />
+<figcaption>
+<p><span class="caption-text">Mist example (<a class="reference external" href="https://wiki.blender.org/wiki/File:25-Manual-World-Mist-Example1.blend">blend-file</a>).</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ray-visibility">
+<span id="bpy-types-cyclesvisibilitysettings-camera"></span><h2>Ray Visibility<a class="headerlink" href="#ray-visibility" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Ray Visibility</span></p>
+</dd>
+</dl>
+</div>
+<p>As with other objects,
+<em>Ray Visibility</em> allows you to control which other shaders can &quot;see&quot; the environment.</p>
+<section id="tricks">
+<h3>Tricks<a class="headerlink" href="#tricks" title="Permalink to this headline"></a></h3>
+<p>Sometimes it may be useful to have a different background that is directly visible versus one
+that is indirectly lighting the objects. A simple solution to this is to add a Mix node,
+with the <em>Blend Factor</em> set to <em>Is Camera Ray</em>. The first input color is then the indirect color,
+and the second the directly visible color. This is useful when using a high-res image for
+the background and a low-res image for the actual lighting.</p>
+<p>Similarly, adding the <em>Is Camera</em> and <em>Is Glossy</em> rays will mean that the high-res image
+will also be visible in reflections.</p>
+<figure class="align-default" id="id5">
+<img alt="../../_images/render_cycles_world-settings_tricks.png" src="../../_images/render_cycles_world-settings_tricks.png" />
+<figcaption>
+<p><span class="caption-text">Nodes for the trick above.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="settings">
+<span id="render-cycles-integrator-world-settings"></span><h2>Sắp Đặt -- Settings<a class="headerlink" href="#settings" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">World ‣ Settings</span></p>
+</dd>
+</dl>
+</div>
+<section id="surface">
+<h3>Bề Mặt -- Surface<a class="headerlink" href="#surface" title="Permalink to this headline"></a></h3>
+<dl id="bpy-types-cyclesworldsettings-sampling-method">
+<dt>Lấy Mẫu Vật -- Sampling</dt><dd><p>Controls the sampling method for the world material. Selecting Auto or Manual enables
+<em>Multiple Importance Sampling</em> while None disables it. <em>Multiple Importance Sampling</em>
+is a method to sample the background texture such that lighter parts are favored,
+creating an importance map. It will produce less noise in the render in trade of artifacts (<a class="reference internal" href="../../glossary/index.html#term-Fireflies"><span class="xref std std-term">Fireflies</span></a>).
+Enable this when using an image texture with small area lights (like the sun),
+otherwise noise can take a long time to converge.</p>
+<p>Below is a comparison between <em>Multiple Importance Sample</em> off and on.
+Both images are rendered for 25 seconds (Off: 1,500 samples, On: 1,000 samples).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id6">
+<img alt="../../_images/render_cycles_world-settings_mis-off.jpg" src="../../_images/render_cycles_world-settings_mis-off.jpg" />
+<figcaption>
+<p><span class="caption-text">Multiple Importance Sample off.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id7">
+<img alt="../../_images/render_cycles_world-settings_mis-on.jpg" src="../../_images/render_cycles_world-settings_mis-on.jpg" />
+<figcaption>
+<p><span class="caption-text">Multiple Importance Sample on.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-cyclesworldsettings-sample-map-resolution">
+<dt>Map Resolution</dt><dd><p>Sets the resolution of the importance map.
+A higher resolution will better detect small features in the map and give more accurate sampling
+but conversely will take up more memory and render slightly slower.
+Higher values also may produce less noise when using high-res images.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-cyclesworldsettings-max-bounces">
+<dt>Max Bounces</dt><dd><p>Maximal number of bounces the background light will contribute to the render.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>See <a class="reference internal" href="optimizations/reducing_noise.html"><span class="doc">Reducing Noise</span></a>
+for more information on how to reduce noise.</p>
+</div>
+</section>
+<section id="volume">
+<h3>Thể Tích -- Volume<a class="headerlink" href="#volume" title="Permalink to this headline"></a></h3>
+<dl class="simple" id="bpy-types-cyclesworldsettings-volume-sampling">
+<dt>Sampling Method</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Khoảng Cách -- Distance</dt>
+<dd class="field-odd"><p>For dense volumes lit from far away <em>Distance</em> sampling is more efficient in most cases.
+Usually this shouldn't be used for World volumes.</p>
+</dd>
+<dt class="field-even">Equiangular</dt>
+<dd class="field-even"><p>If you have got a light inside or near the volume then <em>equiangular</em> sampling is better.</p>
+</dd>
+<dt class="field-odd">Multiple Importance</dt>
+<dd class="field-odd"><p>If you have a combination of both, then the multiple importance sampling will be better.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-cyclesworldsettings-volume-interpolation">
+<dt>Interpolation -- Nội Suy</dt><dd><p>Interpolation method to use for the volume.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Linear</dt>
+<dd class="field-odd"><p>Simple interpolation which gives good results for thin volumes.</p>
+</dd>
+<dt class="field-even">Cubic</dt>
+<dd class="field-even"><p>Smoothed high-quality interpolation needed for more dense volumes, but slower.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-cyclesworldsettings-homogeneous-volume">
+<dt>Homogeneous</dt><dd><p>Assume volume has the same density everywhere (not using any textures), for faster rendering.
+Usually this is automatically determined by the renderer.
+This settings provides a manual control for cases where it is not detected.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-cyclesworldsettings-volume-step-size">
+<dt>Step Size</dt><dd><p>Distance between volume shader samples for world volume shaders.
+See <a class="reference internal" href="render_settings/volumes.html"><span class="doc">Volume Render Settings</span></a> for more information.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="render_settings/debug.html" class="btn btn-neutral float-left" title="Debug" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="object_settings/index.html" class="btn btn-neutral float-right" title="Object Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/cycles/world_settings.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/cycles/world_settings%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/cycles/world_settings.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

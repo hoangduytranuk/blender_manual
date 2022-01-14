@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annotate Tool &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/interface/annotate_tool.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Selecting" href="selecting.html" />
+    <link rel="prev" title="Undo &amp; Redo" href="undo_redo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#window-system">Window System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#keymap">Keymap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#interface-controls">Interface Controls</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#tools">Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tool_system.html">Tool System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="undo_redo.html">Undo &amp; Redo</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Annotate Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Settings</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#common">Common</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#annotate-line">Annotate Line</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#annotation-layers">Annotation Layers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#onion-skin">Onion Skin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="selecting.html">Selecting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">User Interface</a> &raquo;</li>
+      <li>Annotate Tool</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="annotate-tool">
+<span id="tool-annotate"></span><h1>Annotate Tool<a class="headerlink" href="#annotate-tool" title="Permalink to this headline"></a></h1>
+<p>The annotation tool is available in multiple editors.
+It can be used to add notes to e.g. 3D objects or node setups.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/interface_annotate-tool_node-editor.png" src="../_images/interface_annotate-tool_node-editor.png" />
+<figcaption>
+<p><span class="caption-text">Annotations tool in a node editor.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The annotation tool can be activated in the Toolbar and has following sub-tools:</p>
+<dl class="simple" id="tool-annotate-freehand">
+<dt>Annotate</dt><dd><p>Draw free-hand strokes in the main area.</p>
+</dd>
+</dl>
+<dl class="simple" id="tool-annotate-line">
+<dt>Annotate Line</dt><dd><p>Click and drag to create a line.
+Optionally, you can select the arrow style for the start and end of the line.</p>
+</dd>
+</dl>
+<dl class="simple" id="tool-annotate-polygon">
+<dt>Annotate Polygon</dt><dd><p>Click multiple times to create multiple connected lines.
+The current polygon is finished when <kbd class="kbd docutils literal notranslate">Esc</kbd> is pressed.</p>
+</dd>
+</dl>
+<dl class="simple" id="tool-annotate-eraser">
+<dt>Annotate Eraser</dt><dd><p>Click and drag to remove lines.
+The eraser has a <em>Radius</em> setting found in <span class="menuselection">Tool Settings ‣ Eraser</span>.</p>
+</dd>
+</dl>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline"></a></h2>
+<section id="common">
+<h3>Common<a class="headerlink" href="#common" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Color</dt><dd><p>Adjust the color of existing and new strokes.</p>
+</dd>
+<dt>Annotation Layer</dt><dd><p>A pop-over menu, showing the name of the current layer, to access the <a class="reference internal" href="#annotation-layers">Annotation Layers</a>.</p>
+</dd>
+</dl>
+<span id="bpy-types-toolsettings-annotation-stroke-placement-view3d"></span><dl id="bpy-types-toolsettings-annotation-stroke-placement-view2d">
+<dt>Placement</dt><dd><p>Determines where the annotations are drawn.</p>
+<dl class="field-list simple">
+<dt class="field-odd">3D Cursor</dt>
+<dd class="field-odd"><p>Draw annotations on an imaginary plane that goes through
+the <a class="reference internal" href="../editors/3dview/3d_cursor.html"><span class="doc">3D Cursor</span></a> and is aligned to your view.</p>
+</dd>
+<dt class="field-even">View</dt>
+<dd class="field-even"><p>Draw annotations in screen space rather than 3D space;
+meaning the annotations will stay on the same position in the screen,
+even when the view moves or rotates.</p>
+</dd>
+<dt class="field-odd">Surface</dt>
+<dd class="field-odd"><p>Draw annotations on the surface of the object under the mouse.</p>
+</dd>
+<dt class="field-even">Image</dt>
+<dd class="field-even"><p>Draw annotations in same space as the image/preview/nodes meaning as you zoom
+in or out the annotations stay the same size relative to the zoom factor.</p>
+</dd>
+</dl>
+</dd>
+<dt>Stabilize Stroke</dt><dd><p>Helps to reduce jitter of the strokes while drawing by delaying and correcting the location of points.</p>
+<dl class="simple">
+<dt>Radius</dt><dd><p>Minimum distance from the last point before the stroke continues.</p>
+</dd>
+<dt>Factor</dt><dd><p>A smooth factor, where higher values result in smoother strokes
+but the drawing sensation feels like as if you were pulling the stroke.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="annotate-line">
+<h3>Annotate Line<a class="headerlink" href="#annotate-line" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Style Start, End</dt><dd><p>The decoration to use at the beginning or end of the line segment.
+This can be used for example to create arrows to point out specific details in a scene.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="annotation-layers">
+<h2>Annotation Layers<a class="headerlink" href="#annotation-layers" title="Permalink to this headline"></a></h2>
+<p>When the annotation tool is enabled, the settings for managing multiple layers
+can be found in the <span class="menuselection">Sidebar ‣ View ‣ Annotations</span> panel.</p>
+<dl class="simple" id="bpy-types-gpencillayer-annotation-opacity">
+<dt>Opacity</dt><dd><p>Adjusts the opacity of existing and new strokes.</p>
+</dd>
+<dt>Thickness</dt><dd><p>Adjusts the thickness of existing and new strokes.</p>
+</dd>
+</dl>
+<section id="onion-skin">
+<span id="bpy-types-gpencillayer-annotation-onion-after-range"></span><span id="bpy-types-gpencillayer-annotation-onion-after-color"></span><span id="bpy-types-gpencillayer-annotation-onion-before-range"></span><span id="bpy-types-gpencillayer-annotation-onion-before-color"></span><span id="bpy-types-gpencillayer-use-annotation-onion-skinning"></span><h3>Onion Skin<a class="headerlink" href="#onion-skin" title="Permalink to this headline"></a></h3>
+<p>Shows a ghosted image of strokes made in frames before and after the current frame.
+Onion skinning only works in the 3D Viewport and Sequencer.
+See the Grease Pencil documentation for an explanation of
+<a class="reference internal" href="../grease_pencil/properties/onion_skinning.html"><span class="doc">Onion Skinning</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="undo_redo.html" class="btn btn-neutral float-left" title="Undo &amp; Redo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="selecting.html" class="btn btn-neutral float-right" title="Selecting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/interface/annotate_tool.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60interface/annotate_tool%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Finterface/annotate_tool.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bevel Vertices &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/vertex/bevel_vertices.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="New Edge/Face from Vertices" href="make_face_edge.html" />
+    <link rel="prev" title="Extrude Vertices" href="extrude_vertices.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh/index.html">Mesh Tools</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Vertex Tools</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="extrude_vertices.html">Extrude Vertices</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Bevel Vertices</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="make_face_edge.html">New Edge/Face from Vertices</a></li>
+<li class="toctree-l5"><a class="reference internal" href="connect_vertex_path.html">Connect Vertex Path</a></li>
+<li class="toctree-l5"><a class="reference internal" href="connect_vertex_pairs.html">Connect Vertex Pairs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rip_vertices.html">Rip Vertices</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rip_vertices_fill.html">Rip Vertices and Fill</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rip_vertices_extend.html">Rip Vertices and Extend</a></li>
+<li class="toctree-l5"><a class="reference internal" href="slide_vertices.html">Slide Vertices</a></li>
+<li class="toctree-l5"><a class="reference internal" href="smooth_vertices.html">Smooth Vertices</a></li>
+<li class="toctree-l5"><a class="reference internal" href="laplacian_smooth.html">Laplacian Smooth</a></li>
+<li class="toctree-l5"><a class="reference internal" href="blend_shape.html">Blend from Shape</a></li>
+<li class="toctree-l5"><a class="reference internal" href="propagate_shapes.html">Propagate to Shapes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vertex_groups.html">Vertex Groups</a></li>
+<li class="toctree-l5"><a class="reference internal" href="hooks.html">Hooks</a></li>
+<li class="toctree-l5"><a class="reference internal" href="make_vertex_parent.html">Make Vertex Parent</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../edge/index.html">Edge Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../face/index.html">Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv.html">UV Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../../index.html">Meshes</a> &raquo;</li>
+          <li><a href="../index.html">Editing</a> &raquo;</li>
+          <li><a href="index.html">Vertex Tools</a> &raquo;</li>
+      <li>Bevel Vertices</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bevel-vertices">
+<span id="bpy-ops-mesh-bevel-vertex"></span><h1>Bevel Vertices<a class="headerlink" href="#bevel-vertices" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Vertex ‣ Bevel Vertices</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">B</kbd></kbd></p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Vertex ‣ Bevel Edges</span> (edge bevel)</p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">B</kbd></kbd> (edge bevel)</p>
+</dd>
+</dl>
+</div>
+<p>The <em>Bevel</em> tool rounds off edges or corners of a mesh at the point of the selected vertices.
+In “vertex only” mode, the <em>Bevel Vertices</em> tool works on selected vertices
+but the option to switch to <em>Bevel Edges</em> is available.
+By doing so, more vertices are added in order to smooth out profiles with a specified number of <em>segments</em>
+(see the options below for details about the bevel algorithm).</p>
+<figure class="align-center" id="id2">
+<img alt="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_compare.png" src="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_compare.png" />
+<figcaption>
+<p><span class="caption-text">Cubes with and without bevel.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With the Vertex Only option active, some of the other options available will not work.
+However, they will work with <a class="reference internal" href="../edge/bevel.html"><span class="doc">Bevel Edges</span></a>.</p>
+</div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Affect <kbd class="kbd docutils literal notranslate">V</kbd></dt><dd><dl class="simple">
+<dt>Vertices</dt><dd><p>Only the areas near vertices are beveled, the edges remain unchanged.</p>
+</dd>
+<dt>Edges</dt><dd><p>Bevel the edges, creating intersections at vertices.</p>
+</dd>
+</dl>
+</dd>
+<dt>Offset <kbd class="kbd docutils literal notranslate">A</kbd></dt><dd><p>You can change the bevel amount by moving the mouse towards and away from the object,
+like with transform tools.
+The exact meaning of the value depends on the <em>Amount Type</em> option (see below).</p>
+</dd>
+<dt>Amount Type <kbd class="kbd docutils literal notranslate">M</kbd></dt><dd><p>Selects how the <em>Amount</em> value controls the size of the bevel. According to the selection, the amount is:</p>
+<dl class="simple">
+<dt>Offset</dt><dd><p>The relative distance from the new edge to the original.</p>
+</dd>
+<dt>Width</dt><dd><p>The distance between the two new edges formed by the bevel
+(or the edges on either side of the bevel if there is more than one segment).</p>
+</dd>
+<dt>Depth</dt><dd><p>The perpendicular distance from the original edge to the bevel face.</p>
+</dd>
+<dt>Percent</dt><dd><p>The percentage of the length of adjacent edges that the new edges is slided along.</p>
+</dd>
+<dt>Absolute</dt><dd><p>The exact distance along edges adjacent to the beveled edge.
+A difference from <em>Offset</em> is visible when the unbeveled edges
+attached to beveled edges meet at an angle besides a right angle.</p>
+</dd>
+</dl>
+<p>For vertex-only bevels, the Offset and Depth types measure from the original vertex,
+and the Width type is measured from a new vertex to the center of the new face (as half the amount).</p>
+</dd>
+<dt>Segments <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>The number of segments in the bevel can be defined by
+scrolling the mouse <kbd class="kbd docutils literal notranslate">Wheel</kbd> to increase or decrease this value.
+The greater the number of segments, the smoother the bevel.
+Or press <kbd class="kbd docutils literal notranslate">S</kbd> to change the number with mouse movements, as well as numeric input.</p>
+<p>Alternatively, you can manually enter a segment number value while using the tool,
+or in the Mesh Tool options panel after using the tool.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_segments.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_segments.png" src="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_segments.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Bevel with four segments.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</dd>
+<dt>Shape <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>This is a number between 0 and 1 that controls the shape of the profile (side view of a beveled edge).
+The default value, 0.5, gives a circular arc (if the faces meet at right angles).
+Values less than that give a flatter profile, with 0.25 being exactly flat,
+and values less than that giving a concave bevel. Values more than 0.5 give a more convex profile.
+Similarly as <em>Segments</em> it can be set with mouse movements and numeric input after toggling <kbd class="kbd docutils literal notranslate">P</kbd>.</p>
+</dd>
+<dt>Material Index</dt><dd><p>The <em>Material</em> number specifies which material should be assigned to the new faces created by the <em>Bevel</em> tool.
+With the default, -1, the material is inherited from the closest existing face (“closest” can be a bit ambiguous).
+Otherwise, the number is the slot index of the material to use for all newly created faces.</p>
+</dd>
+<dt>Harden Normals <kbd class="kbd docutils literal notranslate">H</kbd></dt><dd><p>When enabled, the per-vertex face normals of the bevel faces are adjusted to
+match the surrounding faces, and the normals of the surrounding faces are not affected.
+This will keep the surrounding faces flat (if they were before),
+with the bevel faces shading smoothly into them. For this effect to work,
+custom split normals need to be enabled, which requires <em>Auto Smooth</em> to be enabled
+(see <a class="reference internal" href="../mesh/normals.html"><span class="doc">Normals</span></a>).
+As a convenience, that option will be enabled for you if it is not already when you enable Harden Normals here.</p>
+</dd>
+<dt>Clamp Overlap <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Limits the width of each beveled edge so that vertices do not overlap with other geometry.</p>
+</dd>
+<dt>Loop Slide</dt><dd><p>If there are un-beveled edges along with beveled edges into a vertex,
+the bevel tries to slide along those edges when possible.
+Turning the option off can lead to more even bevel widths.</p>
+</dd>
+<dt>Face Strength Mode</dt><dd><p>Set <em>Face Strength</em> on the faces involved in the bevel, according to the specified mode.
+This can be used in conjunction with
+a <a class="reference internal" href="../../../modifiers/modify/weighted_normal.html"><span class="doc">Weight Normals Modifier</span></a>
+(with the <em>Face Influence</em> option checked).</p>
+<dl class="simple">
+<dt>None</dt><dd><p>Do not set face strength.</p>
+</dd>
+<dt>New</dt><dd><p>Set the face strength of new faces along edges to <em>Medium</em>,
+and the face strength of new faces at vertices to <em>Weak</em>.</p>
+</dd>
+<dt>Affected</dt><dd><p>In addition to those set for the <em>New</em> case,
+also set the faces adjacent to new faces to have strength <em>Strong</em>.</p>
+</dd>
+<dt>All</dt><dd><p>In addition to those set for the <em>Affected</em> option,
+also set all the rest of the faces of the model to have strength <em>Strong</em>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Profile Type <kbd class="kbd docutils literal notranslate">Z</kbd></dt><dd><dl>
+<dt>Superellipse</dt><dd><p>Creates a bevel with a uniform concave or convex curve.</p>
+</dd>
+<dt>Custom</dt><dd><figure class="align-right" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/modeling_modifiers_generate_bevel_profile-widget.png"><img alt="../../../../_images/modeling_modifiers_generate_bevel_profile-widget.png" src="../../../../_images/modeling_modifiers_generate_bevel_profile-widget.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The custom profile widget.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This widget allows the creation of a user-defined profile with more complexity than
+with the single profile parameter. The modal tool allows toggling the custom profile,
+but the shape of the profile is only editable in the options panel after the operation is confirmed.</p>
+<p>The profile starts at the bottom right of the widget and ends at the top left, as if it
+were between two edges intersecting at a right angle. Control points are created in the widget and
+then the path is sampled with the number of segments from the Bevel modifier.</p>
+<dl class="simple">
+<dt>Presets</dt><dd><p>The <em>Support Loops</em> and <em>Steps</em> presets are built dynamically depending on the number
+of segments in the bevel. If the number of segments is changed, the preset will have to be re-applied.</p>
+</dd>
+</dl>
+</dd>
+<dt>Sampling</dt><dd><p>Samples will first be added to each control point, then if there are enough samples,
+they will be divided evenly between the edges. The <em>Sample Straight Edges</em> option toggles
+whether the samples are added to edges with sharp control points on either side.
+If there aren’t enough samples to give each edge the same number of samples,
+they will just be added to the most curved edges.
+So it is recommended to use at least as many segments as there are control points.</p>
+</dd>
+</dl>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Bevel with Custom Profile on.</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_customA.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_customA.png" src="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_customA.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Edge Bevel.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_customB.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_customB.png" src="../../../../_images/modeling_meshes_editing_vertex_bevel-vertices_customB.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Vertex Bevel.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="../../../modifiers/generate/bevel.html"><span class="doc">Bevel Modifier</span></a>
+is a non-destructive alternative to the Bevel tool.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="extrude_vertices.html" class="btn btn-neutral float-left" title="Extrude Vertices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="make_face_edge.html" class="btn btn-neutral float-right" title="New Edge/Face from Vertices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/vertex/bevel_vertices.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/editing/vertex/bevel_vertices%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/editing/vertex/bevel_vertices.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -68,8 +68,8 @@ class RefType(Enum):
         return None
 
 class Definitions:
-    HOME = os.environ['DEV_TRAN']
-    log_path = os.path.join(HOME, 'logme.log')
+    HOME = os.environ['HOME']
+    log_path = os.path.join(HOME, 'Dev/tran/logme.log')
 
     LOG = UT.get_logger(log_path)
 
@@ -499,10 +499,14 @@ class Definitions:
     LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
     TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
 
+    ABBR_SEARCH = re.compile(r':abbr:\`(.*)\)\`')
+    ABBR_SPLIT = re.compile(r':abbr:')
+    ABBR_TERM = re.compile(r'\)\`')
+
     GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
-    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+([^\`]+)[\`]+', flags=re.I)
+    ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+(.*?)[\`]+', flags=re.I)
     ABBREV_PATTERN_PARSER_FULL = re.compile(r'^:abbr:[\`]+([^\`]+)[\`]+$', flags=re.I)
-    ABBREV_CONTENT_PARSER = re.compile(r'([^(]+)\s\(([^\)]+)\)')
+    ABBREV_CONTENT_PARSER = re.compile(r':([^(]+)\s\(([^\)]+)\)')
 
     ABBREV_FRONT=re.compile(r':abbr:[\`]+\(')
     GA_BACK=re.compile(r'\)[\`]+')
@@ -542,6 +546,13 @@ class Definitions:
     NON_WORD = re.compile(r'([\W]+)')
     NON_WORD_ENDING = re.compile(r'([\W]+)$')
     NON_WORD_STARTING = re.compile(r'^([\W]+)')
+
+    SYMB_ENDING = re.compile(r'([\W])$')
+    SYMB_STARTING = re.compile(r'^([\W])')
+
+    SYMB_ENDING_MULTI = re.compile(r'([\W]{,2})$')
+    SYMB_STARTING_MULTI = re.compile(r'^([\W]{,2})')
+
     TRANSLATABLE_CHARACTERS = re.compile(r'[a-zA-Z]+')
 
     attrib_pat_txt = r'(%s)\:(%s)' % (var, var)
@@ -562,15 +573,24 @@ class Definitions:
     #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
     OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
     COLON_CHAR = re.compile(r'\:')
+    COLON_CHAR_START = re.compile(r'^[\:]')
+    COLON_CHAR_END = re.compile(r'[\:]$')
+
+    EXPLANATION_PPROMPT = re.compile(r'(\:\s)')
+
     # this (something ... ) can have other links inside of it as well as others
     # the greedy but more accurate is r'[\(]+(.*)?[\)]+'
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
+    pairable_brackets_txt = r'[\[\]\(\)\<\>]'
+    PAIRABLE_BRACKETS = re.compile(pairable_brackets_txt)
+
     angle_bracket_single_txt = r'\<([^\<\>]+)[^\/]\>'
     arch_bracket_single_txt = r'\(([^\)\(]+)\)'
     arch_bracket_single_full = r'\b%s|%s\b' % (arch_bracket_single_txt, angle_bracket_single_txt)
     arch_bracket_single_absolute = r'^%s(?:\W|$)?$' % (arch_bracket_single_txt)
     ARCH_BRAKET_SINGLE_FULL = re.compile(arch_bracket_single_full)
     ARCH_BRAKET_SINGLE_ABS = re.compile(arch_bracket_single_absolute)
+    ARCH_BRAKET_SINGLE = re.compile(arch_bracket_single_txt)
 
     #ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
     ARCH_BRAKET_MULTI = re.compile(r'\b\((.*?)\)\b')
@@ -680,6 +700,9 @@ class Definitions:
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
 
     BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
+
+    titled_word_txt = r'\b([A-Z][a-z]+\b)+'
+    TITLED_WORDS = re.compile(titled_word_txt)
 
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
     CHARACTERS = re.compile(r'\w+')
@@ -1859,6 +1882,25 @@ class Definitions:
         (AST_QUOTE, RefType.AST_QUOTE),
         (DBL_QUOTE, RefType.DBL_QUOTE),
         (SNG_QUOTE, RefType.SNG_QUOTE),
+        (BLANK_QUOTE, RefType.BLANK_QUOTE),
+        (ATTRIB_REF, RefType.ATTRIB),
+        (GA_REF, RefType.GA),
+    ]
+
+    no_bracket_pattern_list = [
+        (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
+        (FUNCTION, RefType.FUNCTION),
+        (AST_QUOTE, RefType.AST_QUOTE),
+        (DBL_QUOTE, RefType.DBL_QUOTE),
+        (SNG_QUOTE, RefType.SNG_QUOTE),
+        (BLANK_QUOTE, RefType.BLANK_QUOTE),
+        (ATTRIB_REF, RefType.ATTRIB),
+        (GA_REF, RefType.GA),
+    ]
+
+    no_bracket_and_quoted_pattern_list = [
+        (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
+        (FUNCTION, RefType.FUNCTION),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
         (GA_REF, RefType.GA),

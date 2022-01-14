@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loop Cut and Slide &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/loopcut_slide.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Edge Data" href="edge_data.html" />
+    <link rel="prev" title="Offset Edge Slide" href="offset_edge_slide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh/index.html">Mesh Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vertex/index.html">Vertex Tools</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Edge Tools</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="extrude_edges.html">Extrude Edges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="bevel.html">Bevel Edges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="bridge_edge_loops.html">Bridge Edge Loops</a></li>
+<li class="toctree-l5"><a class="reference internal" href="screw.html">Screw</a></li>
+<li class="toctree-l5"><a class="reference internal" href="subdivide.html">Subdivide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="subdivide_edge_ring.html">Subdivide Edge-Ring</a></li>
+<li class="toctree-l5"><a class="reference internal" href="unsubdivide.html">Un-Subdivide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rotate_edge.html">Rotate Edge</a></li>
+<li class="toctree-l5"><a class="reference internal" href="edge_slide.html">Edge Slide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="offset_edge_slide.html">Offset Edge Slide</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Loop Cut and Slide</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="edge_data.html">Edge Data</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../face/index.html">Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv.html">UV Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../../index.html">Meshes</a> &raquo;</li>
+          <li><a href="../index.html">Editing</a> &raquo;</li>
+          <li><a href="index.html">Edge Tools</a> &raquo;</li>
+      <li>Loop Cut and Slide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="loop-cut-and-slide">
+<span id="bpy-ops-mesh-loopcut-slide"></span><h1>Loop Cut and Slide<a class="headerlink" href="#loop-cut-and-slide" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Edge ‣ Loop Cut and Slide</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p><em>Loop Cut and Slide</em> splits a loop of faces by inserting a new edge loop intersecting the chosen edge.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>The tool is interactive and has two steps:</p>
+<ol class="arabic">
+<li><p>Pre-Visualizing the Cut</p>
+<p>After the tool is activated, move the cursor over a desired edge.
+The cut to be made is marked with a magenta colored line as you move the mouse over the various edges.
+The to be created edge loop stops at the poles (tris and n-gons) where the existing face loop terminates.</p>
+</li>
+<li><p>Sliding the new Edge Loop</p>
+<p>Once an edge is chosen via <kbd class="kbd docutils literal notranslate">LMB</kbd>,
+you can move the mouse along the edge to determine where the new edge loop will be placed.
+This is identical to the <a class="reference internal" href="edge_slide.html#modeling-meshes-editing-edge-slide"><span class="std std-ref">Edge Slide tool</span></a>.
+Clicking <kbd class="kbd docutils literal notranslate">LMB</kbd> again confirms and makes the cut at the pre-visualized location,
+or clicking <kbd class="kbd docutils literal notranslate">RMB</kbd> forces the cut to exactly 50%.
+This step is skipped when using multiple edge loops (see below).</p>
+</li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id2">
+<img alt="../../../../_images/modeling_meshes_tools_loop_before.png" src="../../../../_images/modeling_meshes_tools_loop_before.png" />
+<figcaption>
+<p><span class="caption-text">Mesh before inserting edge loop.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<img alt="../../../../_images/modeling_meshes_tools_loop_preview.png" src="../../../../_images/modeling_meshes_tools_loop_preview.png" />
+<figcaption>
+<p><span class="caption-text">Preview of edge loop location.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<img alt="../../../../_images/modeling_meshes_tools_loop_placement.png" src="../../../../_images/modeling_meshes_tools_loop_placement.png" />
+<figcaption>
+<p><span class="caption-text">Interactive placement of edge loop between adjacent loops.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="options">
+<span id="modeling-meshes-editing-edge-loopcut-slide-options"></span><h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<p>These options are available while the tool is in use, and later in
+the <a class="reference internal" href="../../../../interface/undo_redo.html#bpy-ops-screen-redo-last"><span class="std std-ref">Adjust Last Operation</span></a> panel.</p>
+<dl>
+<dt>Number of Cuts <kbd class="kbd docutils literal notranslate">Wheel</kbd> or <kbd class="kbd docutils literal notranslate">PageUp</kbd> / <kbd class="kbd docutils literal notranslate">PageDown</kbd></dt><dd><p>After activating the tool, but before confirming initial loop location,
+you can increase and decrease the number of cuts to create,
+by entering a number with the keyboard, scrolling <kbd class="kbd docutils literal notranslate">Wheel</kbd> or using <kbd class="kbd docutils literal notranslate">PageUp</kbd> and <kbd class="kbd docutils literal notranslate">PageDown</kbd>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When creating multiple loops, these cuts are uniformly distributed in the original face loop,
+and you will <em>not</em> be able to control their positions.</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id5">
+<img alt="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_multicut.png" src="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_multicut.png" />
+<figcaption>
+<p><span class="caption-text">Preview of multiple edge loops.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<img alt="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_multicut-after.png" src="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_multicut-after.png" />
+<figcaption>
+<p><span class="caption-text">Result of using multiple cuts.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Smoothness <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Wheel</kbd></kbd></dt><dd><p>Smoothing causes edge loops to be placed in an interpolated position, relative to the face it is added to,
+causing them to be shifted outwards or inwards by a given percentage,
+similar to the <em>Subdivide Smooth</em> tool. When not using smoothing,
+new vertices for the new edge loop are placed exactly on the pre-existing edges.
+This keeps subdivided faces flat, but can distort geometry,
+particularly when using <a class="reference internal" href="../../../modifiers/generate/subdivision_surface.html"><span class="doc">Subdivision Surfaces</span></a>.
+Smoothing can help maintain the curvature of a surface once it is subdivided.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<img alt="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_unsmooth.png" src="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_unsmooth.png" />
+<figcaption>
+<p><span class="caption-text">Added edge loops without smoothing.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<img alt="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_smooth.png" src="../../../../_images/modeling_meshes_editing_edge_loopcut-slide_smooth.png" />
+<figcaption>
+<p><span class="caption-text">Same edge loops, but with smoothing value.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Falloff</dt><dd><p>Falloff type for <em>Smoothness</em>, changes the shape of the profile.</p>
+</dd>
+<dt>Factor</dt><dd><p>Position of the edge loop relative to the surrounding edge loops.</p>
+</dd>
+<dt>Even <kbd class="kbd docutils literal notranslate">E</kbd></dt><dd><p>Only available for single edge loops.
+This matches the shape of the edge loop to one of the adjacent edge loops.
+(See <a class="reference internal" href="edge_slide.html#modeling-meshes-editing-edge-slide"><span class="std std-ref">Edge Slide tool</span></a> for details.)</p>
+</dd>
+<dt>Flip <kbd class="kbd docutils literal notranslate">F</kbd></dt><dd><p>When Even is enabled, this flips the target edge loop to match.
+(See <a class="reference internal" href="edge_slide.html#modeling-meshes-editing-edge-slide"><span class="std std-ref">Edge Slide tool</span></a> for details.)</p>
+</dd>
+<dt>Clamp</dt><dd><p>Clamp within the edge extents.</p>
+</dd>
+<dt>Correct UVs</dt><dd><p>Corrects the corresponding UV coordinates, if these exist, to avoid image distortions.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="offset_edge_slide.html" class="btn btn-neutral float-left" title="Offset Edge Slide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="edge_data.html" class="btn btn-neutral float-right" title="Edge Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/edge/loopcut_slide.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/editing/edge/loopcut_slide%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/editing/edge/loopcut_slide.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

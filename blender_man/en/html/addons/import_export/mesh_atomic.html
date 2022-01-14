@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atomic Blender (PDB/XYZ) &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/mesh_atomic.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="BioVision Motion Capture (BVH)" href="anim_bvh.html" />
+    <link rel="prev" title="3D-Coat Applink" href="coat3D.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Import-Export</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="node_shaders_info.html">Import &amp; Export of Node Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coat3D.html">3D-Coat Applink</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Atomic Blender (PDB/XYZ)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#import-pdb-xyz">Import PDB/XYZ</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#camera-lamp">Camera &amp; Lamp</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#object-to-origin-pdb">Object to Origin (PDB)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#object-to-origin-xyz">Object to Origin (XYZ)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#balls-atoms">Balls/Atoms</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#sticks-bonds-only-pdb">Sticks/Bonds (only PDB)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#frames-only-xyz">Frames (only XYZ)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#atomic-blender-utilities-panel">Atomic Blender Utilities Panel</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#custom-data-file">Custom Data File</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#measure-distances">Measure Distances</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#change-atom-size">Change Atom Size</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#change-stick-size">Change Stick Size</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#change-atom-shape">Change Atom Shape</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#separate-atoms">Separate Atoms</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_dxf.html">AutoCAD DXF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_camera.html">Camera Animation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="paper_model.html">Paper Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pc2.html">Pointcache (pc2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_fbx.html">FBX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="images_as_planes.html">Images as Planes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="palettes.html">Import Palettes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape_mdd.html">NewTek MDD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_nuke_chan.html">Nuke Animation (chan)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_stl.html">STL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve_svg.html">Scalable Vector Graphics (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_ply.html">Stanford PLY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_uv_layout.html">UV Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_obj.html">Wavefront OBJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_x3d.html">Web3D X3D/VRML2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_gltf2.html">glTF 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Add-ons</a> &raquo;</li>
+          <li><a href="index.html">Import-Export</a> &raquo;</li>
+      <li>Atomic Blender (PDB/XYZ)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="atomic-blender-pdb-xyz">
+<h1>Atomic Blender (PDB/XYZ)<a class="headerlink" href="#atomic-blender-pdb-xyz" title="Permalink to this headline"></a></h1>
+<p>The Atomic Blender (PDB/XYZ) add-on imports atomic structures
+(molecules, crystals, clusters, particles, surfaces, etc.), which are described in
+PDB (<code class="docutils literal notranslate"><span class="pre">.pdb</span></code>) and XYZ files (<code class="docutils literal notranslate"><span class="pre">.xyz</span></code>) (<a class="reference internal" href="#import-pdb-xyz">Import PDB/XYZ</a>). The add-on reads the coordinates of
+all atoms in the PDB/XYZ file and represents the atoms as balls in the Blender world.
+Also the sticks, which are described in PDB files only, can be shown if the sticks are listed in the PDB file.
+For the import, many options can be chosen, which allow representing the atoms and sticks in different ways.
+With help of several tools in the <a class="reference internal" href="#atomic-blender-utilities-panel">Atomic Blender Utilities panel</a>, the atomic structures can be modified
+after the import. Note that the coordinates of selected atomic structures in the Blender 3D world
+can also be exported into PDB/XYZ files.</p>
+<p>Atomic Blender (PDB/XYZ) is interesting for scientists, who want to
+visualize their atomic structures described in PDB or XYZ files with Blender.
+Thanks to Blender, fancy graphics of molecules, crystal structures, surfaces,
+nanoparticles, clusters and complex atomic arrangements can be obtained.
+Such graphics meet the standards of top-level journals, which have a high impact factor.
+See <a class="reference internal" href="#examples">Examples</a> at the end of this page.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Info about PDB and XYZ</p>
+<ul class="simple">
+<li><p>Description of the PDB file format:
+<a class="reference external" href="https://en.wikipedia.org/wiki/Protein_Data_Bank_(file_format)">Wikipedia</a> and
+<a class="reference external" href="https://www.rcsb.org/pdb/static.do?p=file_formats/pdb/index.html">RCSB</a>.</p></li>
+<li><p>Description of the XYZ file format:
+<a class="reference external" href="https://en.wikipedia.org/wiki/XYZ_file_format">Wikipedia</a> and
+<a class="reference external" href="https://openbabel.org/docs/dev/FileFormats/XYZ_cartesian_coordinates_format.html">Open Babel</a>.</p></li>
+<li><p>Some notes about PDB and XYZ files can also be found on one of
+the <a class="reference external" href="https://development.root-1.de/Atomic_Blender_PDB_XYZ.php">developer’s site</a> and
+<a class="reference external" href="https://development.root-1.de/Atomic_Blender_PDB_XYZ_Remarks.php">remarks</a>.</p></li>
+<li><p>Many molecules can be downloaded from the <a class="reference external" href="https://www.rcsb.org/">RCSB site</a> (go to ‘Download’).</p></li>
+<li><p>A list of software that deals with PDB in different ways can be found on
+the <a class="reference external" href="https://www.rcsb.org/pages/thirdparty/molecular_graphics">RCSB site</a>. There also is
+<a class="reference external" href="https://jp-minerals.org/vesta/en/">Vesta</a>, <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> and all the
+<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_quantum_chemistry_and_solid-state_physics_software">quantum chemical calculators</a>
+used in research, which can create or even calculate atomic structures and store them in PDB/XYZ files.</p></li>
+</ul>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Forum</p>
+<ul class="simple">
+<li><p>Please, use the <a class="reference external" href="https://blenderartists.org/t/1197801">Blender Artists forum</a> for comments and questions.</p></li>
+<li><p>There also is the possibility to ask questions on
+<a class="reference external" href="https://blender.stackexchange.com/">Stack Exchange</a>. However,
+note that some of the developers (like Blendphys) don’t have enough credits,
+which are needed to give answers on Stack Exchange.</p></li>
+</ul>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Defects in an Atomic Structure</p>
+<p>If you want to show defects like vacancies in an atomic structure, use an ‘X’ for
+the element name in the PDB or XYZ file. A defect is shown in the form of a cube.</p>
+</div>
+<section id="import-pdb-xyz">
+<h2>Import PDB/XYZ<a class="headerlink" href="#import-pdb-xyz" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../_images/addons_import-export_mesh-atomic_import-PDB.png"><img alt="../../_images/addons_import-export_mesh-atomic_import-PDB.png" src="../../_images/addons_import-export_mesh-atomic_import-PDB.png" style="width: 239px;" /></a>
+<figcaption>
+<p><span class="caption-text">The panel with the options for PDB import.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="camera-lamp">
+<h3>Camera &amp; Lamp<a class="headerlink" href="#camera-lamp" title="Permalink to this headline"></a></h3>
+<p>A camera and/or a light source are placed into the 3D world.
+Both are placed such that the entire atomic structure can be well seen by
+the camera with enough light from the light source.</p>
+</section>
+<section id="object-to-origin-pdb">
+<h3>Object to Origin (PDB)<a class="headerlink" href="#object-to-origin-pdb" title="Permalink to this headline"></a></h3>
+<p>The atomic structure is placed into the origin (0.0, 0.0, 0.0) of the 3D world.</p>
+</section>
+<section id="object-to-origin-xyz">
+<h3>Object to Origin (XYZ)<a class="headerlink" href="#object-to-origin-xyz" title="Permalink to this headline"></a></h3>
+<p>Either in only <em>the first</em> or in <em>all frames</em>, the atomic structure is put into
+the origin (0.0, 0.0, 0.0) of the 3D world.</p>
+</section>
+<section id="balls-atoms">
+<h3>Balls/Atoms<a class="headerlink" href="#balls-atoms" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Type Of</dt><dd><p>Choose either <em>NURBS</em>, <em>Mesh</em> or <em>Metaballs</em> for the atoms.
+For option <em>Mesh</em> the <em>Azimuth</em> and <em>Zenith</em> values can be chosen.
+Metaballs can lead to some fancy effects: for instance,
+if enough large, their shapes melt together showing some kind of surface effect.</p>
+</dd>
+</dl>
+<figure class="align-right" id="id2">
+<a class="reference internal image-reference" href="../../_images/addons_import-export_mesh-atomic_import-XYZ.png"><img alt="../../_images/addons_import-export_mesh-atomic_import-XYZ.png" src="../../_images/addons_import-export_mesh-atomic_import-XYZ.png" style="width: 238px;" /></a>
+<figcaption>
+<p><span class="caption-text">The panel with the options for XYZ import.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Scaling Factors</dt><dd><p>The atom radii as well as the distances between the atoms can be scaled by a simple factor.</p>
+</dd>
+<dt>Type</dt><dd><p>The type of atom radius (atomic, van der Waals or as specified in the custom data file [predefined]) can be chosen.</p>
+</dd>
+</dl>
+</section>
+<section id="sticks-bonds-only-pdb">
+<h3>Sticks/Bonds (only PDB)<a class="headerlink" href="#sticks-bonds-only-pdb" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Use Sticks</dt><dd><p>Use sticks or not.</p>
+</dd>
+<dt>Type</dt><dd><p>In general, the options <em>Sector</em> and <em>Radius</em> determine the precision and dimension of the sticks, respectively.
+Option <em>Smooth</em> always means that a Smooth operator is applied on the sticks.
+Option <em>Color</em> means that the stick is divided into two parts,
+showing the colors of the respective two atoms which it connects.</p>
+<dl class="simple">
+<dt>Instancing Vertices</dt><dd><p>The sticks of one element are put into one instancing vertices structure and the sticks appear as cylinders.
+The instancing vertices structure makes the displaying and loading of many sticks relatively fast
+(<a class="reference internal" href="#separate-atoms">Separate Atoms</a> for more info). Options <em>Unit</em> is the length of a unit (a small cylinder):
+several of such units are put together forming actually the stick (cylinder).
+The longer the unit length is the less is the number of such units and
+thus the faster is the displaying. However, if the unit length is too long the stick becomes
+eventually longer than the bond length, which the stick will actually represent.
+This then creates some overlapping effects. Option <em>Bonds</em>
+displays apart from single also double, triple, etc. bonds whereas
+option <em>Distance</em> is the corresponding bond distance measured in stick diameter.</p>
+</dd>
+<dt>Skin</dt><dd><p>The skin and subdivision modifiers are used to build the sticks.
+This gives a nice network of sticks, which can be used to show,
+e.g. only the bonds of the structure (delete the atoms before!).
+Options <em>SubDivV</em> and <em>SubDivR</em> are parameters of the subdivision operator.
+If option <em>Smooth</em> is activated, the initial squarish profile of the sticks changes to a more circular one.
+Note that if this option is chosen, there is only one object representing all sticks.</p>
+</dd>
+<dt>Normal</dt><dd><p>Normal cylinders are used. For each bond, one individual cylinder is used.
+If option <em>One Object</em> is activated, about <em>No</em> sticks are joined into one mesh object.
+This makes displaying the sticks very fast. However, individual sticks do not exist anymore.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="frames-only-xyz">
+<h3>Frames (only XYZ)<a class="headerlink" href="#frames-only-xyz" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Load All Frames</dt><dd><p>Load only the first or all frames.</p>
+</dd>
+<dt>Skip Frames</dt><dd><p>Skip and load only each n-th frame. This is quite useful for large data
+where it might be sufficient to show only each 4th frame.</p>
+</dd>
+<dt>Frames/Key</dt><dd><p>Show a specific number of frames per key. Many frames in a key lead to a more fluid presentation.</p>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The number of atoms in a frame has to be the <strong>same</strong> for all frames!</p>
+</div>
+</section>
+</section>
+<section id="atomic-blender-utilities-panel">
+<h2>Atomic Blender Utilities Panel<a class="headerlink" href="#atomic-blender-utilities-panel" title="Permalink to this headline"></a></h2>
+<p>The <em>Atomic Blender Utilities</em> panel makes your life easier during manipulating
+atoms of imported structures.</p>
+<figure class="align-right" id="id3">
+<a class="reference internal image-reference" href="../../_images/addons_import-export_mesh-atomic_utilities-panel.png"><img alt="../../_images/addons_import-export_mesh-atomic_utilities-panel.png" src="../../_images/addons_import-export_mesh-atomic_utilities-panel.png" style="width: 211px;" /></a>
+<figcaption>
+<p><span class="caption-text">The <em>Atomic Blender Utilities</em> panel.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="custom-data-file">
+<h3>Custom Data File<a class="headerlink" href="#custom-data-file" title="Permalink to this headline"></a></h3>
+<p>A separate custom data file containing all types of radii and colors of the atoms can be loaded.
+Such an option is useful when it is desired to use predefined values for radii and colors.
+An example can be downloaded from here:
+<a class="reference external" href="https://development.root-1.de/X-Download/atom_info.dat">Custom data file</a>.</p>
+<p>The custom data file is an ASCII file, which can be duplicated and modified by the user.
+The radius and/or color of the atoms can be permanently changed as follows:
+Open the ASCII file with a standard text editor, search the name of the atom
+and change the radius (<code class="docutils literal notranslate"><span class="pre">Radius</span> <span class="pre">used</span></code>). Do the same with the RGB values for the color.
+The value RGBA(1.0, 1.0, 1.0, 1.0) corresponds to white and RGBA(0.0, 0.0, 0.0, 1.0) is black.
+Note that the last value of a color tuple is the alpha value of the color.</p>
+<p>Inside Blender, the data file needs to be loaded first. The colors and radii
+are changed after executing <em>Apply</em>. Note that only selected atoms are changed.</p>
+</section>
+<section id="measure-distances">
+<h3>Measure Distances<a class="headerlink" href="#measure-distances" title="Permalink to this headline"></a></h3>
+<p>This is to measure the distance of two objects in Object Mode but also in Edit Mode.
+The unit is Ångström.</p>
+</section>
+<section id="change-atom-size">
+<h3>Change Atom Size<a class="headerlink" href="#change-atom-size" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Type of Radii</dt><dd><dl class="simple">
+<dt>Type</dt><dd><p>With this selector the type of radii can be chosen.
+Either one uses <em>Predefined</em>, <em>Atomic</em> or <em>Van der Waals</em> radii.
+The default values for Predefined radii are the <em>Atomic</em> radii.</p>
+</dd>
+<dt>Charge</dt><dd><p>For option <em>Ionic radii</em>, the charge state can be chosen and the radii of selected objects
+are instantaneously changed. Select one type of atom (e.g. only all hydrogen ones)
+and then apply the charge state. Changes only apply if a charge state of an atom is available.</p>
+</dd>
+</dl>
+</dd>
+<dt>Radii in pm</dt><dd><p>All radii of a specific type of atom can be manipulated.
+Type in the name of the atom (e.g. ‘Hydrogen’) and choose the radius in picometer.</p>
+</dd>
+<dt>Radii by Scale</dt><dd><p>This modifies the radii of all atoms with one scaling factor.
+Type in the scaling factor and increase or decrease the size of the radii by
+using the <em>Bigger</em> or <em>Smaller</em> button, respectively.</p>
+</dd>
+</dl>
+</section>
+<section id="change-stick-size">
+<h3>Change Stick Size<a class="headerlink" href="#change-stick-size" title="Permalink to this headline"></a></h3>
+<p>The diameter of the sticks are changed. The buttons <em>Bigger</em> and <em>Smaller</em>
+allow increasing or decreasing the diameter, respectively.
+The scale factor determines, how strong the change of diameter will be.
+By using the Outliner, one can apply these operators on only a selection of sticks
+(e.g. only the sticks of the hydrogen atoms). Note that changes only apply
+if the sticks are individual objects, e.g. single cylinders or if the sticks are described
+in instancing vertices structures.</p>
+</section>
+<section id="change-atom-shape">
+<h3>Change Atom Shape<a class="headerlink" href="#change-atom-shape" title="Permalink to this headline"></a></h3>
+<p>It is possible to change the shape (sphere, cube, icosphere, etc.) and
+material of the atoms. First, select your atoms in the 3D Viewport or the Outliner.</p>
+<dl class="simple">
+<dt>Shape</dt><dd><p>Choose the shape in the first selector.</p>
+</dd>
+<dt>Material</dt><dd><p>Choose one of the materials in the second selector. The materials are only examples,
+further refinements can be done in the Materials tab of the Properties.</p>
+</dd>
+<dt>Special</dt><dd><p>Here, you can choose an object with a special shape, material, etc.
+Such objects are quite nice to represent defects in atomic structures.
+When choosing such a special object, you cannot anymore separately choose
+the shape and material from above. In the Objects and Materials tabs of the Properties
+further changes can be done.</p>
+</dd>
+<dt>Replace</dt><dd><p>After all, push the <em>Replace</em> button. The shape and/or material of all
+selected atoms are then changed. This option works for objects and
+instancing vertices object structures.</p>
+</dd>
+<dt>Default</dt><dd><p>If you want to have the default values (NURBS spheres and specific element
+colors and sizes) of selected atoms push the <em>Default</em> button.</p>
+</dd>
+</dl>
+</section>
+<section id="separate-atoms">
+<h3>Separate Atoms<a class="headerlink" href="#separate-atoms" title="Permalink to this headline"></a></h3>
+<p>When structures are imported via the PDB or XYZ importer, the atoms are put
+into a so-called instancing vertices structure, somewhat into ‘groups’ of elements
+(e.g. all hydrogen atoms form one instancing vertices structure). In the Edit Mode of Blender,
+single atoms can be deleted or displaced by modifying the position of the vertices.
+However, they are always a part of the structure and are not independent objects.
+Sometimes one would like to mark a single atom or replace an atom by something different:
+for instance, imagine you have a NaCl cube where you would like to replace an atom by
+an atomic defect in form of a ball with a different color.</p>
+<p>To separate single atoms, one needs to select the atom (vertices) first in the Edit Mode.
+In the <em>Atomic Blender Utilities</em> panel, the <em>Object</em> selector and the <em>Separate</em> button appear at the bottom.
+If the selector remains on <em>Unchanged</em> the type of object (NURBS, mesh, meta) and
+its properties will not be changed upon separation. If desired also an other type of object can be chosen,
+which then replaces the standard type of object.</p>
+<p>After having chosen the type of object, use button <em>Separate Atoms</em> to separate the selected atoms:
+the atoms are then single, new objects, which can be manipulated in any way.
+They appear in the Outliner and carry the suffix <code class="docutils literal notranslate"><span class="pre">_sep</span></code>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Converting All Atoms of an Instancing Vertices Structure to Real Independent Objects</p>
+<p>Do the following: Select the whole atomic structure
+with the mouse then use <a class="reference internal" href="../../scene_layout/object/editing/apply.html#bpy-ops-object-duplicates-make-real"><span class="std std-ref">Make Instances Real</span></a>.
+With this you produce real independent objects!
+In the Outliner delete the remaining instancing vertices structures,
+named like “Carbon”, “Hydrogen”, etc.</p>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id4">
+<img alt="../../_images/addons_import-export_mesh-atomic_molecule-representations.jpeg" src="../../_images/addons_import-export_mesh-atomic_molecule-representations.jpeg" />
+<figcaption>
+<p><span class="caption-text">Different presentations of one and the same molecule.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<img alt="../../_images/addons_import-export_mesh-atomic_DNA.jpeg" src="../../_images/addons_import-export_mesh-atomic_DNA.jpeg" />
+<figcaption>
+<p><span class="caption-text">Part of a DNA molecule.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id6">
+<img alt="../../_images/addons_import-export_mesh-atomic_JPCC-2014.jpg" src="../../_images/addons_import-export_mesh-atomic_JPCC-2014.jpg" />
+<figcaption>
+<p><span class="caption-text">Functionalized [5]helicene molecules on the NaCl(001) surface
+(Clemens Barth et al. – <a class="reference external" href="https://doi.org/10.1021/jp501738c">Link to publication</a>).</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id7">
+<img alt="../../_images/addons_import-export_mesh-atomic_ESE-2017.jpeg" src="../../_images/addons_import-export_mesh-atomic_ESE-2017.jpeg" />
+<figcaption>
+<p><span class="caption-text">Solar cell structure to underline the properties of silicon nanocrystals deposited by pulsed spray system
+(Mickael Lozac’h et al. – <a class="reference external" href="https://doi.org/10.1002/ese3.174">Link to publication</a>).</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=8WmCn5xGebs">This video</a>
+was created by Sébastien Coget (responsible researcher: Frank Palmino)
+at the <a class="reference external" href="https://www.femto-st.fr/en">Femto-ST institute</a> in Besançon (France).
+The movie demonstrates that with Blender, professional movies can be done for research.
+It was rendered with Cycles.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="coat3D.html" class="btn btn-neutral float-left" title="3D-Coat Applink" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="anim_bvh.html" class="btn btn-neutral float-right" title="BioVision Motion Capture (BVH)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/import_export/mesh_atomic.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/import_export/mesh_atomic%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Faddons/import_export/mesh_atomic.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

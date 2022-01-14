@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Set Alpha Node &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/compositing/types/converter/set_alpha.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Switch View Node" href="switch_view.html" />
+    <link rel="prev" title="RGB to BW Node" href="rgb_to_bw.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Compositing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sidebar.html">Sidebar</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Node Types</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color Nodes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Converter Nodes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="alpha_convert.html">Alpha Convert Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_ramp.html">Color Ramp Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="combine_separate.html">Combine/Separate Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="id_mask.html">ID Mask Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math.html">Math Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rgb_to_bw.html">RGB to BW Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Set Alpha Node</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fade-to-black">Fade To Black</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#fade-in-a-title">Fade In a Title</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#colorizing-a-bw-image">Colorizing a BW Image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="switch_view.html">Switch View Node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../filter/index.html">Filter Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vector Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../matte/index.html">Matte Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Distort Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Layout Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Compositing</a> &raquo;</li>
+          <li><a href="index.html">Converter Nodes</a> &raquo;</li>
+      <li>Set Alpha Node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="set-alpha-node">
+<span id="bpy-types-compositornodesetalpha"></span><h1>Set Alpha Node<a class="headerlink" href="#set-alpha-node" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../../_images/compositing_node-types_CompositorNodeSetAlpha.png" src="../../../_images/compositing_node-types_CompositorNodeSetAlpha.png" />
+<figcaption>
+<p><span class="caption-text">Set Alpha Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Set Alpha Node</em> adds an alpha channel to an image.</p>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image input.</p>
+</dd>
+<dt>Alpha</dt><dd><p>The amount of Alpha can be set for the whole image by using the input field or
+per pixel by connecting to the socket.</p>
+</dd>
+</dl>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<dl class="simple" id="bpy-types-compositornodesetalpha-mode">
+<dt>Mode</dt><dd><p>Method to mix the alpha with the input <em>Image</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Apply Mask</dt>
+<dd class="field-odd"><p>Multiply the input images RGBA channels by the <em>Alpha</em> input value.
+In this cases, the output is using <a class="reference internal" href="../../../glossary/index.html#term-Premultiplied-Alpha"><span class="xref std std-term">Premultiplied Alpha</span></a>.</p>
+</dd>
+<dt class="field-even">Replace Alpha</dt>
+<dd class="field-even"><p>Replace the inputs alpha channel with the <em>Alpha</em> input value.
+In this cases, the output is using <a class="reference internal" href="../../../glossary/index.html#term-Straight-Alpha"><span class="xref std std-term">Straight Alpha</span></a>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image output.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is not, and is not intended to be,
+a general-purpose solution to the problem of compositing an image that does not contain alpha information.
+You might wish to use “chroma keying” or “difference keying” (as discussed elsewhere) if you can.
+This node is most often used (with a suitable input being provided by means of the socket)
+in those troublesome cases when you <em>cannot</em>, for some reason, use those techniques directly.</p>
+</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<section id="fade-to-black">
+<h3>Fade To Black<a class="headerlink" href="#fade-to-black" title="Permalink to this headline"></a></h3>
+<p>To transition the audience from one scene or shot to another,
+a common technique is to “fade to black”. As its name implies,
+the scene fades to a black screen. You can also “fade to white” or whatever color you wish,
+but black is a good neutral color that is easy on the eyes and intellectually “resets” the viewer’s mind.
+The node tree below shows how to do this using the Set Alpha node.</p>
+<figure class="align-default" id="id2">
+<img alt="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" src="../../../_images/compositing_types_converter_set-alpha_fade-to-black.png" />
+<figcaption>
+<p><span class="caption-text">Fade to black.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the example above, the alpha channel of the swirl image is ignored.
+Instead, a <a class="reference internal" href="../input/time.html"><span class="doc">Time node</span></a>
+introduces a factor from 0.0 to 1.0 over 60 frames, or about 2 seconds,
+to the Set Alpha node. Note that the time curve is exponentially-shaped,
+so that the overall blackness will fade in slowly and then accelerate toward the end.
+The Set Alpha node does not need an input image; instead, the flat (shadeless) black color is used.
+The Set Alpha Node uses the input factor and color to create a black image that has an alpha
+set which goes from 0.0 to 1.0 over 60 frames, or completely transparent to completely opaque.
+Think of alpha as a multiplier for how vivid you can see that pixel.
+These two images are combined by the Alpha Over node completely (a <em>Factor</em> of 1.0)
+to produce the composite image. The Set Alpha node will thus, depending on the frame being rendered,
+produce a black image that has some amount of transparency.
+Setup and animate, and you have an image sequence that fades to black over a two-second period.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No Scene Information Used</p>
+<p>This example node tree does not use the Render Layer node.
+To produce this 2-second animation, no Blender scene information was used.
+This is an example of using Blender’s powerful compositing abilities
+separate from its modeling and animation capabilities.
+(A Render Layer could be substituted for the Image layer,
+and the “fade-network” effect will still produce the same effect.)</p>
+</div>
+</section>
+<section id="fade-in-a-title">
+<h3>Fade In a Title<a class="headerlink" href="#fade-in-a-title" title="Permalink to this headline"></a></h3>
+<p>To introduce your animation,
+you will want to present the title of your animation over a background.
+You can have the title fly in, or fade it in. To fade it in,
+use the Set Alpha node with the Time node as shown below.</p>
+<figure class="align-default" id="id3">
+<img alt="../../../_images/compositing_types_converter_set-alpha_fade-in-title.png" src="../../../_images/compositing_types_converter_set-alpha_fade-in-title.png" />
+<figcaption>
+<p><span class="caption-text">Using Set Alpha to fade in a title.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the above example, a Time curve provides the Alpha value to the input socket.
+The current Render Layer node, which has the title in view, provides the image. As before,
+the Alpha Over node mixes (using the alpha values)
+the background swirl and the alpha title to produce the composite image.</p>
+</section>
+<section id="colorizing-a-bw-image">
+<h3>Colorizing a BW Image<a class="headerlink" href="#colorizing-a-bw-image" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id4">
+<img alt="../../../_images/compositing_types_converter_set-alpha_colorizing-image.png" src="../../../_images/compositing_types_converter_set-alpha_colorizing-image.png" />
+<figcaption>
+<p><span class="caption-text">Using Set Alpha to colorize an image.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the example above, notice how the blue tinge of the render input colors the swirl.
+You can use the Set Alpha node’s color field with this kind of node tree to add a consistent color to a BW image.</p>
+<p>In the example tree to the right,
+use the <em>Alpha</em> value of the Set Alpha node to give a desired degree of colorization.
+Thread the input image and the Set Alpha node into an Alpha Over node to colorize
+any black-and-white image in this manner.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rgb_to_bw.html" class="btn btn-neutral float-left" title="RGB to BW Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="switch_view.html" class="btn btn-neutral float-right" title="Switch View Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/converter/set_alpha.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60compositing/types/converter/set_alpha%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fcompositing/types/converter/set_alpha.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thao Tác -- Operators &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/operators.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Bố Trí Thư Mục của Blender -- Blender&#39;s Directory Layout" href="blender_directory_layout.html" />
+    <link rel="prev" title="Giới Hạn Làm Việc -- Working Limits" href="limits.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command_line/index.html">Dòng Lệnh -- Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripting/index.html">Viết Tập Lệnh &amp; Mở Rộng Chức Năng của Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_templates.html">Khuôn Mẫu của Trình Ứng Dụng -- Application Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keymap_editing.html">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Thao Tác -- Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#operator-cheat-sheet">Bảng Liệt Kê các Thao Tác</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-operators">Thao Tác Hệ Thống</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reload-scripts">Tái Nạp các Tập Lệnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-statistics">Thống Kê về Bộ Nhớ -- Memory Statistics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debug-menu">Trình Đơn Hiệu Chỉnh Lỗi -- Debug Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redraw-timer">Vẽ Lại Đồng Hồ -- Redraw Timer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clean-up-space-data">Dọn Dẹp Dữ Liệu-Không Gian</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="blender_directory_layout.html">Bố Trí Thư Mục của Blender -- Blender's Directory Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendices/index.html">Phụ Lục</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Cao Cấp -- Advanced</a> &raquo;</li>
+      <li>Thao Tác -- Operators</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operators">
+<h1>Thao Tác -- Operators<a class="headerlink" href="#operators" title="Permalink to this headline"></a></h1>
+<section id="operator-cheat-sheet">
+<span id="bpy-ops-wm-operator-cheat-sheet"></span><h2>Bảng Liệt Kê các Thao Tác<a class="headerlink" href="#operator-cheat-sheet" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Help ‣ Operator Cheat Sheet</span></p>
+</dd>
+<dt class="field-even">Ngữ Cảnh</dt>
+<dd class="field-even"><p>Enable <a class="reference internal" href="../editors/preferences/interface.html#prefs-interface-dev-extras"><span class="std std-ref">Developer Extras</span></a></p>
+</dd>
+</dl>
+</div>
+<p>Creates a text file in the Text Editor that gives a list of all operators
+and their default values in Python syntax, along with the generated docs.
+This is a good way to get an overview of all Blender's operators.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference external" href="https://docs.blender.org/api/current/">Blender's API documentation</a></p>
+</div>
+</section>
+<section id="system-operators">
+<h2>Thao Tác Hệ Thống<a class="headerlink" href="#system-operators" title="Permalink to this headline"></a></h2>
+<section id="reload-scripts">
+<span id="bpy-ops-script-reload"></span><h3>Tái Nạp các Tập Lệnh<a class="headerlink" href="#reload-scripts" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Topbar ‣ Blender ‣ System ‣ Reload Scripts</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">T</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Reloads all scripts found in the scripts data folder;
+any changes that have been made in the Text Editor will be lost!</p>
+</section>
+<section id="memory-statistics">
+<span id="bpy-ops-wm-memory-statistics"></span><h3>Thống Kê về Bộ Nhớ -- Memory Statistics<a class="headerlink" href="#memory-statistics" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">--debug-memory</span></code></p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Topbar ‣ Blender ‣ System ‣ Memory Statistics</span></p>
+</dd>
+</dl>
+</div>
+<p>This operator which can be found by searching &quot;Memory Statistics&quot;
+with the <a class="reference internal" href="../interface/controls/templates/operator_search.html"><span class="doc">Operator Search</span></a>
+will print useful information about memory objects, their size and user count.</p>
+<div class="admonition important">
+<p class="admonition-title">Quan trọng</p>
+<p>To fully use this operator run Blender from the console with <code class="docutils literal notranslate"><span class="pre">--debug-memory</span></code>.</p>
+</div>
+</section>
+<section id="debug-menu">
+<span id="bpy-ops-wm-debug-menu"></span><h3>Trình Đơn Hiệu Chỉnh Lỗi -- Debug Menu<a class="headerlink" href="#debug-menu" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Topbar ‣ Blender ‣ System ‣ Debug Menu</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>This operator brings up a menu to set Blender into a certain debug mode.</p>
+<p>See the
+<a class="reference external" href="https://developer.blender.org/diffusion/B/browse/master/source/blender/blenkernel/BKE_global.h">source code</a>
+for a description of what each value does.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Developers can search the code for <code class="docutils literal notranslate"><span class="pre">G.debug_value</span></code> to find other possible uses for this operator.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Additional debug options are available by launching Blender in debug mode or setting <code class="docutils literal notranslate"><span class="pre">bpy.app.debug</span> <span class="pre">=</span> <span class="pre">True</span></code>.</p>
+</div>
+</section>
+<section id="redraw-timer">
+<span id="bpy-ops-wm-redraw-timer"></span><h3>Vẽ Lại Đồng Hồ -- Redraw Timer<a class="headerlink" href="#redraw-timer" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Topbar ‣ Blender ‣ System ‣ Redraw Timer</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">T</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>This operator brings up a menu with a list of tests
+to benchmark UI render times along with undo/redo functions.</p>
+</section>
+<section id="clean-up-space-data">
+<span id="bpy-ops-screen-spacedata-cleanup"></span><h3>Dọn Dẹp Dữ Liệu-Không Gian<a class="headerlink" href="#clean-up-space-data" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Topbar ‣ Blender ‣ System ‣ Clean Up Space-data</span></p>
+</dd>
+</dl>
+</div>
+<p>Removes unused settings for invisible editors.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="limits.html" class="btn btn-neutral float-left" title="Giới Hạn Làm Việc -- Working Limits" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="blender_directory_layout.html" class="btn btn-neutral float-right" title="Bố Trí Thư Mục của Blender -- Blender&#39;s Directory Layout" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/advanced/operators.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60advanced/operators%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fadvanced/operators.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

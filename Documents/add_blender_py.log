@@ -1,0 +1,50 @@
+Answer #1:
+Based on these instructions:
+
+Obtain the blender source code:
+
+cd ~/src # or what you prefer
+git clone http://git.blender.org/blender.git
+
+cd blender
+git submodule update --init --recursive
+git submodule foreach git checkout master
+git submodule foreach git pull --rebase origin master
+Take care of the dependencies, see e.g. here if necessary* and compile via the bpy target:
+
+cd ~/src/blender
+make bpy
+(re)run the latter as root if errors like file INSTALL cannot set permissions on [...] occur
+
+Your python 3 should now be able to import bpy.
+
+* For Debian-ish systems run
+
+sudo apt-get install subversion build-essential gettext \
+ libxi-dev libsndfile1-dev \
+ libpng12-dev libjpeg-dev libfftw3-dev \
+ libopenexr-dev libopenjpeg-dev \
+ libopenal-dev libalut-dev libvorbis-dev \
+ libglu1-mesa-dev libsdl1.2-dev libfreetype6-dev \
+ libtiff4-dev libavdevice-dev \
+ libavformat-dev libavutil-dev libavcodec-dev libjack-dev \
+ libswscale-dev libx264-dev libmp3lame-dev python3.2-dev \
+ libspnav-dev libtheora-dev libjack-dev libglew1.6-dev
+Answered By:
+hhh
+Answer #2:
+In case this is still relevant, you can run a script in the context of blender like this (the -b makes it headless, so you can run it on a render server without X11):
+
+blender -b -P script.py
+For more options see blender --help.
+
+If you want to connect blender to an IPython console, so you can to interact with blender via python you can use this script which I just wrote: https://github.com/panzi/blender_ipython
+
+Start a notebook:
+
+./blender_ipython.py notebook
+Start a Qt console:
+
+./blender_ipython.py qtconsole
+Answered By:
+Tobias Kienzler

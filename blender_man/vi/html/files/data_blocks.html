@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data-Blocks &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/data_blocks.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Linked Libraries" href="linked_libraries/index.html" />
+    <link rel="prev" title="Rename" href="blend/rename.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Assets, Files, &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blend/index.html">Blender File</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data-Blocks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-block-types">Data-Block Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#life-time">Life Time</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#protected">Protected</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sharing">Sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#making-single-user">Making Single User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removing-data-blocks">Removing Data-Blocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-properties">Tính Chất Tùy Chỉnh -- Custom Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#editing-properties">Editing Properties</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#user-interface">User Interface</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#python-access">Python Access</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linked_libraries/index.html">Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset_libraries/index.html">Asset Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="media/index.html">Media Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import_export.html">Importing &amp; Exporting Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Assets, Files, &amp; Data System</a> &raquo;</li>
+      <li>Data-Blocks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-blocks">
+<span id="bpy-types-blenddata"></span><span id="bpy-types-id"></span><h1>Data-Blocks<a class="headerlink" href="#data-blocks" title="Permalink to this headline"></a></h1>
+<p>The base unit for any Blender project is the data-block. Examples of data-blocks include:
+meshes, objects, materials, textures, node trees, scenes, texts, brushes, and even Workspaces.</p>
+<figure class="align-right" id="id1">
+<img alt="../_images/files_data-blocks_outliner-blender-file-view.png" src="../_images/files_data-blocks_outliner-blender-file-view.png" />
+<figcaption>
+<p><span class="caption-text">Blender File view of the Outliner.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>A data-block is a generic abstraction of very different kinds of data,
+which features a common set of basic features, properties and behaviors.</p>
+<p>Some common characteristics:</p>
+<ul class="simple">
+<li><p>They are the primary contents of the blend-file.</p></li>
+<li><p>They can reference each other, for reuse and instancing.
+(Child/parent, object/object-data, materials/images, in modifiers or constraints too...)</p></li>
+<li><p>Their names are unique within a blend-file, for a given type.</p></li>
+<li><p>They can be added/removed/edited/duplicated.</p></li>
+<li><p>They can be linked between files (only enabled for a limited set of data-blocks).</p></li>
+<li><p>They can have their own animation data.</p></li>
+<li><p>They can have <a class="reference internal" href="#custom-properties">Custom Properties</a>.</p></li>
+</ul>
+<p>User will typically interact with the higher level data types (objects, meshes, etc.).
+When doing more complex projects, managing data-blocks becomes more important,
+especially when inter-linking blend-files.
+The main editor for that is the <a class="reference internal" href="../editors/outliner/index.html"><span class="doc">Outliner</span></a>.</p>
+<p>Not all data in Blender is a data-block,
+bones, sequence strips or vertex groups e.g. are not,
+they belong to armature, scene and mesh types respectively.</p>
+<section id="data-block-types">
+<span id="data-system-datablock-types"></span><h2>Data-Block Types<a class="headerlink" href="#data-block-types" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id2">
+<img alt="../_images/files_data-blocks_id-types.png" src="../_images/files_data-blocks_id-types.png" />
+<figcaption>
+<p><span class="caption-text">Data-blocks types with their icon.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>For reference, here is a table of data-blocks types stored in blend-files.</p>
+<dl class="simple">
+<dt>Kết Nối -- Link</dt><dd><p>Library Linking, supports being linked into other blend-files.</p>
+</dd>
+<dt>Pack</dt><dd><p>File Packing, supports file contents being packed into the blend-file
+(<strong>not</strong> applicable for most data-blocks which have no file reference).</p>
+</dd>
+</dl>
+<div class="lead docutils container">
+</div>
+<table class="colwidths-given valign docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Thể Loại -- Type</p></th>
+<th class="head"><p>Kết Nối -- Link</p></th>
+<th class="head"><p>Pack</p></th>
+<th class="head"><p>Miêu Tả -- Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../animation/actions.html"><span class="doc">Action</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Stores animation F-curves.</div>
+<div class="line">Used as data-block animation data,</div>
+<div class="line">and the Nonlinear Animation editor.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../animation/armatures/introduction.html"><span class="doc">Armature</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Skeleton used to deform meshes.</div>
+<div class="line">Used as data of armature objects, and by the Armature Modifier.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../sculpt_paint/brush/brush.html"><span class="doc">Brush</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Used by paint tools.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/cameras.html"><span class="doc">Camera</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Used as data by camera objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Cache File</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Used by Mesh Cache modifiers.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modeling/curves/introduction.html"><span class="doc">Curve</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Used as data by curve, font &amp; surface objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modeling/texts/introduction.html"><span class="doc">Font</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
+<div class="line">References font files.</div>
+<div class="line">Used by curve object-data of text objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../grease_pencil/introduction.html"><span class="doc">Grease Pencil</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">2D/3D sketch data used by Grease Pencil objects.</div>
+<div class="line">Used as overlay <em>helper</em> info, by the</div>
+<div class="line">3D Viewport, Image, Sequencer &amp; Movie Clip editors.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../scene_layout/collections/introduction.html"><span class="doc">Collection</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Group and organize objects in scenes.</div>
+<div class="line">Used to instance objects, and in library linking.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../editors/image/introduction.html"><span class="doc">Image</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
+<div class="line">Image files.</div>
+<div class="line">Used by shader nodes and textures.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../animation/shape_keys/introduction.html"><span class="doc">Keys (Shape Keys)</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Geometry shape storage, which can be animated.</div>
+<div class="line">Used by mesh, curve, and lattice objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/lights/light_object.html"><span class="doc">Light</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Used as object data by light objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="linked_libraries/index.html"><span class="doc">Library</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
+<div class="line">References to an external blend-file.</div>
+<div class="line">Access from the Outliner's <em>Blender File</em> view.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/freestyle/introduction.html"><span class="doc">Line Style</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Used by the Freestyle renderer.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../animation/lattice.html"><span class="doc">Lattice</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Grid based lattice deformation.</div>
+<div class="line">Used as data of lattice objects, and by the Lattice Modifier.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../movie_clip/masking/introduction.html"><span class="doc">Mask</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">2D animated mask curves.</div>
+<div class="line">Used by compositing nodes &amp; sequencer strip.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../render/materials/introduction.html"><span class="doc">Material</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Set shading and texturing render properties.</div>
+<div class="line">Used by objects, meshes &amp; curves.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../modeling/metas/introduction.html"><span class="doc">Metaball</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">An isosurface in 3D space.</div>
+<div class="line">Used as data of metaball objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../modeling/meshes/introduction.html"><span class="doc">Mesh</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Geometry made of vertices/edges/faces.</div>
+<div class="line">Used as data of mesh objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../editors/clip/introduction.html"><span class="doc">Movie Clip</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✗</p></td>
+<td><div class="line-block">
+<div class="line">Reference to an image sequence or video file.</div>
+<div class="line">Used in the <em>Movie Clip</em> editor.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../render/shader_nodes/groups.html"><span class="doc">Node Tree</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Groups of re-usable nodes.</div>
+<div class="line">Used in the node editors.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../scene_layout/object/introduction.html"><span class="doc">Object</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">An entity in the scene with location,</div>
+<div class="line">scale, rotation.</div>
+<div class="line">Used by scenes &amp; collections.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../sculpt_paint/brush/stroke.html"><span class="doc">Paint Curve</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Stores a paint or sculpt stroke.</div>
+<div class="line">Access from the paint tools.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../sculpt_paint/index.html"><span class="doc">Palette</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Store color presets.</div>
+<div class="line">Access from the paint tools.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../physics/particles/introduction.html"><span class="doc">Particle</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Particle settings.</div>
+<div class="line">Used by particle systems.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/eevee/light_probes/introduction.html"><span class="doc">Light Probe</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Help achieve complex real-time lighting in Eevee.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../scene_layout/scene/introduction.html"><span class="doc">Scene</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Primary store of all data displayed and animated.</div>
+<div class="line">Used as top-level storage for objects &amp; animation.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../render/output/audio/speaker.html"><span class="doc">Sounds</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><div class="line-block">
+<div class="line">Reference to sound files.</div>
+<div class="line">Used as data of speaker objects.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../render/output/audio/speaker.html"><span class="doc">Speaker</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Sound sources for a 3D scene.</div>
+<div class="line">Used as data of speaker object.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../editors/text_editor.html"><span class="doc">Text</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>✗</p></td>
+<td><div class="line-block">
+<div class="line">Text data.</div>
+<div class="line">Used by Python scripts and OSL shaders.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../render/materials/legacy_textures/introduction.html"><span class="doc">Texture</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">2D/3D textures.</div>
+<div class="line">Used by brushes and modifiers.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../interface/window_system/introduction.html"><span class="doc">Window Manager</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">The overarching manager for all of Blender's user interface.</div>
+<div class="line">Includes Workspaces, notification system, operators, and keymaps.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../render/lights/world.html"><span class="doc">World</span></a></p></td>
+<td><p>✓</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">Define global render environment settings.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../interface/window_system/workspaces.html"><span class="doc">Workspace</span></a></p></td>
+<td><p>✗</p></td>
+<td><p>—</p></td>
+<td><div class="line-block">
+<div class="line">UI layout.</div>
+<div class="line">Used by each window, which has its own workspace.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="life-time">
+<span id="data-system-datablock-life-time"></span><h2>Life Time<a class="headerlink" href="#life-time" title="Permalink to this headline"></a></h2>
+<p>Every data-block has its usage counted (reference count), when there is more than one,
+you can see the number of current users of a data-block to the right of its name in the interface.
+Blender follows the general rule that unused data is eventually removed.</p>
+<p>Since it is common to add and remove a lot of data while working,
+this has the advantage of not having to manually manage every single data-block.
+This works by skipping zero user data-blocks when writing blend-files.</p>
+<section id="protected">
+<span id="data-system-datablock-fake-user"></span><h3>Protected<a class="headerlink" href="#protected" title="Permalink to this headline"></a></h3>
+<p>Since zero user data-blocks are not saved,
+there are times when you want to force the data to be kept irrespective of its users.</p>
+<p>If you are building a blend-file to serve as a library of assets that you intend to link to and from other files,
+you will need to make sure that they do not accidentally get deleted from the library file.</p>
+<p>To protect a data-block, use the button with the shield icon next to its name.
+The data-block will then never be silently deleted by Blender,
+but you can still manually remove it if needed.</p>
+</section>
+</section>
+<section id="sharing">
+<h2>Sharing<a class="headerlink" href="#sharing" title="Permalink to this headline"></a></h2>
+<p>Data-blocks can be shared among other data-blocks.</p>
+<p>Examples where sharing data is common:</p>
+<ul class="simple">
+<li><p>Sharing textures among materials.</p></li>
+<li><p>Sharing meshes between objects (instances).</p></li>
+<li><p>Sharing animated actions between objects,
+for example to make all the lights dim together.</p></li>
+</ul>
+<p>You can also share data-blocks between files, see
+<a class="reference internal" href="linked_libraries/index.html"><span class="doc">linked libraries</span></a>.</p>
+</section>
+<section id="making-single-user">
+<span id="data-system-datablock-make-single-user"></span><h2>Making Single User<a class="headerlink" href="#making-single-user" title="Permalink to this headline"></a></h2>
+<p>When a data-block is shared between several users, you can make a copy of it for a given user.
+To do so, click on the user count button to the right of its name.
+This will duplicate that data-block and assign the newly created copy to that usage only.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Objects have a set of more advanced actions to become single-user,
+see <a class="reference internal" href="../scene_layout/object/editing/relations/make_single_user.html#bpy-ops-object-make-single-user"><span class="std std-ref">their documentation</span></a>.</p>
+</div>
+</section>
+<section id="removing-data-blocks">
+<h2>Removing Data-Blocks<a class="headerlink" href="#removing-data-blocks" title="Permalink to this headline"></a></h2>
+<p>As covered in <a class="reference internal" href="#life-time">Life Time</a>, data-blocks are typically removed when they are no longer used.
+They can also be manually <em>unlinked</em> or <em>deleted</em>.</p>
+<p>Unlinking a data-block means that its user won't use it anymore.
+This can be achieved by clicking on the &quot;X&quot; icon next to a data-block's name.
+If you unlink a data-block from all of its users,
+it will eventually be deleted by Blender as described above (unless it is a protected one).</p>
+<p>Deleting a data-block directly erases it from the blend-file, automatically unlinking it from all of its users.
+This can be achieved by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> on the &quot;X&quot; icon next to its name.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Deleting some data-blocks can lead to deletion of some of its users, which would become invalid without them.
+The main example is that object-data deletion (like mesh, curve, camera...) will also delete all objects using it.</p>
+</div>
+<p>Those two operations are also available in the context menu
+when <kbd class="kbd docutils literal notranslate">RMB</kbd>-clicking on a data-block in the <em>Outliner</em>.</p>
+</section>
+<section id="custom-properties">
+<span id="bpy-ops-wm-properties"></span><span id="bpy-types-bpy-struct"></span><span id="files-data-blocks-custom-properties"></span><h2>Tính Chất Tùy Chỉnh -- Custom Properties<a class="headerlink" href="#custom-properties" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id3">
+<img alt="../_images/files_data-blocks_add.png" src="../_images/files_data-blocks_add.png" />
+<figcaption>
+<p><span class="caption-text">Custom Properties panel.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Custom properties are a way to store your own data in Blender's data-blocks. It can be used for rigging
+(where bones and objects can have custom properties driving other properties), and Python scripts,
+where it's common to define new settings not available in Blender. It is also possible to access
+custom properties from materials via the <a class="reference internal" href="../render/shader_nodes/input/attribute.html"><span class="doc">Attribute Node</span></a>.</p>
+<p>Only certain data supports custom properties:</p>
+<ul class="simple">
+<li><p>All <a class="reference internal" href="#data-system-datablock-types"><span class="std std-ref">data-blocks types</span></a>.</p></li>
+<li><p>Bones and pose bones.</p></li>
+<li><p>Sequence strips.</p></li>
+</ul>
+<p>To add a custom property, search for the <em>Custom Properties</em> panel,
+found at the bottom of most <a class="reference internal" href="../editors/properties_editor.html"><span class="doc">Properties</span></a> or Sidebar region, and click <em>New</em>.
+Properties can be removed from the same location with the delete icon.
+Once properties are added they can be configured via the edit icon to work for a particular use case;
+see <a class="reference internal" href="#editing-properties">Editing Properties</a> for more information.</p>
+<section id="editing-properties">
+<span id="bpy-ops-wm-properties-edit"></span><h3>Editing Properties<a class="headerlink" href="#editing-properties" title="Permalink to this headline"></a></h3>
+<section id="user-interface">
+<h4>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline"></a></h4>
+<figure class="align-right" id="id4">
+<img alt="../_images/files_data-blocks_edit.png" src="../_images/files_data-blocks_edit.png" />
+<figcaption>
+<p><span class="caption-text">Custom Properties edit pop-up.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Custom properties can be edited using the panel available for data types that support it.
+Editing the properties allows you to configure things such as default values,
+ranges, and even add a custom tooltip.</p>
+<div class="lead docutils container">
+</div>
+<dl>
+<dt>Thể Loại -- Type</dt><dd><p>The data type of the property; different data types have can only have specific data properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Float</dt>
+<dd class="field-odd"><p>A numeric value with decimals e.g. 3.141, 5.0, or 6.125.</p>
+</dd>
+<dt class="field-even">Float Array</dt>
+<dd class="field-even"><p>A collection of multiple float data types e.g. <code class="docutils literal notranslate"><span class="pre">[3.141,</span> <span class="pre">5.0,</span> <span class="pre">6.125]</span></code> .
+This data type can also be used for data that can be represented as a float array such as colors.
+These special float arrays can be set in the <em>Subtype</em> selector.</p>
+</dd>
+<dt class="field-odd">Integer</dt>
+<dd class="field-odd"><p>A numeric value without any decimals e.g. 1, 2, 3, or 4.</p>
+</dd>
+<dt class="field-even">Integer Array</dt>
+<dd class="field-even"><p>A collection of multiple integer data types e.g. <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code> .</p>
+</dd>
+<dt class="field-odd">String</dt>
+<dd class="field-odd"><p>A sequence of characters such as &quot;Some Text&quot;.</p>
+</dd>
+<dt class="field-even">Python</dt>
+<dd class="field-even"><p>Edit a Python data type directly, used for unsupported data types.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Boolean values must be handled as integers and only work
+when using <em>Min</em>/<em>Max</em> values that are integers and that are no more than 1 apart.</p>
+<p>At this point, the Boolean values will still look like integers but behave like
+a Boolean having one lower, off, value and a higher, on, value.</p>
+</div>
+</dd>
+<dt>Array Length</dt><dd><p>The number of elements in the array.
+Note that if the array length is greater than 7 you cannot directly edit its elements,
+you must press <em>Edit Value</em> to edit the elements of the array.</p>
+</dd>
+<dt>Property Name</dt><dd><p>The text that is displayed to the left of the value.
+This name is also used to access the property via Python.</p>
+</dd>
+<dt>Default Value</dt><dd><p>This sets the default value of the property used by the <em>Reset to Default Value</em> operator.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Default values are used as the basis of <a class="reference internal" href="../editors/nla/sidebar.html#bpy-types-animdata-action-blend-type"><span class="std std-ref">NLA blending</span></a>,
+and a nonsensical default (e.g. 0 for a property used for scaling) on a property intended for
+being keyframed is likely to cause issues.</p>
+</div>
+</dd>
+<dt>Tối Thiểu, Tối Đa -- Min, Max</dt><dd><p>The minimum/maximum value the custom property can take.</p>
+</dd>
+<dt>Is Library Overridable</dt><dd><p>Allow the property to be <a class="reference internal" href="linked_libraries/library_overrides.html"><span class="doc">overridden</span></a>
+when the data-block is linked.</p>
+</dd>
+<dt>Use Soft Limits</dt><dd><p>Enables limits that the <em>Property Value</em> slider can be adjusted to
+without having to input the value numerically.</p>
+<dl class="simple">
+<dt>Soft Min, Max</dt><dd><p>The minimum/maximum value for the soft limit.</p>
+</dd>
+</dl>
+</dd>
+<dt>Step</dt><dd><p>A multiplier to control how much the data type is incremented at a time.
+The internal step size for floats is 0.01, so a <em>Step</em> value of 5 will
+increment at a rate of 0.05 and a <em>Step</em> value of 100 will increment by 1.0.
+For integers the internal step size is 1.</p>
+</dd>
+<dt>Chuẩn Xác -- Precision</dt><dd><p>The number of digits after the decimal to display in the user interface for float data types.</p>
+</dd>
+<dt>Subtype</dt><dd><p>Specifies the type of data the property contains, which affects how it appears in the user interface.
+In order for this property to appear the <em>Property Value</em> must be a vector of floats.
+For either of the color subtypes to work the <em>Property Value</em> must be a vector
+with three or four values depending on the availability of an <a class="reference internal" href="../glossary/index.html#term-Alpha-Channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Plane Data</dt>
+<dd class="field-odd"><p>Data values do not have any special behavior.</p>
+</dd>
+<dt class="field-even">Linear Color</dt>
+<dd class="field-even"><p>Color in linear color space.</p>
+</dd>
+<dt class="field-odd">Gamma-Corrected Color</dt>
+<dd class="field-odd"><p>Color in gamma corrected color space.</p>
+</dd>
+<dt class="field-even">Euler Angles</dt>
+<dd class="field-even"><p><a class="reference internal" href="../glossary/index.html#term-Euler-Rotation"><span class="xref std std-term">Euler Rotation</span></a> angles.</p>
+</dd>
+<dt class="field-odd">Quaternion Angles</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../glossary/index.html#term-Quaternion-Rotation"><span class="xref std std-term">Quaternion Rotation</span></a> angles.</p>
+</dd>
+</dl>
+</dd>
+<dt>Miêu Tả -- Description</dt><dd><p>Allows you to write a custom <a class="reference internal" href="../getting_started/help.html"><span class="doc">Tooltip</span></a> for your property.</p>
+</dd>
+</dl>
+</section>
+<section id="python-access">
+<h4>Python Access<a class="headerlink" href="#python-access" title="Permalink to this headline"></a></h4>
+<p>Custom properties can be accessed in a similar way to
+<a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">dictionaries</a>,
+with the constraints that keys can only be strings,
+and values can only be strings, numbers, arrays of such, or nested properties.</p>
+<p>See the <a class="reference external" href="https://docs.blender.org/api/current/info_quickstart.html#custom-properties">API documentation</a>
+for details.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="blend/rename.html" class="btn btn-neutral float-left" title="Rename" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linked_libraries/index.html" class="btn btn-neutral float-right" title="Linked Libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/files/data_blocks.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60files/data_blocks%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Ffiles/data_blocks.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Active Spline &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/curves/properties/active_spline.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Curve Display" href="../curve_display.html" />
+    <link rel="prev" title="Path Animation" href="path_animation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Curves</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Editing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Properties</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="path_animation.html">Path Animation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Active Spline</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#poly">Poly</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bezier">Bézier</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#nurbs">NURBS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../curve_display.html">Curve Display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Curves</a> &raquo;</li>
+          <li><a href="index.html">Properties</a> &raquo;</li>
+      <li>Active Spline</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="active-spline">
+<span id="bpy-types-spline"></span><h1>Active Spline<a class="headerlink" href="#active-spline" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Properties ‣ Curve ‣ Active Spline</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Active Spline</em> panel is used in Edit Mode to control properties of the currently selected spline.</p>
+<p class="rubric" id="bpy-types-spline-use-smooth"><span id="bpy-types-spline-resolution-u"></span><span id="bpy-types-spline-use-cyclic-u"></span><span id="spline-common-options"></span>Common Options</p>
+<dl>
+<dt>Cyclic U</dt><dd><p>Closes the active spline.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id2">
+<img alt="../../../_images/modeling_curves_properties_active-spline_nurbs-default.png" src="../../../_images/modeling_curves_properties_active-spline_nurbs-default.png" />
+<figcaption>
+<p><span class="caption-text">Default NURBS curve.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<img alt="../../../_images/modeling_curves_properties_active-spline_nurbs-cyclic.png" src="../../../_images/modeling_curves_properties_active-spline_nurbs-cyclic.png" />
+<figcaption>
+<p><span class="caption-text">A NURBS curve with Cyclic applied.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Resolution U</dt><dd><p>Alters the <a class="reference internal" href="shape.html#bpy-types-curve-resolution-u"><span class="std std-ref">resolution</span></a>
+of each segment by changing the number of subdivisions.</p>
+</dd>
+<dt>Smooth</dt><dd><p>Use <a class="reference internal" href="../../meshes/editing/mesh/shading.html#modeling-meshes-editing-normals-shading"><span class="std std-ref">Smooth Shading</span></a> for any 3D geometry.</p>
+</dd>
+</dl>
+<section id="poly">
+<h2>Poly<a class="headerlink" href="#poly" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id4">
+<img alt="../../../_images/modeling_curves_properties_active-spline_panel-poly.png" src="../../../_images/modeling_curves_properties_active-spline_panel-poly.png" />
+<figcaption>
+<p><span class="caption-text">Active Spline panel: Poly Spline.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Cyclic U</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+<dt>Smooth</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="bezier">
+<span id="bpy-types-spline-radius-interpolation"></span><span id="bpy-types-spline-tilt-interpolation"></span><h2>Bézier<a class="headerlink" href="#bezier" title="Permalink to this headline"></a></h2>
+<figure class="align-center" id="id5">
+<img alt="../../../_images/modeling_curves_properties_active-spline_panel-bezier.png" src="../../../_images/modeling_curves_properties_active-spline_panel-bezier.png" />
+<figcaption>
+<p><span class="caption-text">Active Spline panel: Bézier Spline.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Cyclic U</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+<dt>Resolution U</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+<dt>Interpolation Tilt</dt><dd><p>Alters how the tilt of a segment is calculated.</p>
+</dd>
+<dt>Radius</dt><dd><p>Alters how the radius of a beveled curve is calculated.
+The effects are easier to see after <a class="reference internal" href="../editing/curve.html#modeling-curve-radius"><span class="std std-ref">increasing the radius</span></a>.</p>
+</dd>
+<dt>Smooth</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="nurbs">
+<span id="bpy-types-spline-order-u"></span><span id="bpy-types-spline-use-endpoint-u"></span><span id="bpy-types-spline-use-bezier-u"></span><h2>NURBS<a class="headerlink" href="#nurbs" title="Permalink to this headline"></a></h2>
+<p>One of the characteristics of a NURBS object is the <em>knot vector</em>.
+This is a sequence of numbers used to determine the influence of the control points on the curve.
+While you cannot edit the knot vectors directly,
+you can influence them through the <em>Endpoint</em> and <em>Bézier</em> options in the Active Spline panel.
+Note that, the <em>Endpoint</em> and <em>Bézier</em> settings only apply to open NURBS curves.</p>
+<figure class="align-center" id="id6">
+<img alt="../../../_images/modeling_curves_properties_active-spline_panel-nurbs.png" src="../../../_images/modeling_curves_properties_active-spline_panel-nurbs.png" />
+<figcaption>
+<p><span class="caption-text">Active Spline: NURBS Spline.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl id="modeling-curve-knot">
+<dt>Cyclic U</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+<dt>Bézier U</dt><dd><p>Makes the NURBS curve act like a Bézier curve.
+The NURBS control points act like <em>Free</em> handles of Bézier curve.
+Depending on the <em>Order</em>, 3 or 4 control points form one curve segment.
+<em>Cyclic</em> and <em>Endpoint</em> must be disabled for this option to work.</p>
+</dd>
+<dt>Endpoint U</dt><dd><p>Makes the curve contact the end control points. <em>Cyclic</em> must be disabled for this option to work.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<img alt="../../../_images/modeling_curves_properties_active-spline_nurbs-default.png" src="../../../_images/modeling_curves_properties_active-spline_nurbs-default.png" />
+<figcaption>
+<p><span class="caption-text">Default NURBS curve.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<img alt="../../../_images/modeling_curves_properties_active-spline_nurbs-endpoint.png" src="../../../_images/modeling_curves_properties_active-spline_nurbs-endpoint.png" />
+<figcaption>
+<p><span class="caption-text">A NURBS curve with Endpoint enabled.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl id="modeling-curve-order">
+<dt>Order U</dt><dd><p>The order of the NURBS curve determines the area of influence of the control points over the curve.
+Higher order values means that a single control point has a greater
+influence over a greater relative proportion of the curve.
+The valid range of <em>Order</em> values is 2-6 depending on the number of control points present in the curve.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id9">
+<img alt="../../../_images/modeling_curves_properties_active-spline_nurbs-default.png" src="../../../_images/modeling_curves_properties_active-spline_nurbs-default.png" />
+<figcaption>
+<p><span class="caption-text">NURBS curves with orders of 4.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id10">
+<img alt="../../../_images/modeling_curves_properties_active-spline_nurbs-order.png" src="../../../_images/modeling_curves_properties_active-spline_nurbs-order.png" />
+<figcaption>
+<p><span class="caption-text">NURBS curves with orders of 2.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Resolution U</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+<dt>Smooth</dt><dd><p>See <a class="reference internal" href="#spline-common-options"><span class="std std-ref">Common Options</span></a>.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="path_animation.html" class="btn btn-neutral float-left" title="Path Animation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../curve_display.html" class="btn btn-neutral float-right" title="Curve Display" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/curves/properties/active_spline.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/curves/properties/active_spline%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/curves/properties/active_spline.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

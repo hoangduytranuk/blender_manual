@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/scene_layout/collections/collections.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Collection Properties" href="properties.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Scenes &amp; Objects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../scene/index.html">Scenes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../object/index.html">Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../object/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/types.html">Object Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/origin.html">Object Origin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/editing/index.html">Editing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../object/properties/index.html">Properties</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../object/properties/transforms.html">Transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../object/properties/relations.html">Relations</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Collections</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Collections</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#collections-tab">Collections Tab</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#restrictions">Restrictions</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#instancing">Instancing</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#line-art">Line Art</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#collections-menu">Collections Menu</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#collections-panel">Collections Panel</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="properties.html">Collection Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../object/properties/instancing/index.html">Instancing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../object/properties/visibility.html">Visibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../object/properties/display.html">Viewport Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../object/properties/line_art.html">Line Art</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../object/tools/index.html">Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Collections</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Collections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#collections-tab">Collections Tab</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#restrictions">Restrictions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#instancing">Instancing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#line-art">Line Art</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#collections-menu">Collections Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collections-panel">Collections Panel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html">Collection Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../view_layers/index.html">View Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Scenes &amp; Objects</a> &raquo;</li>
+          <li><a href="../object/index.html">Objects</a> &raquo;</li>
+          <li><a href="../object/properties/index.html">Properties</a> &raquo;</li>
+          <li><a href="index.html">Collections</a> &raquo;</li>
+      <li>Collections</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collections">
+<span id="bpy-ops-collection"></span><span id="bpy-types-collection"></span><h1>Collections<a class="headerlink" href="#collections" title="Permalink to this headline"></a></h1>
+<p>There can be many objects in a scene: A typical stage scene consists of furniture, props,
+lights, and backdrops.
+Blender helps you keep everything organized by allowing you to group like objects together.
+Objects can be grouped together without any kind of transformation relationship (unlike parenting).
+Collections are used to just logically organize your scene,
+or to facilitate one-step appending or linking between files or across scenes.</p>
+<section id="collections-tab">
+<span id="scene-layout-collections-collections-tab"></span><h2>Collections Tab<a class="headerlink" href="#collections-tab" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Collection Properties</span></p>
+</dd>
+</dl>
+</div>
+<section id="restrictions">
+<h3>Restrictions<a class="headerlink" href="#restrictions" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Selectable</dt><dd><p>Toggles the ability to select the objects from the 3D Viewport.
+This is useful for if you have placed something in the scene and
+do not want to accidentally select it when working on something else.</p>
+</dd>
+<dt>Disable in Renders</dt><dd><p>Enables/disables visibility of the collection in renders.</p>
+</dd>
+<dt>Holdout</dt><dd><p>Objects inside this collection will generate a holdout/mask in the active view layer.</p>
+</dd>
+<dt>Indirect Only</dt><dd><p>Objects inside this collection will only contribute to the final image
+indirectly through shadows and reflections.</p>
+</dd>
+</dl>
+</section>
+<section id="instancing">
+<h3>Instancing<a class="headerlink" href="#instancing" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Instance Offset X, Y Z</dt><dd><p>Applies a spatial offset of the instanced collections from the original object’s origin.</p>
+</dd>
+</dl>
+</section>
+<section id="line-art">
+<h3>Line Art<a class="headerlink" href="#line-art" title="Permalink to this headline"></a></h3>
+<dl class="simple" id="bpy-types-collection-lineart-usage">
+<dt>Usage</dt><dd><p>How to use this collection in Line Art.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Include</dt>
+<dd class="field-odd"><p>Generate feature lines for this collection.</p>
+</dd>
+<dt class="field-even">Occlusion Only</dt>
+<dd class="field-even"><p>Only use the collection to produce occlusion.</p>
+</dd>
+<dt class="field-odd">Exclude</dt>
+<dd class="field-odd"><p>Don’t use this collection in Line Art.</p>
+</dd>
+<dt class="field-even">Intersection Only</dt>
+<dd class="field-even"><p>Only generate intersection lines for this collection.</p>
+</dd>
+<dt class="field-odd">No Intersection</dt>
+<dd class="field-odd"><p>Include this collection but do not generate intersection lines.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-collection-lineart-use-intersection-mask">
+<dt>Collection Mask</dt><dd><p>Use custom intersection mask for faces in this collection.
+Intersection masks can be used by the Line Art modifier to filter lines.
+See <a class="reference internal" href="../../grease_pencil/modifiers/generate/line_art.html#bpy-types-lineartgpencilmodifier-use-intersection-mask"><span class="std std-ref">Collection Masks</span></a> for more information.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-collection-lineart-intersection-mask">
+<dt>Mask</dt><dd><p>Intersections generated by this collection will have this mask value.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="collections-menu">
+<h2>Collections Menu<a class="headerlink" href="#collections-menu" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Object ‣ Collection</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">M</kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">M</kbd></kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">G</kbd></kbd>, etc.</p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Move to Collection <kbd class="kbd docutils literal notranslate">M</kbd></dt><dd><p>Move selected objects to an existing or new collection.</p>
+</dd>
+<dt>Link to Collection <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">M</kbd></kbd></dt><dd><p>Link selected objects to a collection.
+A new collection can be created in the pop-up.</p>
+</dd>
+<dt>Create New Collection <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">G</kbd></kbd></dt><dd><p>Creates a new collection and adds the selected object(s) to it.
+The name of the new collection can be specified in
+the <em>Create New Collection</em> <a class="reference internal" href="../../interface/undo_redo.html#bpy-ops-screen-redo-last"><span class="std std-ref">Adjust Last Operation</span></a> panel.
+This collection is not linked to the active scene.</p>
+</dd>
+<dt>Remove from Collection <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">G</kbd></kbd></dt><dd><p>Remove the selected objects from a collection. If the object belongs to more than one collection,
+a pop-up lets you select the collection and an option to remove it from all collections.</p>
+</dd>
+<dt>Remove from All Collections <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">G</kbd></kbd></dt><dd><p>Remove the selected objects from all collections.</p>
+</dd>
+<dt>Add Selected to Active Collection <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">G</kbd></kbd></dt><dd><p>Adds the selected objects to the collections to which the active object belongs.</p>
+</dd>
+<dt>Remove Selected from Active Collection <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">G</kbd></kbd></dt><dd><p>Causes the selected objects to be removed from the collections to which the active object belongs.</p>
+</dd>
+</dl>
+</section>
+<section id="collections-panel">
+<span id="scene-layout-collections-collections-panel"></span><h2>Collections Panel<a class="headerlink" href="#collections-panel" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object Mode</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Object tab ‣ Collections</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-default" id="id4">
+<img alt="../../_images/scene-layout_collections_collections_panel.png" src="../../_images/scene-layout_collections_collections_panel.png" />
+<figcaption>
+<p><span class="caption-text">Collections panel.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>All collections that an object has been assigned to are listed in the Properties
+<span class="menuselection">Object tab ‣ Collections panel</span>.</p>
+<dl class="simple">
+<dt>Add to Collection</dt><dd><p>Adds the selected object to a collection.
+A pop-up lets you specify the collection to add to.</p>
+</dd>
+<dt>New <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>Creates a new collection and adds the selected object to it.</p>
+</dd>
+<dt>Name</dt><dd><p>To rename a collection, simply click in the collections name field.</p>
+</dd>
+<dt>Remove <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>To remove an object from a collection,
+find the name of the collection from which you wish to remove the object,
+and click the <code class="docutils literal notranslate"><span class="pre">X</span></code> button to the right of the collection name.</p>
+</dd>
+<dt>Specials</dt><dd><p>Unlink Collection, Select Collection, Set Offset from Cursor</p>
+</dd>
+<dt>Offset</dt><dd><p>Applies a spatial offset of the instanced collections from the original object’s origin.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Appending or Linking Collections</p>
+<p>To append a collection from another blend-file,
+consult <a class="reference internal" href="../../files/linked_libraries/index.html"><span class="doc">this page</span></a>.
+In summary, <span class="menuselection">File ‣ Link/Append Link</span> Select a blend-file and then the collection.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Selecting Collections</p>
+<p>Collections can be selected, see <a class="reference internal" href="../object/selecting.html#bpy-ops-object-select-grouped"><span class="std std-ref">Select Grouped</span></a> for more information.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="properties.html" class="btn btn-neutral float-right" title="Collection Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/scene_layout/collections/collections.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60scene_layout/collections/collections%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fscene_layout/collections/collections.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

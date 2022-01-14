@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keying Node &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/compositing/types/matte/keying.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Keying Screen Node" href="keying_screen.html" />
+    <link rel="prev" title="Ellipse Mask Node" href="ellipse_mask.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Compositing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sidebar.html">Sidebar</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Node Types</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filter/index.html">Filter Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vector Nodes</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Matte Nodes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="box_mask.html">Box Mask Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="channel_key.html">Channel Key Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chroma_key.html">Chroma Key Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_key.html">Color Key Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_spill.html">Color Spill Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cryptomatte.html">Cryptomatte Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cryptomatte_legacy.html">Cryptomatte Node (Legacy)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="difference_key.html">Difference Key Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="distance_key.html">Distance Key Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="double_edge_mask.html">Double Edge Mask Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ellipse_mask.html">Ellipse Mask Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Keying Node</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="keying_screen.html">Keying Screen Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="luminance_key.html">Luminance Key Node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Distort Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Layout Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Compositing</a> &raquo;</li>
+          <li><a href="index.html">Matte Nodes</a> &raquo;</li>
+      <li>Keying Node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="keying-node">
+<span id="bpy-types-compositornodekeying"></span><h1>Keying Node<a class="headerlink" href="#keying-node" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../../_images/compositing_node-types_CompositorNodeKeying.png" src="../../../_images/compositing_node-types_CompositorNodeKeying.png" />
+<figcaption>
+<p><span class="caption-text">Keying Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Keying</em> node is a one-stop-shop for “green screen” / “blue screen” removal.
+It performs both chroma keying to remove the backdrop and despill to correct color cast from the backdrop.
+Additionally, you can perform common operations used to tweak the resulting matte.</p>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image input.</p>
+</dd>
+<dt>Key Color</dt><dd><p>The color of content to be removed. This may be a single color,
+or a reference image such as generated by
+the <a class="reference internal" href="keying_screen.html"><span class="doc">Keying Screen Node</span></a>.</p>
+</dd>
+<dt>Garbage Matte</dt><dd><p>An optional mask of area(s) to always <em>exclude</em> from the output.
+This is removed from the chroma key generated matte.</p>
+</dd>
+<dt>Core Matte</dt><dd><p>An optional mask of area(s) to always <em>include</em> in the output.
+This is merged with the chroma key generated matte.</p>
+</dd>
+</dl>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Pre Blur</dt><dd><p>Reduce the effects of color noise in the image by blurring only color by the given amount,
+leaving luminosity intact. This will affect matte calculation only, not the result image.</p>
+</dd>
+<dt>Screen Balance</dt><dd><p>This is the balance between color channels compared with the key color.
+0.5 will average the other channels (red and blue in the case of a green screen).</p>
+<p>This may be tweaked in tandem with <em>Clip Black</em> and <em>Clip White</em> while
+checking the <em>Matte</em> output to create a mask with optimal separation.</p>
+</dd>
+<dt>Despill Factor</dt><dd><p>Controls how much color bleed from the key color is removed from the input
+image: 0 means no despilling, 1 means all possible spilling will be removed.
+The underlying implementation is the same as adjusting the <em>Unspill</em> amount
+of the <a class="reference internal" href="color_spill.html"><span class="doc">Color Spill Node</span></a>.</p>
+</dd>
+<dt>Despill Balance</dt><dd><p>This controls how the color channels are compared when computing spill,
+affecting the hue and shade of the corrected colors.
+It is similar to setting the <em>Limiting Channel</em>
+in the <a class="reference internal" href="color_spill.html"><span class="doc">Color Spill Node</span></a>.</p>
+</dd>
+<dt>Edge Kernel Radius</dt><dd><p>Defines the radius in pixel used to detect an edge.</p>
+</dd>
+<dt>Edge Kernel Tolerance</dt><dd><p>Defines threshold used to check if pixels in radius are the same as current pixel:
+if the difference between pixel colors is higher than this threshold then the point
+will be considered an edge.</p>
+</dd>
+<dt>Clip Black</dt><dd><p>This sets the threshold for what becomes fully transparent in the output (black in the matte).
+It should be set as low as possible. Uneven backdrops will require this value to be increased.
+Use of the <a class="reference internal" href="keying_screen.html"><span class="doc">Keying Screen Node</span></a> can help
+keep this value low. You may also use a <em>Garbage Matte</em> to exclude problematic areas.</p>
+<p>This value does not impact areas detected as edges to ensure edge detail is preserved.</p>
+</dd>
+<dt>Clip White</dt><dd><p>This sets the threshold for what becomes fully opaque in the output (white in the matte).
+It should be set as high as possible. Colors close to green in the foreground
+may require reducing this value and/or adjusting the <em>Screen Balance</em>.
+Particularly problematic parts can fixed with a <em>Core Matte</em> instead of a low <em>Clip White</em>.</p>
+<p>This value does not impact areas detected as edges to ensure edge detail is preserved.</p>
+</dd>
+<dt>Dilate/Erode</dt><dd><p>Enlarge (positive numbers) or shrink (negative numbers) the matte by the specified number of pixels.
+This is similar to using the <a class="reference internal" href="../filter/dilate_erode.html"><span class="doc">Dilate/Erode Node</span></a> on the matte.</p>
+<p>This a simple way to include more or less along the edges of the matte, particularly combined with <em>Post Blur</em>.</p>
+</dd>
+<dt>Feather Falloff</dt><dd><p>The rate of the falloff at the edges of the matte when feathering, to manage edge detail.</p>
+</dd>
+<dt>Feather Distance</dt><dd><p>Controls how much the matte is feathered inwards (negative number) or outwards (positive number).</p>
+</dd>
+<dt>Post Blur</dt><dd><p>Make the matte less sharp, for smoother transitions to the background and noise reduction.</p>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Image</dt><dd><p>Processed image with the <em>Matte</em> applied to the images’ <a class="reference internal" href="../../../glossary/index.html#term-Alpha-Channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
+</dd>
+<dt>Matte</dt><dd><p>Output matte to use for checking the quality of the key, or to manually apply
+using a <a class="reference internal" href="../converter/set_alpha.html"><span class="doc">Set Alpha Node</span></a> or
+<a class="reference internal" href="../color/mix.html"><span class="doc">Mix Node</span></a>.</p>
+</dd>
+<dt>Edges</dt><dd><p>Shows what edges were detected on the matte.
+Useful for adjusting the <em>Edge Kernel Radius</em> and <em>Edge Kernel Tolerance</em>.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If there are problems with the edges of the matte, it may help to start with
+adjusting the <em>Edge Kernel</em> parameters before adjusting feathering.
+Detected edges are not subject to <em>Clip Black</em> / <em>Clip White</em> thresholds
+to preserve fine edge detail. You can check edge detection by connecting
+a <a class="reference internal" href="../output/viewer.html"><span class="doc">Viewer Node</span></a> to the <em>Edges</em> output.</p>
+<p>Sharper detected edges (smaller <em>Edge Kernel Radius</em>, like 2 / larger <em>Edge Kernel Tolerance</em>, like 0.4)
+will create a sharper matte, but may loose some detail like stray hairs.
+A sharp matte is good, but disappearing or flickering hairs are distracting.</p>
+<p>Fat edges (larger <em>Edge Kernel Radius</em>, like 8 / smaller <em>Edge Kernel Tolerance</em>, like 0.05)
+will capture more edge detail, but may also produce a halo around the subject.
+The halo can be adjusted with <em>Feather</em> controls along with <em>Dilate/Erode</em>.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ellipse_mask.html" class="btn btn-neutral float-left" title="Ellipse Mask Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="keying_screen.html" class="btn btn-neutral float-right" title="Keying Screen Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/compositing/types/matte/keying.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60compositing/types/matte/keying%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fcompositing/types/matte/keying.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

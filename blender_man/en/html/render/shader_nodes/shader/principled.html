@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Principled BSDF &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/principled.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Principled Hair BSDF" href="hair_principled.html" />
+    <link rel="prev" title="Mix Shader" href="mix.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Shader Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Shader</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="add.html">Add Shader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anisotropic.html">Anisotropic BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background.html">Background</a></li>
+<li class="toctree-l4"><a class="reference internal" href="diffuse.html">Diffuse BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="emission.html">Emission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glass.html">Glass BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glossy.html">Glossy BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair.html">Hair BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="holdout.html">Holdout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mix.html">Mix Shader</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Principled BSDF</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="hair_principled.html">Principled Hair BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_principled.html">Principled Volume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="refraction.html">Refraction BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="specular_bsdf.html">Specular BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sss.html">Subsurface Scattering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toon.html">Toon BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="translucent.html">Translucent BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="transparent.html">Transparent BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="velvet.html">Velvet BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_absorption.html">Volume Absorption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_scatter.html">Volume Scatter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../textures/index.html">Texture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osl.html">Open Shading Language</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../index.html">Shader Nodes</a> &raquo;</li>
+          <li><a href="index.html">Shader</a> &raquo;</li>
+      <li>Principled BSDF</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="principled-bsdf">
+<span id="bpy-types-shadernodebsdfprincipled"></span><h1>Principled BSDF<a class="headerlink" href="#principled-bsdf" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../../_images/render_shader-nodes_shader_principled_node.png" src="../../../_images/render_shader-nodes_shader_principled_node.png" />
+<figcaption>
+<p><span class="caption-text">Principled BSDF.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Principled</em> <abbr title="Bidirectional Scattering Distribution Function">BSDF</abbr>
+that combines multiple layers into a single easy to use node.
+It is based on the Disney principled model also known as the “PBR” shader,
+making it compatible with other software such as Pixar’s Renderman<sup>®</sup>
+and Unreal Engine<sup>®</sup>. Image textures painted or baked from
+software like Substance Painter<sup>®</sup> may be directly linked to
+the corresponding parameters in this shader.</p>
+<p>This “Uber” shader includes multiple layers to create a wide variety of materials.
+The base layer is a user controlled mix between diffuse, metal,
+subsurface scattering and transmission.
+On top of that there is a specular layer, sheen layer and clearcoat layer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The emphasis on compatibility with other software means that it interprets
+certain input parameters differently from older Blender nodes.</p>
+</div>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Base Color</dt><dd><p>Diffuse or metal surface color.</p>
+</dd>
+<dt>Subsurface</dt><dd><p>Mix between diffuse and subsurface scattering.
+Rather than being a simple mix between Diffuse and Subsurface Scattering,
+it acts as a multiplier for the Subsurface Radius.</p>
+</dd>
+<dt>Subsurface Radius</dt><dd><p>Average distance that light scatters below the surface.
+Higher radius gives a softer appearance, as light bleeds into shadows and through the object.
+The scattering distance is specified separately for the RGB channels,
+to render materials such as skin where red light scatters deeper.
+The X, Y and Z values are mapped to the R, G and B values, respectively.</p>
+</dd>
+<dt>Subsurface Color</dt><dd><p>Subsurface scattering base color.</p>
+</dd>
+<dt>Subsurface IOR <span class="guilabel">Cycles Only</span></dt><dd><p>Index of refraction for <em>Subsurface Scattering</em>.</p>
+</dd>
+<dt>Subsurface Anisotropy <span class="guilabel">Cycles Only</span></dt><dd><p>Controls the directionality of subsurface scattering.</p>
+</dd>
+<dt>Metallic</dt><dd><p>Blends between a non-metallic and metallic material model.
+A value of 1.0 gives a fully specular reflection tinted with the base color,
+without diffuse reflection or transmission.
+At 0.0 the material consists of a diffuse or transmissive base layer, with a specular reflection layer on top.</p>
+</dd>
+<dt>Specular</dt><dd><p>Amount of dielectric specular reflection. Specifies facing (along normal)
+reflectivity in the most common 0 - 8% range.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To compute this value for a realistic material with a known index of
+refraction, you may use this special case of the Fresnel formula:
+<span class="math notranslate nohighlight">\(specular = ((ior - 1)/(ior + 1))^2 / 0.08\)</span></p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>water: ior = 1.33, specular = 0.25</p></li>
+<li><p>glass: ior = 1.5, specular = 0.5</p></li>
+<li><p>diamond: ior = 2.417, specular = 2.15</p></li>
+</ul>
+<p>Since materials with reflectivity above 8% do exist, the field allows values above 1.</p>
+</div>
+</dd>
+<dt>Specular Tint</dt><dd><p>Tints the facing specular reflection using the base color, while glancing reflection remains white.</p>
+<p>Normal dielectrics have colorless reflection, so this parameter is not technically physically correct
+and is provided for faking the appearance of materials with complex surface structure.</p>
+</dd>
+<dt>Roughness</dt><dd><p>Specifies microfacet roughness of the surface for diffuse and specular reflection.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>When converting from the older <em>Glossy BSDF</em> node, use the square root of the original value.</p>
+</div>
+</dd>
+<dt>Anisotropic <span class="guilabel">Cycles Only</span></dt><dd><p>Amount of anisotropy for specular reflection. Higher values give elongated highlights along the tangent direction;
+negative values give highlights shaped perpendicular to the tangent direction.</p>
+</dd>
+<dt>Anisotropic Rotation <span class="guilabel">Cycles Only</span></dt><dd><p>Rotates the direction of anisotropy, with 1.0 going full circle.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Compared to the <em>Anisotropic BSDF</em> node, the direction of highlight elongation
+is rotated by 90°. Add 0.25 to the value to correct.</p>
+</div>
+</dd>
+<dt>Sheen</dt><dd><p>Amount of soft velvet like reflection near edges,
+for simulating materials such as cloth.</p>
+</dd>
+<dt>Sheen Tint</dt><dd><p>Mix between white and using base color for sheen reflection.</p>
+</dd>
+<dt>Clearcoat</dt><dd><p>Extra white specular layer on top of others.
+This is useful for materials like car paint and the like.</p>
+</dd>
+<dt>Clearcoat Roughness:</dt><dd><p>Roughness of clearcoat specular.</p>
+</dd>
+<dt>IOR</dt><dd><p>Index of refraction for transmission.</p>
+</dd>
+<dt>Transmission</dt><dd><p>Mix between fully opaque surface at zero and fully glass like transmission at one.</p>
+</dd>
+<dt>Transmission Roughness <span class="guilabel">Cycles Only</span></dt><dd><p>With <strong>GGX</strong> distribution controls roughness used for transmitted light.</p>
+</dd>
+<dt>Emission</dt><dd><p>Light emission from the surface, like the Emission shader.</p>
+</dd>
+<dt>Emission Strength</dt><dd><p>Strength of the emitted light. A value of 1.0 will ensure that the object
+in the image has the exact same color as the <em>Emission Color</em>, i.e. make it ‘shadeless’.</p>
+</dd>
+<dt>Alpha</dt><dd><p>Controls the transparency of the surface, with 1.0 fully opaque.
+Usually linked to the Alpha output of an Image Texture node.</p>
+</dd>
+<dt>Normal</dt><dd><p>Controls the normals of the base layers.</p>
+</dd>
+<dt>Clearcoat Normal</dt><dd><p>Controls the normals of the <em>Clearcoat</em> layer.</p>
+</dd>
+<dt>Tangent</dt><dd><p>Controls the tangent for the <em>Anisotropic</em> layer.</p>
+</dd>
+</dl>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Distribution</dt><dd><p>Microfacet distribution to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">GGX</dt>
+<dd class="field-odd"><p>A method that is faster than <em>Multiple-scattering GGX</em>
+but is less physically accurate. Selecting it enables the <em>Transmission Roughness</em> input.</p>
+</dd>
+<dt class="field-even">Multiple-scattering GGX</dt>
+<dd class="field-even"><p>Takes multiple bounce (scattering) events between microfacets into account.
+This gives a more energy conserving results,
+which would otherwise be visible as excessive darkening.</p>
+</dd>
+</dl>
+</dd>
+<dt>Subsurface Method</dt><dd><p>Rendering method to simulate subsurface scattering.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Eevee does use not support the <em>Random Walk</em> methods.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Christensen-Burley</dt>
+<dd class="field-odd"><p>An approximation to physically-based volume scattering.
+This method is less accurate than <em>Random Walk</em> however,
+in some situations this method will resolve noise faster.</p>
+</dd>
+<dt class="field-even">Random Walk (Fixed Radius)</dt>
+<dd class="field-even"><p>Provides accurate results for thin and curved objects.
+Random Walk uses true volumetric scattering inside the mesh,
+which means that it works best for closed meshes.
+Overlapping faces and holes in the mesh can cause problems.</p>
+</dd>
+<dt class="field-odd">Random Walk</dt>
+<dd class="field-odd"><p>Behaves similarly to <em>Random Walk (Fixed Radius)</em> but modulates
+the <em>Subsurface Radius</em> based on the <em>Color</em>, <em>Subsurface Anisotropy</em>, and <em>Subsurface IOR</em>.
+This method thereby attempts to retain greater surface detail and color
+than <em>Random Walk (Fixed Radius)</em>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>BSDF</dt><dd><p>Standard shader output.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<p>Below are some examples of how all the Principled BSDF’s parameters interact with each other.</p>
+<figure class="align-default">
+<img alt="../../../_images/render_shader-nodes_shader_principled_example-1a.jpg" src="../../../_images/render_shader-nodes_shader_principled_example-1a.jpg" />
+</figure>
+<figure class="align-default">
+<img alt="../../../_images/render_shader-nodes_shader_principled_example-2a.jpg" src="../../../_images/render_shader-nodes_shader_principled_example-2a.jpg" />
+</figure>
+<figure class="align-default">
+<img alt="../../../_images/render_shader-nodes_shader_principled_example-2b.jpg" src="../../../_images/render_shader-nodes_shader_principled_example-2b.jpg" />
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mix.html" class="btn btn-neutral float-left" title="Mix Shader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hair_principled.html" class="btn btn-neutral float-right" title="Principled Hair BSDF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/shader_nodes/shader/principled.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/shader_nodes/shader/principled%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Frender/shader_nodes/shader/principled.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

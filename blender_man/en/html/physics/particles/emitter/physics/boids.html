@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boids &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/particles/emitter/physics/boids.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Fluid" href="fluid.html" />
+    <link rel="prev" title="Keyed" href="keyed.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../rigid_body/index.html">Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cloth/index.html">Cloth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../soft_body/index.html">Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../fluid/index.html">Fluid</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Particle System</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../particle_system_panel.html">Particle System Panel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Emitter</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../emission.html">Emission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cache.html">Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../velocity.html">Velocity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rotation.html">Rotation</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Physics</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="newtonian.html">Newtonian</a></li>
+<li class="toctree-l5"><a class="reference internal" href="keyed.html">Keyed</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Boids</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#movement">Movement</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#battle">Battle</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#misc">Misc</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#relations">Relations</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#deflection">Deflection</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#force-fields">Force Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#boid-brain">Boid Brain</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#goal-rule">Goal Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#avoid-rule">Avoid Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#avoid-collision-rule">Avoid Collision Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#separate-rule">Separate Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#flock-rule">Flock Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#follow-leader-rule">Follow Leader Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#average-speed-rule">Average Speed Rule</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#fight-rule">Fight Rule</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="fluid.html">Fluid</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../render.html">Render</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../display.html">Viewport Display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../children.html">Children</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../force_field.html">Force Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vertex_groups.html">Vertex Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hair/index.html">Hair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../texture_influence.html">Texture Influence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mode.html">Particle Edit Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dynamic_paint/index.html">Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../collision.html">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../baking.html">Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Physics</a> &raquo;</li>
+          <li><a href="../../index.html">Particle System</a> &raquo;</li>
+          <li><a href="../index.html">Emitter</a> &raquo;</li>
+          <li><a href="index.html">Physics</a> &raquo;</li>
+      <li>Boids</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boids">
+<span id="bpy-ops-boid"></span><span id="bpy-types-boid"></span><h1>Boids<a class="headerlink" href="#boids" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Particle System ‣ Physics</span></p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>Boids</p>
+</dd>
+</dl>
+</div>
+<p>Boids particle systems are controlled by a limited artificial intelligence,
+which can be programmed to follow basic rules and behaviors.
+They are ideal for simulating flocks, swarms, herds and schools of various kind of animals,
+insects and fishes or predators vs. preys simulations.
+They can react on the presence of other objects and on the members of their own system.
+Boids can handle only a certain amount of information,
+therefore the sequence of the <em>Boid Brain</em> rules is very important.
+In certain situations only the first three parameter are evaluated.</p>
+<section id="movement">
+<h2>Movement<a class="headerlink" href="#movement" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Particle System ‣ Physics ‣ Movement</span></p>
+</dd>
+</dl>
+</div>
+<p>Boids try to avoid objects with activated Collision.
+They try to reach goal objects, and fly from “predators” according to the <em>Boid Brain</em> settings.</p>
+<p>Boids can different physics depending on whether they are in the air,
+or on land (on collision object).</p>
+<dl class="simple">
+<dt>Allow Flight</dt><dd><p>Allow boids to move in the air.</p>
+</dd>
+<dt>Allow Land</dt><dd><p>Allow boids to move on land.</p>
+</dd>
+<dt>Allow Climbing</dt><dd><p>Allow boids to climb goal objects.</p>
+</dd>
+<dt>Max Air Speed</dt><dd><p>Set the Maximum velocity in the air.</p>
+</dd>
+<dt>Min Air Speed</dt><dd><p>Set the Minimum velocity in the air.</p>
+</dd>
+<dt>Max Air Acceleration</dt><dd><p>Lateral acceleration in air, percentage of the max velocity (turn).
+Defines how fast a boid is able to change direction.</p>
+</dd>
+<dt>Max Air Angular Velocity</dt><dd><p>Tangential acceleration in air, percent 180 degrees.
+Defines how much the boid can suddenly accelerate in order to fulfill a rule.</p>
+</dd>
+<dt>Air Personal Space</dt><dd><p>Radius of boids personal space in air. Percentage of particle size.</p>
+</dd>
+<dt>Landing Smoothness</dt><dd><p>How smoothly the boids land.</p>
+</dd>
+<dt>Max Land Speed</dt><dd><p>Set the Maximum velocity on land.</p>
+</dd>
+<dt>Jump Speed</dt><dd><p>Maximum speed for jumping.</p>
+</dd>
+<dt>Max Land Acceleration</dt><dd><p>Lateral acceleration on land, percent of max velocity (turn). Defines how fast a boid is able to change direction.</p>
+</dd>
+<dt>Max Land Angular Velocity</dt><dd><p>Tangential acceleration on land, percent 180 degrees.
+Defines how much the boid can suddenly accelerate in order to fulfill a rule.</p>
+</dd>
+<dt>Land Personal Space</dt><dd><p>Radius of boids personal space on land. Percentage of particle size.</p>
+</dd>
+<dt>Land Stick Force</dt><dd><p>How strong a force must be to start effecting a boid on land.</p>
+</dd>
+<dt>Collision Collection</dt><dd><p>Only collide with objects in this collection.</p>
+</dd>
+</dl>
+</section>
+<section id="battle">
+<h2>Battle<a class="headerlink" href="#battle" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Particle System ‣ Physics ‣ Battle</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Health</dt><dd><p>Initial boid health when born.</p>
+</dd>
+<dt>Strength</dt><dd><p>Maximum caused damage per second on attack.</p>
+</dd>
+<dt>Aggression</dt><dd><p>Boid will fight this time stronger than enemy.</p>
+</dd>
+<dt>Accuracy</dt><dd><p>Accuracy of attack.</p>
+</dd>
+<dt>Range</dt><dd><p>Maximum distance of which a boid can attack.</p>
+</dd>
+</dl>
+</section>
+<section id="misc">
+<h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Particle System ‣ Physics ‣ Misc</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Banking</dt><dd><p>Amount of rotation around velocity vector on turns. Banking of 1.0 gives a natural banking effect.</p>
+</dd>
+<dt>Pitch</dt><dd><p>Amount of rotation around side vector.</p>
+</dd>
+<dt>Height</dt><dd><p>Boid height relative to particle size.</p>
+</dd>
+</dl>
+</section>
+<section id="relations">
+<h2>Relations<a class="headerlink" href="#relations" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Particle System ‣ Physics ‣ Relations</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Target</dt><dd><p>This <a class="reference internal" href="../../../../interface/controls/templates/list_view.html#ui-list-view"><span class="std std-ref">list view</span></a> allows you to set up other particle systems to react with the boids.</p>
+</dd>
+<dt>Target Object</dt><dd><p>A <a class="reference internal" href="../../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">data ID</span></a> to select an object with a particle system set on.</p>
+</dd>
+<dt>System</dt><dd><p>Index of the <em>Object</em>‘s particle system as set in the list view in the particle panel.</p>
+</dd>
+<dt>Mode</dt><dd><dl class="simple">
+<dt>Enemy</dt><dd><p>Setting the type to <em>Enemy</em> will cause the systems to fight with each other.</p>
+</dd>
+<dt>Friend</dt><dd><p>Will make the systems work together.</p>
+</dd>
+<dt>Neutral</dt><dd><p>Will not cause them to align or fight with each other.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<section id="deflection">
+<h3>Deflection<a class="headerlink" href="#deflection" title="Permalink to this headline"></a></h3>
+<p>Boids will try to avoid deflector objects according to the Collision rule’s weight.
+It works best for convex surfaces (some work needed for concave surfaces).</p>
+</section>
+<section id="force-fields">
+<h3>Force Fields<a class="headerlink" href="#force-fields" title="Permalink to this headline"></a></h3>
+<p>As other physics types, Boids is also influenced by external force fields.</p>
+<p>In addition, special <em>Boid</em> force fields can be used with the Boids physics.
+These effectors could be predators (positive Strength) that boids try to avoid,
+or targets (negative Strength) that boids try to reach
+according to the (respectively) <em>Avoid</em> and <em>Goal</em> rules of the <em>Boid Brain</em>.</p>
+</section>
+</section>
+<section id="boid-brain">
+<h2>Boid Brain<a class="headerlink" href="#boid-brain" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Particle System ‣ Physics ‣ Boid Brain</span></p>
+</dd>
+</dl>
+</div>
+<p>The Boid Brain panel controls how the boids particles will react with each other.
+The boids’ behavior is controlled by a list of rules.
+Only a certain amount of information in the list can be evaluated.
+If the memory capacity is exceeded, the remaining rules are ignored.</p>
+<p>The rules are by default parsed from top-list to bottom-list
+(thus giving explicit priorities),
+and the order can be modified using the little arrows buttons on the right side.</p>
+<dl>
+<dt>Rule Evaluation</dt><dd><p>There are three ways to control how rules are evaluated:</p>
+<dl class="simple">
+<dt>Average</dt><dd><p>All rules are averaged.</p>
+</dd>
+<dt>Random</dt><dd><p>A random rule is selected for each boid.</p>
+</dd>
+<dt>Fuzzy</dt><dd><p>Uses fuzzy logic to evaluate rules. Rules are gone through top to bottom.
+Only the first rule that affect above the <em>Rule Fuzziness</em> threshold is evaluated.
+The value should be considered how hard the boid will try to respect a given rule
+(a value of 1 means the Boid will always stick to it, a value of 0 means it will never).
+If the boid meets more than one conflicting condition at the same time,
+it will try to fulfill all the rules according to the respective weight of each.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A given boid will try as much as it can to comply to each of the rules it is given,
+but it is more than likely that some rule will take precedence on other in some cases.
+For example, in order to avoid a predator, a boid could probably “forget” about Collision,
+Separate and Flock rules, meaning that “while panicked” it could well run into obstacles,
+e.g. even if instructed not to, most of the time.</p>
+</div>
+</dd>
+<dt>In Air</dt><dd><p>The current rule affects boids while they are flying.</p>
+</dd>
+<dt>On Land</dt><dd><p>The current rule affects boids while they are not flying.</p>
+</dd>
+</dl>
+<section id="goal-rule">
+<h3>Goal Rule<a class="headerlink" href="#goal-rule" title="Permalink to this headline"></a></h3>
+<p>Seek goal.</p>
+<dl class="simple">
+<dt>Object</dt><dd><p>Specifies the goal object. If not specified, Boid force fields with negative Strength are used as goals.</p>
+</dd>
+<dt>Predict</dt><dd><p>Predict target’s movements.</p>
+</dd>
+</dl>
+</section>
+<section id="avoid-rule">
+<h3>Avoid Rule<a class="headerlink" href="#avoid-rule" title="Permalink to this headline"></a></h3>
+<p>Avoid “predators”.</p>
+<dl class="simple">
+<dt>Object</dt><dd><p>Specifies the object to avoid.
+If not specified, Boid force fields with positive Strength are used as predators.</p>
+</dd>
+<dt>Predict</dt><dd><p>Predict target’s movements.</p>
+</dd>
+<dt>Fear Factor</dt><dd><p>Avoid object if danger from it is above this threshold.</p>
+</dd>
+</dl>
+</section>
+<section id="avoid-collision-rule">
+<h3>Avoid Collision Rule<a class="headerlink" href="#avoid-collision-rule" title="Permalink to this headline"></a></h3>
+<p>Avoid objects with activated Deflection.</p>
+<dl class="simple">
+<dt>Boids</dt><dd><p>Avoid collision with other boids.</p>
+</dd>
+<dt>Deflectors</dt><dd><p>Avoid collision with deflector objects.</p>
+</dd>
+<dt>Look Ahead</dt><dd><p>Time to look ahead in seconds.</p>
+</dd>
+</dl>
+</section>
+<section id="separate-rule">
+<h3>Separate Rule<a class="headerlink" href="#separate-rule" title="Permalink to this headline"></a></h3>
+<p>Boids move away from each other.</p>
+</section>
+<section id="flock-rule">
+<h3>Flock Rule<a class="headerlink" href="#flock-rule" title="Permalink to this headline"></a></h3>
+<p>Copy movements of neighboring boids, but avoid each other.</p>
+</section>
+<section id="follow-leader-rule">
+<h3>Follow Leader Rule<a class="headerlink" href="#follow-leader-rule" title="Permalink to this headline"></a></h3>
+<p>Follows a leader object instead of a boid.</p>
+<dl>
+<dt>Distance</dt><dd><p>Distance behind leader to follow.</p>
+</dd>
+<dt>Line</dt><dd><p>Follow the leader in a line.</p>
+<dl class="simple">
+<dt>Queue Size</dt><dd><p>How many boids that are allowed to follow in a line.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="average-speed-rule">
+<h3>Average Speed Rule<a class="headerlink" href="#average-speed-rule" title="Permalink to this headline"></a></h3>
+<p>Maintain average velocity.</p>
+<dl class="simple">
+<dt>Speed</dt><dd><p>Percentage of maximum speed.</p>
+</dd>
+<dt>Wander</dt><dd><p>How fast velocity’s direction is randomized.</p>
+</dd>
+<dt>Level</dt><dd><p>How much velocity’s Z component is kept constant.</p>
+</dd>
+</dl>
+</section>
+<section id="fight-rule">
+<h3>Fight Rule<a class="headerlink" href="#fight-rule" title="Permalink to this headline"></a></h3>
+<p>Move toward nearby boids.</p>
+<dl class="simple">
+<dt>Fight Distance</dt><dd><p>Attack boids at a maximum of this distance.</p>
+</dd>
+<dt>Flee Distance</dt><dd><p>Flee to this distance.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="keyed.html" class="btn btn-neutral float-left" title="Keyed" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fluid.html" class="btn btn-neutral float-right" title="Fluid" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/particles/emitter/physics/boids.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/particles/emitter/physics/boids%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fphysics/particles/emitter/physics/boids.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

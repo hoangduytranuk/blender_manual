@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuring Peripherals &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/getting_started/configuration/hardware.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Defaults" href="defaults.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Khởi Đầu -- Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../about/index.html">About Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Installing Blender</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Configuring Blender</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configuring Peripherals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#displays">Displays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input-devices">Input Devices</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#mouse">Mouse</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#mouse-button-emulation">Mouse Button Emulation</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#keyboard">Keyboard</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#numpad-emulation">Numpad Emulation</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#non-english-keyboards">Non-English Keyboards</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#graphic-tablet">Graphic Tablet</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ndof-3d-mouse">NDOF (3D Mouse)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#head-mounted-displays-virtual-reality">Head-Mounted Displays (Virtual Reality)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#supported-platforms">Supported Platforms</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#getting-started">Khởi Đầu -- Getting Started</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#htc-vive-cosmos">HTC Vive Cosmos</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#monado">Monado</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#oculus">Oculus</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#steamvr">SteamVR</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#varjo">Varjo</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#windows-mixed-reality">Windows Mixed Reality</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="defaults.html">Defaults</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../help.html">Help System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Khởi Đầu -- Getting Started</a> &raquo;</li>
+          <li><a href="index.html">Configuring Blender</a> &raquo;</li>
+      <li>Configuring Peripherals</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuring-peripherals">
+<h1>Configuring Peripherals<a class="headerlink" href="#configuring-peripherals" title="Permalink to this headline"></a></h1>
+<section id="displays">
+<h2>Displays<a class="headerlink" href="#displays" title="Permalink to this headline"></a></h2>
+<p>A full HD display or higher is recommended.
+Multi-monitor setups are supported, and workspaces can be configured to span multiple monitors.</p>
+<figure class="align-default" id="id1">
+<img alt="../../_images/getting-started_configuration_hardware_multi-monitor.jpg" src="../../_images/getting-started_configuration_hardware_multi-monitor.jpg" />
+<figcaption>
+<p><span class="caption-text">Example of Blender's multi-monitor support.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="input-devices">
+<h2>Input Devices<a class="headerlink" href="#input-devices" title="Permalink to this headline"></a></h2>
+<p>Blender supports various types of input devices:</p>
+<ul class="simple">
+<li><p>Keyboard (recommended: keyboard with numeric keypad, English layout works best)</p></li>
+<li><p>Mouse (recommended: three button mouse with scroll wheel)</p></li>
+<li><p>NDOF Device (also known as <em>3D Mouse</em>)</p></li>
+<li><p>Graphic Tablet</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If you are missing an input device such as a mouse or numpad you can change
+Blender's <a class="reference internal" href="../../interface/keymap/blender_default.html"><span class="doc">keymap</span></a> to emulate these devices.
+Settings to enable this can be found in the <a class="reference internal" href="../../editors/preferences/input.html"><span class="doc">Input Preferences</span></a>.</p>
+</div>
+<section id="mouse">
+<h3>Mouse<a class="headerlink" href="#mouse" title="Permalink to this headline"></a></h3>
+<section id="mouse-button-emulation">
+<h4>Mouse Button Emulation<a class="headerlink" href="#mouse-button-emulation" title="Permalink to this headline"></a></h4>
+<p>If you do not have a 3 button mouse,
+you will need to emulate it by checking the option in the <a class="reference internal" href="../../editors/preferences/input.html"><span class="doc">Preferences</span></a>.</p>
+<p>The following table shows the combinations used:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><th class="stub"><p>3-button Mouse</p></th>
+<td><p><kbd class="kbd docutils literal notranslate">LMB</kbd></p></td>
+<td><p><kbd class="kbd docutils literal notranslate">MMB</kbd></p></td>
+<td><p><kbd class="kbd docutils literal notranslate">RMB</kbd></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>2-button Mouse</p></th>
+<td><p><kbd class="kbd docutils literal notranslate">LMB</kbd></p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd></p></td>
+<td><p><kbd class="kbd docutils literal notranslate">RMB</kbd></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="keyboard">
+<h3>Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline"></a></h3>
+<section id="numpad-emulation">
+<h4>Numpad Emulation<a class="headerlink" href="#numpad-emulation" title="Permalink to this headline"></a></h4>
+<p>If you do not have a numeric Numpad on the side of your keyboard,
+you may want to emulate one (uses the numbers at the top of the keyboard instead,
+however, removes quick access to layer visibility).</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>Read more about <em>Numpad Emulation</em> in the <a class="reference internal" href="../../editors/preferences/input.html"><span class="doc">Preferences</span></a>.</p>
+</div>
+</section>
+<section id="non-english-keyboards">
+<h4>Non-English Keyboards<a class="headerlink" href="#non-english-keyboards" title="Permalink to this headline"></a></h4>
+<p>If you use a keyboard with a non-English keyboard layout, you still may benefit from switching
+your computer to the UK or US layout as long as you work with Blender.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>You can also change the default keymap and
+default hotkeys from the <a class="reference internal" href="../../editors/preferences/input.html"><span class="doc">Preferences</span></a>,
+however, this manual assumes you are using the default keymap.</p>
+</div>
+</section>
+</section>
+<section id="graphic-tablet">
+<span id="hardware-tablet"></span><h3>Graphic Tablet<a class="headerlink" href="#graphic-tablet" title="Permalink to this headline"></a></h3>
+<p>Graphics tablets can be used to provide a more traditional method of controlling the mouse cursor using a pen.
+This can help provide a more familiar experience for artists
+who are used to painting and drawing with similar tools,
+as well as provide additional controls such as pressure sensitivity.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If you are using a graphic tablet instead of a mouse and pressure sensitivity does not work properly,
+try to place the mouse pointer in the Blender window and then unplug/replug your graphic tablet. This might help.</p>
+</div>
+</section>
+<section id="ndof-3d-mouse">
+<span id="hardware-ndof"></span><h3>NDOF (3D Mouse)<a class="headerlink" href="#ndof-3d-mouse" title="Permalink to this headline"></a></h3>
+<p>3D mice or <abbr title="N-Degrees of Freedom">NDOF</abbr> devices are hardware that you can use to navigate a scene in Blender.
+Currently only devices made by 3Dconnexion are supported.
+These devices allow you to explore a scene, as well as making <a class="reference internal" href="../../editors/3dview/navigate/walk_fly.html#dview-fly-walk"><span class="std std-ref">Fly/Walk Navigation</span></a>
+easier to control. The NDOF device can be configured in the <a class="reference internal" href="../../editors/preferences/input.html#editors-preferences-input-ndof"><span class="std std-ref">Preference</span></a>.
+These settings can also be accessed using the <kbd class="kbd docutils literal notranslate">NDOFMenu</kbd> button on the NDOF device
+to open a pop-up menu to adjust the settings directly from the viewport.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>See <a class="reference internal" href="../../editors/preferences/input.html"><span class="doc">Input Preference</span></a> for more information on configuring peripherals.</p>
+</div>
+</section>
+</section>
+<section id="head-mounted-displays-virtual-reality">
+<span id="hardware-head-mounted-displays"></span><h2>Head-Mounted Displays (Virtual Reality)<a class="headerlink" href="#head-mounted-displays-virtual-reality" title="Permalink to this headline"></a></h2>
+<p><abbr title="Head-Mounted Displays">HMDs</abbr> make it possible to place users in an interactive, virtual environment.
+Attached to the head, they track head movements to project a seemingly surrounding world onto small
+screens in front of the user's eyes. If the system works well, they experience the virtual environment as
+if they were really inside of it.</p>
+<section id="supported-platforms">
+<h3>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this headline"></a></h3>
+<p>Virtual reality support in Blender is implemented through the multi-platform OpenXR standard.
+This standard is new and therefore support for it is still limited.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">OpenXR compatible platforms.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Operating System</p></th>
+<th class="head"><p>Ghi Chú -- Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#htc-vive-cosmos">HTC Vive Cosmos</a></p></td>
+<td><p>Cửa Sổ</p></td>
+<td><p><a class="reference external" href="https://forum.vive.com/topic/9046-vive-openxr-support-for-vive-cosmos/">Developer Preview</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#monado">Monado</a></p></td>
+<td><p>GNU/Linux</p></td>
+<td><p><em>Not</em> recommended for general use yet.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#oculus">Oculus</a> (Rift and Quest)</p></td>
+<td><p>Cửa Sổ</p></td>
+<td><p>Requires Oculus v31 Software Update. Oculus Link required for Quest.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#steamvr">SteamVR</a></p></td>
+<td><p>Windows, GNU/Linux</p></td>
+<td><p>Requires SteamVR 1.16 or greater.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#varjo">Varjo</a></p></td>
+<td><p>Cửa Sổ</p></td>
+<td><p>--</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#windows-mixed-reality">Windows Mixed Reality</a></p></td>
+<td><p>Cửa Sổ</p></td>
+<td><p>Requires Windows 10 May 2019 Update (1903).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="getting-started">
+<h3>Khởi Đầu -- Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h3>
+<p>The following subsections describe how an HMD can be set up for usage with the <a class="reference internal" href="#supported-platforms">supported platforms</a>.
+If this is not done, Blender will report an error when trying to start a virtual reality session.</p>
+<section id="htc-vive-cosmos">
+<h4>HTC Vive Cosmos<a class="headerlink" href="#htc-vive-cosmos" title="Permalink to this headline"></a></h4>
+<p>The dedicated platform for
+the <a class="reference external" href="https://www.vive.com/eu/product/vive-cosmos/overview/">HTC Vive Cosmos</a>
+is currently targeted at developers and may lack features found in other platforms.</p>
+<ul class="simple">
+<li><p>Follow the steps from
+the <a class="reference external" href="https://forum.vive.com/topic/9046-vive-openxr-support-for-vive-cosmos/">Vive Developer Forums</a>.</p></li>
+<li><p>Enable the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a> in Blender.</p></li>
+</ul>
+</section>
+<section id="monado">
+<h4>Monado<a class="headerlink" href="#monado" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://monado.dev/">Monado</a> is a <a class="reference internal" href="../about/license.html"><span class="doc">free and open source</span></a> XR
+platform for Linux. It is not yet ready for production usage and should only be used for testing purposes.</p>
+<ul>
+<li><p>Packages are available for the following distributions:</p>
+<ul class="simple">
+<li><p>Ubuntu (<a class="reference external" href="https://launchpad.net/~monado-xr/+archive/ubuntu/monado">Eoan, Focal</a>)</p></li>
+<li><p>Debian (<a class="reference external" href="https://packages.debian.org/bullseye/libopenxr1-monado">bullseye</a>,
+<a class="reference external" href="https://packages.debian.org/sid/libopenxr1-monado">sid</a>)</p></li>
+</ul>
+<p>For other systems, it has to be compiled from source, which in this case is not
+recommended for people with little experience in compiling software.
+Follow the <a class="reference external" href="https://gitlab.freedesktop.org/monado/monado/-/blob/master/README.md">Getting Started Guides</a>
+from Monado to do so nevertheless.</p>
+</li>
+<li><p>Enable the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a> in Blender.</p></li>
+</ul>
+</section>
+<section id="oculus">
+<h4>Oculus<a class="headerlink" href="#oculus" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://www.oculus.com/">Oculus</a> provides full support for OpenXR as of the Oculus v31 Software Update.</p>
+<ul class="simple">
+<li><p>Download and install the <a class="reference external" href="https://www.oculus.com/setup/">Oculus Rift/Oculus Link software</a>.</p></li>
+<li><p>Set Oculus as the active OpenXR runtime via the <em>Beta</em> tab in the Oculus App Settings.</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/getting-started_configuration_hardware_xr_runtime_oculus.jpg"><img alt="../../_images/getting-started_configuration_hardware_xr_runtime_oculus.jpg" src="../../_images/getting-started_configuration_hardware_xr_runtime_oculus.jpg" style="width: 634.0px; height: 384.0px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>Enable the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a> in Blender.</p></li>
+</ul>
+</section>
+<section id="steamvr">
+<h4>SteamVR<a class="headerlink" href="#steamvr" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://www.steamvr.com/">SteamVR</a> provides full support for OpenXR as of SteamVR 1.16.</p>
+<ul class="simple">
+<li><p>Set SteamVR as the active OpenXR runtime via the <em>Developer</em> tab in the SteamVR Settings.</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/getting-started_configuration_hardware_xr_runtime_steamvr.jpg"><img alt="../../_images/getting-started_configuration_hardware_xr_runtime_steamvr.jpg" src="../../_images/getting-started_configuration_hardware_xr_runtime_steamvr.jpg" style="width: 600.0px; height: 472.5px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>Enable the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a> in Blender.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The SteamVR runtime can also be used for HTC Vive Cosmos, Oculus, and Windows Mixed Reality HMDs.</p>
+</div>
+</section>
+<section id="varjo">
+<h4>Varjo<a class="headerlink" href="#varjo" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://varjo.com/">Varjo</a> includes full OpenXR support with its required Varjo Base software.</p>
+<ul class="simple">
+<li><p>Enable the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a> in Blender.</p></li>
+</ul>
+</section>
+<section id="windows-mixed-reality">
+<h4>Windows Mixed Reality<a class="headerlink" href="#windows-mixed-reality" title="Permalink to this headline"></a></h4>
+<p><a class="reference external" href="https://www.microsoft.com/windows/windows-mixed-reality">Windows Mixed Reality</a> provides full
+support for OpenXR. To check if a PC meets the requirements to run the software, Microsoft offers the
+<a class="reference external" href="https://www.microsoft.com/en-us/p/windows-mixed-reality-pc-check/9nzvl19n7cnc">Windows Mixed Reality PC Check</a>
+application.</p>
+<ul class="simple">
+<li><p>Make sure the Windows 10 May 2019 Update (1903) is installed.</p></li>
+<li><p>If the system meets all requirements, the Mixed Reality Portal should already be installed.
+It is also available in
+the <a class="reference external" href="https://www.microsoft.com/en-us/p/mixed-reality-portal/9ng1h8b3zc7m">Microsoft Store</a>.</p></li>
+<li><p>Launch the Mixed Reality Portal. Click the menu button <code class="docutils literal notranslate"><span class="pre">...</span></code> in the lower left corner.
+In the menu it opens, select the <em>Set up OpenXR</em>.</p></li>
+<li><p>Enable the <a class="reference internal" href="../../addons/3d_view/vr_scene_inspection.html"><span class="doc">VR Scene Inspection add-on</span></a> in Blender.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>To switch to Windows Mixed Reality from another OpenXR runtime
+(e.g. SteamVR), download the OpenXR Developer Tools from the <a class="reference external" href="https://www.microsoft.com/en-us/p/openxr-developer-tools-for-windows-mixed-reality/9n5cvvl23qbt">Microsoft Store</a>
+and set Windows Mixed Reality as the active runtime.</p>
+</div>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/getting-started_configuration_hardware_xr_runtime_wmr.jpg"><img alt="../../_images/getting-started_configuration_hardware_xr_runtime_wmr.jpg" src="../../_images/getting-started_configuration_hardware_xr_runtime_wmr.jpg" style="width: 598.5px; height: 471.0px;" /></a>
+</figure>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="defaults.html" class="btn btn-neutral float-right" title="Defaults" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/getting_started/configuration/hardware.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60getting_started/configuration/hardware%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fgetting_started/configuration/hardware.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

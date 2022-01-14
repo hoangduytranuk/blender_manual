@@ -214,19 +214,19 @@ class StructRecogniser():
                 if not dict_tl_any_index_list:
                     return any_list
 
-                dd('-' * 20)
-                dd(f'dict_sl_any_index_list:')
-                pp(dict_sl_any_index_list)
-                dd('-' * 20)
-                dd(f'dict_tl_any_index_list:')
-                pp(dict_tl_any_index_list)
-                dd('-' * 20)
-                if sent_sl_list_of_txt:
-                    dd(f'sent_sl_list_of_txt:')
-                    pp(sent_sl_list_of_txt)
-                else:
-                    dd(f'sent_sl_list_of_txt: IS EMPTY')
-                dd('*' * 20)
+                # dd('-' * 20)
+                # dd(f'dict_sl_any_index_list:')
+                # pp(dict_sl_any_index_list)
+                # dd('-' * 20)
+                # dd(f'dict_tl_any_index_list:')
+                # pp(dict_tl_any_index_list)
+                # dd('-' * 20)
+                # if sent_sl_list_of_txt:
+                #     dd(f'sent_sl_list_of_txt:')
+                #     pp(sent_sl_list_of_txt)
+                # else:
+                #     dd(f'sent_sl_list_of_txt: IS EMPTY')
+                # dd('*' * 20)
                 for index, from_index in enumerate(dict_sl_any_index_list):
                     to_index = dict_tl_any_index_list[index]
                     untran_loc, untran_txt = sent_sl_list_of_txt[from_index]
@@ -298,13 +298,13 @@ class StructRecogniser():
 
                     new_entry = (loc, actual_tl_txt)
                     new_list.append(new_entry)
-                df.LOG(f'RETURN new_list:; any_index_list:')
-                dd('new_list:')
-                pp(new_list, width=200)
-                dd('-' * 20)
-                dd('any_index_list list:')
-                pp(any_index_list, width=200)
-                dd('-' * 20)
+                # df.LOG(f'RETURN new_list:; any_index_list:')
+                # dd('new_list:')
+                # pp(new_list, width=200)
+                # dd('-' * 20)
+                # dd('any_index_list list:')
+                # pp(any_index_list, width=200)
+                # dd('-' * 20)
 
                 return new_list, any_index_list
 
@@ -347,14 +347,14 @@ class StructRecogniser():
                     the_new_tl_txt = blank_str.replace(df.FILLER_CHAR, '')
                 except Exception as e:
                     df.LOG(e)
-                df.LOG('corrected_list for translation:')
-                pp('-' * 45)
-                pp(corrected_list, width=200)
-                dd('required to translate:')
-                pp(tran_required_list, width=200)
-                dd('the_new_tl_txt')
-                pp(the_new_tl_txt, width=200)
-                pp('-' * 45)
+                # df.LOG('corrected_list for translation:')
+                # pp('-' * 45)
+                # pp(corrected_list, width=200)
+                # dd('required to translate:')
+                # pp(tran_required_list, width=200)
+                # dd('the_new_tl_txt')
+                # pp(the_new_tl_txt, width=200)
+                # pp('-' * 45)
                 return corrected_list, tran_required_list, the_new_tl_txt
 
             dict_tl_txt = self.dict_tl_rec.txt
@@ -496,11 +496,11 @@ class StructRecogniser():
 
     def makeNonSRRecord(self, txt, root_location):
         sr = self.reproduce()
-        print(f'IS TEXT:[{txt}]')
+        # print(f'IS TEXT:[{txt}]')
         current_processed_list = self.processed_list.keys()
         is_ignore = (txt in current_processed_list)
         if is_ignore:
-            dd(f'makeNonSRRecord: [{txt}] is already processed')
+            # dd(f'makeNonSRRecord: [{txt}] is already processed')
             return None
 
         sr.__init__(
@@ -529,7 +529,8 @@ class StructRecogniser():
             is_already_processed = (dict_sl_txt in current_processed_list)
             is_ignore = (not dict_sl_pat) or (is_already_processed)
             if is_already_processed:
-                dd(f'makeSRRecord: [{txt}] is already processed')
+                pass
+                # dd(f'makeSRRecord: [{txt}] is already processed')
 
             if is_ignore:
                 return None

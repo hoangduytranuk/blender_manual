@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing on Linux &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/getting_started/installing/linux.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Installing on macOS" href="macos.html" />
+    <link rel="prev" title="Installing Blender" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../about/index.html">About Blender</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Installing Blender</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#download-blender">Download Blender</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Installing on Linux</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#install-from-blender-org">Install from blender.org</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#install-from-package-manager">Install from Package Manager</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#install-from-snap">Install from Snap</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#running-from-the-terminal">Running from the Terminal</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#avoiding-alt-mouse-conflict">Avoiding Alt+Mouse Conflict</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#updating-on-linux">Updating on Linux</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#updating-from-blender-org">Updating from blender.org</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#updating-with-a-package-manager">Updating with a Package Manager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="macos.html">Installing on macOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="windows.html">Installing on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="steam.html">Installing from Steam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">Configuring Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../help.html">Help System</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+          <li><a href="index.html">Installing Blender</a> &raquo;</li>
+      <li>Installing on Linux</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-on-linux">
+<h1>Installing on Linux<a class="headerlink" href="#installing-on-linux" title="Permalink to this headline"></a></h1>
+<p>Check the <a class="reference internal" href="index.html"><span class="doc">Downloading Blender</span></a>
+page to find the minimum requirements and where to get Blender (if you have not done so yet).</p>
+<section id="install-from-blender-org">
+<h2>Install from blender.org<a class="headerlink" href="#install-from-blender-org" title="Permalink to this headline"></a></h2>
+<p>Download the Linux version for your architecture and uncompress the file to the desired location
+(e.g. <code class="docutils literal notranslate"><span class="pre">~/software</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>).</p>
+<p>Blender can now be launched by double-clicking the executable.</p>
+<p>When using this method of installation, it is possible to have multiple versions of Blender installed.</p>
+<p>For ease of access, you can configure your system by adding a menu entry or shortcut for Blender.
+You may also associate blend-files with Blender so that when selected from the file browser,
+they will automatically open in Blender.
+These settings are typically found in conjunction with the Window Manager settings. (Gnome or KDE.)</p>
+</section>
+<section id="install-from-package-manager">
+<h2>Install from Package Manager<a class="headerlink" href="#install-from-package-manager" title="Permalink to this headline"></a></h2>
+<p>Some Linux distributions may have a specific package for Blender in their repositories.</p>
+<p>Installing Blender via the distribution’s native mechanisms ensures consistency with other packages on the system
+and may provide other features (given by the package manager),
+such as listing of packages, update notifications and automatic menu configuration.
+Be aware, though, that the package may be outdated compared to the latest official release,
+or not include some features of Blender. For example, some distributions do not build Blender with
+Cycles GPU rendering support, for licensing or other reasons.</p>
+<p>If there is a specific package for your distribution, you may choose what is preferable and most convenient,
+otherwise, the official binary is available on <a class="reference external" href="https://www.blender.org/download/">blender.org</a>.</p>
+</section>
+<section id="install-from-snap">
+<h2>Install from Snap<a class="headerlink" href="#install-from-snap" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://snapcraft.io/">Snap</a> is a universal package manager designed to work across a range of distributions.
+Assuming snap is already installed, Blender can be installed through snap with:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">snap</span> <span class="n">install</span> <span class="n">blender</span>
+</pre></div>
+</div>
+<p>Installing from this method has a benefit that updates to Blender are automatically installed.
+Blender from Snap should have a more consistent distribution then individual package managers.</p>
+</section>
+<section id="running-from-the-terminal">
+<h2>Running from the Terminal<a class="headerlink" href="#running-from-the-terminal" title="Permalink to this headline"></a></h2>
+<p>See <a class="reference internal" href="../../advanced/command_line/launch/linux.html"><span class="doc">Launching from the terminal</span></a>.</p>
+</section>
+<section id="avoiding-alt-mouse-conflict">
+<h2>Avoiding Alt+Mouse Conflict<a class="headerlink" href="#avoiding-alt-mouse-conflict" title="Permalink to this headline"></a></h2>
+<p>Many Window Managers default to <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> for moving windows,
+which is a shortcut that Blender uses to simulate a three button mouse.
+You can either have this feature disabled <span class="menuselection">Preferences ‣ Input ‣ Emulate 3 Button Mouse</span>
+or you can change the Window Manager settings to use the <em>Meta</em> key instead (also called <em>Super</em> or <em>Windows key</em>):</p>
+<dl>
+<dt>Gnome</dt><dd><p>Enter the following in a command line (effective at next login):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>gsettings <span class="nb">set</span> org.gnome.desktop.wm.preferences mouse-button-modifier <span class="s1">&#39;&lt;Super&gt;&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt>KDE</dt><dd><p><span class="menuselection">System Settings ‣ Window Management ‣ Window Behavior ‣ Window Actions</span>,
+Switch from ‘Alt’ to ‘Meta’ key.</p>
+</dd>
+</dl>
+</section>
+<section id="updating-on-linux">
+<h2>Updating on Linux<a class="headerlink" href="#updating-on-linux" title="Permalink to this headline"></a></h2>
+<p>On Linux there are various ways of updating Blender. This section covers the most common approaches.</p>
+<section id="updating-from-blender-org">
+<h3>Updating from blender.org<a class="headerlink" href="#updating-from-blender-org" title="Permalink to this headline"></a></h3>
+<p>When an update for Blender is released, it can be downloaded directly
+from the <a class="reference external" href="https://www.blender.org/download/">Blender website</a>
+and installed using the steps described in the section <a class="reference internal" href="#install-from-blender-org">Install from blender.org</a>.</p>
+</section>
+<section id="updating-with-a-package-manager">
+<h3>Updating with a Package Manager<a class="headerlink" href="#updating-with-a-package-manager" title="Permalink to this headline"></a></h3>
+<p>Many Linux distributions have packages for Blender available, which can be installed
+using the distribution’s package manager. After installation,
+Blender can be updated using the same steps as updating any other application.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The Splash screen <a class="reference internal" href="../configuration/defaults.html"><span class="doc">Defaults</span></a> page for information
+about import settings from previous Blender versions and on other quick settings.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Installing Blender" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="macos.html" class="btn btn-neutral float-right" title="Installing on macOS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/getting_started/installing/linux.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60getting_started/installing/linux%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fgetting_started/installing/linux.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

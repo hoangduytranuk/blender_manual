@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keymap Customization &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/keymap_editing.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Working Limits" href="limits.html" />
+    <link rel="prev" title="Application Templates" href="app_templates.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command_line/index.html">Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripting/index.html">Scripting &amp; Extending Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_templates.html">Application Templates</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Keymap Customization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keys">Keys</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#available-keys">Available Keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-action-keys">Multi-Action Keys</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#click-drag">Click/Drag</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#click-tweak">Click/Tweak</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#common-operations">Common Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-bindings-for-pop-ups">Key Bindings for Pop-Ups</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#menu-panel-identifiers">Menu &amp; Panel Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#key-bindings-for-properties">Key Bindings for Properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blender_directory_layout.html">Blender’s Directory Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced</a> &raquo;</li>
+      <li>Keymap Customization</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="keymap-customization">
+<span id="keymap-customize"></span><h1>Keymap Customization<a class="headerlink" href="#keymap-customization" title="Permalink to this headline"></a></h1>
+<section id="keys">
+<h2>Keys<a class="headerlink" href="#keys" title="Permalink to this headline"></a></h2>
+<section id="available-keys">
+<h3>Available Keys<a class="headerlink" href="#available-keys" title="Permalink to this headline"></a></h3>
+<p>When customizing keymaps it’s useful to use keys which won’t conflict with Blender’s default keymap.</p>
+<p>Here are keys which aren’t used and aren’t likely to be used in the future.</p>
+<dl>
+<dt>F-Keys (<kbd class="kbd docutils literal notranslate">F5</kbd> - <kbd class="kbd docutils literal notranslate">F8</kbd>)</dt><dd><p>These F-keys (including modifier combination)
+have been intentionally kept free for users to bind their own keys to.</p>
+</dd>
+<dt><kbd class="kbd docutils literal notranslate">OSKey</kbd> (also known as the <code class="docutils literal notranslate"><span class="pre">Windows-Key</span></code>, <code class="docutils literal notranslate"><span class="pre">Cmd</span></code> or <code class="docutils literal notranslate"><span class="pre">Super</span></code>)</dt><dd><p>Blender doesn’t use this key for any bindings.</p>
+<p><em>macOS</em> is an exception, where <kbd class="kbd docutils literal notranslate">Cmd</kbd> replaces <kbd class="kbd docutils literal notranslate">Ctrl</kbd>
+except in cases it would conflict with the system’s key bindings.</p>
+</dd>
+<dt>Modifier Double Click</dt><dd><p>Binding modifier keys as primary keys is supported,
+to avoid conflicts with regular usage you can bind them to double click.</p>
+</dd>
+</dl>
+</section>
+<section id="multi-action-keys">
+<h3>Multi-Action Keys<a class="headerlink" href="#multi-action-keys" title="Permalink to this headline"></a></h3>
+<section id="click-drag">
+<h4>Click/Drag<a class="headerlink" href="#click-drag" title="Permalink to this headline"></a></h4>
+<p>It’s possible to configure a single key to perform multiple operations
+using <em>Click</em> event instead of <em>Press</em>. Then you may bind <em>Drag</em> to a separate action.</p>
+<p>This is useful for mixing actions where one uses a drag event, e.g:
+Toggle a setting using with tab, drag to open a pie menu showing all options related to the setting.</p>
+</section>
+<section id="click-tweak">
+<h4>Click/Tweak<a class="headerlink" href="#click-tweak" title="Permalink to this headline"></a></h4>
+<p>Unlike click/drag, this only works for the mouse buttons,
+but has the advantage that tweak events can be directional.</p>
+<p>To use this, events in this keymap must use <em>Click</em> instead of <em>Press</em>,
+then you can bind <em>Tweak</em> actions to the mouse buttons.</p>
+<p>This is used in the default keymap in the 3D Viewport,
+<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">MMB</kbd></kbd> dragging in different directions rotates the view.</p>
+</section>
+</section>
+</section>
+<section id="common-operations">
+<h2>Common Operations<a class="headerlink" href="#common-operations" title="Permalink to this headline"></a></h2>
+<p>This section lists useful generic operations which can be used.</p>
+<section id="key-bindings-for-pop-ups">
+<h3>Key Bindings for Pop-Ups<a class="headerlink" href="#key-bindings-for-pop-ups" title="Permalink to this headline"></a></h3>
+<p>Menus and panels can be assigned key shortcuts,
+even if they’re only accessible from submenus elsewhere.</p>
+<dl class="simple">
+<dt>Open a Pop-up Menu (<code class="docutils literal notranslate"><span class="pre">wm.call_menu</span></code>)</dt><dd><p>Open any menu on key press.</p>
+</dd>
+<dt>Open a Pie Menu (<code class="docutils literal notranslate"><span class="pre">wm.call_menu_pie</span></code>)</dt><dd><p>Open any pie menu on key press.</p>
+</dd>
+<dt>Open a Panel (<code class="docutils literal notranslate"><span class="pre">wm.call_panel</span></code>)</dt><dd><p>Open a pop-up panel (also known as a pop-over).</p>
+</dd>
+</dl>
+<section id="menu-panel-identifiers">
+<h4>Menu &amp; Panel Identifiers<a class="headerlink" href="#menu-panel-identifiers" title="Permalink to this headline"></a></h4>
+<p>To find the <code class="docutils literal notranslate"><span class="pre">name</span></code> of a menu,
+enable the preference <span class="menuselection">Interface ‣ Display ‣ Python Tooltips</span>.</p>
+<p>Then hover the cursor over the popover button or menu item.
+For submenus you will need to use the back arrow to prevent the submenu from opening and gaining focus.</p>
+</section>
+</section>
+<section id="key-bindings-for-properties">
+<h3>Key Bindings for Properties<a class="headerlink" href="#key-bindings-for-properties" title="Permalink to this headline"></a></h3>
+<p>There are many properties you might want to bind a key with.
+To avoid having to define operators for each property,
+there are generic operators for this purpose:</p>
+<p>Operators for adjusting properties begin with <code class="docutils literal notranslate"><span class="pre">wm.context_</span></code>.</p>
+<p>Some of these include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_toggle</span></code> toggle a Boolean property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_cycle_enum</span></code> cycle an <abbr title="enumeration">enum</abbr> property forwards or backwards.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_menu_enum</span></code> show a pop-up menu for an enum property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_pie_enum</span></code> show a pie menu for an enum property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_scale_float</span></code> scale a number (used for increasing / decreasing brush size for example).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_toggle_enum</span></code> toggle between two options of an enum.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wm.context_modal_mouse</span></code> moving the cursor to interactively change a value.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://docs.blender.org/api/current/bpy.ops.wm.html">bpy.ops.wm</a> for a complete list.</p>
+<p>Each of these operators has a <code class="docutils literal notranslate"><span class="pre">data_path</span></code> setting to reference the property to change.</p>
+<p>To find the <code class="docutils literal notranslate"><span class="pre">data_path</span></code>, basic Python knowledge is needed.</p>
+<p>For example, you can use the Python Console to access a Boolean property you wish to map to a key:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">show_name</span>
+</pre></div>
+</div>
+<p>To bind this to a key, add a new keymap item using the operator <code class="docutils literal notranslate"><span class="pre">wm.context_toggle</span></code>
+with <code class="docutils literal notranslate"><span class="pre">data_path</span></code> set to <code class="docutils literal notranslate"><span class="pre">object.show_name</span></code> (notice the <code class="docutils literal notranslate"><span class="pre">bpy.context</span></code> prefix is implicit).</p>
+<p>See <a class="reference external" href="https://docs.blender.org/api/current/bpy.context.html">bpy.context</a>
+for other context attributes.</p>
+<p>The Python API documentation can be used to find properties
+or you may use the Python Console’s auto-complete to inspect available properties.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_templates.html" class="btn btn-neutral float-left" title="Application Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="limits.html" class="btn btn-neutral float-right" title="Working Limits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/advanced/keymap_editing.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60advanced/keymap_editing%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fadvanced/keymap_editing.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

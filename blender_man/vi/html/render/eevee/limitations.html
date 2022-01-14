@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Những Giới Hạn -- Limitations &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/eevee/limitations.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Tuần Hoàn -- Cycles" href="../cycles/index.html" />
+    <link rel="prev" title="Reflection Planes" href="light_probes/reflection_planes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Eevee</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="world.html">World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lighting.html">Light Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_probes/index.html">Light Probes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Những Giới Hạn -- Limitations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cameras">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lights">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#light-probes">Light Probes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indirect-lighting">Indirect Lighting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shadows">Shadows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#volumetrics">Volumetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#depth-of-field">Depth of Field -- Độ Sâu Trường Ảnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#screen-space-effects">Screen Space Effects</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#ambient-occlusion">Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#screen-space-reflections">Screen Space Reflections</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#screen-space-refraction">Screen Space Refraction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#subsurface-scattering">Subsurface Scattering</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#motion-blur">Motion Blur -- Làm Nhòe Chuyển Động</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#materials">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shader-nodes">Shader Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-management">Memory Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpu-rendering">CPU Rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-gpu-support">Multiple GPU Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#headless-rendering">Headless Rendering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Eevee</a> &raquo;</li>
+      <li>Những Giới Hạn -- Limitations</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="limitations">
+<h1>Những Giới Hạn -- Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline"></a></h1>
+<p>Eevee's goal is to be an interactive render engine. Some features may not be there yet or
+may be impossible to implement into Eevee's architecture without compromising performance.</p>
+<p>Here is a rather exhaustive list of all the limitations you can expect while working with Eevee.</p>
+<section id="cameras">
+<h2>Máy Quay Phim -- Cameras<a class="headerlink" href="#cameras" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Only perspective and orthographic projections are currently supported.</p></li>
+</ul>
+</section>
+<section id="lights">
+<h2>Nguồn Sáng -- Lights<a class="headerlink" href="#lights" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Only 128 active lights can be supported by Eevee in a scene.</p></li>
+<li><p>Only 8 Shadowed sun lights can be supported at the same time.</p></li>
+<li><p>As of now, lights can only have one color and do not support light node trees.</p></li>
+</ul>
+</section>
+<section id="light-probes">
+<h2>Light Probes<a class="headerlink" href="#light-probes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Eevee only supports up to 128 active Reflection Cubemaps.</p></li>
+<li><p>Eevee only supports up to 64 active Irradiance Volumes.</p></li>
+<li><p>Eevee only supports up to 16 active Reflection Planes inside the view frustum.</p></li>
+</ul>
+</section>
+<section id="indirect-lighting">
+<h2>Indirect Lighting<a class="headerlink" href="#indirect-lighting" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Volumetrics don't receive light from Irradiance Volumes but do receive world's diffuse lighting.</p></li>
+<li><p>Eevee does not support &quot;specular to diffuse&quot; light bounces nor &quot;specular to specular&quot; light bounces.</p></li>
+<li><p>All specular lighting is turned off during baking.</p></li>
+</ul>
+</section>
+<section id="shadows">
+<span id="eevee-limitations-shadows"></span><h2>Shadows<a class="headerlink" href="#shadows" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Only 128 active lights can be supported by Eevee in a scene.</p></li>
+<li><p>Only 8 Shadowed sun lights can be supported at the same time.</p></li>
+</ul>
+</section>
+<section id="volumetrics">
+<span id="eevee-limitations-volumetrics"></span><h2>Volumetrics<a class="headerlink" href="#volumetrics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Only single scattering is supported.</p></li>
+<li><p>Volumetrics are rendered only for the camera &quot;rays&quot;. They don't appear in reflections/refractions and probes.</p></li>
+<li><p>Volumetrics don't receive light from Irradiance Volumes but do receive diffuse lighting from the world.</p></li>
+<li><p>Volumetric shadowing only work in volumetrics. They won't cast shadows onto solid objects in the scene.</p></li>
+<li><p>Volumetric shadowing only work for volumes inside the view frustum.</p></li>
+<li><p>Volumetric lighting do not respect the lights shapes. They are treated as point lights.</p></li>
+</ul>
+</section>
+<section id="depth-of-field">
+<span id="eevee-limitations-dof"></span><h2>Depth of Field -- Độ Sâu Trường Ảnh<a class="headerlink" href="#depth-of-field" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Alpha blended surfaces cannot be correctly handled by the post-processing blur,
+but will be correctly handled by the sample-based method. For this, you need to
+disable the post-process depth of field by setting the <em>Max Size</em> to 0.</p></li>
+</ul>
+</section>
+<section id="screen-space-effects">
+<h2>Screen Space Effects<a class="headerlink" href="#screen-space-effects" title="Permalink to this headline"></a></h2>
+<p>Eevee is not a ray tracing engine and cannot do ray-triangle intersection.
+Instead of this, Eevee uses the depth buffer as an approximated scene representation.
+This reduces the complexity of scene scale effects and enables a higher performance.
+However, only what is in inside the view can be considered when computing these effects.
+Also, since it only uses one layer of depth, only the front-most pixel distance is known.</p>
+<p>These limitations creates a few problems:</p>
+<ul class="simple">
+<li><p>The screen space effects disappear when reaching the screen border.
+This can be partially fixed by using the <em>overscan</em> feature.</p></li>
+<li><p>Screen space effects lack deep information (or the thickness of objects).
+This is why most effects have a thickness parameter to control how to consider potential intersected pixels.</p></li>
+<li><p>Blended surfaces are not considered by these effects.
+They are not part of the depth prepass and do not appear in the depth buffer.</p></li>
+<li><p>Objects that a part of <a class="reference internal" href="../layers/introduction.html#bpy-ops-outliner-collection-holdout-set"><span class="std std-ref">Holdout Collections</span></a>
+will not be rendered with screen space effects.</p></li>
+</ul>
+<section id="ambient-occlusion">
+<span id="eevee-limitations-ao"></span><h3>Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường<a class="headerlink" href="#ambient-occlusion" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Objects are treated as infinitely thick, producing overshadowing if the <em>Distance</em> is really large.</p></li>
+</ul>
+</section>
+<section id="screen-space-reflections">
+<span id="eevee-limitations-reflections"></span><h3>Screen Space Reflections<a class="headerlink" href="#screen-space-reflections" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Only one glossy BSDF can emit screen space reflections.</p></li>
+<li><p>The evaluated BSDF is currently arbitrarily chosen.</p></li>
+<li><p>Screen Space Reflections will reflect transparent objects and objects using Screen Space Refraction
+but without accurate positioning due to the one layer depth buffer.</p></li>
+</ul>
+</section>
+<section id="screen-space-refraction">
+<span id="eevee-limitations-refraction"></span><h3>Screen Space Refraction<a class="headerlink" href="#screen-space-refraction" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Only one refraction event is correctly modeled.</p></li>
+<li><p>Only opaque and alpha hashed materials can be refracted.</p></li>
+</ul>
+</section>
+<section id="subsurface-scattering">
+<span id="eevee-limitations-sss"></span><h3>Subsurface Scattering<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Only one BSSRDF can produce screen space subsurface scattering.</p></li>
+<li><p>The evaluated BSSRDF is currently arbitrarily chosen.</p></li>
+<li><p>A maximum of 254 different surfaces can use subsurface scattering.</p></li>
+<li><p>Only scaling is adjustable per pixel. Individual RGB radii are adjustable in the socket default value.</p></li>
+<li><p>Input radiance from each surfaces are not isolated during the blurring,
+leading to light leaking from surface to surface.</p></li>
+</ul>
+</section>
+</section>
+<section id="motion-blur">
+<h2>Motion Blur -- Làm Nhòe Chuyển Động<a class="headerlink" href="#motion-blur" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="render_settings/motion_blur.html"><span class="doc">Motion Blur</span></a>
+is only available in final renders and is not shown in the 3D Viewport
+and thus <a class="reference internal" href="../../editors/3dview/viewport_render.html#bpy-ops-render-opengl"><span class="std std-ref">Viewport Renders</span></a>.</p>
+</section>
+<section id="materials">
+<span id="eevee-limitations-materials"></span><h2>Nguyên Vật Liệu -- Materials<a class="headerlink" href="#materials" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Refractions</dt><dd><p>Refraction is faked by sampling the same reflection probe used by the Glossy BSDFs,
+but using the refracted view direction instead of the reflected view direction.
+Only the first refraction event is modeled correctly.
+An approximation of the second refraction event can be used for relatively thin objects using Refraction Depth.
+Using Screen Space refraction will refract what is visible inside the view,
+and use the nearest probe if there is no hit.</p>
+<p>Screen Space Reflections and Ambient Occlusion are not compatible with Screen Space Refraction;
+they will be disabled on the surfaces that use it.
+Surfaces that use Screen Space Refraction will not appear in Screen Space Reflections at the right place.
+Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.</p>
+</dd>
+<dt>Volume Objects</dt><dd><p>Object volume shaders will affect the whole bounding box of the object.
+The shape of the volume must be adjusted using procedural texturing inside the shader.</p>
+</dd>
+</dl>
+</section>
+<section id="shader-nodes">
+<h2>Shader Nodes<a class="headerlink" href="#shader-nodes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>All BSDF's are using approximations to achieve realtime performance
+so there will always be small differences between Cycles and Eevee.</p></li>
+<li><p>Some utility nodes are not yet compatible with Eevee (e.g. Sky Texture node).</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>For a full list of unsupported nodes see <a class="reference internal" href="materials/nodes_support.html"><span class="doc">Nodes Support</span></a>.</p>
+</div>
+</section>
+<section id="memory-management">
+<h2>Memory Management<a class="headerlink" href="#memory-management" title="Permalink to this headline"></a></h2>
+<p>In Eevee, <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU</abbr>
+Memory management is done by the GPU driver.
+In theory, only the needed textures and meshes (now referred as &quot;the resources&quot;) for a single draw call
+(i.e. one object) needs to fit into the GPU memory.</p>
+<p>So if the scene is really heavy,
+the driver will swap things in and out to make sure all objects are rendered correctly.</p>
+<p>In practice, using too much GPU memory can make the GPU driver crash, freeze, or kill the application.
+So be careful of what you ask.</p>
+<p>There is no standard way of estimating if the resources will fit into the GPU memory and/or
+if the GPU will render them successfully.</p>
+</section>
+<section id="cpu-rendering">
+<h2>CPU Rendering<a class="headerlink" href="#cpu-rendering" title="Permalink to this headline"></a></h2>
+<p>Being a rasterization engine, Eevee only uses the power of
+the <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU</abbr> to render.
+There is no plan to support <abbr title="Central Processing Unit">CPU</abbr> (software) rendering
+as it would be very inefficient. CPU power is still needed to handle high scene complexity
+as the geometry must be prepared by the CPU before rendering each frame.</p>
+</section>
+<section id="multiple-gpu-support">
+<h2>Multiple GPU Support<a class="headerlink" href="#multiple-gpu-support" title="Permalink to this headline"></a></h2>
+<p>There is currently no support for
+multiple <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU</abbr> systems.</p>
+</section>
+<section id="headless-rendering">
+<h2>Headless Rendering<a class="headerlink" href="#headless-rendering" title="Permalink to this headline"></a></h2>
+<p>There is currently no support for using Eevee on headless systems (i.e. without a Display Manager).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="light_probes/reflection_planes.html" class="btn btn-neutral float-left" title="Reflection Planes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cycles/index.html" class="btn btn-neutral float-right" title="Tuần Hoàn -- Cycles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/eevee/limitations.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/eevee/limitations%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/eevee/limitations.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Line Art Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/grease_pencil/modifiers/generate/line_art.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Mirror Modifier" href="mirror.html" />
+    <link rel="prev" title="Length Modifier" href="length.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Grease Pencil</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../object.html">Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../selecting.html">Selecting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../multiframe.html">Multiframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dash.html">Dot Dash Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="length.html">Length Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Line Art Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#geometry-processing">Geometry Processing</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#edge-types">Edge Types</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#style">Style</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#occlusion">Occlusion</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#material-mask">Material Mask</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#intersection">Intersection</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#face-mark-filtering">Face Mark Filtering</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#chaining">Chaining</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#vertex-weight-transfer">Vertex Weight Transfer</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#composition">Composition</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#bake">Bake</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiple_strokes.html">Multiple Strokes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simplify.html">Simplify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivide.html">Subdivide Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../deform/index.html">Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modify/index.html">Modify</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../visual_effects/index.html">Visual Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../animation/index.html">Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#modes">Modes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Grease Pencil</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+          <li><a href="index.html">Generate</a> &raquo;</li>
+      <li>Line Art Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="line-art-modifier">
+<span id="bpy-types-lineartgpencilmodifier"></span><span id="index-0"></span><h1>Line Art Modifier<a class="headerlink" href="#line-art-modifier" title="Permalink to this headline"></a></h1>
+<p>The <em>Line Art</em> modifier generates stylized line art from the scene or selected source collection or objects.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to lack of global cache at the moment, each Line Art modifier will run the entire
+occlusion calculation for itself. So if you have multiple line art modifiers to select
+different parts of the scene (to apply different styles, etc.), the evaluation will take much longer.
+There are plans to remedy this in the future, but this is a known limitation for now.</p>
+</div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_panel.png" />
+<figcaption>
+<p><span class="caption-text">The Line Art modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl id="bpy-types-lineartgpencilmodifier-use-cache">
+<dt>Use Cache</dt><dd><p>Optimize rendering by using cached scene data from the first line art modifier in the stack.
+This option has the disadvantage of certain settings becoming unavailable.</p>
+<p>This option only available when you have more than one Line Art modifier
+is the same modifier stack and the modifier is not the first Line Art modifier in the stack.</p>
+</dd>
+<dt>Source Type</dt><dd><p>What type of geometry source should line art be generated from.</p>
+<p>Scene, Collection, Object</p>
+</dd>
+<dt>Object/Collection</dt><dd><p>Based on the source type, collection or object can be selected as source geometry.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Line Art will still load and calculate the entire visible scene to produce correct occlusion result,
+unless specified to do otherwise in object or collection Line Art <em>Usage</em> property.</p>
+</div>
+<dl class="simple">
+<dt>Layer</dt><dd><p>The Grease Pencil <a class="reference internal" href="../../properties/layers.html#bpy-types-gpencillayer"><span class="std std-ref">Layers</span></a> to put the result in.</p>
+</dd>
+<dt>Material</dt><dd><p>The Grease Pencil <a class="reference internal" href="../../materials/index.html#bpy-types-materialgpencilstyle"><span class="std std-ref">Materials</span></a> to generate strokes with.</p>
+</dd>
+</dl>
+<section id="geometry-processing">
+<h3>Geometry Processing<a class="headerlink" href="#geometry-processing" title="Permalink to this headline"></a></h3>
+<span id="bpy-types-lineartgpencilmodifier-source-camera"></span><dl class="simple" id="bpy-types-lineartgpencilmodifier-use-custom-camera">
+<dt>Custom Camera</dt><dd><p>Use custom camera instead of the active camera for calculating strokes.
+Useful when baking multiple shots in different angle as well as for motion graphics effects.</p>
+</dd>
+<dt>Remove Doubles</dt><dd><p>Perform a “merge by distance” operation when loading geometry into Line Art.
+The threshold of this operation is internally set to a value that is optimal for Line Art algorithm precision.</p>
+</dd>
+<dt>Overlapping Edges as Contour</dt><dd><p>This option allows overlapping edges (e.g. from an Edge Split modifier or imported geometry where
+two edges occupy the exact same space) to be drawn as contour. Enabling this option will slow down
+the calculation slightly but it will handle edge overlapping cases without erroneous occlusion results.</p>
+</dd>
+<dt>Instanced Objects</dt><dd><p>This option enables particles and other instanced objects to be loaded for line art calculation.
+There will be performance impact when there are a large amount of instanced objects in the scene.</p>
+</dd>
+<dt>Clipping Boundaries</dt><dd><p>When enabled, line art will generate clipping lines as contour type at the place
+where near or far clipping planes cut the model. Otherwise there will be no lines.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-crease-on-smooth">
+<dt>Crease on Smooth</dt><dd><p>Allow crease edges to show inside smooth surfaces.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-crease-on-sharp">
+<dt>Crease on Sharp</dt><dd><p>Allow creases to show on sharp edges.</p>
+</dd>
+</dl>
+</section>
+<section id="edge-types">
+<h3>Edge Types<a class="headerlink" href="#edge-types" title="Permalink to this headline"></a></h3>
+<p>Line Art can identify different edge types. Selected edge types will be included in the result.</p>
+<dl class="simple">
+<dt>Contour</dt><dd><p>Where the edge becomes the separation line of front/backfacing faces.</p>
+</dd>
+</dl>
+<dl id="bpy-types-lineartgpencilmodifier-use-loose">
+<dt>Loose</dt><dd><p>Generate strokes for edges that do not form a <a class="reference internal" href="../../../glossary/index.html#term-Face"><span class="xref std std-term">Face</span></a>.</p>
+</dd>
+<dt>Material Borders</dt><dd><p>Where the edge separates faces with different materials.</p>
+</dd>
+<dt>Edge Marks</dt><dd><p>Freestyle edge marks.</p>
+</dd>
+<dt>Intersections</dt><dd><p>Intersection lines between faces.</p>
+</dd>
+<dt>Crease</dt><dd><p>Where the edge angle is small enough. Controlled by <em>Crease Threshold</em> property.</p>
+<dl class="simple">
+<dt>Crease Threshold</dt><dd><p>Edge angles that are smaller than this value will be treated as crease.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-overlap-edge-type-support">
+<dt>Allow Overlap</dt><dd><p>Allow an edge to have multiple overlapping types.
+This will create a separate stroke for each overlapping type.</p>
+</dd>
+</dl>
+</section>
+<section id="style">
+<h3>Style<a class="headerlink" href="#style" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id2">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_style-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_style-panel.png" />
+<figcaption>
+<p><span class="caption-text">Style subpanel.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Thickness</dt><dd><p>The strokes generated by line art are given this thickness.</p>
+</dd>
+<dt>Opacity</dt><dd><p>The strokes generated by line art are given this Opacity.</p>
+</dd>
+</dl>
+</section>
+<section id="occlusion">
+<h3>Occlusion<a class="headerlink" href="#occlusion" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id3">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_occlusion-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_occlusion-panel.png" />
+<figcaption>
+<p><span class="caption-text">Occlusion subpanel.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Range</dt><dd><p>If enabled, the modifier will select lines that have an occlusion level between start and end values.</p>
+</dd>
+<dt>Level</dt><dd><p>Desired occlusion level to be selected as line art result. A value of 0 means visible lines (no occlusion).
+A value of 1 means selecting lines that have been occluded by exactly one layer of faces.</p>
+</dd>
+</dl>
+<section id="material-mask">
+<h4>Material Mask<a class="headerlink" href="#material-mask" title="Permalink to this headline"></a></h4>
+<p>If enabled, Line Art will only select lines that are occluded by certain faces whose material
+have specific occlusion masks set.</p>
+<dl class="simple">
+<dt>Masks</dt><dd><p>To select edges that have been occluded by the selected
+<a class="reference internal" href="../../../render/materials/line_art.html#bpy-types-materiallineart-use-material-mask-bits"><span class="std std-ref">Material Mask</span></a>.</p>
+</dd>
+<dt>Exact Match</dt><dd><p>If enabled, only lines that are occluded with the exact mask bit combination will be selected.
+Otherwise, lines that have been occluded by any one of specified material masks will be selected.</p>
+</dd>
+</dl>
+<figure class="align-right" id="id4">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_transparency-mask.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_transparency-mask.png" />
+<figcaption>
+<p><span class="caption-text">Demonstration of the usage of material masks.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="intersection">
+<h3>Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline"></a></h3>
+<p>Allows you to select edges that intersect between two collections.</p>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-intersection-mask">
+<dt>Collection Mask</dt><dd><p>Mask bits to match from <a class="reference internal" href="../../../scene_layout/collections/collections.html#bpy-types-collection-lineart-intersection-mask"><span class="std std-ref">Collection Line Art</span></a> properties.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-intersection-match">
+<dt>Exact Match</dt><dd><p>Require matching all intersection masks instead of just one.</p>
+</dd>
+</dl>
+<figure class="align-default" id="id5">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_collection-mask.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_collection-mask.png" />
+<figcaption>
+<p><span class="caption-text">Demonstration of the usage of collection masks.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="face-mark-filtering">
+<span id="bpy-types-lineartgpencilmodifier-use-face-mark"></span><h3>Face Mark Filtering<a class="headerlink" href="#face-mark-filtering" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id6">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_face-mark-filtering-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_face-mark-filtering-panel.png" />
+<figcaption>
+<p><span class="caption-text">Face Mark Filtering subpanel.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><em>Face Mark Filtering</em> can be used to have manual control over which
+feature edges produce strokes by using Freestyle face marks.</p>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-face-mark-invert">
+<dt>Invert</dt><dd><p>Invert face mark filtering.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-face-mark-boundaries">
+<dt>Boundaries</dt><dd><p>Filter feature lines based on face mark boundaries.</p>
+</dd>
+</dl>
+<figure class="align-default">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_face-mark-filtering-example.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_face-mark-filtering-example.png" />
+</figure>
+</section>
+<section id="chaining">
+<h3>Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id7">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_chaining-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_chaining-panel.png" />
+<figcaption>
+<p><span class="caption-text">Chaining subpanel.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Chain</dt><dd><dl>
+<dt>Intersection with Contour</dt><dd><p>Allows intersection lines to be chained together with contour lines.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enabling this option will lead to ambiguity in intersection edge types.
+Intersection lines that have not been able to chain with any nearby contour lines will remain
+as intersection lines.</p>
+</div>
+</dd>
+<dt>All Lines</dt><dd><p>Enabling this option will cause all lines to have the type of contour and to be chained together.</p>
+</dd>
+<dt>Loose Edges</dt><dd><p>Allow floating Edges that do not form a face to be chained together.</p>
+</dd>
+<dt>Loose as Contour</dt><dd><p>Edges that do not form a face will be classified as contour lines.</p>
+</dd>
+<dt>Geometry Space</dt><dd><p>Use geometry distance for chaining instead of image space.</p>
+</dd>
+</dl>
+</dd>
+<dt>Image Threshold</dt><dd><p>Allow the end point of short segments to be chained together if the 2D image space distance
+between them are within the specified threshold.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-smooth-tolerance">
+<dt>Smooth Tolerance</dt><dd><p>The strength of smoothing applied on jagged chains.</p>
+</dd>
+<dt>Angle Splitting</dt><dd><p>Split a chain at sharp “turning” points specified by this angle.</p>
+</dd>
+</dl>
+</section>
+<section id="vertex-weight-transfer">
+<h3>Vertex Weight Transfer<a class="headerlink" href="#vertex-weight-transfer" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id8">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_vertex-weight-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_vertex-weight-panel.png" />
+<figcaption>
+<p><span class="caption-text">Vertex Weight Transfer subpanel.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Filter Source</dt><dd><p>If source mesh has vertex groups whose name starts with this text, then the vertex weight info
+will be transferred into weight groups in Grease Pencil strokes.</p>
+</dd>
+<dt>Match Output</dt><dd><p>Transfer the filtered object vertex weights into Grease Pencil weight groups with the same names
+as the filtered ones.</p>
+</dd>
+<dt>Target</dt><dd><p>If <em>Match Output</em> is off, then a target vertex group has to be specified.
+If there are multiple weight groups copied into target, then the highest weight value is copied into it.</p>
+</dd>
+</dl>
+</section>
+<section id="composition">
+<h3>Composition<a class="headerlink" href="#composition" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id9">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_composition-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_composition-panel.png" />
+<figcaption>
+<p><span class="caption-text">Composition subpanel.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl id="bpy-types-lineartgpencilmodifier-overscan">
+<dt>Overscan</dt><dd><p>To optimize rendering, Blender only renders the strokes for edges of the object that are in the camera’s view.
+This optimization however, can result in strokes ending abruptly at the edge of the image.</p>
+<p>This value prevents this error by adding a margin outside the camera’s view to continue computing strokes.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-image-boundary-trimming">
+<dt>Image Boundary Trimming</dt><dd><p>Trim all stroke right at the boundary of image (including overscan region).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-stroke-depth-offset">
+<dt>Depth Offset</dt><dd><p>Move strokes slightly towards the camera to avoid clipping while preserve depth for the viewport.
+This option is unavailable unless <a class="reference internal" href="../../../scene_layout/object/properties/display.html#bpy-types-object-show-in-front"><span class="std std-ref">Show in Front</span></a> is disabled.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-lineartgpencilmodifier-use-offset-towards-custom-camera">
+<dt>Towards Custom Camera</dt><dd><p>Offset strokes towards selected camera (see <em>Custom Camera</em> above) instead of the active camera.</p>
+</dd>
+</dl>
+</section>
+<section id="bake">
+<h3>Bake<a class="headerlink" href="#bake" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id10">
+<img alt="../../../_images/grease-pencil_modifiers_generate_line-art_baking-panel.png" src="../../../_images/grease-pencil_modifiers_generate_line-art_baking-panel.png" />
+<figcaption>
+<p><span class="caption-text">Bake options.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Bake Line Art</dt><dd><p>Bakes Line Art strokes for active Grease Pencil object within the <em>start</em>, <em>end</em> frame range in scene.
+Bake Line Art (All) bakes all Grease Pencil objects that contains at least one Line Art modifier.
+After baking, baked Line Art modifiers will be deactivated automatically.</p>
+</dd>
+<dt>Clear Baked Line Art</dt><dd><p>Clears baked line art frames within the scene frame range for active Grease Pencil object.
+Clear Baked Line Art (All) applies the same operation for all Grease Pencil objects that
+contains at least one Line Art modifier.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have drawn anything manually in the frame range of where line art runs,
+this operation will also clear those strokes!</p>
+</div>
+</dd>
+<dt>Continue without Clearing</dt><dd><p>Re-activate a specific Line Art modifier without clearing baked strokes. This is useful for working
+on multiple portions of frames separately.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="length.html" class="btn btn-neutral float-left" title="Length Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mirror.html" class="btn btn-neutral float-right" title="Mirror Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/grease_pencil/modifiers/generate/line_art.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60grease_pencil/modifiers/generate/line_art%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fgrease_pencil/modifiers/generate/line_art.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

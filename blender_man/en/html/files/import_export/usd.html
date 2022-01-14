@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal Scene Description &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/import_export/usd.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Scalable Vector Graphics (SVG) as Grease Pencil" href="grease_pencil_svg.html" />
+    <link rel="prev" title="Collada" href="collada.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Assets, Files, &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blend/index.html">Blender File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Data-Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked_libraries/index.html">Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asset_libraries/index.html">Asset Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../media/index.html">Media Formats</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../import_export.html">Importing &amp; Exporting Files</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="alembic.html">Alembic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collada.html">Collada</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Universal Scene Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exporting-to-usd-files">Exporting to USD Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#export-options">Export Options</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#experimental">Experimental</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#exporter-limitations">Exporter Limitations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#importing-usd-files">Importing USD Files</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#xform-and-scope-primitives">Xform and Scope Primitives</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#animations">Animations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#materials">Materials</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#coordinate-system-orientation">Coordinate System Orientation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#import-options">Import Options</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id1">Experimental</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="grease_pencil_svg.html">Scalable Vector Graphics (SVG) as Grease Pencil</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grease_pencil_pdf.html">Portable Document Format (PDF) as Grease Pencil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Assets, Files, &amp; Data System</a> &raquo;</li>
+          <li><a href="../import_export.html">Importing &amp; Exporting Files</a> &raquo;</li>
+      <li>Universal Scene Description</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="universal-scene-description">
+<h1>Universal Scene Description<a class="headerlink" href="#universal-scene-description" title="Permalink to this headline"></a></h1>
+<section id="exporting-to-usd-files">
+<h2>Exporting to USD Files<a class="headerlink" href="#exporting-to-usd-files" title="Permalink to this headline"></a></h2>
+<p>Universal Scene Description (USD) files can contain complex layering, overriding, and references to other files.
+Blender’s USD Exporter takes a much simpler approach. When exporting, all visible, supported objects in
+the scene are exported, optionally limited by their selection state. Blender does not (yet) support exporting
+invisible objects, USD layers, variants, skeletal animation, etc.</p>
+<p>The following objects can be exported to USD:</p>
+<ul class="simple">
+<li><p>Meshes (of different kinds, see below).</p></li>
+<li><p>Cameras (perspective cameras only at the moment, not orthogonal ones).</p></li>
+<li><p>Light (all types except area lights).</p></li>
+<li><p>Hair (exported as curves, and limited to parent strands).</p></li>
+</ul>
+<p>When exporting an animation, the final, evaluated mesh is written to USD.
+This means that the following meshes can be exported:</p>
+<ul class="simple">
+<li><p>Static meshes.</p></li>
+<li><p>Deforming meshes; here the topology of the mesh does not change,
+but the locations of the vertices change over time. Examples are animated characters or
+bouncing (but not cracking) objects.</p></li>
+<li><p>Arbitrarily animated meshes; here the topology does change.
+An example is the result of a fluid simulation, where splashes of fluid can break off the main body.</p></li>
+<li><p>Metaballs are exported as animated meshes.</p></li>
+</ul>
+<figure class="align-default" id="id2">
+<img alt="../../_images/files_import-export_usd_example.png" src="../../_images/files_import-export_usd_example.png" />
+<figcaption>
+<p><span class="caption-text">Shot from <a class="reference external" href="https://cloud.blender.org/films/spring/">Spring</a> exported to USD and opened in USDView.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="export-options">
+<span id="bpy-ops-wm-usd-export"></span><h2>Export Options<a class="headerlink" href="#export-options" title="Permalink to this headline"></a></h2>
+<p>The following options are available when exporting to USD:</p>
+<dl>
+<dt>Selection Only</dt><dd><p>When checked, only selected objects are exported.
+Instanced objects, for example collections that are instanced in the scene,
+are considered ‘selected’ when their instancer is selected.</p>
+</dd>
+<dt>Visible Only</dt><dd><p>Only exports objects that are not <a class="reference internal" href="../../scene_layout/object/editing/show_hide.html"><span class="doc">hidden</span></a>.
+Invisible parents of exported objects are exported as empty transforms.</p>
+</dd>
+<dt>Animation</dt><dd><p>When checked, the entire scene frame range is exported.
+When unchecked, only the current scene frame is exported.</p>
+</dd>
+<dt>Hair</dt><dd><p>When checked, parent hair strands are exported as a curve system.
+Hair strand colors are not exported.</p>
+</dd>
+<dt>UV Maps</dt><dd><p>When checked, includes UV coordinates for exported meshes.
+The name of the UV map in USD is the same as the name in Blender.
+In USD the default name is <code class="docutils literal notranslate"><span class="pre">st</span></code> whereas in Blender the default name is <code class="docutils literal notranslate"><span class="pre">UVMap</span></code>.
+To export to the standard UV map name <code class="docutils literal notranslate"><span class="pre">st</span></code>, rename the UV map in Blender to <code class="docutils literal notranslate"><span class="pre">st</span></code>.</p>
+</dd>
+<dt>Normals</dt><dd><p>When checked, includes normals for exported meshes. This includes custom loop normals.</p>
+</dd>
+<dt>Materials</dt><dd><p>When checked, exports the viewport materials of meshes.
+When a mesh has multiple materials assigned, a geometry subset is created for each material.</p>
+<p>The first material (if any) is always applied to the mesh itself as well
+(regardless of the existence of geometry subsets),
+because the Hydra viewport does not support materials on subsets.
+See <a class="reference external" href="https://github.com/PixarAnimationStudios/USD/issues/542">USD issue #542</a>
+for more information.</p>
+</dd>
+<dt>Use Settings for</dt><dd><p>Determines the whether to use <em>Viewport</em> or <em>Render</em> visibility of collection, modifiers,
+or any other property that can be set for both the <em>Viewport</em> and <em>Render</em>.</p>
+</dd>
+</dl>
+<section id="experimental">
+<h3>Experimental<a class="headerlink" href="#experimental" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Instancing</dt><dd><p>As this is an experimental option. When unchecked,
+duplicated objects are exported as real objects, so a particle system with
+100 particles that is displayed with 100 meshes will have 100 individual meshes
+in the exported file. When checked, duplicated objects are exported as
+a reference to the original object. If the original object is not part of the export,
+the first duplicate is exported as real object and used as reference.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="exporter-limitations">
+<h2>Exporter Limitations<a class="headerlink" href="#exporter-limitations" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Single-sided and Double-sided Meshes</dt><dd><p>USD seems to support neither per-material nor per-face-group double-sidedness,
+so Blender uses the flag from the first material to mark the entire mesh as single/double-sided.
+If there is no material it defaults to double-sided.</p>
+</dd>
+<dt>Mesh Normals</dt><dd><p>The mesh subdivision scheme in USD is ‘Catmull-Clark’ by default,
+but Blender uses ‘None’ instead, indicating that a polygonal mesh is exported.
+This is necessary for USD to understand the custom normals;
+otherwise the mesh is always rendered smooth.</p>
+</dd>
+<dt>Vertex Velocities</dt><dd><p>Currently only fluid simulations (not meshes in general) have explicit vertex velocities.
+This is the most important case for exporting velocities, though,
+as the baked mesh changes topology all the time, and
+thus computing the velocities at import time in a post-processing step is hard.</p>
+</dd>
+<dt>Coordinate System Orientation</dt><dd><p>Blender uses the Z axis as up axis. Since USD supports both Y up and Z up,
+the USD files written by Blender always use Z up.</p>
+</dd>
+<dt>Materials</dt><dd><p>Very simple versions of the materials are exported, using only
+the <a class="reference internal" href="../../render/materials/settings.html#render-materials-settings-viewport-display"><span class="std std-ref">Viewport Display</span></a> color, metallic, and roughness.</p>
+<p>When there are multiple materials, the mesh faces are stored as geometry subset
+and each material is assigned to the appropriate subset.
+If there is only one material this is skipped. Note that the geometry subsets are not time-sampled,
+so it may break when an animated mesh changes topology.</p>
+</dd>
+<dt>Hair</dt><dd><p>Only the parent strands are exported, and only with a constant color.
+No UV coordinates, and no information about the normals.</p>
+</dd>
+<dt>Camera</dt><dd><p>Only perspective cameras are exported.</p>
+</dd>
+<dt>Lights</dt><dd><p>USD does not directly support spot lights, so those are not exported.</p>
+</dd>
+<dt>Particles</dt><dd><p>Particles are only written when they are alive, which means that they are always visible.
+There is currently no code that deals with marking them as invisible outside their lifespan.</p>
+<p>Objects instanced by particle system are exported by suffixing the object name with
+the particle’s persistent ID, giving each particle transform a unique name.</p>
+</dd>
+<dt>Instancing/Referencing</dt><dd><p>This is still an experimental feature that can be enabled when exporting to USD.
+When enabled, instanced object meshes are written to USD as references to the original mesh.
+The first copy of the mesh is written for real, and the following copies are referencing the first.
+Which mesh is considered ‘the first’ is chosen more or less arbitrarily.</p>
+</dd>
+</dl>
+</section>
+<section id="importing-usd-files">
+<h2>Importing USD Files<a class="headerlink" href="#importing-usd-files" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://graphics.pixar.com/usd/docs/index.html">USD</a> files typically represent the scene as
+a hierarchy of primitives, or <a class="reference external" href="https://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Prim">prims</a>.
+Individual prims contain data to describe scene entities, such as geometry, lights, cameras and transform hierarchies.
+Blender’s USD importer converts USD prims to a hierarchy of Blender objects. Like the USD exporter,
+the importer does not yet handle more advanced USD concepts, such as layers and references.</p>
+<p>The following USD data types can be imported as Blender objects:</p>
+<ul class="simple">
+<li><p>Cameras</p></li>
+<li><p>Curves</p></li>
+<li><p>Lights</p></li>
+<li><p>Materials</p></li>
+<li><p>Meshes</p></li>
+<li><p>Volume</p></li>
+</ul>
+<p>For more information on how the various data types are handled,
+see the following descriptions of the <a class="reference internal" href="#import-options">Import Options</a>.</p>
+<section id="xform-and-scope-primitives">
+<h3>Xform and Scope Primitives<a class="headerlink" href="#xform-and-scope-primitives" title="Permalink to this headline"></a></h3>
+<p>USD provides an <code class="docutils literal notranslate"><span class="pre">Xform</span></code> prim type, containing transform data, which can be
+used to represent transform hierarchies and to organize the scene.
+Such <code class="docutils literal notranslate"><span class="pre">Xform</span></code> prims are imported as Blender empty objects.</p>
+<p>USD also supports <code class="docutils literal notranslate"><span class="pre">Scope</span></code> primitives, which are entities
+that do not contain transform data, but which serve to group other element of the scene.
+Blender doesn’t have an exact counterpart to the concept of a scope,
+so such primitives are imported as Blender empties located at the origin.
+This is an imperfect representation, because empty objects have a transform and <code class="docutils literal notranslate"><span class="pre">Scopes</span></code> do not,
+but this approach nonetheless helps preserve the structure of the scene hierarchy.</p>
+</section>
+<section id="animations">
+<h3>Animations<a class="headerlink" href="#animations" title="Permalink to this headline"></a></h3>
+<p>The importer supports two types of animation:</p>
+<ul class="simple">
+<li><p><strong>Animating transforms</strong>: If a USD primitive has time-varying transform data,
+a <a class="reference internal" href="../../animation/constraints/transform/transform_cache.html"><span class="doc">Transform Cache</span></a> constraint
+will be added to the imported Blender object.</p></li>
+<li><p><strong>Animating geometry</strong>: Animating mesh and curve geometry is supported by adding
+a <a class="reference internal" href="../../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Mesh Sequence Cache</span></a> modifier to the imported data.
+Geometry attribute (<a class="reference external" href="https://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Primvar">USD Primvar</a>)
+animation is currently supported only for mesh vertex colors and UVs.
+Note that USD file sequences (i.e. a unique file per frame) are not yet supported.</p></li>
+</ul>
+</section>
+<section id="materials">
+<h3>Materials<a class="headerlink" href="#materials" title="Permalink to this headline"></a></h3>
+<p>If a USD mesh or geometry subset has a bound material, the importer will assign to
+the Blender object a material with the same name as the USD material.
+If a Blender material with the same name already exists in the scene,
+the existing material will be assigned. Otherwise, a new material will be created.</p>
+<p>If the USD material has
+a <a class="reference external" href="https://graphics.pixar.com/usd/docs/UsdPreviewSurface-Proposal.html">USD Preview Surface</a> shader source,
+the <a class="reference internal" href="../../render/materials/settings.html#render-materials-settings-viewport-display"><span class="std std-ref">Viewport Display</span></a> color, metallic, and roughness are set to
+the corresponding USD Preview Surface input values.</p>
+<p>There is also an experimental <em>Import USD Preview</em> option to convert USD Preview Surface shaders
+to Blender <a class="reference internal" href="../../render/shader_nodes/shader/principled.html"><span class="doc">Principled BSDF</span></a> shader nodes.
+This option can be lossy, as it does not yet handle converting all shader settings and types,
+but it can generate approximate visualizations of the materials.</p>
+</section>
+<section id="coordinate-system-orientation">
+<h3>Coordinate System Orientation<a class="headerlink" href="#coordinate-system-orientation" title="Permalink to this headline"></a></h3>
+<p>If the imported USD is Y up, a rotation will be automatically applied to
+root objects to convert to Blender’s Z up orientation.</p>
+</section>
+</section>
+<section id="import-options">
+<h2>Import Options<a class="headerlink" href="#import-options" title="Permalink to this headline"></a></h2>
+<p>The following options are available when importing from USD:</p>
+<dl class="simple">
+<dt>Cameras</dt><dd><p>Import cameras (perspective and orthographic).</p>
+</dd>
+<dt>Curves</dt><dd><p>Import curve primitives, including USD basis and NURBS curves.
+(Note that support for Bézier basis is not yet fully implemented.)</p>
+</dd>
+<dt>Lights</dt><dd><p>Import lights. Does not currently include USD dome, cylinder or geometry lights.</p>
+</dd>
+<dt>Materials</dt><dd><p>Import materials. See also the experimental <em>Import USD Preview</em> option.</p>
+</dd>
+<dt>Meshes</dt><dd><p>Import meshes.</p>
+</dd>
+<dt>Volumes</dt><dd><p>Import USD OpenVDB field assets.</p>
+</dd>
+<dt>Path Mask</dt><dd><p>Import only the subset of the USD scene rooted at the given primitive.</p>
+</dd>
+<dt>Scale</dt><dd><p>Value by which to scale the imported objects in relation to the world’s origin.</p>
+</dd>
+<dt>UV Coordinates</dt><dd><p>Read mesh UV coordinates.</p>
+</dd>
+<dt>Vertex Colors</dt><dd><p>Convert the USD mesh <code class="docutils literal notranslate"><span class="pre">displayColor</span></code> values to Blender mesh vertex colors.</p>
+</dd>
+<dt>Subdivision</dt><dd><p>Create Subdivision Surface modifiers based on the USD <code class="docutils literal notranslate"><span class="pre">SubdivisionScheme</span></code> attribute.</p>
+</dd>
+<dt>Import Instance Proxies</dt><dd><p>Create unique Blender objects for USD instances.</p>
+</dd>
+<dt>Visible Primitives Only</dt><dd><p>Do not import invisible USD primitives. Only applies to primitives with a non-animated
+<a class="reference external" href="https://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Visibility">visibility</a> attribute.
+Primitives with animated visibility will always be imported.</p>
+</dd>
+<dt>Guide</dt><dd><p>Include primitives with
+<a class="reference external" href="https://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Purpose">purpose</a> <code class="docutils literal notranslate"><span class="pre">guide</span></code>.</p>
+</dd>
+<dt>Proxy</dt><dd><p>Include primitives with purpose <code class="docutils literal notranslate"><span class="pre">proxy</span></code>.</p>
+</dd>
+<dt>Render</dt><dd><p>Include primitives with purpose <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+</dd>
+<dt>Set Frame Range</dt><dd><p>Update the scene’s start and end frame to match those of the USD stage.</p>
+</dd>
+<dt>Relative Path</dt><dd><p>Select the file relative to the blend-file.</p>
+</dd>
+<dt>Create Collection</dt><dd><p>Add all imported objects to a new collection.</p>
+</dd>
+<dt>Light Intensity Scale</dt><dd><p>Scale for the intensity of imported lights.</p>
+</dd>
+</dl>
+<section id="id1">
+<h3>Experimental<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Import USD Preview</dt><dd><p>Convert USD Preview Surface shaders to Principled BSDF shader networks.</p>
+</dd>
+<dt>Set Material Blend</dt><dd><p>If the <em>Import USD Preview</em> option is enabled, the material blend method will automatically be set based on
+the <code class="docutils literal notranslate"><span class="pre">opacity</span></code> and <code class="docutils literal notranslate"><span class="pre">opacityThreshold</span></code> shader inputs, allowing for visualization of transparent objects.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="collada.html" class="btn btn-neutral float-left" title="Collada" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="grease_pencil_svg.html" class="btn btn-neutral float-right" title="Scalable Vector Graphics (SVG) as Grease Pencil" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/files/import_export/usd.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60files/import_export/usd%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Ffiles/import_export/usd.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

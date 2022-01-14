@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rendering Animations &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/output/animation.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Animation Player" href="animation_player.html" />
+    <link rel="prev" title="Speaker" href="audio/speaker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Render Output</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Output Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio/index.html">Audio Rendering</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Rendering Animations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#workflow">Quy Trình Làm Việc -- Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frame-sequence-workflow">Frame Sequence Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hints">Hints</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="animation_player.html">Animation Player</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Render Output</a> &raquo;</li>
+      <li>Rendering Animations</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rendering-animations">
+<h1>Rendering Animations<a class="headerlink" href="#rendering-animations" title="Permalink to this headline"></a></h1>
+<p>While rendering stills will allow you to view and save the image from the render buffer when
+it is complete, animations are a series of images, or frames,
+and are automatically saved directly out to a drive after being rendered.</p>
+<p>After rendering the frames, you may need to edit the clips,
+or first use the Compositor to do green-screen masking, matting, color correction, DOF,
+and so on to the images. That result is then fed to the Sequencer where the strips are cut and
+mixed and a final overlay is done.</p>
+<p>Finally you can render out from the Sequencer and compress the frames into a playable movie clip.</p>
+<section id="workflow">
+<h2>Quy Trình Làm Việc -- Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h2>
+<p>Generally, you do a lot of intermediate renders of different frames in your animation to check
+for timing, lighting, placement, materials, and so on. At some point,
+you are ready to make a final render of the complete animation for publication.</p>
+<p>There are two approaches you can use when making a movie, or animation, with or without sound.
+The approach you should use depends on the amount of CPU time you will need to render the movie.
+You can render a &quot;typical&quot; frame at the desired resolution,
+and then multiply by the number of frames that will ultimately go into the movie, to arrive at a total render time.</p>
+<p>If the total render time is an hour or more, you want to use the &quot;Frame Sequence&quot; approach.
+For example, if you are rendering a one-minute video clip for film, there will be
+(60 seconds per minute) X (24 frames per second) or 1440 frames per minute.
+If each frame takes 30 seconds to render,
+then you will be able to render two frames per minute, or need 720 minutes (12 hours)
+of render time.</p>
+<p>Rendering takes all available CPU time; you should render overnight,
+when the computer is not needed, or set Blender to a low priority while rendering,
+and work on other things (be careful with the RAM space!).</p>
+<p class="rubric">Direct Approach</p>
+<p>The Direct Approach, which is highly <strong>not</strong> recommended and not a standard practice,
+is where you set your output format to an AVI or MOV format,
+and click <em>Animation</em> to render your scene directly out to a movie file.
+Blender creates one file that holds all the frames of your animation.
+You can then use Blender's <a class="reference internal" href="../../editors/video_sequencer/index.html"><span class="doc">Video Sequencer</span></a>
+to add an audio track to the animation and render out to an MPEG format to complete your movie.</p>
+<p class="rubric">Frame Sequence</p>
+<p>The Frame Sequence is a much more stable approach,
+where you set your output format to a still format (such as JPG, PNG or a multi-layer format).
+Click <em>Animation</em> to render your scene out to a set of images,
+where each image is a frame in the sequence.</p>
+<p>Blender creates a file for each frame of the animation.
+You can then use Blender's Compositor to perform any frame manipulation (post-processing).
+You can then use Blender's <a class="reference internal" href="../../editors/video_sequencer/index.html"><span class="doc">Video Sequencer</span></a> to load that final image sequence,
+add an audio track to the animation, and render out to an MPEG format to complete your movie.
+The Frame Sequence approach is a little more complicated and takes more drive space,
+but gives you more flexibility.</p>
+<p>Here are some guidelines to help you choose an approach.</p>
+<p class="rubric">Direct Approach</p>
+<ul class="simple">
+<li><p>Short segments with total render time under one hour.</p></li>
+<li><p>Stable power supply.</p></li>
+<li><p>Computer not needed for other uses.</p></li>
+</ul>
+<p class="rubric">Frame Sequence Approach</p>
+<ul class="simple">
+<li><p>Total render time over one hour.</p></li>
+<li><p>Post-production work needed:</p>
+<ul>
+<li><p>Color/lighting adjustment</p></li>
+<li><p>Green screen/matte replacement</p></li>
+<li><p>Layering/compositing</p></li>
+<li><p>Multiple formats and resolutions of the final product</p></li>
+</ul>
+</li>
+<li><p>Intermediate frames/adjustments needed for compression/codec.</p></li>
+<li><p>Precise timing (e.g. lip-sync to audio track) needed in parts.</p></li>
+<li><p>May need to interrupt rendering to use the computer, and want to be able to resume rendering where you left off.</p></li>
+</ul>
+</section>
+<section id="frame-sequence-workflow">
+<h2>Frame Sequence Workflow<a class="headerlink" href="#frame-sequence-workflow" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>First prepare your animation.</p></li>
+<li><p>In the <em>Dimensions</em> panel, choose the render size, Pixel Aspect Ratio, and the Range of Frames to use,
+as well as the frame rate, which should already be set.</p></li>
+<li><p>In the Output panel set up your animation to be rendered out as images,
+generally using a format that does not compromise any quality.</p></li>
+<li><p>Choose the output path and file type in the Output panel as well, for example <code class="docutils literal notranslate"><span class="pre">//render/my-anim-</span></code>.</p></li>
+<li><p>Confirm the range of your animation (frame Start and End).</p></li>
+<li><p>Save your blend-file.</p></li>
+<li><p>Press the <em>Animation</em> button and once the animation is finished,
+use your file manager to navigate to the output folder (<code class="docutils literal notranslate"><span class="pre">render</span></code> in this example).
+You will see lots of images that have a sequence number attached to. These are the single frames.</p></li>
+<li><p>In Blender, open the <a class="reference internal" href="../../video_editing/index.html"><span class="doc">Video Sequencer</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The Video Sequencer does not support multi-layer EXR files.
+To render to a video format you will have to skip the next three steps and
+instead use an <a class="reference internal" href="../../compositing/types/input/image.html"><span class="doc">Image Input node</span></a>
+in the <a class="reference internal" href="../../compositing/types/input/image.html"><span class="doc">Compositor</span></a>.</p>
+</div>
+</li>
+<li><p>Choose <em>Add Image</em> from the add menu. Select all the frames from your output folder that you want to include
+in your animation. They will be added as a strip in the Sequence editor.</p></li>
+<li><p>Now you can edit the strip and add effects or leave it like it is.
+You can add other strips, like an audio strip.</p></li>
+<li><p>Scrub through the animation to check if you have included all the frames.</p></li>
+<li><p>In the Output panel, choose the container and codec you want (e.g. <code class="docutils literal notranslate"><span class="pre">MPEG</span> <span class="pre">H.264</span></code>) and configure them.
+The video codecs are described in <a class="reference internal" href="properties/output.html"><span class="doc">Output Options</span></a>.</p></li>
+<li><p>Click the <em>Animation</em> render button and Blender will render out the Sequence editor output into a movie.</p></li>
+</ol>
+</section>
+<section id="hints">
+<h2>Hints<a class="headerlink" href="#hints" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Your computer accidentally turns off in the middle of rendering your movie!</dt><dd><p>Unless your animation renders in a few minutes,
+it is best to render the animation as separate image files.
+Instead of rendering directly to a compressed movie file, use a lossless format (e.g. <code class="docutils literal notranslate"><span class="pre">PNG</span></code>).</p>
+<p>This allows you an easy recovery if there is a problem and you have to re-start the rendering,
+since the frames you have already rendered will still be in the output directory.</p>
+<p>Just disable the <em>Overwrite</em> option to start rendering where you left off.</p>
+<p>You can then make a movie out of the separate frames with Blender's Sequence editor
+or use 3rd party encoding software.</p>
+</dd>
+<dt>Animation Preview</dt><dd><p>It can be useful to render a subset of the animated sequence,
+since only part of an animation may have an error.</p>
+<p>Using an image format for output,
+you can use the <em>Frame Step</em> option to render every <em>N'th</em> frame.
+Then disable <em>Overwrite</em> and re-render with <em>Frame Step</em> set to 1.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="audio/speaker.html" class="btn btn-neutral float-left" title="Speaker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="animation_player.html" class="btn btn-neutral float-right" title="Animation Player" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/output/animation.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/output/animation%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/output/animation.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

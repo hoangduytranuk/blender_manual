@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transformation Constraint &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/constraints/transform/transformation.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Transform Cache Constraint" href="transform_cache.html" />
+    <link rel="prev" title="Maintain Volume Constraint" href="maintain_volume.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Animation &amp; Rigging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../keyframes/index.html">Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../armatures/index.html">Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lattice.html">Lattice</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#motion-tracking">Motion Tracking</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#transform">Transform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="copy_location.html">Copy Location Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copy_rotation.html">Copy Rotation Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copy_scale.html">Copy Scale Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copy_transforms.html">Copy Transforms Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_distance.html">Limit Distance Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_location.html">Limit Location Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_rotation.html">Limit Rotation Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_scale.html">Limit Scale Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maintain_volume.html">Maintain Volume Constraint</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Transformation Constraint</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#map-from">Map From</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#map-to">Map To</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="transform_cache.html">Transform Cache Constraint</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#tracking">Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#relationship">Relationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../actions.html">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markers.html">Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shape_keys/index.html">Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../motion_paths.html">Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Animation &amp; Rigging</a> &raquo;</li>
+          <li><a href="../index.html">Constraints</a> &raquo;</li>
+      <li>Transformation Constraint</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="transformation-constraint">
+<span id="bpy-types-transformconstraint"></span><span id="index-0"></span><h1>Transformation Constraint<a class="headerlink" href="#transformation-constraint" title="Permalink to this headline"></a></h1>
+<p>This constraint is more complex and versatile than the other “transform” constraints.
+It allows you to map one type of transform properties (i.e. location, rotation or scale)
+of the target, to the same or another type of transform properties of the owner,
+within a given range of values (which might be different for each target and owner property).
+You can also switch between axes, and use the range values not as limits,
+but rather as “markers” to define a mapping between input (target) and output (owner) values.</p>
+<p>So, e.g. you can use the position of the target along the X axis to control the rotation of
+the owner around the Z axis, stating that 1 unit along the target X axis corresponds
+to 10 units around the owner Z axis. Typical uses for this include gears (see note below),
+and rotation based on location setups.</p>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/animation_constraints_transform_transformation_panel.png" src="../../../_images/animation_constraints_transform_transformation_panel.png" />
+<figcaption>
+<p><span class="caption-text">Transformation panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Data ID</span></a> used to select the constraints target, and is not functional (red state) when it has none.
+See <a class="reference internal" href="../interface/common.html#rigging-constraints-interface-common-target"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+<dt>Extrapolate</dt><dd><p>By default, the <em>Min</em> and <em>Max</em> values bound the input and output values;
+all values outside these ranges are clipped to them.
+When you enable this button, the <em>Min</em> and <em>Max</em> values are no longer strict limits,
+but rather “markers” defining a proportional (linear) mapping between input and corresponding output values.
+Let us illustrate that with two graphs Fig. <a class="reference internal" href="#fig-constraints-transformation-extrapolate"><span class="std std-ref">The Extrapolate principles.</span></a>.
+In these pictures, the input range (in abscissa) is set to (1.0 to 4.0),
+and its corresponding output range (in ordinate), to (1.0 to 2.0).
+The yellow curve represents the mapping between input and output.</p>
+<span id="fig-constraints-transformation-extrapolate"></span><table class="docutils align-default" id="id2">
+<caption><span class="caption-text">The Extrapolate principles.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id3">
+<img alt="../../../_images/animation_constraints_transform_transformation_extrapolate-1.png" src="../../../_images/animation_constraints_transform_transformation_extrapolate-1.png" />
+<figcaption>
+<p><span class="caption-text">Extrapolate disabled: the output values are bounded inside the (1.0 to 2.0) range.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<img alt="../../../_images/animation_constraints_transform_transformation_extrapolate-2.png" src="../../../_images/animation_constraints_transform_transformation_extrapolate-2.png" />
+<figcaption>
+<p><span class="caption-text">Extrapolate enabled: the output values are “free” to proportionally follow the input ones.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Target/Owner</dt><dd><p>Standard conversion between spaces.
+See <a class="reference internal" href="../interface/common.html#rigging-constraints-interface-common-space"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+<dt>Influence</dt><dd><p>Controls the percentage of affect the constraint has on the object.
+See <a class="reference internal" href="../interface/common.html#bpy-types-constraint-influence"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+</dl>
+<section id="map-from">
+<h3>Map From<a class="headerlink" href="#map-from" title="Permalink to this headline"></a></h3>
+<p>It contains the input (from target) settings.</p>
+<dl>
+<dt>Location, Rotation, Scale</dt><dd><p>The radio buttons allow you to select which type of property to use.</p>
+</dd>
+<dt>Mode (Rotation)</dt><dd><p>Allows specifying the type of rotation input to use, including different <a class="reference internal" href="../../../glossary/index.html#term-Euler"><span class="xref std std-term">Euler</span></a> orders,
+<a class="reference internal" href="../../../glossary/index.html#term-Quaternion"><span class="xref std std-term">Quaternion</span></a>, and other <a class="reference internal" href="../../drivers/drivers_panel.html#drivers-variables-rotation-modes"><span class="std std-ref">Rotation Channel Modes</span></a>.
+Defaults to using the <a class="reference internal" href="../../../glossary/index.html#term-Euler"><span class="xref std std-term">Euler</span></a> order of the constraint owner.</p>
+<p>In the <em>Quaternion</em> mode the channels are converted to weighted angles in the same way as
+the swing angles of the <a class="reference internal" href="../../drivers/drivers_panel.html#drivers-variables-rotation-modes"><span class="std std-ref">Swing and X/Y/Z Twist</span></a> modes.</p>
+</dd>
+<dt>X/Y/Z Min, Max</dt><dd><p>Independently for each axis (X, Y, and Z) the min and max number fields control
+the lower and upper bounds of the input value range.
+Note that if a min value is higher than its corresponding max value,
+the constraint behaves as if it had the same value as the max one.</p>
+</dd>
+</dl>
+</section>
+<section id="map-to">
+<h3>Map To<a class="headerlink" href="#map-to" title="Permalink to this headline"></a></h3>
+<p>It contains the output (to owner) settings.</p>
+<dl>
+<dt>Location, Rotation, Scale</dt><dd><p>The three radio buttons allow you to select which type of property to control.</p>
+</dd>
+<dt>Order (Rotation)</dt><dd><p>For rotation, allows specifying which <a class="reference internal" href="../../../glossary/index.html#term-Euler"><span class="xref std std-term">Euler</span></a> order to use during evaluation
+of the constraint. Defaults to using the order of the constraint owner.</p>
+</dd>
+<dt>X/Y/Z Source Axis</dt><dd><p>The three axis selectors allow you to select which input axis to map to,
+respectively (from top to bottom), the X, Y and Z output (owner) axes.</p>
+</dd>
+<dt>Min, Max</dt><dd><p>The <em>Min</em> and <em>Max</em> number fields control the lower and upper bounds of the output value range,
+independently for each mapped axis.
+Note that if a min value is higher than its corresponding max value,
+the constraint behaves as if it had the same value as the max one.</p>
+</dd>
+<dt>Mix</dt><dd><p>Specifies how the result of the constraint is combined with the existing transformation.
+The set of available choices varies based on the type of transformation.</p>
+<dl class="simple">
+<dt>Replace</dt><dd><p>The result of the constraint replaces the existing transformation.</p>
+</dd>
+<dt>Multiply (Scale)</dt><dd><p>The new values are multiplied with the existing axis values.</p>
+</dd>
+<dt>Add (Location, Rotation)</dt><dd><p>The new values are added to the existing axis values.</p>
+</dd>
+<dt>Before Original (Rotation)</dt><dd><p>The new rotation is added before the existing rotation, as if it was applied to
+a parent of the constraint owner.</p>
+</dd>
+<dt>After Original (Rotation)</dt><dd><p>The new rotation is added after the existing rotation, as if it was applied to
+a child of the constraint owner.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>For historical reasons, the <em>Mix</em> mode defaults to <em>Add</em> for location and rotation,
+and <em>Replace</em> for scale.</p></li>
+<li><p>When using the rotation transform properties of the target as input,
+whatever the real values are, the constraint will always “take them back” into the (-180 to 180) range.
+E.g. if the target has a rotation of 420 degrees around its X axis,
+the values used as <em>X</em> input by the constraint will be:</p>
+<p><span class="math notranslate nohighlight">\(((420 + 180) modulo 360) - 180 = 60 - ...\)</span></p>
+<p>This is why this constraint is not really suited for gears!</p>
+</li>
+<li><p>Similarly, when using the scale transform properties of the target as input,
+whatever the real values are, the constraint will always take their absolute values (i.e. invert negative ones).</p></li>
+<li><p>When a <em>min</em> value is higher than its corresponding <em>max</em> one,
+both are considered equal to the <em>max</em> one. This implies you cannot create “reversed” mappings…</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="peertube_wrapper" style="">
+<iframe allowfullscreen="true" src="https://video.blender.org/videos/embed/a7206092-8ae1-4290-93d3-85ba8440bfe1" style="height: 315px; width: 560px">
+</iframe></div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="maintain_volume.html" class="btn btn-neutral float-left" title="Maintain Volume Constraint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transform_cache.html" class="btn btn-neutral float-right" title="Transform Cache Constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/constraints/transform/transformation.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/constraints/transform/transformation%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fanimation/constraints/transform/transformation.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

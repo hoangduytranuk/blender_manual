@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node Parts &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/interface/controls/nodes/parts.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Selecting" href="selecting.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">User Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#window-system">Window System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#keymap">Keymap</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#interface-controls">Interface Controls</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#buttons-and-controls">Buttons and Controls</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#extended-controls">Extended Controls</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../templates/data_block.html">Data-Block Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/list_view.html">List View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/color_picker.html">Color Picker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/color_ramp.html">Color Ramp Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/color_palette.html">Color Palette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/curve.html">Curve Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/operator_search.html">Search</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Nodes</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Node Parts</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#title">Title</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#sockets">Sockets</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#conversion">Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#properties">Properties</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#preview">Preview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="selecting.html">Selecting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="arranging.html">Arranging Nodes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="editing.html">Editing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sidebar.html">Sidebar</a></li>
+<li class="toctree-l5"><a class="reference internal" href="groups.html">Node Groups</a></li>
+<li class="toctree-l5"><a class="reference internal" href="frame.html">Frame Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reroute.html">Reroute Node</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#tools">Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">User Interface</a> &raquo;</li>
+          <li><a href="index.html">Nodes</a> &raquo;</li>
+      <li>Node Parts</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="node-parts">
+<span id="bpy-types-nodetree"></span><span id="bpy-types-nodesocket"></span><h1>Node Parts<a class="headerlink" href="#node-parts" title="Permalink to this headline"></a></h1>
+<p>All nodes in Blender are based on a similar construction.
+This applies to <a class="reference internal" href="introduction.html#tab-node-tree-types"><span class="std std-ref">any type of node</span></a>.
+These parts include the Title, Sockets, Preview and more.</p>
+<figure class="align-default">
+<img alt="../../../_images/interface_controls_nodes_parts_overview.png" src="../../../_images/interface_controls_nodes_parts_overview.png" />
+</figure>
+<section id="title">
+<h2>Title<a class="headerlink" href="#title" title="Permalink to this headline"></a></h2>
+<p>The title shows the name/type of the node;
+it can be overridden by changing the node’s <a class="reference internal" href="sidebar.html#bpy-types-node-label"><span class="std std-ref">Label</span></a>.
+On the left side of the title is the <em>collapse</em> toggle
+which can be used to collapse the node. This can also be done with <kbd class="kbd docutils literal notranslate">H</kbd>.</p>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/interface_controls_nodes_parts_collapsed.png" src="../../../_images/interface_controls_nodes_parts_collapsed.png" />
+<figcaption>
+<p><span class="caption-text">How a node appears when collapsed.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="sockets">
+<span id="bpy-types-nodelink"></span><h2>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline"></a></h2>
+<figure class="align-right">
+<img alt="../../../_images/interface_controls_nodes_parts_sockets.png" src="../../../_images/interface_controls_nodes_parts_sockets.png" />
+</figure>
+<p>The sockets input and output values from the node.
+They appear as little colored circles on either side of the node.
+Unused sockets can be hidden with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">H</kbd></kbd>.
+There are two kinds of sockets: <a class="reference internal" href="#inputs">inputs</a> and <a class="reference internal" href="#outputs">outputs</a>.</p>
+<p>Each socket is color-coded depending on what type of data it handles.</p>
+<dl class="simple">
+<dt>Float (gray)</dt><dd><p>Indicates numeric value’s information.
+It can either be a single numerical value or a so-called “value map”.
+(You can think of a value map as a gray-scale map where the different amount of
+bright/dark reflects the value for each point.)
+If a single value is used as an input for a “value map” socket, all points of the map are set to this same value.
+Common use: Alpha maps and value options for a node.</p>
+</dd>
+<dt>Integer (lime green)</dt><dd><p>Used to pass an integer value (a number without a fractional component).</p>
+</dd>
+<dt>Boolean (pink)</dt><dd><p>Used to pass a true or false value.</p>
+</dd>
+<dt>String (light blue)</dt><dd><p>Used to pass a text value.</p>
+</dd>
+<dt>Vector (dark blue)</dt><dd><p>Indicates vector, coordinate and normal information.</p>
+</dd>
+<dt>Color (yellow)</dt><dd><p>Indicates that color information needs to be input or will be output from the node.
+Depending on the node tree type, the color has an alpha channel or not.</p>
+</dd>
+<dt>Shader (bright green)</dt><dd><p>Used for shaders in <a class="reference internal" href="../../../render/cycles/index.html"><span class="doc">Cycles</span></a> and <a class="reference internal" href="../../../render/eevee/index.html"><span class="doc">Eevee</span></a>.</p>
+</dd>
+<dt>Geometry (turquoise)</dt><dd><p>Used in <a class="reference internal" href="../../../modeling/geometry_nodes/index.html"><span class="doc">Geometry Nodes</span></a>.</p>
+</dd>
+<dt>Object (orange)</dt><dd><p>Used to pass an object data-block.</p>
+</dd>
+<dt>Collection (white)</dt><dd><p>Used to pass a collection data-block.</p>
+</dd>
+<dt>Image (apricot)</dt><dd><p>Used to pass an image data-block.</p>
+</dd>
+</dl>
+<section id="inputs">
+<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h3>
+<p>The inputs are located on bottom left side of the node,
+and provide the data the node needs to perform its function.
+Each input socket, except for the green shader input, when disconnected,
+has a default value which can be edited via a color, numeric, or vector interface input.
+In the screenshot of the node above, the second color option is set by a color interface input.</p>
+<p>Some nodes have special sockets that can accept multiple inputs into a single socket.
+These sockets will have an ellipsis shape rather than a circle to indicate its special behavior.</p>
+</section>
+<section id="outputs">
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h3>
+<p>The outputs are located on the top right side of the node,
+and can be connected to the input of nodes further down the node tree.</p>
+</section>
+<section id="conversion">
+<h3>Conversion<a class="headerlink" href="#conversion" title="Permalink to this headline"></a></h3>
+<p>Some socket types can be converted to other socket types either implicitly or explicitly.
+Implicit conversion can happen automatically without the need of a conversion node.</p>
+<p>For example, color and float sockets can both be placed into one another.
+Once a socket conversion is made data may be lost and cannot be retrieved later down the node tree.
+Implicit socket conversion can sometimes change the data units as well.
+When plugging a <em>Value</em> input node into an angle socket will default to use radians
+regardless of the scene <a class="reference internal" href="../../../scene_layout/scene/properties.html#bpy-types-unitsettings"><span class="std std-ref">Units</span></a>.
+This happens because the Value node has no unit while the angle input does.</p>
+<p>Valid conversions:</p>
+<ul class="simple">
+<li><p>Between color and vector – in this case the using individual color channels to store the vector.</p></li>
+<li><p>Between color and float – the color data is converted to its gray scale equivalent.</p></li>
+<li><p>Color/float/vector to Shader – implicitly converts to color and gives the result of using an Emission node.</p></li>
+</ul>
+<p>Explicit conversion requires the use of a conversion node for example
+the <a class="reference internal" href="../../../render/shader_nodes/converter/shader_to_rgb.html"><span class="doc">Shader To RGB</span></a> node
+or the <a class="reference internal" href="../../../render/shader_nodes/converter/rgb_to_bw.html"><span class="doc">RGB to BW Node</span></a> node.
+The <a class="reference internal" href="../../../render/shader_nodes/converter/math.html"><span class="doc">Math Node</span></a> node also contains
+some functions to convert between degrees and radians.</p>
+</section>
+</section>
+<section id="properties">
+<span id="bpy-types-nodesetting"></span><h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<p>Many nodes have settings which can affect the way they interact with inputs and outputs.
+Node settings are located below the outputs and above any inputs.</p>
+<figure class="align-default" id="id2">
+<img alt="../../../_images/interface_controls_nodes_parts_controls.png" src="../../../_images/interface_controls_nodes_parts_controls.png" />
+<figcaption>
+<p><span class="caption-text">An example of the controls on the Chroma Key node.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="preview">
+<h3>Preview<a class="headerlink" href="#preview" title="Permalink to this headline"></a></h3>
+<p>On some nodes this shows a preview image of how the output data for a certain channel will appear.
+Usually it shows color data.</p>
+<p>The preview can be toggled using the icon on the very top right-hand corner of the node, next to the title.</p>
+<figure class="align-default" id="id3">
+<img alt="../../../_images/interface_controls_nodes_parts_previewless.png" src="../../../_images/interface_controls_nodes_parts_previewless.png" />
+<figcaption>
+<p><span class="caption-text">How a node appears without the preview.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="selecting.html" class="btn btn-neutral float-right" title="Selecting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/interface/controls/nodes/parts.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60interface/controls/nodes/parts%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Finterface/controls/nodes/parts.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

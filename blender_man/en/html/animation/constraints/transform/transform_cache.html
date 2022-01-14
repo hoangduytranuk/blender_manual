@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transform Cache Constraint &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/constraints/transform/transform_cache.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Clamp To Constraint" href="../tracking/clamp_to.html" />
+    <link rel="prev" title="Transformation Constraint" href="transformation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Animation &amp; Rigging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../keyframes/index.html">Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../armatures/index.html">Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lattice.html">Lattice</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#motion-tracking">Motion Tracking</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#transform">Transform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="copy_location.html">Copy Location Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copy_rotation.html">Copy Rotation Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copy_scale.html">Copy Scale Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copy_transforms.html">Copy Transforms Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_distance.html">Limit Distance Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_location.html">Limit Location Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_rotation.html">Limit Rotation Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="limit_scale.html">Limit Scale Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maintain_volume.html">Maintain Volume Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="transformation.html">Transformation Constraint</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Transform Cache Constraint</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#tracking">Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#relationship">Relationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../actions.html">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markers.html">Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shape_keys/index.html">Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../motion_paths.html">Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Animation &amp; Rigging</a> &raquo;</li>
+          <li><a href="../index.html">Constraints</a> &raquo;</li>
+      <li>Transform Cache Constraint</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="transform-cache-constraint">
+<span id="bpy-types-transformcacheconstraint"></span><span id="index-0"></span><h1>Transform Cache Constraint<a class="headerlink" href="#transform-cache-constraint" title="Permalink to this headline"></a></h1>
+<p>The <em>Transform Cache Constraint</em> is used to stream animations from
+<a class="reference internal" href="../../../files/import_export/alembic.html"><span class="doc">Alembic</span></a> or <a class="reference internal" href="../../../files/import_export/usd.html"><span class="doc">USD</span></a>
+made at the transformation matrix level (for example rigid bodies, or camera movements).</p>
+<p>When importing an <a class="reference internal" href="../../../files/import_export/alembic.html"><span class="doc">Alembic</span></a> or
+<a class="reference internal" href="../../../files/import_export/usd.html"><span class="doc">USD</span></a> file,
+Transform Cache constraints are automatically added to objects with animated transforms.
+For time-varying meshes (so deforming animations),
+the <a class="reference internal" href="../../../modeling/modifiers/modify/mesh_sequence_cache.html"><span class="doc">Mesh Sequence Cache modifier</span></a> is used.</p>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/animation_constraints_transform_transform-cache_panel.png" src="../../../_images/animation_constraints_transform_transform-cache_panel.png" />
+<figcaption>
+<p><span class="caption-text">Transform Cache Constraint.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Cache File</dt><dd><p>Data-block menu to select the Alembic or USD file.</p>
+</dd>
+<dt>File Path</dt><dd><p>Path to the Alembic or USD file.</p>
+</dd>
+<dt>Sequence</dt><dd><p>Whether or not the cache is separated in a series of files.</p>
+</dd>
+<dt>Override Frame</dt><dd><p>Whether to use a custom frame for looking up data in the cache file,
+instead of using the current scene frame.</p>
+<p>The <em>Frame</em> value is the time to use for looking up the data in the cache file,
+or to determine which to use in a file sequence.</p>
+</dd>
+<dt>Frame Offset</dt><dd><p>Subtracted from the current frame to use for looking up the data in the cache file,
+or to determine which file to use in a file sequence.</p>
+</dd>
+<dt>Manual Scale</dt><dd><p>Value by which to enlarge or shrink the object with respect to the world’s origin.</p>
+</dd>
+<dt>Velocity Attribute</dt><dd><p>The name of the Alembic attribute used for generating motion blur data;
+by default, this is <code class="docutils literal notranslate"><span class="pre">.velocities</span></code> which is standard for most Alembic files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>Velocity Attribute</em> option is currently for Alembic files only.</p>
+</div>
+</dd>
+<dt>Velocity Unit</dt><dd><p>Defines how the velocity vectors are interpreted with regard to time.</p>
+<dl class="simple">
+<dt>Frame</dt><dd><p>The velocity unit was encoded in frames and does not need to be scaled by scene FPS.</p>
+</dd>
+<dt>Second</dt><dd><p>The velocity unit was encoded in seconds and needs to be scaled by the scene FPS (1 / FPS).</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>Velocity Unit</em> option is currently for Alembic files only.</p>
+</div>
+</dd>
+<dt>Object Path</dt><dd><p>The path to the Alembic or USD object inside the archive or stage.</p>
+</dd>
+<dt>Influence</dt><dd><p>Controls the percentage of affect the constraint has on the object.
+See <a class="reference internal" href="../interface/common.html#bpy-types-constraint-influence"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transformation.html" class="btn btn-neutral float-left" title="Transformation Constraint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tracking/clamp_to.html" class="btn btn-neutral float-right" title="Clamp To Constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/constraints/transform/transform_cache.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/constraints/transform/transform_cache%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fanimation/constraints/transform/transform_cache.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

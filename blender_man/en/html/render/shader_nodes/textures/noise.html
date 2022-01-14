@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noise Texture Node &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/noise.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Point Density Node" href="point_density.html" />
+    <link rel="prev" title="Musgrave Texture Node" href="musgrave.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Shader Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../shader/index.html">Shader</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Texture</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="brick.html">Brick Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checker.html">Checker Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="environment.html">Environment Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gradient.html">Gradient Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ies.html">IES Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image.html">Image Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="magic.html">Magic Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="musgrave.html">Musgrave Texture Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Noise Texture Node</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="point_density.html">Point Density Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sky.html">Sky Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="voronoi.html">Voronoi Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Wave Texture Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="white_noise.html">White Noise Texture Node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osl.html">Open Shading Language</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../index.html">Shader Nodes</a> &raquo;</li>
+          <li><a href="index.html">Texture</a> &raquo;</li>
+      <li>Noise Texture Node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="noise-texture-node">
+<span id="bpy-types-shadernodetexnoise"></span><h1>Noise Texture Node<a class="headerlink" href="#noise-texture-node" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../../_images/render_shader-nodes_textures_noise_node.png" src="../../../_images/render_shader-nodes_textures_noise_node.png" />
+<figcaption>
+<p><span class="caption-text">Noise Texture Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Noise Texture</em> node evaluates a fractal Perlin noise at the input texture coordinates.</p>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<p>The inputs are dynamic, they become available if needed depending on the node properties.</p>
+<dl class="simple">
+<dt>Vector</dt><dd><p>Texture coordinate to evaluate the noise at;
+defaults to <em>Generated</em> texture coordinates if the socket is left unconnected.</p>
+</dd>
+<dt>W</dt><dd><p>Texture coordinate to evaluate the noise at.</p>
+</dd>
+<dt>Scale</dt><dd><p>Scale of the base noise octave.</p>
+</dd>
+<dt>Detail</dt><dd><p>Number of noise octaves.
+The fractional part of the input is multiplied by the magnitude of the highest octave.
+Higher number of octaves corresponds to a higher render time.</p>
+</dd>
+<dt>Roughness</dt><dd><p>Blend between a smoother noise pattern, and rougher with sharper peaks.</p>
+</dd>
+<dt>Distortion</dt><dd><p>Amount of distortion.</p>
+</dd>
+</dl>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Dimensions</dt><dd><p>The dimensions of the space to evaluate the noise in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">1D</dt>
+<dd class="field-odd"><p>Evaluate the noise in 1D space at the input <em>W</em>.</p>
+</dd>
+<dt class="field-even">2D</dt>
+<dd class="field-even"><p>Evaluate the noise in 2D space at the input <em>Vector</em>. The Z component is ignored.</p>
+</dd>
+<dt class="field-odd">3D</dt>
+<dd class="field-odd"><p>Evaluate the noise in 3D space at the input <em>Vector</em>.</p>
+</dd>
+<dt class="field-even">4D</dt>
+<dd class="field-even"><p>Evaluate the noise in 4D space at the input <em>Vector</em> and the input <em>W</em> as the fourth dimension.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Higher dimensions corresponds to higher render time,
+so lower dimensions should be used unless higher dimensions are necessary.</p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Factor</dt><dd><p>Value of fractal noise.</p>
+</dd>
+<dt>Color</dt><dd><p>Color with different fractal noise in each component.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id2">
+<img alt="../../../_images/render_shader-nodes_textures_noise_example.jpg" src="../../../_images/render_shader-nodes_textures_noise_example.jpg" />
+<figcaption>
+<p><span class="caption-text">Noise Texture with high detail.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline"></a></h2>
+<p>While the noise is random in nature, it follows a certain pattern that might not evaluate to
+random values in some configurations. For instance, consider the following configuration
+where a grid of objects have a material that evaluates a noise texture at their locations.
+One might expect the objects to have random values since they have different locations,
+but this is not the case.</p>
+<figure class="align-default" id="id3">
+<img alt="../../../_images/render_shader-nodes_textures_noise_issue-constant-value.png" src="../../../_images/render_shader-nodes_textures_noise_issue-constant-value.png" />
+<figcaption>
+<p><span class="caption-text">An example configuration where the noise evaluates to a constant value.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>It seems all objects have a value of 0.5. To understand why this happens, let us
+look at the following plot of a 1D noise texture.</p>
+<figure class="align-default" id="id4">
+<img alt="../../../_images/render_shader-nodes_textures_noise_1d-noise-plot.png" src="../../../_images/render_shader-nodes_textures_noise_1d-noise-plot.png" />
+<figcaption>
+<p><span class="caption-text">A plot of a 1D noise with zero details and zero distortion.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The horizontal line denotes a value of 0.5 and the vertical lines denotes whole numbers assuming
+a noise scale of 1. As can be seen, the noise always intersects the 0.5 line at whole numbers.
+Since the aforementioned objects were distributed on a grid and have whole number locations,
+they all evaluate to 0.5. Which explains the issue at hand.</p>
+<p>Generally, any discrete evaluation of noise at integer multiples of the reciprocal of
+the noise scale will always evaluate to 0.5. It also follows that evaluations closer to
+that will have values close to 0.5. In such cases, it is almost always preferred to use
+the White Noise Texture.</p>
+<p>Regardless, one can mitigate this issue in a number of ways:</p>
+<ul class="simple">
+<li><p>Adjust the scale of the noise to avoid aligning the noise with the evaluation domain.</p></li>
+<li><p>Add an arbitrary offset to the texture coordinates to break the alignment with the evaluation domain.</p></li>
+<li><p>Evaluate the noise at a higher dimension and adjust the extra dimension
+until a satisfactory result is achieved.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id5">
+<img alt="../../../_images/render_shader-nodes_textures_noise_issue-constant-value.png" src="../../../_images/render_shader-nodes_textures_noise_issue-constant-value.png" />
+<figcaption>
+<p><span class="caption-text">Constant value issue.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<img alt="../../../_images/render_shader-nodes_textures_noise_solution1-constant-value.png" src="../../../_images/render_shader-nodes_textures_noise_solution1-constant-value.png" />
+<figcaption>
+<p><span class="caption-text">Mitigating the issue by adjusting the scale.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id7">
+<img alt="../../../_images/render_shader-nodes_textures_noise_solution2-constant-value.png" src="../../../_images/render_shader-nodes_textures_noise_solution2-constant-value.png" />
+<figcaption>
+<p><span class="caption-text">Mitigating the issue by adding an arbitrary offset.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<img alt="../../../_images/render_shader-nodes_textures_noise_solution3-constant-value.png" src="../../../_images/render_shader-nodes_textures_noise_solution3-constant-value.png" />
+<figcaption>
+<p><span class="caption-text">Mitigating the issue by evaluating at a higher dimension.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Similarly, in other configurations, one might experience some banding patterns in the noise,
+where there are bands of high contrast areas followed by banding of low contrast areas.
+For instance, planar surfaces that are slightly tilted along one of the axis
+will have such a banding pattern.</p>
+<figure class="align-default" id="id9">
+<img alt="../../../_images/render_shader-nodes_textures_noise_issue-banding.png" src="../../../_images/render_shader-nodes_textures_noise_issue-banding.png" />
+<figcaption>
+<p><span class="caption-text">An example configuration where the noise have a banding pattern.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This happens because the slight tilt along one of the axis causes values along
+the perpendicular axis to change very slowly making the grid structure of
+the noise more apparent. The easiest way to mitigate this issue to rotate
+the coordinates by an arbitrary amount.</p>
+<figure class="align-default" id="id10">
+<img alt="../../../_images/render_shader-nodes_textures_noise_solution-banding.png" src="../../../_images/render_shader-nodes_textures_noise_solution-banding.png" />
+<figcaption>
+<p><span class="caption-text">Mitigating the issue by rotating the coordinates by an arbitrary amount.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="musgrave.html" class="btn btn-neutral float-left" title="Musgrave Texture Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="point_density.html" class="btn btn-neutral float-right" title="Point Density Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/shader_nodes/textures/noise.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/shader_nodes/textures/noise%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Frender/shader_nodes/textures/noise.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

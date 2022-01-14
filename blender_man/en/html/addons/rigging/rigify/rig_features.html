@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generated Rig Features &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/rigging/rigify/rig_features.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Creating Meta-rigs" href="metarigs.html" />
+    <link rel="prev" title="Bone Positioning Guide" href="bone_positioning.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../import_export/index.html">Import-Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../render/index.html">Render</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Rigging</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Rigify</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="index.html#basics">Basics</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l6"><a class="reference internal" href="basics.html">Basic Usage</a></li>
+<li class="toctree-l6"><a class="reference internal" href="bone_positioning.html">Bone Positioning Guide</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Generated Rig Features</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#limbs">Limbs</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#torso">Torso</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#face">Face</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="index.html#customization">Customization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="index.html#extensions">Extensions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="index.html#development">Development</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Add-ons</a> &raquo;</li>
+          <li><a href="../index.html">Rigging</a> &raquo;</li>
+          <li><a href="index.html">Rigify</a> &raquo;</li>
+      <li>Generated Rig Features</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generated-rig-features">
+<h1>Generated Rig Features<a class="headerlink" href="#generated-rig-features" title="Permalink to this headline"></a></h1>
+<p>After human rig generation a new armature named “Rig” will be added to your scene.
+This is the character rig you have generated from the human meta-rig and will contain all the features.</p>
+<section id="limbs">
+<h2>Limbs<a class="headerlink" href="#limbs" title="Permalink to this headline"></a></h2>
+<p>Each limb will have a gear widget at its base. This is the utility bone that
+contains all the sub-rig properties. The rig features will be displayed anyway
+when the affected bone is selected but if you are looking in the Graph editor for
+those properties’ animated values, this is most likely the bone to look at.
+Rigify’s super limb will list the following features:</p>
+<dl>
+<dt>IK/FK Snapping</dt><dd><p>To snap one chain to another just select the control you want to snap and
+in the Sidebar panel the snap buttons will appear. Click on the snap you want and it’s done!</p>
+</dd>
+<dt>FK Limb Isolation</dt><dd><p>Slider (0, 1)</p>
+<p>When set to 1 the FK arm will not rotate with the torso and will retain is rotation in world space instead.</p>
+</dd>
+<dt>IK Following</dt><dd><p>Boolean (0=False, 1=True)</p>
+<p>When the IK follow is set to 1 the IK limb will follow its parent depending on the Root/Parent slider.
+When set to 0 the IK limb will stay fixed in space whatever the rest of the rig will do.
+This is a useful option if you want to create your own Child Of constraint on the IK limb toward
+another part of the rig itself (like parenting the hand to the head).</p>
+<dl>
+<dt>IK Limb Domain Space Select</dt><dd><p>Slider Root/Parent (0=Root, 1=Parent)</p>
+<p>When set to Root the IK limb will move with the root,
+when set to Parent will move along with the torso.
+This value depends from the IK Follow option.</p>
+</dd>
+</dl>
+</dd>
+<dt>IK/FK Limb Interactive Blending</dt><dd><p>Slider (0=IK, 1=FK)</p>
+<p>When set to IK the arm will follow the IK controls,
+when set to FK the arm will follow the FK controls.</p>
+</dd>
+<dt>Pole Vector Type Switch</dt><dd><p>Boolean (0=Rotational Pole, 1=Standard pole vector)</p>
+<p>When set to 0 the IK arm will use the rotational pole vector (the arrow at the base of the limb).
+Rotating/translating/scaling the arrow will control the IK limb base.
+When set to 1 the classic pole vector will be displayed and used to orient the IK limb.
+The arrow will continue to handle the scale and the location of the IK limb base.</p>
+<dl>
+<dt>Pole Vector Following</dt><dd><p>Slider (0= Root, 1=Limb)</p>
+<p>If pole vector switch is set to 1 (standard pole), then this value defines the pole’s parenting.
+If Pole Following is set to 1 then the pole vector will be parented to the limb,
+if set to 0 will instead follow the root. This properties also depends on the IK follow control.
+When the general IK follow is set to 0, then the pole vector following will have no effect.</p>
+</dd>
+</dl>
+</dd>
+<dt>IK Auto-Stretching</dt><dd><p>Slider (0=No stretching, 1=Full Stretch)</p>
+<p>When set to 0 the IK limb it’s constrained to its rest length.
+When set to 1 the IK limb will stretch until it reaches the IK effector.</p>
+</dd>
+<dt>Bendy Bones Flexible Tweaking</dt><dd><p>For each limb – depending on the user defined meta-rig options – multiple bone segments will be created.
+Each bone can be controlled by controls placed at the respective bone’s head/tail.
+Tweaks movement will depend from the general IK limb position but
+they can be moved apart, twisted and scaled freely, even reaching virtually impossible limb shapes.</p>
+<p>Just select the desired tweak control and do whatever you want with it.</p>
+</dd>
+</dl>
+</section>
+<section id="torso">
+<h2>Torso<a class="headerlink" href="#torso" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Neck Follow</dt><dd><p>Slider (0=Neck Follows Torso, 1=Neck Follows Chest)</p>
+<p>This slider controls the rotations isolation for the neck bones.
+When set to 0 the neck will stay oriented as the Torso (the big box control).
+When set to 1 the neck will be oriented as the Chest (the big circle in the shoulder area).</p>
+</dd>
+<dt>Head Follow</dt><dd><p>Slider (0=Head Follows Torso, 1=Head Follows Neck)</p>
+<p>This slider controls the rotations isolation for the head.
+When set to 0 the head will stay oriented as the Torso (the big box control).
+When set to 1 the head will be oriented as the neck.</p>
+</dd>
+</dl>
+</section>
+<section id="face">
+<h2>Face<a class="headerlink" href="#face" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Mouth Lock</dt><dd><p>Slider (0=Free Lips, 1=Lips Sealed)</p>
+<p>This slider controls the mouth opening.
+When set to 0 moving/rotating the jaw bone will result in mouth opening,
+when set to 1 the lips will stay sealed while the jaw is moving.</p>
+</dd>
+<dt>Eyes Following</dt><dd><p>Slider (0=locked eyelids, 1=automatic eyelids)</p>
+<p>This slider controls the eyelid automation.
+When set to 1 the eyelids and the lower eyebrow will follow
+the eye movement giving a realistic effect to the character,
+when set to 0 no automation will happen.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bone_positioning.html" class="btn btn-neutral float-left" title="Bone Positioning Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metarigs.html" class="btn btn-neutral float-right" title="Creating Meta-rigs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/rigging/rigify/rig_features.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/rigging/rigify/rig_features%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Faddons/rigging/rigify/rig_features.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

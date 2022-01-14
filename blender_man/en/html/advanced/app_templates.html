@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Templates &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/app_templates.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Keymap Customization" href="keymap_editing.html" />
+    <link rel="prev" title="Add-on Tutorial" href="scripting/addon_tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command_line/index.html">Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripting/index.html">Scripting &amp; Extending Blender</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Application Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directory-layout">Directory Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#command-line-access">Command Line Access</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#template-contents">Template Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#template-scripts">Template Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="keymap_editing.html">Keymap Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blender_directory_layout.html">Blender’s Directory Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Advanced</a> &raquo;</li>
+      <li>Application Templates</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="application-templates">
+<span id="app-templates"></span><span id="bpy-ops-preferences-app-template-install"></span><span id="bpy-ops-wm-app-template"></span><h1>Application Templates<a class="headerlink" href="#application-templates" title="Permalink to this headline"></a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Application templates are a feature that allows you to define a re-usable configuration
+that can be selected to replace the default configuration,
+without requiring a separate Blender installation or overwriting your personal settings.</p>
+<p>Application templates can be selected from the splash screen or <span class="menuselection">File ‣ New</span> submenu.
+When there are no templates found the menu will not be displayed on the splash screen.</p>
+<p>New application templates can be installed from the <a class="reference internal" href="../interface/window_system/topbar.html#topbar-blender-menu"><span class="std std-ref">Blender Menu</span></a>.
+If you would like to keep the current application template active on restarting Blender, save your preferences.</p>
+<section id="motivation">
+<h3>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline"></a></h3>
+<p>In some cases it’s not enough to write a single script or add-on,
+and expect someone to replace their preferences and startup file, install scripts and change their keymap.</p>
+<p>The goal of application templates is to support switching to a customized configuration
+without disrupting your existing settings and installation.
+This means people can build their own <em>applications</em> on top of Blender that can be easily distributed.</p>
+</section>
+<section id="details">
+<h3>Details<a class="headerlink" href="#details" title="Permalink to this headline"></a></h3>
+<p>An application template may define its own:</p>
+<dl class="simple">
+<dt>Startup File</dt><dd><p>The default file to load with this template.</p>
+</dd>
+<dt>Preferences</dt><dd><p>Only certain preferences from a template are used:</p>
+<ul class="simple">
+<li><p>Themes.</p></li>
+<li><p>Add-ons.</p></li>
+<li><p>Keymaps.</p></li>
+<li><p>Viewport lighting.</p></li>
+</ul>
+</dd>
+<dt>Splash Screen</dt><dd><p>Templates may provide their own splash screen image.</p>
+</dd>
+<dt>Python Scripts</dt><dd><p>While templates have access to the same functionality as any other scripts,
+typical operations include:</p>
+<ul class="simple">
+<li><p>Modifying and replacing parts of the user interface.</p></li>
+<li><p>Defining new menus, keymaps and tools.</p></li>
+<li><p>Defining a custom add-on path for template specific add-ons.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Templates also have their own user configuration, so saving a startup file while using a template
+won’t overwrite your default startup file.</p>
+</section>
+<section id="directory-layout">
+<h3>Directory Layout<a class="headerlink" href="#directory-layout" title="Permalink to this headline"></a></h3>
+<p>Templates may be located in one of two locations within the <code class="docutils literal notranslate"><span class="pre">scripts</span></code> directory.</p>
+<dl>
+<dt>Template locations:</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{BLENDER_USER_SCRIPTS}/startup/bl_app_templates_user</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{BLENDER_SYSTEM_SCRIPTS}/startup/bl_app_templates_system</span></code></div>
+</div>
+</dd>
+</dl>
+<p>User configuration is stored in a subdirectory:</p>
+<dl>
+<dt>Without a template:</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">./config/startup.blend</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">./config/userpref.blend</span></code></div>
+</div>
+</dd>
+<dt>With a template:</dt><dd><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">./config/{APP_TEMPLATE_ID}/startup.blend</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">./config/{APP_TEMPLATE_ID}/userpref.blend</span></code></div>
+</div>
+</dd>
+</dl>
+<p>See <a class="reference internal" href="blender_directory_layout.html#blender-directory-layout"><span class="std std-ref">Blender’s Directory Layout</span></a> for details on script and configuration locations.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Troubleshooting Paths</p>
+<p>When creating an application template, you may run into issues where paths are not being found.
+To investigate this you can log output of all of Blender’s path look-ups.</p>
+<p>Example command line arguments that load Blender with a custom application template
+(replace <code class="docutils literal notranslate"><span class="pre">my_app_template</span></code> with the name of your own template):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --log <span class="s2">&quot;bke.appdir.*&quot;</span> --log-level -1 --app-template my_app_template
+</pre></div>
+</div>
+<p>You can then check the paths where attempts to access <code class="docutils literal notranslate"><span class="pre">my_app_template</span></code> are made.</p>
+</div>
+</section>
+<section id="command-line-access">
+<h3>Command Line Access<a class="headerlink" href="#command-line-access" title="Permalink to this headline"></a></h3>
+<p>Using the <a class="reference internal" href="command_line/arguments.html#command-line-args"><span class="std std-ref">command-line arguments</span></a> you can setup a launcher
+that opens Blender with a specific app template:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>blender --app-template my_template
+</pre></div>
+</div>
+</section>
+</section>
+<section id="template-contents">
+<h2>Template Contents<a class="headerlink" href="#template-contents" title="Permalink to this headline"></a></h2>
+<p>Each of the following files can be used for application templates but are optional.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">startup.blend</span></code></dt><dd><p>Factory startup file to use for this template.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code></dt><dd><p>Factory preferences file to use for this template.
+When omitted preferences are shared with the default Blender configuration.</p>
+<p><em>(As noted previously, this is only used for a subset of preferences).</em></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">splash.png</span></code></dt><dd><p>Splash screen to override Blender’s default artwork (not including header text).
+Note, this image must be a <code class="docutils literal notranslate"><span class="pre">1000x500</span></code> image.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></dt><dd><p>A Python script which must contain <code class="docutils literal notranslate"><span class="pre">register</span></code> and <code class="docutils literal notranslate"><span class="pre">unregister</span></code> functions.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bundled blend-files <code class="docutils literal notranslate"><span class="pre">startup.blend</span></code> and <code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code> are considered <em>Factory Settings</em>
+and are never overwritten.</p>
+<p>The user may save their own startup/preferences while using this template which will be stored
+in their user configuration, but only when the template includes its own <code class="docutils literal notranslate"><span class="pre">userpref.blend</span></code> file.</p>
+<p>The original template settings can be loaded using: <em>Load Template Factory Settings</em>
+from the file menu in much the same way <em>Load Factory Settings</em> works.</p>
+</div>
+</section>
+<section id="template-scripts">
+<h2>Template Scripts<a class="headerlink" href="#template-scripts" title="Permalink to this headline"></a></h2>
+<p>While app templates can use Python scripts,
+they simply have access to the same APIs available for add-ons and any other scripts.</p>
+<p>As noted above, you may optionally have an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in your app template.
+This has the following advantages:</p>
+<ul>
+<li><p>Changes can be made to the startup or preferences, without having to distribute a blend-file.</p></li>
+<li><p>Changes can be made dynamically.</p>
+<p>You could for example – configure the template to check the number of processors,
+operating system and memory, then set values based on this.</p>
+</li>
+<li><p>You may enable add-ons associated with your template.</p></li>
+</ul>
+<p>On activation a <code class="docutils literal notranslate"><span class="pre">register</span></code> function is called, <code class="docutils literal notranslate"><span class="pre">unregister</span></code> is called when another template is selected.</p>
+<p>As these only run once, any changes to defaults must be made via handler.
+Two handlers you are likely to use are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_preferences_post</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bpy.app.handlers.load_factory_startup_post</span></code></p></li>
+</ul>
+<p>These allow you to define your own “factory settings”, which the user may change,
+just as Blender has it’s own defaults when first launched.</p>
+<p>This is an example <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file which defines defaults for an app template to use.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bpy</span>
+<span class="kn">from</span> <span class="nn">bpy.app.handlers</span> <span class="kn">import</span> <span class="n">persistent</span>
+
+<span class="nd">@persistent</span>
+<span class="k">def</span> <span class="nf">load_handler_for_preferences</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Changing Preference Defaults!&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">bpy</span> <span class="kn">import</span> <span class="n">context</span>
+
+    <span class="n">prefs</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">preferences</span>
+    <span class="n">prefs</span><span class="o">.</span><span class="n">use_preferences_save</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">kc</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">window_manager</span><span class="o">.</span><span class="n">keyconfigs</span><span class="p">[</span><span class="s2">&quot;blender&quot;</span><span class="p">]</span>
+    <span class="n">kc_prefs</span> <span class="o">=</span> <span class="n">kc</span><span class="o">.</span><span class="n">preferences</span>
+    <span class="k">if</span> <span class="n">kc_prefs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">kc_prefs</span><span class="o">.</span><span class="n">select_mouse</span> <span class="o">=</span> <span class="s1">&#39;RIGHT&#39;</span>
+        <span class="n">kc_prefs</span><span class="o">.</span><span class="n">spacebar_action</span> <span class="o">=</span> <span class="s1">&#39;SEARCH&#39;</span>
+        <span class="n">kc_prefs</span><span class="o">.</span><span class="n">use_pie_click_drag</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">view</span> <span class="o">=</span> <span class="n">prefs</span><span class="o">.</span><span class="n">view</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">header_align</span> <span class="o">=</span> <span class="s1">&#39;BOTTOM&#39;</span>
+
+
+<span class="nd">@persistent</span>
+<span class="k">def</span> <span class="nf">load_handler_for_startup</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Changing Startup Defaults!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Use smooth faces.</span>
+    <span class="k">for</span> <span class="n">mesh</span> <span class="ow">in</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meshes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">polygons</span><span class="p">:</span>
+            <span class="n">poly</span><span class="o">.</span><span class="n">use_smooth</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Use material preview shading.</span>
+    <span class="k">for</span> <span class="n">screen</span> <span class="ow">in</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">screens</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">screen</span><span class="o">.</span><span class="n">areas</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="n">area</span><span class="o">.</span><span class="n">spaces</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">space</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;VIEW_3D&#39;</span><span class="p">:</span>
+                    <span class="n">space</span><span class="o">.</span><span class="n">shading</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;MATERIAL&#39;</span>
+                    <span class="n">space</span><span class="o">.</span><span class="n">shading</span><span class="o">.</span><span class="n">use_scene_lights</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Registering to Change Defaults&quot;</span><span class="p">)</span>
+    <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_preferences_post</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_handler_for_preferences</span><span class="p">)</span>
+    <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_startup_post</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">load_handler_for_startup</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unregister</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unregistering to Change Defaults&quot;</span><span class="p">)</span>
+    <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_preferences_post</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">load_handler_for_preferences</span><span class="p">)</span>
+    <span class="n">bpy</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">load_factory_startup_post</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">load_handler_for_startup</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scripting/addon_tutorial.html" class="btn btn-neutral float-left" title="Add-on Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="keymap_editing.html" class="btn btn-neutral float-right" title="Keymap Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/advanced/app_templates.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60advanced/app_templates%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fadvanced/app_templates.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

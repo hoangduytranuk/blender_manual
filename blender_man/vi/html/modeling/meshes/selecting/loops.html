@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Loops &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/loops.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Select Linked" href="linked.html" />
+    <link rel="prev" title="Mở Rộng/Thu Nhỏ Chọn Lựa -- Select More/Less" href="more_less.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/index.html">Công Cụ -- Tools</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Lựa Chọn -- Selecting</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="random.html">Select Random</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checker_deselect.html">Checker Deselect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sharp_edges.html">Select Sharp Edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="similar.html">Select Similar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="all_by_trait.html">Select All by Trait</a></li>
+<li class="toctree-l4"><a class="reference internal" href="more_less.html">Mở Rộng/Thu Nhỏ Chọn Lựa -- Select More/Less</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Select Loops</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#edge-loops">Edge Loops</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#edge-loops-all-boundaries">Edge Loops (All Boundaries)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#face-loops">Face Loops</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#edge-rings">Edge Rings</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#select-loop-inner-region">Select Loop Inner-Region</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#select-boundary-loop">Select Boundary Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="linked.html">Select Linked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="side_of_active.html">Side of Active</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Phản Chiếu Đối Xứng Lựa Chọn</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">Các UV -- UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+          <li><a href="index.html">Lựa Chọn -- Selecting</a> &raquo;</li>
+      <li>Select Loops</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="select-loops">
+<h1>Select Loops<a class="headerlink" href="#select-loops" title="Permalink to this headline"></a></h1>
+<section id="edge-loops">
+<span id="bpy-ops-mesh-loop-multi-select"></span><h2>Edge Loops<a class="headerlink" href="#edge-loops" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode (Vertex or Edge select mode)</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select Loops ‣ Edge Loops</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd>, or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> for modifying existing selection.</p>
+</dd>
+</dl>
+</div>
+<p>Holding <kbd class="kbd docutils literal notranslate">Alt</kbd> while selecting an edge selects a loop of edges that are connected in
+a line end-to-end, passing through the edge under the mouse pointer.
+Holding <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd></kbd> while clicking adds to the current selection.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><em>Vertex</em> mode</p>
+<p>In <em>Vertex</em> select mode, you can also select edge loops, by using the same shortcuts,
+and clicking on the <em>edges</em> (not on the vertices).</p>
+</div>
+<figure class="align-default" id="id6">
+<img alt="../../../_images/modeling_meshes_selecting_loops_edge-loops.png" src="../../../_images/modeling_meshes_selecting_loops_edge-loops.png" />
+<figcaption>
+<p><span class="caption-text">Longitudinal and latitudinal edge loops.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The left sphere shows an edge that was selected longitudinally. Notice how the loop is open.
+This is because the algorithm hit the vertices at the poles and is terminated
+because the vertices at the pole connect to more than four edges. However,
+the right sphere shows an edge that was selected latitudinally and has formed a closed loop.
+This is because the algorithm hit the first edge that it started with.</p>
+<section id="edge-loops-all-boundaries">
+<h3>Edge Loops (All Boundaries)<a class="headerlink" href="#edge-loops-all-boundaries" title="Permalink to this headline"></a></h3>
+<p>All boundary edges can be selected by performing a second loop select action on a boundary edge.</p>
+<p>This can be useful for selecting boundaries for meshes that include triangles and n-gons,
+where loop select would not otherwise select the full boundary.</p>
+<figure class="align-default" id="id7">
+<img alt="../../../_images/modeling_meshes_selecting_loops_edge-boundary-loops.png" src="../../../_images/modeling_meshes_selecting_loops_edge-boundary-loops.png" />
+<figcaption>
+<p><span class="caption-text">The second loop select action is shown on the right.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="face-loops">
+<span id="modeling-meshes-selecting-face-loops"></span><h2>Face Loops<a class="headerlink" href="#face-loops" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode (Face or Vertex select modes)</p>
+</dd>
+<dt class="field-even">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> for modifying existing selection.</p>
+</dd>
+</dl>
+</div>
+<p>In face select mode, holding <kbd class="kbd docutils literal notranslate">Alt</kbd> while selecting an <em>edge</em> selects a loop of
+faces that are connected in a line end-to-end, along their opposite edges.</p>
+<p>In vertex select mode,
+the same can be accomplished by using <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd></kbd> to select an edge,
+which selects the face loop implicitly.</p>
+<figure class="align-default" id="id8">
+<img alt="../../../_images/modeling_meshes_selecting_loops_face-loops.png" src="../../../_images/modeling_meshes_selecting_loops_face-loops.png" />
+<figcaption>
+<p><span class="caption-text">Face loop selection.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This face loop was selected by clicking with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> on an edge,
+in <em>face</em> select mode.
+The loop extends perpendicular from the edge that was selected.</p>
+<figure class="align-default" id="id9">
+<img alt="../../../_images/modeling_meshes_selecting_loops_face-loops-vertex.png" src="../../../_images/modeling_meshes_selecting_loops_face-loops-vertex.png" />
+<figcaption>
+<p><span class="caption-text"><kbd class="kbd docutils literal notranslate">Alt</kbd> versus <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd></kbd> in vertex select mode.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>A face loop can also be selected in <em>Vertex</em> select mode.
+Technically <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> will select an <em>Edge Ring</em>,
+however, in <em>Vertex</em> select mode, selecting an <em>Edge Ring</em> implicitly
+selects a <em>Face Loop</em> since selecting opposite edges of a face implicitly selects
+the entire face.</p>
+</section>
+<section id="edge-rings">
+<span id="modeling-meshes-selecting-edge-rings"></span><h2>Edge Rings<a class="headerlink" href="#edge-rings" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select Loops ‣ Edge Rings</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>In <em>Edge</em> select mode, holding <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd></kbd>
+while selecting an edge (or two vertices) selects a sequence of edges that are not connected,
+but on opposite sides to each other continuing along a <a class="reference internal" href="../structure.html"><span class="doc">face loop</span></a>.</p>
+<p>As with edge loops, you can also select edge rings based on current selection,
+using either <span class="menuselection">Select ‣ Select Loops ‣ Edge Rings</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><em>Vertex</em> mode</p>
+<p>In <em>Vertex</em> select mode, you can use the same shortcuts when <em>clicking on the edges</em> (not on the vertices),
+but this will directly select the corresponding face loop...</p>
+</div>
+<figure class="align-default" id="id10">
+<span id="fig-mesh-select-advanced-loop-ring"></span><img alt="../../../_images/modeling_meshes_selecting_loops_edge-ring.png" src="../../../_images/modeling_meshes_selecting_loops_edge-ring.png" />
+<figcaption>
+<p><span class="caption-text">A selected edge loop, and a selected edge ring.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In Fig. <a class="reference internal" href="#fig-mesh-select-advanced-loop-ring"><span class="std std-ref">A selected edge loop, and a selected edge ring.</span></a> the same edge was clicked on,
+but two different &quot;groups of edges&quot; were selected, based on the different tools.
+One is based on edges during computation and the other is based on faces.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Convert Selection to Whole Faces</p>
+<p>If the edge ring selection happened in Edge Select Mode, switching to Face Select Mode will erase the selection.</p>
+<p>This is because none of those faces had all its (four) edges selected,
+just two of them.</p>
+<p>Instead of selecting the missing edges manually or by using <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> twice,
+it is easier to first switch to Vertex Select Mode, which will kind of &quot;flood&quot; the selection.
+A subsequent switch to Face Select Mode will then properly select the faces.</p>
+</div>
+</section>
+<section id="select-loop-inner-region">
+<span id="bpy-ops-mesh-loop-to-region"></span><h2>Select Loop Inner-Region<a class="headerlink" href="#select-loop-inner-region" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode (Edge select mode)</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select Loops ‣ Select Loop Inner-Region</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Select Loop Inner-Region</em> selects all faces that are inside a closed loop of edges.
+While it is possible to use this operator in <em>Vertex</em> and <em>Face</em> selection modes, results may be unexpected.
+Note that if the selected loop of edges is not closed,
+then all connected edges on the mesh will be considered inside the loop.</p>
+<figure class="align-default" id="id11">
+<img alt="../../../_images/modeling_meshes_selecting_loops_inner-region1.png" src="../../../_images/modeling_meshes_selecting_loops_inner-region1.png" />
+<figcaption>
+<p><span class="caption-text">Loop to Region.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id12">
+<img alt="../../../_images/modeling_meshes_selecting_loops_inner-region2.png" src="../../../_images/modeling_meshes_selecting_loops_inner-region2.png" />
+<figcaption>
+<p><span class="caption-text">This tool handles multiple loops fine, as you can see.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id13">
+<img alt="../../../_images/modeling_meshes_selecting_loops_inner-region3.png" src="../../../_images/modeling_meshes_selecting_loops_inner-region3.png" />
+<figcaption>
+<p><span class="caption-text">This tool handles &quot;holes&quot; just fine as well.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="select-boundary-loop">
+<span id="bpy-ops-mesh-region-to-loop"></span><h2>Select Boundary Loop<a class="headerlink" href="#select-boundary-loop" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit Mode (Edge select mode)</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Select ‣ Select Loops ‣ Select Boundary Loop</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Select Boundary Loop</em> does the opposite of <em>Select Loop Inner-Region</em>,
+based on all regions currently selected, it selects only the edges at the border (contour) of these islands.
+It can operate in any select mode, but when in <em>Face</em> mode it will switch to <em>Edge</em> select mode after running.</p>
+<p>All this is much more simple to illustrate with examples:</p>
+<figure class="align-default" id="id14">
+<img alt="../../../_images/modeling_meshes_selecting_loops_boundary-loop.png" src="../../../_images/modeling_meshes_selecting_loops_boundary-loop.png" />
+<figcaption>
+<p><span class="caption-text">Select Boundary Loop does the opposite and forces into Edge Select Mode.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="more_less.html" class="btn btn-neutral float-left" title="Mở Rộng/Thu Nhỏ Chọn Lựa -- Select More/Less" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linked.html" class="btn btn-neutral float-right" title="Select Linked" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/selecting/loops.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/selecting/loops%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/meshes/selecting/loops.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

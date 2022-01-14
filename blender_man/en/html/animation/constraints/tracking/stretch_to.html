@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stretch To Constraint &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/constraints/tracking/stretch_to.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Track To Constraint" href="track_to.html" />
+    <link rel="prev" title="Spline IK Constraint" href="spline_ik.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Animation &amp; Rigging</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../keyframes/index.html">Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../armatures/index.html">Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lattice.html">Lattice</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#motion-tracking">Motion Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#transform">Transform</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#tracking">Tracking</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="clamp_to.html">Clamp To Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="damped_track.html">Damped Track Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ik_solver.html">Inverse Kinematics Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locked_track.html">Locked Track Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spline_ik.html">Spline IK Constraint</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Stretch To Constraint</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="track_to.html">Track To Constraint</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#relationship">Relationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../actions.html">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers/index.html">Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markers.html">Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shape_keys/index.html">Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../motion_paths.html">Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Animation &amp; Rigging</a> &raquo;</li>
+          <li><a href="../index.html">Constraints</a> &raquo;</li>
+      <li>Stretch To Constraint</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stretch-to-constraint">
+<span id="bpy-types-stretchtoconstraint"></span><span id="index-0"></span><h1>Stretch To Constraint<a class="headerlink" href="#stretch-to-constraint" title="Permalink to this headline"></a></h1>
+<p>The <em>Stretch To</em> constraint causes its owner to rotate and scale its Y axis towards its target.
+So it has the same tracking behavior as the <a class="reference internal" href="track_to.html"><span class="doc">Track To constraint</span></a>.
+However, it assumes that the Y axis will be the tracking and stretching axis,
+and does not give you the option of using a different one.</p>
+<p>It also optionally has some raw volumetric features,
+so the owner can squash down as the target moves closer,
+or thin out as the target moves farther away.
+Note however, that it is not the real volume of the owner which is thus preserved,
+but rather the virtual one defined by its scale values. Hence,
+this feature works even with non-volumetric objects, like empties, 2D meshes or surfaces,
+and curves.</p>
+<p>With bones, the “volumetric” variation scales them along their own local axes
+(remember that the local Y axis of a bone is aligned with it, from root to tip).</p>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/animation_constraints_tracking_stretch-to_panel.png" src="../../../_images/animation_constraints_tracking_stretch-to_panel.png" />
+<figcaption>
+<p><span class="caption-text">Stretch To panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Data ID</span></a> used to select the constraints target, and is not functional (red state) when it has none.
+See <a class="reference internal" href="../interface/common.html#rigging-constraints-interface-common-target"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+<dt>Original Length</dt><dd><p>This number field sets the rest distance between the owner and its target, i.e.
+the distance at which there is no deformation (stretching) of the owner.</p>
+<dl class="simple">
+<dt>Reset Original Length <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>When clicked, this small button will recalculate the <em>Rest Length</em> value,
+so that it corresponds to the actual distance between the owner and its target
+(i.e. the distance before this constraint is applied).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl id="constraints-stretch-to-volume-preservation">
+<dt>Volume Variation</dt><dd><p>This number field controls the amount of “volume” variation exponentially to the stretching amount.
+Note that the 0.0 value is not allowed, if you want to disable the volume feature,
+use the <em>None</em> button (see below).</p>
+</dd>
+<dt>Volume Min, Max</dt><dd><p>Limits for the volume preservation to a minimum and maximum scaling each by a <em>Bulge</em> factor.</p>
+</dd>
+<dt>Smooth</dt><dd><p>Smoothness factor to make limits less visible.</p>
+</dd>
+<dt>Maintain Volume</dt><dd><p>These buttons control which of the X and/or Z axes should be affected (scaled up/down)
+to preserve the virtual volume while stretching along the Y axis.
+If you enable the <em>none</em> button, the volumetric features are disabled.</p>
+</dd>
+<dt>Rotation</dt><dd><p>Specifies how the owner should be rotated to track the target with its Y axis.</p>
+<dl class="simple">
+<dt>XZ, ZX</dt><dd><p>These buttons are equivalent to the <em>Up</em> ones of
+the <a class="reference internal" href="track_to.html"><span class="doc">Track To constraint</span></a>:
+the owner is rotated around two local axes in the specified order.</p>
+</dd>
+<dt>Swing</dt><dd><p>The constraint uses a single <a class="reference internal" href="../../../glossary/index.html#term-Swing"><span class="xref std std-term">Swing</span></a> rotation, equivalent to
+the <a class="reference internal" href="damped_track.html"><span class="doc">Damped Track constraint</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Influence</dt><dd><p>Controls the percentage of affect the constraint has on the object.
+See <a class="reference internal" href="../interface/common.html#bpy-types-constraint-influence"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+</dl>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="peertube_wrapper" style="">
+<iframe allowfullscreen="true" src="https://video.blender.org/videos/embed/50ecc2bc-44e1-4c5f-a3fc-6353a4624f0d" style="height: 315px; width: 560px">
+</iframe></div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="spline_ik.html" class="btn btn-neutral float-left" title="Spline IK Constraint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="track_to.html" class="btn btn-neutral float-right" title="Track To Constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/constraints/tracking/stretch_to.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/constraints/tracking/stretch_to%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fanimation/constraints/tracking/stretch_to.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -5,20 +5,12 @@ from __future__ import division
 
 import re
 from docutils import nodes
-from docutils.parsers.rst import directives, Directive
-
 import sys
-import os
-from pyparsing import *
 from sphinx.cmd.build import main
 from definition import Definitions as df
 from sphinx.util.nodes import extract_messages
-from common import Common as cm, dd
 from translation_finder import TranslationFinder
 from reflist import RefList
-from matcher import MatcherRecord
-
-from observer import LocationObserver
 
 tf = TranslationFinder()
 
@@ -52,7 +44,7 @@ def doctree_resolved(app, doctree, docname):
     try:
         changed = False
         for node, msg in extract_messages(doctree):
-            result_list = []
+            # result_list = []
             last_char = msg[-1]
             is_ending_stop = (last_char == '.')
 
@@ -65,16 +57,22 @@ def doctree_resolved(app, doctree, docname):
             if not is_check_tran:
                 continue
 
-            ref_list = RefList(msg=msg, keep_orig=False, tf=tf)
-            ref_list.parseMessage(is_ref_only=True)
-            list_msg_to_check = ref_list.getComponentTexts()
+            tran = tf.isInDict(msg)
+            has_tran = bool(tran)
+            if not has_tran:
+                continue
 
-            if list_msg_to_check:
-                result_list.extend(list_msg_to_check)
 
-            is_included = (msg not in list_msg_to_check)
-            if is_included:
-               result_list.append(msg)
+            # ref_list = RefList(msg=msg, keep_orig=False, tf=tf)
+            # ref_list.parseMessage(is_ref_only=True)
+            # list_msg_to_check = ref_list.getComponentTexts()
+
+            # if list_msg_to_check:
+            #     result_list.extend(list_msg_to_check)
+            #
+            # is_included = (msg not in list_msg_to_check)
+            # if is_included:
+            #    result_list.append(msg)
 
             # list_msg_to_check = []
             # if is_repeat:
@@ -86,8 +84,8 @@ def doctree_resolved(app, doctree, docname):
             #         ref_txt = mm.txt
             #         list_msg_to_check.append(ref_txt)
 
-            print('-' * 80)
-            print(result_list)
+            # print('-' * 80)
+            # print(result_list)
 
             dict_list=[]
             for msg in result_list:

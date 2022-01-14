@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Transfer Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/modify/data_transfer.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Mesh Cache Modifier" href="mesh_cache.html" />
+    <link rel="prev" title="Common Modifier Options" href="../common_options.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#modify">Modify</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Data Transfer Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#selection-of-data-to-transfer">Selection of Data to Transfer</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#geometry-mapping">Geometry Mapping</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#topology-mapping">Topology Mapping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_cache.html">Mesh Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_sequence_cache.html">Mesh Sequence Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="normal_edit.html">Normal Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_project.html">UV Project Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_warp.html">UV Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_edit.html">Vertex Weight Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_mix.html">Vertex Weight Mix Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_proximity.html">Vertex Weight Proximity Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weighted_normal.html">Weighted Normal Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Data Transfer Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-transfer-modifier">
+<span id="bpy-types-datatransfermodifier"></span><span id="index-0"></span><h1>Data Transfer Modifier<a class="headerlink" href="#data-transfer-modifier" title="Permalink to this headline"></a></h1>
+<p>The Data Transfer modifier transfers several types of data from one mesh to another.
+Data types include vertex groups, UV maps, vertex colors, custom normals…</p>
+<p>Transfer works by generating a mapping between source mesh’s elements (vertices, edges, etc.)
+and destination ones, either on a one-to-one basis, or mapping several source elements
+to a single destination one, using interpolation.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_data-transfer_normals-example.jpg"><img alt="../../../_images/modeling_modifiers_modify_data-transfer_normals-example.jpg" src="../../../_images/modeling_modifiers_modify_data-transfer_normals-example.jpg" style="width: 680px;" /></a>
+<figcaption>
+<p><span class="caption-text">Transferring normals between objects,
+<a class="reference external" href="https://en.blender.org/uploads/a/ad/Data_Transfer_Normal_Torus.blend">see example blend-file</a>.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../../scene_layout/object/editing/link_transfer/transfer_mesh_data.html"><span class="doc">Transfer Mesh Data Operator</span></a></p>
+</div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_data-transfer_panel.png"><img alt="../../../_images/modeling_modifiers_modify_data-transfer_panel.png" src="../../../_images/modeling_modifiers_modify_data-transfer_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Data Transfer Modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Source</dt><dd><p>Mesh object to copy data from.</p>
+<p>If the button to the right of the field is unset, both the source and the destination geometry
+is considered in global space when generating the mapping, otherwise they are evaluated
+in local space (i.e. as if both object’s origins were at the same place).</p>
+</dd>
+<dt>Mix Mode</dt><dd><p>Controls how destination data are affected:</p>
+<dl class="simple">
+<dt>All</dt><dd><p>Replaces everything in destination (note that <em>Mix Factor</em> is still used).</p>
+</dd>
+<dt>Above Threshold</dt><dd><p>Only replaces destination value if it’s above given threshold <em>Mix Factor</em>.
+How that threshold is interpreted depends on the data type,
+note that for Boolean values this option fakes a logical AND.</p>
+</dd>
+<dt>Below Threshold</dt><dd><p>Only replaces destination value if it’s below given threshold <em>Mix Factor</em>.
+How that threshold is interpreted depends on the data type,
+note that for Boolean values this option fakes a logical OR.</p>
+</dd>
+<dt>Mix, Add, Subtract, Multiply</dt><dd><p>Apply that operation, using mix factor to control how much of source or destination value to use.
+Only available for a few types (vertex groups, vertex colors).</p>
+</dd>
+</dl>
+</dd>
+<dt>Mix Factor</dt><dd><p>How much of the transferred data gets mixed into existing one (not supported by all data types).</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Allows per-element fine control of the mix factor. Vertex group influence can be reverted using the small
+“arrow” button to the right.</p>
+</dd>
+<dt>Generate Data Layers</dt><dd><p>This modifier cannot generate needed data layers itself. Once the set of source data to transfer is selected,
+this button shall be used to generate matching destination layers, if needed.</p>
+</dd>
+</dl>
+<section id="selection-of-data-to-transfer">
+<h3>Selection of Data to Transfer<a class="headerlink" href="#selection-of-data-to-transfer" title="Permalink to this headline"></a></h3>
+<p>To keep the size of the modifier reasonable, the kind of elements to be affected must be selected first
+(vertices, edges, face corners and/or faces).</p>
+<dl class="simple">
+<dt>Mapping Type</dt><dd><p>How is generated the mapping between those source and destination elements. Each type has its own options,
+see <a class="reference internal" href="#geometry-mapping">Geometry Mapping</a> below for details.</p>
+</dd>
+<dt>Data Types</dt><dd><p>The left column of toggle buttons, to select which data types to transfer.</p>
+</dd>
+<dt>Multi-layers Data Types Options</dt><dd><p>In those cases (vertex groups, vertex colors, UVs), one can select which source layers to transfer
+(usually, either all of them, or a single specified one), and how to affect destination
+(either by matching names, matching order/position,
+or, if a single source is selected, by specifying manually the destination layer).</p>
+</dd>
+<dt>Islands Handling Refinement</dt><dd><p>This setting only affects UV transfer currently. It allows to avoid a given destination face to get
+UV coordinates from different source UV islands. Keeping it at 0.0 means no island handling at all.
+Typically, small values like 0.02 are enough to get good results, but if you are mapping from
+a very high-poly source towards a very low-poly destination, you may have to raise it quite significantly.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>First key thing to keep in mind when using this modifier is that it will <strong>not</strong> create destination data layers.
+<em>Generate Data Layers</em> button shall always be used for this purpose, once the set of source data to transfer
+has been selected. It should also be well understood that creating those data layers on destination mesh is <strong>not</strong>
+part of the modifier stack, which means e.g. that they will remain even once the modifier is deleted, or
+if the source data selection is modified.</p>
+<section id="geometry-mapping">
+<h3>Geometry Mapping<a class="headerlink" href="#geometry-mapping" title="Permalink to this headline"></a></h3>
+<p>Geometry mapping is how a given destination mesh relates to a source mesh.
+In this process a destination vertex/edge/…
+gets a part of the source mesh assigned with functions as its data source.
+It is crucial to understand this topic well to get good results with this modifier.</p>
+<dl>
+<dt>Topology</dt><dd><p>The simplest option, expects both meshes to have identical number of elements, and match them by order (indices).
+Useful e.g. between meshes that were identical copies, and got deformed differently.</p>
+</dd>
+<dt>One-To-One Mappings</dt><dd><p>Those always select only one source element for each destination one, often based on shortest distance.</p>
+<dl>
+<dt>Vertices</dt><dd><dl class="simple">
+<dt>Nearest Vertex</dt><dd><p>Uses source’s nearest vertex.</p>
+</dd>
+<dt>Nearest Edge Vertex</dt><dd><p>Uses source’s nearest vertex of source’s nearest edge.</p>
+</dd>
+<dt>Nearest Face Vertex</dt><dd><p>Uses source’s nearest vertex of source’s nearest face.</p>
+</dd>
+</dl>
+</dd>
+<dt>Edges</dt><dd><dl class="simple">
+<dt>Nearest Vertices</dt><dd><p>Uses source’s edge which vertices are nearest from destination edge’s vertices.</p>
+</dd>
+<dt>Nearest Edge</dt><dd><p>Uses source’s nearest edge (using edge’s midpoints).</p>
+</dd>
+<dt>Nearest Face Edge</dt><dd><p>Uses source’s nearest edge of source’s nearest face (using edge’s midpoints).</p>
+</dd>
+</dl>
+</dd>
+<dt>Face Corners</dt><dd><p>A face corner is not a real element by itself, it’s some kind of split vertex attached to a specific face.
+Hence both vertex (location) and face (normal, …) aspects are used to match them together.</p>
+<dl class="simple">
+<dt>Nearest Corner and Best Matching Normal</dt><dd><p>Uses source’s corner having the most similar <em>split</em> normal with destination one,
+from those sharing the nearest source’s vertex.</p>
+</dd>
+<dt>Nearest Corner and Best Matching Face Normal</dt><dd><p>Uses source’s corner having the most similar <em>face</em> normal with destination one,
+from those sharing the nearest source’s vertex.</p>
+</dd>
+<dt>Nearest Corner of Nearest Face</dt><dd><p>Uses source’s nearest corner of source’s nearest face.</p>
+</dd>
+</dl>
+</dd>
+<dt>Faces</dt><dd><dl class="simple">
+<dt>Nearest Face</dt><dd><p>Uses source’s nearest face.</p>
+</dd>
+<dt>Best Normal-Matching</dt><dd><p>Uses source’s face which normal is most similar with destination one.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Interpolated Mappings</dt><dd><p>Those use several source elements for each destination one, interpolating their data during the transfer.</p>
+<dl>
+<dt>Vertices</dt><dd><dl class="simple">
+<dt>Nearest Edge Interpolated</dt><dd><p>Uses nearest point on nearest source’s edge, interpolates data from both source edge’s vertices.</p>
+</dd>
+<dt>Nearest Face Interpolated</dt><dd><p>Uses nearest point on nearest source’s face, interpolates data from all that source face’s vertices.</p>
+</dd>
+<dt>Projected Face Interpolated</dt><dd><p>Uses point of face on source hit by projection of destination vertex along its own normal,
+interpolates data from all that source face’s vertices.</p>
+</dd>
+</dl>
+</dd>
+<dt>Edges</dt><dd><dl class="simple">
+<dt>Projected Edge Interpolated</dt><dd><p>This is a sampling process. Several rays are cast from along the destination’s edge
+(interpolating both edge’s vertex normals), and if enough of them hit a source’s edge,
+all hit source edges’ data are interpolated into destination one.</p>
+</dd>
+</dl>
+</dd>
+<dt>Face Corners</dt><dd><p>A face corner is not a real element by itself, it’s some kind of split vertex attached to a specific face.
+Hence both vertex (location) and face (normal, …) aspects are used to match them together.</p>
+<dl class="simple">
+<dt>Nearest Face Interpolated</dt><dd><p>Uses nearest point of nearest source’s face, interpolates data from all that source face’s corners.</p>
+</dd>
+<dt>Projected Face Interpolated</dt><dd><p>Uses point of face on source hit by projection of destination corner along its own normal,
+interpolates data from all that source face’s corners.</p>
+</dd>
+</dl>
+</dd>
+<dt>Faces</dt><dd><dl class="simple">
+<dt>Projected Face Interpolated</dt><dd><p>This is a sampling process. Several rays are cast from the whole destination’s face (along its own normal),
+and if enough of them hit a source’s face, all hit source faces’ data are interpolated into destination one.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="topology-mapping">
+<h3>Topology Mapping<a class="headerlink" href="#topology-mapping" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Max Distance</dt><dd><p>When the “pressure stylus” icon button to the right is enabled,
+this is the maximum distance between source and destination to get a successful mapping.
+If a destination element cannot find a source one within that range, then it will get no transferred data.</p>
+<p>This allows to transfer a small sub-detailed mesh onto a more complete one
+(e.g. from a “hand” mesh towards a “full body” one).</p>
+</dd>
+<dt>Ray Radius</dt><dd><p>The starting ray radius to use when <a class="reference external" href="https://en.wikipedia.org/wiki/Ray_casting">Ray Casting</a>
+against vertices or edges. When transferring data between meshes Blender performs a series of
+ray casts to generate mappings. Blender starts with a ray with the radius defined here,
+if that does not return a hit then the radius is progressively
+increased until a positive hit or a limit is reached.</p>
+<p>This property acts as an accuracy/performance control;
+using a lower ray radius will be more accurate however,
+might take longer if Blender has to progressively increase the limit.
+Lower values will work better for dense meshes with lots of detail
+while larger values are probably better suited for simple meshes.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../common_options.html" class="btn btn-neutral float-left" title="Common Modifier Options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mesh_cache.html" class="btn btn-neutral float-right" title="Mesh Cache Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/modify/data_transfer.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/modify/data_transfer%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/modifiers/modify/data_transfer.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skin Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/skin.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Solidify Modifier" href="solidify.html" />
+    <link rel="prev" title="Screw Modifier" href="screw.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bevel Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="booleans.html">Boolean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geometry_nodes.html">Geometry Nodes Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Mask Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_to_volume.html">Mesh to Volume Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Screw Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Skin Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#skin-mesh-data">Skin Mesh Data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#external-links">External Links</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="solidify.html">Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_to_mesh.html">Volume to Mesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weld.html">Weld Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Wireframe Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Skin Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="skin-modifier">
+<span id="bpy-types-skinmodifier"></span><span id="index-0"></span><h1>Skin Modifier<a class="headerlink" href="#skin-modifier" title="Permalink to this headline"></a></h1>
+<p>The <em>Skin</em> modifier uses vertices and edges to create a skinned surface,
+using a per-vertex radius to better define the shape.
+The output is mostly quads, although some triangles will appear around intersections.</p>
+<p>It is a quick way to generate base meshes for sculpting and/or smooth organic shapes with
+arbitrary topology.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Faces in the original geometry are ignored.</p>
+</div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_skin_panel.png"><img alt="../../../_images/modeling_modifiers_generate_skin_panel.png" src="../../../_images/modeling_modifiers_generate_skin_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Skin modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Branch Smoothing</dt><dd><p>A branch point is a vertex with three or more connected edges.
+These areas tend to produce more complicated topology, some of which may overlap.
+This setting relaxes the surface around these points,
+with the side effect of shrinking it.</p>
+</dd>
+<dt>Symmetry</dt><dd><p>These checkboxes are used to keep the output topology symmetrical in their respective axes.
+In other words, using it avoids merging triangles across an axis unless the triangles form a symmetric quad.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>They do not add geometry flipped across an axis.
+For that, the <a class="reference internal" href="mirror.html"><span class="doc">Mirror</span></a> modifier should be used,
+typically placed above the Skin one.</p>
+</div>
+</dd>
+<dt>Smooth Shading</dt><dd><p>Output faces with smooth shading rather than flat shading.
+The smooth/flat shading of the input geometry is not preserved.</p>
+</dd>
+<dt>Create Armature</dt><dd><p>Create an armature on top of the object. Each edge becomes a bone.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the root vertex has more than one adjacent edge,
+an extra bone will be created to serve as the root.</p>
+</div>
+<p>This tool does the following:</p>
+<ol class="arabic simple">
+<li><p>A new armature object is added with bones matching the input mesh.
+The active selection is switched to the new armature.</p></li>
+<li><p>Weight groups are added to the input mesh. The Skin modifier propagates these weights to the output as well.</p></li>
+<li><p>An <a class="reference internal" href="../deform/armature.html"><span class="doc">Armature</span></a> modifier is added directly below the Skin one.
+Note that the Armature modifier is being applied after
+the Skin one because it should only deform the output,
+whereas if it were above, it might change the resulting topology.</p></li>
+</ol>
+</dd>
+<dt>Add Skin Data</dt><dd><p>This modifier uses a <a class="reference internal" href="#modeling-modifiers-generate-skin-data"><span class="std std-ref">custom set of data</span></a> in the mesh,
+that is generated automatically when you add the modifier the first time.</p>
+<p>However, you may remove that data, or loose it some way or the other. That operator will generate it again.</p>
+</dd>
+<dt>Mark/Clear Loose</dt><dd><p>By default, a branch vertex (vertex with three or more connected edges)
+will generate extra edge loops along adjacent edges in order to keep the output tight.
+Branches can be made loose by clicking <em>Mark Loose</em>, which will allow the output to stretch between
+all adjacent vertices. This can be disabled again by clicking <em>Clear Loose</em>.</p>
+</dd>
+<dt>Mark Root</dt><dd><p>Marking a vertex as root causes that vertex to be used for calculating rotations for connected limbs.
+Root vertices also affect the armature output, they will be used as the origin for the root bones.</p>
+<p>Each set of connected vertices should have one root node
+(one is selected by default if you do not assign any manually).
+<em>Mark Root</em> enforces the one-root per set rule, so it is not necessary to manually unmark roots.</p>
+</dd>
+<dt>Equalize Radii</dt><dd><p>Makes the skin radii of selected vertices equal on each axis.</p>
+</dd>
+</dl>
+</section>
+<section id="skin-mesh-data">
+<span id="modeling-modifiers-generate-skin-data"></span><h2>Skin Mesh Data<a class="headerlink" href="#skin-mesh-data" title="Permalink to this headline"></a></h2>
+<p>That modifier needs a set of specific data in the original mesh to work properly.
+This data allows you to define the root vertices of each tree, which ones are loose,
+and the size (radius) of the skin at each vertex. The radii of input vertices can be individually
+scaled in Edit Mode with the <a class="reference internal" href="../../meshes/editing/mesh/transform/skin_resize.html"><span class="doc">Skin Resize</span></a>.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id2">
+<span id="fig-modifier-skin-creature"></span><img alt="../../../_images/modeling_modifiers_generate_skin_example.png" src="../../../_images/modeling_modifiers_generate_skin_example.png" />
+<figcaption>
+<p><span class="caption-text">Simple creature, made with only the Skin and Subdivision Surface modifiers.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="external-links">
+<h2>External Links<a class="headerlink" href="#external-links" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.blendernation.com/2011/03/11/skin-modifier-development/">Skin Modifier Development at Blender Nation</a> –
+An early demonstration of the Skin Modifier by Nicholas Bishop (March 2011).</p></li>
+<li><p>Ji, Zhongping; Liu, Ligang; Wang, Yigang (2010).
+B-Mesh: A Fast Modeling System for Base Meshes of 3D Articulated Shapes,
+Computer Graphics Forum 29(7), pp. 2169-2178. – The work this modifier is based on
+(<a class="reference external" href="https://doi.org/10.1111/j.1467-8659.2010.01805.x">DOI 10.1111/j.1467-8659.2010.01805.x</a>).</p></li>
+<li><p><a class="reference external" href="https://blenderartists.org/t/499364">Related thread on Blender artists</a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="screw.html" class="btn btn-neutral float-left" title="Screw Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="solidify.html" class="btn btn-neutral float-right" title="Solidify Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/generate/skin.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/generate/skin%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/modifiers/generate/skin.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physical Properties &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/cloth/settings/physical_properties.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Cache" href="cache.html" />
+    <link rel="prev" title="Sắp Đặt -- Settings" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Rigid Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Cloth</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sắp Đặt -- Settings</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Physical Properties</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#stiffness">Độ Cứng -- Stiffness</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#damping">Damping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#internal-springs">Internal Springs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pressure">Pressure</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="cache.html">Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape.html">Hình Dạng -- Shape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collisions.html">Collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="property_weights.html">Property Weights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="field_weights.html">Field Weights</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Fluid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">Particle System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Physics</a> &raquo;</li>
+          <li><a href="../index.html">Cloth</a> &raquo;</li>
+          <li><a href="index.html">Sắp Đặt -- Settings</a> &raquo;</li>
+      <li>Physical Properties</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="physical-properties">
+<h1>Physical Properties<a class="headerlink" href="#physical-properties" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Physics ‣ Cloth ‣ Physical Properties</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Mass</dt><dd><p>The mass of the cloth material.</p>
+</dd>
+<dt>Air Viscosity</dt><dd><p>Air has some thickness which slows falling things down.</p>
+</dd>
+<dt>Bending Model</dt><dd><dl class="simple">
+<dt>Linear</dt><dd><p>Cloth model with linear bending springs (old).</p>
+</dd>
+<dt>Angular</dt><dd><p>Cloth model with angular bending springs.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<section id="stiffness">
+<h2>Độ Cứng -- Stiffness<a class="headerlink" href="#stiffness" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Tension</dt><dd><p>How much the material resists stretching.</p>
+</dd>
+<dt>Nén -- Compression</dt><dd><p>How much the material resists compression.</p>
+</dd>
+<dt>Structural</dt><dd><p>Overall stiffness of the cloth (only in linear bending model).</p>
+</dd>
+<dt>Xiêu Vẹo -- Shear</dt><dd><p>How much the material resists shearing.</p>
+</dd>
+<dt>Bending</dt><dd><p>Wrinkle coefficient. Higher creates more large folds.</p>
+</dd>
+</dl>
+</section>
+<section id="damping">
+<h2>Damping<a class="headerlink" href="#damping" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Tension</dt><dd><p>Amount of damping in stretching behavior.</p>
+</dd>
+<dt>Nén -- Compression</dt><dd><p>Amount of damping in compression behavior.</p>
+</dd>
+<dt>Structural</dt><dd><p>Amount of damping in stretching behavior (only in linear bending model).</p>
+</dd>
+<dt>Xiêu Vẹo -- Shear</dt><dd><p>Amount of damping in shearing behavior.</p>
+</dd>
+<dt>Bending</dt><dd><p>Amount of damping in bending behavior.</p>
+</dd>
+</dl>
+</section>
+<section id="internal-springs">
+<span id="bpy-types-clothsettings-vertex-group-intern"></span><span id="bpy-types-clothsettings-internal-compression"></span><span id="bpy-types-clothsettings-internal-tension"></span><span id="bpy-types-clothsettings-internal-spring"></span><h2>Internal Springs<a class="headerlink" href="#internal-springs" title="Permalink to this headline"></a></h2>
+<p>As stated in the introduction, cloth physics are simulated through <a class="reference internal" href="../introduction.html#physics-cloth-introduction-springs"><span class="std std-ref">Springs</span></a>
+connecting vertices on the surface of a mesh. But these springs only interact on the surface
+and only apply to 2D surfaces. 3D or <em>Internal Springs</em> can be used to make a mesh behave similarly to
+a <a class="reference internal" href="../../soft_body/index.html"><span class="doc">Soft Body</span></a>. Internal springs can be enabled by toggling the checkbox in
+the <em>Internal Springs</em> panel header.</p>
+<dl class="simple">
+<dt>Max Spring Creation Length</dt><dd><p>The maximum length an internal spring can have during creation.
+If the distance between internal points is greater than this,
+no internal spring will be created between these points.
+A length of zero means that there is no length limit.</p>
+</dd>
+<dt>Max Creation Diversion</dt><dd><p>The maximum angle that is allowed to use to connect the internal points can diverge from the vertex normal.</p>
+</dd>
+<dt>Check Surface Normals</dt><dd><p>Requires the points the internal springs connect to have opposite normal directions.</p>
+</dd>
+<dt>Tension</dt><dd><p>How much the material resists stretching.</p>
+</dd>
+<dt>Nén -- Compression</dt><dd><p>How much the material resists compression.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>The <em>Tension</em> and <em>Compression</em> of internal springs can be controlled via
+a <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a> to
+specify which the portions of the mesh have internal springs or the spring strength.</p>
+</dd>
+<dt>Max Tension</dt><dd><p>Maximum tension stiffness value.</p>
+</dd>
+<dt>Max Compression</dt><dd><p>Maximum Compression stiffness value.</p>
+</dd>
+</dl>
+</section>
+<section id="pressure">
+<span id="bpy-types-clothsettings-vertex-group-pressure"></span><span id="bpy-types-clothsettings-pressure-factor"></span><span id="bpy-types-clothsettings-target-volume"></span><span id="bpy-types-clothsettings-use-pressure-volume"></span><span id="bpy-types-clothsettings-use-pressure"></span><h2>Pressure<a class="headerlink" href="#pressure" title="Permalink to this headline"></a></h2>
+<p>Cloth pressure allows the simulation of soft-shelled objects
+such as balloons or balls that are filled with a type of fluid.
+This fluid is modeled as a gas; to emulate an incompressible liquid set
+<em>Pressure Scale</em> as high as possible without breaking the simulation.
+Cloth pressure can be enabled by toggling the checkbox in the <em>Pressure</em> panel header.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><a class="reference internal" href="../../../glossary/index.html#term-Non-manifold"><span class="xref std std-term">Non-manifold</span></a> meshes will work with cloth pressure however,
+pressure will escape out of the mesh holes and cause drifting or propulsion forces.
+One way to get around this is by using the <em>Vertex Group</em> to exclude the non-manifold portions of the mesh.</p>
+</div>
+<dl>
+<dt>Pressure</dt><dd><p>The uniform pressure that is constantly applied to the mesh.
+This value is specified in units of <em>Pressure Scale</em>, and can be
+negative to simulate implosions or any other case where an object
+has outside pressure pushing inwards.</p>
+</dd>
+<dt>Custom Volume</dt><dd><p>Use the <em>Target Volume</em> parameter as the initial volume for the cloth,
+instead of computing it from the mesh itself.</p>
+<dl class="simple">
+<dt>Target Volume</dt><dd><p>The mesh volume where the inner/outer pressure will be the same.
+If set to zero, changes in the volume of the object will not affect pressure.</p>
+</dd>
+</dl>
+</dd>
+<dt>Pressure Scale</dt><dd><p>Ambient pressure (in kPa) that exists both inside and outside the object,
+balancing out when the volume matches the target. Increase the value to
+make the object resist changes in volume more strongly.</p>
+</dd>
+<dt>Fluid Density</dt><dd><p>Specifies the density of the fluid contained inside the object
+(in kg/liter = 1000 kg/m<sup>3</sup>, use 1 for water), used to generate
+a hydrostatic pressure gradient that simulates the weight of the fluid.
+If the value is negative, it instead models buoyancy from a surrounding fluid.</p>
+<p>The fluid is not actually simulated, so while the setting helps to achieve
+a more plausible object shapes at rest, it cannot create realistic fluid dynamics effects.
+It can also be used to give more weight to a soft body like object with heavy and
+sufficiently flexible filling, even if it is not a fluid by itself.</p>
+<p>The volume of the object is not preserved. If that is desired it should be used
+together with <em>Pressure Scale</em>. <em>Fluid density</em> times <em>object size</em> times 50
+is a good start value for <em>Scale</em> to make sure that no more than 10% volume change
+if the object does not experience higher acceleration than standard gravity.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Cloth pressure can be controlled via a <a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a>
+to specify which the portions of the mesh to apply pressure.
+Zero weight means no pressure while a weight of one means full pressure.</p>
+<p>Note, faces with a vertex that has zero weight will be excluded from the <em>Target Volume</em> calculation.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Sắp Đặt -- Settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cache.html" class="btn btn-neutral float-right" title="Cache" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/cloth/settings/physical_properties.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/cloth/settings/physical_properties%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fphysics/cloth/settings/physical_properties.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

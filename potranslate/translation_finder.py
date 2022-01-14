@@ -13,6 +13,7 @@ from nocasedict import NoCaseDict
 import inspect as INP
 from textmap import TextMap as TM
 from pattern_utils import PatternUtils as pu
+from docutils import nodes
 
 class TranslationEntry():
     def __init__(self, untran_txt=None, tran_txt=None, txt_loc=None, fuzzy_rate=None):
@@ -28,8 +29,9 @@ class TranslationFinder:
         self.apply_case_matching_orig_txt = (True if apply_case_matching_orig_txt else False)
         self.update_dic = 0
         self.update_po_file = None
-        home_dir = os.environ['BLENDER_GITHUB']
-        self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0007.json")
+        home_dir = os.environ['HOME']
+        home_dir = os.path.join(home_dir, 'Dev/tran/blender_manual')
+        self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0009.json")
         self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0005_0001.json")
         self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0005.json")
         self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.json")
@@ -138,7 +140,7 @@ class TranslationFinder:
                 un_tran_txt = un_tran_mm.txt
                 is_ignore = ig.isIgnored(un_tran_txt)
                 if is_ignore:
-                    df.LOG(f'IGNORING: un_tran_txt:[{un_tran_txt}]')
+                    # df.LOG(f'IGNORING: un_tran_txt:[{un_tran_txt}]')
                     continue
 
                 try:
@@ -156,10 +158,10 @@ class TranslationFinder:
                     local_dict_list.append(tran_dict_entry)
 
         location_database = []
-        df.LOG(f'text:[{text}]')
-        dd('local_dict entering: -----------------')
-        pp(local_dict_list)
-        dd('-----------------')
+        # df.LOG(f'text:[{text}]')
+        # dd('local_dict entering: -----------------')
+        # pp(local_dict_list)
+        # dd('-----------------')
 
         translation = str(text)
         has_untranslated_items = bool(un_tran_dict)
@@ -178,11 +180,11 @@ class TranslationFinder:
         temp_translation = self.translatedListToText(local_dict, translation)
         has_translation = not (temp_translation == text)
         if not has_translation:
-            df.LOG(f'text:[{text}]')
+            # df.LOG(f'text:[{text}]')
             return None
         else:
-            df.LOG(f'text:[{text}]')
-            df.LOG(f'temp_translation:[{temp_translation}]')
+            # df.LOG(f'text:[{text}]')
+            # df.LOG(f'temp_translation:[{temp_translation}]')
             return temp_translation
 
     def translatedListToText(self, loc_translated_dict: dict, current_translation) -> str:
@@ -200,10 +202,10 @@ class TranslationFinder:
         loc_translated_list = list(loc_translated_dict.items())
         loc_translated_list.sort(reverse=True)
 
-        df.LOG(f'txt:[{current_translation}]')
-        dd('-----------------')
-        pp(loc_translated_list)
-        dd('-----------------')
+        # df.LOG(f'txt:[{current_translation}]')
+        # dd('-----------------')
+        # pp(loc_translated_list)
+        # dd('-----------------')
 
         for loc, v in loc_translated_list:
             is_translated = observer.isLocUsed(loc)
@@ -221,8 +223,8 @@ class TranslationFinder:
             if is_fully_translated:
                 break
 
-        df.LOG(f'original [{orig}]')
-        df.LOG(f'translated [{current_translation}]')
+        # df.LOG(f'original [{orig}]')
+        # df.LOG(f'translated [{current_translation}]')
         return current_translation
 
     def simpleBlindTranslation(self, msg):
@@ -502,7 +504,7 @@ class TranslationFinder:
 
     def reloadChosenDict(self, is_master=True):
         file_path = (self.master_dic_file if is_master else self.master_dic_backup_file)
-        df.LOG(f'reloadChosenDict:{file_path}')
+        # df.LOG(f'reloadChosenDict:{file_path}')
 
         dic_instance = NoCaseDict(
             apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
@@ -846,10 +848,10 @@ class TranslationFinder:
         else:
             tran, matched_text, matching_ratio, untran_word_dic = search_dict.simpleFuzzyTranslate(msg)
 
-        if tran:
-            df.LOG(f'[{msg}] => [{tran}]')
-        else:
-            df.LOG(f'Unable to find translation for: [{msg}]')
+        # if tran:
+        #     df.LOG(f'[{msg}] => [{tran}]')
+        # else:
+        #     df.LOG(f'Unable to find translation for: [{msg}]')
         return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 
 
@@ -1044,7 +1046,7 @@ class TranslationFinder:
         trans = None
         old_msg = str(msg)
         try:
-            df.LOG(f'calling findTranslation [{msg}]')
+            # df.LOG(f'calling findTranslation [{msg}]')
             is_fuzzy = False
             trans, is_fuzzy, is_ignore = self.findTranslation(msg)
             if is_ignore:
@@ -1058,12 +1060,12 @@ class TranslationFinder:
             #     self.addBackupDictEntry(msg, None)
 
             if not trans:
-                df.LOG(f'calling tryFuzzyTranlation [{msg}]')
+                # df.LOG(f'calling tryFuzzyTranlation [{msg}]')
                 trans, cover_length, matching_ratio = self.tryFuzzyTranlation(msg)
                 is_fuzzy = bool(trans)
 
             if not trans:
-                df.LOG(f'calling SimpleBlindTranslation [{msg}]')
+                # df.LOG(f'calling SimpleBlindTranslation [{msg}]')
                 trans = self.simpleBlindTranslation(msg)
                 is_fuzzy = True
 

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scene Properties &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/scene_layout/scene/properties.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Objects" href="../object/index.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Scenes &amp; Objects</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Scenes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Scene Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scene">Scene</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#units">Units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gravity">Gravity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keying-sets">Keying Sets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audio">Audio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rigid-body-world">Rigid Body World</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../object/index.html">Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collections/index.html">Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../view_layers/index.html">View Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Scenes &amp; Objects</a> &raquo;</li>
+          <li><a href="index.html">Scenes</a> &raquo;</li>
+      <li>Scene Properties</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scene-properties">
+<h1>Scene Properties<a class="headerlink" href="#scene-properties" title="Permalink to this headline"></a></h1>
+<section id="scene">
+<span id="bpy-types-scene-active-clip"></span><span id="bpy-types-scene-background-set"></span><span id="bpy-types-scene-camera"></span><h2>Scene<a class="headerlink" href="#scene" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Scene ‣ Scene</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple" id="scene-camera">
+<dt>Camera</dt><dd><p>Used to select which camera is used as the active camera.
+You can also set the active camera in the 3D Viewport with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Numpad0</kbd></kbd>.</p>
+</dd>
+</dl>
+<dl id="scene-background-set">
+<dt>Background Scene</dt><dd><p>Allows you to use a scene as a background,
+this is typically useful when you want to focus on animating the foreground for example,
+without background elements getting in the way.</p>
+<p>This scene can have its own animation, physics simulations, etc,
+but you will have to select it from the <em>Scene</em> data-block menu, if you want to edit any of its contents.</p>
+<p>Background Scenes can themselves have a Background Scene (they’re recursively included).
+So you can always make additions to existing scenes by using them as a background
+to a newly created scene where your additions are made.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This can also be used in combination with <a class="reference internal" href="../object/editing/link_transfer/link_scene.html#bpy-ops-object-make-links-scene"><span class="std std-ref">Linking to a Scene</span></a>,
+where one blend-file contains the environment, which can be reused in many places.</p>
+</div>
+</dd>
+</dl>
+<dl class="simple" id="scene-active-clip">
+<dt>Active Clip</dt><dd><p>Active movie clip for constraints and viewport display.</p>
+</dd>
+</dl>
+</section>
+<section id="units">
+<span id="bpy-types-unitsettings"></span><span id="data-scenes-props-units"></span><h2>Units<a class="headerlink" href="#units" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Scene ‣ Units</span></p>
+</dd>
+</dl>
+</div>
+<dl>
+<dt>Unit System</dt><dd><dl class="simple">
+<dt>None</dt><dd><p>Use units that have with no relation to the real world,
+practically this is the same as <em>Metric</em> just without unit names.</p>
+</dd>
+<dt>Metric</dt><dd><p>Use the metric unit system in this scene.</p>
+</dd>
+<dt>Imperial</dt><dd><p>Use the imperial unit system in this scene.</p>
+</dd>
+</dl>
+</dd>
+<dt>Unit Scale</dt><dd><p>Scale factor to use when converting between internal units and values displayed in the user interface.
+This can be changed when modeling at microscopic or astronomical scales.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This only influences the values displayed in the user interface
+and not how things behave internally. For example, physics simulations
+don’t take the unit scale into account.</p>
+</div>
+</dd>
+<dt>Separate Units</dt><dd><p>When using <em>Metric</em> or <em>Imperial</em>, display properties as multiple values.
+For example, <code class="docutils literal notranslate"><span class="pre">2.285m</span></code> will become <code class="docutils literal notranslate"><span class="pre">2m</span> <span class="pre">28.5cm</span></code>.</p>
+</dd>
+<dt>Rotation</dt><dd><dl class="simple">
+<dt>Degrees</dt><dd><p>Use degrees for angles in the user interface.</p>
+</dd>
+<dt>Radians</dt><dd><p>Use radians for angles in the user interface.</p>
+</dd>
+</dl>
+</dd>
+<dt>Length</dt><dd><dl class="simple">
+<dt>Adaptive</dt><dd><p>The unit used for a specific value depends on the magnitude of the value.
+For example, some values might be displayed as <code class="docutils literal notranslate"><span class="pre">23cm</span></code> while others are
+displayed as <code class="docutils literal notranslate"><span class="pre">10km</span></code>.</p>
+</dd>
+<dt>Meters/Centimeters/Feet/…</dt><dd><p>A fixed unit that will be used for all lengths in the user interface.</p>
+</dd>
+</dl>
+</dd>
+<dt>Mass</dt><dd><p>See <em>Length</em>.</p>
+</dd>
+<dt>Time</dt><dd><p>See <em>Length</em>.</p>
+</dd>
+<dt>Temperature</dt><dd><p>See <em>Length</em>.</p>
+</dd>
+</dl>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Imperial Length Units</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Full Name</p></th>
+<th class="head"><p>Short Name(s)</p></th>
+<th class="head"><p>Scale of a Meter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>thou</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">mil</span></code></p></td>
+<td><p>0.0000254</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>inch</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">in</span></code></p></td>
+<td><p>0.0254</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>foot, feet</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">'</span></code>, <code class="docutils literal notranslate"><span class="pre">ft</span></code></p></td>
+<td><p>0.3048</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>yard</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">yd</span></code></p></td>
+<td><p>0.9144</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>chain</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">ch</span></code></p></td>
+<td><p>20.1168</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>furlong</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">fur</span></code></p></td>
+<td><p>201.168</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>mile</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">mi</span></code>, <code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
+<td><p>1609.344</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Metric Length Units</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Full Name</p></th>
+<th class="head"><p>Short Name(s)</p></th>
+<th class="head"><p>Scale of a Meter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>micrometer</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">um</span></code></p></td>
+<td><p>0.000001</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>millimeter</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">mm</span></code></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>centimeter</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">cm</span></code></p></td>
+<td><p>0.01</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>decimeter</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">dm</span></code></p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>meter</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
+<td><p>1.0</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>dekameter</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">dam</span></code></p></td>
+<td><p>10.0</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>hectometer</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">hm</span></code></p></td>
+<td><p>100.0</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>kilometer</p></th>
+<td><p><code class="docutils literal notranslate"><span class="pre">km</span></code></p></td>
+<td><p>1000.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="gravity">
+<h2>Gravity<a class="headerlink" href="#gravity" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Scene ‣ Gravity</span></p>
+</dd>
+</dl>
+</div>
+<p>Options to control global gravity used for physics effects.</p>
+<p>See the <a class="reference internal" href="../../physics/forces/gravity.html"><span class="doc">Physics chapter</span></a> for more information.</p>
+</section>
+<section id="keying-sets">
+<h2>Keying Sets<a class="headerlink" href="#keying-sets" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Scene ‣ Keying Sets</span></p>
+</dd>
+</dl>
+</div>
+<p>See <a class="reference internal" href="../../animation/keyframes/keying_sets.html"><span class="doc">Keying Sets</span></a>.</p>
+</section>
+<section id="audio">
+<span id="bpy-types-scene-audio-doppler-factor"></span><span id="bpy-types-scene-audio-doppler-speed"></span><span id="bpy-types-scene-audio-distance-model"></span><span id="bpy-types-scene-audio-volume"></span><span id="data-scenes-audio"></span><h2>Audio<a class="headerlink" href="#audio" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Scene ‣ Audio</span></p>
+</dd>
+</dl>
+</div>
+<p>Options to control global audio settings.
+To control how sounds is played back from within Blender, see the audio settings
+in the <a class="reference internal" href="../../editors/preferences/system.html#prefs-system-sound"><span class="std std-ref">Preferences</span></a>.</p>
+<dl class="simple">
+<dt>Volume</dt><dd><p>Volume for the scene.</p>
+</dd>
+<dt>Distance Model</dt><dd><p>Changes how the sound attenuation is calculated based on the distance.
+Most physically correct is the <em>Inverse</em> model,
+but it’s also possible to choose a linear and an exponential falloff.
+The clamped modes limit the volume to be lower than 100% (1.0),
+that means if the distance is smaller than the reference distance, the volume is always 100%.
+For an exact description of each option
+see the <a class="reference external" href="https://www.openal.org/documentation/">OpenAL documentation</a>.</p>
+</dd>
+<dt>Doppler Speed</dt><dd><p>Speed of the sound for the Doppler effect calculations.
+The typical value is 343.3 m/s in air, in water for example this value is around 1560 m/s.</p>
+</dd>
+<dt>Doppler Factor</dt><dd><p>Controls how strong the Doppler effect is.
+You can exaggerate or attenuate the change of pitch, but physically correct is a factor of 1.0.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-sound-bake-animation">
+<dt>Update Animation Cache</dt><dd><p>Updates the audio animation cache. This is useful if you start noticing artifact in the audio.</p>
+</dd>
+</dl>
+</section>
+<section id="rigid-body-world">
+<h2>Rigid Body World<a class="headerlink" href="#rigid-body-world" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Scene ‣ Rigid Body World</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Rigid Body World</em> is a group of rigid body objects,
+which holds settings that apply to all rigid bodies in this simulation.</p>
+<p>See <a class="reference internal" href="../../physics/rigid_body/world.html"><span class="doc">Rigid Body World</span></a> for more information.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../object/index.html" class="btn btn-neutral float-right" title="Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/scene_layout/scene/properties.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60scene_layout/scene/properties%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fscene_layout/scene/properties.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boolean Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/booleans.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Build Modifier" href="build.html" />
+    <link rel="prev" title="Bevel Modifier" href="bevel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bevel Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Boolean Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#solver-options">Solver Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geometry_nodes.html">Geometry Nodes Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Mask Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_to_volume.html">Mesh to Volume Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Screw Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skin.html">Skin Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidify.html">Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_to_mesh.html">Volume to Mesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weld.html">Weld Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Wireframe Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Boolean Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boolean-modifier">
+<span id="bpy-types-booleanmodifier"></span><span id="index-0"></span><h1>Boolean Modifier<a class="headerlink" href="#boolean-modifier" title="Permalink to this headline"></a></h1>
+<p>The <em>Boolean</em> modifier performs operations on meshes that are otherwise too complex
+to achieve with as few steps by editing meshes manually. It uses one of
+the three available Boolean operations to create a single mesh out of two mesh objects:</p>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/modeling_modifiers_generate_booleans_union-intersect-difference-examples.png" src="../../../_images/modeling_modifiers_generate_booleans_union-intersect-difference-examples.png" />
+<figcaption>
+<p><span class="caption-text">The Union, Intersection and Difference between a Cube and a UV Sphere,
+with the modifier applied to the sphere and using the cube as target.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This modifier needs a second mesh object, or collection of mesh objects,
+to be the target (the second operand) of the operation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Only <a class="reference internal" href="../../../glossary/index.html#term-Manifold"><span class="xref std std-term">Manifold</span></a> meshes are guaranteed to give proper results,
+other cases (especially &quot;opened&quot; meshes, <a class="reference internal" href="../../../glossary/index.html#term-Non-manifold"><span class="xref std std-term">Non-manifold</span></a> but without any self-intersections)
+will usually work well, but might give odd glitches and artifacts in some cases.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>If you have marked your objects to show the edges
+(in <span class="menuselection">Properties ‣ Object Properties ‣ Viewport Display</span>, enable <em>Wireframe</em>),
+you will see the edge creation process while you are moving your objects around. Depending on your mesh topology,
+you can also enable X-Ray and Transparency and see the topology being created in real-time.</p>
+</div>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_booleans_panel.png"><img alt="../../../_images/modeling_modifiers_generate_booleans_panel.png" src="../../../_images/modeling_modifiers_generate_booleans_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Boolean modifier.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Operation</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Giao Cắt Nhau -- Intersect</dt>
+<dd class="field-odd"><p>Everything inside both the target mesh and the modified mesh is kept.
+If the target is a collection, then only the inside of <em>all</em> meshes is kept.</p>
+</dd>
+<dt class="field-even">Hợp Nhất -- Union</dt>
+<dd class="field-even"><p>The target mesh or collection is added to the modified mesh,
+removing any interior faces.</p>
+</dd>
+<dt class="field-odd">Hiệu -- Difference</dt>
+<dd class="field-odd"><p>The target mesh, or collection of meshes, is subtracted from the modified mesh
+(everything <em>outside</em> of the target mesh or collection is kept).</p>
+</dd>
+</dl>
+</dd>
+<dt>Operand Type</dt><dd><p>Choose the type of the operand (target).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Object -- Vật Thể</dt>
+<dd class="field-odd"><p>The target is a mesh object.</p>
+</dd>
+<dt class="field-even">Collection</dt>
+<dd class="field-even"><p>The target is a collection.
+When the target is a collection and the Solver is Fast,
+the Intersect operation is not allowed.</p>
+</dd>
+</dl>
+</dd>
+<dt>Object -- Vật Thể</dt><dd><p>The name of the target mesh object.</p>
+</dd>
+<dt>Collection</dt><dd><p>The name of the target collection (may be empty if Solver is Exact,
+which can be useful in combination with the Self option).</p>
+</dd>
+<dt>Trình Giải Nghiệm -- Solver</dt><dd><p>Algorithm used to calculate the Boolean intersections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Fast</dt>
+<dd class="field-odd"><p>Uses a mathematically simple solver which offers the best performance;
+however, this solver lacks support for overlapping geometry.</p>
+</dd>
+<dt class="field-even">Exact</dt>
+<dd class="field-even"><p>Uses a mathematically complex solver which offers the best results
+and has full support for overlapping geometry;
+however, this solver is much slower than the <em>Fast Solver</em>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<section id="solver-options">
+<h3>Solver Options<a class="headerlink" href="#solver-options" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Self Intersection <span class="guilabel">Exact Solver</span></dt><dd><p>Correctly calculates cases when one or both operands have self-intersections,
+this involves more calculations making it slower.</p>
+</dd>
+<dt>Hole Tolerant <span class="guilabel">Exact Solver</span></dt><dd><p>Optimizes the Boolean output for <a class="reference internal" href="../../../glossary/index.html#term-Non-manifold"><span class="xref std std-term">Non-manifold</span></a> geometry
+at the cost of increased computational time.
+Because of the performance impact, this option should only be enabled
+when the <em>Exact</em> solver demonstrates errors with non-manifold geometry.</p>
+</dd>
+<dt>Overlap Threshold <span class="guilabel">Fast Solver</span></dt><dd><p>Maximum distance between two faces to consider them as overlapping.
+This helps solve the limitation of this solver,
+if the Boolean result seems unexpected try using the exact solver.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bevel.html" class="btn btn-neutral float-left" title="Bevel Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="build.html" class="btn btn-neutral float-right" title="Build Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/generate/booleans.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/generate/booleans%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/modifiers/generate/booleans.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

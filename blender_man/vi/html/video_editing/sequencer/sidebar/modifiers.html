@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modifiers &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/video_editing/sequencer/sidebar/modifiers.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Cache" href="cache.html" />
+    <link rel="prev" title="Strip" href="strip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Video Editing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Phối Hình -- Sequencer</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Thanh Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../navigating.html">Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../strips/index.html">Strips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../meta.html">Meta Strips</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sidebar</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="strip.html">Strip</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Modifiers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#common-options">Tùy Chọn Chung -- Common Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input-mask-type">Input Mask Type</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#types">Types</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#color-balance-modifier">Color Balance Modifier</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#curves-modifier">Curves Modifier</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#hue-correct-modifier">Hue Correct Modifier</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#bright-contrast-modifier">Bright/Contrast Modifier</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mask-modifier">Mask Modifier</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#white-balance-modifier">White Balance Modifier</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#tone-map-modifier">Tone Map Modifier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="cache.html">Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proxy.html">Proxy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../preview/index.html">Duyệt Thảo -- Preview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Video Editing</a> &raquo;</li>
+          <li><a href="../index.html">Bộ Phối Hình -- Sequencer</a> &raquo;</li>
+          <li><a href="index.html">Sidebar</a> &raquo;</li>
+      <li>Modifiers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="index-0"></span><section id="modifiers">
+<span id="bpy-types-sequencemodifier"></span><span id="index-1"></span><h1>Modifiers<a class="headerlink" href="#modifiers" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Modifiers ‣ Modifiers</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-right">
+<img alt="../../../_images/video-editing_sequencer_sidebar_modifiers_panel.png" src="../../../_images/video-editing_sequencer_sidebar_modifiers_panel.png" />
+</figure>
+<p>Modifiers are used to make adjustments on the image, like contrast,
+brightness, saturation, color balance and applying masks.</p>
+<p>You can add these modifiers directly to the selected strip,
+or you can use it within an &quot;Adjustment Layer&quot; effect strip,
+which allows you to apply these modifiers onto several strips the same time.</p>
+<dl class="simple">
+<dt>Use Linear Modifiers</dt><dd><p>Calculate modifiers in linear space instead of sequencer space.</p>
+</dd>
+<dt>Copy to Selected Strips</dt><dd><p>Allows you to copy the modifiers to selected strips.
+This works two ways, you can either replace the old modifiers or append/add to the previous modifiers.</p>
+</dd>
+</dl>
+<section id="common-options">
+<h2>Tùy Chọn Chung -- Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline"></a></h2>
+<p>Each modifier has several buttons at its top:</p>
+<dl class="simple">
+<dt>Giải Hoạt (biểu tượng con mắt) -- Mute (eye icon)</dt><dd><p>Disables the modifier. Very useful to compare the image, with / without modifications.</p>
+</dd>
+<dt>Di Chuyển (biểu tượng mũi tên lên/xuống) -- Move (up/down arrow icon)</dt><dd><p>The next two buttons are used to change the modifier's position in the stack.</p>
+</dd>
+<dt>Loại Bỏ <code class="docutils literal notranslate"><span class="pre">X</span></code> -- Remove <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>The cross is to delete the modifier from the stack.</p>
+</dd>
+</dl>
+<section id="input-mask-type">
+<h3>Input Mask Type<a class="headerlink" href="#input-mask-type" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Strip</dt><dd><p>Use this to apply the modification on the whole image, or to use another strip's image (with alpha channel)
+for masking the modifier (and only this modifier), by choosing it in the &quot;Mask&quot; select menu.</p>
+</dd>
+<dt>Mask</dt><dd><p>This allows you to choose a Mask created in the Mask editor
+which will limit the modification to the masked image's zones.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline"></a></h2>
+<p>Currently, the following modifiers are supported:</p>
+<section id="color-balance-modifier">
+<span id="bpy-types-colorbalancemodifier"></span><span id="index-2"></span><h3>Color Balance Modifier<a class="headerlink" href="#color-balance-modifier" title="Permalink to this headline"></a></h3>
+<p>Color balance adjustments, through Lift, Gamma, and Gain.</p>
+<p>This modifier works the same as the <a class="reference internal" href="../../../compositing/types/color/color_balance.html"><span class="doc">Color Balance Node</span></a>.</p>
+</section>
+<section id="curves-modifier">
+<span id="bpy-types-curvesmodifier"></span><span id="index-3"></span><h3>Curves Modifier<a class="headerlink" href="#curves-modifier" title="Permalink to this headline"></a></h3>
+<p>Color and RGB curves.</p>
+<p>This modifier works the same as the <a class="reference internal" href="../../../compositing/types/color/rgb_curves.html"><span class="doc">Curves Node</span></a>.</p>
+</section>
+<section id="hue-correct-modifier">
+<span id="bpy-types-huecorrectmodifier"></span><span id="index-4"></span><h3>Hue Correct Modifier<a class="headerlink" href="#hue-correct-modifier" title="Permalink to this headline"></a></h3>
+<p>HSV multi points curves.</p>
+<p>This modifier works the same as the <a class="reference internal" href="../../../compositing/types/color/hue_correct.html"><span class="doc">Curves Node</span></a>.</p>
+</section>
+<section id="bright-contrast-modifier">
+<span id="bpy-types-brightcontrastmodifier"></span><span id="index-5"></span><h3>Bright/Contrast Modifier<a class="headerlink" href="#bright-contrast-modifier" title="Permalink to this headline"></a></h3>
+<p>Adjusts the brightness and contrast of the modifier input.</p>
+</section>
+<section id="mask-modifier">
+<span id="index-6"></span><h3>Mask Modifier<a class="headerlink" href="#mask-modifier" title="Permalink to this headline"></a></h3>
+<p>Use it for masking the other modifiers in the stack which are below.</p>
+<p>For example, to correct the brightness only on a certain zone of the image,
+you can filter the Bright/Contrast modifier by placing a Mask modifier,
+just before it in the stack. You can choose to use a Mask created in the Mask editor,
+or to use another strip as a mask (the image of this strip must have an alpha channel).
+This mask will be applied on all the others modifiers below it in the stack.</p>
+</section>
+<section id="white-balance-modifier">
+<span id="bpy-types-whitebalancemodifier"></span><span id="index-7"></span><h3>White Balance Modifier<a class="headerlink" href="#white-balance-modifier" title="Permalink to this headline"></a></h3>
+<p>Use it to adjust the white balance by choosing the color that should be white.</p>
+</section>
+<section id="tone-map-modifier">
+<span id="index-8"></span><h3>Tone Map Modifier<a class="headerlink" href="#tone-map-modifier" title="Permalink to this headline"></a></h3>
+<p>Used to map one set of colors to another in order to approximate the appearance
+of high dynamic range images in a medium that has a more limited dynamic range.</p>
+<p>This modifier works the same as the <a class="reference internal" href="../../../compositing/types/color/tone_map.html"><span class="doc">Tone Map Node</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="strip.html" class="btn btn-neutral float-left" title="Strip" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cache.html" class="btn btn-neutral float-right" title="Cache" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/video_editing/sequencer/sidebar/modifiers.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60video_editing/sequencer/sidebar/modifiers%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fvideo_editing/sequencer/sidebar/modifiers.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

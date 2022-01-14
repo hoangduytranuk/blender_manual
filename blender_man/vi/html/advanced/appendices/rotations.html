@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chế Độ Xoay Chiều &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/appendices/rotations.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Xử Lý Sự Cố -- Troubleshooting" href="../../troubleshooting/index.html" />
+    <link rel="prev" title="Phụ Lục" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../command_line/index.html">Dòng Lệnh -- Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripting/index.html">Viết Tập Lệnh &amp; Mở Rộng Chức Năng của Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../app_templates.html">Khuôn Mẫu của Trình Ứng Dụng -- Application Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keymap_editing.html">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators.html">Thao Tác -- Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blender_directory_layout.html">Bố Trí Thư Mục của Blender -- Blender's Directory Layout</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Phụ Lục</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Chế Độ Xoay Chiều</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#euler-modes">Chế Độ Euler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#axis-angle-mode">Chế Độ Góc Trục</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quaternion-mode">Chế Độ Quaternion</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#more-about-quaternions">Nói thêm về Quatenion</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#other-considerations">Mhững Cân Nhắc Khác</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Cao Cấp -- Advanced</a> &raquo;</li>
+          <li><a href="index.html">Phụ Lục</a> &raquo;</li>
+      <li>Chế Độ Xoay Chiều</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rotation-modes">
+<h1>Chế Độ Xoay Chiều<a class="headerlink" href="#rotation-modes" title="Permalink to this headline"></a></h1>
+<p>Blender lets you define rotations in several ways. Each one of them has a series of advantages and drawbacks;
+there is no best rotation mode, as each one is suitable for specific cases.</p>
+<p>In all of these modes, positive angle values mean counter-clockwise rotation direction,
+while negative values define clockwise rotation.</p>
+<p>Though you can rotate elements using the global or local transform orientations,
+these axes are not suitable to define rotations, as the effect of each of
+them cannot be isolated from the other two.</p>
+<p>Take, for instance, any three values for X, Y and Z rotation. Perform each one of these using global or local axes.
+Depending on the order in which you perform these, you will end up with different final orientations.
+So proper rotation coordinate systems are needed.</p>
+<section id="euler-modes">
+<h2>Chế Độ Euler<a class="headerlink" href="#euler-modes" title="Permalink to this headline"></a></h2>
+<p>The axes system used for performing Euler rotations is the so called Euler gimbal.
+A gimbal is a particular set of three axes.
+The special thing about this is that the axes have a hierarchical relationship between them:
+one of the axes is at the top of the hierarchy, and has one of the other two axes as its immediate child;
+at the same time, this child axis is the parent of the remaining axis, the one at the very bottom of the hierarchy.</p>
+<p>Which axis is on top, which one in the middle and which at the bottom,
+depends on the particular Euler gimbal: there are six types of them, as there
+are six possible combinations: XYZ, XZY, YXZ, YZX, ZXY and ZYX Euler rotation modes.
+These modes are named using the letters of the axes in order, starting from
+the axis at the bottom of the hierarchy, and finishing with the one on top.</p>
+<p>The main problem of these systems comes when they lose their relative perpendicularity.
+And this happens when the axis in the middle rotates, causing the axis at the bottom to
+rotate with it. It keeps getting worse when this bottom axis approaches 90° (or equivalent angles).
+In that case, it will remain aligned with the axis on top of the hierarchy. In that moment
+we have just lost one axis of rotation. This can cause discontinuous interpolations when animating.
+This particular loss of axis is known as the &quot;gimbal lock&quot;.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>The actual configuration of the gimbal axes can be seen in the 3D Viewport by enabling the <em>Rotate</em> object gizmo
+and setting it to <em>Gimbal</em> (from the gizmos button in the header).
+At the same time, rotation mode should be set to any of the Euler modes for the active object.</p>
+<p>Now you can perform a rotation around the axis in the middle
+(e.g. in <em>XYZ Euler</em> mode that is the Y axis), and see how easy it is to
+end up having a gimbal with just two axes. In the specific case of
+the <em>XYZ Euler</em> mode with gimbal lock, a rotation around the X axis will have
+the same effect as rotating around the Z axis, meaning, in practice,
+that no X axis rotations can be performed.</p>
+</div>
+<p>One advantage of this mode is that animation curves are easy to understand and edit.
+However, special attention must be done when the middle axis approaches values close to 90° (or equivalent angles).</p>
+</section>
+<section id="axis-angle-mode">
+<h2>Chế Độ Góc Trục<a class="headerlink" href="#axis-angle-mode" title="Permalink to this headline"></a></h2>
+<p>This mode lets us define an axis (X, Y, Z) and a rotation angle (W) around that axis.</p>
+<p>If we define the rotation using interactive rotations (with the rotation gizmo),
+the values of X, Y and Z will not exceed 1.0 in absolute value, and W will be
+comprised between 0 and 180 degrees.</p>
+<p>If you wish to define rotations above 180° (e.g. to define multiple revolutions),
+you will need to edit the W value directly, but as soon as you perform an interactive rotation,
+that value will be adjusted again. Same thing goes for axis values.</p>
+<p>This system is suitable for elements revolving around a fixed axis, or to animate one of the elements at a time
+(either the axis or the angle).
+The problem might come when animating (interpolating) both components at the same time: axis and angle.
+The resulting effect might not be as expected.</p>
+<p>The <em>Gimbal</em> gizmo in this rotation mode shows a set of three orthogonal axes in which the Z axis goes
+along the defined rotation axis, i.e. it points towards the direction defined by the (X, Y, Z) point.</p>
+<p>The axis-angle system is free from gimbal lock, but animation curves in this mode are not intuitive at all
+when animating axis and angle at the same time, in which case they are difficult to understand and edit.</p>
+</section>
+<section id="quaternion-mode">
+<h2>Chế Độ Quaternion<a class="headerlink" href="#quaternion-mode" title="Permalink to this headline"></a></h2>
+<p>In this mode, rotations are also defined by four values (X, Y, Z and W).
+X, Y and Z also define an axis, and W an angle, but it does it quite differently from axis-angle.
+The important thing here is the relation between all four values.</p>
+<p>To describe it in an intuitive way, let's take the effect of the X coordinate:
+what it does is to rotate the element around the X axis up to 180 degrees.
+The same goes for Y and Z. The effect of W is to avoid those rotations and leave
+the element with zero rotation. The final orientation is a combination of
+these four effects.</p>
+<p>As the relation between components is what defines the final orientation, multiplying or dividing all four numbers
+by a constant value will yield the very same rotation.</p>
+<p>This mode is ideal for interpolating between <strong>any</strong> pair of orientations.
+It doesn't suffer from gimbal lock or any interpolation undesired effect.
+The only drawback is that you cannot interpolate between two orientations
+that are at a distance greater than than 180°, as the animation will take
+the shortest path between them. Thus to animate a revolving element
+you must set up many intermediate keyframes, 180° from each other at most.</p>
+<p>The <em>Gimbal</em> gizmo in this mode is equivalent to the <em>Local</em> one, and doesn't have any special meaning.</p>
+<p>The animation curves in this mode are not intuitive, so they are also difficult to understand and edit.</p>
+<section id="more-about-quaternions">
+<h3>Nói thêm về Quatenion<a class="headerlink" href="#more-about-quaternions" title="Permalink to this headline"></a></h3>
+<p>This section is not really useful for 3D artists, but it can be suitable for the curious or the scientist.</p>
+<p>Quaternions are a number system extending the complex numbers. They represent a four component vector, whose
+components are called, in Blender, X, Y, Z and W.
+When rotating interactively in quaternion mode, the so called norm (length) of the quaternion will remain constant.
+By definition, the norm of a quaternion equals 1.0 (that's a <strong>normalized</strong> quaternion). When you select
+the quaternion mode in Blender, the XYZW components describe a normalized quaternion.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The norm of a quaternion <em>q</em> is defined mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[\lvert q \rvert = \sqrt{X^2 + Y^2 + Z^2 + W^2}\]</div>
+</div>
+<p>However, if one of the quaternion components is locked during the interactive transformation using the proper
+lock button, the norm will not remain unchanged, as that blocked component will not be able to adjust itself to
+keep the unit norm.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>Interactive rotations with the gizmo don't change the norm of the current quaternion.
+Editing a single XYZW component individually you can change the norm.
+To make the norm 1.0 again you can switch to any rotation mode and back again into quaternion.</p>
+</div>
+<p>The rotation components of a quaternion keep a tight relation with those of axis-angle. To find a correspondence,
+first of all we must deal with the normalized version of the quaternion, that is, one whose norm equals 1.0.
+To normalize a quaternion, just divide each one of its components by its norm.
+As we have seen before, dividing all four values by the same number gives the same orientation.</p>
+<p>Once we have calculated the components of the normalized quaternion, the relation with the axis-angle components
+is as follows:</p>
+<ul class="simple">
+<li><p>X, Y and Z mean exactly the same as in axis-angle: they just define an axis around which the rotation takes place.</p></li>
+<li><p>W can be used to retrieve the actual rotation around the defined angle.
+The following formula applies (provided that the <em>quaternion is normalized</em>):
+<span class="math notranslate nohighlight">\(W = \cos(\frac{a}{2})\)</span>, where <em>a</em> is actually the rotation angle we are looking for. That is:
+<span class="math notranslate nohighlight">\(a = 2 \arccos{W}\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="other-considerations">
+<h2>Mhững Cân Nhắc Khác<a class="headerlink" href="#other-considerations" title="Permalink to this headline"></a></h2>
+<p>In axis-angle and quaternion modes we can lock rotations in interactive modes in a per component basis,
+instead of doing it by axis. To do so we can activate this locking ability using the lock buttons next to
+the corresponding <em>Rotation</em> transform buttons.</p>
+<p>Regarding rotation animations, all keyframes must be defined in the same rotation mode,
+which must be the selected rotation mode for the object throughout the entire animation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Phụ Lục" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../troubleshooting/index.html" class="btn btn-neutral float-right" title="Xử Lý Sự Cố -- Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/advanced/appendices/rotations.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60advanced/appendices/rotations%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fadvanced/appendices/rotations.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

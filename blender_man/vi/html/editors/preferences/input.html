@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đầu Vào -- Input &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/preferences/input.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Navigation" href="navigation.html" />
+    <link rel="prev" title="Trình Bổ Sung -- Add-ons" href="addons.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../3dview/index.html">Cổng Nhìn 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_sequencer/index.html">Trình Phối Hình</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../properties_editor.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Cấu Hình -- Preferences</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="themes.html">Themes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viewport.html">Viewport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lights.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animation.html">Animation -- Hoạt Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="addons.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Đầu Vào -- Input</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#keyboard">Keyboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mouse">Mouse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tablet">Tablet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ndof">NDOF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="navigation.html">Navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keymap.html">Bố Trí Bàn Phím -- Keymap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html">Hệ Thống -- System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="save_load.html">Save &amp; Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_paths.html">File Paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="experimental.html">Experimental</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Editors</a> &raquo;</li>
+          <li><a href="index.html">Cấu Hình -- Preferences</a> &raquo;</li>
+      <li>Đầu Vào -- Input</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="input">
+<span id="bpy-types-preferencesinput"></span><h1>Đầu Vào -- Input<a class="headerlink" href="#input" title="Permalink to this headline"></a></h1>
+<p>In the Input preferences, you can customize how Blender reacts to the mouse and keyboard
+as well as define your own keymap.</p>
+<figure class="align-default">
+<img alt="../../_images/editors_preferences_section_input.png" src="../../_images/editors_preferences_section_input.png" />
+</figure>
+<section id="keyboard">
+<h2>Keyboard<a class="headerlink" href="#keyboard" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Emulate Numpad</dt><dd><p>The Numpad keys are used quite often in Blender and are not assigned to the same action as
+the regular number keys. If you have a keyboard without a Numpad (e.g. on a laptop),
+you can tell Blender to treat the standard number keys as Numpad keys by checking <em>Emulate Numpad</em>.</p>
+</dd>
+<dt>Default to Advanced Numeric Input</dt><dd><p>For transform mode, default to <a class="reference internal" href="../../scene_layout/object/editing/transform/control/numeric_input.html#transform-numeric-input-advanced"><span class="std std-ref">Advanced Mode</span></a>,
+otherwise <a class="reference internal" href="../../scene_layout/object/editing/transform/control/numeric_input.html#transform-numeric-input-simple"><span class="std std-ref">Simple Mode</span></a> is used.</p>
+</dd>
+</dl>
+</section>
+<section id="mouse">
+<h2>Mouse<a class="headerlink" href="#mouse" title="Permalink to this headline"></a></h2>
+<dl id="preferences-input-emulate-mouse">
+<dt>Emulate 3 Button Mouse</dt><dd><p>Blender can be configured to work with pointing devices which do not have an <kbd class="kbd docutils literal notranslate">MMB</kbd>.
+The functionality of the three mouse buttons by holding <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd>.</p>
+<p>Mouse/Keyboard combinations referenced in this manual
+can be expressed with the combinations shown in the table. For example:</p>
+<p><kbd class="kbd docutils literal notranslate">MMB</kbd> drag becomes <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> drag for example.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>This option prevents certain features from being accessed,
+since <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> is used for some operations.</p>
+<ul class="simple">
+<li><p>Modifying multiple items values at once (objects, bones... etc).</p></li>
+<li><p>Deselecting edge/face rings in Edit Mode.</p></li>
+<li><p>Detaching node links.</p></li>
+<li><p>Moving the Compositor background image.</p></li>
+</ul>
+<p>Some touchpads support three-finger tap for middle mouse button,
+which may be an alternative to using this option.</p>
+</div>
+<dl>
+<dt>Modifier <em>(unsupported on Microsoft Windows)</em></dt><dd><dl>
+<dt><kbd class="kbd docutils literal notranslate">Alt</kbd></dt><dd><p>Use the <kbd class="kbd docutils literal notranslate">Alt</kbd> key to emulate the middle mouse button.</p>
+</dd>
+<dt><kbd class="kbd docutils literal notranslate">OSKey</kbd></dt><dd><p>Use the <kbd class="kbd docutils literal notranslate">OSKey</kbd> to emulate the middle mouse button.</p>
+<p>This has the advantage that it doesn't conflict with existing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">MMB</kbd></kbd> shortcuts,
+noted above.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Continuous Grab</dt><dd><p>This feature is used to prevent the problem where an action such as moving objects or panning a view,
+is limited by your screen bounds.</p>
+<p>This is done by warping the mouse within the view.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Cursor warping is only supported by <em>relative</em> input devices (mouse, trackball, trackpad).</p>
+<p>Graphics tablets, however, typically use <em>absolute</em> positioning,
+this feature is disabled when a tablet is being used.</p>
+<p>This is detected for each action,
+so the presence of a tablet will not disable <em>Continuous Grab</em> for mouse cursor input.</p>
+</div>
+</dd>
+<dt>Release Confirms</dt><dd><p>Dragging <kbd class="kbd docutils literal notranslate">LMB</kbd> on an object will move it.
+To confirm this (and other) transform, an <kbd class="kbd docutils literal notranslate">LMB</kbd> is necessary by default.
+When this option is activated, the release of <kbd class="kbd docutils literal notranslate">LMB</kbd> acts as confirmation of the transform.</p>
+</dd>
+<dt>Mouse Drag Threshold</dt><dd><p>The number of pixels that a User Interface element has to be moved before it is recognized by Blender,
+values below this will be detected as click events.</p>
+</dd>
+<dt>Tablet Drag Threshold</dt><dd><p>The drag threshold for tablet events.</p>
+</dd>
+<dt>Drag Threshold</dt><dd><p>The drag threshold for non mouse/tablet events (keyboard or <a class="reference internal" href="../../glossary/index.html#term-NDOF"><span class="xref std std-term">NDOF</span></a> for example).</p>
+<p>This affects <a class="reference internal" href="../../interface/keymap/blender_default.html#keymap-pref-py-menu-on-drag"><span class="std std-ref">Pie Menu on Drag</span></a> keymap preference.</p>
+</dd>
+<dt>Motion Threshold</dt><dd><p>The number of pixels the cursor must be moved before the movement is registered.
+This is helpful for tablet pens that are a lot more difficult to keep still,
+then this could help to reduce stuttering of the cursor position.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Unlike the click/drag distinction, this is used to detect small movements
+for example, picking selection cycles through elements near the cursor.
+Once the cursor moves past this threshold, selection stops cycling and picks the closest item.</p>
+</div>
+</dd>
+</dl>
+</section>
+<section id="tablet">
+<h2>Tablet<a class="headerlink" href="#tablet" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Tablet API (Windows only)</dt><dd><p>Select the native Windows Ink or older Wintab system for pressure sensitivity.
+Blender automatically selects the API for your operating system and tablet,
+however in case of problems this can be set manually.
+You may need to restart Blender for changes to take affect.</p>
+</dd>
+<dt>Max Threshold</dt><dd><p>Amount of pressure required to achieve full intensity.</p>
+</dd>
+<dt>Softness</dt><dd><p>Controls how the softness of the low pressure response onset using a gamma curve.</p>
+</dd>
+</dl>
+</section>
+<section id="ndof">
+<span id="editors-preferences-input-ndof"></span><h2>NDOF<a class="headerlink" href="#ndof" title="Permalink to this headline"></a></h2>
+<p>These preferences control how an <a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-ndof"><span class="std std-ref">NDOF device</span></a> interacts with the 3D Viewport.
+These preferences can also be accessed using the <kbd class="kbd docutils literal notranslate">NDOFMenu</kbd> button on the NDOF device
+to open a pop-up menu to adjust the settings directly from the 3D Viewport.</p>
+<dl>
+<dt>Pan Sensitivity</dt><dd><p>The overall sensitivity for panning in the 3D Viewport.</p>
+</dd>
+<dt>Orbit Sensitivity</dt><dd><p>The overall sensitivity for orbiting in the 3D Viewport.</p>
+</dd>
+<dt>Deadzone</dt><dd><p>The threshold for the amount of movement needed from
+the device's rest position for Blender to interrupt that movement.</p>
+</dd>
+<dt>Navigation</dt><dd><p>Navigation style for the viewport.</p>
+<dl class="simple">
+<dt>Tự Do -- Free</dt><dd><p>Uses the full 6-degrees of freedom.</p>
+</dd>
+<dt>Orbit</dt><dd><p>Orbit about the view center.</p>
+</dd>
+</dl>
+</dd>
+<dt>Xoay Chiều -- Rotation</dt><dd><p>Rotation style for the viewport.</p>
+<dl class="simple">
+<dt>Turntable</dt><dd><p>Rotates the view keeping the horizon horizontal.</p>
+</dd>
+<dt>Trackball</dt><dd><p>Is less restrictive, allowing any orientation.</p>
+</dd>
+</dl>
+</dd>
+<dt>Show Navigation Guide</dt><dd><p>Display the pivot point and axis during rotation.</p>
+</dd>
+<dt>Invert Zoom</dt><dd><p>Zoom using opposite direction.</p>
+</dd>
+<dt>Swap Y and Z Axes</dt><dd><p>Pan using up/down on the NDOF devices instead of forward/backwards.</p>
+</dd>
+<dt>Invert Axis Pan</dt><dd><p>Reverses the panning axis on the selected axes.</p>
+</dd>
+<dt>Orbit</dt><dd><p>Reverses the orbit axis on the selected axes.</p>
+</dd>
+<dt>Fly/Walk</dt><dd><p>Settings to control how the NDOF device is used while using <a class="reference internal" href="../3dview/navigate/walk_fly.html#dview-fly-walk"><span class="std std-ref">Walk/Fly Navigation</span></a>.</p>
+<dl class="simple">
+<dt>Lock Horizon</dt><dd><p>Keeps the horizontal axis level file flying.</p>
+</dd>
+<dt>Helicopter Mode</dt><dd><p>Moves the 3D Viewport up or down when moving the NDOF device up/down.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="addons.html" class="btn btn-neutral float-left" title="Trình Bổ Sung -- Add-ons" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="navigation.html" class="btn btn-neutral float-right" title="Navigation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/preferences/input.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/preferences/input%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Feditors/preferences/input.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

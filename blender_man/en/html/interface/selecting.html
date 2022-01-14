@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selecting &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/interface/selecting.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Editors" href="../editors/index.html" />
+    <link rel="prev" title="Annotate Tool" href="annotate_tool.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#window-system">Window System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#keymap">Keymap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#interface-controls">Interface Controls</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#tools">Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tool_system.html">Tool System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="undo_redo.html">Undo &amp; Redo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annotate_tool.html">Annotate Tool</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Selecting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#selection-tools">Selection Tools</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#tweak">Tweak</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#box-select">Box Select</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#circle-select">Circle Select</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#lasso-select">Lasso Select</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#selecting-modes">Selecting Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">User Interface</a> &raquo;</li>
+      <li>Selecting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="selecting">
+<h1>Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline"></a></h1>
+<p>By default Blender uses the <kbd class="kbd docutils literal notranslate">LMB</kbd> to select items in the Blender window.
+Alternatively, the <kbd class="kbd docutils literal notranslate">RMB</kbd> can be used instead by changing
+the <a class="reference internal" href="../editors/preferences/keymap.html"><span class="doc">Preferences</span></a>.
+Blender has several selecting tools that can be used across the different editors.</p>
+<section id="selection-tools">
+<h2>Selection Tools<a class="headerlink" href="#selection-tools" title="Permalink to this headline"></a></h2>
+<section id="tweak">
+<span id="tool-select-tweak"></span><h3>Tweak<a class="headerlink" href="#tweak" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">LMB</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Clicking on an item selects it, using modifier keys you can perform other operations.
+Holding the selection and moving the mouse on interactive items such as objects in the 3D Viewport
+or keyframes in an animation editor will general move the item with the mouse.</p>
+</section>
+<section id="box-select">
+<span id="tool-select-box"></span><span id="bpy-ops-select-box"></span><h3>Box Select<a class="headerlink" href="#box-select" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Select ‣ Box Select</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">B</kbd></p>
+</dd>
+</dl>
+</div>
+<p>To activate the tool, press <kbd class="kbd docutils literal notranslate">B</kbd> or click and drag <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+With <em>Select Box</em> you draw a rectangle while holding down <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+Any item that lies even partially within this rectangle becomes selected.
+If any item that was last active appears in the selection it will become active.</p>
+<p>For deselecting items, use <kbd class="kbd docutils literal notranslate">MMB</kbd>, or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd>.
+To move the selection area hold <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Spacebar</kbd></kbd> while moving the cursor.</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Box Select example.</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<span id="fig-mesh-select-basics-start"></span><a class="reference internal image-reference" href="../_images/interface_selecting_border-select1.png"><img alt="../_images/interface_selecting_border-select1.png" src="../_images/interface_selecting_border-select1.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Start.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<span id="fig-mesh-select-basics-selecting"></span><a class="reference internal image-reference" href="../_images/interface_selecting_border-select2.png"><img alt="../_images/interface_selecting_border-select2.png" src="../_images/interface_selecting_border-select2.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Selecting.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id9">
+<span id="fig-mesh-select-basics-complete"></span><a class="reference internal image-reference" href="../_images/interface_selecting_border-select3.png"><img alt="../_images/interface_selecting_border-select3.png" src="../_images/interface_selecting_border-select3.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Complete.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="circle-select">
+<span id="tool-select-circle"></span><span id="bpy-ops-select-circle"></span><h3>Circle Select<a class="headerlink" href="#circle-select" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Select ‣ Circle Select</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">C</kbd></p>
+</dd>
+</dl>
+</div>
+<p><em>Circle Select</em> <kbd class="kbd docutils literal notranslate">C</kbd> allows you to select multiple items within a circular area.
+Move your mouse over any items within the circular area (shown with a dotted circle)
+while holding <kbd class="kbd docutils literal notranslate">LMB</kbd> to select those items. Alternatively, use
+<kbd class="kbd docutils literal notranslate">MMB</kbd> to deselect them. When you are done selecting, press <kbd class="kbd docutils literal notranslate">RMB</kbd> or
+<kbd class="kbd docutils literal notranslate">Esc</kbd>. To change the diameter of the circle, scroll with the <kbd class="kbd docutils literal notranslate">Wheel</kbd>
+or use the <kbd class="kbd docutils literal notranslate">NumpadPlus</kbd> and <kbd class="kbd docutils literal notranslate">NumpadMinus</kbd> keys.</p>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Circle Select example.</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id11">
+<a class="reference internal image-reference" href="../_images/interface_selecting_circle-select1.png"><img alt="../_images/interface_selecting_circle-select1.png" src="../_images/interface_selecting_circle-select1.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Start.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id12">
+<a class="reference internal image-reference" href="../_images/interface_selecting_circle-select2.png"><img alt="../_images/interface_selecting_circle-select2.png" src="../_images/interface_selecting_circle-select2.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Selecting.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id13">
+<a class="reference internal image-reference" href="../_images/interface_selecting_circle-select3.png"><img alt="../_images/interface_selecting_circle-select3.png" src="../_images/interface_selecting_circle-select3.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Dragging.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <em>Object Mode</em> the <em>Circle Select</em> operates on objects by their origins.</p>
+</div>
+</section>
+<section id="lasso-select">
+<span id="tool-select-lasso"></span><span id="bpy-ops-select-lasso"></span><h3>Lasso Select<a class="headerlink" href="#lasso-select" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p><em>Lasso Select</em> is used to create a free-form selection. Simply hold <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd>
+while drawing a dotted line around the items you want to select.
+The shape you draw will be automatically closed by connecting a line
+from the current position back to the starting point.</p>
+<p><em>Lasso Select</em> adds to the previous selection. For deselection, use <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd>.
+To move the selection area hold <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Spacebar</kbd></kbd> while moving the cursor.</p>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-text">An example of using the <em>Lasso Select tool</em> in <em>Vertex Select Mode</em>.</span><a class="headerlink" href="#id14" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id15">
+<a class="reference internal image-reference" href="../_images/interface_selecting_lasso-select1.png"><img alt="../_images/interface_selecting_lasso-select1.png" src="../_images/interface_selecting_lasso-select1.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Start.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id16">
+<a class="reference internal image-reference" href="../_images/interface_selecting_lasso-select2.png"><img alt="../_images/interface_selecting_lasso-select2.png" src="../_images/interface_selecting_lasso-select2.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Selecting.</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id17">
+<a class="reference internal image-reference" href="../_images/interface_selecting_lasso-select3.png"><img alt="../_images/interface_selecting_lasso-select3.png" src="../_images/interface_selecting_lasso-select3.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Complete.</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In <em>Object Mode</em> the <em>Lasso Select</em> operates on objects by their origins.</p>
+</div>
+</section>
+</section>
+<section id="selecting-modes">
+<h2>Selecting Modes<a class="headerlink" href="#selecting-modes" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Tool</dt>
+<dd class="field-odd"><p>Select Tools</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Tool Settings ‣ Mode</span></p>
+</dd>
+</dl>
+</div>
+<p>Each tool has some sort of mode to configure how to tool interacts with existing selections.
+Note that not every selection tool supports each of these modes.</p>
+<dl class="simple">
+<dt>Set</dt><dd><p>Sets a new selection ignoring any existing selections.</p>
+</dd>
+<dt>Extend</dt><dd><p>Adds newly selected items to the existing selection.
+The selection can also be extended by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd>.</p>
+</dd>
+<dt>Subtract</dt><dd><p>Removes newly selected items from the existing selection.
+Items can be removed from the selection by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> already selected items.</p>
+</dd>
+<dt>Invert</dt><dd><p>Selects non-selected items and deselects existing selection.
+The selection can also be inverted by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">I</kbd></kbd>.</p>
+</dd>
+<dt>Intersect</dt><dd><p>Selects items that intersect with existing selection.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="annotate_tool.html" class="btn btn-neutral float-left" title="Annotate Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../editors/index.html" class="btn btn-neutral float-right" title="Editors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/interface/selecting.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60interface/selecting%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Finterface/selecting.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -59,6 +59,7 @@ class RefList(defaultdict):
         self.parsed_dict = NDIC()
         self.sr_global_dict = NDIC()
         self.keep_abbr = True
+        self.local_ref_map = None
 
     def reproduce(self):
         return self.__class__()
@@ -251,8 +252,9 @@ class RefList(defaultdict):
                 ref_list.append(mm)
         return ref_list
 
-    def addUnparsedDict(self, unparsed_dict: dict):
+    def getUnparsedDict(self, unparsed_dict: dict):
         mm: MatcherRecord = None
+        unparsed = {}
         for uloc, mm in unparsed_dict.items():
             (ms, me) = mm.getMainLoc()
             mtxt = mm.getMainText()
@@ -269,9 +271,10 @@ class RefList(defaultdict):
             mm.addSubMatch(0, len(mtxt), mtxt)
             mm.type = RefType.TEXT
             entry = {uloc: mm}
-            self.update(entry)
+            unparsed.update(entry)
+        return unparsed
 
-    def parseMessage(self, is_ref_only=False, include_brackets=False):
+    def parseMessage(self, is_ref_only=False, include_brackets=False, pattern_list=None):
         # trans = self.tf.isInDict(self.msg)
         # if trans:
         #     self.setTranslation(trans, False, False)
@@ -279,15 +282,19 @@ class RefList(defaultdict):
 
         local_msg = str(self.msg)
         # cm.debugging(local_msg)
-        count = self.findPattern(df.pattern_list, local_msg, include_brackets=include_brackets)
+        actual_pattern_list = (pattern_list if pattern_list else df.pattern_list)
+        count = self.findPattern(actual_pattern_list, local_msg, include_brackets=include_brackets)
 
         df.global_ref_map = LocationObserver(self.msg)
+        self.local_ref_map = LocationObserver(self.msg)
         for loc, mm in self.items():
             df.global_ref_map.markLocAsUsed(loc)
+            self.local_ref_map.markLocAsUsed(loc)
 
         if not is_ref_only:
             unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict(removing_symbols=False)
-            self.addUnparsedDict(unparsed_dict)
+            unparsed = self.getUnparsedDict(unparsed_dict)
+            self.update(unparsed)
 
         if len(self):
             dd('Finishing parseMessage:')
@@ -318,9 +325,9 @@ class RefList(defaultdict):
             return trans, False, False
 
         txt_list = pu.findInvert(df.SPLIT_SENT_PAT, input_txt)
-        dd('TRANSLATING LIST OF SEGMENTS:')
-        pp(txt_list)
-        dd('-' * 80)
+        # dd('TRANSLATING LIST OF SEGMENTS:')
+        # pp(txt_list)
+        # dd('-' * 80)
         tran_list = []
         non_ignored_list = [(loc, mm) for (loc, mm) in txt_list.items() if not ig.isIgnored(mm.txt)]
         if not non_ignored_list:
@@ -511,7 +518,7 @@ class RefList(defaultdict):
 
             is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
 
-            is_ignore = (is_osl_attrib or is_python_format or is_function or is_math)
+            is_ignore = (is_osl_attrib or is_python_format or is_function or is_math or is_term)
             if is_ignore:
                 return
 
@@ -703,10 +710,10 @@ class RefList(defaultdict):
             starter = ("" if is_blank_quote else mm.getStarter())
             ender = ("" if is_blank_quote else mm.getEnder())
 
-            explanation_part = f'({starter}{current_untran}{ender})'
-            abbrev_part = f'{starter}{current_tran}{ender}'
-            body = f'{abbrev_part} {explanation_part}'
-            tran = f':abbr:`{body}`'
+            english_part = f'{current_untran}'
+            translation_part = f'({current_tran})'
+            body = f'{english_part} {translation_part}'
+            tran = f'{starter}:abbr:`{body}`{ender}'
             return tran
 
         msg = mm.getSubText()
@@ -724,11 +731,7 @@ class RefList(defaultdict):
             mm.setTranlation(None, is_fuzzy, is_ignore)
             return False
 
-        is_abbrev = cm.patternMatch(df.ABBREV_PATTERN_PARSER, tran)
-        if not is_abbrev:
-            tran = cm.removeOriginal(msg, tran)
-            tran = formatTran(msg, tran)
-
+        tran = formatTran(msg, tran)
         mm.setTranlation(tran, is_fuzzy, is_ignore)
         return True
 
@@ -854,7 +857,7 @@ class RefList(defaultdict):
         if not current_tran:
             return None
 
-        abbrev_mm = cm.patternMatch(df.ABBREV_PATTERN_PARSER, current_tran)
+        abbrev_mm = pu.patternMatch(df.ABBREV_PATTERN_PARSER, current_tran)
         if not abbrev_mm:
             return current_tran
 

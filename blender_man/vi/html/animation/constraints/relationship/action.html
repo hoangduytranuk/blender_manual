@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ràng Buộc Hành Động -- Action Constraint &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/constraints/relationship/action.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Ràng Buộc Cốt" href="armature.html" />
+    <link rel="prev" title="Ràng Buộc Dõi Theo -- Track To Constraint" href="../tracking/track_to.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Hoạt Họa &amp; Giàn Dựng</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../keyframes/index.html">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../armatures/index.html">Cốt -- Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lattice.html">Lattice -- Giàn Lưới</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Ràng Buộc -- Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#interface">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#motion-tracking">Giám Sát Chuyển Động -- Motion Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#transform">Transform -- Biến Hóa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#tracking">Giám Sát -- Tracking</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#relationship">Quan Hệ -- Relationship</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Ràng Buộc Hành Động -- Action Constraint</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#target">Mục Tiêu -- Target</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#action">Hành Động -- Action</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Ghi Chú -- Notes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Ràng Buộc Cốt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="child_of.html">Ràng Buộc Làm Con Cái -- Child Of Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="floor.html">Ràng Buộc Đáy -- Floor Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="follow_path.html">Ràng Buộc Đi theo Đường Dẫn -- Follow Path Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pivot.html">Ràng Buộc Điểm Tựa -- Pivot Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Ràng Buộc Co-Bọc -- Shrinkwrap Constraint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers/index.html">Các Điều Vận -- Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markers.html">Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../motion_paths.html">Đường Chuyển Động -- Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Hoạt Họa &amp; Giàn Dựng</a> &raquo;</li>
+          <li><a href="../index.html">Ràng Buộc -- Constraints</a> &raquo;</li>
+      <li>Ràng Buộc Hành Động -- Action Constraint</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="action-constraint">
+<span id="bpy-types-actionconstraint"></span><span id="index-0"></span><h1>Ràng Buộc Hành Động -- Action Constraint<a class="headerlink" href="#action-constraint" title="Permalink to this headline"></a></h1>
+<p>The <em>Action</em> constraint is powerful.
+It allows you control
+an <a class="reference internal" href="../../../editors/dope_sheet/action.html"><span class="doc">Action</span></a> using the transformations of another object.</p>
+<p>The underlying idea of the <em>Action</em> constraint is very similar to the one behind
+the <a class="reference internal" href="../../drivers/index.html"><span class="doc">Drivers</span></a>, except that the former uses a whole action
+(i.e. multiple F-curves of the same type), while the latter controls a single F-curve of their &quot;owner&quot;...</p>
+<p>Note that even if the constraint accepts the <em>Mesh</em> action type,
+only the <em>Object</em>, <em>Pose</em> and <em>Constraint</em> types are really working,
+as constraints can only affect objects' or bones' transform properties, and not meshes' shapes.
+Also note that only the object transformation (location, rotation, scale) is affected by the action,
+if the action contains keyframes for other properties they are ignored, as constraints do not influence those.</p>
+<p>As an example, let us assume you have defined an <em>Object</em> action
+(it can be assigned to any object, or even no object at all),
+and have mapped it on your owner through an <em>Action</em> constraint,
+so that moving the target in the (0.0 to 2.0)
+range along its X axis maps the action content on the owner in the (0 to 100)
+frame range. This will mean that when the target's <em>X</em> property is 0.0
+the owner will be as if in frame 0 of the linked action;
+with the target's <em>X</em> property at 1.0
+the owner will be as if in frame 50 of the linked action, etc.</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/animation_constraints_relationship_action_panel.png" src="../../../_images/animation_constraints_relationship_action_panel.png" />
+<figcaption>
+<p><span class="caption-text">Action panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p><a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Data ID</span></a> used to select the constraints target, and is not functional (red state) when it has none.
+See <a class="reference internal" href="../interface/common.html#rigging-constraints-interface-common-target"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+<dt>Thời Điểm Đánh Giá -- Evaluation Time</dt><dd><p>This property allows objects to be driven without a constraint target
+by interpolating between the <em>Action Start</em> and <em>End</em> frames.
+The relative position between the start and end frame can be controlled using the value slider.</p>
+<p>This is very helpful for more complex rigging and mechanical rigs, as it means the Action constraint
+can be controlled directly with a <a class="reference internal" href="../../drivers/index.html"><span class="doc">Driver</span></a>
+or <a class="reference internal" href="../../../files/data_blocks.html#files-data-blocks-custom-properties"><span class="std std-ref">Custom Property</span></a>.</p>
+</dd>
+<dt>Hòa Trộn -- Mix</dt><dd><p>Specifies how the keyframed transformation from the action is combined with the existing transformation.
+These modes are the same as in the <a class="reference internal" href="../transform/copy_transforms.html"><span class="doc">Copy Transforms</span></a>
+constraint.</p>
+<dl>
+<dt>Before/After Original (Full)</dt><dd><p>The keyframed transformation is added before/after the existing transformation, as if it was
+applied to an imaginary parent/child of the constraint owner. Scale is handled like in
+the most basic <a class="reference internal" href="../../armatures/bones/properties/relations.html#bpy-types-editbone-inherit-scale"><span class="std std-ref">Full Inherit Scale</span></a> mode of bones,
+so combining non-uniform scale and rotation will create shear.</p>
+</dd>
+<dt>Before/After Original (Aligned)</dt><dd><p>The keyframed transformation is added before/after the existing transformation, as if it was
+applied to an imaginary parent/child of the constraint owner. Scale is handled like in
+the <a class="reference internal" href="../../armatures/bones/properties/relations.html#bpy-types-editbone-inherit-scale"><span class="std std-ref">Aligned Inherit Scale</span></a> mode of bones to
+avoid creating shear.</p>
+<p>This is equivalent to using the <em>Split Channels</em> option, but replacing the location component with
+the result of <em>Full</em>. If only uniform scale is used, the result is identical to <em>Full</em>.</p>
+</dd>
+<dt>Before/After Original (Split Channels)</dt><dd><p>Combines location, rotation and scale components of the transformation separately, similar
+to a sequence of three <a class="reference internal" href="../transform/copy_location.html"><span class="doc">Copy Location</span></a>,
+<a class="reference internal" href="../transform/copy_rotation.html"><span class="doc">Copy Rotation</span></a> and
+<a class="reference internal" href="../transform/copy_scale.html"><span class="doc">Copy Scale</span></a> (with Offset)
+constraints bundled together in one operation; the result may be slightly different
+in case of sheared inputs.</p>
+<p>Unlike <em>Aligned</em>, in this mode location channels are simply added together, so rotation
+and scale components of the input transformations cannot affect the resulting location.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>For technical reasons modes other than <em>After Original (Full)</em> and <em>After Original (Aligned)</em> may
+not work as expected for constraints on <em>objects</em> (not bones) without a parent.</p>
+</div>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the constraint has on the object.
+See <a class="reference internal" href="../interface/common.html#bpy-types-constraint-influence"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+</dl>
+<section id="target">
+<h3>Mục Tiêu -- Target<a class="headerlink" href="#target" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Kênh -- Channel</dt><dd><p>This selector controls which transform property
+(location, rotation or scale along/around one of its axes) from the target to use as &quot;action driver&quot;.</p>
+</dd>
+<dt>Mục Tiêu -- Target</dt><dd><p>This constraint allows you to choose in which space to evaluate its target's transform properties.</p>
+</dd>
+<dt>Tối Thiểu, Tối Đa của Khoảng</dt><dd><p>The lower and upper bounds of the driving transform property value.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Unfortunately, here again we find the constraint's limitations:</p>
+<ul class="simple">
+<li><p>When using a rotation property as &quot;driver&quot;,
+these values are &quot;mapped back&quot; to the (-180.0 to 180.0) range.</p></li>
+<li><p>When using a scale property as &quot;driver&quot;, these values are limited to null or positive values.</p></li>
+</ul>
+</div>
+</dd>
+</dl>
+</section>
+<section id="action">
+<h3>Hành Động -- Action<a class="headerlink" href="#action" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Hành Động -- Action</dt><dd><p>Select the name of the action you want to use.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Even though it might not be in red state (UI refresh problems...),
+this constraint is obviously not functional when this field does not contain a valid action.</p>
+</div>
+</dd>
+<dt>Hành Động của Vật Thể -- Object Action</dt><dd><p>Bones <strong>only</strong>, when enabled,
+this option will make the constrained bone use the &quot;object&quot; part of the linked action,
+instead of the &quot;same-named pose&quot; part. This allows you to apply the action of an object to a bone.</p>
+</dd>
+<dt>Khung Hình Khởi Đầu, Kết Thúc</dt><dd><p>The starting and ending frames of the action to be mapped.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<ul class="simple">
+<li><p>These values must be strictly positive.</p></li>
+<li><p>By default, both values are set to 0, which disables the mapping
+(i.e. the owner just gets the properties defined at frame 0 of the linked action...).</p></li>
+</ul>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<section id="notes">
+<h2>Ghi Chú -- Notes<a class="headerlink" href="#notes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>When the object or bone already has Action constraints, the next constraint using
+a newly keyframed action should be added before all others in order to get
+the same final combined transformation. This fact is not affected by the Mix mode.</p></li>
+<li><p>Unlike usual, you can have a <em>Start</em> value higher than the <em>End</em> one,
+or a <em>Min</em> one higher than a <em>Max</em> one: this will reverse the mapping of the action
+(i.e. it will be &quot;played&quot; reversed...), unless you have both sets reversed, obviously!</p></li>
+<li><p>When using a <em>Constraint</em> action, it is the constraint <em>channel's names</em>
+that are used to determine to which constraints of the owner apply the action.
+E.g. if you have a constraint channel named &quot;trackto_empt1&quot;,
+its keyed <em>Influence</em> and/or <em>Head/Tail</em> values (the only ones you can key)
+will be mapped to the ones of the owner's constraint named &quot;trackto_empt1&quot;.</p></li>
+<li><p>Similarly, when using a <em>Pose</em> action
+(which is obviously only meaningful and working when constraining a bone!),
+it is the bone's name that is used to determine which bone <em>channel's names</em> from the action to use
+(e.g. if the constrained bone is named &quot;arm&quot;, it will use and only use the action's bone channel named &quot;arm&quot;...).
+Unfortunately, using a <em>Pose</em> action on a whole armature object
+(to affect all the keyed bones in the action at once) will not work...</p></li>
+<li><p>Actions can also be marked as <a class="reference internal" href="../../../glossary/index.html#term-Asset"><span class="xref std std-term">Asset</span></a>, but with certain limitations.
+For more info, see <a class="reference internal" href="../../armatures/posing/editing/pose_library.html"><span class="doc">Thư Viện Tư Thế</span></a>.</p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="peertube_wrapper" style="">
+<iframe allowfullscreen="true" src="https://video.blender.org/videos/embed/c138e7b5-34cb-49cb-af07-d5d5f27f1cfb" style="height: 315px; width: 560px">
+</iframe></div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tracking/track_to.html" class="btn btn-neutral float-left" title="Ràng Buộc Dõi Theo -- Track To Constraint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="armature.html" class="btn btn-neutral float-right" title="Ràng Buộc Cốt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/constraints/relationship/action.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/constraints/relationship/action%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fanimation/constraints/relationship/action.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

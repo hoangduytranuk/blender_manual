@@ -7,27 +7,22 @@ import sys
 import os
 import re
 
-# print("import fine so far")
-from ignore import Ignore as ig
 from common import Common as cm
 from utils import dd, pp
-from docutils import nodes
-from sphinx.util.nodes import extract_messages
 from translation_finder import TranslationFinder as tf
 from ignore import Ignore as ig
-from collections import OrderedDict, defaultdict
 import json
 from reflist import RefList
 from definition import RefType, Definitions as df
 from sphinx_intl import catalog as c
-from pyparsing import *
-from babel.messages.catalog import Message, Catalog
-import locale
 import datetime
-from time import gmtime, strftime, time
+
 from pytz import timezone
 from pprint import pprint as PP
-
+from paragraph import Paragraph as PR
+from babel.messages import Catalog, Message
+from sphinx.util.nodes import extract_messages
+from docutils import nodes
 try:
     import html
 except ImportError:
@@ -42,6 +37,143 @@ TIME_ZONE = 'Europe/London'
 
 RUNNING_APP_ENVIRON_KEY = 'EXEC_TRANSLATE_PO'
 trans_finder = tf()
+
+def writeJSONDic(dict_list=None, file_name=None):
+    try:
+        if not file_name:
+            return
+
+        if not dict_list:
+            return
+
+        with open(file_name, 'w+', newline='\n', encoding='utf8') as out_file:
+            json.dump(dict_list, out_file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
+    except Exception as e:
+        df.LOG(f'{e}; Length of read dictionary:{len(dict_list)}', error=True)
+        raise e
+
+
+def loadJSONDic(file_name=None):
+    return_dic = {}
+    try:
+        if not file_name:
+            dd(f'loadJSONDic - file_name is None.')
+            return return_dic
+
+        if not os.path.isfile(file_name):
+            dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
+            return return_dic
+
+        dic = {}
+        with open(file_name) as in_file:
+            # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
+            return_dic = json.load(in_file)
+    except Exception as e:
+        df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_name})', error=True)
+
+    return return_dic
+
+class POResultRecord(object):
+    def __init__(self, line_no, msgid, msgstr, alternative_tran=None, alternative_label=None):
+        self.line_no = line_no
+        self.msgid = msgid
+        self.msgstr = msgstr
+        self.alt_msgstr = alternative_tran
+        self.alt_lbl = (alternative_label if bool(alternative_label) else "alternative")
+
+    def __repr__(self):
+        self.msgid = ("" if not self.msgid else self.msgid)
+        self.msgstr = ("" if not self.msgstr else self.msgstr)
+        txt = f'[{self.line_no}];\nmsgid:"{self.msgid}";\nmsgstr:"{self.msgstr}"'
+        if self.alt_msgstr:
+            txt += f'\n{self.alt_lbl}:[{self.alt_msgstr}]\n\n'
+        return txt
+
+class POTaskBase(list):
+    def __init__(self,
+                 input_file=None,
+                 output_to_file=None,
+                 translation_file=None,
+                 ):
+        self.po_path = input_file
+        self.opo_path = output_to_file
+        self.tran_file = translation_file
+        self.result = []
+        self.line_count=0
+
+        self.home = os.environ['HOME']
+        self.blender_manual_path = os.path.join(self.home, 'Dev/tran/blender_docs/locale/vi/LC_MESSAGES')
+        self.blender_manual_po_path = os.path.join(self.blender_manual_path, 'blender_manual.po')
+        self.blender_manual_po_data: Catalog = None
+        self.changed = False
+
+    def outputToFile(self, path, data):
+        try:
+            writeJSONDic(data, path)
+        except Exception as e:
+            raise RuntimeError(e)
+
+    def convertDataToDict(self, data=None):
+        def sort_record(r: POResultRecord):
+            return r.line_no
+
+        result_dict={}
+        r : POResultRecord = None
+
+        working_data = (data if data else self)
+        sorted_data = list(sorted(working_data, key=sort_record, reverse=False))
+        for r in sorted_data:
+            k = r.msgid
+            v = r.msgstr
+            dict_entry={k: v}
+            result_dict.update(dict_entry)
+        return result_dict
+
+    def updateTranslation(self, msgid, msgstr, is_repeat=False):
+
+        is_data_ready = (self.blender_manual_po_data is not None)
+        if not is_data_ready:
+            self.blender_manual_po_data = c.load_po(self.blender_manual_po_path)
+
+        if is_repeat:
+            msgstr = f'{msgstr} -- {msgid}'
+
+        is_in = (msgid in self.blender_manual_po_data)
+        msg = ""
+        if is_in:
+            current_tran = self.blender_manual_po_data[msgid]
+            is_diff = (current_tran != msgstr)
+            if is_diff:
+                # self.blender_manual_po_data[msgid] = msgstr
+                msg = f'UPDATE: msgid: "{msgid}"\nmsgstr: "{current_tran}"\n'
+                msg += f"updated: {msgstr}"
+            else:
+                msg = f'CURRENT: msgid: "{msgid}"\nmsgstr: "{current_tran}"\n'
+        else:
+            msg = f'NEW: msgid: "{msgid}"\nmsgstr: "{msgstr}"\n'
+        print(msg)
+
+    def showResult(self):
+        has_records = (len(self) > 0)
+        if not has_records:
+            msg = f'NOTHING is found.'
+            print(msg)
+            return
+
+        has_output_file = bool(self.opo_path)
+        if has_output_file:
+            output_dict = self.convertDataToDict()
+            self.outputToFile(self.opo_path, output_dict)
+        else:
+            for rec in self:
+                print(rec)
+
+        if self.count_number_of_lines:
+            self.line_count = len(self)
+            msg = f'{self.line_count} records is found!'
+            print(msg)
+
+result_list = POTaskBase()
 
 def doctree_resolved(app, doctree, docname):
 
@@ -66,7 +198,7 @@ def doctree_resolved(app, doctree, docname):
         is_writing_changes = (len(new_items) > 0)
         if is_writing_changes:
             trans_finder.master_dic.update(new_items)
-            dic_file = '/Users/hoangduytran/blender_manual/test_dic.json'
+            dic_file = '/Users/hoangduytran/Dev/tran/blender_manual/test_dic.json'
             print(f'Writing changes to: {dic_file}, number of records:{len(new_items)}')
             trans_finder.writeJSONDic(dict_list=trans_finder.master_dic, file_name=dic_file)
 
@@ -182,7 +314,7 @@ def doctree_resolved(app, doctree, docname):
 
     def refToDictItems(ref_list):
         ref_dict = {}
-        ref : RefRecord = None
+        ref  = None
         interest_ref = [
             RefType.REF,
             RefType.DOC,
@@ -340,78 +472,30 @@ def doctree_resolved(app, doctree, docname):
 
     try:
 
-        is_debug = ('vr_scene_inspection' in docname)
-        if is_debug:
-            dd('DEBUG')
-
-        ex_env_key = 'EX_PO_TRANS'
-        is_ex_env_set = (ex_env_key in os.environ)
-        if not is_ex_env_set:
-            return
-        ex_env_key_value = os.environ[ex_env_key]
-        is_ex_set_true = (ex_env_key_value.lower() == 'true')
-        if not is_ex_set_true:
-            return
-
-        debug_file = cm.debug_file
-        if debug_file:
-            is_debug_file = (debug_file in docname)
-            if not is_debug_file:
-                return
-
-        build_dir = "build/rstdoc"
-        po_vi_dir = "locale/vi/LC_MESSAGES"
-
-        po_file_path = "{}.po".format(docname)
-        local_path = os.path.dirname(os.path.abspath(__file__))
-        blender_docs_path = cm.BLENDER_DOCS # os.path.dirname(local_path)
-
-        locale_vi_path = "locale/vi/LC_MESSAGES"
-
-        po_path = os.path.join(blender_docs_path, os.path.join(locale_vi_path, po_file_path))
-
-        if not os.path.isfile(po_path):
-            msg = f'po_path: {po_path} NOT FOUND!'
-            print(msg)
-            raise Exception(msg)
-            exit(0)
-
-        # #loading local po file to get translation if any
-        po_dic, current_po_cat = trans_finder.loadPOAsDic(po_path)
-        trans_finder.flatPOFile(po_path)
-
-        rst_output_location = os.path.join(blender_docs_path, build_dir)
-        output_path = os.path.join(rst_output_location, po_file_path)
-
-        local_time = timezone(TIME_ZONE)
-        time_now = local_time.localize(datetime.datetime.now())
-
-        local_locale = locale.getlocale()[0]
-        current_header = current_po_cat._get_header_comment()
-        new_po_cat = Catalog(
-            locale="vi",
-            header_comment=current_header,
-            project=current_po_cat.project,
-            version=current_po_cat.version,
-            copyright_holder=YOUR_ID,
-            creation_date=current_po_cat.creation_date,
-            revision_date=time_now,
-            last_translator=YOUR_ID,
-            language_team=YOUR_TRANSLATION_TEAM
-        )
-
-        dd("#" * 80)
-        dd("filename: {}".format(output_path))
-
-        # msgid = "Lines should be less than 120 characters long."
-        # msgstr = "Số chữ trong các dòng phải ít hơn 120 ký tự de lam gi."
-        # trans_finder.addDictEntry((msgid, msgstr), False)
-        # exit(0)
-
+        # is_debug = ('vr_scene_inspection' in docname)
+        # if is_debug:
+        #     dd('DEBUG')
+        #
+        # ex_env_key = 'EX_PO_TRANS'
+        # is_ex_env_set = (ex_env_key in os.environ)
+        # if not is_ex_env_set:
+        #     return
+        # ex_env_key_value = os.environ[ex_env_key]
+        # is_ex_set_true = (ex_env_key_value.lower() == 'true')
+        # if not is_ex_set_true:
+        #     return
+        #
+        # debug_file = cm.debug_file
+        # if debug_file:
+        #     is_debug_file = (debug_file in docname)
+        #     if not is_debug_file:
+        #         return
+        #
+        #
         for node, msg in extract_messages(doctree):
             msg = msg.strip()
-            dd("=" * 80)
-            dd("msgid:[{}]".format(msg))
+            # dd("=" * 80)
+            # dd("msgid:[{}]".format(msg))
 
             # clean up po file
 
@@ -444,51 +528,25 @@ def doctree_resolved(app, doctree, docname):
                 continue
 
             # is_added = False
-            tran, is_ignore = trans_finder.findTranslation(msg)
-            if is_ignore:
-                continue
-
-            has_translation = (tran is not None)
-            if not has_translation:
-                is_debug = ('is based on the OpenXR specification' in msg)
-                if is_debug:
-                    dd('Debug')
-
-                ref_list = RefList(msg=msg, keep_orig=is_keep_original, tf=trans_finder)
-                ref_list.parseMessage()
-                ref_list.translateRefList()
-                tran = ref_list.getTranslation()
-                # tran = tranRef(msg, is_keep_original)
-                has_translation = (tran is not None)
-                if not has_translation:
-                    tran = po_dic[msg]
+            pr = PR(msg, translation_engine=trans_finder)
+            pr.translateAsIs()
+            tran = pr.getTranslation()
 
             has_translation = (tran is not None)
             if has_translation:
-                has_month = ('Tháng ' in tran)
-                has_original = (msg.lower() in tran.lower())
-                has_link = (cm.REF_LINK.search(tran) is not None)
-                can_ignore = (has_month or has_original or has_link)
-                is_repeat = is_keep_original and not can_ignore
-                if is_repeat:
-                    print('Repeating MSG')
-                    tran = cm.matchCase(msg, tran)
-                    tran = f'{tran} -- {msg}'
-                    print(f'Repeating MSG:{tran}')
+                result_list.updateTranslation(msg, tran)
+                # has_month = ('Tháng ' in tran)
+                # has_original = (msg.lower() in tran.lower())
+                # has_link = (df.REF_LINK.search(tran) is not None)
+                # can_ignore = (has_month or has_original or has_link)
+                # is_repeat = is_keep_original and not can_ignore
+                # if is_repeat:
+                #     tran = cm.matchCase(msg, tran)
+                #     tran = f'{tran} -- {msg}'
+                #     print(f'Repeating MSG:{tran}')
+                # else:
+                #     print(f'Found translation:{tran}')
 
-            if tran is not None:
-                new_po_cat.add(msg, string=tran)
-            else:
-                new_po_cat.add(msg, string="")
-
-            print(f'msgid \"{msg}\"')
-            if tran is not None:
-                print(f'msgstr \"{tran}\"')
-            else:
-                print('msgstr \"\"')
-
-        print("Output to the path:", new_po_cat, output_path)
-        c.dump_po(output_path, new_po_cat)
         # dd('DEBUG')
     except Exception as e:
         df.LOG(f'{e}', error=True)
@@ -511,6 +569,7 @@ def builder_inited(app):
     # exit(0)
     # trans_finder.mergePODict()
     pass
+    # blender_manual_po_data = c.load_po(blender_manual_po_path)
 
 
 def env_updated(app, env):
@@ -518,96 +577,11 @@ def env_updated(app, env):
 
 
 def build_finished(app, exeption):
-    def refListGetKey(item):
-        return item[1]
-
-    def dicListGetKey(item):
-        k, v = item
-        trans, rep = v
-        return rep
-
-    # loc_dic_list={}
-    # sorted_list = sorted(trans_finder.dic_list.items(), key=refListGetKey)
-    # # pp(sorted_list)
-    # for txt, rep in sorted_list:
-    #     if ig.isIgnored(txt):
-    #         continue
-    #
-    #     #txt = txt.strip()
-    #     must_mark = False
-    #     trans = trans_finder.findTranslation(txt)
-    #     if not trans:
-    #         trans = trans_finder.findTranslationByFragment(txt)
-    #         must_mark = True
-    #
-    #     #is_same = (txt == trans)
-    #     k = txt
-    #     if (rep > 1) or must_mark:
-    #         if trans is None:
-    #             trans = ""
-    #         v = "{}#{}#".format(trans, rep)
-    #     else:
-    #         v = trans
-    #     entry={k:v}
-    #     loc_dic_list.update(entry)
-
-    # sorted_list = sorted(loc_dic_list.items(), key=dicListGetKey)
-
-    # return
-
-    # file_name = "/Users/hoangduytran/ref_dict_0001.json"
-    # dic = cm.removeLowerCaseDic(loc_dic_list)
-    # dic = trans_finder.master_dic_backup_list
-    # dic.update(trans_finder.master_dic_list)
-
-    # dic = trans_finder.dic_list
-    # has_dic = (len(dic) > 0)
-    # if not has_dic:
-    #     return
-
-    # clean_dic = trans_finder.removeIgnoredEntries(dic)
-    # dic = clean_dic
-    # pp(dic)
-    # exit(0)
-    # sorted_list = sorted(dic.items(), key=lambda x: x[1])
-
-    # dic = trans_finder.master_dic_backup_list
-    # file_name = trans_finder.master_dic_backup_file
-    # print("Writing dictionary to:", file_name)
-    # with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
-    #     json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-
-    # with open(file_name, "r") as f:
-    #     data = json.load(f)
-
-    # pp(data)
-
-    # for k, v in data.items():
-    #     is_null = (v == None)
-    #     if is_null:
-    #         entry={k:""}
-    #         print("updating entry:", entry)
-    #         data.update(entry)
-
-    # with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
-    #     json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-
-    # with open(file_name, 'w', newline='\n', encoding='utf8') as out_file:
-    #     json.dump(dic, out_file, ensure_ascii=False, sort_keys=True, indent=4, separators=(',', ': '))
-
-    # trans_finder.writeJSONDic(dic_list=sorted_list, file_name="/home/htran/20191228_dict_0001.json")
-    # pp(sorted_list)
-    # exit(0)
-    trans_finder.writeChosenDict(is_master=True)
-    trans_finder.writeChosenDict(is_master=False)
-    # trans_finder.writeBackupDict()
-    # trans_finder.writeMasterDict()
-    dd('DEBUG')
-
+    pass
 
 def setup(app):
     # app.connect('builder-inited', builder_inited)
-    app.connect('doctree-resolved', doctree_resolved)
+    # app.connect('doctree-resolved', doctree_resolved)
     # app.connect('build-finished', build_finished)
     # app.connect('env-updated', env_updated)
     # env-updated

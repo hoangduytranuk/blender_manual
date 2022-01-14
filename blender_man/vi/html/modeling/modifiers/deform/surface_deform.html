@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surface Deform Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/surface_deform.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Volume Displace Modifier" href="volume_displace.html" />
+    <link rel="prev" title="Smooth Laplacian Modifier" href="laplacian_smooth.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Armature Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cast.html">Cast Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Curve Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Hook Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Laplacian Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Lattice Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">Mesh Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Shrinkwrap Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">Simple Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Smooth Corrective Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Smooth Laplacian Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Surface Deform Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="volume_displace.html">Volume Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Wave Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Surface Deform Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="surface-deform-modifier">
+<span id="bpy-types-surfacedeformmodifier"></span><span id="index-0"></span><h1>Surface Deform Modifier<a class="headerlink" href="#surface-deform-modifier" title="Permalink to this headline"></a></h1>
+<p>The <em>Surface Deform</em> modifier allows an arbitrary mesh surface to
+control the deformation of another, essentially transferring its motion/deformation.
+One great use for this is to have a proxy mesh for cloth simulation,
+which will in turn drive the motion of your final and more detailed mesh,
+which would otherwise not be suitable for simulation.</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_surface-deform_panel.png"><img alt="../../../_images/modeling_modifiers_deform_surface-deform_panel.png" src="../../../_images/modeling_modifiers_deform_surface-deform_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Surface Deform modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p>The object to which to bind (this setting is unavailable after binding).</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Target Mesh Validity</p>
+<p>While there are no restrictions with regard to the modified mesh,
+the target object's mesh has a few constraints, which if not followed, will prevent a successful binding:</p>
+<ul class="simple">
+<li><p>It must <strong>not</strong> contain edges with more than two faces.</p></li>
+<li><p>It must <strong>not</strong> contain concave faces.</p></li>
+<li><p>It must <strong>not</strong> contain overlapping vertices (doubles).</p></li>
+<li><p>It must <strong>not</strong> contain faces with collinear edges.</p></li>
+</ul>
+</div>
+</dd>
+<dt>Interpolation Falloff</dt><dd><p>How much a vertex bound to one face of the target will be affected by the surrounding faces
+(this setting is unavailable after binding).
+This essentially controls how smooth the deformations are.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>While lower values result in smoother deformations,
+they may also introduce slight artifacts.</p>
+</div>
+</dd>
+<dt>Sức Mạnh/Cường Độ -- Strength</dt><dd><p>The overall amount of influence the modifier has on deforming the mesh.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Allows you to define the influence per vertex.</p>
+<dl>
+<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
+now represents vertices that will not be deformed by the modifier.</p>
+<p>The setting reverses the weight values of the group.</p>
+</dd>
+</dl>
+</dd>
+<dt>Sparse Bind</dt><dd><p>Only record bind data for vertices that have nonzero weights in the group at the time of bind.
+This is an optimization, but adding new vertices to the group will require a rebind.</p>
+</dd>
+<dt>Bind</dt><dd><p>Bind the current state of the modified mesh to the current state of the target mesh,
+such that any later change in the target mesh will deform the modified mesh as well.
+Note that until the bind has been executed, this modifier will have no effect at all.</p>
+</dd>
+<dt>Unbind</dt><dd><p>Once the mesh is bound, the <em>Bind</em> button changes to <em>Unbind</em>.
+Executing this frees the modified mesh from the target, and resets it to its original shape.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The meshes are bound with regard to global coordinates,
+but later transformations on the objects are ignored.
+This means that one can freely transform the target or modified object after binding,
+without affecting the modified object.
+The modified mesh will only pick up changes to the target object's mesh itself.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The further a mesh deviates from the target mesh surface,
+the more likely it is to get undesirable artifacts.
+This is an inherent characteristic of surface binding in general,
+so it is recommended to have reasonably well matching meshes, in order to get a good bind.</p>
+</div>
+</section>
+<section id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id2">
+<img alt="../../../_images/modeling_modifiers_deform_surface-deform_example.png" src="../../../_images/modeling_modifiers_deform_surface-deform_example.png" />
+<figcaption>
+<p><span class="caption-text">Cloth simulation copied to an arbitrary mesh with rings as instancing faces.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="laplacian_smooth.html" class="btn btn-neutral float-left" title="Smooth Laplacian Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="volume_displace.html" class="btn btn-neutral float-right" title="Volume Displace Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/deform/surface_deform.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/deform/surface_deform%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/modifiers/deform/surface_deform.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

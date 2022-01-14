@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mask &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/sculpt_paint/sculpting/editing/mask.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Face Sets" href="face_sets.html" />
+    <link rel="prev" title="Sculpt" href="sculpt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Sculpting &amp; Painting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../brush/index.html">Brush</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../navigation.html">Navigation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#modes">Modes</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Sculpting</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../toolbar.html">Toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tool_settings/index.html">Tool Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../adaptive.html">Adaptive Sculpting</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Editing</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="sculpt.html">Sculpt</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Mask</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#brush">Brush</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#editing">Editing</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#invert-mask">Invert Mask</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#fill-mask">Fill Mask</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#clear-mask">Clear Mask</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#box-mask">Box Mask</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#lasso-mask">Lasso Mask</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mask-filters">Mask Filters</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#expand-mask-by-topology">Expand Mask by Topology</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#expand-mask-by-normals">Expand Mask by Normals</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mask-extract">Mask Extract</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mask-slice">Mask Slice</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#dirty-mask">Dirty Mask</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#random-mask">Random Mask</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#display-settings">Display Settings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#clear-sculpt-mask-data">Clear Sculpt-Mask Data</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="face_sets.html">Face Sets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../texture_paint/index.html">Texture Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vertex_paint/index.html">Vertex Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../weight_paint/index.html">Weight Paint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Sculpting &amp; Painting</a> &raquo;</li>
+          <li><a href="../index.html">Sculpting</a> &raquo;</li>
+          <li><a href="index.html">Editing</a> &raquo;</li>
+      <li>Mask</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mask">
+<span id="bpy-ops-paint-mask"></span><span id="sculpt-mask-menu"></span><h1>Mask<a class="headerlink" href="#mask" title="Permalink to this headline"></a></h1>
+<p>Masking to control which areas of the mesh are influenced by sculpting.</p>
+<figure class="align-default" id="id16">
+<img alt="../../../_images/sculpt-paint_sculpting_editing_mask_example.jpg" src="../../../_images/sculpt-paint_sculpting_editing_mask_example.jpg" />
+<figcaption>
+<p><span class="caption-text">Black part is masked.</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="brush">
+<h2>Brush<a class="headerlink" href="#brush" title="Permalink to this headline"></a></h2>
+<p>To edit the mask, select the <em>Mask Brush</em> from the Brush panel.</p>
+</section>
+<section id="editing">
+<h2>Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask</span></p>
+</dd>
+</dl>
+</div>
+<p>Masks can be edited across the entire model.
+Using <kbd class="kbd docutils literal notranslate">A</kbd> opens a pie menu to choose different operations.</p>
+<section id="invert-mask">
+<h3>Invert Mask<a class="headerlink" href="#invert-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Invert Mask</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">I</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Inverts an existing mask.</p>
+</section>
+<section id="fill-mask">
+<span id="bpy-ops-paint-mask-flood-fill"></span><h3>Fill Mask<a class="headerlink" href="#fill-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Invert Mask</span></p>
+</dd>
+</dl>
+</div>
+<p>Fills the whole mask with a value of 1.</p>
+</section>
+<section id="clear-mask">
+<h3>Clear Mask<a class="headerlink" href="#clear-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Invert Mask</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">M</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Fills the mask with a value of 0. To completely remove the mask data, see <a class="reference internal" href="#clear-sculpt-mask-data">Clear Sculpt-Mask Data</a>.</p>
+</section>
+<section id="box-mask">
+<span id="bpy-ops-paint-mask-box-gesture"></span><h3>Box Mask<a class="headerlink" href="#box-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Box Mask</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">B</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Works like the <em>Box Select</em> tool, it creates a rectangular mask region.
+Hold <kbd class="kbd docutils literal notranslate">Shift</kbd> to clear the mask of the selected region.</p>
+</section>
+<section id="lasso-mask">
+<span id="bpy-ops-paint-mask-lasso-gesture"></span><h3>Lasso Mask<a class="headerlink" href="#lasso-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Lasso Mask</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Can be used to create a free-form mask, similar to the <em>Lasso Select</em> tool.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To clear the mask of areas with the <em>Lasso Mask</em> tool, first invert the mask,
+apply the <em>Lasso Mask</em>, and then invert the mask back.</p>
+</div>
+</section>
+<section id="mask-filters">
+<span id="bpy-ops-sculpt-mask-filter"></span><h3>Mask Filters<a class="headerlink" href="#mask-filters" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Mask Filters</span></p>
+</dd>
+</dl>
+</div>
+<p>Mask filters are operations that are applied to the whole paint mask.</p>
+<dl class="simple">
+<dt>Type</dt><dd><dl class="simple">
+<dt>Smooth/Sharpen Mask</dt><dd><p>Changes the crispness of the mask edge.</p>
+</dd>
+<dt>Grow/Shrink Mask</dt><dd><p>Changes the size of the mask.</p>
+</dd>
+<dt>Increase/Decrease Contrast</dt><dd><p>Changes the contrast of the mask.</p>
+</dd>
+</dl>
+</dd>
+<dt>Iterations</dt><dd><p>The number of times that the filter is going to be applied.</p>
+</dd>
+<dt>Auto Iteration Count</dt><dd><p>Use an automatic number of iterations based on the number of vertices of the sculpt.</p>
+</dd>
+</dl>
+</section>
+<section id="expand-mask-by-topology">
+<span id="bpy-ops-sculpt-expand"></span><span id="bpy-ops-sculpt-mask-expand"></span><h3>Expand Mask by Topology<a class="headerlink" href="#expand-mask-by-topology" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id8">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Expand Mask by Topology</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">A</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Creates a mask radiating outwards from the active vertex in a uniform manner.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This operator is meant to be used interactively through the shortcut.</p>
+</div>
+<p class="rubric">Shortcuts</p>
+<dl class="field-list simple">
+<dt class="field-odd">Invert</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">F</kbd>
+Flips between expanding a positive mask (value of one) or a negative mask (value of zero).
+In the case of face sets, this option flips between including areas inside the masked area
+or areas outside the masked area.</p>
+</dd>
+<dt class="field-even">Toggle Preserve State</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">E</kbd>
+Accumulates the new mask on top of the previous one instead of replacing it.
+For Face Sets, this creates Face Sets boundaries instead of replacing the existing Face Set.</p>
+</dd>
+<dt class="field-odd">Toggle Gradient</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">G</kbd>
+Enables linear gradient, creates a linear gradient of values from the origin to the current active vertex.</p>
+</dd>
+<dt class="field-even">Geodesic Recursive Step</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">R</kbd>
+Generate a new <a class="reference internal" href="../../../glossary/index.html#term-Geodesic"><span class="xref std std-term">Geodesic</span></a> falloff from the boundary of the enabled vertices of the current falloff.</p>
+</dd>
+<dt class="field-odd">Topology Recursive Step</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd>
+Generate a new topology flood fill falloff from the boundary of the enabled vertices of the current falloff.</p>
+</dd>
+<dt class="field-even">Move Origin</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">Spacebar</kbd>
+Moves the initial vertex used for calculating the falloff.</p>
+</dd>
+<dt class="field-odd">Geodesic Falloff</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">1</kbd>
+Uses a falloff based on the <a class="reference internal" href="../../../glossary/index.html#term-Geodesic"><span class="xref std std-term">Geodesic</span></a> distances from the edge boundary to the active vertex.</p>
+</dd>
+<dt class="field-even">Topology Falloff</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">2</kbd>
+Uses a falloff based on a flood fill using edges.</p>
+</dd>
+<dt class="field-odd">Diagonals Falloff</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">3</kbd>
+Uses a falloff based on a flood fill using polygon diagonals and edges.</p>
+</dd>
+<dt class="field-even">Spherical Falloff</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">4</kbd>
+Uses a falloff based on the Euclidean distances from the edge boundary to the active vertex.</p>
+</dd>
+<dt class="field-odd">Snap Expanded to Face Sets</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Ctrl</kbd>
+Isolates the expanded region to the boundary of the face set under the cursor.</p>
+</dd>
+<dt class="field-even">Loop Count Increase</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">W</kbd>
+Increase the number of loops or iterations the operator is run;
+using four loops will split the mask into four parts.</p>
+</dd>
+<dt class="field-odd">Loop Count Decrease</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Q</kbd>
+Decrease the number of loops or iterations the operator is run;
+using four loops will split the mask into four parts.</p>
+</dd>
+<dt class="field-even">Toggle Brush Gradient</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">B</kbd>
+Similar to linear gradient but uses the current brush <a class="reference internal" href="../../brush/falloff.html"><span class="doc">Falloff</span></a>
+to define the shape of the falloff.</p>
+</dd>
+<dt class="field-odd">Texture Distortion Increase</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Y</kbd>
+Increases the falloff distance when using a texture to distort the mask shape.</p>
+</dd>
+<dt class="field-even">Texture Distortion Decrease</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">T</kbd>
+Decreases the falloff distance when using a texture to distort the mask shape.</p>
+</dd>
+</dl>
+<section id="usage">
+<h4>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h4>
+<p class="rubric">Textures</p>
+<p>Textures can be used to affect the “strength” of the mask.
+This feature can be combined with loops and recursion to create really unique looking masks.
+To enable textures, you first need to create/select a texture to use,
+this is done by in the Properties editor’s <a class="reference internal" href="../../../render/materials/legacy_textures/index.html"><span class="doc">Texture Properties</span></a>.
+Next select the texture in the <a class="reference internal" href="../../brush/texture.html"><span class="doc">Texture</span></a> Brush Settings,
+while there <strong>make sure</strong> to enable <em>3D</em> <a class="reference internal" href="../../brush/texture.html#bpy-types-brushtextureslot-map-mode"><span class="std std-ref">Mapping</span></a>.
+Now, you can use <kbd class="kbd docutils literal notranslate">Y</kbd> and <kbd class="kbd docutils literal notranslate">T</kbd> to increase or decrease the affect the texture has on the edge of the mask.</p>
+</section>
+</section>
+<section id="expand-mask-by-normals">
+<h3>Expand Mask by Normals<a class="headerlink" href="#expand-mask-by-normals" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id9">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Expand Mask by Normals</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">A</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Creates a mask radiating outwards from the active vertex while following the curvature of the mesh.
+This operator uses the same internal operator as <a class="reference internal" href="#bpy-ops-sculpt-expand"><span class="std std-ref">Expand Mask by Topology</span></a>
+meaning all the shortcuts and functionality works the same as that tool.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This operator is meant to be used interactively through the shortcut.</p>
+</div>
+</section>
+<section id="mask-extract">
+<span id="bpy-ops-mesh-paint-mask-extract"></span><h3>Mask Extract<a class="headerlink" href="#mask-extract" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id10">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Mask Extract</span></p>
+</dd>
+</dl>
+</div>
+<p>Creates a duplicate mesh object based on masked geometry.</p>
+<dl class="simple">
+<dt>Threshold</dt><dd><p>Minimum mask value to consider the vertex valid to extract a face from the original mesh.</p>
+</dd>
+<dt>Add Boundary Loop</dt><dd><p>Creates and extra boundary loop on the edges of the geometry,
+making it ready for adding a Subdivision Surface modifier later.</p>
+</dd>
+<dt>Smooth Iterations</dt><dd><p>Smooth iterations applied to the extracted mesh.</p>
+</dd>
+<dt>Project to Sculpt</dt><dd><p>Project the extracted mesh on to the original sculpt object.</p>
+</dd>
+<dt>Extract as Solid</dt><dd><p>Adds a <a class="reference internal" href="../../../modeling/modifiers/generate/solidify.html"><span class="doc">Solidify Modifier</span></a> to the newly created mesh object.</p>
+</dd>
+</dl>
+</section>
+<section id="mask-slice">
+<span id="bpy-ops-mesh-paint-mask-slice"></span><h3>Mask Slice<a class="headerlink" href="#mask-slice" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id11">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Mask Slice</span></p>
+</dd>
+</dl>
+</div>
+<p>Removes the masked vertices from the mesh.</p>
+<dl class="simple">
+<dt>Threshold</dt><dd><p>Minimum mask value to consider the vertex valid to extract a face from the original mesh.</p>
+</dd>
+<dt>Fill Holes</dt><dd><p>Fills concave holes with geometry that might have resulted from the <em>Mask Slice</em> operation.</p>
+</dd>
+<dt>Slice to New Object</dt><dd><p>Create a new object from the masked geometry.</p>
+</dd>
+</dl>
+</section>
+<section id="dirty-mask">
+<span id="bpy-ops-sculpt-dirty-mask"></span><h3>Dirty Mask<a class="headerlink" href="#dirty-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id12">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Dirty Mask</span></p>
+</dd>
+</dl>
+</div>
+<p>Generates a mask based on the geometry cavity and pointiness.</p>
+</section>
+<section id="random-mask">
+<span id="bpy-ops-sculpt-mask-init"></span><h3>Random Mask<a class="headerlink" href="#random-mask" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id13">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mask ‣ Random Mask</span></p>
+</dd>
+</dl>
+</div>
+<p>Generates a mask with random values for the entire object based on different mesh data.</p>
+<dl class="simple">
+<dt>Per Vertex</dt><dd><p>Assigns a random mask value for each vertex.</p>
+</dd>
+<dt>Per Face Set</dt><dd><p>Assigns a random mask value for each <a class="reference internal" href="face_sets.html"><span class="doc">Face Set</span></a>.</p>
+</dd>
+<dt>Per Loose Mask</dt><dd><p>Assigns a random mask value for each disjoint part of the mesh.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="display-settings">
+<span id="bpy-types-view3doverlay-sculpt-mode-mask-opacity"></span><span id="bpy-types-sculpt-show-mask"></span><h2>Display Settings<a class="headerlink" href="#display-settings" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id14">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Sculpt Mode</p>
+</dd>
+<dt class="field-even">Popover</dt>
+<dd class="field-even"><p><span class="menuselection">Viewport Overlays – Sculpt ‣ Mask</span></p>
+</dd>
+</dl>
+</div>
+<p>The mask display can be toggled as a <a class="reference internal" href="../../../editors/3dview/display/overlays.html"><span class="doc">viewport overlay</span></a>.
+In the overlay popover, the opacity of the mask overlay can be adjusted to make it more or less visible on the mesh.</p>
+</section>
+<section id="clear-sculpt-mask-data">
+<span id="sculpt-mask-clear-data"></span><h2>Clear Sculpt-Mask Data<a class="headerlink" href="#clear-sculpt-mask-data" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id15">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object/Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Properties ‣ Object Data ‣ Geometry Data ‣ Clear Sculpt-Mask Data</span></p>
+</dd>
+</dl>
+</div>
+<p>Completely frees the mask data layer from the mesh. While not a huge benefit,
+this can speed-up sculpting if the mask is no longer being used.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sculpt.html" class="btn btn-neutral float-left" title="Sculpt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="face_sets.html" class="btn btn-neutral float-right" title="Face Sets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/sculpt_paint/sculpting/editing/mask.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60sculpt_paint/sculpting/editing/mask%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fsculpt_paint/sculpting/editing/mask.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

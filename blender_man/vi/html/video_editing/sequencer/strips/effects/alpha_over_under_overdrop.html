@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alpha Over, Under &amp; Over Drop Strips &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/video_editing/sequencer/strips/effects/alpha_over_under_overdrop.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../../copyright.html" />
+    <link rel="next" title="Color Mix Strip" href="color_mix.html" />
+    <link rel="prev" title="Multiply Strip" href="multiply.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Video Editing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Bộ Phối Hình -- Sequencer</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../toolbar/index.html">Thanh Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../navigating.html">Navigating</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Strips</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#types">Types</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../scene.html">Scene Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../clip.html">Clip Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../mask.html">Mask Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../movie.html">Movie Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../sound.html">Sound Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../image.html">Image/Sequence Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../color.html">Color Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../text.html">Text Strip</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../adjustment.html">Adjustment Layer Strip</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="index.html">Effect Strips</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="add.html">Add Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="subtract.html">Subtract Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="multiply.html">Multiply Strip</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Alpha Over, Under &amp; Over Drop Strips</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#alpha-over">Alpha Over</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#alpha-under">Alpha Under</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#over-drop">Over Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="color_mix.html">Color Mix Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="multicam.html">Multicam Selector Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="transform.html">Transform Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="speed_control.html">Speed Control Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="glow.html">Glow Strip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="blur.html">Gaussian Blur Strip</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../transitions/index.html">Transitions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../editing.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../meta.html">Meta Strips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sidebar/index.html">Sidebar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../preview/index.html">Duyệt Thảo -- Preview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Video Editing</a> &raquo;</li>
+          <li><a href="../../index.html">Bộ Phối Hình -- Sequencer</a> &raquo;</li>
+          <li><a href="../index.html">Strips</a> &raquo;</li>
+          <li><a href="index.html">Effect Strips</a> &raquo;</li>
+      <li>Alpha Over, Under &amp; Over Drop Strips</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="alpha-over-under-over-drop-strips">
+<h1>Alpha Over, Under &amp; Over Drop Strips<a class="headerlink" href="#alpha-over-under-over-drop-strips" title="Permalink to this headline"></a></h1>
+<p>Using the alpha (transparency channel),
+this effect composites a result based on transparent areas of the dominant image.
+If you use a Scene strip, the areas of the image where there is not anything solid are transparent;
+they have an alpha value of 0. If you use a Movie strip, that movie has an alpha value of 1 (completely opaque).</p>
+<p>So, you can use the <em>Alpha Over</em> / <em>Alpha Under</em> effect to composite the CGI Scene on top of your movie.
+The result is your model doing whatever as if it was part of the movie.
+The <span class="menuselection">Adjust ‣ Compositing ‣ Opacity</span> controls how much
+the foreground is mixed over the background, fading in the foreground on top of the background.
+The colors of transparent foreground image areas are ignored and do not change the color of the background.</p>
+<section id="alpha-over">
+<span id="bpy-types-alphaoversequence"></span><h2>Alpha Over<a class="headerlink" href="#alpha-over" title="Permalink to this headline"></a></h2>
+<p>With <em>Alpha Over</em>, the strips are layered up in the order selected; the first strip selected is the background,
+and the second one goes <em>over</em> the first one selected.
+The <em>Opacity</em> controls the transparency of the <em>foreground</em>, i.e. <em>Opacity</em> of 0.0;
+will only show the background, and an <em>Opacity</em> of 1.0 will completely override the background with the foreground
+(except in the transparent areas of this one, of course!)</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>By clicking the <em>Premultiply Alpha</em> button in the Sidebar of the foreground strip,
+the alpha values of the two strips are not multiplied or added together.
+Use this effect when adding a foreground strip that has a variable alpha channel
+(some opaque areas, some transparent, some in between) over a strip that has a flat opaque
+(alpha=1.0 or greater) channel. If you notice a glow around your foreground objects,
+or strange transparent areas of your foreground object when using <em>Alpha Over</em>,
+enable <em>Premultiply</em>.</p>
+</div>
+</section>
+<section id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../../_images/video-editing_sequencer_strips_effects_alpha-over-under-overdrop_example.png" src="../../../../_images/video-editing_sequencer_strips_effects_alpha-over-under-overdrop_example.png" />
+<figcaption>
+<p><span class="caption-text">Alpha Over Effect.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="alpha-under">
+<span id="bpy-types-alphaundersequence"></span><h2>Alpha Under<a class="headerlink" href="#alpha-under" title="Permalink to this headline"></a></h2>
+<p>With <em>Alpha Under</em>, this is the contrary:
+The first strip selected is the foreground, and the second one, the background.
+Moreover, the <em>Opacity</em> controls the transparency of the <em>background</em>, i.e. an <em>Opacity</em> of 0.0;
+will only show the foreground (the background is completely transparent),
+and an <em>Opacity</em> of 1.0 will give the same results as with <em>Alpha Over</em>.</p>
+</section>
+<section id="over-drop">
+<span id="bpy-types-overdropsequence"></span><h2>Over Drop<a class="headerlink" href="#over-drop" title="Permalink to this headline"></a></h2>
+<p><em>Over Drop</em> is between the two others: as with <em>Alpha Under</em>,
+the first selected strip will be the foreground, but as with <em>Alpha Over</em>,
+the <em>Opacity</em> controls the transparency of this foreground.</p>
+<p>The <em>Over Drop</em> effect is much like the Cross,
+but puts preference to the top or second image,
+giving more of a gradual overlay effect than a blend like the Cross does. Of course,
+all of the Alpha effects respect the alpha (transparency) channel, whereas Cross does not.</p>
+<p>The degree of Alpha applied, and thus color mixing, can be controlled by an F-curve.
+Creating a Sine wave could have the effect of the foreground fading in and out.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multiply.html" class="btn btn-neutral float-left" title="Multiply Strip" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="color_mix.html" class="btn btn-neutral float-right" title="Color Mix Strip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/video_editing/sequencer/strips/effects/alpha_over_under_overdrop.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60video_editing/sequencer/strips/effects/alpha_over_under_overdrop%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fvideo_editing/sequencer/strips/effects/alpha_over_under_overdrop.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

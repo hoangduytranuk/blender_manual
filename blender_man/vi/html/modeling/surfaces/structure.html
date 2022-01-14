@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cấu Trúc -- Structure &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/surfaces/structure.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Primitives" href="primitives.html" />
+    <link rel="prev" title="Thanh Công Cụ" href="toolbar/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Curves</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Bề Mặt -- Surfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="toolbar/index.html">Thanh Công Cụ</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cấu Trúc -- Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#control-points-rows-and-grid">Control Points, Rows and Grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#weight">Trọng Lượng -- Weight</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#preset-weights">Preset Weights</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Modeling</a> &raquo;</li>
+          <li><a href="index.html">Bề Mặt -- Surfaces</a> &raquo;</li>
+      <li>Cấu Trúc -- Structure</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="structure">
+<h1>Cấu Trúc -- Structure<a class="headerlink" href="#structure" title="Permalink to this headline"></a></h1>
+<p>Many of the concepts from <a class="reference internal" href="../curves/introduction.html"><span class="doc">curves</span></a>,
+especially <a class="reference internal" href="../curves/structure.html#curve-nurbs"><span class="std std-ref">NURBS</span></a> ones,
+carry directly over to NURBS surfaces,
+such as control points, <em>Order</em>, <em>Weight</em>, <em>Resolution</em>, etc.
+Here we will just talk about the differences.</p>
+<p>It is very important to understand the difference between NURBS curves and NURBS surfaces:
+the first one has one dimension, the latter has two.
+Blender internally treats NURBS surfaces and NURBS curves completely differently. There are
+several attributes that separate them but the most important is that a NURBS curve has
+a single interpolation axis (U) and a NURBS surface has two interpolation axes (U and V).</p>
+<p>However, you can have &quot;2D&quot; surfaces made of curves
+(using the <a class="reference internal" href="../curves/properties/geometry.html"><span class="doc">extrusion tools</span></a>,
+or, to a lesser extent, the filling of closed 2D curves). And you can have &quot;1D&quot; curves made of surfaces,
+like a NURBS surface with only one row (either in U or V direction) of control points produces only a curve...</p>
+<p>Visually you can tell which is which by entering Edit Mode and looking at the 3D Viewport header:
+either the header shows <em>Surface</em> or <em>Curve</em> as one of the menu choices. Also,
+you can <a class="reference internal" href="../curves/properties/geometry.html"><span class="doc">extrude</span></a> a whole NURBS surface curve to create a surface,
+but you cannot with a simple NURBS curve.</p>
+<section id="control-points-rows-and-grid">
+<span id="modeling-surfaces-rows-grids"></span><h2>Control Points, Rows and Grid<a class="headerlink" href="#control-points-rows-and-grid" title="Permalink to this headline"></a></h2>
+<p>Control points for NURBS surfaces are the same as for NURBS curves. However,
+their layout is quite constraining. The concept of &quot;segment&quot; disappears,
+replaced by &quot;rows&quot; and the overall &quot;grid&quot;.</p>
+<p>A &quot;row&quot; is a set of control points forming one &quot;line&quot; in one interpolation direction
+(a bit similar to <a class="reference internal" href="../meshes/structure.html#modeling-mesh-structure-edge-loops"><span class="std std-ref">edge loops</span></a> for meshes).
+So you have &quot;U rows&quot; and &quot;V rows&quot; in a NURBS surface.
+The key point is that <em>all</em> rows of a given type (U or V) have the <em>same</em> number of control points.
+Each control point belongs to exactly one U row and one V row.</p>
+<p>All this forms a &quot;grid&quot;, or &quot;cage&quot;, the shape of which controls the shape of the NURBS surface.
+A bit like a <a class="reference internal" href="../../animation/lattice.html"><span class="doc">lattice</span></a>...</p>
+<p>This is very important to grasp: you cannot add a single control point to a NURBS surface;
+you have to add a whole U or V row at once
+(in practice, you will usually use the <em>Extrude</em> tool, or perhaps the <em>Duplicate</em> one, to add those...),
+containing exactly the same number of points as the others. This also means that you will only
+be able to &quot;merge&quot; different pieces of surfaces if at least one of their rows matches together.</p>
+</section>
+<section id="weight">
+<span id="modeling-surfaces-weight"></span><h2>Trọng Lượng -- Weight<a class="headerlink" href="#weight" title="Permalink to this headline"></a></h2>
+<p>Similar to <a class="reference internal" href="../curves/structure.html#curve-nurbs"><span class="std std-ref">NURBS Splines</span></a> NURBS Surface control points have a weight property.
+This weight property controls how much influence the control point has on the surface.
+This weight should not be confused with the <a class="reference internal" href="editing/transform_panel.html#surface-goal-weight"><span class="std std-ref">Goal Weight</span></a>,
+which is used only for soft body simulations.
+The NURBS control point weight can be adjusted in the <em>W</em> number field of
+the <a class="reference internal" href="../curves/editing/transform_panel.html"><span class="doc">Transform panel</span></a>.</p>
+<p>In Fig. <a class="reference internal" href="#fig-surface-intro-weight"><span class="std std-ref">One control point with a weight of 5.</span></a> a single control point, labeled &quot;C&quot;,
+has had its <em>Weight</em> set to 5.0 while all others are at their default of 1.0.
+As you can see, that control point <em>pulls</em> the surface towards it.</p>
+<figure class="align-default" id="id1">
+<span id="fig-surface-intro-weight"></span><img alt="../../_images/modeling_surfaces_structure_weight.png" src="../../_images/modeling_surfaces_structure_weight.png" />
+<figcaption>
+<p><span class="caption-text">One control point with a weight of 5.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If all the control points have the same <em>Weight</em> then each effectively cancels each other out.
+It is the difference in the weights that cause the surface to move
+towards or away from a control point.</p>
+</div>
+<section id="preset-weights">
+<h3>Preset Weights<a class="headerlink" href="#preset-weights" title="Permalink to this headline"></a></h3>
+<p>NURBS can create pure shapes such as circles, cylinders, and spheres
+(note that a Bézier circle is not a pure circle). To create pure circles, spheres,
+or cylinders, you must set to specific values the weights of the control points.
+This is not intuitive, and you should read more on NURBS before trying this.</p>
+<p>To create a sphere with 2D surfaces, its the same principle as with a 2D circle.
+You will note that the four different weights needed for creating a sphere
+(1.0, 0.707 = sqrt(0.5), 0.354 = sqrt(2)/4, and 0.25).</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/modeling_surfaces_structure_weight-sphere.png" src="../../_images/modeling_surfaces_structure_weight-sphere.png" />
+<figcaption>
+<p><span class="caption-text">A sphere surface.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="toolbar/index.html" class="btn btn-neutral float-left" title="Thanh Công Cụ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="primitives.html" class="btn btn-neutral float-right" title="Primitives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/surfaces/structure.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/surfaces/structure%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/surfaces/structure.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

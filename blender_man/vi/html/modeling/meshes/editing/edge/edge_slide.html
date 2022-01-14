@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edge Slide &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/edge_slide.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../../copyright.html" />
+    <link rel="next" title="Offset Edge Slide" href="offset_edge_slide.html" />
+    <link rel="prev" title="Rotate Edge" href="rotate_edge.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới -- Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Công Cụ -- Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Biên Soạn -- Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh/index.html">Mesh Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vertex/index.html">Vertex Tools</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Edge Tools</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="extrude_edges.html">Extrude Edges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="bevel.html">Bevel Edges</a></li>
+<li class="toctree-l5"><a class="reference internal" href="bridge_edge_loops.html">Bridge Edge Loops</a></li>
+<li class="toctree-l5"><a class="reference internal" href="screw.html">Screw</a></li>
+<li class="toctree-l5"><a class="reference internal" href="subdivide.html">Phân Hóa -- Subdivide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="subdivide_edge_ring.html">Subdivide Edge-Ring</a></li>
+<li class="toctree-l5"><a class="reference internal" href="unsubdivide.html">Un-Subdivide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rotate_edge.html">Rotate Edge</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Edge Slide</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#usage">Sử Dụng -- Usage</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#even-mode">Even Mode</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#limitations-workarounds">Limitations &amp; Workarounds</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="offset_edge_slide.html">Offset Edge Slide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="loopcut_slide.html">Loop Cut and Slide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="edge_data.html">Edge Data</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../face/index.html">Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv.html">UV Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">Các UV -- UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
+          <li><a href="../index.html">Biên Soạn -- Editing</a> &raquo;</li>
+          <li><a href="index.html">Edge Tools</a> &raquo;</li>
+      <li>Edge Slide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="edge-slide">
+<span id="tool-mesh-edge-slide"></span><span id="modeling-meshes-editing-edge-slide"></span><span id="bpy-ops-transform-edge-slide"></span><h1>Edge Slide<a class="headerlink" href="#edge-slide" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Edge ‣ Edge Slide</span></p>
+</dd>
+</dl>
+</div>
+<p>Slides one or more edges across adjacent faces with a few restrictions involving the selection
+of edges (i.e. the selection <em>must</em> define a valid loop, see below).</p>
+<dl class="simple">
+<dt>Even <kbd class="kbd docutils literal notranslate">E</kbd></dt><dd><p>Forces the edge loop to match the shape of the adjacent edge loop.
+You can flip to the opposite vertex using <kbd class="kbd docutils literal notranslate">F</kbd>. Use <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Wheel</kbd></kbd> to change the control edge.</p>
+</dd>
+<dt>Flipped <kbd class="kbd docutils literal notranslate">F</kbd></dt><dd><p>When Even mode is active, this flips between the two adjacent edge loops the active edge loop will match.</p>
+</dd>
+<dt>Clamp <kbd class="kbd docutils literal notranslate">Alt</kbd> or <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Toggle clamping the slide within the edge extents.</p>
+</dd>
+<dt>Factor</dt><dd><p>Determines the amount of slide performed.
+Negative values correspond to slides toward one face, while positive ones, refer to the other one.
+It is also displayed in the 3D Viewport footer.</p>
+</dd>
+<dt>Mirror Editing</dt><dd><p>Lets you propagate the operation to the symmetrical elements of the mesh (if present, in local X direction).</p>
+</dd>
+<dt>Correct UVs</dt><dd><p>Corrects the corresponding UV coordinates, if these exist, to avoid image distortions.</p>
+</dd>
+</dl>
+<section id="usage">
+<h2>Sử Dụng -- Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>By default, the position of vertices on the edge loop move as a percentage of the distance
+between their original position and the adjacent edge loop, regardless of the edges' lengths.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edge_edge-slide_before.png"><img alt="../../../../_images/modeling_meshes_editing_edge_edge-slide_before.png" src="../../../../_images/modeling_meshes_editing_edge_edge-slide_before.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Selected edge loop.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edge_edge-slide_after.png"><img alt="../../../../_images/modeling_meshes_editing_edge_edge-slide_after.png" src="../../../../_images/modeling_meshes_editing_edge_edge-slide_after.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Repositioned edge loop.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="even-mode">
+<h3>Even Mode<a class="headerlink" href="#even-mode" title="Permalink to this headline"></a></h3>
+<p><em>Even</em> mode keeps the shape of the selected edge loop the same as one of the edge loops adjacent to it,
+rather than sliding a percentage along each perpendicular edge.</p>
+<p>In <em>Even</em> mode, the tool shows the position along the length of the currently selected edge
+which is marked in yellow, from the vertex that has an enlarged red marker.
+Movement of the sliding edge loop is restricted to this length. As you move the mouse
+the length indicator in the header changes showing where along the length of the edge you are.</p>
+<p>To change the control edge that determines the position of the edge loop,
+use the <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Wheel</kbd></kbd> to scroll to a different edge.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edge_edge-slide_even.png"><img alt="../../../../_images/modeling_meshes_editing_edge_edge-slide_even.png" src="../../../../_images/modeling_meshes_editing_edge_edge-slide_even.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Even Mode enabled.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_edge_edge-slide_even-flip.png"><img alt="../../../../_images/modeling_meshes_editing_edge_edge-slide_even-flip.png" src="../../../../_images/modeling_meshes_editing_edge_edge-slide_even-flip.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Even Mode with Flip enabled.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Moving the mouse moves the selected edge loop towards or away from the start vertex,
+but the loop line will only move as far as the length of the currently selected edge,
+conforming to the shape of one of the bounding edge loops.</p>
+</section>
+<section id="limitations-workarounds">
+<h3>Limitations &amp; Workarounds<a class="headerlink" href="#limitations-workarounds" title="Permalink to this headline"></a></h3>
+<p>There are restrictions on the type of edge selections that can be operated upon.
+Invalid selections are:</p>
+<dl class="simple">
+<dt>Loop Crosses Itself</dt><dd><p>This means that the tool could not find any suitable faces that were adjacent to the selected edge(s).
+An example that shows this is selecting two edges that share the same face.
+A face cannot be adjacent to itself.</p>
+</dd>
+<dt>Multiple Edge Loops</dt><dd><p>The selected edges are not in the same edge loop, which means they do not have a common edge.
+You can minimize this error by always selecting edges end-to-end or in a &quot;chain&quot;.
+If you select multiple edges just make sure they are connected.
+This will decrease the possibility of getting looping errors.</p>
+</dd>
+<dt>Border Edges</dt><dd><p>When a single edge was selected in a single-sided object.
+An edge loop cannot be found because there is only one face.
+Remember, edge loops are loops that span two or more faces.</p>
+</dd>
+</dl>
+<p>A general rule of thumb is that if multiple edges are selected they should be connected end-to-end
+such that they form a continuous chain. This is <em>literally</em> a general rule because you
+can still select edges in a chain that are invalid because some of the edges in the chain are
+in different edge loops.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rotate_edge.html" class="btn btn-neutral float-left" title="Rotate Edge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="offset_edge_slide.html" class="btn btn-neutral float-right" title="Offset Edge Slide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/edge/edge_slide.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/editing/edge/edge_slide%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/meshes/editing/edge/edge_slide.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link &amp; Append &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/linked_libraries/link_append.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Proxies" href="library_proxies.html" />
+    <link rel="prev" title="Linked Libraries" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Assets, Files, &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blend/index.html">Blender File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Data-Blocks</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Linked Libraries</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Link &amp; Append</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#link">Kết Nối -- Link</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#append">Bổ Sung -- Append</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id3">Tùy Chọn -- Options</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#library-reload-relocate">Library Reload &amp; Relocate</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#broken-library">Broken Library</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#make-local">Make Local</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id6">Tùy Chọn -- Options</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#known-limitations">Những Hạn Chế Từng Biết Đến -- Known Limitations</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#circular-dependencies">Circular Dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#object-rigid-body-constraints">Object Rigid Body Constraints</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#compression-memory-use">Compression &amp; Memory Use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_proxies.html">Proxies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_overrides.html">Library Overrides</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../asset_libraries/index.html">Asset Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../media/index.html">Media Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../import_export.html">Importing &amp; Exporting Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Assets, Files, &amp; Data System</a> &raquo;</li>
+          <li><a href="index.html">Linked Libraries</a> &raquo;</li>
+      <li>Link &amp; Append</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="link-append">
+<h1>Link &amp; Append<a class="headerlink" href="#link-append" title="Permalink to this headline"></a></h1>
+<p>These functions help you reuse materials, objects and other <a class="reference internal" href="../data_blocks.html"><span class="doc">data-blocks</span></a>
+loaded from another blend-file.
+You can build libraries of common content and share them across multiple referencing files.</p>
+<p>Newly added collections types are available in <span class="menuselection">Add ‣ Collection Instance</span> in the 3D Viewport.</p>
+<p>Look in the <em>Outliner</em>, with display mode set to <em>Blender File</em>, to see all your linked and appended data-blocks.</p>
+<section id="link">
+<span id="bpy-ops-wm-link"></span><h2>Kết Nối -- Link<a class="headerlink" href="#link" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Topbar</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">File ‣ Link</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Link</em> creates a reference to the data in the source file such that
+changes made there will be reflected in the referencing file the next time it is reloaded.
+But linked data is not editable (to some extent, see <a class="reference internal" href="library_proxies.html#object-proxy"><span class="std std-ref">Proxies</span></a>).</p>
+<p>In the <a class="reference internal" href="../../editors/file_browser.html"><span class="doc">File Browser</span></a>,
+navigate to the external source blend-file and select the data-block you want to reuse.</p>
+<p>When you link an object, it will be placed in your scene at the 3D cursor position.
+Many other data types, cameras, curves, and materials for example,
+must be linked to an object before they become visible.</p>
+<section id="options">
+<h3>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Đường Dẫn Tương Đối -- Relative Path</dt><dd><p>See <a class="reference internal" href="../blend/open_save.html#files-blend-relative-paths"><span class="std std-ref">Relative Paths</span></a>.</p>
+</dd>
+<dt>Chọn -- Select</dt><dd><p>Makes the object <em>Active</em> after it is loaded.</p>
+</dd>
+<dt>Tập Hợp Đang Hoạt Động</dt><dd><p>The object will be added to the active collection of the active view layer.
+Otherwise, it will be added to a new collection in the active view layer.</p>
+</dd>
+<dt>Instance Collections</dt><dd><p>This option instantiates the linked collection as an object, adding it to the active scene.
+Otherwise, the linked collection is directly added to the active view layer.</p>
+</dd>
+<dt>Instance Object Data</dt><dd><p>Create instances for object data which are not referenced by any objects.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="append">
+<span id="bpy-ops-wm-append"></span><h2>Bổ Sung -- Append<a class="headerlink" href="#append" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Topbar</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">File ‣ Link</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Append</em> makes a full copy of the data into your blend-file, without keeping any reference to the original one.
+You can make further edits to your local copy of the data,
+but changes in the external source file will not be reflected in the referencing file.</p>
+<p>In the <a class="reference internal" href="../../editors/file_browser.html"><span class="doc">File Browser</span></a>,
+navigate to the external source blend-file and select the data-block you want to reuse.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Blend-files can also be linked/appended by dragging and dropping blend-files into the Blender window.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Appending data you already have linked will add objects/collections to the scene,
+but will keep them linked (and un-editable).</p>
+<p>This is done so existing relationships with linked data remain intact.</p>
+</div>
+<section id="id3">
+<h3>Tùy Chọn -- Options<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Chọn -- Select</dt><dd><p>Makes the object <em>Active</em> after it is loaded.</p>
+</dd>
+<dt>Tập Hợp Đang Hoạt Động</dt><dd><p>The object will be added to the active collection of the active view layer.
+Otherwise, it will be added to a new collection in the active view layer.</p>
+</dd>
+<dt>Instance Collections</dt><dd><p>This option instantiates the linked collection as an object, adding it to the active scene.
+Otherwise, the linked collection is directly added to the active view layer.</p>
+</dd>
+<dt>Instance Object Data</dt><dd><p>Create instances for object data which are not referenced by any objects.</p>
+</dd>
+<dt>Fake User</dt><dd><p>Defines the appended data-block as <a class="reference internal" href="../data_blocks.html#data-system-datablock-fake-user"><span class="std std-ref">Protected</span></a>.</p>
+</dd>
+<dt>Localize All</dt><dd><p>Appends also all indirectly linked data, instead of linking them.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="library-reload-relocate">
+<span id="bpy-ops-outliner-lib-operation"></span><h2>Library Reload &amp; Relocate<a class="headerlink" href="#library-reload-relocate" title="Permalink to this headline"></a></h2>
+<p>Reloading is useful if you changed something in the library blend-file and want to see those changes
+in your current blend-file without having to re-open it.
+You can reload and relocate a whole library
+from the context menu of the library items in the <em>Outliner</em>'s <em>Blender File</em> view,</p>
+<p>Relocating allows you to reload the library from a new file path.
+This can be used to either fix a broken linked library
+(e.g. because the library file was moved or renamed after linking from it),
+or to switch between different variations of a same set of data, in different library files.</p>
+<section id="broken-library">
+<h3>Broken Library<a class="headerlink" href="#broken-library" title="Permalink to this headline"></a></h3>
+<p>While loading a blend-file, if Blender cannot find a library,
+it will create placeholder data-blocks to replace missing linked ones.
+That way, references to the missing data is not lost, and by relocating the missing library,
+the lost data can be automatically restored.</p>
+</section>
+</section>
+<section id="make-local">
+<span id="bpy-ops-object-make-local"></span><h2>Make Local<a class="headerlink" href="#make-local" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Cổng Nhìn 3D</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Vật Thể -- Object Mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Object ‣ Relations ‣ Make Local...</span></p>
+</dd>
+</dl>
+</div>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Outliner</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Context menu ‣ ID Data ‣ Make Local</span></p>
+</dd>
+</dl>
+</div>
+<p>Makes the selected or all external objects local to the current blend-file.
+Links to the original library file will be lost,
+but it will make those data-blocks fully editable, just like the ones directly created in that blend-file.</p>
+<section id="id6">
+<h3>Tùy Chọn -- Options<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<p>The operation available from the <em>Outliner</em>'s context menu has no options,
+and only affects the selected data-block.</p>
+<p>The operation available from the <em>3D Viewport</em> only directly affects selected objects,
+but it can also make local the objects' dependencies:</p>
+<dl>
+<dt>Thể Loại -- Type</dt><dd><p>Optionally unlinks the object's Object Data and Material Data.</p>
+<p>Selected Objects, + Object Data, + Materials, All (i.e. including all scenes)</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="known-limitations">
+<h2>Những Hạn Chế Từng Biết Đến -- Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline"></a></h2>
+<p>For the most part linking data will work as expected, however,
+there are some corner cases which are not supported.</p>
+<section id="circular-dependencies">
+<h3>Circular Dependencies<a class="headerlink" href="#circular-dependencies" title="Permalink to this headline"></a></h3>
+<p>In general, dependencies should not go in both directions.
+Attempting to link or append data which links back to the current file will likely result in missing links.</p>
+</section>
+<section id="object-rigid-body-constraints">
+<h3>Object Rigid Body Constraints<a class="headerlink" href="#object-rigid-body-constraints" title="Permalink to this headline"></a></h3>
+<p>When linking objects <em>directly</em> into a blend-file, the <em>Rigid Body</em> settings
+<strong>will not</strong> be linked in since they are associated with their scene's world.
+As an alternative, you can link in the entire scene and set it as a <a class="reference internal" href="../../scene_layout/scene/properties.html#scene-background-set"><span class="std std-ref">Background Set</span></a>.</p>
+</section>
+<section id="compression-memory-use">
+<span id="files-linked-libraries-known-limitations-compression"></span><h3>Compression &amp; Memory Use<a class="headerlink" href="#compression-memory-use" title="Permalink to this headline"></a></h3>
+<p>Linking to blend-files with compression enabled may significantly increase memory usage while loading files.</p>
+<p>Reading data on demand isn't supported with compression
+<em>(this only impacts load time, once loaded there is no difference in memory use)</em>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Linked Libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="library_proxies.html" class="btn btn-neutral float-right" title="Proxies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/files/linked_libraries/link_append.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60files/linked_libraries/link_append%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Ffiles/linked_libraries/link_append.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

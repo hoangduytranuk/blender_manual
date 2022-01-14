@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/introduction.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Common Modifier Options" href="common_options.html" />
+    <link rel="prev" title="Modifiers" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interface">Interface</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#the-modifier-stack">The Modifier Stack</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#active-modifier">Active Modifier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modify">Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#generate">Generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#deform">Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Modeling</a> &raquo;</li>
+          <li><a href="index.html">Modifiers</a> &raquo;</li>
+      <li>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="index-0"></span><section id="introduction">
+<span id="index-1"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h1>
+<p>Modifiers are automatic operations that affect an object’s geometry in a non-destructive way.
+With modifiers, you can perform many effects automatically that would otherwise be too tedious to do manually
+(such as subdivision surfaces) and without affecting the base geometry of your object.</p>
+<p>They work by changing how an object is displayed and rendered, but not the geometry which you can edit directly.
+You can add several modifiers to a single object to form <a class="reference internal" href="#the-modifier-stack">The Modifier Stack</a>
+and <em>Apply</em> a modifier if you wish to make its changes permanent.</p>
+<figure class="align-default" id="id1">
+<img alt="../../_images/modeling_modifiers_introduction_menu.png" src="../../_images/modeling_modifiers_introduction_menu.png" />
+<figcaption>
+<p><span class="caption-text">Modifiers menu.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>They can be added to the active object using the <em>Add Modifier</em> drop-down menu at the top of their properties tab.
+New modifiers are always added at the bottom of the <a class="reference internal" href="#modifier-stack"><span class="std std-ref">stack</span></a> (i.e. will be applied last).</p>
+<p>There are four categories of modifiers:</p>
+<dl class="simple">
+<dt>Modify</dt><dd><p>These are tools similar to the <em>Deform</em> ones (see below),
+however, they usually do not directly affect the geometry of the object,
+but some other data, such as vertex groups.</p>
+</dd>
+<dt>Generate</dt><dd><p>These are constructive/destructive tools that will affect the whole <a class="reference internal" href="../../glossary/index.html#term-Topology"><span class="xref std std-term">Topology</span></a> of the mesh.
+They can change the general appearance of the object, or add new geometry to it…</p>
+</dd>
+<dt>Deform</dt><dd><p>Unlike <em>Generate</em> ones above, these only change the shape of an object, without altering its topology.</p>
+</dd>
+<dt>Simulate</dt><dd><p>Those represent <a class="reference internal" href="../../physics/index.html"><span class="doc">physics simulations</span></a>. In most cases, they are automatically added to
+the modifiers stack whenever a <em>Particle System</em> or <em>Physics</em> simulation is enabled. Their only role is to define
+the position in the modifier stack from which is taken the base data for the simulation they represent.
+As such, they typically have no attributes, and are controlled by settings exposed in
+separate sections of the <a class="reference internal" href="../../editors/properties_editor.html"><span class="doc">Properties</span></a>.</p>
+</dd>
+</dl>
+<section id="interface">
+<span id="bpy-types-modifier-show"></span><h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id2">
+<span id="fig-modifiers-panel-layout"></span><img alt="../../_images/modeling_modifiers_introduction_panel-layout.png" src="../../_images/modeling_modifiers_introduction_panel-layout.png" />
+<figcaption>
+<p><span class="caption-text">Panel layout (Subdivision Surface as an example).</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Each modifier’s interface shares the same basic components, see Fig. <a class="reference internal" href="#fig-modifiers-panel-layout"><span class="std std-ref">Panel layout (Subdivision Surface as an example).</span></a>.</p>
+<p>At the top is the panel header.
+The icons each represent different settings for the modifier (left to right):</p>
+<dl class="simple">
+<dt>Expand (down/right arrow icon)</dt><dd><p>Collapse modifier to show only the header and not its options.</p>
+</dd>
+<dt>Type</dt><dd><p>An icon as a quick visual reference of the modifier’s type.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-modifier-name">
+<dt>Name</dt><dd><p>Every modifier has a unique name per object. Two modifiers on one object must have unique names,
+but two modifiers on different objects can have the same name. The default name is based on the modifier type.</p>
+</dd>
+</dl>
+<dl id="bpy-types-modifier-show-on-cage">
+<dt>Show on Cage (vertices triangle icon) – Meshes only</dt><dd><p>Depends on the previous setting, if enabled, the modified geometry can also be edited directly,
+instead of the original one.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While it shows edited items in their final, modified positions, you are still actually editing original data.
+This can lead to strong and unpredictable effects with some tools,
+and should be disabled whenever you need to perform complex or precise editing on the mesh.</p>
+</div>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-modifier-show-in-editmode">
+<dt>Show in Edit Mode (vertices square icon)</dt><dd><p>Display the modified geometry in Edit Mode, as well as the original geometry which you can edit.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-modifier-show-viewport">
+<dt>Show in Viewport (screen icon)</dt><dd><p>Toggle visibility of the modifier’s effect in the 3D Viewport.</p>
+</dd>
+</dl>
+<dl id="bpy-types-modifier-show-render">
+<dt>Render (camera icon)</dt><dd><p>Toggle visibility of the modifier’s effect in the render.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>Square</em>, <em>Triangle</em> and <em>Surface</em> icons may not be available,
+depending on the type of object and modifier.</p>
+</div>
+</dd>
+</dl>
+<dl id="bpy-types-modifier-use-apply-on-spline">
+<dt>Apply On Spline Points (point surface icon) – Curves, surfaces and texts only</dt><dd><p>Apply the whole modifier stack up to and including that one on the curve or surface control points,
+instead of their tessellated geometry.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, curves, texts and surfaces are always converted to mesh-like geometry
+before that the modifier stack is evaluated on them.</p>
+</div>
+</dd>
+</dl>
+<dl id="bpy-ops-object-modifier-apply">
+<dt>Extras</dt><dd><dl>
+<dt>Apply <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">A</kbd></kbd></dt><dd><p>Makes the modifier “real”: converts the object’s geometry to match the applied modifier’s results,
+and deletes the modifier.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Applying a modifier that is not first in the stack will ignore the stack order
+(it will be applied as if it was the first one), and may produce undesired results.</p>
+</div>
+</dd>
+</dl>
+<dl id="bpy-ops-object-modifier-apply-as-shapekey">
+<dt>Apply as Shape Key</dt><dd><p>Stores the result of that modifier in a new relative <a class="reference internal" href="../../animation/shape_keys/introduction.html"><span class="doc">shape key</span></a>
+and then deletes the modifier from the modifier stack.
+This is only available with modifiers that do not affect the topology (typically, <em>Deform</em> modifiers only).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even though it should work with any geometry type that supports shape keys,
+currently it will only work with meshes.</p>
+</div>
+</dd>
+<dt>Save as Shape Key</dt><dd><p>Stores the result of that modifier in a new relative <a class="reference internal" href="../../animation/shape_keys/introduction.html"><span class="doc">shape key</span></a>
+and keeps the modifier in the modifier stack.
+This is only available with modifiers that do not affect the topology (typically, <em>Deform</em> modifiers only).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-object-modifier-copy">
+<dt>Duplicate <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd></dt><dd><p>Creates a duplicate of the modifier just below current one in the stack.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-object-modifier-copy-to-selected">
+<dt>Copy to Selected</dt><dd><p>Copies the modifier from the <a class="reference internal" href="../../glossary/index.html#term-Active"><span class="xref std std-term">Active</span></a> object to all selected objects.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-object-modifier-move-to-index">
+<dt>Move to First/Last</dt><dd><p>Moves the modifier to the first or last position in the modifier stack.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-object-modifier-remove">
+<dt>Delete <kbd class="kbd docutils literal notranslate">X</kbd>, <kbd class="kbd docutils literal notranslate">Delete</kbd></dt><dd><p>Delete the modifier.</p>
+</dd>
+<dt>Move <code class="docutils literal notranslate"><span class="pre">::::</span></code></dt><dd><p>Move the modifier up/down in the <a class="reference internal" href="#modifier-stack"><span class="std std-ref">stack</span></a>,
+changing the evaluation order of the modifiers.</p>
+</dd>
+</dl>
+<p>Below this header, all of the options unique to each modifier will be displayed.</p>
+<section id="the-modifier-stack">
+<span id="modifier-stack"></span><h3>The Modifier Stack<a class="headerlink" href="#the-modifier-stack" title="Permalink to this headline"></a></h3>
+<p>Modifiers are a series of non-destructive operations which can be applied on top of an object’s geometry.
+You can be apply them in almost any order.
+This kind of functionality is often referred to as a “modifier stack”
+and is also found in several other 3D applications.</p>
+<p>In a modifier stack, the order in which modifiers are applied has an effect on the result.
+Therefore the modifiers can be re-arranged by clicking the grab widget (<code class="docutils literal notranslate"><span class="pre">::::</span></code>) in the top right,
+and moving the selected modifier up or down.
+For example, the image below shows <a class="reference internal" href="generate/subdivision_surface.html"><span class="doc">Subdivision Surface</span></a>
+and <a class="reference internal" href="generate/mirror.html"><span class="doc">Mirror</span></a> modifiers that have switched places.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Modifier Stack example.</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/modeling_modifiers_introduction_mirror-subdiv2.png"><img alt="../../_images/modeling_modifiers_introduction_mirror-subdiv2.png" src="../../_images/modeling_modifiers_introduction_mirror-subdiv2.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Mirror modifier is the last item in the stack and
+the result looks like two surfaces.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/modeling_modifiers_introduction_mirror-subdiv1.png"><img alt="../../_images/modeling_modifiers_introduction_mirror-subdiv1.png" src="../../_images/modeling_modifiers_introduction_mirror-subdiv1.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Subdivision Surface modifier is the last
+item in the stack and the result is a single merged surface.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Modifiers are calculated from top to bottom in the stack.
+In this example, the desired result (on right) is achieved by first mirroring the object,
+and then calculating the subdivision surface.</p>
+<section id="active-modifier">
+<span id="modifier-stack-active"></span><h4>Active Modifier<a class="headerlink" href="#active-modifier" title="Permalink to this headline"></a></h4>
+<p>A modifier in the stack can be selected to mark in as <a class="reference internal" href="../../glossary/index.html#term-Active"><span class="xref std std-term">Active</span></a>,
+the active modifier displays an outline around the modifier’s panel.
+To set an active modifier, select an area of the modifier’s panel background,
+the modifier’s icon, or, select a modifier in the <a class="reference internal" href="../../editors/outliner/index.html"><span class="doc">Outliner</span></a>.</p>
+<p>The active modifier is used by the <a class="reference internal" href="../../editors/geometry_node.html"><span class="doc">Geometry Node Editor</span></a>
+to determine which node group is being modified.</p>
+</section>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id6">
+<img alt="../../_images/modeling_modifiers_introduction_stack-example-3.png" src="../../_images/modeling_modifiers_introduction_stack-example-3.png" />
+<figcaption>
+<p><span class="caption-text">In this example a simple subdivided cube has been transformed into a rather complex object using
+a stack of modifiers.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><a class="reference external" href="https://wiki.blender.org/wiki/File:25-Manual-Modifiers-example.blend">Download example file</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Modifiers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="common_options.html" class="btn btn-neutral float-right" title="Common Modifier Options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/introduction.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/introduction%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/modifiers/introduction.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bố Trí Thư Mục của Blender -- Blender&#39;s Directory Layout &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/advanced/blender_directory_layout.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Phụ Lục" href="appendices/index.html" />
+    <link rel="prev" title="Thao Tác -- Operators" href="operators.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="command_line/index.html">Dòng Lệnh -- Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripting/index.html">Viết Tập Lệnh &amp; Mở Rộng Chức Năng của Blender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_templates.html">Khuôn Mẫu của Trình Ứng Dụng -- Application Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keymap_editing.html">Điều Chỉnh Bố Trí Bàn Phím -- Keymap Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html">Giới Hạn Làm Việc -- Working Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators.html">Thao Tác -- Operators</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bố Trí Thư Mục của Blender -- Blender's Directory Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#platform-dependent-paths">Những Đường Dẫn Phụ Thuộc <abbr title="Platform: Hệ Điều Hành">Nền Tảng</abbr> -- Platform Dependent Paths</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macos">macOS -- Hệ Điều Hành Macintosh của Apple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#windows">Cửa Sổ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#path-layout">Bố Trí Đường Dẫn -- Path Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#temporary-directory">Thư Mục Tạm Thời -- Temporary Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="appendices/index.html">Phụ Lục</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Cao Cấp -- Advanced</a> &raquo;</li>
+      <li>Bố Trí Thư Mục của Blender -- Blender's Directory Layout</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="blender-s-directory-layout">
+<span id="blender-directory-layout"></span><h1>Bố Trí Thư Mục của Blender -- Blender's Directory Layout<a class="headerlink" href="#blender-s-directory-layout" title="Permalink to this headline"></a></h1>
+<p>Trang này viết về các thư mục khác nhau mà Blender sử dụng <em>(tức những cái có thể trở nên hữu dụng trong việc xử lý sự cố )</em>.</p>
+<p>Có ba thư mục khác nhau mà Blender có thể sử dụng. Vị trí chính xác của chúng ở đâu còn tùy thuộc vào hệ điều hành sử dụng nữa.</p>
+<dl class="field-list simple">
+<dt class="field-odd">ĐỊA PHƯƠNG -- LOCAL</dt>
+<dd class="field-odd"><p>Đây là địa phương của cấu hình và dữ liệu sử dụng trong khi phần mềm đang hoạt động (dành cho <abbr title="self-contained bundle">gói độc lập</abbr>).</p>
+</dd>
+<dt class="field-even">NGƯỜI DÙNG -- USER</dt>
+<dd class="field-even"><p>Đây là địa phương của các tập tin cấu hình (thường nằm trong thư mục chính (<abbr title="home directory">thư mục nhà riêng</abbr> của người dùng).</p>
+</dd>
+<dt class="field-odd">HỆ THỐNG -- SYSTEM</dt>
+<dd class="field-odd"><p>Đây là địa phương của dữ liệu sử dụng trong <abbr title="run-time: lúc đang hoạt động">thời gian chạy</abbr>, dành cho sự cài đặt trên toàn hệ thống ( có thể <abbr title="read-only">chỉ cho phép đọc</abbr> mà thôi).</p>
+</dd>
+</dl>
+<p>Để cài đặt hệ thống thì cả hai thư mục <abbr title="HỆ THỐNG">SYSTEM</abbr> và <abbr title="NGƯỜI DÙNG">USER</abbr> đều cần thiết cho việc này.</p>
+<p>Đối với các bản phân phối Blender <abbr title="locally extracted: giải nén địa phương, như bản zip">trích xuất cục bộ</abbr>, cấu hình người dùng và <abbr title="run-time data: dữ liệu sử dụng trong thời gian chạy">dữ liệu hoạt động</abbr> được lưu giữ trong cùng một thư mục nhánh, cho phép nhiều phiên bản Blender hoạt động cùng một lúc mà không gây ra xung đột. Chúng sẽ bỏ qua các tập tin <abbr title="NGƯỜI DÙNG">USER</abbr> và <abbr title="HỆ THỐNG">SYSTEM</abbr>. Cái này đòi hỏi bạn phải tạo một thư mục, và đặt tin nó với cái tên là <abbr title="cấu hình">config</abbr>, nội bên trong thư mục <abbr title="ĐỊA PHƯƠNG">LOCAL</abbr>.</p>
+<section id="platform-dependent-paths">
+<h2>Những Đường Dẫn Phụ Thuộc <abbr title="Platform: Hệ Điều Hành">Nền Tảng</abbr> -- Platform Dependent Paths<a class="headerlink" href="#platform-dependent-paths" title="Permalink to this headline"></a></h2>
+<p>Dưới đây là các vị trí mặc định cho mỗi hệ thống:</p>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
+<dl class="field-list">
+<dt class="field-odd">ĐỊA PHƯƠNG -- LOCAL</dt>
+<dd class="field-odd"><pre class="literal-block">./3.1/</pre>
+</dd>
+<dt class="field-even">NGƯỜI DÙNG -- USER</dt>
+<dd class="field-even"><pre class="literal-block">$HOME/.config/blender/3.1/</pre>
+</dd>
+<dt class="field-odd">HỆ THỐNG -- SYSTEM</dt>
+<dd class="field-odd"><pre class="literal-block">/usr/share/blender/3.1/</pre>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Đường dẫn ./3.1/ nằm tương đối với:abbr:<cite>bản thực thi Blender (Blender executable: bản nhị phân, thi hành được)</cite> và được sử dụng cho các <abbr title="self-contained bundles">gói độc lập</abbr>, được phân phối qua các phiên bản do blender.org xây dựng.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Đường dẫn <abbr title="NGƯỜI DÙNG">USER</abbr> sẽ sử dụng biến môi trường <abbr title="THƯ_MỤC_CẤU HÌNH_NHÀ_của_XDG">$XDG_CONFIG_HOME</abbr>, nếu nó được đã thiết lập:</p>
+<pre class="literal-block">$XDG_CONFIG_HOME/blender/3.1/</pre>
+</div>
+</section>
+<section id="macos">
+<h3>macOS -- Hệ Điều Hành Macintosh của Apple<a class="headerlink" href="#macos" title="Permalink to this headline"></a></h3>
+<dl class="field-list">
+<dt class="field-odd">ĐỊA PHƯƠNG -- LOCAL</dt>
+<dd class="field-odd"><pre class="literal-block">./3.1/</pre>
+</dd>
+<dt class="field-even">NGƯỜI DÙNG -- USER</dt>
+<dd class="field-even"><pre class="literal-block">/Users/$USER/Library/Application Support/Blender/3.1/</pre>
+</dd>
+<dt class="field-odd">HỆ THỐNG -- SYSTEM</dt>
+<dd class="field-odd"><pre class="literal-block">/Library/Application Support/Blender/3.1/</pre>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><abbr title="hệ điều hành OSX của Macintosh của Apple">macOS</abbr> lưu bản Blender nhị phân vào thư mục <code class="docutils literal notranslate"><span class="pre">./Blender.app/Contents/MacOS/Blender</span></code>. Đường dẫn cục bộ tới dữ liệu và cấu hình là:</p>
+<pre class="literal-block">./Blender.app/Contents/Resources/3.1/</pre>
+</div>
+</section>
+<section id="windows">
+<h3>Cửa Sổ<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
+<dl class="field-list">
+<dt class="field-odd">ĐỊA PHƯƠNG -- LOCAL</dt>
+<dd class="field-odd"><pre class="literal-block">.\3.1\</pre>
+</dd>
+<dt class="field-even">NGƯỜI DÙNG -- USER</dt>
+<dd class="field-even"><pre class="literal-block">%USERPROFILE%\AppData\Roaming\Blender Foundation\Blender\3.1\</pre>
+</dd>
+<dt class="field-odd">HỆ THỐNG -- SYSTEM</dt>
+<dd class="field-odd"><pre class="literal-block">%USERPROFILE%\AppData\Roaming\Blender Foundation\Blender\3.1\</pre>
+</dd>
+</dl>
+</section>
+</section>
+<section id="path-layout">
+<h2>Bố Trí Đường Dẫn -- Path Layout<a class="headerlink" href="#path-layout" title="Permalink to this headline"></a></h2>
+<p>Đây là sự bố trí đường dẫn được sử dụng trong các thư mục, như đã được mô tả ở trên.</p>
+<p>Trong đó <code class="docutils literal notranslate"><span class="pre">./config/startup.blend</span></code> có thể nằm tại <code class="docutils literal notranslate"><span class="pre">~/.blender/|BLENDER_VERSION|/config/startup.blend</span></code> chẳng hạn.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">./autosave/</span> <span class="pre">...</span></code></dt><dd><p>Địa điểm của tập tin lưu tự động blend. (Chỉ trong Windows thôi, <abbr title="temp directory">thư mục temp tạm thời</abbr> là để sử dụng cho các hệ thống khác.)</p>
+<p>Thứ tự lùng tìm: <abbr title="ĐỊA PHƯƠNG">LOCAL</abbr>,  <abbr title="NGƯỜI DÙNG">USER</abbr>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/</span> <span class="pre">...</span></code></dt><dd><p>Mặc định &amp; thông tin về phiên sử dụng.</p>
+<p>Thứ tự lùng tìm: <abbr title="ĐỊA PHƯƠNG">LOCAL</abbr>,  <abbr title="NGƯỜI DÙNG">USER</abbr>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/startup.blend</span></code></dt><dd><p>Tập tin mặc định để nạp nạp vào bộ nhớ khi khởi động.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/userpref.blend</span></code></dt><dd><p>Các tùy chọn mặc định để nạp vào bộ nhớ khi khởi động.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/bookmarks.txt</span></code></dt><dd><p>Các dấu trang của <abbr title="File Browser bookmarks: Những thư mục được đánh dấu, ghi nhớ lại">Trình Duyệt Tập Tin</abbr>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./config/recent-files.txt</span></code></dt><dd><p>Trình đơn liệt kê tập tin sử dụng gần đây nhất.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./datafiles/</span> <span class="pre">...</span></code></dt><dd><p>Những tập tin sử dụng trong khi phần mềm đang chạy.</p>
+<p>Thứ tự lùng tìm: <abbr title="ĐỊA PHƯƠNG">LOCAL</abbr>, <abbr title="NGƯỜI DÙNG">USER</abbr>, <abbr title="HỆ THỐNG">SYSTEM</abbr>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./datafiles/locale/{language}/</span></code></dt><dd><p>Các tập tin ngôn ngữ tĩnh, đã được biên dịch trước, dành cho việc phiên dịch <abbr title="UI: User Interface">Giao Diện Người Dùng</abbr>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/</span> <span class="pre">...</span></code></dt><dd><p>Các tập lệnh Python cho giao diện người dùng và các công cụ.</p>
+<p>Thứ tự lùng tìm: <abbr title="ĐỊA PHƯƠNG">LOCAL</abbr>, <abbr title="NGƯỜI DÙNG">USER</abbr>, <abbr title="HỆ THỐNG">SYSTEM</abbr>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons/*.py</span></code></dt><dd><p>Các <abbr title="add-on">trình bổ sung</abbr> Python có thể được kích hoạt trong <abbr title="Preferences">Cấu Hình</abbr>, bao gồm sự hỗ trợ định dạng <abbr title="import/export">nhập/xuất</abbr>, tích hợp bộ máy kết xuất và nhiều thường trình tiện dụng khác.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons/modules/*.py</span></code></dt><dd><p>Những <abbr title="modules">mô-đun</abbr> mà các trình bổ sung sử dụng (được cộng thêm vào trong <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> (<em>đường dẫn hệ thống cho các thư viện</em>) của Python).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons_contrib/*.py</span></code></dt><dd><p>Đây là một thư mục dành cho các trình bổ sung và được sử dụng cho các trình bổ sung do cộng đồng quản lý (phải do mình tạo ra một cách thủ công).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/addons_contrib/modules/*.py</span></code></dt><dd><p>Các mô-đun dành cho <code class="docutils literal notranslate"><span class="pre">addons_contrib</span></code> sử dụng (được thêm vào trong <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> của Python).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/modules/*.py</span></code></dt><dd><p>Các mô đun Python chứa các <abbr title="API cốt lõi">core API</abbr> của chúng ta và các hàm tiện ích cho các tập lệnh khác để nhập khẩu (được thêm vào trong <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> của Python).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/startup/*.py</span></code></dt><dd><p>Các <abbr title="Scripts">tập lệnh</abbr> được nhập tự động khi phần mềm khởi động.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/presets/{preset}/*.py</span></code></dt><dd><p>Những sắp đặt sẵn được sử dụng để lưu trữ các cài đặt do người dùng xác định cho vải, cho các định dạng kết xuất, v.v.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/templates_py/*.py</span></code></dt><dd><p>Các tập lệnh mẫu có thể được truy cập từ <span class="menuselection">Trình Biên Soạn Văn Bản (Text Editor) ‣ Khuôn Mẫu (Templates) ‣ Python</span>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./scripts/templates_osl/*.osl</span></code></dt><dd><p>Ví dụ về các <abbr title="OSL shaders">bộ tô bóng OSL</abbr>, có thể được truy cập từ <span class="menuselection">Trình Biên Soạn Văn Bản (Text Editor) ‣ Khuôn Mẫu (Templates) ‣ Ngôn Ngữ Tô Bóng Mở (Open Shading Language)</span>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">./python/</span> <span class="pre">...</span></code></dt><dd><p>Bản phân phối có <abbr title="Bundled">kèm</abbr> Python.</p>
+<p>Thứ tự lùng tìm: <abbr title="ĐỊA PHƯƠNG">LOCAL</abbr>, <abbr title="HỆ THỐNG">SYSTEM</abbr>.</p>
+</dd>
+</dl>
+</section>
+<section id="temporary-directory">
+<span id="temp-dir"></span><h2>Thư Mục Tạm Thời -- Temporary Directory<a class="headerlink" href="#temporary-directory" title="Permalink to this headline"></a></h2>
+<p>Thư mục tạm thời được sử dụng để lưu trữ các tập tin khác nhau trong thời gian phần mềm đang hoạt động (bao gồm các lớp kết xuất, bộ nhớ đệm vật lý, bộ đệm để sao chép và dán, và bản ghi chép sự cố sập đổ).</p>
+<p>Thư mục tạm thời được chọn dựa trên mức độ ưu tiên sau:</p>
+<ul class="simple">
+<li><p><abbr title="User Preference: Tùy Chọn Người Dùng">Cấu Hình</abbr>, (xin xem mục <a class="reference internal" href="../editors/preferences/file_paths.html#prefs-file-paths"><span class="std std-ref">File Paths</span></a>).</p></li>
+<li><p>Biến số môi trường (<code class="docutils literal notranslate"><span class="pre">TEMP</span></code> trên Windows, <code class="docutils literal notranslate"><span class="pre">TMP</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">TMP_DIR</span></code> trên các hệ điều hành khác).</p></li>
+<li><p>Thư mục <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="operators.html" class="btn btn-neutral float-left" title="Thao Tác -- Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="appendices/index.html" class="btn btn-neutral float-right" title="Phụ Lục" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/advanced/blender_directory_layout.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60advanced/blender_directory_layout%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fadvanced/blender_directory_layout.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

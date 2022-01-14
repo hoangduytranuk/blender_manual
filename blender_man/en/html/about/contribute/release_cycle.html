@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release Cycle &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/about/contribute/release_cycle.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Todo List" href="todo_list.html" />
+    <link rel="prev" title="Patch &amp; Commit" href="patch_commit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Contribute Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#getting-started">Getting Started</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="install/index.html">Installing Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="build.html">Building the Manual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing.html">Editing the Manual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patch_commit.html">Patch &amp; Commit</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Release Cycle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#branches">Branches</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#switching-branches">Switching Branches</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#updating-branches">Updating Branches</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#bcon-phases">Bcon Phases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="todo_list.html">Todo List</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#guidelines">Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#translations">Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#contacts">Contacts</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Contribute Documentation</a> &raquo;</li>
+      <li>Release Cycle</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-cycle">
+<h1>Release Cycle<a class="headerlink" href="#release-cycle" title="Permalink to this headline"></a></h1>
+<p>A new Blender version is targeted to be released every 3 months.
+The actual <a class="reference external" href="https://wiki.blender.org/wiki/Process/Release_Cycle">release cycle</a> for a specific release is longer,
+and overlaps the previous and next release cycle.</p>
+<figure class="align-default">
+<img alt="../../_images/about_contribute_release-cycle_diagram.png" src="../../_images/about_contribute_release-cycle_diagram.png" />
+</figure>
+<section id="branches">
+<h2>Branches<a class="headerlink" href="#branches" title="Permalink to this headline"></a></h2>
+<p>Work is done in two branches:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">blender-v{VERSION}-release</span></code> branch: fixes and other incremental improvements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">master</span></code> branch: documentation for new features and improvements for the release after that.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">blender-v{VERSION}-release</span></code> branch will be available for 5 weeks prior to the release date.
+At the same time <code class="docutils literal notranslate"><span class="pre">master</span></code> will be open for the next release,
+giving 2 months to add documentation for new features of the next release, and another month to make improvements.</p>
+<section id="switching-branches">
+<h3>Switching Branches<a class="headerlink" href="#switching-branches" title="Permalink to this headline"></a></h3>
+<p>To switch to the release branch use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>svn switch https://svn.blender.org/svnroot/bf-manual/branches/blender-<span class="o">{</span>VERSION<span class="o">}</span>-release/blender_docs/
+</pre></div>
+</div>
+<p>To switch back to the development branch use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>svn switch https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs/
+</pre></div>
+</div>
+</section>
+<section id="updating-branches">
+<h3>Updating Branches<a class="headerlink" href="#updating-branches" title="Permalink to this headline"></a></h3>
+<p>To merge changes from the release branch to the development branch,
+first switch to the development branch and use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>svn merge https://svn.blender.org/svnroot/bf-manual/branches/blender-<span class="o">{</span>VERSION<span class="o">}</span>-release/blender_docs/
+svn ci -m <span class="s2">&quot;Merge branch &#39;blender-{VERSION}-release&#39;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="bcon-phases">
+<h2>Bcon Phases<a class="headerlink" href="#bcon-phases" title="Permalink to this headline"></a></h2>
+<p>Each Blender version has its own Bcon phase,
+indicating which types of changes are allowed to be committed and what writers are focusing on.</p>
+<p>That means for example that Blender 2.90 can be in Bcon3 (wrapping up),
+while Blender 2.91 is in Bcon1 (new features and changes).</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 50%" />
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Phase</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Duration</p></th>
+<th class="head"><p>Details</p></th>
+<th class="head"><p>Branch</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bcon1</p></td>
+<td><p>New features and changes</p></td>
+<td><p>4-5 weeks</p></td>
+<td><p>The first 5 weeks overlap with the Bcon3 and Bcon4 phases of the previous release,
+Writing focus will be split on fixes for the previous release
+and writing documentation for features already added or likely to be added to Blender.
+This is also the perfect time to make any larger or more disruptive improvements to the manual.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">master</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Bcon2</p></td>
+<td><p>Improve and stabilize</p></td>
+<td><p>4 weeks</p></td>
+<td><p>Work to improve, optimize and fix bugs in new and existing features.
+All big or disruptive changes must be finished at the end of this stage.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">master</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Bcon3</p></td>
+<td><p>Wrapping up</p></td>
+<td><p>4 weeks</p></td>
+<td><p>Focus should be on fixes and other incremental improvements.
+All new Blender features should be documented by the end of this stage.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">blender-v{VERSION}-release</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Bcon4</p></td>
+<td><p>Prepare release</p></td>
+<td><p>1 week</p></td>
+<td><p>Focus should be wrapping up fixes and other incremental improvements.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">blender-v{VERSION}-release</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Bcon5</p></td>
+<td><p>Release</p></td>
+<td><p>1-2 days</p></td>
+<td><p>The manual is archived on the server and redirects / symlinks are updated.
+See the <a class="reference internal" href="guides/maintenance_guide.html#about-contribute-guides-release"><span class="std std-ref">Release Guide</span></a> for more information.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Bcon6</p></td>
+<td><p>Long-term release</p></td>
+<td><p>2 years</p></td>
+<td><p>In case a major error is found in the manual the patch will be committed to the release branch.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">blender-v{VERSION}-release</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="patch_commit.html" class="btn btn-neutral float-left" title="Patch &amp; Commit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="todo_list.html" class="btn btn-neutral float-right" title="Todo List" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/about/contribute/release_cycle.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60about/contribute/release_cycle%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fabout/contribute/release_cycle.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

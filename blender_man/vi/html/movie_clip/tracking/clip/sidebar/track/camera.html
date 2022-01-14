@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Máy Quay Phim -- Camera &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/movie_clip/tracking/clip/sidebar/track/camera.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/translations.js"></script>
+        <script src="../../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../../../copyright.html" />
+    <link rel="next" title="Marker" href="marker.html" />
+    <link rel="prev" title="Plane Track" href="plane_track.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Motion Tracking &amp; Masking</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Giám Sát Chuyển Động -- Motion Tracking</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Clip View</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../marker.html">Tracking Marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../toolbar/index.html">Thanh Công Cụ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../editing/index.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Sidebar</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="index.html">Giám Sát/Rãnh -- Track</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="track.html">Giám Sát/Rãnh -- Track</a></li>
+<li class="toctree-l6"><a class="reference internal" href="objects.html">Objects Panel</a></li>
+<li class="toctree-l6"><a class="reference internal" href="plane_track.html">Plane Track</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Máy Quay Phim -- Camera</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#lens">Lens</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="marker.html">Marker</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../stabilization/index.html">2D Stabilization</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../view.html">Góc Nhìn -- View</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../graph.html">Khung Nhìn Đồ Thị -- Graph View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dope_sheet.html">Dope Sheet View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../masking/index.html">Masking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index.html">Motion Tracking &amp; Masking</a> &raquo;</li>
+          <li><a href="../../../index.html">Giám Sát Chuyển Động -- Motion Tracking</a> &raquo;</li>
+          <li><a href="../../index.html">Clip View</a> &raquo;</li>
+          <li><a href="../index.html">Sidebar</a> &raquo;</li>
+          <li><a href="index.html">Giám Sát/Rãnh -- Track</a> &raquo;</li>
+      <li>Máy Quay Phim -- Camera</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="camera">
+<span id="bpy-types-movietrackingcamera"></span><h1>Máy Quay Phim -- Camera<a class="headerlink" href="#camera" title="Permalink to this headline"></a></h1>
+<p>This panel contains all settings of the camera used for filming the movie
+which is currently being edited in the Clip editor.
+Different predefined settings can be used here and can be chosen from the panel header.
+But such settings as distortion coefficients and principal point are not included in the presets and
+should be filled in even if camera presets are used.</p>
+<dl class="simple" id="bpy-types-movietrackingcamera-sensor-width">
+<dt>Sensor Width</dt><dd><p>Is the width of the CCD sensor in the camera. This value can be found in camera specifications.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-movietrackingcamera-pixel-aspect">
+<dt>Pixel Aspect</dt><dd><p>Is the pixel aspect of the CCD sensor. This value can be found in camera specifications,
+but can also be guessed. For example, you know that the footage should be 1920×1080,
+but the images themselves are 1280×1080. In this case, the pixel aspect is: 1920 / 1280 = 1.5.</p>
+</dd>
+</dl>
+<section id="lens">
+<h2>Lens<a class="headerlink" href="#lens" title="Permalink to this headline"></a></h2>
+<dl class="simple" id="bpy-types-movietrackingcamera-focal-length">
+<dt>Focal Length</dt><dd><p>Is self-explanatory; it is the focal length with which the movie was shot.
+It can be set in millimeters or pixels.</p>
+</dd>
+</dl>
+<dl id="bpy-types-movietrackingcamera-principal">
+<dt>Optical Center</dt><dd><p>Is the optical center of the lens used in the camera. In most cases it is equal to the image center,
+but it can be different in some special cases. Check camera/lens specifications in such cases.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>Optical Center also know as the principal point in photogrammetry.</p>
+</div>
+</dd>
+<dt>Set Center</dt><dd><p>See <a class="reference internal" href="../../editing/clip.html#bpy-ops-clip-set-center-principal"><span class="std std-ref">Set Principal to Center</span></a>.</p>
+</dd>
+</dl>
+<dl id="bpy-types-movietrackingcamera-distortion-model">
+<dt>Lens Distortion</dt><dd><p>Mathematical function to convert distorted to undistorted coordinates.</p>
+<dl class="simple">
+<dt>Polynomial</dt><dd><p>Polynomial radial distortion. Uses three distortion coefficients: K1, K2, and K3.</p>
+</dd>
+<dt>Division</dt><dd><p>It defines high distortions, which makes this model suitable much better for cameras with fisheye lenses.
+Use two distortion coefficients: K1, K2.</p>
+</dd>
+<dt>Nuke</dt><dd><p>Distortion model used by the Nuke compositor. Use two distortion coefficients K1, K2.</p>
+</dd>
+<dt>Brown</dt><dd><p>Brown-Conrady is one of most advanced mathematical lens distortion models.
+Used to model both radial and tangential distortion. Can use up to four
+radial distortion coefficients: K1 - K4 and up to two tangential distortion coefficients: P1 and P2.</p>
+</dd>
+</dl>
+</dd>
+<dt>Coefficients</dt><dd><p>Coefficients are used to compensate for lens distortion when the movie was shot.
+Currently these values can be tweaked by hand only (there are no calibration tools yet)
+using tools available in Distortion mode. To do this tweak K1 until the solving is the closest to
+the known focal length (but also take grid and annotations into account
+to prevent &quot;impossible&quot; distortion).</p>
+<span id="bpy-types-movietrackingcamera-nuke-k"></span><span id="bpy-types-movietrackingcamera-division-k"></span><span id="bpy-types-movietrackingcamera-k"></span><dl id="bpy-types-movietrackingcamera-brown-k">
+<dt>Radial Distortion Coefficients (K1 - K4)</dt><dd><p>The coefficients in lens distortion models work independent from each other.
+Positive values will give a barrel distortion while negative values give a pincushion distortion.
+With a mixture of both negative and positive coefficients you can define more complicated
+mustache distortions or other complex distortions, that are less common but not rare.</p>
+<figure class="align-default" id="id1">
+<img alt="../../../../../_images/movie-clip_tracking_clip_sidebar_track_camera_lens-distortion-k.png" src="../../../../../_images/movie-clip_tracking_clip_sidebar_track_camera_lens-distortion-k.png" />
+<figcaption>
+<p><span class="caption-text">Example of radial distortion for positive and negative K coefficients.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</dd>
+</dl>
+<dl id="bpy-types-movietrackingcamera-brown-p">
+<dt>Tangential Distortion Coefficients (P1, P2)</dt><dd><p>Works independent and allow to compensate for situations when the sensor is not
+perpendicular to a group of lens. The optical center (also called principal point)
+will be shifted (distorted) from the center of the sensor.
+P1 is used to compensate for sensor rotation in Z (vertical) axes,
+while P2 is for compensating sensor rotation in X (horizontal) axes.
+Such distortions can be found in sources from cameras with a sensor stabilization system.</p>
+<figure class="align-default" id="id2">
+<img alt="../../../../../_images/movie-clip_tracking_clip_sidebar_track_camera_lens-distortions-p.png" src="../../../../../_images/movie-clip_tracking_clip_sidebar_track_camera_lens-distortions-p.png" />
+<figcaption>
+<p><span class="caption-text">Example of tangential distortion for P coefficients.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plane_track.html" class="btn btn-neutral float-left" title="Plane Track" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="marker.html" class="btn btn-neutral float-right" title="Marker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/movie_clip/tracking/clip/sidebar/track/camera.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60movie_clip/tracking/clip/sidebar/track/camera%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmovie_clip/tracking/clip/sidebar/track/camera.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

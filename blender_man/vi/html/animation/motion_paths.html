@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đường Chuyển Động -- Motion Paths &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/motion_paths.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Physics" href="../physics/index.html" />
+    <link rel="prev" title="Quy Trình Làm Việc -- Workflow" href="shape_keys/workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Hoạt Họa &amp; Giàn Dựng</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keyframes/index.html">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="armatures/index.html">Cốt -- Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lattice.html">Lattice -- Giàn Lưới</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Ràng Buộc -- Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers/index.html">Các Điều Vận -- Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markers.html">Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Đường Chuyển Động -- Motion Paths</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#display">Hiển Thị -- Display</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Hoạt Họa &amp; Giàn Dựng</a> &raquo;</li>
+      <li>Đường Chuyển Động -- Motion Paths</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="motion-paths">
+<span id="bpy-types-motionpath"></span><span id="bpy-types-animvizmotionpaths"></span><h1>Đường Chuyển Động -- Motion Paths<a class="headerlink" href="#motion-paths" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>3D Viewport, Properties</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Chế Độ Vật Thể -- Object Mode</p>
+</dd>
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Object Properties ‣ Motion Paths</span></p>
+</dd>
+</dl>
+</div>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>3D Viewport, Properties</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Pose Mode -- Chế Độ Tư Thế</p>
+</dd>
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Armature ‣ Motion Paths</span></p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Pose ‣ Motion Paths</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/animation_motion-paths_example-object.png"><img alt="../_images/animation_motion-paths_example-object.png" src="../_images/animation_motion-paths_example-object.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text">An animated cube with its motion path displayed.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The Motion Paths tool allows you to visualize the motion of points as paths over a series of frames.
+These points can be object origins and bone joints.</p>
+<p>To create or remove motion paths, it is necessary to first select the bones. Then:</p>
+<ol class="arabic simple">
+<li><p>To show the paths (or update them, if needed), click on the <em>Calculate Path</em> button.</p></li>
+<li><p>To hide the paths, click on the <em>Clear Paths</em> button.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Remember that only selected bones and their paths are affected by these actions!</p>
+</div>
+<p>The paths are shown in a light shade of gray for unselected points,
+and a slightly bluish gray for selected ones.
+Around the current frame a glow indicate the direction of movement:
+blue towards future frames and green towards the past.
+Each frame is displayed by a small white dot on the paths.</p>
+<p>The paths are automatically updated when you edit your poses/keyframes,
+and they are also active during animation playback. Playing the animation
+affects the paths only when the <em>Around Current Frame</em> option is enabled.</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id4">
+<img alt="../_images/animation_motion-paths_panel.png" src="../_images/animation_motion-paths_panel.png" />
+<figcaption>
+<p><span class="caption-text">The Motion Paths panel in the Armature tab.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl id="bpy-types-animvizmotionpaths-type">
+<dt>Paths Type</dt><dd><p>Type of range to show for Motion Paths.</p>
+<dl class="field-list">
+<dt class="field-odd">Around Frame</dt>
+<dd class="field-odd"><p>Display paths of points within a fixed number of frames around the current frame.
+When you enable this button, you get paths for a given number of frames before and after the current one
+(again, as with ghosts).</p>
+</dd>
+<dt class="field-even">In Range</dt>
+<dd class="field-even"><p>Display paths of points within specified range.</p>
+<dl class="simple" id="bpy-ops-pose-paths-range-update">
+<dt>Update Range from Scene (Clock Icon)</dt><dd><p>Updates the display frame range from the scene frame range.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<span id="bpy-types-animvizmotionpaths-frame-start"></span><dl class="simple" id="bpy-types-animvizmotionpaths-frame-end">
+<dt>Frame Range Start, End</dt><dd><p>Starting and Ending frame of range of paths to display/calculate
+(not for <em>Around Current Frame</em> onion skinning method).</p>
+</dd>
+</dl>
+<span id="bpy-types-animvizmotionpaths-frame-before"></span><dl class="simple" id="bpy-types-animvizmotionpaths-frame-after">
+<dt>Frame Range Before, After</dt><dd><p>Number of frames to show before and after the current frame
+(only for <em>Around Current Frame</em> onion skinning method).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-animvizmotionpaths-frame-step">
+<dt>Step</dt><dd><p>Allows displaying one point for every <em>n</em> frames on the path.
+Mostly useful when you enable the frame number display (see below), to avoid cluttering the 3D Viewport.</p>
+</dd>
+</dl>
+<span id="bpy-types-motionpath-frame-start"></span><dl class="simple" id="bpy-types-motionpath-frame-end">
+<dt>Cache/Bone Cache From, To</dt><dd><p>These are the start/end frames of the range in which motion paths are shown.
+You cannot modify this range without deleting the motion path first.</p>
+</dd>
+</dl>
+<span id="bpy-ops-pose-paths-calculate"></span><dl id="bpy-ops-object-paths-calculate">
+<dt>Calculate</dt><dd><p>If no paths have been calculated, Calculate Paths will create a new motion path in cache based on
+the options specified in the pop-up menu or the <a class="reference internal" href="../interface/undo_redo.html#bpy-ops-screen-redo-last"><span class="std std-ref">Adjust Last Operation</span></a> panel.
+Note, if the current context is an Armature calculating the objects motion paths, and not the bones,
+this operator will calculate the motion paths for all the bones within the armature as well.</p>
+<dl class="simple">
+<dt>Start, End</dt><dd><p>These are the start/end frames of the range in which motion paths are shown.
+The start frame is <em>inclusive</em>, so if you set <em>Start</em> to 1,
+you will really see the frame 1 as starting point of the paths...</p>
+</dd>
+<dt>Bake Location</dt><dd><p>Which point on the bones is used when calculating paths.
+Only available for bones while in Pose Mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Heads</dt>
+<dd class="field-odd"><p>Calculates the path position of the bone's heads.</p>
+</dd>
+<dt class="field-even">Tails</dt>
+<dd class="field-even"><p>Calculates the path position of the bone's heads.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<span id="bpy-ops-pose-paths-update"></span><dl id="bpy-ops-object-paths-update">
+<dt>Update Paths</dt><dd><p>In the case a path has already been calculated, this operator will update the path shape to the current animation.
+To change the frame range of the calculated path, you need to delete the path and calculate it again.</p>
+<span id="bpy-ops-pose-paths-clear"></span><dl class="simple" id="bpy-ops-object-paths-clear">
+<dt>Clear Paths <code class="docutils literal notranslate"><span class="pre">X</span></code></dt><dd><p>Clears paths on all objects/bones or just the selected ones when holding <kbd class="kbd docutils literal notranslate">Shift</kbd>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-object-paths-update-visible">
+<dt>Update All Paths</dt><dd><p>Recalculates the motion paths for all visible objects and poses.</p>
+</dd>
+</dl>
+<section id="display">
+<h3>Hiển Thị -- Display<a class="headerlink" href="#display" title="Permalink to this headline"></a></h3>
+<dl class="simple" id="bpy-types-animvizmotionpaths-show-frame-numbers">
+<dt>Frame Numbers</dt><dd><p>When enabled, a small number appears next to each frame dot on the path,
+which is of course the number of the corresponding frame.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-animvizmotionpaths-show-keyframe-highlight">
+<dt>Khung Khóa -- Keyframes</dt><dd><p>When enabled, big yellow square dots are displayed on motion paths, showing the keyframes of their bones
+(i.e. only the paths of keyed bones at a given frame get a yellow dot at this frame).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-animvizmotionpaths-show-keyframe-action-all">
+<dt>+ Non-Grouped Keyframes</dt><dd><p>For bone motion paths, it searches the whole Action for keyframes instead of
+in groups with matching name only (this is slower).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-animvizmotionpaths-show-keyframe-numbers">
+<dt>Keyframe Numbers</dt><dd><p>When enabled, you will see the numbers of the displayed keyframes,
+so this option is obviously only valid when <em>Show Keys</em> is enabled.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-motionpath-lines">
+<dt>Đường Thẳng -- Lines</dt><dd><p>Toggles whether the lines between the points are shown.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-motionpath-line-thickness">
+<dt>Thickness</dt><dd><p>Line thickness for motion path.</p>
+</dd>
+</dl>
+<span id="bpy-types-motionpath-use-custom-color"></span><dl class="simple" id="bpy-types-motionpath-color">
+<dt>Custom Color</dt><dd><p>Use custom color for this motion path.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id5">
+<img alt="../_images/animation_motion-paths_example-armature.png" src="../_images/animation_motion-paths_example-armature.png" />
+<figcaption>
+<p><span class="caption-text">An example of a motion path of an armature.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="shape_keys/workflow.html" class="btn btn-neutral float-left" title="Quy Trình Làm Việc -- Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../physics/index.html" class="btn btn-neutral float-right" title="Physics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/motion_paths.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/motion_paths%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fanimation/motion_paths.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

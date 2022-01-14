@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Deform Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/deform/simple_deform.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Smooth Modifier" href="smooth.html" />
+    <link rel="prev" title="Shrinkwrap Modifier" href="shrinkwrap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Armature Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cast.html">Cast Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Curve Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Hook Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Laplacian Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Lattice Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">Mesh Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Shrinkwrap Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Simple Deform Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#restrictions">Restrictions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Smooth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Smooth Corrective Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Smooth Laplacian Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">Surface Deform Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_displace.html">Volume Displace Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Wave Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Simple Deform Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simple-deform-modifier">
+<span id="bpy-types-simpledeformmodifier"></span><span id="index-0"></span><h1>Simple Deform Modifier<a class="headerlink" href="#simple-deform-modifier" title="Permalink to this headline"></a></h1>
+<p>The <em>Simple Deform</em> modifier allows the application of a simple deformation to
+an object. Meshes, lattices, curves, surfaces and texts are supported objects.
+The deformation is either a rotation (Twist, Bend) or a scaling (Taper, Stretch).
+The amount of deformation is specified by the Deform Angle (rotation) or Deform Factor (scaling).</p>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_intro.png" src="../../../_images/modeling_modifiers_deform_simple-deform_intro.png" />
+<figcaption>
+<p><span class="caption-text">The Simple Deform modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The deformation is calculated in the <em>local</em> coordinate space.
+Be aware that the local axes of an object can differ from the global ones.
+In the figure above, the global Z axis points up and the local Z axis points at 45°.
+The deformation is applied along a Deform axis, which can be set by selection from a list (X, Y or Z).
+By using the <em>Limits</em> field, the influence of the modifier can be restricted to a subset of the Deform axis.
+All distances are measured from the origin of the object.
+The vertices that are furthest away from the origin on the Deform axis
+represent the upper and lower limits.
+The origin of the object and the orientation of the local axes
+can be defined by an external Deform object (most of the time, an empty).</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Chế Độ -- Mode</dt><dd><p>Defines the kind of deformation which will be applied.
+The figure below shows the four modes, applied to a text object.
+The origin of the object is at the very left of the text.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id2">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_twist.png" src="../../../_images/modeling_modifiers_deform_simple-deform_twist.png" />
+<figcaption>
+<p><span class="caption-text">Twist around X axis (180°).</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend.png" />
+<figcaption>
+<p><span class="caption-text">Bend around Z axis (180°).</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id4">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_taper.png" src="../../../_images/modeling_modifiers_deform_simple-deform_taper.png" />
+<figcaption>
+<p><span class="caption-text">Taper along X axis (factor = 2).</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_stretch.png" src="../../../_images/modeling_modifiers_deform_simple-deform_stretch.png" />
+<figcaption>
+<p><span class="caption-text">Stretch along X axis (factor = 0.3).</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Xoắn -- Twist</dt><dd><p>Rotates the mesh around the specified <em>Axis</em>.
+Each vertex along the Deform axis is rotated around the object's origin.
+If the origin is inside the object, this results in a twisted appearance.
+Below the origin, there is a negative rotation and
+above the origin, the rotation is positive or clockwise.
+Vertices in the same plane as the origin are not rotated.</p>
+<p>The total amount of rotation is specified by the angle
+and the rotation at each vertex is thus weighted by the distance
+of the vertex to the origin of the object.
+Vertices that are furthest away from the object origin have max rotation,
+positive or negative.</p>
+</dd>
+<dt>Bend</dt><dd><p>Bends the mesh over the specified <em>Axis</em>.
+The Bend mode is more complex and less intuitive.
+The picture below shows the same plane but with different Deform and Bending axes.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id6">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-1.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-1.png" />
+<figcaption>
+<p><span class="caption-text">Deform axis X or Y (a).</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id7">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-2.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-2.png" />
+<figcaption>
+<p><span class="caption-text">Deform axis Z (b).</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id8">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-3.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-3.png" />
+<figcaption>
+<p><span class="caption-text">Deform axis X. Local axis Y points down (c).</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id9">
+<img alt="../../../_images/modeling_modifiers_deform_simple-deform_bend-4.png" src="../../../_images/modeling_modifiers_deform_simple-deform_bend-4.png" />
+<figcaption>
+<p><span class="caption-text">Deform axis X. Local axis Y points up (d).</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Using a mesh plane and setting the Deform axis to X or Y will not result in any deformation (Fig a).
+You expect that the bending should be something like Figure (c) or (d).
+In a 3D world however, selecting the X axis introduces an ambiguity because
+bending along the X axis could result in Figure (c) or (d).
+The following pairs describe the selected deform axis vs. the desired bending axis:
+X and Z, Y and Z, Z and X.</p>
+<p>In Fig (a), because of the Deform axis X, the Bending is along the Z.
+All vertices however have the same Z coordinate equal to the local origin.
+So, no deformation occurs. In Fig (d) the local axes are rotated around the Deform axis X,
+so that the Bending axis Z points to the left.
+So, all vertices are bend for their Z coordinate.
+The further away from the local origin, the more bending.</p>
+<p>This explains also the unexpected result of Fig (b).
+The Deform axis is set here to Z (pointing up).
+So, according to the pairs above, the Bending axis defaults to X.
+All vertices of the plane are bent in their X coordinate.
+The further away, the more rotation occurs.
+Negative X coordinates are rotated counterclockwise.</p>
+</dd>
+<dt>Taper</dt><dd><p>Linearly scales along the specified <em>Axis</em>.
+The scaling factor is weighted by the distance from the origin of the object in the deform axis.
+No scaling occurs in the plane of the origin of the object.
+The maximum scaling occurs at the vertices that are furthest away from the local origin.
+This can be a positive or negative scaling, depending on the location of the origin.
+If the local origin is within the object, the deformed object appears tapered.</p>
+</dd>
+<dt>Kéo Giãn -- Stretch</dt><dd><p>Stretches the object along the specified <em>Axis</em>.
+If the local origin is within the object, the deformed mesh
+looks stretched like pulling a rubber from both sides.
+With a positive factor, the mesh gets longer in the deformed axis,
+wider at the borders and thinner at the origin than the original mesh.
+If the factor is negative, then the mesh is squashed in the deformed axis,
+thicker at the origin and thinner at the borders.</p>
+</dd>
+</dl>
+</dd>
+<dt>Angle (Twist &amp; Bend)/Factor (Taper &amp; Stretch)</dt><dd><p>The total amount of deformation. Can be negative to reverse the deformation.</p>
+</dd>
+<dt>Axis, Origin</dt><dd><p>The name of an object that defines the origin and axis of deformation (usually an empty).
+This object can be:</p>
+<ul class="simple">
+<li><p>Rotated to control the axis (its local <em>Axis</em> is now used as the deformation one).</p></li>
+<li><p>Moved to control the origin of the deformation.</p></li>
+<li><p>Scaled to change the deformation factor.</p></li>
+</ul>
+</dd>
+</dl>
+<section id="restrictions">
+<h3>Restrictions<a class="headerlink" href="#restrictions" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Limits</dt><dd><p>You can set the lower and upper limits of the deformation.
+The upper limit cannot be lower than the lower one. These limits are mapped on the Deform axis.</p>
+</dd>
+<dt>Lock (Twist, Taper and Stretch modes only)</dt><dd><p>These controls whether the coordinates along the two other axes are allowed to change or not.
+E.g. if you <em>Stretch</em> your object along its Z axis,
+it is possible to squash along the X axis only, by locking the Y one.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>The name of the vertex group that indicates whether
+and how much each vertex is influenced by the deformation.
+The amount of influence is determined by the weight in the Weight Paint map.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="shrinkwrap.html" class="btn btn-neutral float-left" title="Shrinkwrap Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="smooth.html" class="btn btn-neutral float-right" title="Smooth Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/deform/simple_deform.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/deform/simple_deform%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/modifiers/deform/simple_deform.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

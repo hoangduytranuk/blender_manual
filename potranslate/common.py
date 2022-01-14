@@ -747,20 +747,28 @@ class Common:
         if not abbr_txt:
             return None, None, None
 
-        abbr_dict = pu.patternMatchAll(df.ABBREV_PATTERN_PARSER, abbr_txt)
+        abbr_dict = pu.patternMatchAll(df.ABBREV_CONTENT_PARSER, abbr_txt)
         if not abbr_dict:
             return None, None, None
 
         abbrev_orig_rec = abbrev_part = exp_part = None
         mm: MatcherRecord = None
 
-        for s, mm in abbr_dict.items():
-            abbrev_orig_rec = mm.getOriginAsTuple()
-            l = mm.getSubEntriesAsList()
-            for loc, txt in l:
-                found_texts = df.ABBR_TEXT_ALL.findall(txt)
-                first_entry = found_texts[0]
-                abbrev_part, exp_part = first_entry
+        try:
+            for s, mm in abbr_dict.items():
+                l = mm.getSubEntriesAsList()
+                for index, (loc, expr) in enumerate(l):
+                    is_orig_part = (index == 0)
+                    is_abbrev_part = (index == 1)
+                    if is_orig_part:
+                        abbrev_orig_rec = expr
+                    if is_abbrev_part:
+                        found_texts = df.ABBREV_CONTENT_PARSER.findall(expr)
+                        first_entry = found_texts[0]
+                        (abbrev_part, exp_part) = first_entry
+        except Exception as e:
+            msg = f'abbr_txt:{abbr_txt}; exception:{e}'
+            df.LOG(msg, error=True)
 
         return abbrev_orig_rec, abbrev_part, exp_part
 

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giới Thiệu -- Introduction &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/cloth/introduction.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Sắp Đặt -- Settings" href="settings/index.html" />
+    <link rel="prev" title="Cloth" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rigid_body/index.html">Rigid Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Cloth</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Giới Thiệu -- Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#workflow">Quy Trình Làm Việc -- Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#springs">Springs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="settings/index.html">Sắp Đặt -- Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../soft_body/index.html">Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fluid/index.html">Fluid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../particles/index.html">Particle System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dynamic_paint/index.html">Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision.html">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../baking.html">Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Physics</a> &raquo;</li>
+          <li><a href="index.html">Cloth</a> &raquo;</li>
+      <li>Giới Thiệu -- Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Giới Thiệu -- Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h1>
+<p>Cloth simulation is one of the hardest aspects of computer graphics,
+it is a deceptively simple real-world item that is taken for granted,
+but it actually has very complex internal and environmental interactions.
+Cloth is commonly modeled as 2D mesh to simulate real world objects such as fabrics, flags, banners.
+And yet cloth can also be used to model 3D objects such as teddy bears, pillows, balloons, or balls.</p>
+<p>Cloth interacts with and is affected by other moving objects,
+the wind and other forces, as well as a general aerodynamic model,
+all of which is under your control.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id1">
+<img alt="../../_images/physics_cloth_introduction_example1.jpg" src="../../_images/physics_cloth_introduction_example1.jpg" />
+<figcaption>
+<p><span class="caption-text">Cloth example.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id2">
+<img alt="../../_images/physics_cloth_introduction_oncarved-wood.jpg" src="../../_images/physics_cloth_introduction_oncarved-wood.jpg" />
+<figcaption>
+<p><span class="caption-text">Cloth on carved wooden men (made by motorsep).</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<img alt="../../_images/physics_cloth_introduction_example2.jpg" src="../../_images/physics_cloth_introduction_example2.jpg" />
+<figcaption>
+<p><span class="caption-text">Cloth example.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Once Cloth physics have been added to a mesh, a Cloth <a class="reference internal" href="../../modeling/modifiers/index.html"><span class="doc">modifier</span></a>
+will be added to the object's modifier stack. As a modifier then,
+it can interact with other modifiers, such as <em>Armature</em> and <em>Smooth</em>. In these cases,
+the ultimate shape of the mesh is computed in accordance with the order of the modifier stack.
+For example, you should smooth the cloth <em>after</em> the modifier computes the shape of the cloth.</p>
+<p>You can <em>Apply</em> the Cloth Modifier to freeze, or lock in,
+the shape of the mesh at that frame, which removes the modifier. For example,
+you can drape a flat cloth over a table, let the simulation run, and then apply the modifier.
+In this sense, you are using the simulator to save yourself a lot of modeling time.</p>
+<p>Results of the simulation are saved in a cache, so that the shape of the mesh,
+once calculated for a frame in an animation, does not have to be recomputed again.
+If changes to the simulation are made, you have full control over clearing the cache and re-running the simulation.
+Running the simulation for the first time is fully automatic and no baking or separate step interrupts the workflow.</p>
+<p>Computation of the shape of the cloth at every frame is automatic and done in the background;
+thus you can continue working while the simulation is computed. However, it is CPU-intensive
+and depending on the power of your PC and the complexity of the simulation,
+the amount of CPU needed to compute the mesh varies, as does the lag you might notice.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Do Not Jump Ahead</p>
+<p>If you set up a cloth simulation but Blender has not computed the shapes for the duration of the simulation,
+and if you jump ahead a lot of frames forward in your animation,
+the cloth simulator may not be able to compute or show you an accurate mesh shape for that frame,
+if it has not previously computed the shape for the previous frame(s).</p>
+</div>
+<section id="workflow">
+<h2>Quy Trình Làm Việc -- Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h2>
+<p>A general process for working with cloth is to:</p>
+<ol class="arabic simple">
+<li><p>Model the cloth object as a general starting shape.</p></li>
+<li><p>Designate the object as a &quot;cloth&quot; in the <em>Physics</em> tab of the Properties.</p></li>
+<li><p>Model other deflection objects that will interact with the cloth.
+Ensure the Deflection modifier is last on the modifier stack, after any other mesh deforming modifiers.</p></li>
+<li><p>Light the cloth and assign materials and textures, UV unwrapping if desired.</p></li>
+<li><p>If desired, give the object particles, such as steam coming off the surface.</p></li>
+<li><p>Run the simulation and adjust settings to obtain satisfactory results.
+The Timeline editors playback controls are great for this step.</p></li>
+<li><p>Optionally age the mesh to some point in the simulation to obtain a new default starting shape.</p></li>
+<li><p>Make minor edits to the mesh on a frame-by-frame basis to correct minor tears.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>To avoid unstable simulation, make sure that the cloth object does not penetrate any of the deflection objects.</p>
+</div>
+</section>
+<section id="springs">
+<span id="physics-cloth-introduction-springs"></span><h2>Springs<a class="headerlink" href="#springs" title="Permalink to this headline"></a></h2>
+<p>Internally, cloth physics is simulated with virtual springs that connect the vertices of a mesh.
+There are four types of springs that control how the cloth bends.
+These four types are defined below and illustrated in the following image:</p>
+<figure class="align-center" id="id4">
+<img alt="../../_images/physics_cloth_introduction_springs.png" src="../../_images/physics_cloth_introduction_springs.png" />
+<figcaption>
+<p><span class="caption-text">Illustration of cloth springs; tension springs (blue),
+compression springs (red), shear springs (cyan),
+and angular bending springs (green).</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Tension Springs</dt><dd><p>Control the stiffness of the cloth.</p>
+</dd>
+<dt>Compression Springs</dt><dd><p>Control the amount of force required to collapse or compress the cloth.</p>
+</dd>
+<dt>Shear Springs</dt><dd><p>Like compression springs but it controls the angular deformation.</p>
+</dd>
+<dt>Angular Bending Springs</dt><dd><p>Control how resilient the cloth is to folding or crumpling.</p>
+</dd>
+</dl>
+<p>All four of these spring types can be controlled independently in
+the <a class="reference internal" href="settings/physical_properties.html"><span class="doc">Physical Properties</span></a> panel. While these settings
+control surface springs, optionally, internal springs can be used for 3D meshes
+and behave similarly to <a class="reference internal" href="../soft_body/index.html"><span class="doc">Soft Bodies</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Cloth" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="settings/index.html" class="btn btn-neutral float-right" title="Sắp Đặt -- Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/cloth/introduction.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/cloth/introduction%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fphysics/cloth/introduction.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

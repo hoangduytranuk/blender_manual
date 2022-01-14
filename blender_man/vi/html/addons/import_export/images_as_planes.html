@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hình Ảnh thành Mặt Phẳng &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/images_as_planes.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Nhập Khẩu Bảng Pha Màu" href="palettes.html" />
+    <link rel="prev" title="FBX" href="scene_fbx.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Liệt Kê Hạng Mục của các Trình Bổ Sung -- Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Thêm Đường Cong</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Cộng Thêm Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation -- Hoạt Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Máy Quay Phim -- Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Xây Dựng -- Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nhập-Xuất Khẩu</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="node_shaders_info.html">Nhập/Xuất các nút Tô Bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coat3D.html">3D-Coat Applink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_atomic.html">Blender Nguyên Tử (PDB/XYZ)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_dxf.html"><abbr>DXF (Drawing Interchange Format: Định Dạng Trao Đổi Họa Bản) của AutoCAD</abbr></a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_camera.html">Hoạt Họa của Máy Quay Phim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="paper_model.html">Mô Hình Giấy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pc2.html">Pointcache (pc2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_fbx.html"><abbr title="FilmBox: Hộp Phim">FBX</abbr></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Hình Ảnh thành Mặt Phẳng</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất -- Properties</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#import-options">Tùy Chọn Nhập Khẩu</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#compositing-nodes">Nút Tổng Hợp</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#material-settings">Sắp Đặt về Nguyên Vật Liệu</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#texture-settings">Sắp đặt về Chất Liệu</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#position">Vị Trí -- Position</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#plane-dimensions">Kích Thước Bề Diện</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#orientation">Định Hướng</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="palettes.html">Nhập Khẩu Bảng Pha Màu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape_mdd.html">MDD của NewTek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_nuke_chan.html">Hoạt Họa Nuke (<abbr title="định dạng tập tin lưu vị trí hoạt họa của máy quay phim">chan</abbr>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_stl.html"><abbr title="Stereolithography: Khắc Đá Lập Thể, còn được gọi là thiết bị in li-tô Lập Thể, chế tạo quang học, đông đặc quang học hoặc in nhựa. STL là định dạng tập tin có nguồn gốc từ phần mềm CAD li-tô Lập Thể, được tạo bởi các hệ thống 3D">STL</abbr></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve_svg.html">Đồ Họa Véctơ Khả Tùy Biến (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_ply.html">Định Dạng PLY của Stanford</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_uv_layout.html">Bố Trí UV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_obj.html">OBJ của Wavefront</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_x3d.html"><abbr title="Extensible 3D Graphics: Đồ Họa 3D Mở Rộng Được">X3D</abbr>/VRML2 của Web3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_gltf2.html">glTF 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Bố Trí Ánh Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh -- Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object -- Vật Thể</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Sơn -- Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render -- Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Dựng Giàn Điều Khiển</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Bộ Phối Hình -- Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">Hệ Thống -- System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Công Cụ về Phim Video</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+          <li><a href="index.html">Nhập-Xuất Khẩu</a> &raquo;</li>
+      <li>Hình Ảnh thành Mặt Phẳng</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="images-as-planes">
+<h1>Hình Ảnh thành Mặt Phẳng<a class="headerlink" href="#images-as-planes" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Hạng Mục -- Category</dt>
+<dd class="field-odd"><p>Nhập-Xuất Khẩu</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">File ‣ Import ‣ Images as Planes</span>,
+<span class="menuselection">3D Viewport ‣ Add ‣ Image ‣ Images as Planes</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-right" id="id2">
+<a class="reference internal image-reference" href="../../_images/addons_import-export_images-as-planes_panel.png"><img alt="../../_images/addons_import-export_images-as-planes_panel.png" src="../../_images/addons_import-export_images-as-planes_panel.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Properties panel.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This add-on imports images and creates planes with them as textures.
+It automates the process of creating a plane, resizing it to fit the dimensions of the image,
+and adding a material and image texture to that plane.
+The name of the plane, material and texture is derived from the image name.</p>
+<p>You can either import a single image, multiple images, or an image sequence/movie clip.
+Selecting a single image will create one plane, selecting multiple images will create
+as many planes as images selected, on top of each other or spaced.
+Selecting a movie clip, or an image sequence will create a single plane with an animation.</p>
+<section id="properties">
+<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<p>You save the current settings of the import as an <a class="reference internal" href="../../interface/window_system/tabs_panels.html#ui-presets"><span class="std std-ref">Operator Preset</span></a>.</p>
+<section id="import-options">
+<h3>Tùy Chọn Nhập Khẩu<a class="headerlink" href="#import-options" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Đường Dẫn Tương Đối -- Relative Path</dt><dd><p>Link to the image file using a <a class="reference internal" href="../../files/blend/open_save.html#files-blend-relative-paths"><span class="std std-ref">relative file path</span></a>.</p>
+</dd>
+<dt>Bắt Buộc Tái Nạp</dt><dd><p>Reloads the image file into Blender if it is already added as an image data-block.</p>
+</dd>
+<dt>Trình Tự Hình Ảnh Hoạt Họa</dt><dd><p>Import sequentially numbers images as
+an animated <a class="reference internal" href="../../video_editing/sequencer/strips/image.html"><span class="doc">image sequence</span></a> instead of separate planes.
+They will be imported as a <em>Clip</em> texture on a single plane.
+The frame range will automatically be set but can be changed later.</p>
+</dd>
+</dl>
+</section>
+<section id="compositing-nodes">
+<h3>Nút Tổng Hợp<a class="headerlink" href="#compositing-nodes" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Sắp Đặt Ghim Đính Góc</dt><dd><p>A <a class="reference internal" href="../../compositing/types/distort/corner_pin.html"><span class="doc">Corner Pin</span></a> node is used to distort a plane
+and to create a warp view of the image. Selecting this option will build a compositing setup with
+the Image Texture, Scale and Corner Pin Node added to the Compositor.</p>
+</dd>
+</dl>
+</section>
+<section id="material-settings">
+<h3>Sắp Đặt về Nguyên Vật Liệu<a class="headerlink" href="#material-settings" title="Permalink to this headline"></a></h3>
+<p>The image is displayed on the plane through material and textures nodes.
+They can be edited in the Shader editor.</p>
+<dl class="simple">
+<dt>Bộ Tô Bóng -- Shader</dt><dd><dl class="simple">
+<dt>Nguyên Tắc</dt><dd><p>Creates a new material for the plane with
+a <a class="reference internal" href="../../render/shader_nodes/shader/principled.html"><span class="doc">Principled BSDF</span></a> shader node
+with default settings as the main component.
+The base color of the Principled BSDF node comes from an Image Texture node
+that is linked to the imported image.</p>
+</dd>
+<dt>Phi Chuyển Sắc</dt><dd><p>A shadeless material is a material that does not respond to light from
+other objects and has always the same color in any lighting environment.
+This option creates a new material for the plane with a group node as
+the main component. This node group is essentially a mix between a Diffuse
+and an Emission shader controlled by a Light Path node.</p>
+</dd>
+<dt>Phát Xạ -- Emit</dt><dd><p>Creates a new material for the plane with
+an <a class="reference internal" href="../../render/shader_nodes/shader/emission.html"><span class="doc">Emission shader</span></a> node as the main component.
+The base color of the node comes from an Image Texture node that is linked to the imported image.
+The strength can be set.</p>
+</dd>
+</dl>
+</dd>
+<dt>Thay Thế Nguyên Vật Liệu</dt><dd><p>The name of the material is the same as the name of the image.
+If the material already exist Blender will append a number to the material name.
+With the <em>Override Material</em> checkbox, you can force the add-on to replace the existing material.</p>
+</dd>
+</dl>
+</section>
+<section id="texture-settings">
+<h3>Sắp đặt về Chất Liệu<a class="headerlink" href="#texture-settings" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Dùng Alpha -- Use Alpha</dt><dd><p>The alpha channel of the image is used for transparency.</p>
+<dl class="simple">
+<dt>Chế Độ Alpha</dt><dd><p>Representation of alpha in the image file, to convert to and from when saving and loading the image.
+See <a class="reference internal" href="../../glossary/index.html#term-Alpha-Channel"><span class="xref std std-term">Alpha Channel</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Tự Động Làm Tươi Mới Lại -- Auto Refresh</dt><dd><p>Automatically refresh images in the viewport on frame changes.</p>
+</dd>
+</dl>
+</section>
+<section id="position">
+<h3>Vị Trí -- Position<a class="headerlink" href="#position" title="Permalink to this headline"></a></h3>
+<p>A single plane is positioned at the 3D Cursor. Multiple planes can be offset against
+each other following a selected axis.</p>
+<dl>
+<dt>Dịch Chuyển Mặt Phẳng</dt><dd><dl>
+<dt>Trục Địa Phương</dt><dd><p>The axis that is used to offset the different planes. For example, if you choose <em>X+</em>,
+the images are positioned along the X axis, starting at the X coordinate of
+the 3D cursor and following with X+ offset.</p>
+<p>X+, X-, Y+, Y-, Z+, Z-</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>The space between each plane.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="plane-dimensions">
+<h3>Kích Thước Bề Diện<a class="headerlink" href="#plane-dimensions" title="Permalink to this headline"></a></h3>
+<p>Use the image's pixel count to determine the planes size in units.</p>
+<dl>
+<dt>Tuyệt Đối -- Absolute</dt><dd><p>The size of the plane is based on the amount of pixels in the image.</p>
+<dl class="simple">
+<dt>Chiều Cao -- Height</dt><dd><p>The width is calculated based on the input height and the pixel dimensions of the image.
+For example, with the default <em>Height</em> of 1, an image of 800 × 600 will have
+a calculated width of 1 / 600 × 800 or 1.33 units.</p>
+</dd>
+</dl>
+</dd>
+<dt>Tương Đối với Máy Quay Phim</dt><dd><p>The size of the image plane is set relative to the size of the camera frame.</p>
+<dl class="simple">
+<dt>Khít -- Fit</dt><dd><p>Scales the image to fit inside the camera view without altering the aspect ratio.</p>
+</dd>
+<dt>Phủ/Tô/Lấp Kín -- Fill</dt><dd><p>Scales the image so that it fills the entire camera view, without altering
+the aspect ratio but some of the image can be spilled outside the camera frame.</p>
+</dd>
+</dl>
+</dd>
+<dt>Số Điểm Mỗi In-Sơ</dt><dd><p>Số điểm ảnh Mỗi In-Sơ, DPI.</p>
+<dl class="simple">
+<dt>Độ Phân Giải</dt><dd><p>This is the number of pixels that fit in 1 inch. So, with the <em>Unit System</em> set to
+<em>Metric</em> and the <em>Definition</em> field set to the default 600 DPI,
+an image of 800 × 600 pixels will have a size of 0.0339 × 0.0254 units
+because 600 pixels are defined as 1 inch which equals 0.0254 m.</p>
+</dd>
+</dl>
+</dd>
+<dt>Số Điểm/Đơn Vị Blender</dt><dd><p>Dots per Blender Unit.</p>
+<dl class="simple">
+<dt>Độ Phân Giải</dt><dd><p>The field <em>Definition</em> is by default set to 600, indicating that 1 unit equals 600 pixels
+in the image. So, an image of 800 × 600 will have a size of 1.33 × 1 unit.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="orientation">
+<h3>Định Hướng<a class="headerlink" href="#orientation" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Canh_Hàng -- Align</dt><dd><p>With this option you can set the rotation of the plane.</p>
+<dl class="simple">
+<dt>Trục Chính -- Main Axis</dt><dd><p>The plane is positioned so that it faces the camera. This is achieved by rotating the plane
+so that the viewing axis of the camera is perpendicular to the plane.</p>
+</dd>
+<dt>Đối Mặt với Máy Quay Phim</dt><dd><p><em>Face Camera</em> is similar to <em>Main Axis</em>, but the plane is also rotated so that
+it aligns with the rotation of the camera.</p>
+</dd>
+<dt>Z- (Xuống), Y-, X-, Z + (Lên), Y +, X +</dt><dd><p>The plane is rotated in such a way that the selected axis is perpendicular to
+the plane with the front face pointing to the positive or negative side of the axis.
+For example, the option Z+ (Up) is fully visible in Top View,
+because the Z axis is pointing perpendicular to the plane in this view
+and the front face of the image is pointing to the positive (Up) side of the Z axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Giám Sát Máy Quay Phim</dt><dd><p>Uses a <a class="reference internal" href="../../animation/constraints/tracking/locked_track.html"><span class="doc">Locked Track Constraint</span></a> to make
+the plane always align with the camera. The plane always faces the camera, even if the camera is moved.
+This option is only available if <em>Main axis</em> or <em>Face Camera</em> is selected in the <em>Align</em> panel.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scene_fbx.html" class="btn btn-neutral float-left" title="FBX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="palettes.html" class="btn btn-neutral float-right" title="Nhập Khẩu Bảng Pha Màu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/import_export/images_as_planes.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/import_export/images_as_planes%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Faddons/import_export/images_as_planes.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Light Settings &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/eevee/lighting.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Light Probes" href="light_probes/index.html" />
+    <link rel="prev" title="World" href="world.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Eevee</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="world.html">World</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Light Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common">Sắp Đặt Chung -- Common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eevee">Eevee</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shadows">Shadows</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#common-parameters">Common Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#contact-shadows">Contact Shadows</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cascaded-shadow-map">Cascaded Shadow Map</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#limitations">Những Giới Hạn -- Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="light_probes/index.html">Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limitations.html">Những Giới Hạn -- Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Eevee</a> &raquo;</li>
+      <li>Light Settings</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="light-settings">
+<h1>Light Settings<a class="headerlink" href="#light-settings" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Properties ‣ Light</span> and <span class="menuselection">Shader Editor ‣ Sidebar ‣ Options</span></p>
+</dd>
+</dl>
+</div>
+<p>Next to lighting from the background and any object with an emission shader,
+lights are another way to add light into the scene.
+The difference is that they are not directly visible in the rendered image,
+and can be more easily managed as objects of their own type.</p>
+<section id="common">
+<h2>Sắp Đặt Chung -- Common<a class="headerlink" href="#common" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="../lights/light_object.html"><span class="doc">Light settings</span></a> for all renderers.</p>
+</section>
+<section id="eevee">
+<span id="bpy-types-light-cutoff-distance"></span><span id="bpy-types-light-use-custom-distance"></span><h2>Eevee<a class="headerlink" href="#eevee" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Specular</dt><dd><p>Specular Light intensity multiplier. Use it for more artistic control.
+Setting this to anything but 1.0 will yield non-photorealistic result.</p>
+</dd>
+<dt>Custom Distance</dt><dd><p>If enabled uses <em>Distance</em> as the custom attenuation distance instead of global light threshold.
+In order to avoid long setup times, this distance is first computed
+automatically based on a light threshold. The distance is computed
+at the light origin and using the inverse square falloff.</p>
+<dl class="simple">
+<dt>Khoảng Cách -- Distance</dt><dd><p>Specifies where light influence will be set to 0.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="render_settings/shadows.html"><span class="doc">Light Threshold</span></a>.</p>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The light's <em>Power</em>/<em>Strength</em> affect both specular and diffuse light.</p>
+</div>
+</section>
+<section id="shadows">
+<span id="bpy-types-light-shadow"></span><h2>Shadows<a class="headerlink" href="#shadows" title="Permalink to this headline"></a></h2>
+<section id="common-parameters">
+<h3>Common Parameters<a class="headerlink" href="#common-parameters" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Clip Start</dt><dd><p>Distance from the light object at which the shadow map starts.
+Any object before this distance will not appear to cast shadows.
+<em>Clip Start</em> will only appear for point, spot and area lights.</p>
+</dd>
+<dt>Bias</dt><dd><p>Bias applied to the depth test to reduce self shadowing artifacts.</p>
+</dd>
+</dl>
+</section>
+<section id="contact-shadows">
+<h3>Contact Shadows<a class="headerlink" href="#contact-shadows" title="Permalink to this headline"></a></h3>
+<p>This type of shadow exists to fix light leaking caused by bias or shadow map undersampling.
+It uses the depth buffer to find occluders (just like Screen Space Reflections).
+However, just like Screen Space Reflections it has the same limitations,
+namely, unknown object thickness and effect disappearing at screen edges.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>The distance of action of Contact Shadows should remain quite small.
+They are not accurate enough to shadow the entire scene.</p>
+</div>
+<dl class="simple">
+<dt>Khoảng Cách -- Distance</dt><dd><p>World space distance in which to search for screen space occluder.</p>
+</dd>
+<dt>Bias</dt><dd><p>Bias applied to the ray tracing to reduce self-shadowing artifacts.</p>
+</dd>
+<dt>Thickness</dt><dd><p>Pixel thickness used to detect occlusion, treating any potential occluder as this thick.</p>
+</dd>
+</dl>
+</section>
+<section id="cascaded-shadow-map">
+<span id="eevee-cascaded-shadow-map"></span><h3>Cascaded Shadow Map<a class="headerlink" href="#cascaded-shadow-map" title="Permalink to this headline"></a></h3>
+<p>These special kind of shadow maps are used by Sun lights.
+This is because they can shadow large scenes by distributing multiple shadow maps over the frustum range.
+Each cascade covers a different portion of the view frustum.
+Do note that cascade shadow maps are always updated because they are view dependent.
+This means they have a high performance impact.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>In orthographic view the cascades cover the whole depth range of the camera
+with an evenly distributed shadow precision.</p>
+</div>
+<dl class="simple">
+<dt>Count</dt><dd><p>Number of cascades to use. More cascades means better precision but a lower update rate.</p>
+</dd>
+<dt>Fade</dt><dd><p>Fade transition area between two cascades.
+Higher values means less overall resolution because cascades need to overlap.</p>
+</dd>
+<dt>Max Distance</dt><dd><p>Distance away from the view origin (or camera origin if in camera view) to cover by the cascade.
+If the view far clip distance is lower than Max Distance, the view far clip distance will be used.
+Only works in perspective view.</p>
+</dd>
+<dt>Distribution</dt><dd><p>Puts more resolution towards the near clip plane. Only works in perspective view.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="limitations.html#eevee-limitations-shadows"><span class="std std-ref">Limitations</span></a>.</p>
+</div>
+</section>
+</section>
+<section id="limitations">
+<h2>Những Giới Hạn -- Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Unlike in Cycles, the <em>Size</em> of spot lights does not change the softness of the cone.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="world.html" class="btn btn-neutral float-left" title="World" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="light_probes/index.html" class="btn btn-neutral float-right" title="Light Probes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/eevee/lighting.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/eevee/lighting%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/eevee/lighting.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

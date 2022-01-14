@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collision &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/collision.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Baking Physics Simulations" href="baking.html" />
+    <link rel="prev" title="Fluid Flow" href="forces/force_fields/types/fluid_flow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rigid_body/index.html">Rigid Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloth/index.html">Cloth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="soft_body/index.html">Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluid/index.html">Fluid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="particles/index.html">Particle System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamic_paint/index.html">Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forces/index.html">Forces</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Collision</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Collision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#particle">Particle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#soft-body-and-cloth">Soft Body and Cloth</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Ví Dụ -- Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hints">Hints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="baking.html">Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Physics</a> &raquo;</li>
+      <li>Collision</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collision">
+<span id="bpy-types-collisionsettings"></span><span id="bpy-types-collisionmodifier"></span><h1>Collision<a class="headerlink" href="#collision" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể -- Object Mode</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Physics ‣ Collision</span></p>
+</dd>
+</dl>
+</div>
+<p><a class="reference internal" href="particles/index.html"><span class="doc">Particles</span></a>, <a class="reference internal" href="soft_body/index.html"><span class="doc">Soft Bodies</span></a>
+and <a class="reference internal" href="cloth/index.html"><span class="doc">Cloth objects</span></a> may collide with mesh objects.
+<a class="reference internal" href="particles/emitter/physics/boids.html"><span class="doc">Boids</span></a> try to avoid <em>Collision</em> objects.</p>
+<ul class="simple">
+<li><p>You may limit the effect on particles to a group of objects
+(in the <a class="reference internal" href="particles/emitter/force_field.html"><span class="doc">Field Weights panel</span></a>).</p></li>
+<li><p><em>Deflection</em> for soft body objects is difficult, they often penetrate the colliding objects.</p></li>
+<li><p>Hair particles ignore deflecting objects
+(but you can animate them as soft bodies which take deflection into account).</p></li>
+</ul>
+<p>If you change the deflection settings for an object you have to recalculate the particle,
+soft body or cloth system by <em>Delete Bake</em>, this is not done automatically.</p>
+<figure class="align-right">
+<img alt="../_images/physics_collision_toggle.png" src="../_images/physics_collision_toggle.png" />
+</figure>
+<p>A collider object can be temporarily disabled via an animatable toggle to
+the right of the button that permanently activates or deactivates it.</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id3">
+<img alt="../_images/physics_collision_panel.png" src="../_images/physics_collision_panel.png" />
+<figcaption>
+<p><span class="caption-text">Collision panel.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id2">
+<h3>Collision<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Field Absorption</dt><dd><p>A deflector can also deflect effectors. You can specify some collision/deflector objects which deflect
+a specific portion of the effector force using the <em>Field Absorption</em> value. 100% absorption results in no force
+getting through the collision/deflector object at all. If you have three collision object behind each other with
+e.g. 10%, 43% and 3%, the absorption ends up at around 50% <span class="math notranslate nohighlight">\(100 × (1 - 0.1) × (1 - 0.43) × (1 - 0.03)\)</span>.</p>
+</dd>
+</dl>
+</section>
+<section id="particle">
+<h3>Particle<a class="headerlink" href="#particle" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Permeability</dt><dd><p>Fraction of particles passing through the mesh.</p>
+</dd>
+<dt>Stickiness</dt><dd><p>How much particles stick to the object.</p>
+</dd>
+<dt>Kill Particles</dt><dd><p>Deletes Particles upon impact.</p>
+</dd>
+<dt>Damping</dt><dd><p>Damping during a collision (independent of the velocity of the particles).</p>
+<dl class="simple">
+<dt>Ngẫu Nhiên Hóa -- Randomize</dt><dd><p>Random variation of damping.</p>
+</dd>
+</dl>
+</dd>
+<dt>Friction</dt><dd><p>Friction during movements along the surface.</p>
+<dl class="simple">
+<dt>Ngẫu Nhiên Hóa -- Randomize</dt><dd><p>Random variation of friction.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="soft-body-and-cloth">
+<span id="physics-collision-soft-bodt-cloth"></span><h3>Soft Body and Cloth<a class="headerlink" href="#soft-body-and-cloth" title="Permalink to this headline"></a></h3>
+<p>It is also important to note that this collision panel is used to tell
+all simulations that this object is to participate in colliding/deflecting other objects
+on a shared layer (particles, soft bodies, and cloth).</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The object's shape deforms the cloth,
+so the cloth simulation must be inputted the &quot;true&quot; shape of that mesh object at that frame.
+This true shape is the basis shape as modified by shape keys or armatures. Therefore,
+the Collision Modifier must be <strong>after</strong> any of those.
+The image to the right shows the <em>Modifiers</em> panel for the Character mesh object
+(not the cloth object).</p>
+</div>
+<dl>
+<dt>Damping</dt><dd><p>Damping during a collision.
+The amount of bounce that the surfaces will have.</p>
+<ul class="simple">
+<li><p>0.0 - No damping, soft bodies will have a maximum bounciness.</p></li>
+<li><p>1.0 - Maximum damping, soft bodies will not bounce at all.</p></li>
+</ul>
+</dd>
+<dt>Thickness</dt><dd><p>A padding distance is added to the inside and outside of each face, to help to prevent intersections.
+The soft body will come to rest at this distance away from the face of the colliding object.
+Outside and inside is defined by the face normal, depicted as blue arrow in Fig. <a class="reference internal" href="#fig-collision-soft-plane"><span class="std std-ref">A soft body vertex colliding with a plane.</span></a>.</p>
+<dl class="simple">
+<dt>Outer</dt><dd><p>Size of the outer collision zone.</p>
+</dd>
+<dt>Inner</dt><dd><p>Size of the inner collision zone (padding distance).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<figure class="align-default" id="id4">
+<span id="fig-collision-soft-plane"></span><a class="reference internal image-reference" href="../_images/physics_collision_outer-inner.png"><img alt="../_images/physics_collision_outer-inner.png" src="../_images/physics_collision_outer-inner.png" style="width: 380px;" /></a>
+<figcaption>
+<p><span class="caption-text">A soft body vertex colliding with a plane.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Friction</dt><dd><p>A coefficient for how slippery the cloth is when it collides with itself.
+For example, silk has a lower coefficient of friction than cotton.</p>
+</dd>
+<dt>Single Sided</dt><dd><p>When enabled, the collider is considered to represent the boundary of a solid object
+rather than a thin surface, and ejects intersecting cloth in the direction of its normal.</p>
+</dd>
+<dt>Override Normals</dt><dd><p>When enabled, cloth collision impulses act in the direction of the collider normals.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><em>Soft body</em> collisions are difficult to get perfect.
+If one of the objects move too fast, the soft body will penetrate the mesh.
+See also the section about <a class="reference internal" href="soft_body/index.html"><span class="doc">Soft Bodies</span></a>.</p>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id5">
+<img alt="../_images/physics_collision_defected-particles.png" src="../_images/physics_collision_defected-particles.png" />
+<figcaption>
+<p><span class="caption-text">Deflected particles.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Here is a <em>Meta</em> object, using Instancing Vertices to a particle system emitting downwards,
+and deflected by a mesh cube.</p>
+</section>
+<section id="hints">
+<h2>Hints<a class="headerlink" href="#hints" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Make sure that the normals of the mesh surface are facing towards the particles/points
+for correct deflection. Negative scales on the object can have a similar effect.
+Make sure to recalculate the normals after applying the scale.</p></li>
+<li><p>Hair particles react directly to force fields,
+so if you use a force field with a short range you do not need necessarily collision.</p></li>
+<li><p>Hair particles avoid their emitting mesh if you edit them in <em>Particle Edit Mode</em>.
+So you can at least model the hair with collision.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="forces/force_fields/types/fluid_flow.html" class="btn btn-neutral float-left" title="Fluid Flow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="baking.html" class="btn btn-neutral float-right" title="Baking Physics Simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/collision.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/collision%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fphysics/collision.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collisions &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/physics/cloth/settings/collisions.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Property Weights" href="property_weights.html" />
+    <link rel="prev" title="Hình Dạng -- Shape" href="shape.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Physics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Rigid Body</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Cloth</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sắp Đặt -- Settings</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="physical_properties.html">Physical Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cache.html">Cache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape.html">Hình Dạng -- Shape</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Collisions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#collision-settings">Collision Settings</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#object-collisions">Object Collisions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#self-collisions">Self-Collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Xử Lý Sự Cố -- Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="property_weights.html">Property Weights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="field_weights.html">Field Weights</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../soft_body/index.html">Soft Body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Fluid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">Particle System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Dynamic Paint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">Collision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">Baking Physics Simulations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Physics</a> &raquo;</li>
+          <li><a href="../index.html">Cloth</a> &raquo;</li>
+          <li><a href="index.html">Sắp Đặt -- Settings</a> &raquo;</li>
+      <li>Collisions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collisions">
+<span id="bpy-types-clothcollisionsettings"></span><h1>Collisions<a class="headerlink" href="#collisions" title="Permalink to this headline"></a></h1>
+<p>In most cases, a piece of cloth does not just hang there in 3D space,
+it collides with other objects in the environment. To ensure proper simulation,
+there are several items that have to be set up and working together:</p>
+<ul class="simple">
+<li><p>The <em>Cloth</em> object must be told to participate in collisions.</p></li>
+<li><p>Optionally (but recommended) tell the cloth to collide with itself.</p></li>
+<li><p>Other objects must be visible to the <em>Cloth</em> object <em>via</em> shared layers.</p></li>
+<li><p>The other objects must be mesh objects.</p></li>
+<li><p>The other objects may move or be themselves deformed by other objects (like an armature or shape key).</p></li>
+<li><p>The other mesh objects must be told to deflect the cloth object.</p></li>
+<li><p>The blend-file must be saved in a directory so that simulation results can be saved.</p></li>
+<li><p>You then <em>Bake</em> the simulation. The simulator computes the shape of the cloth for a frame range.</p></li>
+<li><p>You can then edit the simulation results, or make adjustments to the cloth mesh, at specific frames.</p></li>
+<li><p>You can make adjustments to the environment or deforming objects,
+and then re-run the cloth simulation from the current frame forward.</p></li>
+</ul>
+<section id="collision-settings">
+<h2>Collision Settings<a class="headerlink" href="#collision-settings" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Physics ‣ Cloth ‣ Collision</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-default" id="id2">
+<img alt="../../../_images/physics_cloth_settings_collisions_panel.png" src="../../../_images/physics_cloth_settings_collisions_panel.png" />
+<figcaption>
+<p><span class="caption-text">Cloth Collisions panel.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Now you must tell the <em>Cloth</em> object that you want it to participate in collisions.
+For the cloth object, locate the <em>Cloth Collision</em> panel.</p>
+<dl class="simple">
+<dt>Quality</dt><dd><p>A general setting for how fine and good a simulation you wish.
+Higher numbers take more time but ensure less tears and penetrations through the cloth.</p>
+</dd>
+</dl>
+<section id="object-collisions">
+<h3>Object Collisions<a class="headerlink" href="#object-collisions" title="Permalink to this headline"></a></h3>
+<p>If the cloth object needs to be deflected by some other object. To deflect a cloth,
+the object must be enabled as an object that collides with the cloth object.
+To enable objects to collide with cloth objects enable
+<a class="reference internal" href="../../collision.html#physics-collision-soft-bodt-cloth"><span class="std std-ref">collision physics</span></a>
+for the collider object (not on the cloth object).</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If your colliding object is not a mesh object, such as a NURBS surface, or a text object,
+you must convert it to a mesh object using <a class="reference internal" href="../../../scene_layout/object/editing/convert.html#object-convert-to"><span class="std std-ref">Convert</span></a>.</p>
+</div>
+<dl class="simple">
+<dt>Khoảng Cách -- Distance</dt><dd><p>The distance another object must get to the cloth for
+the simulation to repel the cloth out of the way.
+Smaller values might give errors but gives some speed-up while
+larger will give unrealistic results if too large and can be slow.
+It is best to find a good in between value.</p>
+</dd>
+<dt>Impulse Clamping</dt><dd><p>Prevents explosions in tight and complicated collision situations
+by restricting the amount of movement after a collision.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Faces that have all vertices assigned to this
+<a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a> are excluded from collision with objects.</p>
+</dd>
+<dt>Collision Collection</dt><dd><p>Only objects that are a part of this <a class="reference internal" href="../../../scene_layout/collections/index.html"><span class="doc">Collection</span></a>
+can collide with the cloth. Note that these objects must also have Collision physics enabled.</p>
+</dd>
+</dl>
+</section>
+<section id="self-collisions">
+<h3>Self-Collisions<a class="headerlink" href="#self-collisions" title="Permalink to this headline"></a></h3>
+<p>Real cloth cannot penetrate itself, so you normally want the cloth to self-collide.
+Enable this to tell the cloth object that it should not penetrate itself.
+This adds to the simulation's compute time, but provides more realistic results.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>A flag, viewed from a distance does not need this enabled,
+but a close-up of a cape or blouse on a character should have this enabled.</p>
+</div>
+<dl class="simple">
+<dt>Friction</dt><dd><p>A coefficient for how slippery the cloth is when it collides with itself.
+For example, silk has a lower coefficient of friction than cotton.</p>
+</dd>
+<dt>Khoảng Cách -- Distance</dt><dd><p>As cloth at this distance begins to repel away from itself.
+Smaller values might give errors but gives some speed-up while
+larger will give unrealistic results if too large and can be slow.
+It is best to find a good in between value.</p>
+</dd>
+<dt>Impulse Clamping</dt><dd><p>Prevents explosions in tight and complicated collision situations
+by restricting the amount of movement after a collision.</p>
+</dd>
+<dt>Vertex Group</dt><dd><p>Faces that have all vertices assigned to this
+<a class="reference internal" href="../../../modeling/meshes/properties/vertex_groups/index.html"><span class="doc">Vertex Group</span></a> are excluded from self-collision.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>Example blend-file:
+<a class="reference external" href="https://wiki.blender.org/wiki/File:Cloth-regression-selfcollisions.blend">Cloth self-collisions</a>.</p>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Xử Lý Sự Cố -- Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h2>
+<p>If you encounter some problems with collision detection, there are a few ways to fix them:</p>
+<ul class="simple">
+<li><p>The fastest solution is to increase the <em>Distance</em> for Object/Self Collisions.
+This will be the fastest way to fix the clipping; however, it will be less accurate and will not look as good.
+Using this method tends to make it look like the cloth is resting on air, and gives it a very rounded look.</p></li>
+<li><p>A second method is to increase the <em>Quality</em> (in the <em>Cloth</em> panel).
+This results in smaller steps for the simulator and
+therefore to a higher probability that fast-moving collisions get caught.
+You can also increase the Collisions <em>Quality</em> to perform more iterations to get collisions solved.</p></li>
+<li><p>If none of the methods help, you can easily edit the cached/baked result in <em>Edit Mode</em> afterwards.</p></li>
+<li><p>If the Cloth is torn by the deforming mesh; increase the stiffness settings.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="shape.html" class="btn btn-neutral float-left" title="Hình Dạng -- Shape" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="property_weights.html" class="btn btn-neutral float-right" title="Property Weights" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/physics/cloth/settings/collisions.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60physics/cloth/settings/collisions%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fphysics/cloth/settings/collisions.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

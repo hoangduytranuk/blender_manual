@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editing &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/image/editing.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="UV Editor" href="../uv/index.html" />
+    <link rel="prev" title="Image Settings" href="image_settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../3dview/index.html">3D Viewport</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Image Editor</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="navigating.html">Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sidebar.html">Sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overlays.html">Overlays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image_settings.html">Image Settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Editing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new">New</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#open">Open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#open-cache-render">Open Cache Render</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#replace">Replace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reload">Reload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#edit-externally">Edit Externally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save">Save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-as">Save As</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-a-copy">Save a Copy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-all-images">Save All Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invert">Invert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resize">Resize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flip">Flip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pack">Pack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unpack">Unpack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extract-palette">Extract Palette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate-grease-pencil">Generate Grease Pencil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_sequencer/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../properties_editor.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preferences/index.html">Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Editors</a> &raquo;</li>
+          <li><a href="index.html">Image Editor</a> &raquo;</li>
+      <li>Editing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="editing">
+<h1>Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h1>
+<section id="new">
+<span id="bpy-ops-image-new"></span><h2>New<a class="headerlink" href="#new" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ New</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">N</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Creates a new <a class="reference internal" href="image_settings.html#image-generated"><span class="std std-ref">Generated</span></a> Image.</p>
+</section>
+<section id="open">
+<span id="bpy-ops-image-open"></span><h2>Open<a class="headerlink" href="#open" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Open</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">O</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Load image from a file.</p>
+</section>
+<section id="open-cache-render">
+<span id="bpy-ops-image-read-viewlayers"></span><h2>Open Cache Render<a class="headerlink" href="#open-cache-render" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Open Cache Render</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Load the current scene’s render layers from disk cache, if available.
+This can be used to save RAM while rendering because the render layers do not have to be saved in RAM.
+And also for recovering some information from a fail render.
+For this to work, <a class="reference internal" href="../../render/output/properties/output.html#bpy-types-rendersettings-use-render-cache"><span class="std std-ref">Cache Result</span></a> must be enabled.</p>
+</section>
+<section id="replace">
+<span id="bpy-ops-image-replace"></span><h2>Replace<a class="headerlink" href="#replace" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Replace</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Replaces the current image throughout the blend-file with another image.</p>
+</section>
+<section id="reload">
+<span id="bpy-ops-image-reload"></span><h2>Reload<a class="headerlink" href="#reload" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Reload</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Reload the image from the file on drive.</p>
+</section>
+<section id="edit-externally">
+<span id="bpy-ops-image-external-edit"></span><h2>Edit Externally<a class="headerlink" href="#edit-externally" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Edit Externally</span></p>
+</dd>
+</dl>
+</div>
+<p>Using the <em>Edit Externally</em> tool Blender will open an external image editor,
+as specified in the <em>Preferences</em> and load in the image to be edited.</p>
+</section>
+<section id="save">
+<span id="bpy-ops-image-save"></span><h2>Save<a class="headerlink" href="#save" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Save</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">S</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Save the image, if the image is already a file.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Rendered images are not automatically saved, they have to be saved to drive manually.</p>
+</div>
+</section>
+<section id="save-as">
+<span id="bpy-ops-image-save-as"></span><h2>Save As<a class="headerlink" href="#save-as" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id8">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Save As</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">S</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Save the (rendered) image in a separate file.</p>
+</section>
+<section id="save-a-copy">
+<h2>Save a Copy<a class="headerlink" href="#save-a-copy" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id9">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Save a Copy</span></p>
+</dd>
+</dl>
+</div>
+<p>Using <em>Save as Copy</em> will save the file to a specified name,
+but will keep the old one open in the Image editor.</p>
+</section>
+<section id="save-all-images">
+<span id="bpy-ops-image-save-all-modified"></span><h2>Save All Images<a class="headerlink" href="#save-all-images" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id10">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Save All Images</span></p>
+</dd>
+</dl>
+</div>
+<p>Save all modified images. Packed images will be repacked.</p>
+</section>
+<section id="invert">
+<span id="bpy-ops-image-invert"></span><h2>Invert<a class="headerlink" href="#invert" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id11">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Invert</span></p>
+</dd>
+</dl>
+</div>
+<dl class="simple">
+<dt>Invert Image Colors</dt><dd><p>Invert the colors of an image.</p>
+</dd>
+<dt>Invert Channel</dt><dd><p>Red, Green, Blue, Alpha</p>
+</dd>
+</dl>
+</section>
+<section id="resize">
+<span id="bpy-ops-image-resize"></span><h2>Resize<a class="headerlink" href="#resize" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id12">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Resize</span></p>
+</dd>
+</dl>
+</div>
+<p>Adjust the image size in pixels.</p>
+</section>
+<section id="flip">
+<span id="bpy-ops-image-flip"></span><h2>Flip<a class="headerlink" href="#flip" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id13">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Flip</span></p>
+</dd>
+</dl>
+</div>
+<p>This operator mirrors the image across a specified axis.
+Use this to alter the perspective of an image giving an alternative viewpoint;
+this can make an image more visually appealing or highlight some visual flaw.</p>
+<dl class="simple">
+<dt>Horizontally</dt><dd><p>Mirrors the image so the left side becomes the right side.</p>
+</dd>
+<dt>Vertically</dt><dd><p>Mirrors the image so the top becomes the bottom.</p>
+</dd>
+</dl>
+</section>
+<section id="pack">
+<span id="bpy-ops-image-pack"></span><h2>Pack<a class="headerlink" href="#pack" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id14">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Pack</span></p>
+</dd>
+</dl>
+</div>
+<p>Packs the image into the blend-file.
+See <a class="reference internal" href="../../files/blend/packed_data.html#pack-unpack-data"><span class="std std-ref">Packed Data</span></a>.</p>
+</section>
+<section id="unpack">
+<span id="bpy-ops-image-unpack"></span><h2>Unpack<a class="headerlink" href="#unpack" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id15">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Unpack</span></p>
+</dd>
+</dl>
+</div>
+<p>Unpack the image to a drive.</p>
+</section>
+<section id="extract-palette">
+<span id="bpy-ops-palette-extract-from-image"></span><h2>Extract Palette<a class="headerlink" href="#extract-palette" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id16">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Extract Palette</span></p>
+</dd>
+</dl>
+</div>
+<p>Extracts a <a class="reference internal" href="../../interface/controls/templates/color_palette.html#ui-color-palette"><span class="std std-ref">Color Palette</span></a> from the image for use by other tools.</p>
+</section>
+<section id="generate-grease-pencil">
+<span id="bpy-ops-gpencil-image-to-grease-pencil"></span><h2>Generate Grease Pencil<a class="headerlink" href="#generate-grease-pencil" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id17">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Image ‣ Generate Grease Pencil</span></p>
+</dd>
+</dl>
+</div>
+<p>Creates a <a class="reference internal" href="../../grease_pencil/index.html"><span class="doc">Grease Pencil</span></a> object using the currently selected image as a source.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="image_settings.html" class="btn btn-neutral float-left" title="Image Settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../uv/index.html" class="btn btn-neutral float-right" title="UV Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/image/editing.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/image/editing%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Feditors/image/editing.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

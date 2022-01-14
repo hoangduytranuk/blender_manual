@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Combine/Separate Nodes &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/color/combine_separate.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../../copyright.html" />
+    <link rel="next" title="Converter Nodes" href="../converter/index.html" />
+    <link rel="prev" title="Hue Saturation Value Node" href="hue_saturation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../3dview/index.html">Cổng Nhìn 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Texture Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#node-types">Node Types</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Color Nodes</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="invert.html">Invert Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mix_rgb.html">Mix Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rgb_curves.html">RGB Curves Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="hue_saturation.html">Hue Saturation Value Node</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Combine/Separate Nodes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#separate-combine-rgba-nodes">Separate/Combine RGBA Nodes</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#input-output">Input/Output</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#examples">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#separate-combine-hsva-nodes">Separate/Combine HSVA Nodes</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id1">Input/Output</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#id2">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#separate-combine-yuva-nodes">Separate/Combine YUVA Nodes</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id3">Input/Output</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#id4">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#separate-combine-ycbcra-node">Separate/Combine YCbCrA Node</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id5">Input/Output</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#id6">Tính Chất -- Properties</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#id7">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../converter/index.html">Converter Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../distort/index.html">Distort Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/index.html">Pattern Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../textures/index.html">Texture Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../groups.html">Nhóm -- Group</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../video_sequencer/index.html">Trình Phối Hình</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../properties_editor.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../preferences/index.html">Cấu Hình -- Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../../index.html">Texture Nodes</a> &raquo;</li>
+          <li><a href="index.html">Color Nodes</a> &raquo;</li>
+      <li>Combine/Separate Nodes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="bpy-types-compositornodecomb"><span id="bpy-types-compositornodesep"></span></span><section id="combine-separate-nodes">
+<h1>Combine/Separate Nodes<a class="headerlink" href="#combine-separate-nodes" title="Permalink to this headline"></a></h1>
+<p>All of these nodes do essentially the same thing:</p>
+<ul class="simple">
+<li><p>Separate: Split out an image into its composite color channels.</p></li>
+<li><p>Combine: Re/combine an image from its composite color channels.</p></li>
+</ul>
+<p>These nodes can be used to manipulate each color channel independently.
+Each type is differentiated in the applied <a class="reference internal" href="../../../../glossary/index.html#term-Color-Space"><span class="xref std std-term">Color Space</span></a>.</p>
+<p>In compositing and texture context each node supports the Alpha channel.
+In the texture context only RGB color space is available.
+In the shading context of Cycles combine and separate nodes are added
+for HSV and vectors (XYZ).</p>
+<p>The Combine nodes can also be used to input single color values.
+For RGBA and HSVA color spaces it is recommended to use the <a class="reference internal" href="../../../../compositing/types/input/rgb.html"><span class="doc">RGB Node</span></a>.
+Some common operations could easier be executed with the <a class="reference internal" href="../../../../compositing/types/color/index.html"><span class="doc">Color Nodes</span></a>.</p>
+<section id="separate-combine-rgba-nodes">
+<h2>Separate/Combine RGBA Nodes<a class="headerlink" href="#separate-combine-rgba-nodes" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id8">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeCombRGBA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombRGBA.png" />
+<figcaption>
+<p><span class="caption-text">Combine RGBA Node.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id9">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeSepRGBA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepRGBA.png" />
+<figcaption>
+<p><span class="caption-text">Separate RGBA Node.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="input-output">
+<h3>Input/Output<a class="headerlink" href="#input-output" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image in/output.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>R (Red)</p></li>
+<li><p>G (Green)</p></li>
+<li><p>B (Blue)</p></li>
+<li><p>A (Alpha)</p></li>
+</ul>
+</section>
+<section id="properties">
+<h3>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h3>
+<p>This node has no properties.</p>
+</section>
+<section id="examples">
+<h3>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../../../_images/compositing_types_converter_combine-separate_example-combine-rgba.png"><img alt="../../../../_images/compositing_types_converter_combine-separate_example-combine-rgba.png" src="../../../../_images/compositing_types_converter_combine-separate_example-combine-rgba.png" style="width: 640px;" /></a>
+<figcaption>
+<p><span class="caption-text">An example of blurring the alpha channel.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In this first example, we take the Alpha channel and blur it,
+and then combine it back with the colors. When placed in a scene,
+the edges of it will blend in, instead of having a hard edge.
+This is almost like <a class="reference internal" href="../../../../glossary/index.html#term-Anti-Aliasing"><span class="xref std std-term">Anti-Aliasing</span></a> but in a three-dimensional sense.
+Use this node setup, when adding CG elements to live action to remove any hard edges.
+Animating this effect on a broader scale will make the object appear to &quot;phase&quot; in and out,
+as an &quot;out-of-phase&quot; time-traveling sync effect.</p>
+</section>
+</section>
+<section id="separate-combine-hsva-nodes">
+<h2>Separate/Combine HSVA Nodes<a class="headerlink" href="#separate-combine-hsva-nodes" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id11">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeCombHSVA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombHSVA.png" />
+<figcaption>
+<p><span class="caption-text">Combine HSVA Node.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id12">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeSepHSVA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepHSVA.png" />
+<figcaption>
+<p><span class="caption-text">Separate HSVA Node.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id1">
+<h3>Input/Output<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image in/output.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>H (Hue)</p></li>
+<li><p>S (Saturation)</p></li>
+<li><p>V (Value)</p></li>
+<li><p>A (Alpha)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Tính Chất -- Properties<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p>This node has no properties.</p>
+</section>
+</section>
+<section id="separate-combine-yuva-nodes">
+<h2>Separate/Combine YUVA Nodes<a class="headerlink" href="#separate-combine-yuva-nodes" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id13">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeCombYUVA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombYUVA.png" />
+<figcaption>
+<p><span class="caption-text">Combine YUVA Node.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id14">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeSepYUVA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepYUVA.png" />
+<figcaption>
+<p><span class="caption-text">Separate YUVA Node.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id3">
+<h3>Input/Output<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image in/output.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Y (Luminance)</p></li>
+<li><p>U (U chrominance)</p></li>
+<li><p>V (V chrominance)</p></li>
+<li><p>A (Alpha)</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Tính Chất -- Properties<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>This node has no properties.</p>
+</section>
+</section>
+<section id="separate-combine-ycbcra-node">
+<h2>Separate/Combine YCbCrA Node<a class="headerlink" href="#separate-combine-ycbcra-node" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id15">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeCombYCCA.png" src="../../../../_images/compositing_node-types_CompositorNodeCombYCCA.png" />
+<figcaption>
+<p><span class="caption-text">Combine YCbCrA Node.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="id16">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeSepYCCA.png" src="../../../../_images/compositing_node-types_CompositorNodeSepYCCA.png" />
+<figcaption>
+<p><span class="caption-text">Separate YCbCrA Node.</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id5">
+<h3>Input/Output<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image in/output.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Y (Luminance)</p></li>
+<li><p>Cb (Chrominance Blue)</p></li>
+<li><p>Cr (Chrominance Red)</p></li>
+<li><p>A (Alpha)</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Tính Chất -- Properties<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Chế Độ -- Mode</dt><dd><p>ITU 601, ITU 709, JPEG</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h3>Ví Dụ -- Examples<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id17">
+<img alt="../../../../_images/compositing_types_converter_math_multiply.png" src="../../../../_images/compositing_types_converter_math_multiply.png" />
+<figcaption>
+<p><span class="caption-text">An example of the scaling the Luminance channel.</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This example has a <em>Math (Multiply)</em> node increasing the luminance channel (Y)
+of the image to make it brighter.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>If running these channels through a <em>Color Ramp</em> node to adjust value,
+use the Cardinal scale for accurate representation.
+Using the Exponential scale on the luminance channel gives a high-contrast effect.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hue_saturation.html" class="btn btn-neutral float-left" title="Hue Saturation Value Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../converter/index.html" class="btn btn-neutral float-right" title="Converter Nodes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/texture_node/types/color/combine_separate.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/texture_node/types/color/combine_separate%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Feditors/texture_node/types/color/combine_separate.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

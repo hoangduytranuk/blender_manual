@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passes &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/layers/passes.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Render Output" href="../output/index.html" />
+    <link rel="prev" title="View Layer" href="view_layer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Layers &amp; Passes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view_layer.html">View Layer</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Passes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data">Data</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#cycles">Cycles</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#eevee">Eevee</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#light">Light</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id2">Cycles</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id3">Eevee</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#effects">Effects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cryptomatte">Cryptomatte</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#typical-workflow">Typical Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#shader-aov">Shader AOV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining">Combining</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id4">Cycles</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id5">Eevee</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#known-limitations">Known Limitations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Layers &amp; Passes</a> &raquo;</li>
+      <li>Passes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="passes">
+<span id="bpy-types-renderlayer"></span><h1>Passes<a class="headerlink" href="#passes" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Scene ‣ View Layers ‣ Passes</span></p>
+</dd>
+</dl>
+</div>
+<p>Passes can be used to split rendered images into colors, direct and indirect light to edit them individually,
+and also to extract data such as depth or normals.</p>
+<section id="data">
+<span id="render-layers-passes-data"></span><h2>Data<a class="headerlink" href="#data" title="Permalink to this headline"></a></h2>
+<section id="cycles">
+<h3>Cycles<a class="headerlink" href="#cycles" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Include</dt><dd><dl>
+<dt>Combined</dt><dd><p>The final combination of render passes with everything included.</p>
+</dd>
+<dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Z pass only uses one sample.
+When depth values need to be blended in case of motion blur or <a class="reference internal" href="../../glossary/index.html#term-Depth-of-Field"><span class="xref std std-term">Depth of Field</span></a>, use the mist pass.</p>
+</div>
+</dd>
+<dt>Mist</dt><dd><p>Distance to visible surfaces, mapped to the 0.0 - 1.0 range.
+When enabled, settings are in <a class="reference internal" href="../cycles/world_settings.html#bpy-types-worldmistsettings"><span class="std std-ref">World tab</span></a>.
+This pass can be used in compositing to fade out objects that are farther away.</p>
+</dd>
+<dt>Position</dt><dd><p>World position of objects in the scene.</p>
+</dd>
+<dt>Normal</dt><dd><p>Surface normal used for shading.</p>
+</dd>
+<dt>Vector</dt><dd><p>Motion vectors for the Vector Blur node. The four components consist of 2D vectors
+giving the motion towards the next and previous frame position in pixel space.</p>
+</dd>
+<dt>UV</dt><dd><p>Mapped UV coordinates, used to represent where on a mesh a texture gets mapped too.
+This is represented through the red and green channels of the image.
+The blue channel is encoded with a constant value of 1 but does not hold any information.</p>
+</dd>
+<dt>Denoising Data</dt><dd><p>Passes needed by the denoiser, for performing animation denoising
+in a second pass after rendering the entire animation.
+For still image denoising as part of the render process these are not needed.
+This also includes a render pass of the original combined pass before denoising.
+Note, the passes adapt to the <a class="reference internal" href="../cycles/render_settings/sampling.html#render-cycles-settings-viewport-denoising"><span class="std std-ref">denoiser</span></a>
+selected for rendering.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Z, Object Index, and Material Index passes are not anti-aliased.</p>
+</div>
+</dd>
+<dt>Indexes</dt><dd><dl class="simple">
+<dt>Object Index</dt><dd><p>Creates a mask of the object that can be later read by
+the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
+</dd>
+<dt>Material Index</dt><dd><p>Creates a mask of the material that can be later read by
+the <a class="reference internal" href="../../compositing/types/converter/id_mask.html"><span class="doc">ID Mask Node</span></a> in the Compositor.</p>
+</dd>
+</dl>
+</dd>
+<dt>Debug</dt><dd><dl class="simple">
+<dt>Render Time</dt><dd><p>Render time in milliseconds per sample and pixel.</p>
+</dd>
+<dt>Sample Count</dt><dd><p>Number of samples/camera rays per pixel.</p>
+</dd>
+</dl>
+</dd>
+<dt>Alpha Threshold</dt><dd><p>Z, Index, normal, UV and vector passes are
+only affected by surfaces with alpha transparency equal to or higher than this threshold.
+With value 0.0 the first surface hit will always write to these passes, regardless of transparency.
+With higher values surfaces that are mostly transparent can be skipped until an opaque surface is encountered.</p>
+</dd>
+</dl>
+</section>
+<section id="eevee">
+<h3>Eevee<a class="headerlink" href="#eevee" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Include</dt><dd><dl class="simple">
+<dt>Combined</dt><dd><p>The final combination of render passes with everything included.</p>
+</dd>
+<dt>Z</dt><dd><p>Distance to any visible surfaces.</p>
+</dd>
+<dt>Mist</dt><dd><p>Distance to visible surfaces, mapped to the 0.0 - 1.0 range.</p>
+</dd>
+<dt>Normal</dt><dd><p>Surface normal used for shading.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+<section id="light">
+<h2>Light<a class="headerlink" href="#light" title="Permalink to this headline"></a></h2>
+<section id="id2">
+<h3>Cycles<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Diffuse</dt><dd><dl class="simple">
+<dt>Direct</dt><dd><p>Direct lighting from diffuse and subsurface BSDFs.
+We define direct lighting as coming from lights, emitting surfaces,
+the background, or ambient occlusion after a single reflection or transmission off a surface.
+BSDF color is not included in this pass.</p>
+</dd>
+<dt>Indirect</dt><dd><p>Indirect lighting from diffuse and subsurface BSDFs. We define indirect lighting as coming from lights,
+emitting surfaces or the background after more than one reflection or transmission off a surface.
+BSDF color is not included in this pass.</p>
+</dd>
+<dt>Color</dt><dd><p>Color weights of diffuse and subsurface BSDFs.
+These weights are the color input socket for BSDF nodes, modified by any Mix and Add Shader nodes.</p>
+</dd>
+</dl>
+</dd>
+<dt>Glossy</dt><dd><dl class="simple">
+<dt>Direct, Indirect, Color</dt><dd><p>Same as above, but for glossy BSDFs.</p>
+</dd>
+</dl>
+</dd>
+<dt>Transmission</dt><dd><dl class="simple">
+<dt>Direct, Indirect, Color</dt><dd><p>Same as above, but for transmission BSDFs.</p>
+</dd>
+</dl>
+</dd>
+<dt>Volume</dt><dd><dl class="simple">
+<dt>Direct, Indirect</dt><dd><p>Same as above, but for volumetric BSDFs.</p>
+</dd>
+</dl>
+</dd>
+<dt>Other</dt><dd><dl class="simple">
+<dt>Emission</dt><dd><p>Emission from directly visible surfaces.</p>
+</dd>
+<dt>Environment</dt><dd><p>Emission from the directly visible background. When the film is set to transparent,
+this can be used to get the environment color and composite it back in.</p>
+</dd>
+<dt>Shadow</dt><dd><p>Shadows from light objects. Mostly useful for compositing objects with shadows into existing footage.</p>
+</dd>
+<dt>Ambient Occlusion</dt><dd><p>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
+it gives a ‘normalized’ value between 0 and 1.</p>
+</dd>
+<dt>Shadow Catcher</dt><dd><p>Extra indirect light information collected by objects with
+the <a class="reference internal" href="../cycles/object_settings/object_data.html#render-cycles-object-settings-visibility"><span class="std std-ref">Shadow Catcher</span></a> option enabled.
+Multiply this pass with existing footage using the <a class="reference internal" href="../../compositing/types/color/mix.html"><span class="doc">Mix Node</span></a>
+in the <a class="reference internal" href="../../editors/compositor.html"><span class="doc">Compositor</span></a> to add the indirect lighting
+information to the footage.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="../cycles/render_settings/light_paths.html"><span class="doc">Transparent BSDFs are given special treatment</span></a>.
+A fully transparent surface is treated as if there is no surface there at all;
+a partially transparent surface is treated as if only part of the light rays can pass through.
+This means it is not included in the Transmission passes;
+for that a glass BSDF with index of refraction 1.0 can be used.</p>
+</div>
+</section>
+<section id="id3">
+<h3>Eevee<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Diffuse</dt><dd><dl class="simple">
+<dt>Light</dt><dd><p>Direct lighting from diffuse BSDFs. We define lighting as coming from lights,
+the background, or ambient occlusion off a surface.
+BSDF color is not included in this pass.</p>
+</dd>
+<dt>Color</dt><dd><p>Color weights of diffuse BSDFs. These weights are the color input socket for BSDF nodes,
+modified by any Mix and Add Shader nodes.</p>
+</dd>
+</dl>
+</dd>
+<dt>Specular</dt><dd><dl class="simple">
+<dt>Light, Color</dt><dd><p>Same as above, but for specular BSDFs.</p>
+</dd>
+</dl>
+</dd>
+<dt>Volume</dt><dd><dl class="simple">
+<dt>Light</dt><dd><p>The scattering pass from volume objects or world.</p>
+</dd>
+</dl>
+</dd>
+<dt>Other</dt><dd><dl class="simple">
+<dt>Emission</dt><dd><p>Emission from directly visible surfaces.</p>
+</dd>
+<dt>Environment</dt><dd><p>Emission from the directly visible background. When the film is set to transparent,
+this can be used to get the environment color and composite it back in.</p>
+</dd>
+<dt>Shadow</dt><dd><p>Shadows from light objects. Mostly useful for compositing objects with shadow into existing footage.</p>
+</dd>
+<dt>Ambient Occlusion</dt><dd><p>Ambient occlusion from directly visible surfaces. BSDF color or AO factor is not included; i.e.
+it gives a ‘normalized’ value between 0 and 1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+<section id="effects">
+<h2>Effects<a class="headerlink" href="#effects" title="Permalink to this headline"></a></h2>
+<p><span class="guilabel">Eevee only</span></p>
+<dl class="simple">
+<dt>Bloom</dt><dd><p>The influence of the Bloom effect.</p>
+</dd>
+</dl>
+</section>
+<section id="cryptomatte">
+<h2>Cryptomatte<a class="headerlink" href="#cryptomatte" title="Permalink to this headline"></a></h2>
+<p>Cryptomatte is a standard to efficiently create mattes for compositing.
+Cycles outputs the required render passes, which can then be used in the Blender Compositor
+or another compositor with Cryptomatte support to create masks for specified objects.</p>
+<p>Unlike the Material and Object Index passes, the objects to isolate are selected in compositing.
+The mattes will be anti-aliased and take into account effects like motion blur and transparency.</p>
+<dl class="simple" id="bpy-types-viewlayer-use-pass-cryptomatte-object">
+<dt>Object</dt><dd><p>Render cryptomatte object pass, for isolating objects in compositing.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-viewlayer-use-pass-cryptomatte-material">
+<dt>Material</dt><dd><p>Render cryptomatte material pass, for isolating materials in compositing.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-viewlayer-use-pass-cryptomatte-asset">
+<dt>Asset</dt><dd><p>Render cryptomatte asset pass, for isolating groups of objects with
+the same <a class="reference internal" href="../../scene_layout/object/editing/parent.html"><span class="doc">parent</span></a> in compositing.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-viewlayer-pass-cryptomatte-depth">
+<dt>Levels</dt><dd><p>Sets how many unique objects can be distinguished per pixel.</p>
+</dd>
+</dl>
+<section id="typical-workflow">
+<h3>Typical Workflow<a class="headerlink" href="#typical-workflow" title="Permalink to this headline"></a></h3>
+<ol class="arabic simple">
+<li><p>Enable Cryptomatte Object render pass in the Passes panel, and render.</p></li>
+<li><p>In the compositing nodes, create a Cryptomatte node and
+link the Render Layer matching Image and Cryptomatte passes to it.</p></li>
+<li><p>Attach a Viewer node to the Pick output of the Cryptomatte node.</p></li>
+<li><p>Use the Cryptomatte Add/Remove button to sample objects in the Pick Viewer node.</p></li>
+<li><p>Use the Matte output of the Cryptomatte node to get the alpha mask.</p></li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../compositing/types/matte/cryptomatte.html"><span class="doc">Cryptomatte Node</span></a>.</p>
+</div>
+</section>
+</section>
+<section id="shader-aov">
+<span id="bpy-types-aov"></span><h2>Shader AOV<a class="headerlink" href="#shader-aov" title="Permalink to this headline"></a></h2>
+<p>Shader AOVs (Arbitrary Output Variables) provide custom render passes for any shader node components.
+As an artist this can be a good way to fix or tweak fine details of a scene in post-processing.
+To use Shader AOVs create the pass in the <em>Shader AOV</em> panel then reference this pass with
+the <a class="reference internal" href="../shader_nodes/output/aov.html"><span class="doc">AOV Output</span></a> shading node.
+Shader AOVs can be added or removed in the <em>Shader AOV</em> panel.
+In this panel is a list of all AOV passes; each AOV in the list consists of a <em>Name</em> and <em>Data Type</em>.</p>
+<dl class="simple" id="bpy-types-viewlayer-active-aov-index">
+<dt>Active AOV Index</dt><dd><p>The name of the render pass; this is the <em>Name</em> that is referenced in the <em>AOV Output</em> node.
+Any names can be used for these passes,
+as long as they do not conflict with built-in passes that are enabled.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-aov-type">
+<dt>Data Type</dt><dd><p>Shader AOVs can either express a <em>Color</em> or a <em>Value</em> output.
+The <em>Color</em> type as the name suggest can be used for a color but also for normals.
+A <em>Value</em> type can be used for any single numerical value.</p>
+</dd>
+</dl>
+</section>
+<section id="combining">
+<h2>Combining<a class="headerlink" href="#combining" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h3>Cycles<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>All these lighting passes can be combined to produce the final image as follows:</p>
+<figure class="align-default">
+<img alt="../../_images/render_layers_passes_combine.svg" src="../../_images/render_layers_passes_combine.svg" /></figure>
+</section>
+<section id="id5">
+<h3>Eevee<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<p>The passes can be combined to produce the final image as follows:</p>
+<figure class="align-default">
+<img alt="../../_images/render_layers_passes_eevee-combine.svg" src="../../_images/render_layers_passes_eevee-combine.svg" /></figure>
+</section>
+</section>
+<section id="known-limitations">
+<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Alpha blended materials are not rendered in render passes except the combined pass.
+Use the <em>Alpha Clip</em> or <em>Alpha Hashed</em> as <a class="reference internal" href="../eevee/materials/settings.html#bpy-types-material-blend-method"><span class="std std-ref">Blending Mode</span></a>
+to render transparent materials in render passes.</p></li>
+<li><p>Depth of field is not rendered in render passes except the combined pass.
+It is possible to add the depth of field back in the Compositor using
+the <a class="reference internal" href="../../compositing/types/filter/defocus.html#bpy-types-compositornodedefocus"><span class="std std-ref">Defocus node</span></a>.</p></li>
+<li><p>Eevee render passes exclude parts of the BSDF equation.
+<a class="reference internal" href="../shader_nodes/converter/shader_to_rgb.html"><span class="doc">Shader to RGB</span></a> is not supported as it needs
+the full BSDF equation.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="view_layer.html" class="btn btn-neutral float-left" title="View Layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../output/index.html" class="btn btn-neutral float-right" title="Render Output" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/layers/passes.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/layers/passes%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Frender/layers/passes.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

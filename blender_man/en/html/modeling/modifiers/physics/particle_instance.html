@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Particle Instance Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/physics/particle_instance.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Particle System Modifier" href="particle_system.html" />
+    <link rel="prev" title="Ocean Modifier" href="ocean.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Deform</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#physics">Physics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cloth.html">Cloth Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="collision.html">Collision Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamic_paint.html">Dynamic Paint Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="explode.html">Explode Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fluid.html">Fluid Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ocean.html">Ocean Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Particle Instance Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#create-along-paths">Create Along Paths</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#layers">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="particle_system.html">Particle System Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="soft_body.html">Soft Body Modifier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Particle Instance Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="particle-instance-modifier">
+<span id="bpy-types-particleinstancemodifier"></span><span id="index-0"></span><h1>Particle Instance Modifier<a class="headerlink" href="#particle-instance-modifier" title="Permalink to this headline"></a></h1>
+<p>When a Particle Instance modifier is added to an object,
+the mesh of this object will be duplicated
+at the location of the particles of the selected particle system from another target object.
+This means that to use this modifier, you must have at least one other object
+that has a <a class="reference internal" href="../../../physics/particles/index.html"><span class="doc">Particles System</span></a> on it.</p>
+<p>Because of the correlation in which the Particle Instance modifier is
+influenced by the underlying particle systems on other objects, some of the apparent effects
+generated by the modifier can look and act vastly different,
+depending on the underlying settings of the particle systems it is associated with.
+This is worth taking account of, when it seems that the Particle Instance modifier settings
+do not return the expected results.</p>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_physics_particle-instance_panel.png"><img alt="../../../_images/modeling_modifiers_physics_particle-instance_panel.png" src="../../../_images/modeling_modifiers_physics_particle-instance_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Particle Instance modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Object</dt><dd><p>The target object which has a particle system associated with it.</p>
+</dd>
+<dt>Particle System</dt><dd><p>Which particle system from the target <em>Object</em> to apply this modifier to.</p>
+</dd>
+<dt>Create Instances</dt><dd><dl>
+<dt>Regular</dt><dd><p>When enabled, the modifier will use the regular (parents) particles
+to duplicate the mesh of the modified object.</p>
+</dd>
+<dt>Children</dt><dd><p>When enabled, the modifier will use the <a class="reference internal" href="../../../physics/particles/emitter/children.html"><span class="doc">children</span></a> particles
+to duplicate the mesh of the modified object.</p>
+</dd>
+<dt>Size</dt><dd><p>Scale the instanced copies of the mesh by the particle size attribute.
+When this is disabled, all the copies appear the same size as the origin.</p>
+<p>See the particle system’s <a class="reference internal" href="../../../physics/particles/emitter/render.html"><span class="doc">Render</span></a>
+and <a class="reference internal" href="../../../physics/particles/emitter/children.html"><span class="doc">Children</span></a> panels for particle’s size options.</p>
+</dd>
+</dl>
+</dd>
+<dt>Show</dt><dd><dl class="simple">
+<dt>Unborn</dt><dd><p>When enabled, the modifier will use the unborn particles
+to duplicate the mesh of the modified object.</p>
+</dd>
+<dt>Alive</dt><dd><p>When enabled, the modifier will use the alive particles
+to duplicate the mesh of the modified object.</p>
+</dd>
+<dt>Dead</dt><dd><p>When enabled, the modifier will use the dead particles
+to duplicate the mesh of the modified object.</p>
+</dd>
+</dl>
+</dd>
+<dt>Amount</dt><dd><p>The proportion of particles to be used.
+Allows you to <strong>randomly</strong> skip particles to adjust the amount of instances.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The random algorithm used currently only ensures that relative amount to be respected <em>statistically</em>.
+The actual amount of instances generated will differ from the theoretical one,
+depending on the <em>Seed</em> value of the target particle system (and the <em>Offset</em> value described below, too).</p>
+<p>That deviation is not significant with high number of particles,
+but it will be highly noticeable with low numbers
+(e.g. with 100 particles in the target system, and an <em>Amount</em> value of <code class="docutils literal notranslate"><span class="pre">0.1</span></code>,
+it can generate either up to 15 or 5 instances, instead of the 10 expected).</p>
+</div>
+</dd>
+<dt>Offset</dt><dd><p>A relative offset in the range of particles used for instantiation.
+Allows you to avoid overlapping of the used particles,
+when the same particle system is used in multiple modifier instances.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to fully avoid overlaps, your <em>Offset</em> value must be at least as high as your <em>Amount</em> value.</p>
+</div>
+</dd>
+<dt>Coordinate Space</dt><dd><dl class="simple">
+<dt>World, Local</dt><dd><p>Use <a class="reference internal" href="../../../glossary/index.html#term-World-Space"><span class="xref std std-term">World Space</span></a>, or <a class="reference internal" href="../../../glossary/index.html#term-Local-Space"><span class="xref std std-term">Local Space</span></a> of the target object (that the particle system is assigned to).</p>
+<ul class="simple">
+<li><p>World space means that the locations of the copies of the modified mesh will depend
+on the location of the modified object <strong>and</strong> of the target object.</p></li>
+<li><p>Local space means that the locations of the copies of the modified mesh will depend
+only on the location of the modified object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Axis</dt><dd><p>Specify which axis of the modified object to use as pole axis to apply
+the rotation from the instantiated particles.</p>
+</dd>
+</dl>
+<section id="create-along-paths">
+<h3>Create Along Paths<a class="headerlink" href="#create-along-paths" title="Permalink to this headline"></a></h3>
+<p>By default, the instances are placed depending on the particles position in the current frame.
+By enabling <em>Create Along Paths</em>, the instance of the modified object follows
+deforms its shape along the particle path (or the hair strand).
+This allows you to select the position along the particles path regardless of the current frame.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can adjust the particles’ path (using the <em>Path</em> visualization type)
+on the <a class="reference internal" href="../../../physics/particles/emitter/render.html"><span class="doc">Render</span></a> panel of the <em>Particle System</em> tab.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The particle system must be <a class="reference internal" href="../../../physics/baking.html"><span class="doc">baked</span></a>, except for <em>Hair</em> type or <em>Keyed</em> physics.</p>
+</div>
+<dl class="simple">
+<dt>Position</dt><dd><p>Specify what percentage of the path that the instance fills,
+or the position on the path if the <em>Keep Shape</em> option is enabled.</p>
+</dd>
+<dt>Random</dt><dd><p>Adds randomness to the <em>Position</em> value of each instance.</p>
+</dd>
+<dt>Rotation</dt><dd><p>Specifies the rotation around the path.</p>
+</dd>
+<dt>Random</dt><dd><p>Adds randomness to the <em>Rotation</em> value of each instance.</p>
+</dd>
+<dt>Keep Shape</dt><dd><p>Enabling this prevents the instance from being deformed,
+and places it on the path according to the <em>Position</em> value.</p>
+</dd>
+</dl>
+</section>
+<section id="layers">
+<h3>Layers<a class="headerlink" href="#layers" title="Permalink to this headline"></a></h3>
+<p>With these fields you can select the vertex color layers,
+which will be filled with colors based on the particles information.
+These vertex color layers can be used, for example, in a shader to add variance to a material.</p>
+<dl class="simple">
+<dt>Index</dt><dd><p>A vertex color layer for values based on the particles index.</p>
+</dd>
+<dt>Value</dt><dd><p>A vertex color layer for random per-particle values.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<figure class="align-center" id="id2">
+<img alt="../../../_images/modeling_modifiers_physics_particle-instance_split-plane.jpg" src="../../../_images/modeling_modifiers_physics_particle-instance_split-plane.jpg" />
+<figcaption>
+<p><span class="caption-text">Particle Instance modifier example.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The render above shows a single plane mesh object assigned to two different vertex groups
+and each of those vertex groups is assigned to a separate and independent particle system,
+with each particle system being assigned to a different Particle Instance modifier.
+In the case shown the Particle Instance modifiers are added to a sphere and a cube.
+See <a class="reference external" href="https://en.blender.org/uploads/4/48/Manual_-_Modifiers_-_Particle_Instance_Modifiers_-_Split_Plane.blend">example blend-file</a>.</p>
+<figure class="align-center" id="id3">
+<img alt="../../../_images/modeling_modifiers_physics_particle-instance_create-along-paths.jpg" src="../../../_images/modeling_modifiers_physics_particle-instance_create-along-paths.jpg" />
+<figcaption>
+<p><span class="caption-text">Create Along Path example.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In this example, a single <em>Keyed</em> particle travels through four points (green planes),
+on an elliptical path. The Particle Instance modifier is added to a cylinder object
+and then associated with that <em>Keyed</em> particle system.</p>
+<p>When the <em>Create Along Paths</em> is activated,
+instead of the cylinder location just following the position of the particle,
+the cylinder mesh is fitted to the shape of the path followed by the particle.
+The mesh geometry of the object which is deformed
+can have an impact on how well the deformation is carried out.
+In the case of the cylinder, it has many loop cuts along its length so
+that it can bend at those points to deform along the particle path.</p>
+<p>The Particle Instance modifier <em>Create Along Paths</em> option works for hair (strand) particles
+as well as with keyed particles. In this case, the mesh of the modifier will follow
+the length and profile of the hair strands paths.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Strands, when they are generated, instantly die when created, so for the <em>Create Along Paths</em> checkbox
+to be of any use, you must also have the <em>Dead</em> checkbox enabled.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ocean.html" class="btn btn-neutral float-left" title="Ocean Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="particle_system.html" class="btn btn-neutral float-right" title="Particle System Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/physics/particle_instance.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/physics/particle_instance%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/modifiers/physics/particle_instance.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

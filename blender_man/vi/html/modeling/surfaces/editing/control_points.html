@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control Points &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/surfaces/editing/control_points.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Phân Đoạn -- Segments" href="segments.html" />
+    <link rel="prev" title="Bề Mặt -- Surface" href="surface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bề Mặt -- Surfaces</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Thanh Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Cấu Trúc -- Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Biên Soạn -- Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="transform_panel.html">Transform Panel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface.html">Bề Mặt -- Surface</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Control Points</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#extrude-curve-and-move">Extrude Curve and Move</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#examples">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#make-segment">Make Segment</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id3">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#smooth">Làm/Mịn Màng -- Smooth</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#hooks">Hooks</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#make-vertex-parent">Make Vertex Parent</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="segments.html">Phân Đoạn -- Segments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Bề Mặt -- Surfaces</a> &raquo;</li>
+          <li><a href="index.html">Biên Soạn -- Editing</a> &raquo;</li>
+      <li>Control Points</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="control-points">
+<h1>Control Points<a class="headerlink" href="#control-points" title="Permalink to this headline"></a></h1>
+<section id="extrude-curve-and-move">
+<h2>Extrude Curve and Move<a class="headerlink" href="#extrude-curve-and-move" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Extrude Curve and Move</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">E</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Unlike meshes or curves, you cannot generally directly add new control points to a surface,
+as you can only extend a surface by adding a whole U or V row at once.
+The only exception is when working on a NURBS surface curve, i.e.
+a surface with only one control point on each U or V row. In this special case,
+all works exactly as with <a class="reference internal" href="../../curves/editing/control_points.html#modeling-curves-extrude"><span class="std std-ref">curves</span></a>.</p>
+<p>Most of the time, only extrusion is available. As usual, once the tool is activated
+the extrusion happens immediately and you are placed into <em>select mode</em>,
+ready to drag the new extruded surface to its destination.</p>
+<p>There are two things very important to understand:</p>
+<ol class="arabic simple">
+<li><p>Surfaces are <em>2D</em> objects. So you cannot extrude anything <em>inside</em> a surface
+(e.g. &quot;inner&quot; row); it would not make any sense!</p></li>
+<li><p>The control &quot;grid&quot; <em>must</em> remain &quot;squarish&quot;,
+which means that you can only extrude a whole row, not parts of rows here and there...</p></li>
+</ol>
+<p>To summarize, the <em>Extrude</em> tool will only work, when one and only one whole border
+row is selected, otherwise nothing happens.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>As for curves, you cannot create a new surface in your object out of nowhere.
+However, unlike for curves, there is no &quot;cut&quot; option allowing you to separate a surface into several parts,
+so you only can create a new surface by <a class="reference internal" href="surface.html#modeling-surface-editing-duplicating"><span class="std std-ref">Duplicating</span></a>
+an existing one, or adding a new one with the <em>Add</em> menu.</p>
+</div>
+<section id="examples">
+<h3>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h3>
+<p>Images Fig. <a class="reference internal" href="#fig-surface-edit-select-point"><span class="std std-ref">Selecting control point.</span></a> to Fig. <a class="reference internal" href="#fig-surface-edit-extruding"><span class="std std-ref">Extruding.</span></a>
+show a typical extrusion along the side of a surface.</p>
+<p>In Fig. <a class="reference internal" href="#fig-surface-edit-select-point"><span class="std std-ref">Selecting control point.</span></a> and <a class="reference internal" href="#fig-surface-edit-select-row"><span class="std std-ref">Select Control Point Row.</span></a>,
+a border row of control points were highlighted by selecting a single control point,
+and then using <a class="reference internal" href="../selecting.html#bpy-ops-curve-select-row"><span class="std std-ref">Select Control Point Row</span></a> to select the rest of the control points.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<span id="fig-surface-edit-select-point"></span><img alt="../../../_images/modeling_surfaces_editing_control-points_selecting-point.png" src="../../../_images/modeling_surfaces_editing_control-points_selecting-point.png" />
+<figcaption>
+<p><span class="caption-text">Selecting control point.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<span id="fig-surface-edit-select-row"></span><img alt="../../../_images/modeling_surfaces_editing_control-points_selecting-row.png" src="../../../_images/modeling_surfaces_editing_control-points_selecting-row.png" />
+<figcaption>
+<p><span class="caption-text">Select Control Point Row.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The edge is then extruded as shown in Fig. <a class="reference internal" href="#fig-surface-edit-extruding"><span class="std std-ref">Extruding.</span></a>.
+Notice how the mesh has bunched up next to the highlighted edge.
+That is because the <em>new</em> extruded surface section is bunched up there as well.</p>
+<figure class="align-default" id="id9">
+<span id="fig-surface-edit-extruding"></span><img alt="../../../_images/modeling_surfaces_editing_control-points_extruding.png" src="../../../_images/modeling_surfaces_editing_control-points_extruding.png" />
+<figcaption>
+<p><span class="caption-text">Extruding.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>By moving the new section away from the area, the surface begins to &quot;unbunch&quot;.</p>
+<p>You can continue this process of extruding or adding new surface sections
+until you have reached the final shape for your model.</p>
+</section>
+</section>
+<section id="make-segment">
+<h2>Make Segment<a class="headerlink" href="#make-segment" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Make Segment</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">F</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Just like <a class="reference internal" href="../../curves/editing/control_points.html#modeling-curves-make-segment"><span class="std std-ref">curves</span></a>,
+merging two surfaces requires that a single edge, a border row of control points,
+from two separate surfaces is selected. This means that the surfaces must be part of the same object.
+For example, you cannot join two surfaces while in <em>Object Mode</em> -- but you can of course,
+as with any objects of the same type, <a class="reference internal" href="../../../scene_layout/object/editing/join.html#bpy-ops-object-join"><span class="std std-ref">join</span></a>
+two or more <em>Surface</em> objects -- they just will not be &quot;linked&quot; or merged in a single one.</p>
+<p>This tool is equivalent to creating edges or faces for meshes (hence its shortcut).
+The selection must contain only border rows of the same resolution
+(with the same number of control points),
+else Blender will try to do its best to guess what to merge with what,
+or the merge will fail (either silently, or stating that <code class="docutils literal notranslate"><span class="pre">Resolution</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">match</span></code>
+if rows with different number of points are selected, or that there is <code class="docutils literal notranslate"><span class="pre">Too</span> <span class="pre">few</span> <span class="pre">selections</span> <span class="pre">to</span> <span class="pre">merge</span></code>
+if you only selected points in one surface...). To select control points of different surfaces,
+in the same object, you must use either box select or circle select; <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> will not work.</p>
+<p>So to avoid problems, you should always only select border rows with the same number of
+points... Note that you can join a border U row of one surface with a border V row of another
+one, Blender will automatically &quot;invert&quot; the axis of one surface for them to match correctly.</p>
+<p>NURBS surface curves are often used to create objects like hulls,
+as they define cross sections all along the object,
+and you just have to &quot;skin&quot; them as described above to get a nice, smooth and harmonious shape.</p>
+<section id="id3">
+<h3>Ví Dụ -- Examples<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<p>Fig. <a class="reference internal" href="#fig-surface-edit-join-ready"><span class="std std-ref">Joining ready.</span></a> is an example of two NURBS surface curves,
+<strong>not</strong> NURBS curves, in <em>Edit Mode</em>, ready to be joined.
+Fig. <a class="reference internal" href="#fig-surface-edit-join-complete"><span class="std std-ref">Joining complete.</span></a> is the result of joining the two curves.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id10">
+<span id="fig-surface-edit-join-ready"></span><img alt="../../../_images/modeling_surfaces_editing_control-points_joining-ready.png" src="../../../_images/modeling_surfaces_editing_control-points_joining-ready.png" />
+<figcaption>
+<p><span class="caption-text">Joining ready.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id11">
+<span id="fig-surface-edit-join-complete"></span><img alt="../../../_images/modeling_surfaces_editing_control-points_joining-complete.png" src="../../../_images/modeling_surfaces_editing_control-points_joining-complete.png" />
+<figcaption>
+<p><span class="caption-text">Joining complete.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="smooth">
+<h2>Làm/Mịn Màng -- Smooth<a class="headerlink" href="#smooth" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Control Points ‣ Smooth</span></p>
+</dd>
+</dl>
+</div>
+<p>Iteratively smooths the selected control points
+by reducing the distance between neighboring control points.</p>
+</section>
+<section id="hooks">
+<h2>Hooks<a class="headerlink" href="#hooks" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Control Points ‣ Hooks</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">H</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p><a class="reference internal" href="../../modifiers/deform/hooks.html"><span class="doc">Hooks</span></a> can be added to control one or more points with other objects.</p>
+</section>
+<section id="make-vertex-parent">
+<h2>Make Vertex Parent<a class="headerlink" href="#make-vertex-parent" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Surface ‣ Control Points ‣ Make Vertex Parent</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">P</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>You can make other selected objects <a class="reference internal" href="../../../scene_layout/object/editing/parent.html#object-parenting"><span class="std std-ref">children</span></a>
+of one or three control points, as with mesh objects.</p>
+<p>To select a mesh (that is in view) while editing a surface, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">P</kbd></kbd> click on it.
+Select either one or three control points,
+then <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> the object and use <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">P</kbd></kbd> to make a vertex parent.
+Selecting three control points will make the child follow
+the median point between the three vertices. An alternative would be to use
+a <a class="reference internal" href="../../../animation/constraints/relationship/child_of.html"><span class="doc">Child Of constraint</span></a>.
+See also the <a class="reference internal" href="../../modifiers/deform/curve.html"><span class="doc">Curve modifier</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="surface.html" class="btn btn-neutral float-left" title="Bề Mặt -- Surface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="segments.html" class="btn btn-neutral float-right" title="Phân Đoạn -- Segments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/surfaces/editing/control_points.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/surfaces/editing/control_points%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/surfaces/editing/control_points.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

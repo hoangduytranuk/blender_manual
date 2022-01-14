@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editing &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/interface/controls/nodes/editing.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Sidebar" href="sidebar.html" />
+    <link rel="prev" title="Arranging Nodes" href="arranging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">User Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#window-system">Window System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#keymap">Keymap</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#interface-controls">Interface Controls</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#buttons-and-controls">Buttons and Controls</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#extended-controls">Extended Controls</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../templates/data_block.html">Data-Block Menu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/list_view.html">List View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/color_picker.html">Color Picker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/color_ramp.html">Color Ramp Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/color_palette.html">Color Palette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/curve.html">Curve Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../templates/operator_search.html">Search</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Nodes</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="parts.html">Node Parts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="selecting.html">Selecting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="arranging.html">Arranging Nodes</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Editing</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#transform">Transform</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#connecting-sockets">Connecting Sockets</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#interactively">Interactively</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#disconnecting-sockets">Disconnecting Sockets</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id2">Interactively</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mute-links">Mute Links</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#cut-links">Cut Links</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#duplicate">Duplicate</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#copy-paste">Copy/Paste</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#delete">Delete</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mute">Mute</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#show-hide">Show/Hide</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#layers">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="sidebar.html">Sidebar</a></li>
+<li class="toctree-l5"><a class="reference internal" href="groups.html">Node Groups</a></li>
+<li class="toctree-l5"><a class="reference internal" href="frame.html">Frame Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reroute.html">Reroute Node</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#tools">Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">User Interface</a> &raquo;</li>
+          <li><a href="index.html">Nodes</a> &raquo;</li>
+      <li>Editing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="editing">
+<h1>Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h1>
+<section id="transform">
+<h2>Transform<a class="headerlink" href="#transform" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Move, Rotate, Resize</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">G</kbd>, <kbd class="kbd docutils literal notranslate">R</kbd>, <kbd class="kbd docutils literal notranslate">S</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Move a single node by clicking and dragging it around. A node can be clicked almost anywhere to start dragging.
+Multiple nodes can be moved after pressing <kbd class="kbd docutils literal notranslate">G</kbd>.</p>
+<p>In general it is recommended to arrange your nodes within the view such that the data flows from
+left to right, top to bottom.</p>
+<p>A node can be resized by dragging the edges on the left or right side.</p>
+</section>
+<section id="connecting-sockets">
+<h2>Connecting Sockets<a class="headerlink" href="#connecting-sockets" title="Permalink to this headline"></a></h2>
+<section id="interactively">
+<h3>Interactively<a class="headerlink" href="#interactively" title="Permalink to this headline"></a></h3>
+<p><kbd class="kbd docutils literal notranslate">LMB</kbd>-click on a socket and drag. You will see a line coming out of it: This is called a <em>link</em>.
+Keep dragging and connect the link to an input socket of another node, then release the <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+While multiple links can route out of an output socket, only a single link can be attached to an input socket.</p>
+<p>To reposition the outgoing links of a node, rather than adding a new one,
+hold <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while dragging from an output socket.
+This works for single as well as for multiple outgoing links.</p>
+<p>Nodes that have no connections can be inserted on a link.
+Just move the node over the link and release when the link is highlighted.</p>
+<dl class="simple" id="bpy-ops-node-link-make">
+<dt>Make Links <kbd class="kbd docutils literal notranslate">F</kbd></dt><dd><p>Select multiple nodes with open sockets, then use the Make Links to create links between them.
+Use Make Links again if there are other nodes which can be connected.</p>
+</dd>
+<dt>Make and Replace Links <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">F</kbd></kbd></dt><dd><p><em>Make and Replace Links</em> works similarly to <em>Make Links</em>, but it will replace existing links if any exist.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="disconnecting-sockets">
+<h2>Disconnecting Sockets<a class="headerlink" href="#disconnecting-sockets" title="Permalink to this headline"></a></h2>
+<section id="id2">
+<h3>Interactively<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p>Drag the link from an input socket and let it go keeping it unconnected.</p>
+</section>
+<section id="mute-links">
+<span id="bpy-ops-node-links-mute"></span><h3>Mute Links<a class="headerlink" href="#mute-links" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Mute Links</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Mute links works as a mute/unmute toggle depending on the existing state of the link.</p>
+<p>To mute a link between sockets click in an empty area, near the link you want to mute, and drag:
+You will see a little mute icon appearing at your mouse pointer.
+Move it over the link itself, and release.</p>
+<p>When muting links connected to a reroute node, links connected to the reroute node will also be muted.</p>
+<p>Muting links temporarily disconnects sockets but leaves the link connected.
+The muted link is displayed in red with a bar across.
+The controls for sockets are normally hidden when connected,
+when links are muted the controls are shown.</p>
+<figure class="align-default">
+<img alt="../../../_images/interface_controls_nodes_editing_mute_links.png" src="../../../_images/interface_controls_nodes_editing_mute_links.png" />
+</figure>
+</section>
+<section id="cut-links">
+<span id="bpy-ops-node-links-cut"></span><h3>Cut Links<a class="headerlink" href="#cut-links" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Cut Links</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>To break a link between sockets click in an empty area, near the link you want to disconnect, and drag:
+You will see a little cutter icon appearing at your mouse pointer.
+Move it over the link itself, and release.</p>
+<dl class="simple">
+<dt>Detach Links <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> drag</dt><dd><p>Use Detach Links in order to cut all links attached to selected nodes at once.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="duplicate">
+<span id="bpy-ops-node-duplicate-move"></span><h2>Duplicate<a class="headerlink" href="#duplicate" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Duplicate</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Click <kbd class="kbd docutils literal notranslate">LMB</kbd> or <kbd class="kbd docutils literal notranslate">RMB</kbd> on the desired node, press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd> and
+move the mouse away to see the duplicate of the selected node appearing under the mouse pointer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you duplicate a node, the new node will be positioned <em>exactly</em> on top of the node that was duplicated.
+If you leave it there (and it is quite easy to do so),
+you can <strong>not</strong> easily tell that there are <em>two</em> nodes there!
+When in doubt, select a node and move it slightly to see if something is hidden underneath.</p>
+</div>
+</section>
+<section id="copy-paste">
+<span id="bpy-ops-node-clipboard-paste"></span><span id="bpy-ops-node-clipboard-copy"></span><h2>Copy/Paste<a class="headerlink" href="#copy-paste" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Copy</span>, <span class="menuselection">Node ‣ Paste</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">V</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Not only the selected nodes but also the connections between them are copied to the clipboard.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pasted node will be placed in the <em>same</em> position as when it was copied.
+Use the same cautions as when duplicating.</p>
+</div>
+</section>
+<section id="delete">
+<span id="bpy-ops-node-delete"></span><h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Delete <kbd class="kbd docutils literal notranslate">X</kbd>, <kbd class="kbd docutils literal notranslate">Delete</kbd></dt><dd><p>Deletes the selected node(s).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-node-delete-reconnect">
+<dt>Delete with Reconnect <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd></dt><dd><p>Delete the node(s) without losing the connections.</p>
+</dd>
+</dl>
+</section>
+<section id="mute">
+<span id="bpy-ops-node-mute-toggle"></span><h2>Mute<a class="headerlink" href="#mute" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>All Modes</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Node ‣ Toggle Node Mute</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">M</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Muting a node removes the contribution of the node to the node tree,
+and makes all links pass through that node without change.
+Links will appear red as an indicator of passing through the muted node.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Individual node links can be muted with <a class="reference internal" href="#bpy-ops-node-links-mute"><span class="std std-ref">Mute Links</span></a>.</p>
+</div>
+</section>
+<section id="show-hide">
+<h2>Show/Hide<a class="headerlink" href="#show-hide" title="Permalink to this headline"></a></h2>
+<dl class="simple" id="bpy-ops-node-hide-toggle">
+<dt>Hide <kbd class="kbd docutils literal notranslate">H</kbd></dt><dd><p>Collapses the node so only the node header is visible.
+This can also be toggled by clicking the triangle at the top left of the node header.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-node-preview-toggle">
+<dt>Toggle Node Preview <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">H</kbd></kbd></dt><dd><p>Shows/Hides a preview region on the node that displays the frame
+after that node’s operation has been applied. This can also be toggled
+by clicking the material ball icon in the node header.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-node-hide-socket-toggle">
+<dt>Toggle Hidden Node Sockets <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">H</kbd></kbd></dt><dd><p>Collapses/Expands any input or output sockets that have no other nodes connected to them.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-node-options-toggle">
+<dt>Toggle Node Options</dt><dd><p>Shows/Hides all node properties.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-node-collapse-hide-unused-toggle">
+<dt>Collapse and Hide Unused Sockets</dt><dd><p>Applies both the <em>Toggle Hidden Node Sockets</em> and <em>Hide</em> operations.</p>
+</dd>
+</dl>
+</section>
+<section id="layers">
+<span id="bpy-ops-node-read-viewlayers"></span><h2>Layers<a class="headerlink" href="#layers" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These operators are only used in the <a class="reference internal" href="../../../compositing/index.html"><span class="doc">Compositor</span></a>.</p>
+</div>
+<dl class="simple">
+<dt>Read Render Layers <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">R</kbd></kbd></dt><dd><p>Reads all the current scene’s render layers from cache, as needed.
+This can be used to save RAM while rendering because the render layers do not have to be saved in RAM.
+And also for recovering some information from a failed render.
+For this to work, <a class="reference internal" href="../../../render/output/properties/output.html#bpy-types-rendersettings-use-render-cache"><span class="std std-ref">Cache Result</span></a> must be enabled.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="arranging.html" class="btn btn-neutral float-left" title="Arranging Nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sidebar.html" class="btn btn-neutral float-right" title="Sidebar" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/interface/controls/nodes/editing.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60interface/controls/nodes/editing%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Finterface/controls/nodes/editing.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

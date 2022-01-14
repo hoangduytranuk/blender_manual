@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crashes &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/troubleshooting/crash.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Python Errors" href="python.html" />
+    <link rel="prev" title="macOS -- Other GPU" href="gpu/apple/other.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Xử Lý Sự Cố -- Troubleshooting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Khởi Động</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_view.html">Cổng Nhìn 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpu/index.html">Graphics Hardware</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Crashes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#crash-log">Crash Log</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#windows">Cửa Sổ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macos">macOS -- Hệ Điều Hành Macintosh của Apple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recover.html">Recovering Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compatibility">Tính Tương Thích -- Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Xử Lý Sự Cố -- Troubleshooting</a> &raquo;</li>
+      <li>Crashes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="crashes">
+<h1>Crashes<a class="headerlink" href="#crashes" title="Permalink to this headline"></a></h1>
+<p>The most common causes of Blender crashes:</p>
+<ul class="simple">
+<li><p>Running out of memory.</p></li>
+<li><p>Issues with graphics hardware or drivers.</p></li>
+<li><p>Bugs in Blender.</p></li>
+</ul>
+<p>Firstly, you may be able to recover your work with <span class="menuselection">File ‣ Recover ‣ Auto Save...</span>.</p>
+<p>To prevent the problem from happening again, you can check that the graphics drivers are up to date
+(<a class="reference internal" href="gpu/index.html#troubleshooting-gpu-index"><span class="std std-ref">Graphics Hardware</span></a>), upgrade your machine's hardware (the RAM or graphics card),
+and disable some options that are more memory intensive:</p>
+<ul class="simple">
+<li><p>Reduce undo steps
+<span class="menuselection">Preferences ‣ System ‣ Memory &amp; Limits ‣ Undo Steps</span>.</p></li>
+<li><p>Using multisample anti-aliasing also increases the memory usage and makes the display slower.</p></li>
+<li><p>On Linux, the Window Manager (KDE and Gnome for example) may be using hardware accelerated effects
+(e.g. window shadows and transparency) that are using up the memory that Blender needs.
+Try disabling the desktop effects or switch to a lightweight Window Manager.</p></li>
+</ul>
+<p>To check memory usage by Blender:</p>
+<ul class="simple">
+<li><p>On Windows, use Task Manager and sort by Memory.</p></li>
+<li><p>On macOS, use Activity Monitor.app and open Memory tab. Alternatively, run <code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-o</span> <span class="pre">MEM</span></code>.</p></li>
+<li><p>On Linux, run <code class="docutils literal notranslate"><span class="pre">top</span> <span class="pre">-o</span> <span class="pre">%MEM</span></code>.</p></li>
+</ul>
+<section id="crash-log">
+<h2>Crash Log<a class="headerlink" href="#crash-log" title="Permalink to this headline"></a></h2>
+<p>When Blender crashes, it writes out a text file which contains information that may help
+identify the cause of the crash. Usually, this file is written in the <a class="reference internal" href="../advanced/blender_directory_layout.html#temp-dir"><span class="std std-ref">Thư Mục Tạm Thời -- Temporary Directory</span></a> directory.</p>
+<p>This file contains a log of tools used up until the crash as well as some other debug information.
+When reporting bugs about crashes it can be helpful to attach this file to your reports,
+especially when others are unable to reproduce the crash.</p>
+<section id="windows">
+<h3>Cửa Sổ<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h3>
+<p>On a crash, a file is written based on the name of the currently loaded blend-file,
+so <code class="docutils literal notranslate"><span class="pre">test.blend</span></code> will create a file called <code class="docutils literal notranslate"><span class="pre">test.crash.txt</span></code>.</p>
+<p>Batch scripts are provided in Blender installation directory which may be run to obtain
+the Blender debug log and system info text files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">blender_debug_log.cmd</span></code> is used in most cases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blender_debug_gpu.cmd</span></code> and <code class="docutils literal notranslate"><span class="pre">blender_debug_gpu_workaround.cmd</span></code> log GPU-related errors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blender_factory_startup.cmd</span></code> starts Blender with default settings which is recommended for debugging.</p></li>
+</ul>
+<p>If the crash happens in Blender module, stack trace is also written to a file named <code class="docutils literal notranslate"><span class="pre">blender.crash.txt</span></code>.
+The path to that file can be found at the end of <code class="docutils literal notranslate"><span class="pre">blender_debug_log.txt</span></code> file.</p>
+</section>
+<section id="macos">
+<h3>macOS -- Hệ Điều Hành Macintosh của Apple<a class="headerlink" href="#macos" title="Permalink to this headline"></a></h3>
+<p>After crash, macOS Crash Reporter shows a window with backtrace after some time, or when Blender
+is opened again. Copy the text in the crash report and save it in a text file. That file should be attached
+to the bug report while following other bug reporting guidelines.</p>
+<p>Some <code class="docutils literal notranslate"><span class="pre">.crash</span></code> files can also be found in <code class="docutils literal notranslate"><span class="pre">~/Library/Logs/DiagnosticReports/</span></code> with the name of format:
+<code class="docutils literal notranslate"><span class="pre">Blender_YYYY-MM-DD-HHMMSS_MACNAME.crash</span></code>. If a report is present corresponding to the time of crash,
+that file can also provide hints about cause of the crash. Alternatively, Console.app can be used to
+navigate all &quot;User Reports&quot; (see sidebar in the app).</p>
+</section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h3>
+<p>On a crash, a file named <code class="docutils literal notranslate"><span class="pre">blender.crash.txt</span></code> is written in <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>More logs can be obtained by running Blender from Command Line and using <code class="docutils literal notranslate"><span class="pre">--factory-startup</span> <span class="pre">--debug-all</span></code> flags.
+See <a class="reference internal" href="../advanced/command_line/launch/index.html#command-line-launch-index"><span class="std std-ref">Khởi Động từ Dòng Lệnh</span></a> and <a class="reference internal" href="../advanced/command_line/arguments.html#command-line-args"><span class="std std-ref">Những Tham Số Dòng Lệnh -- Command Line Arguments</span></a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gpu/apple/other.html" class="btn btn-neutral float-left" title="macOS -- Other GPU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Python Errors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/troubleshooting/crash.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60troubleshooting/crash%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Ftroubleshooting/crash.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

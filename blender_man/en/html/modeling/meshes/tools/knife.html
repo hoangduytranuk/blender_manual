@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knife &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/knife.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Poly Build" href="poly_build.html" />
+    <link rel="prev" title="Loop Cut" href="loop.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Tools</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="toolbar.html">Toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_settings.html">Tool Settings</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#types">Types</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="extrude_region.html">Extrude Region</a></li>
+<li class="toctree-l5"><a class="reference internal" href="extrude_manifold.html">Extrude Manifold</a></li>
+<li class="toctree-l5"><a class="reference internal" href="extrude_cursor.html">Extrude to Cursor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="loop.html">Loop Cut</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Knife</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#tool-settings">Tool Settings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#controls">Controls</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#known-limitations">Known Limitations</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#duplicate-vertices">Duplicate Vertices</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#unconnected-cuts">Unconnected Cuts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="poly_build.html">Poly Build</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spin.html">Spin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Meshes</a> &raquo;</li>
+          <li><a href="index.html">Tools</a> &raquo;</li>
+      <li>Knife</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="knife">
+<span id="tool-mesh-knife"></span><span id="bpy-ops-mesh-knife"></span><h1>Knife<a class="headerlink" href="#knife" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Knife</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">K</kbd></p>
+</dd>
+</dl>
+</div>
+<p>The Knife tool can be used to interactively subdivide (cut up)
+geometry by drawing lines or closed loops to create holes.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>When using <em>Knife</em>, the cursor changes to an icon of a scalpel
+and the header changes to display options for the tool.
+You can draw connected straight lines by clicking <kbd class="kbd docutils literal notranslate">LMB</kbd>,
+marked with small green squares. Red squares are already defined cuts.
+Surrounding red squares mean that there is a cut already in that position,
+so no additional vertex will be created (besides the first one).</p>
+<p>If multiple objects are selected before entering Edit Mode,
+then knife cuts will affect all of those objects.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id2">
+<img alt="../../../_images/modeling_meshes_tools_knife_line-before.png" src="../../../_images/modeling_meshes_tools_knife_line-before.png" />
+<figcaption>
+<p><span class="caption-text">Mesh before knife cut.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<img alt="../../../_images/modeling_meshes_tools_knife_line-active.png" src="../../../_images/modeling_meshes_tools_knife_line-active.png" />
+<figcaption>
+<p><span class="caption-text">Knife cut active.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<img alt="../../../_images/modeling_meshes_tools_knife_line-after.png" src="../../../_images/modeling_meshes_tools_knife_line-after.png" />
+<figcaption>
+<p><span class="caption-text">After confirming knife cut.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tool-settings">
+<h2>Tool Settings<a class="headerlink" href="#tool-settings" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Occlude Geometry</dt><dd><p>Only cut geometry visible on screen.</p>
+</dd>
+<dt>Only Selected <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">K</kbd></kbd></dt><dd><p>Only cuts through selected geometry.</p>
+</dd>
+<dt>X-Ray</dt><dd><p>Show cut points on non-visible geometry too, when <em>Occlude Geometry</em> is deactivated.</p>
+</dd>
+<dt>Measurement</dt><dd><p>Which visible measurements to show.</p>
+<p>Distance, Angle, None, Both</p>
+</dd>
+<dt>Angle Snapping</dt><dd><p>Whether or not dragged lines should be constrained to particular angles, and if so,
+which coordinate system the angle is relative to.</p>
+<p>None, Screen, Relative</p>
+</dd>
+<dt>Angle Snapping Increment</dt><dd><p>When angle snapping is on, the angle will be constrained to a multiple of this angle.</p>
+</dd>
+</dl>
+</section>
+<section id="controls">
+<h2>Controls<a class="headerlink" href="#controls" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Confirm <kbd class="kbd docutils literal notranslate">Spacebar</kbd> or <kbd class="kbd docutils literal notranslate">Return</kbd></dt><dd><p>Confirms the cut.
+<kbd class="kbd docutils literal notranslate">Return</kbd> will leave selected every edge except the new edges created from the cut.</p>
+</dd>
+<dt>Cancel <kbd class="kbd docutils literal notranslate">Esc</kbd></dt><dd><p>Cancels the cut.</p>
+</dd>
+<dt>Draw a Continuous Line <kbd class="kbd docutils literal notranslate">LMB</kbd> drag.</dt><dd><p>So you can draw a free-hand line over a surface,
+points will be created at edge intersections.</p>
+</dd>
+<dt>Close Loop double-click <kbd class="kbd docutils literal notranslate">LMB</kbd></dt><dd><p>This is a quick way to close the loop you are currently cutting.</p>
+</dd>
+<dt>New Cut <kbd class="kbd docutils literal notranslate">RMB</kbd></dt><dd><p>Begins a new cut. This allows you to define multiple distinct cut lines.
+If multiple cuts have been defined, they are recognized as new snapping points.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id5">
+<img alt="../../../_images/modeling_meshes_tools_knife_multiple-before.png" src="../../../_images/modeling_meshes_tools_knife_multiple-before.png" />
+<figcaption>
+<p><span class="caption-text">Creating multiple cuts.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<img alt="../../../_images/modeling_meshes_tools_knife_multiple-after.png" src="../../../_images/modeling_meshes_tools_knife_multiple-after.png" />
+<figcaption>
+<p><span class="caption-text">Result of starting new cuts while in the tool.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Midpoint Snap <kbd class="kbd docutils literal notranslate">Shift</kbd></dt><dd><p>Hold to snap the cursor to the midpoint of edges,
+meaning that all cuts will be performed at the exact center of each cut edge.</p>
+</dd>
+<dt>Ignore Snap <kbd class="kbd docutils literal notranslate">Ctrl</kbd></dt><dd><p>Hold to make the tool ignore snapping,
+unlike the default where mouse cursor snaps to near edges.</p>
+</dd>
+<dt>Cut Through: <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Allow the Cut tool to cut through to occluded faces, instead of only the visible ones.</p>
+</dd>
+<dt>Angle Constrain <kbd class="kbd docutils literal notranslate">A</kbd></dt><dd><p>Constrains the cut line to certain degree increments.
+The increment can be specified in the Tool Settings (see above), or can be typed
+when angle constraining is active.
+The default angles are in the plane of the screen, but typing <kbd class="kbd docutils literal notranslate">A</kbd> again
+makes it relative to the last cut edge.
+If the last cut edge is ambiguous (because the cut was on a vertex),
+typing <kbd class="kbd docutils literal notranslate">R</kbd> cycles through the possible reference edges.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_knife_angle-before.png"><img alt="../../../_images/modeling_meshes_tools_knife_angle-before.png" src="../../../_images/modeling_meshes_tools_knife_angle-before.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Constraining cut angle.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_knife_angle-after.png"><img alt="../../../_images/modeling_meshes_tools_knife_angle-after.png" src="../../../_images/modeling_meshes_tools_knife_angle-after.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Result of constraining cut angle.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Axis Constrain <kbd class="kbd docutils literal notranslate">X</kbd>, <kbd class="kbd docutils literal notranslate">Y</kbd>, or <kbd class="kbd docutils literal notranslate">Z</kbd></dt><dd><p>Constrains the cut line to one of the coordinate system axes.
+Initially it will be the global axis with the given name,
+but pressing the same key again switches to the object’s local axis system.
+Additionally, if the scene transformation orientation is set to
+a custom orientation (e.g. from a face), the constraints will be in that coordinate system.</p>
+</dd>
+<dt>Visible Measurements <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>Shows measurements of the cuts being made: angles with respect to a mesh edge, lengths, or both.
+Pressing <kbd class="kbd docutils literal notranslate">S</kbd> repeatedly cycles between what can be shown.</p>
+<p>Only Distance, Only Angles, Both, None</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_knife-measurement-distance.png"><img alt="../../../_images/modeling_meshes_tools_knife-measurement-distance.png" src="../../../_images/modeling_meshes_tools_knife-measurement-distance.png" style="width: 640px;" /></a>
+<figcaption>
+<p><span class="caption-text">Only Distance.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_knife-measurement-angles.png"><img alt="../../../_images/modeling_meshes_tools_knife-measurement-angles.png" src="../../../_images/modeling_meshes_tools_knife-measurement-angles.png" style="width: 640px;" /></a>
+<figcaption>
+<p><span class="caption-text">Only Angles.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id11">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_knife-measurement-both.png"><img alt="../../../_images/modeling_meshes_tools_knife-measurement-both.png" src="../../../_images/modeling_meshes_tools_knife-measurement-both.png" style="width: 640px;" /></a>
+<figcaption>
+<p><span class="caption-text">Both Angles and Distance.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Undo <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Z</kbd></kbd></dt><dd><p>Undoes the previous cut segment. The starting point for the next cut is adjusted accordingly.
+If a cut is a drag cut, the entire drag cut is undone.</p>
+</dd>
+<dt>X-Ray Mode <kbd class="kbd docutils literal notranslate">V</kbd></dt><dd><p>Toggles whether or not cuts to segments behind the visible geometry are shown.</p>
+</dd>
+</dl>
+</section>
+<section id="known-limitations">
+<h2>Known Limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline"></a></h2>
+<section id="duplicate-vertices">
+<h3>Duplicate Vertices<a class="headerlink" href="#duplicate-vertices" title="Permalink to this headline"></a></h3>
+<p>If you experience problems where duplicate vertices are being created by cuts,
+this is often caused by too large a near/far clipping range.</p>
+<p>Try increasing the <em>Clip Start</em> to avoid this problem,
+see <a class="reference internal" href="../../../troubleshooting/3d_view.html#troubleshooting-depth"><span class="std std-ref">Depth Troubleshooting</span></a> for details.</p>
+</section>
+<section id="unconnected-cuts">
+<h3>Unconnected Cuts<a class="headerlink" href="#unconnected-cuts" title="Permalink to this headline"></a></h3>
+<p>Cuts that begin or end in the middle of a face, will be ignored.</p>
+<p><em>This is constrained by the kinds of geometry Blender can represent.</em></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="loop.html" class="btn btn-neutral float-left" title="Loop Cut" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="poly_build.html" class="btn btn-neutral float-right" title="Poly Build" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/tools/knife.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/tools/knife%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/tools/knife.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

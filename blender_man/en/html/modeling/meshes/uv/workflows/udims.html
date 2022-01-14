@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UDIMs &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/uv/workflows/udims.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Using UV Maps" href="../applying_image.html" />
+    <link rel="prev" title="Layout Workflow" href="layout.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../editing/index.html">Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">UVs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../uv_texture_spaces.html">UVs &amp; Texture Space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../unwrapping/index.html">Unwrapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../editing.html">Editing</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Workflows</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="layout.html">Layout Workflow</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">UDIMs</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#workflow">Workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#udim-tiles">UDIM Tiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../applying_image.html">Using UV Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../../index.html">Meshes</a> &raquo;</li>
+          <li><a href="../index.html">UVs</a> &raquo;</li>
+          <li><a href="index.html">Workflows</a> &raquo;</li>
+      <li>UDIMs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="udims">
+<h1>UDIMs<a class="headerlink" href="#udims" title="Permalink to this headline"></a></h1>
+<p>Using UV maps can have one disadvantage, they consist of one texture for the entire mesh.
+Most of the time this is sufficient but the disadvantage is that the texture is one resolution for the entire mesh.
+This causes issues if you have a very large mesh with geometry of different importance.
+When using a singular texture, the resolution might be too low to cover larger UV islands
+while being inefficient for smaller, less important islands.</p>
+<p>UDIM offers a solution to this by being able to spread UV islands across several different textures.
+UDIM which stands for U DIMension is based on a tile system
+where each tile is a different texture in the overall UDIM texture array.
+Basically each tile consists of its own UV space (0-1, 1-2, 2-3) and have its own image assigned to that tile.
+Tiles are managed in the <a class="reference internal" href="#udim-tiles">UDIM Tiles</a> panel where they can have a generated image assigned to them.
+Generally, you create several textures of different resolutions;
+for example, you may have a 4k resolution texture for the major details,
+and 2k and/or 1k textures for less important details.</p>
+<p>The UDIM array consists of one main tile, this tile is given the index number of <code class="docutils literal notranslate"><span class="pre">1001</span></code>.
+The next tile that gets added will be <code class="docutils literal notranslate"><span class="pre">1002</span></code> and will be placed to the right of the main tile.
+The overall UDIM array is ten tiles wide, so tiles <code class="docutils literal notranslate"><span class="pre">1001</span></code> through <code class="docutils literal notranslate"><span class="pre">1010</span></code> are created on the first row.
+After ten tiles a new row of tiles is started above the main tile; so <code class="docutils literal notranslate"><span class="pre">1011</span></code> will be place directly above <code class="docutils literal notranslate"><span class="pre">1001</span></code>.</p>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline"></a></h2>
+<p>To start using a UDIM workflow, you should unwrap a mesh as you would for any other UV map.
+After that you should decide how many textures you want to split your UV map into.
+This will be different for every mesh and workflow but a good minimum is 3: one 4k, one 2k, and one 1k image.
+Then create the desired textures to match how many textures you want.</p>
+<p>After this it is the same process of moving UVs to the appropriate tile
+and scaling and managing them like any other UV map.
+See <a class="reference internal" href="layout.html"><span class="doc">Layout Workflow</span></a> for information on laying out UVs.</p>
+<p>When the UVs are correctly set up across the multiple UV islands it is time to add proper textures the UDIM array.
+Currently, existing textures cannot be added to a tile,
+to fill a tile with an existing texture you first must:</p>
+<ol class="arabic simple">
+<li><p>Create the desired tiles.</p></li>
+<li><p>Save the image.</p></li>
+<li><p>Replace the saved image file with the desire texture by deleting the file
+and replacing it with a new image file, keeping the old file name.
+Or by opening the image in another application and modifying the contents of the image.</p></li>
+</ol>
+<p>Other than using a third-party application to edit the UDIM texture it is possible to paint on UDIM textures.
+This works for either 2D Painting or <a class="reference internal" href="../../../../sculpt_paint/texture_paint/index.html"><span class="doc">3D Painting</span></a>.</p>
+</section>
+<section id="udim-tiles">
+<span id="bpy-types-udimtiles"></span><span id="bpy-ops-image-tile"></span><h2>UDIM Tiles<a class="headerlink" href="#udim-tiles" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>Image Editor, UV Editor</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>All Modes</p>
+</dd>
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar ‣ Image ‣ UDIM Tiles</span></p>
+</dd>
+</dl>
+</div>
+<p>In this panel UDIM tiles are managed;
+new tiles can be added, tiles can be removed, or tiles can filled with a generated texture.</p>
+<dl>
+<dt>UDIM Tile List</dt><dd><p>List all UDIM tiles associated with the main index (<code class="docutils literal notranslate"><span class="pre">1000</span></code> tile).
+Double clicking on the tile name allows you to alter the tiles <em>Label</em>.</p>
+</dd>
+<dt>Add Tile <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>Adds new UDIM tiles to the group.</p>
+<dl class="simple">
+<dt>Number</dt><dd><p>The starting tile index number.
+UDIMs must start with the <code class="docutils literal notranslate"><span class="pre">1001</span></code> tile and typically increase in incremental order.</p>
+</dd>
+<dt>Count</dt><dd><p>The number of tiles to add.</p>
+</dd>
+<dt>Label</dt><dd><p>An optional label can be used instead of the index number.
+These labels are shown in the 2D Viewport.</p>
+</dd>
+<dt>Fill</dt><dd><p>Occupy the UDIM tile with a generated image; see <em>Fill Tile</em> below.</p>
+</dd>
+</dl>
+</dd>
+<dt>Remove Tile <code class="docutils literal notranslate"><span class="pre">-</span></code></dt><dd><p>Deletes the selected UDIM tile from the group.
+If this tile is not saved and contains data, that data will be lost.</p>
+</dd>
+<dt>Fill Tile</dt><dd><p>Occupy the UDIM tile with a <a class="reference internal" href="../../../../editors/image/image_settings.html#image-generated"><span class="std std-ref">Generated Image</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If a tile is not filled, it will not be saved with the image.</p>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="layout.html" class="btn btn-neutral float-left" title="Layout Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../applying_image.html" class="btn btn-neutral float-right" title="Using UV Maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/uv/workflows/udims.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/uv/workflows/udims%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/uv/workflows/udims.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

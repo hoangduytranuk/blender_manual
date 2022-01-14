@@ -521,7 +521,8 @@ class test(object):
                 # "File:Manual-2.6-Render-Freestyle-PrincetownLinestyle.pdf",
                 # "Move this vertex using the shortcut :kbd:`G X Minus 1` and :kbd:`Return`. See Fig. :ref:`fig-mesh-screw-spindle`.",
                 # "Mickael Lozac'h et al. -- `Link to publication <https://doi.org/10.1002/ese3.174>`__",
-                "``anim_time_max`` -- Maximum number of seconds to show the animation for (in case the end frame is very high for no reason)."
+                # "``anim_time_max`` -- Maximum number of seconds to show the animation for (in case the end frame is very high for no reason).",
+                '"Bone" is "Bone.003" \'s parent. Therefore, "Bone.003" \'s root is the same as the tip of "Bone". Since "Bone" is still selected, its tip is selected. Thus the root of "Bone.003" remains selected.'
             ]
         else:
             t_list = text_list
@@ -976,14 +977,125 @@ class test(object):
             msg = f'{index + 1}: [{msgid}]'
             print(msg)
 
+    def test_pattern(self):
+        from itertools import groupby
+        class AbbrevRecord(object):
+            def __init__(self, loc=None, full_txt=None, abbrev=None, exp=None):
+                self.loc = loc
+                self.abbrev_full = full_txt
+                self.abbrev = abbrev
+                self.exp = exp
+
+            def __repr__(self):
+                msg = f'loc:{self.loc}\n'
+                msg += f'abbrev_full:{self.abbrev_full}\n'
+                msg += f'abbrev:{self.abbrev}\n'
+                msg += f'exp:{self.exp}\n'
+                return msg
+
+        class AbbrevList(list):
+            # search_abbr = re.compile(r'(:abbr:\`.*?\)\`)(\W|$)')
+            search_abbr = re.compile(r'(:abbr:\`.*?\)\`)')
+            content_abbr = re.compile(r':abbr:\`([^\(\)]+)\s?\(([^\(\)]+)\)\`')
+            def __init__(self, txt):
+                self.txt = txt
+
+            def parseText(self):
+                mm: MatcherRecord = None
+                l = pu.patternMatchAll(AbbrevList.search_abbr, self.txt)
+                has_record = bool(l)
+                if not has_record:
+                    return
+
+                sub_txt: str = None
+                for (loc, mm) in l.items():
+                    sub_txt = mm.txt
+                    sub_loc = mm.loc()
+
+                    rec = AbbrevRecord(loc=sub_loc, full_txt=sub_txt)
+                    ll = AbbrevList.content_abbr.findall(sub_txt)
+                    first_entry = ll[0]
+                    (rec.abbrev, rec.exp) = first_entry
+
+                    entry=(sub_loc, rec)
+                    self.append(entry)
+
+        # string = "John Walker Smith  is currently in New York"
+        #
+        # groups = []
+        #
+        # for key, group in groupby(string.split(), lambda x: x[0].isupper()):
+        #     if key:
+        #         groups.append(' '.join(list(group)))
+        #
+        # print(groups)
+
+        # titled_word_txt = r'\b([A-Z][a-z]+\b)+'
+        # TITLED_WORDS = re.compile(titled_word_txt)
+        #
+        # txt = 'This One Word is one example. When this is another.'
+        # word_list = TITLED_WORDS.findall(txt)
+        # print(word_list)
+        # t = "với một từ tiền tố như :abbr:```Dọn dẹp:`` (``Cleanup:``)` hoặc :abbr:```Fix:`` (``Sửa chữa:``)`, \":abbr:`*Kỳ Vọng* \\* (*Expected* \\*)`\""
+        t = "Bấm :abbr:`*Lưu Hiện Tại* (*Save Current*)` để tạo một danh sách các góc nhìn hoặc điểm nhìn đã được lưu lại."
+        # search_abbr = re.compile(r'(:abbr:\`.*?\)\`)(\W|$)')
+        # content_abbr = re.compile(r':abbr:[\`]([^\(\)]+)\s\(([^\(\)]+)\)[\`]')
+        # terminate_abbr = re.compile(r'\)\`')
+
+        l = AbbrevList(t)
+        l.parseText()
+        print(l)
+        # l = search_abbr.findall(t)
+        # print(l)
+        # mm: MatcherRecord = None
+        # l = pu.patternMatchAll(search_abbr, t)
+        # sub_list=[]
+        # sub_txt: str = None
+        # for (loc, mm) in l.items():
+        #     sub_txt = mm.getType()
+        #     sub_loc = mm.getTypeLoc()
+        #     sub_list_entry=(sub_loc, sub_txt)
+        #     sub_list.append(sub_list_entry)
+        #
+        # for (loc, txt) in sub_list:
+        #     # mm_list = pu.patternMatchAll(df.content_abbr, txt)
+        #     ll = content_abbr.findall(txt)
+        #     first_entry = ll[0]
+        #     (abbrev, exp) = first_entry
+        #     print(abbrev, exp)
+
+        # print(sub_list)
+        # ll = [(loc, mm) for (loc, mm) in l if ":abbr:" in mm.txt]
+        # print(l)
+        # for part in l:
+        #     has_ending = (terminate_abbr.search(part) is not None)
+        #     if not has_ending:
+        #         continue
+        #     l1 = terminate_abbr.split(part)
+        #     l2= (l1[0] + ')`')
+        #     l3 = l2[1:-1]
+        #     print(l3)
+        # print(l)
+
+    def test_get_partial(self):
+        msg = 'scene and view layer settings'
+        tf = TranslationFinder()
+        result = tf.getDict().getBestMatchPartial(msg)
+        if not bool(result):
+            result_msg = f'Looking for:{msg}\nFound nothing!'
+        else:
+            (matching_ratio, (full_key, full_value)) = result
+            result_msg = f'Looking for:{msg};\ngot msgid:{full_key}\ngot msgstr:{full_value}\nmatching ratio:{matching_ratio}'
+        print(result_msg)
+
     def run(self):
         # self.cleanDict()
         # self.test_0001()
         # import cProfile
         # self.findRefText()
         # self.findUnknownRefs()
-        self.resort_dictionary()
-        self.test_translate_0001()
+        # self.resort_dictionary()
+        # self.test_translate_0001()
         # self.cleanSS()+
         # self.translate_backup_dict()
         # self.translate_backup_dict_using_google()
@@ -992,6 +1104,9 @@ class test(object):
         # self.cleanKritaPOFile()
         # self.correct_snippet_seq()
         # self.printEmptyPOLines()
+        self.test_pattern()
+        # self.test_get_partial()
+
 
 
 x = test()

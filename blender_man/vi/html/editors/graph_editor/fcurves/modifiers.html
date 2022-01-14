@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F-Curve Modifiers &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/graph_editor/fcurves/modifiers.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Drivers Editor" href="../../drivers_editor.html" />
+    <link rel="prev" title="Tính Chất -- Properties" href="properties.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../3dview/index.html">Cổng Nhìn 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_sequencer/index.html">Trình Phối Hình</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../timeline.html">Timeline</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Graph Editor</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../channels.html">Kênh -- Channels</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Đường Cong-F -- F-Curves</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="editing.html">Biên Soạn -- Editing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="properties.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">F-Curve Modifiers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#adding-a-modifier">Adding a Modifier</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#types-of-modifiers">Types of Modifiers</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#generator-modifier">Generator Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#restrict-frame-range">Restrict Frame Range</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#built-in-function-modifier">Built-in Function Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id2">Restrict Frame Range</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#envelope-modifier">Envelope Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id3">Restrict Frame Range</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#cycles-modifier">Cycles Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id4">Restrict Frame Range</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#trivially-cyclic-curves">Trivially Cyclic Curves</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#noise-modifier">Noise Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id5">Restrict Frame Range</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#limits-modifier">Limits Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id6">Restrict Frame Range</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#stepped-interpolation-modifier">Stepped Interpolation Modifier</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id7">Restrict Frame Range</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties_editor.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preferences/index.html">Cấu Hình -- Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../index.html">Graph Editor</a> &raquo;</li>
+          <li><a href="index.html">Đường Cong-F -- F-Curves</a> &raquo;</li>
+      <li>F-Curve Modifiers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="index-0"></span><section id="f-curve-modifiers">
+<span id="bpy-types-fmodifier"></span><span id="bpy-types-fcurvemodifiers"></span><span id="index-1"></span><h1>F-Curve Modifiers<a class="headerlink" href="#f-curve-modifiers" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Bảng -- Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ Modifiers ‣ Modifiers</span></p>
+</dd>
+</dl>
+</div>
+<p>F-Curve modifiers are similar to object modifiers, in that they add non-destructive effects,
+that can be adjusted at any time, and layered to create more complex effects.
+Like object modifiers, F-curve modifiers are evaluated from the top down.
+In other words, the top modifier is calculated first and consequent modifiers are calculated in order.
+Modifiers can be moved by dragging the modifier box from the top right.</p>
+<p>Modifiers can be muted or hidden by toggling the checkbox in the modifier's panel header.
+They can be removed using the delete button in the modifier's panel header.</p>
+<section id="adding-a-modifier">
+<h2>Adding a Modifier<a class="headerlink" href="#adding-a-modifier" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id8">
+<img alt="../../../_images/editors_graph-editor_fcurves_sidebar_modifiers_panel.png" src="../../../_images/editors_graph-editor_fcurves_sidebar_modifiers_panel.png" />
+<figcaption>
+<p><span class="caption-text">Modifiers panel.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The F-curve modifier panel is located in the Sidebar region.
+Select a curve by selecting one of its curve points, or by selecting the channel list.
+Click on the <em>Add Modifier</em> menu to select a modifier.</p>
+</section>
+<section id="types-of-modifiers">
+<h2>Types of Modifiers<a class="headerlink" href="#types-of-modifiers" title="Permalink to this headline"></a></h2>
+<section id="generator-modifier">
+<span id="bpy-types-fmodifiergenerator"></span><span id="index-2"></span><h3>Generator Modifier<a class="headerlink" href="#generator-modifier" title="Permalink to this headline"></a></h3>
+<p>Generator creates a polynomial function.
+These are basic mathematical formulas that represent lines, parabolas,
+and other more complex curves, depending on the values used.</p>
+<dl>
+<dt>Chế Độ -- Mode</dt><dd><p>Method used to represent the equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Expanded Polynomial</dt>
+<dd class="field-odd"><p>Equation in the form <span class="math notranslate nohighlight">\(y = x^1 + x^2 + ... + x^n\)</span>.</p>
+</dd>
+<dt class="field-even">Factorized Polynomial</dt>
+<dd class="field-even"><p>Equation in the form <span class="math notranslate nohighlight">\(y = (Ax + B)(Cx + D)\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Bổ Sung -- Additive</dt><dd><p>This option causes the modifier to be added to the curve, instead of replacing it by default.</p>
+</dd>
+<dt>Theo Thứ Tự</dt><dd><p>Specify the order of the polynomial, or the highest power of <code class="docutils literal notranslate"><span class="pre">X</span></code> for this polynomial.
+(Number of coefficients: 1.)</p>
+<p>Change the Coefficient values to reshape the curve.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Polynomial">Wikipedia Page</a>
+for more information on polynomials.</p>
+</div>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="restrict-frame-range">
+<h4>Restrict Frame Range<a class="headerlink" href="#restrict-frame-range" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="built-in-function-modifier">
+<span id="bpy-types-fmodifierfunctiongenerator"></span><span id="index-3"></span><h3>Built-in Function Modifier<a class="headerlink" href="#built-in-function-modifier" title="Permalink to this headline"></a></h3>
+<p>These are additional formulas, each with the same options to control their shape.
+Consult mathematics reference for more detailed information on each function:</p>
+<dl class="simple">
+<dt>Thể Loại -- Type</dt><dd><p>The built-in function to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Sine</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Sine">Sine</a>.</p>
+</dd>
+<dt class="field-even">Cosine</dt>
+<dd class="field-even"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Trigonometric_functions">Cosine</a>.</p>
+</dd>
+<dt class="field-odd">Tangent -- Tiếp Tuyến</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Trigonometric_functions">Tangent</a>.</p>
+</dd>
+<dt class="field-even">Square Root</dt>
+<dd class="field-even"><p>The square root of the value.</p>
+</dd>
+<dt class="field-odd">Natural Logarithm</dt>
+<dd class="field-odd"><p>The natural log of the value.</p>
+</dd>
+<dt class="field-even">Normalized Sine</dt>
+<dd class="field-even"><p><span class="math notranslate nohighlight">\(sin(x)/x\)</span>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Bổ Sung -- Additive</dt><dd><p>This option causes the modifier to be added to the curve, instead of replacing it by default.</p>
+</dd>
+<dt>Amplitude</dt><dd><p>Adjusts the Y scaling.</p>
+</dd>
+<dt>Phase Multiplier</dt><dd><p>Adjusts the X scaling.</p>
+</dd>
+<dt>Phase Offset</dt><dd><p>Adjusts the X offset.</p>
+</dd>
+<dt>Value Offset</dt><dd><p>Adjusts the Y offset.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="id2">
+<h4>Restrict Frame Range<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="envelope-modifier">
+<span id="bpy-types-fmodifierenvelopecontrolpoint"></span><span id="bpy-types-fmodifierenvelope"></span><span id="index-4"></span><h3>Envelope Modifier<a class="headerlink" href="#envelope-modifier" title="Permalink to this headline"></a></h3>
+<p>Allows you to adjust the overall shape of a curve with control points.</p>
+<dl class="simple">
+<dt>Tham Chiếu -- Reference</dt><dd><p>Set the Y value the envelope is centered around.</p>
+</dd>
+<dt>Nhỏ Nhất -- Min</dt><dd><p>Lower distance from Reference Value for <code class="docutils literal notranslate"><span class="pre">1:1</span></code> default influence.</p>
+</dd>
+<dt>Lớn Nhất -- Max</dt><dd><p>Upper distance from Reference Value for <code class="docutils literal notranslate"><span class="pre">1:1</span></code> default influence.</p>
+</dd>
+<dt>Add Control Point</dt><dd><p>Add a set of control points. They will be created at the current frame.</p>
+</dd>
+<dt>Điểm -- Point</dt><dd><dl class="simple">
+<dt>Khung Hình -- Frame</dt><dd><p>Set the frame number for the control point.</p>
+</dd>
+<dt>Nhỏ Nhất -- Min</dt><dd><p>Specifies the lower control point's position.</p>
+</dd>
+<dt>Lớn Nhất -- Max</dt><dd><p>Specifies the upper control point's position.</p>
+</dd>
+</dl>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="id3">
+<h4>Restrict Frame Range<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="cycles-modifier">
+<span id="bpy-types-fmodifiercycles"></span><span id="index-5"></span><h3>Cycles Modifier<a class="headerlink" href="#cycles-modifier" title="Permalink to this headline"></a></h3>
+<p>Cycles allows you add cyclic motion to a curve that has two or more control points.
+The options can be set for before and after the curve.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The Cycles Modifier can only be the first modifier.</p>
+</div>
+<dl class="simple">
+<dt>Before/After Mode</dt><dd><dl class="field-list simple">
+<dt class="field-odd">No Cycles</dt>
+<dd class="field-odd"><p>Do not repeat curve data before/after.</p>
+</dd>
+<dt class="field-even">Repeat Motion</dt>
+<dd class="field-even"><p>Repeats the curve data, while maintaining their values each cycle.</p>
+</dd>
+<dt class="field-odd">Repeat with Offset</dt>
+<dd class="field-odd"><p>Repeats the curve data, but offsets the value of the first point to the value of the last point each cycle.</p>
+</dd>
+<dt class="field-even">Repeat Mirrored</dt>
+<dd class="field-even"><p>Each cycle the curve data is flipped across the X axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Count</dt><dd><p>Set the number of times to cycle the data. A value of 0 cycles the data infinitely.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="id4">
+<h4>Restrict Frame Range<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+<section id="trivially-cyclic-curves">
+<h4>Trivially Cyclic Curves<a class="headerlink" href="#trivially-cyclic-curves" title="Permalink to this headline"></a></h4>
+<p>When the <em>Cycle Mode</em> for both ends is set to either <em>Repeat Motion</em> or
+<em>Repeat with Offset</em>, and no other options of the modifier are
+changed from their defaults, it defines a simple infinite cycle.</p>
+<p>This special case receives some additional support from other areas of Blender:</p>
+<ul class="simple">
+<li><p>Automatic Bézier handle placement is aware of the cycle and adjusts to achieve a smooth transition.</p></li>
+<li><p>The <a class="reference internal" href="../../timeline.html#timeline-keying"><span class="std std-ref">Cycle-Aware Keying</span></a> option can be enabled to take
+the cycle into account when inserting new keyframes.</p></li>
+</ul>
+</section>
+</section>
+<section id="noise-modifier">
+<span id="bpy-types-fmodifiernoise"></span><span id="index-6"></span><h3>Noise Modifier<a class="headerlink" href="#noise-modifier" title="Permalink to this headline"></a></h3>
+<p>Modifies the curve with a noise formula.
+This is useful for creating subtle or extreme randomness to animated movements,
+like camera shake.</p>
+<dl class="simple">
+<dt>Blend Type</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Thay Thế -- Replace</dt>
+<dd class="field-odd"><p>Adds a -0.5 to 0.5 range noise function to the curve.</p>
+</dd>
+<dt class="field-even">Cộng Thêm -- Add</dt>
+<dd class="field-even"><p>Adds a 0 to 1 range noise function to the curve.</p>
+</dd>
+<dt class="field-odd">Subtract</dt>
+<dd class="field-odd"><p>Subtracts a 0 to 1 range noise function to the curve.</p>
+</dd>
+<dt class="field-even">Multiply</dt>
+<dd class="field-even"><p>Multiplies a 0 to 1 range noise function to the curve.</p>
+</dd>
+</dl>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Adjust the overall size of the noise. Values further from 0 give less frequent noise.</p>
+</dd>
+<dt>Sức Mạnh/Cường Độ -- Strength</dt><dd><p>Adjusts the Y scaling of the noise function.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>Offsets the noise in time.</p>
+</dd>
+<dt>Giai Đoạn/Pha -- Phase</dt><dd><p>Adjusts the random seed of the noise.</p>
+</dd>
+<dt>Depth</dt><dd><p>Adjusts how detailed the noise function is.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="id5">
+<h4>Restrict Frame Range<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="limits-modifier">
+<span id="bpy-types-fmodifierlimits"></span><span id="index-7"></span><h3>Limits Modifier<a class="headerlink" href="#limits-modifier" title="Permalink to this headline"></a></h3>
+<p>Limit curve values to specified X and Y ranges.</p>
+<dl class="simple">
+<dt>Minimum X, Y</dt><dd><p>Cuts a curve off at these frames ranges, and sets their minimum value at those points.</p>
+</dd>
+<dt>Minimum X, Y</dt><dd><p>Truncates the curve values to a range.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="id6">
+<h4>Restrict Frame Range<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="stepped-interpolation-modifier">
+<span id="bpy-types-fmodifierstepped"></span><span id="index-8"></span><h3>Stepped Interpolation Modifier<a class="headerlink" href="#stepped-interpolation-modifier" title="Permalink to this headline"></a></h3>
+<p>Gives the curve a stepped appearance by rounding values down within a certain range of frames.</p>
+<dl class="simple">
+<dt>Step Size</dt><dd><p>Specify the number of frames to hold each frame.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>Reference number of frames before frames get held.
+Use to get hold for (1-3) vs (5-7) holding patterns.</p>
+</dd>
+<dt>Khung Hình Đầu -- Start Frame</dt><dd><p>Restrict modifier to only act before its &quot;end&quot; frame.</p>
+</dd>
+<dt>Khung Hình Cuối -- End Frame</dt><dd><p>Restrict modifier to only act after its &quot;start&quot; frame.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the modifier has on the F-curve.</p>
+</dd>
+</dl>
+<section id="id7">
+<h4>Restrict Frame Range<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Start/End</dt><dd><p>The frame on which the modifier's effect starts/ends.</p>
+</dd>
+<dt>Blend In, Out</dt><dd><p>The number of frames, relative the start/end values above, the modifier takes to fade in/out.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="properties.html" class="btn btn-neutral float-left" title="Tính Chất -- Properties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../drivers_editor.html" class="btn btn-neutral float-right" title="Drivers Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/graph_editor/fcurves/modifiers.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/graph_editor/fcurves/modifiers%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Feditors/graph_editor/fcurves/modifiers.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

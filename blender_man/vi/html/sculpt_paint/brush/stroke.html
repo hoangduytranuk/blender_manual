@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stroke &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/sculpt_paint/brush/stroke.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Suy Giảm Dần -- Falloff" href="falloff.html" />
+    <link rel="prev" title="Texture Mask" href="texture_mask.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Sculpting &amp; Painting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html">Brush</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../navigation.html">Navigation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#modes">Chế Độ -- Modes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sculpting/index.html">Sculpting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../texture_paint/index.html">Texture Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vertex_paint/index.html">Vertex Paint</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../weight_paint/index.html">Weight Paint</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/tools.html">Weight Paint Tools</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../weight_paint/tool_settings/index.html">Sắp Đặt Công Cụ</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="brush.html">Brushes</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="../weight_paint/tool_settings/brush_settings.html">Brush Settings</a><ul class="current">
+<li class="toctree-l6 current"><a class="reference internal" href="../weight_paint/tool_settings/brush_settings.html#advanced">Cao Cấp -- Advanced</a><ul class="current">
+<li class="toctree-l7 current"><a class="current reference internal" href="#">Stroke</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#stabilize-stroke">Stabilize Stroke</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="falloff.html">Suy Giảm Dần -- Falloff</a></li>
+<li class="toctree-l7"><a class="reference internal" href="cursor.html">Con Trỏ -- Cursor</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../weight_paint/tool_settings/brush_settings.html#stroke">Stroke</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../weight_paint/tool_settings/brush_settings.html#falloff">Suy Giảm Dần -- Falloff</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../weight_paint/tool_settings/brush_settings.html#cursor">Con Trỏ -- Cursor</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../weight_paint/tool_settings/symmetry.html">Symmetry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../weight_paint/tool_settings/options.html">Tùy Chọn -- Options</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/usage.html">Using Vertex Groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../weight_paint/editing.html">Biên Soạn -- Editing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Sculpting &amp; Painting</a> &raquo;</li>
+          <li><a href="index.html">Brush</a> &raquo;</li>
+      <li>Stroke</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stroke">
+<h1>Stroke<a class="headerlink" href="#stroke" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../_images/sculpt-paint_brush_stroke_stroke-panel.png" src="../../_images/sculpt-paint_brush_stroke_stroke-panel.png" />
+<figcaption>
+<p><span class="caption-text">Stroke panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Stroke Method <kbd class="kbd docutils literal notranslate">E</kbd></dt><dd><p>Defines the way brush strokes are applied to the canvas.</p>
+<dl>
+<dt>Dots</dt><dd><p>Apply paint on each mouse move step.</p>
+</dd>
+<dt>Drag Dot</dt><dd><p>Leaves only one dab on the canvas which can be placed by dragging.</p>
+</dd>
+<dt>Không Gian -- Space</dt><dd><p>Creates brush stroke as a series of dots,
+whose distance (spacing) is determined by the <em>Spacing</em> setting.</p>
+<dl>
+<dt>Spacing</dt><dd><p>Represents the percentage of the brush radius.</p>
+<p>Limits brush application to the distance specified by spacing.</p>
+</dd>
+</dl>
+</dd>
+<dt>Airbrush</dt><dd><p>Flow of the brush continues as long as the mouse click is held (spray),
+determined by the <em>Rate</em> setting.
+With other methods the brush only modifies the color when the brush changes its location.
+This option is not available for the <em>Grab</em> sculpting brush.</p>
+<dl class="simple">
+<dt>Rate</dt><dd><p>Interval between paints for airbrush.</p>
+</dd>
+</dl>
+</dd>
+<dt>Anchored</dt><dd><p>Creates a single dab at the brush location.
+Clicking and dragging will resize the dab diameter.</p>
+<dl class="simple">
+<dt>Edge to Edge</dt><dd><p>The brush location and orientation are determined by a two point circle,
+where the first click is one point, and dragging places the second point, opposite from the first.</p>
+</dd>
+</dl>
+</dd>
+<dt>Dòng -- Line</dt><dd><p>Clicking and dragging lets you define a line in screen space.
+The line dabs are separated by <em>Spacing</em>, similar to space strokes.
+With <kbd class="kbd docutils literal notranslate">Alt</kbd> the line stroke is constrained to 45 degree increments.</p>
+</dd>
+<dt>Curve -- Đường Cong</dt><dd><p>Defines the stroke curve with a Bézier curve (dabs are separated according to <em>Spacing</em>).
+Use <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd> to create the initial control point of the curve.</p>
+<dl class="simple">
+<dt>Paint Curves</dt><dd><p>Stroke Curves are reusable and can be stored and selected by using the <a class="reference internal" href="../../interface/controls/templates/data_block.html#ui-data-block"><span class="std std-ref">Data-Block Menu</span></a> menu.</p>
+</dd>
+<dt>Add Points</dt><dd><p>You can define additional curve control points by using <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd>.
+The handles can be defined by dragging the mouse.
+The stroke flows in the direction of the first control point to the second control point.
+If another control point is added after the second control point,
+instead of extending it from the first control point in a different direction,
+it will become the initial control point,
+and thus the stroke still flows in the direction of the first to the second.</p>
+</dd>
+<dt>Transforming Points</dt><dd><p>The control points and handles can be dragged with <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+To make sure that the handles of a control point are symmetrical,
+drag them using <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd>.
+A few transform operators are supported such as moving, scaling and rotating.</p>
+</dd>
+<dt>Lựa Chọn -- Selection</dt><dd><p>The handles can be selected individually by using <kbd class="kbd docutils literal notranslate">RMB</kbd>,
+extend the selection by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd> and deselect/select all by using <kbd class="kbd docutils literal notranslate">A</kbd>.</p>
+</dd>
+<dt>Delete Points <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>To delete a curve point, use <kbd class="kbd docutils literal notranslate">X</kbd>.</p>
+</dd>
+<dt>Draw Curve <kbd class="kbd docutils literal notranslate">Return</kbd></dt><dd><p>To confirm and execute the curved stroke,
+press <kbd class="kbd docutils literal notranslate">Return</kbd> or use the Draw Curve button.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Spacing Distance <span class="guilabel">Sculpt Mode Only</span></dt><dd><p>Method used to calculate the distance to generate a new brush step.</p>
+<dl class="simple">
+<dt>Góc Nhìn -- View</dt><dd><p>Calculates the brush spacing relative to the view.</p>
+</dd>
+<dt>Scene</dt><dd><p>Calculates the brush spacing relative to the scene using the stroke location.
+This avoids artifacts when sculpting across curved surfaces.</p>
+</dd>
+</dl>
+</dd>
+<dt>Adjust Strength for Spacing</dt><dd><p>Attenuate the brush strength according to spacing.
+Available for the <em>Space</em>, <em>Line</em>, and <em>Curve</em> stroke methods.</p>
+</dd>
+<dt>Dash Ratio</dt><dd><p>Ratio of samples in a cycle that the brush is enabled.
+This is useful to create dashed lines in texture paint or stitches in Sculpt Mode.
+Available for the <em>Space</em>, <em>Line</em>, and <em>Curve</em> stroke methods.</p>
+</dd>
+<dt>Dash Length</dt><dd><p>Length of a dash cycle measured in stroke samples.
+This is useful to create dashed lines in texture paint or stitches in Sculpt Mode.
+Available for the <em>Space</em>, <em>Line</em>, and <em>Curve</em> stroke methods.</p>
+</dd>
+<dt>Jitter</dt><dd><p>Jitter the position of the brush while painting.</p>
+<dl class="simple">
+<dt>Jitter Pressure</dt><dd><p>Brush <em>Jitter</em> can be affected by enabling the pressure sensitivity icon,
+if you are using a <a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-tablet"><span class="std std-ref">Graphics Tablet</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Jitter Unit</dt><dd><p>Controls how the brush <em>Jitter</em> is measured.</p>
+<dl class="simple">
+<dt>Góc Nhìn -- View</dt><dd><p>The <em>Jitter</em> is measured based on how the cursor appears on the monitor i.e. &quot;screen space&quot;.</p>
+</dd>
+<dt>Scene</dt><dd><p>The <em>Jitter</em> is measured based on real world units.
+The unit type and scaling can be configured in the <a class="reference internal" href="../../scene_layout/scene/properties.html#bpy-types-unitsettings"><span class="std std-ref">Scene Units</span></a>.</p>
+</dd>
+</dl>
+</dd>
+<dt>Input Samples</dt><dd><p>Recent mouse locations (input samples) are averaged together to smooth brush strokes.</p>
+</dd>
+</dl>
+<section id="stabilize-stroke">
+<h2>Stabilize Stroke<a class="headerlink" href="#stabilize-stroke" title="Permalink to this headline"></a></h2>
+<p><em>Stabilize Stroke</em> makes the stroke lag behind the cursor
+and applies a smoothed curve to the path of the cursor.
+This can be enabled temporary by holding <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">S</kbd></kbd> while painting
+or permanently by clicking the checkbox found in the header.</p>
+<dl class="simple">
+<dt>Bán Kính -- Radius</dt><dd><p>Sets the minimum distance from the last point before stroke continues.</p>
+</dd>
+<dt>Factor</dt><dd><p>Sets the amount of smoothing.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="texture_mask.html" class="btn btn-neutral float-left" title="Texture Mask" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="falloff.html" class="btn btn-neutral float-right" title="Suy Giảm Dần -- Falloff" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/sculpt_paint/brush/stroke.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60sculpt_paint/brush/stroke%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fsculpt_paint/brush/stroke.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

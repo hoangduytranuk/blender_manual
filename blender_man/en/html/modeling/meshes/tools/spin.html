@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/tools/spin.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Selecting" href="../selecting/index.html" />
+    <link rel="prev" title="Poly Build" href="poly_build.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Tools</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="toolbar.html">Toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tool_settings.html">Tool Settings</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#types">Types</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="extrude_region.html">Extrude Region</a></li>
+<li class="toctree-l5"><a class="reference internal" href="extrude_manifold.html">Extrude Manifold</a></li>
+<li class="toctree-l5"><a class="reference internal" href="extrude_cursor.html">Extrude to Cursor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="loop.html">Loop Cut</a></li>
+<li class="toctree-l5"><a class="reference internal" href="knife.html">Knife</a></li>
+<li class="toctree-l5"><a class="reference internal" href="poly_build.html">Poly Build</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Spin</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#tool-settings">Tool Settings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#angle">Angle</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#duplicate">Duplicate</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#merge-duplicates">Merge Duplicates</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#recalculate-normals">Recalculate Normals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Editing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Meshes</a> &raquo;</li>
+          <li><a href="index.html">Tools</a> &raquo;</li>
+      <li>Spin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spin">
+<span id="tool-mesh-spin"></span><span id="bpy-ops-mesh-spin"></span><h1>Spin<a class="headerlink" href="#spin" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Spin</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Spin</em> tool extrudes (or duplicates it if the selection is manifold) the selected elements,
+rotating around a specific point and axis.</p>
+<p>Use the tool to create the sort of objects that you would produce on a lathe
+(this tool is often called “lathe” tool or “sweep” tool in the literature, for this reason).
+In fact, it does a sort of circular extrusion of your selected elements,
+centered on the 3D cursor, and around the axis perpendicular to the working view…</p>
+<ul class="simple">
+<li><p>The point of view will determine around which axis the extrusion spins…</p></li>
+<li><p>The position of the 3D cursor will be the center of the rotation.</p></li>
+</ul>
+<section id="tool-settings">
+<h2>Tool Settings<a class="headerlink" href="#tool-settings" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Steps</dt><dd><p>Specifies how many copies will be extruded along the “sweep”.</p>
+</dd>
+<dt>Axis</dt><dd><p>Specifies the axis to use as the pivot of the spin operation.</p>
+</dd>
+</dl>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Steps</dt><dd><p>Specifies how many copies will be extruded along the “sweep”.</p>
+</dd>
+<dt>Use Duplicates</dt><dd><p>When enabled, will keep the original selected elements as separated islands in the mesh
+(i.e. unlinked to the result of the spin extrusion).</p>
+</dd>
+<dt>Angle</dt><dd><p>Specifies the angle “swept” by this tool, in degrees (e.g. set it to 180 for half a turn).</p>
+</dd>
+<dt>Auto Merge</dt><dd><p>Automatically merges the first a last duplicates,
+if they make a full revolution which results in overlapping geometry.</p>
+</dd>
+<dt>Flip Normals</dt><dd><p>Reverses the <a class="reference internal" href="../../../glossary/index.html#term-Normal"><span class="xref std std-term">Normal’s</span></a> direction for any resulting geometry.</p>
+</dd>
+<dt>Center X, Y, Z</dt><dd><p>Specifies the center of the spin. By default it uses the cursor position.</p>
+</dd>
+<dt>Axis X, Y, Z</dt><dd><p>Specify the spin axis as a vector. By default it uses the view axis (viewport).</p>
+</dd>
+</dl>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id2">
+<span id="fig-mesh-spin-glass"></span><a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_glass-profile.png"><img alt="../../../_images/modeling_meshes_tools_spin_glass-profile.png" src="../../../_images/modeling_meshes_tools_spin_glass-profile.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Glass profile.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>First, create a mesh representing the profile of your object.
+If you are modeling a hollow object, it is a good idea to thicken the outline.
+Fig. <a class="reference internal" href="#fig-mesh-spin-glass"><span class="std std-ref">Glass profile.</span></a> shows the profile for a wine glass we will model as a demonstration.</p>
+<p>We will be rotating the object around the cursor in the top view,
+so switch to the top view with <kbd class="kbd docutils literal notranslate">Numpad7</kbd>.</p>
+<figure class="align-default" id="id3">
+<span id="fig-mesh-spin-glass-top"></span><a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_glass-profile-before.png"><img alt="../../../_images/modeling_meshes_tools_spin_glass-profile-before.png" src="../../../_images/modeling_meshes_tools_spin_glass-profile-before.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Glass profile, top view in Edit Mode, just before spinning.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Place the cursor along the center of the profile by entering Edit Mode
+and selecting one of the vertices along the center, and snapping the 3D cursor to
+that location with <span class="menuselection">Mesh ‣ Snap ‣ Cursor to Selection</span>.
+(Fig. <a class="reference internal" href="#fig-mesh-spin-glass-top"><span class="std std-ref">Glass profile, top view in Edit Mode, just before spinning.</span></a>) shows the wine glass profile from
+top view, with the cursor correctly positioned.</p>
+<p>Select all the vertices with <kbd class="kbd docutils literal notranslate">A</kbd> and select the <em>Spin</em> tool from the Toolbar
+and use the Gizmo to spin the vertices. Fig. <a class="reference internal" href="#fig-mesh-spin-profile"><span class="std std-ref">Spun profile.</span></a> shows the result of a successful spin.</p>
+<section id="angle">
+<h3>Angle<a class="headerlink" href="#angle" title="Permalink to this headline"></a></h3>
+<span id="fig-mesh-spin-profile"></span><table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Spun profile.</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_spun-profile360.png"><img alt="../../../_images/modeling_meshes_tools_spin_spun-profile360.png" src="../../../_images/modeling_meshes_tools_spin_spun-profile360.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Spun profile using an angle of 360.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_spun-profile120.png"><img alt="../../../_images/modeling_meshes_tools_spin_spun-profile120.png" src="../../../_images/modeling_meshes_tools_spin_spun-profile120.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Spun profile using an angle of 120.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="duplicate">
+<h3>Duplicate<a class="headerlink" href="#duplicate" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_result.png"><img alt="../../../_images/modeling_meshes_tools_spin_result.png" src="../../../_images/modeling_meshes_tools_spin_result.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Result of spin operation.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_dubli.png"><img alt="../../../_images/modeling_meshes_tools_spin_dubli.png" src="../../../_images/modeling_meshes_tools_spin_dubli.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Result of <em>Duplicate</em> enabled.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="merge-duplicates">
+<h3>Merge Duplicates<a class="headerlink" href="#merge-duplicates" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id9">
+<span id="fig-mesh-screw-duplicate"></span><a class="reference internal image-reference" href="../../../_images/modeling_meshes_tools_spin_dublicate-vertices.png"><img alt="../../../_images/modeling_meshes_tools_spin_dublicate-vertices.png" src="../../../_images/modeling_meshes_tools_spin_dublicate-vertices.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Duplicate vertices.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The spin operation leaves duplicate vertices along the profile.
+You can select all vertices at the seam with Box select <kbd class="kbd docutils literal notranslate">B</kbd>
+(shown in Fig. <a class="reference internal" href="#fig-mesh-screw-duplicate"><span class="std std-ref">Duplicate vertices.</span></a>) and perform a <em>Merge by Distance</em> operation.</p>
+<p>Notice the selected vertex count before and after the <em>Merge by Distance</em> operation
+<code class="docutils literal notranslate"><span class="pre">Vertex</span> <span class="pre">count</span> <span class="pre">after</span> <span class="pre">removing</span> <span class="pre">doubles</span></code>. If all goes well, the final vertex count
+(38 in this example) should match the number of the original profile noted in
+<span class="menuselection">Mesh data ‣ Vertex and face numbers</span>.
+If not, some vertices were missed and you will need to weld them manually.
+Or, worse, too many vertices will have been merged.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Merging Two Vertices into One</p>
+<p>To merge (weld) two vertices together, select both of them by <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd>
+clicking on them. Press <kbd class="kbd docutils literal notranslate">S</kbd> to start scaling and hold down <kbd class="kbd docutils literal notranslate">Ctrl</kbd>
+while scaling to scale the points down to 0 units in the X, Y and Z axis. <kbd class="kbd docutils literal notranslate">LMB</kbd>
+to complete the scaling operation and click <span class="menuselection">Mesh ‣ Merge ‣ By Distance</span>
+to merge the vertices. Alternatively, you can use <span class="menuselection">Context Menu ‣ Merge Vertices</span> (or <kbd class="kbd docutils literal notranslate">M</kbd>).
+Then, in the new pop-up menu, choose to merge <em>By Distance</em>.</p>
+</div>
+</section>
+<section id="recalculate-normals">
+<h3>Recalculate Normals<a class="headerlink" href="#recalculate-normals" title="Permalink to this headline"></a></h3>
+<p>All that remains now is to recalculate the normals to the outside by selecting all vertices,
+pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">N</kbd></kbd> and validating <em>Recalculate Normals Outside</em> in the pop-up menu.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="poly_build.html" class="btn btn-neutral float-left" title="Poly Build" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../selecting/index.html" class="btn btn-neutral float-right" title="Selecting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/tools/spin.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/tools/spin%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/tools/spin.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

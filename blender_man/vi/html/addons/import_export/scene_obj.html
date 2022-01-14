@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OBJ của Wavefront &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/import_export/scene_obj.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="X3D/VRML2 của Web3D" href="scene_x3d.html" />
+    <link rel="prev" title="Bố Trí UV" href="mesh_uv_layout.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Liệt Kê Hạng Mục của các Trình Bổ Sung -- Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Thêm Đường Cong</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Cộng Thêm Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation -- Hoạt Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Máy Quay Phim -- Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Xây Dựng -- Development</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nhập-Xuất Khẩu</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="node_shaders_info.html">Nhập/Xuất các nút Tô Bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="coat3D.html">3D-Coat Applink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_atomic.html">Blender Nguyên Tử (PDB/XYZ)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_bvh.html">BioVision Motion Capture (BVH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_dxf.html"><abbr>DXF (Drawing Interchange Format: Định Dạng Trao Đổi Họa Bản) của AutoCAD</abbr></a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_camera.html">Hoạt Họa của Máy Quay Phim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="paper_model.html">Mô Hình Giấy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pc2.html">Pointcache (pc2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_fbx.html"><abbr title="FilmBox: Hộp Phim">FBX</abbr></a></li>
+<li class="toctree-l4"><a class="reference internal" href="images_as_planes.html">Hình Ảnh thành Mặt Phẳng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="palettes.html">Nhập Khẩu Bảng Pha Màu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shape_mdd.html">MDD của NewTek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anim_nuke_chan.html">Hoạt Họa Nuke (<abbr title="định dạng tập tin lưu vị trí hoạt họa của máy quay phim">chan</abbr>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_stl.html"><abbr title="Stereolithography: Khắc Đá Lập Thể, còn được gọi là thiết bị in li-tô Lập Thể, chế tạo quang học, đông đặc quang học hoặc in nhựa. STL là định dạng tập tin có nguồn gốc từ phần mềm CAD li-tô Lập Thể, được tạo bởi các hệ thống 3D">STL</abbr></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve_svg.html">Đồ Họa Véctơ Khả Tùy Biến (SVG)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_ply.html">Định Dạng PLY của Stanford</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_uv_layout.html">Bố Trí UV</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">OBJ của Wavefront</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Sử Dụng -- Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất -- Properties</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#import">Nhập -- Import</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#include">Include/Bao Gồm</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#transform">Transform -- Biến Hóa</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#geometry">Hình Dạng -- Geometry</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#export">Xuất -- Export</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#id2">Include/Bao Gồm</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#id3">Transform -- Biến Hóa</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#id4">Hình Dạng -- Geometry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#compatibility">Tính Tương Thích -- Compatibility</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#missing">Còn Thiếu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="scene_x3d.html"><abbr title="Extensible 3D Graphics: Đồ Họa 3D Mở Rộng Được">X3D</abbr>/VRML2 của Web3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scene_gltf2.html">glTF 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Bố Trí Ánh Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh -- Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object -- Vật Thể</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Sơn -- Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render -- Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Dựng Giàn Điều Khiển</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Bộ Phối Hình -- Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">Hệ Thống -- System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Công Cụ về Phim Video</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+          <li><a href="index.html">Nhập-Xuất Khẩu</a> &raquo;</li>
+      <li>OBJ của Wavefront</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wavefront-obj">
+<h1>OBJ của Wavefront<a class="headerlink" href="#wavefront-obj" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Hạng Mục -- Category</dt>
+<dd class="field-odd"><p>Nhập-Xuất Khẩu</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">File ‣ Import/Export ‣ Wavefront (.obj)</span></p>
+</dd>
+</dl>
+</div>
+<p>OBJ is a widely used de facto standard in the 3D industry.
+The OBJ format is a popular plain text format, however, it has only basic geometry and material support.</p>
+<ul class="simple">
+<li><p>Mesh: vertices, faces, edges, normals, UVs</p></li>
+<li><p>Separation by groups/objects</p></li>
+<li><p>Materials/textures</p></li>
+<li><p>NURBS curves and surfaces</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>There is no support for mesh vertex colors, armatures, animation,
+lights, cameras, empty objects, parenting, or transformations.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Blender now only supports complex node-based shading. OBJ having a fixed pipeline-like support of materials,
+this add-on uses the <a class="reference internal" href="node_shaders_info.html"><span class="doc">generic wrapper</span></a>
+featured by Blender to convert between both.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<ul class="simple">
+<li><p>Importing very large OBJ-files (over a few 100mb), can use a lot of RAM.</p></li>
+<li><p>OBJ's export using Unix line endings <code class="docutils literal notranslate"><span class="pre">\n</span></code> even on Windows,
+if you open the files in a text editor it must recognize <code class="docutils literal notranslate"><span class="pre">\n</span></code> line endings.</p></li>
+</ul>
+</div>
+<section id="usage">
+<h2>Sử Dụng -- Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>Import/Export geometry and curves to the OBJ format.</p>
+<p>If there is a matching <code class="docutils literal notranslate"><span class="pre">.MTL</span></code> for the OBJ then its materials will be imported too.</p>
+</section>
+<section id="properties">
+<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<section id="import">
+<h3>Nhập -- Import<a class="headerlink" href="#import" title="Permalink to this headline"></a></h3>
+<section id="include">
+<h4>Include/Bao Gồm<a class="headerlink" href="#include" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Tìm Kiếm Hình Ảnh</dt><dd><p>This enables a recursive file search if an image file can't be found.</p>
+</dd>
+<dt>Các Nhóm Mịn</dt><dd><p>Surround OBJ smooth groups by sharp edges.
+Note that these will only be displayed when the Edge Split modifier is enabled.</p>
+</dd>
+<dt>Đường Thẳng -- Lines</dt><dd><p>Import OBJ lines and two-sided faces as mesh edges.</p>
+</dd>
+</dl>
+</section>
+<section id="transform">
+<h4>Transform -- Biến Hóa<a class="headerlink" href="#transform" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Hạn Định Kích Thước</dt><dd><p>OBJ-files often vary greatly in scale, this setting clamps the imported file to a fixed size.</p>
+</dd>
+<dt>Hướng Trước / Hướng Lên Trên</dt><dd><p>Vì các trình ứng dụng sử dụng một trục khác biệt cho chiều hướng <abbr title="Up">Lên/Trên</abbr>, cho nên chúng ta cũng cần có sự chuyển đổi cho các Sắp đặt này, <abbr title="Forward and Up axes">Trục Hướng Trước và Lên Trên</abbr> -- Bằng việc Ánh Xạ những trục này sang các trục khác, bạn có thể chuyển đổi sự xoay chiều giữa các trục hướng về phía trước và lên trên giữa các trình ứng dụng.</p>
+<p>Blender dùng Y <abbr title="Forward">Hướng Trước</abbr>, Z <abbr title="Up">Hướng Trên</abbr> (vì góc nhìn từ đằng trước vọng dọc theo chiều +Y). Lấy ví dụ, việc trình ứng dụng sử dụng Y làm trục hướng lên trên là điều thông thường. Trong trường hợp này, bố trí -Z <abbr title="Forward">Hướng Trước</abbr>, Y <abbr title="Up">Hướng Trên</abbr> là điều cần thiết.</p>
+</dd>
+</dl>
+</section>
+<section id="geometry">
+<h4>Hình Dạng -- Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Phân Tách/Duy Trì Trật Tự của điểm đỉnh</dt><dd><p>When importing an OBJ it's useful to split up the objects into Blender objects,
+named according to the OBJ-file. However, this splitting loses the vertex order
+which is needed when using OBJ-files as morph targets.It also loses any vertices
+that are not connected to a face or edge so this must be disabled if you want to
+keep the vertex order and loose vertices.</p>
+</dd>
+<dt>Phân Tách theo Vật Thể &amp; Phân Tách theo Nhóm</dt><dd><p>When importing an OBJ it's useful to split up the objects into Blender objects,
+named according to the OBJ-file. However, this splitting loses the vertex order which
+is needed when using OBJ-files as morph targets. It also loses any vertices that
+are not connected to a face, so this must be disabled if you want to keep the vertex order.</p>
+<p>As far as Blender is concerned OBJ Objects and Groups are no difference,
+since they are just two levels of separation,
+the OBJ groups are not equivalent to Blender groups, so both can optionally be used for splitting.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="export">
+<h3>Xuất -- Export<a class="headerlink" href="#export" title="Permalink to this headline"></a></h3>
+<section id="id2">
+<h4>Include/Bao Gồm<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Vật Thể được Chọn</dt><dd><p>Only export the selected objects. Otherwise export all objects in the scene.</p>
+</dd>
+<dt>Đối Tượng là Vật Thể/Nhóm OBJ</dt><dd><p>Write out each Blender object as an OBJ object.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Note that as far as Blender is concerned there is no difference between OBJ Groups and Objects,
+this option is only included for applications that treat them differently.</p>
+</div>
+</dd>
+<dt>Nhóm Nguyên Vật Liệu</dt><dd><p>Create OBJ groups per material.</p>
+</dd>
+<dt>Animation -- Hoạt Họa</dt><dd><p>Exports a numbered OBJ for each frame from the start to the end frame.
+Please be aware that this can take quite a long time.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h4>Transform -- Biến Hóa<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Global scale to use on export.</p>
+</dd>
+<dt>Chế Độ Đường Dẫn</dt><dd><p>When referencing paths in exported files you may want some control as to the method used since absolute paths
+may only be correct on you are own system. Relative paths on the other hand are more portable
+but mean you have to keep your files grouped when moving about on your local file system.
+In some cases the path doesn't matter since the target application will search
+a set of predefined paths anyway so you have the option to strip the path too.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Tự Động -- Auto</dt>
+<dd class="field-odd"><p>Sử dụng đường dẫn tương đối cho các tập tin nằm trong một thư mục nhánh của địa điểm xuất ra, song sử dụng đường dẫn tuyệt đối cho bất cứ thư mục nào nằm bên ngoài địa điểm đó.</p>
+</dd>
+<dt class="field-even">Tuyệt Đối -- Absolute</dt>
+<dd class="field-even"><p>Sử dụng đường dẫn toàn phần, đầy đủ.</p>
+</dd>
+<dt class="field-odd">Tương Đối -- Relative</dt>
+<dd class="field-odd"><p>Uses relative paths in every case (except when on a different drive on Windows).</p>
+</dd>
+<dt class="field-even">Khớp</dt>
+<dd class="field-even"><p>Sử dụng đường dẫn <abbr title="relative">tương đối</abbr> / <abbr title="absolute">tuyệt đối</abbr> dựa trên nền tảng các đường dẫn đã được sử dụng trong Blender.</p>
+</dd>
+<dt class="field-odd">Lược Bỏ Đường Dẫn</dt>
+<dd class="field-odd"><p>Loại bỏ phần về đường dẫn và chỉ viết tên văn bản mà thôi.</p>
+</dd>
+<dt class="field-even">Sao Chép -- Copy</dt>
+<dd class="field-even"><p>Sao chép tập tin trong khi xuất và tham chiếu tới thông qua một đường dẫn tương đối.</p>
+</dd>
+</dl>
+</dd>
+<dt>Hướng Trước / Hướng Lên Trên</dt><dd><p>Since many applications use a different axis for 'Up', there are axis conversion settings,
+Forward and Up axis -- By mapping these to different axis you can convert rotations
+between applications default up and forward axis.</p>
+<p>Blender dùng Y <abbr title="Forward">Hướng Trước</abbr>, Z <abbr title="Up">Hướng Trên</abbr> (vì góc nhìn từ đằng trước vọng dọc theo chiều +Y). Lấy ví dụ, việc trình ứng dụng sử dụng Y làm trục hướng lên trên là điều thông thường. Trong trường hợp này, bố trí -Z <abbr title="Forward">Hướng Trước</abbr>, Y hướng <abbr title="Up">Lên Trên</abbr> là điều cần thiết.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h4>Hình Dạng -- Geometry<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Áp Dụng Bộ Điều Chỉnh -- Apply Modifiers</dt><dd><p>Export mesh objects as seen in the 3D Viewport with all modifiers applied.
+Mostly you will want this unless you are exporting a subdivision surface cage.</p>
+</dd>
+<dt>Các Nhóm Mịn</dt><dd><p>Write Blender's sharp edges as smooth groups.</p>
+</dd>
+<dt>Bitflag Groups</dt><dd><p>Nội dung cần viết thêm.</p>
+</dd>
+<dt>Viết Pháp Tuyến</dt><dd><p>Write out Blender's face and vertex normals (depending on the faces smooth setting).</p>
+<p>Mostly this isn't needed since most applications will calculate their
+own normals but to match Blender's normal map textures you will need to write these too.</p>
+</dd>
+<dt>Bao Gồm UV</dt><dd><p>Write out the active UV layers coordinates from Blender.</p>
+</dd>
+<dt>Viết Nguyên Vật Liệu</dt><dd><p>Write out the MTL-file along with the OBJ. Most importers that support OBJ will also read the MTL-file.</p>
+</dd>
+<dt>Tam Giác Hóa Bề Mặt</dt><dd><p>Write out quads as two triangles. Some programs only have very basic OBJ support and only support triangles.</p>
+</dd>
+<dt>Đường Cong thành NURBS</dt><dd><p>Write out NURBS curves as OBJ NURBS rather than converting to geometry.</p>
+</dd>
+<dt>Nhóm Đa Giác</dt><dd><p>Write faces into OBJ groups based on the meshes vertex group.
+Note that this does a best guess since a face's vertices can be in multiple vertex groups.</p>
+</dd>
+<dt>Duy Trì Thứ Tự Điểm Đỉnh</dt><dd><p>Maintain vertex order on export. This is needed when OBJ is used for morph targets.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="compatibility">
+<h2>Tính Tương Thích -- Compatibility<a class="headerlink" href="#compatibility" title="Permalink to this headline"></a></h2>
+<p><abbr title="NURBS surfaces">Bề-mặt NURBS</abbr>, <abbr title="text3D">văn bản 3D</abbr> và <abbr title="metaballs">siêu cầu</abbr> được chuyển đổi sang khung lưới tại thời điểm xuất.</p>
+<section id="missing">
+<h3>Còn Thiếu<a class="headerlink" href="#missing" title="Permalink to this headline"></a></h3>
+<p>Some of the following features are missing:</p>
+<ul class="simple">
+<li><p>NURBS Surfaces -- this could be added but is not widely used.</p></li>
+<li><p>Advanced Material Settings -- There are material options documented
+but very few files use them and there are few examples available.</p></li>
+<li><p>Normals -- Blender ignores normals from imported files, recalculating them based on the geometry.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mesh_uv_layout.html" class="btn btn-neutral float-left" title="Bố Trí UV" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scene_x3d.html" class="btn btn-neutral float-right" title="X3D/VRML2 của Web3D" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/import_export/scene_obj.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/import_export/scene_obj%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Faddons/import_export/scene_obj.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

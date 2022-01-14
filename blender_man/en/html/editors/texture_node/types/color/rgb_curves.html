@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RGB Curves Node &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/texture_node/types/color/rgb_curves.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Hue Saturation Value Node" href="hue_saturation.html" />
+    <link rel="prev" title="Mix Node" href="mix_rgb.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../3dview/index.html">3D Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Texture Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#node-types">Node Types</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Color Nodes</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="invert.html">Invert Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mix_rgb.html">Mix Node</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">RGB Curves Node</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#color-correction-using-curves">Color Correction using Curves</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#color-correction-using-black-white-levels">Color Correction using Black/White Levels</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#effects">Effects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="hue_saturation.html">Hue Saturation Value Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="combine_separate.html">Combine/Separate Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../converter/index.html">Converter Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../distort/index.html">Distort Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/index.html">Pattern Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../textures/index.html">Texture Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../groups.html">Group</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../video_sequencer/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../properties_editor.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../preferences/index.html">Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../../index.html">Texture Nodes</a> &raquo;</li>
+          <li><a href="index.html">Color Nodes</a> &raquo;</li>
+      <li>RGB Curves Node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="bpy-types-texturenodecurvergb"></span><section id="rgb-curves-node">
+<h1>RGB Curves Node<a class="headerlink" href="#rgb-curves-node" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../../../_images/compositing_node-types_CompositorNodeCurveRGB.png" src="../../../../_images/compositing_node-types_CompositorNodeCurveRGB.png" />
+<figcaption>
+<p><span class="caption-text">RGB Curves Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>RGB Curves Node</em> allows color corrections for each color channel
+and levels adjustments in the compositing context.</p>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Factor</dt><dd><p>Controls the amount of influence the node exerts on the output image.</p>
+</dd>
+<dt>Image</dt><dd><p>Standard image input.</p>
+</dd>
+<dt>Black Level <span class="guilabel">Compositor Only</span></dt><dd><p>Defines the input color that is (linear) mapped to black.</p>
+</dd>
+<dt>White Level <span class="guilabel">Compositor Only</span></dt><dd><p>Defines the input color that is (linear) mapped to white.</p>
+</dd>
+</dl>
+<div class="lead docutils container">
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To define the levels, use the <a class="reference internal" href="../../../../interface/controls/buttons/eyedropper.html#ui-eyedropper"><span class="std std-ref">eyedropper</span></a> to select a color sample of a displayed image.</p>
+</div>
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Tone <span class="guilabel">Compositor Only</span></dt><dd><dl class="field-list simple">
+<dt class="field-odd">Standard</dt>
+<dd class="field-odd"><p>TODO 2.8</p>
+</dd>
+<dt class="field-even">Film Like</dt>
+<dd class="field-even"><p>TODO 2.8</p>
+</dd>
+</dl>
+</dd>
+<dt>Channel</dt><dd><p>Clicking on one of the channels displays the curve for each.</p>
+<p>C (Combined RGB), R (Red), G (Green), B (Blue)</p>
+</dd>
+<dt>Curve</dt><dd><p>A Bézier curve that varies the input levels (X axis) to produce an output level (Y axis).
+For the curve controls see: <a class="reference internal" href="../../../../interface/controls/templates/curve.html#ui-curve-widget"><span class="std std-ref">Curve widget</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Image</dt><dd><p>Standard image output.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<p>Below are some common curves you can use to achieve desired effects.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/compositing_types_color_rgb-curves_example-common-use.png"><img alt="../../../../_images/compositing_types_color_rgb-curves_example-common-use.png" src="../../../../_images/compositing_types_color_rgb-curves_example-common-use.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">From left to right: 1. Lighten shadows 2. Negative 3. Decrease contrast 4. Posterize.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="color-correction-using-curves">
+<h3>Color Correction using Curves<a class="headerlink" href="#color-correction-using-curves" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/compositing_types_color_rgb-curves_example-rgb.png"><img alt="../../../../_images/compositing_types_color_rgb-curves_example-rgb.png" src="../../../../_images/compositing_types_color_rgb-curves_example-rgb.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Color correction with curves.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In this example, the image has too much red in it,
+so we run it through an <em>RGB Curves</em> node and reduce the Red channel.</p>
+<p>Also, read on for examples of the Darken and Contrast Enhancement curves,
+<a class="reference internal" href="../../../../compositing/types/color/mix.html"><span class="doc">here</span></a>.</p>
+</section>
+<section id="color-correction-using-black-white-levels">
+<h3>Color Correction using Black/White Levels<a class="headerlink" href="#color-correction-using-black-white-levels" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../../_images/compositing_types_color_rgb-curves_black-white-levels.png"><img alt="../../../../_images/compositing_types_color_rgb-curves_black-white-levels.png" src="../../../../_images/compositing_types_color_rgb-curves_black-white-levels.png" style="width: 600px;" /></a>
+<figcaption>
+<p><span class="caption-text">Color correction with Black/White Levels.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Manually adjusting the RGB curves for color correction can be difficult.
+Another option for color correction is to use the Black and White Levels instead,
+which really might be their main purpose.</p>
+<p>In this example,
+the White Level is set to the color of a bright spot of the sand in the background,
+and the Black Level to the color in the center of the fish’s eye.
+To do this efficiently it is best to bring up the Image Editor showing the original input image.
+You can then use the levels’ color picker to easily choose
+the appropriate colors from the input image, zooming into pixel level if necessary.
+The result can be fine-tuned with the R, G, and B curves like in the previous example.</p>
+<p>The curve for C is used to compensate for the increased contrast that is a side effect of
+setting Black and White Levels.</p>
+</section>
+<section id="effects">
+<h3>Effects<a class="headerlink" href="#effects" title="Permalink to this headline"></a></h3>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../../_images/compositing_types_color_rgb-curves_ex.png"><img alt="../../../../_images/compositing_types_color_rgb-curves_ex.png" src="../../../../_images/compositing_types_color_rgb-curves_ex.png" style="width: 620px;" /></a>
+<figcaption>
+<p><span class="caption-text">Changing colors by inverting the red channel.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mix_rgb.html" class="btn btn-neutral float-left" title="Mix Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hue_saturation.html" class="btn btn-neutral float-right" title="Hue Saturation Value Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/texture_node/types/color/rgb_curves.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/texture_node/types/color/rgb_curves%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Feditors/texture_node/types/color/rgb_curves.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

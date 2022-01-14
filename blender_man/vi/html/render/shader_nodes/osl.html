@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Shading Language &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/shader_nodes/osl.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Quản Lý Màu Sắc -- Color Management" href="../color_management.html" />
+    <link rel="prev" title="Nhóm -- Group" href="groups.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Shader Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="input/index.html">Đầu Vào -- Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output/index.html">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shader/index.html">Bộ Tô Bóng -- Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textures/index.html">Texture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="color/index.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vector/index.html">Vectơ -- Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="converter/index.html">Converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groups.html">Nhóm -- Group</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Open Shading Language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#script-node">Script Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writing-shaders">Writing Shaders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#closures">Closures</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#bsdf">BSDF</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#hair">Tóc -- Hair</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bssrdf">BSSRDF</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#volume">Thể Tích -- Volume</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#other">Cái/Sắp Đặt Khác -- Other</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#attributes">Thuộc Tính -- Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trace">Trace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Shader Nodes</a> &raquo;</li>
+      <li>Open Shading Language</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="open-shading-language">
+<h1>Open Shading Language<a class="headerlink" href="#open-shading-language" title="Permalink to this headline"></a></h1>
+<p><span class="guilabel">Cycles Only</span></p>
+<p>It is also possible to create your own nodes using
+<a class="reference external" href="https://github.com/AcademySoftwareFoundation/OpenShadingLanguage">Open Shading Language</a> (OSL).
+Note that these nodes will only work for CPU rendering;
+there is no support for running OSL code on the GPU.</p>
+<p>To enable it, select <em>Open Shading Language</em> as the shading system in the render settings.</p>
+<section id="script-node">
+<span id="bpy-types-shadernodescript"></span><h2>Script Node<a class="headerlink" href="#script-node" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<img alt="../../_images/render_shader-nodes_osl_script-node.png" src="../../_images/render_shader-nodes_osl_script-node.png" />
+<figcaption>
+<p><span class="caption-text">Script Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>OSL was designed for node-based shading,
+and <em>each</em> OSL shader corresponds to <em>one</em> node in a node setup.
+To add an OSL shader, add a script node and link it to a text data-block or an external file.
+Input and output sockets will be created from the shader parameters on
+clicking the update button in the Node or the Text editor.</p>
+<p>OSL shaders can be linked to the node in a few different ways. With the <em>Internal</em> mode,
+a text data-block is used to store the OSL shader, and the OSO bytecode is stored in the node itself.
+This is useful for distributing a blend-file with everything packed into it.</p>
+<p>The <em>External</em> mode can be used to specify a <code class="docutils literal notranslate"><span class="pre">.osl</span></code> file from a drive,
+and this will then be automatically compiled into a <code class="docutils literal notranslate"><span class="pre">.oso</span></code> file in the same directory.
+It is also possible to specify a path to a <code class="docutils literal notranslate"><span class="pre">.oso</span></code> file, which will then be used directly,
+with compilation done manually by the user. The third option is to specify just the module name,
+which will be looked up in the shader search path.</p>
+<p>The shader search path is located in the same place as the scripts or configuration path, under:</p>
+<dl>
+<dt>Linux</dt><dd><pre class="literal-block">$HOME/.config/blender/3.1/shaders/</pre>
+</dd>
+<dt>Cửa Sổ</dt><dd><pre class="literal-block">C:\Users\$user\AppData\Roaming\Blender Foundation\Blender\3.1\shaders\</pre>
+</dd>
+<dt>macOS -- Hệ Điều Hành Macintosh của Apple</dt><dd><pre class="literal-block">/Users/$USER/Library/Application Support/Blender/3.1/shaders/</pre>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>For use in production, we suggest to use a node group to wrap shader script nodes,
+and link that into other blend-files.
+This makes it easier to make changes to the node afterwards as sockets are added or removed,
+without having to update the script nodes in all files.</p>
+</div>
+</section>
+<section id="writing-shaders">
+<h2>Writing Shaders<a class="headerlink" href="#writing-shaders" title="Permalink to this headline"></a></h2>
+<p>For more details on how to write shaders, see the <a class="reference external" href="https://github.com/AcademySoftwareFoundation/OpenShadingLanguage/blob/master/src/doc/osl-languagespec.pdf">OSL specification</a>.
+Here is a simple example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">shader</span><span class="w"> </span><span class="nf">simple_material</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="n">Diffuse_Color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Noise_Factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="n">closure</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="n">BSDF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diffuse</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="n">material_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Diffuse_Color</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mix</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">noise</span><span class="p">(</span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">10.0</span><span class="p">),</span><span class="w"> </span><span class="n">Noise_Factor</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">BSDF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material_color</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">diffuse</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="closures">
+<h2>Closures<a class="headerlink" href="#closures" title="Permalink to this headline"></a></h2>
+<p>OSL is different from, for example, RSL or GLSL, in that it does not have a light loop.
+There is no access to lights in the scene,
+and the material must be built from closures that are implemented in the renderer itself.
+This is more limited, but also makes it possible for the renderer to do optimizations and
+ensure all shaders can be importance sampled.</p>
+<p>The available closures in Cycles correspond to the shader nodes and their sockets;
+for more details on what they do and the meaning of the parameters,
+see the <a class="reference internal" href="shader/index.html"><span class="doc">shader nodes manual</span></a>.</p>
+<section id="bsdf">
+<h3>BSDF<a class="headerlink" href="#bsdf" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">diffuse(N)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oren_nayar(N,</span> <span class="pre">roughness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diffuse_ramp(N,</span> <span class="pre">colors[8])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phong_ramp(N,</span> <span class="pre">exponent,</span> <span class="pre">colors[8])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">diffuse_toon(N,</span> <span class="pre">size,</span> <span class="pre">smooth)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glossy_toon(N,</span> <span class="pre">size,</span> <span class="pre">smooth)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">translucent(N)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reflection(N)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">refraction(N,</span> <span class="pre">ior)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transparent()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_ggx(N,</span> <span class="pre">roughness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_ggx_aniso(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_ggx_refraction(N,</span> <span class="pre">roughness,</span> <span class="pre">ior)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann(N,</span> <span class="pre">roughness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann_aniso(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">microfacet_beckmann_refraction(N,</span> <span class="pre">roughness,</span> <span class="pre">ior)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ashikhmin_shirley(N,</span> <span class="pre">T,</span> <span class="pre">ax,</span> <span class="pre">ay)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ashikhmin_velvet(N,</span> <span class="pre">roughness)</span></code></p></li>
+</ul>
+</section>
+<section id="hair">
+<h3>Tóc -- Hair<a class="headerlink" href="#hair" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hair_reflection(N,</span> <span class="pre">roughnessu,</span> <span class="pre">roughnessv,</span> <span class="pre">T,</span> <span class="pre">offset)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hair_transmission(N,</span> <span class="pre">roughnessu,</span> <span class="pre">roughnessv,</span> <span class="pre">T,</span> <span class="pre">offset)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principled_hair(N,</span> <span class="pre">absorption,</span> <span class="pre">roughness,</span> <span class="pre">radial_roughness,</span> <span class="pre">coat,</span> <span class="pre">offset,</span> <span class="pre">IOR)</span></code></p></li>
+</ul>
+</section>
+<section id="bssrdf">
+<h3>BSSRDF<a class="headerlink" href="#bssrdf" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bssrdf_cubic(N,</span> <span class="pre">radius,</span> <span class="pre">texture_blur,</span> <span class="pre">sharpness)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bssrdf_gaussian(N,</span> <span class="pre">radius,</span> <span class="pre">texture_blur)</span></code></p></li>
+</ul>
+</section>
+<section id="volume">
+<h3>Thể Tích -- Volume<a class="headerlink" href="#volume" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">henyey_greenstein(g)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absorption()</span></code></p></li>
+</ul>
+</section>
+<section id="other">
+<h3>Cái/Sắp Đặt Khác -- Other<a class="headerlink" href="#other" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">emission()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ambient_occlusion()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">holdout()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">background()</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="attributes">
+<h2>Thuộc Tính -- Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h2>
+<p>Some object, particle and mesh attributes are available to the built-in <code class="docutils literal notranslate"><span class="pre">getattribute()</span></code> function.
+UV maps and vertex colors can be retrieved using their name.
+Other attributes are listed below:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">geom:generated</span></code></dt><dd><p>Generated texture coordinates.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:uv</span></code></dt><dd><p>Default render UV map.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:dupli_generated</span></code></dt><dd><p>For instances, generated coordinate from instancer object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:dupli_uv</span></code></dt><dd><p>For instances, UV coordinate from instancer object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:trianglevertices</span></code></dt><dd><p>Three vertex coordinates of the triangle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:numpolyvertices</span></code></dt><dd><p>Number of vertices in the polygon (always returns three currently).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:polyvertices</span></code></dt><dd><p>Vertex coordinates array of the polygon (always three vertices currently).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:name</span></code></dt><dd><p>Name of the object.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:is_curve</span></code></dt><dd><p>Is object a strand or not.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_intercept</span></code></dt><dd><p>Point along the strand, from root to tip.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_thickness</span></code></dt><dd><p>Thickness of the strand.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">geom:curve_tangent_normal</span></code></dt><dd><p>Tangent Normal of the strand.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">path:ray_length</span></code></dt><dd><p>Ray distance since last hit.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">object:location</span></code></dt><dd><p>Object location.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">object:index</span></code></dt><dd><p>Object index number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">object:random</span></code></dt><dd><p>Per object random number generated from object index and name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">material:index</span></code></dt><dd><p>Material index number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:index</span></code></dt><dd><p>Particle instance number.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:age</span></code></dt><dd><p>Particle age in frames.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:lifetime</span></code></dt><dd><p>Total lifespan of particle in frames.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:location</span></code></dt><dd><p>Location of the particle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:size</span></code></dt><dd><p>Size of the particle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:velocity</span></code></dt><dd><p>Velocity of the particle.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">particle:angular_velocity</span></code></dt><dd><p>Angular velocity of the particle.</p>
+</dd>
+</dl>
+</section>
+<section id="trace">
+<h2>Trace<a class="headerlink" href="#trace" title="Permalink to this headline"></a></h2>
+<p>We support the <code class="docutils literal notranslate"><span class="pre">trace(point</span> <span class="pre">pos,</span> <span class="pre">vector</span> <span class="pre">dir,</span> <span class="pre">...)</span></code>
+function, to trace rays from the OSL shader.
+The &quot;shade&quot; parameter is not supported currently,
+but attributes can be retrieved from the object that was hit using the <code class="docutils literal notranslate"><span class="pre">getmessage(&quot;trace&quot;,</span> <span class="pre">..)</span></code> function.
+See the OSL specification for details on how to use this.</p>
+<p>This function cannot be used instead of lighting;
+the main purpose is to allow shaders to &quot;probe&quot; nearby geometry,
+for example to apply a projected texture that can be blocked by geometry,
+apply more &quot;wear&quot; to exposed geometry, or make other ambient occlusion-like effects.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="groups.html" class="btn btn-neutral float-left" title="Nhóm -- Group" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../color_management.html" class="btn btn-neutral float-right" title="Quản Lý Màu Sắc -- Color Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/shader_nodes/osl.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/shader_nodes/osl%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/shader_nodes/osl.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

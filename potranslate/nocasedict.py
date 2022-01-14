@@ -106,6 +106,26 @@ class NoCaseDict(OrderedDict):
             df.LOG(f'{e}', error=True)
             return None
 
+    def findSimpleSS(self, find_item: str, simple_dict_list: OrderedDict):
+        def fuzzyRatioCompute(item):
+            (simple_key, complex_key) = item
+            rat = fuzz.ratio(find_item, simple_key)
+            return_entry = (rat, (simple_key, complex_key))
+            return return_entry
+
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            found_results = executor.map(fuzzyRatioCompute, simple_dict_list.items())
+
+        found_results_list = list(found_results)
+        found_results_list.sort(reverse=True)
+        df.LOG(found_results_list)
+
+        found_item = (found_results_list[0])
+        df.LOG(found_item)
+
+        # (rat, simple_key, complex_key) = found_item
+        return found_item
+
     def get(self, key):
         left, mid, right = None, None, None
         try:
@@ -113,6 +133,7 @@ class NoCaseDict(OrderedDict):
             if is_in:
                 trans_txt = self[key]
             else:
+                k_lower = key.lower()
                 left, mid, right = st.getTextWithin(k_lower)
                 is_in = (mid in self)
                 if not is_in:
@@ -134,6 +155,31 @@ class NoCaseDict(OrderedDict):
         except Exception as e:
             # df.LOG(f'{e}', error=True)
             return None
+
+    def getPartial(self, key):
+        is_pattern = isinstance(key, re.Pattern)
+        if is_pattern:
+            result = [k for (k, v) in self.items() if key.search(k.lower())]
+        else:
+            key_lower = key.lower()
+            result = [k for (k, v) in self.items() if key_lower in k.lower()]
+
+        result_list = []
+        for k in result:
+            v = self.get(k)
+            v = (v if bool(v) else "")
+            entry=(k, v)
+            result_list.append(entry)
+        return result_list
+
+    def getBestMatchPartial(self, key):
+        result_list = self.getPartial(key)
+        has_result = (bool(result_list) and len(result_list) > 0)
+        if not has_result:
+            return None
+
+        dict_list = OrderedDict(result_list)
+        return self.findSimpleSS(key, dict_list)
 
     def saveData(self, data_set, file_path):
         cm.writeJSONDic(dict_list=data_set, file_name=file_path)
@@ -334,26 +380,12 @@ class NoCaseDict(OrderedDict):
             (ratio, txt, pattern, matcher, value) = found_item
             return_item = (pattern, matcher, value)
 
-            df.LOG(f'SORTED found_results for [{key}]')
-            pp(found_item)
-            dd('#' * 30)
+            # df.LOG(f'SORTED found_results for [{key}]')
+            # pp(found_item)
+            # dd('#' * 30)
             return return_item
 
-        def findSimpleSS(find_item: str, simple_dict_list: OrderedDict):
-            def fuzzyRatioCompute(item):
-                (simple_key, complex_key) = item
-                rat = fuzz.ratio(find_item, simple_key)
-                return_entry = (rat, (simple_key, complex_key))
-                return return_entry
 
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                found_results = executor.map(fuzzyRatioCompute, simple_dict_list.items())
-
-            found_results_list = list(found_results)
-            found_results_list.sort(reverse=True)
-            found_item = (found_results_list[0])
-            (rat, simple_key, complex_key) = found_item
-            return complex_key
 
         try:
             default_value = (None, None, None, None, None, None, None)
@@ -401,8 +433,8 @@ class NoCaseDict(OrderedDict):
                 is_accept = False
 
             if not is_accept:
-                dd(f'FAILED VALIDATION:')
-                dd(f'pattern: [{value[0]}]')
+                # dd(f'FAILED VALIDATION:')
+                # dd(f'pattern: [{value[0]}]')
                 return (None, default_value)
 
             sent_sl_record.clear()
@@ -538,7 +570,7 @@ class NoCaseDict(OrderedDict):
             is_diff = (stripped_word != msg)
             if is_diff:
                 translation = msg.replace(msg, stripped_word)
-            dd(f'translateNumerics(): [{stripped_word}] => [{translation}]')
+            # dd(f'translateNumerics(): [{stripped_word}] => [{translation}]')
         return translation
 
     def simpleFuzzyTranslate(self, msg: str, acceptable_rate=df.FUZZY_ACCEPTABLE_RATIO):
@@ -589,9 +621,9 @@ class NoCaseDict(OrderedDict):
             # else:
             found_list.sort(key=OP.itemgetter(0, 1), reverse=True)
 
-            if found_list:
-                df.LOG(f'FOUND_LIST: the acceptable RATE:{acceptable_rate}')
-                pp(found_list)
+            # if found_list:
+            #     df.LOG(f'FOUND_LIST: the acceptable RATE:{acceptable_rate}')
+            #     pp(found_list)
 
             selected_item = found_list[0]
             (ratio, partial_ratio, chosen_txt) = selected_item
@@ -868,7 +900,7 @@ class NoCaseDict(OrderedDict):
         ft_obs = LocationObserver(sl_txt)
         ft_translated_list = []
         part_txt = None
-        df.LOG(sl_txt)
+        # df.LOG(sl_txt)
         try:
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -884,7 +916,7 @@ class NoCaseDict(OrderedDict):
                     continue
 
                 if ft_tran:
-                    df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
+                    # df.LOG(f'trying the [{ft_word}], found:[{ft_tran}]')
                     markTranslated(ft_loc, ft_word, ft_tran)
                 else:
                     wc = len(ft_word.split())
@@ -932,7 +964,7 @@ class NoCaseDict(OrderedDict):
         #     df.LOG(f'IGNORED: [{input_txt}]')
         #     return None
 
-        df.LOG(f'[{input_txt}]')
+        # df.LOG(f'[{input_txt}]')
         translation = str(input_txt)
         translated_list = {}
         selective_list = []
@@ -977,10 +1009,10 @@ class NoCaseDict(OrderedDict):
             translated_list = list(translated_list.items())
             translated_list.sort(reverse=True)
 
-            df.LOG('translated_list:')
-            dd('-' * 40)
-            pp(translated_list)
-            dd('-' * 40)
+            # df.LOG('translated_list:')
+            # dd('-' * 40)
+            # pp(translated_list)
+            # dd('-' * 40)
 
             for loc, tran in translated_list:
                 translation = cm.jointText(translation, tran, loc)
@@ -989,7 +1021,7 @@ class NoCaseDict(OrderedDict):
             if is_translated:
                 translation = self.replaceTranRef(translation)
                 translation = cm.matchCase(input_txt, translation)
-                df.LOG(f'input_txt:[{input_txt}]=>[{translation}]')
+                # df.LOG(f'input_txt:[{input_txt}]=>[{translation}]')
                 return translation
             else:
                 return None
@@ -1259,7 +1291,7 @@ class NoCaseDict(OrderedDict):
             start_non_alpha, mid, end_non_alpha = st.getTextWithin(msg)
             for f, params in self.tran_find_func_list:
                 f_name = f.__name__
-                dd(f'findByReduction(): trying function:[{f_name}]')
+                # dd(f'findByReduction(): trying function:[{f_name}]')
                 txt, param1, param2 = params
                 is_empty = not (param1 or param2)
                 if is_empty:
@@ -1277,7 +1309,7 @@ class NoCaseDict(OrderedDict):
                 return new_text, None, cover_length
             else:
                 trans = cm.patchingBeforeReturn(start_non_alpha, end_non_alpha, trans, txt)
-                dd(f'findByReduction: looking for: [{msg}] trans:[{trans}] function_name:[{function_name}]')
+                # dd(f'findByReduction: looking for: [{msg}] trans:[{trans}] function_name:[{function_name}]')
                 return new_text, trans, cover_length
         except Exception as e:
             df.LOG(f'{e}; msg:{msg}', error=True)

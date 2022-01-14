@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skin &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/rigging/rigify/rig_types/skin.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Face" href="face.html" />
+    <link rel="prev" title="Faces" href="faces.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../3d_view/index.html">3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development/index.html">Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../import_export/index.html">Import-Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../render/index.html">Render</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">Rigging</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Rigify</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../index.html#basics">Basics</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="../index.html#customization">Customization</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="../metarigs.html">Creating Meta-rigs</a></li>
+<li class="toctree-l6 current"><a class="reference internal" href="index.html">Rig Types</a><ul class="current">
+<li class="toctree-l7"><a class="reference internal" href="basic.html">Basic</a></li>
+<li class="toctree-l7"><a class="reference internal" href="spines.html">Spines</a></li>
+<li class="toctree-l7"><a class="reference internal" href="limbs.html">Limbs</a></li>
+<li class="toctree-l7"><a class="reference internal" href="faces.html">Faces</a></li>
+<li class="toctree-l7 current"><a class="current reference internal" href="#">Skin</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#skin-basic-chain"><code class="docutils literal notranslate"><span class="pre">skin.basic_chain</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#skin-stretchy-chain"><code class="docutils literal notranslate"><span class="pre">skin.stretchy_chain</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#skin-anchor"><code class="docutils literal notranslate"><span class="pre">skin.anchor</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#skin-glue"><code class="docutils literal notranslate"><span class="pre">skin.glue</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#skin-transform-basic"><code class="docutils literal notranslate"><span class="pre">skin.transform.basic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="face.html">Face</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../index.html#extensions">Extensions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../index.html#development">Development</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Add-ons</a> &raquo;</li>
+          <li><a href="../../index.html">Rigging</a> &raquo;</li>
+          <li><a href="../index.html">Rigify</a> &raquo;</li>
+          <li><a href="index.html">Rig Types</a> &raquo;</li>
+      <li>Skin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="skin">
+<h1>Skin<a class="headerlink" href="#skin" title="Permalink to this headline"></a></h1>
+<p>These rigs implement a flexible system for rigging skin using multiple interacting B-Bone chains.
+This is developed as the base for a new modular Rigify face rig.
+These are the main ideas of the system:</p>
+<dl>
+<dt>Generic B-Bone Chain</dt><dd><p>One core idea of the system is that most of the deformation should be implemented
+using a standard powerful B-Bone chain rig. These chains support advanced behavior by
+interacting with other rig components. This is in contrast to having multiple domain-specific rigs
+that each generate their own deform chains.</p>
+<p>The implementation provides two versions of the chain rig: <a class="reference internal" href="#skin-basic-chain">skin.basic_chain</a> merely
+attaches B-Bones to the controls with no automation added to the controls themselves.
+The <a class="reference internal" href="#skin-stretchy-chain">skin.stretchy_chain</a> rig in addition interpolates motion of the end (and an optional middle)
+controls to the other controls of the chain.</p>
+</dd>
+<dt>Automatic Control Merging</dt><dd><p>The deformation part of the system consists of chains of one or more B-Bones connecting
+control points (nodes). Whenever controls for two chains would completely overlap,
+they are automatically merged.</p>
+<p>For each merged control, one of the chains is selected as the owner, based on heuristic factors
+like parent depth from root, presence of <code class="docutils literal notranslate"><span class="pre">.T</span></code>/<code class="docutils literal notranslate"><span class="pre">.B</span></code> <code class="docutils literal notranslate"><span class="pre">.L</span></code>/<code class="docutils literal notranslate"><span class="pre">.R</span></code> symmetry markers,
+and even alphabetical order as the last resort. This can be overridden by an explicit priority setting
+in cases when it guesses wrong.</p>
+<p>The owner and its parents determine additional automation that is placed on the control.
+As a special case, if a control is merged with its <code class="docutils literal notranslate"><span class="pre">.T</span></code>/<code class="docutils literal notranslate"><span class="pre">.B</span></code> <code class="docutils literal notranslate"><span class="pre">.L</span></code>/<code class="docutils literal notranslate"><span class="pre">.R</span></code> symmetry counterparts
+(detected purely by naming), the automation from all of the symmetry siblings
+of the owner is averaged.</p>
+</dd>
+</dl>
+<dl id="rigify-rigs-skin-skin-parents">
+<dt>Parent Controllers</dt><dd><p>Rather than simply using the parent meta-rig bone (ORG) as parent for controls and chain mechanisms,
+the new system includes an interface for parent rigs. It explicitly provide parent bones and generate control
+parent automation mechanisms for their child chain controls by inheriting from the appropriate base
+and overriding methods.</p>
+<p>This allows implementing rigs that integrate and manage their child chains in intelligent ways in order
+to add extra automation specific to certain areas. The base skin system includes one simple example
+<a class="reference internal" href="#skin-transform-basic">skin.transform.basic</a> rig, which translates its child control points according to
+its control bone transformation.</p>
+</dd>
+<dt>Custom Rigging</dt><dd><p>Finally, the new system provides ways to integrate with custom automation directly included in the meta-rig
+via two extra rig components.</p>
+<p>The <a class="reference internal" href="#skin-anchor">skin.anchor</a> rig generates a single control with inherited constraints etc., similar to
+<a class="reference internal" href="basic.html#rigify-rigs-basic-super-copy"><span class="std std-ref">basic.super_copy</span></a>. However, it also integrates into the skin system
+as a zero length chain with highest priority. This allows overriding the normal behavior by providing
+a control point under full control of the user, which other chains would automatically attach to.</p>
+<p>The <a class="reference internal" href="#skin-glue">skin.glue</a> rig on the other hand will attach itself to the control that is generated at
+its position (it is an error if there is none). It can be used to read the position of the control
+from custom rigging in the meta-rig, or inject constraints into the control bone. It is possible to
+also detect the control at the tail of the glue bone and use it as target in the constraints,
+thus copying transformation between the controls.</p>
+</dd>
+</dl>
+<section id="skin-basic-chain">
+<span id="rigify-rigs-skin-basic-chain"></span><h2><code class="docutils literal notranslate"><span class="pre">skin.basic_chain</span></code><a class="headerlink" href="#skin-basic-chain" title="Permalink to this headline"></a></h2>
+<p>This is the basic chain rig, which bridges controls with B-Bones but does not add
+any automation to the controls themselves.</p>
+<p>When controls are merely moved, the chains behave as if using standard
+automatic handles, but rotating and optionally scaling the controls will adjust the result.</p>
+<dl>
+<dt>B-Bone Segments</dt><dd><p>Specifies the number of segments to use. Setting this to 1 disables
+all advanced behavior and merely bridges the points with a Stretch To bone.</p>
+</dd>
+<dt>Merge Parent Rotation and Scale</dt><dd><p>This can be enabled to let the chain respond to rotation and scale induced by parents of
+controls owned by other chains that this chain’s control merged into.</p>
+</dd>
+<dt>Use Handle Scale</dt><dd><p>Enables using control scale to drive scale and/or easing of the B-Bone.</p>
+</dd>
+<dt>Connect With Mirror</dt><dd><p>Specifies whether the ends of the chain should smoothly connect when merging controls
+with its <code class="docutils literal notranslate"><span class="pre">.T</span></code>/<code class="docutils literal notranslate"><span class="pre">.B</span></code> <code class="docutils literal notranslate"><span class="pre">.L</span></code>/<code class="docutils literal notranslate"><span class="pre">.R</span></code> symmetry counterpart. The relevant option must be enabled
+on both chains to work.</p>
+</dd>
+<dt>Connect Matching Ends</dt><dd><p>Specifies whether the end of the chain should connect to the opposite end of a different chain
+when merging controls. Thus forming a continuous smooth chain in the same direction.
+The relevant options must be enabled on both chains.</p>
+</dd>
+<dt>Sharpen Corner</dt><dd><p>Specifies whether the rig should generate a mechanism to form a sharp corner at
+the relevant connected end, depending on the angle formed by adjacent control locations.
+When the control angle becomes sharper than the specified value, ease starts reducing from 1 to 0.</p>
+</dd>
+<dt>Orientation</dt><dd><p>Specifies that the controls should be oriented the same as the selected bone, rather than being
+aligned to the chain.</p>
+<dl class="simple">
+<dt>Copy To Selected</dt><dd><p>Copy to selected rigs that have the same option. Thus allowing to indiscriminately selecting bones
+without assigning unnecessary values.</p>
+</dd>
+</dl>
+</dd>
+<dt>Chain Priority</dt><dd><p>Allows overriding the heuristic used to select the primary owner when merging controls.</p>
+</dd>
+</dl>
+</section>
+<section id="skin-stretchy-chain">
+<span id="rigify-rigs-skin-stretchy-chain"></span><h2><code class="docutils literal notranslate"><span class="pre">skin.stretchy_chain</span></code><a class="headerlink" href="#skin-stretchy-chain" title="Permalink to this headline"></a></h2>
+<p>This rig extends the basic chain with automation that propagates movement of the start and end,
+and an optional middle control, to other controls. This results in stretching the whole chain
+when moving one of the ends, rather than just the immediately adjacent B-Bones.</p>
+<dl class="simple">
+<dt>Middle Control Position</dt><dd><p>Specifies the position of the middle control within the chain; disabled when zero.</p>
+</dd>
+<dt>Falloff</dt><dd><p>Specifies the influence falloff curves of the start, middle and end controls.
+Zero results in linear falloff, increasing widens the influence, and -10 disables
+the influence propagation from that control completely.</p>
+</dd>
+<dt>Spherical Falloff</dt><dd><p>Toggle buttons to change the shape of the falloff curve from a power curve that at falloff 1 forms a parabola
+<span class="math notranslate nohighlight">\(1 - x^{2^f}\)</span> to a curve forming a circle <span class="math notranslate nohighlight">\((1 - x^{2^f})^{2^{-f}}\)</span>.</p>
+</dd>
+<dt>Falloff Along Chain Curve</dt><dd><p>Computes the falloff curve along the length of the chain, instead of projecting on the straight
+line connecting its start and end points.</p>
+</dd>
+<dt>Propagate Twist</dt><dd><p>Specifies whether twist of the chain should be propagated to control points between main controls.</p>
+</dd>
+<dt>Propagate Scale</dt><dd><p>Specifies whether perpendicular scaling of the chain should be propagated to control points between main controls.</p>
+</dd>
+<dt>Propagate to Controls</dt><dd><p>Allows other chains to see propagated twist and scale via <em>Merge Parent Rotation and Scale</em> when their
+controls are merged into this chain, instead of it being completely local to this chain.</p>
+</dd>
+<dt>Primary Control Layers</dt><dd><p>Optionally specifies layers for the end controls.</p>
+</dd>
+<dt>Secondary Control Layers</dt><dd><p>Optionally specifies layers for the middle control, falling back to <em>Primary Control Layers</em> if not set.</p>
+</dd>
+</dl>
+<p>The main controls with active falloff have the effect of <em>Merge Parent Rotation and Scale</em>
+automatically enabled just for them.</p>
+</section>
+<section id="skin-anchor">
+<span id="rigify-rigs-skin-anchor"></span><h2><code class="docutils literal notranslate"><span class="pre">skin.anchor</span></code><a class="headerlink" href="#skin-anchor" title="Permalink to this headline"></a></h2>
+<p>This rig effectively acts as a zero-length chain with highest priority,
+ensuring that it becomes the owner when merging controls with other chains.
+And also allowing one to input custom automation influence into the skin system.</p>
+<p>All constraints on the meta-rig bone are moved to the created control.</p>
+<dl class="simple">
+<dt>Generate Deform Bone</dt><dd><p>Creates a deformation bone parented to the control.</p>
+</dd>
+<dt>Suppress Control</dt><dd><p>Makes the control a hidden mechanism bone to hide it from the user.</p>
+</dd>
+<dt>Widget Type</dt><dd><p>Selects which widget to generate for the control.</p>
+</dd>
+<dt>Relink Constraints</dt><dd><p>Operates the same as in <a class="reference internal" href="basic.html#rigify-rigs-basic-raw-copy"><span class="std std-ref">basic.raw_copy</span></a>,
+except all constraints are moved from ORG to the control bone.</p>
+</dd>
+<dt>Orientation</dt><dd><p>Specifies the bone used to orient the control, like for other chains.</p>
+</dd>
+</dl>
+</section>
+<section id="skin-glue">
+<span id="rigify-rigs-skin-glue"></span><h2><code class="docutils literal notranslate"><span class="pre">skin.glue</span></code><a class="headerlink" href="#skin-glue" title="Permalink to this headline"></a></h2>
+<p>This rig is in concept similar to <code class="docutils literal notranslate"><span class="pre">skin.anchor</span></code>, but instead of overriding controls,
+it is used to read or adjust the state of controls generated by other rigs.
+The head of the bone must overlap a control of another skin rig.</p>
+<p>The rig sets up its ORG bone to read the state of the control,
+while moving all constraints that were originally on the bone to the control.</p>
+<dl>
+<dt>Glue Mode</dt><dd><p>Specifies how the ORG bone is connected to the skin control.</p>
+<dl class="simple">
+<dt>Child Of Control</dt><dd><p>Makes the ORG bone a child of the control bone.</p>
+</dd>
+<dt>Mirror Of Control</dt><dd><p>Makes the ORG bone a sibling of the control with a Copy Transforms constraint from the control.
+The resulting local space transformation is the same as control’s local space.</p>
+</dd>
+<dt>Mirror With Parents</dt><dd><p>Parents the ORG bone to the parent automation a control owned by
+the glue rig would have had, while making it follow the actual control.
+This includes both direct and parent-induced motion of the control into
+the local space transformation of the bone.</p>
+</dd>
+<dt>Deformation Bridge</dt><dd><p>Other than adding glue constraints to the control, the rig acts as a one segment basic deform chain.
+This is convenient when a pair of controls need to be bridged both with glue and a deform bone.</p>
+</dd>
+</dl>
+</dd>
+<dt>Relink Constraints</dt><dd><p>Operates the same as in <a class="reference internal" href="basic.html#rigify-rigs-basic-raw-copy"><span class="std std-ref">basic.raw_copy</span></a>,
+except all constraints are moved from ORG to the control bone.</p>
+</dd>
+<dt>Use Tail Target</dt><dd><p>Relinks <code class="docutils literal notranslate"><span class="pre">TARGET</span></code> or any constraints with an empty target bone and no relink specification
+to reference the control located at the tail of the glue bone.</p>
+</dd>
+<dt>Target Local With Parents</dt><dd><p>Switches the tail target to operate similarly to <em>Mirror With Parents</em>.</p>
+</dd>
+<dt>Add Constraint</dt><dd><p>Allows to add a typical glue constraints with specific <em>Influence</em>, as if it were at
+the start of the ORG bone constraint stack.</p>
+</dd>
+</dl>
+</section>
+<section id="skin-transform-basic">
+<span id="rigify-rigs-skin-transform-basic"></span><h2><code class="docutils literal notranslate"><span class="pre">skin.transform.basic</span></code><a class="headerlink" href="#skin-transform-basic" title="Permalink to this headline"></a></h2>
+<p>This rig provides a simplistic <a class="reference internal" href="#rigify-rigs-skin-skin-parents"><span class="std std-ref">parent controller</span></a>, which uses regular
+translation, rotation, or scale to modify locations but not orientations or scale of its child chain controls.</p>
+<dl class="simple">
+<dt>Generate Control</dt><dd><p>Specifies whether to generate a visible control, or use the transformation of the ORG bone
+as a part of more complex and specific rig setup.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="faces.html" class="btn btn-neutral float-left" title="Faces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="face.html" class="btn btn-neutral float-right" title="Face" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/rigging/rigify/rig_types/skin.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/rigging/rigify/rig_types/skin%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Faddons/rigging/rigify/rig_types/skin.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markers &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/markers.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Hình Mẫu -- Shape Keys" href="shape_keys/index.html" />
+    <link rel="prev" title="Xử Lý Sự Cố -- Troubleshooting" href="drivers/troubleshooting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Hoạt Họa &amp; Giàn Dựng</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keyframes/index.html">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="armatures/index.html">Cốt -- Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lattice.html">Lattice -- Giàn Lưới</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/index.html">Ràng Buộc -- Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers/index.html">Các Điều Vận -- Drivers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Markers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization">Hình Dung -- Visualization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#standard">Tiêu Chuẩn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#d-viewport">Cổng Nhìn 3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pose-markers">Pose Markers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#add-marker">Add Marker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#marker-pose-add">Pose Markers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#selecting">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing">Biên Soạn -- Editing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#duplicate-marker">Duplicate Marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#duplicate-marker-to-scene">Duplicate Marker to Scene</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-marker">Delete Marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rename-marker">Rename Marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#move-marker">Move Marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-pose-markers">Show Pose Markers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#make-markers-local">Make Markers Local</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jump-to-next-previous-marker">Jump to Next/Previous Marker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bind-camera-to-markers">Bind Camera to Markers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motion_paths.html">Đường Chuyển Động -- Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Hoạt Họa &amp; Giàn Dựng</a> &raquo;</li>
+      <li>Markers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="markers">
+<span id="bpy-ops-marker"></span><span id="bpy-types-timelinemarker"></span><h1>Markers<a class="headerlink" href="#markers" title="Permalink to this headline"></a></h1>
+<p>Markers are used to denote frames with key points or significant events within an animation.
+E.g. it could be that a character's animation starts, the camera changes position, or a door opens.
+Markers can be given names to make them more meaningful at a quick glance.
+They are available in many of Blender's editors.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Unlike keyframes, markers are always placed at a whole frame number, you cannot set a marker at frame 2.5.</p>
+</div>
+<p>Markers can be created and edited in the following editors:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../editors/graph_editor/introduction.html"><span class="doc">Graph Editor</span></a></p></li>
+<li><p><a class="reference internal" href="../editors/dope_sheet/introduction.html"><span class="doc">Dope Sheet</span></a></p></li>
+<li><p><a class="reference internal" href="../editors/nla/index.html"><span class="doc">NLA Editor</span></a></p></li>
+<li><p><a class="reference internal" href="../video_editing/index.html"><span class="doc">Video Sequence Editor</span></a></p></li>
+<li><p><a class="reference internal" href="../editors/timeline.html"><span class="doc">Timeline</span></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>A marker created in one of these editors will also appear in all others that support them.</p>
+</div>
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline"></a></h2>
+<p>Besides standard markers, <em>pose markers</em> are another type of markers,
+which are specific to armatures and shape keys.
+They are used to denote poses in the Action Editor mode and Shape Keys Editor of Dope Sheet.</p>
+</section>
+<section id="visualization">
+<h2>Hình Dung -- Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline"></a></h2>
+<p>In the supported editors, if at least one is created, markers are visualized
+in a separate row at their bottom.
+This area can be disabled per editor via the <span class="menuselection">View ‣ Show Markers</span> menu option.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>While the markers area is disabled, markers operators are not available in that editor,
+and in the header the <em>Marker</em> menu is hidden.</p>
+</div>
+<section id="standard">
+<h3>Tiêu Chuẩn<a class="headerlink" href="#standard" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<img alt="../_images/animation_markers_standard.png" src="../_images/animation_markers_standard.png" />
+</figure>
+<p>Regular markers are shown as small white triangles, empty if unselected or filled if selected,
+and with a dashed line that covers the editor height at the corresponding frame.
+If they have a name, this is shown to their right in white.</p>
+</section>
+<section id="d-viewport">
+<h3>Cổng Nhìn 3D<a class="headerlink" href="#d-viewport" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<img alt="../_images/animation_markers_3d-view.png" src="../_images/animation_markers_3d-view.png" />
+</figure>
+<p>The 3D Viewport does not allow you to create, edit or remove markers,
+but it shows their name in the Object Info in the upper left corner,
+when on their frame.</p>
+</section>
+<section id="pose-markers">
+<h3>Pose Markers<a class="headerlink" href="#pose-markers" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<img alt="../_images/animation_markers_pose.png" src="../_images/animation_markers_pose.png" />
+</figure>
+<p>Pose markers show a diamond-shaped icon in the Dope Sheet.
+In the NLA editor pose markers are shown as a red dashed line inside the relative action strip.</p>
+<div class="lead docutils container">
+</div>
+</section>
+</section>
+<section id="add-marker">
+<h2>Add Marker<a class="headerlink" href="#add-marker" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Add Marker</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">NumpadSlash</kbd></p>
+</dd>
+</dl>
+</div>
+<p>The simplest way to add a marker is to move to the frame where you would like it to appear,
+and press <kbd class="kbd docutils literal notranslate">M</kbd>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Gợi ý</p>
+<p>Markers can also be added during playback.</p>
+</div>
+<section id="marker-pose-add">
+<span id="id2"></span><h3>Pose Markers<a class="headerlink" href="#marker-pose-add" title="Permalink to this headline"></a></h3>
+<p>If <em>Show Pose Markers</em> is checked, a pose marker and
+a new pose in the <a class="reference internal" href="armatures/posing/editing/pose_library.html#pose-library-old"><span class="std std-ref">Old Pose Library</span></a> are added.</p>
+</section>
+</section>
+<section id="selecting">
+<h2>Lựa Chọn -- Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">LMB</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Click <kbd class="kbd docutils literal notranslate">LMB</kbd> on the marker's triangle to select it.
+Use <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd> to select multiple markers.</p>
+<p>In the Graph Editor, Dope Sheet, NLA Editor, Timeline, and Video Sequence Editor,
+you can also select all markers with <kbd class="kbd docutils literal notranslate">A</kbd> while hovering the mouse over the marker row,
+and apply selection tools on them like Box Select, etc.
+(as usual, <kbd class="kbd docutils literal notranslate">LMB</kbd> to select, <kbd class="kbd docutils literal notranslate">RMB</kbd> to deselect).
+The corresponding options are found in the Select menu of these editors.</p>
+</section>
+<section id="editing">
+<span id="animation-markers-editing"></span><h2>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h2>
+<section id="duplicate-marker">
+<h3>Duplicate Marker<a class="headerlink" href="#duplicate-marker" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Duplicate Marker</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>You can duplicate the selected markers by pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd>. Once duplicated,
+the new ones are automatically placed in select mode, so you can move them to the desired location.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Note that unlike most other duplications in Blender,
+the names of the duplicated markers are not altered at all
+(no <code class="docutils literal notranslate"><span class="pre">.001</span></code> numeric counter append).</p>
+</div>
+</section>
+<section id="duplicate-marker-to-scene">
+<h3>Duplicate Marker to Scene<a class="headerlink" href="#duplicate-marker-to-scene" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Duplicate Marker to Scene...</span></p>
+</dd>
+</dl>
+</div>
+<p>Duplicates the selected markers into another scene.</p>
+</section>
+<section id="delete-marker">
+<h3>Delete Marker<a class="headerlink" href="#delete-marker" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Delete Marker</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">X</kbd></p>
+</dd>
+</dl>
+</div>
+<p>To delete the selected markers simply press <kbd class="kbd docutils literal notranslate">X</kbd>,
+and confirm the pop-up message with <kbd class="kbd docutils literal notranslate">LMB</kbd>.</p>
+</section>
+<section id="rename-marker">
+<h3>Rename Marker<a class="headerlink" href="#rename-marker" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Rename Marker</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">M</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Having dozens of markers scattered throughout your scene's time will not help you much unless you
+know what they stand for. You can name a marker by selecting it, pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">M</kbd></kbd>,
+typing the name, and pressing the OK button.</p>
+</section>
+<section id="move-marker">
+<h3>Move Marker<a class="headerlink" href="#move-marker" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id8">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Move Marker</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">G</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Once you have one or more markers selected, press <kbd class="kbd docutils literal notranslate">G</kbd>,
+while hovering with the mouse over the marker bar,
+to move them, and confirm the move with <kbd class="kbd docutils literal notranslate">LMB</kbd> or <kbd class="kbd docutils literal notranslate">Return</kbd>
+(as usual, cancel the move with <kbd class="kbd docutils literal notranslate">RMB</kbd>, or <kbd class="kbd docutils literal notranslate">Esc</kbd>).
+Or drag them with the <kbd class="kbd docutils literal notranslate">LMB</kbd>.</p>
+<p>By default, you move the markers in one-frame steps, but if you hold <kbd class="kbd docutils literal notranslate">Ctrl</kbd>,
+the markers will move in steps corresponding to 1 second (according to the scene's <em>FPS</em>).</p>
+</section>
+<section id="show-pose-markers">
+<span id="bpy-types-spacedopesheeteditor-show-pose-markers"></span><h3>Show Pose Markers<a class="headerlink" href="#show-pose-markers" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id9">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Dope Sheet</p>
+</dd>
+<dt class="field-even">Chế Độ -- Mode</dt>
+<dd class="field-even"><p>Action Editor or Shape Keys Editor mode</p>
+</dd>
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Marker ‣ Show Pose Markers</span></p>
+</dd>
+</dl>
+</div>
+<p>Shows markers belonging to the active action instead of scene markers.</p>
+</section>
+<section id="make-markers-local">
+<h3>Make Markers Local<a class="headerlink" href="#make-markers-local" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id10">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Make Markers Local</span></p>
+</dd>
+</dl>
+</div>
+<p>It is possible to convert standard markers into pose markers with <span class="menuselection">Marker ‣ Make Markers Local</span>.
+Note that the original marker will be gone. If you want to keep it, make a duplicate before you convert.</p>
+</section>
+<section id="jump-to-next-previous-marker">
+<h3>Jump to Next/Previous Marker<a class="headerlink" href="#jump-to-next-previous-marker" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id11">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Jump to Next/Previous Marker</span></p>
+</dd>
+</dl>
+</div>
+<p>Moves the Playhead to the next/previous marker relative to the current frame.</p>
+</section>
+</section>
+<section id="bind-camera-to-markers">
+<span id="bpy-ops-marker-camera-bind"></span><h2>Bind Camera to Markers<a class="headerlink" href="#bind-camera-to-markers" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id12">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Biên Soạn -- Editor</dt>
+<dd class="field-odd"><p>Timeline</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Marker ‣ Bind Camera to Markers</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">B</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p><em>Bind Camera to Markers</em> is a special operator only available in the <em>Timeline</em>.
+The operator allows markers to be used to set the active object as the active camera.</p>
+<p>To use this operator, select the object to become the active camera
+and select a marker to bind the active camera to.
+If no marker is selected when the operator is applied, a marker will be added.
+When an object is bound to a marker, the marker will be renamed to the name of the active object.
+These markers also have a camera icon next to the left of the name
+to easily distinguish them from other informative markers.</p>
+<p>These markers can be moved to change the frame at which
+the active camera is changed to the object the marker is bound to.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="drivers/troubleshooting.html" class="btn btn-neutral float-left" title="Xử Lý Sự Cố -- Troubleshooting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shape_keys/index.html" class="btn btn-neutral float-right" title="Hình Mẫu -- Shape Keys" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/markers.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/markers%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fanimation/markers.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

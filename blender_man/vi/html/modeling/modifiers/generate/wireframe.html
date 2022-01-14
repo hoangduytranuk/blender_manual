@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/wireframe.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Armature Modifier" href="../deform/armature.html" />
+    <link rel="prev" title="Weld Modifier" href="weld.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Generate</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bevel Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="booleans.html">Boolean Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Build Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Decimate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">Edge Split Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geometry_nodes.html">Geometry Nodes Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Mask Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_to_volume.html">Mesh to Volume Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Mirror Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">Multiresolution Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Remesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Screw Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skin.html">Skin Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidify.html">Solidify Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">Subdivision Surface Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Triangulate Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_to_mesh.html">Volume to Mesh Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weld.html">Weld Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Wireframe Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#vertex-group">Vertex Group</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Ví Dụ -- Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Wireframe Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wireframe-modifier">
+<span id="bpy-types-wireframemodifier"></span><span id="index-0"></span><h1>Wireframe Modifier<a class="headerlink" href="#wireframe-modifier" title="Permalink to this headline"></a></h1>
+<p>The <em>Wireframe</em> modifier transforms a mesh into a wireframe by iterating over its
+faces, collecting all edges and turning those edges into four-sided polygons.
+Be aware of the fact that your mesh needs to have faces to be wireframed.
+You can define the thickness, the material and several other parameters of the generated
+wireframe dynamically via the given modifier options.</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_panel.png"><img alt="../../../_images/modeling_modifiers_generate_wireframe_panel.png" src="../../../_images/modeling_modifiers_generate_wireframe_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Wireframe modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Thickness</dt><dd><p>The depth or size of the wireframes.</p>
+</dd>
+<dt>Dịch Chuyển -- Offset</dt><dd><p>A value between (-1 to 1) to change whether the wireframes are
+generated inside or outside of the original mesh.
+Set to zero, <em>Offset</em> will center the wireframes around the original edges.</p>
+</dd>
+<dt>Boundary</dt><dd><p>Creates wireframes on mesh island boundaries.</p>
+</dd>
+<dt>Replace Original</dt><dd><p>If this option is enabled, the original mesh is replaced by the generated wireframe.
+If not, the wireframe is generated on top of it.</p>
+</dd>
+<dt>Thickness</dt><dd><dl class="simple">
+<dt>Even</dt><dd><p>Maintain thickness by adjusting for sharp corners.
+Sometimes improves quality but also increases computation time.</p>
+</dd>
+<dt>Tương Đối -- Relative</dt><dd><p>Determines the edge thickness by the length of the edge. Longer edges will be thicker.</p>
+</dd>
+</dl>
+</dd>
+<dt>Crease Edges</dt><dd><p>This option is intended for usage with
+the <a class="reference internal" href="subdivision_surface.html"><span class="doc">Subdivision</span></a> modifier.
+Enable this option to crease edges on their junctions and prevent large curved intersections.</p>
+<dl class="simple">
+<dt>Crease Weight</dt><dd><p>Define how much crease (0 to 1, nothing to full) the junctions should receive.</p>
+</dd>
+</dl>
+</dd>
+<dt>Material Offset</dt><dd><p>Uses the chosen material index as the material for the wireframe;
+this is applied as an offset from the first material.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Wireframe thickness is an approximation. While <em>Even Thickness</em> should yield good results in many cases,
+skinny faces can cause ugly spikes. In this case you can either reduce the extreme angles in the geometry
+or disable the <em>Even Thickness</em> option.</p>
+</div>
+<section id="vertex-group">
+<h3>Vertex Group<a class="headerlink" href="#vertex-group" title="Permalink to this headline"></a></h3>
+<p>The weights of the selected vertex group are multiplied onto the <em>Thickness</em>,
+so vertices with lower weights will be less thick. The vertices which are not part
+of the vertex group will be used as if their weight was zero.</p>
+<dl class="simple">
+<dt>Đảo Nghịch -- Invert</dt><dd><p>Reverses the vertex group weights, so that the used weight is one minus the actual weight.</p>
+</dd>
+<dt>Factor</dt><dd><p>How much the vertex weights are taken into account.</p>
+<ul class="simple">
+<li><p>On 0.0 , vertices with zero weight will have no thickness at all.</p></li>
+<li><p>On 0.5 , vertices with zero weight will be half as thick as those with full weight.</p></li>
+<li><p>On 1.0 , the weights are ignored and the <em>Thickness</em> value is used for every vertex.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>If the final thickness of a vertex is zero, it will still generate a wireframe.
+Therefore creating duplicate geometry, which sometimes needs extra care.</p>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_result.jpg"><img alt="../../../_images/modeling_modifiers_generate_wireframe_result.jpg" src="../../../_images/modeling_modifiers_generate_wireframe_result.jpg" style="width: 420px;" /></a>
+<figcaption>
+<p><span class="caption-text">Wireframes on a displaced plane.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In this example, the wireframes carry a second (dark) material while the displaced plane uses its original one.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_example-weights.png"><img alt="../../../_images/modeling_modifiers_generate_wireframe_example-weights.png" src="../../../_images/modeling_modifiers_generate_wireframe_example-weights.png" style="width: 420px;" /></a>
+<figcaption>
+<p><span class="caption-text">Vertex group weighting.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The weights of the vertex group gradually change from 0 to 1.</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_wireframe_example-crease.png"><img alt="../../../_images/modeling_modifiers_generate_wireframe_example-crease.png" src="../../../_images/modeling_modifiers_generate_wireframe_example-crease.png" style="width: 420px;" /></a>
+<figcaption>
+<p><span class="caption-text">Wireframe and Subdivision Surface modifier.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Cube with enabled <em>Crease Edges</em> option. The <em>Crease Weight</em> is set to 0, 0.5 and 1.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="weld.html" class="btn btn-neutral float-left" title="Weld Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../deform/armature.html" class="btn btn-neutral float-right" title="Armature Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/generate/wireframe.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/generate/wireframe%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/modifiers/generate/wireframe.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

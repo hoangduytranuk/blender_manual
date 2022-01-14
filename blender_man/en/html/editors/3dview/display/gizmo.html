@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viewport Gizmos &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/3dview/display/gizmo.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Viewport Overlays" href="overlays.html" />
+    <link rel="prev" title="Object Type Visibility" href="visibility.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Editors</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">3D Viewport</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../startup_scene.html">Startup Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Object Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../navigate/index.html">Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3d_cursor.html">3D Cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../controls/index.html">Controls</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Display</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="visibility.html">Object Type Visibility</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Viewport Gizmos</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id2">Viewport Gizmos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#object-gizmos">Object Gizmos</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#empty">Empty</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#light">Light</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#camera">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="overlays.html">Viewport Overlays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shading.html">Viewport Shading</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sidebar.html">Sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../viewport_render.html">Viewport Render</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_sequencer/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties_editor.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preferences/index.html">Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../index.html">3D Viewport</a> &raquo;</li>
+          <li><a href="index.html">Display</a> &raquo;</li>
+      <li>Viewport Gizmos</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viewport-gizmos">
+<span id="bpy-types-spaceview3d-show-gizmo"></span><h1>Viewport Gizmos<a class="headerlink" href="#viewport-gizmos" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Object and Edit Modes</p>
+</dd>
+<dt class="field-even">Header</dt>
+<dd class="field-even"><p><img alt="gizmo-icon" src="../../../_images/editors_3dview_display_gizmo_header.png" /> <span class="menuselection">Viewport Gizmos ‣ Object Gizmos</span></p>
+</dd>
+</dl>
+</div>
+<p>The way how gizmos are displayed in the 3D Viewport can be changed in the Viewport Gizmos pop-over.
+There is a toggle to hide all gizmos for the 3D Viewport.</p>
+<section id="id2">
+<h2>Viewport Gizmos<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Navigate</dt><dd><p>Enable/disable the navigation gizmo.</p>
+</dd>
+<dt>Active Tool</dt><dd><p>Enable/disable the gizmo of the active tool.</p>
+</dd>
+<dt>Active Object</dt><dd><p>Enable/disable the gizmo for the active object.</p>
+</dd>
+</dl>
+</section>
+<section id="object-gizmos">
+<h2>Object Gizmos<a class="headerlink" href="#object-gizmos" title="Permalink to this headline"></a></h2>
+<p>The Object Gizmos allows mouse controlled translation, rotation and scaling in the 3D Viewport.
+There is a separate gizmos for each operation.
+Each gizmo can be used separately or in combination with the others.
+You can use the gizmos by dragging one of the three colored axes with <kbd class="kbd docutils literal notranslate">LMB</kbd>.
+The transformation will be locked to the clicked axis.</p>
+<p>Holding down <kbd class="kbd docutils literal notranslate">Shift</kbd> <em>after</em> you <kbd class="kbd docutils literal notranslate">LMB</kbd>
+the gizmo handle will constrain the action to smaller increments.
+Holding down <kbd class="kbd docutils literal notranslate">Shift</kbd> <em>before</em> you <kbd class="kbd docutils literal notranslate">LMB</kbd> click on one of the handles will cause the gizmo action
+to be performed relative to the other two axes. See <a class="reference internal" href="../../../scene_layout/object/editing/transform/control/axis_locking.html#view3d-transform-plane-lock"><span class="std std-ref">Plane Locking</span></a>.</p>
+<dl class="simple">
+<dt>Orientation</dt><dd><p>The orientation to use for the gizmo. The orientations can be
+configured in the viewport orientation <a class="reference internal" href="../controls/orientation.html"><span class="doc">Orientations menu</span></a>.</p>
+</dd>
+<dt>Move</dt><dd><p>Show the gizmo to control the location.
+Dragging the small white circle allows free transformation.</p>
+</dd>
+<dt>Rotate</dt><dd><p>Show the gizmo to control the rotation.
+When you hover your mouse over the gizmo a highlighted circle will appear,
+clicking this will activate <a class="reference internal" href="../../../scene_layout/object/editing/transform/rotate.html#view3d-transform-trackball"><span class="std std-ref">trackball rotation</span></a>.</p>
+</dd>
+<dt>Scale</dt><dd><p>Show the gizmo to control the scaling.</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/editors_3dview_display_gizmo_options-translate.png"><img alt="../../../_images/editors_3dview_display_gizmo_options-translate.png" src="../../../_images/editors_3dview_display_gizmo_options-translate.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Move.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/editors_3dview_display_gizmo_options-rotate.png"><img alt="../../../_images/editors_3dview_display_gizmo_options-rotate.png" src="../../../_images/editors_3dview_display_gizmo_options-rotate.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Rotate.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../_images/editors_3dview_display_gizmo_options-scale.png"><img alt="../../../_images/editors_3dview_display_gizmo_options-scale.png" src="../../../_images/editors_3dview_display_gizmo_options-scale.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Scale.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../../_images/editors_3dview_display_gizmo_options-all.png"><img alt="../../../_images/editors_3dview_display_gizmo_options-all.png" src="../../../_images/editors_3dview_display_gizmo_options-all.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Combination.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="../../preferences/viewport.html#prefs-viewport-gizmo-size"><span class="std std-ref">Gizmo Preferences</span></a>.</p>
+</div>
+</section>
+<section id="empty">
+<h2>Empty<a class="headerlink" href="#empty" title="Permalink to this headline"></a></h2>
+<p>Gizmo settings for empties.</p>
+<dl class="simple">
+<dt>Image</dt><dd><p>Show the gizmo to adjust the image size and position of empties.</p>
+</dd>
+<dt>Force Field</dt><dd><p>Show the gizmo to adjust the force field.</p>
+</dd>
+</dl>
+</section>
+<section id="light">
+<h2>Light<a class="headerlink" href="#light" title="Permalink to this headline"></a></h2>
+<p>Gizmo settings for lights.</p>
+<dl class="simple">
+<dt>Size</dt><dd><p>Show the gizmo to adjust the size of lights.</p>
+</dd>
+<dt>Look At</dt><dd><p>Show the gizmo to adjust the direction of the light.</p>
+</dd>
+</dl>
+</section>
+<section id="camera">
+<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this headline"></a></h2>
+<p>Gizmo settings for cameras.</p>
+<dl class="simple">
+<dt>Lens</dt><dd><p>Show the gizmo to adjust the lens and orthographic size.</p>
+</dd>
+<dt>Focus Distance</dt><dd><p>Show to gizmo to adjust the focus distance.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="visibility.html" class="btn btn-neutral float-left" title="Object Type Visibility" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="overlays.html" class="btn btn-neutral float-right" title="Viewport Overlays" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/3dview/display/gizmo.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/3dview/display/gizmo%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Feditors/3dview/display/gizmo.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

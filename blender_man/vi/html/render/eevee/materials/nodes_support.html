@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supported Nodes &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/eevee/materials/nodes_support.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Sắp Đặt về Nguyên Vật Liệu" href="settings.html" />
+    <link rel="prev" title="Giới Thiệu -- Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Eevee</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nguyên Vật Liệu -- Materials</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Supported Nodes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#eevee-only-nodes">Eevee only Nodes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#shader-to-rgb">Shader to RGB</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#specular-bsdf">Specular BSDF</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#other-nodes-support">Other Nodes Support</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#shader-nodes">Shader Nodes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#input-nodes">Input Nodes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-nodes">Other Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="settings.html">Sắp Đặt về Nguyên Vật Liệu</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../world.html">World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting.html">Light Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_probes/index.html">Light Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../limitations.html">Những Giới Hạn -- Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../index.html">Eevee</a> &raquo;</li>
+          <li><a href="index.html">Nguyên Vật Liệu -- Materials</a> &raquo;</li>
+      <li>Supported Nodes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="supported-nodes">
+<h1>Supported Nodes<a class="headerlink" href="#supported-nodes" title="Permalink to this headline"></a></h1>
+<p>Most nodes are taken from Cycles. However, some features are missing and
+may (or may not) be implemented in Eevee in the future.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../shader_nodes/index.html"><span class="doc">Shader Nodes</span></a>.</p>
+</div>
+<section id="eevee-only-nodes">
+<h2>Eevee only Nodes<a class="headerlink" href="#eevee-only-nodes" title="Permalink to this headline"></a></h2>
+<p>These nodes are only available if Eevee is the active render engine. These nodes will not work in Cycles.</p>
+<section id="shader-to-rgb">
+<h3>Shader to RGB<a class="headerlink" href="#shader-to-rgb" title="Permalink to this headline"></a></h3>
+<p>Eevee supports the conversion of BSDF outputs into color inputs to make any kind of custom shading.
+This is supported using the <a class="reference internal" href="../../shader_nodes/converter/shader_to_rgb.html"><span class="doc">Shader to RGB</span></a> node.</p>
+</section>
+<section id="specular-bsdf">
+<h3>Specular BSDF<a class="headerlink" href="#specular-bsdf" title="Permalink to this headline"></a></h3>
+<p>This <a class="reference internal" href="../../shader_nodes/shader/specular_bsdf.html"><span class="doc">node</span></a> implements the specular workflow
+found in other render engines.</p>
+</section>
+</section>
+<section id="other-nodes-support">
+<h2>Other Nodes Support<a class="headerlink" href="#other-nodes-support" title="Permalink to this headline"></a></h2>
+<p>If something is not listed here, it is supported.</p>
+<section id="shader-nodes">
+<h3>Shader Nodes<a class="headerlink" href="#shader-nodes" title="Permalink to this headline"></a></h3>
+<p>In the general case, shader nodes should behave more or less like in Cycles.
+So be sure to check out the Cycles section of this manual for that.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Xem thêm</p>
+<p><a class="reference internal" href="../../shader_nodes/shader/index.html"><span class="doc">Materials</span></a>.</p>
+</div>
+<p>Although most BSDFs are supported, many of them are approximations and are not feature complete.</p>
+<dl class="simple">
+<dt>Diffuse BSDF</dt><dd><p>Roughness is not supported. Only Lambertian diffusion is supported.</p>
+</dd>
+<dt>Phát Xạ -- Emission</dt><dd><p>Treated as indirect lighting and will only show up in <abbr title="Screen Space Reflection">SSR</abbr>s and Probes.</p>
+</dd>
+<dt>Glass / Refraction BSDF</dt><dd><p>Does not refract lights. Does not support Beckmann distribution.
+See <a class="reference internal" href="../limitations.html#eevee-limitations-refraction"><span class="std std-ref">Refraction limitations</span></a>.</p>
+</dd>
+<dt>Glossy BSDF</dt><dd><p>Does not support Beckmann and Ashikhmin-Shirley distributions.</p>
+</dd>
+<dt>Subsurface Scattering</dt><dd><p>Random Walk sampling is not supported. Per color channel Radius is specified by the default socket value.
+Any link plugged into this socket gets ignored.
+Texture Blur is not accurate for any value other than 0.0 and 1.0.</p>
+</dd>
+<dt>Transparent BSDF</dt><dd><p>Transparency will only have an effect if the Material blend mode is not Opaque.
+Colored and additive transparency are only compatible with &quot;Alpha Blend&quot; mode.</p>
+</dd>
+<dt>Translucent BSDF</dt><dd><p>Does not diffuse the light inside the object. It only lights the object with reversed normals.</p>
+</dd>
+<dt>BSDF Nguyên Tắc -- Principled BSDF</dt><dd><p>Cumulative limitations from Diffuse BSDF, Glossy BSDF, Refraction BSDF and Subsurface Scattering.
+Anisotropy is not supported. Transmission Roughness is not supported. The Sheen layer is a crude approximation.</p>
+</dd>
+<dt>Volume Absorption</dt><dd><p>See <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</p>
+</dd>
+<dt>Volume Scatter</dt><dd><p>The anisotropy parameter will be mixed and averaged for all overlapping volumetric objects,
+which is not physically correct and differs from Cycles.
+Also see <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</p>
+</dd>
+<dt>Principled Volume</dt><dd><p>Same as Volume Scatter. See <a class="reference internal" href="../limitations.html#eevee-limitations-volumetrics"><span class="std std-ref">Volume Limitation</span></a>.</p>
+</dd>
+<dt>Holdout</dt><dd><p>Partially supported, using <a class="reference internal" href="settings.html#bpy-types-material-blend-method"><span class="std std-ref">Blend Modes</span></a>
+other than <em>Alpha</em> may give incorrect results.</p>
+</dd>
+<dt>Anisotropic BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Toon BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Hair BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Velvet BSDF</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Principled Hair BSDF</dt><dd><p>Not supported.</p>
+</dd>
+</dl>
+</section>
+<section id="input-nodes">
+<h3>Input Nodes<a class="headerlink" href="#input-nodes" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường</dt><dd><p>The sample count is not used.</p>
+</dd>
+<dt>Camera Data</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Hình Dạng -- Geometry</dt><dd><p>Pointiness is not supported.</p>
+</dd>
+<dt>Random per Island</dt><dd><p>Random per Island is not supported.</p>
+</dd>
+<dt>Attribute</dt><dd><p>Defaults to active UV layer. Only &quot;density&quot;, &quot;color&quot;, &quot;flame&quot; and &quot;temperature&quot; built-in attributes are supported.
+UVs and Vertex Color layers are supported.</p>
+</dd>
+<dt>Bevel -- Bo Tròn</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Fresnel</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Hair Info</dt><dd><p>The Random output uses a different <abbr title="Random Number Generator">RNG</abbr> algorithm.
+Range and statistical distribution of the values should be the same but the values will be different.</p>
+</dd>
+<dt>Layer Weight</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Light Path</dt><dd><p>Eevee has no real concept of rays. But in order to ease the workflow between Cycles and Eevee
+some of the outputs are supported in particular cases.
+This node makes it possible to tweak indirect lighting in the shader.</p>
+<p>Only a subset of the outputs is supported and the ray depth has not exactly
+the same meaning:</p>
+<ul class="simple">
+<li><p><em>Is Camera</em>: Supported.</p></li>
+<li><p><em>Is Shadow</em>: Supported.</p></li>
+<li><p><em>Is Diffuse</em>: Supported.</p></li>
+<li><p><em>Is Glossy</em>: Supported.</p></li>
+<li><p><em>Is Singular</em>: Not supported. Same as Is Glossy.</p></li>
+<li><p><em>Is Reflection</em>: Not supported. Same as Is Glossy.</p></li>
+<li><p><em>Is Transmission</em>: Not supported. Same as Is Glossy.</p></li>
+<li><p><em>Ray Length</em>: Not supported. Defaults to 1.0.</p></li>
+<li><p><em>Ray Depth</em>: Indicates the current bounce when baking the light cache.</p></li>
+<li><p><em>Diffuse Depth</em>: Same as Ray Depth but only when baking diffuse light.</p></li>
+<li><p><em>Glossy Depth</em>: Same as Ray Depth but only when baking specular light.</p></li>
+<li><p><em>Transparent Depth</em>: Not supported. Defaults to 0.</p></li>
+<li><p><em>Transmission Depth</em>: Not supported. Same as Glossy Depth.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Is Glossy does not work with Screen Space Reflections/Refractions
+but does work with reflection planes (whether used with SSR or not).</p>
+</div>
+</dd>
+<dt>Object Info</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Particle Info</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Tangent -- Tiếp Tuyến</dt><dd><p>Everything is compatible.</p>
+</dd>
+<dt>Texture Coordinate</dt><dd><p><em>From Instancer</em> is not supported.</p>
+</dd>
+<dt>UV Map</dt><dd><p><em>From Instancer</em> is not supported.</p>
+</dd>
+<dt>Khung Dây -- Wireframe</dt><dd><p>Pixel size option does not give exactly the same output as Cycles. The width can be a bit different.</p>
+</dd>
+</dl>
+</section>
+<section id="other-nodes">
+<h3>Other Nodes<a class="headerlink" href="#other-nodes" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Light Falloff</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Bump</dt><dd><p>Imprecision due to less precise derivatives.</p>
+</dd>
+<dt>Displacement/Vector Displacement</dt><dd><p>Not supported.</p>
+</dd>
+<dt><abbr title="Illuminating Engineering Society">IES</abbr> Texture</dt><dd><p>Not supported.</p>
+</dd>
+<dt>Image Texture</dt><dd><p>Smart Interpolation always uses Cubic interpolation.
+Artifact present using Tube or Sphere projection with linear interpolation.
+This is due to hardware mip-mapping and Anisotropic filtering.
+This kind of artifact will be also visible if the texture coordinates provided are not continuous.
+Using Box projection with <em>Extend type</em> set to Clip or Extend is not supported.
+Instead, it will always use Repeat.</p>
+</dd>
+<dt>Material Output</dt><dd><p>Displacement output behavior is broken compared to Cycles.</p>
+</dd>
+<dt>Point Density</dt><dd><p>Not supported.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Giới Thiệu -- Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="settings.html" class="btn btn-neutral float-right" title="Sắp Đặt về Nguyên Vật Liệu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/eevee/materials/nodes_support.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/eevee/materials/nodes_support%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/eevee/materials/nodes_support.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

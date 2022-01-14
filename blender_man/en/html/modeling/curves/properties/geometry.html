@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geometry &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/curves/properties/geometry.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Path Animation" href="path_animation.html" />
+    <link rel="prev" title="Shape" href="shape.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Curves</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../editing/index.html">Editing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Properties</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Geometry</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#bevel">Bevel</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#round">Round</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#object">Object</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#profile">Profile</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#start-end-mapping">Start &amp; End Mapping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#open-2d-curve">Open 2D Curve</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#closed-2d-curve">Closed 2D Curve</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#d-curve">3D Curve</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#taper">Taper</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="path_animation.html">Path Animation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="active_spline.html">Active Spline</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../curve_display.html">Curve Display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Curves</a> &raquo;</li>
+          <li><a href="index.html">Properties</a> &raquo;</li>
+      <li>Geometry</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="geometry">
+<h1>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline"></a></h1>
+<figure class="align-center" id="id1">
+<img alt="../../../_images/modeling_curves_properties_geometry_panel.png" src="../../../_images/modeling_curves_properties_geometry_panel.png" />
+<figcaption>
+<p><span class="caption-text">Geometry panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl id="bpy-types-curve-offset">
+<dt>Offset</dt><dd><p>Moves the extrusion parallel to the curve normals.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-offset.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-offset.png" src="../../../_images/modeling_curves_properties_geometry_extrude-offset.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">Bézier Circle -1 offset, 0.5 extrusion, 0.25 Bevel Depth, 10 Bevel resolution.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</dd>
+</dl>
+<dl id="bpy-types-curve-extrude">
+<dt>Extrude</dt><dd><p>Will extrude the curve along both the positive and negative local Z axes.
+Turns a one-dimensional curve into a two-dimensional curve by giving it height.
+With a scale is the sum of both directions, perpendicular to the curve’s normals.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-bezier-circle.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-bezier-circle.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bezier-circle.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Bézier Circle 0.0 extrude (Edit Mode).</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-after.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-after.png" src="../../../_images/modeling_curves_properties_geometry_extrude-after.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Extruded by 0.5 (Object Mode).</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl id="bpy-types-curve-taper-object">
+<dt>Taper Object</dt><dd><p>Tapering a curve causes it to get thinner towards one end.
+You can also alter the proportions of the Taper throughout the tapered object
+by moving/scaling/rotating the control points of the Taper Object.
+The taper curve is evaluated along the local X axis, using the local Y axis for width control.
+In order for this to work the Taper Object can only be another <em>open curve</em>.</p>
+<p>The details are:</p>
+<ul class="simple">
+<li><p>The taper is applied independently to all curves of the extruded object.</p></li>
+<li><p>Only the first curve in a <em>Taper Object</em> is evaluated, even if you have several separated segments.</p></li>
+<li><p>The scaling starts at the first control point on the left
+and moves along the curve to the last control point on the right.</p></li>
+<li><p>Negative scaling, (e.g. negative local Y on the taper curve) is possible as well.
+However, rendering artifacts may appear.</p></li>
+<li><p>You may need to increase the curve resolution to see more detail of the taper.</p></li>
+<li><p>The Taper Object is distributed by control points.
+Therefor unevenly spaced control points may likelier to stretch the shape of the taper.
+Subdividing segments causes those points to use a larger fraction of the overall taper shape.</p></li>
+<li><p>With closed curves, the taper curve in <em>Taper Object</em> acts along the whole curve (perimeter of the object),
+not just the length of the object, and varies the extrusion depth. In these cases,
+you want the relative height of the <em>Taper Object</em>
+Taper curve at both ends to be the same, so that the cyclic point
+(the place where the endpoint of the curve connects to the beginning) is a smooth transition.</p></li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Editing the handles and control points of the Taper Object
+will instantly change the shape of the original object.</p>
+</div>
+</dd>
+</dl>
+<dl id="bpy-types-curve-taper-mode">
+<dt>Taper Mode</dt><dd><p>For curves using a <em>Taper Object</em>, this option defines
+how the effective curve radius is computed from the Taper Object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Override</dt>
+<dd class="field-odd"><p>The curve radius is ignored and the effective radius is equal to the taper radius.</p>
+</dd>
+<dt class="field-even">Multiply</dt>
+<dd class="field-even"><p>The effective radius is computed by multiplying the taper radius with the curve radius.</p>
+</dd>
+<dt class="field-odd">Add</dt>
+<dd class="field-odd"><p>The effective radius is computed by adding the taper radius to the curve radius.</p>
+</dd>
+</dl>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Examples of a curve with a radius of zero on one end and a radius of one on the other end.</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id6">
+<img alt="../../../_images/modeling_curves_properties_geometry_taper-mode-override.png" src="../../../_images/modeling_curves_properties_geometry_taper-mode-override.png" />
+<figcaption>
+<p><span class="caption-text">Override mode.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id7">
+<img alt="../../../_images/modeling_curves_properties_geometry_taper-mode-multiply.png" src="../../../_images/modeling_curves_properties_geometry_taper-mode-multiply.png" />
+<figcaption>
+<p><span class="caption-text">Multiply mode.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<img alt="../../../_images/modeling_curves_properties_geometry_taper-mode-add.png" src="../../../_images/modeling_curves_properties_geometry_taper-mode-add.png" />
+<figcaption>
+<p><span class="caption-text">Add mode.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-curve-use-map-taper">
+<dt>Map Taper</dt><dd><p>For curves using a Taper Object and with modifications to the <em>Start/End Bevel Factor</em>
+the <em>Map Taper</em> option will apply the taper to the beveled part of the curve (not the whole curve).</p>
+</dd>
+</dl>
+<section id="bevel">
+<span id="bpy-types-curve-bevel"></span><h2>Bevel<a class="headerlink" href="#bevel" title="Permalink to this headline"></a></h2>
+<section id="round">
+<h3>Round<a class="headerlink" href="#round" title="Permalink to this headline"></a></h3>
+<dl id="bpy-types-curve-bevel-depth">
+<dt>Depth</dt><dd><p>Changes the size of the bevel.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-depth.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-depth.png" src="../../../_images/modeling_curves_properties_geometry_bevel-depth.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with different Bevel depths applied (Depth of 0.05).</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel.png" src="../../../_images/modeling_curves_properties_geometry_bevel.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with different Bevel depths applied (Depth of 0.25).</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl id="bpy-types-curve-bevel-resolution">
+<dt>Resolution</dt><dd><p>Alters the smoothness of the bevel.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id11">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-resolution.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-resolution.png" src="../../../_images/modeling_curves_properties_geometry_bevel-resolution.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with different resolutions applied (Resolution of 1).</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id12">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel.png" src="../../../_images/modeling_curves_properties_geometry_bevel.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with different resolutions applied (Resolution of 12).</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-curve-use-fill-caps">
+<dt>Fill Caps</dt><dd><p>Seals the ends of a beveled curve.</p>
+</dd>
+</dl>
+</section>
+<section id="object">
+<h3>Object<a class="headerlink" href="#object" title="Permalink to this headline"></a></h3>
+<dl id="bpy-types-curve-bevel-object">
+<dt>Object</dt><dd><p>Here you can specify a curve object (opened or closed) which will be extruded along the curve.
+If your object’s <a class="reference internal" href="shape.html#bpy-types-curve-dimensions"><span class="std std-ref">shape</span></a> is 3D,
+it will be projected to its local XY plane before the extrusion.
+You can check how the projected Object looks like by switching its shape to 2D.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure the shape you want to extrude is in the Object’s local XY plane.
+If it is in the local XZ or YZ plane, it will be reduced to a line when it is projected to the local XY plane.
+Because of this, the extruded shape will be a flat plane.</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id13">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-object.png" src="../../../_images/modeling_curves_properties_geometry_bevel-object.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with a Bézier curve as the Bevel Object.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id14">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with a Bézier circle as the Bevel Object.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</section>
+<section id="profile">
+<h3>Profile<a class="headerlink" href="#profile" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id15">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_bevel_profile-widget.png"><img alt="../../../_images/modeling_modifiers_generate_bevel_profile-widget.png" src="../../../_images/modeling_modifiers_generate_bevel_profile-widget.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The custom profile widget.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This widget allows the creation of a user-defined profile with more complexity than
+with the single profile parameter. The modal tool allows toggling the custom profile,
+but the shape of the profile is only editable in the options panel after the operation is confirmed.</p>
+<p>The profile starts at the bottom right of the widget and ends at the top left, as if it
+were between two edges intersecting at a right angle. Control points are created in the widget and
+then the path is sampled with the number of segments from the Bevel modifier.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>Profile</em> slider stays active when miters are enabled
+because it still controls the shape of the miter profiles.</p>
+</div>
+<dl class="simple">
+<dt>Presets</dt><dd><p>The <em>Support Loops</em> and <em>Steps</em> presets are built dynamically depending on
+the number of segments in the bevel. If the number of segments is changed,
+the preset will have to be re-applied.</p>
+</dd>
+<dt>Sampling</dt><dd><p>Samples will first be added to each control point, then if there are enough samples,
+they will be divided evenly between the edges. The <em>Sample Straight Edges</em> option toggles whether
+the samples are added to edges with sharp control points on either side. If there aren’t enough samples
+to give each edge the same number of samples, they will just be added to the most curved edges.
+So it is recommended to use at least as many segments as there are control points.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="start-end-mapping">
+<h2>Start &amp; End Mapping<a class="headerlink" href="#start-end-mapping" title="Permalink to this headline"></a></h2>
+<span id="bpy-types-curve-bevel-factor-start"></span><dl id="bpy-types-curve-bevel-factor-end">
+<dt>Factor Start, End</dt><dd><p>These options determine where to start/end the geometry of the curve.
+This allows to make a curve which is not fully covered with geometry.</p>
+<p>Increasing the start value to 0.5 will start the geometry at 50%
+of the distance from the start of the curve (in effect shortening the curve).
+Decreasing the end value by 0.25 will start the geometry at 25%
+of the distance from the end of the curve (again, shortening the curve).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id16">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel.png" src="../../../_images/modeling_curves_properties_geometry_bevel.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with no <em>Factor Start, End</em>.</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id17">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_bevel-start-end-factor.png"><img alt="../../../_images/modeling_curves_properties_geometry_bevel-start-end-factor.png" src="../../../_images/modeling_curves_properties_geometry_bevel-start-end-factor.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">A curve with a 0.6 End factor.</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<span id="bpy-types-curve-bevel-factor-mapping-start"></span><dl class="simple" id="bpy-types-curve-bevel-factor-mapping-end">
+<dt>Mapping Start, End</dt><dd><p>Allows to control the relation between the <em>Factor Start, End</em> (number between 0 and 1)
+and the rendered start and end point of the spline’s geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Resolution</dt>
+<dd class="field-odd"><p>Maps the start and end factor to the number of subdivisions of a spline (U resolution).</p>
+</dd>
+<dt class="field-even">Segments</dt>
+<dd class="field-even"><p>Maps the start and end factor to the length of its segments.
+Mapping to segments treats the subdivisions in each segment
+of a curve as if they would have all the same length.</p>
+</dd>
+<dt class="field-odd">Spline</dt>
+<dd class="field-odd"><p>Maps the start and end factor to the length of a spline.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<section id="open-2d-curve">
+<h3>Open 2D Curve<a class="headerlink" href="#open-2d-curve" title="Permalink to this headline"></a></h3>
+<p>The extrusion will create a “wall” or “ribbon” following the curve shape. If using a <em>Bevel Depth</em>,
+the wall becomes a sort of slide or gutter.
+If your normals are facing the wrong way you can switch their direction as shown
+<a class="reference internal" href="../editing/segments.html#curve-switch-direction"><span class="std std-ref">here</span></a>.</p>
+<figure class="align-default" id="id18">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-open-curve.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-open-curve.png" src="../../../_images/modeling_curves_properties_geometry_extrude-open-curve.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Open 2D Curve with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd>, fill set to none,
+zero offset, 0.5 extrusion, 0.25 Bevel Depth, 10 Bevel resolution.</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="closed-2d-curve">
+<h3>Closed 2D Curve<a class="headerlink" href="#closed-2d-curve" title="Permalink to this headline"></a></h3>
+<p>This is probably the most useful situation, as it will quickly create a volume, with (by default)
+two flat and parallel surfaces filling the two sides of the extruded “wall”. You can remove one or both of these
+faces by choosing the fill mode: both, front, back, or none.</p>
+<p>The optional bevel depth will always create a 90 degree bevels here.</p>
+<figure class="align-default" id="id19">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-closed-curve.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-closed-curve.png" src="../../../_images/modeling_curves_properties_geometry_extrude-closed-curve.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Closed 2D Curve, 0.5 extrude, 0.25 Bevel Depth, 10 Bevel resolution, Fill: Both.</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="d-curve">
+<h3>3D Curve<a class="headerlink" href="#d-curve" title="Permalink to this headline"></a></h3>
+<p>Here the fact that the curve is closed or not has no importance –
+you will never get a volume with an extruded 3D curve, only a wall or ribbon, like with open 2D curves.</p>
+<p>However, there is one more feature with 3D curves: the <em>Tilt</em> of the control points (see above).
+It will make the ribbon twist around the curve to create a Möbius strip, for example.</p>
+</section>
+<section id="taper">
+<h3>Taper<a class="headerlink" href="#taper" title="Permalink to this headline"></a></h3>
+<p>Let us taper a simple curve circle extruded object using a taper curve. Add a curve,
+then exit <em>Edit Mode</em>. Add another one (a closed one, like a circle); call it “BevelCurve”,
+and enter its name in the <em>Bevel Object</em> field of the first curve
+(<em>Curve</em> tab). We now have a pipe.
+Add a third curve while in <em>Object Mode</em> and call it “TaperCurve”.
+Adjust the left control point by raising it up about 5 units.</p>
+<p>Now return to the Object tab,
+and edit the first curve’s <em>Taper Object</em> field in the Geometry panel to reference the new taper curve
+which we called “TaperCurve”.
+When you hit enter the taper curve is applied immediately,
+with the results shown in Fig. <a class="reference internal" href="#fig-curves-extrude-taper-curve"><span class="std std-ref">Circle curve set as Bevel Object.</span></a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id20">
+<span id="fig-curves-extrude-taper-curve"></span><a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bevel-object.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Circle curve set as Bevel Object.</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id21">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_properties_geometry_extrude-taper-object.png"><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-object.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-object.png" style="width: 320px;" /></a>
+<figcaption>
+<p><span class="caption-text">Taper extruded curve.</span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>You can see the <em>taper curve</em> being applied to the <em>extruded object</em>.
+Notice how the pipe’s volume shrinks to nothing as the taper curve goes from left to right.
+If the taper curve went below the local Y axis the pipe’s inside would become the outside,
+which would lead to rendering artifacts.
+Of course as an artist that may be what you are looking for!</p>
+<figure class="align-default" id="id22">
+<span id="fig-curves-extrude-taper1"></span><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-closer.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-closer.png" />
+<figcaption>
+<p><span class="caption-text">Taper example 1.</span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In Fig. <a class="reference internal" href="#fig-curves-extrude-taper1"><span class="std std-ref">Taper example 1.</span></a>
+you can clearly see the effect the left taper curve has on the right curve object.
+Here the left taper curve is closer to the object origin and
+that results in a smaller curve object to the right.</p>
+<figure class="align-default" id="id23">
+<span id="fig-curves-extrude-taper2"></span><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-away.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-away.png" />
+<figcaption>
+<p><span class="caption-text">Taper example 2.</span><a class="headerlink" href="#id23" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In Fig. <a class="reference internal" href="#fig-curves-extrude-taper2"><span class="std std-ref">Taper example 2.</span></a> a control point in the taper curve to the left is moved away from
+the origin and that gives a wider result to the curve object on the right.</p>
+<figure class="align-default" id="id24">
+<span id="fig-curves-extrude-taper3"></span><img alt="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-irregular.png" src="../../../_images/modeling_curves_properties_geometry_extrude-taper-curve-irregular.png" />
+<figcaption>
+<p><span class="caption-text">Taper example 3.</span><a class="headerlink" href="#id24" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In Fig. <a class="reference internal" href="#fig-curves-extrude-taper3"><span class="std std-ref">Taper example 3.</span></a> we see the use of a more irregular taper curve applied to a curve circle.</p>
+<figure class="align-default" id="id25">
+<img alt="../../../_images/modeling_curves_properties_geometry_extrude-bevel-curve-tilt.png" src="../../../_images/modeling_curves_properties_geometry_extrude-bevel-curve-tilt.png" />
+<figcaption>
+<p><span class="caption-text">Bevel extrusion with Tilt example.</span><a class="headerlink" href="#id25" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="shape.html" class="btn btn-neutral float-left" title="Shape" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="path_animation.html" class="btn btn-neutral float-right" title="Path Animation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/curves/properties/geometry.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/curves/properties/geometry%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/curves/properties/geometry.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

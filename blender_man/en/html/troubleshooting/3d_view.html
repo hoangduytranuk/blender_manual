@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Viewport &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/troubleshooting/3d_view.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Graphics Hardware" href="gpu/index.html" />
+    <link rel="prev" title="Startup" href="startup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Troubleshooting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Startup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3D Viewport</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rendering">Rendering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#depth-buffer-glitches">Depth Buffer Glitches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#objects-invisible-in-camera-view">Objects Invisible in Camera View</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#performance">Performance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#slow-rendering">Slow Rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slow-selection">Slow Selection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#navigation">Navigation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lost-in-space">Lost in Space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#invisible-limit-zooming-in">Invisible Limit Zooming In</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#solutions">Solutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tools">Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#invalid-selection">Invalid Selection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gpu/index.html">Graphics Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crash.html">Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recover.html">Recovering Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compatibility">Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Troubleshooting</a> &raquo;</li>
+      <li>3D Viewport</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="d-viewport">
+<h1>3D Viewport<a class="headerlink" href="#d-viewport" title="Permalink to this headline"></a></h1>
+<section id="rendering">
+<h2>Rendering<a class="headerlink" href="#rendering" title="Permalink to this headline"></a></h2>
+<section id="depth-buffer-glitches">
+<span id="troubleshooting-depth"></span><h3>Depth Buffer Glitches<a class="headerlink" href="#depth-buffer-glitches" title="Permalink to this headline"></a></h3>
+<p>Sometimes when setting a large <a class="reference internal" href="../editors/3dview/sidebar.html#dview-view-clip"><span class="std std-ref">clipping range</span></a>
+will allow you to see both near and far objects,
+but reduces the depth precision resulting in artifacts.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/troubleshooting_3d-view_graphics-z-fighting-none.png"><img alt="../_images/troubleshooting_3d-view_graphics-z-fighting-none.png" src="../_images/troubleshooting_3d-view_graphics-z-fighting-none.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Model with no clipping artifacts.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/troubleshooting_3d-view_graphics-z-fighting-example.png"><img alt="../_images/troubleshooting_3d-view_graphics-z-fighting-example.png" src="../_images/troubleshooting_3d-view_graphics-z-fighting-example.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Model with clipping artifacts.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png"><img alt="../_images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png" src="../_images/troubleshooting_3d-view_graphics-z-fighting-example-editmode.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Mesh with artifacts in Edit Mode.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>To avoid this:</p>
+<ul class="simple">
+<li><p>Increase the near clipping when working on large scenes.</p></li>
+<li><p>Decrease the far clipping when objects are not viewed at a distance.</p></li>
+</ul>
+<p>When perspective is disabled only the far Clip End is used, very high values can still result in artifacts.
+This is <strong>not</strong> specific to Blender, all graphics applications have these same limitations.</p>
+</section>
+<section id="objects-invisible-in-camera-view">
+<h3>Objects Invisible in Camera View<a class="headerlink" href="#objects-invisible-in-camera-view" title="Permalink to this headline"></a></h3>
+<p>If you have a large scene, viewing it through Camera View may not display all of the objects in the scene.
+One possibility may be that the <a class="reference internal" href="../render/cameras.html#camera-clipping"><span class="std std-ref">clipping distance</span></a> of the camera is too low.
+The camera will only show objects that fall within the clipping range.</p>
+</section>
+</section>
+<section id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline"></a></h2>
+<section id="slow-rendering">
+<h3>Slow Rendering<a class="headerlink" href="#slow-rendering" title="Permalink to this headline"></a></h3>
+<p>There are a couple of reasons why you may be experiencing a slow viewport.</p>
+<dl class="simple">
+<dt>Old Hardware</dt><dd><p>Sometimes your hardware, mainly your graphics card, may be too slow to keep up with your model.</p>
+</dd>
+<dt>Upgrade Graphics Driver</dt><dd><p>In some cases, slow selection is resolved by using updated drivers.</p>
+</dd>
+</dl>
+</section>
+<section id="slow-selection">
+<h3>Slow Selection<a class="headerlink" href="#slow-selection" title="Permalink to this headline"></a></h3>
+<p>Blender uses OpenGL for selection, some graphics card drivers are slow at performing this operation.</p>
+<p>This becomes especially problematic on dense geometry.</p>
+<p>Possible Solutions:</p>
+<dl>
+<dt>OpenGL Depth Picking (Preferences)</dt><dd><p>See <span class="menuselection">Preferences ‣ Viewport ‣ Selection</span>.</p>
+<p>This option is enabled by default, disabling it may give a better performance at
+the cost of selection accuracy.</p>
+</dd>
+<dt>Upgrade Graphics Driver</dt><dd><p>In some cases, slow selection is resolved by using updated drivers.
+<em>It is generally good to use recent drivers when using 3D software.</em></p>
+</dd>
+<dt>Select Centers (Workaround)</dt><dd><p>In <em>Object Mode</em>, holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> while selecting uses the object center point.
+While this can be useful on its own, it has the side effect of not relying on OpenGL selection.</p>
+</dd>
+<dt>Change Display Mode (Workaround)</dt><dd><p>Using <em>Wireframe</em> display mode can be used to more quickly select different objects.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Obviously, the workarounds listed here are not long term solutions,
+but it is handy to know if you are stuck using a system with poor OpenGL support.</p>
+<p>Ultimately, if none of these options work out it may be worth upgrading your hardware.</p>
+</div>
+</section>
+</section>
+<section id="navigation">
+<h2>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline"></a></h2>
+<section id="lost-in-space">
+<h3>Lost in Space<a class="headerlink" href="#lost-in-space" title="Permalink to this headline"></a></h3>
+<p>When navigating your scene, you may accidentally navigate away from your scene
+and find yourself with a blank viewport. There are two ways to fix this:</p>
+<ol class="arabic simple">
+<li><p>Select an object in the <a class="reference internal" href="../editors/outliner/index.html"><span class="doc">Outliner</span></a>,
+then zoom to that object with <span class="menuselection">View ‣ Frame Selected</span> or <kbd class="kbd docutils literal notranslate">NumpadPeriod</kbd>.</p></li>
+<li><p>Use <kbd class="kbd docutils literal notranslate">Home</kbd> to fit all objects into the 3D Viewport.</p></li>
+</ol>
+</section>
+<section id="invisible-limit-zooming-in">
+<h3>Invisible Limit Zooming In<a class="headerlink" href="#invisible-limit-zooming-in" title="Permalink to this headline"></a></h3>
+<p>Sometimes when navigating you may be trying to zoom in but it seems that you have hit a limit
+to how far you can zoom.
+This is because Blender uses a central point to orbit around.</p>
+<p>In practice this is good for modeling an object which you rotate about a lot to see from all sides
+(think of a potter using a wheel).
+However, this makes it awkward to explore a scene or model an object from the ‘inside’, for example.</p>
+<section id="solutions">
+<h4>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>Use <a class="reference internal" href="../editors/3dview/navigate/navigation.html#dview-nav-zoom-dolly"><span class="std std-ref">View Dolly</span></a>.</p></li>
+<li><p>Use <a class="reference internal" href="../editors/3dview/navigate/walk_fly.html#dview-fly-walk"><span class="std std-ref">Walk/Fly Navigation</span></a>.</p></li>
+<li><p>Use <a class="reference internal" href="../editors/preferences/navigation.html#prefs-auto-depth"><span class="std std-ref">Auto Depth</span></a> and <a class="reference internal" href="../editors/preferences/navigation.html#prefs-zoom-mouse-pos"><span class="std std-ref">Zoom to Mouse Position</span></a>.
+These tools will make sure the distance is always the value under the mouse cursor,</p></li>
+<li><p>Use <a class="reference internal" href="../editors/3dview/navigate/navigation.html#dview-nav-zoom-region"><span class="std std-ref">Zoom Region</span></a> as it also resets the center point when zooming.</p></li>
+<li><p>Center the view around the mouse cursor <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">MMB</kbd></kbd>.
+This will take the position under the cursor and make it your viewpoint center.</p></li>
+<li><p>Use an <abbr title="N-Degrees of Freedom">NDOF</abbr>, also known as a 3D mouse,
+see <a class="reference internal" href="../getting_started/configuration/hardware.html#hardware-ndof"><span class="std std-ref">configuring peripherals</span></a> for more information.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h2>
+<section id="invalid-selection">
+<span id="troubleshooting-3dview-invalid-selection"></span><h3>Invalid Selection<a class="headerlink" href="#invalid-selection" title="Permalink to this headline"></a></h3>
+<p>There are times when selection fails under some configurations,
+often this is noticeable in mesh <em>Edit Mode</em>,
+selecting vertices/edges/faces where random elements are selected.</p>
+<p>Internally Blender uses <a class="reference internal" href="../glossary/index.html#term-OpenGL"><span class="xref std std-term">OpenGL</span></a> for selection,
+so the graphics card driver relies on giving correct results.</p>
+<p>Possible Solutions:</p>
+<dl>
+<dt>Disable <a class="reference internal" href="../glossary/index.html#term-Multisampling"><span class="xref std std-term">Multisampling</span></a></dt><dd><p>This is by far the most common cause of selection issues.</p>
+<p>There are known problems with some graphics cards when using multisampling.</p>
+<p>You can disable this option by turning multisampling off in your graphics card driver options.</p>
+</dd>
+<dt>Change Anti-Aliasing Sample Settings</dt><dd><p>Depending on your OpenGL configuration,
+some specific sample settings may work while others fail.</p>
+<p>Unfortunately finding working configuration involves trial &amp; error testing.</p>
+</dd>
+<dt>Upgrade Graphics Driver</dt><dd><p>As with any OpenGL-related issues, using recent drivers can resolve problems.</p>
+<p>However, it should be noted that this is a fairly common problem and remains unresolved with many drivers.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="startup.html" class="btn btn-neutral float-left" title="Startup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gpu/index.html" class="btn btn-neutral float-right" title="Graphics Hardware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/troubleshooting/3d_view.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60troubleshooting/3d_view%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Ftroubleshooting/3d_view.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

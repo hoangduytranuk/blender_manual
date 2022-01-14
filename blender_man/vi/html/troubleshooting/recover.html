@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recovering Data &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/troubleshooting/recover.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Bảng Thuật Ngữ -- Glossary" href="../glossary/index.html" />
+    <link rel="prev" title="Python Errors" href="python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Xử Lý Sự Cố -- Troubleshooting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="startup.html">Khởi Động</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_view.html">Cổng Nhìn 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpu/index.html">Graphics Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crash.html">Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">Python Errors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Recovering Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#recovering-auto-saves">Recovering Auto Saves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#last-session">Last Session</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auto-save">Auto Save</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#compatibility">Tính Tương Thích -- Compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Xử Lý Sự Cố -- Troubleshooting</a> &raquo;</li>
+      <li>Recovering Data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="recovering-data">
+<h1>Recovering Data<a class="headerlink" href="#recovering-data" title="Permalink to this headline"></a></h1>
+<p>Computer crashes, power outages, or simply forgetting to save can result in
+the loss or corruption of your work. You can use Blender's <em>Auto Save</em> feature
+to reduce the chance of losing files when such events occur.</p>
+<p>There are options to save a backup of your files like
+<em>Auto Save</em> that saves your file automatically over time, and <em>Save on Quit</em>,
+which saves your blend-file automatically when you exit Blender.
+In addition to these functions being enabled by default,
+the <em>Save on Quit</em> functionality cannot be disabled.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>For your actions, there are options like <em>Undo</em>, <em>Redo</em> and an <em>Undo History</em>,
+used to roll back from mistakes under normal operation, or return back to a specific action.
+See <a class="reference internal" href="../interface/undo_redo.html"><span class="doc">Undo &amp; Redo</span></a>.</p>
+</div>
+<p>The <em>File</em> tab of the <em>Preferences</em> allows you to configure the two ways
+that Blender provides for you to regress to a previous version of your work.
+See <a class="reference internal" href="../editors/preferences/save_load.html#prefs-auto-save"><span class="std std-ref">Auto Save Preferences</span></a> for details.</p>
+<section id="recovering-auto-saves">
+<span id="troubleshooting-file-recovery"></span><h2>Recovering Auto Saves<a class="headerlink" href="#recovering-auto-saves" title="Permalink to this headline"></a></h2>
+<section id="last-session">
+<h3>Last Session<a class="headerlink" href="#last-session" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">File ‣ Recover ‣ Last Session</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Recover Last Session</em> will open the <code class="docutils literal notranslate"><span class="pre">quit.blend</span></code> file
+that is saved into the <a class="reference internal" href="../advanced/blender_directory_layout.html#temp-dir"><span class="std std-ref">Thư Mục Tạm Thời -- Temporary Directory</span></a> when you quit Blender under normal operation.
+Note that files in your temporary directory may be deleted when you reboot your computer
+(depending on your system configuration).</p>
+</section>
+<section id="auto-save">
+<h3>Auto Save<a class="headerlink" href="#auto-save" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Trình Đơn -- Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">File ‣ Recover ‣ Auto Save</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Recover Auto Save</em> allows you to open the <em>Auto Saved</em> file.
+You will have to navigate to your <a class="reference internal" href="../advanced/blender_directory_layout.html#temp-dir"><span class="std std-ref">Thư Mục Tạm Thời -- Temporary Directory</span></a>.
+The <em>Auto Saved</em> files are named using a random number and have a blend extension.</p>
+<dl class="simple">
+<dt>Trusted Source</dt><dd><p>When enabled, Python scripts and drivers that may be included in the file will be run automatically.
+Enable this only if you created the file yourself,
+or you trust that the person who gave it to you did not include any malicious code with it.
+See <a class="reference internal" href="../advanced/scripting/security.html"><span class="doc">Python Security</span></a> to configure default trust options.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>It is important, when browsing, to enable the detailed list view.
+Otherwise, you will not be able to figure out the dates of the auto-saved blend-files.</p>
+<figure class="align-default" id="id3">
+<img alt="../_images/troubleshooting_recover_display-file-date.png" src="../_images/troubleshooting_recover_display-file-date.png" />
+<figcaption>
+<p><span class="caption-text">File Browser displaying a vertical list.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>When recovering an <em>Auto Saved</em> file, you will lose any changes made since the last <em>Auto Save</em> was performed.
+Only one <em>Auto Saved</em> file exists for each project, i.e. Blender does not keep older versions.
+Hence, you will not be able to go back more than a few minutes with this tool.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python.html" class="btn btn-neutral float-left" title="Python Errors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../glossary/index.html" class="btn btn-neutral float-right" title="Bảng Thuật Ngữ -- Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/troubleshooting/recover.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60troubleshooting/recover%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Ftroubleshooting/recover.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

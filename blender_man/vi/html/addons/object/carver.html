@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carver &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/object/carver.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Cell Fracture" href="cell_fracture.html" />
+    <link rel="prev" title="Bool Tool" href="bool_tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Trình Bổ Sung -- Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Liệt Kê Hạng Mục của các Trình Bổ Sung -- Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../3d_view/index.html">Góc Nhìn 3D -- 3D View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Thêm Đường Cong</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Cộng Thêm Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation -- Hoạt Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Máy Quay Phim -- Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Xây Dựng -- Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../import_export/index.html">Nhập-Xuất Khẩu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Bố Trí Ánh Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh -- Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Object -- Vật Thể</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="bool_tools.html">Bool Tool</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Carver</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#activation">Kích Hoạt -- Activation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Miêu Tả -- Description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#basic-boolean-operations">Basic Boolean Operations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#profile-brush">Profile Brush</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="cell_fracture.html">Cell Fracture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="greasepencil_tools.html">Grease Pencil Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_rules.html">Object Color Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edit_linked_library.html">Edit Linked Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="oscurart_tools.html">Oscurart Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scatter_objects.html">Scatter Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skinify.html">Skinify Rig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="align_tools.html">Align Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Sơn -- Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render -- Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Dựng Giàn Điều Khiển</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Bộ Phối Hình -- Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">Hệ Thống -- System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Công Cụ về Phim Video</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Trình Bổ Sung -- Add-ons</a> &raquo;</li>
+          <li><a href="index.html">Object -- Vật Thể</a> &raquo;</li>
+      <li>Carver</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="carver">
+<h1>Carver<a class="headerlink" href="#carver" title="Permalink to this headline"></a></h1>
+<p>Cut and Boolean objects directly in the 3D Viewport.</p>
+<section id="activation">
+<h2>Kích Hoạt -- Activation<a class="headerlink" href="#activation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Mở Blender và chuyển đến <abbr title="Preferences">Cấu Hình</abbr>, sau đó đến thẻ <abbr title="Add-ons">Trình Bổ Sung</abbr>.</p></li>
+<li><p>Click Object then Carver to enable the script.</p></li>
+</ul>
+</section>
+<section id="description">
+<h2>Miêu Tả -- Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>If you have an active bevel on the object to be cut,
+it will update automatically as well as objects that will be created.</p>
+<p>To begin, select one or more objects, depending on the number of objects, the add-on will adjust to that.
+One object, you can cut (basic operation) and use the default patterns.
+Multiple objects, you can also cut, use patterns, and the last selected object serves as a &quot;brush&quot;.
+If you enter in the <em>Profile Brush</em> mode.
+It works on all selected objects, so you can cut two objects or apply a &quot;brush&quot; to all objects at the same time.</p>
+<p>The add-on is more accurate on orthographic view for basic Boolean operations.
+For others operations you can use the view if you wish.</p>
+<ul class="simple">
+<li><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd> to call the add-on.</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">RMB</kbd> to exit.</p></li>
+<li><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Z</kbd></kbd> to Undo (there are no limits, so be careful to not overload it).</p></li>
+<li><p><kbd class="kbd docutils literal notranslate">H</kbd> to have the help when the screen is large enough to display.</p></li>
+</ul>
+<section id="basic-boolean-operations">
+<h3>Basic Boolean Operations<a class="headerlink" href="#basic-boolean-operations" title="Permalink to this headline"></a></h3>
+<p>This mode is active when you run the add-on at start.</p>
+<dl>
+<dt>Rebool <kbd class="kbd docutils literal notranslate">Shift</kbd></dt><dd><p>Holding <kbd class="kbd docutils literal notranslate">Shift</kbd> allows to make a rebool.</p>
+</dd>
+<dt>Move All <kbd class="kbd docutils literal notranslate">Alt</kbd></dt><dd><p>Allows you to move the cut.</p>
+</dd>
+<dt>Cursor Depth <kbd class="kbd docutils literal notranslate">D</kbd></dt><dd><p>To use the position of the cursor as depth.</p>
+</dd>
+<dt>Move Cursor <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd></dt><dd><p>You can move the cursor with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd>.</p>
+</dd>
+<dt>Tool Type <kbd class="kbd docutils literal notranslate">Spacebar</kbd></dt><dd><p>To change the tool.</p>
+<dl>
+<dt>Rectangle</dt><dd><p>The <em>Rectangle</em> tool. Click, move and then click again to confirm the operation.</p>
+</dd>
+<dt>Dòng -- Line</dt><dd><p>The <em>Line</em> tool to polygonal cuts. It also allows you to bisect one or more objects.
+Click to the start point, move to the desired end point and then press <kbd class="kbd docutils literal notranslate">Spacebar</kbd> to confirm the cutting.</p>
+<p>Holding <kbd class="kbd docutils literal notranslate">Ctrl</kbd> allows to move incrementally.</p>
+</dd>
+<dt>Hình Tròn -- Circle</dt><dd><p>The <em>Circle</em> tool, click then move to change the radius (vertical axis) or rotation (horizontal axis).</p>
+<dl class="simple">
+<dt>Subdivision <kbd class="kbd docutils literal notranslate">W</kbd>, <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>Allows to change the circle subdivisions.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Create Geometry <kbd class="kbd docutils literal notranslate">C</kbd></dt><dd><p>Switch to Create Mode. It reacts in the same way as above for shortcuts.
+Once validated, the add-on stops and selects the object created.</p>
+</dd>
+</dl>
+</section>
+<section id="profile-brush">
+<h3>Profile Brush<a class="headerlink" href="#profile-brush" title="Permalink to this headline"></a></h3>
+<p>When in profile mode, flat objects are present by default.
+You can add your own with the <code class="docutils literal notranslate"><span class="pre">ProfilCreate.py</span></code> file that will be explain after (ToDo).</p>
+<p><kbd class="kbd docutils literal notranslate">B</kbd> to enter this mode when you are in basic Boolean operations.
+If you move your mouse over the object, you will see an overview of the pattern that
+you can use and a preview at the bottom right.</p>
+<dl class="simple">
+<dt>Rebool <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Spacebar</kbd></kbd></dt><dd><p>For the rebool.</p>
+</dd>
+<dt>Duplicate <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Spacebar</kbd></kbd></dt><dd><p>To create the object.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>Nội dung cần viết thêm.</p>
+</dd>
+<dt>Rotation <kbd class="kbd docutils literal notranslate">LMB</kbd></dt><dd><p><kbd class="kbd docutils literal notranslate">LMB</kbd> and move the mouse to rotate.</p>
+</dd>
+<dt>Step Angle <kbd class="kbd docutils literal notranslate">Ctrl</kbd></dt><dd><p>Hold <kbd class="kbd docutils literal notranslate">Ctrl</kbd> to rotate with 45° degree steps.</p>
+</dd>
+<dt>Tool Type <kbd class="kbd docutils literal notranslate">W</kbd>, <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>To change the tool type.</p>
+</dd>
+<dt>Instantiate <kbd class="kbd docutils literal notranslate">L</kbd></dt><dd><p>For instances when you duplicate the object (with holding <kbd class="kbd docutils literal notranslate">Alt</kbd>).</p>
+</dd>
+<dt>Thickness <kbd class="kbd docutils literal notranslate">D</kbd></dt><dd><p>To change the thickness of the pattern. Then move your mouse on the horizontal axis.</p>
+</dd>
+<dt>Axis Locking <kbd class="kbd docutils literal notranslate">Ctrl</kbd></dt><dd><p>Hold <kbd class="kbd docutils literal notranslate">Ctrl</kbd> to constraint axis.</p>
+</dd>
+<dt>Brush Type <kbd class="kbd docutils literal notranslate">T</kbd></dt><dd><dl class="simple">
+<dt>Hiệu -- Difference</dt><dd><p>To make a difference.</p>
+</dd>
+<dt>Hợp Nhất -- Union</dt><dd><p>To do a union Boolean (does not work with multiple objects).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Hạng Mục -- Category</dt>
+<dd class="field-odd"><p>Object -- Vật Thể</p>
+</dd>
+<dt class="field-even">Miêu Tả -- Description</dt>
+<dd class="field-even"><p>Multiple tools to carve or to create objects.</p>
+</dd>
+<dt class="field-odd">Vị Trí/Địa Điểm -- Location</dt>
+<dd class="field-odd"><p>3D Viewport <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd></p>
+</dd>
+<dt class="field-even">Tập Tin -- File</dt>
+<dd class="field-even"><p>object_carver folder</p>
+</dd>
+<dt class="field-odd">Tác Giả -- Author</dt>
+<dd class="field-odd"><p>Pixivore, Cedric LEPILLER, Ted Milker, Clarkx</p>
+</dd>
+<dt class="field-even">Giấy Phép -- License</dt>
+<dd class="field-even"><p><abbr title="GNU General Public License: Giấy Phép Công Chứng Phổ Thông GNU">GPL</abbr></p>
+</dd>
+<dt class="field-odd">Ghi Chú -- Note</dt>
+<dd class="field-odd"><p>Trình bổ sung này được <abbr title="bundled: kèm theo">gói cùng</abbr> với Blender.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bool_tools.html" class="btn btn-neutral float-left" title="Bool Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cell_fracture.html" class="btn btn-neutral float-right" title="Cell Fracture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/object/carver.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/object/carver%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Faddons/object/carver.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

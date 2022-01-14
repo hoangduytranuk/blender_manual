@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeline &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/timeline.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../copyright.html" />
+    <link rel="next" title="Graph Editor" href="graph_editor/index.html" />
+    <link rel="prev" title="Hình Mẫu -- Shape Key" href="dope_sheet/shape_key.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3dview/index.html">Cổng Nhìn 3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_sequencer/index.html">Trình Phối Hình</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Timeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#main-view">Main View</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adjusting-the-view">Adjusting the View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#playhead">Playhead</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frame-range">Frame Range</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#keyframes">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#markers">Markers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#header">Tiêu Đề -- Header</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#popovers">Popovers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#playback-popover">Playback Popover</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#keying-popover">Keying Popover</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#auto-keying-popover">Auto Keying Popover</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#menus">Menus</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#view-menu">View Menu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#markers-menu">Markers Menu</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#header-controls">Header Controls</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#transport-controls">Transport Controls</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#frame-controls">Frame Controls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="properties_editor.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preferences/index.html">Cấu Hình -- Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Editors</a> &raquo;</li>
+      <li>Timeline</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="timeline">
+<span id="bpy-ops-time"></span><span id="bpy-types-spacetimeline"></span><h1>Timeline<a class="headerlink" href="#timeline" title="Permalink to this headline"></a></h1>
+<p>The <em>Timeline</em> editor, identified by a clock icon,
+is used for manipulating keyframes and scrubbing the Playhead.</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/editors_timeline_interface.png" src="../_images/editors_timeline_interface.png" />
+<figcaption>
+<p><span class="caption-text">The Timeline.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Timeline</em> gives the user a broad overview of a scene's animation,
+by showing the current frame, the keyframes of the active object,
+the start and end frames of your animation sequence, as well as markers set by the user.</p>
+<p>The <em>Timeline</em> includes <em>Transport Controls</em>, to play, pause, and skip through an animation sequence.</p>
+<p>It also includes tools for manipulating <em>Keyframes</em>, <em>Keying Sets</em>, and <em>Markers</em>.</p>
+<section id="main-view">
+<h2>Main View<a class="headerlink" href="#main-view" title="Permalink to this headline"></a></h2>
+<p>The main <em>Timeline</em> region displays the animation frames over time.</p>
+<figure class="align-default">
+<img alt="../_images/editors_timeline_main.png" src="../_images/editors_timeline_main.png" />
+</figure>
+<p>Here you can see the <em>Keyframes</em> (diamond shapes), <em>Playhead</em> (blue handle), <em>Scrollbar</em> (along the bottom).</p>
+<section id="adjusting-the-view">
+<h3>Adjusting the View<a class="headerlink" href="#adjusting-the-view" title="Permalink to this headline"></a></h3>
+<p>The <em>Timeline</em> can be panned by holding <kbd class="kbd docutils literal notranslate">MMB</kbd>,
+then dragging the area left or right.</p>
+<p>You can zoom the <em>Timeline</em> by using <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">MMB</kbd></kbd>, the mouse <kbd class="kbd docutils literal notranslate">Wheel</kbd>,
+or pressing <kbd class="kbd docutils literal notranslate">NumpadMinus</kbd> and <kbd class="kbd docutils literal notranslate">NumpadPlus</kbd>.</p>
+<p>You can also use the scrollbars, located at the bottom or the right of the editor, to pan and zoom the view.</p>
+</section>
+<section id="playhead">
+<h3>Playhead<a class="headerlink" href="#playhead" title="Permalink to this headline"></a></h3>
+<p>The <em>Playhead</em> is the blue vertical line with the current frame number at the top.</p>
+<figure class="align-right" id="id2">
+<img alt="../_images/editors_timeline_cursor.png" src="../_images/editors_timeline_cursor.png" />
+<figcaption>
+<p><span class="caption-text">Playhead.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Playhead</em> can be set or moved to a new position by pressing or
+holding <kbd class="kbd docutils literal notranslate">LMB</kbd> in scrubbing area at the top of the timeline.</p>
+<p>The <em>Playhead</em> can be moved in single-frame increments by pressing <kbd class="kbd docutils literal notranslate">Left</kbd> or <kbd class="kbd docutils literal notranslate">Right</kbd>,
+or you can jump to the beginning or end frame by pressing <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Left</kbd></kbd> or <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Right</kbd></kbd>.</p>
+</section>
+<section id="frame-range">
+<h3>Frame Range<a class="headerlink" href="#frame-range" title="Permalink to this headline"></a></h3>
+<p>By default, the <em>Frame Range</em> is set to start at frame 1 and end at frame 250.
+You can change the frame range in the top right of the Timeline header, or in the Output Properties.</p>
+</section>
+<section id="keyframes">
+<h3>Khung Khóa -- Keyframes<a class="headerlink" href="#keyframes" title="Permalink to this headline"></a></h3>
+<p>For the active and selected objects, keyframes are displayed as diamond shapes.</p>
+<p>You can click to select one at a time, or select several by holding <kbd class="kbd docutils literal notranslate">Shift</kbd>,
+or by dragging a box around the keyframes.
+You can then move single keys by dragging them,
+and you can move multiple keys by pressing <kbd class="kbd docutils literal notranslate">G</kbd> and scale them with <kbd class="kbd docutils literal notranslate">S</kbd>.</p>
+<p><em>Only Selected Channels</em> can be enabled. <span class="menuselection">Timeline ‣ View ‣ Only Selected Channels</span>.
+For <em>Armatures</em>, this will display the object keyframes,
+and the keyframes for the active and selected pose bones.</p>
+</section>
+<section id="markers">
+<h3>Markers<a class="headerlink" href="#markers" title="Permalink to this headline"></a></h3>
+<p>See the <a class="reference internal" href="../animation/markers.html"><span class="doc">Markers page</span></a> for more information.</p>
+</section>
+</section>
+<section id="header">
+<h2>Tiêu Đề -- Header<a class="headerlink" href="#header" title="Permalink to this headline"></a></h2>
+<section id="popovers">
+<h3>Popovers<a class="headerlink" href="#popovers" title="Permalink to this headline"></a></h3>
+<section id="playback-popover">
+<span id="timeline-playback"></span><h4>Playback Popover<a class="headerlink" href="#playback-popover" title="Permalink to this headline"></a></h4>
+<figure class="align-default">
+<img alt="../_images/editors_timeline_playback.png" src="../_images/editors_timeline_playback.png" />
+</figure>
+<p>The <em>Playback</em> popover contains options controlling the animation playback.</p>
+<dl>
+<dt>Sync</dt><dd><figure class="align-right" id="id3" style="width: 109px">
+<img alt="../_images/editors_timeline_red-fps.png" src="../_images/editors_timeline_red-fps.png" />
+<figcaption>
+<p><span class="caption-text">3D Viewport red FPS.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>When you play an animation, the frame rate is displayed at the top left of the 3D Viewport.
+If the scene is detailed and playback is slower than the set <a class="reference internal" href="../render/output/properties/format.html#bpy-types-rendersettings-fps"><span class="std std-ref">Frame Rate</span></a>,
+these options are used to synchronize the playback.</p>
+<dl class="simple">
+<dt>Play Every Frame</dt><dd><p>Plays every frame even if playback is slow.</p>
+</dd>
+<dt>Frame Dropping</dt><dd><p>Drop frames if playback becomes slower than the scene's frame rate.</p>
+</dd>
+<dt>Sync to Audio</dt><dd><p>Drop frames if playback becomes too slow to remain synced with audio.</p>
+</dd>
+</dl>
+</dd>
+<dt>Audio</dt><dd><dl class="simple">
+<dt>Scrubbing</dt><dd><p>If your animation has sound, this option plays bits of the sound wave
+while you move the Playhead with <kbd class="kbd docutils literal notranslate">LMB</kbd> or keyboard arrows.</p>
+</dd>
+<dt>Mute</dt><dd><p>Mute the sound from any audio source.</p>
+</dd>
+</dl>
+</dd>
+<dt>Playback</dt><dd><dl class="simple">
+<dt>Limit Playback to Frame Range</dt><dd><p>Don't allow selecting frames outside of the playback range using the mouse.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-screen-use-follow">
+<dt>Follow Current Frame</dt><dd><p>Animation editors can be setup to always follow the time indicator as animation is being played back.
+Following will be done when animating and changing frame:
+When the cursor reaches the end of the screen, the next range of frames of the same width will be displayed.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-screen-use-play">
+<dt>Play In</dt><dd><dl class="simple">
+<dt>Active Editor</dt><dd><p>While playing, updates the Timeline, if <em>Animation Editors</em> and <em>All 3D Viewports</em> disabled.</p>
+</dd>
+<dt>Cổng Nhìn 3D</dt><dd><p>While playing, updates the 3D Viewport and the Timeline.</p>
+</dd>
+<dt>Animation Editors</dt><dd><p>While playing, updates the Timeline, Dope Sheet, Graph Editor, Video Sequencer.</p>
+</dd>
+<dt>Image Editor</dt><dd><p>The Image editor in Mask mode.</p>
+</dd>
+<dt>Properties Editor</dt><dd><p>When the animation is playing, this will update the property values in the UI.</p>
+</dd>
+<dt>Movie Clip Editor</dt><dd><p>While playing, updates the Movie Clip Editor.</p>
+</dd>
+<dt>Node Editors</dt><dd><p>While playing, updates the Node properties for the node editors.</p>
+</dd>
+<dt>Trình Phối Hình</dt><dd><p>While playing, updates the Video Sequencer.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-scene-show-subframe">
+<dt>Hiển Thị -- Show</dt><dd><dl class="simple">
+<dt>Subframes</dt><dd><p>Display and allow changing the current scene subframe.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="keying-popover">
+<span id="timeline-keying"></span><h4>Keying Popover<a class="headerlink" href="#keying-popover" title="Permalink to this headline"></a></h4>
+<figure class="align-default">
+<img alt="../_images/editors_timeline_keying.png" src="../_images/editors_timeline_keying.png" />
+</figure>
+<p>The <em>Keying</em> popover contains options that affect keyframe insertion.</p>
+<dl id="bpy-types-keyingsetsall-active">
+<dt>Bộ Khóa Đang Hoạt Động -- Active Keying Set</dt><dd><figure class="align-right" id="id4">
+<img alt="../_images/editors_timeline_keying-sets.png" src="../_images/editors_timeline_keying-sets.png" />
+<figcaption>
+<p><span class="caption-text">Timeline Keying Sets.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p><em>Keying Sets</em> are a set of keyframe channels in one.
+They are made so the user can record multiple properties at the same time.
+With a keying set selected, when you insert a keyframe,
+Blender will add keyframes for the properties in the active <em>Keying Set</em>.
+There are some built-in keying sets, <em>LocRotScale</em>, and also custom keying sets.
+Custom keying sets can be defined in the panels
+<span class="menuselection">Properties ‣ Scene ‣ Keying Sets + Active Keying Set</span>.</p>
+<dl class="simple">
+<dt>Insert Keyframes (plus icon)</dt><dd><p>Insert keyframes on the current frame for the properties in the active <em>Keying Set</em>.</p>
+</dd>
+<dt>Delete Keyframes (minus icon)</dt><dd><p>Delete keyframes on the current frame for the properties in the active <em>Keying Set</em>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-toolsettings-keyframe-type">
+<dt>New Keyframe Type</dt><dd><p><a class="reference internal" href="../animation/keyframes/introduction.html#keyframe-type"><span class="std std-ref">Thể Loại Khung Khóa -- Keyframe Types</span></a> on insertion.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-toolsettings-use-keyframe-cycle-aware">
+<dt>Cycle-Aware Keying</dt><dd><p>When inserting keyframes into <a class="reference internal" href="graph_editor/fcurves/modifiers.html#bpy-types-fmodifiercycles"><span class="std std-ref">trivially cyclic curves</span></a>,
+special handling is applied to preserve the cycle integrity (most useful while tweaking an established cycle):</p>
+<ul class="simple">
+<li><p>If a key insertion is attempted outside of the main time range of the cycle,
+it is remapped back inside the range.</p></li>
+<li><p>When overwriting one of the end keys, the other one is updated accordingly.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="auto-keying-popover">
+<span id="bpy-types-toolsettings-use-keyframe-insert-auto"></span><h4>Auto Keying Popover<a class="headerlink" href="#auto-keying-popover" title="Permalink to this headline"></a></h4>
+<figure class="align-right" id="id5">
+<img alt="../_images/editors_timeline_keyframes-auto.png" src="../_images/editors_timeline_keyframes-auto.png" />
+<figcaption>
+<p><span class="caption-text">Lịch Trình Thời Gian Tự Động Khung Khóa Hóa.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The record button (⏺) enables <em>Auto Keyframe</em>:
+It will add and/or replace existing keyframes for the active object when you transform it in the 3D Viewport.
+For example, when enabled, first set the Playhead to the desired frame,
+then move an object in the 3D Viewport, or set a new value for a property in the UI.</p>
+<p>When you set a new value for the properties,
+Blender will add keyframes on the current frame for the transform properties.
+Other use cases are <a class="reference internal" href="3dview/navigate/walk_fly.html#dview-fly-walk"><span class="std std-ref">Fly/Walk Navigation</span></a> to record the walk/flight path
+and <a class="reference internal" href="3dview/sidebar.html#dview-lock-camera-to-view"><span class="std std-ref">Lock Camera to View</span></a> to record the navigation in camera view.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Note that <em>Auto Keyframe</em> only works for transform properties (objects and bones),
+in the 3D Viewport (i.e. you can't use it e.g. to animate the colors of a material in the Properties...).</p>
+</div>
+<dl>
+<dt>Add &amp; Replace / Replace</dt><dd><p>This controls how the auto keyframe mode works.
+Only one mode can be used at a time.</p>
+<dl class="simple">
+<dt>Add &amp; Replace</dt><dd><p>Add or replace existing keyframes.</p>
+</dd>
+<dt>Thay Thế -- Replace</dt><dd><p>Only replace existing keyframes.</p>
+</dd>
+</dl>
+</dd>
+<dt>Only Active Keying Set</dt><dd><p>When enabled, new keyframes for properties will be inserted into the active <em>Keying Set</em>.</p>
+</dd>
+<dt>Layered Recording</dt><dd><p>Adds a new NLA Track and strip for every loop/pass made over the animation to allow non-destructive tweaking.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="menus">
+<h3>Menus<a class="headerlink" href="#menus" title="Permalink to this headline"></a></h3>
+<section id="view-menu">
+<span id="timeline-view-menu"></span><h4>View Menu<a class="headerlink" href="#view-menu" title="Permalink to this headline"></a></h4>
+<p>The <em>View Menu</em> controls what you see, and what it looks like.</p>
+<dl>
+<dt>Show Seconds <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">T</kbd></kbd></dt><dd><p>Whether to show the time in the X axis and the <em>Playhead</em> as
+frames (based on the FPS) or as seconds.</p>
+</dd>
+<dt>Sync Visible Range</dt><dd><p>It synchronizes the horizontal panning and scale of the current editor
+with the other editors (Graph, Dope Sheet, NLA and Sequencer) when this option is set.
+That way you always have these editors showing the same section of frames.</p>
+</dd>
+<dt>Show Markers</dt><dd><p>Shows the markers region. When disabled, the <a class="reference internal" href="#markers-menu">Markers Menu</a> is also hidden
+and markers operators are not available in this editor.</p>
+</dd>
+<dt>Only Keyframes from Selected Channels</dt><dd><p>For <em>Armatures</em>, this will display the object keyframes,
+and the keyframes for the active and selected pose bones.</p>
+</dd>
+<dt>Cache</dt><dd><dl>
+<dt>Show Cache</dt><dd><p>Show all enabled types.</p>
+<p>Soft Body, Particles, Cloth, Smoke, Dynamic Paint, Rigid Body.</p>
+</dd>
+</dl>
+<figure class="align-default" id="id6">
+<img alt="../_images/editors_timeline_cache.png" src="../_images/editors_timeline_cache.png" />
+<figcaption>
+<p><span class="caption-text">Timeline Cache.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</dd>
+<dt>Frame All <kbd class="kbd docutils literal notranslate">Home</kbd></dt><dd><p>Maximize the area based on the Animation Range.</p>
+</dd>
+<dt>Go to Current Frame <kbd class="kbd docutils literal notranslate">Numpad0</kbd></dt><dd><p>Centers the Timeline to the Playhead.</p>
+</dd>
+</dl>
+</section>
+<section id="markers-menu">
+<h4>Markers Menu<a class="headerlink" href="#markers-menu" title="Permalink to this headline"></a></h4>
+<p><a class="reference internal" href="../animation/markers.html"><span class="doc">Markers</span></a> are used to denote frames with key points or significant events
+within an animation. Like with most animation editors, markers are shown at the bottom of the editor.</p>
+<figure class="align-default" id="id7">
+<img alt="../_images/editors_graph-editor_introduction_markers.png" src="../_images/editors_graph-editor_introduction_markers.png" />
+<figcaption>
+<p><span class="caption-text">Markers in animation editor.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>For descriptions of the different marker tools see <a class="reference internal" href="../animation/markers.html#animation-markers-editing"><span class="std std-ref">Editing Markers</span></a>.</p>
+</section>
+</section>
+<section id="header-controls">
+<span id="animation-editors-timeline-headercontrols"></span><h3>Header Controls<a class="headerlink" href="#header-controls" title="Permalink to this headline"></a></h3>
+<p>The Timeline header controls.</p>
+<figure class="align-default" id="id8">
+<img alt="../_images/editors_timeline_header.png" src="../_images/editors_timeline_header.png" />
+<figcaption>
+<p><span class="caption-text">Timeline header controls.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<div class="legend">
+<p>1. Popovers for Playback and Keying, 2. Transport Controls, 3. Frame Controls</p>
+</div>
+</figcaption>
+</figure>
+<section id="transport-controls">
+<h4>Transport Controls<a class="headerlink" href="#transport-controls" title="Permalink to this headline"></a></h4>
+<p>These buttons are used to set, play, rewind, the <em>Playhead</em>.</p>
+<figure class="align-right" id="id9">
+<img alt="../_images/editors_timeline_player-controls.png" src="../_images/editors_timeline_player-controls.png" />
+<figcaption>
+<p><span class="caption-text">Transport controls.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Jump to Start (❙⏴) <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Left</kbd></kbd></dt><dd><p>This sets the cursor to the start of frame range.</p>
+</dd>
+<dt>Jump to Previous Keyframe (◆⏴) <kbd class="kbd docutils literal notranslate">Down</kbd></dt><dd><p>This sets the cursor to the previous keyframe.</p>
+</dd>
+<dt>Rewind (◀) <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Spacebar</kbd></kbd></dt><dd><p>This plays the animation sequence in reverse.
+When playing the play buttons switch to a pause button.</p>
+</dd>
+<dt>Play (▶) <kbd class="kbd docutils literal notranslate">Spacebar</kbd></dt><dd><p>This plays the animation sequence.
+When playing the play buttons switch to a pause button.</p>
+</dd>
+<dt>Jump to Next Keyframe (⏵◆) <kbd class="kbd docutils literal notranslate">Up</kbd></dt><dd><p>This sets the cursor to the next keyframe.</p>
+</dd>
+<dt>Jump to End (⏵❙) <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Right</kbd></kbd></dt><dd><p>This sets the cursor to the end of frame range.</p>
+</dd>
+<dt>Pause (⏸) <kbd class="kbd docutils literal notranslate">Spacebar</kbd></dt><dd><p>This stops the animation.</p>
+</dd>
+</dl>
+</section>
+<section id="frame-controls">
+<h4>Frame Controls<a class="headerlink" href="#frame-controls" title="Permalink to this headline"></a></h4>
+<dl class="simple">
+<dt>Current Frame <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Wheel</kbd></kbd></dt><dd><p>The current frame of the animation/playback range.
+Also the position of the <em>Playhead</em>.</p>
+</dd>
+<dt>Preview Range (clock icon)</dt><dd><p>This is a temporary frame range used for previewing a smaller part of the full range.
+The preview range only affects the viewport, not the rendered output.
+See <a class="reference internal" href="graph_editor/introduction.html#graph-preview-range"><span class="std std-ref">Preview Range</span></a>.</p>
+</dd>
+<dt>Khung Hình Đầu -- Start Frame</dt><dd><p>The start frame of the animation/playback range.</p>
+</dd>
+<dt>Khung Hình Cuối -- End Frame</dt><dd><p>The end frame of the animation/playback range.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dope_sheet/shape_key.html" class="btn btn-neutral float-left" title="Hình Mẫu -- Shape Key" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="graph_editor/index.html" class="btn btn-neutral float-right" title="Graph Editor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/timeline.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/timeline%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Feditors/timeline.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

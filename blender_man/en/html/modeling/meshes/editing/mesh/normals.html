@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normals &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Shading" href="shading.html" />
+    <link rel="prev" title="Snap to Symmetry" href="snap_symmetry.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Mesh Tools</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="transform/index.html">Transformation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mirror.html">Mirror</a></li>
+<li class="toctree-l5"><a class="reference internal" href="duplicate.html">Duplicate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="extrude.html">Extrude</a></li>
+<li class="toctree-l5"><a class="reference internal" href="merge.html">Merge</a></li>
+<li class="toctree-l5"><a class="reference internal" href="split.html">Split</a></li>
+<li class="toctree-l5"><a class="reference internal" href="separate.html">Separate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="bisect.html">Bisect</a></li>
+<li class="toctree-l5"><a class="reference internal" href="knife_project.html">Knife Project</a></li>
+<li class="toctree-l5"><a class="reference internal" href="convex_hull.html">Convex Hull</a></li>
+<li class="toctree-l5"><a class="reference internal" href="symmetrize.html">Symmetrize</a></li>
+<li class="toctree-l5"><a class="reference internal" href="snap_symmetry.html">Snap to Symmetry</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Normals</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#flip">Flip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#recalculate">Recalculate</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#set-from-faces">Set from Faces</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#rotate">Rotate</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#point-to-target">Point to Target</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#merge">Merge</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#split">Split</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#average">Average</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#copy-vectors">Copy Vectors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#paste-vectors">Paste Vectors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#smooth-vectors">Smooth Vectors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#reset-vectors">Reset Vectors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#select-by-face-strength">Select by Face Strength</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#set-face-strength">Set Face Strength</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="shading.html">Shading</a></li>
+<li class="toctree-l5"><a class="reference internal" href="sort_elements.html">Sort Elements</a></li>
+<li class="toctree-l5"><a class="reference internal" href="cleanup.html">Clean Up</a></li>
+<li class="toctree-l5"><a class="reference internal" href="delete.html">Deleting &amp; Dissolving</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../vertex/index.html">Vertex Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../edge/index.html">Edge Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../face/index.html">Face Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv.html">UV Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../../index.html">Meshes</a> &raquo;</li>
+          <li><a href="../index.html">Editing</a> &raquo;</li>
+          <li><a href="index.html">Mesh Tools</a> &raquo;</li>
+      <li>Normals</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="normals">
+<span id="modeling-meshes-editing-normals-editing"></span><span id="bpy-ops-mesh-normals-tools"></span><h1>Normals<a class="headerlink" href="#normals" title="Permalink to this headline"></a></h1>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="../../../modifiers/modify/normal_edit.html"><span class="doc">Normal Edit Modifier</span></a> can be used to edit normals.</p>
+<p>The <a class="reference internal" href="../../../modifiers/modify/weighted_normal.html"><span class="doc">Weighted Normal Modifier</span></a> can be used to affect normals by various methods,
+including <em>Face Strength</em> (see below).</p>
+<p>You can also copy normals from another mesh using Mesh Data Transfer
+(<a class="reference internal" href="../../../../scene_layout/object/editing/link_transfer/transfer_mesh_data.html"><span class="doc">operator</span></a>
+or <a class="reference internal" href="../../../modifiers/modify/data_transfer.html"><span class="doc">modifier</span></a>).</p>
+</div>
+<section id="flip">
+<span id="bpy-ops-mesh-flip-normals"></span><h2>Flip<a class="headerlink" href="#flip" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Flip</span></p>
+</dd>
+</dl>
+</div>
+<p>This will reverse the normals direction of all selected faces.
+Note that this allows you to precisely control the direction
+(<strong>not</strong> the orientation, which is always perpendicular to the face) of your normals,
+as only the selected faces are flipped.</p>
+</section>
+<section id="recalculate">
+<span id="bpy-ops-mesh-normals-make-consistent"></span><h2>Recalculate<a class="headerlink" href="#recalculate" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Recalculate Outside</span> and
+<span class="menuselection">Mesh ‣ Normals ‣ Recalculate Inside</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">N</kbd></kbd> and <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">N</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>These tools will recalculate the normals of selected faces so that they point outside
+(respectively inside) the volume that the face belongs to.
+The volume does not need to be closed; inside and outside are determined by the angles with adjacent faces.
+This means that the face of interest must be adjacent to at least one non-coplanar other face.
+For example, with a <em>Grid</em> primitive, recalculating normals does not have a meaningful result.</p>
+</section>
+<section id="set-from-faces">
+<span id="bpy-ops-mesh-set-normals-from-faces"></span><h2>Set from Faces<a class="headerlink" href="#set-from-faces" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Set from Faces</span></p>
+</dd>
+</dl>
+</div>
+<p>Set the custom normals at corners to be the same as the face normal that the corner is part of.</p>
+</section>
+<section id="rotate">
+<span id="bpy-ops-transform-rotate-normal"></span><h2>Rotate<a class="headerlink" href="#rotate" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Rotate</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">R</kbd> <kbd class="kbd docutils literal notranslate">N</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>This is an interactive tool. As you move the mouse around, the selected normals are rotated.
+You can also invoke the Rotate Normals tool by pressing the Rotate transform key <kbd class="kbd docutils literal notranslate">R</kbd>,
+followed by <kbd class="kbd docutils literal notranslate">N</kbd>.</p>
+</section>
+<section id="point-to-target">
+<span id="bpy-ops-mesh-point-normals"></span><h2>Point to Target<a class="headerlink" href="#point-to-target" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Point to Target</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">L</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>All selected normals are set to point from their vertex to the target
+after confirmed by <kbd class="kbd docutils literal notranslate">Return</kbd> or <kbd class="kbd docutils literal notranslate">LMB</kbd>.</p>
+<p>A target is set by the keys:</p>
+<ul class="simple">
+<li><p>The mouse cursor <kbd class="kbd docutils literal notranslate">M</kbd></p></li>
+<li><p>The pivot <kbd class="kbd docutils literal notranslate">L</kbd></p></li>
+<li><p>The object origin <kbd class="kbd docutils literal notranslate">O</kbd></p></li>
+<li><p>The cursor (set at this click) <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">LMB</kbd></kbd></p></li>
+<li><p>A mesh item selection (set by this click) <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">RMB</kbd></kbd></p></li>
+</ul>
+<dl>
+<dt>Mode</dt><dd><p>The tool operation can be modified; if one of the following keys has been previously pressed:</p>
+<dl class="simple">
+<dt>Align <kbd class="kbd docutils literal notranslate">A</kbd></dt><dd><p>All normals will point in the same direction: from the center of selected points to the target.</p>
+</dd>
+<dt>Spherize <kbd class="kbd docutils literal notranslate">S</kbd></dt><dd><p>Each normal will be an interpolation between its original value and the direction to the target.</p>
+</dd>
+<dt>Invert <kbd class="kbd docutils literal notranslate">I</kbd></dt><dd><p>The normal directions are reversed from what was specified above.</p>
+</dd>
+</dl>
+</dd>
+<dt>Reset <kbd class="kbd docutils literal notranslate">R</kbd></dt><dd><p>Will reset the custom normals back to what they were when the operation started.</p>
+</dd>
+</dl>
+</section>
+<section id="merge">
+<span id="bpy-ops-mesh-merge-normals"></span><h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Merge</span></p>
+</dd>
+</dl>
+</div>
+<p>Merge all of the normals at selected vertices, making one average normal for all of the faces.</p>
+</section>
+<section id="split">
+<span id="bpy-ops-mesh-split-normals"></span><h2>Split<a class="headerlink" href="#split" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Split</span></p>
+</dd>
+</dl>
+</div>
+<p>Split the normals at all selected vertices so that there are separate normals for each face,
+pointing in the same direction as those faces.</p>
+</section>
+<section id="average">
+<span id="bpy-ops-mesh-average-normals"></span><h2>Average<a class="headerlink" href="#average" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id8">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Average</span></p>
+</dd>
+</dl>
+</div>
+<p>Average all of the normals in each fan of faces between sharp edges at a vertex.</p>
+</section>
+<section id="copy-vectors">
+<h2>Copy Vectors<a class="headerlink" href="#copy-vectors" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id9">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Copy Vectors</span></p>
+</dd>
+</dl>
+</div>
+<p>If a single normal is selected, copy it to an internal vector buffer.</p>
+</section>
+<section id="paste-vectors">
+<h2>Paste Vectors<a class="headerlink" href="#paste-vectors" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id10">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Paste Vectors</span></p>
+</dd>
+</dl>
+</div>
+<p>Replace the selected normals with the one in the internal vector buffer.</p>
+</section>
+<section id="smooth-vectors">
+<span id="bpy-ops-mesh-smooth-normals"></span><h2>Smooth Vectors<a class="headerlink" href="#smooth-vectors" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id11">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Smooth Vectors</span></p>
+</dd>
+</dl>
+</div>
+<p>Adjust the normals to bring them closer to their adjacent vertex normals.</p>
+</section>
+<section id="reset-vectors">
+<h2>Reset Vectors<a class="headerlink" href="#reset-vectors" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id12">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Reset Vectors</span></p>
+</dd>
+</dl>
+</div>
+<p>Put normals back the to default calculation of the normals.</p>
+</section>
+<section id="select-by-face-strength">
+<span id="bpy-ops-mesh-mod-weighted-strength"></span><h2>Select by Face Strength<a class="headerlink" href="#select-by-face-strength" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id13">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Select by Face Strength</span></p>
+</dd>
+</dl>
+</div>
+<p>Another way to affect normals is to set a <em>Face Strength</em> on the faces of the model.
+The Face Strength can be either <em>Weak</em>, <em>Medium</em>, or <em>Strong</em>.
+The idea is that the <a class="reference internal" href="../../../modifiers/modify/weighted_normal.html"><span class="doc">Weighted Normal Modifier</span></a> can
+be set to pay attention to the Face Strength as follows:
+When combining the normals that meet at a vertex, only the faces
+with the strongest Face Strength will contribute to the final value.</p>
+<p>For example, if three faces meet at a vertex and have the face weights weak, medium, and strong,
+then only the normal associated with the strong face will be used to set the final result.</p>
+<p>Use the submenu to pick one of <em>Weak</em>, <em>Medium</em>, or <em>Strong</em>.
+Then this tool selects those faces that have the chosen face strength.</p>
+</section>
+<section id="set-face-strength">
+<h2>Set Face Strength<a class="headerlink" href="#set-face-strength" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id14">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Mesh ‣ Normals ‣ Set Face Strength</span></p>
+</dd>
+</dl>
+</div>
+<p>Use the submenu to pick one of <em>Weak</em>, <em>Medium</em>, or <em>Strong</em>.
+Then this tool changes the Face Strength of currently selected faces to the chosen face strength.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="snap_symmetry.html" class="btn btn-neutral float-left" title="Snap to Symmetry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="shading.html" class="btn btn-neutral float-right" title="Shading" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/mesh/normals.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/editing/mesh/normals%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/editing/mesh/normals.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

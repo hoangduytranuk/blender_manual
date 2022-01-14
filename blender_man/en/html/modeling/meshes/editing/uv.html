@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UV Tools &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Properties" href="../properties/index.html" />
+    <link rel="prev" title="Face Data" href="face/face_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh/index.html">Mesh Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vertex/index.html">Vertex Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge/index.html">Edge Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="face/index.html">Face Tools</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">UV Tools</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#unwrap">Unwrap</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#smart-uv-project">Smart UV Project</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id4">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#lightmap-pack">Lightmap Pack</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id6">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#follow-active-quads">Follow Active Quads</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id8">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#cube-projection">Cube Projection</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id10">Options</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#common">Common</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#cylinder-projection">Cylinder Projection</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id12">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#sphere-projection">Sphere Projection</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id14">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#project-from-view">Project from View</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id16">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#project-from-view-bounds">Project from View (Bounds)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#reset">Reset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Meshes</a> &raquo;</li>
+          <li><a href="index.html">Editing</a> &raquo;</li>
+      <li>UV Tools</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uv-tools">
+<h1>UV Tools<a class="headerlink" href="#uv-tools" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Header ‣ UV</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Blender offers several ways of mapping UVs.
+The simpler projection methods use formulas that map 3D space onto 2D space,
+by interpolating the position of points toward a point/axis/plane through a surface.
+The more advanced methods can be used with more complex models, and have more specific uses.</p>
+<section id="unwrap">
+<span id="bpy-ops-uv-unwrap"></span><h2>Unwrap<a class="headerlink" href="#unwrap" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport and UV Editor</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Unwrap</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Flattens the mesh surface by cutting along <a class="reference internal" href="../uv/unwrapping/seams.html"><span class="doc">seams</span></a>.
+Useful for organic shapes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Unwrap operator is the only UV unwrapping operator that takes into account seams.</p>
+</div>
+<p>Begin by selecting all faces you want to unwrap.
+In the 3D Viewport, select <span class="menuselection">UV ‣ Unwrap</span> or <kbd class="kbd docutils literal notranslate">U</kbd> and select Unwrap.
+You can also do this from the UV Editor with <span class="menuselection">UV ‣ Unwrap</span> or <kbd class="kbd docutils literal notranslate">U</kbd>.
+This method will unwrap all faces and reset previous work.
+The UVs menu will appear in the UV Editor after unwrapping has been performed once.</p>
+<figure class="align-default" id="id19">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_unwrap-example.png"><img alt="../../../_images/modeling_meshes_editing_uv_unwrap-example.png" src="../../../_images/modeling_meshes_editing_uv_unwrap-example.png" style="width: 420px;" /></a>
+<figcaption>
+<p><span class="caption-text">Result of unwrapping Suzanne.</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This tool unwraps the faces of the object to provide
+the “best fit” scenario based on how the faces are connected and will fit within the image,
+and takes into account any seams within the selected faces.
+If possible, each selected face gets its own different area of the image and is not overlapping any other faces UVs.
+If all faces of an object are selected, then each face is mapped to a part of the image.</p>
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h3>
+<p>Blender has two ways of calculating the unwrapping.
+They can be selected in the tool setting in the tool panel in the 3D Viewport.</p>
+<dl class="simple">
+<dt>Angle Based</dt><dd><p>This method gives a good 2D representation of a mesh.</p>
+</dd>
+<dt>Conformal</dt><dd><p>Uses LSCM (Least Squares Conformal Mapping). This usually gives a less accurate UV mapping than Angle Based,
+but works better for simpler objects.</p>
+</dd>
+<dt>Fill Holes</dt><dd><p>Activating Fill Holes will prevent overlapping from occurring and better represent any holes in the UV regions.</p>
+</dd>
+<dt>Correct Aspect</dt><dd><p>Map UVs taking image aspect into account.</p>
+</dd>
+<dt>Use Subdivision Surface Modifier</dt><dd><p>Map UVs taking vertex position after Subdivision Surface Modifier into account.</p>
+</dd>
+<dt>Margin</dt><dd><p>Space between UV islands.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A face’s UV image texture only has to use <em>part</em> of the image, not the <em>whole</em> image.
+Also, portions of the same image can be shared by multiple faces.
+A face can be mapped to less and less of the total image.</p>
+</div>
+</section>
+</section>
+<section id="smart-uv-project">
+<span id="bpy-ops-uv-smart-project"></span><h2>Smart UV Project<a class="headerlink" href="#smart-uv-project" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Smart UV Project</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Smart UV Project, cuts the mesh based on an angle threshold (angular changes in your mesh).
+This gives you fine control over how automatic seams are be created.
+It is good method for simple and complex geometric forms,
+such as mechanical objects or architecture.</p>
+<p>This algorithm examines the shape of your object,
+the faces selected and their relation to one another,
+and creates a UV map based on this information and settings that you supply.</p>
+<p>In the example below,
+the Smart Mapper mapped all of the faces of a cube to a neat arrangement of three sides on top,
+three sides on the bottom, for all six sides of the cube to fit squarely,
+just like the faces of the cube.</p>
+<figure class="align-default" id="id20">
+<a class="reference internal image-reference" href="../../../_images/modeling_meshes_editing_uv_smart-project.png"><img alt="../../../_images/modeling_meshes_editing_uv_smart-project.png" src="../../../_images/modeling_meshes_editing_uv_smart-project.png" style="width: 670px;" /></a>
+<figcaption>
+<p><span class="caption-text">Smart UV project on a cube.</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>For more complex mechanical objects, this tool can quickly and easily create
+a regular and straightforward UV layout for you.</p>
+<section id="id4">
+<h3>Options<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>The <a class="reference internal" href="../../../interface/undo_redo.html#bpy-ops-screen-redo-last"><span class="std std-ref">Adjust Last Operation</span></a> panel allows fine control over how the mesh is unwrapped:</p>
+<dl class="simple">
+<dt>Angle Limit</dt><dd><p>This controls how faces are grouped: a higher limit will lead to many small groups but less distortion,
+while a lower limit will create fewer groups at the expense of more distortion.</p>
+</dd>
+<dt>Island Margin</dt><dd><p>This controls how closely the UV islands are packed together.
+A higher number will add more space between islands.</p>
+</dd>
+<dt>Area Weight</dt><dd><p>Weight projection’s vector by faces with larger areas.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="lightmap-pack">
+<span id="bpy-ops-uv-lightmap-pack"></span><h2>Lightmap Pack<a class="headerlink" href="#lightmap-pack" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Lightmap Pack</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Lightmap Pack takes each of a mesh’s faces, or selected faces,
+and packs them into the UV bounds. Lightmaps are used primarily in realtime rendering,
+where lighting information is baked onto texture maps,
+when it is needed to use as much UV space as possible.
+It can also work on several meshes at once.
+It has several options that appear in the Toolbar:</p>
+<p>You can set the tool to map just <em>Selected Faces</em> or <em>All Faces</em> if
+working with a single mesh.</p>
+<p>The <em>Selected Mesh Object</em> option works on multiple meshes. To use this,
+in <em>Object Mode</em> select several mesh objects,
+then go into <em>Edit Mode</em> and activate the tool.</p>
+<section id="id6">
+<h3>Options<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Share Texture Space</dt><dd><p>This is useful if mapping more than one mesh.
+It attempts to fit all of the objects’ faces in the UV bounds without overlapping.</p>
+</dd>
+<dt>New UV Map</dt><dd><p>If mapping multiple meshes, this option creates a new UV map for each mesh.
+See <a class="reference internal" href="../uv/uv_texture_spaces.html#uv-maps-panel"><span class="std std-ref">UV Maps</span></a>.</p>
+</dd>
+<dt>New Image</dt><dd><p>Assigns new images for every mesh, but only one if <em>Shared Tex Space</em> is enabled.</p>
+<dl class="simple">
+<dt>Image Size</dt><dd><p>Set the size of the new image.</p>
+</dd>
+</dl>
+</dd>
+<dt>Pack Quality</dt><dd><p>Pre-packing before the more complex Box packing.</p>
+</dd>
+<dt>Margin</dt><dd><p>This controls how closely the UV islands are packed together.
+A higher number will add more space between islands.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="follow-active-quads">
+<span id="bpy-ops-uv-follow-active-quads"></span><h2>Follow Active Quads<a class="headerlink" href="#follow-active-quads" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Follow Active Quads</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>The Follow Active Quads tool takes the selected faces and lays them out
+by following continuous face loops, even if the mesh face is irregularly-shaped.
+Note that it does not respect the image size,
+so you may have to scale them all down a bit to fit the image area.</p>
+<section id="id8">
+<h3>Options<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Edge Length Mode</dt><dd><dl class="simple">
+<dt>Even</dt><dd><p>Space all UVs evenly.</p>
+</dd>
+<dt>Length</dt><dd><p>Todo.</p>
+</dd>
+<dt>Length Average</dt><dd><p>Average space UVs edge length of each loop.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that it is the shape of the active quad in UV space that is being followed,
+not its shape in 3D space. To get a clean 90-degree unwrap make sure the active quad is
+a rectangle in UV space before using “Follow active quad”.</p>
+</div>
+</section>
+</section>
+<section id="cube-projection">
+<span id="bpy-ops-uv-cube-project"></span><h2>Cube Projection<a class="headerlink" href="#cube-projection" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id9">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Cube Projection</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Cube Projection maps the mesh onto the faces of a cube, which is then unfolded.
+It projects the mesh onto six separate planes, creating six UV islands.
+In the UV editor, these will appear overlapped, but can be moved.
+See <a class="reference internal" href="../uv/editing.html"><span class="doc">Editing UVs</span></a>.</p>
+<section id="id10">
+<h3>Options<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Cube Size</dt><dd><p>Set the size of the cube to be projected onto.</p>
+</dd>
+</dl>
+<section id="common">
+<h4>Common<a class="headerlink" href="#common" title="Permalink to this headline"></a></h4>
+<p>The following settings are common for the Cube, Cylinder, and Sphere mappings:</p>
+<dl class="simple">
+<dt>Correct Aspect</dt><dd><p>Map UVs will take the images aspect ratio into consideration.
+If an image has already been mapped to the <a class="reference internal" href="../../../glossary/index.html#term-Texture-Space"><span class="xref std std-term">Texture Space</span></a> that is non-square,
+the projection will take this into account and distort the mapping to appear correct.</p>
+</dd>
+<dt>Clip to Bounds</dt><dd><p>Any UVs that lie outside the (0 to 1) range will be clipped to that range
+by being moved to the UV space border it is closest to.</p>
+</dd>
+<dt>Scale to Bounds</dt><dd><p>If the UV map is larger than the (0 to 1) range, the entire map will be scaled to fit inside.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="cylinder-projection">
+<span id="bpy-ops-uv-cylinder-project"></span><h2>Cylinder Projection<a class="headerlink" href="#cylinder-projection" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id11">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Cylinder Projection</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Normally, to unwrap a cylinder (tube) as if you slit it lengthwise and folded it flat,
+Blender wants the view to be vertical, with the tube standing “up”.
+Different views will project the tube onto the UV map differently, skewing the image if used.
+However, you can set the axis on which the calculation is done manually.</p>
+<section id="id12">
+<h3>Options<a class="headerlink" href="#id12" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Direction</dt><dd><dl class="simple">
+<dt>View on Poles</dt><dd><p>Use when viewing from the top (at a pole) by using an axis that is straight down from the view.</p>
+</dd>
+<dt>View on Equator</dt><dd><p>Use if view is looking at the equator, by using a vertical axis.</p>
+</dd>
+<dt>Align to Object</dt><dd><p>Uses the object’s transform to calculate the axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Align</dt><dd><p>Select which axis is up.</p>
+<dl class="simple">
+<dt>Polar ZX</dt><dd><p>Polar 0 is on the X axis.</p>
+</dd>
+<dt>Polar ZY</dt><dd><p>Polar 0 is on the Y axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Radius</dt><dd><p>The radius of the cylinder to use.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="sphere-projection">
+<span id="bpy-ops-uv-sphere-project"></span><h2>Sphere Projection<a class="headerlink" href="#sphere-projection" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id13">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Sphere Projection</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Spherical mappings is similar to cylinder but the difference is that
+a cylindrical mapping projects the UVs on a plane toward the cylinder shape,
+while a spherical map takes into account the sphere’s curvature,
+and each latitude line becomes evenly spaced.
+<em>Sphere Projection</em> is useful for spherical shapes, like eyes, planets, etc.</p>
+<p>Recall the opening cartographer’s approaching to mapping the world? Well,
+you can achieve the same here when unwrapping a sphere from different points of view.
+Normally, to unwrap a sphere, view the sphere with the poles at the top and bottom.
+After unwrapping, Blender will give you an equirectangular projection;
+the point at the equator facing you will be in the middle of the image.
+A polar view will give a very different but common projection map.
+Using an equirectangular projection map of the earth as the UV image
+will give a good planet mapping onto the sphere.</p>
+<figure class="align-default" id="id21">
+<img alt="../../../_images/modeling_meshes_editing_uv_sphere-projection.png" src="../../../_images/modeling_meshes_editing_uv_sphere-projection.png" />
+<figcaption>
+<p><span class="caption-text">Using an equirectangular image with a Sphere Projection.</span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id14">
+<h3>Options<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Direction</dt><dd><dl class="simple">
+<dt>View on Poles</dt><dd><p>Use when viewing from the top (at a pole) by using an axis that is straight down from the view.</p>
+</dd>
+<dt>View on Equator</dt><dd><p>Use if view is looking at the equator, by using a vertical axis.</p>
+</dd>
+<dt>Align to Object</dt><dd><p>Uses the object’s transform to calculate the axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Align</dt><dd><p>Select which axis is up.</p>
+<dl class="simple">
+<dt>Polar ZX</dt><dd><p>Polar 0 is on the X axis.</p>
+</dd>
+<dt>Polar ZY</dt><dd><p>Polar 0 is on the Y axis.</p>
+</dd>
+</dl>
+</dd>
+<dt>Radius</dt><dd><p>The radius of the sphere to use.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="project-from-view">
+<span id="bpy-ops-uv-project-from-view"></span><h2>Project from View<a class="headerlink" href="#project-from-view" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id15">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Project from View</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Project from View takes the current view in the 3D Viewport and flattens the mesh as it appears.
+Use this option if you are using a picture of a real object as a UV Texture for an object that
+you have modeled. You will get stretching in areas where the model recedes away from you.</p>
+<section id="id16">
+<h3>Options<a class="headerlink" href="#id16" title="Permalink to this headline"></a></h3>
+<p>See also <a class="reference internal" href="#common">Common</a> options.</p>
+<dl class="simple">
+<dt>Orthographic</dt><dd><p>Apply an orthographic projection.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="project-from-view-bounds">
+<h2>Project from View (Bounds)<a class="headerlink" href="#project-from-view-bounds" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id17">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Project from View (Bounds)</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Similar to <a class="reference internal" href="#project-from-view">Project from View</a>,
+but with <em>Scale to Bounds</em> and <em>Correct Aspect</em> activated.</p>
+</section>
+<section id="reset">
+<span id="bpy-ops-uv-reset"></span><h2>Reset<a class="headerlink" href="#reset" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id18">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Editor</dt>
+<dd class="field-odd"><p>3D Viewport and UV Editor</p>
+</dd>
+<dt class="field-even">Mode</dt>
+<dd class="field-even"><p>Edit Mode</p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">UV ‣ Reset</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd docutils literal notranslate">U</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Reset UVs maps each face to fill the UV grid, giving each face the same mapping.</p>
+<p>If you want to use an image that is tileable,
+the surface will be covered in a smooth repetition of that image,
+with the image skewed to fit the shape of each individual face.
+Use this unwrapping option to reset the map and undo any unwrapping (go back to the start).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="face/face_data.html" class="btn btn-neutral float-left" title="Face Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../properties/index.html" class="btn btn-neutral float-right" title="Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/editing/uv.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/editing/uv%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/editing/uv.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Active Element &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/3dview/controls/pivot_point/active_element.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/translations.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../../copyright.html" />
+    <link rel="next" title="Snapping" href="../snapping.html" />
+    <link rel="prev" title="Median Point" href="median_point.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Editors</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Cổng Nhìn 3D</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../startup_scene.html">Startup Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../modes.html">Object Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../navigate/index.html">Navigating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../3d_cursor.html">3D Cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Điều Khiển -- Controls</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../orientation.html">Transform Orientations</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Pivot Point</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="index.html#pivot-types">Pivot Types</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="bounding_box_center.html">Bounding Box Center</a></li>
+<li class="toctree-l6"><a class="reference internal" href="3d_cursor.html">3D Cursor</a></li>
+<li class="toctree-l6"><a class="reference internal" href="individual_origins.html">Individual Origins</a></li>
+<li class="toctree-l6"><a class="reference internal" href="median_point.html">Median Point</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Active Element</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#in-object-mode">In Object Mode</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#in-edit-mode">In Edit Mode</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#single-selection">Single Selection</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#multiple-selection">Multiple Selection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../snapping.html">Snapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../proportional_editing.html">Proportional Editing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../display/index.html">Hiển Thị -- Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../toolbar/index.html">Thanh Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sidebar.html">Sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../viewport_render.html">Viewport Render</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../video_sequencer/index.html">Trình Phối Hình</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../properties_editor.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../preferences/index.html">Cấu Hình -- Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../../index.html">Cổng Nhìn 3D</a> &raquo;</li>
+          <li><a href="../index.html">Điều Khiển -- Controls</a> &raquo;</li>
+          <li><a href="index.html">Pivot Point</a> &raquo;</li>
+      <li>Active Element</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="active-element">
+<h1>Active Element<a class="headerlink" href="#active-element" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode</p>
+</dd>
+<dt class="field-even">Tiêu Đề -- Header</dt>
+<dd class="field-even"><p><img alt="pivot-icon" src="../../../../_images/editors_3dview_controls_pivot-point_menu.png" /> <span class="menuselection">Pivot Point ‣ Active Element</span></p>
+</dd>
+<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Period</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>The <em>active element</em> can be an object, vertex, edge or a face.
+The active element is the last one to be selected and
+will be shown in a lighter orange color when in <em>Object Mode</em> and white when in <em>Edit Mode</em>.
+With <em>Active Element</em> as <em>Pivot</em> set to active, all transformations will occur relative to the active element.</p>
+<figure class="align-center" id="id2">
+<img alt="../../../../_images/editors_3dview_controls_pivot-point_active-element_object-mode-display.png" src="../../../../_images/editors_3dview_controls_pivot-point_active-element_object-mode-display.png" />
+<figcaption>
+<p><span class="caption-text">Display of active elements in Object Mode where the active element (cube) is a lighter orange.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="../../../../_images/editors_3dview_controls_pivot-point_active-element_edit-mode-display.png" src="../../../../_images/editors_3dview_controls_pivot-point_active-element_edit-mode-display.png" />
+<figcaption>
+<p><span class="caption-text">Active elements for vertices, edges and faces in Edit Mode are displayed in white.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="in-object-mode">
+<h2>In Object Mode<a class="headerlink" href="#in-object-mode" title="Permalink to this headline"></a></h2>
+<p>When in <em>Object Mode</em>,
+rotation and scaling happen around the origin of the active object.
+This is shown by the figure to the below where the active object (the cube)
+remains in the same location (note its position relative to the background grid)
+while the other objects rotate and scale in relation to the active element.</p>
+<figure class="align-center" id="id4">
+<img alt="../../../../_images/editors_3dview_controls_pivot-point_active-element_object-mode-rotation.png" src="../../../../_images/editors_3dview_controls_pivot-point_active-element_object-mode-rotation.png" />
+<figcaption>
+<p><span class="caption-text">Rotation and scaling with the cube as the active element.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="in-edit-mode">
+<h2>In Edit Mode<a class="headerlink" href="#in-edit-mode" title="Permalink to this headline"></a></h2>
+<p>Using the active element as a pivot point in <em>Edit Mode</em> may seem complex but all
+the possible transformations follow a few rules:</p>
+<ul class="simple">
+<li><p>The pivot point is always at the median of the active element.</p></li>
+<li><p>The transformations occur by transformation of the <em>vertices</em> of the selected element(s).
+If an unselected element shares one or more vertices with a selected element
+then the unselected one will get some degree of transformation also.</p></li>
+</ul>
+<p>Let us examine the following examples: in each case we will see that the two rules apply.</p>
+<section id="single-selection">
+<h3>Single Selection<a class="headerlink" href="#single-selection" title="Permalink to this headline"></a></h3>
+<p>When one single element is selected it becomes automatically active. In the image below,
+you can see that when it is transformed its vertices move, with the consequence that
+any adjacent element which shares one or more vertices with the active element is also transformed.</p>
+<figure class="align-center" id="id5">
+<img alt="../../../../_images/editors_3dview_controls_pivot-point_active-element_edit-mode-single.png" src="../../../../_images/editors_3dview_controls_pivot-point_active-element_edit-mode-single.png" />
+<figcaption>
+<p><span class="caption-text">Edit Mode and only one element selected.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Let us review each case:</p>
+<ul class="simple">
+<li><p><em>Faces</em> have their pivot point where the median of their vertices is.</p></li>
+<li><p><em>Edges</em> have their pivot point on their middle since this is always where the median of an edge is.</p></li>
+<li><p>A single <em>vertex</em> has no dimensions at all so it cannot show any transformation
+(except translation, which is not affected by the pivot point).</p></li>
+</ul>
+</section>
+<section id="multiple-selection">
+<h3>Multiple Selection<a class="headerlink" href="#multiple-selection" title="Permalink to this headline"></a></h3>
+<p>When multiple elements are selected they all transform.
+The pivot points stay in the same place as what we have described above.
+In the image below, the selected elements have been rotated.</p>
+<figure class="align-center" id="id6">
+<img alt="../../../../_images/editors_3dview_controls_pivot-point_active-element_edit-mode-multiple.png" src="../../../../_images/editors_3dview_controls_pivot-point_active-element_edit-mode-multiple.png" />
+<figcaption>
+<p><span class="caption-text">Edit Mode and multiple selections.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>For <em>faces</em> the transformation occurs around the median of the vertices of the selected face.</p></li>
+<li><p><em>Edges</em> also keep the same behavior with their pivot point at their median.</p></li>
+<li><p>There is a case for <em>vertices</em> this time: the active vertex is where the pivot point resides.
+All other vertices are transformed relative to it.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="median_point.html" class="btn btn-neutral float-left" title="Median Point" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../snapping.html" class="btn btn-neutral float-right" title="Snapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/3dview/controls/pivot_point/active_element.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/3dview/controls/pivot_point/active_element%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Feditors/3dview/controls/pivot_point/active_element.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

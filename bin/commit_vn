@@ -1,10 +1,41 @@
 #!/bin/bash -x
-$HOME/bin/updatePO.sh $BLENDER_HOME
-$HOME/bin/convpo
-$HOME/bin/convman $BLENDER_HOME/blender_docs
-$HOME/bin/copyhtmlimages
-$HOME/bin/ziphtml
-$HOME/bin/localgitcommit "$1"
-$HOME/bin/backup_trans
-$HOME/bin/localgitpush
+# $HOME/bin/updatePO.sh $BLENDER_HOME
+# $HOME/bin/convpo
+# $HOME/bin/convman $BLENDER_HOME/blender_docs
+# $HOME/bin/copyhtmlimages
+# $HOME/bin/ziphtml
+# $HOME/bin/localgitcommit "$1"
+# $HOME/bin/backup_trans
+# $HOME/bin/localgitpush
+function check_update() {
+    svn update .
+}
+function get_date_time() {
+  DATE_TXT=`date +%d/%m/%Y`
+  TIME_TXT=`date +%H:%M`
+  TIME_MSG="today $DATE_TXT, time: $TIME_TXT"
+}
 
+function get_list_of_files(){
+    cd "$BLENDER_MAN_VI"
+    check_update
+    svn status -q | awk '{ print $2 }' > $tmp_file
+    file_list=$(get_file_list_as_string.py -f $tmp_file)
+    export FILE_LIST="$file_list"
+}
+
+function create_commit_msg(){
+    get_list_of_files
+    if [[ -n $FILE_LIST ]]; then
+        get_date_time
+        COMMIT_MSG="Add changes to $FILE_LIST;"
+        COMMIT_MSG="$COMMIT_MSG $TIME_MSG"
+        echo "commit message: $COMMIT_MSG"
+    else
+        COMMIT_MSG=""
+    fi
+}
+
+tmp_file="$HOME/svntmp.log"
+create_commit_msg
+svn commit --username hoangduytran -m "$COMMIT_MSG"

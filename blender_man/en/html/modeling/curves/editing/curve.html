@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curve &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/curves/editing/curve.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Control Points" href="control_points.html" />
+    <link rel="prev" title="Transform Panel" href="transform_panel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Curves</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Selecting</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Editing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="transform_panel.html">Transform Panel</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Curve</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#transform">Transform</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#radius">Radius</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#mirror">Mirror</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#snap">Snap</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#spin">Spin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#add-duplicate">Add Duplicate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#split">Split</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#separate">Separate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#toggle-cyclic">Toggle Cyclic</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#set-spline-type">Set Spline Type</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#show-hide">Show/Hide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cleanup">Cleanup</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#decimate-curve">Decimate Curve</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#delete">Delete</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="control_points.html">Control Points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="segments.html">Segments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="other.html">Other</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../properties/index.html">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../curve_display.html">Curve Display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Curves</a> &raquo;</li>
+          <li><a href="index.html">Editing</a> &raquo;</li>
+      <li>Curve</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="curve">
+<h1>Curve<a class="headerlink" href="#curve" title="Permalink to this headline"></a></h1>
+<p>This page covers the basics of curve editing.</p>
+<section id="transform">
+<h2>Transform<a class="headerlink" href="#transform" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Transform</span></p>
+</dd>
+</dl>
+</div>
+<p>A Bézier curve can be edited by transforming the locations of both control points and handles.
+NURBS curve on the other hand have only control points.</p>
+<dl class="simple">
+<dt>Move, Rotate, Scale</dt><dd><p>Like other elements in Blender, curve control points and handles can be
+moved, rotated, or scaled as described in
+<a class="reference internal" href="../../../scene_layout/object/editing/transform/introduction.html"><span class="doc">Basic Transformations</span></a>.</p>
+</dd>
+<dt>To Sphere, Shear, Warp, Bend, Push/Pull, Warp, Randomize</dt><dd><p>The transform tools are described in
+the <a class="reference internal" href="../../meshes/editing/mesh/transform/index.html"><span class="doc">Transformations</span></a> sections.</p>
+</dd>
+<dt>Move/Scale Texture Space</dt><dd><p>Like other objects, curves have textures spaces which can be
+<a class="reference internal" href="../../meshes/uv/uv_texture_spaces.html#properties-texture-space-editing"><span class="std std-ref">edited</span></a>.</p>
+</dd>
+</dl>
+<section id="radius">
+<span id="modeling-curve-radius"></span><h3>Radius<a class="headerlink" href="#radius" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Tool</dt>
+<dd class="field-even"><p><span class="menuselection">Toolbar ‣ Radius</span></p>
+</dd>
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Curve ‣ Transform ‣ Radius</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">S</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>The Radius allows you to directly control the width of the extrusion along the “spinal” curve.
+The radius will be interpolated from point to point (you can check it with the normals).
+The <em>Radius</em> of the points is set using the <em>Radius</em> transform tool. Or in the Sidebar <em>Transform</em> panel.</p>
+<figure class="align-center" id="id14">
+<a class="reference internal image-reference" href="../../../_images/modeling_curves_editing_curve_extrude-radius.png"><img alt="../../../_images/modeling_curves_editing_curve_extrude-radius.png" src="../../../_images/modeling_curves_editing_curve_extrude-radius.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">One control point radius set to zero.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="mirror">
+<h2>Mirror<a class="headerlink" href="#mirror" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id3">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Mirror</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">M</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Mirror</em> tool is also available, behaving exactly as with
+<a class="reference internal" href="../../meshes/editing/mesh/mirror.html"><span class="doc">mesh vertices</span></a>.</p>
+</section>
+<section id="snap">
+<h2>Snap<a class="headerlink" href="#snap" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id4">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Snap</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">S</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p><a class="reference internal" href="../../../editors/3dview/controls/snapping.html"><span class="doc">Mesh snapping</span></a>
+also works with curve components.
+Both control points and their handles will be affected by snapping,
+except for within itself (other components of the active curve).
+Snapping works with 2D curves but points will be constrained to the local XY axes.</p>
+</section>
+<section id="spin">
+<h2>Spin<a class="headerlink" href="#spin" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id5">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Spin</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Spin</em> operator only works for one dimensional <a class="reference internal" href="../../surfaces/index.html"><span class="doc">surface</span></a> objects.
+Its use for curves is currently not possible,
+the full feature is documented in <a class="reference internal" href="../../surfaces/editing/surface.html#bpy-ops-curve-spin"><span class="std std-ref">Surface editing</span></a>.</p>
+</section>
+<section id="add-duplicate">
+<span id="bpy-ops-curve-duplicate-move"></span><h2>Add Duplicate<a class="headerlink" href="#add-duplicate" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id6">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Add Duplicate</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">D</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>This tool duplicates the selected control points,
+along with the curve segments implicitly selected (if any).
+If only a handle is selected, the full point will be duplicated too.
+The copy is selected and placed in select mode, so you can move it to another place.</p>
+</section>
+<section id="split">
+<span id="bpy-ops-curve-split"></span><h2>Split<a class="headerlink" href="#split" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id7">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Split</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Y</kbd></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Split</em> operator splits a selected segment of a curve from the rest of the curve.
+This curve can then be moved or altered without affecting the other curve.
+If a single control point is selected the <em>Split</em> operator will create a new singular loose control point;
+leaving the previously selected control point attached to the rest of the curve.</p>
+</section>
+<section id="separate">
+<span id="bpy-ops-curve-separate"></span><h2>Separate<a class="headerlink" href="#separate" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id8">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Separate</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">P</kbd></p>
+</dd>
+</dl>
+</div>
+<p>Curve objects that are made of multiple distinct curves can be separated into their own
+objects by selecting the desired segments and pressing <kbd class="kbd docutils literal notranslate">P</kbd>.
+Note, if there is only one curve in a Curve object,
+<em>Separate</em> will create a new Curve object with no control points.</p>
+</section>
+<section id="toggle-cyclic">
+<span id="modeling-curves-toggle-cyclic"></span><span id="bpy-ops-curve-cyclic-toggle"></span><h2>Toggle Cyclic<a class="headerlink" href="#toggle-cyclic" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id9">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Toggle Cyclic</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>This toggles between an open curve and closed curve (Cyclic).
+Only curves with at least one selected control point will be closed/open.
+The shape of the closing segment is based on the start and end handles for Bézier curves,
+and as usual on adjacent control points for NURBS.
+The only time a handle is adjusted after closing is if the handle is an <em>Auto</em> one.
+Fig. <a class="reference internal" href="#fig-curves-editing-open-close"><span class="std std-ref">Open and Closed curves.</span></a> is the same Bézier curve open and closed.</p>
+<p>This action only works on the original starting control point or the last control point added.
+Deleting a segment(s) does not change how the action applies;
+it still operates only on the starting and last control points. This means that
+<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd> may actually join two curves instead of closing a single curve!
+Remember that when a 2D curve is closed, it creates a renderable flat face.</p>
+<figure class="align-default" id="id15">
+<span id="fig-curves-editing-open-close"></span><img alt="../../../_images/modeling_curves_editing_curve_open-closed-cyclic.png" src="../../../_images/modeling_curves_editing_curve_open-closed-cyclic.png" />
+<figcaption>
+<p><span class="caption-text">Open and Closed curves.</span><a class="headerlink" href="#id15" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="set-spline-type">
+<span id="curve-convert-type"></span><span id="bpy-ops-curve-spline-type-set"></span><h2>Set Spline Type<a class="headerlink" href="#set-spline-type" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id10">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Set Spline Type</span></p>
+</dd>
+</dl>
+</div>
+<p><em>Set Spline Type</em> converts splines in a curve object between Bézier, NURBS, and Poly curves.
+Note, this is not a “smart” conversion, i.e. Blender does not try to keep the same shape,
+nor the same number of control points. For example, when converting a NURBS to a Bézier,
+each group of three NURBS control points become a unique Bézier one (center point and two handles).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../../scene_layout/object/editing/convert.html#object-convert-to"><span class="std std-ref">Convert</span></a>/from Mesh.</p>
+</div>
+</section>
+<section id="show-hide">
+<span id="curves-show-hide"></span><span id="bpy-ops-curve-hide"></span><span id="bpy-ops-curve-reveal"></span><h2>Show/Hide<a class="headerlink" href="#show-hide" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id11">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Show/Hide</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">H</kbd></kbd>, <kbd class="kbd docutils literal notranslate">H</kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">H</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>When in <em>Edit Mode</em>, you can hide and reveal elements from the display.
+You can only show or hide control points, as segments are always shown,
+unless all control points of the connected curve are hidden,
+in which case the curve is fully hidden.</p>
+<p>See <a class="reference internal" href="../../../scene_layout/object/editing/show_hide.html#object-show-hide"><span class="std std-ref">Show/Hide</span></a> in <em>Object Mode</em>.
+See also the <a class="reference internal" href="../curve_display.html"><span class="doc">Curve Display</span></a> panel.</p>
+</section>
+<section id="cleanup">
+<h2>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this headline"></a></h2>
+<section id="decimate-curve">
+<span id="bpy-ops-curve-decimate"></span><h3>Decimate Curve<a class="headerlink" href="#decimate-curve" title="Permalink to this headline"></a></h3>
+<div class="refbox admonition" id="id12">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Clean Up ‣ Decimate Curve</span></p>
+</dd>
+</dl>
+</div>
+<p>The <em>Decimate Curve</em> operator reduces the number of control points
+while trying to maintain the curves original shape.
+This operator works similar to its <a class="reference internal" href="../../meshes/editing/mesh/cleanup.html#bpy-ops-mesh-decimate"><span class="std std-ref">mesh counterpart</span></a>.</p>
+<dl class="simple">
+<dt>Ratio</dt><dd><p>The percentage of control points to remove.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tool can only decimate Bézier curves.</p>
+</div>
+</section>
+</section>
+<section id="delete">
+<span id="bpy-ops-curve-dissolve-verts"></span><span id="bpy-ops-curve-delete"></span><h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id13">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit Mode</p>
+</dd>
+<dt class="field-even">Menu</dt>
+<dd class="field-even"><p><span class="menuselection">Curve ‣ Delete…</span></p>
+</dd>
+<dt class="field-odd">Shortcut</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">X</kbd>, <kbd class="kbd docutils literal notranslate">Delete</kbd>; <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Options for the <em>Delete</em> pop-up menu:</p>
+<dl class="simple">
+<dt>Vertices</dt><dd><p>This will delete the selected control points, <em>without</em> breaking the curve
+(i.e. the adjacent points will be directly linked, joined, once the intermediary ones are deleted).
+Remember that NURBS order cannot be higher than its number of control points,
+so it might decrease when you delete some control point.
+Of course, when only one point remains, there is no more visible curve,
+and when all points are deleted, the curve itself is deleted.</p>
+</dd>
+<dt>Segment</dt><dd><p>Deletes the segment that connects the selected control points and disconnecting them.</p>
+</dd>
+<dt>Dissolve Vertices <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd></dt><dd><p>Deletes the selected control points, while the remaining segment is fitted to the deleted curve
+by adjusting its handles.</p>
+</dd>
+</dl>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id16">
+<img alt="../../../_images/modeling_curves_editing_curve_make-segment.png" src="../../../_images/modeling_curves_editing_curve_make-segment.png" />
+<figcaption>
+<p><span class="caption-text">Before deleting.</span><a class="headerlink" href="#id16" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id17">
+<img alt="../../../_images/modeling_curves_editing_curve_delete-vertices.png" src="../../../_images/modeling_curves_editing_curve_delete-vertices.png" />
+<figcaption>
+<p><span class="caption-text">Deleting vertices.</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+<tr class="row-even"><td><figure class="align-default" id="id18">
+<img alt="../../../_images/modeling_curves_editing_curve_delete-segment.png" src="../../../_images/modeling_curves_editing_curve_delete-segment.png" />
+<figcaption>
+<p><span class="caption-text">Deleting segment.</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id19">
+<img alt="../../../_images/modeling_curves_editing_curve_dissolve-vertices.png" src="../../../_images/modeling_curves_editing_curve_dissolve-vertices.png" />
+<figcaption>
+<p><span class="caption-text">Dissolve vertices.</span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transform_panel.html" class="btn btn-neutral float-left" title="Transform Panel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="control_points.html" class="btn btn-neutral float-right" title="Control Points" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/curves/editing/curve.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/curves/editing/curve%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/curves/editing/curve.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

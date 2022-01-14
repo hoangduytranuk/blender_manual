@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Browser &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/file_browser.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/version_switch.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Asset Browser" href="asset_browser.html" />
+    <link rel="prev" title="Properties" href="properties_editor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3dview/index.html">3D Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_sequencer/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeline.html">Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graph_editor/index.html">Graph Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="properties_editor.html">Properties</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">File Browser</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interface">Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-region">Main Region</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#previews">Previews</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#file-path-region">File Path Region</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#display-settings">Display Settings</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#filter-settings">Filter Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-region">Execution Region</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-list-region">Source List Region</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#volumes">Volumes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#system">System</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bookmarks">Bookmarks</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#recent">Recent</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#operator-options-region">Operator Options Region</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#header-region">Header Region</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#navigating">Navigating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-drop">File Drop</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#selecting">Selecting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arrow-keys">Arrow Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#editing">Editing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preferences/index.html">Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Editors</a> &raquo;</li>
+      <li>File Browser</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-browser">
+<span id="bpy-types-spacefilebrowser"></span><span id="bpy-types-fileselectparams"></span><span id="bpy-ops-file"></span><h1>File Browser<a class="headerlink" href="#file-browser" title="Permalink to this headline"></a></h1>
+<p>The File Browser is used in all the file-related operations. These include:</p>
+<ul class="simple">
+<li><p>Opening and saving blend-files.</p></li>
+<li><p>Browsing inside other blend-files, when appending or linking data-blocks,
+see <a class="reference internal" href="../files/linked_libraries/index.html"><span class="doc">Linked Libraries</span></a>.</p></li>
+<li><p>Importing from/exporting to other file formats.</p></li>
+<li><p>Picking new locations for existing file paths (images, videos, fonts…).</p></li>
+</ul>
+<p>The most common way to use this editor is through modal operators (like opening or saving a blend-file).
+The File Browser will appear in a new window, waiting for the operation to complete,
+and then close returning the main window.</p>
+<p>You can use the File Browser as any other editor type, to browse through the file system.
+The main purpose of this is to be able to drag-and-drop from the File Browser into other editors.</p>
+<ul class="simple">
+<li><p>Images into the <a class="reference internal" href="3dview/index.html#editors-3dview-index"><span class="std std-ref">3D Viewport</span></a> (to set as background or apply as material texture).</p></li>
+<li><p>Media files into the <a class="reference internal" href="../video_editing/index.html#editors-sequencer-index"><span class="std std-ref">Video Editing</span></a>.</p></li>
+</ul>
+<figure class="align-default" id="id1">
+<img alt="../_images/editors_file-browser_editor.png" src="../_images/editors_file-browser_editor.png" />
+<figcaption>
+<p><span class="caption-text">The File Browser.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline"></a></h2>
+<section id="main-region">
+<h3>Main Region<a class="headerlink" href="#main-region" title="Permalink to this headline"></a></h3>
+<p>The main region of the File Browser acts similar to the file browser built into you operating system.
+The region contains an array of files, folders, or internal blend-file data in a grid or list of items.
+You can <a class="reference external" href="Navigating">navigate</a>, <a class="reference external" href="Selecting">select</a>,
+and <a class="reference external" href="Editing">edit</a> these items just as you would in your operating system’s file browser.</p>
+<section id="previews">
+<span id="file-browser-previews"></span><h4>Previews<a class="headerlink" href="#previews" title="Permalink to this headline"></a></h4>
+<p>In its <em>Thumbnail</em> display mode, the File Browser supports many types of previews. These include:</p>
+<ul class="simple">
+<li><p>Image and video formats</p></li>
+<li><p>Fonts</p></li>
+<li><p>Blend-files</p></li>
+<li><p>Internal <a class="reference internal" href="../files/data_blocks.html"><span class="doc">Data-blocks</span></a></p></li>
+</ul>
+<p>In order to get previews for data-block, there previews must be generated.
+See <a class="reference internal" href="../files/blend/previews.html"><span class="doc">Blend-files Previews</span></a> for how to generate and manage Blender data previews.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/editors_file-browser_previews.png"><img alt="../_images/editors_file-browser_previews.png" src="../_images/editors_file-browser_previews.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">The File Browser in <em>Thumbnail</em> mode.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="file-path-region">
+<h3>File Path Region<a class="headerlink" href="#file-path-region" title="Permalink to this headline"></a></h3>
+<p>The File Path is above the main region and can aid in navigating and adjust how items are displayed.</p>
+<dl class="simple" id="bpy-ops-file-previous">
+<dt>Previous Folder <kbd class="kbd docutils literal notranslate">Backspace</kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Left</kbd></kbd></dt><dd><p>Move to previous folder (in navigation history).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-file-next">
+<dt>Next Folder <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Right</kbd></kbd></dt><dd><p>Move to next folder (in navigation history).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-file-parent">
+<dt>Parent File <kbd class="kbd docutils literal notranslate">P</kbd>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Up</kbd></kbd></dt><dd><p>Move up to parent directory.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-file-refresh">
+<dt>Refresh File List <kbd class="kbd docutils literal notranslate">R</kbd>, <kbd class="kbd docutils literal notranslate">NumpadPeriod</kbd></dt><dd><p>Refresh current folder.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-file-directory-new">
+<dt>Create Directory <kbd class="kbd docutils literal notranslate">I</kbd></dt><dd><p>Will ask you to confirm and create a new directory inside current one,
+scroll to it in the main view, and let you enter its name.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fileselectparams-directory">
+<dt>File Path</dt><dd><p>Text field for the current folder path.
+<kbd class="kbd docutils literal notranslate">Tab</kbd> will auto-complete an existing path.
+If you type a nonexistent directory path, you will be prompted to create that new directory.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fileselectparams-filter-search">
+<dt>Search <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">F</kbd></kbd></dt><dd><p>Filter items by name.
+The wildcard <code class="docutils literal notranslate"><span class="pre">*</span></code> will match anything, e.g. <code class="docutils literal notranslate"><span class="pre">bl*er</span></code> will match both <code class="docutils literal notranslate"><span class="pre">blender</span></code> and <code class="docutils literal notranslate"><span class="pre">blogger</span></code>.
+There is always an implicit wildcard at start and end of the search text,
+so <code class="docutils literal notranslate"><span class="pre">blender</span></code> will also match <code class="docutils literal notranslate"><span class="pre">test_blender_file.blend</span></code>.
+This field can also be used to filter some specific file extension (e.g. <code class="docutils literal notranslate"><span class="pre">.png</span></code> will list all PNG files).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fileselectparams-display-type">
+<dt>Display Mode</dt><dd><p>Controls how files are displayed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Vertical List</dt>
+<dd class="field-odd"><p>Displays files and folders in a vertical list.</p>
+</dd>
+<dt class="field-even">Horizontal List</dt>
+<dd class="field-even"><p>Displays files and folders in a horizontal list.</p>
+</dd>
+<dt class="field-odd">Thumbnails</dt>
+<dd class="field-odd"><p>Shows <a class="reference internal" href="#file-browser-previews"><span class="std std-ref">previews</span></a>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<section id="display-settings">
+<h4>Display Settings<a class="headerlink" href="#display-settings" title="Permalink to this headline"></a></h4>
+<dl class="simple" id="bpy-types-fileselectparams-display-size">
+<dt>Display Size</dt><dd><p>The size of the thumbnails, or the width of the columns.</p>
+</dd>
+</dl>
+<dl id="bpy-types-fileselectparams-recursion-level">
+<dt>Recursion</dt><dd><p>The number of directory levels to show at once in a flat way.</p>
+<dl class="field-list simple">
+<dt class="field-odd">None</dt>
+<dd class="field-odd"><p>List only the current directory content.</p>
+</dd>
+<dt class="field-even">Blend File</dt>
+<dd class="field-even"><p>List the whole content of a blend-file (only available when linking or appending data-blocks).</p>
+</dd>
+<dt class="field-odd">One Levels</dt>
+<dd class="field-odd"><p>List all subdirectories’ content, one level of recursion.</p>
+</dd>
+<dt class="field-even">Two Levels</dt>
+<dd class="field-even"><p>List all subdirectories’ content, two level of recursion.</p>
+</dd>
+<dt class="field-odd">Three Levels</dt>
+<dd class="field-odd"><p>List all subdirectories’ content, three levels of recursion.</p>
+</dd>
+</dl>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Showing several levels of directories at once can be handy to e.g. see your whole collection of textures,
+even if you have arranged them in a nice set of directories to avoid having hundreds of
+files in a single place.</p>
+<p>In the <em>Append/Link</em> case, showing the content of the whole blend-file will allow you
+to link different types of data-blocks in a single operation.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The more levels you show at once, the more time it will take to list them all
+(typically, it will be exponential, showing three levels at once
+may take three orders of magnitude more time to be fully listed).</p>
+</div>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fileselectparams-sort-method">
+<dt>Sort By</dt><dd><p>Sorts items by one of the four methods:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Name</dt>
+<dd class="field-odd"><p>Sort the file list alphabetically.</p>
+</dd>
+<dt class="field-even">Extension</dt>
+<dd class="field-even"><p>Sort the file list by extension/type.</p>
+</dd>
+<dt class="field-odd">Modified Date</dt>
+<dd class="field-odd"><p>Sort files by modification time.</p>
+</dd>
+<dt class="field-even">Size</dt>
+<dd class="field-even"><p>Sort files by size.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="filter-settings">
+<span id="bpy-types-fileselectparams-use-filter"></span><h4>Filter Settings<a class="headerlink" href="#filter-settings" title="Permalink to this headline"></a></h4>
+<p>On the right side of the file path are the filtering options.
+The toggle with the funnel icon controls whether filtering is enabled or not.</p>
+<dl class="simple">
+<dt>File Types</dt><dd><p>Filters files by categories, like folders, blend-files, images, etc.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fileselectidfilter">
+<dt>Blender IDs</dt><dd><p>When appending or linking, you can also filter by data-block categories, like scenes, animations, materials, etc.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fileselectparams-show-hidden">
+<dt>Show Hidden <kbd class="kbd docutils literal notranslate">H</kbd></dt><dd><p>Shows hidden files (starting with a <code class="docutils literal notranslate"><span class="pre">.</span></code>).</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="execution-region">
+<h3>Execution Region<a class="headerlink" href="#execution-region" title="Permalink to this headline"></a></h3>
+<dl id="bpy-types-fileselectparams-filename">
+<dt>File Name</dt><dd><p>Text field to edit the file name and extension.
+When saving, if the background is red, a file with same name already exists in the folder.
+<kbd class="kbd docutils literal notranslate">Tab</kbd> will auto-complete to existing names in the current directory.</p>
+<dl class="simple">
+<dt>Increment Filename <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>Removes/Decreases or adds/increases a trailing number to your file name
+(used e.g. to store different versions of a file).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-file-cancel">
+<dt>Cancel <kbd class="kbd docutils literal notranslate">Esc</kbd></dt><dd><p>Cancels the file selection (and the underlying operation), and closes the File Browser.
+Using the <em>Back to Previous</em> button in the <a class="reference internal" href="../interface/window_system/topbar.html"><span class="doc">Topbar</span></a>
+will have the same effect.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-ops-file-execute">
+<dt>Confirm <kbd class="kbd docutils literal notranslate">Return</kbd></dt><dd><p>The main button to validate the operation, which defines its name.
+Double-clicking on a non-directory item will have the same effect.</p>
+</dd>
+</dl>
+</section>
+<section id="source-list-region">
+<h3>Source List Region<a class="headerlink" href="#source-list-region" title="Permalink to this headline"></a></h3>
+<p>The left region displays different ways to quickly access some directories.
+The region is divided into separate panels each containing a <a class="reference internal" href="../interface/controls/templates/list_view.html#ui-list-view"><span class="std std-ref">UI List</span></a> of directories.
+Clicking on one of the directories will immediately navigate to that folder.</p>
+<section id="volumes">
+<span id="bpy-types-spacefilebrowser-system-folders"></span><h4>Volumes<a class="headerlink" href="#volumes" title="Permalink to this headline"></a></h4>
+<p>Contains all OS-defined available volumes, e.g. drives or network mounts.</p>
+</section>
+<section id="system">
+<span id="bpy-types-spacefilebrowser-system-bookmarks"></span><h4>System<a class="headerlink" href="#system" title="Permalink to this headline"></a></h4>
+<p>Contains OS-defined common directories, like the main user folder…</p>
+</section>
+<section id="bookmarks">
+<span id="bpy-types-spacefilebrowser-bookmarks"></span><h4>Bookmarks<a class="headerlink" href="#bookmarks" title="Permalink to this headline"></a></h4>
+<p>Contains folders that you want to be able to access often without having to navigate to them in the File Browser.
+To the right of that list are buttons to perform basic management actions on your bookmarks,
+e.g. add/remove an entry, move it up or down in the list, etc.</p>
+</section>
+<section id="recent">
+<span id="bpy-types-spacefilebrowser-recent-folders"></span><h4>Recent<a class="headerlink" href="#recent" title="Permalink to this headline"></a></h4>
+<p>Contains recently accessed folders.</p>
+<p id="bpy-ops-file-reset-recent">The <code class="docutils literal notranslate"><span class="pre">X</span></code> button to the right allows you to fully erase this list.</p>
+<p>You can control how many folders appear in this list with the <em>Recent Files</em> number field
+of the <a class="reference internal" href="preferences/save_load.html#prefs-save-load"><span class="std std-ref">Save &amp; Load</span></a> tab in the Preferences.</p>
+</section>
+</section>
+<section id="operator-options-region">
+<h3>Operator Options Region<a class="headerlink" href="#operator-options-region" title="Permalink to this headline"></a></h3>
+<p>The right region shows the options of the calling operator.
+Besides common actions listed below, many import/export add-ons will also expose their options there.</p>
+<dl class="simple">
+<dt>Open, Save, Save As Blender File</dt><dd><p>See <a class="reference internal" href="../files/blend/open_save.html"><span class="doc">Opening &amp; Saving</span></a>.</p>
+</dd>
+<dt>Open, Replace, Save As Image</dt><dd><p>See <a class="reference internal" href="../files/media/image_formats.html"><span class="doc">Supported Graphics Formats</span></a>.</p>
+</dd>
+<dt>Link/Append from Library</dt><dd><p>See <a class="reference internal" href="../files/linked_libraries/index.html"><span class="doc">Linked libraries</span></a>.</p>
+</dd>
+</dl>
+<p>For the common option:</p>
+<dl class="simple">
+<dt>Relative Path</dt><dd><p>See <a class="reference internal" href="../files/blend/open_save.html#files-blend-relative-paths"><span class="std std-ref">Relative Paths</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="header-region">
+<h3>Header Region<a class="headerlink" href="#header-region" title="Permalink to this headline"></a></h3>
+<p>The header only contains two menus, one with you standard editor <em>View</em> controls
+and the other to list a few <a class="reference internal" href="#selecting">Selecting</a> operators for the sake of discoverability.
+Often it is hidden as most of the functionality is contained in the regions described previously.</p>
+</section>
+</section>
+<section id="navigating">
+<h2>Navigating<a class="headerlink" href="#navigating" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Entering a Directory</dt><dd><p>A single <kbd class="kbd docutils literal notranslate">LMB</kbd> click on a directory enters it.</p>
+</dd>
+<dt>Parent Directory <kbd class="kbd docutils literal notranslate">P</kbd></dt><dd><p>Takes you up one level of directory.</p>
+</dd>
+</dl>
+<section id="file-drop">
+<h3>File Drop<a class="headerlink" href="#file-drop" title="Permalink to this headline"></a></h3>
+<p>You can also drag and drop a file or directory from your file manager into the Blender File Browser.
+This will move it to the directory of the dropped file, and the file will be selected.</p>
+</section>
+</section>
+<section id="selecting">
+<h2>Selecting<a class="headerlink" href="#selecting" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Select</dt><dd><p>Both <kbd class="kbd docutils literal notranslate">LMB</kbd> and <kbd class="kbd docutils literal notranslate">RMB</kbd> clicks work.
+Holding <kbd class="kbd docutils literal notranslate">Shift</kbd> will extend the items selection.</p>
+</dd>
+<dt>(De)select All <kbd class="kbd docutils literal notranslate">A</kbd></dt><dd><p>Toggles selecting all files.</p>
+</dd>
+<dt>Dragging</dt><dd><p>Dragging with <kbd class="kbd docutils literal notranslate">LMB</kbd> starts a <a class="reference internal" href="../interface/selecting.html#tool-select-box"><span class="std std-ref">box selection</span></a>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can always select several entries in the File Browser,
+the last selected one is considered as the active one.
+If the calling operation expects a single path (like e.g. the main blend-file <em>Open</em> one),
+it will get that active item’s path, other selected ones will just be ignored.</p>
+</div>
+<section id="arrow-keys">
+<h3>Arrow Keys<a class="headerlink" href="#arrow-keys" title="Permalink to this headline"></a></h3>
+<p>It is also possible to select/deselect files by “walking” through them using the arrow keys:</p>
+<ul class="simple">
+<li><p>Just using an arrow key, the next file in the chosen direction will be selected and all others deselected.</p></li>
+<li><p>Holding down <kbd class="kbd docutils literal notranslate">Shift</kbd> while doing this does not deselect anything so it extends to the selection,
+plus it allows to deselect files by navigating into a block
+of already selected ones (minimum two files in sequence).</p></li>
+<li><p>Holding down <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Ctrl</kbd></kbd> further selects/deselects all files in between.</p></li>
+</ul>
+<p>If no file is selected, the arrow key navigation selects the first or last file in the directory,
+depending on the arrow direction.</p>
+<p>If you select a directory and hit <kbd class="kbd docutils literal notranslate">Return</kbd>, you will go into that directory
+(and highlighting ‘parent’ <code class="docutils literal notranslate"><span class="pre">..</span></code> entry will bring you up one level).</p>
+</section>
+</section>
+<section id="editing">
+<h2>Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h2>
+<dl>
+<dt>Delete Files <kbd class="kbd docutils literal notranslate">Delete</kbd>, <kbd class="kbd docutils literal notranslate">X</kbd></dt><dd><p>Delete the currently selected files or directories by moving them to the operating system’s “trash”.</p>
+<p>Note, on Linux deleting directories requires KDE or GNOME.</p>
+</dd>
+<dt>Rename <kbd class="kbd docutils literal notranslate">F2</kbd></dt><dd><p>Change the name for the currently selected file or directory.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="properties_editor.html" class="btn btn-neutral float-left" title="Properties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="asset_browser.html" class="btn btn-neutral float-right" title="Asset Browser" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/file_browser.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/file_browser%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Feditors/file_browser.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

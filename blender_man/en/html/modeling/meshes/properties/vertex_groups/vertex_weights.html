@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertex Weights &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/meshes/properties/vertex_groups/vertex_weights.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/version_switch.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="next" title="Geometry Data" href="../custom_data.html" />
+    <link rel="prev" title="Assigning a Vertex Group" href="assigning_vertex_group.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Meshes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Selecting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../editing/index.html">Editing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Properties</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../object_data.html">Object Data</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Vertex Groups</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vertex_groups.html">Vertex Groups Panel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="assigning_vertex_group.html">Assigning a Vertex Group</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Vertex Weights</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#vertex-group-categories">Vertex Group Categories</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#deform-groups">Deform Groups</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#other-groups">Other Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#weight-table">Weight Table</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#set-the-active-group">Set the Active Group</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#display-weights-in-edit-mode">Display Weights in Edit Mode</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#edit-weights-in-edit-mode">Edit Weights in Edit Mode</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#change-a-weight">Change a Weight</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#pasting">Pasting</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#deleting">Deleting</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#tools">Tools</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#locking">Locking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../custom_data.html">Geometry Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">UVs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../../index.html">Meshes</a> &raquo;</li>
+          <li><a href="../index.html">Properties</a> &raquo;</li>
+          <li><a href="index.html">Vertex Groups</a> &raquo;</li>
+      <li>Vertex Weights</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vertex-weights">
+<h1>Vertex Weights<a class="headerlink" href="#vertex-weights" title="Permalink to this headline"></a></h1>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Mode</dt>
+<dd class="field-odd"><p>Edit and Weight Paint Modes</p>
+</dd>
+<dt class="field-even">Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Vertex Weights</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Vertex Weights panel.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<div class="legend">
+<p>(1) Vertex Group Categories, (2) Weight Table, (3) Tools.</p>
+</div>
+</figcaption>
+</figure>
+<p>As mentioned before in <a class="reference internal" href="index.html"><span class="doc">Vertex Groups</span></a>
+each entry in a vertex group also contains a weight value in the range of (0.0 to 1.0).
+Blender provides a <em>Vertex Weights</em> panel from where you can get (and edit)
+information about the weight values of each vertex of a mesh.
+That is: to which vertex groups the vertex is assigned with which weight value.</p>
+<p>The Vertex Weights panel can be found in the Sidebar region of the 3D Viewport.
+It is available in Edit Mode and in Weight Paint Mode
+(when Vertex Selection masking is enabled as well).</p>
+<section id="vertex-group-categories">
+<h2>Vertex Group Categories<a class="headerlink" href="#vertex-group-categories" title="Permalink to this headline"></a></h2>
+<p>Actually we do not have any strict categories of vertex groups in Blender.
+Technically they all behave the same way.
+However, we can identify two implicit categories of vertex groups:</p>
+<section id="deform-groups">
+<h3>Deform Groups<a class="headerlink" href="#deform-groups" title="Permalink to this headline"></a></h3>
+<p>These vertex groups are sometimes also named ‘weight groups’ or ‘weight maps’.
+They are used for defining the weight tables of armature bones.
+All deform groups of an object are strictly related to each other via their weight values.</p>
+<p>Strictly speaking, the sum of all deform weights for any vertex of a mesh should be exactly 1.0.
+In Blender this constraint is a bit relaxed (see below).
+Nevertheless, deform groups should always be seen as related to each other.
+Hence, we have provided a filter that allows restricting the Vertex Weight panel to
+display only the deform bones of an object.</p>
+</section>
+<section id="other-groups">
+<h3>Other Groups<a class="headerlink" href="#other-groups" title="Permalink to this headline"></a></h3>
+<p>All other usages of vertex groups are summarized into the <em>Other</em> category.
+These vertex groups can be found within Shape keys, Modifiers, etc.
+There is really no good name for this category,
+so we kept it simple and named it <em>Other</em>.</p>
+</section>
+</section>
+<section id="weight-table">
+<h2>Weight Table<a class="headerlink" href="#weight-table" title="Permalink to this headline"></a></h2>
+<p>The Weight Table shows all weights associated to the <em>active vertex</em>.
+Note that a vertex does not necessarily have to be associated to any vertex groups.
+In that case the Vertex Weights Panel is not displayed.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The active Vertex</p>
+<p>That is the most recently selected vertex.
+This vertex is always highlighted so that you can see it easily in the mesh.
+If the active vertex does not have weights, or there is no active vertex selected at the moment,
+then the Vertex Weights Panel disappears.</p>
+</div>
+<p>Each row in the Weight table contains four active elements:</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-name.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-name.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-name.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Change Active Group.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="set-the-active-group">
+<h3>Set the Active Group<a class="headerlink" href="#set-the-active-group" title="Permalink to this headline"></a></h3>
+<p>As soon as you select any of the Vertex Group Names in the Weight table,
+the referenced vertex group becomes the new active group.</p>
+</section>
+<section id="display-weights-in-edit-mode">
+<h3>Display Weights in Edit Mode<a class="headerlink" href="#display-weights-in-edit-mode" title="Permalink to this headline"></a></h3>
+<figure class="align-right" id="id4">
+<img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png" />
+<figcaption>
+<p><span class="caption-text">Enable display of weights in Edit Mode.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>When you are in Edit Mode, you can make the weights of the active group visible on the mesh:</p>
+<p>Select the <em>Viewport Overlays</em> popover from the header of the 3D Viewport.
+And there enable the <em>Vertex Group Weights</em> option.
+Now you can see the weights of the active vertex group displayed on the mesh surface.</p>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Weights in Edit Mode.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="edit-weights-in-edit-mode">
+<h3>Edit Weights in Edit Mode<a class="headerlink" href="#edit-weights-in-edit-mode" title="Permalink to this headline"></a></h3>
+<p>It is now very easy to work with vertex groups in Edit Mode.
+All edit options of the mesh are available and
+you have direct visual control over how your weights change when you edit the weight values.</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-weight.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-weight.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-weight.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Change Weight value.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="change-a-weight">
+<h3>Change a Weight<a class="headerlink" href="#change-a-weight" title="Permalink to this headline"></a></h3>
+<p>You can either enter a new weight value manually (click on the number and edit the value),
+or you can change the weight by <kbd class="kbd docutils literal notranslate">LMB</kbd> and while holding down the mouse button,
+drag right or left to increase/decrease the weight value. You also can use the right/left
+arrows displayed around the weight value to change the weight in steps.</p>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-paste.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-paste.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-paste.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Paste weights.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="pasting">
+<h3>Pasting<a class="headerlink" href="#pasting" title="Permalink to this headline"></a></h3>
+<p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Paste button allows you to forward a single weight of the active vertex to all selected vertices.
+But note that weights are only pasted to vertices which already have a weight value in the affected vertex group.</p>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Delete weights.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="deleting">
+<h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline"></a></h3>
+<p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Delete button will instantly remove the weight from the active vertex.
+Thus the entire row disappears when you click on the delete icon.</p>
+</section>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-functions.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-functions.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-functions.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Vertex Weights panel.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl class="simple">
+<dt>Normalize</dt><dd><p>Normalizes the weights of the active vertex.
+That is all weights of the active vertex are recalculated
+such that their relative weight is maintained and the weight sum is 1.0.</p>
+</dd>
+<dt>Copy</dt><dd><p>Copies all weights defined for the active vertex to all selected vertices.
+Thus all previously defined weights are overwritten.</p>
+</dd>
+</dl>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The filter setting is respected</p>
+<p>Note that both tools only work on the vertex groups currently displayed in the Weights Table.
+So if for example only the <em>Deform weights</em> are displayed,
+then Normalize and Copy only affect the Deform bones.</p>
+</div>
+</section>
+<section id="locking">
+<h2>Locking<a class="headerlink" href="#locking" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png" style="width: 260px;" /></a>
+<figcaption>
+<p><span class="caption-text">Locked Vertex Weights panel.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Whenever a weight group is locked, all data changing tools get disabled:</p>
+<ul class="simple">
+<li><p>Normalize the vertex weights.</p></li>
+<li><p>Copy the vertex weights.</p></li>
+<li><p>Change the weight of the active vertices.</p></li>
+<li><p>Paste to selected vertices.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The filter setting is respected</p>
+<p>If you have for example all deform weight groups unlocked and all other vertex groups locked,
+then you can safely select <em>Deform</em> from the Filter row
+and use all available tools from the Weight Table again.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="assigning_vertex_group.html" class="btn btn-neutral float-left" title="Assigning a Vertex Group" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../custom_data.html" class="btn btn-neutral float-right" title="Geometry Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/meshes/properties/vertex_groups/vertex_weights.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/meshes/properties/vertex_groups/vertex_weights%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/meshes/properties/vertex_groups/vertex_weights.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

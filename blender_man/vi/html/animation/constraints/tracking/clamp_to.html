@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ràng Buộc Siết Vào -- Clamp To Constraint &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/animation/constraints/tracking/clamp_to.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Ràng Buộc Giám Sát có Hạn Chế -- Damped Track Constraint" href="damped_track.html" />
+    <link rel="prev" title="Ràng Buộc Bộ Nhớ Đệm Biến Hóa -- Transform Cache Constraint" href="../transform/transform_cache.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Hoạt Họa &amp; Giàn Dựng</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../keyframes/index.html">Khung Khóa -- Keyframes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../armatures/index.html">Cốt -- Armatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lattice.html">Lattice -- Giàn Lưới</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Ràng Buộc -- Constraints</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#interface">Giao Diện -- Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#motion-tracking">Giám Sát Chuyển Động -- Motion Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#transform">Transform -- Biến Hóa</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#tracking">Giám Sát -- Tracking</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Ràng Buộc Siết Vào -- Clamp To Constraint</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="damped_track.html">Ràng Buộc Giám Sát có Hạn Chế -- Damped Track Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ik_solver.html">Ràng Buộc Động Học Ngược</a></li>
+<li class="toctree-l4"><a class="reference internal" href="locked_track.html">Ràng Buộc Giám Sát Cố Định -- Locked Track Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spline_ik.html">Ràng Buộc IK Đường Cong Spline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="stretch_to.html">Ràng Buộc Co Giãn Tới -- Stretch To Constraint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="track_to.html">Ràng Buộc Dõi Theo -- Track To Constraint</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#relationship">Quan Hệ -- Relationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../actions.html">Hành Động -- Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers/index.html">Các Điều Vận -- Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../markers.html">Markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shape_keys/index.html">Hình Mẫu -- Shape Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../motion_paths.html">Đường Chuyển Động -- Motion Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Hoạt Họa &amp; Giàn Dựng</a> &raquo;</li>
+          <li><a href="../index.html">Ràng Buộc -- Constraints</a> &raquo;</li>
+      <li>Ràng Buộc Siết Vào -- Clamp To Constraint</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="clamp-to-constraint">
+<span id="bpy-types-clamptoconstraint"></span><span id="index-0"></span><h1>Ràng Buộc Siết Vào -- Clamp To Constraint<a class="headerlink" href="#clamp-to-constraint" title="Permalink to this headline"></a></h1>
+<p>The <em>Clamp To</em> constraint clamps an object to a curve. The <em>Clamp To</em> constraint is very similar
+to the <a class="reference internal" href="../relationship/follow_path.html"><span class="doc">Follow Path</span></a> constraint,
+but instead of using the evaluation time of the target curve, <em>Clamp To</em>
+will get the actual location properties of its owner
+(those shown in the <em>Transform</em> panel),
+and judge where to put it by &quot;mapping&quot; this location along the target curve.</p>
+<p>One benefit is that when you are working with <em>Clamp To</em>,
+it is easier to see what your owner will be doing; since you are working in the 3D Viewport,
+it will just be a lot more precise than sliding keys around on an F-curve and
+playing the animation over and over.</p>
+<p>A downside is that unlike in the <a class="reference internal" href="../relationship/follow_path.html"><span class="doc">Follow Path constraint</span></a>,
+<em>Clamp To</em> does not have any option to track your owner's rotation (pitch, roll, yaw)
+to the banking of the targeted curve, but you do not always need rotation on,
+so in cases like this it's usually a lot handier to fire up a <em>Clamp To</em>,
+and get the bits of rotation you do need some other way.</p>
+<p>The mapping from the object's original position to its position on the curve is not perfect,
+but uses the following simplified algorithm:</p>
+<ul class="simple">
+<li><p>A &quot;main axis&quot; is chosen, either by the user, or as the longest axis of the curve's bounding box (the default).</p></li>
+<li><p>The position of the object is compared to the bounding box of the curve in the direction of the main axis.
+So for example if X is the main axis, and the object is aligned with the curve bounding box's left side,
+the result is 0; if it is aligned with the right side, the result is 1.</p></li>
+<li><p>If the cyclic option is unchecked, this value is clamped in the range 0-1.</p></li>
+<li><p>This number is used as the curve time, to find the final position along the curve that the object is clamped to.</p></li>
+</ul>
+<p>This algorithm does not produce exactly the desired result because curve time does not map
+exactly to the main axis position. For example an object directly in the center of a curve
+will be clamped to a curve time of 0.5 regardless of the shape of the curve,
+because it is halfway along the curve's bounding box.
+However, the 0.5 curve time position can actually be anywhere within the bounding box!</p>
+<section id="options">
+<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/animation_constraints_tracking_clamp-to_panel.png" src="../../../_images/animation_constraints_tracking_clamp-to_panel.png" />
+<figcaption>
+<p><span class="caption-text">Clamp To panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Mục Tiêu -- Target</dt><dd><p>The target <a class="reference internal" href="../../../interface/controls/templates/data_block.html#ui-data-id"><span class="std std-ref">Data ID</span></a> indicates which curve object the Clamp To constraint will track along.
+The target must be a curve object type.
+See <a class="reference internal" href="../interface/common.html#rigging-constraints-interface-common-target"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+<dt>Trục Chính -- Main Axis</dt><dd><p>This button group controls which global axis (X, Y or Z) is the main direction of the path.
+When clamping the object to the target curve, it will not be moved significantly on this axis.
+It may move a small amount on that axis because of the inexact way this constraint functions.</p>
+<p>For example if you are animating a rocket launch,
+it will be the Z axis because the main direction of the launch path is up.
+The default <em>Auto</em> option chooses the axis which the curve is longest in (or X if they are equal).
+This is usually the best option.</p>
+</dd>
+<dt>Cyclic -- Tuần Hoàn</dt><dd><p>By default, once the object has reached one end of its target curve, it will be constrained there.
+When the <em>Cyclic</em> option is enabled, as soon as it reaches one end of the curve,
+it is instantaneously moved to its other end.
+This is of course primarily designed for closed curves (e.g. circles),
+as this allows your owner to go around it over and over.</p>
+</dd>
+<dt>Tác Động/Ảnh Hưởng -- Influence</dt><dd><p>Controls the percentage of affect the constraint has on the object.
+See <a class="reference internal" href="../interface/common.html#bpy-types-constraint-influence"><span class="std std-ref">common constraint properties</span></a> for more information.</p>
+</dd>
+</dl>
+</section>
+<section id="example">
+<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<div class="peertube_wrapper" style="">
+<iframe allowfullscreen="true" src="https://video.blender.org/videos/embed/c3e07449-aff7-43d6-b017-5bbd888cf52c" style="height: 315px; width: 560px">
+</iframe></div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../transform/transform_cache.html" class="btn btn-neutral float-left" title="Ràng Buộc Bộ Nhớ Đệm Biến Hóa -- Transform Cache Constraint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="damped_track.html" class="btn btn-neutral float-right" title="Ràng Buộc Giám Sát có Hạn Chế -- Damped Track Constraint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/animation/constraints/tracking/clamp_to.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60animation/constraints/tracking/clamp_to%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fanimation/constraints/tracking/clamp_to.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

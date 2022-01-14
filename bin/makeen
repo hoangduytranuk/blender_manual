@@ -1,0 +1,23 @@
+#!/bin/bash
+cd $BLENDER_MAN_EN
+#make clean
+# make gettext
+# sphinx-build -b html -D language=vi ./manual ./build/html
+# sphinx-autobuild -b html -D language=vi ./manual ./build/html
+# make -d  -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
+# make -n to show the command that will be executed
+# make clean
+# make gettext
+# sphinx-autobuild --open-browser --delay 0 "./manual" "build" -j auto -D language='vi'
+# make --debug=av  -w -B -e BF_LANG="vi" 2>&1
+# BF_LANG
+# sphinx-build -M html "./manual" "build" -j auto -D language='vi'
+# export BF_LANG="en"; make -d html
+# open build/html/index.html
+LANGS="en vi"
+echo "Building documentation in html for $LANGS"
+set -e; 
+for lang in $LANGS; 
+do 
+    echo "Building language $lang"  && make html -e SPHINXOPTS="-D language='$lang'" -e "BUILDDIR=build/target/doc/$lang -d build/target/doc/$lang/doctrees"; 
+done

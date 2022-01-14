@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertex Weight Mix Modifier &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/modifiers/modify/weight_mix.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="Vertex Weight Proximity Modifier" href="weight_proximity.html" />
+    <link rel="prev" title="Vertex Weight Edit Modifier" href="weight_edit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#modify">Modify</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="data_transfer.html">Data Transfer Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_cache.html">Mesh Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_sequence_cache.html">Mesh Sequence Cache Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="normal_edit.html">Normal Edit Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_project.html">UV Project Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_warp.html">UV Warp Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_edit.html">Vertex Weight Edit Modifier</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vertex Weight Mix Modifier</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#influence">Influence</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="weight_proximity.html">Vertex Weight Proximity Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weighted_normal.html">Weighted Normal Modifier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Deform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Modifiers</a> &raquo;</li>
+      <li>Vertex Weight Mix Modifier</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vertex-weight-mix-modifier">
+<span id="bpy-types-vertexweightmixmodifier"></span><span id="index-0"></span><h1>Vertex Weight Mix Modifier<a class="headerlink" href="#vertex-weight-mix-modifier" title="Permalink to this headline"></a></h1>
+<p>This modifier mixes a second vertex group (or a simple value) into the affected vertex group,
+using different operations.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This modifier does implicit clamping of weight values in the standard (0.0 to 1.0) range.
+All values below 0.0 will be set to 0.0, and all values above 1.0 will be set to 1.0.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can view the modified weights in Weight Paint Mode.
+This also implies that you will have to disable the <em>Vertex Weight Mix</em> modifier
+if you want to see the original weights of the vertex group you are editing.</p>
+</div>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<figure class="align-right" id="id1">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_panel.png"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_panel.png" src="../../../_images/modeling_modifiers_modify_weight-mix_panel.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">The Vertex Weight Mix modifier panel.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<dl>
+<dt>Vertex Group A/B</dt><dd><dl class="field-list simple">
+<dt class="field-odd">A</dt>
+<dd class="field-odd"><p>The vertex group to affect.</p>
+</dd>
+<dt class="field-even">B</dt>
+<dd class="field-even"><p>The second vertex group to mix into the affected one.
+Leave it empty if you only want to mix in a simple value.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Invert Weights A/B</dt><dd><p>Invert the influence of the vertex group.</p>
+</dd>
+</dl>
+</dd>
+<dt>Default Weight A/B</dt><dd><dl class="field-list simple">
+<dt class="field-odd">A</dt>
+<dd class="field-odd"><p>The default weight to assign to all vertices not in the given vertex group.</p>
+</dd>
+<dt class="field-even">B</dt>
+<dd class="field-even"><p>The default weight to assign to all vertices not in the given second vertex group.</p>
+</dd>
+</dl>
+</dd>
+<dt>Vertex Set</dt><dd><p>Choose which vertices will be affected.</p>
+<dl class="simple">
+<dt>All</dt><dd><p>Affects all vertices, disregarding the vertex groups content.</p>
+</dd>
+<dt>Vertex Group A</dt><dd><p>Affects only vertices belonging to the affected vertex group.</p>
+</dd>
+<dt>Vertex Group B</dt><dd><p>Affects only vertices belonging to the second vertex group.</p>
+</dd>
+<dt>Vertex Group A or B</dt><dd><p>Affects only vertices belonging to at least one of the vertex groups.</p>
+</dd>
+<dt>Vertex Group A and B</dt><dd><p>Affects only vertices belonging to both vertex groups.</p>
+</dd>
+</dl>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When using <em>All vertices</em>, <em>Vertices from group B</em> or <em>Vertices from one group</em>,
+vertices might be added to the affected vertex group.</p>
+</div>
+</dd>
+<dt>Mix Mode</dt><dd><p>How the vertex group weights are affected by the other vertex group’s weights.</p>
+<dl class="simple">
+<dt>Replace</dt><dd><p>Replaces affected weights with the second group’s weights.</p>
+</dd>
+<dt>Add</dt><dd><p>Adds the values of <em>Group B</em> to <em>Group A</em>.</p>
+</dd>
+<dt>Subtract</dt><dd><p>Subtracts the values of <em>Group B</em> from <em>Group A</em>.</p>
+</dd>
+<dt>Multiply</dt><dd><p>Multiplies the values of <em>Group B</em> with <em>Group A</em>.</p>
+</dd>
+<dt>Divide</dt><dd><p>Divides the values of <em>Group A</em> by <em>Group B</em>.</p>
+</dd>
+<dt>Difference</dt><dd><p>Subtracts the smaller of the two values from the larger.</p>
+</dd>
+<dt>Average</dt><dd><p>Adds the values together, then divides by 2.</p>
+</dd>
+</dl>
+</dd>
+<dt>Normalize Weights</dt><dd><p>Scale the weights in the vertex group to keep the relative weight
+but the lowest and highest values follow the full 0 - 1 range.</p>
+</dd>
+</dl>
+<section id="influence">
+<h3>Influence<a class="headerlink" href="#influence" title="Permalink to this headline"></a></h3>
+<p>Those settings are the same for the three <em>Vertex Weight</em> modifiers,
+see the <a class="reference internal" href="weight_edit.html#modeling-modifiers-weight-edit-influence-mask-options"><span class="std std-ref">Vertex Weight Edit modifier</span></a> page.</p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<p>Here is and example of using a texture and the mapping curve to generate weights used by
+the <a class="reference internal" href="../deform/wave.html"><span class="doc">Wave</span></a> modifier.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Texture channel variations.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_intensity.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_intensity.jpg" src="../../../_images/modeling_modifiers_modify_weight-mix_intensity.jpg" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Using intensity.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_red.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_red.jpg" src="../../../_images/modeling_modifiers_modify_weight-mix_red.jpg" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Using Red.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_saturation.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_saturation.jpg" src="../../../_images/modeling_modifiers_modify_weight-mix_saturation.jpg" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Using Saturation.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<span id="fig-modifier-vertex-weight-custom"></span><table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Custom mapping curve with a Vertex Weight Edit modifier.</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_map-curve.png"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_map-curve.png" src="../../../_images/modeling_modifiers_modify_weight-mix_map-curve.png" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">A customized mapping curve.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_red.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_red.jpg" src="../../../_images/modeling_modifiers_modify_weight-mix_red.jpg" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Custom Mapping disabled.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weight-mix_red-map.jpg"><img alt="../../../_images/modeling_modifiers_modify_weight-mix_red-map.jpg" src="../../../_images/modeling_modifiers_modify_weight-mix_red-map.jpg" style="width: 200px;" /></a>
+<figcaption>
+<p><span class="caption-text">Custom Mapping enabled.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="peertube_wrapper" style="">
+<iframe allowfullscreen="true" src="https://video.blender.org/videos/embed/40378a39-cd90-404a-89bf-64ee9a39310a" style="height: 315px; width: 560px">
+</iframe></div><p><a class="reference external" href="https://wiki.blender.org/wiki/File:ManModifiersWeightVGroupEx.blend">The blend-file</a>, TEST_4 scene.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="weight_edit.html" class="btn btn-neutral float-left" title="Vertex Weight Edit Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="weight_proximity.html" class="btn btn-neutral float-right" title="Vertex Weight Proximity Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/modifiers/modify/weight_mix.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/modifiers/modify/weight_mix%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/modifiers/modify/weight_mix.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

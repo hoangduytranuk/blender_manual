@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VR Scene Inspection &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/addons/3d_view/vr_scene_inspection.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Add Curve" href="../add_curve/index.html" />
+    <link rel="prev" title="Stored Views" href="stored_views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Add-ons</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#add-ons-category-listings">Add-ons Category Listings</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">3D View</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="3d_navigation.html">3D Navigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="math_vis_console.html">Math Vis Console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="measureit.html">MeasureIt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="stored_views.html">Stored Views</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VR Scene Inspection</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#activation">Activation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#interface">Interface</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#vr-session">VR Session</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#landmarks">Landmarks</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#action-maps">Action Maps</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viewport-feedback">Viewport Feedback</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../add_curve/index.html">Add Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_mesh/index.html">Add Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../animation/index.html">Animation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../import_export/index.html">Import-Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interface/index.html">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lighting/index.html">Lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mesh/index.html">Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../node/index.html">Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object/index.html">Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../paint/index.html">Paint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../render/index.html">Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rigging/index.html">Rigging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sequencer/index.html">Sequencer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system/index.html">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uv/index.html">UV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video_tools/index.html">Video Tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Add-ons</a> &raquo;</li>
+          <li><a href="index.html">3D View</a> &raquo;</li>
+      <li>VR Scene Inspection</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vr-scene-inspection">
+<h1>VR Scene Inspection<a class="headerlink" href="#vr-scene-inspection" title="Permalink to this headline"></a></h1>
+<p>The <abbr title="Virtual Reality">VR</abbr> Scene Inspection add-on exposes and extends
+the native virtual reality features of Blender in the user interface.
+The feature set is limited to scene inspection use cases.
+More advanced use cases may be enabled through further development inside of Blender.</p>
+<p>VR support in Blender is based on the OpenXR specification and requires some set up steps.
+These are explained in the <a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-head-mounted-displays"><span class="std std-ref">Head-Mounted Displays (HMD)</span></a> section.</p>
+<section id="activation">
+<h2>Activation<a class="headerlink" href="#activation" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Open Blender and go to Preferences then the Add-ons tab.</p></li>
+<li><p>Click 3D View then VR Scene Inspection to enable the script.</p></li>
+</ul>
+</section>
+<section id="interface">
+<h2>Interface<a class="headerlink" href="#interface" title="Permalink to this headline"></a></h2>
+<p>Located in the <span class="menuselection">3D Viewport ‣ Sidebar ‣ VR tab</span>.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_interface.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_interface.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_interface.jpg" style="width: 220px;" /></a>
+</figure>
+<section id="vr-session">
+<h3>VR Session<a class="headerlink" href="#vr-session" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_vr-session.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_vr-session.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_vr-session.jpg" style="width: 220px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Start VR Session</dt><dd><p>Try to set up a connection to the OpenXR platform to share the viewport with
+an <a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-head-mounted-displays"><span class="std std-ref">HMD</span></a>.</p>
+</dd>
+<dt>Tracking</dt><dd><dl class="simple">
+<dt>Positional</dt><dd><p>Only track rotational changes of the head, do not allow the HMD
+to affect the location of the viewer in virtual space.</p>
+</dd>
+<dt>Absolute</dt><dd><p>Skip eye offsets that are normally added for placing the viewer
+exactly at landmarks. This allows the tracking origin to be defined
+independently of the HMD position.</p>
+</dd>
+</dl>
+</dd>
+<dt>Use Controller Actions</dt><dd><p>Enable default controller actions for viewport navigation,
+controller tracking, and haptics.</p>
+</dd>
+</dl>
+</section>
+<section id="view">
+<h3>View<a class="headerlink" href="#view" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_view.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_view.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_view.jpg" style="width: 220px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Show</dt><dd><dl class="simple">
+<dt>Floor</dt><dd><p>Set visibility of the ground plane in the VR view.</p>
+</dd>
+<dt>Annotations</dt><dd><p>Set visibility of annotation strokes in the VR view.</p>
+</dd>
+<dt>Selection</dt><dd><p>Set visibility of selection outlines in the VR view.</p>
+</dd>
+<dt>Controllers</dt><dd><p>Set visibility of VR motion controllers.
+Requires enabling the <a class="reference internal" href="#vr-session">Use Controller Actions</a> option.</p>
+</dd>
+<dt>Custom Overlays</dt><dd><p>Set visibility of custom operator drawing (e.g. default teleport beam).</p>
+</dd>
+</dl>
+</dd>
+<dt>Controller Style</dt><dd><p>Preferred visualization of VR motion controllers.</p>
+</dd>
+<dt>Clip Start/End</dt><dd><p>Clipping values of the VR view, <a class="reference internal" href="../../editors/3dview/sidebar.html#dview-view-clip"><span class="std std-ref">as in the 3D Viewport</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="landmarks">
+<h3>Landmarks<a class="headerlink" href="#landmarks" title="Permalink to this headline"></a></h3>
+<p>Landmarks are used to store reusable base poses (position and rotation) for the viewer in the virtual space.
+In addition, a base viewer reference scale can be set for landmarks of types Custom Object and Custom Pose.</p>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_landmarks.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_landmarks.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_landmarks.jpg" style="width: 220px;" /></a>
+</figure>
+<dl>
+<dt>Landmark</dt><dd><p>A <a class="reference internal" href="../../interface/controls/templates/list_view.html#ui-list-view"><span class="std std-ref">list view</span></a>.</p>
+<dl class="simple">
+<dt>Selected Landmark</dt><dd><p>Defines which landmark’s settings are shown below the list.
+Changing the selected landmark does not have an influence on the VR view.</p>
+</dd>
+<dt>Activate <code class="docutils literal notranslate"><span class="pre">〇</span></code></dt><dd><p>Activates a landmark, making it change the base pose of the VR view.</p>
+</dd>
+<dt>Add <code class="docutils literal notranslate"><span class="pre">+</span></code></dt><dd><p>Create a landmark.</p>
+</dd>
+<dt>Remove <code class="docutils literal notranslate"><span class="pre">-</span></code></dt><dd><p>Delete the selected landmark.</p>
+</dd>
+<dt>Add from Session <code class="docutils literal notranslate"><span class="pre">⊕</span></code></dt><dd><p>Create a landmark from the viewer pose of the running VR session.</p>
+</dd>
+<dt>Landmark Controls <code class="docutils literal notranslate"><span class="pre">v</span></code></dt><dd><dl class="simple">
+<dt>Add Landmark from Camera</dt><dd><p>Add a new landmark from the active camera object.</p>
+</dd>
+<dt>Update Custom Landmark</dt><dd><p>Update the selected landmark from the current VR viewer pose.</p>
+</dd>
+<dt>Cursor to Landmark</dt><dd><p>Move the 3D Cursor to the selected landmark.</p>
+</dd>
+<dt>Scene Camera to Landmark</dt><dd><p>Position the scene camera at the selected landmark.</p>
+</dd>
+<dt>Camera from Landmark</dt><dd><p>Create a new camera from the selected landmark.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>Type</dt><dd><dl class="simple">
+<dt>Scene Camera</dt><dd><p>Follow the <a class="reference internal" href="../../scene_layout/scene/properties.html#scene-camera"><span class="std std-ref">scene’s active camera</span></a> to define the base pose of the viewer.</p>
+</dd>
+<dt>Custom Object</dt><dd><p>Set an arbitrary object to define the base pose of the viewer.</p>
+</dd>
+<dt>Custom Pose</dt><dd><p>Manually define a position and rotation to use as the base pose of the viewer.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="action-maps">
+<h3>Action Maps<a class="headerlink" href="#action-maps" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_action-maps.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_action-maps.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_action-maps.jpg" style="width: 220px;" /></a>
+</figure>
+<dl>
+<dt>Gamepad</dt><dd><p>Use input from a gamepad (Microsoft Xbox Controller) instead of motion controllers for
+VR actions such as viewport navigation.</p>
+</dd>
+<dt>Extensions</dt><dd><p>Enable additional controller bindings to ensure correct input-to-action mappings.
+Note that a given extension may not be supported by all
+<a class="reference internal" href="../../getting_started/configuration/hardware.html#hardware-head-mounted-displays"><span class="std std-ref">VR platforms</span></a>.</p>
+<dl class="simple">
+<dt>HP Reverb G2</dt><dd><p>Enable bindings for the HP Reverb G2 controllers.</p>
+</dd>
+<dt>HTC Vive Cosmos</dt><dd><p>Enable bindings for the HTC Vive Cosmos controllers.</p>
+</dd>
+<dt>Huawei</dt><dd><p>Enable bindings for the Huawei controllers.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="viewport-feedback">
+<h3>Viewport Feedback<a class="headerlink" href="#viewport-feedback" title="Permalink to this headline"></a></h3>
+<figure class="align-right">
+<a class="reference internal image-reference" href="../../_images/addons_3d-view_vr-scene-inspection_viewport-feedback.jpg"><img alt="../../_images/addons_3d-view_vr-scene-inspection_viewport-feedback.jpg" src="../../_images/addons_3d-view_vr-scene-inspection_viewport-feedback.jpg" style="width: 220px;" /></a>
+</figure>
+<dl class="simple">
+<dt>Show VR Camera</dt><dd><p>Draw an indicator of the current VR viewer pose (location and rotation in the virtual space)
+in the current 3D Viewport.</p>
+</dd>
+<dt>Show VR Controllers</dt><dd><p>Draw indicators of tracked VR motion controllers in the current 3D viewport.
+Requires enabling the <a class="reference internal" href="#vr-session">Use Controller Actions</a> option.</p>
+</dd>
+<dt>Show Landmarks</dt><dd><p>Draw <a class="reference internal" href="#landmarks">landmark</a> indicators in the current 3D Viewport.</p>
+</dd>
+<dt>Mirror VR Session</dt><dd><p>Make the current 3D Viewport follow the perspective of the VR view.</p>
+</dd>
+</dl>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Category</dt>
+<dd class="field-odd"><p>3D View</p>
+</dd>
+<dt class="field-even">Description</dt>
+<dd class="field-even"><p>View the viewport with virtual reality glasses (head-mounted displays).</p>
+</dd>
+<dt class="field-odd">Location</dt>
+<dd class="field-odd"><p><span class="menuselection">3D Viewport ‣ Sidebar ‣ VR tab</span></p>
+</dd>
+<dt class="field-even">File</dt>
+<dd class="field-even"><p>viewport_vr_preview folder</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Julian Eisel, Sebastian Koenig, Peter Kim</p>
+</dd>
+<dt class="field-even">Maintainer</dt>
+<dd class="field-even"><p>Julian Eisel, Peter Kim</p>
+</dd>
+<dt class="field-odd">License</dt>
+<dd class="field-odd"><p>GPL</p>
+</dd>
+<dt class="field-even">Support Level</dt>
+<dd class="field-even"><p>Official</p>
+</dd>
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>This add-on is bundled with Blender.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stored_views.html" class="btn btn-neutral float-left" title="Stored Views" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../add_curve/index.html" class="btn btn-neutral float-right" title="Add Curve" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/addons/3d_view/vr_scene_inspection.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60addons/3d_view/vr_scene_inspection%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Faddons/3d_view/vr_scene_inspection.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

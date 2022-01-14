@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biên Soạn -- Editing &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/texts/editing.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Tính Chất -- Properties" href="properties.html" />
+    <link rel="prev" title="Lựa Chọn -- Selecting" href="selecting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Metaball</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Text</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting.html">Lựa Chọn -- Selecting</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Biên Soạn -- Editing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#text">Text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inserting-text">Inserting Text</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#accent-characters">Accent Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#converting-to-a-mesh-or-curve">Converting to a Mesh or Curve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#assigning-materials">Assigning Materials</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html">Tính Chất -- Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Geometry Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Modeling</a> &raquo;</li>
+          <li><a href="index.html">Text</a> &raquo;</li>
+      <li>Biên Soạn -- Editing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="editing">
+<h1>Biên Soạn -- Editing<a class="headerlink" href="#editing" title="Permalink to this headline"></a></h1>
+<p>Editing text is quite different from other object types in Blender, and happens mainly in two areas.
+First, the 3D Viewport, where you type your text, and have a few shortcuts, e.g. for applying
+styles (see <a class="reference internal" href="properties.html#modeling-text-character"><span class="std std-ref">Font</span></a>) -- note however, that most Blender shortcuts you know
+in Edit Mode do not exist for texts. The second place is the Properties, especially the <em>Font</em> tab.</p>
+<section id="text">
+<span id="bpy-ops-font-change-spacing"></span><span id="bpy-ops-font-style-toggle"></span><span id="bpy-ops-font-text-paste-from-file"></span><h2>Text<a class="headerlink" href="#text" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+</dd>
+<dt class="field-even">Trình Đơn -- Menu</dt>
+<dd class="field-even"><p><span class="menuselection">3D Viewport ‣ Text</span></p>
+</dd>
+</dl>
+</div>
+<p>Editing text objects is similar to using a standard text editor but is not as
+full-featured and has some differences.
+The menu of the 3D Viewport header offers few options. You have no transform nor mirror tools, and so on.
+To leave Edit Mode use <kbd class="kbd docutils literal notranslate">Tab</kbd> as it does not insert a tab character in the text,
+but rather enters and exits Edit Mode, as with other object types.</p>
+<dl>
+<dt>Cut <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">X</kbd></kbd></dt><dd><p>To cut and copy text to the buffer, use the shortcut or the matching entry in the <em>Edit</em> menu.</p>
+</dd>
+<dt>Copy <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd></dt><dd><p>To copy text to the buffer, use the shortcut or the matching entry in the <em>Edit</em> menu.</p>
+</dd>
+<dt>Paste <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">V</kbd></kbd></dt><dd><p>To paste text from the buffer, use the shortcut or the matching entry in the <em>Edit</em> menu.</p>
+</dd>
+<dt>Paste File</dt><dd><p>Inserts text from and external text file.
+This will bring up a <a class="reference internal" href="../../editors/file_browser.html"><span class="doc">File Browser</span></a> for navigating to a valid UTF-8 file.
+As usual, be careful that the file does not have too many characters,
+as interactive response will slow down.</p>
+</dd>
+<dt>To Uppercase</dt><dd><p>Changes the case of the selected text to uppercase.</p>
+</dd>
+<dt>To Lowercase</dt><dd><p>Changes the case of the selected text to lowercase.</p>
+</dd>
+<dt>Special Characters</dt><dd><p>This is a limited character map to insert characters which aren't available from the keyboard.
+Many other special characters can be &quot;composed&quot;, see <a class="reference internal" href="#accent-characters">Accent Characters</a>.
+If you need others, you will have to copy-paste them from an external editor or character map program.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>The text buffer is in sync with the desktop clipboard.
+But if it is used within Blender the text formatting will be copied as well.
+For other ways of inserting a text, see <a class="reference internal" href="#inserting-text">Inserting Text</a>.</p>
+</div>
+</dd>
+<dt>Toggle Bold, Italics, Underline, Small Caps</dt><dd><p>To apply the <em>Bold</em>, <em>Italics</em>, <em>Underline</em> or <em>Small Caps</em> attribute to a set of characters,
+you either turn on the related setting prior to typing characters,
+or select existing text, and then toggle desired style from the menu.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cảnh báo</p>
+<p>Blender's <em>Bold</em> and <em>Italic</em> buttons do not work the same way as in other applications,
+as they also serve as placeholders for you to load up other fonts manually.</p>
+</div>
+</dd>
+<dt>Kerning</dt><dd><p>Font kerning is the space between individual characters.</p>
+<dl class="simple">
+<dt>Decrease Kerning <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Left</kbd></kbd></dt><dd><p>Decreases the spacing between the characters on either side of the cursor.</p>
+</dd>
+<dt>Increase Kerning <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Right</kbd></kbd></dt><dd><p>Increase the spacing between the characters on either side of the cursor.</p>
+</dd>
+<dt>Reset Kerning</dt><dd><p>Sets the spacing between the characters on either side of the cursor to their initial value.</p>
+</dd>
+</dl>
+</dd>
+<dt>Xóa -- Delete</dt><dd><dl class="simple">
+<dt>Previous/Next Character</dt><dd><p>Deletes the character before or after the cursor.</p>
+</dd>
+<dt>Previous/Next Word</dt><dd><p>Deletes the word before or after the cursor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="inserting-text">
+<h2>Inserting Text<a class="headerlink" href="#inserting-text" title="Permalink to this headline"></a></h2>
+<p>You can insert text in two ways: from the internal text buffer
+(as described above), or from a text file.</p>
+<p>Using an existing text data-block, you can convert it to an object from the Text editor's header,
+select <span class="menuselection">Edit ‣ Text to 3D Object</span>,
+<em>One Object</em> or <em>One Object per Line</em> depending on your needs.</p>
+<p>It is also possible to paste from the clipboard or a file from the <em>Edit</em> menu, while editing 3D text.</p>
+<section id="accent-characters">
+<h3>Accent Characters<a class="headerlink" href="#accent-characters" title="Permalink to this headline"></a></h3>
+<p>Many special characters (such as accented chars, which are not directly available on your keyboard)
+can be &quot;composed&quot; using a combination of two other characters. To do so,
+type the main char, press <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>,
+and then press the desired &quot;modifier&quot; to produce the special character.
+Some examples are given below:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p>ã: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">~</span></code></p></li>
+<li><p>á: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">'</span></code></p></li>
+<li><p>à: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">\</span></code></p></li>
+<li><p>â: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">^</span></code></p></li>
+<li><p>å: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">O</span></code></p></li>
+<li><p>æ: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">E</span></code></p></li>
+<li><p>ª: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p>ë: <code class="docutils literal notranslate"><span class="pre">E</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></p></li>
+<li><p>ç: <code class="docutils literal notranslate"><span class="pre">C</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">,</span></code></p></li>
+<li><p>¢: <code class="docutils literal notranslate"><span class="pre">C</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">|</span></code></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p>ø: <code class="docutils literal notranslate"><span class="pre">O</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
+<li><p>§: <code class="docutils literal notranslate"><span class="pre">S</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">S</span></code></p></li>
+<li><p>†: <code class="docutils literal notranslate"><span class="pre">|</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p>‡: <code class="docutils literal notranslate"><span class="pre">|</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">=</span></code></p></li>
+<li><p>©: <code class="docutils literal notranslate"><span class="pre">O</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p>®: <code class="docutils literal notranslate"><span class="pre">O</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">R</span></code></p></li>
+<li><p>™: <code class="docutils literal notranslate"><span class="pre">T</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">M</span></code></p></li>
+<li><p>½: <code class="docutils literal notranslate"><span class="pre">1</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>÷: <code class="docutils literal notranslate"><span class="pre">-</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
+<li><p>±: <code class="docutils literal notranslate"><span class="pre">-</span></code>, <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Backspace</kbd></kbd>, <code class="docutils literal notranslate"><span class="pre">+</span></code></p></li>
+</ul>
+</td></tr></table>
+</section>
+</section>
+<section id="converting-to-a-mesh-or-curve">
+<h2>Converting to a Mesh or Curve<a class="headerlink" href="#converting-to-a-mesh-or-curve" title="Permalink to this headline"></a></h2>
+<p>In Object Mode, it is possible to convert a text object to a mesh or curve one, see <a class="reference internal" href="../../scene_layout/object/editing/convert.html#object-convert-to"><span class="std std-ref">Convert</span></a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Mẹo</p>
+<p>The topology of the result is usually a bit messy,
+so it may be useful to use a <em>Limited Dissolve</em> deletion,
+or apply a <a class="reference internal" href="../modifiers/generate/remesh.html"><span class="doc">Remesh modifier</span></a>
+at a low threshold, to clean up your mesh.</p>
+</div>
+</section>
+<section id="assigning-materials">
+<h2>Assigning Materials<a class="headerlink" href="#assigning-materials" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Tham Chiếu -- Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Chế Độ -- Mode</dt>
+<dd class="field-odd"><p>Edit</p>
+</dd>
+<dt class="field-even">Bảng -- Panel</dt>
+<dd class="field-even"><p><span class="menuselection">Properties ‣ Materials</span></p>
+</dd>
+</dl>
+</div>
+<p>Each character can have a different <em>Material index</em> in order to have different materials
+on different characters.</p>
+<p>You can assign indices either as you type, or after by selecting blocks of text and
+clicking on the <em>Assign</em> button in the <em>Materials</em> panel.</p>
+<figure class="align-default" id="id3">
+<img alt="../../_images/modeling_texts_editing_material-index-example.png" src="../../_images/modeling_texts_editing_material-index-example.png" />
+<figcaption>
+<p><span class="caption-text">Red Green Blue text example.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="selecting.html" class="btn btn-neutral float-left" title="Lựa Chọn -- Selecting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="properties.html" class="btn btn-neutral float-right" title="Tính Chất -- Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/texts/editing.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/texts/editing%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/texts/editing.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

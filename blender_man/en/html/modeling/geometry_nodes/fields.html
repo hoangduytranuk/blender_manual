@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fields &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/fields.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Instances" href="instances.html" />
+    <link rel="prev" title="Attributes" href="attributes_reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Geometry Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inspection.html">Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="attributes_reference.html">Attributes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#field-visualization">Field Visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node-types">Node Types</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#data-flow-nodes">Data Flow Nodes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#function-nodes">Function Nodes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-nodes">Input Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#field-context">Field Context</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="instances.html">Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#node-types">Node Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Modeling</a> &raquo;</li>
+          <li><a href="index.html">Geometry Nodes</a> &raquo;</li>
+      <li>Fields</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fields">
+<span id="index-0"></span><h1>Fields<a class="headerlink" href="#fields" title="Permalink to this headline"></a></h1>
+<p>Fundamentally, a field is a function: a set of instructions that can transform an arbitrary number
+of inputs into a single output. A field’s result can then be calculated many times with different input data.
+They are used all over geometry nodes to allow calculations that have different results
+for every element (mesh vertices, faces, etc.).</p>
+<figure class="align-center" id="id1">
+<img alt="../../_images/modeling_geometry-nodes_fields_title.png" src="../../_images/modeling_geometry-nodes_fields_title.png" />
+<figcaption>
+<p><span class="caption-text">A field input to a node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>For example, in the figure above, the field connected to the “Set Position” node
+depends on two inputs, <a class="reference internal" href="input/position.html"><span class="doc">position</span></a> and
+<a class="reference internal" href="input/input_index.html"><span class="doc">index</span></a>, and transforms them into
+a vector using a single instruction.</p>
+<section id="field-visualization">
+<h2>Field Visualization<a class="headerlink" href="#field-visualization" title="Permalink to this headline"></a></h2>
+<p>Socket shapes are used to convey which sockets are fields and which regular data.
+There are three possible socket shapes, each visualizing its “field status”:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Circle</dt>
+<dd class="field-odd"><p>The socket requires a single real value, it cannot accept a field input.
+For output sockets, this means the node always outputs a single value.</p>
+</dd>
+<dt class="field-even">Diamond</dt>
+<dd class="field-even"><p>The socket can accept a field input, or it outputs a field. A constant single
+value can be connected to these sockets, but then the output will often not
+vary per element.</p>
+</dd>
+<dt class="field-odd">Diamond with Dot</dt>
+<dd class="field-odd"><p>The socket can be a field, but it is currently a single value. This is helpful
+because it allows tracking where single values are calculated, instead of a field
+with many different results. It also means that <a class="reference internal" href="inspection.html#socket-inspection"><span class="std std-ref">Socket Inspection</span></a> will show
+the value instead of field input names.</p>
+</dd>
+</dl>
+<figure class="align-center" id="id2">
+<img alt="../../_images/modeling_geometry-nodes_fields_constant.png" src="../../_images/modeling_geometry-nodes_fields_constant.png" />
+<figcaption>
+<p><span class="caption-text">The socket shape is a diamond with a dot, meaning the field has the same value
+for every element. Every point will be moved up by 5 m.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<img alt="../../_images/modeling_geometry-nodes_fields_varying.png" src="../../_images/modeling_geometry-nodes_fields_varying.png" />
+<figcaption>
+<p><span class="caption-text">The socket shape is a diamond and the field input now has a varying input. In other words,
+the value can be different for every element. In this case, the position will be doubled,
+since the offset for every point is the point’s position.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Often it is desired to extract a single value from a field. While it doesn’t
+make sense conceptually to simply change a field into a single value,
+the <a class="reference internal" href="attribute/transfer_attribute.html"><span class="doc">Transfer Attribute Node</span></a> in <em>Index</em> mode
+or the <a class="reference internal" href="attribute/attribute_statistic.html"><span class="doc">Attribute Statistic Node</span></a> can be used
+to retrieve a single value from a field evaluated on a geometry.</p>
+</div>
+<p>When a connection is made between two node sockets that support
+fields the node connection will be drawn as a dashed line.
+If you make the mistake of connecting a non-field socket to a field socket,
+the connection will be drawn as a solid red line indicating that there is an error.</p>
+</section>
+<section id="node-types">
+<h2>Node Types<a class="headerlink" href="#node-types" title="Permalink to this headline"></a></h2>
+<p>Nodes can be separated into two categories: data flow nodes that usually pass geometry,
+and field nodes that operate on data per-element. Field nodes can be input nodes that
+bring geometry data into the node tree, or function nodes that operate on that data.</p>
+<section id="data-flow-nodes">
+<h3>Data Flow Nodes<a class="headerlink" href="#data-flow-nodes" title="Permalink to this headline"></a></h3>
+<p>Nodes with a geometry input and a geometry output will almost always be data flow nodes.
+Meaning that they actually change geometry data that will be outputted from the Geometry Nodes modifier.</p>
+</section>
+<section id="function-nodes">
+<h3>Function Nodes<a class="headerlink" href="#function-nodes" title="Permalink to this headline"></a></h3>
+<p>Nodes with diamond socket inputs and outputs are field nodes, and resemble the instructions
+that will be evaluated by data flow nodes. Examples of function nodes are the math nodes
+and also more complex nodes like the <a class="reference internal" href="geometry/geometry_proximity.html"><span class="doc">Geometry Proximity Node</span></a>.</p>
+</section>
+<section id="input-nodes">
+<h3>Input Nodes<a class="headerlink" href="#input-nodes" title="Permalink to this headline"></a></h3>
+<p>Input nodes provide data to the field evaluation process. By themselves, they mean nothing; they
+must be evaluated within the context of a data flow node (geometry) to actually output a value.
+Examples of input nodes are the built-in attribute input nodes like
+<a class="reference internal" href="input/position.html"><span class="doc">position</span></a> and
+<a class="reference internal" href="input/id.html"><span class="doc">ID</span></a>, but also selection nodes like
+<a class="reference internal" href="curve/endpoint_selection.html"><span class="doc">endpoint selection</span></a>.</p>
+<p>Field inputs may also come from other nodes that process geometry like
+the <a class="reference internal" href="point/distribute_points_on_faces.html"><span class="doc">Distribute Points on Faces</span></a>,
+in the form of <a class="reference internal" href="attributes_reference.html#anonymous-attributes"><span class="std std-ref">Anonymous Attributes</span></a>.</p>
+</section>
+</section>
+<section id="field-context">
+<h2>Field Context<a class="headerlink" href="#field-context" title="Permalink to this headline"></a></h2>
+<p>All field nodes work in the context of the data flow node they are connected to.
+The context usually consists of a geometry component type and an attribute domain,
+so it determines what data is retrieved from input nodes.</p>
+<p>One common misunderstanding is that the same field node tree used in multiple places will
+output the same data. This is not necessarily true, because the field node tree will be evaluated
+for every data flow node, potentially retrieving data from a different or changed geometry.</p>
+<figure class="align-center">
+<img alt="../../_images/modeling_geometry-nodes_fields_flow-1.png" src="../../_images/modeling_geometry-nodes_fields_flow-1.png" />
+</figure>
+<p>Here, the <a class="reference internal" href="geometry/set_position.html"><span class="doc">Set Position</span></a> node’s
+input field is evaluated once. To evaluate the field, the node traverses
+backwards to retrieve the inputs from the field input nodes.</p>
+<figure class="align-center">
+<img alt="../../_images/modeling_geometry-nodes_fields_flow-2.png" src="../../_images/modeling_geometry-nodes_fields_flow-2.png" />
+</figure>
+<p>When a second Set Position node is added, the same field node tree is evaluated twice, once for each data flow node.
+At the second Set Position node, the results will be different since its geometry input will already have
+the changed position from the first node.</p>
+<figure class="align-center">
+<img alt="../../_images/modeling_geometry-nodes_fields_flow-3.png" src="../../_images/modeling_geometry-nodes_fields_flow-3.png" />
+</figure>
+<p>However, often it’s necessary to use the same field values even after changing the geometry.
+The <a class="reference internal" href="attribute/capture_attribute.html"><span class="doc">Capture Attribute Node</span></a> evaluates a field, copying
+the result to an <a class="reference internal" href="attributes_reference.html#anonymous-attributes"><span class="std std-ref">anonymous attribute</span></a> on the geometry.</p>
+<p>Here, a Capture Attribute node stores a copy of the initial position.
+Notice that evaluating the field input of the Capture Attribute node is an entirely
+different step. Later on, the input fields to the Set Position nodes don’t use
+the actual position, but the anonymous attribute copy of it.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="attributes_reference.html" class="btn btn-neutral float-left" title="Attributes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="instances.html" class="btn btn-neutral float-right" title="Instances" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/geometry_nodes/fields.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/geometry_nodes/fields%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Fmodeling/geometry_nodes/fields.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

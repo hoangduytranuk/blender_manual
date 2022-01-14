@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collada &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/files/import_export/collada.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Universal Scene Description" href="usd.html" />
+    <link rel="prev" title="Alembic" href="alembic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Assets, Files, &amp; Data System</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blend/index.html">Blender File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_blocks.html">Data-Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linked_libraries/index.html">Linked Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../asset_libraries/index.html">Asset Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../media/index.html">Media Formats</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../import_export.html">Importing &amp; Exporting Files</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="alembic.html">Alembic</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Collada</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#collada-exporter">Collada Exporter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#main">Main</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#global-orientation">Global Orientation</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#texture-options">Texture Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#geometry">Geometry</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#export-data-options">Export Data Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#armature">Armature</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#armature-options">Armature Options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#animation">Animation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#extra">Extra</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#collada-options">Collada Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#collada-importer">Collada Importer</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#import-data-options">Import Data Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">Armature Options</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#technical-details">Technical Details</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#mesh">Mesh</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#import">Import</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#export">Export</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#light">Light</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id2">Import</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id3">Export</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#id4">Animation</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#export-import">Export &amp; Import</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usd.html">Universal Scene Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grease_pencil_svg.html">Scalable Vector Graphics (SVG) as Grease Pencil</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grease_pencil_pdf.html">Portable Document Format (PDF) as Grease Pencil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Assets, Files, &amp; Data System</a> &raquo;</li>
+          <li><a href="../import_export.html">Importing &amp; Exporting Files</a> &raquo;</li>
+      <li>Collada</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collada">
+<h1>Collada<a class="headerlink" href="#collada" title="Permalink to this headline"></a></h1>
+<p>The COLLADA™ module has been implemented as a flexible tool for exporting and importing <code class="docutils literal notranslate"><span class="pre">.dae</span></code> files.
+A design goal is to provide a set of parameters which should make it possible
+to export/import Collada files from/to a variety of tools.
+But please be aware that the Collada module is still a work in progress.
+So it may be possible that your particular usage scenario is not yet supported.</p>
+<section id="collada-exporter">
+<h2>Collada Exporter<a class="headerlink" href="#collada-exporter" title="Permalink to this headline"></a></h2>
+<figure class="align-right">
+<img alt="../../_images/files_import-export_collada_export.png" src="../../_images/files_import-export_collada_export.png" />
+</figure>
+<p class="rubric">Operator Presets</p>
+<p>There are two operator presets (see top of the Sidebar) for Second Life (SL) users:</p>
+<ul class="simple">
+<li><p><em>Second Life Static</em> – is good for exporting static meshes.</p></li>
+<li><p><em>Second Life Rigged</em> – is good for exporting the SL default character.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Special Notes for Second Life users:</p>
+<ul class="simple">
+<li><p>Please use the Operator presets. All other export settings will not work for Second Life.</p></li>
+<li><p>The character orientation needs to be such that the character looks towards positive X.</p></li>
+<li><p>Scale and Rotation must be applied before the export!</p></li>
+</ul>
+</div>
+<section id="main">
+<h3>Main<a class="headerlink" href="#main" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Selection Only</dt><dd><p>When <em>Selection Only</em> is enabled, then only the selected objects will be exported.
+Otherwise the entire scene is exported with all visible and all invisible objects.</p>
+</dd>
+<dt>Include Children</dt><dd><p>When this option is enabled then all children of the selected objects
+will also be exported regardless of their selection state.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can select only an armature, then using this option,
+all rigged meshes attached to the armature will also be exported.</p>
+</div>
+</dd>
+<dt>Include Armatures</dt><dd><p>When this option is enabled, then all armatures related to the selected objects
+will also be exported regardless of their selection state.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can select only the objects, then in the exporter enable
+this option to export the armature data also.</p>
+</div>
+</dd>
+<dt>Include Shape Keys</dt><dd><p>Includes the application of shape keys by exporting meshes
+with the current shape key configuration baked in.</p>
+</dd>
+</dl>
+<section id="global-orientation">
+<h4>Global Orientation<a class="headerlink" href="#global-orientation" title="Permalink to this headline"></a></h4>
+<p>Todo.</p>
+</section>
+<section id="texture-options">
+<h4>Texture Options<a class="headerlink" href="#texture-options" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Only Selected UV Map</dt><dd><p>When your mesh contains multiple UV layers, then Blender exports all layers by default.
+This option allows you to only export the active (selected) UV layer.</p>
+</dd>
+<dt>Copy</dt><dd><p>When you export images either material based image textures,
+then the exporter creates absolute file references in the export file.</p>
+<p>But if the <em>Copy</em> option is enabled, the exporter will create copies of the images instead and
+place the copies besides the export file. In that case the file references are made relative.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="geometry">
+<h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline"></a></h3>
+<section id="export-data-options">
+<h4>Export Data Options<a class="headerlink" href="#export-data-options" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Triangulate</dt><dd><p>The mesh can be triangulated on-the-fly. The triangulation is based on the same function
+which is used in the <em>Triangulate Faces</em> tool for triangulating the current selection of faces.
+For full control over the triangulation you can do this manually before exporting.
+However, this option allows to apply the triangulation only on the exported data;
+the mesh itself is not affected.</p>
+</dd>
+<dt>Apply Modifiers</dt><dd><p>All <a class="reference internal" href="../../modeling/modifiers/index.html"><span class="doc">Modifiers</span></a> will be applied in a non-destructive way.
+That is, the modifiers will be applied to copies of the meshes.</p>
+<dl class="simple">
+<dt>Resolution</dt><dd><p>Controls whether to apply the 3D Viewport resolution or the render resolution
+for modifiers that provide a preview mode and a render mode.</p>
+</dd>
+</dl>
+</dd>
+<dt>Transform</dt><dd><p>Collada supports two types of transformation matrix specifications.
+Either as <code class="docutils literal notranslate"><span class="pre">&lt;Matrix&gt;</span></code> or as a set of transformation decompositions (for move, rotate and scale).
+Note that the exporter will not strictly follow this option setting,
+but will rather take it as a hint to use the option if ever possible.
+This is so because some of the exported data types have specific rules
+about how the transformation matrix has to be exported.
+This is ongoing development and a less ambiguous method may be provided in the future.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="armature">
+<h3>Armature<a class="headerlink" href="#armature" title="Permalink to this headline"></a></h3>
+<section id="armature-options">
+<h4>Armature Options<a class="headerlink" href="#armature-options" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Deform Bones Only</dt><dd><p>When this option is enabled, then the exporter strips all non-deforming bones from the exported armatures.
+This option is useful when your armatures contain control bones
+which are not actually part of the character skeleton.
+For example you can export the Avastar rig with this option enabled.
+The resulting exported rig is compatible with Second Life.
+But please note the restrictions further below.</p>
+</dd>
+<dt>Export to SL/OpenSim</dt><dd><p>When this option is enabled, some issues with bone orientation are calculated differently
+and is designed to be used to export to Second Life or OpenSim.</p>
+<p>This is only relevant for rigged meshes, for static meshes it just does nothing at all.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="animation">
+<h3>Animation<a class="headerlink" href="#animation" title="Permalink to this headline"></a></h3>
+</section>
+<section id="extra">
+<h3>Extra<a class="headerlink" href="#extra" title="Permalink to this headline"></a></h3>
+<section id="collada-options">
+<h4>Collada Options<a class="headerlink" href="#collada-options" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>Use Object Instances</dt><dd><p>In Blender you can reuse the same mesh for multiple objects.
+This is named “object instantiation”. When you enable this option,
+then Blender will propagate object instantiation to the Collada file.</p>
+</dd>
+<dt>Use Blender Profile</dt><dd><p>Collada can be extended with tool specific data (profiles). Blender has its own (unofficial) profile
+that allows to export rig information into the Collada file. Later It can be used to reconstruct the rig
+when it should ever be necessary to import a dae file back into Blender.</p>
+</dd>
+<dt>Sort by Object Name</dt><dd><p>The export order of data is bound to internal object order and it can not be influenced in a reliable way.
+This option ensures that the Geometry nodes and the Object nodes are both exported in alphabetical order.</p>
+</dd>
+<dt>Keep Bind Info</dt><dd><p>When a rig is imported to Blender, the rig’s bind pose will be used as Blender’s rest pose.
+So all Matrix information of the original rest pose is lost.
+But in some cases you may want to preserve the original rig information.
+This option checks each bone for having two arrays:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rest_mat</span></code> – an array of 16 floats which represent the bone’s original rest-pose matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind_mat</span></code> – an array of 16 floats which represent the bone’s original bind-pose matrix.</p></li>
+</ul>
+<p>If the arrays are present, then those arrays will be used instead of the current rest pose/bind pose.
+Those two arrays are either created by a previous Collada import (see <a class="reference internal" href="#collada-importer">Collada Importer</a> below),
+or they can be created manually, or by an add-on (script based).</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="collada-importer">
+<h2>Collada Importer<a class="headerlink" href="#collada-importer" title="Permalink to this headline"></a></h2>
+<figure class="align-right">
+<img alt="../../_images/files_import-export_collada_import.png" src="../../_images/files_import-export_collada_import.png" />
+</figure>
+<p>The Collada importer is mostly driven by the imported data.
+There is one option for controlling the import units:</p>
+<section id="import-data-options">
+<h3>Import Data Options<a class="headerlink" href="#import-data-options" title="Permalink to this headline"></a></h3>
+<dl class="simple">
+<dt>Import Units</dt><dd><p>If not enabled the imported data will be rescaled according to the currently used unit system.
+If this option is enabled, then Blender will adjust itself to the unit system as provided by the Collada file.</p>
+</dd>
+</dl>
+</section>
+<section id="id1">
+<h3>Armature Options<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Fix Leaf Bones</dt><dd><p>Collada only records “joints” which is mostly similar to Blender’s bone heads.
+But when you import a Collada file then the bone head/tail are not defined.
+This does not matter for connected bones where the bone parent only has one child.
+In that case the parent bone’s end location is adjusted to the child’s joint position.
+But especially for unconnected bones and for bones with more than one child a problem arises.</p>
+<p>When the <em>Fix Leaf Bones</em> option is enabled then Blender tries to guess
+where the bone head/tail of unconnected bones would best be placed.
+If the option is disabled, then the bone head/tail are placed at an offset along the Y axis.
+That is why bones often point towards the Y axis.</p>
+</dd>
+<dt>Find Bone Chains</dt><dd><p>When a bone has multiple children, then it is not defined which (if any)
+of the children should be connected to the bone. When the <em>Find Bone Chains</em> option is enabled,
+then Blender determines the longest bone chain (of children) for each bone.
+All bones along this chain will then be auto connected.</p>
+<p>If the option is disabled, then children will only be connected to parents,
+if the parent has only one child. But see the <em>Auto Connect</em> option below.</p>
+</dd>
+<dt>Auto Connect</dt><dd><p>When this option is enabled, then children will automatically
+be connected to their parents, if the parent has only one child.</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<dl>
+<dt>Keep Bind Info</dt><dd><p>When this option is enabled, then the importer creates two custom properties for each bone:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rest_mat</span></code> – an array of 16 floats which represent the bone’s original rest-pose matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind_mat</span></code> – an array of 16 floats which represent the bone’s original bind-pose matrix.</p></li>
+</ul>
+<p>Those two arrays can later be used when you want to export the rig
+again and be sure the original rest pose/bind pose combination must be used.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="technical-details">
+<h2>Technical Details<a class="headerlink" href="#technical-details" title="Permalink to this headline"></a></h2>
+<section id="mesh">
+<h3>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline"></a></h3>
+<section id="import">
+<h4>Import<a class="headerlink" href="#import" title="Permalink to this headline"></a></h4>
+<p>Supported geometry types are:</p>
+<ul class="simple">
+<li><p>Tris (not tested)</p></li>
+<li><p>Polylist</p></li>
+<li><p>Polygons</p></li>
+<li><p>N-gons</p></li>
+<li><p>Tri-fans (not tested)</p></li>
+<li><p>Lines</p></li>
+</ul>
+</section>
+<section id="export">
+<h4>Export<a class="headerlink" href="#export" title="Permalink to this headline"></a></h4>
+<p>Mesh data is exported as <code class="docutils literal notranslate"><span class="pre">&lt;polylist&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;lines&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;vertices&gt;</span></code>.</p>
+</section>
+</section>
+<section id="light">
+<h3>Light<a class="headerlink" href="#light" title="Permalink to this headline"></a></h3>
+<section id="id2">
+<h4>Import<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h4>
+<p>Blender does a best effort on importing lights from a dae-file.
+If a Blender profile is detected for lights, all values from these will be used instead.
+This ensures full re-import from a Blender exported dae-file. <code class="docutils literal notranslate"><span class="pre">&lt;extra&gt;</span></code> support has been added in Blender 2.57.</p>
+</section>
+<section id="id3">
+<h4>Export<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h4>
+<p>A Blender profile for lights has been added through the <code class="docutils literal notranslate"><span class="pre">&lt;extra&gt;</span></code> tag.
+The entire Light struct from Blender will be exported through this profile,
+with the exception of light curve falloff.</p>
+</section>
+</section>
+<section id="id4">
+<h3>Animation<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<section id="export-import">
+<h4>Export &amp; Import<a class="headerlink" href="#export-import" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>Support for object (mesh, camera, light) transform animations. Only Euler rotations,
+which is the default option for Objects, can be exported.
+For armature bone animations, Euler and quaternion rotation types are supported.</p></li>
+<li><p>Import and export of animations for the following parameters are supported:</p>
+<ul>
+<li><p>Light</p></li>
+<li><p>Camera</p></li>
+<li><p>Material effects</p></li>
+</ul>
+</li>
+<li><p>Non-skin controlling armature bone animation.</p></li>
+<li><p>Animations of armatures with skin deforming bones.</p></li>
+<li><p>Animations of armatures in Object Mode.</p></li>
+<li><p>Fully rigified armature animations (referring to the Rigify add-on). For export of rigified armature animations:</p>
+<ul>
+<li><p>Select Bake Action. (Open <a class="reference internal" href="../../interface/controls/templates/operator_search.html"><span class="doc">Search</span></a> and type “Bake Action”.)</p></li>
+<li><p>If you have only the deform bones selected check <em>Only Selected</em>.
+This will give smaller dae. Otherwise uncheck <em>Only Selected</em>.</p></li>
+<li><p>Check <em>Clear Constraints</em>.</p></li>
+<li><p>Bake Action.</p></li>
+<li><p>Select the mesh and the deform bones. Then export to Collada while checking only selected option.
+(Selecting only the Mesh and bones is not strictly necessary.
+Selecting and export only selected will give smaller dae.)</p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=GTlmmd13J1w">Demonstration video</a></p></li>
+</ul>
+</li>
+</ul>
+<p>For bone nodes which are leaf nodes in the armature tree,
+or if a bone has more than one child, a Blender profile for tip with an <code class="docutils literal notranslate"><span class="pre">&lt;extra&gt;</span></code> tag,
+is added for those joint nodes. To correctly derive the bone-to-tail location on re-import.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Important Things to Remember</p>
+<ul class="simple">
+<li><p>Object and data-block names are constrained to 21 characters (bytes).</p></li>
+<li><p>UV layer names are constrained to 32 characters (bytes).</p></li>
+<li><p>Only armature animation on mesh, single skin controller.</p></li>
+<li><p>No support for modifiers yet.</p></li>
+</ul>
+<p>When importing a dae-file that has <code class="docutils literal notranslate"><span class="pre">&lt;instance_node&gt;</span></code> on exporting
+this information is essentially lost and these nodes will be <code class="docutils literal notranslate"><span class="pre">&lt;node&gt;</span></code>s.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="alembic.html" class="btn btn-neutral float-left" title="Alembic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usd.html" class="btn btn-neutral float-right" title="Universal Scene Description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/files/import_export/collada.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60files/import_export/collada%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Ffiles/import_export/collada.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

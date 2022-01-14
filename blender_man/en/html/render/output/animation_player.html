@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animation Player &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/output/animation_player.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Compositing" href="../../compositing/index.html" />
+    <link rel="prev" title="Rendering Animations" href="animation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Render Output</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Output Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="audio/index.html">Audio Rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="animation.html">Rendering Animations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Animation Player</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#player-options">Player Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#shortcuts">Shortcuts</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#frame-cache">Frame Cache</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Render Output</a> &raquo;</li>
+      <li>Animation Player</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="render-output-animation-player"><span id="bpy-ops-render-play-rendered-anim"></span></span><section id="animation-player">
+<h1>Animation Player<a class="headerlink" href="#animation-player" title="Permalink to this headline"></a></h1>
+<p>The animation player is a utility typically used for previewing rendered animations,
+supporting all image and video formats also supported by Blender.
+This is a convenient way to play back image sequences at the correct frame rate.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Menu</dt>
+<dd class="field-odd"><p><span class="menuselection">Topbar ‣ Render ‣ View Animation</span></p>
+</dd>
+<dt class="field-even">Shortcut</dt>
+<dd class="field-even"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">F11</kbd></kbd></p>
+</dd>
+</dl>
+</div>
+<p>Launching the animation player opens a new window,
+playing back images or a video located at the render output of the current scene.
+You can also drop images or movie files in a running animation player.
+It will then restart the player with the new data.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>An external player can also be used instead of the one included in Blender.
+To do this, select it in the <a class="reference internal" href="../../editors/preferences/file_paths.html"><span class="doc">Preferences</span></a>.</p>
+</div>
+<section id="player-options">
+<h3>Player Options<a class="headerlink" href="#player-options" title="Permalink to this headline"></a></h3>
+<dl>
+<dt>Ping Pong</dt><dd><p>When enabled, playback loops forwards than backwards.</p>
+</dd>
+<dt>X/Y Flip</dt><dd><p>Flip the image horizontally or vertically.</p>
+<p><em>Viewing the animation from a different perspective can help you see the animation with “fresh eyes”.</em></p>
+</dd>
+</dl>
+</section>
+<section id="shortcuts">
+<h3>Shortcuts<a class="headerlink" href="#shortcuts" title="Permalink to this headline"></a></h3>
+<p>The following table shows the available hotkeys for the animation player.</p>
+<p class="rubric">Playback</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Hotkey</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Start/Pause:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Spacebar</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Start playback (when paused):</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Return</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Quit:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Esc</kbd></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Timeline</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Hotkey</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scrub in time:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">LMB</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Step back one frame:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Left</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Step forward one frame:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Right</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Step back 10 frames:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Down</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Step forward 10 frames:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Up</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Manual frame stepping:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">NumpadPeriod</kbd></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Playback Options</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Hotkey</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Backward playback:</p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Down</kbd></kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Forward playback</p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Up</kbd></kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Slow down playback:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">NumpadMinus</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Speed up playback:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">NumpadPlus</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Toggle looping:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad0</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Toggle frame skipping:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">A</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Toggle ping-pong:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">P</kbd></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Display</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Hotkey</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Toggle Playhead (Indicator):</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">I</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Flip image on the X axis:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">F</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Flip image on the Y axis:</p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">F</kbd></kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Hold to show frame numbers:</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Shift</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>Zoom in:</p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">NumpadPlus</kbd></kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>Zoom out:</p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">NumpadMinus</kbd></kbd></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Frame Rate</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Action</p></th>
+<th class="head"><p>Hotkey</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>60 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad1</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>50 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad2</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>30 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad3</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>25 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad4</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>24 fps</p></td>
+<td><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">Numpad4</kbd></kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>20 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad5</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>15 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad6</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p>12 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad7</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p>10 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad8</kbd></p></td>
+</tr>
+<tr class="row-odd"><td><p> 6 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">Numpad9</kbd></p></td>
+</tr>
+<tr class="row-even"><td><p> 5 fps</p></td>
+<td><p><kbd class="kbd docutils literal notranslate">NumpadSlash</kbd></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="frame-cache">
+<h3>Frame Cache<a class="headerlink" href="#frame-cache" title="Permalink to this headline"></a></h3>
+<p>Image files are cached during playback for faster access.</p>
+<p>While loading images is rarely a bottleneck,
+there are situations where high resolution images may slow down playback causing frame skipping.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../editors/preferences/system.html#prefs-system-memory-cache-limit"><span class="std std-ref">Memory Cache Limit</span></a> preference to control this limit,
+which may be increased to cache more images during playback.
+<a class="reference internal" href="../../advanced/command_line/arguments.html#command-line-args-animation-playback-options"><span class="std std-ref">Animation Playback Options</span></a> to specify this value when launching from the command line.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="animation.html" class="btn btn-neutral float-left" title="Rendering Animations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../compositing/index.html" class="btn btn-neutral float-right" title="Compositing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/output/animation_player.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/output/animation_player%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Frender/output/animation_player.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

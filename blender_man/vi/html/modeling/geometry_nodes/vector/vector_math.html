@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vector Math Node &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/vector/vector_math.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
+    <link rel="next" title="Vector Rotate Node" href="vector_rotate.html" />
+    <link rel="prev" title="Vector Curves Node" href="vector_curves.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modifiers/index.html">Modifiers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Geometry Nodes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inspection.html">Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../attributes_reference.html">Thuộc Tính -- Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fields.html">Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../instances.html">Instances</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#node-types">Node Types</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../attribute/index.html">Attribute Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../color/index.html">Color Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../curve/index.html">Curve Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../curve_primitives/index.html">Curve Primitive Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geometry/index.html">Geometry Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instances/index.html">Instances Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../material/index.html">Material Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh/index.html">Mesh Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh_primitives/index.html">Mesh Primitive Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../point/index.html">Point Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../text/index.html">Text Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../texture/index.html">Texture Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../utilities/index.html">Utilities Nodes</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Vector Nodes</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="combine_xyz.html">Combine XYZ Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="separate_xyz.html">Separate XYZ Node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vector_curves.html">Vector Curves Node</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Vector Math Node</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="vector_rotate.html">Vector Rotate Node</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../volume/index.html">Volume Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../group.html">Nhóm -- Group</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Modeling</a> &raquo;</li>
+          <li><a href="../index.html">Geometry Nodes</a> &raquo;</li>
+          <li><a href="index.html">Vector Nodes</a> &raquo;</li>
+      <li>Vector Math Node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="index-0"></span><section id="vector-math-node">
+<h1>Vector Math Node<a class="headerlink" href="#vector-math-node" title="Permalink to this headline"></a></h1>
+<figure class="align-right" id="id1">
+<img alt="../../../_images/render_shader-nodes_converter_vector-math_node.png" src="../../../_images/render_shader-nodes_converter_vector-math_node.png" />
+<figcaption>
+<p><span class="caption-text">Vector Math Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <em>Vector Math</em> node performs the selected math operation on the input vectors.</p>
+<section id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<p>The inputs of the node are dynamic. Some inputs are only available in certain operations.
+For instance, the <em>Scale</em> input is only available in the <em>Scale</em> operator.</p>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>Input vector <span class="math notranslate nohighlight">\(A = \begin{pmatrix} A_x \\ A_y \\ A_z \end{pmatrix}\)</span>.</p>
+</dd>
+<dt>Vectơ -- Vector</dt><dd><p>Input vector <span class="math notranslate nohighlight">\(B = \begin{pmatrix} B_x \\ B_y \\ B_z \end{pmatrix}\)</span>.</p>
+</dd>
+<dt>Tỷ Lệ -- Scale</dt><dd><p>Input Scale <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd>
+</dl>
+</section>
+<section id="properties">
+<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>Operation</dt><dd><p>The vector math operator to be applied on the input vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Cộng Thêm -- Add</dt>
+<dd class="field-odd"><p>The sum of A and B.
+<span class="math notranslate nohighlight">\(\begin{pmatrix} A_x + B_x \\ A_y + B_y \\ A_z + B_z \end{pmatrix}\)</span></p>
+</dd>
+<dt class="field-even">Subtract</dt>
+<dd class="field-even"><p>The difference between A and B.
+<span class="math notranslate nohighlight">\(\begin{pmatrix} A_x - B_x \\ A_y - B_y \\ A_z - B_z \end{pmatrix}\)</span></p>
+</dd>
+<dt class="field-odd">Multiply</dt>
+<dd class="field-odd"><p>The entrywise product of A and B.
+<span class="math notranslate nohighlight">\(\begin{pmatrix} A_x \cdot B_x \\ A_y \cdot B_y \\ A_z \cdot B_z \end{pmatrix}\)</span></p>
+</dd>
+<dt class="field-even">Divide</dt>
+<dd class="field-even"><p>The entrywise division of A by B. Division by zero results in zero.
+<span class="math notranslate nohighlight">\(\begin{pmatrix} A_x / B_x \\ A_y / B_y \\ A_z / B_z \end{pmatrix}\)</span></p>
+</dd>
+<dt class="field-odd">Multiply Add</dt>
+<dd class="field-odd"><p>The entrywise combination of the multiply and addition operations.
+<span class="math notranslate nohighlight">\(A * B + C\)</span></p>
+</dd>
+<dt class="field-even">Cross Product</dt>
+<dd class="field-even"><p>The cross product of A and B.
+<span class="math notranslate nohighlight">\(\begin{pmatrix} A_y \cdot B_z - A_z \cdot B_y \\ A_z \cdot B_x - A_x \cdot B_z
+\\ A_x \cdot B_y - A_y \cdot B_x \end{pmatrix}\)</span></p>
+</dd>
+<dt class="field-odd">Project</dt>
+<dd class="field-odd"><p>The projection of A onto B.</p>
+</dd>
+<dt class="field-even">Reflect</dt>
+<dd class="field-even"><p>The reflection of A around the normal B. B need not be normalized.</p>
+</dd>
+<dt class="field-odd">Refract</dt>
+<dd class="field-odd"><p>For a given incident vector A, surface normal B and ratio of indices of refraction (IOR),
+refract outputs the refraction vector R.</p>
+</dd>
+<dt class="field-even">Faceforward</dt>
+<dd class="field-even"><p>Orients a vector A to point away from a surface B as defined by its normal C.
+Computes <span class="math notranslate nohighlight">\((dot(B, C) &lt; 0) ? A : -A\)</span>.</p>
+</dd>
+<dt class="field-odd">Dot Product</dt>
+<dd class="field-odd"><p>The dot product of A and B.
+<span class="math notranslate nohighlight">\(A_x \cdot B_x + A_y \cdot B_y + A_z \cdot B_z\)</span></p>
+</dd>
+<dt class="field-even">Khoảng Cách -- Distance</dt>
+<dd class="field-even"><p>The distance between A and B.</p>
+</dd>
+<dt class="field-odd">Chiều Dài -- Length</dt>
+<dd class="field-odd"><p>The length of A.
+<span class="math notranslate nohighlight">\(\sqrt{A_x^2 + A_y^2 + A_z^2}\)</span></p>
+</dd>
+<dt class="field-even">Tỷ Lệ -- Scale</dt>
+<dd class="field-even"><p>The result of multiplying A by the scalar input <em>Scale</em>.
+<span class="math notranslate nohighlight">\(\begin{pmatrix} s \cdot A_x \\ s \cdot A_y \\ s \cdot A_z \end{pmatrix}\)</span></p>
+</dd>
+<dt class="field-odd">Normalize</dt>
+<dd class="field-odd"><p>The result of normalizing A. The result vector points to the same direction as A and
+has a length of 1. If A is (0, 0, 0), the result is (0, 0, 0) as well.</p>
+</dd>
+<dt class="field-even">Wrap</dt>
+<dd class="field-even"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Rounding">Wrap</a>.</p>
+</dd>
+<dt class="field-odd">Snap</dt>
+<dd class="field-odd"><p>The result of rounding A to the largest integer multiple of B less than or equal A.</p>
+</dd>
+<dt class="field-even">Sàn -- Floor</dt>
+<dd class="field-even"><p>The entrywise floor of A.</p>
+</dd>
+<dt class="field-odd">Ceil</dt>
+<dd class="field-odd"><p>The entrywise ceiling of A.</p>
+</dd>
+<dt class="field-even">Modulo</dt>
+<dd class="field-even"><p>The entrywise modulo of A by B.</p>
+</dd>
+<dt class="field-odd">Fraction</dt>
+<dd class="field-odd"><p>The fractional part of A.</p>
+</dd>
+<dt class="field-even">Tuyệt Đối -- Absolute</dt>
+<dd class="field-even"><p>The entrywise absolute value of A.</p>
+</dd>
+<dt class="field-odd">Minimum</dt>
+<dd class="field-odd"><p>The entrywise minimum from A and B.</p>
+</dd>
+<dt class="field-even">Maximum</dt>
+<dd class="field-even"><p>The entrywise maximum from A and B.</p>
+</dd>
+<dt class="field-odd">Sine</dt>
+<dd class="field-odd"><p>The entrywise <a class="reference external" href="https://en.wikipedia.org/wiki/Sine">Sine</a> of A.</p>
+</dd>
+<dt class="field-even">Cosine</dt>
+<dd class="field-even"><p>The entrywise <a class="reference external" href="https://en.wikipedia.org/wiki/Trigonometric_functions">Cosine</a> of A.</p>
+</dd>
+<dt class="field-odd">Tangent -- Tiếp Tuyến</dt>
+<dd class="field-odd"><p>The entrywise <a class="reference external" href="https://en.wikipedia.org/wiki/Trigonometric_functions">Tangent</a> of A.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="outputs">
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<p>The output of the node is dynamic. It is either a vector or a scalar depending on the operator.
+For instance, the <em>Length</em> operator has a scalar output while the <em>Add</em> operator has a vector output.</p>
+<dl class="simple">
+<dt>Vectơ -- Vector</dt><dd><p>Output vector.</p>
+</dd>
+<dt>Value -- Giá Trị</dt><dd><p>Output value.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vector_curves.html" class="btn btn-neutral float-left" title="Vector Curves Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vector_rotate.html" class="btn btn-neutral float-right" title="Vector Rotate Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/modeling/geometry_nodes/vector/vector_math.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60modeling/geometry_nodes/vector/vector_math%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Fmodeling/geometry_nodes/vector/vector_math.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

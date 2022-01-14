@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Properties &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/editors/graph_editor/fcurves/properties.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/version_switch.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Blender Manual"
+          href="../../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="F-Curve Modifiers" href="modifiers.html" />
+    <link rel="prev" title="Editing" href="editing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Editors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../3dview/index.html">3D Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../image/index.html">Image Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../uv/index.html">UV Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_editor.html">Shader Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../compositor.html">Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_node.html">Geometry Node Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_sequencer/index.html">Video Sequencer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../clip/index.html">Movie Clip Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dope_sheet/index.html">Dope Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../timeline.html">Timeline</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Graph Editor</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../channels.html">Channels</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">F-Curves</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="editing.html">Editing</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Properties</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#active-f-curve">Active F-Curve</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#active-keyframe">Active Keyframe</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="modifiers.html">F-Curve Modifiers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers_editor.html">Drivers Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nla/index.html">Nonlinear Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editor.html">Text Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_console.html">Python Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info_editor.html">Info Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outliner/index.html">Outliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties_editor.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../file_browser.html">File Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../asset_browser.html">Asset Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preferences/index.html">Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spreadsheet.html">Spreadsheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Animation &amp; Rigging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../index.html">Graph Editor</a> &raquo;</li>
+          <li><a href="index.html">F-Curves</a> &raquo;</li>
+      <li>Properties</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="properties">
+<h1>Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h1>
+<section id="active-f-curve">
+<h2>Active F-Curve<a class="headerlink" href="#active-f-curve" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id1">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ F-Curve ‣ Active F-Curve</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-default" id="id3">
+<img alt="../../../_images/editors_graph-editor_fcurves_sidebar_curve_active-fcurve-panel.png" src="../../../_images/editors_graph-editor_fcurves_sidebar_curve_active-fcurve-panel.png" />
+<figcaption>
+<p><span class="caption-text">Active F-Curve panel.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This panel displays properties for the active F-curve.</p>
+<dl class="simple">
+<dt>Channel Name</dt><dd><p>ID Type + Channel name (X Location).</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fcurve-data-path">
+<dt>Data Path</dt><dd><p>RNA Path to property.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fcurve-array-index">
+<dt>RNA Array Index</dt><dd><p>Index to the specific property affected by the F-curve if applicable.</p>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-fcurve-color-mode">
+<dt>Display Color</dt><dd><p>The method used to determine the color of the F-curve shown in the Graph editor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Auto Rainbow</dt>
+<dd class="field-odd"><p>Increment the hue of the F-curve color based on the channel index.</p>
+</dd>
+<dt class="field-even">Auto XYZ to RGB</dt>
+<dd class="field-even"><p>For property sets like location XYZ, automatically set the set of colors to red, green, blue.</p>
+</dd>
+<dt class="field-odd">User Defined</dt>
+<dd class="field-odd"><p>Define a custom color for the active F-curve.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl id="bpy-types-fcurve-auto-smoothing">
+<dt>Handle Smoothing</dt><dd><p>Selects the method used to compute <a class="reference internal" href="#editors-graph-fcurves-settings-handles"><span class="std std-ref">automatic Bézier handles</span></a>
+(<em>Automatic</em>, <em>Auto Clamped</em>, <em>Vector</em>).</p>
+<figure class="align-center" id="id4">
+<img alt="../../../_images/editors_graph-editor_fcurves_sidebar_curve_auto-smoothing.png" src="../../../_images/editors_graph-editor_fcurves_sidebar_curve_auto-smoothing.png" />
+<figcaption>
+<p><span class="caption-text">Handle smoothing mode comparison.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<div class="legend">
+<p>Yellow: <em>None</em>, Cyan: <em>Continuous Acceleration</em>.
+From left to right, four <em>Auto Clamped</em> keys, one <em>Vector</em>, and the rest are <em>Automatic</em>.</p>
+</div>
+</figcaption>
+</figure>
+<dl class="field-list">
+<dt class="field-odd">None</dt>
+<dd class="field-odd"><p>Only directly adjacent key values are considered when computing the handles.
+Vector handles are pointed directly at the adjacent keyframes.</p>
+<p>This older method is very simple and predictable, but it can only produce
+truly smooth curves in the most trivial cases. Note the kinks in the yellow curve
+around the keys located between the extremes, and near the Vector handles.</p>
+</dd>
+<dt class="field-even">Continuous Acceleration</dt>
+<dd class="field-even"><p>A system of equations is solved in order to avoid or minimize jumps in acceleration
+at every keyframe. Vector handles are integrated into the curves as smooth transitions
+to imaginary straight lines beyond the keyframe.</p>
+<p>It produces much smoother curves out of the box, but necessarily means that
+any changes in the key values may affect interpolation over a significant stretch
+of the curve; although the amount of change decays exponentially with distance.
+This change propagation is stopped by any key with <em>Free</em>, <em>Aligned</em>, or <em>Vector</em>
+handles, as well as by extremes with <em>Auto Clamped</em> handles.</p>
+<p>The mode also tends to overshoot and oscillate more with fully <em>Automatic</em> handles
+in some cases (see the right end of the image above). So it is recommended to use
+<em>Auto Clamped</em> by default, and only switch to <em>Automatic</em> handles in places
+where this is desired behavior. That effect can also be reduced by adding in-between keys.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Considering the upsides and downsides of each mode, <em>Continuous Acceleration</em> should be
+better suited for limited animation, which uses a small number of interpolated keys with
+minimal manual polish. In case of highly polished high key rate animation, the benefits of
+smoothing may not outweigh the workflow disruption from more extensive change propagation.</p>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="active-keyframe">
+<h2>Active Keyframe<a class="headerlink" href="#active-keyframe" title="Permalink to this headline"></a></h2>
+<div class="refbox admonition" id="id2">
+<p class="admonition-title">Reference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Panel</dt>
+<dd class="field-odd"><p><span class="menuselection">Sidebar region ‣ F-Curve ‣ Active Keyframe</span></p>
+</dd>
+</dl>
+</div>
+<figure class="align-default" id="id5">
+<img alt="../../../_images/editors_graph-editor_fcurves_sidebar_curve_active-keyframe-panel.png" src="../../../_images/editors_graph-editor_fcurves_sidebar_curve_active-keyframe-panel.png" />
+<figcaption>
+<p><span class="caption-text">Active Keyframe panel.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<span id="bpy-types-keyframe-interpolation"></span><dl id="editors-graph-fcurves-settings-interpolation">
+<dt>Interpolation</dt><dd><p>Mode for the <a class="reference internal" href="../../../glossary/index.html#term-Interpolation"><span class="xref std std-term">Interpolation</span></a> between the current and next keyframe.</p>
+<p class="rubric">Interpolation</p>
+<dl class="field-list">
+<dt class="field-odd">Constant</dt>
+<dd class="field-odd"><figure class="align-right" id="id6">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_constant.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_constant.png" src="../../../_images/editors_graph-editor_fcurves_introduction_constant.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Constant.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>There is no interpolation at all. The curve holds the value of its last keyframe,
+giving a discrete (stairway) “curve”.
+Usually only used during the initial “blocking” stage in pose-to-pose animation workflows.</p>
+</dd>
+<dt class="field-even">Linear</dt>
+<dd class="field-even"><figure class="align-right" id="id7">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_linear.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_linear.png" src="../../../_images/editors_graph-editor_fcurves_introduction_linear.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Linear.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This simple interpolation creates a straight segment, giving a non-continuous line.
+It can be useful when using only two keyframes and the <em>Extrapolation</em> extend mode,
+to easily get an infinite straight line (i.e. a linear curve).</p>
+</dd>
+<dt class="field-odd">Bézier</dt>
+<dd class="field-odd"><figure class="align-right" id="id8">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_editing_clean1.png"><img alt="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" src="../../../_images/editors_graph-editor_fcurves_editing_clean1.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Bézier.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The more powerful and useful interpolation, and the default one.
+It gives nicely smoothed curves, i.e. smooth animations!</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that some F-curves can only take discrete values,
+in which case they are always shown as if constant interpolated, whatever option you chose.</p>
+</div>
+<p class="rubric">Easing (by strength)</p>
+<p>Different methods of easing interpolations for F-curve segment.
+The “Robert Penner easing equations” (basically, equations which define some preset ways that
+one keyframe transitions to another) which reduce the amount of manual work (inserting and tweaking keyframes)
+to achieve certain common effects. For example, snappy movements.</p>
+<ul class="simple">
+<li><p>Linear</p></li>
+<li><p>Sinusoidal</p></li>
+<li><p>Quadratic</p></li>
+<li><p>Cubic</p></li>
+<li><p>Quartic</p></li>
+<li><p>Quintic</p></li>
+<li><p>Exponential</p></li>
+<li><p>Circular</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more info and a few live demos, see <a class="reference external" href="https://easings.net">https://easings.net</a> and
+<a class="reference external" href="http://robertpenner.com/easing/">http://robertpenner.com/easing/</a></p>
+</div>
+<p class="rubric">Dynamic Effects</p>
+<p>These additional easing types imitate (fake) physics-based effects like bouncing/springing effects.
+The corresponding settings can be found in the <span class="menuselection">Sidebar region ‣ Active Keyframe panel</span>.</p>
+<dl class="field-list">
+<dt class="field-odd">Back</dt>
+<dd class="field-odd"><p>Cubic easing with overshoot and settle.
+Use this one when you want a bit of an overshoot coming into the next keyframe,
+or perhaps for some wind-up anticipation.</p>
+<dl class="simple">
+<dt>Back</dt><dd><p>The back property controls the size and direction (i.e. above/below the curve) of the overshoot.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Bounce</dt>
+<dd class="field-even"><p>Exponentially decaying parabolic bounce, like when objects collide.
+e.g. for Bouncing balls, etc.</p>
+</dd>
+<dt class="field-odd">Elastic</dt>
+<dd class="field-odd"><p>Exponentially decaying sine wave, like an elastic band.
+This is like bending a stiff pole stuck to some surface,
+and watching it rebound and settle back to its original state.</p>
+<dl class="simple">
+<dt>Amplitude</dt><dd><p>The amplitude property controls how strongly the oscillation diverges from the basic curve.
+At 0.0, there is no oscillation (i.e. it just snaps to the B-value like an extreme exponential transition),
+and at 1.0 a profile similar to the one shown in the icon occurs.</p>
+</dd>
+<dt>Period</dt><dd><p>The period property controls the frequency with which oscillations occur.
+Higher values result in denser oscillations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="editors-graph-fcurves-settings-easing">
+<dt>Easing</dt><dd><p>The Easing Type controls which end of the segment between the two keyframes that the easing effects apply to.
+It has no effect if the <a class="reference internal" href="#editors-graph-fcurves-settings-interpolation"><span class="std std-ref">Interpolation Mode</span></a>
+is set to either <em>Constant</em>, <em>Linear</em>, or <em>Bézier</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Automatic Easing</dt>
+<dd class="field-odd"><p>The most commonly expected of the below behaviors is used.
+For the transitional effects, this is basically <em>ease in</em>, while for the physics effects it is <em>ease out</em>.</p>
+</dd>
+<dt class="field-even">Ease In</dt>
+<dd class="field-even"><p>Effect builds up to the second keyframe.</p>
+</dd>
+<dt class="field-odd">Ease Out</dt>
+<dd class="field-odd"><p>Effect fades out from the first keyframe.</p>
+</dd>
+<dt class="field-even">Ease In Out</dt>
+<dd class="field-even"><p>Effect occurs on both ends of the segment.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple" id="bpy-types-keyframe-co-ui">
+<dt>Key Frame</dt><dd><p>Set the frame for the active keyframe.</p>
+</dd>
+<dt>Value</dt><dd><p>Set the value for the active keyframe.</p>
+</dd>
+</dl>
+<span id="bpy-types-keyframe-handle-right-type"></span><span id="bpy-types-keyframe-handle-left-type"></span><dl id="editors-graph-fcurves-settings-handles">
+<dt>Left/Right Handle Type</dt><dd><p>When using Bézier-interpolated curves it is possible to control the slope of the curve at the control points.
+This is done via the curve point <em>handles</em>; you can set the type of handle to use
+for the curve points by pressing <kbd class="kbd docutils literal notranslate">V</kbd> or choosing Key, Handle Type in the Graph editor menu.
+Each curve point can have a different handle type, even within the same curve.</p>
+<p>There are three automatic modes, <em>Automatic</em>, <em>Auto Clamped</em>, and <em>Vector</em>,
+where Blender automatically determines the curve’s slope at each control point.
+The neighboring control points have the most influence of the slope,
+and points further away have a smaller influence. This can be controlled per F-curve with
+the <a class="reference internal" href="#bpy-types-fcurve-auto-smoothing"><span class="std std-ref">Auto Handle Smoothing</span></a> properties.</p>
+<p>By using the other, non-automatic modes, you have full manual control over the slope.</p>
+<dl class="field-list">
+<dt class="field-odd">Automatic</dt>
+<dd class="field-odd"><figure class="align-right" id="id9">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_auto.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_auto.png" src="../../../_images/editors_graph-editor_fcurves_introduction_auto.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Auto handles.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Handle positions are automatically chosen to produce smooth curves.</p>
+</dd>
+<dt class="field-even">Auto Clamped</dt>
+<dd class="field-even"><figure class="align-right" id="id10">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_autoclamped.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_autoclamped.png" src="../../../_images/editors_graph-editor_fcurves_introduction_autoclamped.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Auto clamped handles.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Automatic handles clamped to prevent overshoots and
+changes in the curve direction between keyframes (S-shapes).</p>
+</dd>
+<dt class="field-odd">Vector</dt>
+<dd class="field-odd"><figure class="align-right" id="id11">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_vector.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_vector.png" src="../../../_images/editors_graph-editor_fcurves_introduction_vector.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Vector handles.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Creates automatic linear interpolation between keyframes. The segments remain linear when
+keyframe centers are moved. However, when the handles are moved, the handle type switches to <em>Free</em>.</p>
+</dd>
+<dt class="field-even">Aligned</dt>
+<dd class="field-even"><figure class="align-right" id="id12">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_aligned.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_aligned.png" src="../../../_images/editors_graph-editor_fcurves_introduction_aligned.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Aligned handles.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The two handles of the curve point are locked together to always point in exactly opposite directions.
+This results in a curve that is always smooth at the control point.</p>
+</dd>
+<dt class="field-odd">Free</dt>
+<dd class="field-odd"><figure class="align-right" id="id13">
+<a class="reference internal image-reference" href="../../../_images/editors_graph-editor_fcurves_introduction_free.png"><img alt="../../../_images/editors_graph-editor_fcurves_introduction_free.png" src="../../../_images/editors_graph-editor_fcurves_introduction_free.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-text">Free handles.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The handles can be moved completely independently, and thus can result in a sharp change of direction.</p>
+</dd>
+</dl>
+<span id="bpy-types-keyframe-handle-left"></span><dl class="simple" id="bpy-types-keyframe-handle-right">
+<dt>Frame, Value</dt><dd><p>Set the frame and value for the left/right interpolation handle for the active keyframe.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="editing.html" class="btn btn-neutral float-left" title="Editing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modifiers.html" class="btn btn-neutral float-right" title="F-Curve Modifiers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Last updated on 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/editors/graph_editor/fcurves/properties.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60editors/graph_editor/fcurves/properties%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60en%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fen%2F3.1%2Feditors/graph_editor/fcurves/properties.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 en 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPU Rendering &mdash; Blender Manual</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/version_switch.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://docs.blender.org/manual/en/latest/render/cycles/gpu_rendering.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script src="../../_static/js/version_switch.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Tìm kiếm trong Blender Manual"
+          href="../../_static/opensearch.xml"/>
+    <link rel="alternate" hreflang="en" href="https://docs.blender.org/manual/en/latest/" />
+    <link rel="alternate" hreflang="ar" href="https://docs.blender.org/manual/ar/latest/" />
+    <link rel="alternate" hreflang="de" href="https://docs.blender.org/manual/de/latest/" />
+    <link rel="alternate" hreflang="es" href="https://docs.blender.org/manual/es/latest/" />
+    <link rel="alternate" hreflang="fi" href="https://docs.blender.org/manual/fi/latest/" />
+    <link rel="alternate" hreflang="fr" href="https://docs.blender.org/manual/fr/latest/" />
+    <link rel="alternate" hreflang="id" href="https://docs.blender.org/manual/id/latest/" />
+    <link rel="alternate" hreflang="it" href="https://docs.blender.org/manual/it/latest/" />
+    <link rel="alternate" hreflang="ja" href="https://docs.blender.org/manual/ja/latest/" />
+    <link rel="alternate" hreflang="ko" href="https://docs.blender.org/manual/ko/latest/" />
+    <link rel="alternate" hreflang="nb" href="https://docs.blender.org/manual/nb/latest/" />
+    <link rel="alternate" hreflang="pt" href="https://docs.blender.org/manual/pt/latest/" />
+    <link rel="alternate" hreflang="ru" href="https://docs.blender.org/manual/ru/latest/" />
+    <link rel="alternate" hreflang="sk" href="https://docs.blender.org/manual/sk/latest/" />
+    <link rel="alternate" hreflang="sl" href="https://docs.blender.org/manual/sl/latest/" />
+    <link rel="alternate" hreflang="sr" href="https://docs.blender.org/manual/sr/latest/" />
+    <link rel="alternate" hreflang="uk" href="https://docs.blender.org/manual/uk/latest/" />
+    <link rel="alternate" hreflang="vi" href="https://docs.blender.org/manual/vi/latest/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://docs.blender.org/manual/zh-hans/latest/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://docs.blender.org/manual/zh-hant/latest/" />
+    <link rel="alternate" hreflang="x-default" href="https://docs.blender.org/manual/en/latest/" />
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../../search.html" />
+    <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
+    <link rel="next" title="Experimental Features" href="features.html" />
+    <link rel="prev" title="Light Settings" href="light_settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Blender 3.1 Manual
+            <img src="../../_static/blender-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Tuần Hoàn -- Cycles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="world_settings.html">World Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="object_settings/index.html">Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_settings.html">Sắp Đặt về Nguyên Vật Liệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_settings.html">Light Settings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GPU Rendering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#supported-hardware">Supported Hardware</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#nvidia">Nvidia</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#cuda">CUDA</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#optix">OptiX</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#amd">AMD</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#apple">Apple</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#frequently-asked-questions">Frequently Asked Questions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#why-is-blender-unresponsive-during-rendering">Why is Blender unresponsive during rendering?</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#why-does-a-scene-that-renders-on-the-cpu-not-render-on-the-gpu">Why does a scene that renders on the CPU not render on the GPU?</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#can-multiple-gpus-be-used-for-rendering">Can multiple GPUs be used for rendering?</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#would-multiple-gpus-increase-available-memory">Would multiple GPUs increase available memory?</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#what-renders-faster">What renders faster?</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#error-messages">Error Messages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#unsupported-gnu-version">Unsupported GNU version</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cuda-error-kernel-compilation-failed">CUDA Error: Kernel compilation failed</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cuda-error-out-of-memory">CUDA Error: Out of memory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#the-nvidia-opengl-driver-lost-connection-with-the-display-driver">The Nvidia OpenGL driver lost connection with the display driver</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cuda-error-unknown-error-in-cuctxsynchronize">CUDA error: Unknown error in cuCtxSynchronize()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="features.html">Experimental Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="baking.html">Render Baking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optimizations/index.html">Optimizing Renders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Blender 3.1 Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="index.html">Tuần Hoàn -- Cycles</a> &raquo;</li>
+      <li>GPU Rendering</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gpu-rendering">
+<h1>GPU Rendering<a class="headerlink" href="#gpu-rendering" title="Permalink to this headline"></a></h1>
+<p><abbr title="Graphics Processing Unit">GPU</abbr> rendering makes it possible to use your
+graphics card for rendering, instead of the CPU. This can speed up rendering
+because modern GPUs are designed to do quite a lot of number crunching.
+On the other hand, they also have some limitations in rendering complex scenes, due to more limited memory,
+and issues with interactivity when using the same graphics card for display and rendering.</p>
+<p>To enable GPU rendering, go into the <span class="menuselection">Preferences ‣ System ‣ Cycles Render Devices</span>,
+and select either <em>CUDA</em>, <em>OptiX</em>, <em>HIP</em>, or <em>Metal</em>. Next, you must configure each scene to use GPU rendering in
+<span class="menuselection">Properties ‣ Render ‣ Device</span>.</p>
+<section id="supported-hardware">
+<h2>Supported Hardware<a class="headerlink" href="#supported-hardware" title="Permalink to this headline"></a></h2>
+<p>Blender supports different technologies to render on the GPU depending on the particular GPU manufacturer.</p>
+<section id="nvidia">
+<h3>Nvidia<a class="headerlink" href="#nvidia" title="Permalink to this headline"></a></h3>
+<p><abbr title="Compute Unified Device Architecture">CUDA</abbr> and OptiX are supported
+for GPU rendering with Nvidia graphics cards.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><a class="reference internal" href="../shader_nodes/osl.html"><span class="doc">Open Shading Language</span></a> is not supported.</p>
+</div>
+<section id="cuda">
+<h4>CUDA<a class="headerlink" href="#cuda" title="Permalink to this headline"></a></h4>
+<p>CUDA requires graphics cards with compute capability 3.0 and higher.
+To make sure your GPU is supported,
+see the <a class="reference external" href="https://developer.nvidia.com/cuda-gpus#compute">list of Nvidia graphics cards</a>
+with the compute capabilities and supported graphics cards.</p>
+</section>
+<section id="optix">
+<span id="render-cycles-gpu-optix"></span><h4>OptiX<a class="headerlink" href="#optix" title="Permalink to this headline"></a></h4>
+<p>OptiX requires graphics cards with compute capability 5.0 and higher and a driver version of at least 470.
+To make sure your GPU is supported,
+see the <a class="reference external" href="https://developer.nvidia.com/cuda-gpus#compute">list of Nvidia graphics cards</a>
+OptiX works best on RTX graphics cards with hardware ray tracing support (e.g. Turing and above).</p>
+</section>
+</section>
+<section id="amd">
+<h3>AMD<a class="headerlink" href="#amd" title="Permalink to this headline"></a></h3>
+<p><abbr title="Heterogeneous-compute Interface for Portability">HIP</abbr> is enabled
+for GPU rendering with AMD graphics cards on Windows. Blender supports GPU rendering
+on discrete graphics cards with the AMD RDNA architecture or newer
+and AMD Radeon Software 21.12.1 or AMD Radeon PRO Software 21.Q4 GPU drivers or newer.</p>
+<p>Support GPUs include:</p>
+<ul class="simple">
+<li><p>AMD Radeon RX 5000 Series</p></li>
+<li><p>AMD Radeon RX 6000 Series</p></li>
+<li><p>AMD Radeon Pro W6000 Series</p></li>
+</ul>
+<p>Please refer to <a class="reference external" href="https://www.amd.com/en/graphics">AMD's website</a> for more
+information about AMD graphics cards and their architectures.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>Unsupported Features:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../shader_nodes/osl.html"><span class="doc">Open Shading Language</span></a></p></li>
+<li><p><em>Clip</em> extension mode in the <a class="reference internal" href="../shader_nodes/textures/image.html"><span class="doc">Image Texture Node</span></a></p></li>
+</ul>
+</div>
+</section>
+<section id="apple">
+<h3>Apple<a class="headerlink" href="#apple" title="Permalink to this headline"></a></h3>
+<p>Metal is enabled for GPU rendering on Apple Silicon using macOS 12.0 (Monterey) and newer.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p><a class="reference internal" href="../shader_nodes/osl.html"><span class="doc">Open Shading Language</span></a> is not supported.</p>
+</div>
+</section>
+</section>
+<section id="frequently-asked-questions">
+<h2>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline"></a></h2>
+<section id="why-is-blender-unresponsive-during-rendering">
+<h3>Why is Blender unresponsive during rendering?<a class="headerlink" href="#why-is-blender-unresponsive-during-rendering" title="Permalink to this headline"></a></h3>
+<p>While a graphics card is rendering, it cannot redraw the user interface, which makes Blender unresponsive.
+We attempt to avoid this problem by giving back control over to the GPU as often as possible,
+but a completely smooth interaction cannot be guaranteed, especially on heavy scenes.
+This is a limitation of graphics cards for which no true solution exists,
+though we might be able to improve this somewhat in the future.</p>
+<p>If possible, it is best to install more than one GPU,
+using one for display and the other(s) for rendering.</p>
+</section>
+<section id="why-does-a-scene-that-renders-on-the-cpu-not-render-on-the-gpu">
+<h3>Why does a scene that renders on the CPU not render on the GPU?<a class="headerlink" href="#why-does-a-scene-that-renders-on-the-cpu-not-render-on-the-gpu" title="Permalink to this headline"></a></h3>
+<p>There may be multiple causes,
+but the most common one is that there is not enough memory on your graphics card.
+Typically, the GPU can only use the amount of memory that is on the GPU
+(see <a class="reference internal" href="#would-multiple-gpus-increase-available-memory">Would multiple GPUs increase available memory?</a> for more information).
+This is usually much smaller than the amount of system memory the CPU can access.
+With CUDA, OptiX and HIP devices, if the GPU memory is full Blender will automatically try to use system memory.
+This has a performance impact, but will usually still result in a faster render than using CPU rendering.</p>
+</section>
+<section id="can-multiple-gpus-be-used-for-rendering">
+<h3>Can multiple GPUs be used for rendering?<a class="headerlink" href="#can-multiple-gpus-be-used-for-rendering" title="Permalink to this headline"></a></h3>
+<p>Yes, go to <span class="menuselection">Preferences ‣ System ‣ Compute Device Panel</span>, and configure it as you desire.</p>
+</section>
+<section id="would-multiple-gpus-increase-available-memory">
+<h3>Would multiple GPUs increase available memory?<a class="headerlink" href="#would-multiple-gpus-increase-available-memory" title="Permalink to this headline"></a></h3>
+<p>Typically, no, each GPU can only access its own memory, however, some GPUs can share their memory.
+This is can be enabled with <a class="reference internal" href="../../editors/preferences/system.html#prefs-system-cycles-distributive-memory"><span class="std std-ref">Distributed Memory Across Devices</span></a>.</p>
+</section>
+<section id="what-renders-faster">
+<h3>What renders faster?<a class="headerlink" href="#what-renders-faster" title="Permalink to this headline"></a></h3>
+<p>This varies depending on the hardware used. Different technologies also have different compute times
+depending on the scene tested. For the most up to date information on the performance of different devices,
+browse the <a class="reference external" href="https://opendata.blender.org/">Blender Open Data</a> resource.</p>
+</section>
+</section>
+<section id="error-messages">
+<h2>Error Messages<a class="headerlink" href="#error-messages" title="Permalink to this headline"></a></h2>
+<p>In case of problems, be sure to install the official graphics drivers from the GPU manufacturers website,
+or through the package manager on Linux.</p>
+<section id="unsupported-gnu-version">
+<h3>Unsupported GNU version<a class="headerlink" href="#unsupported-gnu-version" title="Permalink to this headline"></a></h3>
+<p>On Linux, depending on your GCC version you might get this error.
+See the <a class="reference external" href="https://docs.nvidia.com/cuda/archive/10.2/cuda-installation-guide-linux/index.html">Nvidia CUDA Installation Guide for Linux</a>
+for a list of supported GCC versions. There are two possible solutions to this error:</p>
+<dl>
+<dt>Use an alternate compiler</dt><dd><p>If you have an older GCC installed that is compatible with the installed CUDA toolkit version,
+then you can use it instead of the default compiler.
+This is done by setting the <code class="docutils literal notranslate"><span class="pre">CYCLES_CUDA_EXTRA_CFLAGS</span></code> environment variable when starting Blender.</p>
+<p>Launch Blender from the command line as follows:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">CYCLES_CUDA_EXTRA_CFLAGS</span><span class="o">=</span><span class="s2">&quot;-ccbin gcc-x.x&quot;</span> blender
+</pre></div>
+</div>
+<p>(Substitute the name or path of the compatible GCC compiler).</p>
+</dd>
+<dt>Remove compatibility checks</dt><dd><p>If the above is unsuccessful, delete the following line in
+<code class="docutils literal notranslate"><span class="pre">/usr/local/cuda/include/host_config.h</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#error -- unsupported GNU version! gcc x.x and up are not supported!</span>
+</pre></div>
+</div>
+<p>This will allow Cycles to successfully compile the CUDA rendering kernel the first time it
+attempts to use your GPU for rendering. Once the kernel is built successfully, you can
+launch Blender as you normally would and the CUDA kernel will still be used for rendering.</p>
+</dd>
+</dl>
+</section>
+<section id="cuda-error-kernel-compilation-failed">
+<h3>CUDA Error: Kernel compilation failed<a class="headerlink" href="#cuda-error-kernel-compilation-failed" title="Permalink to this headline"></a></h3>
+<p>This error may happen if you have a new Nvidia graphics card that is not yet supported by
+the Blender version and CUDA toolkit you have installed.
+In this case Blender may try to dynamically build a kernel for your graphics card and fail.</p>
+<p>In this case you can:</p>
+<ol class="arabic simple">
+<li><p>Check if the latest Blender version
+(official or <a class="reference external" href="https://builder.blender.org/download/">experimental builds</a>)
+supports your graphics card.</p></li>
+<li><p>If you build Blender yourself, try to download and install a newer CUDA developer toolkit.</p></li>
+</ol>
+<p>Normally users do not need to install the CUDA toolkit as Blender comes with precompiled kernels.</p>
+</section>
+<section id="cuda-error-out-of-memory">
+<h3>CUDA Error: Out of memory<a class="headerlink" href="#cuda-error-out-of-memory" title="Permalink to this headline"></a></h3>
+<p>This usually means there is not enough memory to store the scene for use by the GPU.</p>
+<div class="admonition note">
+<p class="admonition-title">Ghi chú</p>
+<p>One way to reduce memory usage is by using smaller resolution textures.
+For example, 8k, 4k, 2k, and 1k image textures take up respectively 256MB, 64MB, 16MB and 4MB of memory.</p>
+</div>
+</section>
+<section id="the-nvidia-opengl-driver-lost-connection-with-the-display-driver">
+<h3>The Nvidia OpenGL driver lost connection with the display driver<a class="headerlink" href="#the-nvidia-opengl-driver-lost-connection-with-the-display-driver" title="Permalink to this headline"></a></h3>
+<p>If a GPU is used for both display and rendering,
+Windows has a limit on the time the GPU can do render computations.
+If you have a particularly heavy scene, Cycles can take up too much GPU time.
+Reducing Tile Size in the Performance panel may alleviate the issue,
+but the only real solution is to use separate graphics cards for display and rendering.</p>
+<p>Another solution can be to increase the time-out,
+although this will make the user interface less responsive when rendering heavy scenes.
+<a class="reference external" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/display/timeout-detection-and-recovery">Learn More Here</a>.</p>
+</section>
+<section id="cuda-error-unknown-error-in-cuctxsynchronize">
+<h3>CUDA error: Unknown error in cuCtxSynchronize()<a class="headerlink" href="#cuda-error-unknown-error-in-cuctxsynchronize" title="Permalink to this headline"></a></h3>
+<p>An unknown error can have many causes, but one possibility is that it is a time-out.
+See the above answer for solutions.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="light_settings.html" class="btn btn-neutral float-left" title="Light Settings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="features.html" class="btn btn-neutral float-right" title="Experimental Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
+      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      </span></p>
+  </div>
+
+  
+      <div class="footer-contribute">
+         <ul>
+            <li>
+               <a href="https://developer.blender.org/diffusion/BM/browse/trunk/blender_docs/manual/render/cycles/gpu_rendering.rst" class="fa fa-edit"> Edit Page</a>
+            </li>
+            <li>
+               <a href="https://developer.blender.org/maniphest/task/edit/form/default/?description=Pagename%3A%20%60render/cycles/gpu_rendering%60%0ABlender%20Version%3A%20%603.1%60%0ADocumentation%20Language%3A%20%60vi%60%0A%5B%5B%20https%3A%2F%2Fdocs.blender.org%2Fmanual%2Fvi%2F3.1%2Frender/cycles/gpu_rendering.html%20%7C%20Permanent%20link%20%5D%5D%0A%0A%2A%2AShort%20description%20of%20error%2A%2A%0A%5BPlease%20fill%20out%20a%20short%20description%20of%20the%20error%20here%5D&project=PHID-PROJ-c4nvvrxuczix2326vlti" class="fa fa-bug"> Report Bug</a>
+            </li>
+         <ul>
+      </div>
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="document versions">
+<ul id="versionwrap" role="presentation">
+   <li role="presentation">
+		<span id="version-popover" class="version-btn" tabindex="0" role="button" aria-label="versions selector" aria-haspopup="true" aria-controls="version-vsnlist" aria-disabled="true">
+		3.1 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Versions</div>
+			<ul id="version-vsnlist" class="version-list" role="menu" aria-labelledby="version-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+   <li role="presentation">
+		<span id="lang-popover" class="version-btn" tabindex="0" role="button"  aria-label="language selector" aria-haspopup="true" aria-controls="version-langlist">
+			 vi 
+		</span>
+		<div class="version-dialog" aria-hidden="true">
+			<div class="version-arrow" aria-hidden="true"></div>
+			<div class="version-title">Languages</div>
+			<ul id="version-langlist" class="version-list" role="menu" aria-labelledby="lang-popover" aria-hidden="true">
+				<li role="presentation">Loading...</li>
+			</ul>
+		</div>
+	</li>
+</ul>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1418081-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-1418081-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
