@@ -38,40 +38,7 @@ TIME_ZONE = 'Europe/London'
 RUNNING_APP_ENVIRON_KEY = 'EXEC_TRANSLATE_PO'
 trans_finder = tf()
 
-def writeJSONDic(dict_list=None, file_name=None):
-    try:
-        if not file_name:
-            return
 
-        if not dict_list:
-            return
-
-        with open(file_name, 'w+', newline='\n', encoding='utf8') as out_file:
-            json.dump(dict_list, out_file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
-    except Exception as e:
-        df.LOG(f'{e}; Length of read dictionary:{len(dict_list)}', error=True)
-        raise e
-
-
-def loadJSONDic(file_name=None):
-    return_dic = {}
-    try:
-        if not file_name:
-            dd(f'loadJSONDic - file_name is None.')
-            return return_dic
-
-        if not os.path.isfile(file_name):
-            dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
-            return return_dic
-
-        dic = {}
-        with open(file_name) as in_file:
-            # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
-            return_dic = json.load(in_file)
-    except Exception as e:
-        df.LOG(f'{e}; Exception occurs while performing loadJSONDic({file_name})', error=True)
-
-    return return_dic
 
 class POResultRecord(object):
     def __init__(self, line_no, msgid, msgstr, alternative_tran=None, alternative_label=None):

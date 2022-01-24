@@ -18,6 +18,8 @@ import re
 from textmap import TextMap as TM
 from pattern_utils import PatternUtils as pu
 from string_utils import StringUtils as st
+from sphinx_intl import catalog as c
+from babel.messages import Catalog, Message
 
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
@@ -55,6 +57,8 @@ class NoCaseDict(OrderedDict):
     def __init__(self,
                  apply_case_matching_orig_txt=None,
                  data=None):
+        self.catalog: Catalog = None
+        self.dict_with_ctx = None
         self.apply_case_matching_orig_txt = (True if apply_case_matching_orig_txt else False)
         self.is_dirty = False
         self.is_operational = False
@@ -87,6 +91,8 @@ class NoCaseDict(OrderedDict):
         self.is_operational = True
         self.initNumericalPatternList()
 
+    def reproduce(self):
+        return self.__class__()
 
     def __contains__(self, key):
         key = Key(key)
@@ -126,20 +132,35 @@ class NoCaseDict(OrderedDict):
         # (rat, simple_key, complex_key) = found_item
         return found_item
 
-    def get(self, key):
+    def get(self, key, ctx=None):
+        trans_txt = None
         left, mid, right = None, None, None
         try:
-            is_in = (key in self)
-            if is_in:
-                trans_txt = self[key]
-            else:
-                k_lower = key.lower()
-                left, mid, right = st.getTextWithin(k_lower)
-                is_in = (mid in self)
-                if not is_in:
-                    return None
+            if not bool(ctx):
+                is_in = (key in self)
+                if is_in:
+                    trans_txt = self[key]
                 else:
-                    trans_txt = self[mid]
+                    k_lower = key.lower()
+                    left, mid, right = st.getTextWithin(k_lower)
+                    is_in = (mid in self)
+                    if is_in:
+                        trans_txt = self[mid]
+            else:
+                try:
+                    dict_ctx = self.dict_with_ctx
+                    k_lower = key.lower()
+                    ctx_lower = (ctx.lower() if bool(ctx) else None)
+                    k = (k_lower, ctx_lower)
+                    is_in = (k in dict_ctx)
+                    if not is_in:
+                        left, mid, right = st.getTextWithin(k_lower)
+                        k = (mid, ctx_lower)
+                        is_in = (k in dict_ctx)
+                        if is_in:
+                            trans_txt = dict_ctx[k]
+                except Exception as e:
+                    print(e)
 
             has_tran = bool(trans_txt)
             if has_tran:
@@ -182,21 +203,79 @@ class NoCaseDict(OrderedDict):
         return self.findSimpleSS(key, dict_list)
 
     def saveData(self, data_set, file_path):
-        cm.writeJSONDic(dict_list=data_set, file_name=file_path)
+        c.dump_po(file_path, data_set)
 
-    def loadData(self, file_path, is_lower=True):
-        dic = cm.loadJSONDic(file_name=file_path)
-        # self.original_data_set = OrderedDict(dic)
-        data_list = list(dic.items())
+    def removePOLocations(self, data: Catalog):
+        m: Message = None
+        for m in data:
+            m.locations.clear()
+            m.user_comments.clear()
+            m.auto_comments.clear()
+            m.flags.clear()
+
+    def reportTime(self, file_path, start_time):
+        t2 = time.time()
+        elaps = t2-start_time
+        msg = f'[{file_path}]\'s loaded time: [{elaps}]'
+        print(msg)
+
+    def updateFromJSON(self, file_path:str):
+        dict_data = cm.loadJSONDic(file_path)
+        current_count = len(self)
+        is_new = False
+        if not dict_with_context:
+            dict_with_context = NoCaseDict()
+            is_new = True
+        else:
+            dict_with_context = self.dict_with_ctx
+
+        for (k, v) in dict_data.items():
+            entry = {k: v}
+            self.update(entry)
+
+            id_lower = k.lower()
+            ctx_lower = None
+            entry = {(id_lower, ctx_lower): v}
+            dict_with_context.update(entry)
+        if is_new:
+            self.dict_with_ctx = dict_with_context
+        print(f'Updated from JSON:{file_path}, total records:{len(self)} from: {current_count}')
+
+    def loadData(self, file_path, is_lower=True, is_update=False):
+        current_count = len(self)
+        t1 = time.time()
+        if not is_update:
+            self.dict_with_ctx = OrderedDict()
+            self.clear()
+
+        data = c.load_po(file_path)
+        if not is_update:
+            self.catalog = data
+
+        data_list = [(m.id.lower(), m) for m in data]
         data_list.sort()
-        self.update(data_list)
-        # if is_lower:
-        #     data = [(k.lower(), v) for (k, v) in dic.items()]
-        # else:
-        #     data = list(dic.items())
+        add_count = 0
+        update_count=0
+        current_cat: Catalog = self.catalog
+        current_cat.update(data)
 
-        # data.sort()
-        # self.update(data)
+        m: Message = None
+        for k, m in data_list:
+            is_there = (m.id in self)
+            entry = {m.id: m.string}
+            self.update(entry)
+
+            entry = {(m.id, m.context): m.string}
+            self.dict_with_ctx.update(entry)
+
+            if not is_there:
+                print(f'ADD: {entry}')
+            else:
+                print(f'UPDATE: {entry}')
+
+        self.reportTime(file_path, t1)
+        print(f'Updated from PO:{file_path}, total records:{len(self)} from: {current_count}')
+        return self
 
     def createSentenceStructureDict(self, loaded_dict):
         def sortingKeyFunction(item):

@@ -232,8 +232,59 @@ class Definitions:
         'trillion(s|th)?': '@{1t}',
     }
 
+    words_should_be_lower_list = [
+        # 'thế',
+        'bị',
+        # 'cho',
+        'chưa'
+        'cả',
+        'các',
+        'cái',
+        'có thể',
+        'có',
+        'của',
+        'dùng',
+        'hoặc',
+        'là',
+        'làm',
+        'mà',
+        'nhé',
+        'nhưng',
+        'những',
+        'sẽ',
+        'theo',
+        'thì'
+        'trong',
+        'tại',
+        'tới',
+        'và',
+        'vào',
+        'vậy',
+        'về',
+        'với',
+        'đã',
+        'được',
+        'được',
+        'đấy',
+        'đến',
+        'để',
+        'ở',
+    ]
+    all_words_should_be_lower = '|'.join(words_should_be_lower_list)
+    all_words_should_be_lower_pat_txt = r'\b(%s)\s' % (all_words_should_be_lower)
+    all_words_should_be_lower_pat_in_first_txt = r'^(%s)\b' % (all_words_should_be_lower)
+    ALL_WORDS_SHOULD_BE_LOWER = re.compile(all_words_should_be_lower_pat_txt, re.I)
+    ALL_WORDS_SHOULD_BE_LOWER_IN_FIRST = re.compile(all_words_should_be_lower_pat_in_first_txt, re.I)
+    SEP_WORDS = re.compile(r'\/| |\, |\. |; |\-|\:|\'|\(|\)?|\"|\/')
+    SEP_CASE = re.compile(r'[A-Z]+|[a-z]+|[0-9]+')
+
     split_sent_seg_txt = r'\s?([\,\.\-\;]+(?<!((e\.g|i\.e|etc|fig)\.))\s)|([\(\)]|[{}])'
-    SPLIT_SENT_PAT = re.compile(split_sent_seg_txt, flags=re.I)
+    PUNCTUATION_FINDER = re.compile(split_sent_seg_txt, flags=re.I)
+
+    FULL_STOP_IN_SENTENCE = re.compile(r'\.\s+')
+
+    split_sent_ignore_ga_tag_txt = r'\s?([\,\.\-\;]+(?<!((e\.g|i\.e|etc|fig)\.))\s)|([\(\)]|[{}])|(\:[\w]+\:)|(\:\s)'
+    PUNCTUATION_WITHOUT_GA_TAG_FINDER = re.compile(split_sent_ignore_ga_tag_txt, flags=re.I)
 
     total_files = 1358
     file_count = 0
@@ -433,7 +484,7 @@ class Definitions:
 
     NUMBER_RE = re.compile(r"%s%s%s" % (PREFIX_PATTERN, NUMBER_PATTERN,
                                         SUFFIX_PATTERN))
-    WHITESPACE = re.compile('[\n\r\t\v\f]')
+    WHITESPACE = re.compile('[\s]+')
     EMAIL_ADDRESS = re.compile(r"^\s*.+@[^\.].*\.[a-z]{2,}$")      # start to end
     DOC_LINK = re.compile(r'^(\/\w+)+$')
 
@@ -560,7 +611,7 @@ class Definitions:
     ATTRIB_REF = re.compile(attrib_pat_abs_txt)
     ATTRIB_REF_ABS = ATTRIB_REF
 
-    GA_REF_PART = re.compile(r':[\w]+:')
+    GA_REF_PART = re.compile(r':[\w]+:', re.I)
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
     NOT_SPACE= r'(?![\s]+)'
@@ -678,6 +729,9 @@ class Definitions:
     filler_char_all_pattern_str = r'^[%s\s\W]+$' % FILLER_CHAR
     FILLER_CHAR_ALL_PATTERN = re.compile(filler_char_all_pattern_str)
 
+    not_filler_char_txt = r'[^%s]+' % (FILLER_CHAR)
+    NOT_FILLER_CHARS = re.compile(not_filler_char_txt)
+
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
     NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
@@ -710,7 +764,10 @@ class Definitions:
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
     NON_SPACE_SYMBOLS = re.compile(r'[^\s\w\d]+')
     SYMBOLS = re.compile(r'[\W]+')
+    NON_ALPHA_NUMERIC = re.compile(r'[^A-Za-z]')
     UNDER_SCORE = re.compile(r'[\_]+')
+
+    NON_SYMBOL_AND_SPACE = re.compile(r'[^\w\s]+')
 
     SPACES = re.compile(r'\s+')
 
@@ -729,7 +786,10 @@ class Definitions:
 
     MULTI_SPACES = re.compile(r'[\s]{2,}')
     HYPHEN = re.compile(r'[\-]')
-    SPACE_SEP = re.compile(r'\s')
+    SPACE_SEP = re.compile(r'\s+')
+
+    SPACE_GA_SEP = re.compile(r'[\`\(\)\!\,\.\'\*\&\s\-\=]+|\:\w+\:|\:\s')
+    NON_SPACE_WORDS = re.compile(r'([\S]+)')
 
     full_stop_in_middle = r'([\S][\.]\s[\S])'
     comma_in_middle = r'([\S]\,\s[\S])'
@@ -1381,7 +1441,6 @@ class Definitions:
         r"^\s*(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)\s*$",
         r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",
         r"^\s*(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))\s*$",
-        # r"^(s|es)|(\([\w]{1,2}\))$",
         r"^\s*(the quick|brown fox|jumps over|the lazy dog)\s*$",
         r"^\s*Alembic([\s\W|abc]+)\s*$",
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
@@ -1400,8 +1459,6 @@ class Definitions:
         r"^\s*\|[^\|]+\|$",  # |tick|cross|
         r"^\s*gabhead, Lell, Anfeo, meta-androcto$",
         r"^blender_api[:]?",
-        r'^(:kbd:[\`]((Shift|Alt|Ctrl|\-)*([^\`]{1}|F(\d+)))[\`](,\s|\s-\s)?)+$', #:kbd:`Shift-Ctrl-R`
-        r'^(:ref:)([\`]+(\w+[-]?)+[\`]+)[\.]?$',
         r'^(A \(Alpha\))$',
         r'^(GPL[\s\w][\d][+])$',
         r'^(\w+\d+)$',
@@ -1425,6 +1482,16 @@ class Definitions:
         # "",
         # "",
         # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        "``rendering/``",
         " rgba byte",
         " rgb byte",
         "lambda:",
@@ -1750,6 +1817,78 @@ class Definitions:
     ]
 
     keep_list = [
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        # "",
+        "2.25 -- october 2002:",
+        "2.26 -- february 2003:",
+        "2.27 -- may 2003:",
+        "2.28x -- july 2003:",
+        "`2.5x <https://www.blender.org/download/releases/#25-series-2009-2011>`__ -- from 2009 to august 2011:",
+        "side-by-side",
+        "supported platforms",
+        "workbench also has an x-ray mode to see through objects, along with cavity and shadow shading to help display details in objects. workbench supports several lighting mechanisms including studio lighting and matcaps.",
+        "more logs can be obtained by running blender from command line and using ``--factory-startup --debug-all`` flags. see :ref:`command_line-launch-index` and :ref:`command_line-args`.",
+        "cycles allows you add cyclic motion to a curve that has two or more control points. the options can be set for before and after the curve.",
+        "cycles applies a number of shader node optimizations both at compile time and run-time. by exploiting them it is possible to design complicated \"uber shader\" style node groups that incur minimal render time overhead for unused features.",
+        "cycles debug",
+        "cycles gets basic volumetric support on the cpu, more improvements to the motion tracker, two new modeling modifiers, some ui consistency improvements, and more than 560 bug fixes.",
+        "cycles gets improved volumetric support, major upgrade to grease pencil, windows gets input method editors (imes) and general improvements to painting, freestyle, sequencer and add-ons.",
+        "cycles gets volume and sss support on the gpu, pie menus are added and tooltips greatly improved, the intersection modeling tool is added, new sun beam node for the compositor, freestyle now works with cycles, texture painting workflow is improved, and more than 220 bug fixes.",
+        "cycles has additional :ref:`visibility properties <render-cycles-object-settings-visibility>` and also grease pencil objects have additional :ref:`visibility properties <grease_pencil-object-visibility>`.",
+        "cycles is blender's physically-based path tracer for production rendering. it is designed to provide physically based results out-of-the-box, with artistic control and flexible shading nodes for production needs.",
+        "cycles shaders and lighting can be baked to image textures. this has a few different purposes, most commonly:",
+        "cycles support for spherical stereo images for vr, grease pencil works more similar to other 2d drawing software, alembic import and export support, and improvements to bendy bones for easier and simpler rigging.",
+        "cycles supports only object and collection render types.",
+        "cycles supports three types of panoramic cameras; equirectangular, fisheye, and mirror ball. note that these cannot be displayed in non-rendered modes in the viewport, i.e. *solid* mode; they will only work for the final render.",
+        "cycles the animation playback.",
+        "cycles the frames in the sequence; restarting at frame one.",
+        "cycles uses path tracing with next event estimation, which is not good at rendering all types of light effects, like caustics, but has the advantage of being able to render more detailed and larger scenes compared to some other rendering algorithms. this is because we do not need to store, for example, a photon map in memory, and because we can keep rays relatively coherent to use an on-demand image cache, compared to e.g. bidirectional path tracing.",
+        "custom matcaps can be :ref:`loaded in the preferences <prefs-lights-matcaps>`.",
+        "|aacute|: ``a``, :kbd:`alt-backspace`, ``'``",
+        "|acircumflex|: ``a``, :kbd:`alt-backspace`, ``^``",
+        "|agrave|: ``a``, :kbd:`alt-backspace`, ``\\``",
+        "|aordinal|: ``a``, :kbd:`alt-backspace`, ``-``",
+        "|aring|: ``a``, :kbd:`alt-backspace`, ``o``",
+        "|ash|: ``a``, :kbd:`alt-backspace`, ``e``",
+        "|atilde|: ``a``, :kbd:`alt-backspace`, ``~``",
+        "|ccedilla|: ``c``, :kbd:`alt-backspace`, ``,``",
+        "|cent|: ``c``, :kbd:`alt-backspace`, ``|``",
+        "|copyright|: ``o``, :kbd:`alt-backspace`, ``c``",
+        "|cross|",
+        "|dagger|: ``|``, :kbd:`alt-backspace`, ``-``",
+        "|division|: ``-``, :kbd:`alt-backspace`, ``:``",
+        "|doubledagger|: ``|``, :kbd:`alt-backspace`, ``=``",
+        "|euml|: ``e``, :kbd:`alt-backspace`, ``\"``",
+        "|half|: ``1``, :kbd:`alt-backspace`, ``2``",
+        "|none|",
+        "|oslash|: ``o``, :kbd:`alt-backspace`, ``/``",
+        "|plusminus|: ``-``, :kbd:`alt-backspace`, ``+``",
+        "|registered|: ``o``, :kbd:`alt-backspace`, ``r``",
+        "|section|: ``s``, :kbd:`alt-backspace`, ``s``",
+        "|tick|",
+        "|todo|",
+        "|trademark|: ``t``, :kbd:`alt-backspace`, ``m``",
+        "**1.30 -- april 1998:** linux and freebsd version, port to opengl and x11.",
+        "add-ons.",
+        "height field",
+        "|tick|",
+        "|cross|",
+        "feature/engine/support",
+        "node wrangler",
+        "|todo|",
+        "cycles the animation playback.",
         "non-chaining",
         "undo/redo/history",
         "models/materials/brushes",

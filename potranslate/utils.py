@@ -46,9 +46,9 @@ def get_logger(filename):
 
         if error:
             logging.warning(final_msg)
-            dd(f"[ERROR] {final_msg}")
+            print(f"[ERROR] {final_msg}")
         else:
-            dd(final_msg)
+            print(final_msg)
 
     return log
 

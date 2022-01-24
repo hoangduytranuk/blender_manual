@@ -429,7 +429,7 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
 
         return text_return
 
-  # taken this block from /Applications/Blender.app/Contents/Resources/2.83/scripts/addons_contrib/text_editor_hastebin.py
+    # taken this block from /Applications/Blender.app/Contents/Resources/2.83/scripts/addons_contrib/text_editor_hastebin.py
     def setReverse(self, is_reverse):
         self.is_reverse = is_reverse
 
@@ -492,10 +492,19 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
 
         rm_char_list = var.rm_chars
         chosen_chars = []
+        chosen_complex_chars = []
         for i, rm_selected in enumerate(rm_char_list):
             if rm_selected:
-                chosen_chars.append(rm_sym_list[i])
+                char = rm_sym_list[i]
+                is_complex_pat = (len(char) > 1)
+                if is_complex_pat:
+                    chosen_complex_chars.append(char)
+                else:
+                    escaped_char = r'\%s' % (char)
+                    chosen_chars.append(escaped_char)
         chosen_blanking_chars = "".join(chosen_chars)
+        blanking_pat_txt = r'[%s]+' % (chosen_blanking_chars)
+        blanking_pattern = re.compile(blanking_pat_txt)
 
         filler_char_list = var.filler_char
         chosen_filler_chars = []
@@ -503,7 +512,6 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
             if filler_selected:
                 # using the same list a remove symbols
                 chosen_filler_chars.append(rm_sym_list[i])
-        chosen_filler_chars = "".join(chosen_filler_chars)
 
         filler_count = var.filler_count
         filler_list = []
@@ -512,9 +520,9 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         filler = "".join(filler_list)
 
         # updateRmChars(var, context)
-        is_blanking_id = var.removing_marker
-        print(f'is_blanking_id:{is_blanking_id}')
+        is_blanking_id = bool(var.removing_marker)              
         if is_blanking_id:
+            print(f'is_blanking_id:{is_blanking_id}')            
             # clean out any ':something:' groups
             orig_part = blanking_id.sub("", orig_part)
             # clean out any ':something:' groups
@@ -528,13 +536,10 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
             tran_part = tran_part.replace(')', ']')
 
         print(f'chosen_blanking_chars:[{chosen_blanking_chars}]')
-        is_blanking_char = (chosen_blanking_chars is not None) and (
-            len(chosen_blanking_chars) > 0)
+        is_blanking_char = bool(chosen_chars)
         if is_blanking_char:
-            for c in chosen_blanking_chars:
-                # print(f'character:[{c}], text:[{text}]')
-                orig_part = orig_part.replace(c, "")
-                tran_part = tran_part.replace(c, "")
+            orig_part = blanking_pattern.sub('', orig_part)
+            tran_part = blanking_pattern.sub('', tran_part)
 
         print(f'orig_part:[{orig_part}], tran_part:[{tran_part}]')
 

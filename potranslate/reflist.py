@@ -199,7 +199,6 @@ class RefList(defaultdict):
             df.LOG(f'{e} msg:[{msg}]; found_dict:[{found_dict}]', error=True)
             raise e
 
-
     def isEmpty(self):
         is_empty = (len(self) == 0)
         return is_empty
@@ -324,7 +323,7 @@ class RefList(defaultdict):
         if trans:
             return trans, False, False
 
-        txt_list = pu.findInvert(df.SPLIT_SENT_PAT, input_txt)
+        txt_list = pu.findInvert(df.PUNCTUATION_FINDER, input_txt)
         # dd('TRANSLATING LIST OF SEGMENTS:')
         # pp(txt_list)
         # dd('-' * 80)

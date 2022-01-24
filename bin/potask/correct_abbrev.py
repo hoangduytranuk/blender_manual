@@ -242,6 +242,60 @@ class CorrectAbbreviations(POTaskBase):
             print('-------------------\n')
         return data
 
+    def correctCaseAndDotEnding(self, data):
+        m: Message = None
+        dot = '.'
+        space = ' '
+        colon = ':'
+
+        changed = False
+        for index, m in enumerate(data):
+            is_first_record = (index == 0)
+            if is_first_record:
+                continue
+
+            msgid:str = m.id
+            msgstr:str = m.string
+
+            has_translation = bool(msgstr)
+            is_ignore = (not has_translation) or (has_translation and msgstr.startswith(':'))
+            if is_ignore:
+                continue
+
+            msgstr = msgstr.strip()
+
+            id_first_char = msgid[0]
+            msg_first_char = msgstr[0]
+            is_id_upper_first = id_first_char.istitle()
+            is_msgstr_upper_first = msg_first_char.istitle()
+            is_change_first_letter_case = (is_id_upper_first and not is_msgstr_upper_first)
+            if is_change_first_letter_case:
+                remainder = msgstr[1:]
+                new_msgstr = msg_first_char.title() + remainder
+                msgstr: str = new_msgstr
+                changed = True
+
+            id_ends_with_dot = (msgid.endswith(dot))
+            str_ends_with_dot = (msgstr.endswith(dot))
+            id_ends_with_space = (msgid.endswith(space))
+
+            is_add_ending = (id_ends_with_dot and not str_ends_with_dot)
+            is_remove_ending = (not id_ends_with_dot and str_ends_with_dot)
+
+            if is_add_ending:
+                msgstr = f'{msgstr}{dot}'
+                changed = True
+            if is_remove_ending:
+                msgstr = msgstr[:-1]
+                changed = True
+            if id_ends_with_space:
+                msgstr = f'{msgstr} '
+
+            if changed:
+                m.string = msgstr
+
+        return data
+
     def performTask(self):
         from utils import DEBUG
         DEBUG=True
@@ -264,7 +318,8 @@ class CorrectAbbreviations(POTaskBase):
             raise f'Input file self.po_path IS EMPTY, or NOT supported. Only PO or JSON files are supported!'
 
         if is_po:
-            msg_data = self.updatePO(msg_data)
+            # msg_data = self.updatePO(msg_data)
+            msg_data = self.correctCaseAndDotEnding(msg_data)
             if bool(self.opo_path):
                 c.dump_po(self.opo_path, msg_data)
 

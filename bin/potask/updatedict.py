@@ -4,9 +4,9 @@ from babel.messages import Catalog, Message
 from potask_base import POTaskBase, POResultRecord, writeJSONDic, loadJSONDic
 from translation_finder import TranslationFinder
 from nocasedict import NoCaseDict
-from paragraph import Paragraph as PR
 from ignore import Ignore as ig
 from definition import Definitions as df
+from common import Common as cm
 import pathlib as PL
 
 class UpdateDict(POTaskBase):
@@ -28,32 +28,21 @@ class UpdateDict(POTaskBase):
         )
         self.tf = None
 
+    def whichFile(self):
+        ext = PL.Path(self.tran_file).suffix
+        ext_lower = ext.lower()
+        is_json = (ext_lower == '.json')
+        is_po = (ext_lower == '.po')
+        return (is_json, is_po)
+
     def loadDictFromFile(self):
         try:
-            ext = PL.Path(self.tran_file).suffix
-            ext_lower = ext.lower()
-            is_json = (ext_lower == '.json')
-            is_po = (ext_lower == '.po')
-
-            dict_list = NoCaseDict()
+            (is_json, is_po) = self.whichFile()
             if is_json:
                 tran_data = loadJSONDic(self.tran_file)
-                dict_list.update(tran_data)
             else:
                 tran_data = c.load_po(self.tran_file)
-                for index, m in enumerate(tran_data):
-                    is_first = (index == 0)
-                    if is_first:
-                        continue
-
-                    tran_id = m.id
-                    tran_ctx = m.context
-                    tran_txt = m.string
-
-                    # k = (lower_tran_id, tran_ctx)
-                    entry={tran_id: tran_txt}
-                    dict_list.update(entry)
-            return dict_list
+            return tran_data
         except Exception as e:
             print(e)
             raise e
@@ -76,25 +65,215 @@ class UpdateDict(POTaskBase):
             df.LOG(msg)
             raise e
 
+    def correctCases(self, dict_m: Message):
+        from enum import Enum
+        class CheckCases(Enum):
+            NONE = 0
+            LOWER = 1
+            UPPER = 2
+            TITLE = 3
+
+        def correct_start_case(check_case: CheckCases, s1: str, s2: str):
+            is_lower = (check_case == CheckCases.LOWER)
+            is_upper = (check_case == CheckCases.UPPER)
+            is_title = (check_case == CheckCases.TITLE)
+
+            is_valid = (s1 and s2)
+            if not is_valid:
+                return s2, False
+
+            s1_first_char = s1[0]
+            s2_first_char = s2[0]
+            valid = (s1_first_char.isalpha() and s2_first_char.isalpha())
+            if not valid:
+                return s2, False
+
+            s2_remainder = s2[1:]
+            if is_title:
+                s1_started = (s1_first_char.istitle())
+                s2_started = (s1_first_char.istitle())
+            elif is_upper:
+                s1_started = (s1.isupper())
+                s2_started = (s2.isupper())
+            elif is_lower:
+                s1_started = (s1.lower())
+                s2_started = (s2.lower())
+
+            diff_start_s1 = (s1_started and not s2_started)
+            diff_start_s2 = (not s1_started and s2_started)
+
+            new_s2 = str(s2)
+            if diff_start_s1:
+                if is_title:
+                    new_s2 = f'{s2_first_char.title()}{s2_remainder}'
+                elif is_upper:
+                    new_s2 = s2.upper()
+                elif is_lower:
+                    new_s2 = s2.lower()
+            elif diff_start_s2:
+                if is_title:
+                    new_s2 = f'{s2_first_char.lower()}{s2_remainder}'
+                elif is_upper:
+                    new_s2 = new_s2.lower()
+                elif is_lower:
+                    new_s2 = new_s2.upper()
+
+            return new_s2, (new_s2 != s2)
+
+        def correct_start_end_symbol(char: str, s1:str, s2:str):
+            s1_started = (s1.startswith(char))
+            s2_started = (s2.startswith(char))
+            s1_ended = (s1.endswith(char))
+            s2_ended = (s2.endswith(char))
+
+            diff_start_s1 = (s1_started and not s2_started)
+            diff_start_s2 = (not s1_started and s2_started)
+            diff_end_s1 = (s1_ended and not s2_ended)
+            diff_end_s2 = (not s1_ended and s2_ended)
+
+            old_s2 = str(s2)
+            new_s2 = str(s2)
+            if diff_start_s1:
+                new_s2 = f'{char}{s2}'
+            elif diff_start_s2:
+                new_s2 = s2[1:]
+            elif diff_end_s1:
+                new_s2 = f'{s2}{char}'
+            elif diff_end_s2:
+                new_s2 = s2[:-1]
+            return new_s2, (new_s2 != old_s2)
+
+        msgid:str = dict_m.id
+        msgstr:str = dict_m.string
+
+        is_s1 = bool(msgid)
+        is_s2 = bool(msgstr)
+        invalid = not (is_s1 and is_s2)
+        if invalid:
+            return False
+
+        is_debug = ('RNA Blender' in msgid)
+        if is_debug:
+            print('Debug')
+
+        changed = False
+        old_msgstr = str(msgstr)
+        msgstr = msgstr.strip()
+        symb_list=[' ', '.', ':']
+        for symb in symb_list:
+            msgstr, is_changed = correct_start_end_symbol(symb, msgid, msgstr)
+            if is_changed:
+                changed = True
+                break
+
+        case_list=[CheckCases.TITLE, CheckCases.LOWER]
+        for case in case_list:
+            msgstr, is_changed = correct_start_case(case, msgid, msgstr)
+            if is_changed:
+                changed = True
+                break
+
+        if changed:
+            dict_m.string = msgstr
+        return changed
+
+    def updateMatchCase(self):
+        home = os.environ['HOME']
+        po_file_path = os.path.join(home, 'test_dict.po')
+        po_cat = c.load_po(po_file_path)
+        m: Message = None
+        changed = False
+        for m in po_cat:
+            msgid = m.id
+            is_empty = not bool(msgid)
+            if is_empty:
+                continue
+
+            msgsgtr = m.string
+            new_msgstr = cm.matchCase(msgid, msgsgtr)
+            is_changed = (new_msgstr != msgsgtr)
+            if is_changed:
+                msg = f'msgid: "{msgid}"\nmsgstr: "{msgsgtr}"=>"{new_msgstr}"'
+                print(msg)
+                m.string = new_msgstr
+                changed = True
+        is_saved = (changed and bool(self.opo_path))
+        if is_saved:
+            c.dump_po(self.opo_path, po_cat)
+        exit(0)
+
     # -updict -tran /Users/hoangduytran/Dev/tran/blender_ui/merged.po -ig -cl
     def performTask(self):
+        self.updateMatchCase()
+
         # self.setFiles()
         # msg_data = c.load_po(self.po_path)
-
         self.tf = TranslationFinder(
             apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
         )
         dict_list = None
         use_external_translation = (self.tran_file is not None) and (os.path.isfile(self.tran_file))
-        if use_external_translation:
-            dict_list = self.loadDictFromFile()
+        if not use_external_translation:
+            raise RuntimeError('No external file presents! From where do I get the dictionary definitions from? (JSON/PO) only!')
 
+        tf_master_dict: NoCaseDict = self.tf.master_dic_list
+        (is_json, is_po) = self.whichFile()
+        if is_po:
+            tf_master_dict.loadData(self.tran_file, is_update=True)
+            # if self.opo_path:
+            #     tf_master_dict.removePOLocations(tf_master_dict.catalog)
+        if is_json:
+            tf_master_dict.updateFromJSON(self.tran_file)
+
+        home = os.environ['HOME']
+        pot_file = os.path.join(home, 'blender_manual.pot')
+        pot_data = c.load_po(pot_file)
+        pot_m: Message = None
+        dict_m: Message = None
+        changed = False
+        new_list=[]
+        for pot_m in pot_data:
+            pot_id = pot_m.id
+            is_in_orig = (pot_id in tf_master_dict.catalog)
+            if not is_in_orig:
+                print(f'NEW: {pot_m}')
+            else:
+                dict_m = tf_master_dict.catalog[pot_id]
+                dict_m.flags = pot_m.flags
+                dict_m.context = pot_m.context
+                dict_m.auto_comments = pot_m.auto_comments
+                dict_m.user_comments = pot_m.user_comments
+                dict_m.locations = pot_m.locations
+                print(f'UPDATE: {dict_m}')
+                changed = True
+
+        for dict_m in tf_master_dict.catalog:
+            is_changed = self.correctCases(dict_m)
+            if is_changed:
+                changed = True
+
+        is_saving = (changed and bool(self.opo_path))
+        if is_saving:
+            tf_master_dict.saveData(tf_master_dict.catalog, self.opo_path)
+        exit(0)
 
         changed = False
         new_tran: str = None
         new_dict = NoCaseDict()
         tf_master_dict = self.tf.master_dic_list
-        tf_master_dict.update(dict_list)
+        is_po_data = isinstance(dict_list, Catalog)
+        is_dict_data = isinstance(dict_list, dict)
+        for entry in enumerate(dict_list):
+            if is_po_data:
+                m: Message = entry
+                msgid = m.id
+                msgstr = m.string
+                msgctx = m.context
+            elif is_dict_data:
+                (msgid, msgstr) = entry
+                msgctx = None
+
+            tf_master_dict.update(dict_list)
 
         is_save = (bool(self.opo_path))
         if is_save:

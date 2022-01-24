@@ -31,13 +31,14 @@ class TranslationFinder:
         self.update_po_file = None
         home_dir = os.environ['HOME']
         home_dir = os.path.join(home_dir, 'Dev/tran/blender_manual')
-        self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0009.json")
-        self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0005_0001.json")
-        self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0005.json")
-        self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.json")
+        # self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0009.json")
+        self.master_dic_file = os.path.join(home_dir, "ref_dict_0002.po")
+        self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0001.po")
+        self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0001.po")
+        self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.po")
 
 
-        self.vipo_dic_path = os.path.join(home_dir, "gui/2.80/po/vi.po")
+        # self.vipo_dic_path = os.path.join(home_dir, "gui/2.80/po/vi.po")
         self.vipo_dic_list = None  # not used
 
         self.current_po_dir = os.path.join(home_dir, "../blender_docs/locale/vi/LC_MESSAGES")
@@ -517,7 +518,7 @@ class TranslationFinder:
 
     def saveMasterDict(self, to_file=None):
         file_path = (to_file if to_file else self.master_dic_file)
-        cm.writeJSONDic(dict_list=self.master_dic, file_name=file_path)
+        c.dump_po(file_name=file_path, dict_list=self.master_dic)
 
     # def updateDict(self):
     #     from_file = '/Users/hoangduytran/blender_manual/ref_dict_0004.json'

@@ -42,11 +42,11 @@ class Common:
         return_dic = {}
         try:
             if not file_name:
-                dd(f'loadJSONDic - file_name is None.')
+                print(f'loadJSONDic - file_name is None.')
                 return return_dic
 
             if not os.path.isfile(file_name):
-                dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
+                print(f'loadJSONDic - file_name:{file_name} cannot be found!')
                 return return_dic
 
             dic = {}
@@ -145,91 +145,28 @@ class Common:
         is_special = (df.SPECIAL_TERM.search(msg) is not None)
         return is_special
 
-    def matchCase(from_str : str , to_str : str):
-        WORD_SHOULD_BE_LOWER = [
-            'trong',
-            'các',
-            'những',
-            'và',
-            'thì'
-            'là',
-            'hoặc',
-            'mà',
-            'có',
-            'của',
-            'với',
-            'đến',
-            'tới',
-        ]
-        def lowercase(loc_text_dict, new_str):
-            mm: MatcherRecord = None
-            for loc, mm in ga_ref_dic.items():
-                (s, e), text = mm.getOriginAsTuple()
-                lcase_text = text.lower()
-                left_part = new_str[:s]
-                right_part = new_str[e:]
-                new_str = left_part + lcase_text + right_part
-            return new_str
+    def matchStartAndEndingNonAlpha(s1: str, s2: str):
+        s1_start, s1_mid, s1_end = st.getTextWithin(s1)
+        s2_start, s2_mid, s2_end = st.getTextWithin(s2)
 
-        valid = (from_str and to_str)
-        if not valid:
-            return to_str
+        new_s2 = str(s2)
+        need_change_start = (s1_start != s2_start)
+        if need_change_start:
+            new_s2 = s1_start + s2_mid + s2_end
 
-        new_str = str(to_str)
+        need_change_end = (s1_end != s2_end)
+        if need_change_end:
+            new_s2 = s2_start + s2_mid + s1_end
+        return new_s2
 
-        first_char = from_str[0]
-        remain_part = from_str[1:]
-
-        from_str_has_multi_words = (df.SYMBOLS.search(from_str) is not None)
-        to_str_has_multi_words = (df.SYMBOLS.search(to_str) is not None)
-
-        from_string_is_to_first_upper = (first_char.isupper() and remain_part.islower())
-        to_string_is_to_first_upper = not (from_str_has_multi_words or to_str_has_multi_words)
-        source_word_count = (len(from_str.split()))
-        target_word_count = (len(to_str.split()))
-
-        is_first_upper = (first_char.isupper() and remain_part.islower())
-        if is_first_upper:
-            first_char = new_str[0].upper()
-            both_have_multi_words = (source_word_count > 1) and (target_word_count > 1)
-            both_only_have_one_word = (source_word_count == 1) and (target_word_count == 1)
-            is_first_only = (both_only_have_one_word or both_have_multi_words)
-            if is_first_only:
-                remain_part = new_str[1:].lower()
-                new_str = first_char + remain_part
-            else:
-                new_str = new_str.title()
-        else:
-            is_lower = (from_str.islower())
-            if is_lower:
-                new_str = new_str.lower()
-                return new_str
-            else:
-                is_title = (from_str.istitle())
-                if is_title:
-                    new_str = new_str.title()
-                else:
-                    is_upper = (from_str.isupper())
-                    if is_upper:
-                        is_source_single_word = (source_word_count == 1)
-                        is_target_single_word = (target_word_count == 1)
-                        # is_both_single = (is_target_single_word and is_target_single_word)
-                        is_title_target = (is_source_single_word and not is_target_single_word)
-
-                        if is_title_target:
-                            new_str = new_str.title()
-                        else:
-                            new_str = new_str.upper()
-
-        # ensure ref keywords ':doc:' is always lowercase
-        ga_ref_dic = pu.patternMatchAll(df.GA_REF_PART, new_str)
-        new_str = lowercase(ga_ref_dic, new_str)
-        for lcase_word in WORD_SHOULD_BE_LOWER:
-            p = re.compile(r'\b%s\b' % lcase_word)
-            p_list_dic = pu.patternMatchAll(p, new_str)
-            new_str = lowercase(p_list_dic, new_str)
-
-        return new_str
+    def matchCase(from_str : str , to_str : str) -> str:
+        from case_action_list import CaseActionList
+        try:
+            new_txt = CaseActionList.matchCase(from_str, to_str)
+            return new_txt
+        except Exception as e:
+            msg = f'from_str: [{from_str}]; to_str:[{to_str}]\n{e}'
+            raise RuntimeError(msg)
 
     def beginAndEndPunctuation(msg, is_single=False):
         if is_single:
@@ -1753,4 +1690,4 @@ class Common:
         is_debug = (msg and txt and (msg.lower() == txt.lower()))
         # is_debug = (msg and txt and txt.startswith(msg))
         if is_debug:
-            dd(f'Debugging text: {msg} at line txt:{txt}')
+            print(f'Debugging text: {msg} at line txt:{txt}')

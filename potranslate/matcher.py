@@ -148,11 +148,13 @@ class MatcherRecord(OrderedDict):
     def __repr__(self):
         string = ""
         try:
-            string = "\nMAIN-RECORD:\n{!r}".format(self.__dict__)
+            string = '\n----MatcherRecord start------\n'
+            string += "\nMAIN-RECORD:\n{!r}".format(self.__dict__)
             # string += f'txt:"{self.txt}"\n'
             sub_list = self.getSubEntriesAsList()
             if sub_list:
                 string += "\nSUB-LIST:\n{!r}\n".format(sub_list)
+            string += '\n----MatcherRecord end------\n'
         except Exception as e:
             pass
         return string

@@ -102,29 +102,28 @@ class TranslatePO(POTaskBase):
         self.setFiles()
         msg_data = c.load_po(self.po_path)
 
-        dict_list = None
-        use_external_translation = (self.tran_file is not None) and (os.path.isfile(self.tran_file))
-        if use_external_translation:
-            dict_list = self.loadDictFromFile()
-
+        # dict_list = None
+        # use_external_translation = (self.tran_file is not None) and (os.path.isfile(self.tran_file))
+        # if use_external_translation:
+        #     dict_list = self.loadDictFromFile()
+        #
         if self.partial_match:
-            if bool(dict_list):
-                pass
-            else:
-                pat = re.compile(self.partial_match, flags=re.I)
-                dic = self.tf.getDict()
-                result_list = dic.getPartial(pat)
-                if result_list:
-                    for index, (k, v) in enumerate(result_list):
-                        r = POResultRecord(index + 1, k, v)
-                        self.append(r)
-                    is_save = (self.opo_path)
-                    if is_save:
-                        c.dump_po(self.opo_path, result_list)
-                    else:
-                        self.showResult()
+            pat = re.compile(self.partial_match, flags=re.I)
+            dic = self.tf.getDict()
+            result_list = dic.getPartial(pat)
+            if result_list:
+                for index, (k, v) in enumerate(result_list):
+                    r = POResultRecord(index + 1, k, v)
+                    self.append(r)
+                is_save = (self.opo_path)
+                if is_save:
+                    c.dump_po(self.opo_path, result_list)
+                else:
+                    self.showResult()
             return
 
+
+        dict: NoCaseDict = self.tf.getDict()
         changed = False
         # checkAndRemoveTranslated()
         for index, m in enumerate(msg_data):
@@ -136,7 +135,7 @@ class TranslatePO(POTaskBase):
             if self.filter_ignored:
                 is_ignore = ig.isIgnored(m.id)
                 if is_ignore:
-                    print(f'IGNORED:{m.id}')
+                    print(f'IGNORED:{m.id}\n\n')
                     continue
 
             is_fuzzy = m.fuzzy
@@ -152,21 +151,12 @@ class TranslatePO(POTaskBase):
             # is_translated = (is_not_emtpy and is_not_fuzzy)
             # if is_translated:
             #     continue
-            has_tran = bool(msgstr)
-            if has_tran:
-                continue
+            # has_tran = bool(msgstr)
+            # if has_tran:
+            #     continue
 
-            dict_tran = None
-            key = (msgid, ctx)
-            if dict_list:
-                has_tran = (key in dict_list)
-                dict_tran = (dict_list[key] if has_tran else None)
-            else:
-                dict_tran = self.tf.isInDict(msgid)
-                # pr = PR(msgid, translation_engine=self.tf)
-                # pr.translateAsIs()
-                # dict_tran = pr.getTranslation()
-
+            # has_context = bool(ctx)
+            dict_tran = dict.get(msgid, ctx=ctx)
             has_tran = bool(dict_tran)
             if not has_tran:
                 continue
@@ -190,7 +180,7 @@ class TranslatePO(POTaskBase):
 
         is_save = (changed) and (self.opo_path)
         if is_save:
-            c.dump_po(self.opo_path, msg_data)
+            c.dump_po(self.opo_path, msg_data, line_width=4096)
         else:
             self.showResult()
 

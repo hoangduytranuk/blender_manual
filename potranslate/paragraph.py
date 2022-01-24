@@ -87,7 +87,7 @@ class Paragraph(list):
 
         try:
             input_txt = self.sl_txt
-            txt_list = pu.findInvert(df.SPLIT_SENT_PAT, input_txt)
+            txt_list = pu.findInvert(df.PUNCTUATION_FINDER, input_txt)
             dd('TRANSLATING LIST OF SEGMENTS:')
             pp(txt_list)
             dd('-' * 80)

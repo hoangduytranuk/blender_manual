@@ -1,11 +1,27 @@
+import re
 from collections import OrderedDict
-from definition import Definitions as df, RefType
-from pattern_utils import PatternUtils as pu
+from definition import Definitions as df
+from matcher import MatcherRecord
 
 class LocationObserver(OrderedDict):
     def __init__(self, msg):
+        self.orig_msg = msg
         self.blank = str(msg)
         self.marked_loc={}
+
+    def patternMatchAll(self, pat, text):
+        return_dict = {}
+        try:
+            for m in pat.finditer(text):
+                match_record = MatcherRecord(matcher_record=m)
+                match_record.pattern = pat
+                loc = match_record.getMainLoc()
+                dict_entry = {loc: match_record}
+                return_dict.update(dict_entry)
+        except Exception as e:
+            pass
+            # df.LOG(e)
+        return return_dict
 
     def markIgnoredAsUsed(self, ignore_dict):
         try:
@@ -99,10 +115,6 @@ class LocationObserver(OrderedDict):
 
     def markAsUsed(self, s: int, e: int):
         loc = (s, e)
-        is_already_marked = (loc in self.marked_loc)
-        if is_already_marked:
-            return
-
         marked_loc_entry = {loc: self.blank[s:e]}
         blk = (df.FILLER_CHAR * (e - s))
         left = self.blank[:s]
@@ -150,18 +162,96 @@ class LocationObserver(OrderedDict):
         is_fully_done = (df.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
         return is_fully_done
 
-    def getUnmarkedPartsAsDict(self, reversing=True, removing_symbols=False):
-        untran_dict = pu.findInvert(df.FILLER_PARTS, self.blank, is_reversed=reversing, is_removing_symbols=removing_symbols)
-        return untran_dict
+    def getUnmarkedPartsAsDict(self, reversing=True):
+        untran_dict = self.patternMatchAll(df.NOT_FILLER_CHARS, self.blank)
+        if reversing:
+            return reversed(untran_dict)
+        else:
+            return untran_dict
 
-    def getRawUnmarkedPartsAsList(self):
-        untran_dict = pu.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
-        txt_loc_list=[]
-        for loc, txt_mm in untran_dict.items():
-            entry=(loc, txt_mm.txt)
-            txt_loc_list.append(entry)
-        return txt_loc_list
+    def findInvert(self, pattern: re.Pattern, is_reverse=False, is_removing_symbol=False):
+        def getNoneAlphaPart(msg, is_start=True):
+            if not msg:
+                return ""
 
-    def getRawUnmarkedPartsAsDict(self):
-        untran_dict = pu.findInvert(df.FILLER_CHAR_PATTERN, self.blank, is_reversed=True, is_removing_symbols=False)
-        return untran_dict
+            non_alnum_part = ""
+            if is_start:
+                non_alpha = df.START_WORD_SYMBOLS.search(msg)
+            else:
+                non_alpha = df.END_WORD_SYMBOLS.search(msg)
+
+            if non_alpha:
+                non_alnum_part = non_alpha.group(0)
+            return non_alnum_part
+
+        def getTextWithinWithDiffLoc(msg, to_matcher_record=False):
+            # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
+            left_part = getNoneAlphaPart(msg, is_start=True)
+            right_part = getNoneAlphaPart(msg, is_start=False)
+            ss = len(left_part)
+            ee = (-len(right_part) if right_part else len(msg))
+            mid_part = msg[ss:ee]
+            length_ee = len(right_part)
+            diff_loc = (ss, length_ee)
+
+            main_record: MatcherRecord = None
+            if to_matcher_record:
+                ls = 0
+                le = ss
+                ms = le
+                me = ms + len(mid_part)
+                rs = me
+                re = rs + len(right_part)
+
+                main_record = MatcherRecord(s=0, e=len(msg), txt=msg)
+                if left_part:
+                    main_record.addSubMatch(ls, le, left_part)
+                    test_txt = left_part[ls: le]
+                else:
+                    main_record.addSubMatch(-1, -1, None)
+                if mid_part:
+                    main_record.addSubMatch(ms, me, mid_part)
+                    test_txt = left_part[ms: me]
+                else:
+                    main_record.addSubMatch(ls, re, msg)
+                if right_part:
+                    main_record.addSubMatch(rs, re, right_part)
+                    test_txt = left_part[rs: re]
+                else:
+                    main_record.addSubMatch(-1, -1, None)
+
+            return diff_loc, left_part, mid_part, right_part, main_record
+
+        def getTextWithin(msg):
+            diff_loc, left, mid, right, _ = getTextWithinWithDiffLoc(msg)
+            return left, mid, right
+
+        self.blank = str(self.orig_msg)
+        forward_search_dict = self.patternMatchAll(pattern, self.blank)
+        used_loc_list = forward_search_dict.keys()
+        self.markLocListAsUsed(used_loc_list)
+
+        invert_dict = self.getUnmarkedPartsAsDict(reversing=is_reverse)
+
+        mm: MatcherRecord = None
+        if is_removing_symbol:
+            new_mm_dict = OrderedDict()
+            for (loc, mm) in invert_dict.items():
+                try:
+                    left, mid, right = getTextWithin(mm.txt)
+                    if not bool(mid):
+                        continue
+
+                    (s, e) = loc
+                    mm.txt = mid
+                    mm.s = (s + len(left))
+                    mm.e = (e - len(right))
+                    loc = (mm.s, mm.e)
+                    new_entry = {loc: mm}
+                    new_mm_dict.update(new_entry)
+                except Exception as e:
+                    msg = f'mm:{mm} e:[{e}]'
+                    raise RuntimeError(msg)
+
+            invert_dict = new_mm_dict
+        return invert_dict

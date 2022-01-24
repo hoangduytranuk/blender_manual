@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 #cython: language_level=3
+import sys
+sys.path.append('/Users/hoangduytran/Dev/tran/blender_manual/potranslate')
+
 import re
 import os
 import json
@@ -14,11 +17,9 @@ from pprint import pprint as PP
 # import html
 import subprocess as sub
 
-import ignore
 from translation_finder import TranslationFinder
 from ignore import Ignore as IG
 from fuzzywuzzy import fuzz
-
 from sphinx_intl import catalog as c
 from pytz import timezone
 from common import Common as cm
@@ -32,7 +33,8 @@ import cProfile, pstats, io
 from ignore import Ignore as ig
 from string_utils import StringUtils as st
 from pattern_utils import PatternUtils as pu
-
+from enum import Enum
+from observer import LocationObserver
 # cd ../blender_docs
 # pip3 install --user -r requirements.txt 
 # pip3 --user install --upgrade pip
@@ -66,6 +68,134 @@ def readJSON(file_path):
 def writeJSON(file_path, data):
     with open(file_path, 'w+', newline='\n', encoding='utf8') as out_file:
         json.dump(data, out_file, ensure_ascii=False, sort_keys=False, indent=4, separators=(',', ': '))
+
+# class CaseAction(Enum):
+#     NONE = 0
+#     UPPER = 1
+#     TITLE = 2
+#     LOWER = 3
+#
+# class CaseActionList(list[CaseAction]):
+#     def __init__(self, txt):
+#         self.txt = txt
+#         if self.txt:
+#             self.toCaseList()
+#
+#     def checkCase(self, s1: str) -> CaseAction:
+#         ns_s1 = df.SYMBOLS.sub("", s1)
+#         s1_is_upper = ns_s1.isupper()
+#         s1_is_lower = ns_s1.islower()
+#         s1_is_title = ns_s1.istitle()
+#         if s1_is_upper:
+#             return CaseAction.UPPER
+#         elif s1_is_title:
+#             return CaseAction.TITLE
+#         elif s1_is_lower:
+#             return CaseAction.LOWER
+#         else:
+#             # we have words like variable, ie. AutoMerge, mix case
+#             case_list = []
+#             word_list = df.SEP_CASE.findall(ns_s1)
+#             for w in word_list:
+#                 w_is_upper = w.isupper()
+#                 w_is_lower = w.islower()
+#                 if w_is_upper:
+#                     case_list.append(CaseAction.UPPER)
+#                 elif w_is_lower:
+#                     case_list.append(CaseAction.LOWER)
+#             has_upper = (CaseAction.UPPER in case_list)
+#             has_lower = (CaseAction.LOWER in case_list)
+#
+#             is_title = (has_upper and has_lower)
+#             is_lower = (not has_upper and has_lower)
+#             is_upper = (has_upper and not has_lower)
+#             undefined = not (has_upper or has_lower)
+#
+#             if is_title:
+#                 return CaseAction.TITLE
+#             elif is_lower:
+#                 return CaseAction.LOWER
+#             elif is_upper:
+#                 return CaseAction.UPPER
+#             else:
+#                 return CaseAction.NONE
+#
+#     def toCaseList(self):
+#         from_string_word_list = df.SEP_WORDS.split(self.txt)
+#         from_case_list = list(map(self.checkCase, from_string_word_list))
+#         self.clear()
+#         self.extend(from_case_list)
+#
+#     def caseValueStr(self):
+#         try:
+#             s1_value_as_str_list = ''.join([str(x.value) for x in self])
+#             return s1_value_as_str_list
+#         except Exception as e:
+#             return []
+#
+#     def isBothMatched(self, other):
+#         s1_value_as_str_list = self.caseValueStr()
+#         s2_value_as_str_list = other.caseValueStr()
+#         diff_ratio = fuzz.partial_ratio(s1_value_as_str_list, s2_value_as_str_list)
+#
+#         is_first_case_same = (self.txt and other.txt) and (s1_value_as_str_list[0] == s2_value_as_str_list[0])
+#         is_acceptable = (is_first_case_same and diff_ratio > 80)
+#         return is_acceptable
+#
+#     def convertCase(self, case_required: CaseAction) -> str:
+#         left: str = None
+#         mid: str = None
+#         right: str = None
+#
+#         left, mid, right = st.getTextWithin(self.txt)
+#         new_mid = str(mid)
+#         if case_required == CaseAction.TITLE:
+#             new_mid = mid.title()
+#         elif case_required == CaseAction.UPPER:
+#             new_mid = mid.upper()
+#         elif case_required == CaseAction.LOWER:
+#             new_mid = mid.lower()
+#         new_s1 = (left + new_mid + right)
+#         return new_s1
+#
+#     def firstWordToChosenCase(self, case_required: CaseAction) -> str:
+#         word_list = self.txt.split()
+#         first_word = word_list[0]
+#         remain_part = (' '.join(word_list[1:]) if len(word_list) > 1 else "")
+#
+#         first_word = CaseActionList.convertCase(case_required, first_word)
+#         new_str = ' '.join([first_word, remain_part])
+#         return new_str
+#
+#     def caseWeight(self, other):
+#         s1_value_as_str_list = self.caseValueStr()
+#         s2_value_as_str_list = other.caseValueStr()
+#         diff_ratio = fuzz.partial_ratio(s1_value_as_str_list, s2_value_as_str_list)
+#         return diff_ratio
+#
+#     def lowercase(loc_text_dict, s1: str):
+#         mm: MatcherRecord = None
+#         loc: tuple[int, int] = None
+#         text: str = None
+#         old_txt = str(s1)
+#         for loc, mm in loc_text_dict.items():
+#             (s, e), text = mm.getOriginAsTuple()
+#             is_first = (s == 0)
+#             if is_first:
+#                 from_str_first_word = s1.split()[0]
+#                 is_from_str_first_word_lower = (from_str_first_word.islower())
+#                 is_to_text_lower = self.checkCase(text)
+#                 is_change_to_lower = (is_from_str_first_word_lower and not is_to_text_lower)
+#                 if not is_change_to_lower:
+#                     continue
+#
+#             is_lower = self.checkCase(text)
+#             if is_lower:
+#                 continue
+#
+#             lcase_text = Common.convertCase(CaseAction.LOWER, text)
+#             s1 = Common.jointText(s1, lcase_text, loc)
+#         return s1
 
 class test(object):
 
@@ -1079,16 +1209,187 @@ class test(object):
 
     def test_get_partial(self):
         msg = 'scene and view layer settings'
+        msg = 'volume'
+        cx = 'nothing'
         tf = TranslationFinder()
-        result = tf.getDict().getBestMatchPartial(msg)
-        if not bool(result):
-            result_msg = f'Looking for:{msg}\nFound nothing!'
-        else:
-            (matching_ratio, (full_key, full_value)) = result
-            result_msg = f'Looking for:{msg};\ngot msgid:{full_key}\ngot msgstr:{full_value}\nmatching ratio:{matching_ratio}'
+        # result = tf.getDict().getBestMatchPartial(msg)
+        result = tf.getDict().get(msg, ctx=cx)
+        result_msg = f'looking for: {msg}, context:{cx}; result: {result}'
+        # if not bool(result):
+        #     result_msg = f'Looking for:{msg}\nFound nothing!'
+        # else:
+        #     (matching_ratio, (full_key, full_value)) = result
+        #     result_msg = f'Looking for:{msg};\ngot msgid:{full_key}\ngot msgstr:{full_value}\nmatching ratio:{matching_ratio}'
         print(result_msg)
 
+    def flatText(self):
+        home = os.environ['HOME']
+        ofile = os.path.join(home, 'flat_txt.log')
+        t = '''
+        "Một ví dụ: Nếu bạn đã tạo một nguyên liệu mà bạn muốn sử dụng với các yếu"
+" tố đầu vào khác biệt, ví dụ: màu khuếch tán: nhựa màu đỏ, nhựa màu xanh "
+"lá cây, thì bạn có thể tạo các nguyên liệu riêng biệt bằng nút "
+":abbr:`Biến Thành Đơn Người Dùng (Make Single User)` cho mỗi màu khác "
+"biệt, với bản sao của phần cây mô tả vật liệu nhựa. Nếu bạn muốn chỉnh "
+"sửa nguyên liệu, thì bạn cần phải chỉnh sửa lại Toàn bộ các nguyên liệu. "
+"Một Phương Pháp tốt hơn để tái sử dụng là tạo các nhóm nút, chỉ cho lộ ra"
+" các tham số đầu vào (ví dụ: :abbr:`màu khuếch tán (diffuse color)`)"
+        '''
+        t1 = t.replace('"\n"', '').strip()
+        with open(ofile, 'w+') as f:
+            f.write(t1)
+        print(t1)
+        exit(0)
+
+    def testString(self):
+        from case_action_list import CaseActionList, CaseAction, CaseRecord
+        class TestingCase(list):
+            def __init__(self):
+                self.line = 'This is line'
+
+        def map_func(item):
+            mm: MatcherRecord = None
+            (loc, mm) = item
+            if (map_func.start == -1):
+                word = mm.txt.upper()
+            else:
+                word = mm.txt.title()
+            mm.txt = word
+            (map_func.start, map_func.end) = loc
+            return word
+
+        (map_func.start, map_func.end) = (-1, -1)
+
+
+        s1 = "Alternate script path :abbr:`nhất định phải (must)` , matching the Default Layout with subdirs: startup, add-ons & modules (Requires restart)"
+        s2 = "nó :abbr:`nhất định phải (must)` có cái tên này để blender nhận ra nó"
+        s3 = "a single Instance string"
+        s1_tran = 'đường dẫn cho tập Lệnh thay thế :abbr:`nhất định phải (must)` khớp với bố Trí Mặc Định với các thư mục nhánh: startup, add-ons & modules (đòi hỏi phải Khởi Động Lại)'
+
+        s1 = 'Asset Category'
+        s1_tran = 'Hạng Mục Tài Nguyên '
+        new_txt = CaseActionList.matchCase(s1, s1_tran)
+        print(f'[{new_txt}]')
+        # cal_s1 = CaseActionList.makeInstance(s1)
+        # tbl = CaseActionList.genListOfDistance(len(cal_s1.case_list))
+        # print(tbl)
+        # space_sep = pu.patternMatchAll(df.NON_SPACE_WORDS, s1)
+        # # word_dict = pu.findInvert(df.SPACE_SEP, s1)
+        # print(space_sep)
+        # cal_s2 = CaseActionList()
+        # cal_s2.txt = s2
+        # cal_s2.toCaseList()
+
+        # cal_s1 = CaseActionList.makeInstance(s1)
+        # new_txt = cal_s1.transformBasedOnCaseValueString(s1_tran)
+        # new_txt = CaseActionList.matchCase(s1, s1_tran)
+        # print(new_txt)
+        # list_of_percentages = cal_s1.caseValueStringToPercentages(cal_s1.case_value_string)
+        # (list_of_case_action, target_str_cal) = cal_s1.percentToRangeOfIndexAndAction(list_of_percentages, s1_tran)
+        # print(list_of_case_action)
+
+        # cal_s1.transformBasedOnCaseValueString()
+        # print(list_of_percentages)
+
+        # cal_s1 = CaseActionList.makeInstance(s1)
+        # cal_s2 = CaseActionList.makeInstance(s2)
+        # # print(cal_s1.case_list)
+        # overall_case_action_list = cal_s1.case_list
+        # case_action: CaseRecord = None
+        # for case_action in cal_s1.case_list:
+        #     case_action.transformText(CaseAction.TITLE)
+        #     print(case_action)
+        # for case_action_list in overall_case_action_list:
+        #     print(case_action_list)
+        #     print('++++++++++++++++')
+        # for case_action_list in cal_s1.case_list:
+        #     print(case_action_list)
+
+        # print(cal_s1)
+        # cal_s3 = CaseActionList.makeInstance(s3)
+        # print(cal_s3)
+        # loc_list=[]
+        # sep_list = df.SPACE_GA_SEP.finditer(s2)
+        # for rec in sep_list:
+        #     for loc in rec.regs:
+        #         loc_list.append(loc)
+        # obs = LocationObserver(s2)
+        # obs.markLocListAsUsed(loc_list)
+        # unmarked = obs.getUnmarkedPartsAsDict(reversing=False)
+        # print(unmarked)
+
+        # list_word = list(map(map_func, pu.patternMatchAll(df.CHARACTERS, s1).items()))
+        # print(list_word)
+        #
+        # alnum_only_list = df.CHARACTERS.findall(s2)
+        # alnum_only_txt = ' '.join(alnum_only_list)
+        # print(alnum_only_txt)
+
+        # punctuation_dict = pu.patternMatchAll(df.PUNCTUATION_FINDER, s1)
+        # text_list = pu.findInvert(df.PUNCTUATION_FINDER, s2)
+        # print(text_list)
+        # x = TestingCase()
+        # print(type(x))
+        # print(type(x).__name__)
+        # al_s1 = CaseActionList(s1)
+        # al_s2 = CaseActionList(s2)
+        #
+        # is_equal = al_s1.isBothMatched(al_s2)
+        # print(is_equal)
+        # print(CaseAction.TITLE)
+        # list_1 = [CaseAction.TITLE, CaseAction.LOWER]
+        # list_2 = [CaseAction.TITLE, CaseAction.LOWER, CaseAction.LOWER, CaseAction.LOWER]
+        # list_1_str = ''.join([str(x.value) for x in list_1])
+        # list_2_str = ''.join([str(x.value) for x in list_2])
+        #
+        # rat = fuzz.ratio(list_1_str, list_2_str)
+        # msg = f'ratio:{rat}: [{list_1_str}] [{list_2_str}]'
+        # print(msg)
+        # from_case_list = ''.join(list(map(cm.checkCase, t1)))
+        # print(from_case_list)
+
+    def fix_abbr(self):
+        from babel.messages.catalog import Message
+        home_dir = os.environ['HOME']
+        po_path = os.path.join(home_dir, 'test_dict_0010.po')
+        out_path = os.path.join(home_dir, 'test_dict_0011.po')
+
+        msg_data = c.load_po(po_path)
+        m: Message
+        changed = False
+        GA_REF_PART = re.compile(r':[\w]+:\`([^\(\)]+)\s\(([^\(\)]+)$', re.I)
+        for index, m in enumerate(msg_data):
+            is_first = (index == 0)
+            if is_first:
+                continue
+
+            msgid = m.id
+            msgstr = m.string
+
+            found_dict = pu.patternMatchAll(GA_REF_PART, msgstr)
+            is_found = bool(found_dict)
+            if is_found:
+                mm: MatcherRecord = None
+                (loc, mm) = list(found_dict.items())[0]
+                # print(f'{loc} {mm.getSubEntriesAsList()}')
+                sub_entry_list = mm.getSubEntriesAsList()
+                o_loc, orig = sub_entry_list[0]
+                abbrev_loc, abbrev = sub_entry_list[1]
+                expl_loc, expl = sub_entry_list[2]
+                recon = f':abbr:`{abbrev} ({expl})`'
+                # print(f'{loc}: [{orig}]=>[{recon}]')
+                new_msgstr = cm.jointText(msgstr, recon, loc)
+                m.string = new_msgstr
+                changed = True
+                # print(f'[{msgstr}]=>[{new_msgstr}]')
+        if changed:
+            c.dump_po(out_path, msg_data)
+
+
     def run(self):
+        self.fix_abbr()
+        # self.testString()
+        # self.flatText()
         # self.cleanDict()
         # self.test_0001()
         # import cProfile
@@ -1104,23 +1405,32 @@ class test(object):
         # self.cleanKritaPOFile()
         # self.correct_snippet_seq()
         # self.printEmptyPOLines()
-        self.test_pattern()
+        # self.test_pattern()
         # self.test_get_partial()
+        # self.debugSphinxBuild_MakeGettext()
 
+# /Users/hoangduytran/Dev/tran/blender_docs
+# sphinx-build -M gettext "./manual" "build" -j auto -D language='en'
 
+# from sphinx.cmd.build import main
+#
+# if __name__ == '__main__':
+#     sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+#     sys.exit(main())
 
 x = test()
-# cProfile.run('x.run()', 'test_profile.dat')
+# # cProfile.run('x.run()', 'test_profile.dat')
+# #
+# # import pstats
+# # from pstats import SortKey
+# #
+# # with open('output_time.txt', 'w') as f:
+# #     p = pstats.Stats('test_profile.dat', stream=f)
+# #     p.sort_stats('time').print_stats()
+# #
+# # with open('output_calls.txt', 'w') as f:
+# #     p = pstats.Stats('test_profile.dat', stream=f)
+# #     p.sort_stats('calls').print_stats()
 #
-# import pstats
-# from pstats import SortKey
-#
-# with open('output_time.txt', 'w') as f:
-#     p = pstats.Stats('test_profile.dat', stream=f)
-#     p.sort_stats('time').print_stats()
-#
-# with open('output_calls.txt', 'w') as f:
-#     p = pstats.Stats('test_profile.dat', stream=f)
-#     p.sort_stats('calls').print_stats()
-
 x.run()
+

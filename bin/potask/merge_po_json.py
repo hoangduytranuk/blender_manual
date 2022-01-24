@@ -46,17 +46,200 @@ class MergeToPO(POTaskBase):
     # -updict -tran /Users/hoangduytran/Dev/tran/blender_ui/merged.po -ig -cl
     # -updict -tran /Users/hoangduytran/untran.po -fuz -cl
     #  -mergepo
-    def performTask(self):
+
+    def filteringLowerCaseSet(self):
         home = os.environ['HOME']
         home_github = os.path.join(home, 'Dev/tran/blender_manual')
         home_po = os.path.join(home, 'Dev/tran/blender_ui')
-        target_po = os.path.join(home, 'ref_dict_0001.po')
+        input_po = os.path.join(home_github, 'ref_dict_0001.po')
+        output_po = os.path.join(home_github, 'ref_dict_0002.po')
+
+        data = c.load_po(input_po)
+        lower_set = Catalog(
+            project="Blender 3.0.0 Release Candidate (b'd2e608733507'",
+            locale="vi",
+            last_translator="Hoang Duy Tran <hoangduytran1960@googlemail.com>",
+            language_team="London, UK <hoangduytran1960@gmail.com>"
+        )
+
+        other_set = Catalog(
+            project="Blender 3.0.0 Release Candidate (b'd2e608733507'",
+            locale="vi",
+            last_translator="Hoang Duy Tran <hoangduytran1960@googlemail.com>",
+            language_team="London, UK <hoangduytran1960@gmail.com>"
+        )
+
+        for m in data:
+            msgid: str = m.id
+            is_lower = msgid.islower()
+            set_to_use = (lower_set if is_lower else other_set)
+            set_to_use.add(msgid,
+                       string=m.string,
+                       locations=m.locations,
+                       flags=m.flags,
+                       auto_comments=m.auto_comments,
+                       user_comments=m.user_comments,
+                       previous_id=m.previous_id,
+                       lineno=m.lineno,
+                       context=m.context
+                       )
+        msg = f'lowerset contains {len(lower_set)} other_set contains: {len(other_set)}'
+        print(msg)
+        removed_count=0
+        for m in other_set:
+            msgid: str = (m.id.lower())
+            is_in_lower_set = (msgid in lower_set)
+            if is_in_lower_set:
+                removed_count+=1
+                del lower_set[msgid]
+
+        for m in lower_set:
+            other_set.add(m.id,
+                       string=m.string,
+                       locations=m.locations,
+                       flags=m.flags,
+                       auto_comments=m.auto_comments,
+                       user_comments=m.user_comments,
+                       previous_id=m.previous_id,
+                       lineno=m.lineno,
+                       context=m.context
+                       )
+
+        msg = f'AFTER FILTERING LOWERCASE: lowerset contains {len(lower_set)} other_set contains: {len(other_set)}, removed: {removed_count}'
+        print(msg)
+        print(f'writing: {output_po} with {len(other_set)} records:')
+        c.dump_po(output_po, other_set)
+        exit(0)
+
+    def highlight_comment_diff(self):
+        home = os.environ['HOME']
+        in_pot = os.path.join(home, '20220116_blender_manual_0001.po')
+        ref_po = os.path.join(home, 'blender_manual.pot')
+
+        m: Message = None
+        ref_m: Message = None
+        ref_data = c.load_po(ref_po)
+        in_data = c.load_po(in_pot)
+        changed = False
+        for index, m in enumerate(in_data):
+            is_first = (index == 0)
+            if is_first:
+                continue
+            msgid = m.id
+            is_in_ref = (msgid in ref_data)
+            if not is_in_ref:
+                continue
+
+            ref_m = ref_data[msgid]
+            ref_locations = ref_m.locations
+            m_locations = m.locations
+            is_loc_diff = (m_locations != ref_locations)
+            if not is_loc_diff:
+                continue
+
+            msgstr = m.string
+            msg = f'msgid "{msgid}"\nmsgstr "{msgstr}"\n---------\n\n'
+            print(msg)
+        exit(0)
+
+    def correctLocations(self):
+        home = os.environ['HOME']
+        out_po = os.path.join(home, '20220115_blender_manual_flat_0003.po')
+        in_pot = os.path.join(home, '20220115_blender_manual_0002.po')
+        ref_po = os.path.join(home, 'blender_manual.pot')
+
+        m: Message = None
+        ref_m: Message = None
+        ref_data = c.load_po(ref_po)
+        in_data = c.load_po(in_pot)
+        changed = False
+
+        for index, m in enumerate(in_data):
+            is_first = (index == 0)
+            if is_first:
+                continue
+            msgid = m.id
+            is_in_ref = (msgid in ref_data)
+            if not is_in_ref:
+                msg = f'NOT IN REF: {msgid}'
+                print(msg)
+                continue
+
+            ref_m = ref_data[msgid]
+            ref_locations = ref_m.locations
+            m_locations = m.locations
+            is_loc_diff = (m_locations != ref_locations)
+            if not is_loc_diff:
+                continue
+
+            m.locations = ref_locations
+            changed = True
+
+        if changed:
+            msg = f'writing: [{len(in_data)}] to file: [{out_po}]'
+            print(msg)
+            c.dump_po(out_po, in_data)
+        exit(0)
+
+    def mergePOT(self):
+        home = os.environ['HOME']
+        home_github = os.path.join(home, 'Dev/tran/blender_manual')
+        # out_po = os.path.join(home, '20220115_blender_manual_flat_0001.po')
+        out_po = os.path.join(home, 'blender_manual_flat.po')
+        # in_pot = os.path.join(home, 'blender_manual.pot')
+        in_pot = os.path.join(home, '20220115_blender_manual_flat.po')
+        # ref_po = os.path.join(home_github, '20220114_merge_blender_manual.po')
+        # ref_po = os.path.join(home, '20220115_merge_blender_manual_flat.po')
+        ref_po = os.path.join(home, 'blender_manual.pot')
+
+        m: Message = None
+        ref_data = c.load_po(ref_po)
+        in_data = c.load_po(in_pot)
+        changed = False
+        for index, m in enumerate(in_data):
+            is_first = (index == 0)
+            if is_first:
+                continue
+            msgid = m.id
+            is_in_ref = (msgid in ref_data)
+            if not is_in_ref:
+                msg = f'NOT IN REF: {msgid}'
+                print(msg)
+                continue
+
+            msgstr = ref_data[msgid]
+            msg = f'[{msgid}] => [{msgstr}]'
+            print(msg)
+            m.string = msgstr
+            changed = True
+
+        if changed:
+            msg = f'writing: [{len(in_data)}] to file: [{out_po}]'
+            print(msg)
+            c.dump_po(out_po, in_data)
+
+        exit(0)
+
+    def performTask(self):
+
+        # self.mergePOT()
+        # self.correctLocations()
+        self.highlight_comment_diff()
+
+        # self.filteringLowerCaseSet()
+
+        home = os.environ['HOME']
+        home_github = os.path.join(home, 'Dev/tran/blender_manual')
+        home_po = os.path.join(home, 'Dev/tran/blender_ui')
+        # target_po = os.path.join(home, 'ref_dict_0001.po')
+        target_po = os.path.join(home_github, 'ref_dict_ss_0001.po')
 
         po_file_list = [
-            os.path.join(home_po, '2.79b/vi.po'),
-            os.path.join(home_po, '2.83/vi.po'),
-            os.path.join(home_po, '3x/vi.po'),
-            os.path.join(home_github, 'ref_dict_0006_0010.json')
+            # os.path.join(home_po, '2.79b/vi.po'),
+            # os.path.join(home_po, '2.83/vi.po'),
+            # os.path.join(home_po, '3x/vi.po'),
+            # os.path.join(home_github, 'ref_dict_0006_0010.json')
+            # os.path.join(home_github, 'ref_dict_ss_0001.json')
         ]
 
         po_cat: Catalog = None
