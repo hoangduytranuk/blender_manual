@@ -44,15 +44,43 @@ class PatternUtils:
         found_dict = obs.findInvert(pat, is_reverse=is_reversed, is_removing_symbol=is_removing_symbols)
         return found_dict
 
-    def patternMatchAll(pat, text):
+    def patternMatchAll(pat: re.Pattern, text, ref_type=None, reversed=False, is_including_surrounding_symbols=False, start_at=-1, end_at=-1, loc=None, using_origin_loc=None):
         return_dict = {}
         try:
-            for m in pat.finditer(text):
-                match_record = MatcherRecord(matcher_record=m)
+            if loc:
+                start_at = loc[0]
+                end_at = loc[1]
+                is_debug = (start_at > 0)
+                if is_debug:
+                    is_debug = True
+
+            start = (start_at if start_at >= 0 else 0)
+            end = (end_at if end_at >= 0 else len(text))
+            m: re.Match = None
+            for m in pat.finditer(text, start, end):
+                match_record = MatcherRecord(matcher_record=m, ref_type=ref_type)
+                is_using_orig_loc = (using_origin_loc is not None)
+                if is_using_orig_loc:
+                    match_record.updateMasterLocTuple(using_origin_loc)
                 match_record.pattern = pat
-                loc = (match_record.s, match_record.e)
+                sub_list = match_record.getSubEntriesAsList()
+                try:
+                    ref_type = match_record.type
+                    is_unbracketable = (ref_type in df.ref_type_unquoteable)
+                    can_remove_quotes = (not is_including_surrounding_symbols) and is_unbracketable
+                    if can_remove_quotes:
+                        (loc, entry_txt) = sub_list[1]
+                    else:
+                        (loc, entry_txt) = sub_list[0]
+                except Exception as e:
+                    (loc, entry_txt) = sub_list[0]
+
                 dict_entry = {loc: match_record}
                 return_dict.update(dict_entry)
+
+            if reversed:
+                reversed_list = list(sorted(list(return_dict.items()), reverse=True))
+                return_dict = OrderedDict(reversed_list)
         except Exception as e:
             pass
             # df.LOG(e)

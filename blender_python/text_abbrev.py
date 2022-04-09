@@ -51,7 +51,7 @@ bl_info = {
 #     prop = rna_type.bl_rna.properties[prop_str]
 #     return [e.identifier for e in prop.enum_items]
 
-# def enum_members_from_instance(rna_item, prop_str):
+# def enum_members_from_instance -- (rna_item, prop_str):
 #     return enum_members_from_type(type(rna_item), prop_str)
 
 sep_table = (
@@ -65,6 +65,7 @@ blanking_id = re.compile(r'\:[^\:]+\:')
 blanking_hyphen = re.compile(r'[-]+')
 dbl_quote_pat = re.compile(r'"')
 dbl_quote_escaped = re.compile(r'\\"')
+link_check_pat = re.compile(r'\<[^\<\>]+\>')
 
 case_status_table = (
     ('UPPER', 'Upper', 'Upper case', 1),
@@ -451,45 +452,21 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         bpy.context.window_manager.clipboard = actual_text
         self.report({'INFO'}, f"Ready to pate: {actual_text}")
 
-    def execute(self, context):
-        sd = context.space_data
+    def getChosenSeparator(self, context) -> str:
+        try:
+            sc = context.scene
+            var = sc.my_tool
+            chosen_term_sep_id = var.term_sep
+            chosen_sep_list = [sep_text.strip('"') for (id, sep_text, _, _) in sep_table if id == chosen_term_sep_id]
+            chosen_sep = (chosen_sep_list[0] if bool(chosen_sep_list) else None)
+            return chosen_sep
+        except Exception as e:
+            print(e)
+            return None
 
+    def makeBlankingPattern(self, context) -> re.Pattern:
         sc = context.scene
         var = sc.my_tool
-        is_reverse = var.is_reversed  # making use of ready made boolean
-        is_abbrev = var.is_abbrev  # making use of ready made boolean
-        is_term = var.is_term  # making use of ready made boolean
-        is_kbd = var.is_kbd
-        sep = var.term_sep
-        is_matching_case_with_original = var.is_matching_case
-        prefix_type = var.ref_type
-
-        # get the selected text
-        text = self.getSelectedText(sd.text)
-        if text is None:
-            return {'CANCELLED'}
-
-        chosen_term_sep_id = var.term_sep
-        chosen_sep = None
-        for i, sep_entry in enumerate(sep_table):
-            id, sep_text, _, _ = sep_entry
-            found = (id == chosen_term_sep_id)
-            if found:
-                chosen_sep = sep_text.strip('"')
-                break
-
-        print(f'chosen_sep:[{chosen_sep}]')
-        part_list = text.split(chosen_sep)
-        print(f'part_list:[{part_list}]')
-
-        has_parts = (len(part_list) > 1)
-        if not has_parts:
-            self.report({'ERROR'}, f"String did NOT SPLIT: {part_list}")
-            return {'CANCELLED'}
-
-        tran_part = part_list[0]
-        orig_part = part_list[1]
-
         rm_char_list = var.rm_chars
         chosen_chars = []
         chosen_complex_chars = []
@@ -505,7 +482,11 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         chosen_blanking_chars = "".join(chosen_chars)
         blanking_pat_txt = r'[%s]+' % (chosen_blanking_chars)
         blanking_pattern = re.compile(blanking_pat_txt)
+        return blanking_pattern
 
+    def getFillers(self, context) -> str:
+        sc = context.scene
+        var = sc.my_tool
         filler_char_list = var.filler_char
         chosen_filler_chars = []
         for i, filler_selected in enumerate(filler_char_list):
@@ -518,68 +499,178 @@ class TEXT_OT_single_quoted_base(bpy.types.Operator):
         for char in chosen_filler_chars:
             filler_list.append(f'{char * filler_count}')
         filler = "".join(filler_list)
+        return filler
 
-        # updateRmChars(var, context)
-        is_blanking_id = bool(var.removing_marker)              
-        if is_blanking_id:
-            print(f'is_blanking_id:{is_blanking_id}')            
-            # clean out any ':something:' groups
-            orig_part = blanking_id.sub("", orig_part)
-            # clean out any ':something:' groups
-            tran_part = blanking_id.sub("", tran_part)
+    def replaceArchedBracketWithSquare(self, context, orig_part, tran_part):
+        valid = (bool(orig_part) and bool(tran_part))
+        if not valid:
+            return (orig_part, tran_part)
 
+        sc = context.scene
+        var = sc.my_tool
         is_bracket_to_square = var.braket_to_square
-        if is_bracket_to_square:
-            orig_part = orig_part.replace('(', '[')
-            orig_part = orig_part.replace(')', ']')
-            tran_part = tran_part.replace('(', '[')
-            tran_part = tran_part.replace(')', ']')
+        if not is_bracket_to_square:
+            return orig_part, tran_part
 
-        print(f'chosen_blanking_chars:[{chosen_blanking_chars}]')
-        is_blanking_char = bool(chosen_chars)
-        if is_blanking_char:
-            orig_part = blanking_pattern.sub('', orig_part)
-            tran_part = blanking_pattern.sub('', tran_part)
+        orig_part = orig_part.replace('(', '[')
+        orig_part = orig_part.replace(')', ']')
+        tran_part = tran_part.replace('(', '[')
+        tran_part = tran_part.replace(')', ']')
+        return (orig_part, tran_part)
 
-        print(f'orig_part:[{orig_part}], tran_part:[{tran_part}]')
+    def splitChosenTextAtChosenSeparator(self, context, text):
+        valid = bool(text)
+        if not valid:
+            return (text, None)
 
+        sc = context.scene
+        var = sc.my_tool
+        try:
+            chosen_sep = self.getChosenSeparator(context)
+            if not chosen_sep:
+                msg = f"No chosen separator has been selected!\ntext:[{text}]\n"
+                self.report({'ERROR'}, msg)
+                return (text, none)
+
+            part_list = text.split(chosen_sep)
+            has_parts = (len(part_list) > 1)
+            if not has_parts:
+                msg = f"String did NOT SPLIT!\bpart_list:[{part_list}];\nchosen_sep:[{chosen_sep}];\ntext:[{text}]\n"
+                self.report({'ERROR'}, msg)
+                return (text, None)
+
+            tran_part = part_list[0]
+            orig_part = part_list[1]
+            return (orig_part, tran_part)
+        except Exception as e:
+            return (text, None)
+
+    def blankingID(self, context, orig_part, tran_part):
+        valid = (bool(orig_part) and bool(tran_part))
+        if not valid:
+            return (orig_part, tran_part)
+
+        sc = context.scene
+        var = sc.my_tool
+
+        is_blanking_id = bool(var.removing_marker)
+        if is_blanking_id:
+            if bool(orig_part):
+                orig_part = blanking_id.sub("", orig_part)
+            if bool(tran_part):
+                tran_part = blanking_id.sub("", tran_part)
+        return (orig_part, tran_part)
+
+    def blankingHyphen(self, context, orig_part, tran_part):
+        valid = (bool(orig_part) and bool(tran_part))
+        if not valid:
+            return (orig_part, tran_part)
+
+        sc = context.scene
+        var = sc.my_tool
         is_blanking_hyphen = var.rm_redundant_hyphen
-        if is_blanking_hyphen:
+        if not is_blanking_hyphen:
+            return (orig_part, tran_part)
+
+        if bool(tran_part):
             tran_part = blanking_hyphen.sub("", tran_part)
+
+        if bool(orig_part):
             orig_part = blanking_hyphen.sub("", orig_part)
+        return (orig_part, tran_part)
 
-        has_filler = (len(filler) > 0)
-        if has_filler:
+    def applyFiller(self, context, orig_part, tran_part):
+        valid = (bool(orig_part) and bool(tran_part))
+        if not valid:
+            return (orig_part, tran_part)
+
+        sd = context.space_data
+        sc = context.scene
+        var = sc.my_tool
+
+        filler = self.getFillers(context)
+        has_filler = (bool(filler) and len(filler) > 0)
+        if not has_filler:
+            return (orig_part, tran_part)
+
+        if bool(tran_part):
             tran_part = f'{filler}{tran_part}{filler}'
+
+        if bool(orig_part):
             orig_part = f'{filler}{orig_part}{filler}'
+        return (orig_part, tran_part)
 
-        # tran_has_quote = (dbl_quote_pat.search(tran_part) is not None)
-        # if tran_has_quote:
-        #     tran_part = tran_part.replace('"', '\\"')
-        #
-        # orig_has_quote = (dbl_quote_pat.search(orig_part) is not None)
-        # if orig_has_quote:
-        #     orig_part = orig_part.replace('"', '\\"')
-        #
-        # print(f'orig_part:[{orig_part}], tran_part:[{tran_part}]')
-        # return {'CANCELLED'}
+    def matchCaseWithOrig(self, context, orig_part, tran_part):
+        valid = (bool(orig_part) and bool(tran_part))
+        if not valid:
+            return (orig_part, tran_part)
 
-        if is_matching_case_with_original:
-            # matching cases to original
-            if orig_part.isupper():
-                tran_part = tran_part.upper()
-            elif orig_part.islower():
-                tran_part = tran_part.lower()
-            elif orig_part.istitle():
-                tran_part = tran_part.title()
+        sc = context.scene
+        var = sc.my_tool
+        is_matching_case_with_original = var.is_matching_case
+        if not is_matching_case_with_original:
+            return (orig_part, tran_part)
 
+        if orig_part.isupper():
+            tran_part = tran_part.upper()
+        elif orig_part.islower():
+            tran_part = tran_part.lower()
+        elif orig_part.istitle():
+            tran_part = tran_part.title()
+        return (orig_part, tran_part)
+
+    def applyPrefix(self, context, orig_part, tran_part, is_reverse=False):
         prefix_type = self.getPrefixType(context)
-        # strip all spaces surrounding text before inserting into the template
         text = self.textPrefix(orig_part, tran_part, prefix_type, is_reverse)
-        # return {'CANCELLED'}
         has_ref_type = (prefix_type in text)
         if has_ref_type:
             text = text.replace(prefix_type, "")
+        return text
+
+    def blankingTextUsingChosenChars(self, context, orig_part, tran_part):
+        valid = (bool(orig_part) and bool(tran_part))
+        if not valid:
+            return (orig_part, tran_part)
+
+        sc = context.scene
+        var = sc.my_tool
+
+        blanking_pattern = self.makeBlankingPattern(context)
+        is_blanking_char = bool(blanking_pattern)
+        if not is_blanking_char:
+            return (orig_part, tran_part)
+
+        orig_part = blanking_pattern.sub('', orig_part)
+        tran_part = blanking_pattern.sub('', tran_part)
+        return (orig_part, tran_part)
+
+    
+    def execute(self, context):
+        sd = context.space_data
+
+        sc = context.scene
+        var = sc.my_tool
+        is_reverse = var.is_reversed  # making use of ready made boolean
+        # is_abbrev = var.is_abbrev  # making use of ready made boolean
+        # is_term = var.is_term  # making use of ready made boolean :abbr:`this (that)`
+        # is_kbd = var.is_kbd
+        # sep = var.term_sep
+        # is_matching_case_with_original = var.is_matching_case
+        # prefix_type = var.ref_type
+
+        # get the selected text
+        text = self.getSelectedText(sd.text)
+        if text is None:
+            return {'CANCELLED'}
+
+        (orig_part, tran_part) = self.splitChosenTextAtChosenSeparator(context, text)
+        (orig_part, tran_part) = self.blankingID(context, orig_part, tran_part)
+        (orig_part, tran_part) = self.replaceArchedBracketWithSquare(context, orig_part, tran_part)
+        (orig_part, tran_part) = self.blankingTextUsingChosenChars(context, orig_part, tran_part)
+        (orig_part, tran_part) = self.blankingHyphen(context, orig_part, tran_part)
+        (orig_part, tran_part) = self.applyFiller(context, orig_part, tran_part)
+        (orig_part, tran_part) = self.matchCaseWithOrig(context, orig_part, tran_part)
+        text = self.applyPrefix(context, orig_part, tran_part, is_reverse=is_reverse)
         self.pasteText(text)
         return {'FINISHED'}
 
@@ -824,6 +915,73 @@ class TEXT_OT_paste_with_colon(TEXT_OT_single_quoted_base):
             self.restoreClibboardPreviousCopy()
         return result
 
+#class TEXT_OT_fix_refs(TEXT_OT_single_quoted_base):
+#    bl_idname = "text.fix_refs"
+#    bl_label = "Fix Refs"
+#    bl_description = "Fixing the refs in document"
+#    bl_context = 'scene'
+#    
+#    def execute(self, context):
+#        sd = context.space_data
+#        sc = context.scene
+#        var = sc.my_tool
+
+#        # get the selected text
+#        text = self.getSelectedText(sd.text)
+#        if text is None:
+#            return {'CANCELLED'}
+        
+        
+    
+class TEXT_OT_fix_term(TEXT_OT_single_quoted_base):
+    bl_idname = "text.fix_term"
+    bl_label = "Fix Term"
+    bl_description = "Fixing the term in document"
+    bl_context = 'scene'
+    
+    def execute(self, context):
+        sd = context.space_data
+        sc = context.scene
+        var = sc.my_tool
+
+        # get the selected text
+        text = self.getSelectedText(sd.text)
+        if text is None:
+            return {'CANCELLED'}
+
+        # (orig_part, tran_part) = self.splitChosenTextAtChosenSeparator(context, text)
+        # blanking_pattern = self.makeBlankingPattern(context)
+        # filler = self.getFillers(context)
+        # (orig_part, tran_part) = self.blankingTextUsingChosenChars(context, orig_part, tran_part)
+        # (orig_part, tran_part) = self.replaceArchedBracketWithSquare(context, orig_part, tran_part)
+        # "Xin xem thêm về *Tham Chiếu với Dụng Cụ Hiển Thị* -- :term:`Display Referenced`"
+        has_link = (link_check_pat.search(text) is not None)
+        text_pat = r'\s?%s\s?' % ('--')
+        pat = re.compile(text_pat, re.I)
+        
+        text_list = pat.split(text)
+        front_part = text_list[0]
+        back_part = text_list[1]
+        (front_part, back_part) = self.blankingID(context, front_part, back_part)
+        (front_part, back_part) = self.blankingTextUsingChosenChars(context, front_part, back_part)
+        
+        front_part = front_part.title()
+        back_part = back_part.title()
+        
+        if has_link:
+            new_text = f':term:`{front_part} -- {back_part}`'
+        else:
+            new_text = f':term:`{back_part}` (*{front_part}*)'
+        self.pasteText(new_text)
+        return {'FINISHED'}
+
+    def invoke(self, context, event):
+        result = self.execute(context)
+        is_completed = ('FINISHED' in result)
+        if is_completed:
+            self.restoreClibboardPreviousCopy()
+        return result
+    
 class TEXT_OT_convert_to_square_bracket(TEXT_OT_single_quoted_base):
     bl_idname = "text.convert_to_square_brackets"
     bl_label = "Square Bracketing"
@@ -1099,10 +1257,6 @@ class TEXT_PT_abbrev_basic_panel(bpy.types.Panel):
         row = lo.row(align=True)
         row.prop(my_tool, "ref_type")
 
-        # row.prop(my_tool, "is_abbrev", toggle=True)
-        # # making use of ready made boolean
-        # row.prop(my_tool, "is_term", toggle=True)
-        # row.prop(my_tool, "is_kbd", toggle=True)
         row = lo.row(align=True)
         row.prop(my_tool, "is_matching_case")
 
@@ -1203,6 +1357,7 @@ class TEXT_PT_extra_options_panel(bpy.types.Panel):
         row.operator("text.convert_to_square_brackets", icon='TRACKER_DATA')
         row.operator("text.single_quoted_for_abbrev", icon='LOOP_FORWARDS')
         row.operator("text.parse_sentence", icon='MODIFIER_DATA')
+        row.operator("text.fix_term", icon='MODIFIER_DATA')
 
 
 class TEXT_PT_dict_action_panel(bpy.types.Panel):
@@ -1315,6 +1470,8 @@ classes = (
     TEXT_OT_is_in_dictionary,
     TEXT_OT_update_dict_using_screen_text,
     TEXT_OT_save_the_dictionary,
+    TEXT_OT_fix_term
+    
 )
 
 

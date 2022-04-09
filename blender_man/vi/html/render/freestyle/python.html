@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Scripting &mdash; Blender Manual</title>
+  <title>Viết Tập Lệnh Python &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
-    <link rel="next" title="Layers &amp; Passes" href="../layers/index.html" />
-    <link rel="prev" title="Material Properties" href="material.html" /> 
+    <link rel="next" title="Tầng Lớp &amp; Lượt" href="../layers/index.html" />
+    <link rel="prev" title="Tính Chất của Nguyên Vật Liệu" href="material.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,59 +71,59 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Freestyle</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="render.html">Render Properties</a></li>
-<li class="toctree-l3"><a class="reference internal" href="view_layer/index.html">View Layer Properties</a></li>
-<li class="toctree-l3"><a class="reference internal" href="material.html">Material Properties</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Python Scripting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#writing-style-modules">Writing Style Modules</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#selection">Lựa Chọn -- Selection</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#chaining">Tạo Dây Chuyền -- Chaining</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#splitting">Splitting</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#sorting">Sorting</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#stroke-creation">Stroke Creation</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#user-control-on-the-pipeline-definition">User Control on the Pipeline Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Nút tô bóng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Phong Cách Tự Do</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render.html">Tính Chất của Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="view_layer/index.html">Tính Chất của Tầng Lớp Góc Nhìn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material.html">Tính Chất của Nguyên Vật Liệu</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Viết Tập Lệnh Python</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#writing-style-modules">Viết các Mô-Đun Phong Cách</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#selection">Lựa Chọn</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#chaining">Móc Nối</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#splitting">Tách Phân</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sorting">Sắp Thứ Tự</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#stroke-creation">Kiến Tạo Nét Vẽ</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#user-control-on-the-pipeline-definition">Điều Khiển của Người Dùng đối với Định Nghĩa của Quy Trình</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -140,9 +140,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Rendering</a> &raquo;</li>
-          <li><a href="index.html">Freestyle</a> &raquo;</li>
-      <li>Python Scripting</li>
+          <li><a href="../index.html">Kết xuất</a> &raquo;</li>
+          <li><a href="index.html">Phong Cách Tự Do</a> &raquo;</li>
+      <li>Viết Tập Lệnh Python</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -152,7 +152,7 @@
            <div itemprop="articleBody">
              
   <section id="python-scripting">
-<span id="bpy-types-freestylemodulesettings"></span><h1>Python Scripting<a class="headerlink" href="#python-scripting" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-freestylemodulesettings"></span><h1>Viết Tập Lệnh Python<a class="headerlink" href="#python-scripting" title="Permalink to this headline"></a></h1>
 <p>The Python Scripting mode offers full programmable line stylizes.
 In this control mode, all styling operations are written as Python scripts referred to as
 style modules in the Freestyle terminology. The input to a style module is a view map
@@ -205,7 +205,7 @@ the Blender Python API reference manual for the full detail of style module cons
 </tbody>
 </table>
 <section id="writing-style-modules">
-<h2>Writing Style Modules<a class="headerlink" href="#writing-style-modules" title="Permalink to this headline"></a></h2>
+<h2>Viết các Mô-Đun Phong Cách<a class="headerlink" href="#writing-style-modules" title="Permalink to this headline"></a></h2>
 <p>A style module is a piece of code responsible for the stylization of Freestyle line drawing.
 The input of a style module is a set of feature edges called view map (ViewMap).
 The output is a set of stylized lines also referred to as strokes. A style module is
@@ -236,7 +236,7 @@ Vertices of 1D elements are called 0D elements in general.</p>
 The initial active set is the set of ViewEdges in the input view map.
 The active set is updated by the operators.</p>
 <section id="selection">
-<h3>Lựa Chọn -- Selection<a class="headerlink" href="#selection" title="Permalink to this headline"></a></h3>
+<h3>Lựa Chọn<a class="headerlink" href="#selection" title="Permalink to this headline"></a></h3>
 <p>The selection operator goes through every element of the active set and keeps only the ones
 satisfying a certain predicate. The <code class="docutils literal notranslate"><span class="pre">Operators.select()</span></code> method takes as the argument a unary
 predicate that works on any <code class="docutils literal notranslate"><span class="pre">Interface1D</span></code> that represents a 1D element. For example:</p>
@@ -254,7 +254,7 @@ method takes as argument a functor which in turn takes an <code class="docutils 
 The Freestyle Python API employs functors extensively to implement predicates, as well as functions.</p>
 </section>
 <section id="chaining">
-<h3>Tạo Dây Chuyền -- Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline"></a></h3>
+<h3>Móc Nối<a class="headerlink" href="#chaining" title="Permalink to this headline"></a></h3>
 <p>The chaining operators act on the set of active <code class="docutils literal notranslate"><span class="pre">ViewEdge</span></code> objects and determine the topology
 of the future strokes.
 The idea is to implement an iterator to traverse the ViewMap graph by marching along ViewEdges.
@@ -289,7 +289,7 @@ At the end of the chaining operation,
 the active set is set to the Chains that have just been constructed.</p>
 </section>
 <section id="splitting">
-<h3>Splitting<a class="headerlink" href="#splitting" title="Permalink to this headline"></a></h3>
+<h3>Tách Phân<a class="headerlink" href="#splitting" title="Permalink to this headline"></a></h3>
 <p>The splitting operation is used to refine the topology of each Chain.
 Splitting is performed either sequentially or recursively. Sequential splitting
 <code class="docutils literal notranslate"><span class="pre">Operators.sequentialSplit()</span></code> in its basic form,
@@ -322,7 +322,7 @@ The curvature is evaluated at points along the Chain at a resolution of 5 units.
 Chains shorter than 5 units will not be split anymore.</p>
 </section>
 <section id="sorting">
-<h3>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline"></a></h3>
+<h3>Sắp Thứ Tự<a class="headerlink" href="#sorting" title="Permalink to this headline"></a></h3>
 <p>The sorting operator <code class="docutils literal notranslate"><span class="pre">Operators.sort()</span></code> arranges the stacking order of active 1D elements.
 It takes as argument a binary predicate used as a &quot;smaller than&quot; operator to order two 1D elements.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Operators</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">Length2DBP1D</span><span class="p">())</span>
@@ -337,7 +337,7 @@ it is important to control the order in which the strokes are drawn. In this cas
 we would use the sorting operator to ensure that the most &quot;important&quot; lines are drawn first.</p>
 </section>
 <section id="stroke-creation">
-<h3>Stroke Creation<a class="headerlink" href="#stroke-creation" title="Permalink to this headline"></a></h3>
+<h3>Kiến Tạo Nét Vẽ<a class="headerlink" href="#stroke-creation" title="Permalink to this headline"></a></h3>
 <p>Finally, the stroke creation operator <code class="docutils literal notranslate"><span class="pre">Operators.create()</span></code>
 takes the active set of Chains as input and build Strokes. The operator takes two arguments.
 The first is a unary predicate that works on <code class="docutils literal notranslate"><span class="pre">Interface1D</span></code> that is designed to make a last
@@ -358,7 +358,7 @@ Each chain is transformed into a stroke by resampling it so as to have a point e
 and assigning to it a constant thickness of 2 units and a dark gray constant color.</p>
 </section>
 <section id="user-control-on-the-pipeline-definition">
-<h3>User Control on the Pipeline Definition<a class="headerlink" href="#user-control-on-the-pipeline-definition" title="Permalink to this headline"></a></h3>
+<h3>Điều Khiển của Người Dùng đối với Định Nghĩa của Quy Trình<a class="headerlink" href="#user-control-on-the-pipeline-definition" title="Permalink to this headline"></a></h3>
 <p>Style module writing offers different types of user control,
 even though individual style modules have a fixed pipeline structure.
 One is the sequencing of different pipeline control structures, and another is through
@@ -373,7 +373,7 @@ the following base classes for more information on the user-scriptable construct
 <p class="admonition-title">Xem thêm</p>
 <p>Predicates, functions, chaining iterators, and stroke shaders can be defined by
 inheriting base classes and overriding appropriate methods.
-See <a class="reference external" href="https://docs.blender.org/api/3.1/freestyle.html#module-freestyle" title="(in Blender 3.1.0 Alpha Python API ve6ca0b33e920)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Freestyle</span> <span class="pre">python</span> <span class="pre">module</span></code></a> for more information
+See <a class="reference external" href="https://docs.blender.org/api/3.1/freestyle.html#module-freestyle" title="(in Blender 3.1.0 Beta Python API v3.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Freestyle</span> <span class="pre">python</span> <span class="pre">module</span></code></a> for more information
 on the user-scriptable constructs.</p>
 </div>
 </section>
@@ -384,15 +384,15 @@ on the user-scriptable constructs.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="material.html" class="btn btn-neutral float-left" title="Material Properties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../layers/index.html" class="btn btn-neutral float-right" title="Layers &amp; Passes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="material.html" class="btn btn-neutral float-left" title="Tính Chất của Nguyên Vật Liệu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../layers/index.html" class="btn btn-neutral float-right" title="Tầng Lớp &amp; Lượt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

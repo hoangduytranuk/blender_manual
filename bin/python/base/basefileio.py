@@ -128,6 +128,13 @@ class findFileByExtensionRelative(ListPathEvent):
                 self.result.append(rel_path)
 
 # -----------------------------------------------------------------------------
+# To test, just run a source ~/.bash_profile to update your current terminal.
+
+# Side note about the colors: The colors are preceded by an escape sequence \e and defined by a color value, composed of [style;color+m] and wrapped in an escaped [] sequence. eg.
+
+# red = \[\e[0;31m\]
+# bold red (style 1) = \[\e[1;31m\]
+# clear coloring = \[\e[0m\]
 # findFileByName
 # An instance of implementation of the ListPathEvent
 # Find all files with the same name in all subdirectories

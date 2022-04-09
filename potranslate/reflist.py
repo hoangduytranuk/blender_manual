@@ -10,8 +10,9 @@ from sentence import StructRecogniser as SR
 from nocasedict import NoCaseDict as NDIC
 import concurrent.futures
 from pattern_utils import PatternUtils as pu
-from gettext_within import GetTextWithin as gt
+from get_text_within import GetTextWithin as GTW
 from string_utils import StringUtils as st
+from bracket import RefAndBracketsParser as PSER
 '''
 :abbr:`
 :class:`
@@ -136,119 +137,12 @@ class RefList(defaultdict):
         else:
             return None
 
-    def setParentForChildren(self):
-        for k, mm in self.items():
-            mm.parent = self
-
-    def findOnePattern(self, msg: str, pattern: re.Pattern, reftype: RefType, include_brackets=False):
-        def setReftypeAndUsingSubTextLocation(dict_list: dict):
-            for main_loc, mm in dict_list.items():
-                new_mm_list=[]
-                mm_list_of_items = mm.getSubEntriesAsList()
-                new_mm_list.append(mm_list_of_items[0])
-                main_s, main_e = main_loc
-                main_txt = mm.txt
-                for index in range(1, len(mm_list_of_items)):
-                    actual_ref_type = reftype
-                    is_type_field = (index == 1)
-                    (sub_s, sub_e), sub_txt = mm_list_of_items[index]
-                    if is_type_field:
-                        try:
-                            sub_ref_type = RefType.getRef(sub_txt)
-                            actual_ref_type = (sub_ref_type if bool(sub_ref_type) else reftype)
-                        except Exception as e:
-                            actual_ref_type = RefType.TEXT
-                        mm.type = actual_ref_type
-
-                    if sub_txt:
-                        dist = (sub_e - sub_s)
-                        ss = (sub_s - main_s)
-                        ee = ss + dist
-                        new_entry = ((ss, ee), sub_txt)
-                    else:
-                        new_entry = ((sub_s, sub_e), sub_txt)
-                    new_mm_list.append(new_entry)
-                mm.clear()
-                mm.update(new_mm_list)
-
-        def getMatches(pat: re.Pattern, find_txt: str, ref: RefType):
-            local_found_dict = {}
-            try:
-                is_bracket = (ref == RefType.ARCH_BRACKET)
-                if is_bracket:
-                    local_found_dict = st.getTextWithinBrackets('<|(', '>|)', find_txt, is_include_bracket=include_brackets)
-                else:
-                    local_found_dict = pu.patternMatchAll(pat, find_txt)
-                    setReftypeAndUsingSubTextLocation(local_found_dict)
-            except Exception as e:
-                df.LOG(f'{e}; pat:[{pat}]; find_txt:[{find_txt}]; ref:[{ref}]; local_found_dict:[{local_found_dict}];', error=True)
-                raise e
-            return local_found_dict
-
-        valid_msg = (msg is not None) and (len(msg) > 0)
-        valid_pattern = (pattern is not None)
-        valid = valid_msg and valid_pattern
-        if not valid:
-            return
-        found_dict = OrderedDict()
-        try:
-            found_dict = getMatches(pattern, msg, reftype)
-            if found_dict:
-                self.update(found_dict)
-        except Exception as e:
-            df.LOG(f'{e} msg:[{msg}]; found_dict:[{found_dict}]', error=True)
-            raise e
-
     def isEmpty(self):
         is_empty = (len(self) == 0)
         return is_empty
 
-    def cleanupBrackets(self):
-        mm: MatcherRecord = None
-        remove_list = []
-        obs = LocationObserver(self.msg)
-
-        # marking NON-arched bracket places
-        for loc, mm in self.items():
-            ref_type = mm.type
-            is_bracket = (ref_type == RefType.ARCH_BRACKET)
-            if is_bracket:
-                continue
-
-            obs.markLocAsUsed(loc)
-
-        # ignore if Non-bracket,
-        for loc, mm in self.items():
-            ref_type = mm.type
-            is_bracket = (ref_type == RefType.ARCH_BRACKET)
-            if not is_bracket:
-                continue
-
-            txt = mm.txt
-            is_fully_used = obs.isLocFullyUsed(loc)
-            if is_fully_used:
-                df.LOG(f'[{mm}] is encompassed within another ref.')
-                remove_list.append(loc)
-
-        for loc in remove_list:
-            del self[loc]
-
-    def findPattern(self, pattern_list: list, txt: str, include_brackets=False):
-        pattern_list.reverse()
-        for index, item in enumerate(pattern_list):
-            p, ref_type = item
-            self.findOnePattern(txt, p, ref_type, include_brackets=include_brackets)
-
-        self.cleanupBrackets()
-        return len(self)
-
     def getListOfRefType(self, request_list_of_ref_type):
-        ref_list=[]
-        for mm_loc, mm in self.items():
-            type = mm.type
-            is_found = (type in request_list_of_ref_type)
-            if is_found:
-                ref_list.append(mm)
+        ref_list = [mm for (loc, mm) in self.items() if mm.type in request_list_of_ref_type]
         return ref_list
 
     def getUnparsedDict(self, unparsed_dict: dict):
@@ -257,13 +151,6 @@ class RefList(defaultdict):
         for uloc, mm in unparsed_dict.items():
             (ms, me) = mm.getMainLoc()
             mtxt = mm.getMainText()
-
-            # left, mid, right = gt.getTextWithin(mtxt)
-            # is_all_symbols = (not bool(mid))
-            #
-            # is_ignored = (is_all_symbols)
-            # if is_ignored:
-            #     continue
 
             mm = MatcherRecord(s=ms, e=me, txt=mtxt)
             mm.addSubMatch(-1, -1, None)
@@ -274,34 +161,10 @@ class RefList(defaultdict):
         return unparsed
 
     def parseMessage(self, is_ref_only=False, include_brackets=False, pattern_list=None):
-        # trans = self.tf.isInDict(self.msg)
-        # if trans:
-        #     self.setTranslation(trans, False, False)
-        #     return
-
-        local_msg = str(self.msg)
-        # cm.debugging(local_msg)
-        actual_pattern_list = (pattern_list if pattern_list else df.pattern_list)
-        count = self.findPattern(actual_pattern_list, local_msg, include_brackets=include_brackets)
-
-        df.global_ref_map = LocationObserver(self.msg)
-        self.local_ref_map = LocationObserver(self.msg)
-        for loc, mm in self.items():
-            df.global_ref_map.markLocAsUsed(loc)
-            self.local_ref_map.markLocAsUsed(loc)
-
-        if not is_ref_only:
-            unparsed_dict = df.global_ref_map.getUnmarkedPartsAsDict(removing_symbols=False)
-            unparsed = self.getUnparsedDict(unparsed_dict)
-            self.update(unparsed)
-
-        if len(self):
-            dd('Finishing parseMessage:')
-            dd('-' * 80)
-            for loc, mm_rec in self.items():
-                dd(f'{loc}')
-                dd(f'{mm_rec.txt}')
-                dd('-' * 80)
+        dict_list = PSER.parseMsgAndBrackets(self.msg)
+        self.clear()
+        self.update(dict_list)
+        print(self)
 
     def createSRAndTranslateSegment(self, segment):
         (loc, mm) = segment
@@ -353,70 +216,26 @@ class RefList(defaultdict):
         return (translation, is_fuzzy, is_ignore)
 
     def translate(self):
-        def restoreMaskingString(trans, mask_list):
-            if bool(trans):
-                new_tran = str(trans)
-                mask_list_with_loc = []
-                mm: MatcherRecord = None
-                for loc, new_mask, mm_txt, mm in mask_list:
-                    ss = trans.find(new_mask)
-                    ee = ss + len(new_mask)
-                    mm_tran = mm.translation
-                    valid_tran = (mm_tran and mm_tran != mm_txt)
-                    if not valid_tran:
-                        mm_tran = mm_txt
-                    mask_loc = (ss, ee)
-                    mask_list_with_loc_entry = (mask_loc, mm_txt, mm_tran)
-                    mask_list_with_loc.append(mask_list_with_loc_entry)
-
-                mask_list_with_loc.sort(reverse=True)
-
-                for (mask_loc, mm_txt, mm_tran) in mask_list_with_loc:
-                    new_tran = cm.jointText(new_tran, mm_tran, mask_loc)
-            else:
-                new_tran = str(self.msg)
-                ref_list = list(self.items())
-                ref_list.sort(reverse=True)
-                for loc, mm in ref_list:
-                    trans_txt = mm.translation
-                    if trans_txt:
-                        new_tran = cm.jointText(new_tran, trans_txt, loc)
-            return new_tran
-
-        def genMasks(txt):
-            temp_txt = str(txt)
-            mask_table = []
-            # letters = string.digits
-            item_list = list(self.items())
-            item_list.sort(reverse=True)
-
-            for index, (loc, mm) in enumerate(item_list):
-                mm_type = mm.type
-                is_txt = (mm_type == RefType.TEXT)
-                if is_txt:
-                    continue
-
-                mm_txt = mm.txt
-                txt_len = len(mm_txt)
-                # new_mask = (''.join(random.choice(letters) for i in range(txt_len)))
-                new_mask = f'{index}{df.REF_MASK_STR}'
-                mask_table_entry = (loc, new_mask, mm_txt, mm)
-                mask_table.append(mask_table_entry)
-
-                temp_txt = cm.jointText(temp_txt, new_mask, loc)
-
-            return temp_txt, mask_table
-
-        def getTextDirectTranslations(ref_list):
-            for loc, mm_record in ref_list:
-                is_txt = (mm_record.type == RefType.TEXT)
-                if not is_txt:
-                    continue
-                mm_txt = mm_record.txt
-                tran = self.tf.isInDict(mm_txt)
-                is_translated = bool(tran)
-                if is_translated:
-                    mm_record.setTranlation(tran, False, False)
+        # RefType.ABBR:
+        # RefType.ARCH_BRACKET:
+        # RefType.CLASS:
+        # RefType.DOC:
+        # RefType.DOUBLE_GA:
+        # RefType.FUNC:
+        # RefType.FUNCTION:
+        # RefType.GA_EMBEDDED_GA:
+        # RefType.GENERIC_QUOTE:
+        # RefType.GUILABEL:
+        # RefType.KBD:
+        # RefType.MATH:
+        # RefType.MENUSELECTION:
+        # RefType.METHOD:
+        # RefType.MOD:
+        # RefType.REF:
+        # RefType.SINGLE_GA:
+        # RefType.SUP:
+        # RefType.TERM:
+        # RefType.TEXT:
 
         def translateRefRecords(ref_list):
             non_txt_list = []
@@ -488,187 +307,44 @@ class RefList(defaultdict):
         self.setTranslation(sent_translation, is_fuzzy, is_ignore)
 
     def translateMatcherRecord(self, mm: MatcherRecord, is_translating_arch_bracket=True):
-        sub_loc: tuple = None
+        def find_function(entry):
+            (ref_type, function) = entry
+            mm_record: MatcherRecord = find_function.mm_record
+            return (mm.type == ref_type) and (function is not None)
+
+        tran_functions = [
+            (RefType.ABBR, self.translateAbbrev),
+            # (RefType.ARCH_BRACKET, self.translateArchBracket),
+            # (RefType.CLASS, None),
+            # (RefType.DOC, self.translateRefWithLink),
+            # (RefType.DOUBLE_GA, self.translateRefWithLink),
+            # (RefType.FUNC, None),
+            # (RefType.FUNCTION, None),
+            # (RefType.GA_EMBEDDED_GA, None),
+            # (RefType.GENERIC_QUOTE, self.translateQuoted),
+            # (RefType.GUILABEL, None),
+            # (RefType.KBD, self.translateKeyboard),
+            # (RefType.MATH, None),
+            # (RefType.MENUSELECTION, self.translateMenuSelection),
+            # (RefType.METHOD, None),
+            # (RefType.MOD, None),
+            # (RefType.REF, self.translateRefWithLink),
+            # (RefType.SINGLE_GA, self.translateRefWithLink),
+            # (RefType.SUP, None),
+            # (RefType.TERM, self.translateRefWithLink),
+            # (RefType.TEXT, self.translateArchBracket),
+        ]
         try:
-            ref_txt = mm.txt
-            ref_type = mm.type
-
-            is_guilabel = (ref_type == RefType.GUILABEL)
-            is_arch_bracket = (ref_type == RefType.ARCH_BRACKET)
-            is_blank_quote = (ref_type == RefType.BLANK_QUOTE)
-            is_kbd = (ref_type == RefType.KBD)
-            is_abbr = (ref_type == RefType.ABBR)
-            is_menu = (ref_type == RefType.MENUSELECTION)
-            is_ga = (ref_type == RefType.GA)
-            is_ref = (ref_type == RefType.REF)
-            is_doc = (ref_type == RefType.DOC)
-            is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
-            is_term = (ref_type == RefType.TERM)
-            is_math = (ref_type == RefType.MATH)
-
-            # ----------
-            is_ast = (ref_type == RefType.AST_QUOTE)
-            is_dbl_ast_quote = (ref_type == RefType.DBL_AST_QUOTE)
-            is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
-            is_sng_quote = (ref_type == RefType.SNG_QUOTE)
-            is_python_format = (ref_type == RefType.PYTHON_FORMAT)
-            is_function = (ref_type == RefType.FUNCTION)
-            is_attrib = (ref_type == RefType.ATTRIB)
-
-            is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
-
-            is_ignore = (is_osl_attrib or is_python_format or is_function or is_math or is_term)
-            if is_ignore:
-                return
-
-            converted_to_abbr = False
-            if is_kbd:
-                dd(f'translateRefItem: is_kbd:{ref_txt}')
-                ok = self.translateKeyboard(mm)
-            elif is_abbr:
-                dd(f'translateRefItem: is_abbr:{ref_txt}')
-                ok = self.translateAbbrev(mm)
-            elif is_menu:
-                dd(f'translateRefItem: is_menu:{ref_txt}')
-                ok = self.translateMenuSelection(mm)
-            elif is_quoted:
-                dd(f'translateRefItem: is_quoted:{ref_txt}')
-                ok = self.translateQuoted(mm)
-            elif is_attrib:
-                dd(f'translateRefItem: is_attrib:{ref_txt}')
-                ok = self.translateAttrib(mm)
-            elif is_arch_bracket:
-                ok = self.translateArchBracket(mm)
-            else:
-                is_include_original = not( is_guilabel )
-                ok = self.translateRefWithLink(mm, is_include_original_txt=is_include_original)
-
+            find_function.mm_record = mm
+            executable_list = list(filter(find_function, tran_functions))
+            has_executable = bool(executable_list)
+            if not has_executable:
+                return False
+            (ref_type, function) = executable_list[0]
+            is_done = function(mm)
+            return is_done
         except Exception as e:
-            df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
-
-    def getComponentTexts(self):
-        def getKeyBoard(mm: MatcherRecord):
-            text_list=[]
-            msg = mm.getSubText()
-            result_dict = pu.patternMatchAll(df.KEYBOARD_SEP, msg)
-            for sub_loc, sub_mm in result_dict.items():
-                txt = sub_mm.txt
-                text_list.append(txt)
-            return text_list
-
-        def getQuoted(mm: MatcherRecord):
-            msg = mm.getSubText()
-            return [msg]
-
-        def getRefWithLink(mm: MatcherRecord):
-            msg = mm.getSubText()
-            if not msg:
-                msg = mm.txt
-
-            try:
-                # is_debug = (msg == '<name>')
-                # if is_debug:
-                #     print('debug')
-
-                has_ref_link = (df.REF_LINK.search(msg) is not None)
-                if not has_ref_link:
-                    return [msg]
-                else:
-                    found_dict = pu.findInvert(df.REF_LINK, msg, is_reversed=True)
-                    if not found_dict:
-                        return []
-
-                    found_dict_list = list(found_dict.items())
-                    found_entry = found_dict_list[0]
-                    (sub_loc, sub_mm) = found_entry
-
-                    sub_txt = sub_mm.getMainText()
-                    return [sub_txt]
-            except Exception as e:
-                print(e)
-            return []
-
-        def getMenu(mm: MatcherRecord):
-            text_list=[]
-            msg = mm.getSubText()
-            word_list = pu.findInvert(df.MENU_SEP, msg, is_reversed=True)
-            for loc, mnu_item_mm in word_list.items():
-                sub_txt: str = mnu_item_mm.txt
-                text_list.append(sub_txt)
-            return text_list
-
-        def getAbbrev(mm: MatcherRecord):
-            text_list = []
-            msg = mm.getSubText()
-            abbrev_orig_rec, abbrev_part, exp_part = cm.extractAbbr(msg)
-            text_list.append(exp_part)
-            return text_list
-
-        def getAttrib(mm: MatcherRecord):
-            text_list = []
-            sub_list = mm.getSubEntriesAsList()
-            interested_part = sub_list[1:]
-            for loc, sl_txt in interested_part:
-                text_list.append(sl_txt)
-            return text_list
-
-        def getBracket(mm: MatcherRecord):
-            return [mm.txt]
-
-        try:
-            result_list = []
-            for loc, mm in self.items():
-                ref_txt = mm.txt
-                ref_type = mm.type
-
-                is_guilabel = (ref_type == RefType.GUILABEL)
-                is_arch_bracket = (ref_type == RefType.ARCH_BRACKET)
-                is_blank_quote = (ref_type == RefType.BLANK_QUOTE)
-                is_kbd = (ref_type == RefType.KBD)
-                is_abbr = (ref_type == RefType.ABBR)
-                is_menu = (ref_type == RefType.MENUSELECTION)
-                is_ga = (ref_type == RefType.GA)
-                is_ref = (ref_type == RefType.REF)
-                is_doc = (ref_type == RefType.DOC)
-                is_osl_attrib = (ref_type == RefType.OSL_ATTRIB)
-                is_term = (ref_type == RefType.TERM)
-                is_math = (ref_type == RefType.MATH)
-
-                # ----------
-                is_ast = (ref_type == RefType.AST_QUOTE)
-                is_dbl_ast_quote = (ref_type == RefType.DBL_AST_QUOTE)
-                is_dbl_quote = (ref_type == RefType.DBL_QUOTE)
-                is_sng_quote = (ref_type == RefType.SNG_QUOTE)
-                is_python_format = (ref_type == RefType.PYTHON_FORMAT)
-                is_function = (ref_type == RefType.FUNCTION)
-                is_attrib = (ref_type == RefType.ATTRIB)
-
-                is_quoted = (is_ast or is_dbl_quote or is_sng_quote or is_dbl_ast_quote or is_blank_quote)
-                is_ignore = (is_osl_attrib or is_python_format or is_function or is_math)
-                if is_ignore:
-                    continue
-
-                if is_kbd:
-                    txt_list = getKeyBoard(mm)
-                elif is_abbr:
-                    txt_list = getAbbrev(mm)
-                elif is_menu:
-                    txt_list = getMenu(mm)
-                elif is_quoted:
-                    txt_list = getQuoted(mm)
-                elif is_attrib:
-                    txt_list = getAttrib(mm)
-                elif is_arch_bracket:
-                    txt_list = getBracket(mm)
-                else:
-                    txt_list = getRefWithLink(mm)
-
-                if txt_list:
-                    result_list.extend(txt_list)
-
-        except Exception as e:
-            df.LOG(f'{e} ref_item:{mm}, ref_type:{ref_type}', error=True)
-        return result_list
+            df.LOG(f'{e} ref_item:{mm}', error=True)
 
     def translateArchBracket(self, mm: MatcherRecord):
         input_txt = mm.txt
@@ -717,11 +393,6 @@ class RefList(defaultdict):
 
         msg = mm.getSubText()
         is_blank_quote = (mm.type == RefType.BLANK_QUOTE)
-        # is_fuzzy = False
-        # is_ignore = self.checkIgnore(msg)
-        # if is_ignore:
-        #     return False
-
         tran, is_fuzzy, is_ignore = self.translateOneLineOfText(msg)
         if is_ignore:
             return False
@@ -735,6 +406,10 @@ class RefList(defaultdict):
         return True
 
     def translateRefWithLink(self, mm: MatcherRecord, is_include_original_txt=True):
+        # ref with link :ref:`contact <contribute-contact>` => :ref:`Liên Lạc (Contact) <contribute-contact>`
+        # ref is link :ref:`ui-data-block`, :ref:`basic.raw_copy <rigify.rigs.basic.raw_copy>`, :ref:`bpy.ops.screen.redo_last`
+        # :ref:`\"auto\" <curve-handle-type-auto>`
+        #
         def formatTran(current_untran, current_tran):
             ref_type: RefType = mm.type
             has_ref = bool(ref_type)
@@ -771,7 +446,7 @@ class RefList(defaultdict):
             if valid:
                 tran = formatTran(msg, tran)
         else:
-            found_dict = pu.findInvert(df.REF_LINK, msg, is_reversed=True)
+            found_dict = pu.findInvert(df.REF_LINK, msg)
             found_dict_list = list(found_dict.items())
             found_entry = found_dict_list[0]
             (sub_loc, sub_mm) = found_entry
@@ -780,7 +455,7 @@ class RefList(defaultdict):
             tran, is_fuzzy, is_ignore = self.translateOneLineOfText(sub_txt)
             valid = (bool(tran) and not is_ignore)
             if valid:
-                tran = formatTran(sub_txt, tran)
+                tran = formatTran(sub_txt, tran, has_ref_link=True)
                 tran = cm.jointText(msg, tran, sub_loc)
 
         has_tran = bool(tran)
@@ -884,6 +559,10 @@ class RefList(defaultdict):
             'JONSWAP (JOint North Sea WAve Project -- <translation part>)'
         '''
 
+        sub_list = mm.getSubEntriesAsList()
+        print(sub_list)
+        return False
+
         msg = mm.getSubText()
         tran_txt = str(msg)
         first_match_mm: MatcherRecord = None
@@ -911,36 +590,6 @@ class RefList(defaultdict):
         final_tran = cm.jointText(main_txt, tran_txt, sub_loc)
         mm.setTranlation(final_tran, is_fuzzy, is_ignore)
         return True
-
-    # def translateOSLAttrrib(self, msg: str):
-    #     if not msg:
-    #         return None, False, False
-    #
-    #     tran_txt = str(msg)
-    #     is_fuzzy_list=[]
-    #     is_ignore_list=[]
-    #     word_list_dict = pu.findInvert(df.COLON_CHAR, tran_txt, is_reversed=True)
-    #     word_list_count = len(word_list_dict)
-    #     for loc, orig_txt in word_list_dict.items():
-    #         s, e = loc
-    #         tran, is_fuzzy, is_ignore = self.translateOneText(orig_txt)
-    #         is_fuzzy_list.append(is_fuzzy)
-    #         is_ignore_list.append(is_ignore)
-    #         has_tran = (tran and tran != orig_txt)
-    #         if has_tran:
-    #             left = tran_txt[:s]
-    #             right = tran_txt[e:]
-    #             tran_txt = left + tran + right
-    #
-    #     has_tran = (tran_txt != msg)
-    #     if not has_tran:
-    #         tran_txt = f'{msg} -- '
-    #         return None, False, False
-    #     else:
-    #         is_fuzzy = (True in is_fuzzy_list)
-    #         is_ignore = (not is_fuzzy) and (True in is_ignore_list) and (False not in is_ignore_list)
-    #         tran_txt = f'{msg} ({tran_txt})'
-    #         return tran_txt, is_fuzzy, is_ignore
 
     def translateAttrib(self, mm: MatcherRecord):
         def formatResult(orig_txt, tran_list):

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lấy Mẫu Vật -- Sampling &mdash; Blender Manual</title>
+  <title>Lấy Mẫu Vật &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Light Paths" href="light_paths.html" />
-    <link rel="prev" title="Grease Pencil" href="grease_pencil.html" /> 
+    <link rel="next" title="Đường Đi của Ánh Sáng" href="light_paths.html" />
+    <link rel="prev" title="Bút Chì Dầu" href="grease_pencil.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,71 +71,71 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tuần Hoàn -- Cycles</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Render Settings</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="grease_pencil.html">Grease Pencil</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Lấy Mẫu Vật -- Sampling</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#adaptive-sampling">Adaptive Sampling</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#denoising">Denoising</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#advanced">Cao Cấp -- Advanced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sắp Đặt về Kết Xuất</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="grease_pencil.html">Bút Chì Dầu</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Lấy Mẫu Vật</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#adaptive-sampling">Lấy Mẫu Vật Tùy Ứng</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#denoising">Lọc Nhiễu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#advanced">Cao Cấp</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="light_paths.html">Light Paths</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volumes.html">Volumes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="subdivision.html">Subdivision</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hair.html">Tóc -- Hair</a></li>
-<li class="toctree-l4"><a class="reference internal" href="simplify.html">Đơn Giản Hóa -- Simplify</a></li>
-<li class="toctree-l4"><a class="reference internal" href="motion_blur.html">Motion Blur -- Làm Nhòe Chuyển Động</a></li>
-<li class="toctree-l4"><a class="reference internal" href="film.html">Film</a></li>
-<li class="toctree-l4"><a class="reference internal" href="performance.html">Performance</a></li>
-<li class="toctree-l4"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light_paths.html">Đường Đi của Ánh Sáng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volumes.html">Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision.html">Phân Hóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair.html">Tóc/Lông</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simplify.html">Đơn Giản Hóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_blur.html">Làm Nhòe chuyển động</a></li>
+<li class="toctree-l4"><a class="reference internal" href="film.html">Phim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="performance.html">Hiệu Suất Thi Hành</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debug.html">Hiệu Chỉnh Lỗi</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../world_settings.html">World Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../object_settings/index.html">Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../world_settings.html">Sắp đặt Thế Giới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object_settings/index.html">Sắp đặt về vật thể</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../material_settings.html">Sắp Đặt về Nguyên Vật Liệu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../light_settings.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../gpu_rendering.html">GPU Rendering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../features.html">Experimental Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../baking.html">Render Baking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../optimizations/index.html">Optimizing Renders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_settings.html">Sắp đặt về Nguồn Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpu_rendering.html">Kết xuất bằng Bộ Xử Lý Đồ Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features.html">Chức năng thử nghiệm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baking.html">Nướng kết xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../optimizations/index.html">Tối Ưu Hóa các Bản Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Nút tô bóng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -152,10 +152,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../../index.html">Kết xuất</a> &raquo;</li>
           <li><a href="../index.html">Tuần Hoàn -- Cycles</a> &raquo;</li>
-          <li><a href="index.html">Render Settings</a> &raquo;</li>
-      <li>Lấy Mẫu Vật -- Sampling</li>
+          <li><a href="index.html">Sắp Đặt về Kết Xuất</a> &raquo;</li>
+      <li>Lấy Mẫu Vật</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -165,12 +165,12 @@
            <div itemprop="articleBody">
              
   <section id="sampling">
-<h1>Lấy Mẫu Vật -- Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline"></a></h1>
+<h1>Lấy Mẫu Vật<a class="headerlink" href="#sampling" title="Permalink to this headline"></a></h1>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Render ‣ Sampling</span></p>
+<dt class="field-odd">Bảng</dt>
+<dd class="field-odd"><p><span class="menuselection">Cảnh (Scene) ‣ Bộ Khóa (Keying Set)</span></p>
 </dd>
 </dl>
 </div>
@@ -184,17 +184,17 @@ or the world background. To find lights and surfaces emitting light,
 both indirect light sampling (letting the ray follow the surface BSDF)
 and direct light sampling (picking a light source and tracing a ray towards it) are used.</p>
 <dl class="simple" id="bpy-types-cyclesrendersettings-preview-samples">
-<dt>Viewport Samples</dt><dd><p>Number of samples for viewport rendering. Setting this value to zero
+<dt>Lượng Mẫu Vật trong Cổng Nhìn</dt><dd><p>Number of samples for viewport rendering. Setting this value to zero
 enables indefinite sampling of the viewport.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-samples">
-<dt>Render Samples</dt><dd><p>Number of paths to trace for each pixel in the final render. As more samples are taken,
+<dt>Lượng Mẫu Vật Kết Xuất</dt><dd><p>Number of paths to trace for each pixel in the final render. As more samples are taken,
 the solution becomes less noisy and more accurate.</p>
 </dd>
 </dl>
 <dl id="bpy-types-cyclesrendersettings-time-limit">
-<dt>Time Limit</dt><dd><p>Renders scene until time limit or sample count is reached. When the time is set to 0,
+<dt>Thời Hạn</dt><dd><p>Renders scene until time limit or sample count is reached. When the time is set to 0,
 the sample count is used to determine when the render stops.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
@@ -203,7 +203,7 @@ the sample count is used to determine when the render stops.</p>
 </dd>
 </dl>
 <section id="adaptive-sampling">
-<span id="bpy-types-cyclesrendersettings-use-adaptive-sampling"></span><h2>Adaptive Sampling<a class="headerlink" href="#adaptive-sampling" title="Permalink to this headline"></a></h2>
+<span id="bpy-types-cyclesrendersettings-use-adaptive-sampling"></span><h2>Lấy Mẫu Vật Tùy Ứng<a class="headerlink" href="#adaptive-sampling" title="Permalink to this headline"></a></h2>
 <p>With adaptive sampling Cycles automatically reduces the number of samples in areas that have little noise,
 for faster rendering and more even noise distribution.
 For example hair on a character may need many samples, but the background may need very few.</p>
@@ -212,62 +212,62 @@ This is done by settings the <em>Noise Threshold</em>, typical values are in the
 Then render samples can then be set to a high value,
 and the renderer will automatically choose the appropriate amount of samples.</p>
 <span id="bpy-types-cyclesrendersettings-adaptive-threshold"></span><dl class="simple" id="bpy-types-cyclesrendersettings-preview-adaptive-threshold">
-<dt>Noise Threshold</dt><dd><p>The error threshold to decide whether to continue sampling a pixel or not.
+<dt>Ngưỡng của Nhiễu</dt><dd><p>The error threshold to decide whether to continue sampling a pixel or not.
 Typical values are in the range from 0.1 to 0.001, with lower values meaning less noise.
 Setting it to exactly 0 lets Cycles guess an automatic value for it based on the total sample count.</p>
 </dd>
 </dl>
 <span id="bpy-types-cyclesrendersettings-adaptive-min-samples"></span><dl class="simple" id="bpy-types-cyclesrendersettings-preview-adaptive-min-samples">
-<dt>Min Samples</dt><dd><p>The minimum number of samples a pixel receives before adaptive sampling is applied.
+<dt>Lượng Mẫu Vật Tối Thiểu</dt><dd><p>The minimum number of samples a pixel receives before adaptive sampling is applied.
 When set to 0 (default), it is automatically set to a value determined by the <em>Noise Threshold</em>.</p>
 </dd>
 </dl>
 </section>
 <section id="denoising">
-<span id="render-cycles-settings-viewport-denoising"></span><h2>Denoising<a class="headerlink" href="#denoising" title="Permalink to this headline"></a></h2>
+<span id="render-cycles-settings-viewport-denoising"></span><h2>Lọc Nhiễu<a class="headerlink" href="#denoising" title="Permalink to this headline"></a></h2>
 <p>Denoising removes noise while previewing scenes in <em>Rendered</em> mode in the 3D Viewport or for final renders.</p>
 <span id="bpy-types-cyclesrendersettings-use-denoising"></span><dl class="simple" id="bpy-types-cyclesrendersettings-denoiser">
-<dt>Render -- Kết Xuất</dt><dd><p>Denoising for the final render can be enabled or disabled with the checkbox.
+<dt>Kết Xuất</dt><dd><p>Denoising for the final render can be enabled or disabled with the checkbox.
 For denoising the image after rendering with the <a class="reference internal" href="../../../compositing/types/filter/denoise.html"><span class="doc">Denoising node</span></a>,
 the <a class="reference internal" href="../../layers/passes.html#render-layers-passes-data"><span class="std std-ref">Data Render Passes</span></a> also adapt to the selected denoiser.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Open Image Denoise</dt>
+<dt class="field-odd">Khử Nhiễu hình ảnh Nguồn Mở</dt>
 <dd class="field-odd"><p>Uses Intel's <a class="reference external" href="https://www.openimagedenoise.org/">Open Image Denoise</a>,
 an AI denoiser which runs on the CPU.</p>
 </dd>
-<dt class="field-even">OptiX</dt>
+<dt class="field-even">Tùy Chọn -- Options</dt>
 <dd class="field-even"><p>Uses an artificial intelligence algorithm to remove noise from renders.
-It is based on the <a class="reference internal" href="../gpu_rendering.html#render-cycles-gpu-optix"><span class="std std-ref">OptiX</span></a> acceleration engine
+It is based on the <a class="reference internal" href="../gpu_rendering.html#render-cycles-gpu-optix"><span class="std std-ref">Tùy Chọn -- Options</span></a> acceleration engine
 and therefore has the same GPU requirements as rendering with Optix.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <span id="bpy-types-cyclesrendersettings-use-preview-denoising"></span><dl class="simple" id="bpy-types-cyclesrendersettings-preview-denoiser">
-<dt>Viewport</dt><dd><p>Denoising for the <em>Rendered</em> mode in the 3D Viewport can be enabled or disabled for with the checkbox.</p>
+<dt>Cổng Nhìn</dt><dd><p>Denoising for the <em>Rendered</em> mode in the 3D Viewport can be enabled or disabled for with the checkbox.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Tự Động -- Automatic</dt>
+<dt class="field-odd">Tự Động</dt>
 <dd class="field-odd"><p>Uses the faster available denoiser for 3D Viewport rendering
 (<em>OptiX</em> if available, otherwise <em>OpenImageDenoise</em>).</p>
 </dd>
-<dt class="field-even">OpenImageDenoise</dt>
+<dt class="field-even">Khử Nhiễu hình ảnh Mở</dt>
 <dd class="field-even"><p>Uses Intel's <a class="reference external" href="https://www.openimagedenoise.org/">Open Image Denoise</a>,
 an AI denoiser which runs on the CPU.</p>
 </dd>
-<dt class="field-odd">OptiX</dt>
+<dt class="field-odd">Tùy Chọn -- Options</dt>
 <dd class="field-odd"><p>Uses an artificial intelligence algorithm to remove noise from renders.
-It is based on the <a class="reference internal" href="../gpu_rendering.html#render-cycles-gpu-optix"><span class="std std-ref">OptiX</span></a> acceleration engine
+It is based on the <a class="reference internal" href="../gpu_rendering.html#render-cycles-gpu-optix"><span class="std std-ref">Tùy Chọn -- Options</span></a> acceleration engine
 and therefore has the same GPU requirements as rendering with Optix.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-preview-denoising-start-sample">
-<dt>Start Sample</dt><dd><p>Sample to start <a class="reference internal" href="#render-cycles-settings-viewport-denoising"><span class="std std-ref">denoising</span></a> in the 3D Viewport.</p>
+<dt>Lượng Mẫu Vật khởi công/động/bắt đầu tiên</dt><dd><p>Sample to start <a class="reference internal" href="#render-cycles-settings-viewport-denoising"><span class="std std-ref">denoising</span></a> in the 3D Viewport.</p>
 </dd>
 </dl>
 <span id="bpy-types-cyclesrendersettings-preview-denoising-input-passes"></span><dl class="simple" id="bpy-types-cyclesrendersettings-denoising-input-passes">
-<dt>Input Passes</dt><dd><p>Controls which <a class="reference internal" href="../../layers/passes.html"><span class="doc">Render Pass</span></a> the denoiser should use as input,
+<dt>Các Lượt Đầu Vào</dt><dd><p>Controls which <a class="reference internal" href="../../layers/passes.html"><span class="doc">Render Pass</span></a> the denoiser should use as input,
 which can have different effects on the denoised image.
 Generally, the more passes the denoiser has to denoise the better the result.
 It is recommended to at least use <em>Albedo</em> as <em>None</em> can blur out details,
@@ -279,14 +279,14 @@ especially at lower sample counts.</p>
 <dt class="field-even">Albedo</dt>
 <dd class="field-even"><p>Denoises the image using color and albedo data.</p>
 </dd>
-<dt class="field-odd">Albedo + Normal</dt>
+<dt class="field-odd">Canh Hàng theo Pháp Tuyến</dt>
 <dd class="field-odd"><p>Denoises the image using color, albedo, and normal pass data.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <span id="bpy-types-cyclesrendersettings-preview-denoising-prefilter"></span><dl class="simple" id="bpy-types-cyclesrendersettings-denoising-prefilter">
-<dt>Prefilter</dt><dd><p>Controls whether or not prefiltering is applied to <em>Input Passes</em> for use when denoising.
+<dt>Bộ Lọc Trước</dt><dd><p>Controls whether or not prefiltering is applied to <em>Input Passes</em> for use when denoising.
 Visible only when using <em>OpenImageDenoise</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Không</dt>
@@ -294,11 +294,11 @@ Visible only when using <em>OpenImageDenoise</em>.</p>
 is the fastest, but assumes the input passes are noise free which may require a high sample count.
 If the input passes aren't noise free, then noise will remain in the image after denoising.</p>
 </dd>
-<dt class="field-even">Fast</dt>
+<dt class="field-even">Nhanh</dt>
 <dd class="field-even"><p>Assumes the input passes are not noise free, yet does not apply prefiltering to the input passes.
 This option is faster than <em>Accurate</em> but produces a blurrier result.</p>
 </dd>
-<dt class="field-odd">Accurate</dt>
+<dt class="field-odd">Chính Xác</dt>
 <dd class="field-odd"><p>Prefilters the input passes before denoising to reduce noise. This option usually produces
 more detailed results than <em>Fast</em> with increased processing time.</p>
 </dd>
@@ -307,26 +307,26 @@ more detailed results than <em>Fast</em> with increased processing time.</p>
 </dl>
 </section>
 <section id="advanced">
-<h2>Cao Cấp -- Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline"></a></h2>
+<h2>Cao Cấp<a class="headerlink" href="#advanced" title="Permalink to this headline"></a></h2>
 <dl id="bpy-types-cyclesrendersettings-seed">
-<dt>Seed</dt><dd><p>Seed value for integrator to get different noise patterns.</p>
+<dt>Mầm</dt><dd><p>Giá trị hạt cho bộ tích phân kiết tạo các mẫu hình nhiễu khác nhau.</p>
 <dl class="simple" id="bpy-types-cyclesrendersettings-use-animated-seed">
-<dt>Use Animated Seed (clock icon)</dt><dd><p>Changes the seed for each frame. It is a good idea to enable this
+<dt>Hoàn Lại Thời Định (biểu tượng đồng hồ) -- Reset Timing (clock icon)</dt><dd><p>Changes the seed for each frame. It is a good idea to enable this
 when rendering animations because a varying noise pattern is less noticeable.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-sampling-pattern">
-<dt>Pattern</dt><dd><p>Random sampling pattern used by the integrator.
-When <a class="reference internal" href="#bpy-types-cyclesrendersettings-use-adaptive-sampling"><span class="std std-ref">Adaptive Sampling</span></a> is enabled,
+<dt>Hoa Văn/Mẫu</dt><dd><p>Random sampling pattern used by the integrator.
+When <a class="reference internal" href="#bpy-types-cyclesrendersettings-use-adaptive-sampling"><span class="std std-ref">Lấy Mẫu Vật Tùy Ứng</span></a> is enabled,
 <em>Progressive Multi-Jitter</em> is always used instead of <em>Sobol</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Sobol</dt>
 <dd class="field-odd"><p>Uses a Sobol pattern to decide the random sampling pattern used by the integrator.
 See <a class="reference external" href="https://en.wikipedia.org/wiki/Sobol_sequence">Sobol sequence</a> on Wikipedia for more information.</p>
 </dd>
-<dt class="field-even">Progressive Multi-Jitter</dt>
+<dt class="field-even">Đa Biến Động Lũy Tiến</dt>
 <dd class="field-even"><p>Uses a progressive multi-jitter pattern to decide the random sampling pattern used by the integrator.
 Its advantage is to provide a well distribution of samples over iterating sample counts.
 Because of its good distribution over a range of different sample counts,
@@ -342,30 +342,29 @@ for more information.</p>
 at the cost of possible rendering artifacts if set too low.
 Only works when not using adaptive sampling.</p>
 <dl class="simple" id="bpy-types-cyclesrendersettings-adaptive-scrambling-distance">
-<dt>Tự Động -- Automatic</dt><dd><p>Uses a formula to adapt the scrambling distance strength based on the sample count.</p>
+<dt>Tự Động</dt><dd><p>Sử dụng một công thức để tùy ứng cường độ khoảng cách xáo trộn dựa trên số lượng mẫu lấy.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-preview-scrambling-distance">
-<dt>Viewport</dt><dd><p>Uses the <em>Scrambling Distance</em> value for the viewport rendering.
+<dt>Cổng Nhìn</dt><dd><p>Uses the <em>Scrambling Distance</em> value for the viewport rendering.
 This will make the rendering faster but may cause flickering.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-min-light-bounces">
-<dt>Min Light Bounces</dt><dd><p>Minimum number of light bounces for each path,
+<dt>Lượng Bật Nẩy Tối Thiểu của Ánh Sáng</dt><dd><p>Minimum number of light bounces for each path,
 after which the integrator uses Russian Roulette to terminate paths that contribute less to the image.
 Setting this higher gives less noise, but may also increase render time considerably. For a low number of bounces,
 it is strongly recommended to set this equal to the maximum number of bounces.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-min-transparent-bounces">
-<dt>Min Transparent Bounces</dt><dd><p>Minimum number of transparent bounces. Setting this higher reduces noise in the first bounces,
-but can also be less efficient for more complex geometry like hair and volumes.</p>
+<dt>Số Lần Bật Nẩy Tối Thiểu của Tia độ trong suốt</dt><dd><p>Số lần bật nẩy tối thiểu của tia về tính trong suốt. Đặt giá trị này cao sẽ giúp thuyên giảm lượng nhiễu trong những lần bật nẩy đầu tiên, song đối với những hình học phức tạp, như tóc và thể tích, nó có thể không hiệu suất lắm.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-light-sampling-threshold">
-<dt>Light Threshold</dt><dd><p>Probabilistically terminates light samples when the light contribution
+<dt>Ngưỡng Ánh Sáng</dt><dd><p>Probabilistically terminates light samples when the light contribution
 is below this threshold (more noise but faster rendering).
 Zero disables the test and never ignores lights.
 This is useful because in large scenes with many light sources,
@@ -375,15 +374,15 @@ the rays which in the end have very little affect on the image.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-use-layer-samples">
-<dt>Layer Samples</dt><dd><p>When render layers have per layer number of samples set, this option specifies how to use them.</p>
+<dt>Mẫu Vật của Tầng</dt><dd><p>When render layers have per layer number of samples set, this option specifies how to use them.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Use</dt>
+<dt class="field-odd">Sử dụng</dt>
 <dd class="field-odd"><p>The render layer samples will override the set scene samples.</p>
 </dd>
-<dt class="field-even">Bounded</dt>
+<dt class="field-even">Giới Hạn</dt>
 <dd class="field-even"><p>Bound render layer samples by scene samples.</p>
 </dd>
-<dt class="field-odd">Ignore</dt>
+<dt class="field-odd">Bỏ Qua</dt>
 <dd class="field-odd"><p>Ignore render layer sample settings.</p>
 </dd>
 </dl>
@@ -396,15 +395,15 @@ the rays which in the end have very little affect on the image.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="grease_pencil.html" class="btn btn-neutral float-left" title="Grease Pencil" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="light_paths.html" class="btn btn-neutral float-right" title="Light Paths" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="grease_pencil.html" class="btn btn-neutral float-left" title="Bút Chì Dầu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="light_paths.html" class="btn btn-neutral float-right" title="Đường Đi của Ánh Sáng" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

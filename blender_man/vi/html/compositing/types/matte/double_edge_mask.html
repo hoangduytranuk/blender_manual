@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Double Edge Mask Node &mdash; Blender Manual</title>
+  <title>Nút Màn Chắn Đôi Cạnh &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Ellipse Mask Node" href="ellipse_mask.html" />
-    <link rel="prev" title="Distance Key Node" href="distance_key.html" /> 
+    <link rel="next" title="Nút Màn Chắn hình Elip" href="ellipse_mask.html" />
+    <link rel="prev" title="Nút khoảng cách Khóa" href="distance_key.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,66 +71,66 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Compositing</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../sidebar.html">Sidebar</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Node Types</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../filter/index.html">Filter Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vector Nodes</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Matte Nodes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="box_mask.html">Box Mask Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="channel_key.html">Channel Key Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="chroma_key.html">Chroma Key Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="color_key.html">Color Key Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="color_spill.html">Color Spill Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cryptomatte.html">Cryptomatte Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cryptomatte_legacy.html">Cryptomatte Node (Legacy)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="difference_key.html">Difference Key Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="distance_key.html">Distance Key Node</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Double Edge Mask Node</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tổng hợp</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sidebar.html">Thanh Bên</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Thể Loại Nút</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Nút Đầu Vào</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Nút Đầu Ra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Nút màu sắc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Nút chuyển đổi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filter/index.html">Nút Thanh Lọc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Nút Véctơ</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Lớp Lồng</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="box_mask.html">Nút Màn Chắn Hình Hộp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="channel_key.html">Nút Kênh làm Màu Khóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chroma_key.html">Nút Khóa Lọc Màu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_key.html">Nút Màu Khóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="color_spill.html">Nút Màu Tràn/Vãi</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cryptomatte.html">Nút Lớp Lồng Bí Mật</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cryptomatte_legacy.html">Nút Lớp Lồng Bí Mật (Lỗi Thời)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="difference_key.html">Nút Khóa khác biệt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="distance_key.html">Nút khoảng cách Khóa</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Nút Màn Chắn Đôi Cạnh</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Đầu Vào</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Đầu Ra</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="ellipse_mask.html">Ellipse Mask Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="keying.html">Keying Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="keying_screen.html">Keying Screen Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="luminance_key.html">Luminance Key Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ellipse_mask.html">Nút Màn Chắn hình Elip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="keying.html">Nút Khóa Hóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="keying_screen.html">Nút Khóa Hóa màn hình</a></li>
+<li class="toctree-l4"><a class="reference internal" href="luminance_key.html">Nút Khóa Hóa Độ Sáng</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Distort Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm -- Group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Layout Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Các Nút Bóp Méo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Nút Bố Trí</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -147,9 +147,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Compositing</a> &raquo;</li>
-          <li><a href="index.html">Matte Nodes</a> &raquo;</li>
-      <li>Double Edge Mask Node</li>
+          <li><a href="../../index.html">Tổng hợp</a> &raquo;</li>
+          <li><a href="index.html">Nút Lớp Lồng</a> &raquo;</li>
+      <li>Nút Màn Chắn Đôi Cạnh</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -159,33 +159,33 @@
            <div itemprop="articleBody">
              
   <section id="double-edge-mask-node">
-<span id="bpy-types-compositornodedoubleedgemask"></span><h1>Double Edge Mask Node<a class="headerlink" href="#double-edge-mask-node" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-compositornodedoubleedgemask"></span><h1>Nút Màn Chắn Đôi Cạnh<a class="headerlink" href="#double-edge-mask-node" title="Permalink to this headline"></a></h1>
 <figure class="align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeDoubleEdgeMask.png" src="../../../_images/compositing_node-types_CompositorNodeDoubleEdgeMask.png" />
 <figcaption>
-<p><span class="caption-text">Double Edge Mask Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Nút Màn Chắn Đôi Cạnh.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>The <em>Double Edge Mask</em> node creates a gradient between two masks.</p>
 <section id="inputs">
-<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Vào<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Inner Mask</dt><dd><p>A mask representing the inside shape, which will be fully white.</p>
+<dt>Màn Chắn Nội</dt><dd><p>A mask representing the inside shape, which will be fully white.</p>
 </dd>
-<dt>Outer Mask</dt><dd><p>A mask representing the outside shape, which will fade from black at its edges
+<dt>Màn Chắn Ngoại</dt><dd><p>A mask representing the outside shape, which will fade from black at its edges
 to white at the <em>Inner Mask</em>.</p>
 </dd>
 </dl>
 </section>
 <section id="properties">
-<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<h2>Tính Chất<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
 <dl>
-<dt>Inner Edge</dt><dd><dl class="field-list simple">
-<dt class="field-odd">Toàn Bộ -- All</dt>
+<dt>Cạnh Trong</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Toàn Bộ</dt>
 <dd class="field-odd"><p>All shapes in the <em>Inner Mask</em> contribute to the gradient, even ones that do
 not touch the <em>Outer Mask</em> shape.</p>
 </dd>
-<dt class="field-even">Adjacent Only</dt>
+<dt class="field-even">Duy Kề Cạnh</dt>
 <dd class="field-even"><p>Only shapes in the <em>Inner Mask</em> that overlap with the <em>Outer Mask</em> contribute
 to the gradient.</p>
 </dd>
@@ -199,14 +199,14 @@ to the gradient.</p>
 <tr class="row-odd"><td><figure class="align-default" id="id2">
 <img alt="../../../_images/compositing_types_matte_double-edge-mask_all.png" src="../../../_images/compositing_types_matte_double-edge-mask_all.png" />
 <figcaption>
-<p><span class="caption-text">All.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Toàn Bộ.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id3">
 <img alt="../../../_images/compositing_types_matte_double-edge-mask_adjacent.png" src="../../../_images/compositing_types_matte_double-edge-mask_adjacent.png" />
 <figcaption>
-<p><span class="caption-text">Adjacent Only.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Duy Kề Cạnh.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -214,12 +214,12 @@ to the gradient.</p>
 </tbody>
 </table>
 </dd>
-<dt>Buffer Edge</dt><dd><dl class="field-list simple">
-<dt class="field-odd">Keep In</dt>
+<dt>Cạnh của Vùng Đệm</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Giữ Nằm Trong</dt>
 <dd class="field-odd"><p>Parts of the <em>Outer Mask</em> that touch the edge of the image are treated as if
 they stop at the edge.</p>
 </dd>
-<dt class="field-even">Bleed Out</dt>
+<dt class="field-even">Tràn Ra</dt>
 <dd class="field-even"><p>Parts of the <em>Outer Mask</em> that touch the edge of the image are extended
 beyond the boundary of the image.</p>
 </dd>
@@ -233,14 +233,14 @@ beyond the boundary of the image.</p>
 <tr class="row-odd"><td><figure class="align-default" id="id4">
 <img alt="../../../_images/compositing_types_matte_double-edge-mask_in.png" src="../../../_images/compositing_types_matte_double-edge-mask_in.png" />
 <figcaption>
-<p><span class="caption-text">Keep In.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Giữ Nằm Trong.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id5">
 <img alt="../../../_images/compositing_types_matte_double-edge-mask_bleed.png" src="../../../_images/compositing_types_matte_double-edge-mask_bleed.png" />
 <figcaption>
-<p><span class="caption-text">Bleed Out.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Tràn Ra.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -251,14 +251,14 @@ beyond the boundary of the image.</p>
 </dl>
 </section>
 <section id="outputs">
-<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Ra<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Mask</dt><dd><p>Standard mask output.</p>
+<dt>Màn Chắn</dt><dd><p>Standard mask output.</p>
 </dd>
 </dl>
 </section>
 <section id="example">
-<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Ví Dụ<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
 <div class="youtube_wrapper" style="">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/VcjEfoNIHZs" style="border: 0; height: 345px; width: 560px">
 </iframe></div></section>
@@ -268,15 +268,15 @@ beyond the boundary of the image.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="distance_key.html" class="btn btn-neutral float-left" title="Distance Key Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ellipse_mask.html" class="btn btn-neutral float-right" title="Ellipse Mask Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="distance_key.html" class="btn btn-neutral float-left" title="Nút khoảng cách Khóa" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ellipse_mask.html" class="btn btn-neutral float-right" title="Nút Màn Chắn hình Elip" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

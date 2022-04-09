@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Subsurface Scattering &mdash; Blender Manual</title>
+  <title>Tán Xạ Dưới Bề Mặt &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Toon BSDF" href="toon.html" />
-    <link rel="prev" title="Specular BSDF" href="specular_bsdf.html" /> 
+    <link rel="next" title="BSDF Hoạt Họa" href="toon.html" />
+    <link rel="prev" title="Lóng Lánh BSDF" href="specular_bsdf.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,83 +71,83 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Shader Nodes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Đầu Vào -- Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Bộ Tô Bóng -- Shader</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="add.html">Add Shader</a></li>
-<li class="toctree-l4"><a class="reference internal" href="anisotropic.html">Anisotropic BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="background.html">Nền -- Background</a></li>
-<li class="toctree-l4"><a class="reference internal" href="diffuse.html">Diffuse BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="emission.html">Phát Xạ -- Emission</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glass.html">Glass BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glossy.html">Glossy BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hair.html">Hair BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="holdout.html">Holdout</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mix.html">Mix Shader</a></li>
-<li class="toctree-l4"><a class="reference internal" href="principled.html">BSDF Nguyên Tắc -- Principled BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hair_principled.html">Principled Hair BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_principled.html">Principled Volume</a></li>
-<li class="toctree-l4"><a class="reference internal" href="refraction.html">Refraction BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="specular_bsdf.html">Specular BSDF</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Subsurface Scattering</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#examples">Ví Dụ -- Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Nút tô bóng</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Đầu Vào</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Đầu Ra</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Bộ Tô Bóng</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="add.html">Cộng thêm Bộ Tô Bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anisotropic.html">BSDF Dị Hướng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background.html">Nền Đằng Sau</a></li>
+<li class="toctree-l4"><a class="reference internal" href="diffuse.html">BSDF Khuếch Tán</a></li>
+<li class="toctree-l4"><a class="reference internal" href="emission.html">Phát Xạ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glass.html">BSDF Thủy Tinh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glossy.html">BSDF Bóng Bẩy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair.html">BSDF Tóc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="holdout.html">Giữ Lại</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mix.html">Bộ Pha Trộn Tô Bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="principled.html">BSDF Nguyên Tắc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair_principled.html">BSDF Nguyên Tắc của Tóc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_principled.html">Thể Tích Nguyên Tắc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="refraction.html">BSDF Khúc Xạ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="specular_bsdf.html">Lóng Lánh BSDF</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Tán Xạ Dưới Bề Mặt</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Đầu Vào</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Đầu Ra</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Ví Dụ</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="toon.html">Toon BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="translucent.html">Translucent BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="transparent.html">Transparent BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="velvet.html">Velvet BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_absorption.html">Volume Absorption</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_scatter.html">Volume Scatter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toon.html">BSDF Hoạt Họa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="translucent.html">BSDF Trong Mờ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="transparent.html">BSDF Trong Suốt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="velvet.html">BSDF Vải Nhung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_absorption.html">Hấp Thụ Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_scatter.html">Tán Xạ Thể Tích</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../textures/index.html">Texture</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vectơ -- Vector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm -- Group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../osl.html">Open Shading Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../textures/index.html">Chất Liệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Màu Sắc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Véctơ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Bộ Biến Đổi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osl.html">Ngôn Ngữ Tô Bóng Mở</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -164,10 +164,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Rendering</a> &raquo;</li>
-          <li><a href="../index.html">Shader Nodes</a> &raquo;</li>
-          <li><a href="index.html">Bộ Tô Bóng -- Shader</a> &raquo;</li>
-      <li>Subsurface Scattering</li>
+          <li><a href="../../index.html">Kết xuất</a> &raquo;</li>
+          <li><a href="../index.html">Nút tô bóng</a> &raquo;</li>
+          <li><a href="index.html">Bộ Tô Bóng</a> &raquo;</li>
+      <li>Tán Xạ Dưới Bề Mặt</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -177,7 +177,7 @@
            <div itemprop="articleBody">
              
   <section id="subsurface-scattering">
-<span id="bpy-types-shadernodesubsurfacescattering"></span><h1>Subsurface Scattering<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-shadernodesubsurfacescattering"></span><h1>Tán Xạ Dưới Bề Mặt<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline"></a></h1>
 <figure class="align-right" id="id1">
 <img alt="../../../_images/render_shader-nodes_shader_sss_node.png" src="../../../_images/render_shader-nodes_shader_sss_node.png" />
 <figcaption>
@@ -192,30 +192,26 @@ bounce around internally before getting absorbed or leaving the surface at a nea
 for skin, red colors scatter further, which gives distinctive red-colored shadows,
 and a soft appearance.</p>
 <section id="inputs">
-<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Vào<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Color</dt><dd><p>Color of the surface, or physically speaking, the probability that light is reflected for each wavelength.</p>
+<dt>Màu Sắc</dt><dd><p>Màu sắc của bề mặt, hoặc về vật lý mà nói, ánh sáng được phản xạ trên mỗi bước sóng.</p>
 </dd>
-<dt>Tỷ Lệ -- Scale</dt><dd><p>Global scale factor for the scattering radius.</p>
+<dt>Tỷ Lệ</dt><dd><p>Global scale factor for the scattering radius.</p>
 </dd>
-<dt>Bán Kính -- Radius</dt><dd><p>Average distance that light scatters below the surface.
-Higher radius gives a softer appearance, as light bleeds into shadows and through the object.
-The scattering distance is specified separately for the RGB channels,
-to render materials such as skin where red light scatters deeper.
-The X, Y and Z values are mapped to the R, G and B values, respectively.</p>
+<dt>Bán Kính</dt><dd><p>Khoảng cách trung bình mà ánh sáng tán xạ ra dưới bề mặt. Bán kính lớn hơn sẽ cho hiện trạng mềm mại hơn vì ánh sáng xâm nhập vào các vùng tối và đi xuyên qua vật thể. khoảng cách tán xạ sẽ được xác định riêng biệt cho các kênh <abbr title="Đỏ, Lục, Lam">RGB</abbr>, để kết xuất nguyên vật liệu giống như da thịt, cái mà ánh sáng đỏ nguồn phân tán sâu hơn. Các giá trị X, Y và Z được là Ánh Xạ sang các giá trị <abbr title="Đỏ">R</abbr>, <abbr title="Lục">G</abbr> và <abbr title="Lam">B</abbr> trong <abbr title="X -&gt; R v.v..">cặp đôi tương ứng</abbr>.</p>
 </dd>
-<dt>IOR <span class="guilabel">Cycles Only</span></dt><dd><p>Index of refraction for <em>Subsurface Scattering</em>.</p>
+<dt>Không Gian Tư Thế <span class="guilabel">Duy các Xương</span></dt><dd><p>Index of refraction for <em>Subsurface Scattering</em>.</p>
 </dd>
-<dt>Anisotropy <span class="guilabel">Cycles Only</span></dt><dd><p>Controls the directionality of subsurface scattering.</p>
+<dt>Không Gian Tư Thế <span class="guilabel">Duy các Xương</span></dt><dd><p>Controls the directionality of subsurface scattering.</p>
 </dd>
-<dt>Normal -- Pháp Tuyến</dt><dd><p>Normal used for shading; if nothing is connected the default shading normal is used.</p>
+<dt>Pháp tuyến/B.Thg</dt><dd><p>Pháp tuyến sử dụng cho quá trình tô bóng; nếu không có gì kết nối thì pháp tuyến tô bóng mặc định sẽ đã được sử dụng.</p>
 </dd>
 </dl>
 </section>
 <section id="properties">
-<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<h2>Tính Chất<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
 <dl>
-<dt>Subsurface Method</dt><dd><p>Rendering method to simulate subsurface scattering.</p>
+<dt>Phương Pháp tính Tán Xạ Dưới Bề Mặt</dt><dd><p>Phương Pháp kết xuất để mô phỏng tán xạ dưới bề mặt.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
 <p>Eevee does use not support the <em>Random Walk</em> methods.</p>
@@ -226,13 +222,13 @@ The X, Y and Z values are mapped to the R, G and B values, respectively.</p>
 This method is less accurate than <em>Random Walk</em> however,
 in some situations this method will resolve noise faster.</p>
 </dd>
-<dt class="field-even">Random Walk (Fixed Radius)</dt>
+<dt class="field-even">Tiến Bước Ngẫu Nhiên (Bán kính cố định)</dt>
 <dd class="field-even"><p>Provides accurate results for thin and curved objects.
 Random Walk uses true volumetric scattering inside the mesh,
 which means that it works best for closed meshes.
 Overlapping faces and holes in the mesh can cause problems.</p>
 </dd>
-<dt class="field-odd">Random Walk</dt>
+<dt class="field-odd">Tiến Bước Ngẫu Nhiên</dt>
 <dd class="field-odd"><p>Behaves similarly to <em>Random Walk (Fixed Radius)</em> but modulates
 the <em>Radius</em> based on the <em>Color</em>, <em>Anisotropy</em>, and <em>IOR</em>.
 This method thereby attempts to retain greater surface detail and color
@@ -243,18 +239,18 @@ than <em>Random Walk (Fixed Radius)</em>.</p>
 </dl>
 </section>
 <section id="outputs">
-<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Ra<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
 <dt>BSSRDF</dt><dd><p><abbr title="Bidirectional Scattering Surface Reflectance Distribution Function">BSSRDF</abbr> shader output.</p>
 </dd>
 </dl>
 </section>
 <section id="examples">
-<h2>Ví Dụ -- Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<h2>Ví Dụ<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
 <figure class="align-default" id="id2">
 <img alt="../../../_images/render_shader-nodes_shader_sss_example.jpg" src="../../../_images/render_shader-nodes_shader_sss_example.jpg" />
 <figcaption>
-<p><span class="caption-text">Random walk subsurface scattering.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Tán Xạ Dưới Bề Mặt -- Subsurface Scattering.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -264,15 +260,15 @@ than <em>Random Walk (Fixed Radius)</em>.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="specular_bsdf.html" class="btn btn-neutral float-left" title="Specular BSDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="toon.html" class="btn btn-neutral float-right" title="Toon BSDF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="specular_bsdf.html" class="btn btn-neutral float-left" title="Lóng Lánh BSDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="toon.html" class="btn btn-neutral float-right" title="BSDF Hoạt Họa" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

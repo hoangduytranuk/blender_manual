@@ -30,9 +30,11 @@ class TranslationFinder:
         self.update_dic = 0
         self.update_po_file = None
         home_dir = os.environ['HOME']
+        tran_dir = os.path.join(home_dir, "Dev/tran")
         home_dir = os.path.join(home_dir, 'Dev/tran/blender_manual')
         # self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0009.json")
-        self.master_dic_file = os.path.join(home_dir, "ref_dict_0002.po")
+        # self.master_dic_file = os.path.join(home_dir, "ref_dict_0004.po")
+        self.master_dic_file = os.path.join(tran_dir, "cor_0014.po")
         self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0001.po")
         self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0001.po")
         self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.po")
@@ -97,7 +99,9 @@ class TranslationFinder:
     def loadDictionary(self):
         self.reloadChosenDict(is_master=True)
         self.reloadChosenDict(is_master=False)
-        self.kbd_dict = NoCaseDict(df.KEYBOARD_TRANS_DIC_PURE)
+        self.kbd_dict = NoCaseDict()
+        self.kbd_dict.update(df.KEYBOARD_TRANS_DIC_PURE)
+
         self.sent_struct_dict_list = NoCaseDict(
             apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
         )
@@ -856,13 +860,21 @@ class TranslationFinder:
         return tran, matched_text, search_dict, matching_ratio, untran_word_dic
 
 
+    def isRef(self, msg):
+        from bracket import RefAndBracketsParser
+        overall_list = RefAndBracketsParser.reproduce(msg)
+        overall_list.parseMessage(is_ref_only=True, pattern_list=df.no_bracket_pattern_list)
+        has_ref = bool(overall_list)
+        is_potential = (has_ref and len(overall_list) == 1)
+        if not is_potential:
+            return False
+
+        ref_list  = list(overall_list.items())
+        (loc, mm) = ref_list[0]
+        return (mm.txt == msg)
+
     def isInDict(self, msg, dic_to_use=None):
         tran = None
-
-        is_ref = cm.isRef(msg)
-        if is_ref:
-            return None
-
         search_dict = self.getDict(local_dict=dic_to_use)
         tran_sub_text = search_dict.findCache(msg)
 

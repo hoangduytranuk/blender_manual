@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shrinkwrap Modifier &mdash; Blender Manual</title>
+  <title>Bộ Điều Chỉnh Co Bọc &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Simple Deform Modifier" href="simple_deform.html" />
-    <link rel="prev" title="Mesh Deform Modifier" href="mesh_deform.html" /> 
+    <link rel="next" title="Bộ Điều Chỉnh Biến Dạng Đơn Giản" href="simple_deform.html" />
+    <link rel="prev" title="Bộ điều chỉnh biến dạng khung lưới" href="mesh_deform.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,76 +71,76 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="armature.html">Armature Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cast.html">Cast Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="curve.html">Curve Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="displace.html">Displace Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hooks.html">Hook Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Laplacian Deform Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="lattice.html">Lattice Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">Mesh Deform Modifier</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Shrinkwrap Modifier</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#wrap-methods">Wrap Methods</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#nearest-surface-point">Điểm Gần Nhất Trên Bề Mặt -- Nearest Surface Point</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#project">Project</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#nearest-vertex">Đỉnh Gần Nhất -- Nearest Vertex</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#target-normal-project">Target Normal Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Các Tùy Chọn Bộ Điều Chỉnh Thông Thường</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cast.html">Bộ Điều Chỉnh Đúc Khuôn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dịch Hình</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_deform.html">Bộ Điều Chỉnh Biến Dạng Laplace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">Bộ điều chỉnh biến dạng khung lưới</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Co Bọc</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#wrap-methods">Phương Pháp Bao Bọc</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#nearest-surface-point">Điểm Gần Nhất Trên Bề Mặt</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#project">Phóng Chiếu</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#nearest-vertex">Điểm đỉnh gần nhất</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#target-normal-project">Phóng Chiếu theo Pháp Tuyến của Mục Tiêu</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">Simple Deform Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="smooth.html">Smooth Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Smooth Corrective Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Smooth Laplacian Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">Surface Deform Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_displace.html">Volume Displace Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warp.html">Warp Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="wave.html">Wave Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">Bộ Điều Chỉnh Biến Dạng Đơn Giản</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Làm Mịn Để Sửa Sai</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplacian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">Bộ Điều Chỉnh Biến Dạng Bề Mặt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_displace.html">Bộ Điều Chỉnh Dịch Hình Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ điều chỉnh làm cong/uốn oằn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Vật Lý</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -157,9 +157,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Modeling</a> &raquo;</li>
-          <li><a href="../index.html">Modifiers</a> &raquo;</li>
-      <li>Shrinkwrap Modifier</li>
+          <li><a href="../../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="../index.html">Bộ Điều Chỉnh</a> &raquo;</li>
+      <li>Bộ Điều Chỉnh Co Bọc</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -169,17 +169,17 @@
            <div itemprop="articleBody">
              
   <section id="shrinkwrap-modifier">
-<span id="bpy-types-shrinkwrapmodifier"></span><span id="index-0"></span><h1>Shrinkwrap Modifier<a class="headerlink" href="#shrinkwrap-modifier" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-shrinkwrapmodifier"></span><span id="index-0"></span><h1>Bộ Điều Chỉnh Co Bọc<a class="headerlink" href="#shrinkwrap-modifier" title="Permalink to this headline"></a></h1>
 <p>The <em>Shrinkwrap</em> modifier allows an object to &quot;shrink&quot; to the surface of another object.
 It moves each vertex of the object being modified to the closest position on
 the surface of the given mesh (using one of the four methods available).</p>
 <p>It can be applied to meshes, lattices, curves, surfaces and texts.</p>
 <div class="admonition seealso">
 <p class="admonition-title">Xem thêm</p>
-<p><a class="reference internal" href="../../../animation/constraints/relationship/shrinkwrap.html"><span class="doc">Shrinkwrap Constraint</span></a>.</p>
+<p><span class="xref std std-doc">Ràng Buộc Co Bọc (Shrinkwrap Constraint)</span>.</p>
 </div>
 <section id="options">
-<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<h2>Tùy Chọn<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-surface-point.png"><img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-surface-point.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-surface-point.png" style="width: 300px;" /></a>
 <figcaption>
@@ -187,26 +187,26 @@ the surface of the given mesh (using one of the four methods available).</p>
 </figcaption>
 </figure>
 <dl>
-<dt>Wrap Method</dt><dd><p>This selector specifies the method to be used to determine the nearest
+<dt>Phương Pháp Bao Bọc</dt><dd><p>This selector specifies the method to be used to determine the nearest
 point on the target's surface for each vertex of the modified object.
 Some options will add some extra, specific controls to the panel.
-See <a class="reference internal" href="#modeling-modifiers-deform-shrinkwrap-methods"><span class="std std-ref">Wrap Methods</span></a> for an explanation of each method.</p>
+See <a class="reference internal" href="#modeling-modifiers-deform-shrinkwrap-methods"><span class="std std-ref">Phương Pháp Bao Bọc</span></a> for an explanation of each method.</p>
 </dd>
-<dt>Chế Độ Bám Dính -- Snap Mode</dt><dd><p>Most modes support an additional setting to control how the vertex
+<dt>Chế Độ Bám Dính</dt><dd><p>Most modes support an additional setting to control how the vertex
 is moved to the target point selected by the methods described above.
 Some of the choices only differ if <em>Offset</em> is not zero.</p>
 <dl class="simple">
-<dt>Trên Mặt -- On Surface</dt><dd><p>The vertex is always moved. The offset is applied along the projection line
+<dt>Trên Mặt</dt><dd><p>The vertex is always moved. The offset is applied along the projection line
 connecting the original vertex and selected target point towards the original position.</p>
 </dd>
-<dt>Bên Ngoài Bề Mặt -- Outside Surface</dt><dd><p>Giống như <abbr title="On Surface">Trên bề mặt</abbr>, song dịch chuyển được áp dụng ra phía ngoài của mục tiêu.</p>
+<dt>Bên Ngoài Bề Mặt</dt><dd><p>Giống như <abbr title="On Surface">Trên bề mặt</abbr>, song dịch chuyển luôn luôn được áp dụng về phía ngoài của mục tiêu.</p>
 </dd>
-<dt>Bên Trên Bề Mặt -- Above Surface</dt><dd><p>Giống như <abbr title="On Surface">Trên bề mặt</abbr>, song dịch chuyển được áp dụng dọc theo pháp tuyến làm mịn của mục tiêu.</p>
+<dt>Bên Trên Bề Mặt</dt><dd><p>Giống như <abbr title="On Surface">Trên bề mặt</abbr>, song dịch chuyển luôn luôn được áp dụng dọc theo pháp tuyến làm mịn của mục tiêu.</p>
 </dd>
-<dt>Bên Trong -- Inside</dt><dd><p>The vertex is not moved if it is already inside the target.
+<dt>Bên Trong</dt><dd><p>The vertex is not moved if it is already inside the target.
 Offset shrinks the allowed volume towards the inside along the projection line.</p>
 </dd>
-<dt>Bên Ngoài -- Outside</dt><dd><p>The vertex is not moved if it is already outside the target.
+<dt>Bên Ngoài</dt><dd><p>The vertex is not moved if it is already outside the target.
 Offset expands the exclusion volume towards the outside along the projection line.</p>
 </dd>
 </dl>
@@ -217,76 +217,76 @@ The inside vs outside determination is done based on the target normal and
 is not always stable near 90 degree and sharper angles in the target mesh.</p>
 </div>
 </dd>
-<dt>Mục Tiêu -- Target</dt><dd><p>Shrink target, the mesh to shrink to/wrap around.</p>
+<dt>Mục Tiêu</dt><dd><p>Shrink target, the mesh to shrink to/wrap around.</p>
 </dd>
-<dt>Dịch Chuyển -- Offset</dt><dd><p>The distance that must be kept from the calculated target position.</p>
+<dt>Dịch Chuyển</dt><dd><p>The distance that must be kept from the calculated target position.</p>
 </dd>
-<dt>Vertex Group</dt><dd><p>The vertex group to control whether and how much each vertex is displaced to its target position.
+<dt>Nhóm Điểm Đỉnh</dt><dd><p>The vertex group to control whether and how much each vertex is displaced to its target position.
 If a vertex is not a member of this group, it is not displaced (same as weight 0).</p>
 </dd>
 </dl>
 </section>
 <section id="wrap-methods">
-<span id="modeling-modifiers-deform-shrinkwrap-methods"></span><h2>Wrap Methods<a class="headerlink" href="#wrap-methods" title="Permalink to this headline"></a></h2>
+<span id="modeling-modifiers-deform-shrinkwrap-methods"></span><h2>Phương Pháp Bao Bọc<a class="headerlink" href="#wrap-methods" title="Permalink to this headline"></a></h2>
 <section id="nearest-surface-point">
-<h3>Điểm Gần Nhất Trên Bề Mặt -- Nearest Surface Point<a class="headerlink" href="#nearest-surface-point" title="Permalink to this headline"></a></h3>
+<h3>Điểm Gần Nhất Trên Bề Mặt<a class="headerlink" href="#nearest-surface-point" title="Permalink to this headline"></a></h3>
 <p>This will select the nearest point over the surface of the shrunk target.</p>
 </section>
 <section id="project">
-<h3>Project<a class="headerlink" href="#project" title="Permalink to this headline"></a></h3>
+<h3>Phóng Chiếu<a class="headerlink" href="#project" title="Permalink to this headline"></a></h3>
 <figure class="align-right" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_shrinkwrap_project.png"><img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_project.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_project.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Project mode.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Phóng Chiếu.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>This will project vertices along a chosen axis until they touch the shrink target.
 Vertices that never touch the shrink target are left in their original position.</p>
 <dl class="simple">
-<dt>Giới Hạn -- Limit</dt><dd><p>This is a distance limit between original vertex and surface.
+<dt>Giới Hạn</dt><dd><p>This is a distance limit between original vertex and surface.
 If the distance is larger than this limit vertex would not be projected onto the surface.</p>
 </dd>
-<dt>Subdivision Levels</dt><dd><p>This applies a (temporary) <em>Catmull-Clark</em> subdivision to the modified object's geometry,
+<dt>Mức Phân Hóa</dt><dd><p>This applies a (temporary) <em>Catmull-Clark</em> subdivision to the modified object's geometry,
 before computing the wrap.</p>
 </dd>
-<dt>Axis -- Trục</dt><dd><p>Along which local axis of the modified object the projection is done.
+<dt>Trục</dt><dd><p>Along which local axis of the modified object the projection is done.
 These options can be combined with each other, yielding a &quot;median axis&quot; of projection.
 If none are selected, the normal direction is used.</p>
 </dd>
-<dt>Negative/Positive</dt><dd><p>This allows you to select the allowed direction(s) of the shrink along the selected axis.
+<dt>Âm/dương</dt><dd><p>This allows you to select the allowed direction(s) of the shrink along the selected axis.
 If both options are enabled, both ways are evaluated and the closest hit is selected.</p>
 </dd>
 <dt>Loại Bỏ Bề Mặt</dt><dd><p>Allows you to prevent any projection over the &quot;front side&quot;
 (respectively the &quot;back side&quot;) of the target's faces. The &quot;side&quot; of a face is determined
 by its normal (front being the side &quot;from where&quot; the normal &quot;originates&quot;).</p>
 </dd>
-<dt>Đảo Ngược Chiều Loại Bỏ -- Invert Cull</dt><dd><p>If <em>Cull Faces</em> is enabled, and <em>Negative</em> direction along axis is allowed,
+<dt>Đảo Ngược Chiều Loại Bỏ</dt><dd><p>If <em>Cull Faces</em> is enabled, and <em>Negative</em> direction along axis is allowed,
 this option can be used to invert the <em>Front</em> or <em>Back</em> cull choice
 for the <em>Negative</em> direction. This is useful when projecting in both directions.</p>
 </dd>
-<dt>Auxiliary Target</dt><dd><p>An additional object to project over.</p>
+<dt>Mục Tiêu Phụ</dt><dd><p>An additional object to project over.</p>
 </dd>
 </dl>
 </section>
 <section id="nearest-vertex">
-<h3>Đỉnh Gần Nhất -- Nearest Vertex<a class="headerlink" href="#nearest-vertex" title="Permalink to this headline"></a></h3>
+<h3>Điểm đỉnh gần nhất<a class="headerlink" href="#nearest-vertex" title="Permalink to this headline"></a></h3>
 <figure class="align-right" id="id3">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-vertex.png"><img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-vertex.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_nearest-vertex.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Nearest Vertex mode.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Đỉnh Gần Nhất -- Nearest Vertex.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>This will snap vertices to the nearest vertex of the shrunk target. It adds no extra options.</p>
-<p>This method doesn't support the <em>Snap Mode</em> setting.</p>
+<p>Phương pháp này không hỗ trợ cài đặt <abbr title="Snap Mode">Chế Độ Bám Dính</abbr> được diễn giải dưới đây.</p>
 <div class="lead docutils container">
 </div>
 </section>
 <section id="target-normal-project">
-<h3>Target Normal Project<a class="headerlink" href="#target-normal-project" title="Permalink to this headline"></a></h3>
+<h3>Phóng Chiếu theo Pháp Tuyến của Mục Tiêu<a class="headerlink" href="#target-normal-project" title="Permalink to this headline"></a></h3>
 <figure class="align-right" id="id4">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_shrinkwrap_normal-project.png"><img alt="../../../_images/modeling_modifiers_deform_shrinkwrap_normal-project.png" src="../../../_images/modeling_modifiers_deform_shrinkwrap_normal-project.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">Target Normal Project mode.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Phóng Chiếu theo Pháp Tuyến Đích -- Target Normal Projection.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>This mode is similar to <em>Nearest Surface Point</em>, but produces a much smoother
@@ -303,15 +303,15 @@ that emit normals in all perpendicular directions. Ignores flat shading and auto
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="mesh_deform.html" class="btn btn-neutral float-left" title="Mesh Deform Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="simple_deform.html" class="btn btn-neutral float-right" title="Simple Deform Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mesh_deform.html" class="btn btn-neutral float-left" title="Bộ điều chỉnh biến dạng khung lưới" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simple_deform.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Biến Dạng Đơn Giản" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

@@ -1,7 +1,9 @@
 import re
 from collections import OrderedDict
 from enum import Enum
-from definition import Definitions as df, \
+
+from definition import RefType, \
+    Definitions as df, \
     TranslationState, \
     SentStructMode as SMODE, \
     SentStructModeRecord as SMODEREC
@@ -17,22 +19,35 @@ REF_LINK = re.compile(r'[\s]?[<]([^<>]+)[>][\s]?')
 
 class MatcherRecord(OrderedDict):
 
-    def __init__(self, s=-1, e=-1, txt=None, matcher_record: re.Match =None):
-        self.__s = -1
-        self.__e = -1
-        self.__txt = None
-        self.__pattern = None
-        self.__type = None
-        self.__translation = None
-        self.__translation_state = TranslationState.UNTRANSLATED
+    def __init__(self, s=-1, e=-1, txt=None, matcher_record: re.Match =None, ref_type: RefType = RefType.TEXT, pattern=None):
+        self.__s: int = -1
+        self.__e: int = -1
+        self.__txt: str = None
+        self.__pattern: re.Pattern = None
+        self.__type: RefType = None
+        self.__translation: str = None
+        self.__translation_state: TranslationState = TranslationState.UNTRANSLATED
         self.__sentence_structure_mode: dict = None
-        self.__order_list = None
+        self.__order_list: list = None
 
-        actual_s = (matcher_record.start() if matcher_record else s)
-        actual_e = (matcher_record.end() if matcher_record else e)
-        actual_txt = (matcher_record.group(0) if matcher_record else txt)
+        is_using_matcher_record = bool(matcher_record)
+        if is_using_matcher_record:
+            actual_s = (matcher_record.start() if matcher_record else s)
+            actual_e = (matcher_record.end() if matcher_record else e)
+            actual_txt = (matcher_record.group(0) if matcher_record else txt)
+        else:
+            actual_s = s
+            actual_e = e
+            actual_txt = txt
 
-        is_init_txt = ((not matcher_record) and bool(actual_txt))
+        self.type = ref_type
+        self.pattern = pattern
+
+        searched_ref_type = RefType.getRef(actual_txt)
+        is_found = (searched_ref_type is not None)
+        self.type = (searched_ref_type if is_found else ref_type)
+
+        is_init_txt = ((not is_using_matcher_record) and bool(actual_txt))
         is_location_added = not ((actual_s == -1) or (actual_e == -1))
         is_init_location = (is_init_txt and not is_location_added)
         if is_init_location:
@@ -43,32 +58,68 @@ class MatcherRecord(OrderedDict):
         self.e = actual_e
         self.txt = actual_txt
         self.children = None
-        self.addRecord(matcher_record)
 
+        if is_using_matcher_record:
+            self.addRecord(matcher_record)
+
+    @classmethod
+    def reproduce(cls, new_s=-1, new_e=-1, new_txt=None, new_matcher_record: re.Match =None):
+        return cls( s=new_s, e=new_e, txt=new_txt, matcher_record = new_matcher_record)
+
+    def clone(self):
+        new_inst = MatcherRecord.reproduce(new_s=self.s, new_e=self.e, new_txt=self.txt, new_matcher_record=None)
+        return new_inst
+
+    def override(self, new_root_loc = None, new_txt_len = None):
+        def calNewLoc(current_loc):
+            (cs, ce) = current_loc
+            (ns, ne) = new_root_loc
+            new_s = (ns + cs)
+            if new_txt_len:
+                new_e = (new_s + new_txt_len)
+            else:
+                dist = (ce - cs)
+                new_e = (new_s + dist)
+            return (new_s, new_e)
+
+        new_loc = calNewLoc(self.loc)
+        self.loc = new_loc
+        new_sub_list = OrderedDict()
+        for index, (loc, txt) in enumerate(self.getSubEntriesAsList()):
+            new_loc = calNewLoc(loc)
+            entry = {new_loc: txt}
+            new_sub_list.update(entry)
+        self.clear()
+        self.update(new_sub_list)
+
+    @property
     def loc(self):
         return (self.s, self.e)
 
-    def addRecord(self, matcher_record):
-        blank_msg = str(self.txt)
+    @loc.setter
+    def loc(self, new_loc):
+        (ns, ne) = new_loc
+        (self.s, self.e) = (ns, ne)
 
+    def addRecord(self, matcher_record: re.Match):
+        blank_msg = str(self.txt)
         if matcher_record:
             start = 0
             end = len(matcher_record.regs)
             s = e = 0
             loc_dict={}
             start_spaces = end_spaces = ""
-            for index in range(start, end):
+            valid_locs = []
+            for index, (rs, re) in enumerate(matcher_record.regs):
+                valid = (rs < re)
+                if not valid:
+                    continue
+                loc = (rs, re)
+                valid = not (loc in valid_locs)
+                if not valid:
+                    continue
+                valid_locs.append(loc)
                 txt = matcher_record.group(index)
-
-                rs, re = matcher_record.regs[index]
-                is_found = ((rs >= 0) and (re >= 0))
-                if not is_found:
-                    continue
-
-                is_empty = not bool(txt.strip())
-                if is_empty:
-                    continue
-
                 self.addSubMatch(rs, re, txt)
         else:
             self.addSubMatch(self.s, self.e, self.txt)
@@ -148,13 +199,15 @@ class MatcherRecord(OrderedDict):
     def __repr__(self):
         string = ""
         try:
-            string = '\n----MatcherRecord start------\n'
-            string += "\nMAIN-RECORD:\n{!r}".format(self.__dict__)
-            # string += f'txt:"{self.txt}"\n'
+            # string = '\n----MatcherRecord start------\n'
+            # string += "\nMAIN-RECORD:\n{!r}".format(self.__dict__)
+            string += f'txt:[{self.txt}]\n'
+            string += f'type:[{self.type}]\n'
             sub_list = self.getSubEntriesAsList()
             if sub_list:
-                string += "\nSUB-LIST:\n{!r}\n".format(sub_list)
-            string += '\n----MatcherRecord end------\n'
+                string += "SUB-LIST:{!r}\n".format(sub_list)
+                # string += "\nSUB-LIST:\n{!r}\n".format(sub_list)
+            # string += '\n----MatcherRecord end------\n'
         except Exception as e:
             pass
         return string
@@ -210,16 +263,25 @@ class MatcherRecord(OrderedDict):
         self.clear()
         self.update(current_list)
 
-    def updateMasterLoc(self, s, e):
-        self.s = s
-        self.e = e
-        first_entry = ((s, e), self.txt)
-        current_list = self.getSubEntriesAsList()
-        current_list.pop(0)
-        current_list.insert(0, first_entry)
+    def updateMasterLocTuple(self, new_loc):
+        (ns, ne) = new_loc
+        self.updateMasterLoc(ns, ne)
 
+    def updateMasterLoc(self, s, e):
+        current_list = self.getSubEntriesAsList()
+        new_list = []
+        for (cloc, txt) in current_list:
+            (cs, ce) = cloc
+            ns = cs + s
+            ne = ns + len(txt)
+            new_loc = (ns, ne)
+            new_entry = (new_loc, txt)
+            new_list.append(new_entry)
+        self.s = s
+        txt_len = len(self.txt)
+        self.e = self.s + txt_len
         self.clear()
-        self.update(current_list)
+        self.update(new_list)
 
     def setTranlation(self, tran, is_fuzzy: bool, is_ignore: bool):
         if not tran:

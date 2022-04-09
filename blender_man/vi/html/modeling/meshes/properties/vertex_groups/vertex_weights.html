@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vertex Weights &mdash; Blender Manual</title>
+  <title>Trọng Lượng Điểm Đỉnh &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../../copyright.html" />
-    <link rel="next" title="Geometry Data" href="../custom_data.html" />
-    <link rel="prev" title="Assigning a Vertex Group" href="assigning_vertex_group.html" /> 
+    <link rel="next" title="Dữ Liệu Hình Học" href="../custom_data.html" />
+    <link rel="prev" title="Ấn Định một Nhóm Điểm Đỉnh" href="assigning_vertex_group.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,80 +71,80 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới -- Meshes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc -- Structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Công Cụ -- Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Lựa Chọn -- Selecting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../editing/index.html">Biên Soạn -- Editing</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Tính Chất -- Properties</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../object_data.html">Object Data</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="index.html">Vertex Groups</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l5"><a class="reference internal" href="vertex_groups.html">Vertex Groups Panel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="assigning_vertex_group.html">Assigning a Vertex Group</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Vertex Weights</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#vertex-group-categories">Vertex Group Categories</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#deform-groups">Deform Groups</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#other-groups">Other Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Hình Học Cơ Bản</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Lựa Chọn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../editing/index.html">Biên Soạn</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Tính Chất</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../object_data.html">Dữ liệu vật thể</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Nhóm Điểm Đỉnh</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vertex_groups.html">Bảng Nhóm Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="assigning_vertex_group.html">Ấn Định một Nhóm Điểm Đỉnh</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Trọng Lượng Điểm Đỉnh</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#vertex-group-categories">Các Hạng Mục Nhóm Điểm Đỉnh</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#deform-groups">Các Nhóm Biến Dạng</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#other-groups">Các Nhóm Khác</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#weight-table">Weight Table</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#set-the-active-group">Set the Active Group</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#display-weights-in-edit-mode">Display Weights in Edit Mode</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#edit-weights-in-edit-mode">Edit Weights in Edit Mode</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#change-a-weight">Change a Weight</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#pasting">Pasting</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#deleting">Deleting</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#weight-table">Bảng Mục về Trọng Lượng</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#set-the-active-group">Đặt Nhóm Đang Hoạt Động</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#display-weights-in-edit-mode">Hiển thị trọng lượng trong Chế Độ biên soạn</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#edit-weights-in-edit-mode">Biên soạn trọng lượng trong Chế Độ biên soạn</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#change-a-weight">Thay Đổi một Trọng Lượng</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#pasting">Dán</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#deleting">Xóa</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#tools">Công Cụ -- Tools</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#locking">Locking</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#tools">Công Cụ</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#locking">Khóa</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../custom_data.html">Geometry Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../custom_data.html">Dữ Liệu Hình Học</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">Các UV -- UVs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Phân Tích Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Tái cấu trúc liên kết</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Bộ Điều Chỉnh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -161,11 +161,11 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
-          <li><a href="../../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
-          <li><a href="../index.html">Tính Chất -- Properties</a> &raquo;</li>
-          <li><a href="index.html">Vertex Groups</a> &raquo;</li>
-      <li>Vertex Weights</li>
+          <li><a href="../../../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="../../index.html">Khung Lưới</a> &raquo;</li>
+          <li><a href="../index.html">Tính Chất</a> &raquo;</li>
+          <li><a href="index.html">Nhóm Điểm Đỉnh</a> &raquo;</li>
+      <li>Trọng Lượng Điểm Đỉnh</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -175,22 +175,22 @@
            <div itemprop="articleBody">
              
   <section id="vertex-weights">
-<h1>Vertex Weights<a class="headerlink" href="#vertex-weights" title="Permalink to this headline"></a></h1>
+<h1>Trọng Lượng Điểm Đỉnh<a class="headerlink" href="#vertex-weights" title="Permalink to this headline"></a></h1>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Edit and Weight Paint Modes</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn và Chế Độ Tư Thế</p>
 </dd>
-<dt class="field-even">Bảng -- Panel</dt>
-<dd class="field-even"><p><span class="menuselection">Sidebar region ‣ Vertex Weights</span></p>
+<dt class="field-even">Bảng</dt>
+<dd class="field-even"><p><span class="menuselection">Thanh bên (Sidebar) -&gt; thẻ Kiến Tạo (Create tab)</span></p>
 </dd>
 </dl>
 </div>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_panel-overview.png" style="width: 260px;" /></a>
 <figcaption>
-<p><span class="caption-text">Vertex Weights panel.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Sao Chép Trọng Lượng Điểm Đỉnh.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 <div class="legend">
 <p>(1) Vertex Group Categories, (2) Weight Table, (3) Tools.</p>
 </div>
@@ -205,12 +205,12 @@ That is: to which vertex groups the vertex is assigned with which weight value.<
 It is available in Edit Mode and in Weight Paint Mode
 (when Vertex Selection masking is enabled as well).</p>
 <section id="vertex-group-categories">
-<h2>Vertex Group Categories<a class="headerlink" href="#vertex-group-categories" title="Permalink to this headline"></a></h2>
+<h2>Các Hạng Mục Nhóm Điểm Đỉnh<a class="headerlink" href="#vertex-group-categories" title="Permalink to this headline"></a></h2>
 <p>Actually we do not have any strict categories of vertex groups in Blender.
 Technically they all behave the same way.
 However, we can identify two implicit categories of vertex groups:</p>
 <section id="deform-groups">
-<h3>Deform Groups<a class="headerlink" href="#deform-groups" title="Permalink to this headline"></a></h3>
+<h3>Các Nhóm Biến Dạng<a class="headerlink" href="#deform-groups" title="Permalink to this headline"></a></h3>
 <p>These vertex groups are sometimes also named 'weight groups' or 'weight maps'.
 They are used for defining the weight tables of armature bones.
 All deform groups of an object are strictly related to each other via their weight values.</p>
@@ -221,7 +221,7 @@ Hence, we have provided a filter that allows restricting the Vertex Weight panel
 display only the deform bones of an object.</p>
 </section>
 <section id="other-groups">
-<h3>Other Groups<a class="headerlink" href="#other-groups" title="Permalink to this headline"></a></h3>
+<h3>Các Nhóm Khác<a class="headerlink" href="#other-groups" title="Permalink to this headline"></a></h3>
 <p>All other usages of vertex groups are summarized into the <em>Other</em> category.
 These vertex groups can be found within Shape keys, Modifiers, etc.
 There is really no good name for this category,
@@ -229,13 +229,13 @@ so we kept it simple and named it <em>Other</em>.</p>
 </section>
 </section>
 <section id="weight-table">
-<h2>Weight Table<a class="headerlink" href="#weight-table" title="Permalink to this headline"></a></h2>
+<h2>Bảng Mục về Trọng Lượng<a class="headerlink" href="#weight-table" title="Permalink to this headline"></a></h2>
 <p>The Weight Table shows all weights associated to the <em>active vertex</em>.
 Note that a vertex does not necessarily have to be associated to any vertex groups.
 In that case the Vertex Weights Panel is not displayed.</p>
 <div class="admonition tip">
 <p class="admonition-title">Mẹo</p>
-<p>The active Vertex</p>
+<p>Đỉnh Gần Nhất -- Nearest Vertex</p>
 <p>That is the most recently selected vertex.
 This vertex is always highlighted so that you can see it easily in the mesh.
 If the active vertex does not have weights, or there is no active vertex selected at the moment,
@@ -245,16 +245,16 @@ then the Vertex Weights Panel disappears.</p>
 <figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-name.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-name.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-name.png" style="width: 260px;" /></a>
 <figcaption>
-<p><span class="caption-text">Change Active Group.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Nhóm Xương Đang Hoạt Động -- Active Bone Group.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <section id="set-the-active-group">
-<h3>Set the Active Group<a class="headerlink" href="#set-the-active-group" title="Permalink to this headline"></a></h3>
+<h3>Đặt Nhóm Đang Hoạt Động<a class="headerlink" href="#set-the-active-group" title="Permalink to this headline"></a></h3>
 <p>As soon as you select any of the Vertex Group Names in the Weight table,
 the referenced vertex group becomes the new active group.</p>
 </section>
 <section id="display-weights-in-edit-mode">
-<h3>Display Weights in Edit Mode<a class="headerlink" href="#display-weights-in-edit-mode" title="Permalink to this headline"></a></h3>
+<h3>Hiển thị trọng lượng trong Chế Độ biên soạn<a class="headerlink" href="#display-weights-in-edit-mode" title="Permalink to this headline"></a></h3>
 <figure class="align-right" id="id4">
 <img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_show.png" />
 <figcaption>
@@ -268,12 +268,12 @@ Now you can see the weights of the active vertex group displayed on the mesh sur
 <figure class="align-default" id="id5">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_edit-mode.png" style="width: 260px;" /></a>
 <figcaption>
-<p><span class="caption-text">Weights in Edit Mode.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Chế Độ Biên Soạn Khung Lưới.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="edit-weights-in-edit-mode">
-<h3>Edit Weights in Edit Mode<a class="headerlink" href="#edit-weights-in-edit-mode" title="Permalink to this headline"></a></h3>
+<h3>Biên soạn trọng lượng trong Chế Độ biên soạn<a class="headerlink" href="#edit-weights-in-edit-mode" title="Permalink to this headline"></a></h3>
 <p>It is now very easy to work with vertex groups in Edit Mode.
 All edit options of the mesh are available and
 you have direct visual control over how your weights change when you edit the weight values.</p>
@@ -285,7 +285,7 @@ you have direct visual control over how your weights change when you edit the we
 </figure>
 </section>
 <section id="change-a-weight">
-<h3>Change a Weight<a class="headerlink" href="#change-a-weight" title="Permalink to this headline"></a></h3>
+<h3>Thay Đổi một Trọng Lượng<a class="headerlink" href="#change-a-weight" title="Permalink to this headline"></a></h3>
 <p>You can either enter a new weight value manually (click on the number and edit the value),
 or you can change the weight by <kbd class="kbd docutils literal notranslate">LMB</kbd> and while holding down the mouse button,
 drag right or left to increase/decrease the weight value. You also can use the right/left
@@ -298,36 +298,36 @@ arrows displayed around the weight value to change the weight in steps.</p>
 </figure>
 </section>
 <section id="pasting">
-<h3>Pasting<a class="headerlink" href="#pasting" title="Permalink to this headline"></a></h3>
+<h3>Dán<a class="headerlink" href="#pasting" title="Permalink to this headline"></a></h3>
 <p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Paste button allows you to forward a single weight of the active vertex to all selected vertices.
 But note that weights are only pasted to vertices which already have a weight value in the affected vertex group.</p>
 <figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-delete.png" style="width: 260px;" /></a>
 <figcaption>
-<p><span class="caption-text">Delete weights.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Trọng Lượng Vỏ Bao.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="deleting">
-<h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline"></a></h3>
+<h3>Xóa<a class="headerlink" href="#deleting" title="Permalink to this headline"></a></h3>
 <p><kbd class="kbd docutils literal notranslate">LMB</kbd> the Delete button will instantly remove the weight from the active vertex.
 Thus the entire row disappears when you click on the delete icon.</p>
 </section>
 </section>
 <section id="tools">
-<h2>Công Cụ -- Tools<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h2>
+<h2>Công Cụ<a class="headerlink" href="#tools" title="Permalink to this headline"></a></h2>
 <figure class="align-default" id="id9">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-functions.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-functions.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-functions.png" style="width: 260px;" /></a>
 <figcaption>
-<p><span class="caption-text">Vertex Weights panel.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Sao Chép Trọng Lượng Điểm Đỉnh.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <dl class="simple">
-<dt>Normalize</dt><dd><p>Normalizes the weights of the active vertex.
+<dt>Bình Thường Hóa</dt><dd><p>Normalizes the weights of the active vertex.
 That is all weights of the active vertex are recalculated
 such that their relative weight is maintained and the weight sum is 1.0.</p>
 </dd>
-<dt>Sao Chép -- Copy</dt><dd><p>Copies all weights defined for the active vertex to all selected vertices.
+<dt>Sao Chép</dt><dd><p>Copies all weights defined for the active vertex to all selected vertices.
 Thus all previously defined weights are overwritten.</p>
 </dd>
 </dl>
@@ -340,18 +340,18 @@ then Normalize and Copy only affect the Deform bones.</p>
 </div>
 </section>
 <section id="locking">
-<h2>Locking<a class="headerlink" href="#locking" title="Permalink to this headline"></a></h2>
+<h2>Khóa<a class="headerlink" href="#locking" title="Permalink to this headline"></a></h2>
 <figure class="align-default" id="id10">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png"><img alt="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png" src="../../../../_images/modeling_meshes_properties_vertex-groups_vertex-weights_editor-locked.png" style="width: 260px;" /></a>
 <figcaption>
-<p><span class="caption-text">Locked Vertex Weights panel.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Sao Chép Trọng Lượng Điểm Đỉnh.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Whenever a weight group is locked, all data changing tools get disabled:</p>
 <ul class="simple">
-<li><p>Normalize the vertex weights.</p></li>
-<li><p>Copy the vertex weights.</p></li>
-<li><p>Change the weight of the active vertices.</p></li>
+<li><p>Bình Thường Hóa Trọng Lượng.</p></li>
+<li><p>Sao Chép Trọng Lượng Điểm Đỉnh.</p></li>
+<li><p>Đổi vị trí của con trỏ 3D.</p></li>
 <li><p>Paste to selected vertices.</p></li>
 </ul>
 <div class="admonition tip">
@@ -368,15 +368,15 @@ and use all available tools from the Weight Table again.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="assigning_vertex_group.html" class="btn btn-neutral float-left" title="Assigning a Vertex Group" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../custom_data.html" class="btn btn-neutral float-right" title="Geometry Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="assigning_vertex_group.html" class="btn btn-neutral float-left" title="Ấn Định một Nhóm Điểm Đỉnh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../custom_data.html" class="btn btn-neutral float-right" title="Dữ Liệu Hình Học" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

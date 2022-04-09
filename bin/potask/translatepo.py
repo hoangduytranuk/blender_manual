@@ -143,19 +143,7 @@ class TranslatePO(POTaskBase):
             msgstr = m.string
             ctx = m.context
 
-            # is_debug = ("Target Range" in msgid)
-            # if is_debug:
-            #     print('Debug')
-            # is_not_emtpy = bool(msgstr)
-            # is_not_fuzzy = (not is_fuzzy)
-            # is_translated = (is_not_emtpy and is_not_fuzzy)
-            # if is_translated:
-            #     continue
-            # has_tran = bool(msgstr)
-            # if has_tran:
-            #     continue
-
-            # has_context = bool(ctx)
+            # pr = PR(msgid)
             dict_tran = dict.get(msgid, ctx=ctx)
             has_tran = bool(dict_tran)
             if not has_tran:
@@ -165,7 +153,6 @@ class TranslatePO(POTaskBase):
             if is_same:
                 continue
 
-            # is_id_lower =
             msg = f'msgid:[{msgid}]\ndict:[{dict_tran}]\ncurrent:[{msgstr}]\n\n'
             print(msg)
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volume to Mesh Modifier &mdash; Blender Manual</title>
+  <title>Bộ Điều Chỉnh Thể Tích sang khung lưới &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Weld Modifier" href="weld.html" />
-    <link rel="prev" title="Triangulate Modifier" href="triangulate.html" /> 
+    <link rel="next" title="Bộ điều chỉnh hàn gắn" href="weld.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Tam Giác Hóa" href="triangulate.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,73 +71,73 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Generate</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="array.html">Array Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bevel Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="booleans.html">Boolean Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="build.html">Build Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="decimate.html">Decimate Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="edge_split.html">Edge Split Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="geometry_nodes.html">Geometry Nodes Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mask.html">Mask Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mesh_to_volume.html">Mesh to Volume Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mirror.html">Mirror Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">Multiresolution Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="remesh.html">Remesh Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="screw.html">Screw Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="skin.html">Skin Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="solidify.html">Solidify Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">Subdivision Surface Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Triangulate Modifier</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Volume to Mesh Modifier</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Các Tùy Chọn Bộ Điều Chỉnh Thông Thường</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#generate">Sinh Tạo</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="array.html">Bộ Điều Chỉnh Mảng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bevel.html">Bộ Điều Chỉnh Bo Tròn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="booleans.html">Bộ Điều Chỉnh Bool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build.html">Bộ Điều Chỉnh Xây Dựng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decimate.html">Bộ Điều Chỉnh Tiêu Hao</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edge_split.html">Bộ Điều Chỉnh Tách Phân Cạnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geometry_nodes.html">Bộ Điều Chỉnh các Nút Hình Học</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mask.html">Bộ Điều Chỉnh Màn Chắn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_to_volume.html">Bộ Điều Chỉnh khung lưới thành Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mirror.html">Bộ Điều Chỉnh Đối Xứng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multiresolution.html">Bộ Điều Chỉnh Đa Phân Giải</a></li>
+<li class="toctree-l4"><a class="reference internal" href="remesh.html">Bộ Điều Chỉnh Kiến Tạo Lại Khung Lưới</a></li>
+<li class="toctree-l4"><a class="reference internal" href="screw.html">Bộ Điều Chỉnh Xoáy Ốc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="skin.html">Bộ Điều Chỉnh Da</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solidify.html">Bộ Điều Chỉnh Tạo Độ Dày</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision_surface.html">Bộ điều chỉnh phân hóa bề mặt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triangulate.html">Bộ Điều Chỉnh Tam Giác Hóa</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Thể Tích sang khung lưới</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="weld.html">Weld Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Wireframe Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weld.html">Bộ điều chỉnh hàn gắn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wireframe.html">Bộ Điều Chỉnh Mạch Lưới</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Vật Lý</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -154,9 +154,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Modeling</a> &raquo;</li>
-          <li><a href="../index.html">Modifiers</a> &raquo;</li>
-      <li>Volume to Mesh Modifier</li>
+          <li><a href="../../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="../index.html">Bộ Điều Chỉnh</a> &raquo;</li>
+      <li>Bộ Điều Chỉnh Thể Tích sang khung lưới</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -166,7 +166,7 @@
            <div itemprop="articleBody">
              
   <section id="volume-to-mesh-modifier">
-<span id="bpy-types-volumetomeshmodifier"></span><span id="index-0"></span><h1>Volume to Mesh Modifier<a class="headerlink" href="#volume-to-mesh-modifier" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-volumetomeshmodifier"></span><span id="index-0"></span><h1>Bộ Điều Chỉnh Thể Tích sang khung lưới<a class="headerlink" href="#volume-to-mesh-modifier" title="Permalink to this headline"></a></h1>
 <p>This modifier is the inverse of the <em>Mesh to Volume</em> modifier.
 It takes an existing volume object and converts one of its grids to a mesh.
 Only scalar grids (such as the density grid) can be converted.</p>
@@ -176,7 +176,7 @@ Only scalar grids (such as the density grid) can be converted.</p>
 use a <a class="reference internal" href="../../../scene_layout/object/properties/instancing/collection.html"><span class="doc">collection instance</span></a>.</p>
 </div>
 <section id="options">
-<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<h2>Tùy Chọn<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_volume-to-mesh_panel.png"><img alt="../../../_images/modeling_modifiers_generate_volume-to-mesh_panel.png" src="../../../_images/modeling_modifiers_generate_volume-to-mesh_panel.png" style="width: 300px;" /></a>
 <figcaption>
@@ -184,36 +184,36 @@ use a <a class="reference internal" href="../../../scene_layout/object/propertie
 </figcaption>
 </figure>
 <dl>
-<dt>Object -- Vật Thể</dt><dd><p>The source volume object.</p>
+<dt>Vật Thể</dt><dd><p>The source volume object.</p>
 </dd>
-<dt>Grid Name</dt><dd><p>The name of the grid that will be converted.
+<dt>Tên của Khung Đồ Thị</dt><dd><p>The name of the grid that will be converted.
 This has to be a scalar grid.</p>
 </dd>
-<dt>Resolution Mode</dt><dd><p>Mode for how the resolution of the final mesh is controlled.</p>
+<dt>Chế Độ Phân Giải</dt><dd><p>Mode for how the resolution of the final mesh is controlled.</p>
 <dl class="simple">
-<dt>Grid</dt><dd><p>This makes the resolution dependent on the resolution of the grid that is converted.
+<dt>Khung Lưới/Đồ Thị</dt><dd><p>This makes the resolution dependent on the resolution of the grid that is converted.
 Higher resolution grids result in a higher resolution mesh.
 In many cases, that is the most efficient mode.</p>
 </dd>
-<dt>Voxel Amount</dt><dd><p>Specifies the approximate resolution of the final mesh.
+<dt>Số Lượng Thể Tích Tử</dt><dd><p>Specifies the approximate resolution of the final mesh.
 The voxel size is adapted to the size of the entire volume.</p>
 </dd>
-<dt>Voxel Size</dt><dd><p>Use a fixed resolution that does not change when the volume changes.</p>
+<dt>Kích Thước Thể Tích Tử</dt><dd><p>Use a fixed resolution that does not change when the volume changes.</p>
 </dd>
 </dl>
 </dd>
-<dt>Giới Hạn -- Threshold</dt><dd><p>Voxels with a larger value are considered to be inside the mesh and all other voxels outside.
+<dt>Ngưỡng</dt><dd><p>Voxels with a larger value are considered to be inside the mesh and all other voxels outside.
 The mesh will be generated on the boundary of inside and outside voxels.
 This is sometimes also called the &quot;iso value&quot;.</p>
 </dd>
-<dt>Adaptivity</dt><dd><p>This is similar to decimating the final to reduce resolution where it is not needed.</p>
+<dt>Tùy Ứng</dt><dd><p>This is similar to decimating the final to reduce resolution where it is not needed.</p>
 </dd>
-<dt>Smooth Shading</dt><dd><p>Enables smooth shading on the generated mesh.</p>
+<dt>Tô Bóng Mịn Màng</dt><dd><p>Enables smooth shading on the generated mesh.</p>
 </dd>
 </dl>
 </section>
 <section id="example">
-<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Ví Dụ<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_generate_volume-to-mesh_example.png"><img alt="../../../_images/modeling_modifiers_generate_volume-to-mesh_example.png" src="../../../_images/modeling_modifiers_generate_volume-to-mesh_example.png" style="width: 500px;" /></a>
 <figcaption>
@@ -227,15 +227,15 @@ This is sometimes also called the &quot;iso value&quot;.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="triangulate.html" class="btn btn-neutral float-left" title="Triangulate Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="weld.html" class="btn btn-neutral float-right" title="Weld Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="triangulate.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Tam Giác Hóa" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="weld.html" class="btn btn-neutral float-right" title="Bộ điều chỉnh hàn gắn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

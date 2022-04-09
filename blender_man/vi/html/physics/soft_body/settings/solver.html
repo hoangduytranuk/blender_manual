@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trình Giải Nghiệm -- Solver &mdash; Blender Manual</title>
+  <title>Trình Giải Nghiệm &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Forces" href="../forces/index.html" />
-    <link rel="prev" title="Self Collision" href="self_collision.html" /> 
+    <link rel="next" title="Tính Năng của Lực" href="../forces/index.html" />
+    <link rel="prev" title="Tự Va Đập" href="self_collision.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,59 +71,59 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Physics</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Rigid Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">Cloth</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Soft Body</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sắp Đặt -- Settings</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="object.html">Object -- Vật Thể</a></li>
-<li class="toctree-l4"><a class="reference internal" href="simulation.html">Mô Phỏng -- Simulation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cache.html">Cache</a></li>
-<li class="toctree-l4"><a class="reference internal" href="goal.html">Goal</a></li>
-<li class="toctree-l4"><a class="reference internal" href="edges.html">Edges</a></li>
-<li class="toctree-l4"><a class="reference internal" href="self_collision.html">Self Collision</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Trình Giải Nghiệm -- Solver</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#diagnostics">Diagnostics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#helpers">Helpers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Vật Lý</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rigid_body/index.html">Thân Cứng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloth/index.html">Vải Vóc</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Thân mềm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sắp Đặt</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="object.html">Vật Thể</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation.html">Mô Phỏng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cache.html">Tập Tin Bộ Nhớ Đệm -- Cache File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="goal.html">Đích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="edges.html">Cạnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="self_collision.html">Tự Va Đập</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Trình Giải Nghiệm</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#diagnostics">Điều Tra/Kiểm Nghiệm</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#helpers">Tính Chất Hỗ Trợ</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../forces/index.html">Forces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../collision.html">Collision</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../examples.html">Ví Dụ -- Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../forces/index.html">Tính Năng của Lực</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collision.html">Va Đập</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples.html">Ví Dụ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Fluid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">Particle System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Dynamic Paint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Forces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../collision.html">Collision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../baking.html">Baking Physics Simulations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fluid/index.html">Chất Lỏng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../particles/index.html">Hệ Thống Hạt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dynamic_paint/index.html">Sơn Động Lực</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../forces/index.html">Tính Năng của Lực</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collision.html">Va Đập</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../baking.html">Nướng Các Mô Phỏng Vật Lý</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -140,10 +140,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Physics</a> &raquo;</li>
-          <li><a href="../index.html">Soft Body</a> &raquo;</li>
-          <li><a href="index.html">Sắp Đặt -- Settings</a> &raquo;</li>
-      <li>Trình Giải Nghiệm -- Solver</li>
+          <li><a href="../../index.html">Vật Lý</a> &raquo;</li>
+          <li><a href="../index.html">Thân mềm</a> &raquo;</li>
+          <li><a href="index.html">Sắp Đặt</a> &raquo;</li>
+      <li>Trình Giải Nghiệm</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -153,27 +153,27 @@
            <div itemprop="articleBody">
              
   <section id="solver">
-<span id="physics-softbody-settings-solver"></span><h1>Trình Giải Nghiệm -- Solver<a class="headerlink" href="#solver" title="Permalink to this headline"></a></h1>
+<span id="physics-softbody-settings-solver"></span><h1>Trình Giải Nghiệm<a class="headerlink" href="#solver" title="Permalink to this headline"></a></h1>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Physics ‣ Soft Body ‣ Solver</span></p>
+<dt class="field-odd">Bảng</dt>
+<dd class="field-odd"><p><span class="menuselection">Tư Thế (Pose) ‣ Nhóm Xương (Bone Groups) ‣ ...</span></p>
 </dd>
 </dl>
 </div>
 <p>The settings in the <em>Soft Body Solver</em> panel determine the accuracy of the simulation.</p>
 <dl class="simple">
-<dt>Step Size Min</dt><dd><p>Minimum simulation steps per frame. Increase this value, if the soft body misses fast-moving collision objects.</p>
+<dt>Số Bước Tối Thiểu</dt><dd><p>Minimum simulation steps per frame. Increase this value, if the soft body misses fast-moving collision objects.</p>
 </dd>
-<dt>Lớn Nhất -- Max</dt><dd><p>Maximum simulation steps per frame.
+<dt>Tối Đa</dt><dd><p>Maximum simulation steps per frame.
 Normally the number of simulation steps is set dynamically
 (with the <em>Error Limit</em>) but you have probably a good reason to change it.</p>
 </dd>
-<dt>Auto-Step</dt><dd><p>Use velocities for automatic step sizes.
+<dt>Tự Động Tính Số Bước</dt><dd><p>Use velocities for automatic step sizes.
 Helps the Solver figure out how much work it needs to do based on how fast things are moving.</p>
 </dd>
-<dt>Error Limit</dt><dd><p>Rules the overall quality of the solution delivered.
+<dt>Giới Hạn Sai Số</dt><dd><p>Rules the overall quality of the solution delivered.
 The most critical setting that defines how precise the solver should check for collisions.
 Start with a value that is half the average edge length.
 If there are visible errors, jitter, or over-exaggerated responses, decrease the value.
@@ -182,22 +182,22 @@ do some &quot;adaptive step sizing&quot;.</p>
 </dd>
 </dl>
 <section id="diagnostics">
-<h2>Diagnostics<a class="headerlink" href="#diagnostics" title="Permalink to this headline"></a></h2>
+<h2>Điều Tra/Kiểm Nghiệm<a class="headerlink" href="#diagnostics" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Print Performance to Console</dt><dd><p>Prints on the console how the solver is doing.</p>
+<dt>In Hiệu Suất Thi Hành ra Bàn Giao Tiếp</dt><dd><p>Prints on the console how the solver is doing.</p>
 </dd>
-<dt>Estimate Matrix</dt><dd><p>Estimate matrix, split to <code class="docutils literal notranslate"><span class="pre">COM</span></code>, <code class="docutils literal notranslate"><span class="pre">ROT</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE</span></code>.</p>
+<dt>Ma trận dự đoán</dt><dd><p>Estimate matrix, split to <code class="docutils literal notranslate"><span class="pre">COM</span></code>, <code class="docutils literal notranslate"><span class="pre">ROT</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE</span></code>.</p>
 </dd>
 </dl>
 </section>
 <section id="helpers">
-<h2>Helpers<a class="headerlink" href="#helpers" title="Permalink to this headline"></a></h2>
+<h2>Tính Chất Hỗ Trợ<a class="headerlink" href="#helpers" title="Permalink to this headline"></a></h2>
 <p>These settings control how the soft body will react (deform)
 once it either gets close to or actually intersects (cuts into) another collision object on the same layer.</p>
 <dl class="simple">
-<dt>Choke</dt><dd><p>Calms down (reduces the exit velocity of) a vertex or edge once it penetrates a collision mesh.</p>
+<dt>Tắc Nghẹn</dt><dd><p>Calms down (reduces the exit velocity of) a vertex or edge once it penetrates a collision mesh.</p>
 </dd>
-<dt>Fuzzy</dt><dd><p>Fuzziness while on collision, high values make collision handling faster but less stable.
+<dt>Mờ Ám/Ảo</dt><dd><p>Fuzziness while on collision, high values make collision handling faster but less stable.
 Simulation is faster, but less accurate.</p>
 </dd>
 </dl>
@@ -208,15 +208,15 @@ Simulation is faster, but less accurate.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="self_collision.html" class="btn btn-neutral float-left" title="Self Collision" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../forces/index.html" class="btn btn-neutral float-right" title="Forces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="self_collision.html" class="btn btn-neutral float-left" title="Tự Va Đập" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../forces/index.html" class="btn btn-neutral float-right" title="Tính Năng của Lực" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

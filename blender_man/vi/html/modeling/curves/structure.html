@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cấu Trúc -- Structure &mdash; Blender Manual</title>
+  <title>Cấu Trúc &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
-    <link rel="next" title="Primitives" href="primitives.html" />
-    <link rel="prev" title="Draw" href="tools/draw.html" /> 
+    <link rel="next" title="Hình Học Cơ Bản" href="primitives.html" />
+    <link rel="prev" title="Vẽ" href="tools/draw.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,25 +71,25 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Khung Lưới -- Meshes</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Curves</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tools/index.html">Công Cụ -- Tools</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Cấu Trúc -- Structure</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#splines">Splines</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#control-points">Control Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meshes/index.html">Khung Lưới</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Đường Cong</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools/index.html">Công Cụ</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cấu Trúc</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#splines">Đường Cong Spline</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#control-points">Điểm Điều Khiển</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#spline-types">Spline Types</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#poly">Poly</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#bezier">Bézier</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#handle-types">Handle Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spline-types">Các Thể Loại đường cong Spline</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#poly">Đa Giác</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bezier">Đường Cong Bézier -- Bézier</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#handle-types">Kiểu tay cầm</a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#nurbs">NURBS</a></li>
@@ -97,38 +97,38 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="primitives.html">Primitives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="selecting.html">Lựa Chọn -- Selecting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn -- Editing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất -- Properties</a></li>
-<li class="toctree-l3"><a class="reference internal" href="curve_display.html">Curve Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primitives.html">Hình Học Cơ Bản</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting.html">Lựa Chọn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="curve_display.html">Đường Cong hiển thị</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../empties.html">Empties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Bộ Điều Chỉnh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -145,9 +145,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Modeling</a> &raquo;</li>
-          <li><a href="index.html">Curves</a> &raquo;</li>
-      <li>Cấu Trúc -- Structure</li>
+          <li><a href="../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="index.html">Đường Cong</a> &raquo;</li>
+      <li>Cấu Trúc</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -157,9 +157,9 @@
            <div itemprop="articleBody">
              
   <section id="structure">
-<h1>Cấu Trúc -- Structure<a class="headerlink" href="#structure" title="Permalink to this headline"></a></h1>
+<h1>Cấu Trúc<a class="headerlink" href="#structure" title="Permalink to this headline"></a></h1>
 <section id="splines">
-<h2>Splines<a class="headerlink" href="#splines" title="Permalink to this headline"></a></h2>
+<h2>Đường Cong Spline<a class="headerlink" href="#splines" title="Permalink to this headline"></a></h2>
 <p>Splines are a substructure of curves and are the individual elements that make curve objects.
 A curve object can be composed of several different splines,
 just like mesh objects can have different discontinuous meshes under the same object.
@@ -170,7 +170,7 @@ Each spline type has a slightly different algorithm for computing how bends in t
 by selecting the spline in Edit Mode and using
 the <a class="reference internal" href="properties/active_spline.html"><span class="doc">Active Spline</span></a> panel.</p>
 <section id="control-points">
-<h3>Control Points<a class="headerlink" href="#control-points" title="Permalink to this headline"></a></h3>
+<h3>Điểm Điều Khiển<a class="headerlink" href="#control-points" title="Permalink to this headline"></a></h3>
 <p>Similar to meshes splines have control points or vertices.
 Control points connect to other control points to form splines.
 Control points can be <a class="reference internal" href="selecting.html"><span class="doc">selected</span></a>
@@ -182,9 +182,9 @@ and transformed to alter the resulting shape of the spline.</p>
 </section>
 </section>
 <section id="spline-types">
-<span id="curve-spline-types"></span><h2>Spline Types<a class="headerlink" href="#spline-types" title="Permalink to this headline"></a></h2>
+<span id="curve-spline-types"></span><h2>Các Thể Loại đường cong Spline<a class="headerlink" href="#spline-types" title="Permalink to this headline"></a></h2>
 <section id="poly">
-<h3>Poly<a class="headerlink" href="#poly" title="Permalink to this headline"></a></h3>
+<h3>Đa Giác<a class="headerlink" href="#poly" title="Permalink to this headline"></a></h3>
 <p>Poly splines are the most simple spline type as they do not
 interpolate the shape of the curve between control points.</p>
 <p>Poly Curves are used when <a class="reference internal" href="../../scene_layout/object/editing/convert.html#bpy-ops-object-convert"><span class="std std-ref">converting meshes to curves</span></a>.
@@ -194,7 +194,7 @@ Poly splines are able to give an accurate representation of the original mesh ob
 splines are used instead; both of which interpolate the shape and give smooth results.</p>
 </section>
 <section id="bezier">
-<span id="curve-bezier"></span><h3>Bézier<a class="headerlink" href="#bezier" title="Permalink to this headline"></a></h3>
+<span id="curve-bezier"></span><h3>Đường Cong Bézier -- Bézier<a class="headerlink" href="#bezier" title="Permalink to this headline"></a></h3>
 <p>The main elements used in editing Bézier curves are the control points and handles.
 A segment (the actual curve) is found between two control points.
 The handles define the curvature of the segment.</p>
@@ -210,9 +210,8 @@ the direction and the tilt.</p>
 </figcaption>
 </figure>
 <section id="handle-types">
-<span id="curve-bezier-handle-type"></span><h4>Handle Types<a class="headerlink" href="#handle-types" title="Permalink to this headline"></a></h4>
-<p>There are four Bézier curve handle types.
-They can be accessed by pressing <kbd class="kbd docutils literal notranslate">V</kbd> and selecting from the list that appears.</p>
+<span id="curve-bezier-handle-type"></span><h4>Kiểu tay cầm<a class="headerlink" href="#handle-types" title="Permalink to this headline"></a></h4>
+<p>There are four Bézier curve handle types. They can be accessed by pressing <kbd class="kbd docutils literal notranslate">V</kbd> and selecting from the list that appears, or by pressing the appropriate hotkey combination.</p>
 <figure class="align-right" id="id2">
 <img alt="../../_images/modeling_curves_structure_bezier-handle-types.png" src="../../_images/modeling_curves_structure_bezier-handle-types.png" />
 <figcaption>
@@ -220,30 +219,25 @@ They can be accessed by pressing <kbd class="kbd docutils literal notranslate">V
 </figcaption>
 </figure>
 <dl class="simple" id="curve-handle-type-auto">
-<dt>Automatic (yellow handles)</dt><dd><p>This handle has a completely automatic length and direction
+<dt>Tự Động (tay cầm màu vàng)</dt><dd><p>This handle has a completely automatic length and direction
 which is set by Blender to ensure the smoothest result.
 These handles convert to <em>Aligned</em> handles when moved.</p>
 </dd>
-<dt>Vector (green handles)</dt><dd><p>Both parts of a handle always point to the previous handle or the next handle which allows
+<dt>Véctơ (các tay cầm màu xanh lục)</dt><dd><p>Both parts of a handle always point to the previous handle or the next handle which allows
 you to create curves or sections thereof made of straight lines or with sharp corners.
 Vector handles convert to <em>Free</em> handles when moved.</p>
 </dd>
-<dt>Aligned (purple handles)</dt><dd><p>These handles always lie in a straight line,
+<dt>Thẳng Hàng (tay cầm màu tím)</dt><dd><p>These handles always lie in a straight line,
 and give a continuous curve without sharp angles.</p>
 </dd>
-<dt>Free (black handles)</dt><dd><p>The handles are independent of each other.</p>
+<dt>Tự Do (các tay cầm màu đen)</dt><dd><p>The handles are independent of each other.</p>
 </dd>
 </dl>
 </section>
 </section>
 <section id="nurbs">
 <span id="curve-nurbs"></span><h3>NURBS<a class="headerlink" href="#nurbs" title="Permalink to this headline"></a></h3>
-<p>N.U.R.B.S. is the abbreviation for Non-Uniform Rational B-Splines.
-One of the major differences between Bézier objects and NURBS objects is that Bézier curves
-are approximations. For example, a Bézier circle is an <em>approximation</em> of a circle,
-whereas a NURBS circle is an <em>exact</em> circle.
-NURBS theory can be a <em>very</em> complicated topic. For an introduction,
-please consult the <a class="reference external" href="https://en.wikipedia.org/wiki/NURBS">Wikipedia page</a>.</p>
+<p>N.U.R.B.S. là chữ viết tắt là của cụm từ <abbr title="Đường Cong Spline với Nền Tảng Không Đồng Nhất Hợp Lý">Non-Uniform Rational B-Splines</abbr>. Một trong những cái khác biệt nổi trội nhất giữa các vật thể Bézier và các vật thể NURBS là <abbr title="approximations">tính ước chừng</abbr> của các đường cong Bézier. Lấy ví dụ, một <abbr title="Bézier circle">đường tròn Bézier</abbr> là <abbr title="approximation">sự ước lượng</abbr> của một hình tròn, trong khi hình tròn NURBS là một hình tròn <abbr title="exact">chính xác</abbr>. Lý thuyết NURBS có thể là một chủ đề <abbr title="very">rất</abbr> phức tạp. Xin xem <a class="reference external" href="https://en.wikipedia.org/wiki/NURBS">trang Bách Khoa Toàn Thư Mở (Wikipedia page)</a> để đọc giới thiệu sơ khởi về NURBS nhé.</p>
 <p id="curves-structure-nurbs-weight">NURBS spline control points are different than other spline types because they have a special weight property.
 This weight property controls how much influence the control point has on the surface.
 This weight should not be confused with the <a class="reference internal" href="editing/transform_panel.html#curves-weight"><span class="std std-ref">Goal Weight</span></a>,
@@ -264,15 +258,15 @@ towards or away from a control point.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tools/draw.html" class="btn btn-neutral float-left" title="Draw" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="primitives.html" class="btn btn-neutral float-right" title="Primitives" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tools/draw.html" class="btn btn-neutral float-left" title="Vẽ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="primitives.html" class="btn btn-neutral float-right" title="Hình Học Cơ Bản" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

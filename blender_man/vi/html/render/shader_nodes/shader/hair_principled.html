@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Principled Hair BSDF &mdash; Blender Manual</title>
+  <title>BSDF Nguyên Tắc của Tóc &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -51,8 +51,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Principled Volume" href="volume_principled.html" />
-    <link rel="prev" title="BSDF Nguyên Tắc -- Principled BSDF" href="principled.html" /> 
+    <link rel="next" title="Thể Tích Nguyên Tắc" href="volume_principled.html" />
+    <link rel="prev" title="BSDF Nguyên Tắc" href="principled.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -72,83 +72,83 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Shader Nodes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Đầu Vào -- Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Bộ Tô Bóng -- Shader</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="add.html">Add Shader</a></li>
-<li class="toctree-l4"><a class="reference internal" href="anisotropic.html">Anisotropic BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="background.html">Nền -- Background</a></li>
-<li class="toctree-l4"><a class="reference internal" href="diffuse.html">Diffuse BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="emission.html">Phát Xạ -- Emission</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glass.html">Glass BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glossy.html">Glossy BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hair.html">Hair BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="holdout.html">Holdout</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mix.html">Mix Shader</a></li>
-<li class="toctree-l4"><a class="reference internal" href="principled.html">BSDF Nguyên Tắc -- Principled BSDF</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Principled Hair BSDF</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Nút tô bóng</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Đầu Vào</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Đầu Ra</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Bộ Tô Bóng</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="add.html">Cộng thêm Bộ Tô Bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="anisotropic.html">BSDF Dị Hướng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="background.html">Nền Đằng Sau</a></li>
+<li class="toctree-l4"><a class="reference internal" href="diffuse.html">BSDF Khuếch Tán</a></li>
+<li class="toctree-l4"><a class="reference internal" href="emission.html">Phát Xạ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glass.html">BSDF Thủy Tinh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glossy.html">BSDF Bóng Bẩy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair.html">BSDF Tóc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="holdout.html">Giữ Lại</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mix.html">Bộ Pha Trộn Tô Bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="principled.html">BSDF Nguyên Tắc</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">BSDF Nguyên Tắc của Tóc</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Đầu Vào</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Đầu Ra</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#references">Nguồn Tham Chiếu</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="volume_principled.html">Principled Volume</a></li>
-<li class="toctree-l4"><a class="reference internal" href="refraction.html">Refraction BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="specular_bsdf.html">Specular BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sss.html">Subsurface Scattering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="toon.html">Toon BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="translucent.html">Translucent BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="transparent.html">Transparent BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="velvet.html">Velvet BSDF</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_absorption.html">Volume Absorption</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_scatter.html">Volume Scatter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_principled.html">Thể Tích Nguyên Tắc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="refraction.html">BSDF Khúc Xạ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="specular_bsdf.html">Lóng Lánh BSDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sss.html">Tán Xạ Dưới Bề Mặt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toon.html">BSDF Hoạt Họa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="translucent.html">BSDF Trong Mờ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="transparent.html">BSDF Trong Suốt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="velvet.html">BSDF Vải Nhung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_absorption.html">Hấp Thụ Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_scatter.html">Tán Xạ Thể Tích</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../textures/index.html">Texture</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Vectơ -- Vector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm -- Group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../osl.html">Open Shading Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../textures/index.html">Chất Liệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Màu Sắc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vector/index.html">Véctơ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Bộ Biến Đổi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../osl.html">Ngôn Ngữ Tô Bóng Mở</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -165,10 +165,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Rendering</a> &raquo;</li>
-          <li><a href="../index.html">Shader Nodes</a> &raquo;</li>
-          <li><a href="index.html">Bộ Tô Bóng -- Shader</a> &raquo;</li>
-      <li>Principled Hair BSDF</li>
+          <li><a href="../../index.html">Kết xuất</a> &raquo;</li>
+          <li><a href="../index.html">Nút tô bóng</a> &raquo;</li>
+          <li><a href="index.html">Bộ Tô Bóng</a> &raquo;</li>
+      <li>BSDF Nguyên Tắc của Tóc</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -178,14 +178,14 @@
            <div itemprop="articleBody">
              
   <section id="principled-hair-bsdf">
-<span id="bpy-types-shadernodebsdfhairprincipled"></span><h1>Principled Hair BSDF<a class="headerlink" href="#principled-hair-bsdf" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-shadernodebsdfhairprincipled"></span><h1>BSDF Nguyên Tắc của Tóc<a class="headerlink" href="#principled-hair-bsdf" title="Permalink to this headline"></a></h1>
 <figure class="align-right" id="id5" style="width: 30%">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_node-melaninconcentration.png" src="../../../_images/render_shader-nodes_shader_hair-principled_node-melaninconcentration.png" />
 <figcaption>
 <p><span class="caption-text">Principled Hair BSDF under Melanin concentration.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p><span class="guilabel">Cycles Only</span></p>
+<p>Không Gian Tư Thế <span class="guilabel">Duy các Xương</span></p>
 <p>The <em>Principled Hair</em> <abbr title="Bidirectional Scattering Distribution Function">BSDF</abbr> is a physically-based,
 easy-to-use shader for rendering hair and fur.</p>
 <div class="admonition tip">
@@ -196,9 +196,9 @@ and <em>Random Roughness</em>, which remap the specified Melanin/Roughness value
 the range <span class="math notranslate nohighlight">\(Color/Roughness \pm Randomization\%\)</span>.</p>
 </div>
 <section id="inputs">
-<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Vào<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
 <dl>
-<dt>Color</dt><dd><p>The RGB color of the strand. Only used in Direct coloring.</p>
+<dt>Màu Sắc</dt><dd><p>The RGB color of the strand. Only used in Direct coloring.</p>
 <div class="admonition hint">
 <p class="admonition-title">Gợi ý</p>
 <p>The chosen color is converted to an absorption coefficient with
@@ -216,7 +216,7 @@ the following formula (section 4.2 of <a class="reference internal" href="#cbtb1
 </figcaption>
 </figure>
 </dd>
-<dt>Melanin</dt><dd><p>Absolute quantity of pigment.
+<dt>Mêlanin</dt><dd><p>Absolute quantity of pigment.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Gợi ý</p>
@@ -227,11 +227,11 @@ Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to
 <figure class="align-center" id="id7">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin.jpg" />
 <figcaption>
-<p><span class="caption-text">Melanin.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Mêlanin.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </dd>
-<dt>Melanin Redness</dt><dd><p>Ratio of pheomelanin to eumelanin.
+<dt>Độ Đỏ của Mêlanin</dt><dd><p>Ratio of pheomelanin to eumelanin.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Gợi ý</p>
@@ -248,11 +248,11 @@ pheomelanin * \left[\begin{matrix} 0.343 \\ 0.733 \\ 1.924 \\ \end{matrix}\right
 <figure class="align-center" id="id8">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-melanin-redness.jpg" />
 <figcaption>
-<p><span class="caption-text">Melanin Redness.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Độ Đỏ của Mêlanin.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </dd>
-<dt>Tint</dt><dd><p>Color used for dyeing the hair after applying the melanin pigment.
+<dt>Nhuốm Màu</dt><dd><p>Color used for dyeing the hair after applying the melanin pigment.
 It is not subject to randomization.
 It can be disabled by setting the color to white.</p>
 <div class="admonition hint">
@@ -267,19 +267,19 @@ the absorption coefficient of the melanin concentration.</p>
 </figcaption>
 </figure>
 </dd>
-<dt>Absorption Coefficient</dt><dd><p>Attenuation coefficient <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<dt>Hệ số hấp thụ</dt><dd><p>Attenuation coefficient <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 </dd>
-<dt>Độ Ráp -- Roughness</dt><dd><p>Specify how much the glints are smoothed in the direction of the hair shaft.
+<dt>Độ Ráp/Độ Nhám/Ráp/Rối</dt><dd><p>Specify how much the glints are smoothed in the direction of the hair shaft.
 Too low values will smoothen the hair to the point of looking almost metallic,
 making glints look like <a class="reference internal" href="../../../glossary/index.html#term-Fireflies"><span class="xref std std-term">Fireflies</span></a>; while setting it too high will result in a Lambertian look.</p>
 <figure class="align-center" id="id10">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-roughness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-roughness.jpg" />
 <figcaption>
-<p><span class="caption-text">Roughness.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Độ Ráp/Độ Nhám/Ráp/Rối.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </dd>
-<dt>Radial Roughness</dt><dd><p>Specify how much the glints are smoothed in the direction of the hair tangent.
+<dt>Độ Ráp/Rối Tỏa Tròn</dt><dd><p>Specify how much the glints are smoothed in the direction of the hair tangent.
 Too low values will concentrate the glint;
 while setting it too high will spread the light across the width of the strand.</p>
 <div class="admonition hint">
@@ -292,30 +292,30 @@ scale factor <span class="math notranslate nohighlight">\(s\)</span> (section 4.
 <figure class="align-center" id="id11">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-radial-roughness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-radial-roughness.jpg" />
 <figcaption>
-<p><span class="caption-text">Radial Roughness.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Độ Ráp/Rối Tỏa Tròn.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <dl>
-<dt>Coat</dt><dd><p>Simulate a shiny coat of fur, by reducing the Roughness to the given factor
+<dt>Lớp Tráng/Vỏ Bọc</dt><dd><p>Simulate a shiny coat of fur, by reducing the Roughness to the given factor
 only for the first light bounce (diffuse).
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to a reduction of <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of the original Roughness.</p>
 <figure class="align-center" id="id12">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-coat.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-coat.jpg" />
 <figcaption>
-<p><span class="caption-text">Coat.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Lớp Tráng/Vỏ Bọc.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </dd>
-<dt>IOR -- Chỉ Số Khúc Xạ (IOR)</dt><dd><p>Index of refraction (<a class="reference internal" href="../../../glossary/index.html#term-IOR"><span class="xref std std-term">IOR</span></a>) defining how much the ray changes direction.
+<dt>Chỉ Số Khúc Xạ (IOR)</dt><dd><p>Index of refraction (<a class="reference internal" href="../../../glossary/index.html#term-IOR"><span class="xref std std-term">IOR</span></a>) defining how much the ray changes direction.
 At 1.0 rays pass straight through like in a transparent material;
 higher values give more refraction.
 Default value is <span class="math notranslate nohighlight">\(1.55\)</span>.</p>
 </dd>
-<dt>Dịch Chuyển -- Offset</dt><dd><p>Tilts the glint of the hair by increasing the angle of the scales of
+<dt>Dịch Chuyển</dt><dd><p>Tilts the glint of the hair by increasing the angle of the scales of
 the hair's cuticle with respect to the hair shaft.
 Human hair usually has low values.</p>
 </dd>
-<dt>Random Color</dt><dd><p>For each strand, vary the melanin concentration by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
+<dt>Ngẫu Nhiên Hóa Màu Sắc</dt><dd><p>For each strand, vary the melanin concentration by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of
 the initial melanin concentration.</p>
 <div class="admonition hint">
@@ -326,11 +326,11 @@ where <span class="math notranslate nohighlight">\(randomFactor = 1.0 + 2.0*(Ran
 <figure class="align-center" id="id13">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-color.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-color.jpg" />
 <figcaption>
-<p><span class="caption-text">Random Color.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ngẫu Nhiên Hóa Màu Sắc.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </dd>
-<dt>Random Roughness</dt><dd><p>For each strand, vary both Roughness values by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
+<dt>Ngẫu Nhiên Hóa Độ Nhám</dt><dd><p>For each strand, vary both Roughness values by <span class="math notranslate nohighlight">\(RandomFactor\)</span>.
 Range <span class="math notranslate nohighlight">\([0, 1]\)</span> equivalent to <span class="math notranslate nohighlight">\([0\%, 100\%]\)</span> of
 the initial roughness values.</p>
 <div class="admonition hint">
@@ -340,25 +340,24 @@ the initial roughness values.</p>
 <figure class="align-center" id="id14">
 <img alt="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-roughness.jpg" src="../../../_images/render_shader-nodes_shader_hair-principled_demo-random-roughness.jpg" />
 <figcaption>
-<p><span class="caption-text">Random Roughness.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Ngẫu Nhiên Hóa Độ Nhám.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </dd>
-<dt>Random</dt><dd><p>Random number source. If no node is connected here, it is automatically
-instanced with the value obtained from <span class="menuselection">Hair Info ‣ Random</span>.</p>
+<dt>Ngẫu Nhiên</dt><dd><p>Random number source. If no node is connected here, it is automatically instanced with the value obtained from <span class="menuselection">Thông Tin về Tóc (Hair Info) ‣ Ngẫu Nhiên (Random)</span>.</p>
 </dd>
 </dl>
 </section>
 <section id="properties">
-<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<h2>Tính Chất<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
 <dl>
-<dt>Color Parametrization</dt><dd><p>The shader provides three different ways, or <em>parametrizations</em>, to color the hair strands.</p>
+<dt>Thông số màu</dt><dd><p>The shader provides three different ways, or <em>parametrizations</em>, to color the hair strands.</p>
 <dl class="field-list">
-<dt class="field-odd">Direct Coloring</dt>
+<dt class="field-odd">Tô màu trực tiếp</dt>
 <dd class="field-odd"><p>Choose the desired RGB color and the shader will approximate
 the necessary <em>absorption coefficient</em> (below).</p>
 </dd>
-<dt class="field-even">Melanin Concentration</dt>
+<dt class="field-even">Nồng độ melanin</dt>
 <dd class="field-even"><p>This mode defines the color as the quantity and
 ratio of the pigments which are commonly found in hair and fur,
 <em>eumelanin</em> (prevalent in brown-black hair) and <em>pheomelanin</em> (red hair).
@@ -373,7 +372,7 @@ Increasing concentrations darken the hair (the following are with <em>Melanin Re
 </ul>
 <p>Additionally, the <em>Tint</em> inputs allows to dye the hair with the desired color.</p>
 </dd>
-<dt class="field-odd">Absorption Coefficient</dt>
+<dt class="field-odd">Hệ số hấp thụ</dt>
 <dd class="field-odd"><p>Specifies the attenuation coefficient <span class="math notranslate nohighlight">\(\sigma_{a}\)</span>, as applied by the <a class="reference external" href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law#Expression_with_attenuation_coefficient">Beer-Lambert law</a>.
 This mode is intended mainly for technical users who want to use coefficients from the literature
 without any sort of conversion.</p>
@@ -383,14 +382,14 @@ without any sort of conversion.</p>
 </dl>
 </section>
 <section id="outputs">
-<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Ra<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>BSDF</dt><dd><p>Standard shader output.</p>
+<dt>BSDF</dt><dd><p>Đầu ra chuẩn của bộ tô bóng.</p>
 </dd>
 </dl>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
+<h2>Nguồn Tham Chiếu<a class="headerlink" href="#references" title="Permalink to this headline"></a></h2>
 <p>This shader is an implementation of the paper by Chiang et al. <a class="reference internal" href="#cbtb16" id="id4"><span>[CBTB16]</span></a>,
 which was used in the Disney film, &quot;Zootopia&quot;<sup>®</sup>.</p>
 <dl class="citation">
@@ -412,15 +411,15 @@ An Energy‐Conserving Hair Reflectance Model. Computer Graphics Forum, 30: 1181
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="principled.html" class="btn btn-neutral float-left" title="BSDF Nguyên Tắc -- Principled BSDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="volume_principled.html" class="btn btn-neutral float-right" title="Principled Volume" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="principled.html" class="btn btn-neutral float-left" title="BSDF Nguyên Tắc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="volume_principled.html" class="btn btn-neutral float-right" title="Thể Tích Nguyên Tắc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

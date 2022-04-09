@@ -1,9 +1,11 @@
+import sys
 import os
 from collections import OrderedDict
 import hashlib
 import time
 from collections import deque
-from fuzzywuzzy import fuzz
+# from fuzzywuzzy_src.build.fuzzywuzzy import fuzz
+# from fuzzywuzzy import fuzz
 from bisect import bisect_left
 from matcher import MatcherRecord
 import re
@@ -14,7 +16,7 @@ from ignore import Ignore as ig
 from textmap import TextMap as TM
 from pattern_utils import PatternUtils as pu
 from string_utils import StringUtils as st
-from gettext_within import GetTextWithin as gt
+from get_text_within import GetTextWithin as gt
 
 from definition import Definitions as df, \
     SentStructMode as SMODE, \
@@ -106,7 +108,7 @@ class Common:
         if is_url:
             return False
 
-        left, mid, right = gt.getTextWithin(txt)
+        left, mid, right = gt.getTextMargin(txt)
         is_path = Common.isPath(mid)
         if is_path:
             return True
@@ -159,14 +161,10 @@ class Common:
             new_s2 = s2_start + s2_mid + s1_end
         return new_s2
 
-    def matchCase(from_str : str , to_str : str) -> str:
+    def matchCase(from_str : str , to_str : str, matching_from_begin_end=False) -> str:
         from case_action_list import CaseActionList
-        try:
-            new_txt = CaseActionList.matchCase(from_str, to_str)
-            return new_txt
-        except Exception as e:
-            msg = f'from_str: [{from_str}]; to_str:[{to_str}]\n{e}'
-            raise RuntimeError(msg)
+        new_txt = CaseActionList.matchCase(from_str, to_str, matching_from_begin_end=matching_from_begin_end)
+        return new_txt
 
     def beginAndEndPunctuation(msg, is_single=False):
         if is_single:
@@ -692,17 +690,12 @@ class Common:
         mm: MatcherRecord = None
 
         try:
-            for s, mm in abbr_dict.items():
-                l = mm.getSubEntriesAsList()
-                for index, (loc, expr) in enumerate(l):
-                    is_orig_part = (index == 0)
-                    is_abbrev_part = (index == 1)
-                    if is_orig_part:
-                        abbrev_orig_rec = expr
-                    if is_abbrev_part:
-                        found_texts = df.ABBREV_CONTENT_PARSER.findall(expr)
-                        first_entry = found_texts[0]
-                        (abbrev_part, exp_part) = first_entry
+            abbrev_mm: MatcherRecord = None
+            (abbrev_loc, abbrev_mm) = list(abbr_dict.items())[0]
+            sub_list = abbrev_mm.getSubEntriesAsList()
+            abbrev_orig_rec = sub_list[0]
+            ab_loc, abbrev_part = sub_list[1]
+            exp_loc, exp_part = sub_list[2]
         except Exception as e:
             msg = f'abbr_txt:{abbr_txt}; exception:{e}'
             df.LOG(msg, error=True)
@@ -1176,10 +1169,17 @@ class Common:
         return trans
 
     def jointText(orig: str, tran: str, loc: tuple):
-        backup = [str(orig), str(tran)]
-        if not bool(tran):
-            return orig
+        s, e = loc
+        left = orig[:s]
+        right = orig[e:]
+        has_tran = (tran is not None)
+        if has_tran:
+            new_str = left + tran + right
+        else:
+            new_str = left + right
+        return new_str
 
+    def jointTextAndRemove(orig: str, tran: str, loc: tuple):
         s, e = loc
         left = orig[:s]
         right = orig[e:]
@@ -1277,19 +1277,6 @@ class Common:
         final_pat = "".join(pattern_list)
         simplified_pat = final_pat.replace('\\s?\\s?', '\\s?')
         simplified_pat = simplified_pat.replace('\\s?( )\\s?', '\\s?')
-
-        # test_pat = "".join(simplified_pat)
-        # test_txt= "**not** the orientation",
-        #
-        # match_1 = re.search(test_pat, test_txt, flags=re.I)
-        # match_2 = re.compile(test_pat, flags=re.I)
-        # grp = match_2.findall(test_pat)
-        # #
-        # match = pu.patternMatchAll(re.compile(test_pat, flags=re.I), test_txt)
-        #
-        # is_match = bool(match or match_1 or grp)
-        # if is_match:
-        #     pass
 
         pattern_txt = r'^%s$' % (simplified_pat)
         # df.LOG(pattern_txt, error=False)
@@ -1683,6 +1670,36 @@ class Common:
             matched_rate = 100
             selected_part = in_str
         return selected_part
+
+    def getBracketTextFromOBSBlank(obs: LocationObserver, is_include_bracket=False):
+        from string_utils import StringUtils as st
+        def adjustLocation(entry):
+            orig_loc = adjustLocation.orig_loc
+            loc = entry[0]
+            mm: MatcherRecord = entry[1]
+            txt = mm.txt
+            (os, oe) = orig_loc
+            (cs, ce) = loc
+            ns = os + cs
+            ne = ns + len(txt)
+            new_loc = (ns, ne)
+            mm.updateMasterLocTuple(new_loc)
+            return mm
+
+        def removeBlank(entry):
+            loc = entry[0]
+            mm: MatcherRecord = entry[1]
+            txt = mm.txt
+            found_dict = pu.findInvert(df.FILLER_CHAR_INVERT, txt)
+            sub_mm: MatcherRecord
+            adjustLocation.orig_loc = loc
+            adjusted_list = list(map(adjustLocation, found_dict.items()))
+            return adjusted_list
+
+        local_found_dict = st.getTextWithinBrackets('<|(', '>|)', obs.blank, is_include_bracket=is_include_bracket)
+        removed_blank_list = list(map(removeBlank, local_found_dict.items()))
+        removed_blank_list = [x for y in removed_blank_list for x in y]
+        return removed_blank_list
 
     def debugging(txt):
         msg = "Opposing"

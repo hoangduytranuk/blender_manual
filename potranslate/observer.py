@@ -4,13 +4,136 @@ from definition import Definitions as df
 from matcher import MatcherRecord
 
 class LocationObserver(OrderedDict):
+    symbol_txt = r'[\W]+'
+    left_symbol = r'^(%s)' % (symbol_txt)
+    right_symbol = r'(%s)$' % (symbol_txt)
+    all_symbol_txt = r'^(%s)$' % (symbol_txt)
+    SYMBOLS = re.compile(symbol_txt)
+    LEFT_SYMBOLS = re.compile(left_symbol)
+    RIGHT_SYMBOLS = re.compile(right_symbol)
+    ALL_SYMBOLS = re.compile(all_symbol_txt)
+    
     def __init__(self, msg):
         self.orig_msg = msg
         self.blank = str(msg)
         self.marked_loc={}
 
+    def __repr__(self):
+        string = ""
+        try:
+            string = '\n----LocationObserver start------'
+            # string += "\nrecord:\n{!r}".format(self.__dict__)
+            string += f'\nself.orig_msg: {self.orig_msg}'
+            string += f'\nself.blank: {self.blank}'
+            for (loc, txt) in self.marked_loc.items():
+                string += f'\n[{loc}]: [{txt}]'
+            string += '\n----LocationObserver end------\n'
+        except Exception as e:
+            pass
+        return string
+
+    @classmethod
+    def reproduce(cls, msg):
+        return cls(msg)
+
+    def hasBlankedAreas(self):
+        return (len(self.marked_loc) > 0)
+
+    def hasLeftRight(self):
+        return self.hasBlankedAreas()
+
+    def getLocList(self):
+        loc_list = list(self.marked_loc)
+        loc_list.sort()
+        return loc_list
+
+    def getLeft(self):
+        fill_char_index = self.blank.find(df.FILLER_CHAR)
+        is_found = (fill_char_index >=0)
+        if not is_found:
+            return self.orig_msg
+        else:
+            e = max(0, fill_char_index)
+            return self.orig_msg[:e]
+
+    def getRight(self):
+        fill_char_index = self.blank.rfind(df.FILLER_CHAR)
+        is_found = (fill_char_index >=0)
+        if not is_found:
+            return self.orig_msg
+        else:
+            s = min(len(self.orig_msg), fill_char_index + 1)
+            return self.orig_msg[s:]
+
+    def stripNonAlphaBegin(self):
+        orig_coord = (0, len(self.orig_msg))
+        (s, e) = orig_coord
+        left = self.getLeft()
+        left_match = LocationObserver.LEFT_SYMBOLS.search(left)
+        if left_match is not None:
+            left_match_part = left_match.group(0)
+            s = len(left_match_part)
+            txt = self.orig_msg[s:e]
+        loc = (s, e)
+        return (loc, txt)
+
+    def stripNonAlphaEnd(self):
+        orig_coord = (0, len(self.orig_msg))
+        (s, e) = orig_coord
+        right = self.getRight()
+        right_match = self.patternMatchAll(LocationObserver.RIGHT_SYMBOLS, right)
+        if right_match is not None:
+            right_match_part = right_match.group(0)
+            e = max(0, e - len(right_match_part))
+            txt = self.orig_msg[s:e]
+        loc = (s, e)
+        return (loc, txt)
+
+    def getStrippedNonAlpha(self, txt: str):
+        orig_coord = (0, len(txt))
+        (s, e) = orig_coord
+        (begin_loc, txt) = self.stripNonAlphaBegin(txt)
+        s = begin_loc[0]
+        (end_loc, txt) = self.stripNonAlphaEnd(txt)
+        e = s + len(txt)
+        loc = (s, e)
+        return (loc, txt)
+
+    def getMid(self):
+        orig_coord = (0, len(self.orig_msg))
+        (s, e) = orig_coord
+        new_txt = str(self.orig_msg)
+
+        left_stripped = False
+        right_stripped = False
+
+        left = self.getLeft()
+        right = self.getRight()
+        is_same = (left == right == self.orig_msg)
+        if is_same:
+            left = ""
+            right = ""
+            return (orig_coord, new_txt)
+
+        left_match = LocationObserver.LEFT_SYMBOLS.search(left)
+        right_match = LocationObserver.RIGHT_SYMBOLS.search(right)
+        is_cut_left = (left_match is not None)
+        is_cut_right = (right_match is not None)
+        if is_cut_left:
+            left_part = left_match.group(0)
+            left_len = len(left_part)
+            s += left_len
+            new_txt = new_txt[left_len:]
+        if is_cut_right:
+            right_part = right_match.group(0)
+            right_len = len(right_part)
+            e -= right_len
+            new_txt = new_txt[:-right_len]
+        loc = (s, e)
+        return (loc, new_txt)
+
     def patternMatchAll(self, pat, text):
-        return_dict = {}
+        return_dict = OrderedDict()
         try:
             for m in pat.finditer(text):
                 match_record = MatcherRecord(matcher_record=m)
@@ -19,7 +142,8 @@ class LocationObserver(OrderedDict):
                 dict_entry = {loc: match_record}
                 return_dict.update(dict_entry)
         except Exception as e:
-            pass
+            msg = f'pattern:[{pat}]\ntext:[{text}]\nException:[{e}]'
+            raise RuntimeError(msg)
             # df.LOG(e)
         return return_dict
 
@@ -46,10 +170,33 @@ class LocationObserver(OrderedDict):
         except Exception as e:
             df.LOG(f'{e}')
 
-    def markLocListAsUsed(self, loc_list: list):
+    def jointText(self, orig: str, tran: str, loc: tuple):
+        backup = [str(orig), str(tran)]
+        if not bool(tran):
+            return orig
+
+        s, e = loc
+        left = orig[:s]
+        right = orig[e:]
+        new_str = left + tran + right
+        return new_str
+
+    def markAllLocAsKeep(self, loc_list: list):
+        try:
+            all_fill = (df.FILLER_CHAR * len(self.blank))
+            loc_list.sort(reverse=True)
+            for loc in loc_list:
+                (s, e) = loc
+                word = self.orig_msg[s: e]
+                all_fill = self.jointText(all_fill, word, loc)
+            self.blank = all_fill
+        except Exception as e:
+            pass
+
+    def markLocListAsUsed(self, loc_list: list, filler_char=df.FILLER_CHAR):
         try:
             for loc in loc_list:
-                self.markLocAsUsed(loc)
+                self.markLocAsUsed(loc, filler_char=filler_char)
         except Exception as e:
             pass
 
@@ -89,6 +236,22 @@ class LocationObserver(OrderedDict):
         except Exception as e:
             return False
 
+    def checkOverlappedLocList(self, loc_list):
+        def sortByLength(loc):
+            len = (loc[1] - loc[0])
+            return len
+
+        over_lapped_list=[]
+        sorted_by_length = list(sorted(loc_list, reverse=True, key=sortByLength))
+        for loc in sorted_by_length:
+            is_taken = self.isLocUsed(loc)
+            if is_taken:
+                over_lapped_list.append(loc)
+            else:
+                self.markLocAsUsed(loc)
+
+        return over_lapped_list
+
     def isUsableLoc(self, loc):
         '''
         Check to see if a loc is used and is contained within, but not overlapped either on left or right
@@ -113,22 +276,30 @@ class LocationObserver(OrderedDict):
         for loc in loc_list:
             self.markLocAsUsed(loc)
 
-    def markAsUsed(self, s: int, e: int):
-        loc = (s, e)
-        marked_loc_entry = {loc: self.blank[s:e]}
-        blk = (df.FILLER_CHAR * (e - s))
-        left = self.blank[:s]
-        right = self.blank[e:]
-        self.blank = left + blk + right
-        self.marked_loc.update(marked_loc_entry)
+    def markAsUsed(self, s: int, e: int, filler_char=df.FILLER_CHAR):
+        def insertMarkedLoc(ss: int, ee: int):
+            loc = (ss, ee)
+            marked_loc_entry = {loc: self.blank[ss:ee]}
+            blk = (filler_char * (ee - ss))
+            left = self.blank[:ss]
+            right = self.blank[ee:]
+            self.blank = left + blk + right
+            self.marked_loc.update(marked_loc_entry)
+
+        marking_request_loc = self.blank[s: e]
+        not_filled_dict = self.patternMatchAll(df.NOT_FILLER_CHARS, marking_request_loc)
+        for (loc, mm) in not_filled_dict.items():
+            (ls, le) = loc
+            (ns, ne) = (s + ls, s + le)
+            insertMarkedLoc(ns, ne)
 
     def hasMarkedLoc(self):
         marked_loc_length = len(self.marked_loc)
         return (marked_loc_length > 0)
 
-    def markLocAsUsed(self, loc: tuple):
+    def markLocAsUsed(self, loc: tuple, filler_char=df.FILLER_CHAR):
         ss, ee = loc
-        self.markAsUsed(ss, ee)
+        self.markAsUsed(ss, ee, filler_char=filler_char)
 
     def isPartlyUsed(self, s: int, e: int):
         part = self.blank[s:e]
@@ -162,12 +333,23 @@ class LocationObserver(OrderedDict):
         is_fully_done = (df.FILLER_CHAR_ALL_PATTERN.search(self.blank) is not None)
         return is_fully_done
 
-    def getUnmarkedPartsAsDict(self, reversing=True):
-        untran_dict = self.patternMatchAll(df.NOT_FILLER_CHARS, self.blank)
+    def getUnmarkedPartsAsDict(self, reversing=True, marking_off=True):
+        unmarked_dict = self.patternMatchAll(df.NOT_FILLER_CHARS, self.blank)
         if reversing:
-            return reversed(untran_dict)
+            try:
+                if marking_off:
+                    loc_list = unmarked_dict.keys()
+                    self.markLocListAsUsed(loc_list)
+
+                rev_dict_list = list(unmarked_dict.items())
+                rev_dict_list.sort(reverse=reversing)
+                return OrderedDict(rev_dict_list)
+            except Exception as e:
+                msg = f'[{self.orig_msg}], e:[{e}]'
+                df.LOG(msg)
+                raise RuntimeError(msg)
         else:
-            return untran_dict
+            return unmarked_dict
 
     def findInvert(self, pattern: re.Pattern, is_reverse=False, is_removing_symbol=False):
         def getNoneAlphaPart(msg, is_start=True):
@@ -232,26 +414,7 @@ class LocationObserver(OrderedDict):
         self.markLocListAsUsed(used_loc_list)
 
         invert_dict = self.getUnmarkedPartsAsDict(reversing=is_reverse)
-
-        mm: MatcherRecord = None
-        if is_removing_symbol:
-            new_mm_dict = OrderedDict()
-            for (loc, mm) in invert_dict.items():
-                try:
-                    left, mid, right = getTextWithin(mm.txt)
-                    if not bool(mid):
-                        continue
-
-                    (s, e) = loc
-                    mm.txt = mid
-                    mm.s = (s + len(left))
-                    mm.e = (e - len(right))
-                    loc = (mm.s, mm.e)
-                    new_entry = {loc: mm}
-                    new_mm_dict.update(new_entry)
-                except Exception as e:
-                    msg = f'mm:{mm} e:[{e}]'
-                    raise RuntimeError(msg)
-
-            invert_dict = new_mm_dict
         return invert_dict
+
+
+

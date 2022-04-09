@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weighted Normal Modifier &mdash; Blender Manual</title>
+  <title>Bộ Điều Chỉnh Pháp Tuyến Có Trọng Lượng &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Array Modifier" href="../generate/array.html" />
-    <link rel="prev" title="Vertex Weight Proximity Modifier" href="weight_proximity.html" /> 
+    <link rel="next" title="Bộ Điều Chỉnh Mảng" href="../generate/array.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Trọng Lượng Điểm Đỉnh dùng Khoảng Cách Xa Gần" href="weight_proximity.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,62 +71,62 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html#modify">Modify</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="data_transfer.html">Data Transfer Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mesh_cache.html">Mesh Cache Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mesh_sequence_cache.html">Mesh Sequence Cache Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="normal_edit.html">Normal Edit Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="uv_project.html">UV Project Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="uv_warp.html">UV Warp Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="weight_edit.html">Vertex Weight Edit Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="weight_mix.html">Vertex Weight Mix Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="weight_proximity.html">Vertex Weight Proximity Modifier</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Weighted Normal Modifier</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Các Tùy Chọn Bộ Điều Chỉnh Thông Thường</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#modify">Sửa Đổi</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="data_transfer.html">Bộ Điều Chỉnh Thuyên Chuyển Dữ Liệu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_cache.html">Bộ Điều Chỉnh bộ nhớ đệm khung lưới</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_sequence_cache.html">Bộ Điều Chỉnh bộ nhớ đệm Trình Tự khung lưới</a></li>
+<li class="toctree-l4"><a class="reference internal" href="normal_edit.html">Bộ Điều Chỉnh Pháp Tuyến</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_project.html">Bộ Điều Chỉnh Phóng Chiếu UV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="uv_warp.html">UV Bộ Điều Chỉnh Uốn Oằn UV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_edit.html">Bộ Điều Chỉnh biên soạn trọng lượng điểm đỉnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_mix.html">Bộ Điều Chỉnh Pha Trộn trọng lượng điểm đỉnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="weight_proximity.html">Bộ Điều Chỉnh Trọng Lượng Điểm Đỉnh dùng Khoảng Cách Xa Gần</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh <abbr title="Weighted Normals">Pháp Tuyến Có Trọng Lượng</abbr></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#deform">Biến Dạng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Vật Lý</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -143,9 +143,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Modeling</a> &raquo;</li>
-          <li><a href="../index.html">Modifiers</a> &raquo;</li>
-      <li>Weighted Normal Modifier</li>
+          <li><a href="../../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="../index.html">Bộ Điều Chỉnh</a> &raquo;</li>
+      <li>Bộ Điều Chỉnh <abbr title="Weighted Normals">Pháp Tuyến Có Trọng Lượng</abbr></li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
              
   <section id="weighted-normal-modifier">
-<span id="bpy-types-weightednormalmodifier"></span><span id="index-0"></span><h1>Weighted Normal Modifier<a class="headerlink" href="#weighted-normal-modifier" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-weightednormalmodifier"></span><span id="index-0"></span><h1>Bộ Điều Chỉnh <abbr title="Weighted Normals">Pháp Tuyến Có Trọng Lượng</abbr><a class="headerlink" href="#weighted-normal-modifier" title="Permalink to this headline"></a></h1>
 <p>This modifier changes the custom normals of a mesh, using various selectable methods.
 This can be useful to make some faces appear very flat during shading, among other effects.
 See <a class="reference internal" href="../../meshes/editing/mesh/normals.html"><span class="doc">Normals</span></a> for a description of normals
@@ -166,43 +166,42 @@ and custom normals.</p>
 enabling <a class="reference internal" href="../../meshes/structure.html#auto-smooth"><span class="std std-ref">Auto Smooth</span></a> in the <span class="menuselection">Properties ‣ Object Data ‣ Normals</span>.</p>
 </div>
 <section id="options">
-<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<h2>Tùy Chọn<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
 <figure class="align-right">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_modify_weighted-normal_panel.png"><img alt="../../../_images/modeling_modifiers_modify_weighted-normal_panel.png" src="../../../_images/modeling_modifiers_modify_weighted-normal_panel.png" style="width: 300px;" /></a>
 </figure>
 <dl>
-<dt>Weighting Mode</dt><dd><p>The normals around a vertex will be combined to create a custom (per face corner) normal
+<dt>Chế Độ Tính Trọng Lượng</dt><dd><p>The normals around a vertex will be combined to create a custom (per face corner) normal
 using various weights for each. The <em>Weighting Mode</em> defines how to compute the weights.</p>
 <dl class="simple">
-<dt>Face Area</dt><dd><p>Weight according to the area of the face that the normal originates.
+<dt>Diện Tích Bề Mặt</dt><dd><p>Weight according to the area of the face that the normal originates.
 A larger area means that the normal from that face will get a higher weight in final result.</p>
 </dd>
-<dt>Corner Angle</dt><dd><p>Weight according to the angle each face forms at the vertex.
+<dt>Góc Độ của Đỉnh</dt><dd><p>Weight according to the angle each face forms at the vertex.
 This is the method Blender uses by default when combining face normals to compute a vertex one.</p>
 </dd>
-<dt>Face Area and Angle</dt><dd><p>Weights are obtained by multiplying the face area and corner angle ones.</p>
+<dt>Diện Tích Bề Mặt và Góc Độ</dt><dd><p>Weights are obtained by multiplying the face area and corner angle ones.</p>
 </dd>
 </dl>
 </dd>
-<dt>Trọng Lượng -- Weight</dt><dd><p>Determines how strongly the weights are biased according to the face areas and/or corner angles,
+<dt>Trọng Lượng</dt><dd><p>Determines how strongly the weights are biased according to the face areas and/or corner angles,
 a bit like a contrast setting for a picture.</p>
 <p>A value of 50 means all faces are weighted uniformly.
 More than 50 means faces with higher area or angles are given even more weight (more &quot;contrast&quot;).
 Less than 50 means faces with higher area or angles are given lesser weights (less &quot;contrast&quot;).</p>
 </dd>
-<dt>Giới Hạn -- Threshold</dt><dd><p>A weight-rounding threshold which means that, if two angles or areas differ by less than that threshold,
+<dt>Ngưỡng</dt><dd><p>A weight-rounding threshold which means that, if two angles or areas differ by less than that threshold,
 they will get equal weights.</p>
 </dd>
-<dt>Keep Sharp</dt><dd><p>Preserve <a class="reference internal" href="../../meshes/structure.html#modeling-meshes-normals-sharp-edge"><span class="std std-ref">sharp edges</span></a>,
+<dt>Duy Trì sự Sắc Nhọn</dt><dd><p>Preserve <a class="reference internal" href="../../meshes/structure.html#modeling-meshes-normals-sharp-edge"><span class="std std-ref">sharp edges</span></a>,
 though smoothing will still happen if there are multiple faces between any two sharp edges.</p>
 </dd>
-<dt>Face Influence</dt><dd><p>Use face weights (weak, medium, or strong) as assigned by
+<dt>Tác Động Bề Mặt</dt><dd><p>Use face weights (weak, medium, or strong) as assigned by
 the <a class="reference internal" href="../../meshes/editing/mesh/normals.html"><span class="doc">Set Strength</span></a> tool or
 by the <em>Set Strength</em> mode of a <a class="reference internal" href="../generate/bevel.html"><span class="doc">Bevel</span></a> modifier.</p>
-<p>For example, if three faces meet at a vertex and have the face weights weak, medium, and strong,
-then only the normal associated with the strong face will be used to set the final result.</p>
+<p>Lấy ví dụ, nếu ba bề mặt gặp nhau tại một điểm đỉnh và có trọng lượng bề mặt là yếu, trung bình, và mạnh, rồi sau đó chỉ có pháp tuyến  liên quan với bề mặt mạnh đã được sử dụng để đặt kết quả cuối cùng.</p>
 </dd>
-<dt>Vertex Group</dt><dd><p>If a vertex group is specified, the modifier will only affect those vertices.
+<dt>Nhóm Điểm Đỉnh</dt><dd><p>If a vertex group is specified, the modifier will only affect those vertices.
 The &quot;arrow&quot; button to its right will invert the selection (only affect the vertices <em>not</em> in the vertex group).</p>
 </dd>
 </dl>
@@ -213,15 +212,15 @@ The &quot;arrow&quot; button to its right will invert the selection (only affect
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="weight_proximity.html" class="btn btn-neutral float-left" title="Vertex Weight Proximity Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../generate/array.html" class="btn btn-neutral float-right" title="Array Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="weight_proximity.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Trọng Lượng Điểm Đỉnh dùng Khoảng Cách Xa Gần" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../generate/array.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Mảng" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

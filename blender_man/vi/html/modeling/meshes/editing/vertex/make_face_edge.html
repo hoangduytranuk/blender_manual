@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>New Edge/Face from Vertices &mdash; Blender Manual</title>
+  <title>Cạnh/Bề Mặt Mới từ các Điểm Đỉnh &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../../copyright.html" />
-    <link rel="next" title="Connect Vertex Path" href="connect_vertex_path.html" />
-    <link rel="prev" title="Bevel Vertices" href="bevel_vertices.html" /> 
+    <link rel="next" title="Kết Nối Đường Dẫn Điểm Đỉnh" href="connect_vertex_path.html" />
+    <link rel="prev" title="Khoanh Tròn các Điểm Đỉnh" href="bevel_vertices.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,90 +71,90 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới -- Meshes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc -- Structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Primitives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Công Cụ -- Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Lựa Chọn -- Selecting</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Biên Soạn -- Editing</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../mesh/index.html">Mesh Tools</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="index.html">Vertex Tools</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="extrude_vertices.html">Extrude Vertices</a></li>
-<li class="toctree-l5"><a class="reference internal" href="bevel_vertices.html">Bevel Vertices</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">New Edge/Face from Vertices</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#methods">Methods</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#isolated-vertices">Isolated Vertices</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#isolated-edges">Isolated Edges</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#n-gon-from-edges">N-gon from Edges</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#mixed-vertices-edges">Mixed Vertices/Edges</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#edge-net">Edge-Net</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#point-cloud">Point Cloud</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#single-vertex-selection">Single Vertex Selection</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#dissolve-existing-faces">Dissolve Existing Faces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Khung Lưới</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../structure.html">Cấu Trúc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../primitives.html">Hình Học Cơ Bản</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/index.html">Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../selecting/index.html">Lựa Chọn</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Biên Soạn</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mesh/index.html">Công Cụ Khung Lưới</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Công Cụ điểm đỉnh</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="extrude_vertices.html">Đẩy Trồi/Nới các Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="bevel_vertices.html">Khoanh Tròn các Điểm Đỉnh</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Cạnh/Bề Mặt Mới từ các Điểm Đỉnh</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#methods">Các Phương Pháp</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#isolated-vertices">Các Điểm Đỉnh Biệt Lập</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#isolated-edges">Các Cạnh Biệt Lập</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#n-gon-from-edges">Đa Giác từ Các Cạnh</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#mixed-vertices-edges">Kết Hợp Điểm Đỉnh/Cạnh</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#edge-net">Lưới Cạnh</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#point-cloud">Mây Điểm Chấm</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#single-vertex-selection">Lựa Chọn Đơn Điểm Đỉnh</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#dissolve-existing-faces">Làm Tiêu Tan bề mặt</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="connect_vertex_path.html">Connect Vertex Path</a></li>
-<li class="toctree-l5"><a class="reference internal" href="connect_vertex_pairs.html">Connect Vertex Pairs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="rip_vertices.html">Rip Vertices</a></li>
-<li class="toctree-l5"><a class="reference internal" href="rip_vertices_fill.html">Rip Vertices and Fill</a></li>
-<li class="toctree-l5"><a class="reference internal" href="rip_vertices_extend.html">Rip Vertices and Extend</a></li>
-<li class="toctree-l5"><a class="reference internal" href="slide_vertices.html">Slide Vertices</a></li>
-<li class="toctree-l5"><a class="reference internal" href="smooth_vertices.html">Smooth Vertices</a></li>
-<li class="toctree-l5"><a class="reference internal" href="laplacian_smooth.html">Laplacian Smooth</a></li>
-<li class="toctree-l5"><a class="reference internal" href="blend_shape.html">Blend from Shape</a></li>
-<li class="toctree-l5"><a class="reference internal" href="propagate_shapes.html">Propagate to Shapes</a></li>
-<li class="toctree-l5"><a class="reference internal" href="vertex_groups.html">Vertex Groups</a></li>
-<li class="toctree-l5"><a class="reference internal" href="hooks.html">Hooks</a></li>
-<li class="toctree-l5"><a class="reference internal" href="make_vertex_parent.html">Make Vertex Parent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="connect_vertex_path.html">Kết Nối Đường Dẫn Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="connect_vertex_pairs.html">Kết Nối các Đôi Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rip_vertices.html">Tách Phân Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rip_vertices_fill.html">Tách Phân Điểm Đỉnh và Tô Kín</a></li>
+<li class="toctree-l5"><a class="reference internal" href="rip_vertices_extend.html">Xé Điểm Đỉnh và Nới Ra</a></li>
+<li class="toctree-l5"><a class="reference internal" href="slide_vertices.html">Đẩy Trượt các Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="smooth_vertices.html">Làm Mịn Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="laplacian_smooth.html">Laplace Mịn</a></li>
+<li class="toctree-l5"><a class="reference internal" href="blend_shape.html">Hòa Trộn từ Hình Mẫu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="propagate_shapes.html">Truyền Lan tới các Hình Dạng</a></li>
+<li class="toctree-l5"><a class="reference internal" href="vertex_groups.html">Nhóm Điểm Đỉnh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="hooks.html">Móc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="make_vertex_parent.html">Đặt Điểm Đỉnh làm Phụ Huynh</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../edge/index.html">Edge Tools</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../face/index.html">Face Tools</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../uv.html">UV Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../edge/index.html">Công Cụ về Cạnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../face/index.html">Công Cụ bề mặt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../uv.html">Công Cụ UV</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../properties/index.html">Tính Chất</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../uv/index.html">Các UV -- UVs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Mesh Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Retopology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mesh_analysis.html">Phân Tích Khung Lưới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../retopology.html">Tái cấu trúc liên kết</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Empties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modifiers/index.html">Bộ Điều Chỉnh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -171,11 +171,11 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Modeling</a> &raquo;</li>
-          <li><a href="../../index.html">Khung Lưới -- Meshes</a> &raquo;</li>
-          <li><a href="../index.html">Biên Soạn -- Editing</a> &raquo;</li>
-          <li><a href="index.html">Vertex Tools</a> &raquo;</li>
-      <li>New Edge/Face from Vertices</li>
+          <li><a href="../../../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="../../index.html">Khung Lưới</a> &raquo;</li>
+          <li><a href="../index.html">Biên Soạn</a> &raquo;</li>
+          <li><a href="index.html">Công Cụ điểm đỉnh</a> &raquo;</li>
+      <li>Cạnh/Bề Mặt Mới từ các Điểm Đỉnh</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -185,17 +185,17 @@
            <div itemprop="articleBody">
              
   <section id="new-edge-face-from-vertices">
-<span id="bpy-ops-mesh-edge-face-add"></span><h1>New Edge/Face from Vertices<a class="headerlink" href="#new-edge-face-from-vertices" title="Permalink to this headline"></a></h1>
+<span id="bpy-ops-mesh-edge-face-add"></span><h1>Cạnh/Bề Mặt Mới từ các Điểm Đỉnh<a class="headerlink" href="#new-edge-face-from-vertices" title="Permalink to this headline"></a></h1>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Chế Độ Biên Soạn -- Edit Mode</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Chế Độ Biên Soạn</p>
 </dd>
-<dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">Vertex ‣ New Edge/Face from Vertices</span></p>
+<dt class="field-even">Trình Đơn</dt>
+<dd class="field-even"><p><span class="menuselection">Cốt (Armature) ‣ Tính Chất Tùy Chỉnh (Custom Properties)</span></p>
 </dd>
-<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
+<dt class="field-odd">Tổ Hợp Phím Tắt</dt>
 <dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">F</kbd></p>
 </dd>
 </dl>
@@ -206,10 +206,10 @@ When only two vertices are selected it will create an edge, otherwise it will cr
 yet Blender also supports creating faces from different selections to help to
 quickly build up geometry.</p>
 <section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
+<h2>Các Phương Pháp<a class="headerlink" href="#methods" title="Permalink to this headline"></a></h2>
 <p>The following methods are used automatically depending on the context.</p>
 <section id="isolated-vertices">
-<h3>Isolated Vertices<a class="headerlink" href="#isolated-vertices" title="Permalink to this headline"></a></h3>
+<h3>Các Điểm Đỉnh Biệt Lập<a class="headerlink" href="#isolated-vertices" title="Permalink to this headline"></a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -219,14 +219,14 @@ quickly build up geometry.</p>
 <tr class="row-odd"><td><figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_verts-simple-before.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_verts-simple-before.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_verts-simple-before.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">Before.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Trước.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_verts-simple-after.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_verts-simple-after.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_verts-simple-after.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">After.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Sau.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -235,7 +235,7 @@ quickly build up geometry.</p>
 </table>
 </section>
 <section id="isolated-edges">
-<h3>Isolated Edges<a class="headerlink" href="#isolated-edges" title="Permalink to this headline"></a></h3>
+<h3>Các Cạnh Biệt Lập<a class="headerlink" href="#isolated-edges" title="Permalink to this headline"></a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -245,14 +245,14 @@ quickly build up geometry.</p>
 <tr class="row-odd"><td><figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_edge-simple-before.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_edge-simple-before.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_edge-simple-before.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">Before.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Trước.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id5">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_edge-simple-after.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_edge-simple-after.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_edge-simple-after.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">After.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Sau.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -261,10 +261,10 @@ quickly build up geometry.</p>
 </table>
 </section>
 <section id="n-gon-from-edges">
-<h3>N-gon from Edges<a class="headerlink" href="#n-gon-from-edges" title="Permalink to this headline"></a></h3>
+<h3>Đa Giác từ Các Cạnh<a class="headerlink" href="#n-gon-from-edges" title="Permalink to this headline"></a></h3>
 <p>When there are many edges Blender will make an n-gon.
 Note that, this does not support holes,
-to support holes you need to use the <a class="reference internal" href="../face/fill.html#modeling-meshes-editing-fill"><span class="std std-ref">Phủ/Tô/Lấp Kín -- Fill</span></a> Faces tool.</p>
+to support holes you need to use the <a class="reference internal" href="../face/fill.html#modeling-meshes-editing-fill"><span class="std std-ref">Phủ/Tô Kín/Đổ Sơn</span></a> Faces tool.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -274,14 +274,14 @@ to support holes you need to use the <a class="reference internal" href="../face
 <tr class="row-odd"><td><figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_ngon-before.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_ngon-before.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_ngon-before.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">Before.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Trước.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_ngon-after.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_ngon-after.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_ngon-after.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">After.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Sau.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -290,7 +290,7 @@ to support holes you need to use the <a class="reference internal" href="../face
 </table>
 </section>
 <section id="mixed-vertices-edges">
-<h3>Mixed Vertices/Edges<a class="headerlink" href="#mixed-vertices-edges" title="Permalink to this headline"></a></h3>
+<h3>Kết Hợp Điểm Đỉnh/Cạnh<a class="headerlink" href="#mixed-vertices-edges" title="Permalink to this headline"></a></h3>
 <p>Existing edges are used to make the face as well as an extra vertex.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -301,14 +301,14 @@ to support holes you need to use the <a class="reference internal" href="../face
 <tr class="row-odd"><td><figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_mix-simple-before.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_mix-simple-before.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_mix-simple-before.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">Before.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Trước.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id9">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_mix-simple-after.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_mix-simple-after.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_mix-simple-after.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">After.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Sau.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -317,7 +317,7 @@ to support holes you need to use the <a class="reference internal" href="../face
 </table>
 </section>
 <section id="edge-net">
-<h3>Edge-Net<a class="headerlink" href="#edge-net" title="Permalink to this headline"></a></h3>
+<h3>Lưới Cạnh<a class="headerlink" href="#edge-net" title="Permalink to this headline"></a></h3>
 <p>Sometimes you may have many connected edges without interior faces.</p>
 <table class="docutils align-default">
 <colgroup>
@@ -328,14 +328,14 @@ to support holes you need to use the <a class="reference internal" href="../face
 <tr class="row-odd"><td><figure class="align-default" id="id10">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_net-before.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_net-before.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_net-before.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">Before.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Trước.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id11">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_net-after.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_net-after.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_net-after.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">After.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Sau.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -344,7 +344,7 @@ to support holes you need to use the <a class="reference internal" href="../face
 </table>
 </section>
 <section id="point-cloud">
-<h3>Point Cloud<a class="headerlink" href="#point-cloud" title="Permalink to this headline"></a></h3>
+<h3>Mây Điểm Chấm<a class="headerlink" href="#point-cloud" title="Permalink to this headline"></a></h3>
 <p>When there are many isolated vertices,
 Blender will calculate the edges for an n-gon.</p>
 <table class="docutils align-default">
@@ -356,14 +356,14 @@ Blender will calculate the edges for an n-gon.</p>
 <tr class="row-odd"><td><figure class="align-default" id="id12">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_cloud-before.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_cloud-before.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_cloud-before.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">Before.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Trước.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id13">
 <a class="reference internal image-reference" href="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_cloud-after.png"><img alt="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_cloud-after.png" src="../../../../_images/modeling_meshes_editing_vertex_make-face-edge_cloud-after.png" style="width: 200px;" /></a>
 <figcaption>
-<p><span class="caption-text">After.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Về Sau.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -372,7 +372,7 @@ Blender will calculate the edges for an n-gon.</p>
 </table>
 </section>
 <section id="single-vertex-selection">
-<h3>Single Vertex Selection<a class="headerlink" href="#single-vertex-selection" title="Permalink to this headline"></a></h3>
+<h3>Lựa Chọn Đơn Điểm Đỉnh<a class="headerlink" href="#single-vertex-selection" title="Permalink to this headline"></a></h3>
 <p>With a single vertex selected on a boundary,
 the face will be created along the boundary,
 this saves manually selecting the other two vertices.
@@ -391,10 +391,10 @@ Notice this tool can run multiple times to continue creating faces.</p>
 </div>
 </section>
 <section id="dissolve-existing-faces">
-<span id="modeling-mesh-make-face-edge-dissolve"></span><h3>Dissolve Existing Faces<a class="headerlink" href="#dissolve-existing-faces" title="Permalink to this headline"></a></h3>
+<span id="modeling-mesh-make-face-edge-dissolve"></span><h3>Làm Tiêu Tan bề mặt<a class="headerlink" href="#dissolve-existing-faces" title="Permalink to this headline"></a></h3>
 <p>When you have a region of existing faces, creating a face on this selection
 will remove the shared vertices and edges, creating a single face.</p>
-<p>This is simply a convenience for accessing <a class="reference internal" href="../mesh/delete.html#bpy-ops-mesh-dissolve-faces"><span class="std std-ref">Dissolve Faces</span></a>.</p>
+<p>This is simply a convenience for accessing <a class="reference internal" href="../mesh/delete.html#bpy-ops-mesh-dissolve-faces"><span class="std std-ref">Làm tan biến các bề mặt</span></a>.</p>
 </section>
 </section>
 </section>
@@ -403,15 +403,15 @@ will remove the shared vertices and edges, creating a single face.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="bevel_vertices.html" class="btn btn-neutral float-left" title="Bevel Vertices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="connect_vertex_path.html" class="btn btn-neutral float-right" title="Connect Vertex Path" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="bevel_vertices.html" class="btn btn-neutral float-left" title="Khoanh Tròn các Điểm Đỉnh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="connect_vertex_path.html" class="btn btn-neutral float-right" title="Kết Nối Đường Dẫn Điểm Đỉnh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

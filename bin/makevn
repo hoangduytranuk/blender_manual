@@ -1,9 +1,11 @@
 #!/bin/bash
 cd $BLENDER_MAN_EN
-#make clean
+# make clean
 # make gettext
-# sphinx-build -b html -D language=vi ./manual ./build/html
-# sphinx-autobuild -b html -D language=vi ./manual ./build/html
+# sphinx-build -b html -D language=en ./manual ./build/html/en
+# sphinx-autobuild -b html -D language=vi ./manual ./build/html/vi
+# sphinx-build -M html "./manual" "build/en" -j auto -D language='en' 
+sphinx-build -M html "./manual" "build/vi" -j auto -D language='vi' 
 # make -d  -w -B -e SPHINXOPTS="-D language='vi'" 2>&1
 # make -n to show the command that will be executed
 # make clean
@@ -12,5 +14,9 @@ cd $BLENDER_MAN_EN
 # make --debug=av  -w -B -e BF_LANG="vi" 2>&1
 # BF_LANG
 # sphinx-build -M html "./manual" "build" -j auto -D language='vi'
-export BF_LANG="vi"; make -d html
+# make clean
+# make gettext
+# touch locale/vi/LC_MESSAGES/blender_manual.po
+# export BF_LANG="vi"; make -d html
+# cp -a build/html $BLENDER_GITHUB/blender_man/vi
 # open build/html/index.html

@@ -20,7 +20,8 @@ from pattern_utils import PatternUtils as pu
 from string_utils import StringUtils as st
 from sphinx_intl import catalog as c
 from babel.messages import Catalog, Message
-
+from observer import LocationObserver
+from get_text_within import GetTextWithin as gt
 # class CaseInsensitiveDict(dict):
 #     """Basic case insensitive dict with strings only keys."""
 #
@@ -133,6 +134,10 @@ class NoCaseDict(OrderedDict):
         return found_item
 
     def get(self, key, ctx=None):
+        is_debug = ('Set A/D 2D' in key)
+        if is_debug:
+            is_debug = True
+
         trans_txt = None
         left, mid, right = None, None, None
         try:
@@ -141,9 +146,11 @@ class NoCaseDict(OrderedDict):
                 if is_in:
                     trans_txt = self[key]
                 else:
-                    k_lower = key.lower()
-                    left, mid, right = st.getTextWithin(k_lower)
+                    left, mid, right = gt.getTextMargin(key)
                     is_in = (mid in self)
+                    if not is_in:
+                        mid = mid.lower()
+                        is_in = (mid in self)
                     if is_in:
                         trans_txt = self[mid]
             else:
@@ -268,10 +275,10 @@ class NoCaseDict(OrderedDict):
             entry = {(m.id, m.context): m.string}
             self.dict_with_ctx.update(entry)
 
-            if not is_there:
-                print(f'ADD: {entry}')
-            else:
-                print(f'UPDATE: {entry}')
+            # if not is_there:
+            #     print(f'ADD: {entry}')
+            # else:
+            #     print(f'UPDATE: {entry}')
 
         self.reportTime(file_path, t1)
         print(f'Updated from PO:{file_path}, total records:{len(self)} from: {current_count}')

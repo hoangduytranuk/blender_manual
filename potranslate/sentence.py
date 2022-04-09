@@ -12,7 +12,7 @@ from definition import Definitions as df, SentStructMode as SMODE, SentStructMod
 from textmap import TextMap as TM
 from string_utils import StringUtils as st
 from pattern_utils import PatternUtils as pu
-from gettext_within import GetTextWithin as gt
+from get_text_within import GetTextWithin as gt
 
 class StructRecogniser():
     '''
@@ -429,7 +429,7 @@ class StructRecogniser():
             if tran:
                 return tran
 
-            left, mid, right = gt.getTextWithin(txt)
+            left, mid, right = gt.getTextMargin(txt)
             is_valid = ((left or right) and (left != right))
             if not is_valid:
                 return None

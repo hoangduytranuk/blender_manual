@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Map Value Node &mdash; Blender Manual</title>
+  <title>Nút Ánh Xạ giá trị &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Normal Node" href="normal.html" />
-    <link rel="prev" title="Map Range Node" href="map_range.html" /> 
+    <link rel="next" title="Nút pháp tuyến" href="normal.html" />
+    <link rel="prev" title="Nút Ánh Xạ phạm vi" href="map_range.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,61 +71,61 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Compositing</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../sidebar.html">Sidebar</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Node Types</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Input Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Output Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Color Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Converter Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../filter/index.html">Filter Nodes</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Vector Nodes</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="map_range.html">Map Range Node</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Map Value Node</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#inputs">Inputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất -- Properties</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#outputs">Outputs</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ -- Example</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#z-depth-map">Z-Depth Map</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#multiplying-values">Multiplying Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tổng hợp</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sidebar.html">Thanh Bên</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#node-types">Thể Loại Nút</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html">Nút Đầu Vào</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../output/index.html">Nút Đầu Ra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../color/index.html">Nút màu sắc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../converter/index.html">Nút chuyển đổi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filter/index.html">Nút Thanh Lọc</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Nút Véctơ</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="map_range.html">Nút Ánh Xạ phạm vi</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Nút Ánh Xạ giá trị</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#inputs">Đầu Vào</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#properties">Tính Chất</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#outputs">Đầu Ra</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Ví Dụ</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#z-depth-map">Ánh Xạ Độ Sâu Z</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#multiplying-values">Nhân các giá trị</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="normal.html">Normal Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="normalize.html">Normalize Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="vector_curves.html">Vector Curves Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="normal.html">Nút pháp tuyến</a></li>
+<li class="toctree-l4"><a class="reference internal" href="normalize.html">Nút bình thường hóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vector_curves.html">Nút đường cong Vectơ</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../matte/index.html">Matte Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Distort Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm -- Group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Layout Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../matte/index.html">Nút Lớp Lồng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../distort/index.html">Các Nút Bóp Méo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../groups.html">Nhóm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/index.html">Nút Bố Trí</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -142,9 +142,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Compositing</a> &raquo;</li>
-          <li><a href="index.html">Vector Nodes</a> &raquo;</li>
-      <li>Map Value Node</li>
+          <li><a href="../../index.html">Tổng hợp</a> &raquo;</li>
+          <li><a href="index.html">Nút Véctơ</a> &raquo;</li>
+      <li>Nút Ánh Xạ giá trị</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -154,63 +154,54 @@
            <div itemprop="articleBody">
              
   <section id="map-value-node">
-<span id="bpy-types-compositornodemapvalue"></span><h1>Map Value Node<a class="headerlink" href="#map-value-node" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-compositornodemapvalue"></span><h1>Nút Ánh Xạ giá trị<a class="headerlink" href="#map-value-node" title="Permalink to this headline"></a></h1>
 <figure class="align-right" id="id1">
 <img alt="../../../_images/compositing_node-types_CompositorNodeMapValue.png" src="../../../_images/compositing_node-types_CompositorNodeMapValue.png" />
 <figcaption>
-<p><span class="caption-text">Map Value Node.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Nút Ánh Xạ giá trị.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Map Value node is used to scale, offset and clamp values.</p>
+<p>Nút Ánh Xạ giá trị đã được sử dụng để <abbr title="scale">tỷ lệ hóa</abbr>, <abbr title="offset">dịch chuyển</abbr>, và <abbr title="clamp">hạn định</abbr> các giá trị.</p>
 <section id="inputs">
-<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Vào<a class="headerlink" href="#inputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Value -- Giá Trị</dt><dd><p>Standard Value input. (Value refers to each vector in the set.)</p>
+<dt>Giá Trị</dt><dd><p>Đầu vào tiêu chuẩn của giá trị. (giá trị nghĩa là mỗi véctơ trong bộ tập.)</p>
 </dd>
 </dl>
 </section>
 <section id="properties">
-<h2>Tính Chất -- Properties<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
+<h2>Tính Chất<a class="headerlink" href="#properties" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Dịch Chuyển -- Offset</dt><dd><p>Factor added to the input value.</p>
+<dt>Dịch Chuyển</dt><dd><p>Hệ số đã được cho thêm vào vào giá trị đầu vào.</p>
 </dd>
-<dt>Kích Thước -- Size</dt><dd><p>Scales (multiply) the input value.</p>
+<dt>Kích Thước</dt><dd><p>Tỷ lệ hóa (nhân) giá trị đầu vào.</p>
 </dd>
-<dt>Use Minimum, Maximum</dt><dd><p>Enable this to activate their related operation.</p>
+<dt>Sử dụng Mức/Độ Tối Thiểu, tối đa</dt><dd><p>Bật tính năng này lên để kích hoạt phép toán liên quan của chúng.</p>
 </dd>
-<dt>Tối Thiểu, Tối Đa -- Min, Max</dt><dd><p>Defines a range between minimum and maximum to <a class="reference internal" href="../../../glossary/index.html#term-Clamp"><span class="xref std std-term">Clamp</span></a> the input value to.</p>
+<dt>Mức/Độ Tối Thiểu, tối đa</dt><dd><p>Xác định một phạm vi giữa Tối Thiểu và Tối Đa để  <a class="reference internal" href="../../../glossary/index.html#term-Clamp"><span class="xref std std-term">clamp</span></a> (<em>hạn định</em>) giá trị đầu vào.</p>
 </dd>
 </dl>
 </section>
 <section id="outputs">
-<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
+<h2>Đầu Ra<a class="headerlink" href="#outputs" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Value -- Giá Trị</dt><dd><p>Standard value output.</p>
+<dt>Giá Trị</dt><dd><p>Đầu ra tiêu chuẩn của giá trị.</p>
 </dd>
 </dl>
 </section>
 <section id="example">
-<h2>Ví Dụ -- Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<h2>Ví Dụ<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
 <section id="z-depth-map">
-<h3>Z-Depth Map<a class="headerlink" href="#z-depth-map" title="Permalink to this headline"></a></h3>
-<p>This is particularly useful in achieving a depth of field effect,
-where the Map Value node is used to map a Z value
-(which can be 20 or 30 or even 500 depending on the scene) to the range between (0 to 1),
-suitable for connecting to a Blur node.</p>
+<h3>Ánh Xạ Độ Sâu Z<a class="headerlink" href="#z-depth-map" title="Permalink to this headline"></a></h3>
+<p>Điều này đặc biệt hữu ích khi mình muốn tạo hiệu ứng độ sâu trường ảnh, trong đó nút Ánh Xạ giá trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) đã được sử dụng để Ánh Xạ giá trị Z (có thể là 20, 30 hoặc thậm chí là 500 tùy theo cảnh) sang phạm vi giữa (0 đến 1), thích hợp để kết nối với nút Làm Nhòe (<a class="reference internal" href="../filter/blur_node.html#bpy-types-compositornodeblur"><span class="std std-ref">Blur</span></a>).</p>
 </section>
 <section id="multiplying-values">
-<h3>Multiplying Values<a class="headerlink" href="#multiplying-values" title="Permalink to this headline"></a></h3>
-<p>The Map Value node can also be used to multiply values to achieve a desired output value.
-In the mini-map to the right, the Time node outputs a value between 0.0 and 1.0 evenly scaled over 30 frames.
-The <em>first</em> Map Value node multiplies the input by 2,
-resulting in an output value that scales from 0.0 to 2.0 over 30 frames.
-The <em>second</em> Map Value node subtracts 1 from the input,
-giving working values between (-1.00 to 1.0), and multiplies that by 150,
-resulting in an output value between (-150 to 150) over a 30-frame sequence.</p>
+<h3>Nhân các giá trị<a class="headerlink" href="#multiplying-values" title="Permalink to this headline"></a></h3>
+<p>Nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) cũng có thể được sử dụng để nhân giá trị lên thành một giá trị đầu ra mong muốn. Trong sơ đồ nhỏ ở bên phải, nút Thời Gian (<a class="reference internal" href="../../../editors/texture_node/types/input/time.html#bpy-types-texturenodecurvetime"><span class="std std-ref">Time</span></a>) cho ra một giá trị trong phạm vi từ 0,0 đến 1,0, được phân tỷ lệ đồng đều trên 30 khung hình. Nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) <em>đầu tiên</em> nhân giá trị đầu vào lên 2, dẫn đến giá trị của đầu ra được phân tỷ lệ từ 0,0 đến 2,0 trên 30 khung hình. Nút Ánh Xạ Giá Trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) <em>thứ hai</em> khấu trừ 1 khỏi giá trị đầu vào, tạo ra các giá trị hoạt động trong khoảng từ (-1,00 đến 1) và nhân nó với 150 để tạo thành giá trị đầu ra trong khoảng từ (-150 đến 150) trong trình tự 30 khung hình.</p>
 <figure class="align-default" id="id2">
 <img alt="../../../_images/compositing_types_vector_map-value_example.png" src="../../../_images/compositing_types_vector_map-value_example.png" />
 <figcaption>
-<p><span class="caption-text">Using Map Value to multiply.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Sử dụng nút Ánh Xạ giá trị (<a class="reference internal" href="#bpy-types-compositornodemapvalue"><span class="std std-ref">Map Value</span></a>) để thực hiện tính nhân.</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -221,15 +212,15 @@ resulting in an output value between (-150 to 150) over a 30-frame sequence.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="map_range.html" class="btn btn-neutral float-left" title="Map Range Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="normal.html" class="btn btn-neutral float-right" title="Normal Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="map_range.html" class="btn btn-neutral float-left" title="Nút Ánh Xạ phạm vi" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="normal.html" class="btn btn-neutral float-right" title="Nút pháp tuyến" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

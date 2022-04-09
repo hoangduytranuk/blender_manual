@@ -1,11 +1,12 @@
 import os
 import re
 from enum import Enum
-from urlextract import URLExtract as URLX
+# from urlextract import URLExtract as URLX
 import utils as UT
 import inspect as IP
 import math
 from utils import DEBUG
+
 
 class OverLappingState(Enum):
     NONE = 0
@@ -14,12 +15,14 @@ class OverLappingState(Enum):
     BOTH = 3
     WITHIN = 4
 
+
 class TranslationState(Enum):
     UNTRANSLATED = 0
     ACCEPTABLE = 1
     FUZZY = 2
     IGNORED = 3
     REMOVE = 4
+
 
 class TextStyle(Enum):
     NORMAL = 0
@@ -28,16 +31,23 @@ class TextStyle(Enum):
     BOX = 3
     RAW = 4
 
+
 class RefType(Enum):
+    REMOVE_ORIGINAL = "None"
     PYTHON_FORMAT = "%"
     FUNCTION = "func"
     GA = "\`"
+    GENERIC_QUOTE = "*'\""
+    DOUBLE_GA = "``"
+    SINGLE_GA = "`"
+    GA_EMBEDDED_GA = "```"
+    GENERIC_DOUBLE_GA = "``"
+    GENERIC_SINGLE_GA = "`"
+    GENERIC_REF = ":\w+:"
     BLANK_QUOTE = "§"
     ARCH_BRACKET = "()"
-    ARCH_BRACKET_OPEN = "("
-    ARCH_BRACKET_CLOSE = ")"
-    AST_QUOTE = "*"
     DBL_AST_QUOTE = "**"
+    AST_QUOTE = "*"
     DBL_QUOTE = "\""
     SNG_QUOTE = "'"
     MM = ":MM:"
@@ -59,15 +69,43 @@ class RefType(Enum):
     TEXT = "generic_text"
     FILLER = "filler"
     ATTRIB = "var:var"
+    RESERVED = "reserved"
 
     @classmethod
-    def getRef(cls, string_value: str):
-        for name, member in cls.__members__.items():
-            if member.value == string_value:
-                return member
-        return None
+    def getSearchableList(self):
+        # searchable_list = [RefType.GENERIC_SINGLE_GA, RefType.GENERIC_DOUBLE_GA, RefType.REF]
+        searchable_list = [RefType.GENERIC_REF]
+        if not hasattr(self, 'searchable_list'):
+            setattr(self, 'searchable_list', searchable_list)
+        return getattr(self, 'searchable_list', searchable_list)
+
+    @classmethod
+    def getRef(self, string_value: str):
+        def sortByValueLength(entry):
+            (name, member) = entry
+            return len(member.value)
+
+        def compare(entry):
+            (name, member) = entry
+            string_lower = string_value.lower()
+            member_value_lower = str(member.value).lower()
+            is_found = (member_value_lower == string_lower) or (string_lower.startswith(member_value_lower))
+            return is_found
+
+        if not hasattr(self, 'member_list'):
+            member_list = [(name, member) for (name, member) in self.__members__.items()]
+            member_list.sort(key=sortByValueLength, reverse=True)
+            setattr(self, 'member_list', member_list)
+
+        found_list = list(filter(compare, self.member_list))
+        if found_list:
+            return found_list[0][1]
+        else:
+            return None
+
 
 class Definitions:
+    vn_uppercase_letters_and_digits = u"ẠĂÂÁẮẤÀẰẦẢẲẨÃẴẪẶẬĐÊÉẾÈỀẺỂẼỄẸỆỊÍÌỈĨỌÔƠÓỐỚÒỒỜỎỔỞÕỖỠỘỢỰƯÚỨÙỪỦỬŨỮÝỲỶỸỴA-Z\d"
     HOME = os.environ['HOME']
     log_path = os.path.join(HOME, 'Dev/tran/logme.log')
 
@@ -231,47 +269,162 @@ class Definitions:
         'billion(s|th)?': '@{1t}',
         'trillion(s|th)?': '@{1t}',
     }
-
+    words_should_avoid_forced_lower_list = [
+        "biết đến",
+        "bên trên",
+        "bên trong",
+        "bị động",
+        "bỏ qua",
+        "bổ sung",
+        "bộc lộ ra",
+        "chuẩn bị",
+        "chuẩn bị",
+        "chồng alpha lên",
+        "chồng lên",
+        "con cái",
+        "cần làm",
+        "dùng chung",
+        "dưới cùng",
+        "giãn ra",
+        "hay hơn",
+        "hiển thị trong",
+        "hiện tại",
+        "hoàn thành",
+        "hình sự",
+        "không có",
+        "không được",
+        "làm việc",
+        "lên trang",
+        "lên trên",
+        "lên trên",
+        "lõm vào",
+        "lồi ra",
+        "lớn lên",
+        "mặt trên",
+        "mở ra",
+        "ngón chân cái",
+        "ngón cái",
+        "ngón tay cái",
+        "người dùng",
+        "nội trong",
+        "phải làm",
+        "quỹ đạo lên",
+        "quỹ đạo xuống",
+        "sang trọng",
+        "sinh thành",
+        "sự cố",
+        "sự thật",
+        "theo đuổi",
+        "thu vào",
+        "thành công",
+        "thành phố",
+        "thành đô",
+        "thả trên",
+        "trang lên",
+        "trang xuống",
+        "trong suốt",
+        "trong suốt",
+        "trong vắt",
+        "trong vắt",
+        "tràn ra",
+        "tràn vãi ra",
+        "trên cùng",
+        "trở thành",
+        "tất cả",
+        "tuyệt đối",
+        "tương đối",
+        "phản đối",
+        "từ chuyên môn",
+        "từ trong",
+        "vào ra",
+        "vãi ra"
+        "xuống trang",
+        "đầu ra",
+        "đầu vào",
+        "đối xứng",
+        ]
+    phrases_should_be_lower_list = [
+        'về một số',
+        ]
     words_should_be_lower_list = [
-        # 'thế',
+        ':abbr:',
+        ':class:',
+        ':doc:',
+        ':func:',
+        ':guilabel:',
+        ':kbd:',
+        ':linenos:',
+        ':math:',
+        ':menuselection:',
+        ':meth:',
+        ':minute:',
+        ':mod:',
+        ':ref:',
+        ':sup:',
+        ':term:',
         'bị',
-        # 'cho',
-        'chưa'
-        'cả',
+        'bởi',
+        'cho',
+        'chưa',
+        'đối',
         'các',
         'cái',
+        'còn',
         'có thể',
         'có',
+        'nào',
+        'đó',
+        'cả',
         'của',
         'dùng',
+        "đang",
+        'hay',
         'hoặc',
+        'khỏi',
         'là',
         'làm',
+        'lên',
         'mà',
+        'ngoài',
         'nhé',
+        'như',
         'nhưng',
         'những',
+        'nên',
+        'qua',
+        'ra',
+        'sang',
         'sẽ',
+        'sự',
         'theo',
+        'thành',
         'thì'
         'trong',
+        'trong',
+        'trên',
         'tại',
         'tới',
+        'từ',
         'và',
         'vào',
+        'vì',
         'vậy',
         'về',
         'với',
+        'xuống',
         'đã',
-        'được',
         'được',
         'đấy',
         'đến',
         'để',
         'ở',
     ]
+
+    phrases_should_be_lower_txt = '|'.join(phrases_should_be_lower_list)
+    ALL_PHRASES_SHOULD_BE_LOWER = re.compile(phrases_should_be_lower_txt, re.I)
+
     all_words_should_be_lower = '|'.join(words_should_be_lower_list)
-    all_words_should_be_lower_pat_txt = r'\b(%s)\s' % (all_words_should_be_lower)
+    all_words_should_be_lower_pat_txt = r'^(%s)$' % (all_words_should_be_lower)
     all_words_should_be_lower_pat_in_first_txt = r'^(%s)\b' % (all_words_should_be_lower)
     ALL_WORDS_SHOULD_BE_LOWER = re.compile(all_words_should_be_lower_pat_txt, re.I)
     ALL_WORDS_SHOULD_BE_LOWER_IN_FIRST = re.compile(all_words_should_be_lower_pat_in_first_txt, re.I)
@@ -424,8 +577,8 @@ class Definitions:
     # debug_file = "video_editing/sequencer/properties/strip"
     # debug_file = "video_editing/sequencer/strips/movie_image"
 
-    leading=r'([\`\<]+)'
-    ending=r'([\`\>]+)'
+    leading = r'([\`\<]+)'
+    ending = r'([\`\>]+)'
     word = r'([\w\d\#]+)'
     sep = r'([<>\\\/\-\_\.{}:]+)'
     sep_first = r'((%s(%s%s)+)+)' % (sep, word, sep)
@@ -450,7 +603,8 @@ class Definitions:
     file_extension = r'([.]%s{2,5})$' % (word)
     return_linefeed = r'^(\\[nr])$'
     bold_word = r'^(\*%s\*)$' % (word)
-    not_allowed = r'(?!(%s|%s|%s|%s|%s|%s|%s|%s))' % (ignore_words, bold_word, leading_hyphens, single_hyphen, ref_tag, hour_format, number_format, return_linefeed)
+    not_allowed = r'(?!(%s|%s|%s|%s|%s|%s|%s|%s))' % (
+    ignore_words, bold_word, leading_hyphens, single_hyphen, ref_tag, hour_format, number_format, return_linefeed)
     path = r'(%s|%s)?((%s(%s)?%s)+)+' % (word, path_sep, path_sep, path_sep, word)
     variable = r'[\w_-]+'
     api_path = r'((%s\.%s)+)+' % (variable, variable)
@@ -485,29 +639,29 @@ class Definitions:
     NUMBER_RE = re.compile(r"%s%s%s" % (PREFIX_PATTERN, NUMBER_PATTERN,
                                         SUFFIX_PATTERN))
     WHITESPACE = re.compile('[\s]+')
-    EMAIL_ADDRESS = re.compile(r"^\s*.+@[^\.].*\.[a-z]{2,}$")      # start to end
+    EMAIL_ADDRESS = re.compile(r"^\s*.+@[^\.].*\.[a-z]{2,}$")  # start to end
     DOC_LINK = re.compile(r'^(\/\w+)+$')
 
     WORD_SEPARATION = re.compile('('
-                                 r'\s+|'                                 # any whitespace
+                                 r'\s+|'  # any whitespace
                                  r'[^\s\w]*\w+[a-zA-Z]-(?=\w+[a-zA-Z])|'  # hyphenated words
-                                 r'(?<=[\w\!\"\'\&\.\,\?])-{2,}(?=\w)'   # em-dash
+                                 r'(?<=[\w\!\"\'\&\.\,\?])-{2,}(?=\w)'  # em-dash
                                  ')')
 
     REF_PATH = re.compile(r'^\w+([\-\.]\w+){1,}$')
     DOC_PATH = re.compile(r'^(\/\w+)+$')
 
-    KBD='kbd'
-    MNU='menuselection'
-    DOC='doc'
-    ABBREV='abbr'
-    STD_REF='std-ref'
+    KBD = 'kbd'
+    MNU = 'menuselection'
+    DOC = 'doc'
+    ABBREV = 'abbr'
+    STD_REF = 'std-ref'
     X_REF = 'xref'
-    REF_URI='refuri'
+    REF_URI = 'refuri'
     GUI_LAB = 'guilabel'
-    TAG_ABBR='abbreviation'
-    TAG_NAME='tagname'
-    CLASS='classes'
+    TAG_ABBR = 'abbreviation'
+    TAG_NAME = 'tagname'
+    CLASS = 'classes'
 
     # var = r'[\w\_\.\-]+'
     # param = r'(%s(\,(\s+)?)?)+' % (var)
@@ -523,6 +677,7 @@ class Definitions:
     FUNCTION_ABS = FUNCTION
 
     FORWARD_SLASH = re.compile(r'[\w\s]?([\/]+)[\w\s]?')
+    UPPER_CASE_WORDS = re.compile(r'(?=(\s+|^))([A-Z]+)(?=(\s+|$))', re.UNICODE)
 
     email = r'(<)?(\w+@\w+(?:\.\w+)+)(?(1)>|$)'
     sentence_elements = r'([^\.\,\:\!]+)'
@@ -534,7 +689,7 @@ class Definitions:
     COMMON_SENTENCE_BREAKS = re.compile(setence_break_pat_txt)
 
     TRIMMABLE_ENDING = re.compile(r'([\s\.\,\:\!]+)$')
-    TRIMMABLE_BEGINNING=re.compile(r'^([\s\.\,]+)')
+    TRIMMABLE_BEGINNING = re.compile(r'^([\s\.\,]+)')
     TRAILING_WITH_PUNCT = re.compile(r'[\s\.\,\:\!\'\%\$\"\\\)\}\|\]\*\?\>\`\-\+\/\#\&]$')
     HEADING_WITH_PUNCT = re.compile(r'^[\s\.\,\:\!\'\%\$\"\\\(\{\|\[\*\?\>\`\-\+\/\#\&]')
 
@@ -556,14 +711,17 @@ class Definitions:
 
     GA_PATTERN_PARSER = re.compile(r':[\w]+:[\`]+([^\`]+)?[\`]+')
     ABBREV_PATTERN_PARSER = re.compile(r':abbr:[\`]+(.*?)[\`]+', flags=re.I)
-    ABBREV_PATTERN_PARSER_FULL = re.compile(r'^:abbr:[\`]+([^\`]+)[\`]+$', flags=re.I)
-    ABBREV_CONTENT_PARSER = re.compile(r':([^(]+)\s\(([^\)]+)\)')
+    GUI_LABEL_PARSER = re.compile(r':guilabel:\`+([^\`]+)\`+', flags=re.I)
 
-    ABBREV_FRONT=re.compile(r':abbr:[\`]+\(')
-    GA_BACK=re.compile(r'\)[\`]+')
+    ABBREV_PATTERN_PARSER_COR = re.compile(r'[^:]abbr:[\`]+(.*?)[\`]+', flags=re.I)
+    ABBREV_PATTERN_PARSER_FULL = re.compile(r'^:abbr:[\`]+([^\`]+)[\`]+$', flags=re.I)
+    ABBREV_CONTENT_PARSER = re.compile(r'([^\(\)]+)\s\(([^\)]+)\)')
+
+    ABBREV_FRONT = re.compile(r':abbr:[\`]+\(')
+    GA_BACK = re.compile(r'\)[\`]+')
 
     punctuals = r'([\\\/\.\,\:\;\!\?\"\*\'\`]+)'
-    basic_punctuals = r'([\.\,]+)'
+    basic_punctuals = r'([\.\,\;\!\:]+(\s+|$))'
 
     PUNCTUALS = re.compile(punctuals)
     BASIC_PUNCTUALS = re.compile(basic_punctuals)
@@ -590,7 +748,6 @@ class Definitions:
     BEGIN_BASIC_PUNCTUAL = re.compile(begin_basic_punctuals)
     END_BASIC_PUNCTUAL = re.compile(end_basic_punctuals)
 
-
     WORD_ONLY = re.compile(r'\b([\w\.\/\+\-\_\<\>]+)\b')
     REF_SEP = ' -- '
     NON_WORD_ONLY = re.compile(r'^([\W]+)$')
@@ -598,13 +755,16 @@ class Definitions:
     NON_WORD_ENDING = re.compile(r'([\W]+)$')
     NON_WORD_STARTING = re.compile(r'^([\W]+)')
 
-    SYMB_ENDING = re.compile(r'([\W])$')
-    SYMB_STARTING = re.compile(r'^([\W])')
+    SYMB_ENDING = re.compile(r'([\W]+)$')
+    SYMB_STARTING = re.compile(r'^([\W]+)')
 
     SYMB_ENDING_MULTI = re.compile(r'([\W]{,2})$')
     SYMB_STARTING_MULTI = re.compile(r'^([\W]{,2})')
 
     TRANSLATABLE_CHARACTERS = re.compile(r'[a-zA-Z]+')
+
+    sent_no_ref_txt = r'\s?((?!\s)[%s\s]+)(?<!\s)\s?' % (vn_uppercase_letters_and_digits)
+    SENTENCE_NO_REF = re.compile(sent_no_ref_txt, flags=(re.UNICODE | re.IGNORECASE))
 
     attrib_pat_txt = r'(%s)\:(%s)' % (var, var)
     attrib_pat_abs_txt = r'^(%s)$' % (attrib_pat_txt)
@@ -614,14 +774,17 @@ class Definitions:
     GA_REF_PART = re.compile(r':[\w]+:', re.I)
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    NOT_SPACE= r'(?![\s]+)'
+    NOT_SPACE = r'(?![\s]+)'
     GA_SYMB = r'\`'
     ga_value_ref_pat_txt = r'[%s]+(%s+[^%s]+%s)[%s]+' % (GA_SYMB, NOT_SPACE, GA_SYMB, NOT_SPACE, GA_SYMB)
     ga_ref_pat_txt = r'[\`]*(:[^\:]+:)*%s[\_]*' % (ga_value_ref_pat_txt)
+    GA_DOUBLE = re.compile(r'\`{2}[^\`]+\S\`{2}')
+    GA_SINGLE = re.compile(r'(?!:)\`[^\`]+\S\`__')
+
     GA_REF = re.compile(ga_ref_pat_txt)
     GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+?)(?<!([\s\:]))[\`]+[\_]*(?:\W|$)?$')
 
-    #ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
+    # ARCH_BRAKET = re.compile(r'[\(]+(?![\s\.\,]+)([^\(\)]+)[\)]+(?<!([\s\.\,]))')
     OSL_ATTRIB = re.compile(r'[\`]?(\w+:\w+)[\`]?')
     COLON_CHAR = re.compile(r'\:')
     COLON_CHAR_START = re.compile(r'^[\:]')
@@ -636,34 +799,59 @@ class Definitions:
     PAIRABLE_BRACKETS = re.compile(pairable_brackets_txt)
 
     angle_bracket_single_txt = r'\<([^\<\>]+)[^\/]\>'
-    arch_bracket_single_txt = r'\(([^\)\(]+)\)'
+    arch_bracket_single_txt = r'\(([^\)\(]+?)\)'
     arch_bracket_single_full = r'\b%s|%s\b' % (arch_bracket_single_txt, angle_bracket_single_txt)
     arch_bracket_single_absolute = r'^%s(?:\W|$)?$' % (arch_bracket_single_txt)
     ARCH_BRAKET_SINGLE_FULL = re.compile(arch_bracket_single_full)
     ARCH_BRAKET_SINGLE_ABS = re.compile(arch_bracket_single_absolute)
     ARCH_BRAKET_SINGLE = re.compile(arch_bracket_single_txt)
 
-    #ARCH_BRAKET_MULTI = re.compile(r'[\(]+(.*)?[\)]+')
-    ARCH_BRAKET_MULTI = re.compile(r'\b\((.*?)\)\b')
+    ARCH_BRAKET_MULTI = re.compile(r'\((.+)\)')
     ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
+    ##### new ref
+    GA_DOUBLE_EMBEDDED_GA = re.compile(r'\`{2}(:\w+:\`((?!\s)[^\`]+?)\`)\`{2}', re.I)
+    GA_SINGLE = re.compile(r'(?!:)\`((?!\s)[^`]+?\S)\`[_]+')
+    GA_DOUBLE = re.compile(r'\`{2}([^\`]+?)\`{2}(?<!\(\s)')
+    SINGLE_QUOTE = re.compile(r'\'+(?![\s\,\`]|ll|[tsd]\s)[^\']+\'+(?<!\(\s)')
+    DOUBLE_QUOTE = re.compile(r'\"+((?![\s\,\`])[^"]+)\"+(?<!\(\s)')  ## r'(?<!\\")(")(\S[^\"]+\S)(")'
+    AST_QUOTES = re.compile(r'\*+(\S[^*]+\S)\*+')
+    REF_GENERIC = re.compile(r':\w+:(?!:)[\`]((?!\s)[^\`]+)[\`]', re.I)
+    REF_GENERIC_WITH_LINK = re.compile(r':\w+:(?!:)[\`]((?!\s)[^\`\<\>]+(\s<([^\`\<\>]+)>))[\`]', re.I)
+    GA_GENERIC_DOUBLE = re.compile(r'\`{2}((?!\s)[^\`]?)\`{2}(?<!\s)(?=(\s|$))', re.I)
+    GA_GENERIC_SINGLE = re.compile(r'\`((?!\s)[^\`]+?)\`(?<!\s)(?=(\s|$))', re.I)
+    REF_GENERIC_STARTER = re.compile(r':\w+:', re.I)
+
+    SPACES = re.compile(r'\s+')
+
+    # ignoring math,
+    REF_CONTENT_WITH_LINK_SPLITTER = re.compile(r'([^\<\>]+)\s(\<[^\<\>]+\>)')
+    # for term, doc, ref, ga_single(`txt`__) -- ignore if no link, format :...:`vn_txt (en_txt) <link>`(__)
+
+    MENU_SELECTION = re.compile(r':menuselection:\`([^`]+)(\s[\-]{2}>\s([^`]+))*\`')
+    MENU_TXT_SPLITTER = re.compile(r'\s[\-]{2}>\s')
+
+    ABBR_SPLITER = re.compile(r':abbr:\`([^`]+)\s\(([^<>]+)\)\`')
+    GUI_LABEL_SPLITER = re.compile(r':guilabel:\`([^`]+)\`')
+    GA_DOUBLE_SPLITTER = re.compile(r'[\`]{2}([^`]+)[\`]{2}')
+    ##### new ref
 
     # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
     # ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
-    ast_quote_txt = r'(\*+)(\S[^\*]+\S)(\*+)'
-    ast_quote_txt_absolute = r'^%s(?:\W|$)?$' % (ast_quote_txt)
+    ast_quote_txt = r'(?!:\s)\*([^\*]+)\*(?<!\s)'
+    ast_quote_txt_absolute = r'^%s$' % (ast_quote_txt)
     AST_QUOTE = re.compile(ast_quote_txt)
     AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
 
     # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
     # dbl_quote_txt = r'(?<!\\")(")(\S.*?\S)(")'
-    dbl_quote_txt = r'(?<!\\")(")(\S[^\"]+\S)(")'
-    dbl_quote_txt_abs = r'^%s(?:\W|$)?$' % (dbl_quote_txt)
+    dbl_quote_txt = r'(?!:\s)"([^\"]+)"(?<!\s)'
+    dbl_quote_txt_abs = r'^%s$' % (dbl_quote_txt)
     DBL_QUOTE = re.compile(dbl_quote_txt)
     DBL_QUOTE_ABS = re.compile(dbl_quote_txt_abs)
 
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
-    single_quote_txt = r"(?<!\w)(\')([^\']+)(?:\b)(\')"
-    single_quote_txt_absolute = r'^%s(?:\W|$)?$' % (single_quote_txt)
+    single_quote_txt = r'(?:(^|\s))\'((?!([sd]|ll|ve|nt)\b)[^\']+)\'(?:(\b|$))'
+    single_quote_txt_absolute = r'^%s$' % (single_quote_txt)
     SNG_QUOTE = re.compile(single_quote_txt)
     SNG_QUOTE_ABS = re.compile(single_quote_txt_absolute)
     BLANK_QUOTE_MARK = '§'
@@ -674,8 +862,9 @@ class Definitions:
     BLANK_QUOTE = re.compile(blank_quote_txt)
     BLANK_QUOTE_ABS = re.compile(blank_quote_txt_abs)
 
-    LINK_WITH_URI=re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
-    MENU_PART = re.compile(r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))') # working but with no empty entries
+    LINK_WITH_URI = re.compile(r'([^\<\>\(\)]+[\w]+)[\s]+[\<\(]+([^\<\>\(\)]+)[\>\)]+[\_]*')
+    MENU_PART = re.compile(
+        r'([\s]?[-]{2}[\>]?[\s]+)(?![\s\-])([^\<\>]+)(?<!([\s\-]))')  # working but with no empty entries
     MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
     MENU_SEP = re.compile(r'\s?([\-]+\>)\s?')
 
@@ -705,17 +894,19 @@ class Definitions:
     KEYBOARD_SEP = re.compile(r'[^\-\s]+')
     SPECIAL_TERM = re.compile(r'^[\`\*\"\'\(]+(.*)[\`\*\"\'\)]+$')
     ALPHA_NUMERICAL = re.compile(r'[\w]+')
-    EXCLUDE_GA= re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
-    OPTION_FLAG=re.compile(r'^[\-]{2}([^\`]+)')
+    EXCLUDE_GA = re.compile(r'^[\`\'\"\*\(]+?([^\`\'\"\*\(\)]+)[\`\'\"\*\)]+?$')
+    OPTION_FLAG = re.compile(r'^[\-]{2}([^\`]+)')
     REF_FILLER_CHAR = '¢'
     ref_filler_char_pat_txt = r'[%s]+' % (REF_FILLER_CHAR)
     REF_FILLER_PAT = re.compile(ref_filler_char_pat_txt)
 
     REF_MASK_CHAR = '#'
     REF_MASK_STR = f'{REF_MASK_CHAR * 2}'
-    FILLER_CHAR='¶'
+    FILLER_CHAR = '¶'
     filler_char_pattern_str = r'[%s]+' % FILLER_CHAR
     FILLER_CHAR_PATTERN = re.compile(filler_char_pattern_str)
+    filler_all_pattern_str = r'^(%s)$' % filler_char_pattern_str
+    FILLER_ALL_PATTERN = re.compile(filler_all_pattern_str)
 
     filler_char_and_space_pattern_str = r'[%s\s]+' % (FILLER_CHAR)
     FILLER_CHAR_INVERT = re.compile(filler_char_and_space_pattern_str)
@@ -730,10 +921,15 @@ class Definitions:
     FILLER_CHAR_ALL_PATTERN = re.compile(filler_char_all_pattern_str)
 
     not_filler_char_txt = r'[^%s]+' % (FILLER_CHAR)
+    not_filler_char_start_txt = r'^[^%s]+' % (FILLER_CHAR)
+    not_filler_char_end_txt = r'[^%s]+$' % (FILLER_CHAR)
+
     NOT_FILLER_CHARS = re.compile(not_filler_char_txt)
+    NOT_FILLER_CHARS_START = re.compile(not_filler_char_start_txt)
+    NOT_FILLER_CHARS_END = re.compile(not_filler_char_end_txt)
 
     NEGATE_FILLER = r"[^\\" + FILLER_CHAR + r"]+"
-    NEGATE_FIND_WORD=re.compile(NEGATE_FILLER)
+    NEGATE_FIND_WORD = re.compile(NEGATE_FILLER)
     ABBR_TEXT = re.compile(r'\(([^\)]+)\)')
     ABBR_TEXT_ALL = re.compile(r':abbr:\`([^\(]+[^\(\)])\s\(([^\(\)]+)\)')
     REF_WITH_LINK = re.compile(r'([^\<\>\(\)]+)\s+?([\<\(]([^\<\>\(\)]+)[\)\>])?')
@@ -750,20 +946,22 @@ class Definitions:
     SPACE_WORD_SEP = re.compile(r'[\S]+')
     WORD_ONLY = re.compile(r'[\w]+')
     ACCEPTABLE_WORD = re.compile(r'[\w\-]+([\'](t|ve|re|m|s))?')
-
     QUOTED_MSG_PATTERN = re.compile(r'((?<![\\])[\'"])((?:.)*.?)')
-
-    BLENDER_DOCS= os.path.join(os.environ['HOME'], 'blender_docs')
+    BLENDER_DOCS = os.path.join(os.environ['HOME'], 'blender_docs')
 
     titled_word_txt = r'\b([A-Z][a-z]+\b)+'
     TITLED_WORDS = re.compile(titled_word_txt)
 
     # WORD_SEP = re.compile(r'[\s\;\:\.\,\/\!\-\dd\<\>\(\)\`\*\"\|\']')
-    CHARACTERS = re.compile(r'\w+')
+    CHARACTERS = re.compile(r'[\w\-]+', re.UNICODE)
     WORD_SEP = re.compile(r'[^\W]+')
+    REMOVALBLE_SYMBOLS = re.compile(r'^[^\w\%\º\?]+$', re.UNICODE)
     SYMBOLS_ONLY = re.compile(r'^[\W\s]+$')
     NON_SPACE_SYMBOLS = re.compile(r'[^\s\w\d]+')
     SYMBOLS = re.compile(r'[\W]+')
+
+    NOT_CHARS_AND_SPACES = re.compile(r'[^\s\w]+')
+
     NON_ALPHA_NUMERIC = re.compile(r'[^A-Za-z]')
     UNDER_SCORE = re.compile(r'[\_]+')
 
@@ -788,7 +986,7 @@ class Definitions:
     HYPHEN = re.compile(r'[\-]')
     SPACE_SEP = re.compile(r'\s+')
 
-    SPACE_GA_SEP = re.compile(r'[\`\(\)\!\,\.\'\*\&\s\-\=]+|\:\w+\:|\:\s')
+    SPACE_GA_SEP = re.compile(r'[\`\(\)\!\,\.\'\*\&\s\=\/\[\]\|\-]+|\:\w+\:|\:\s|\%[sdxf]\d+?]')
     NON_SPACE_WORDS = re.compile(r'([\S]+)')
 
     full_stop_in_middle = r'([\S][\.]\s[\S])'
@@ -796,6 +994,9 @@ class Definitions:
     punct_in_between_txt = r'(%s|%s)' % (full_stop_in_middle, comma_in_middle)
     PUNCT_IN_BETWEEN = re.compile(punct_in_between_txt)
     FULLSTOP_IN_BETWEEN = re.compile(full_stop_in_middle)
+
+    SIMPLE_PUNCTUATIONS = re.compile(r'[\.\,\:\!]+(\s|$)|^\)\s+|^\s\-\-\s|\s+\($|^\s+|\s+$')
+    SPACE_AT_MARGINS = re.compile(r'^\s+|\s+$')
 
     ending_punct = r'(\w[\,\.!]+$)'
     ENDING_WITH_PUNCT = re.compile(ending_punct)
@@ -997,44 +1198,44 @@ class Definitions:
              ],
             key=lambda x: len(x), reverse=True)),
         't': list(sorted(
-            ['ce','cy', 'ssion', 'ssions', 'sion', 'sions'],
+            ['ce', 'cy', 'ssion', 'ssions', 'sion', 'sions'],
             key=lambda x: len(x), reverse=True)),
         'ce': list(sorted(
             ['t'],
             key=lambda x: len(x), reverse=True)),
         'x': list(sorted(
-            ['ce','ces', ],
+            ['ce', 'ces', ],
             key=lambda x: len(x), reverse=True)),
-        'y':list(sorted(
+        'y': list(sorted(
             ['ies', 'ied', 'ier', 'iers', 'iest', 'ily', 'ic', 'ical', 'ically', 'iness', 'inesses',
              'ication', 'ications',
              ],
             key=lambda x: len(x), reverse=True)),
         'ix': ['ices'],
         'ion': ['ively'],
-        'be':list(sorted(
-            ['ption', 'ptions',],
+        'be': list(sorted(
+            ['ption', 'ptions', ],
             key=lambda x: len(x), reverse=True)),
-        'de':list(sorted(
-            ['sible', 'sion', 'sions', 'sive' ],
+        'de': list(sorted(
+            ['sible', 'sion', 'sions', 'sive'],
             key=lambda x: len(x), reverse=True)),
-        'ce':list(sorted(
+        'ce': list(sorted(
             ['tific', 'tist', 'tists'],
-            key=lambda x: len(x), reverse=True)), # science, scientific, scientist, scientists
-        'ate':['ant'],
-        'cy':['t'],
-        'ze':['s'],
-        'te':list(sorted(
+            key=lambda x: len(x), reverse=True)),  # science, scientific, scientist, scientists
+        'ate': ['ant'],
+        'cy': ['t'],
+        'ze': ['s'],
+        'te': list(sorted(
             ['cy', 'ry'],
             key=lambda x: len(x), reverse=True)),
-        'le':['ility'],
-        'le':list(sorted(
+        'le': ['ility'],
+        'le': list(sorted(
             ['ility', 'ilities', ],
             key=lambda x: len(x), reverse=True)),
-        'ic':list(sorted(
+        'ic': list(sorted(
             ['ism', 'isms', 'on'],
             key=lambda x: len(x), reverse=True)),
-        '':list(sorted(
+        '': list(sorted(
             ['ed', 'ly', 'es'],
             key=lambda x: len(x), reverse=True)),
     }
@@ -1043,7 +1244,7 @@ class Definitions:
     common_suffixes_replace_dict_sorted.sort(key=lambda x: len(x[0]))
 
     common_allowed_appostrophes = {
-        "'": ['ll', 've', ', ', 's', 'd', ' ', '.'] # keep this sorted in length
+        "'": ['ll', 've', ', ', 's', 'd', ' ', '.']  # keep this sorted in length
     }
 
     common_suffixes = [
@@ -1254,8 +1455,8 @@ class Definitions:
         # '': '',
 
     }
-    common_sufix_translation = list(sorted( list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
-    common_prefix_translation = list(sorted( list(common_prefix_trans.items()), key=lambda x: len(x[0]), reverse=True))
+    common_sufix_translation = list(sorted(list(common_sufix_trans.items()), key=lambda x: len(x[0]), reverse=True))
+    common_prefix_translation = list(sorted(list(common_prefix_trans.items()), key=lambda x: len(x[0]), reverse=True))
 
     ascending_sorted = list(sorted(common_prefixes))
     common_prefix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
@@ -1267,14 +1468,14 @@ class Definitions:
     common_infix_sorted = list(sorted(ascending_sorted, key=lambda x: len(x), reverse=False))
 
     numberal = r"\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|((thir|four|fif|six|seven|eigh|nine)teen)|((twen|thir|four|fif|six|seven|eigh|nine)ty)|(hundred|thousand|(mil|tril)lion))[s]?\b"
-    urlx_engine = URLX()
+    # urlx_engine = URLX()
 
     NUMBERS = re.compile(r"^\s*(([\d]+)([\,\.]?[\s]?[\d]+)*)+$")
 
     REF_LINK_WITHOUT_REFWORD = re.compile(r'\<([^<]+)\>')
     PATH_CHAR = re.compile(r'[\\\/]')
-    file_path_pattern_list=[
-        #r'^$',
+    file_path_pattern_list = [
+        # r'^$',
         r'^(([\w]+|[~\.]|[\.]{2})[:]?)?([/]([^\]+)?)+)$',
     ]
 
@@ -1350,17 +1551,12 @@ class Definitions:
     MATH_OPS = r'[\s]?([\+\-\*\/\%\=x])[\s]?'
     runtime_ignore_list = None
     ignore_list = [
-        # r"^\s*([\d]?[\w]{1})\s*$",  # "4D"
-        # r"^\s*(\w+(_\w+)+)\s*$", # MASK_MT_add
-        # r'([\.](org|com|uk|ac))$',
-        # r'^(([\.]([\/][^\w]?[\w]+[^\w]?)+[\/]?)+([\s][\.]+)?)$', #``./datafiles/locale/{language}/``
-        # r'^(:[\w]+:)([\`]+([\/][\w]+[\/]?)*[\`]+)', # :doc:`/something/somethingelse`
+        r"\|([^\|]+)\|",    # ignore terms such as |TODO|
         r"^\w$",
-        # r"^[\d]+([\.][\d]+[\d\w]?)\s[\-]+\s(Tháng|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)$",
         r"^(\w[\W]+)$",
         r"^\W?(\dD)\W?$",
         r"^\s*(" + NUMB + MATH_OPS + r".*" + NUMB + r")\s*$",
-        r"^\s*(" + STB + r"?(" + NUMB + r"(([\,]+[\s]+)?" + NUMB + r")*)+" + EDB + r"?)\s*$", # (-1.0 - 1.0), (-X, -Y, -Z, X, Y, Z)
+        r"^\s*(" + STB + r"?(" + NUMB + r"(([\,]+[\s]+)?" + NUMB + r")*)+" + EDB + r"?)\s*$",
         r"^\s*(" + STB + r"?([+-]?[\d]+)([\,\.]?[\s]?[\d]+)*)+" + EDB + r"?$",  # 1,000 or 0.00001 or 1, 2, 3, 4
         r"^\s*(" + STB + r"?([\+\-]?[\d]+[\W]?)" + EDB + r"?)\s*$",  # (+-180°)
         r"^\s*(" + STB + r"?[+-][\w]{1}[,.])*([\s]?[+-][\w]{1})" + EDB + r"?$",  # "+X, +Y, +Z, -X, -Y, -Z"
@@ -1369,61 +1565,62 @@ class Definitions:
         r"^\s*((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)\s*$",
         r"^\s*(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))\s*$",
         r"^\s*(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)\s*$",
-        r"^\s*(([\w]+)?([\.][\w]+)+)\s*$", # bpy.context, bpy.context.object
+        # r"^\s*(([\w]+)?([\.][\w]+)+)\s*$",  # bpy.context, bpy.context.object
+        # r"^\s*(([\w]+)?([\.][\w]{3})+)\s*$",  # bpy.context, bpy.context.object
         r"^\s*(:(math|class):)\`([^\`]+)\`$",
         r"^\s*(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)\s*$",
         r"^\s*(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)\s*$",
         r"^\s*(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)\s*$",
         r"^\s*(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)\s*$",
-        r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|curv(\w+)\-(bezier|nurbs|POLYLINE)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
+        r"^\s*(Blackman\-Harris|Blosc|Barth|Byte\([s]*\)|Bytecode|Bézier|Backspace|(Blender\s(\d+[\d\.]+)))\s*$",
         r"^\s*(Bone[ABC]|COR\-|Cartesian|Bfont|ABC)\s*$",
         r"^\s*(Catmull\-(Clark|Rom)|Catrom|Chebychev|Clemens|Christensen\-Burley|Cineon|Collada)\s*$",
-        r"^\s*(Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*|(command_line-args)$",
+        r"^\s*(Cycles|Cycles:|Cinema(\s\(\d+\))?)\s*$",
         r"^\s*(DNxHD|DOF|Debian\/Ubuntu|Del|debian|Delta([\s][\w])?)\s*$",
         r"^\s*(Djv|Doppler|Dots\/BU|Dpi|DWAA)\s*$",
         r"^\s*(EWA|Epsilon|Embree|Esc|exr|FBX|Euler|FELINE|FFT|FSAA|Flash|FrameCycler|Français|msgfmt|fr_FR|Enter|Euler\s?\(?\w{1,3}?\)?|Float[\d]?)\s*$",
-        r"^\s*(F[\d]{1,2})\s*$", # F1-12
+        r"^\s*(F[\d]{1,2})\s*$",  # F1-12
         r"^\s*(H\.264|Hosek \/ Wilkie|Houdini|HuffYUV|Hyperbolic[\s]?(Sine|Cosine)|Hosek \/ Wilkie(\s\d+)?|HDRI[s]?)\s*$",
         r"^\s*(ID|Ins|JPEG 2000|(ITU(\s\d+)?)|Internet[\w\W]|iScale)\s*$",
         r"^\s*(ITU \d+,)+",
         r"^\s*(KDE|K1, K2|Kirsch|komi3D)\s*$",
-        r"^\s*(Lennard\-Jones|LimbNode|Laplace Beltrami|Lightwave Point Cache \(\.mdd\)|Linux|Log|Look[\s]?Dev(HDRIs)?)\s*$",
+        r"^\s*(Lennard\-Jones|LimbNode|Laplace Beltrami|Lightwave Point Cache \(\.mdd\)|Linux|Look[\s]?Dev(HDRIs)?)\s*$",
         r"^\s*(MIS|MPlayer|my_app_template|(MS|Microsoft)?[-]?Windows|MacBook [\`]+Retina[\`]+|Makefile|Makefile|Manhattan|Matroska|Mega|Minkowski(\s[\d]+)?|Minkowski \d+\/\d+|Mitch|Mono|Musgrave)\s*$",
         r"^\s*(NDOF((\W)|[\s]?(ESC|Alt|Ctrl|Shift))?|hardware-ndof|NURBS|Nabla|Ndof|Nabla|Null|NVIDIA|nn|Nishita)\s*$",
         r"^\s*(OBJ|OSkey|Ogawa|Ogg[\s]?(Theora)?|Open(AL|CL|EXR|MP|Subdiv|VDB)+|Opus|ObData|ILM\'s OpenEXR|OpenEXR|Ozone|OptiX)\s*$",
-        r"^\s*(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|prop_name|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2|Preetham(\s?\d+)?|Python(\:\s[\.\%s]+)?)\s*$",
+        r"^\s*(P(CM|LY|NG)|Pack Bits|Poedit|Preetham|Prewitt|PBR|PolyMesh|PO|pip|pip3|PIZ|PXR24|pc2|Preetham(\s?\d+)?|Python(\:\s[\.\%s]+)?)\s*$",
         r"^\s*(Poedit|PIP|pagedown|pageup|pgdown|pgup|pip[\d]?|pot|print\(\))\s*$",
         r"^\s*(QuickTime|quasi\-)\s*$",
         r"^\s*(RK4|RRT|Redhat\/Fedora|rad_def|RLE)\s*$",
         r"^\s*(RONIN|Ryan Inch|Return)\s*$",
-        r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|search_path|subdivs|Stucci|Studio|Subversion|setmessage|SubD|Subdiv|Silvio Falcinelli)\s*$",
+        r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|SubD|Subdiv|Silvio Falcinelli)\s*$",
         r"^\s*(Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",
-        r"^\s*(TortoiseSVN|timeline\-playback|ui\-data\-block|view3d\-viewport\-shading|var[\s]+|wav)\s*$",
+        r"^\s*(TortoiseSVN|var[\s]+|wav)\s*$",
         r"^\s*(URL|UV[s:]?|(\w )?&( \w)?|Uber)\s*$",
         r"^\s*(VD16|VP9|VRML2|Verlet|Vorbis|Voronoi([\s]F[\d]([-]F[\d])?)?|)\s*$",
         r"^\s*(WEBM \/ VP9|Web(3D|M)|Win(tab)?|Windows Ink|WGT-|ZX)\s*$",
         r"^\s*(X(/Y|YZ)?|Xvid|XY|XZ|YCbCr(\s\(ITU\s?\d+?\))?)\s*$",
         r"^\s*(Y(CC)?|YCbCr(\s\(Jpeg\))?|Z(ip)?|ZIPS)\s*$",
-        r"^\s*([-]{2}([\w-]+)*)\s*$",
+        # r"^\s*([-]{2}([\w-]+)*)\s*$",
         r"^\s*([\"\'\*]?[\d]+(\.[\d]+)?([\s]?([K]?hz|bit[s]?))?[\"\'\*]?)\s*$",
         r"^\s*([\"\'][\.\s]?[\S]{1}[\"\'])\s*$",
         r"^\s*([\W]+)\s*$",
-        r"^\s*([\d]+)(px|khz)?$", # 1024x2048
+        r"^\s*([\d]+)(px|khz)?$",  # 1024x2048
         r"^\s*([\d]+[.,][\s]?)*[\d]+bit$",
-        r"^\s*([\d]+[x][\d]+)\s*$", # 1024x2048
+        r"^\s*([\d]+[x][\d]+)\s*$",  # 1024x2048
         r"^\s*([\d]+\s?bit[s]?)\s*$",
         r"^\s*([\w\d]{2}\:){2}[\w\d]{2}\.[\w\d]{2}\.$",  # HH:MM:SS.FF
-        r"^\s*([\w]([\s]+[\w\d])+)\s*$", # :kbd:`S X 0`
+        r"^\s*([\w]([\s]+[\w\d])+)\s*$",  # :kbd:`S X 0`
         r"^\s*([^\S]{1})\s*$",  # single anything non spaces
         r"^\s*([^\w]+log.*wm.*)\s*$",
         r"^\s*(\"fr\"[:]?|\"fr\": \"Fran&ccedil;ais\"|)\s*$",
-        r"^\s*(\%[d](x%[d])?)\s*$", # %dx%d
-        r"^\s*(\%\d+[\w]?)\s*$", # %14s
-        r"^\s*(\*\-[\d]+[\.][\w]{3})\s*$", #*-0001.jpg
-        r"^\s*(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)\s*$",
+        r"^\s*(\%[d](x%[d])?)\s*$",  # %dx%d
+        r"^\s*(\%\d+[\w]?)\s*$",  # %14s
+        r"^\s*(\*\-[\d]+[\.][\w]{3})\s*$",  # *-0001.jpg
+        # r"^\s*(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)\s*$",
         r"^\s*(\.[\w]{2,5})\s*$",  # .jpg, .so
-        r"^\s*(\d+[x]?)\s*$", # 16x
-        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|sqrt|sqrt\([\d]?\)|svn)\s*$",
+        r"^\s*(\d+[x]?)\s*$",  # 16x
+        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|acos|svn)\s*$",
         r"^\s*(bItasc|bin|bit[s]?|bl\*er|blendcache_[filename]anim_time_min|anim_time_max|anim_screen_switch|bl_math|bl_info|blender_docs|display_render|displayColor|blender_doc|blender_api)\s*$",
         r"^\s*(bpy\.(context|data|ops)|bpy\.([\w\.\-\_]+)|byte([s]?))\s*$",
         r"^\s*(cd|mkdir|ctrl)\s*$",
@@ -1446,10 +1643,10 @@ class Definitions:
         r"^\s*Blender\([\s\d\.]+\)|Blender_id[\W]?|build\/html$",
         r"^(\s*MPEG([\-|\d]+)|MPEG H.264|MPEG-4\(DivX\))|MatCaps$",
         r"^\s*PAINT_GPENCILEDIT_GPENCILSCULPT_.*$",
-        r"^\s*[\%s\s\'\:]+$", # %s: %s
+        r"^\s*[\%s\s\'\:]+$",  # %s: %s
         r"^\s*[\-]*\d+(\.[\w]{2,5})\s*$",  # -0001.jpg
         r"^\s*[\W]{1}$",
-        r"^\s*\%d(\s\w\s\%d)?(\W\s?)?$", # %d x %d
+        r"^\s*\%d(\s\w\s\%d)?(\W\s?)?$",  # %d x %d
         r"^\s*\*(\.[\w]{2,5})\s*$",  # *.jpg
         r"^\s*\.bashrc$",
         r"^\s*\:([\w\-\_]+)\:$",
@@ -1462,13 +1659,13 @@ class Definitions:
         r'^(A \(Alpha\))$',
         r'^(GPL[\s\w][\d][+])$',
         r'^(\w+\d+)$',
-        r'^(\w+)(_\w+){1,}$',
+        # r'^(\w+)(_\w+){1,}$',
         r'^File\:[^:]+\.\w+$',
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
-        r'^[\W\d]+$',   # symbols and numbersr
-        r'^[\w]\s?(\+|\-|\*|\/|\%|\=|\!\=|\>|\<|\>\=|\<\=|\=\=|\>\>|\<\<)\s?[\w]$', # A - B, A >= B
-        r'^\d+%s$' % (REF_MASK_STR * 2),   # internal ref placeholders
-        ]
+        r'^[\W\d]+$',  # symbols and numbersr
+        r'^[\w]\s?(\+|\-|\*|\/|\%|\=|\!\=|\>|\<|\>\=|\<\=|\=\=|\>\>|\<\<)\s?[\w]$',  # A - B, A >= B
+        r'^\d+%s$' % (REF_MASK_STR * 2),  # internal ref placeholders
+    ]
 
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
@@ -1801,19 +1998,19 @@ class Definitions:
 
     ignore_start_with_list = [
         # "bpy", "bpy", "bl_info", "dx",
-        #"", "", "", "", "",
+        # "", "", "", "", "",
         # "", "", "", "", "", "", "", "", "", "", "", "", "",
         "MPEG-4(DivX)",
         "demohero, uriel, meta-androcto",
         "antonio vazquez (antonioya)",
         "vladimir spivak (cwolf3d)",
         "nuke (.chan)",
-        #"a (alpha)",
+        # "a (alpha)",
         "(*x*\\ :sup:",
         "0 + (cos(frame / 8) * 4)",
-        #"+x, +y, +z, -x, -y, -z",
-        #"",
-        #"",
+        # "+x, +y, +z, -x, -y, -z",
+        # "",
+        # "",
     ]
 
     keep_list = [
@@ -1967,8 +2164,8 @@ class Definitions:
         "model by © 2016 pokedstudio.com",
         "video: from blender 1.60 to 2.50",
         "right-click-select",
-        #"",
-        #"",
+        # "",
+        # "",
     ]
 
     reverse_order_list = [
@@ -2014,27 +2211,135 @@ class Definitions:
     keep_contains_list.sort()
     keep_list.sort()
 
+    complex_pattern_type_list = [
+        RefType.ABBR,
+        RefType.ATTRIB,
+        RefType.DOC,
+        RefType.FUNC,
+        RefType.GA,
+        RefType.GA_EMBEDDED_GA,
+        RefType.GA_EMBEDDED_GA,
+        RefType.GENERIC_DOUBLE_GA,
+        RefType.GENERIC_DOUBLE_GA,
+        RefType.GENERIC_REF,
+        RefType.GENERIC_REF,
+        RefType.GENERIC_SINGLE_GA,
+        RefType.GENERIC_SINGLE_GA,
+        RefType.GUILABEL,
+        RefType.KBD,
+        RefType.MENUSELECTION,
+        RefType.METHOD,
+        RefType.MOD,
+        RefType.REF,
+        RefType.SINGLE_GA,
+        RefType.SUP,
+        RefType.TERM,
+    ]
+
     pattern_list = [
-        (ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
         (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
         (FUNCTION, RefType.FUNCTION),
-        (AST_QUOTE, RefType.AST_QUOTE),
-        (DBL_QUOTE, RefType.DBL_QUOTE),
         (SNG_QUOTE, RefType.SNG_QUOTE),
+        (DBL_QUOTE, RefType.DBL_QUOTE),
+        (AST_QUOTES, RefType.AST_QUOTE),
+        (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
+        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_DOUBLE, RefType.DOUBLE_GA),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
-        (GA_REF, RefType.GA),
+        (GA_GENERIC_DOUBLE, RefType.GENERIC_DOUBLE_GA),
+        (GA_GENERIC_SINGLE, RefType.GENERIC_SINGLE_GA),
+        (REF_GENERIC, RefType.GENERIC_REF),
+        (ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
+    ]
+    removable_txt = r'%(\S+)'
+    removable_end = r'(%s)$' % (removable_txt)
+    removable_start = r'^(%s)' % (removable_txt)
+
+    REMOVABLE_START = re.compile(removable_start, re.I)
+    REMOVABLE_END = re.compile(removable_end, re.I)
+    REMOVABLE_PAT = re.compile(removable_txt, re.I)
+
+    must_be_upper_case = [
+        'GNU',
+        'GPL',
+        'HTML',
+        'RGB',
+        'RGBA',
+        'Alpha',
+        'PDF',
+        'UV',
+        '2D',
+        '3D',
+        '4D',
+    ]
+
+    reserved_txt = r'(e\.g\.)|' \
+                   r'(i\.e\.)|' \
+                   r'(etc\.)|' \
+                   r'((Ref|Irr|Mr|Dr|Ms|Fig|vs|GPU|GPL)\.)|' \
+                   r'(v\.v\.+)|' \
+                   r'({[^{}]+})|' \
+                   r'(\|[^\|]+\|)|' \
+                   r'(\%[\d\.dsf]+(\%+)?)|' \
+                   r'(@{[^{}@]+})|' \
+                   r'(![^!]+!)|' \
+                   r'(\\?[\+\-]+)|(\?+)|(\_[\#]+)|([\%\º])|' \
+                   r'(\[[^\[\]]+\])'
+    reserved_txts = r'(%s)' % (reserved_txt)
+    RESERVED_TXTS = re.compile(reserved_txt, re.I)
+
+    pattern_list_with_reserved = [
+        (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
+        (SNG_QUOTE, RefType.SNG_QUOTE),
+        (DBL_QUOTE, RefType.DBL_QUOTE),
+        (AST_QUOTES, RefType.AST_QUOTE),
+        (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
+        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_DOUBLE, RefType.DOUBLE_GA),
+        (BLANK_QUOTE, RefType.BLANK_QUOTE),
+        (ATTRIB_REF, RefType.ATTRIB),
+        (GA_GENERIC_DOUBLE, RefType.GENERIC_DOUBLE_GA),
+        (GA_GENERIC_SINGLE, RefType.GENERIC_SINGLE_GA),
+        (REF_GENERIC, RefType.GENERIC_REF),
+        (RESERVED_TXTS, RefType.RESERVED),
+        (ARCH_BRAKET_SINGLE_FULL, RefType.ARCH_BRACKET),
+    ]
+
+    pattern_list_complex = [
+        (re.compile('\s'), RefType.REMOVE_ORIGINAL),
+        (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
+        (FUNCTION, RefType.FUNCTION),
+        (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
+        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_DOUBLE, RefType.DOUBLE_GA),
+        (ATTRIB_REF, RefType.ATTRIB),
+        (GA_GENERIC_DOUBLE, RefType.GENERIC_DOUBLE_GA),
+        (GA_GENERIC_SINGLE, RefType.GENERIC_SINGLE_GA),
+        (REF_GENERIC, RefType.GENERIC_REF),
+    ]
+
+    ref_type_unquoteable = [
+        RefType.ARCH_BRACKET,
+        RefType.SNG_QUOTE,
+        RefType.DBL_QUOTE,
+        RefType.AST_QUOTE,
     ]
 
     no_bracket_pattern_list = [
         (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
         (FUNCTION, RefType.FUNCTION),
-        (AST_QUOTE, RefType.AST_QUOTE),
-        (DBL_QUOTE, RefType.DBL_QUOTE),
         (SNG_QUOTE, RefType.SNG_QUOTE),
+        (DBL_QUOTE, RefType.DBL_QUOTE),
+        (AST_QUOTES, RefType.AST_QUOTE),
+        (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
+        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_DOUBLE, RefType.DOUBLE_GA),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
-        (GA_REF, RefType.GA),
+        (GA_GENERIC_DOUBLE, RefType.GENERIC_DOUBLE_GA),
+        (GA_GENERIC_SINGLE, RefType.GENERIC_SINGLE_GA),
+        (REF_GENERIC, RefType.GENERIC_REF),
     ]
 
     no_bracket_and_quoted_pattern_list = [
@@ -2042,8 +2347,21 @@ class Definitions:
         (FUNCTION, RefType.FUNCTION),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
-        (GA_REF, RefType.GA),
+        (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
+        (GA_GENERIC_DOUBLE, RefType.GENERIC_DOUBLE_GA),
+        (GA_GENERIC_SINGLE, RefType.GENERIC_SINGLE_GA),
+        (REF_GENERIC, RefType.GENERIC_REF),
     ]
+
+    clean_out_symb_list = [
+        str(RefType.AST_QUOTE.value),
+        str(RefType.DBL_AST_QUOTE.value),
+        str(RefType.SNG_QUOTE.value),
+    ]
+    jlist = "\\".join(clean_out_symb_list)
+    clean_out_symb_list_pat_txt = r'[%s]' % (jlist)
+    not_clean_out_symb_list_pat_txt = r'[^%s]+' % (jlist)
+    NOT_SPECIAL_QUOTED_PATTERN = re.compile(not_clean_out_symb_list_pat_txt)
 
     pattern_list_absolute = [
         ARCH_BRAKET_SINGLE_ABS,
@@ -2205,6 +2523,7 @@ class SentStructModeRecord:
         self.smode_txt: str = smode_txt
         self.smode: SentStructModeRecord = smode
         self.extra_param = extra_param
+
 
 class SentStructMode(Enum):
     ANY = Definitions.ANY

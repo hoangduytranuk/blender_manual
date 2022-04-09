@@ -1,4 +1,6 @@
 import os
+import time
+
 from sphinx_intl import catalog as c
 from babel.messages import Catalog, Message
 from potask_base import POTaskBase, POResultRecord, writeJSONDic, loadJSONDic
@@ -6,8 +8,9 @@ from translation_finder import TranslationFinder
 from nocasedict import NoCaseDict
 from ignore import Ignore as ig
 from definition import Definitions as df
-from common import Common as cm
+# from common import Common as cm
 import pathlib as PL
+from get_text_within import GetTextWithin as gt
 
 class UpdateDict(POTaskBase):
     slash = '/'
@@ -178,9 +181,16 @@ class UpdateDict(POTaskBase):
         return changed
 
     def updateMatchCase(self):
+        from case_action_list import CaseActionList
         home = os.environ['HOME']
-        po_file_path = os.path.join(home, 'test_dict.po')
+        # po_file_path = os.path.join(home, 'Dev/tran/blender_manual/ref_dict_0003.po')
+        # po_file_path = os.path.join(home, 'Dev/tran/blender_docs/locale/vi/LC_MESSAGES/blender_manual.po')
+        po_file_path = os.path.join(home, 'new_ref_dict_0003.po')
+        t1 = time.process_time()
         po_cat = c.load_po(po_file_path)
+        t2 = time.process_time()
+        diff = (t2 - t1)
+        print(f'loading po time: [{diff}]')
         m: Message = None
         changed = False
         for m in po_cat:
@@ -190,16 +200,19 @@ class UpdateDict(POTaskBase):
                 continue
 
             msgsgtr = m.string
-            new_msgstr = cm.matchCase(msgid, msgsgtr)
+            # t1 = time.process_time()
+            new_msgstr = CaseActionList.matchCase(msgid, msgsgtr)
+            # t2 = time.process_time()
+            # diff = (t2 - t1)
             is_changed = (new_msgstr != msgsgtr)
             if is_changed:
-                msg = f'msgid: "{msgid}"\nmsgstr: "{msgsgtr}"=>"{new_msgstr}"'
+                msg = f'msgid: "{msgid}"\nmsgstr: "{msgsgtr}"\nnewstr: "{new_msgstr}"\n\n'
                 print(msg)
                 m.string = new_msgstr
                 changed = True
         is_saved = (changed and bool(self.opo_path))
         if is_saved:
-            c.dump_po(self.opo_path, po_cat)
+            c.dump_po(self.opo_path, po_cat, line_width=4096)
         exit(0)
 
     # -updict -tran /Users/hoangduytran/Dev/tran/blender_ui/merged.po -ig -cl
@@ -208,22 +221,22 @@ class UpdateDict(POTaskBase):
 
         # self.setFiles()
         # msg_data = c.load_po(self.po_path)
-        self.tf = TranslationFinder(
-            apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
-        )
-        dict_list = None
-        use_external_translation = (self.tran_file is not None) and (os.path.isfile(self.tran_file))
-        if not use_external_translation:
-            raise RuntimeError('No external file presents! From where do I get the dictionary definitions from? (JSON/PO) only!')
-
-        tf_master_dict: NoCaseDict = self.tf.master_dic_list
-        (is_json, is_po) = self.whichFile()
-        if is_po:
-            tf_master_dict.loadData(self.tran_file, is_update=True)
-            # if self.opo_path:
-            #     tf_master_dict.removePOLocations(tf_master_dict.catalog)
-        if is_json:
-            tf_master_dict.updateFromJSON(self.tran_file)
+        # self.tf = TranslationFinder(
+        #     apply_case_matching_orig_txt=self.apply_case_matching_orig_txt
+        # )
+        # dict_list = None
+        # use_external_translation = (self.tran_file is not None) and (os.path.isfile(self.tran_file))
+        # if not use_external_translation:
+        #     raise RuntimeError('No external file presents! From where do I get the dictionary definitions from? (JSON/PO) only!')
+        #
+        # # tf_master_dict: NoCaseDict = self.tf.master_dic_list
+        # (is_json, is_po) = self.whichFile()
+        # if is_po:
+        #     tf_master_dict.loadData(self.tran_file, is_update=True)
+        #     # if self.opo_path:
+        #     #     tf_master_dict.removePOLocations(tf_master_dict.catalog)
+        # if is_json:
+        #     tf_master_dict.updateFromJSON(self.tran_file)
 
         home = os.environ['HOME']
         pot_file = os.path.join(home, 'blender_manual.pot')

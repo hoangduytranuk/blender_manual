@@ -299,8 +299,8 @@ class CorrectAbbreviations(POTaskBase):
     def performTask(self):
         from utils import DEBUG
         DEBUG=True
-        self.tf = TranslationFinder()
-        self.master_dict = self.tf.getDict()
+        # self.tf = TranslationFinder()
+        # self.master_dict = self.tf.getDict()
 
         self.setFiles()
 

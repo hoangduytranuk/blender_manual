@@ -27,14 +27,14 @@ class FindFuzzyEntries:
     def __init__(self):
         self.po_path="/home/htran/blender_documentations/blender_docs/locale/vi/LC_MESSAGES"
 
-    def dump_po(self, filename, catalog):
-        dirname = os.path.dirname(filename)
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-
-        # Because babel automatically encode strings, file should be open as binary mode.
-        with io.open(filename, 'wb') as f:
-            pofile.write_po(f, catalog, width=0)
+    # def dump_po(self, filename, catalog):
+    #     dirname = os.path.dirname(filename)
+    #     if not os.path.exists(dirname):
+    #         os.makedirs(dirname)
+    #
+    #     # Because babel automatically encode strings, file should be open as binary mode.
+    #     with io.open(filename, 'wb') as f:
+    #         pofile.write_po(f, catalog, width=0)
 
     def getPOFileList(self):
         po_file_list=[]

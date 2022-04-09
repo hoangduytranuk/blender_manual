@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Những Giới Hạn -- Limitations &mdash; Blender Manual</title>
+  <title>Những Giới Hạn &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
@@ -51,7 +51,7 @@
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
     <link rel="next" title="Tuần Hoàn -- Cycles" href="../cycles/index.html" />
-    <link rel="prev" title="Reflection Planes" href="light_probes/reflection_planes.html" /> 
+    <link rel="prev" title="Mặt Phẳng Phản Quang" href="light_probes/reflection_planes.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,73 +71,73 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Eevee</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="world.html">World</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lighting.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="light_probes/index.html">Light Probes</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Những Giới Hạn -- Limitations</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cameras">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lights">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#light-probes">Light Probes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#indirect-lighting">Indirect Lighting</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#shadows">Shadows</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#volumetrics">Volumetrics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#depth-of-field">Depth of Field -- Độ Sâu Trường Ảnh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#screen-space-effects">Screen Space Effects</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#ambient-occlusion">Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#screen-space-reflections">Screen Space Reflections</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#screen-space-refraction">Screen Space Refraction</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#subsurface-scattering">Subsurface Scattering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Sắp Đặt về Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="world.html">Thế Giới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lighting.html">Sắp đặt về Nguồn Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_probes/index.html">Bộ Thăm Dò Ánh Sáng</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Những Giới Hạn</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cameras">Máy Quay Phim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lights">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#light-probes">Bộ Thăm Dò Ánh Sáng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indirect-lighting">Áng Sáng Gián Tiếp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shadows">Bóng Tối</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#volumetrics">Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#depth-of-field">Độ Sâu Trường Ảnh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#screen-space-effects">Hiệu Ứng Không Gian Màn Hình</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#ambient-occlusion">Tính Hấp Thụ Quang Xạ Môi Trường</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#screen-space-reflections">Phản Quang trong Không Gian Màn Hình</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#screen-space-refraction">Khúc Xạ Không Gian Màn Hình</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#subsurface-scattering">Tán Xạ Dưới Bề Mặt</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#motion-blur">Motion Blur -- Làm Nhòe Chuyển Động</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#materials">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#shader-nodes">Shader Nodes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#memory-management">Memory Management</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cpu-rendering">CPU Rendering</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multiple-gpu-support">Multiple GPU Support</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#headless-rendering">Headless Rendering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motion-blur">Làm Nhòe chuyển động</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#materials">Nguyên Vật Liệu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shader-nodes">Nút tô bóng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-management">Quản Lý Bộ Nhớ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpu-rendering">Kết Xuất bằng Bộ Xử Lý Trung Tâm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-gpu-support">Hỗ Trợ Nhiều Bộ Xử Lý Đồ Họa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#headless-rendering">Kết Xuất Phi Hiển Thị</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../cycles/index.html">Tuần Hoàn -- Cycles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Nút tô bóng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Phong Cách Tự Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -154,9 +154,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../index.html">Kết xuất</a> &raquo;</li>
           <li><a href="index.html">Eevee</a> &raquo;</li>
-      <li>Những Giới Hạn -- Limitations</li>
+      <li>Những Giới Hạn</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -166,18 +166,18 @@
            <div itemprop="articleBody">
              
   <section id="limitations">
-<h1>Những Giới Hạn -- Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline"></a></h1>
+<h1>Những Giới Hạn<a class="headerlink" href="#limitations" title="Permalink to this headline"></a></h1>
 <p>Eevee's goal is to be an interactive render engine. Some features may not be there yet or
 may be impossible to implement into Eevee's architecture without compromising performance.</p>
 <p>Here is a rather exhaustive list of all the limitations you can expect while working with Eevee.</p>
 <section id="cameras">
-<h2>Máy Quay Phim -- Cameras<a class="headerlink" href="#cameras" title="Permalink to this headline"></a></h2>
+<h2>Máy Quay Phim<a class="headerlink" href="#cameras" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Only perspective and orthographic projections are currently supported.</p></li>
 </ul>
 </section>
 <section id="lights">
-<h2>Nguồn Sáng -- Lights<a class="headerlink" href="#lights" title="Permalink to this headline"></a></h2>
+<h2>Nguồn Sáng/Nguồn/Ánh Sáng<a class="headerlink" href="#lights" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Only 128 active lights can be supported by Eevee in a scene.</p></li>
 <li><p>Only 8 Shadowed sun lights can be supported at the same time.</p></li>
@@ -185,7 +185,7 @@ may be impossible to implement into Eevee's architecture without compromising pe
 </ul>
 </section>
 <section id="light-probes">
-<h2>Light Probes<a class="headerlink" href="#light-probes" title="Permalink to this headline"></a></h2>
+<h2>Bộ Thăm Dò Ánh Sáng<a class="headerlink" href="#light-probes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Eevee only supports up to 128 active Reflection Cubemaps.</p></li>
 <li><p>Eevee only supports up to 64 active Irradiance Volumes.</p></li>
@@ -193,7 +193,7 @@ may be impossible to implement into Eevee's architecture without compromising pe
 </ul>
 </section>
 <section id="indirect-lighting">
-<h2>Indirect Lighting<a class="headerlink" href="#indirect-lighting" title="Permalink to this headline"></a></h2>
+<h2>Áng Sáng Gián Tiếp<a class="headerlink" href="#indirect-lighting" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Volumetrics don't receive light from Irradiance Volumes but do receive world's diffuse lighting.</p></li>
 <li><p>Eevee does not support &quot;specular to diffuse&quot; light bounces nor &quot;specular to specular&quot; light bounces.</p></li>
@@ -201,14 +201,14 @@ may be impossible to implement into Eevee's architecture without compromising pe
 </ul>
 </section>
 <section id="shadows">
-<span id="eevee-limitations-shadows"></span><h2>Shadows<a class="headerlink" href="#shadows" title="Permalink to this headline"></a></h2>
+<span id="eevee-limitations-shadows"></span><h2>Bóng Tối<a class="headerlink" href="#shadows" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Only 128 active lights can be supported by Eevee in a scene.</p></li>
 <li><p>Only 8 Shadowed sun lights can be supported at the same time.</p></li>
 </ul>
 </section>
 <section id="volumetrics">
-<span id="eevee-limitations-volumetrics"></span><h2>Volumetrics<a class="headerlink" href="#volumetrics" title="Permalink to this headline"></a></h2>
+<span id="eevee-limitations-volumetrics"></span><h2>Thể Tích<a class="headerlink" href="#volumetrics" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Only single scattering is supported.</p></li>
 <li><p>Volumetrics are rendered only for the camera &quot;rays&quot;. They don't appear in reflections/refractions and probes.</p></li>
@@ -219,7 +219,7 @@ may be impossible to implement into Eevee's architecture without compromising pe
 </ul>
 </section>
 <section id="depth-of-field">
-<span id="eevee-limitations-dof"></span><h2>Depth of Field -- Độ Sâu Trường Ảnh<a class="headerlink" href="#depth-of-field" title="Permalink to this headline"></a></h2>
+<span id="eevee-limitations-dof"></span><h2>Độ Sâu Trường Ảnh<a class="headerlink" href="#depth-of-field" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Alpha blended surfaces cannot be correctly handled by the post-processing blur,
 but will be correctly handled by the sample-based method. For this, you need to
@@ -227,7 +227,7 @@ disable the post-process depth of field by setting the <em>Max Size</em> to 0.</
 </ul>
 </section>
 <section id="screen-space-effects">
-<h2>Screen Space Effects<a class="headerlink" href="#screen-space-effects" title="Permalink to this headline"></a></h2>
+<h2>Hiệu Ứng Không Gian Màn Hình<a class="headerlink" href="#screen-space-effects" title="Permalink to this headline"></a></h2>
 <p>Eevee is not a ray tracing engine and cannot do ray-triangle intersection.
 Instead of this, Eevee uses the depth buffer as an approximated scene representation.
 This reduces the complexity of scene scale effects and enables a higher performance.
@@ -245,13 +245,13 @@ They are not part of the depth prepass and do not appear in the depth buffer.</p
 will not be rendered with screen space effects.</p></li>
 </ul>
 <section id="ambient-occlusion">
-<span id="eevee-limitations-ao"></span><h3>Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường<a class="headerlink" href="#ambient-occlusion" title="Permalink to this headline"></a></h3>
+<span id="eevee-limitations-ao"></span><h3>Tính Hấp Thụ Quang Xạ Môi Trường<a class="headerlink" href="#ambient-occlusion" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Objects are treated as infinitely thick, producing overshadowing if the <em>Distance</em> is really large.</p></li>
 </ul>
 </section>
 <section id="screen-space-reflections">
-<span id="eevee-limitations-reflections"></span><h3>Screen Space Reflections<a class="headerlink" href="#screen-space-reflections" title="Permalink to this headline"></a></h3>
+<span id="eevee-limitations-reflections"></span><h3>Phản Quang trong Không Gian Màn Hình<a class="headerlink" href="#screen-space-reflections" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Only one glossy BSDF can emit screen space reflections.</p></li>
 <li><p>The evaluated BSDF is currently arbitrarily chosen.</p></li>
@@ -260,14 +260,14 @@ but without accurate positioning due to the one layer depth buffer.</p></li>
 </ul>
 </section>
 <section id="screen-space-refraction">
-<span id="eevee-limitations-refraction"></span><h3>Screen Space Refraction<a class="headerlink" href="#screen-space-refraction" title="Permalink to this headline"></a></h3>
+<span id="eevee-limitations-refraction"></span><h3>Khúc Xạ Không Gian Màn Hình<a class="headerlink" href="#screen-space-refraction" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Only one refraction event is correctly modeled.</p></li>
 <li><p>Only opaque and alpha hashed materials can be refracted.</p></li>
 </ul>
 </section>
 <section id="subsurface-scattering">
-<span id="eevee-limitations-sss"></span><h3>Subsurface Scattering<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline"></a></h3>
+<span id="eevee-limitations-sss"></span><h3>Tán Xạ Dưới Bề Mặt<a class="headerlink" href="#subsurface-scattering" title="Permalink to this headline"></a></h3>
 <ul class="simple">
 <li><p>Only one BSSRDF can produce screen space subsurface scattering.</p></li>
 <li><p>The evaluated BSSRDF is currently arbitrarily chosen.</p></li>
@@ -279,15 +279,15 @@ leading to light leaking from surface to surface.</p></li>
 </section>
 </section>
 <section id="motion-blur">
-<h2>Motion Blur -- Làm Nhòe Chuyển Động<a class="headerlink" href="#motion-blur" title="Permalink to this headline"></a></h2>
+<h2>Làm Nhòe chuyển động<a class="headerlink" href="#motion-blur" title="Permalink to this headline"></a></h2>
 <p><a class="reference internal" href="render_settings/motion_blur.html"><span class="doc">Motion Blur</span></a>
 is only available in final renders and is not shown in the 3D Viewport
 and thus <a class="reference internal" href="../../editors/3dview/viewport_render.html#bpy-ops-render-opengl"><span class="std std-ref">Viewport Renders</span></a>.</p>
 </section>
 <section id="materials">
-<span id="eevee-limitations-materials"></span><h2>Nguyên Vật Liệu -- Materials<a class="headerlink" href="#materials" title="Permalink to this headline"></a></h2>
+<span id="eevee-limitations-materials"></span><h2>Nguyên Vật Liệu<a class="headerlink" href="#materials" title="Permalink to this headline"></a></h2>
 <dl>
-<dt>Refractions</dt><dd><p>Refraction is faked by sampling the same reflection probe used by the Glossy BSDFs,
+<dt>Khúc Xạ</dt><dd><p>Refraction is faked by sampling the same reflection probe used by the Glossy BSDFs,
 but using the refracted view direction instead of the reflected view direction.
 Only the first refraction event is modeled correctly.
 An approximation of the second refraction event can be used for relatively thin objects using Refraction Depth.
@@ -298,13 +298,13 @@ they will be disabled on the surfaces that use it.
 Surfaces that use Screen Space Refraction will not appear in Screen Space Reflections at the right place.
 Surfaces that use Screen Space Refraction will not cast Ambient Occlusion onto other surfaces.</p>
 </dd>
-<dt>Volume Objects</dt><dd><p>Object volume shaders will affect the whole bounding box of the object.
+<dt>Các/những vật thể thể tích</dt><dd><p>Object volume shaders will affect the whole bounding box of the object.
 The shape of the volume must be adjusted using procedural texturing inside the shader.</p>
 </dd>
 </dl>
 </section>
 <section id="shader-nodes">
-<h2>Shader Nodes<a class="headerlink" href="#shader-nodes" title="Permalink to this headline"></a></h2>
+<h2>Nút tô bóng<a class="headerlink" href="#shader-nodes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>All BSDF's are using approximations to achieve realtime performance
 so there will always be small differences between Cycles and Eevee.</p></li>
@@ -316,7 +316,7 @@ so there will always be small differences between Cycles and Eevee.</p></li>
 </div>
 </section>
 <section id="memory-management">
-<h2>Memory Management<a class="headerlink" href="#memory-management" title="Permalink to this headline"></a></h2>
+<h2>Quản Lý Bộ Nhớ<a class="headerlink" href="#memory-management" title="Permalink to this headline"></a></h2>
 <p>In Eevee, <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU</abbr>
 Memory management is done by the GPU driver.
 In theory, only the needed textures and meshes (now referred as &quot;the resources&quot;) for a single draw call
@@ -329,7 +329,7 @@ So be careful of what you ask.</p>
 if the GPU will render them successfully.</p>
 </section>
 <section id="cpu-rendering">
-<h2>CPU Rendering<a class="headerlink" href="#cpu-rendering" title="Permalink to this headline"></a></h2>
+<h2>Kết Xuất bằng Bộ Xử Lý Trung Tâm<a class="headerlink" href="#cpu-rendering" title="Permalink to this headline"></a></h2>
 <p>Being a rasterization engine, Eevee only uses the power of
 the <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU</abbr> to render.
 There is no plan to support <abbr title="Central Processing Unit">CPU</abbr> (software) rendering
@@ -337,12 +337,12 @@ as it would be very inefficient. CPU power is still needed to handle high scene 
 as the geometry must be prepared by the CPU before rendering each frame.</p>
 </section>
 <section id="multiple-gpu-support">
-<h2>Multiple GPU Support<a class="headerlink" href="#multiple-gpu-support" title="Permalink to this headline"></a></h2>
+<h2>Hỗ Trợ Nhiều Bộ Xử Lý Đồ Họa<a class="headerlink" href="#multiple-gpu-support" title="Permalink to this headline"></a></h2>
 <p>There is currently no support for
 multiple <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU</abbr> systems.</p>
 </section>
 <section id="headless-rendering">
-<h2>Headless Rendering<a class="headerlink" href="#headless-rendering" title="Permalink to this headline"></a></h2>
+<h2>Kết Xuất Phi Hiển Thị<a class="headerlink" href="#headless-rendering" title="Permalink to this headline"></a></h2>
 <p>There is currently no support for using Eevee on headless systems (i.e. without a Display Manager).</p>
 </section>
 </section>
@@ -351,7 +351,7 @@ multiple <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU<
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="light_probes/reflection_planes.html" class="btn btn-neutral float-left" title="Reflection Planes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="light_probes/reflection_planes.html" class="btn btn-neutral float-left" title="Mặt Phẳng Phản Quang" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../cycles/index.html" class="btn btn-neutral float-right" title="Tuần Hoàn -- Cycles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -359,7 +359,7 @@ multiple <abbr title="Graphic Processing Unit, also known as Graphics Card">GPU<
 
   <div role="contentinfo">
     <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Retopology &mdash; Blender Manual</title>
+  <title>Tái cấu trúc liên kết &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
-    <link rel="next" title="Curves" href="../curves/index.html" />
-    <link rel="prev" title="Mesh Analysis" href="mesh_analysis.html" /> 
+    <link rel="next" title="Đường Cong" href="../curves/index.html" />
+    <link rel="prev" title="Phân Tích Khung Lưới" href="mesh_analysis.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,59 +71,59 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Khung Lưới -- Meshes</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="structure.html">Cấu Trúc -- Structure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="primitives.html">Primitives</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tools/index.html">Công Cụ -- Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="selecting/index.html">Lựa Chọn -- Selecting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn -- Editing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất -- Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Khung Lưới</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structure.html">Cấu Trúc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="primitives.html">Hình Học Cơ Bản</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools/index.html">Công Cụ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selecting/index.html">Lựa Chọn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="editing/index.html">Biên Soạn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties/index.html">Tính Chất</a></li>
 <li class="toctree-l3"><a class="reference internal" href="uv/index.html">Các UV -- UVs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mesh_analysis.html">Mesh Analysis</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Retopology</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#using-the-poly-build-tool">Using the Poly Build Tool</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#remeshing">Remeshing</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#voxel">Voxel</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#quad">Quad -- Tứ (Giác) (viết tắt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mesh_analysis.html">Phân Tích Khung Lưới</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Tái cấu trúc liên kết</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-poly-build-tool">Sử Dụng Công Cụ Dựng Đa Giác</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remeshing">Kiến Tạo Lại Khung Lưới</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#voxel">Thể Tích Tử</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#quad">Tứ (Giác) (viết tắt)</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../empties.html">Empties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Modifiers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modifiers/index.html">Bộ Điều Chỉnh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -140,9 +140,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Modeling</a> &raquo;</li>
-          <li><a href="index.html">Khung Lưới -- Meshes</a> &raquo;</li>
-      <li>Retopology</li>
+          <li><a href="../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="index.html">Khung Lưới</a> &raquo;</li>
+      <li>Tái cấu trúc liên kết</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -152,26 +152,26 @@
            <div itemprop="articleBody">
              
   <section id="retopology">
-<h1>Retopology<a class="headerlink" href="#retopology" title="Permalink to this headline"></a></h1>
+<h1>Tái cấu trúc liên kết<a class="headerlink" href="#retopology" title="Permalink to this headline"></a></h1>
 <p>Retopology is the process of simplifying the topology of a mesh to make it cleaner and easier to work with.
 Retopology is need for mangled topology resulting from sculpting or generated topology, for example from a 3D scan.
 Meshes often need to be retopologized if the mesh is going to be deformed in some way.
 Deformations can include rigging or physics simulations such as cloth or soft body.
 Retopology can be done by hand by manipulating geometry in Edit Mode or through automated methods.</p>
 <section id="using-the-poly-build-tool">
-<h2>Using the Poly Build Tool<a class="headerlink" href="#using-the-poly-build-tool" title="Permalink to this headline"></a></h2>
-<p>Todo 2.81.</p>
+<h2>Sử Dụng Công Cụ Dựng Đa Giác<a class="headerlink" href="#using-the-poly-build-tool" title="Permalink to this headline"></a></h2>
+<p>Nội dung cần viết thêm 2.76.</p>
 </section>
 <section id="remeshing">
-<span id="bpy-ops-object-voxel-remesh"></span><span id="bpy-types-mesh-remesh"></span><h2>Remeshing<a class="headerlink" href="#remeshing" title="Permalink to this headline"></a></h2>
+<span id="bpy-ops-object-voxel-remesh"></span><span id="bpy-types-mesh-remesh"></span><h2>Kiến Tạo Lại Khung Lưới<a class="headerlink" href="#remeshing" title="Permalink to this headline"></a></h2>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Object Mode, Sculpt Mode</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể và Chế Độ Biên Soạn -- Object Mode and Edit Mode</p>
 </dd>
-<dt class="field-even">Bảng -- Panel</dt>
-<dd class="field-even"><p><span class="menuselection">Properties ‣ Object Data ‣ Remesh</span></p>
+<dt class="field-even">Bảng</dt>
+<dd class="field-even"><p><span class="menuselection">Tính Chất (Properties) ‣ Cảnh (Scene) ‣ Trình Đơn Bàn Giao Tiếp Python (Python Console Menu)</span></p>
 </dd>
 </dl>
 </div>
@@ -181,11 +181,11 @@ This technique is especially useful for <a class="reference internal" href="../.
 to generate better topology after blocking out the initial shape.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
-<p>Limitations:</p>
+<p>Những Giới Hạn:</p>
 <ul class="simple">
 <li><p>Remeshing only works on the original mesh data and
 ignores generated geometry from modifiers, shape keys, rigging, etc.</p></li>
-<li><p>Remeshing will not work with the <a class="reference internal" href="../modifiers/generate/multiresolution.html"><span class="doc">Multiresolution Modifier</span></a>.</p></li>
+<li><p>Remeshing will not work with the <a class="reference internal" href="../modifiers/generate/multiresolution.html"><span class="doc">Bộ Điều Chỉnh Đa Phân Giải</span></a>.</p></li>
 </ul>
 </div>
 <div class="admonition seealso">
@@ -193,7 +193,7 @@ ignores generated geometry from modifiers, shape keys, rigging, etc.</p></li>
 <p><a class="reference internal" href="../modifiers/generate/remesh.html"><span class="doc">Remesh modifier</span></a></p>
 </div>
 <section id="voxel">
-<h3>Voxel<a class="headerlink" href="#voxel" title="Permalink to this headline"></a></h3>
+<h3>Thể Tích Tử<a class="headerlink" href="#voxel" title="Permalink to this headline"></a></h3>
 <p>The Voxel Remesher uses OpenVDB to generate a new manifold mesh from the current geometry.
 It produces a mesh with perfectly even distributed topology and
 it does not have any performance penalty once the new mesh is calculated.
@@ -201,36 +201,36 @@ This makes the voxel remesher great for sculpting as it is possible to
 sculpt at a much higher level of detail than using other features
 like dyntopo which often adds more performance overhead.</p>
 <dl class="simple">
-<dt>Voxel Size</dt><dd><p>The resolution or the amount of detail the remeshed mesh will have.
+<dt>Kích Thước Thể Tích Tử</dt><dd><p>The resolution or the amount of detail the remeshed mesh will have.
 The value is used to define the size, in object space, of the <a class="reference internal" href="../../glossary/index.html#term-Voxel"><span class="xref std std-term">Voxel</span></a>.
 These voxels are assembled around the mesh and are used to determine the new geometry.
 For example a value of 0.5 m will create topological patches that are about 0.5 m
 (assuming <em>Preserve Volume</em> is enabled).
 Lower values preserve finer details but will result in a mesh with a much more dense topology.</p>
 </dd>
-<dt>Adaptivity</dt><dd><p>Reduces the final face count by simplifying geometry where detail is not needed.
+<dt>Tùy Ứng</dt><dd><p>Reduces the final face count by simplifying geometry where detail is not needed.
 This introduce triangulation to faces that do not need as much detail.
 Note, an <em>Adaptivity</em> value greater than zero disables <em>Fix Poles</em>.</p>
 </dd>
-<dt>Fix Poles</dt><dd><p>Tries to produce less <a class="reference internal" href="../../glossary/index.html#term-Pole"><span class="xref std std-term">Poles</span></a> at the cost of some performance to produce a better topological flow.</p>
+<dt>Sửa các Điểm Hội Tụ</dt><dd><p>Tries to produce less <a class="reference internal" href="../../glossary/index.html#term-Pole"><span class="xref std std-term">Poles</span></a> at the cost of some performance to produce a better topological flow.</p>
 </dd>
-<dt>Preserve</dt><dd><dl class="simple">
-<dt>Thể Tích -- Volume</dt><dd><p>Tells the algorithm to try to preserve the original volume of the mesh.
+<dt>Bảo Tồn</dt><dd><dl class="simple">
+<dt>Âm Lượng</dt><dd><p>Tells the algorithm to try to preserve the original volume of the mesh.
 Enabling this could make the operator slower depending on the complexity of the mesh.</p>
 </dd>
-<dt>Paint Mask</dt><dd><p>Reprojects the <a class="reference internal" href="../../sculpt_paint/sculpting/editing/mask.html#sculpt-mask-menu"><span class="std std-ref">paint mask</span></a> onto the new mesh.</p>
+<dt>Sơn Vẽ Vùng Chắn Lọc</dt><dd><p>Reprojects the <a class="reference internal" href="../../sculpt_paint/sculpting/editing/mask.html#sculpt-mask-menu"><span class="std std-ref">paint mask</span></a> onto the new mesh.</p>
 </dd>
-<dt>Face Sets</dt><dd><p>Reprojects <a class="reference internal" href="../../sculpt_paint/sculpting/editing/face_sets.html#sculpting-editing-facesets"><span class="std std-ref">Face Sets</span></a> onto the new mesh.</p>
+<dt>Bề Mặt Ấn Định</dt><dd><p>Reprojects <a class="reference internal" href="../../sculpt_paint/sculpting/editing/face_sets.html#sculpting-editing-facesets"><span class="std std-ref">Face Sets</span></a> onto the new mesh.</p>
 </dd>
 </dl>
 </dd>
-<dt>Voxel Remesh</dt><dd><p>Performs the remeshing operation to create a new manifold mesh based on the volume of the current mesh.
+<dt>Bố Trí Lại Thể Tích Tử</dt><dd><p>Performs the remeshing operation to create a new manifold mesh based on the volume of the current mesh.
 Performing this will lose all mesh object data layers associated with the original mesh.</p>
 </dd>
 </dl>
 </section>
 <section id="quad">
-<span id="bpy-ops-object-quadriflow-remesh"></span><h3>Quad -- Tứ (Giác) (viết tắt)<a class="headerlink" href="#quad" title="Permalink to this headline"></a></h3>
+<span id="bpy-ops-object-quadriflow-remesh"></span><h3>Tứ (Giác) (viết tắt)<a class="headerlink" href="#quad" title="Permalink to this headline"></a></h3>
 <p>The Quad remesh uses the Quadriflow algorithm to create a <a class="reference internal" href="../../glossary/index.html#term-Quad"><span class="xref std std-term">Quad</span></a>
 based mesh with few poles and edge loops following the curvature of the surface.
 This method is relatively slow but generates a higher quality output for final topology.</p>
@@ -239,36 +239,36 @@ This method is relatively slow but generates a higher quality output for final t
 <p>Performing <em>Quadriflow Remesh</em> will lose all mesh object data layers associated with the original mesh.</p>
 </div>
 <dl class="simple">
-<dt>Quadriflow Remesh</dt><dd><p>Opens a pop-up used to set parameters for the remesh operation.</p>
+<dt>Tứ Giác Hóa Khung Lưới</dt><dd><p>Opens a pop-up used to set parameters for the remesh operation.</p>
 </dd>
-<dt>Use Paint Symmetry</dt><dd><p>Generates a symmetrical mesh using the <a class="reference internal" href="tools/tool_settings.html#modeling-meshes-tools-settings-mirror"><span class="std std-ref">Mesh Symmetry</span></a> options.</p>
+<dt>Sử Dụng sự Đối Xứng Hóa của Sơn</dt><dd><p>Generates a symmetrical mesh using the <a class="reference internal" href="tools/tool_settings.html#modeling-meshes-tools-settings-mirror"><span class="std std-ref">Mesh Symmetry</span></a> options.</p>
 </dd>
-<dt>Preserve Sharp</dt><dd><p>Tells the algorithm to try to preserve sharp features of the mesh.
+<dt>Bảo Tồn nét Sắc Nhọn</dt><dd><p>Tells the algorithm to try to preserve sharp features of the mesh.
 Enabling this could make the operator slower depending on the complexity of the mesh.</p>
 </dd>
-<dt>Preserve Mesh Boundary</dt><dd><p>Tells the algorithm to try to preserve the original volume of the mesh.
+<dt>Bảo Tồn Ranh Giới Khung Lưới</dt><dd><p>Tells the algorithm to try to preserve the original volume of the mesh.
 Enabling this could make the operator slower depending on the complexity of the mesh.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>Preserve Paint Mask</dt><dd><p>Reprojects the <a class="reference internal" href="../../sculpt_paint/sculpting/editing/mask.html#sculpt-mask-menu"><span class="std std-ref">Paint Mask</span></a> onto the new mesh.</p>
+<dt>Bảo Tồn Màn Chắn Sơn Vẽ</dt><dd><p>Reprojects the <a class="reference internal" href="../../sculpt_paint/sculpting/editing/mask.html#sculpt-mask-menu"><span class="std std-ref">Paint Mask</span></a> onto the new mesh.</p>
 </dd>
-<dt>Smooth Normals</dt><dd><p>Applies the <a class="reference internal" href="../../scene_layout/object/editing/shading.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</p>
+<dt>Làm Mượt Pháp Tuyến</dt><dd><p>Applies the <a class="reference internal" href="../../scene_layout/object/editing/shading.html#bpy-ops-object-shade-smooth"><span class="std std-ref">Smooth Normals</span></a> operator to the resulting mesh.</p>
 </dd>
-<dt>Chế Độ -- Mode</dt><dd><p>How to specify the amount of detail for the new mesh.</p>
+<dt>Chế Độ</dt><dd><p>Phương pháp để xác định lượng chi tiết cho khung lưới mới.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Ratio</dt>
-<dd class="field-odd"><p>Specify target number of faces relative to the current mesh.</p>
+<dt class="field-odd">Tỷ Số</dt>
+<dd class="field-odd"><p>Xác định số lượng bề mặt mục tiêu tương đối với khung lưới hiện tại.</p>
 </dd>
-<dt class="field-even">Edge Length</dt>
-<dd class="field-even"><p>Input target edge length in the new mesh.</p>
+<dt class="field-even">Chiều Dài Cạnh</dt>
+<dd class="field-even"><p>Chiều dài mục tiêu của cạnh trong khung lưới mới.</p>
 </dd>
-<dt class="field-odd">Bề Mặt -- Faces</dt>
-<dd class="field-odd"><p>Input target number of faces in the new mesh.</p>
+<dt class="field-odd">Bề Mặt</dt>
+<dd class="field-odd"><p>Số lượng bề mặt mục tiêu cung cấp trong khung lưới mới.</p>
 </dd>
 </dl>
 </dd>
-<dt>Seed</dt><dd><p>Random <a class="reference internal" href="../../glossary/index.html#term-Seed"><span class="xref std std-term">Seed</span></a> to use with the solver;
+<dt>Mầm</dt><dd><p>Random <a class="reference internal" href="../../glossary/index.html#term-Seed"><span class="xref std std-term">Seed</span></a> to use with the solver;
 different seeds will cause the remesher to generate different quad layouts on the mesh.</p>
 </dd>
 </dl>
@@ -280,15 +280,15 @@ different seeds will cause the remesher to generate different quad layouts on th
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="mesh_analysis.html" class="btn btn-neutral float-left" title="Mesh Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../curves/index.html" class="btn btn-neutral float-right" title="Curves" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mesh_analysis.html" class="btn btn-neutral float-left" title="Phân Tích Khung Lưới" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../curves/index.html" class="btn btn-neutral float-right" title="Đường Cong" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

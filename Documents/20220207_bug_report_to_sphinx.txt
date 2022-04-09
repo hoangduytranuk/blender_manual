@@ -1,0 +1,64 @@
+Bug report to sphinx
+
+https://github.com/sphinx-doc/sphinx/issues/10104
+
+I would like to add a further observation on this bug report. When dumping out PO file's content, especially using 'line_width=' parameter and passing in something like 4096 (a very long line, to force the --no-wrap effects from msgmerge of gettext), I found that the locations are ALSO wrapped. 
+
+This is, to my observation, wrong. 
+
+I know some of the locations lines are 'joined' when using 'msgmerge --no-wrap' but this happens, to me, as a result of a bug in the msgmerge implementation, as there are only a few instances in the PO output file where 'locations' are joined by a space. 
+
+This has the effect creating a DIFF entry when submitting changes to repository, when infact, NOTHING has been changed. 
+
+The effect creating unnecessary frustrations for code reviewers and an absolute waste of time. 
+
+I suggest the following modifications in the sphinx's code in the sphinx's code file:
+
+`babel/messages/pofile.py`
+
+ ```
+   def _write_comment(comment, prefix=''):
+        # xgettext always wraps comments even if --no-wrap is passed;
+        # provide the same behaviour
+        # if width and width > 0:
+        #     _width = width
+        # else:
+        #     _width = 76
+
+        # this is to avoid empty entries '' to create a blank location entry '#: ' in the location block
+        valid = (bool(comment) and len(comment) > 0)
+        if not valid:
+            return
+
+        # for line in wraptext(comment, _width):
+        comment_list = comment.split('\n')
+        comment_list = list(set(comment_list))
+        comment_list.sort()
+
+
+    def _write_message(message, prefix=''):
+        if isinstance(message.id, (list, tuple)):
+            ....
+        
+        # separate lines using '\n' so it can be split later on
+        _write_comment('\n'.join(locs), prefix=':')
+```
+
+
+Next, at times, PO messages should be able to re-order in a sorted manner, for easier to trace the messages. 
+
+There is a built in capability to sort but the 'dump_po' interface does not currently providing a passing mechanism for an option to sort. 
+
+I suggest the interface of 'dump_po' to change to the following in the file:
+
+`sphinx_intl/catalog.py`
+
+```
+def dump_po(filename, catalog, line_width=76, sort_output=False):
+
+.....
+    # Because babel automatically encode strings, file should be open as binary mode.
+    with io.open(filename, 'wb') as f:
+        pofile.write_po(f, catalog, line_width, sort_output=sort_output)
+
+```

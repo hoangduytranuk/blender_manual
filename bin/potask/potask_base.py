@@ -11,9 +11,7 @@ sys.path.append(bin_path)
 from definition import Definitions as df
 from utils import dd
 from string_utils import StringUtils as su
-
 import json
-
 
 def writeJSONDic(dict_list=None, file_name=None):
     try:
@@ -41,7 +39,6 @@ def loadJSONDic(file_name=None):
             dd(f'loadJSONDic - file_name:{file_name} cannot be found!')
             return return_dic
 
-        dic = {}
         with open(file_name) as in_file:
             # dic = json.load(in_file, object_pairs_hook=NoCaseDict)
             return_dic = json.load(in_file)
@@ -56,19 +53,24 @@ END_WORD_SYMBOLS = re.compile(r'\W+$')
 DOT_SPACES = re.compile(r'^[\s\.]+$')
 
 class POResultRecord(object):
-    def __init__(self, line_no, msgid, msgstr, alternative_tran=None, alternative_label=None):
+    def __init__(self, line_no, msgid, msgstr, alternative_tran=None, alternative_label=None, is_match_only=False):
         self.line_no = line_no
         self.msgid = msgid
         self.msgstr = msgstr
         self.alt_msgstr = alternative_tran
         self.alt_lbl = (alternative_label if bool(alternative_label) else "alternative")
+        self.match_only = is_match_only
 
     def __repr__(self):
         self.msgid = ("" if not self.msgid else self.msgid)
         self.msgstr = ("" if not self.msgstr else self.msgstr)
-        txt = f'[{self.line_no}];\nmsgid:"{self.msgid}";\nmsgstr:"{self.msgstr}"'
-        if self.alt_msgstr:
-            txt += f'\n{self.alt_lbl}:[{self.alt_msgstr}]\n\n'
+
+        if self.match_only:
+            txt = f'{self.msgid}\n{self.msgstr}\n'
+        else:
+            txt = f'[{self.line_no}];\nmsgid:"{self.msgid}";\nmsgstr:"{self.msgstr}"'
+            if self.alt_msgstr:
+                txt += f'\n{self.alt_lbl}:[{self.alt_msgstr}]\n\n'
         return txt
 
 class POTaskBase(list):
@@ -90,13 +92,18 @@ class POTaskBase(list):
                  filter_ignored=None,
                  clear_po_comment=None,
                  search_extensions=None,
+                 raw_search=None,
                  set_translation_fuzzy=None,
                  apply_case_matching_orig_txt=None,
                  po_location_pattern=None,
                  translation_required_txt=None,
                  is_clear_dup=None,
-                 partial_match=None
+                 partial_match=None,
+                 match_only=None,
                  ):
+        self.home = os.environ['HOME']
+        self.match_only = (True if match_only else False)
+        self.raw_search = (True if raw_search else False)
         self.is_clear_dup = (True if is_clear_dup else False)
         self.po_path = input_file
         self.opo_path = output_to_file
@@ -130,10 +137,20 @@ class POTaskBase(list):
         self.pattern_line_no = re.compile(r"\[\d+\]:\s", flags=re.I)
         self.pattern_msgstr = re.compile(r"msgstr:\s", flags=re.I)
         self.pattern_msgid = re.compile(r"msgid:\s", flags=re.I)
-
+        self.is_redirected = sys.stdout.isatty()
         self.search_extensions = None
         if search_extensions:
             self.search_extensions = [x for x in search_extensions.split('|')]
+
+    def readFile(self, file_name):
+        with open(file_name, 'r') as f:
+            data_lines = f.read().splitlines()
+        return data_lines
+
+    def writeFile(self, file_name, data):
+        data_list = [(x + '\n') for x in data]
+        with open(file_name, 'w+') as f:
+            f.writelines(data_list)
 
     def isRepeatedHeadTail(self, msg_id, msg_str):
         id_lower = msg_id.lower()

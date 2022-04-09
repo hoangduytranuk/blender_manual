@@ -15,6 +15,8 @@ from print_current_brackets import PrintCurrentBrackets
 from print_upcase_words import PrintTitledWords
 from correct_abbrev import CorrectAbbreviations
 from merge_po_json import MergeToPO
+from json2po import JSON2PO
+from cleanref_run import CleaningRefs
 
 # -tr -tran /Users/hoangduytran/Dev/tran/blender_ui/3x/vi.po -f /Users/hoangduytran/new_vi_mix_3_1_and_2_79_0001.po
 # -f /Users/hoangduytran/retran_283.po -tr -fuz -o /Users/hoangduytran/retran_283_0001.po
@@ -30,7 +32,11 @@ parser.add_argument("-npid", "--negate_pattern_id", dest="negate_pattern_id", he
 parser.add_argument("-cs", "--case_sense", dest="case_sensitive", help="define if case sensitive is needed", action='store_const', const=True)
 parser.add_argument("-mid", "--msgid", dest="msgid", help="Search pattern perform on msgid", action='store_const', const=True)
 parser.add_argument("-mstr", "--msgstr", dest="msgstr", help="Search pattern perform on msgstr", action='store_const', const=True)
+
 parser.add_argument("-s", "--search", dest="searching", help="Searching function only", action='store_const', const=True)
+parser.add_argument("-mo", "--match_only", dest="match_only", help="Showing match only part of the result", action='store_const', const=True)
+parser.add_argument("-raw", "--raw_search", dest="raw_search", help="search on raw data, every line", action='store_const', const=True)
+
 parser.add_argument("-did", "--disp_msgid", dest="display_msgid", help="Display msgid along with msgstr. No effect of msgstr is not selected", action='store_const', const=True)
 parser.add_argument("-dstr", "--disp_msgstr", dest="display_msgstr", help="Display msgstr along with msgid. No effect of msgid is not selected", action='store_const', const=True)
 parser.add_argument("-cl", "--count_line", dest="count_number_of_lines", help="Count number lines and print out the line_count", action='store_const', const=True)
@@ -62,6 +68,9 @@ parser.add_argument("-prntitled", "--print_titled_words", dest="print_titled_wor
 parser.add_argument("-corabbr", "--correct_abbrev", dest="correct_abbreviations", help="Correct abbreviations in the translations", action='store_const', const=True)
 parser.add_argument("-mergepo", "--merge_dicts", dest="merge_dicts", help="Merging all po(s) and JSON file together", action='store_const', const=True)
 
+parser.add_argument("-json2po", "--json_2_po", dest="json_2_po", help="Converting JSON file to PO file", action='store_const', const=True)
+parser.add_argument("-clrref", "--clr_ref", dest="clean_ref", help="Clean up references in PO file", action='store_const', const=True)
+
 # -trtxt "Converts foreground image to :term:\`Premultiplied Alpha\` format."
 # -f /Users/hoangduytran/Dev/tran/blender_docs/locale/vi/LC_MESSAGES/blender_manual.po -clrdup
 # -tr -f /Users/hoangduytran/Dev/tran/blender_docs/locale/vi/LC_MESSAGES/blender_manual.po -fuz -of /Users/hoangduytran/20220103_blender_manual.po
@@ -69,6 +78,8 @@ parser.add_argument("-mergepo", "--merge_dicts", dest="merge_dicts", help="Mergi
 PrintCurrentBrackets
 args = parser.parse_args()
 
+is_clean_ref = (True if args.clean_ref else False)
+is_json_to_po = (True if args.json_2_po else False)
 is_translating_txt = (True if args.translation_text else False)
 is_grep_po = (True if args.searching else False)
 is_partial_matching = (True if args.partial_match else False)
@@ -112,7 +123,9 @@ elif is_grep_po:
                 is_display_msgstr=args.display_msgstr,
                 filter_ignored=args.filter_ignored,
                 search_extensions=args.search_extensions,
-                po_location_pattern=args.po_location_pattern
+                po_location_pattern=args.po_location_pattern,
+                raw_search=args.raw_search,
+                match_only=args.match_only,
         )
 elif is_translating:
         x = TranslatePO(
@@ -172,6 +185,16 @@ elif is_merging_json_po:
                 input_file=args.from_file,
                 output_to_file=args.output_to_file
         )
+elif is_json_to_po:
+        x = JSON2PO(
+                input_file=args.from_file,
+                output_to_file=args.output_to_file
+        )
+elif is_clean_ref:
+        x = CleaningRefs(
+                input_file=args.from_file,
+                output_to_file=args.output_to_file
+        )
 else:
         x = PrintEmptyLine(
                 input_file=args.from_file,
@@ -187,3 +210,6 @@ x.performTask()
 # -s -dmid -mstr -p "Delta" -of /Users/hoangduytran/test_0001.po
 # -tr -f /Users/hoangduytran/Dev/tran/blender_ui/3x/vi.po -tran /Users/hoangduytran/Dev/tran/blender_ui/merged.po -ig -cl
 # -corabbr -f /Users/hoangduytran/Dev/tran/blender_manual/ref_dict_0006_0007.json
+# -s -f /Users/hoangduytran/cor_0006.po -mo -mstr -p ":term:`[^`]+"
+# -clrref -f /Users/hoangduytran/cor_0008.po -of /Users/hoangduytran/cor_0009.po > /Users/hoangduytran/test_0020.log
+# -clrref -f /Users/hoangduytran/cor_0008.po > /Users/hoangduytran/test_0020.log

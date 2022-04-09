@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Render Baking &mdash; Blender Manual</title>
+  <title>Nướng kết xuất &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../copyright.html" />
-    <link rel="next" title="Optimizing Renders" href="optimizations/index.html" />
-    <link rel="prev" title="Experimental Features" href="features.html" /> 
+    <link rel="next" title="Tối Ưu Hóa các Bản Kết Xuất" href="optimizations/index.html" />
+    <link rel="prev" title="Chức năng thử nghiệm" href="features.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,62 +71,62 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../eevee/index.html">Eevee</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Tuần Hoàn -- Cycles</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Render Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="world_settings.html">World Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="object_settings/index.html">Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="render_settings/index.html">Sắp Đặt về Kết Xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="world_settings.html">Sắp đặt Thế Giới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="object_settings/index.html">Sắp đặt về vật thể</a></li>
 <li class="toctree-l3"><a class="reference internal" href="material_settings.html">Sắp Đặt về Nguyên Vật Liệu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="light_settings.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gpu_rendering.html">GPU Rendering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="features.html">Experimental Features</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Render Baking</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#setup">Sắp Đặt -- Setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#settings">Sắp Đặt -- Settings</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#influence">Tác Động/Ảnh Hưởng -- Influence</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#selected-to-active">Selected to Active</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="light_settings.html">Sắp đặt về Nguồn Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu_rendering.html">Kết xuất bằng Bộ Xử Lý Đồ Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="features.html">Chức năng thử nghiệm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Nướng kết xuất</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Sắp Đặt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Sắp Đặt</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#influence">Tác Động/Ảnh Hưởng</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#selected-to-active">Từ được Chọn Sang cái Đang Hoạt Động</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#output">Đầu Ra</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="optimizations/index.html">Optimizing Renders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optimizations/index.html">Tối Ưu Hóa các Bản Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Shader Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Freestyle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shader_nodes/index.html">Nút tô bóng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../freestyle/index.html">Phong Cách Tự Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -143,9 +143,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../index.html">Kết xuất</a> &raquo;</li>
           <li><a href="index.html">Tuần Hoàn -- Cycles</a> &raquo;</li>
-      <li>Render Baking</li>
+      <li>Nướng kết xuất</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -155,7 +155,7 @@
            <div itemprop="articleBody">
              
   <section id="render-baking">
-<span id="bpy-types-bakesettings"></span><h1>Render Baking<a class="headerlink" href="#render-baking" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-bakesettings"></span><h1>Nướng kết xuất<a class="headerlink" href="#render-baking" title="Permalink to this headline"></a></h1>
 <p>Cycles shaders and lighting can be baked to image textures.
 This has a few different purposes, most commonly:</p>
 <ul class="simple">
@@ -165,7 +165,7 @@ as a base for texture painting or further edits.</p></li>
 <li><p>Creating light maps to provide global illumination or speed up rendering in games.</p></li>
 </ul>
 <section id="setup">
-<h2>Sắp Đặt -- Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h2>
+<h2>Sắp Đặt<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h2>
 <p>Baking requires a mesh to have a UV map, and either vertex colors
 or an Image Texture node with an image to be baked to.
 The <a class="reference internal" href="../../glossary/index.html#term-Active"><span class="xref std std-term">Active</span></a> <a class="reference internal" href="../shader_nodes/textures/image.html"><span class="doc">Image Texture</span></a>
@@ -177,35 +177,35 @@ Cycles uses the render settings (samples, bounces, ...) for baking.
 This way the quality of the baked textures should match the result you get from the rendered scene.</p>
 </section>
 <section id="settings">
-<h2>Sắp Đặt -- Settings<a class="headerlink" href="#settings" title="Permalink to this headline"></a></h2>
+<h2>Sắp Đặt<a class="headerlink" href="#settings" title="Permalink to this headline"></a></h2>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Render ‣ Bake</span></p>
+<dt class="field-odd">Bảng</dt>
+<dd class="field-odd"><p><span class="menuselection">Xương (Bone) ‣ Biến Dạng (Deform)</span></p>
 </dd>
 </dl>
 </div>
 <dl class="simple" id="bpy-ops-object-bake">
-<dt>Bake</dt><dd><p>Perform the baking operation.</p>
+<dt>Nướng</dt><dd><p>Perform the baking operation.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-rendersettings-use-bake-multires">
-<dt>Bake from Multires</dt><dd><p>Bake directly from multires object.</p>
+<dt>Nướng Từ Đa Phân Giải</dt><dd><p>Nướng trực tiếp từ vật thể đa phân giải.</p>
 </dd>
-<dt>Bake Type</dt><dd><p>Type of pass to bake.</p>
+<dt>Thể Loại Nướng</dt><dd><p>Loại lượt để nướng.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Combined</dt>
+<dt class="field-odd">Kết Hợp</dt>
 <dd class="field-odd"><p>Bakes all materials, textures, and lighting except specularity.
 The passes that contribute to the combined pass can be toggled individually to form the final map.</p>
 </dd>
-<dt class="field-even">Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường</dt>
+<dt class="field-even">Tính Hấp Thụ Quang Xạ Môi Trường</dt>
 <dd class="field-even"><p>Bakes ambient occlusion as specified in the World panels. Ignores all lights in the scene.</p>
 </dd>
-<dt class="field-odd">Shadow</dt>
+<dt class="field-odd">Ngả/Bóng Tối</dt>
 <dd class="field-odd"><p>Bakes shadows and lighting.</p>
 </dd>
-<dt class="field-even">Normal -- Pháp Tuyến</dt>
+<dt class="field-even">Pháp tuyến/B.Thg</dt>
 <dd class="field-even"><p>Bakes normals to an RGB image.</p>
 </dd>
 <dt class="field-odd">UV</dt>
@@ -213,73 +213,73 @@ The passes that contribute to the combined pass can be toggled individually to f
 This is represented through the red and green channels of the image,
 the blue channel is encoded with a constant value of 1 but does not hold any information.</p>
 </dd>
-<dt class="field-even">Độ Ráp -- Roughness</dt>
+<dt class="field-even">Độ Ráp/Độ Nhám/Ráp/Rối</dt>
 <dd class="field-even"><p>Bakes the roughness pass of a material.</p>
 </dd>
-<dt class="field-odd">Phát Xạ -- Emit</dt>
+<dt class="field-odd">Phát Xạ</dt>
 <dd class="field-odd"><p>Bakes Emission, or the Glow color of a material.</p>
 </dd>
-<dt class="field-even">Environment</dt>
+<dt class="field-even">Môi Trường</dt>
 <dd class="field-even"><p>Bakes the environment (i.e. the world surface shader defined for the scene) onto
 the selected object(s) as seen by rays cast from the world origin.</p>
 </dd>
-<dt class="field-odd">Diffuse</dt>
+<dt class="field-odd">Khuếch Tán</dt>
 <dd class="field-odd"><p>Bakes the diffuse pass of a material.</p>
 </dd>
-<dt class="field-even">Glossy</dt>
+<dt class="field-even">Bóng Bẩy</dt>
 <dd class="field-even"><p>Bakes the glossiness pass of a material.</p>
 </dd>
-<dt class="field-odd">Truyền Xạ -- Transmission</dt>
+<dt class="field-odd">Truyền Xạ</dt>
 <dd class="field-odd"><p>Bakes the transmission pass of a material.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <section id="influence">
-<h3>Tác Động/Ảnh Hưởng -- Influence<a class="headerlink" href="#influence" title="Permalink to this headline"></a></h3>
-<p class="rubric">Combined</p>
+<h3>Tác Động/Ảnh Hưởng<a class="headerlink" href="#influence" title="Permalink to this headline"></a></h3>
+<p class="rubric">Kết Hợp</p>
 <dl id="bpy-types-bakesettings-use-pass-direct">
 <dt>Bố Trí Ánh Sáng</dt><dd><dl class="simple">
-<dt>Direct</dt><dd><p>Add direct lighting contribution.</p>
+<dt>Trực Tiếp</dt><dd><p>Thêm sự đóng góp của ánh sáng trực tiếp.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-pass-indirect">
-<dt>Indirect</dt><dd><p>Add indirect lighting contribution.</p>
+<dt>Gián Tiếp</dt><dd><p>Thêm sự đóng góp của ánh sáng gián tiếp.</p>
 </dd>
 </dl>
 </dd>
-<dt>Contributions</dt><dd><dl class="simple" id="py-types-bakesettings-use-pass-diffuse">
-<dt>Diffuse</dt><dd><p>Add diffuse contribution.</p>
+<dt>Sự Đóng Góp</dt><dd><dl class="simple" id="py-types-bakesettings-use-pass-diffuse">
+<dt>Khuếch Tán</dt><dd><p>Thêm sự đóng góp của khuếch tán.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-pass-glossy">
-<dt>Glossy</dt><dd><p>Add glossy contribution.</p>
+<dt>Bóng Bẩy</dt><dd><p>Thêm sự đóng góp của độ bóng bẩy.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-pass-transmission">
-<dt>Truyền Xạ -- Transmission</dt><dd><p>Add transmission contribution.</p>
+<dt>Truyền Xạ</dt><dd><p>Thêm sự đóng góp của sự truyền sóng.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-pass-ambient-occlusion">
-<dt>Ambient Occlusion -- Tính Hấp Thụ Quang Xạ Môi Trường</dt><dd><p>Add ambient occlusion contribution.</p>
+<dt>Tính Hấp Thụ Quang Xạ Môi Trường</dt><dd><p>Thêm sự đóng góp của Tính Hấp Thụ Quang Xạ Môi Trường (THTQXMT).</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-pass-emit">
-<dt>Phát Xạ -- Emit</dt><dd><p>Add emission contribution.</p>
+<dt>Phát Xạ</dt><dd><p>Thêm sự đóng góp của phát xạ.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Diffuse, Glossy, Transmission</p>
+<p class="rubric">Tia Khuếch Tán, Tia Ánh Bóng Bẩy, Tia Truyền Xạ</p>
 <dl>
-<dt>Contributions</dt><dd><dl class="simple">
-<dt>Direct</dt><dd><p>See <a class="reference internal" href="#bpy-types-bakesettings-use-pass-direct"><span class="std std-ref">above</span></a>.</p>
+<dt>Sự Đóng Góp</dt><dd><dl class="simple">
+<dt>Trực Tiếp</dt><dd><p>See <a class="reference internal" href="#bpy-types-bakesettings-use-pass-direct"><span class="std std-ref">above</span></a>.</p>
 </dd>
-<dt>Indirect</dt><dd><p>See <a class="reference internal" href="#bpy-types-bakesettings-use-pass-indirect"><span class="std std-ref">above</span></a>.</p>
+<dt>Gián Tiếp</dt><dd><p>See <a class="reference internal" href="#bpy-types-bakesettings-use-pass-indirect"><span class="std std-ref">above</span></a>.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-pass-color">
-<dt>Color</dt><dd><p>Colorize the pass.</p>
+<dt>Màu Sắc</dt><dd><p>Colorize the pass.</p>
 <ul class="simple">
 <li><p>If only <em>Color</em> is selected you get the pass color,
 which is a property of the surface and independent of sampling refinement.</p></li>
@@ -291,17 +291,17 @@ you get the direct and/or indirect contributions colored.</p></li>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Normal -- Pháp Tuyến</p>
+<p class="rubric">Pháp tuyến/B.Thg</p>
 <dl id="bpy-types-bakesettings-normal-space">
-<dt>Không Gian -- Space</dt><dd><p>Normals can be baked in different spaces:</p>
+<dt>Cách/Khoảng Trống/Không Gian</dt><dd><p>Normals can be baked in different spaces:</p>
 <p>For materials, the same spaces can be chosen in the image texture options
 next to the existing <em>Normal Map</em> setting. For correct results,
 the setting here should match the setting used for baking.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Object -- Vật Thể</dt>
+<dt class="field-odd">Vật Thể</dt>
 <dd class="field-odd"><p>Normals in object coordinates, independent of object transformation, but dependent on deformation.</p>
 </dd>
-<dt class="field-even">Tangent -- Tiếp Tuyến</dt>
+<dt class="field-even">Tiếp Tuyến</dt>
 <dd class="field-even"><p>Normals in tangent space coordinates, independent of object transformation and deformation.
 This is the default, and the right choice in most cases, since then the normal map can be used for
 animated objects too.</p>
@@ -310,12 +310,12 @@ animated objects too.</p>
 </dd>
 </dl>
 <span id="bpy-types-bakesettings-normal-g"></span><span id="bpy-types-bakesettings-normal-r"></span><dl class="simple" id="bpy-types-bakesettings-normal-b">
-<dt>Swizzle R, G, B</dt><dd><p>Axis to bake into the red, green and blue channel.</p>
+<dt>Đảo R, G, B</dt><dd><p>Axis to bake into the red, green and blue channel.</p>
 </dd>
 </dl>
 </section>
 <section id="selected-to-active">
-<span id="bpy-types-bakesettings-use-selected-to-active"></span><h3>Selected to Active<a class="headerlink" href="#selected-to-active" title="Permalink to this headline"></a></h3>
+<span id="bpy-types-bakesettings-use-selected-to-active"></span><h3>Từ được Chọn Sang cái Đang Hoạt Động<a class="headerlink" href="#selected-to-active" title="Permalink to this headline"></a></h3>
 <p>Bake shading on the surface of selected objects to the active object.
 The rays are cast from the low-poly object inwards towards the high-poly object.
 If the high-poly object is not entirely involved by the low-poly object, you can tweak the rays start point with
@@ -327,19 +327,19 @@ For even more control you can use a <em>Cage Object</em>.</p>
 In order to avoid crashes due to lack of memory, the high-poly objects can be joined before the baking process.</p>
 </div>
 <dl id="bpy-types-bakesettings-use-cage">
-<dt>Cage</dt><dd><p>Cast rays to active object from a cage.
+<dt>Khung Lồng</dt><dd><p>Cast rays to active object from a cage.
 A cage is a ballooned-out version of the low-poly mesh created either automatically
 (by adjusting the ray distance) or manually (by specifying an object to use).
 When not using a cage the rays will conform to the mesh normals. This produces glitches on the edges,
 but it is a preferable method when baking into planes to avoid the need of adding extra loops around the edges.</p>
 <dl class="simple" id="bpy-types-bakesettings-cage-object">
-<dt>Cage Object</dt><dd><p>Object to use as cage instead of calculating the cage from the active object with the <em>Cage Extrusion</em>.</p>
+<dt>Vật Thể Khung Lồng</dt><dd><p>Object to use as cage instead of calculating the cage from the active object with the <em>Cage Extrusion</em>.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl id="bpy-types-bakesettings-cage-extrusion">
-<dt>Cage Extrusion</dt><dd><p>Distance to use for the inward ray cast when using <em>Selected to Active</em> and <em>Cage</em>.
+<dt>Đẩy Trồi/Nới Khung Lồng</dt><dd><p>Distance to use for the inward ray cast when using <em>Selected to Active</em> and <em>Cage</em>.
 The inward rays are casted from a version of the active object with disabled Edge Split Modifiers.
 Hard splits (e.g. when the Edge Split Modifier is applied) should be avoided because they will lead to non-smooth
 normals around the edges.</p>
@@ -352,30 +352,30 @@ Both meshes need to have the same <a class="reference internal" href="../../glos
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-max-ray-distance">
-<dt>Max Ray Distance</dt><dd><p>Distance to use for the inward ray cast when using <em>Selected to Active</em>.
+<dt>Khoảng cách Tối Đa cho Tia Xạ</dt><dd><p>Distance to use for the inward ray cast when using <em>Selected to Active</em>.
 Ray distance is only available when not using <em>Cage</em>.</p>
 </dd>
 </dl>
 </section>
 <section id="output">
-<h3>Output<a class="headerlink" href="#output" title="Permalink to this headline"></a></h3>
+<h3>Đầu Ra<a class="headerlink" href="#output" title="Permalink to this headline"></a></h3>
 <dl id="bpy-types-bakesettings-target">
-<dt>Mục Tiêu -- Target</dt><dd><p>Where to output the baked map.</p>
+<dt>Mục Tiêu</dt><dd><p>Nơi cho xuất kết quả Ánh Xạ được nướng ra.</p>
 <dl class="field-list">
-<dt class="field-odd">Image Textures</dt>
+<dt class="field-odd">Chất liệu hình ảnh</dt>
 <dd class="field-odd"><p>Bake to the image data-block associated with the <a class="reference internal" href="../../glossary/index.html#term-Active"><span class="xref std std-term">Active</span></a>
 <a class="reference internal" href="../shader_nodes/textures/image.html"><span class="doc">Image Texture</span></a> node.</p>
 <dl class="simple" id="bpy-types-bakesettings-margin">
-<dt>Margin</dt><dd><p>Baked result is extended this many pixels beyond the border of each UV &quot;island&quot;,
+<dt>Lề</dt><dd><p>Baked result is extended this many pixels beyond the border of each UV &quot;island&quot;,
 to soften seams in the texture.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-bakesettings-use-clear">
-<dt>Clear Image</dt><dd><p>If selected, clears the image before baking render.</p>
+<dt>Xóa Hình Ảnh</dt><dd><p>If selected, clears the image before baking render.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Màu Điểm Đỉnh -- Vertex Colors</dt>
+<dt class="field-even">Màu Điểm Đỉnh</dt>
 <dd class="field-even"><p>Bake to the <a class="reference internal" href="../../glossary/index.html#term-Active"><span class="xref std std-term">Active</span></a> <a class="reference internal" href="../../sculpt_paint/vertex_paint/index.html"><span class="doc">Vertex Color</span></a> layer on the active mesh.
 Note, the active object must be a mesh as other object types do not have vertex colors.</p>
 </dd>
@@ -390,15 +390,15 @@ Note, the active object must be a mesh as other object types do not have vertex 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="features.html" class="btn btn-neutral float-left" title="Experimental Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="optimizations/index.html" class="btn btn-neutral float-right" title="Optimizing Renders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="features.html" class="btn btn-neutral float-left" title="Chức năng thử nghiệm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="optimizations/index.html" class="btn btn-neutral float-right" title="Tối Ưu Hóa các Bản Kết Xuất" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

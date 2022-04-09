@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN">
+<article>
+
+<title>Jubler FAQ</title>
+
+<section><title>I have a question not mentioned here</title>
+<mediaobject>
+      <imageobject>
+            <imagedata fileref="question.png" format="PNG"/>
+      </imageobject>
+</mediaobject>
+
+    <para>Please feel free to contact me through the <ulink url="http://www.jubler.org">forum or email</ulink>, and I will try to answer your question.
+</para>
+</section>
+
+<section><title>How to translate to my own language</title>
+    <para>To translate Jubler to your own language, there is a simple method, with a little help of poedit (and me!). At first contact me to update the language template file in the SVN. The file can be found in <ulink url="http://jubler.svn.sourceforge.net/viewvc/jubler/src/resources/i18n/">Sourceforge SVN</ulink> and is named "jubler.pot". Rename this file into your locale 2-letter name (e.g. english should have been en.po) with the .po extension instead of .pot .</para>
+
+	<para>You can edit this file with either <ulink url="http://www.poedit.net/">poedit</ulink> (recommended) or any other plain text editor. Prepare the translation and then send the .po file back to me. If you want to compile the translation yourself (you are brave, aren't you) just place the file under resources/i18n and execute the "i18n" ant task (if you don't know what I am talking about, don't worry, just sent the file back).</para>
+</section>
+
+<section><title>Installing MPlayer/ASpell tools</title>
+    <para>In order to use any external tool, you have to manually download the tool and install it in your system. You need to follow the usual installation procedure of your operating system for proper installation. When Jubler needs this tool, it will launch a Wizard to search for the location of the external tool.</para>
+	<para>MPlayer can be downloaded form the  <ulink url="http://www.mplayerhq.hu/design7/dload.html">MPlayer website</ulink>. Under Windows make sure that you do <emphasis>not</emphasis> download the GUI version, since Jubler uses it's own GUI.</para>
+	<para>ASpell can be found for <ulink url="http://aspell.net/">POSIX/Linux environment</ulink>, <ulink url="http://people.ict.usc.edu/~leuski/cocoaspell/">Mac OS X</ulink> and <ulink url="http://aspell.net/win32/">Windows</ulink>. Do not forget to download the apropriate <ulink url="http://ftp.gnu.org/gnu/aspell/dict/0index.html">language definitions</ulink> afterwards.</para>
+</section>
+
+<section><title>How can I enter translation mode?</title>
+    <para>There is no such thing as "translation mode". Instead there is a parent/child approach which is more flexible, since it is a tree-like relationship instead of one-to-one. Every file might have a "parent" file; of course one parent might have more than one children. When a subtitle is selected on the child file, the subtitle with the closest time on the parent file is selected too. This is always the case either when a user selects a subtitle with the mouse, or if a subtitle is automatically selected (e.g. while playing or previewing).</para>
+    <para>This selection propagates to the "grandparent" (i.e. the parent of the parent) and so on, up to the file which has no parents at all. Of course you could display all the windows simultaneously on screen and see how the selected subtitle propagates at their parent. When a subtitle is selected on the parent file, the selected subtitle on the children is not altered.</para>
+    <para>On order to (un)set the parent of a file, go to "Tools" - "Reparent" and (de)select the parent file. If you want to start a translation from scratch, i.e. having a new file with the correct time-slots but without any text, go to "File" - "New" - "Child" and a new file will open, with it's parent to the current one. It would be wise to detach the subtitle edit box from the child, hide the subtitle edit box from the parent and enlarge the visible subtitle box to take the whole space underneath the subtitle windows.</para>
+</section>
+
+<section><title>How can I synchronize subtitles with two given time-points?</title>
+    <para>This can be performed using the Video Console. Let the movie play and when you hear a subtitle, press the "T" button. The playback pauses. Go to the main window and select the subtitle you have just heard. The first synchronization button (on the right of the bar, in the same row with the "T" button) lights up. Then go to the movie end, without closing the Video Console. Again, when you hear a subtitle, press the "T" button. The playback pauses again. Select the subtitle from the main window. The recode window will pop up. Use the custom parameters (they should be already selected) and press OK.</para>
+    <para>If the recode window did not show up, it means that the time-points chosen are not valid and it is impossible to recode. You have to select another time position. Therefore, the last selected position is deselected.</para>
+    <para>If the subtitle time difference is the same on both time positions, then shift time is performed instead of recoding.</para>
+    <para>There is also another way of selecting the time positions. Instead of selecting the subtitle text from the main window, you can shift the subtitled using the bar on the lower left of the Console. Then when you thing that the subtitles are synchronized, press either synchronization buttons.</para>
+</section>
+
+<section id="synchronize"><title>How can I synchronize subtitles from an external file?</title>
+    <para>In order to synchronize the subtitles of one file with the subtitles of another, you have to open both files in Jubler. Then go to the file you want to  work on and select tool "Synchronize". Select which subtitles you want to synchronize (possibly all of them), the "model" subtitles (from the other file), if there is any offset and if you want to synchronize time-stamps or text. After clicking OK the synchronization will be performed. Keep in mind that the offset is based on index of the subtitle and not on time.</para>
+</section>
+
+<section><title>How can I shift subtitles text, while keeping the time-stamp slots constant?</title>
+    <para>There are times where you want to keep the various time-stamps of subtitles steady and shift the subtitle texts - relative to their time-stamp. Here comes <ulink url="#synchronize">synchronize</ulink> to the rescue again. The only difference from the previous approach is that you select the "-current-" subtitle file and you enter the offset. You can either shift time-stamps or text.</para>
+</section>
+
+<section><title>How can I change the video file?</title>
+    <para>The position of this menu entry has changed (again). It is under "File"->"Information", tab "Media".</para>
+</section>
+
+<section><title>How can I change the default font while previewing a subtitle?</title>
+	<para>You have to click on the <emphasis>Edit current style</emphasis> button, on the upper right corner of the subtitle editing area. A window will pop up, with various options, like font size, colors, etc. Please note that, due to MPlayer limitations, most of these options will not change the subtitle output while previewing with MPlayer. Still, values like font size are useful.</para>
+</section>
+
+<section><title>How can I create new subtitles while the movie is played?</title>
+    <para>This is performed with the Video Console window. In order for this mode to work is <emphasis>necessary</emphasis> the Video Console window to have the focus, and especially the Text Box on the lower left of the window. Usually the application tries to request the focus to this widget, when the Video Console is selected. You can do this manually, after selecting the Video Console window, by clicking inside this Text Box.</para>
+    <para>To perform the actual subtitle recording, follow this procedure. When you hear a subtitle press the ENTER key, or press the notepad like icon, on the right of the Text Box. Then the icon of the notepad will turn red. When you want to mark the end of the recorded subtitle, press ENTER or the notepad icon again. The notepad button will be inactive and the focus will be on the Text Box. Type a text (if you want) and press ENTER again to accept it or ESCAPE to cancel. This method accepts subtitles with no text inside.</para>
+</section>
+ 
+<section><title>The mousewheel changes time too fast. Can I reduce this speed?</title>
+	<para>Yes you can! Press the ALT button while rotating the mousewheel and the speed will reduce from 1 second to 0.1 second per click.</para>
+	<para>You can have the same efect, if you click on the up/down arrows while holding again the ALT button.</para>
+</section>
+
+<section><title>Mouse usage in Preview widget</title>
+	<para>Although there was an effort to maintain the expected GUI behaviour in the Preview widget, there might be usages not directly expected. Here is documented all mouse usages on this visual object.</para>
+	<itemizedlist>
+		<listitem><para>Right mouse button: this is heavily used to select and manipulate the various subtitles. There are a lot of "usage" modes, described below:</para>
+			<itemizedlist>
+			<listitem><para>Select tool ("mouse" icon on the toolbar): Use the mouse to select one subtitle at a time. If the [CONTROL] button is pressed, then more than one subtilte can be selected by clicking on an unselected subtitle. If the user clicks on an already selected subtitle while pressing the [CONTROL] key, then the clicked subtitle will be deselected.</para></listitem>
+			<listitem><para>Move tool ("hand" icon on the toolbar): This tool works exactly like the "Select" tool. In addition, if the mouse pointer is moved, while clicked down, then the selected subtitles will move. If the user wants to move more than one subtitle, no pressure of [CONTROL] key is needed. In this case no subtitles are deselected.</para></listitem>
+			<listitem><para>Resize tool ("two-face arrow" on the toolbar): Again, this tool works just like the "Select" tool, but if the user clicks on the "edge" of the subtitle, then it is possible to change the size of the subtitle. if the ending time-point of the subtitle(s) are smaller than the starting time, then the resize will inverse the subtitles and resize accordingly. The usage of [CONTROL] button is again not required while resizing, just like the "Move" tool.</para></listitem>
+			<listitem><para>Automatic tool ("magic wand" on the toolbar): The widget selects the appropriate tool depending on the location of the first click: if the user clicks inside the subtitle, then it is like the "Select" tool. If the user clicks  inside and moves the mouse pointer, then the produced action is similar to the the "Move" tool, while if the original click area is in the obrder of a subtitle, then the "Resize" tool action is performed.</para></listitem>
+			</itemizedlist>
+		</listitem>
+		<listitem><para>Mouse wheel. By using the mouse wheel on the preview widget, the preview zooms in/out accordingly.</para></listitem>
+	</itemizedlist>
+</section>
+
+<section><title>What is Zemberek and how can I use it?</title>
+    <para>Zemberek is a spell checking library for the Turkish language. You have to download the binary distribution of zemberek <ulink url="http://code.google.com/p/zemberek/">from its website</ulink> first. Version 2.1 was tested with this version of Jubler. Unzip the file, and copy zemberek-cekirdek-2.1.jar and zemberek-tr-2.1.jar under JUBLER_HOME/lib/ directory. Then Jubler should be able to open this library. 
+    </para>
+</section>
+
+<section><title>Problems while loading a subtitle file</title>
+    <para>Since the subtitle loader is still under development, it is possible that when loading a valid supported subtitle file, a message will pop up informing that it is unable to load this file. In such a case you can <ulink url="http://www.jubler.org">contact me or write in the forum</ulink> and send me the problematic subtitle file.</para>
+</section>
+
+<section><title>Problems while creating preview</title>
+    <para>Sometimes when opening preview for a valid video file, a message informing that preview is not available may pop up. This sometimes happens when there is a problem with the initialization of the ffdecode library from your Java environment. Usually closing the Preview window and open it again helps. When this doesn't help, a restart of Jubler solves this situation. I am really interested on these kind of problems, so when you can reproduce this error, please give me a note.</para>
+</section>
+
+<section><title>Using Jubler with DVB-T recordings in DVD projects</title>
+	<para>With recent available of DVB-T transmissions and recordings, there are <ulink url="http://www.linux2000.org/dvb.html">facilities</ulink> allowing you to capture the transport streams with subtitles embedded in it and <ulink url="http://sourceforge.net/projects/project-x">extract</ulink> this stream to SON subtitle format with images of subtitle text. These images can be loaded into Jubler and be converted to text using Jubler's Optical Character Recognition (OCR) feature. The converted text can then be manually edited, corrected, and saved to other subtitle formats which are understood by a DVD authoring application. Jubler came with <ulink url="http://code.google.com/p/tesseract-ocr/">tesseract OCR application</ulink>. This application resides in the Jubler's directory, under the directory name 'tesseract'. Under this directory, there will also be a 'tessdata' directory where OCR language files are placed. The current release might not have the OCR language file you need, but further language files can be downloaded from the <ulink url="http://code.google.com/p/tesseract-ocr/downloads/list">tesseract web-site's download page</ulink>. On the tesseract web-site, you should also find instruction to create your own language set. Please look at the <ulink url="http://code.google.com/p/tesseract-ocr/wiki/TrainingTesseract">Training Tesseract</ulink> page for futher details. The language font files can be added at run-time of the application, meaning that you DO NOT have to close down the application when adding new files into the tesseract's tessdata directory. The OCR operation will pick up the latest list when it is activated. When Jubler could not locate language list then please check out the setting of tesseract's evironment variable 'TESSDATA_PREFIX' and making sure that the system's environment is refreshed properly. Example on Linux:
+		<literallayout>
+		TESSDATA_PREFIX=$HOME/java/jubler/tesseract/
+
+		</literallayout>
+	and on Windows:
+		<literallayout>
+		TESSDATA_PREFIX="C:\Program Files\Jubler\tesseract\"
+		
+		</literallayout>	
+	Note that the ending separator "/" or "\" IS VERY IMPORTANT.
+	</para>
+</section>
+
+<section><title>Using external OCR applications</title>
+	<para>You're not limited to use the provided 'tesseract' OCR application. Often users already own a commercial OCR application and prefer to use it instead. When using the OCR result from external application, the subtitle text must be saved as 'text with page-break' or 'text with line-break' format. The 'text with page-break' format separate each paragraph of subtitle-text by a page-break (0x0C), which is known in Java as '\f' character. The 'text with line-break' separate each paragraph of subtitle-text by a new-line character (0x0A or 0x0A,0x13 group). Jubler understood and can load these files. It is suggested that once the SON subtitle file and images has been extracted by application such as <ulink url="http://sourceforge.net/projects/project-x">ProjectX</ulink>, the images are fed into your favourite OCR application, such as <ulink url="http://www.nuance.com/textbridge/">TextBridge Pro</ulink>, and allowing it to perform optical character recognition on these images, convert them to editable text, and save them to one of the text format files mentioned above. 
+	</para>
+	<para>The SON index file is then loaded into Jubler, where images will be displayed on the subtitle text column. The subtitle text that has been converted by your OCR application can be loaded using 'Import Component' feature under File menu, and select 'Text' component. The subtitle-text will be visible in the subtitle editor as you scroll through the images. 
+	</para>
+</section>
+
+<section><title>Why imported subtitle-text which has been OCR by an external application doesn't match with the SON image shown</title>
+	<para>When subtitle images are converted into editable text by an external OCR application, there are times when OCR errors occur and the text of a given image can not be produced. It is a very common phenomenal and often occurs when the image is badly formed, or the words on the image are not recognisable by the OCR application. Jubler provides the ability to shit the text up or down by the chosen number of lines, leaving the images and timing component remain intact in their original order. The missing text are then must be entered manually using the displayed image as the reference source. The need for shifting text doesn't exist with the use of provided 'tesseract' as each image is parsed individually and hence error entries will not have text in its textual component, but for images where OCR text can be produced, the textual component will contain editable text.
+	</para>
+</section>
+
+<section><title>How to save SON images and subtitle text together?</title>
+	<para>You can choose to save the subtitle file in the 'DVD Maestro Extended SWT' format. When SON images present, the file records entries similar to that of the SON, with the additon of the subtitle text that lies underneath the time and picture definition line. This format is ONLY used for editing OCR content and is probably not subitable for any DVD authoring applications. The subtitle text should be saved to a format that the target DVD authoring application, such as <ulink url="http://tmpgenc.pegasys-inc.com/en/product/tda3.html">TMPGEnc DVD Author 3</ulink>, understood. Among other formats, Jubler can load and produce SubRip SRT and TMPGenc's subtitle files.
+	</para>
+</section>
+
+<section><title>I'm dealing with a live-subtitled programmes and there're lots of duplications, can Jubler help?</title>
+	<para>Yes! Live-subtitled programmes produced three major problems, and they are often came in groups:
+		<itemizedlist>
+			<listitem>
+				<para>First text line of the subtile in the group is duplidated when the second line contains only a single word. A typical example of this can be shown here:
+					<literallayout>
+						7
+						I love this show. 140 people.
+						ladies
+					
+						8
+						I love  this show. 140 people.
+						and
+					
+						9
+						I love this     show. 140 people.
+						gentlemen.
+
+					</literallayout>
+					This symptom is identified as 'Top line' duplication. The function 'Top line' under the 'Tools->Duplication' menu will use the first subtitle event within the group as the target subtitle event where text from sub-sequent events are collected, without the duplicated top line, and all single words on the second line are grouped together as one continuous text line. Words are space separated. So the result of this function for the above group would be:
+					<literallayout>
+						7
+						I love this show. 140 people.
+						ladies and gentlemen. 
+					
+					</literallayout>
+					The timing of the subtitle event will be the grouping of the two, so the ending time of the final remain element in the group would have the ending of the last subtitle event.
+					
+				</para>
+			</listitem>
+			<listitem>
+				<para>The bottom text line of the first subtitle event is duplicated on the first line of a sub-sequent event. The grouping contains two events at a time. A typical example would be:				
+					<literallayout>
+						7
+						I love this show. 140 people.
+						ladies and gentlemen. All with the
+						
+						8
+						ladies and gentlemen. All with the
+						same aim.
+						
+					</literallayout>
+					This problem is identified as 'Bottom Top line' duplication. The function located in the 'Tools->Duplication' menu will remove the duplicated top-line of the second event in the group and try to retain it. Jubler will only remove the second event when the it doesn't contain any subtitle text after the removal of the first duplicated line. This applies to events that initially contains only one line of text. When removal occurs, the ending-time of the first event will be changed to ending-time of the removing event. The result of the above example would be:
+					<literallayout>
+						7
+						I love this show. 140 people.
+						ladies and gentlemen. All with the
+						
+						8
+						same aim.
+						
+					</literallayout>
+				</para>
+			</listitem>
+			<listitem>
+				<para>The timing element of subtitle event can also be duplicated, especially the starting-time. A typical example would be:
+					<literallayout>
+						2
+						00:04:41,020 --> 00:04:41,200
+						love
+					
+						3
+						00:04:41,020 --> 00:04:42,210
+						this
+					
+						4
+						00:04:41,020 --> 00:04:42,240
+						show.
+						
+					</literallayout>
+					The grouping include all events that have the starting-time or ending-time duplicated. The function 'Time' located in the 'Tools->Duplication' will try to remove the duplication by taking the first subtitle event in the group as the event to keep and all sub-sequent duplicated events are removed. The ending-time of the event to keep will be set to the last event of the group, when all the subtitle text of duplicated events are appended to the first event. So the result of the above example, after the running of the function would be:
+					<literallayout>
+						2
+						00:04:41,020 --> 00:04:44,090
+						love this show.
+						
+					</literallayout>
+					And since the duplicated events contain only single words in their textual element, the resulted text combines words into a single line, space separated.
+				</para>
+			</listitem>
+		</itemizedlist>
+	</para>
+	<para>Extraction of subtitle images could result to an abnormally large number of events. It is suggested that users use an external OCR application and convert images to text in batches. The resulted text can be combined in Jubler, using 'Append from file' function under the 'File' menu. Alternatively, use the 'Split SON Subtitle File' function under 'File' menu to divide the subtitle file to files with much smaller number of images. Each file can then be brought into Jubler and performing OCR, corrections individually, save the content in a textual format, such as SubRip (SRT), before combining them into one big text file again using file appending function.
+	</para>
+</section>
+
+<section><title>How can Jubler help with using an external OCR</title>
+	<para>There are several ways that Jubler can help dealing with external OCR. It is often more convenience if images are packed into a single multi-paged 'tiff' image file before it is passed to an external OCR package. Jubler can perform this function in two ways.
+		<itemizedlist>
+			<listitem>
+				<para>If a SON index file has been loaded into Jubler with it images, these images are actually cut down in size, and thus you will not see the blue transparent colour that exists in the original images. By choosing the function 'Tool->Perform OCR->Images to Tiff', you can write these transformed images to a single multi-paged 'Tiff' file. Images are converted to black and white (b/w) images before they are written to the file, as OCR processing on b/w image would produce a much more consitent result and less errors than the multi-coloured ones. The written tiff file is uncompressed, and thus, there are not need to worry about having the library that deals with the compression and decompression. You only need to have an OCR application that undertood the multi-paged uncompressed 'tiff' file.
+				</para>
+			</listitem>
+			<listitem>
+				<para>You can also pack subtitle images to a single uncompressed 'tiff' file without having to load images into Jubler, using the function in 'File->Packing image files to TIFF'. You can either select a number of images to pack, or select a directory where images resides. Selecting images give a more precise selection, as images are picked by you. When you select a directory, all image types in that directory will be considered. So images of extensions "jpg", "gif", "bmp", "png", "tif" are all loaded and will be considered to be the part of the result multi-paged file. Loaded images are sorted in ascending order of their file-names.
+				</para>
+			</listitem>
+			<listitem>
+				<para>If a SON subtitle file contains an extremely large number of images, and thus preventing you to load the whole files into the Jubler, due to the shortage of memory. You can split the subtitle file into several fragments, each contain an equal or so divident of images, with header in-tag, by using the function in 'File->Split SON Subtitle File'. This function will ask you for the number of fragments you wish to split the original file to, and it will write fragments to the same directory where the original subtitle file resides. After splitting, each fragment can then be loaded into Jubler, as if it was a single unit, and you can then carry out OCR tasks and corrections. You can choose to save edited file as a 'DVDMaestro extended SWT' to hold both images and text information, or any other non-image format, such as SRT. All fragmented text out-put files, after OCR and editions, can be brought together as a single file, using 'File->Append From File'. The first file in the sequence must be loaded, before appending are carried out.
+				</para>
+			</listitem>			
+		</itemizedlist>
+	</para>
+</section>
+
+<section><title>Importing header from a TMPGenc subtitle file</title>
+	<para>As Jubler does not yet have the capacity to edit the TMPGenc subtitle header blocks, where styles for subtitle events are held, it can however, allow you to import the header from an external TMPGenc subtitle file that has been saved or exported from <ulink url="http://tmpgenc.pegasys-inc.com/en/product/tda3.html">TMPGEnc DVD Author</ulink> software. This can be done using function 'File->Import Component' and select 'Header'. This section is only applied to 'TMPGenc subtitle' files, however, files with headers, such as SON/SWT can use the same import function to replace the header information from an external file of the same format.
+    </para>
+</section>
+
+<section><title>I found a problem!</title>
+    <para>I am always happy to listen to problems of Jubler, especially those not mentioned here - although I am happier when you report success issues! The best way to inform me is through the <ulink url="http://www.jubler.org">Jubler site</ulink>. Sometimes the site has problems, reload the page and it will show up. The preferred way is through the forum, but if the forum is down (or I haven't answer in 2-3 days) email me directly.</para>
+</section>
+
+</article>

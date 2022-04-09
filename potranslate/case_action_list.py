@@ -1,12 +1,37 @@
 import math
 import re
 from enum import Enum
-from definition import Definitions as df
+from definition import Definitions as df, RefType
+# from fuzzywuzzy_src.build.fuzzywuzzy import fuzz
 from fuzzywuzzy import fuzz
 from pattern_utils import PatternUtils as pu
 from matcher import MatcherRecord
 from observer import LocationObserver
 from itertools import chain
+from get_text_within import GetTextWithin
+from functools import reduce
+from bracket import RefAndBracketsParser as PSER
+from collections import OrderedDict, defaultdict
+
+
+def jointText(orig: str, tran: str, loc: tuple):
+    if not bool(tran):
+        return orig
+
+    s, e = loc
+    left = orig[:s]
+    right = orig[e:]
+    new_str = left + tran + right
+    return new_str
+
+
+def removeText(orig: str, loc: tuple):
+    s, e = loc
+    left = orig[:s]
+    right = orig[e:]
+    new_str = left + right
+    return new_str
+
 
 class CaseAction(Enum):
     NONE = 0
@@ -15,22 +40,54 @@ class CaseAction(Enum):
     LOWER = 3
     SENTENCE = 4 # first Upper, then all lower
     MIXED = 5
+    WITHOUT_UPPER = 6
+    WITHOUT_TITLE = 7
+    WITHOUT_LOWER = 8
+    WITHOUT_MIXED = 9
+    ORIGINAL = 10
+
+    @classmethod
+    def getMember(self, string_value: str):
+        def compare(entry):
+            (name, member) = entry
+            is_found = (str(member.value) == string_value)
+            return is_found
+
+        if not hasattr(self, 'member_list'):
+            member_list = [(name, member) for (name, member) in self.__members__.items()]
+            setattr(self, 'member_list', member_list)
+
+        found_list = list(filter(compare, self.member_list))
+        if found_list:
+            return found_list[0][1]
+        else:
+            return None
 
 class CaseRecord(list):
-    def __init__(self, txt: str, matcher_record: MatcherRecord = None):
-        self.txt = txt
-        self.s = -1
-        self.e = -1
-        self.case: CaseAction = CaseAction.NONE
+    def __init__(self, txt: str,
+                 matcher_record: MatcherRecord = None,
+                 case_type: CaseAction = CaseAction.NONE,
+                 ref_type: RefType = RefType.TEXT
+                 ):
+
+        self.case: CaseAction = case_type
         if bool(matcher_record):
+            self.ref_type = matcher_record.type
             self.txt = matcher_record.txt
             self.s = matcher_record.s
             self.e = matcher_record.e
+        else:
+            self.ref_type: CaseAction = ref_type
+            self.txt = txt
+            self.s = -1
+            self.e = -1
+
 
     def __repr__(self):
         string = ""
         try:
-            string = '\n----CaseRecord start------'
+            string = f'\nloc:{(self.s, self.e)}'
+            string += '\n----CaseRecord start------'
             string += "\nCaseRecord:\n{!r}".format(self.__dict__)
             string += '\n----CaseRecord end------\n'
         except Exception as e:
@@ -39,23 +96,33 @@ class CaseRecord(list):
 
     @classmethod
     def loc(cls):
-        return (self.s, self.e)
+        return (cls.s, cls.e)
 
     @classmethod
     def setLoc(cls, new_loc):
-        (self.s, self.e) = new_loc
+        (cls.s, cls.e) = new_loc
 
-    def transformText(self, case_required: CaseAction):
+    def transformText(self, case_required: CaseAction, preserve_case=None):
         new_txt: str = self.txt
+        current_case = self.case
+        is_preserved = (bool(preserve_case) and current_case == preserve_case)
+        if is_preserved:
+            return
+
         if case_required == CaseAction.TITLE:
             new_txt = new_txt.title()
+            self.case = case_required
         elif case_required == CaseAction.UPPER:
             new_txt = new_txt.upper()
+            self.case = case_required
         elif case_required == CaseAction.LOWER:
             new_txt = new_txt.lower()
+            self.case = case_required
         self.txt = new_txt
 
 class CaseActionList:
+
+    ignoreable = ['-', '+', '%']
     upper_pattern_txt = r'%s+' % (CaseAction.UPPER.value)
     UPPER_PAT = re.compile(upper_pattern_txt)
 
@@ -76,7 +143,9 @@ class CaseActionList:
         self.case_converted_txt = None
         self.case_list: list[CaseAction] = []
         self.case_value_string: str = None
-        self.sentence_list = []
+        self.case_value = -1
+        self.ref_list: PSER = None
+        self.prefixed_case_type_dict = {}
 
     def __repr__(self):
         string = ""
@@ -88,10 +157,35 @@ class CaseActionList:
             pass
         return string
 
+    def caseValue(self):
+        return int(self.case_value_string)
+
+    @classmethod
+    def getCaseRecordWords(self, case_record_list):
+        case_record: CaseRecord = None
+        word_list = [case_record.txt for case_record in case_record_list]
+        return word_list
+
+    def putCaseRecordWords(self, new_word_list: list):
+        def function_put_word(new_word: str, current_case_record: CaseRecord):
+            current_case_record.txt = new_word
+            return current_case_record
+
+        has_same_length = len(new_word_list) == len(self.case_list)
+        if not has_same_length:
+            report_msg = f'putCaseRecordWords() Replacing word list MUST have the same length as the local case_list'
+            raise RuntimeError(report_msg)
+
+        case_record: CaseRecord = None
+        done_list = list(map(function_put_word, new_word_list, self.case_list))
+        return done_list
+
     def refresh(self):
         current_string = self.getText()
-        other = CaseActionList.makeInstance(current_string)
-        self.clone(other)
+        is_same = (self.txt == current_string)
+        if not is_same:
+            other = CaseActionList.makeInstance(current_string)
+            self.clone(other)
 
     def clone(self, other):
         self.loc = other.loc
@@ -99,7 +193,6 @@ class CaseActionList:
         self.case_converted_txt = other.case_converted_txt
         self.case_list = other.case_list
         self.case_value_string = other.case_value_string
-        self.sentence_list = other.sentence_list
 
     def refreshUsingNewText(self, txt: str):
         if not bool(txt):
@@ -112,18 +205,6 @@ class CaseActionList:
     def reproduce(cls):
         return cls()
 
-    @classmethod
-    def jointText(self, orig: str, tran: str, loc: tuple):
-        backup = [str(orig), str(tran)]
-        if not bool(tran):
-            return orig
-
-        s, e = loc
-        left = orig[:s]
-        right = orig[e:]
-        new_str = left + tran + right
-        return new_str
-
     def isConsideringTheSame(self, other):
         is_same_begin_and_end = self.isSameBeginAndEnd(other)
         if not is_same_begin_and_end:
@@ -131,6 +212,9 @@ class CaseActionList:
 
         this_string: str = self.case_value_string
         other_string: str = other.case_value_string
+        is_same = (this_string == other_string)
+        if is_same:
+            return True
 
         this_first: str = this_string[0]
         other_first: str = other_string[0]
@@ -152,246 +236,177 @@ class CaseActionList:
                   (is_considering_same and title_ratio > 80)
         return is_same
 
+    def toListOfCaseRecord(self, s1: str, origin_loc=None, original_for_removal=None) -> CaseAction:
+        def getWordsCase(entry):
+            loc: tuple(int, int) = entry[0]
+            mm: MatcherRecord = entry[1]
 
-
-    def checkCase(self, s1: str) -> CaseAction:
-        def getWordsCase(word: str):
-            chars_only = df.CHARACTERS.findall(word)
-            tword = ' '.join(chars_only)
-
-            is_numeric = tword.isnumeric()
-            is_upper = tword.isupper()
-            is_lower = tword.islower()
-            is_title = tword.istitle()
+            is_numeric = mm.txt.isnumeric()
+            is_upper = mm.txt.isupper()
+            is_lower = mm.txt.islower()
+            is_title = mm.txt.istitle()
+            case_act = CaseAction.NONE
             if is_numeric:
-                return CaseAction.LOWER
-            if is_upper:
-                return CaseAction.UPPER
+                case_act = CaseAction.LOWER
+            elif is_upper:
+                case_act = CaseAction.UPPER
             elif is_title:
-                return CaseAction.TITLE
+                case_act = CaseAction.TITLE
             elif is_lower:
-                return CaseAction.LOWER
-            else:
-                return CaseAction.NONE
+                case_act = CaseAction.LOWER
 
-        word_case = getWordsCase(s1)
-        if not word_case is CaseAction.NONE:
-            return word_case
+            case_rec = CaseRecord(mm.txt, matcher_record=mm, case_type=case_act)
+            return case_rec
 
-        # alnum_only_list = df.CHARACTERS.findall(s1)
-        # alnum_only_txt = ' '.join(alnum_only_list)
-        temp_word = df.NON_SYMBOL_AND_SPACE.sub('', s1)
-        word_case = getWordsCase(temp_word)
-        if not word_case is CaseAction.NONE:
-            return word_case
-
-        # we have words like variable, ie. AutoMerge, mix case
-        word_list = df.SEP_CASE.findall(s1)
-        have_words = bool(word_list)
-        if not have_words:
-            return CaseAction.NONE
-
-
-        first_word_case = getWordsCase(word_list[0])
-        has_remain = len(word_list) > 1
-        if has_remain:
-            remain_word_list = (word_list[1:] if len(word_list)>1 else [])
-            remain_cases = list(map(getWordsCase, remain_word_list))
-            test_lower = list(map(lambda x: x == CaseAction.LOWER, remain_cases))
-            test_upper = list(map(lambda x: x == CaseAction.UPPER, remain_cases))
-            test_title = list(map(lambda x: x == CaseAction.TITLE, remain_cases))
-            is_remain_lower = (False not in test_lower)
-            is_remain_upper = (False not in test_upper)
-            is_remain_title = (False not in test_title)
-
-            is_word_title = (first_word_case == CaseAction.UPPER or first_word_case == CaseAction.TITLE) and is_remain_lower
-            if is_word_title:
-                return CaseAction.TITLE # should be MIXED, but haven't yet working out how to copy the mixed case over yet
-            is_word_upper = (first_word_case == CaseAction.UPPER) and is_remain_upper
-            if is_word_upper:
-                return CaseAction.UPPER
-            is_word_lower = (first_word_case == CaseAction.LOWER) and is_remain_lower
-            if is_word_lower:
-                return CaseAction.LOWER
-            return CaseAction.MIXED
-        else:
-            return first_word_case
-
-        # is_first_tile = (first_word.istitle() or first_word.isupper())
-        # is_remain_lower = (remain.islower())
-        # is_remain_title = (remain.istitle() or remain.isupper())
-        # if is_first_tile and is_remain_lower:
-        #     return CaseAction.TITLE
-        # elif is_first_tile and remain.istitle():
-        #     return CaseAction.TITLE
-        # elif not is_first_tile:
-        #     return CaseAction.LOWER
-        # else:
-        #     return CaseAction.NONE
-
-    def isSetenceCase(self):
-        try:
-            case_list = self.getListOfCases()
-            first_word_rec = self.case_list[0]
-            first_word_txt = first_word_rec.txt
-            first_word_case = case_list[0]
-
-            is_first_tile = (first_word_case == CaseAction.TITLE) or (len(first_word_txt) == 1 and first_word_case == CaseAction.UPPER)
-            remainder_list = (case_list[1:] if len(case_list) > 1 else [])
-            is_remainder_lower = not ((CaseAction.TITLE in remainder_list) or (CaseAction.UPPER in remainder_list))
-            return (is_first_tile and is_remainder_lower)
-        except Exception as e:
-            return False
-
-    def toSentenceCase(self):
-        try:
-            changed = False
-            case_record: CaseRecord = None
-            for index, case_record in enumerate(self.case_list):
-                is_first = (index == 0)
-                is_already_upper = (case_record.case != CaseAction.LOWER)
-                is_change = (is_first and not is_already_upper)
-                if not is_change:
-                    continue
-
-                case_record.transformText(CaseAction.TITLE)
-                case_record.case = CaseAction.TITLE
-                changed = True
-            if changed:
-                self.refresh()
-            return True
-        except Exception as e:
-            return False
-
-    def allToACase(self, chosen_case: CaseAction):
-        try:
-            case_record: CaseRecord = None
-            for index, case_record in enumerate(self.case_list):
-                case_record.transformText(chosen_case)
-                case_record.case = chosen_case
-            self.refresh()
-            return True
-        except Exception as e:
-            return False
-
-    def isAllTheSameCase(self, chosen_case: CaseAction):
-        def isTitle(case_action):
-            return (case_action == CaseAction.TITLE or case_action == CaseAction.UPPER)
-
-        try:
-            orig_case_list = self.getListOfCases()
-            if chosen_case == CaseAction.TITLE:
-                test_case_list = list(map(isTitle, orig_case_list))
-            else:
-                test_case_list = list(map(lambda x: x == chosen_case, orig_case_list))
-            return (False not in test_case_list)
-        except Exception as e:
-            return False
-
-    def ensureAfterFullStopUpperCase(self):
-        full_stop_loc_list = pu.patternMatchAll(df.FULL_STOP_IN_SENTENCE, self.txt)
-        if not bool(full_stop_loc_list):
-            return
-
-        changed = False
-        mm: MatcherRecord = None
-        case_record: CaseRecord = None
-        list_of_case_record_needed_to_be_titled_case = []
-        fs_loc_list = full_stop_loc_list.keys()
-        for fs_loc in fs_loc_list:
-            word_after_full_stop = None
-            for index, case_record in enumerate(self.case_list):
-                is_less = (case_record.loc < fs_loc)
-                if is_less:
-                    continue
-                else:
-                    # the first one that is greater than full_stop location
-                    word_after_full_stop = (index, case_record)
-                    break
-
-            if bool(possible_loc_of_word_after_full_stop):
-                list_of_case_record_needed_to_be_titled_case.append(word_after_full_stop)
-
-        for (index, case_record) in list_of_case_record_needed_to_be_titled_case:
-            case_record.transformText(CaseAction.TITLE)
-            changed = True
-
-        if changed:
-            self.refresh()
-
-    def copyRepeatedWordsOver(self, from_cal):
-        try:
-            changed = False
-            from_clist = from_cal.case_list
-            to_clist = self.case_list
-            f_case_record: CaseRecord = None
-            t_case_record: CaseRecord = None
-            for f_case_record in from_clist:
-                for t_case_record in to_clist:
-                    is_same_word = (f_case_record.txt.lower() == t_case_record.txt.lower())
-                    is_case_diff = (f_case_record.case != t_case_record.case)
-                    is_correct = (is_same_word and is_case_diff)
-                    if not is_correct:
-                        continue
-
-                    t_case_record.txt = f_case_record.txt
-                    changed = True
-
-            if changed:
-                self.refresh()
-
-        except Exception as e:
-            msg = f'cal_from:{from_clist}\ncal_to:{to_clist}\nexception:{e}'
-            df.LOG(msg)
-
-    def wordMacherToCaseRecord(self, item):
-        mm: MatcherRecord = None
-        (loc, mm) = item
-        case_rec = CaseRecord(None, matcher_record=mm)
-        case_rec.case = self.checkCase(case_rec.txt)
-        return case_rec
-
-    def sentenceToCaseActionList(self, s1:str):
-        def caseValueAsString(case_record: CaseRecord):
+        def getCaseValue(case_record: CaseRecord):
             return str(case_record.case.value)
 
-        sep_list = pu.patternMatchAll(df.SPACE_GA_SEP, s1)
-        loc_list = sep_list.keys()
+        def parsingRefs(entry):
+            orig_txt = parsingRefs.orig_txt
+            loc: tuple(int, int) = entry[0]
+            mm: MatcherRecord = entry[1]
+            txt_loc = loc
+            word_list_without_symbols = pu.patternMatchAll(df.CHARACTERS, orig_txt, ref_type=type, loc=txt_loc, using_origin_loc=origin_loc)
+            has_word_list = (len(word_list_without_symbols) > 0)
+            if not has_word_list:
+                return []
+            case_list = list(map(getWordsCase, word_list_without_symbols.items()))
+            return case_list
 
-        obs = LocationObserver(s1)
-        obs.markLocListAsUsed(loc_list)
-        word_dict = obs.getUnmarkedPartsAsDict(reversing=False)
+        def getCaseListExcluded(entry):
+            key_case_action = entry[0]
+            excluded_case_action = entry[1]
 
-        case_list_of_sentence: list[CaseRecord] = None
-        x:CaseRecord = None
-        case_list_of_one_sentence = list(map(self.wordMacherToCaseRecord, word_dict.items()))
-        case_value_as_list = list(map(caseValueAsString, case_list_of_one_sentence))
-        case_values_as_str = ''.join(case_value_as_list)
+            def exclude_case_action(case_record: CaseRecord):
+                is_excluded = (case_record.case == excluded_case_action)
+                return not is_excluded
 
-        return (s1, case_list_of_one_sentence, case_values_as_str)
+            excluded_list = list(filter(exclude_case_action, self.case_list))
+            valid = len(excluded_list) > 0
+            if not valid:
+                return (key_case_action, None)
 
-    def matcherDictRecordToCaseAction(self, item):
-        mm: MatcherRecord = None
-        (loc, mm) = item
-        (s1, case_list_of_one_sentence, case_values_as_str) = self.sentenceToCaseActionList(mm.txt)
-        new_case_list_action = CaseActionList.reproduce()
-        new_case_list_action.loc = loc
-        new_case_list_action.txt = mm.txt
-        new_case_list_action.case_list = case_list_of_one_sentence
-        new_case_list_action.case_value_string = case_values_as_str
-        return new_case_list_action
+            case_action_excluded_list = [case_record.case for case_record in excluded_list]
+            return (key_case_action, case_action_excluded_list)
 
-    def toCaseList(self):
-        # first keep the record of overall text
-        (txt, case_list, case_value_as_str) = self.sentenceToCaseActionList(self.txt)
+        def composePrefixCaseDict(length):
+            case_all_list = [case_record.case for case_record in self.case_list]
+            original_case_entry = [(CaseAction.ORIGINAL, case_all_list)]
+            dict_of_cases = OrderedDict(original_case_entry)
 
-        # second, break up sentences and see if they have
-        sentence_dict = pu.findInvert(df.PUNCTUATION_WITHOUT_GA_TAG_FINDER, self.txt, is_removing_symbols=True)
-        break_down_sentence_case_action_list = list(map(self.matcherDictRecordToCaseAction, sentence_dict.items()))
-        self.loc = (0, len(self.txt))
+            exluded_action_list = [
+                (CaseAction.WITHOUT_UPPER, CaseAction.UPPER),
+                (CaseAction.WITHOUT_MIXED, CaseAction.MIXED)
+            ]
+            excluded_list = list(map(getCaseListExcluded, exluded_action_list))
+            accepted_list = [(key, cal) for (key, cal) in excluded_list if bool(cal)]
+            exc_dict_of_cases = OrderedDict(accepted_list)
+            dict_of_cases.update(exc_dict_of_cases)
+            return dict_of_cases
+
+        ref_list = PSER(s1, original_for_removal=original_for_removal)
+        is_debug = (len(ref_list) > 0)
+        if is_debug:
+            is_debug = True
+
+        ref_list.parseMessage(is_ref_only=True, pattern_list=df.pattern_list_complex)
+        obs = ref_list.local_obs
+        text_dict = obs.getUnmarkedPartsAsDict(reversing=False)
+
+        parsingRefs.orig_txt = s1
+        case_list_of_list = list(map(parsingRefs, text_dict.items()))
+        case_list = [x for y in case_list_of_list for x in y]
+        has_case_list = (len(case_list) > 0)
+        if not has_case_list:
+            return
+        # # word_list = pu.patternMatchAll(df.CHARACTERS, s1)
+        # # case_value_list = list(map(getWordsCase, word_list.items()))
+        # case_value_list = list(map(getWordsCase, word_list.items()))
+        case_value_string_list = list(map(getCaseValue, case_list))
+
+        case_value_string = ''.join(case_value_string_list)
+        case_value = int(case_value_string)
         self.case_list = case_list
-        self.sentence_list = break_down_sentence_case_action_list
-        self.case_value_string = case_value_as_str
+        self.case_value_string = case_value_string
+        self.case_value = case_value
+        self.prefixed_case_type_dict = composePrefixCaseDict(len(self.case_list))
+
+    def toSentenceCase(self, cal_from, preserve_case=None):
+        def transform(index, case_record):
+
+            is_first = (index == 0)
+            if is_first:
+                case_record.transformText(CaseAction.TITLE, preserve_case=preserve_case)
+            else:
+                case_record.transformText(CaseAction.LOWER, preserve_case=preserve_case)
+            return case_record
+
+        index_list = list(range(0, len(self.case_list)))
+        transformed_list = list(map(transform, index_list, self.case_list))
+        return transformed_list
+
+    def allToACase(self, chosen_case: CaseAction, preserve_case=None):
+        case_record: CaseRecord = None
+        for case_record in self.case_list:
+            case_record.transformText(chosen_case, preserve_case=preserve_case)
+
+    @classmethod
+    def replaceRepeatedText(self, repeated_text: str, target_txt: str):
+        replaced_part = f'({repeated_text})'
+        replaced_part_lower = replaced_part.lower()
+        target_txt_lower = target_txt.lower()
+
+        has_replaced_part = (replaced_part_lower in target_txt_lower)
+        if not has_replaced_part:
+            return target_txt
+
+        new_txt = str(target_txt)
+        index = target_txt_lower.find(replaced_part_lower)
+        loc = (index, index + len(replaced_part))
+        new_txt = jointText(new_txt, replaced_part, loc)
+        return new_txt
+
+    def copyRepeatedWordsOver(self, from_cal):
+        def pairingRecords(from_case_record: CaseRecord):
+            last_index = pairingRecords.last_index[0]
+            max_index = pairingRecords.max_index
+            this_word_list = self.case_list[last_index:]
+            this_case_record: CaseRecord = None
+            for index, this_case_record in enumerate(this_word_list):
+                this_txt = this_case_record.txt
+                from_txt = from_case_record.txt
+                this_txt_lower = this_txt.lower()
+                from_txt_lower = from_txt.lower()
+
+                is_same_case_sensitive = (this_txt == from_txt)
+                is_same_case_insensitive = (this_txt_lower == from_txt_lower)
+                is_need_swap = is_same_case_insensitive and (not is_same_case_sensitive)
+                if not is_need_swap:
+                    continue
+
+                this_case_record.txt = from_case_record.txt
+
+                next_index = min(last_index + index + 1, max_index)
+                pairingRecords.last_index.clear()
+                pairingRecords.last_index.append(next_index)
+                return (this_case_record, from_case_record)
+            else:
+                return (None, None)
+
+        def sortListByLoc(mm: MatcherRecord):
+            return mm.s
+
+        try:
+            pairingRecords.last_index = [0]
+            pairingRecords.max_index = len(self.case_list)
+            pair_list = list(map(pairingRecords, from_cal.case_list))
+            replaced_list = [(from_mm, this_mm) for (from_mm, this_mm) in pair_list if (from_mm is not None) and (this_mm is not None)]
+            has_changed = len(replaced_list) > 0
+            return has_changed
+        except Exception as e:
+            msg = f'cal_from:{from_cal.txt}\ncal_to:{self.txt}\nexception:{e}'
+            df.LOG(msg)
+            return False
 
     def caseValueStr(self, case_list:list):
         try:
@@ -401,11 +416,11 @@ class CaseActionList:
             return []
 
     @classmethod
-    def makeInstance(self, s1: str):
-        cal_s1 = self.reproduce()
-        cal_s1.txt = s1
-        cal_s1.toCaseList()
-        return cal_s1
+    def makeInstance(self, s1: str, using_origin_loc=None, original_for_removal=None):
+        cal = self.reproduce()
+        cal.txt = s1
+        cal.toListOfCaseRecord(s1, origin_loc=using_origin_loc, original_for_removal=original_for_removal)
+        return cal
 
     @classmethod
     def isBothMatched(self, s1: str, s2: str):
@@ -463,7 +478,7 @@ class CaseActionList:
         list_word.sort(reverse=True)
         for (loc, mm) in list_word:
             new_word = mm.txt
-            new_txt = self.jointText(new_txt, new_word, loc)
+            new_txt = jointText(new_txt, new_word, loc)
         return new_txt
 
     def caseWeight(self, other):
@@ -473,80 +488,152 @@ class CaseActionList:
         return diff_ratio
 
     def enforceLegalLowercase(self, from_case_action_list):
-        def lowercaseByChosenPattern(pattern: re.Pattern):
-            old_txt = self.getText()
-            new_txt = str(old_txt)
-            first_word_case = from_case_action_list.case_list[0].case
-            parts = pu.patternMatchAll(pattern, new_txt)
-            mm: MatcherRecord= None
-            mm_loc: tuple(int, int) = None
-            mm_txt: str = None
-            for (loc, mm) in parts.items():
-                (s, e) = loc
-                (mm_loc, mm_txt) = mm.getOriginAsTuple()
-                lower_mm_txt = mm_txt
+        def isWordPartOfAnExpression(avoid_lower_term: str, current_word: str, current_word_index: int):
+            current_word_lower = current_word.lower()
+            is_possible = (current_word_lower in avoid_lower_term)
+            if not is_possible:
+                return False
 
-                leading_part = new_txt[0: s]
-                leading_part_has_value = bool(leading_part)
-                can_ignore_leading_part = leading_part_has_value and (df.SYMBOLS_ONLY.search(leading_part) is not None)
+            avoid_lower_term_word_list = avoid_lower_term.split()
+            avoid_lower_term_len = len(avoid_lower_term_word_list)
+            try:
+                prev_part_list = word_list[current_word_index - avoid_lower_term_len + 1: current_word_index + 1]
+                prev_part = ' '.join(prev_part_list)
+                prev_part = prev_part.lower()
+                is_avoid = (prev_part == avoid_lower_term)
+                if is_avoid:
+                    return True
+            except Exception as e:
+                prev_part = None
 
-                is_first_1 = (s == 0) and not leading_part_has_value
-                is_first_2 = (s > 0) and can_ignore_leading_part
-                is_first = (is_first_1 or is_first_2)
-                if is_first:
-                    current_first_word_case = from_case_action_list.case_list[0].case
-                    current_first_word_case = self.checkCase(mm_txt)
-                    is_case_same = (first_word_case == current_first_word_case)
-                    if is_case_same:
-                        continue
+            try:
+                next_part_list = word_list[current_word_index: current_word_index + avoid_lower_term_len]
+                next_part = ' '.join(next_part_list)
+                next_part = next_part.lower()
+                is_avoid = (next_part == avoid_lower_term)
+                if is_avoid:
+                    return True
+            except Exception as e:
+                next_part = None
+            return False
 
-                    is_current_lower = (current_first_word_case == CaseAction.LOWER)
-                    is_target_lower = (first_word_case == CaseAction.LOWER)
-                    is_compatible = not (is_current_lower and is_target_lower)
-                    if is_compatible:
-                        continue
+        def toLowerCase(index: int, case_record:CaseRecord):
+            pattern_check: re.Pattern = toLowerCase.pattern_check
 
-                    lower_mm_txt = mm_txt.lower()
-                else:
-                    lower_mm_txt = mm_txt.lower()
-                mm.txt = lower_mm_txt
-            reverse_list = list(parts.items())
-            reverse_list.sort(reverse=True)
-            for (loc, mm) in reverse_list:
-                new_txt = self.jointText(new_txt, mm.txt, loc)
-            is_changed = (old_txt != new_txt)
-            if is_changed:
-                return new_txt
+            is_first = (case_record.s == 0)
+            txt = case_record.txt
+
+            # is_debug_list = ['đối', 'với']
+            # is_debug = (txt.lower() in is_debug_list)
+            # if is_debug:
+            #     is_debug = True
+
+            match = pattern_check.search(txt)
+            is_lowerable = (match is not None)
+            if not is_lowerable:
+                return case_record
+
+            is_forbid = False
+            for avoid_term in df.words_should_avoid_forced_lower_list:
+                is_avoid = isWordPartOfAnExpression(avoid_term, txt, index)
+                if is_avoid:
+                    is_forbid = True
+                    break
+
+            can_lower = not (is_first or is_forbid)
+            if can_lower:
+                case_record.txt = txt.lower()
+                return case_record
             else:
                 return None
 
-        new_txt = lowercaseByChosenPattern(df.GA_REF_PART)
-        self.refreshUsingNewText(new_txt)
+        def lowercaseByChosenPattern(pattern: re.Pattern):
+            index_range = list(range(0, len(self.case_list)))
+            toLowerCase.pattern_check = pattern
+            result_list = list(map(toLowerCase, index_range, self.case_list))
+            return result_list
 
-        new_txt = lowercaseByChosenPattern(df.ALL_WORDS_SHOULD_BE_LOWER)
-        self.refreshUsingNewText(new_txt)
-        return self.getText()
+        def lowercaseByExpression(pattern: re.Pattern):
+            def toLower(entry):
+                loc = entry[0]
+                mm: MatcherRecord = entry[1]
+                mm.translation = mm.txt.lower()
+                return entry
+
+            current_txt = ' '.join(word_list)
+            match_dict = pu.patternMatchAll(df.ALL_PHRASES_SHOULD_BE_LOWER, current_txt)
+            has_phrases = len(match_dict) > 0
+            if not has_phrases:
+                return False
+
+            lowered_list = list(map(toLower, match_dict.items()))
+            lowered_list.sort(reverse=True)
+            new_txt = str(current_txt)
+            for (loc, mm) in lowered_list:
+                lower_txt = mm.translation
+                new_txt = jointText(new_txt, lower_txt, loc)
+            new_word_list = new_txt.split()
+            self.putCaseRecordWords(new_word_list)
+            return True
+
+        word_list = CaseActionList.getCaseRecordWords(self.case_list)
+        result_list = lowercaseByChosenPattern(df.ALL_WORDS_SHOULD_BE_LOWER)
+        filter_done_list = [case_record for case_record in result_list if (case_record is not None)]
+        has_changed = len(filter_done_list) > 0
+
+        lowercaseByExpression(df.ALL_PHRASES_SHOULD_BE_LOWER)
+
+        return has_changed
 
     def isSentence(self):
-        is_first_title = (self.case_list[0] == CaseAction.TITLE)
+        def checkIfItIsSentence(list_of_cases):
+            is_one_word = (len(list_of_cases) < 2)
+            is_first_case_title = False
+            is_all_rest_lower = False
+            try:
+                first_case = list_of_cases[0]
+                is_first_case_title = (first_case == CaseAction.TITLE)
+                rest_case = list_of_cases[1:]
+                lower_rest = [(case == CaseAction.LOWER) for case in rest_case]
+                is_all_rest_lower = not (False in lower_rest)
+            except Exception as e:
+                pass
+            if is_one_word:
+                is_sentence = False
+            else:
+                is_sentence = (is_first_case_title and is_all_rest_lower)
+            return is_sentence
 
-        has_remainder = (len(self.case_list) > 1)
-        is_remainder_lower = (has_remainder) \
-                             and not bool(list(filter(lambda x: x is not CaseAction.LOWER, self.case_list[1:])))
-        is_sentence = (is_first_title and is_remainder_lower)
+        orig = self.prefixed_case_type_dict[CaseAction.ORIGINAL]
+        is_sentence = checkIfItIsSentence(orig)
+        if not is_sentence:
+            has_key = (CaseAction.WITHOUT_UPPER in self.prefixed_case_type_dict)
+            if not has_key:
+                is_sentence = False
+            else:
+                no_upper_list = self.prefixed_case_type_dict[CaseAction.WITHOUT_UPPER]
+                is_sentence = checkIfItIsSentence(no_upper_list)
         return is_sentence
 
     def isAllUpper(self):
-        is_all_upper = not bool(list(filter(lambda x: x is not CaseAction.UPPER, self.case_list)))
+        orig = self.prefixed_case_type_dict[CaseAction.ORIGINAL]
+        boolean_list = [(case == CaseAction.UPPER) for case in orig]
+        is_all_upper = not (False in boolean_list)
         return is_all_upper
 
     def isAllLower(self):
-        is_all_lower = not bool(list(filter(lambda x: x is not CaseAction.LOWER, self.case_list)))
+        orig = self.prefixed_case_type_dict[CaseAction.ORIGINAL]
+        boolean_list = [(case == CaseAction.LOWER) for case in orig]
+        is_all_lower = not (False in boolean_list)
         return is_all_lower
 
     def isAllTitle(self):
-        is_all_title = not bool(list(filter(lambda x: x is CaseAction.LOWER or x is CaseAction.UPPER, self.case_list)))
+        orig = self.prefixed_case_type_dict[CaseAction.ORIGINAL]
+        boolean_list = [(case == CaseAction.TITLE) for case in orig]
+        is_all_title = not (False in boolean_list)
         return is_all_title
+
+
 
     def caseValueStringToPercentages(self, case_value_string: str):
         '''
@@ -598,21 +685,30 @@ class CaseActionList:
         return (list_of_case_action, target_str_cal)
 
     def getText(self, action_to_perform = None):
-        def case_record_to_sortable_entry(case_rec: CaseRecord):
+        def sortCaseList(case_rec: CaseRecord):
             loc = (case_rec.s, case_rec.e)
-            return (loc, case_rec)
+            return (loc)
+
+        has_case_list = bool(self.case_list) and len(self.case_list) > 0
+        if not has_case_list:
+            return self.txt
 
         new_txt = str(self.txt)
         case_record: CaseRecord = None
-        sortable_list = list(map(case_record_to_sortable_entry, self.case_list))
-        sortable_list.sort(reverse=True)
+        reverse_case_list= sorted(self.case_list, key=sortCaseList, reverse=True)
 
-        for loc, case_record in sortable_list:
+        for case_record in reverse_case_list:
             if action_to_perform:
                 action_to_perform(case_record)
             txt = case_record.txt
-            new_txt = self.jointText(new_txt, txt, loc)
-        return new_txt
+            loc = (case_record.s, case_record.e)
+            new_txt = jointText(new_txt, txt, loc)
+        is_valid = (new_txt.lower() == self.txt.lower())
+        if not is_valid:
+            msg = f'getText() self.txt:{self.txt}\nnew_txt:{new_txt}\n\n'
+            raise RuntimeError(f'ERROR replacing text!\n{msg}')
+        else:
+            return new_txt
 
     def transformBasedOnCaseValueString(self, target_str: str) -> str:
         list_of_match_percentages = self.caseValueStringToPercentages(self.case_value_string)
@@ -644,22 +740,44 @@ class CaseActionList:
     def isSameBeginAndEnd(self, other):
         this_string = self.getText()
         other_string = other.getText()
-        left_from, mid_from, right_from = self.getTextWithin(this_string)
-        left_to, mid_to, right_to = self.getTextWithin(other_string)
+
+        left_from, mid_from, right_from = self.getInputMargins(this_string)
+        left_to, mid_to, right_to = other.getInputMargins(other_string)
         is_equal = (left_from == left_to) and (right_from == right_to)
         return is_equal
+
+    def getInputMargins(self, input_msg: str):
+        input_ref_list = PSER(input_msg)
+        input_ref_list.parseMessage(is_ref_only=True)
+        input_obs = LocationObserver(input_msg)
+        input_loc_list = [loc for (loc, mm) in input_ref_list.items()]
+        input_obs.markLocListAsUsed(input_loc_list)
+
+        left_input = input_obs.getLeft()
+        right_input = input_obs.getRight()
+        (mid_loc, mid) = input_obs.getMid()
+        is_same = (left_input == right_input == mid)
+        if is_same:
+            left_input = ""
+            right_input = ""
+
+        return left_input, mid, right_input
 
     def enforceBeginAndEnd(self, other):
         this_string = self.getText()
         other_string = other.getText()
-        left_from, mid_from, right_from = self.getTextWithin(this_string)
-        left_to, mid_to, right_to = self.getTextWithin(other_string)
 
+        left_from, mid_from, right_from = other.getInputMargins(other_string)
+        left_to, mid_to, right_to = self.getInputMargins(this_string)
         is_equal = (left_from == left_to) and (right_from == right_to)
         if is_equal:
             return False
 
-        new_this_string = (left_to + mid_from + right_to)
+        can_ignore = (bool(left_from) and left_from[0] in CaseActionList.ignoreable)
+        if can_ignore:
+            return False
+
+        new_this_string = f'{left_from}{mid_to}{right_from}'
         new_case_action = CaseActionList.makeInstance(new_this_string)
         self.clone(new_case_action)
         return True
@@ -667,8 +785,19 @@ class CaseActionList:
     def enforceFirstWordCase(self, other):
         try:
             first_this_record: CaseRecord = self.case_list[0]
-            first_other_record: CaseRecord = other.case_list[0]
-            first_this_record.transformText(first_other_record.case)
+            if other:
+                first_other_record: CaseRecord = other.case_list[0]
+                other_case = first_other_record.case
+            else:
+                other_case = CaseAction.TITLE
+
+            is_upper = (other_case == CaseAction.UPPER) or (other_case == CaseAction.TITLE)
+            is_set_title = (is_upper and first_this_record.case == CaseAction.LOWER)
+
+            if is_set_title:
+                first_this_record.transformText(CaseAction.TITLE)
+            else:
+                first_this_record.transformText(other_case)
             self.refresh()
             return True
         except Exception as e:
@@ -679,104 +808,279 @@ class CaseActionList:
         case_list = [x.case for x in self.case_list]
         return case_list
 
+    def fix_abbr(self, cal_from):
+        msgid = cal_from.getText
+        msgstr = m.string
+
+        strip_symbs = '"\'*'
+        found_dict = pu.patternMatchAll(df.GA_REF_PART, msgstr)
+        is_found = bool(found_dict)
+        if not is_found:
+            return
+            is_debug = ('--app-template' in msgid)
+            if is_debug:
+                is_debug = True
+
+            valid_ending = False
+            mm: MatcherRecord = None
+            (loc, mm) = list(found_dict.items())[0]
+            print(f'{loc}\n{mm.getSubEntriesAsList()}\n\n')
+            sub_entry_list = mm.getSubEntriesAsList()
+            ending_loc = None
+            ending = None
+            sub_entry_len = len(sub_entry_list)
+            if sub_entry_len == 4:
+                o_loc, orig = sub_entry_list[0]
+                mis_entry_loc, mis_entry = sub_entry_list[1]
+                abbrev_loc, abbrev = sub_entry_list[2]
+                expl_loc, expl = sub_entry_list[3]
+                chosen_loc = mis_entry_loc
+            elif sub_entry_len == 5:
+                o_loc, orig = sub_entry_list[0]
+                start_loc, start_char = sub_entry_list[1]
+                is_start = (len(start_char) == 1)
+                if is_start:
+                    mis_entry_loc, mis_entry = sub_entry_list[2]
+                    abbrev_loc, abbrev = sub_entry_list[3]
+                    expl_loc, expl = sub_entry_list[4]
+                    chosen_loc = mis_entry_loc
+                else:
+                    mis_entry_loc, mis_entry = sub_entry_list[1]
+                    abbrev_loc, abbrev = sub_entry_list[2]
+                    expl_loc, expl = sub_entry_list[3]
+                    ending_loc, ending = sub_entry_list[4]
+                    chosen_loc = mis_entry_loc
+                    valid_ending = ending.startswith(')`')
+            elif sub_entry_len == 6:
+                o_loc, orig = sub_entry_list[0]
+                s_loc, starter = sub_entry_list[1]
+                mis_entry_loc, mis_entry = sub_entry_list[2]
+                abbrev_loc, abbrev = sub_entry_list[3]
+                expl_loc, expl = sub_entry_list[4]
+                ending_loc, ending = sub_entry_list[5]
+                chosen_loc = o_loc
+                valid_ending = ending.startswith(')`')
+
+            abbrev = abbrev.strip(strip_symbs)
+            expl = expl.strip(strip_symbs)
+            if valid_ending:
+                recon = f':abbr:`{abbrev} ({expl}{ending}'
+            else:
+                recon = f':abbr:`{abbrev} ({expl})`'
+            recon = recon.replace(f'({abbrev}', '')
+
+            # print(f'{loc}: [{orig}]=>[{recon}]')
+            (ls, le) = loc
+            is_start = (ls == 0)
+            if not is_start:
+                is_leading_with_a_space = (msgstr[ls-1] == ' ')
+                if not is_leading_with_a_space:
+                    recon = f' {recon}'
+
+            new_msgstr = cm.jointText(msgstr, recon, loc)
+            new_msgstr = new_msgstr.replace(':abbr:`abbr:`', ':abbr:`')
+            new_msgstr = new_msgstr.replace('- :abbr:`', ':abbr:`')
+
+            m.string = new_msgstr
+            changed = True
+            print(f'[{msgid}]\n[{msgstr}]\nNEW:[{new_msgstr}]\n******************\n\n')
+
+    def breakUpSentenceAndCase(self, cal_from):
+        def title_first(cal: CaseActionList):
+            case_list = cal.case_list
+            has_case_list = (bool(case_list) and len(case_list) > 0)
+            if not has_case_list:
+                return cal
+
+            first_case_record: CaseRecord = case_list[0]
+            first_case_record.transformText(CaseAction.TITLE)
+            cal.refresh()
+            return cal
+
+        def makeCaseActionList(entry):
+            loc = entry[0]
+            mm: MatcherRecord = entry[1]
+            txt = mm.txt
+            cal = self.makeInstance(txt)
+            return cal
+
+        def extractEndLocLocation(loc):
+            (x, y) = loc
+            return (y, y+1)
+
+        full_stop_pat_txt = r'(?=\S)(\.)(?=(\s|$))'
+        FULL_STOP = re.compile(full_stop_pat_txt)
+
+        orig_txt = self.getText()
+        working_txt = str(orig_txt)
+
+        temp_sentence_dict = pu.patternMatchAll(FULL_STOP, working_txt)
+        has_sentences = len(temp_sentence_dict) > 0
+        if not has_sentences:
+            return
+
+        loc_list = list(temp_sentence_dict.keys())
+        actual_loc_list=list(map(extractEndLocLocation, loc_list))
+        obs = LocationObserver(orig_txt)
+        obs.markLocListAsUsed(actual_loc_list)
+        sentence_dict = obs.getUnmarkedPartsAsDict(reversing=False)
+
+        list_of_cals_for_all_sentences = list(map(makeCaseActionList, sentence_dict.items()))
+        list_of_first_uppercased_cals = list(map(title_first, list_of_cals_for_all_sentences))
+        overall_text_list = [cal.getText() for cal in list_of_first_uppercased_cals]
+        new_txt = ' '.join(overall_text_list)
+        new_cal = self.makeInstance(new_txt)
+        self.clone(new_cal)
+
+    def toCaseOf(self, from_cal):
+        def isMatching(letter: str):
+            target_action:CaseAction = isMatching.target
+            value_str = str(target_action.value)
+            return (letter == value_str)
+
+        def calcFrequency(case_action: CaseAction):
+            isMatching.target = case_action
+            freq_list = list(filter(isMatching, fr_case_string))
+            return len(freq_list)
+
+        def transposeCase(case_rec: CaseRecord, case_action_value: str):
+            the_case: CaseAction = CaseAction.getMember(case_action_value)
+            case_rec.transformText(the_case)
+            return case_rec
+
+        def sortByCount(entry):
+            (count, case_action) = entry
+            return count
+
+        fr_case_string = from_cal.case_value_string
+        upper_cnt = calcFrequency(CaseAction.UPPER)
+        lower_cnt = calcFrequency(CaseAction.LOWER)
+        title_cnt = calcFrequency(CaseAction.TITLE)
+        mixed_cnt = calcFrequency(CaseAction.MIXED)
+        count_list = [
+            (upper_cnt, CaseAction.UPPER),
+            (lower_cnt, CaseAction.LOWER),
+            (title_cnt, CaseAction.TITLE),
+            (mixed_cnt, CaseAction.MIXED),
+            ]
+        count_list.sort(key=sortByCount, reverse=True)
+        major_case = count_list[0]
+        (count, majority_case) = major_case
+
+        transposed_list = list(map(transposeCase, self.case_list, fr_case_string))
+        new_txt = self.getText()
+        return new_txt
 
     @classmethod
-    def matchCase(self, from_str: str, to_str: str):
+    def matchCase(self, from_str: str, to_str: str, matching_from_begin_end=False):
+        class TrimRecord:
+            def __init__(self, to_string, memorise_cutoff=False):
+                self.removed_location = -1
+                self.is_trimmed = False
+                self.new_string = to_string
+                self.to_string_lower = None
+                self.memorise_cutoff = memorise_cutoff
+                self.list_of_upper_case_words: dict = None
+
+            def trimOffRepeated(self):
+                from_part = f'{(from_str)}'
+                from_part_lower = from_part.lower()
+                self.to_string_lower = to_str.lower()
+
+                from_part_index = (self.to_string_lower.find(from_part_lower))
+                from_part_len = len(from_part)
+                to_part_index = from_part_index + from_part_len
+
+                is_trimmed = False
+                is_removed_original = (from_part_index >= 0)
+                if is_removed_original:
+                    left_part = to_str[:from_part_index]
+                    right_part = to_str[to_part_index:]
+                    self.new_string = (left_part + right_part)
+                    self.is_trimmed = True
+                    self.removed_location = (from_part_index, to_part_index)
+
+                return self.new_string
+
+            def removeUpperCaseWords(self, txt: str):
+                upper_case_dict = pu.patternMatchAll(df.UPPER_CASE_WORDS, txt)
+                has_upper_words = (len(upper_case_dict) > 0)
+                if not has_upper_words:
+                    return txt
+
+                upper_case_loc = list(upper_case_dict.keys())
+                new_txt = str(txt)
+                for loc in upper_case_loc:
+                    new_txt = removeText(new_txt, loc)
+                return new_txt
+
+            def rejoinTrimmedString(self):
+                new_txt = self.new_string
+                from_part_index = self.removed_location[0]
+                left = new_txt[:from_part_index]
+                right = new_txt[from_part_index:]
+                new_txt = (left + from_str + right)
+
+                is_same = (new_txt.lower() == self.to_string_lower)
+                if not is_same:
+                    report_msg = f'Function matchCase() DO NOT work correctly:\nold:{to_str}\nnew:{new_txt}'
+                    raise RuntimeError(report_msg)
+                return new_txt
+
+        # from_str = "Rules of thumb for choosing an SRID"
+        # to_str = "Quy luật thông thường để lựa chọn một SRID (Rules of thumb for choosing an SRID)"
+        # from_str = "Scene Animation for Preview Images"
+        # to_str = "Hoạt Họa Cảnh đối với các Hình Ảnh Duyệt Thảo (Scene Animation for Preview Images)"
+
         valid = bool(from_str.strip()) and bool(to_str.strip())
         if not valid:
             return to_str
 
-        cal_from = CaseActionList.makeInstance(from_str)
-        cal_to = CaseActionList.makeInstance(to_str)
-
-        is_same = cal_from.isConsideringTheSame(cal_to)
-        if is_same:
-            # df.LOG(f'[{from_str}] [{to_str}]: is_same: {is_same}')
+        ignore_starter = '@{'
+        is_ignore = from_str.startswith(ignore_starter)
+        if is_ignore:
             return to_str
 
-        if cal_from.isSetenceCase():
-            cal_to.toSentenceCase()
-        if cal_from.isAllTheSameCase(CaseAction.TITLE):
-            cal_to.allToACase(CaseAction.TITLE)
-        if cal_from.isAllTheSameCase(CaseAction.LOWER):
-            cal_to.allToACase(CaseAction.LOWER)
-        if cal_from.isAllTheSameCase(CaseAction.UPPER):
-            cal_to.allToACase(CaseAction.UPPER)
+        cal_from = CaseActionList.makeInstance(from_str)
+        has_cal_from = bool(cal_from.case_list)
+        if not has_cal_from:
+            return to_str
 
-        cal_to.enforceFirstWordCase(cal_from)
-        cal_to.enforceLegalLowercase(cal_from)
-        cal_to.enforceBeginAndEnd(cal_from)
-        cal_to.copyRepeatedWordsOver(cal_from)
-        cal_to.enforceBeginAndEnd(cal_from)
+        cal_to = CaseActionList.makeInstance(to_str, original_for_removal=from_str)
+        debub_txt = self.getCaseRecordWords(cal_to.case_list)
+        has_cal_to = bool(cal_to.case_list)
+        if not has_cal_to:
+            return to_str
 
-        return cal_to.getText()
-
-        (new_to_txt, cal_to) = cal_from.transformBasedOnCaseValueString(to_str)
-
-        changed = cal_from.fixSpecialCases(cal_to)
-        if changed:
-            new_to_txt = cal_to.getText()
-
-        first_word_from_record: CaseRecord = cal_from.case_list[0]
-        first_word_from_case = first_word_from_record.case
-        result_txt = cal_from.enforceLegalLowercase(new_to_txt, first_word_case=first_word_from_case)
-        final_txt = cal_from.enforceBeginAndEnd(from_str, result_txt)
-        return final_txt
-        # mirror case based on the rise and fall of the case values,
-        # working out the range from root, mirror the range to target, by stretching and scaling to match
-
-    def getNoneAlphaPart(self, msg: str, is_start=True):
-        if not msg:
-            return ""
-
-        non_alnum_part = ""
-        if is_start:
-            non_alpha = df.START_WORD_SYMBOLS.search(msg)
+        if cal_from.isSentence():
+            cal_to.toSentenceCase(cal_from, preserve_case=CaseAction.UPPER)
+        elif cal_from.isAllTitle():
+            cal_to.allToACase(CaseAction.TITLE, preserve_case=CaseAction.UPPER)
+        elif cal_from.isAllLower():
+            cal_to.allToACase(CaseAction.LOWER, preserve_case=CaseAction.UPPER)
         else:
-            non_alpha = df.END_WORD_SYMBOLS.search(msg)
+            cal_to.allToACase(CaseAction.TITLE, preserve_case=CaseAction.UPPER)
 
-        if non_alpha:
-            non_alnum_part = non_alpha.group(0)
-        return non_alnum_part
+        debub_txt = self.getCaseRecordWords(cal_to.case_list)
+        current_txt = cal_to.getText()
 
-    def getTextWithinWithDiffLoc(self, msg:str, to_matcher_record=False):
-        # should really taking bracket pairs into account () '' ** "" [] <> etc.. before capture
-        left_part = self.getNoneAlphaPart(msg, is_start=True)
-        right_part = self.getNoneAlphaPart(msg, is_start=False)
-        ss = len(left_part)
-        ee = (-len(right_part) if right_part else len(msg))
-        mid_part = msg[ss:ee]
-        length_ee = len(right_part)
-        diff_loc = (ss, length_ee)
+        cal_to.enforceLegalLowercase(cal_from)
+        debub_txt = self.getCaseRecordWords(cal_to.case_list)
+        current_txt = cal_to.getText()
+        cal_to.copyRepeatedWordsOver(cal_from)
+        debub_txt = self.getCaseRecordWords(cal_to.case_list)
+        current_txt = cal_to.getText()
+        cal_to.breakUpSentenceAndCase(cal_from)
+        debub_txt = self.getCaseRecordWords(cal_to.case_list)
+        current_txt = cal_to.getText()
+        if matching_from_begin_end:
+            cal_to.enforceBeginAndEnd(cal_from)
+            debub_txt = self.getCaseRecordWords(cal_to.case_list)
+            current_txt = cal_to.getText()
 
-        main_record: MatcherRecord = None
-        if to_matcher_record:
-            ls = 0
-            le = ss
-            ms = le
-            me = ms + len(mid_part)
-            rs = me
-            re = rs + len(right_part)
+        from_txt = cal_from.getText()
+        new_txt = cal_to.getText()
+        changed_txt = CaseActionList.replaceRepeatedText(from_txt, new_txt)
+        return changed_txt
 
-            main_record = MatcherRecord(s=0, e=len(msg), txt=msg)
-            if left_part:
-                main_record.addSubMatch(ls, le, left_part)
-                test_txt = left_part[ls: le]
-            else:
-                main_record.addSubMatch(-1, -1, None)
-            if mid_part:
-                main_record.addSubMatch(ms, me, mid_part)
-                test_txt = left_part[ms: me]
-            else:
-                main_record.addSubMatch(ls, re, msg)
-            if right_part:
-                main_record.addSubMatch(rs, re, right_part)
-                test_txt = left_part[rs: re]
-            else:
-                main_record.addSubMatch(-1, -1, None)
 
-        return diff_loc, left_part, mid_part, right_part, main_record
-
-    def getTextWithin(self, msg: str):
-        diff_loc, left, mid, right, _ = self.getTextWithinWithDiffLoc(msg)
-        return left, mid, right

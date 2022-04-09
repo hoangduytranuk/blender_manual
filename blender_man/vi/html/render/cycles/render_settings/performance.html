@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Performance &mdash; Blender Manual</title>
+  <title>Hiệu Suất Thi Hành &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Debug" href="debug.html" />
-    <link rel="prev" title="Film" href="film.html" /> 
+    <link rel="next" title="Hiệu Chỉnh Lỗi" href="debug.html" />
+    <link rel="prev" title="Phim" href="film.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,73 +71,73 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Rendering</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Kết xuất</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../eevee/index.html">Eevee</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tuần Hoàn -- Cycles</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Render Settings</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="grease_pencil.html">Grease Pencil</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sampling.html">Lấy Mẫu Vật -- Sampling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="light_paths.html">Light Paths</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volumes.html">Volumes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="subdivision.html">Subdivision</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hair.html">Tóc -- Hair</a></li>
-<li class="toctree-l4"><a class="reference internal" href="simplify.html">Đơn Giản Hóa -- Simplify</a></li>
-<li class="toctree-l4"><a class="reference internal" href="motion_blur.html">Motion Blur -- Làm Nhòe Chuyển Động</a></li>
-<li class="toctree-l4"><a class="reference internal" href="film.html">Film</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Performance</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#threads">Threads</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#tiles">Tiles</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#acceleration-structure">Acceleration Structure</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#final-render">Final Render</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viewport">Viewport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sắp Đặt về Kết Xuất</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="grease_pencil.html">Bút Chì Dầu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sampling.html">Lấy Mẫu Vật</a></li>
+<li class="toctree-l4"><a class="reference internal" href="light_paths.html">Đường Đi của Ánh Sáng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volumes.html">Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="subdivision.html">Phân Hóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hair.html">Tóc/Lông</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simplify.html">Đơn Giản Hóa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_blur.html">Làm Nhòe chuyển động</a></li>
+<li class="toctree-l4"><a class="reference internal" href="film.html">Phim</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Hiệu Suất Thi Hành</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#threads">Số Luồng</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#tiles">Số Ô</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#acceleration-structure">Cấu Trúc Tăng Tốc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#final-render">Kết Xuất Kết Thúc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viewport">Cổng Nhìn</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="debug.html">Debug</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debug.html">Hiệu Chỉnh Lỗi</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../world_settings.html">World Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../object_settings/index.html">Object Settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../world_settings.html">Sắp đặt Thế Giới</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../object_settings/index.html">Sắp đặt về vật thể</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../material_settings.html">Sắp Đặt về Nguyên Vật Liệu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../light_settings.html">Light Settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../gpu_rendering.html">GPU Rendering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../features.html">Experimental Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../baking.html">Render Baking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../optimizations/index.html">Optimizing Renders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../light_settings.html">Sắp đặt về Nguồn Sáng</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpu_rendering.html">Kết xuất bằng Bộ Xử Lý Đồ Họa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features.html">Chức năng thử nghiệm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../baking.html">Nướng kết xuất</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../optimizations/index.html">Tối Ưu Hóa các Bản Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Workbench</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim -- Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng -- Lights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu -- Materials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Shader Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc -- Color Management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Freestyle</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Layers &amp; Passes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Render Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../workbench/index.html">Bàn Làm Việc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cameras.html">Máy Quay Phim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lights/index.html">Nguồn Sáng/Nguồn/Ánh Sáng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../materials/index.html">Nguyên Vật Liệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_nodes/index.html">Nút tô bóng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../color_management.html">Quản Lý Màu Sắc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../freestyle/index.html">Phong Cách Tự Do</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../layers/index.html">Tầng Lớp &amp; Lượt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../output/index.html">Đầu Ra của Kết Xuất</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -154,10 +154,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Rendering</a> &raquo;</li>
+          <li><a href="../../index.html">Kết xuất</a> &raquo;</li>
           <li><a href="../index.html">Tuần Hoàn -- Cycles</a> &raquo;</li>
-          <li><a href="index.html">Render Settings</a> &raquo;</li>
-      <li>Performance</li>
+          <li><a href="index.html">Sắp Đặt về Kết Xuất</a> &raquo;</li>
+      <li>Hiệu Suất Thi Hành</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -167,24 +167,24 @@
            <div itemprop="articleBody">
              
   <section id="performance">
-<h1>Performance<a class="headerlink" href="#performance" title="Permalink to this headline"></a></h1>
+<h1>Hiệu Suất Thi Hành<a class="headerlink" href="#performance" title="Permalink to this headline"></a></h1>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Bảng -- Panel</dt>
-<dd class="field-odd"><p><span class="menuselection">Render ‣ Performance</span></p>
+<dt class="field-odd">Bảng</dt>
+<dd class="field-odd"><p><span class="menuselection">Xương (Bone) ‣ Biến Dạng (Deform)</span></p>
 </dd>
 </dl>
 </div>
 <section id="threads">
-<h2>Threads<a class="headerlink" href="#threads" title="Permalink to this headline"></a></h2>
+<h2>Số Luồng<a class="headerlink" href="#threads" title="Permalink to this headline"></a></h2>
 <dl class="simple" id="bpy-types-rendersettings-threads-mode">
-<dt>Chế Độ -- Mode</dt><dd><p>Method to determine the maximum number of CPU cores to use while rendering.</p>
+<dt>Chế Độ</dt><dd><p>Method to determine the maximum number of CPU cores to use while rendering.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Auto-Detect</dt>
+<dt class="field-odd">Tự phát hiện</dt>
 <dd class="field-odd"><p>Automatically chooses the amount of threads to match the number of logical processors on your computer.</p>
 </dd>
-<dt class="field-even">Fixed</dt>
+<dt class="field-even">Cố Định/Bất Biến/Định Trước</dt>
 <dd class="field-even"><p>Manually choose the maximum number threads to use for rendering.
 This can be useful for example, if you want to use your computer while rendering,
 you can set the property to a thread count lower the amount of logical processors on your computer.</p>
@@ -193,19 +193,19 @@ you can set the property to a thread count lower the amount of logical processor
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-rendersettings-threads">
-<dt>Threads</dt><dd><p>The maximum number of CPU cores to use simultaneously while rendering.</p>
+<dt>Số Luồng</dt><dd><p>The maximum number of CPU cores to use simultaneously while rendering.</p>
 </dd>
 </dl>
 </section>
 <section id="tiles">
-<h2>Tiles<a class="headerlink" href="#tiles" title="Permalink to this headline"></a></h2>
+<h2>Số Ô<a class="headerlink" href="#tiles" title="Permalink to this headline"></a></h2>
 <dl class="simple" id="bpy-types-rendersettings-use-auto-tile">
 <dt>Use Tiling</dt><dd><p>Render high resolution images in tiles to reduce memory usage.
 Tiles are cached to disk while rendering to save memory.</p>
 </dd>
 </dl>
 <dl id="bpy-types-rendersettings-tile-size">
-<dt>Tile Size</dt><dd><p>This value is used to control the size of the tile used for rendering;
+<dt>Kích Thước Ô</dt><dd><p>This value is used to control the size of the tile used for rendering;
 decreasing the size reduces memory usage.</p>
 <div class="admonition note">
 <p class="admonition-title">Ghi chú</p>
@@ -217,27 +217,27 @@ using a small <em>Tiles Size</em> can lead to an increase in performance.</p>
 </dl>
 </section>
 <section id="acceleration-structure">
-<h2>Acceleration Structure<a class="headerlink" href="#acceleration-structure" title="Permalink to this headline"></a></h2>
+<h2>Cấu Trúc Tăng Tốc<a class="headerlink" href="#acceleration-structure" title="Permalink to this headline"></a></h2>
 <dl class="simple" id="bpy-types-cyclesrendersettings-debug-use-spatial-splits">
-<dt>Use Spatial Splits</dt><dd><p>Spatial splits improve the rendering performance in scenes with a mix of large and small polygons.
+<dt>Sử Dụng Phân Tách Không Gian</dt><dd><p>Spatial splits improve the rendering performance in scenes with a mix of large and small polygons.
 The downsides are longer BVH build times and slightly increased memory usage.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-debug-use-hair-bvh">
-<dt>Use Hair BVH</dt><dd><p>Use a special type of <a class="reference internal" href="../../../glossary/index.html#term-BVH"><span class="xref std std-term">BVH</span></a> for rendering hair.
+<dt>Dùng BVH cho Tóc</dt><dd><p>Use a special type of <a class="reference internal" href="../../../glossary/index.html#term-BVH"><span class="xref std std-term">BVH</span></a> for rendering hair.
 The bounding boxes are not axis aligned allowing a spatially closer fit to the hair geometry.
 Disabling this option will reduce memory, at the cost of increasing hair render time.</p>
 </dd>
 </dl>
 <dl class="simple" id="bpy-types-cyclesrendersettings-debug-bvh-time-steps">
-<dt>BVH Time Steps</dt><dd><p>Split BVH primitives by this number of time steps to speed up render time at the expense of memory.</p>
+<dt>Bước Thời Gian của BVH</dt><dd><p>Split BVH primitives by this number of time steps to speed up render time at the expense of memory.</p>
 </dd>
 </dl>
 </section>
 <section id="final-render">
-<h2>Final Render<a class="headerlink" href="#final-render" title="Permalink to this headline"></a></h2>
+<h2>Kết Xuất Kết Thúc<a class="headerlink" href="#final-render" title="Permalink to this headline"></a></h2>
 <dl id="bpy-types-rendersettings-use-persistent-data">
-<dt>Persistent Data</dt><dd><p>Keep render data in memory after rendering for faster re-renders and animation renders
+<dt>Dữ Liệu Ổn Định</dt><dd><p>Keep render data in memory after rendering for faster re-renders and animation renders
 at the cost of extra memory usage while performing other tasks in Blender.</p>
 <p>When using multiple <a class="reference internal" href="../../layers/view_layer.html"><span class="doc">View Layers</span></a>,
 only data from a single view layer is preserved to keep memory usage within bounds;
@@ -246,9 +246,9 @@ however, objects shared between view layers are preserved.</p>
 </dl>
 </section>
 <section id="viewport">
-<h2>Viewport<a class="headerlink" href="#viewport" title="Permalink to this headline"></a></h2>
+<h2>Cổng Nhìn<a class="headerlink" href="#viewport" title="Permalink to this headline"></a></h2>
 <dl class="simple" id="bpy-types-rendersettings-preview-pixel-size">
-<dt>Pixel Size</dt><dd><p>Option to control the resolution for viewport rendering.
+<dt>Kích Thước Điểm Ảnh</dt><dd><p>Option to control the resolution for viewport rendering.
 Allows you to speed up viewport rendering, which is especially useful for displays with high DPI.</p>
 </dd>
 </dl>
@@ -259,15 +259,15 @@ Allows you to speed up viewport rendering, which is especially useful for displa
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="film.html" class="btn btn-neutral float-left" title="Film" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="debug.html" class="btn btn-neutral float-right" title="Debug" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="film.html" class="btn btn-neutral float-left" title="Phim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debug.html" class="btn btn-neutral float-right" title="Hiệu Chỉnh Lỗi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

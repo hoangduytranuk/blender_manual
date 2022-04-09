@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Camera View &mdash; Blender Manual</title>
+  <title>Góc Nhìn Máy Quay Phim &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Viewpoint" href="viewpoint.html" />
-    <link rel="prev" title="Local View" href="local_view.html" /> 
+    <link rel="next" title="Góc Nhìn" href="viewpoint.html" />
+    <link rel="prev" title="Góc Nhìn Địa Phương" href="local_view.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,91 +71,91 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Editors</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Trình Biên Soạn</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Cổng Nhìn 3D</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../startup_scene.html">Startup Scene</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../modes.html">Object Modes</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Navigating</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="navigation.html">Navigation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="walk_fly.html">Fly/Walk Navigation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="align.html">Aligning</a></li>
-<li class="toctree-l4"><a class="reference internal" href="projections.html">Perspective/Orthographic</a></li>
-<li class="toctree-l4"><a class="reference internal" href="local_view.html">Local View</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Camera View</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viewing-the-active-camera">Viewing the Active Camera</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#setting-the-active-camera">Setting the Active Camera</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#animated-camera-switching">Animated Camera Switching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../startup_scene.html">Cảnh khởi công/động/bắt đầu tiên</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Chế Độ vật thể</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Điều Hướng</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="navigation.html">Điều Hướng/Di Chuyển</a></li>
+<li class="toctree-l4"><a class="reference internal" href="walk_fly.html">Điều Hướng Bay Lượn/Đi Bộ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="align.html">Canh Hàng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projections.html">Phối Cảnh/Trực Giao</a></li>
+<li class="toctree-l4"><a class="reference internal" href="local_view.html">Góc Nhìn Địa Phương</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Góc Nhìn Máy Quay Phim</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viewing-the-active-camera">Quan Sát Máy Quay Phim Đang Hoạt Động</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#setting-the-active-camera">Đặt Máy Quay Phim Đang Hoạt Động</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#animated-camera-switching">Hoạt Họa Chuyển Đổi Góc Nhìn Của Máy Quay Phim</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#frame-camera-bounds">Frame Camera Bounds</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#camera-navigation">Camera Navigation</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#move-active-camera-to-view">Move Active Camera to View</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#camera-view-positioning">Camera View Positioning</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#roll-pan-dolly-and-track">Roll, Pan, Dolly, and Track</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#frame-camera-bounds">Viền Khung dùng Ranh Giới Ống Kính của Máy Quay Phim</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#camera-navigation">Điều Hướng máy quay phim</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#move-active-camera-to-view">Chuyển máy quay phim đang hoạt động Đến góc nhìn</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#camera-view-positioning">Định Vị góc nhìn máy quay phim</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#roll-pan-dolly-and-track">Lăn, Lia, Lướt, và giám sát</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="viewpoint.html">Viewpoint</a></li>
-<li class="toctree-l4"><a class="reference internal" href="regions.html">View Regions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="views.html">Contextual Views</a></li>
+<li class="toctree-l4"><a class="reference internal" href="viewpoint.html">Góc Nhìn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="regions.html">Vùng Góc Nhìn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="views.html">Góc nhìn theo Ngữ Cảnh</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../3d_cursor.html">3D Cursor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Lựa Chọn -- Selecting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../controls/index.html">Điều Khiển -- Controls</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../display/index.html">Hiển Thị -- Display</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3d_cursor.html">Con Trỏ 3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../selecting.html">Lựa Chọn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../controls/index.html">Điều Khiển</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../display/index.html">Hiển Thị</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../toolbar/index.html">Thanh Công Cụ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../sidebar.html">Sidebar</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../viewport_render.html">Viewport Render</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sidebar.html">Thanh Bên</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../viewport_render.html">Kết Xuất Cổng Nhìn</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../image/index.html">Image Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../uv/index.html">UV Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../shader_editor.html">Shader Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../compositor.html">Compositor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../geometry_node.html">Geometry Node Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../texture_node/index.html">Texture Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../image/index.html">Trình Biên Soạn Hình Ảnh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../uv/index.html">Biên Soạn UV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../shader_editor.html">Trình Biên Soạn Bộ Tô Bóng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../compositor.html">Trình Tổng Hợp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_node.html">Trình Biên Soạn Nút Hình Học</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texture_node/index.html">Nút chất liệu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_sequencer/index.html">Trình Phối Hình</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../clip/index.html">Movie Clip Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../dope_sheet/index.html">Dope Sheet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../timeline.html">Timeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../graph_editor/index.html">Graph Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../drivers_editor.html">Drivers Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nla/index.html">Nonlinear Animation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../text_editor.html">Text Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../python_console.html">Python Console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../info_editor.html">Info Editor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../outliner/index.html">Outliner</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../properties_editor.html">Tính Chất -- Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../file_browser.html">File Browser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../asset_browser.html">Asset Browser</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../preferences/index.html">Cấu Hình -- Preferences</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../spreadsheet.html">Spreadsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../clip/index.html">Trình Biên Soạn Đoạn Phim quay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dope_sheet/index.html">Bảng Hành Động</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../timeline.html">Lịch Trình Thời Gian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../graph_editor/index.html">Trình Biên Soạn Đồ Thị</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivers_editor.html">Trình biên soạn Điều Vận</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nla/index.html">Hoạt Hình Phi Tuyến Tính</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editor.html">Trình biên soạn văn bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_console.html">Bàn Giao Tiếp Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info_editor.html">Trình biên soạn Thông Tin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../outliner/index.html">Mục Lục</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../properties_editor.html">Tính Chất</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../file_browser.html">Trình Duyệt Tập Tin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../asset_browser.html">Trình duyệt thảo Tài nguyên</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../preferences/index.html">Cấu Hình</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spreadsheet.html">Bảng tính</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modeling/index.html">Tạo Mô Hình</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -172,10 +172,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Editors</a> &raquo;</li>
+          <li><a href="../../index.html">Trình Biên Soạn</a> &raquo;</li>
           <li><a href="../index.html">Cổng Nhìn 3D</a> &raquo;</li>
-          <li><a href="index.html">Navigating</a> &raquo;</li>
-      <li>Camera View</li>
+          <li><a href="index.html">Điều Hướng</a> &raquo;</li>
+      <li>Góc Nhìn Máy Quay Phim</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -185,7 +185,7 @@
            <div itemprop="articleBody">
              
   <section id="camera-view">
-<span id="dview-camera-navigate"></span><h1>Camera View<a class="headerlink" href="#camera-view" title="Permalink to this headline"></a></h1>
+<span id="dview-camera-navigate"></span><h1>Góc Nhìn Máy Quay Phim<a class="headerlink" href="#camera-view" title="Permalink to this headline"></a></h1>
 <figure class="align-default" id="id5">
 <img alt="../../../_images/editors_3dview_navigate_camera-view_example.png" src="../../../_images/editors_3dview_navigate_camera-view_example.png" />
 <figcaption>
@@ -205,18 +205,18 @@ The rendered image will contain everything within the dashed line.</p>
 <em>(assuming the object isn't hidden).</em></p>
 </div>
 <section id="viewing-the-active-camera">
-<h2>Viewing the Active Camera<a class="headerlink" href="#viewing-the-active-camera" title="Permalink to this headline"></a></h2>
+<h2>Quan Sát Máy Quay Phim Đang Hoạt Động<a class="headerlink" href="#viewing-the-active-camera" title="Permalink to this headline"></a></h2>
 <div class="refbox admonition" id="id1">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Tổng Thể -- All modes</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Tổng Thể</p>
 </dd>
-<dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">View ‣ Cameras ‣ Active Camera</span></p>
+<dt class="field-even">Trình Đơn</dt>
+<dd class="field-even"><p><span class="menuselection">Cổng Nhìn 3D (3D Viewport) ‣ Thanh Bên (Sidebar) ‣ thẻ Góc Nhìn (View tab)</span></p>
 </dd>
-<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
-<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Numpad0</kbd></p>
+<dt class="field-odd">Tổ Hợp Phím Tắt</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">NumpadSlash</kbd></p>
 </dd>
 </dl>
 </div>
@@ -224,18 +224,18 @@ The rendered image will contain everything within the dashed line.</p>
 The triangle above the camera will become shaded when active.</p>
 </section>
 <section id="setting-the-active-camera">
-<h2>Setting the Active Camera<a class="headerlink" href="#setting-the-active-camera" title="Permalink to this headline"></a></h2>
+<h2>Đặt Máy Quay Phim Đang Hoạt Động<a class="headerlink" href="#setting-the-active-camera" title="Permalink to this headline"></a></h2>
 <div class="refbox admonition" id="id2">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Chế Độ Vật Thể -- Object Mode</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể</p>
 </dd>
-<dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">View ‣ Cameras ‣ Set Active Object as Camera</span></p>
+<dt class="field-even">Trình Đơn</dt>
+<dd class="field-even"><p><span class="menuselection">Cổng Nhìn 3D (3D Viewport) ‣ Thanh Bên (Sidebar) ‣ thẻ Góc Nhìn (View tab)</span></p>
 </dd>
-<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
-<dd class="field-odd"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Numpad0</kbd></kbd></p>
+<dt class="field-odd">Tổ Hợp Phím Tắt</dt>
+<dd class="field-odd"><p>Tăng -- More <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Bàn</kbd> <kbd class="kbd docutils literal notranslate">Số</kbd> <kbd class="kbd docutils literal notranslate">+</kbd></kbd> -- More <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">NumpadPlus</kbd></kbd></p>
 </dd>
 </dl>
 </div>
@@ -257,7 +257,7 @@ or global (locked) to the whole scene.
 See <a class="reference internal" href="../sidebar.html"><span class="doc">Local Camera</span></a>.</p>
 </div>
 <section id="animated-camera-switching">
-<h3>Animated Camera Switching<a class="headerlink" href="#animated-camera-switching" title="Permalink to this headline"></a></h3>
+<h3>Hoạt Họa Chuyển Đổi Góc Nhìn Của Máy Quay Phim<a class="headerlink" href="#animated-camera-switching" title="Permalink to this headline"></a></h3>
 <p>By default a scene contains one camera. However, a scene can contain more than one camera,
 but only one of them will be used at a time.
 So you will only need to add a new camera if you are making cuts between them.
@@ -265,18 +265,18 @@ See <a class="reference internal" href="../../../animation/markers.html#bpy-ops-
 </section>
 </section>
 <section id="frame-camera-bounds">
-<span id="bpy-ops-view3d-view-center-camera"></span><h2>Frame Camera Bounds<a class="headerlink" href="#frame-camera-bounds" title="Permalink to this headline"></a></h2>
+<span id="bpy-ops-view3d-view-center-camera"></span><h2>Viền Khung dùng Ranh Giới Ống Kính của Máy Quay Phim<a class="headerlink" href="#frame-camera-bounds" title="Permalink to this headline"></a></h2>
 <div class="refbox admonition" id="id3">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Toàn Bộ các Chế Độ -- All Modes</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Tổng Thể</p>
 </dd>
-<dt class="field-even">Trình Đơn -- Menu</dt>
-<dd class="field-even"><p><span class="menuselection">View ‣ Cameras ‣ Frame Camera Bounds</span></p>
+<dt class="field-even">Trình Đơn</dt>
+<dd class="field-even"><p><span class="menuselection">Cốt (Armature) ‣ Biến Hóa (Transform) ‣ Đổi Tỷ Lệ Bán Kính (Scale Radius)</span></p>
 </dd>
-<dt class="field-odd">Tổ Hợp Phím Tắt -- Shortcut</dt>
-<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">Home</kbd></p>
+<dt class="field-odd">Tổ Hợp Phím Tắt</dt>
+<dd class="field-odd"><p><kbd class="kbd docutils literal notranslate">NumpadSlash</kbd></p>
 </dd>
 </dl>
 </div>
@@ -284,7 +284,7 @@ See <a class="reference internal" href="../../../animation/markers.html#bpy-ops-
 and resizes the view to fit within the area's bounds.</p>
 </section>
 <section id="camera-navigation">
-<h2>Camera Navigation<a class="headerlink" href="#camera-navigation" title="Permalink to this headline"></a></h2>
+<h2>Điều Hướng máy quay phim<a class="headerlink" href="#camera-navigation" title="Permalink to this headline"></a></h2>
 <p>There are several different ways to navigate and position the camera in your scene,
 some of them are explained below.</p>
 <p>Zooming in and out is possible in this view, but to change the viewpoint,
@@ -295,15 +295,15 @@ you have to move or rotate the camera.</p>
 So these actions can be used, for example, to position and aim a light.</p>
 </div>
 <section id="move-active-camera-to-view">
-<h3>Move Active Camera to View<a class="headerlink" href="#move-active-camera-to-view" title="Permalink to this headline"></a></h3>
+<h3>Chuyển máy quay phim đang hoạt động Đến góc nhìn<a class="headerlink" href="#move-active-camera-to-view" title="Permalink to this headline"></a></h3>
 <div class="refbox admonition" id="id4">
-<p class="admonition-title">Tham Chiếu -- Reference</p>
+<p class="admonition-title">Tham Chiếu</p>
 <dl class="field-list simple">
-<dt class="field-odd">Chế Độ -- Mode</dt>
-<dd class="field-odd"><p>Chế Độ Vật Thể -- Object Mode</p>
+<dt class="field-odd">Chế Độ</dt>
+<dd class="field-odd"><p>Chế Độ Vật Thể</p>
 </dd>
-<dt class="field-even">Tổ Hợp Phím Tắt -- Shortcut</dt>
-<dd class="field-even"><p><kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Alt</kbd>-<kbd class="kbd docutils literal notranslate">Numpad0</kbd></kbd></p>
+<dt class="field-even">Tổ Hợp Phím Tắt</dt>
+<dd class="field-even"><p>Tăng -- More <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Bàn</kbd> <kbd class="kbd docutils literal notranslate">Số</kbd> <kbd class="kbd docutils literal notranslate">+</kbd></kbd> -- More <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">NumpadPlus</kbd></kbd></p>
 </dd>
 </dl>
 </div>
@@ -311,7 +311,7 @@ So these actions can be used, for example, to position and aim a light.</p>
 for a convenient method of placing the camera without having to move the object directly.</p>
 </section>
 <section id="camera-view-positioning">
-<h3>Camera View Positioning<a class="headerlink" href="#camera-view-positioning" title="Permalink to this headline"></a></h3>
+<h3>Định Vị góc nhìn máy quay phim<a class="headerlink" href="#camera-view-positioning" title="Permalink to this headline"></a></h3>
 <p>By enabling <a class="reference internal" href="../sidebar.html#dview-lock-camera-to-view"><span class="std std-ref">Lock Camera to View</span></a> in the View panel of the Sidebar region,
 while in camera view, you can navigate the 3D Viewport as usual,
 while remaining in camera view. Controls are exactly the same as when normally moving in 3D.</p>
@@ -321,25 +321,25 @@ while remaining in camera view. Controls are exactly the same as when normally m
 </div>
 </section>
 <section id="roll-pan-dolly-and-track">
-<h3>Roll, Pan, Dolly, and Track<a class="headerlink" href="#roll-pan-dolly-and-track" title="Permalink to this headline"></a></h3>
+<h3>Lăn, Lia, Lướt, và giám sát<a class="headerlink" href="#roll-pan-dolly-and-track" title="Permalink to this headline"></a></h3>
 <p>To perform these camera moves, the camera must first be <em>selected</em> so transform operations apply to it.
 The following actions also assume that you are in camera view.
 Having done so, you can now manipulate the camera using the same tools that are used to transform any object:</p>
 <dl class="simple">
-<dt>Roll -- Xoáy</dt><dd><p>Press <kbd class="kbd docutils literal notranslate">R</kbd> to enter object rotation mode. The default will be to rotate the camera in its local Z axis
+<dt>Xoáy</dt><dd><p>Press <kbd class="kbd docutils literal notranslate">R</kbd> to enter object rotation mode. The default will be to rotate the camera in its local Z axis
 (the axis orthogonal to the camera view), which is the definition of a camera &quot;roll&quot;.</p>
 </dd>
-<dt>Vertical Pan or Pitch</dt><dd><p>This is just a rotation along the local X axis. Press <kbd class="kbd docutils literal notranslate">R</kbd> to enter object rotation mode,
+<dt><abbr title="Pan">Lia</abbr> hoặc <abbr title="Pitch">Chúc Đầu Lên/Xuống</abbr> theo chiều Dựng Đứng</dt><dd><p>This is just a rotation along the local X axis. Press <kbd class="kbd docutils literal notranslate">R</kbd> to enter object rotation mode,
 then <kbd class="kbd docutils literal notranslate">X</kbd> twice (the first press selects the <em>global</em> axis,
 pressing the same letter a second time selects the <em>local</em> axis -- this works with any axis;
 see the <a class="reference internal" href="../../../scene_layout/object/editing/transform/control/axis_locking.html"><span class="doc">Axis Locking page</span></a>).</p>
 </dd>
-<dt>Horizontal Pan or Yaw</dt><dd><p>This corresponds to a rotation around the camera's local Y axis.
+<dt>Lia hoặc Lắc Lư theo Chiều Ngang</dt><dd><p>This corresponds to a rotation around the camera's local Y axis.
 Press <kbd class="kbd docutils literal notranslate">R</kbd>, and then <kbd class="kbd docutils literal notranslate">Y</kbd> twice.</p>
 </dd>
-<dt>Dolly</dt><dd><p>To dolly the camera, press <kbd class="kbd docutils literal notranslate">G</kbd> then <kbd class="kbd docutils literal notranslate">MMB</kbd> (or <kbd class="kbd docutils literal notranslate">Z</kbd> twice).</p>
+<dt>Lướt</dt><dd><p>To dolly the camera, press <kbd class="kbd docutils literal notranslate">G</kbd> then <kbd class="kbd docutils literal notranslate">MMB</kbd> (or <kbd class="kbd docutils literal notranslate">Z</kbd> twice).</p>
 </dd>
-<dt>Sideways Tracking</dt><dd><p>Press <kbd class="kbd docutils literal notranslate">G</kbd> and move the mouse (you can use <kbd class="kbd docutils literal notranslate">X</kbd> twice or <kbd class="kbd docutils literal notranslate">Y</kbd>
+<dt>Theo Dõi Chuyển Vị Biên</dt><dd><p>Press <kbd class="kbd docutils literal notranslate">G</kbd> and move the mouse (you can use <kbd class="kbd docutils literal notranslate">X</kbd> twice or <kbd class="kbd docutils literal notranslate">Y</kbd>
 to get pure-horizontal or pure-vertical sideways tracking).</p>
 </dd>
 </dl>
@@ -351,15 +351,15 @@ to get pure-horizontal or pure-vertical sideways tracking).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="local_view.html" class="btn btn-neutral float-left" title="Local View" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="viewpoint.html" class="btn btn-neutral float-right" title="Viewpoint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="local_view.html" class="btn btn-neutral float-left" title="Góc Nhìn Địa Phương" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viewpoint.html" class="btn btn-neutral float-right" title="Góc Nhìn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 

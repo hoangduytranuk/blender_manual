@@ -51,14 +51,14 @@ class CopyExistingTranslation:
         #exit(0)
         return -1
 
-    def dump_po(self, filename, catalog):
-        dirname = os.path.dirname(filename)
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-
-        # Because babel automatically encode strings, file should be open as binary mode.
-        with io.open(filename, 'wb') as f:
-            pofile.write_po(f, catalog, width=0)
+    # def dump_po(self, filename, catalog):
+    #     dirname = os.path.dirname(filename)
+    #     if not os.path.exists(dirname):
+    #         os.makedirs(dirname)
+    #
+    #     # Because babel automatically encode strings, file should be open as binary mode.
+    #     with io.open(filename, 'wb') as f:
+    #         pofile.write_po(f, catalog, width=0)
 
     def getPOFileList(self):
         po_file_list=[]

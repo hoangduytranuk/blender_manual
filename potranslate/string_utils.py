@@ -140,7 +140,7 @@ class StringUtils:
             is_include_bracket:bool =False,
             replace_internal_start_bracket:str = None,
             replace_internal_end_bracket:str = None
-    ) -> list:
+    ) -> dict:
 
         def pop_q(pop_s, pop_e) -> bool:
             last_s = q.pop()
@@ -249,9 +249,7 @@ class StringUtils:
 
                 obs.markLocAsUsed(loc)
                 (ss, ee) = actual_loc
-                mm = MatcherRecord(s=ss, e=ee, txt=actual_txt)
-                mm.pattern = pattern
-                mm.type = RefType.ARCH_BRACKET
+                mm = MatcherRecord(s=ss, e=ee, txt=actual_txt, ref_type=RefType.ARCH_BRACKET, pattern=pattern)
                 dict_entry = {actual_loc: mm}
                 output_dict.update(dict_entry)
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laplacian Deform Modifier &mdash; Blender Manual</title>
+  <title>Bộ Điều Chỉnh Biến Dạng Laplace &mdash; Blender Manual</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme_overrides.css" type="text/css" />
@@ -50,8 +50,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Tìm Kiếm" href="../../../search.html" />
     <link rel="copyright" title="Bản quyền" href="../../../copyright.html" />
-    <link rel="next" title="Lattice Modifier" href="lattice.html" />
-    <link rel="prev" title="Hook Modifier" href="hooks.html" /> 
+    <link rel="next" title="Bộ Điều Chỉnh Giàn Lưới" href="lattice.html" />
+    <link rel="prev" title="Bộ Điều Chỉnh Móc" href="hooks.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,71 +71,71 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu -- Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Editors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Scenes &amp; Objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Modeling</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới -- Meshes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt -- Surfaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Metaball</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Empties</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Modifiers</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu -- Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Common Modifier Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Modify</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Generate</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng -- Deform</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="armature.html">Armature Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cast.html">Cast Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="curve.html">Curve Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="displace.html">Displace Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="hooks.html">Hook Modifier</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Laplacian Deform Modifier</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn -- Options</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#error-messages">Error Messages</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#history">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Khởi Đầu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interface/index.html">Giao Diện Người Dùng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../editors/index.html">Trình Biên Soạn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scene_layout/index.html">Cảnh &amp; Vật Thể</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tạo Mô Hình</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../meshes/index.html">Khung Lưới</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../curves/index.html">Đường Cong</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../surfaces/index.html">Bề Mặt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../metas/index.html">Siêu Cầu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../texts/index.html">Văn Bản</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../volumes/index.html">Thể Tích</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../empties.html">Vật Thể Rỗng</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Bộ Điều Chỉnh</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../introduction.html">Giới Thiệu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common_options.html">Các Tùy Chọn Bộ Điều Chỉnh Thông Thường</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#modify">Sửa Đổi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#generate">Sinh Tạo</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#deform">Biến Dạng</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="armature.html">Bộ Điều Chỉnh Cốt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cast.html">Bộ Điều Chỉnh Đúc Khuôn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="curve.html">Bộ Điều Chỉnh Đường Cong</a></li>
+<li class="toctree-l4"><a class="reference internal" href="displace.html">Bộ Điều Chỉnh Dịch Hình</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hooks.html">Bộ Điều Chỉnh Móc</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bộ Điều Chỉnh Biến Dạng Laplace</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#options">Tùy Chọn</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#error-messages">Thông Điệp Báo Lỗi</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#history">Lịch Sử</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="lattice.html">Lattice Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">Mesh Deform Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Shrinkwrap Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">Simple Deform Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="smooth.html">Smooth Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Smooth Corrective Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Smooth Laplacian Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">Surface Deform Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="volume_displace.html">Volume Displace Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="warp.html">Warp Modifier</a></li>
-<li class="toctree-l4"><a class="reference internal" href="wave.html">Wave Modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lattice.html">Bộ Điều Chỉnh Giàn Lưới</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mesh_deform.html">Bộ điều chỉnh biến dạng khung lưới</a></li>
+<li class="toctree-l4"><a class="reference internal" href="shrinkwrap.html">Bộ Điều Chỉnh Co Bọc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simple_deform.html">Bộ Điều Chỉnh Biến Dạng Đơn Giản</a></li>
+<li class="toctree-l4"><a class="reference internal" href="smooth.html">Bộ Điều Chỉnh Làm Mịn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrective_smooth.html">Bộ Điều Chỉnh Làm Mịn Để Sửa Sai</a></li>
+<li class="toctree-l4"><a class="reference internal" href="laplacian_smooth.html">Bộ Điều Chỉnh Làm Mịn Laplacian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="surface_deform.html">Bộ Điều Chỉnh Biến Dạng Bề Mặt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="volume_displace.html">Bộ Điều Chỉnh Dịch Hình Thể Tích</a></li>
+<li class="toctree-l4"><a class="reference internal" href="warp.html">Bộ điều chỉnh làm cong/uốn oằn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wave.html">Bộ Điều Chỉnh Tạo Sóng</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Physics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#physics">Vật Lý</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Geometry Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../geometry_nodes/index.html">Các nút hình học</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Sculpting &amp; Painting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Grease Pencil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sculpt_paint/index.html">Điêu Khắc &amp; Sơn Vẽ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../grease_pencil/index.html">Bút Chì Dầu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../animation/index.html">Hoạt Họa &amp; Giàn Dựng</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Physics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Rendering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Compositing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Motion Tracking &amp; Masking</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Video Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../physics/index.html">Vật Lý</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../render/index.html">Kết xuất</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compositing/index.html">Tổng hợp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../movie_clip/index.html">Giám Sát &amp; Chắn Lọc Chuyển Động</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../video_editing/index.html">Phim Video biên soạn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../files/index.html">Assets, Files, &amp; Data System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung -- Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp -- Advanced</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố -- Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ -- Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../addons/index.html">Trình Bổ Sung</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../advanced/index.html">Cao Cấp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Xử Lý Sự Cố</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary/index.html">Bảng Thuật Ngữ</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu -- Contribute Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about/index.html">Đóng Góp Tài Liệu</a></li>
 </ul>
 
         </div>
@@ -152,9 +152,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Modeling</a> &raquo;</li>
-          <li><a href="../index.html">Modifiers</a> &raquo;</li>
-      <li>Laplacian Deform Modifier</li>
+          <li><a href="../../index.html">Tạo Mô Hình</a> &raquo;</li>
+          <li><a href="../index.html">Bộ Điều Chỉnh</a> &raquo;</li>
+      <li>Bộ Điều Chỉnh Biến Dạng Laplace</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -164,7 +164,7 @@
            <div itemprop="articleBody">
              
   <section id="laplacian-deform-modifier">
-<span id="bpy-types-laplaciandeformmodifier"></span><span id="index-0"></span><h1>Laplacian Deform Modifier<a class="headerlink" href="#laplacian-deform-modifier" title="Permalink to this headline"></a></h1>
+<span id="bpy-types-laplaciandeformmodifier"></span><span id="index-0"></span><h1>Bộ Điều Chỉnh Biến Dạng Laplace<a class="headerlink" href="#laplacian-deform-modifier" title="Permalink to this headline"></a></h1>
 <p>The <em>Laplacian Deform</em> modifier allows you to pose a mesh while preserving
 geometric details of the surface.</p>
 <p>The user defines a set of &quot;anchor&quot; vertices, and then moves some of them around.
@@ -178,22 +178,21 @@ direction of a vertex based on its neighbors.</p>
 <p>You must define an <em>Anchors Vertex Group</em>. Without it the modifier does nothing.</p>
 </div>
 <section id="options">
-<h2>Tùy Chọn -- Options<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
+<h2>Tùy Chọn<a class="headerlink" href="#options" title="Permalink to this headline"></a></h2>
 <figure class="align-right" id="id1">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_panel.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_panel.png" src="../../../_images/modeling_modifiers_deform_laplacian-deform_panel.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-text">The Laplacian Deform modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Bộ Điều Chỉnh Biến Dạng Laplace -- Laplacian Deform Modifier.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <dl>
-<dt>Repeat</dt><dd><p>How many iterations to do to improve the found solution.
+<dt>Lặp Lại</dt><dd><p>How many iterations to do to improve the found solution.
 The objective is to find the rotation of the differential coordinates
 preserving the best possible geometric details.
 Details are retained better if more iterations are used,
 however, it will take longer to calculate.</p>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Deform horse example
-<a class="reference external" href="https://en.blender.org/uploads/a/a2/Apinzonf_Deform_Horse_example1.blend">blend-file</a>.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Ví dụ biến dạng con ngựa <a class="reference external" href="https://en.blender.org/uploads/a/a2/Apinzonf_Deform_Horse_example1.blend">tập tin blend (blend-file)</a>.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25%" />
 <col style="width: 25%" />
@@ -204,14 +203,14 @@ however, it will take longer to calculate.</p>
 <tr class="row-odd"><td><figure class="align-default" id="id3">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus09.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus09.png" src="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus09.png" style="width: 130px;" /></a>
 <figcaption>
-<p><span class="caption-text">Original Model.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Chế Độ Gốc/Nguyên Thủy.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id4">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus-repeat1.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus-repeat1.png" src="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus-repeat1.png" style="width: 130px;" /></a>
 <figcaption>
-<p><span class="caption-text">Repeat: 1.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Số lần tuần hoàn/Nhắc/lặp lại: 1.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -225,7 +224,7 @@ however, it will take longer to calculate.</p>
 <td><figure class="align-default" id="id6">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus-repeat5.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus-repeat5.png" src="../../../_images/modeling_modifiers_deform_laplacian-deform_cactus-repeat5.png" style="width: 130px;" /></a>
 <figcaption>
-<p><span class="caption-text">Repeat: 5.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Số lần tuần hoàn/Nhắc/lặp lại: 5.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -233,14 +232,14 @@ however, it will take longer to calculate.</p>
 <tr class="row-even"><td><figure class="align-default" id="id7">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat0.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat0.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat0.jpg" style="width: 130px;" /></a>
 <figcaption>
-<p><span class="caption-text">Original Model.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Chế Độ Gốc/Nguyên Thủy.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat1.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat1.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat1.jpg" style="width: 130px;" /></a>
 <figcaption>
-<p><span class="caption-text">Repeat: 1.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Số lần tuần hoàn/Nhắc/lặp lại: 1.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -254,7 +253,7 @@ however, it will take longer to calculate.</p>
 <td><figure class="align-default" id="id10">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat10.jpg"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat10.jpg" src="../../../_images/modeling_modifiers_deform_laplacian-deform_horse-repeat10.jpg" style="width: 130px;" /></a>
 <figcaption>
-<p><span class="caption-text">Repeat: 10.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Số lần tuần hoàn/Nhắc/lặp lại: 10.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </td>
@@ -262,34 +261,34 @@ however, it will take longer to calculate.</p>
 </tbody>
 </table>
 </dd>
-<dt>Anchor Weights</dt><dd><p>The group of vertices that the user will use to transform the model.
+<dt>Trọng Lượng Neo</dt><dd><p>The group of vertices that the user will use to transform the model.
 The weight of each vertex does not affect the behavior of the modifier,
 the method only takes into account vertices with weight greater than 0.</p>
 <dl>
-<dt>Invert <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
+<dt>Đảo Nghịch <code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code></dt><dd><p>Inverts the influence of the selected vertex group, meaning that the group
 now represents vertices that will not be deformed by the modifier.</p>
 <p>The setting reverses the weight values of the group.</p>
 </dd>
 </dl>
 </dd>
-<dt>Bind</dt><dd><p>The <em>Bind</em> button is what tells the <em>Laplacian Deform</em> modifier to actually capture the geometry details
+<dt>Kết Buộc</dt><dd><p>The <em>Bind</em> button is what tells the <em>Laplacian Deform</em> modifier to actually capture the geometry details
 of the object, so that altering the anchor vertices actually alters the shape of the deformed object.</p>
 </dd>
-<dt>Unbind</dt><dd><p>After binding the modifier, you may later decide to make changes to the <em>Anchors Vertex Group</em>.
+<dt>Tháo Kết Buộc</dt><dd><p>After binding the modifier, you may later decide to make changes to the <em>Anchors Vertex Group</em>.
 To do so you will first need to <em>Unbind</em> the modifier before binding it again.</p>
 </dd>
 </dl>
 </section>
 <section id="error-messages">
-<h2>Error Messages<a class="headerlink" href="#error-messages" title="Permalink to this headline"></a></h2>
+<h2>Thông Điệp Báo Lỗi<a class="headerlink" href="#error-messages" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>Vertex group <em>group_name</em> is not valid</dt><dd><p>This message is displayed when a user deletes the vertex group or changes its name.</p>
+<dt>Nhóm điểm đỉnh <abbr title="group_name">tên_nhóm</abbr> không hợp lệ</dt><dd><p>This message is displayed when a user deletes the vertex group or changes its name.</p>
 </dd>
-<dt>Vertices changed from X to Y</dt><dd><p>This message is displayed when a user adds or deletes vertices to/from the mesh.</p>
+<dt>Số điểm đỉnh thay đổi, từ X sang thành Y</dt><dd><p>This message is displayed when a user adds or deletes vertices to/from the mesh.</p>
 </dd>
-<dt>Edges changed from X to Y</dt><dd><p>This message is displayed when a user adds or deletes edges to/from the mesh.</p>
+<dt>Cạnh tráo đổi từ X sang Y</dt><dd><p>This message is displayed when a user adds or deletes edges to/from the mesh.</p>
 </dd>
-<dt>The system did not find a solution</dt><dd><p>This message is displayed if the solver could not find a solution for the linear system.</p>
+<dt>Hệ thống không tìm được giải nghiệm nào cả</dt><dd><p>This message is displayed if the solver could not find a solution for the linear system.</p>
 </dd>
 </dl>
 <div class="admonition note">
@@ -299,7 +298,7 @@ then it is possible that the nonlinear optimization system will fail.</p>
 </div>
 </section>
 <section id="history">
-<h2>History<a class="headerlink" href="#history" title="Permalink to this headline"></a></h2>
+<h2>Lịch Sử<a class="headerlink" href="#history" title="Permalink to this headline"></a></h2>
 <p><a class="reference external" href="https://igl.ethz.ch/projects/Laplacian-mesh-processing/Laplacian-mesh-editing/laplacian-mesh-editing.pdf">Laplacian Surface Editing</a>
 is a method developed by Olga Sorkine and others in 2004.
 This method preserves geometric details as much as possible while the user makes editing operations.
@@ -309,7 +308,7 @@ of its neighbors to represent the local geometric detail of the mesh.</p>
 <figure class="align-default" id="id11">
 <a class="reference internal image-reference" href="../../../_images/modeling_modifiers_deform_laplacian-deform_diagram-differential-coordinate.png"><img alt="../../../_images/modeling_modifiers_deform_laplacian-deform_diagram-differential-coordinate.png" src="../../../_images/modeling_modifiers_deform_laplacian-deform_diagram-differential-coordinate.png" style="width: 369px;" /></a>
 <figcaption>
-<p><span class="caption-text">Differential Coordinate.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Tọa Độ Chất Liệu.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition seealso">
@@ -326,15 +325,15 @@ of its neighbors to represent the local geometric detail of the mesh.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hooks.html" class="btn btn-neutral float-left" title="Hook Modifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="lattice.html" class="btn btn-neutral float-right" title="Lattice Modifier" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hooks.html" class="btn btn-neutral float-left" title="Bộ Điều Chỉnh Móc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lattice.html" class="btn btn-neutral float-right" title="Bộ Điều Chỉnh Giàn Lưới" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; <a href="../../../copyright.html">Copyright</a> : This page is licensed under a CC-BY-SA 4.0 Int. License.
-      <span class="lastupdated">Cập nhật mới nhất vào 01/08/2022.
+      <span class="lastupdated">Cập nhật mới nhất vào 02/15/2022.
       </span></p>
   </div>
 
