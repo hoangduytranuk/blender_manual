@@ -1,29 +1,17 @@
 from matcher import MatcherRecord
-from definition import TranslationState
+from definition import TranslationState, Definitions as df
 from refs.ref_base import RefBase
 from ignore import Ignore as ig
 
 import re
 
-class RefGAWithBrackets(RefBase):
+class RefGALeadingSymbols(RefBase):
 
     def getPattern(self):
-        pat_list = [
-            r'(?<!(:))\`+(<([^`<>]+)>)\`+',
-            r'(?<!(:))\`+([\-]+([^`]+\w))\`+',
-            r'(?<!(:))\`+([\#]+(\w[^`]+\w))\`+',
-            r'(?<!(:))\`+(\w[^`]+\w)\`+',
-            r'"(\w[^"]+\w)"+',
-            r"(?<!(\w))'(\w[^']+\w)'+",
-        ]
-        temp_list=[]
-        for pat_txt in pat_list:
-            pat_txt = r'(%s)' % (pat_txt)
-            temp_list.append(pat_txt)
+        return df.GA_SYMB_LEADING
 
-        pat_txt = '|'.join(temp_list)
-        pat = re.compile(pat_txt)
-        return pat
+    def getTextForTranslate(self, entry):
+        return self.getTextForTranslateMultiLevel(entry)
 
     def parse(self, entry):
         entry_loc = entry[0]
@@ -50,7 +38,7 @@ class RefGAWithBrackets(RefBase):
         tran = self.tf.isInDict(txt)
         has_tran = (tran is not None)
         if not has_tran:
-            self.need_tran_list.append(txt)
+            self.statTranslation(orig=txt)
             tran = ""
 
         tran = self.extractAbbr(tran)
@@ -62,4 +50,5 @@ class RefGAWithBrackets(RefBase):
         new_txt = f'\\{quote}:abbr:`{sub_txt} ({tran})`\\{quote}'
         mm.translation = new_txt
         mm.translation_state = TranslationState.ACCEPTABLE
+        self.statTranslation(matcher=mm)
         return entry

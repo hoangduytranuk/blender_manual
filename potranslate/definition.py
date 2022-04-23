@@ -33,6 +33,7 @@ class TextStyle(Enum):
 
 
 class RefType(Enum):
+    GLOBAL = "None1"
     REMOVE_ORIGINAL = "None"
     PYTHON_FORMAT = "%"
     FUNCTION = "func"
@@ -41,6 +42,9 @@ class RefType(Enum):
     DOUBLE_GA = "``"
     SINGLE_GA = "`"
     GA_EMBEDDED_GA = "```"
+    GA_LEADING_SYMBOLS = "``<-#"
+    GA_INTERNAL_LINK = "``_"
+    GA_EXTERNAL_LINK = "``__"
     GENERIC_DOUBLE_GA = "``"
     GENERIC_SINGLE_GA = "`"
     GENERIC_REF = ":\w+:"
@@ -63,6 +67,7 @@ class RefType(Enum):
     METHOD = ":meth:"
     FUNC = ":func:"
     REF = ":ref:"
+    REF_WITH_LINK = ":ref:<>"
     SUP = ":sup:"
     TERM = ":term:"
     OSL_ATTRIB = "w:w"
@@ -507,10 +512,30 @@ class Definitions:
 
     TRAN_REF_PATTERN = re.compile(r'\@\{([^{@}]+)?\}')
 
-    python_format_txt = r'(?:\s|^)(\'?%\w\')(?:\W|$)'
+    python_format_txt = r'''
+        \%
+            (?:\(([\w]*)\))?
+            (
+                [-#0\ +]?(?:\*|[\d]+)?
+                (?:\.(?:\*|[\d]+))?
+                [hlL]?
+            )
+            ([diouxXeEfFgGcrs%])
+    '''
     python_format_txt_absolute = r'^%s$' % (python_format_txt)
-    PYTHON_FORMAT = re.compile(python_format_txt)
-    PYTHON_FORMAT_ABS = re.compile(python_format_txt_absolute)
+    PYTHON_FORMAT = re.compile(python_format_txt, flags=re.X)
+    # PYTHON_FORMAT = re.compile(r'''
+    #     \%
+    #         (?:\(([\w]*)\))?
+    #         (
+    #             [-#0\ +]?(?:\*|[\d]+)?
+    #             (?:\.(?:\*|[\d]+))?
+    #             [hlL]?
+    #         )
+    #         ([diouxXeEfFgGcrs%])
+    # ''', re.VERBOSE)
+
+    PYTHON_FORMAT_ABS = re.compile(python_format_txt_absolute, flags=re.X)
 
     WEAK_TRANS_MARKER = "#-1#"
     debug_current_file_count = 0
@@ -663,16 +688,11 @@ class Definitions:
     TAG_NAME = 'tagname'
     CLASS = 'classes'
 
-    # var = r'[\w\_\.\-]+'
-    # param = r'(%s(\,(\s+)?)?)+' % (var)
-    # funct = r'^(%s\((%s)?\))$' % (var, param)
-    var = r'[\w\_\.\-]+'
-    param = r'(%s(\,(\s+)?)?)+' % (var)
-    multiple = r'^\w+\(s\)$'
-    ga_multi = r'([\`]+)?'
-    # funct = r'^%s(%s\((%s)?\))%s$' % (ga_multi, var, param, ga_multi)
-    funct = r'%s(%s\((%s[^\(\)]+)?\))%s' % (ga_multi, var, var, ga_multi)
-    funct_pat_txt = r'^%s$' % (funct)
+    var = r'[A-Za-z][\w\_\-\.]*'
+    param_txt = r'[\w\d\.\_]+'
+    param = r'(%s)(\,\s+?(%s))*' % (param_txt, param_txt)
+    funct_pat_txt = r'(?<!\\)(%s)\((%s?\))(?<!\w\(s\))(?<!\w\(ren\))' % (var, param)
+    funct_only_pat_txt = r'^(%s)$' % (funct_pat_txt)
     FUNCTION = re.compile(funct_pat_txt)
     FUNCTION_ABS = FUNCTION
 
@@ -705,7 +725,7 @@ class Definitions:
     LEADING_WITH_SYMBOL = re.compile(r'^[\(\[]+')
     TRAILING_WITH_SYMBOL = re.compile(r'[\)\]]+$')
 
-    ABBR_SEARCH = re.compile(r':abbr:\`(.*)\)\`')
+    ABBR_SEARCH = re.compile(r':abbr:\`([^\`]+(?<=\)))\`')
     ABBR_SPLIT = re.compile(r':abbr:')
     ABBR_TERM = re.compile(r'\)\`')
 
@@ -774,12 +794,17 @@ class Definitions:
     GA_REF_PART = re.compile(r':[\w]+:', re.I)
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+)(?<!([\s\:]))[\`]+[\_]*')
     # GA_REF = re.compile(r'[\`]*(:[^\:]+:)*[\`]+([^\`]+)[\`]+[\_]*')
-    NOT_SPACE = r'(?![\s]+)'
+    NOT_SPACE = r'(?<!\s)'
     GA_SYMB = r'\`'
     ga_value_ref_pat_txt = r'[%s]+(%s+[^%s]+%s)[%s]+' % (GA_SYMB, NOT_SPACE, GA_SYMB, NOT_SPACE, GA_SYMB)
     ga_ref_pat_txt = r'[\`]*(:[^\:]+:)*%s[\_]*' % (ga_value_ref_pat_txt)
+    ga_generic_only = r'^(%s)$' % (ga_ref_pat_txt)
+    GA_GENERIC = re.compile(ga_ref_pat_txt)
+    GA_GENERIC_ONLY = re.compile(ga_generic_only)
+
     GA_DOUBLE = re.compile(r'\`{2}[^\`]+\S\`{2}')
-    GA_SINGLE = re.compile(r'(?!:)\`[^\`]+\S\`__')
+    GA_INTERNAL_LINK = re.compile(r'(?!:)\`[^\`]+(?:\S)\`\_(?!\_)')
+    GA_EXTERNAL_LINK = re.compile(r'\`([^`<>]+)\s\<[^\<\>]+\>\`\_{2}')
 
     GA_REF = re.compile(ga_ref_pat_txt)
     GA_REF_ABS = re.compile(r'^[\`]*(:[^\:]+:)*[\`]+(?![\s]+)([^\`]+?)(?<!([\s\:]))[\`]+[\_]*(?:\W|$)?$')
@@ -797,6 +822,8 @@ class Definitions:
     # ARCH_BRAKET_SINGLE_PARTS = re.compile(r'[\)]+([^\(]+)?[\(]+')
     pairable_brackets_txt = r'[\[\]\(\)\<\>]'
     PAIRABLE_BRACKETS = re.compile(pairable_brackets_txt)
+    exchange_bracket_txt = r'[\(\[\]\)]'
+    EXCHANGE_BRAKETS = re.compile(exchange_bracket_txt)
 
     angle_bracket_single_txt = r'\<([^\<\>]+)[^\/]\>'
     arch_bracket_single_txt = r'\(([^\)\(]+?)\)'
@@ -806,19 +833,36 @@ class Definitions:
     ARCH_BRAKET_SINGLE_ABS = re.compile(arch_bracket_single_absolute)
     ARCH_BRAKET_SINGLE = re.compile(arch_bracket_single_txt)
 
-    ARCH_BRAKET_MULTI = re.compile(r'\((.+)\)')
-    ARCH_BRACKET_SPLIT = re.compile(r'\s*([()])\s*')
+    ARCH_BRAKET_MULTI_SIMPLE = re.compile(r'(?<!\w)\(((?=\S).+?(?<=\S))\)(?!\w)')
+
     ##### new ref
     GA_DOUBLE_EMBEDDED_GA = re.compile(r'\`{2}(:\w+:\`((?!\s)[^\`]+?)\`)\`{2}', re.I)
-    GA_SINGLE = re.compile(r'(?!:)\`((?!\s)[^`]+?\S)\`[_]+')
+    GA_INTERNAL_LINK = re.compile(r'(?!:)\`((?!\s)[^`]+?(?<=\S))\`[_]+')
+
     GA_DOUBLE = re.compile(r'\`{2}([^\`]+?)\`{2}(?<!\(\s)')
-    SINGLE_QUOTE = re.compile(r'\'+(?![\s\,\`]|ll|[tsd]\s)[^\']+\'+(?<!\(\s)')
-    DOUBLE_QUOTE = re.compile(r'\"+((?![\s\,\`])[^"]+)\"+(?<!\(\s)')  ## r'(?<!\\")(")(\S[^\"]+\S)(")'
-    AST_QUOTES = re.compile(r'\*+(\S[^*]+\S)\*+')
+    SINGLE_QUOTE = re.compile(r'(?<!\w)\'+([^\'\`]+)\'+')
+    DOUBLE_QUOTE = re.compile(r'\"+((?![\s\,\`])[^"]+)\"+(?<!\(\s)')
+    # ast_quote_txt = r'[\*]{1,2}((?:\S)[^\*]+(?:\S))[\*]{1,2}'## r'(?<!\\")(")(\S[^\"]+\S)(")'
+    # ast_quote_txt = r'[\*]{2}([^\*]+)[\*]{2}'  ## r'(?<!\\")(")(\S[^\"]+\S)(")'
+
+    ast_quote_txt_dbl = r'(?<!\*)\*{2}((?:\S).+?)\*{2}(?!=\*)'
+
+    ast_generic_txt = r'[\*]+((?=\w)[^\*].+?)[\*]+'
+    AST_GENERIC_QUOTES = re.compile(ast_generic_txt)
+
+    ast_generic = r'[\*]+((?=\w)[^\*].+?)[\*]+'
+    ast_quote_txt_sng = r'(?<!\*)[\*]([^\*]+)[\*](?!\*)'
+    # ast_quote_txt_sng_loose = r'(?<=\s)[\*]((?![\s\*])(.+?))[\*]+(?!=\*)'
+    ast_quote_txt_sng_loose = r'(?<!\*)[\*]([\w\*\s]+?)[\*]+(?!\*)'
+    ast_quote_single_txt = r'(%s)' % (ast_quote_txt_sng)
+    DBL_AST_QUOTES = re.compile(ast_quote_txt_dbl)
+    # ast_quote_txt = ast_quote_txt_sng
+    SNG_AST_QUOTE = re.compile(ast_quote_single_txt)   # r'[\*]((?!\s).+?(?<!\s))[\*](?=(\s|$))'
     REF_GENERIC = re.compile(r':\w+:(?!:)[\`]((?!\s)[^\`]+)[\`]', re.I)
     REF_GENERIC_WITH_LINK = re.compile(r':\w+:(?!:)[\`]((?!\s)[^\`\<\>]+(\s<([^\`\<\>]+)>))[\`]', re.I)
-    GA_GENERIC_DOUBLE = re.compile(r'\`{2}((?!\s)[^\`]?)\`{2}(?<!\s)(?=(\s|$))', re.I)
-    GA_GENERIC_SINGLE = re.compile(r'\`((?!\s)[^\`]+?)\`(?<!\s)(?=(\s|$))', re.I)
+    # GA_GENERIC_DOUBLE = re.compile(r'[\`]{2}((?:\S)[^\`]?)(?:\S)[\`]{2}(?=(\s|$))', re.I)
+    GA_GENERIC_DOUBLE = re.compile(r'[\`]{2,}(.+?)[\`]{2,}')
+    GA_GENERIC_SINGLE = re.compile(r'(?!=\:)\`((?=\S)[^\`]+(?=\S))\`(\_+)?(?:(\s|$))', re.I)
     REF_GENERIC_STARTER = re.compile(r':\w+:', re.I)
 
     SPACES = re.compile(r'\s+')
@@ -833,24 +877,24 @@ class Definitions:
     ABBR_SPLITER = re.compile(r':abbr:\`([^`]+)\s\(([^<>]+)\)\`')
     GUI_LABEL_SPLITER = re.compile(r':guilabel:\`([^`]+)\`')
     GA_DOUBLE_SPLITTER = re.compile(r'[\`]{2}([^`]+)[\`]{2}')
+    GA_SYMB_LEADING = re.compile(r'(?<!\:)\`+((?:[<\-#]+)([^`]+(?<!\:)))(?<![>\-#])\`+')
+    GA_ONLY = re.compile(r'(?<![\:\_])\`+((?=[^\s\_])[^\`<>:]+(?<=[\S\(]))\`+(?!=\_)')
+
     ##### new ref
 
-    # AST_QUOTE = re.compile(r'[\*]+(?![\s\.\,\`\"]+)([^\*]+)[\*]+(?<!([\s\.\,\`\"]))')
-    # ast_quote_txt = r'([\*]+)(\w[^\*]+\w)([\*]+)'
     ast_quote_txt = r'(?!:\s)\*([^\*]+)\*(?<!\s)'
     ast_quote_txt_absolute = r'^%s$' % (ast_quote_txt)
-    AST_QUOTE = re.compile(ast_quote_txt)
-    AST_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
+    SNG_QUOTE = re.compile(ast_quote_txt)
+    SNG_QUOTE_ABS = re.compile(ast_quote_txt_absolute)
 
-    # DBL_QUOTE = re.compile(r'[\\\"]+(?![\s\.\,\`]+)([^\\\"]+)[\\\"]+(?<!([\s\.\,]))')
-    # dbl_quote_txt = r'(?<!\\")(")(\S.*?\S)(")'
-    dbl_quote_txt = r'(?!:\s)"([^\"]+)"(?<!\s)'
+    dbl_quote_txt = r'"+([^"]+)"+'
     dbl_quote_txt_abs = r'^%s$' % (dbl_quote_txt)
     DBL_QUOTE = re.compile(dbl_quote_txt)
     DBL_QUOTE_ABS = re.compile(dbl_quote_txt_abs)
 
     # SNG_QUOTE = re.compile(r'[\']+([^\']+)[\']+(?!([\w]))')
-    single_quote_txt = r'(?:(^|\s))\'((?!([sd]|ll|ve|nt)\b)[^\']+)\'(?:(\b|$))'
+    # single_quote_txt = r"'(?!\s)((?!([sdt]|ll|ve|nt))[^\']+)'"
+    single_quote_txt = r"(?<=[\\\s\b])'+([^\']+)'+"
     single_quote_txt_absolute = r'^%s$' % (single_quote_txt)
     SNG_QUOTE = re.compile(single_quote_txt)
     SNG_QUOTE_ABS = re.compile(single_quote_txt_absolute)
@@ -868,6 +912,7 @@ class Definitions:
     MENU_PART_1 = re.compile(r'(?!\s)([^\->])+(?<!\s)')
     MENU_SEP = re.compile(r'\s?([\-]+\>)\s?')
 
+    ABBR = re.compile(r':abbr:\`([^\`\(\)]+)\s\(([^\`\(\)]+)\)\`', re.I)
     ABBREV_TEXT_REVERSE = re.compile(r'(?!\s)([^\(\)]+)(?<!\s)')
     REF_TEXT_REVERSE = re.compile(r'([^\`]+)\s\-\-\s([^\<]+)(?<![\s])')
     REF_PART = re.compile(r'([<(][^<>()]+[>)])')
@@ -899,6 +944,8 @@ class Definitions:
     REF_FILLER_CHAR = '¢'
     ref_filler_char_pat_txt = r'[%s]+' % (REF_FILLER_CHAR)
     REF_FILLER_PAT = re.compile(ref_filler_char_pat_txt)
+
+    IGNORABLE_OPTION_FLAGS = re.compile(r'^(([\-]+\w+)(\s[\+\-]?\d+)?\s?)+$')
 
     REF_MASK_CHAR = '#'
     REF_MASK_STR = f'{REF_MASK_CHAR * 2}'
@@ -1015,8 +1062,17 @@ class Definitions:
     END_WORD = '$'
     BOTH_START_AND_END = '^$'
 
-    START_WORD_SYMBOLS = re.compile(r'^\W+')
-    END_WORD_SYMBOLS = re.compile(r'\W+$')
+    START_WORD_SYMBOLS = re.compile(r'^[\W\_]+')
+    END_WORD_SYMBOLS = re.compile(r'[\W\_]+$')
+    ALL_WORD_SYMBOLS = re.compile(r'^[\W\_]+$')
+
+    left_set_brackets = ['(', '[', '<', '{']
+    right_set_brackets = [')', ']', '>', '}']
+
+    LEFT_SET_BRACKET = re.compile(r'[\(\[\<\{]+')
+    RIGHT_SET_BRACKET = re.compile(r'[\)\]\>\}]+')
+    PAIR_BRACKETS = re.compile(r'[\(\)]')
+
 
     EN_DUP_ENDING = re.compile(r'[aeiou]\w{1}$')
 
@@ -1556,19 +1612,19 @@ class Definitions:
         r"^(\w[\W]+)$",
         r"^\W?(\dD)\W?$",
         r"^\s*(" + NUMB + MATH_OPS + r".*" + NUMB + r")\s*$",
-        r"^\s*(" + STB + r"?(" + NUMB + r"(([\,]+[\s]+)?" + NUMB + r")*)+" + EDB + r"?)\s*$",
-        r"^\s*(" + STB + r"?([+-]?[\d]+)([\,\.]?[\s]?[\d]+)*)+" + EDB + r"?$",  # 1,000 or 0.00001 or 1, 2, 3, 4
-        r"^\s*(" + STB + r"?([\+\-]?[\d]+[\W]?)" + EDB + r"?)\s*$",  # (+-180°)
-        r"^\s*(" + STB + r"?[+-][\w]{1}[,.])*([\s]?[+-][\w]{1})" + EDB + r"?$",  # "+X, +Y, +Z, -X, -Y, -Z"
+        # r"^\s*(" + STB + r"?(" + NUMB + r"(([\,]+[\s]+)?" + NUMB + r")*)+" + EDB + r"?)\s*$",
+        # r"^\s*(" + STB + r"?([+-]?[\d]+)([\,\.]?[\s]?[\d]+)*)+" + EDB + r"?$",  # 1,000 or 0.00001 or 1, 2, 3, 4
+        # r"^\s*(" + STB + r"?([\+\-]?[\d]+[\W]?)" + EDB + r"?)\s*$",  # (+-180°)
+        # r"^\s*(" + STB + r"?[+-][\w]{1}[,.])*([\s]?[+-][\w]{1})" + EDB + r"?$",  # "+X, +Y, +Z, -X, -Y, -Z"
         r"^\s*(" + r"(cd|mk|mkdir)[\s]+" + r".*" + r")\s*$",
         r"^\s*(#fmod\(frame, 24\) / 24)\s*$",
-        r"^\s*((GGX|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)\s*$",
+        r"\S+\.\w+",  # file_name.png
+        r"^\s*((GGX|Blender|GLSL|GPU)[s:]|Gamma[s:]?|Ge2Kwy5EGE0|Gizmo[s:]|GGX|GLSL|Gizmo[\s]?[\w]?)\s*$",
         r"^\s*(([\d]+([\.[\d]+)?)*(mil|mi|mm|km|cm|ft|m|yd|dm|st|pi))\s*$",
         r"^\s*(([\d]+(\.[\d]+)?)([\s]?[\/\+\-\*\%\=]?[\s]?([\d]+(\.[\d]+)?))*)\s*$",
         # r"^\s*(([\w]+)?([\.][\w]+)+)\s*$",  # bpy.context, bpy.context.object
         # r"^\s*(([\w]+)?([\.][\w]{3})+)\s*$",  # bpy.context, bpy.context.object
-        r"^\s*(:(math|class):)\`([^\`]+)\`$",
-        r"^\s*(AAC|AVI Jpeg|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)\s*$",
+        r"^\s*(AAC|AVI Jpeg|antonioya|(Ctrl|Alt|Shift)\S*|AVX|AaBbCc|Albedo|Alembic|AC3|Alt|AMD|Ascii|AVX[\d]?|Acrylic)\s*$",
         r"^\s*(AVIJPEG|AVIRAW|BMP|DDS|DPX|IRIZ|JACK|JP2|RAWTGA|TGA|TIFF|[+-]<frame>|)\s*$",
         r"^\s*(Alpha|Alt|Apple macOS|Arch Linux|Ashikhmin-Shirley)\s*$",
         r"^\s*(B\-Spline|BSDF|BSSRDF|BU|BVH|Babel|Bezier|Bindcode|Bit[s]?|BkSpace|Bksp)\s*$",
@@ -1593,7 +1649,7 @@ class Definitions:
         r"^\s*(QuickTime|quasi\-)\s*$",
         r"^\s*(RK4|RRT|Redhat\/Fedora|rad_def|RLE)\s*$",
         r"^\s*(RONIN|Ryan Inch|Return)\s*$",
-        r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sin|Sobel|Sobol|Stucci|Studio|Subversion|SubD|Subdiv|Silvio Falcinelli)\s*$",
+        r"^\s*(SDL|SSE[\d]+|STL|SVG|ShaderFX|Sigma|Sobel|Sobol|Stucci|Studio|Subversion|SubD|Subdiv|Silvio Falcinelli)\s*$",
         r"^\s*(Targa([\s]?Raw)?|Theora|TortoiseSVN|TxtIn|test1_|the|TAR-)\s*$",
         r"^\s*(TortoiseSVN|var[\s]+|wav)\s*$",
         r"^\s*(URL|UV[s:]?|(\w )?&( \w)?|Uber)\s*$",
@@ -1620,7 +1676,7 @@ class Definitions:
         # r"^\s*(\-\-render\-frame 1|\-(ba|con|noaudio|setaudio)|Mem)\s*$",
         r"^\s*(\.[\w]{2,5})\s*$",  # .jpg, .so
         r"^\s*(\d+[x]?)\s*$",  # 16x
-        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|acos|svn)\s*$",
+        r"^\s*(_socket[\.](py|pyd)|Subversion|s\-leger|sequencer\-edit\-change|svn|meta-androcto|A_x\^2 \+ A_y\^2 \+ A_z\^2)\s*$",
         r"^\s*(bItasc|bin|bit[s]?|bl\*er|blendcache_[filename]anim_time_min|anim_time_max|anim_screen_switch|bl_math|bl_info|blender_docs|display_render|displayColor|blender_doc|blender_api)\s*$",
         r"^\s*(bpy\.(context|data|ops)|bpy\.([\w\.\-\_]+)|byte([s]?))\s*$",
         r"^\s*(cd|mkdir|ctrl)\s*$",
@@ -1630,11 +1686,11 @@ class Definitions:
         r"^\s*(git([\s]+[^\`]+)?|glTF 2\.0)\s*$",
         r"^\s*(hm|html|iTaSC|jpeg|SubRip)\s*$",
         r"^\s*(htt[ps][^\S]+)\s*$",
-        r"^\s*(jpg|png|int)\s*$",
+        r"^\s*(jpg|png)\s*$",
         r"^\s*(kConstantScope|kUniformScope|kUnknownScope|kVaryingScope|kVertexScope|kFacevaryingScope|kbd)\s*$",
         r"^\s*(mathutils|menuselection|microfacet_ggx\(N, roughness\)|microfacet_ggx_aniso\(N, T, ax, ay\))\s*$",
         r"^\s*(microfacet_ggx_refraction\(N, roughness, ior\)|mp[\d]+|msgstr|MPEG-4 \(divx\))\s*$",
-        r"^\s*(mov|location[0]|cd|ch|hm|asin|um|tan|atan|atan2|Arctan2|motorsep)\s*$",
+        r"^\s*(mov|location[0]|cd|ch|hm|um|motorsep)\s*$",
         r"^\s*(oren_nayar\(N, roughness\)|wm\.operators\.\*|var all_langs \=(.*)|)\s*$",
         r"^\s*(quit\.blend|path:ray_length|render\-output\-postprocess|temp\-dir)\s*$",
         r"^\s*(rig_ui|roaoao|rotation_[xyz]|resolution_[xyz]|reflection\(N\)|rest_mat|rst|refraction\(N, ior\))\s*$",
@@ -1658,7 +1714,6 @@ class Definitions:
         r"^blender_api[:]?",
         r'^(A \(Alpha\))$',
         r'^(GPL[\s\w][\d][+])$',
-        r'^(\w+\d+)$',
         # r'^(\w+)(_\w+){1,}$',
         r'^File\:[^:]+\.\w+$',
         r'^(\|[\w]+([\-][\w]+)?.*(:kbd\:.*Alt-Backspace).*)$',  # |dagger|: ``|``, :kbd:`Alt-Backspace`, ``-``
@@ -1667,6 +1722,10 @@ class Definitions:
         r'^\d+%s$' % (REF_MASK_STR * 2),  # internal ref placeholders
     ]
 
+    FILE_EXTENSIONS = re.compile(r'^(\S+)?\.\w+$')
+    DIGITS_ONLY = re.compile(r'^[\,\s\=\.\+\-e\d\*\/x×cdhbpyftmnck\[\]\(\)\>\<\{\}\\]+$')
+    SINGLE_LETTER = re.compile(r'^\w$')
+    KEYBOARD_MODIFIERS = re.compile(r'^(alt|ctrl|shift|end|home|pagup|pgdown|enter|delete|backspace|home)$', flags=re.I)
     # MAKE SURE all entries in this table are in LOWERCASE
     ignore_txt_list = [
         # "",
@@ -1759,7 +1818,6 @@ class Definitions:
         "``send_field``",
         "a",
         "a, b",
-        "acos",
         "addons_contrib",
         "albedo",
         "alembic",
@@ -1771,9 +1829,6 @@ class Definitions:
         "antonioya",
         "aov",
         "apic",
-        "arccos(a)",
-        "arcsin(a)",
-        "arctan(a)",
         "avi",
         "bind_mat",
         "bl_info",
@@ -1794,9 +1849,6 @@ class Definitions:
         "collada, ...",
         "cor",
         "coreaudio",
-        "cos",
-        "cos(a)",
-        "cosh(a)",
         "cpu",
         "ctrl shift c",
         "cuda",
@@ -1824,7 +1876,6 @@ class Definitions:
         "exp(a)",
         "ffmpeg -b:v",
         "file:atvbuggy.zip",
-        "fmod",
         "folkert de vries",
         "functions.wolfram.com",
         "fweeb",
@@ -1859,7 +1910,6 @@ class Definitions:
         "locale/fr",
         "location[0]",
         "loolarge",
-        "lwpolyline",
         "lzw",
         "mano-wii",
         "manual/images",
@@ -1931,10 +1981,6 @@ class Definitions:
         "sergey sharybin",
         "sid",
         "silvio falcinelli",
-        "sin(a)",
-        "sin(x) / x",
-        "sin(x)/x",
-        "sinh(a)",
         "skinify guy",
         "sl",
         "stan pancakes",
@@ -1951,8 +1997,6 @@ class Definitions:
         "svn rm /path/to/file",
         "syrux",
         "tab",
-        "tan(a)",
-        "tanh(a)",
         "the pixelary",
         "tissue",
         "tool-annotate",
@@ -2239,11 +2283,13 @@ class Definitions:
     pattern_list = [
         (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
         (FUNCTION, RefType.FUNCTION),
-        (SNG_QUOTE, RefType.SNG_QUOTE),
         (DBL_QUOTE, RefType.DBL_QUOTE),
-        (AST_QUOTES, RefType.AST_QUOTE),
-        (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
-        (GA_SINGLE, RefType.SINGLE_GA),
+        (SNG_QUOTE, RefType.SNG_QUOTE),
+        (DBL_AST_QUOTES, RefType.AST_QUOTE),
+        (SNG_AST_QUOTE, RefType.AST_QUOTE),
+        (GA_SYMB_LEADING, RefType.GENERIC_DOUBLE_GA),
+        # (GA_ONLY, RefType.GENERIC_DOUBLE_GA),
+        # (GA_INTERNAL_LINK, RefType.SINGLE_GA),
         (GA_DOUBLE, RefType.DOUBLE_GA),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
@@ -2293,9 +2339,9 @@ class Definitions:
         (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
         (SNG_QUOTE, RefType.SNG_QUOTE),
         (DBL_QUOTE, RefType.DBL_QUOTE),
-        (AST_QUOTES, RefType.AST_QUOTE),
+        (SNG_AST_QUOTE, RefType.AST_QUOTE),
         (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
-        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_INTERNAL_LINK, RefType.SINGLE_GA),
         (GA_DOUBLE, RefType.DOUBLE_GA),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
@@ -2311,7 +2357,7 @@ class Definitions:
         (PYTHON_FORMAT, RefType.PYTHON_FORMAT),
         (FUNCTION, RefType.FUNCTION),
         (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
-        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_INTERNAL_LINK, RefType.SINGLE_GA),
         (GA_DOUBLE, RefType.DOUBLE_GA),
         (ATTRIB_REF, RefType.ATTRIB),
         (GA_GENERIC_DOUBLE, RefType.GENERIC_DOUBLE_GA),
@@ -2331,9 +2377,9 @@ class Definitions:
         (FUNCTION, RefType.FUNCTION),
         (SNG_QUOTE, RefType.SNG_QUOTE),
         (DBL_QUOTE, RefType.DBL_QUOTE),
-        (AST_QUOTES, RefType.AST_QUOTE),
+        (SNG_AST_QUOTE, RefType.AST_QUOTE),
         (GA_DOUBLE_EMBEDDED_GA, RefType.GA_EMBEDDED_GA),
-        (GA_SINGLE, RefType.SINGLE_GA),
+        (GA_INTERNAL_LINK, RefType.SINGLE_GA),
         (GA_DOUBLE, RefType.DOUBLE_GA),
         (BLANK_QUOTE, RefType.BLANK_QUOTE),
         (ATTRIB_REF, RefType.ATTRIB),
@@ -2367,12 +2413,89 @@ class Definitions:
         ARCH_BRAKET_SINGLE_ABS,
         PYTHON_FORMAT_ABS,
         FUNCTION_ABS,
-        AST_QUOTE_ABS,
+        SNG_AST_QUOTE,
         DBL_QUOTE_ABS,
         SNG_QUOTE_ABS,
         BLANK_QUOTE_ABS,
         ATTRIB_REF_ABS,
     ]
+    ga_go_first_list = [
+        'min',
+        'max',
+        'radians',
+        'degrees',
+        'abs',
+        'fabs',
+        'floor',
+        'ceil',
+        'trunc',
+        'round',
+        'int',
+        'sin',
+        'cos',
+        'tan',
+        'asin',
+        'acos',
+        'atan',
+        'atan2',
+        'exp',
+        'log',
+        'sqrt',
+        'pow',
+        'fmod',
+        'and',
+        'or',
+        'not',
+        'true',
+        'false',
+        'alpha',
+        'Front\(X\-Z\)',
+        'frame\/8',
+        'file\.py',
+        'roty\,movx',
+        '^(pdt\_)$',
+        '25t 20mm gear',
+        'gears \– 20mm 25teeth',
+        'x rot',
+        'y rot',
+        'z rot',
+        'aim',
+        'polyline',
+        '\(lw\)polyline',
+        '\(lw\)polygon',
+        'line',
+        'delta',
+        '^([-]+\S+)$',
+        '(^[\/\.]+)|([\/]+$)',
+        '^\@?(CTRL|MCH|DEF)$',
+        '^((\w+\_)\w+)+$',
+        '^(Return)$',
+        'analemma',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+        # '',
+    ]
+    temp_list = []
+    for pat in ga_go_first_list:
+        is_start = pat.startswith('^')
+        is_end = pat.endswith('$')
+        insert_start_end = not (is_start or is_end)
+        if insert_start_end:
+            pat_txt = r'^(%s)$' % (pat)
+        else:
+            pat_txt = r'(%s)' % (pat)
+        temp_list.append(pat_txt)
+    ga_go_first_pat_txt = '|'.join(temp_list)
+    GA_GO_FIRST = re.compile(ga_go_first_pat_txt, flags=re.I)
 
     global_ref_map = None
     ss_map = {

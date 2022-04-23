@@ -4,21 +4,35 @@ from definition import Definitions as df, RefType
 from definition import TranslationState
 from pattern_utils import PatternUtils as pu
 from observer import LocationObserver
-
 from translation_finder import TranslationFinder
 
 class RefBase(list):
     obs: LocationObserver = None
 
-    def __init__(self, txt: str, tf=None):
+    def __init__(self, txt: str, tf=None, ref_type=None):
         self.txt: str = txt
         self.translation: str = None
         self.handler_list: list = []
-        self.type: RefType = None
+        self.type: RefType = (ref_type if (ref_type is not None) else RefType.TEXT)
         self.matcher_record: MatcherRecord = None
         self.tf: TranslationFinder = tf
+        self.untranslated=[]
+        self.translated=[]
 
-        self.need_tran_list=[]
+    def statTranslation(self, orig: str = None, tran: str = None, matcher: MatcherRecord = None):
+
+        use_mm = (matcher is not None)
+        if use_mm:
+            orig = matcher.txt
+            tran = matcher.translation
+
+        un_entry = (orig, "")
+        self.untranslated.append(un_entry)
+
+        has_tran = (tran and len(tran) > 0)
+        if has_tran:
+            tran_entry=(orig, tran)
+            self.translated.append(tran_entry)
 
     def unpackAbbr(self, abbr_txt):
         if not abbr_txt:
@@ -45,11 +59,12 @@ class RefBase(list):
         return otxt, abbrev_part, exp_part
 
     def squareBracket(self, txt: str):
-        try:
-            txt: str = txt.replace('(', '[')
-            txt: str = txt.replace(')', ']')
-        except Exception as e:
-            pass
+        has_bracket_pair = (df.ARCH_BRAKET_MULTI_SIMPLE.search(txt) is not None)
+        if not has_bracket_pair:
+            return txt
+
+        txt: str = txt.replace('(', '[')
+        txt: str = txt.replace(')', ']')
         return txt
 
     def removeBracket(self, txt: str):
@@ -104,6 +119,28 @@ class RefBase(list):
     def parse(self):
         pass
 
+    def getTextForTranslateMultiLevel(self, entry):
+        entry_loc = entry[0]
+        mm: MatcherRecord = entry[1]
+
+        sub_list = mm.getSubEntriesAsList()
+        (oloc, orig) = sub_list[0]
+        (sub_loc, sub_txt) = sub_list[1]
+        try:
+            (txt_loc, txt) = sub_list[2]
+        except Exception as e:
+            (txt_loc, txt) = sub_list[1]
+        return [txt]
+
+    def getTextForTranslate(self, entry):
+        entry_loc = entry[0]
+        mm: MatcherRecord = entry[1]
+
+        sub_list = mm.getSubEntriesAsList()
+        (oloc, orig) = sub_list[0]
+        (txt_loc, txt) = sub_list[1]
+        return [txt]
+
     def formatTranslationOutside(self, orig: str, tran: str):
         is_tran = (tran is not None)
         orig = self.squareBracket(orig)
@@ -131,18 +168,18 @@ class RefBase(list):
     def translateSingle(self, txt: str):
         try:
             tran = self.tf.isInDict(txt)
-            has_tran = (tran is not None)
+            has_tran = (tran is not None) and (len(tran) > 0) and (tran != txt)
             if has_tran:
                 tran = self.extractAbbr(tran)
             else:
-                self.need_tran_list.append(txt)
+                return None
         except Exception as e:
             raise e
         formatted_tran = self.formatTranslationSingle(txt, tran)
         return formatted_tran
 
     def formatTranslation(self, mm: MatcherRecord):
-        is_tran = self.isTranslated()
+        is_tran = self.isTranslated(mm)
         tran = mm.translation
         orig = mm.txt
         orig = self.squareBracket(orig)
@@ -161,11 +198,11 @@ class RefBase(list):
         try:
             txt = mm.txt
             tran = self.tf.isInDict(txt)
-            has_tran = (tran is not None)
+            has_tran = (tran is not None) and (len(tran) > 0) and (tran != txt)
             if has_tran:
                 tran = self.extractAbbr(tran)
             else:
-                self.need_tran_list.append(txt)
+                return None
         except Exception as e:
             raise e
         has_tran = (tran is not None)
@@ -178,6 +215,11 @@ class RefBase(list):
     def isTranslated(self, mm: MatcherRecord):
         is_translated = (mm.translation_state == TranslationState.ACCEPTABLE) and (mm.translation is not None)
         return is_translated
+
+    def getTextAll(self):
+        temp_text_list=list(map(self.getTextForTranslate, self))
+        text_list = [txt for text_list in temp_text_list for txt in text_list]
+        return text_list
 
     def translateAll(self):
         mm: MatcherRecord = None

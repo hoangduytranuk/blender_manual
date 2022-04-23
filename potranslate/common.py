@@ -933,47 +933,6 @@ class Common:
                 is_finished = True
         return result_txt, rep_count
 
-    def bracketParser(text):
-        def error_msg(item, text_string):
-            return f'Imbalanced parenthesis! Near the "{item}" text_string:[{text_string}]'
-
-        _tokenizer = df.ARCH_BRACKET_SPLIT.split
-        def tokenize(text_line: str):
-            return list(filter(None, _tokenizer(text_line)))
-
-        def _helper(tokens):
-            outside_brackets = []
-            bracketed = []
-            q = []
-            max = len(tokens)
-            chosen_items = []
-            start_loc = end_loc = 0
-            for i in range(0, max):
-                item = tokens[i]
-                if item == '(':
-                    q.append(i)
-                elif item == ')':
-                    if not q:
-                        raise ValueError(error_msg(item, text))
-                    q.pop()
-                    bracketed.extend(chosen_items)
-                    chosen_items = []
-                else:
-                    start_loc = text.find(item, end_loc)
-                    end_loc = start_loc + len(item)
-                    loc = (start_loc, end_loc)
-                    entry = (loc, item)
-                    if q:
-                        chosen_items.append(entry)
-                    else:
-                        outside_brackets.append(entry)
-            if q:
-                raise ValueError(error_msg(item, text))
-            return bracketed, outside_brackets
-        tokens = tokenize(text)
-        bracketed_list, outside_bracket_list = _helper(tokens)
-        return bracketed_list, outside_bracket_list
-
     def wordInclusiveLevel(orig_txt:str, fuzzy_txt:str) -> int:
         '''
         Expected to see 0 to indicate every fuzzy word is included in

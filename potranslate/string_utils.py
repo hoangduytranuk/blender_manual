@@ -152,11 +152,9 @@ class StringUtils:
             if not txt_line:
                 return False
 
-            is_ignore = (len(txt_line) < 3)
-            if not is_ignore:
-                loc = (ss, ee)
-                entry = (loc, txt_line)
-                sentence_list.append(entry)
+            loc = (ss, ee)
+            entry = (loc, txt_line)
+            sentence_list.append(entry)
             return True
 
         def getBracketList(start_brk, end_brk):
@@ -261,6 +259,7 @@ class StringUtils:
         sentence_list = None
         start_bracket_list = start_bracket.split('|')
         end_bracket_list = end_bracket.split('|')
+        # end_bracket_list.reverse()
         for index in range(0, len(start_bracket_list)):
             q = deque()
             sentence_list = []

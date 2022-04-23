@@ -11,6 +11,20 @@ from string_utils import StringUtils as st
 
 class Ignore:
 
+    def isIgnoreableText(txt: str):
+        # is_keyboard_modifiers = (df.KEYBOARD_MODIFIERS.search(txt) is not None)
+        is_single_letter = (df.SINGLE_LETTER.search(txt) is not None)
+        is_digits_only = (df.DIGITS_ONLY.search(txt) is not None)
+        is_file_extensions = (df.FILE_EXTENSIONS.search(txt) is not None)
+        is_ignorable_option_flags = (df.IGNORABLE_OPTION_FLAGS.search(txt) is not None)
+        is_all_symbols = (df.SYMBOLS_ONLY.search(txt) is not None)
+        return (is_file_extensions or
+                is_ignorable_option_flags or
+                is_digits_only or
+                is_single_letter or
+                # is_keyboard_modifiers or
+                is_all_symbols)
+
     def findInSortedList(item, sorted_list):
         if not sorted_list:
             return None

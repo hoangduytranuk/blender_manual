@@ -1,5 +1,5 @@
 from matcher import MatcherRecord
-from definition import TranslationState
+from definition import TranslationState, Definitions as df
 from refs.ref_base import RefBase
 from ignore import Ignore as ig
 
@@ -9,7 +9,7 @@ class RefWithInternalLink(RefBase):
 
     def getPattern(self):
         pat = re.compile(r'\`([^\`\<\>]+)\`_', re.I)
-        return pat
+        return df.GA_INTERNAL_LINK
 
     def parse(self, entry):
         entry_loc = entry[0]
@@ -26,6 +26,7 @@ class RefWithInternalLink(RefBase):
         tran = self.tf.isInDict(txt)
         has_translation = (tran is not None)
         if not has_translation:
+            self.statTranslation(orig=txt)
             return entry
 
         tran = self.extractAbbr(tran)
@@ -40,4 +41,5 @@ class RefWithInternalLink(RefBase):
         new_tran = f'{orig} (*{tran}*)'
         mm.translation = new_tran
         mm.translation_state = TranslationState.ACCEPTABLE
+        self.statTranslation(matcher=mm)
         return entry

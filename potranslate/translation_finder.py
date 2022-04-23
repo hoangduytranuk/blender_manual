@@ -34,7 +34,7 @@ class TranslationFinder:
         home_dir = os.path.join(home_dir, 'Dev/tran/blender_manual')
         # self.master_dic_file = os.path.join(home_dir, "ref_dict_0006_0009.json")
         # self.master_dic_file = os.path.join(home_dir, "ref_dict_0004.po")
-        self.master_dic_file = os.path.join(tran_dir, "cor_0014.po")
+        self.master_dic_file = os.path.join(tran_dir, "cor_0015.po")
         self.master_dic_backup_file = os.path.join(home_dir, "ref_dict_backup_0001.po")
         self.master_dic_test_file = os.path.join(home_dir, "ref_dict_test_0001.po")
         self.sent_struct_file = os.path.join(home_dir, "ref_dict_ss_0001.po")

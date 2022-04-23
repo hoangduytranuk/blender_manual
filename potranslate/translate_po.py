@@ -13,11 +13,11 @@ import json
 from definition import RefType, Definitions as df
 from sphinx_intl import catalog as c
 import datetime
+from docutils import nodes
 
 from pytz import timezone
 from babel.messages import Catalog, Message
 from sphinx.util.nodes import extract_messages
-from docutils import nodes
 from bracket import RefAndBracketsParser as PSER
 try:
     import html
@@ -39,7 +39,8 @@ po_out_path = None
 class MessageProcessing(object):
     def __init__(self):
         self.message_list=[]
-        self.home = os.environ['HOME']
+        home = os.environ['HOME']
+        self.home = os.path.join(home, "Dev/tran")
 
     def builder_init(self, app):
         pass
@@ -90,6 +91,8 @@ class MessageProcessing(object):
         is_field_name = isinstance(node, nodes.field_name)
         is_reference = isinstance(node, nodes.reference)
         is_strong = isinstance(node, nodes.strong)
+        is_caption = isinstance(node, nodes.caption)
+        is_toc_tree = (node.tagname == 'toctree')
 
         is_keep_original = (is_inline or
                             is_emphasis or
@@ -98,21 +101,29 @@ class MessageProcessing(object):
                             is_rubric or
                             is_field_name or
                             is_reference or
-                            is_strong
+                            is_strong or
+                            is_toc_tree
                             )
         # if translate and the link is `ref text <link txt>`__ then DO NOT REPEAT,
         # translate as `translation (english) <link_txt>`__
         return is_keep_original
 
     def keepACopyOrNot(self, entry):
-        (node, msg) = entry
+        msg = entry[0]
+        node = entry[1]
+        # is_debug = ('Installation Guide'.lower() in msg.lower())
+        # if is_debug:
+        #     print(msg)
+        #     print(f'{type(node)}')
+        #     print(f'{dir(node)}')
+            # exit(0)
         is_keep_original = self.isDupOrig(node)
         if not is_keep_original:
             return None
 
         is_ending_with_dot = (msg.endswith('.') and not msg.endswith('...'))
         if is_ending_with_dot:
-            return f'Full-stop ending: {msg}'
+            return None
         else:
             return msg
 
@@ -123,6 +134,7 @@ class MessageProcessing(object):
 
     def writeFile(self, file_name, data):
         data_list = [(x + '\n') for x in data]
+        print(f'WRITING: {len(data_list)} lines to {file_name}')
         with open(file_name, 'w+') as f:
             f.writelines(data_list)
 
@@ -138,29 +150,37 @@ class MessageProcessing(object):
             if not has_tran:
                 return None
 
-            is_clean_tran = (mid in non_repeat_list)
-            if not is_clean_tran:
+            is_valid_line = (mid in valid_keep_lines)
+            if not is_valid_line:
                 return None
 
             m.string = ""
             return mid
 
         home = self.home
-        man_po = os.path.join(home, 'blender_manual_0003_0009.po')
-        man_po_out = os.path.join(home, 'blender_manual_0003_0010.po')
+        man_po = os.path.join(home, 'blender_manual_0003_0020.po')
+        man_po_out = os.path.join(home, 'blender_manual_0003_0021.po')
         data = c.load_po(man_po)
         result_id_cleaned = list(map(updateMessage, data))
         result_id_cleaned = [x for x in result_id_cleaned if bool(x)]
         pp(result_id_cleaned)
 
     def makeKeepAndIgnoreFiles(self):
+        def sortMessageList(entry):
+            try:
+                (node, msg) = entry
+                return msg
+            except Exception as e:
+                print(f'Problem line: {entry}')
+                print(e)
+                raise e
+
         def splitToList(text_line: str):
-            valid_keep_lines = splitToList.valid_keep_lines
+            ignored_lines = splitToList.ignored_lines
             keep = splitToList.keep_list
             ignore = splitToList.ignore_list
-
             if bool(text_line):
-                is_keep = (text_line in valid_keep_lines)
+                is_keep = not (text_line in ignored_lines)
                 if is_keep:
                     keep.append(text_line)
                 else:
@@ -169,18 +189,24 @@ class MessageProcessing(object):
             else:
                 return False
 
-        home = self.home
-        ref_file = os.path.join(home, 'keep_refs.log')
-        keep_file = os.path.join(home, 'keep.log')
-        ignore_file = os.path.join(home, 'ignore.log')
-        valid_keep_lines = self.readFile(ref_file)
+        try:
+            home = self.home
+            ref_file = os.path.join(home, 'keep_refs.log')
+            ignored_file = os.path.join(home, 'ignore.log')
+            keep_file = os.path.join(home, 'keep_20220421.log')
+            ignore_file = os.path.join(home, 'ignore_20220421.log')
+            all_entries = os.path.join(home, 'all_entries_20220421.log')
+            ignored_lines = self.readFile(ignored_file)
 
-        keep_list_report = list(map(self.keepACopyOrNot, self.message_list))
+            keep_list_report = list(map(self.keepACopyOrNot, self.message_list))
 
-        splitToList.keep_list = []
-        splitToList.ignore_list = []
-        splitToList.valid_keep_lines = valid_keep_lines
-        bool_list = list(map(splitToList, keep_list_report))
+            splitToList.keep_list = []
+            splitToList.ignore_list = []
+            splitToList.ignored_lines = ignored_lines
+            bool_list = list(map(splitToList, keep_list_report))
+        except Exception as e:
+            print(e)
+            raise e
 
         keep_list = splitToList.keep_list
         ignore_list = splitToList.ignore_list
@@ -189,9 +215,14 @@ class MessageProcessing(object):
         ignore_list = list(set(ignore_list))
         ignore_list.sort()
         keep_list.sort()
+        
+        sort_list = [msg for (msg, node) in self.message_list]
+        sort_list = list(set(sort_list))
+        sort_list.sort()
 
         self.writeFile(keep_file, keep_list)
         self.writeFile(ignore_file, ignore_list)
+        self.writeFile(all_entries, sort_list)
 
     def removeUnrepeatedEntries(self):
         home = self.home
@@ -200,7 +231,8 @@ class MessageProcessing(object):
         self.removeIfNotRepeatable(ignore_list)
 
     def run(self):
-        self.removeUnrepeatedEntries()
+        # self.removeUnrepeatedEntries()
+        self.makeKeepAndIgnoreFiles()
 
 class POResultRecord(object):
     def __init__(self, line_no, msgid, msgstr, alternative_tran=None, alternative_label=None):
@@ -338,7 +370,7 @@ msg_proc = MessageProcessing()
 def doctree_resolved(app, doctree, docname):
     try:
         for node, msg in extract_messages(doctree):
-            entry = (node, msg)
+            entry = (msg, node)
             msg_proc.message_list.append(entry)
     except Exception as e:
         df.LOG(f'{e}', error=True)

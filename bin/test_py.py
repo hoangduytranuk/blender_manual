@@ -1,1 +1,1 @@
-../potranslate/test_py.py
+/Users/hoangduytran/Dev/tran/blender_manual/potranslate/test_py.py

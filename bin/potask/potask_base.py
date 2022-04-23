@@ -100,7 +100,11 @@ class POTaskBase(list):
                  is_clear_dup=None,
                  partial_match=None,
                  match_only=None,
+                 clean_repeat_ignore_file=None,
+                 clean_repeat_keep_file=None
                  ):
+        self.clean_repeat_ignore_file=clean_repeat_ignore_file
+        self.clean_repeat_keep_file=clean_repeat_keep_file
         self.home = os.environ['HOME']
         self.match_only = (True if match_only else False)
         self.raw_search = (True if raw_search else False)
@@ -109,7 +113,7 @@ class POTaskBase(list):
         self.opo_path = output_to_file
         self.tran_file = translation_file
         self.validate_file = validate_file
-        self.default_working = os.environ['BLENDER_GIT_PO_FILE']
+        self.default_working = os.path.join(self.home, "Dev/tran/blender_docs/locale/vi/LC_MESSAGES/blender_manual.po")
         self.pattern = (r'%s' % (pattern))
         self.negate_pattern = (r'%s' % (negate_pattern))
         self.pattern = (r'%s' % (pattern) if pattern else None)

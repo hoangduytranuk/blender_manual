@@ -134,9 +134,9 @@ class NoCaseDict(OrderedDict):
         return found_item
 
     def get(self, key, ctx=None):
-        is_debug = ('Set A/D 2D' in key)
-        if is_debug:
-            is_debug = True
+        # is_debug = ('Locked, ...' in key)
+        # if is_debug:
+        #     is_debug = True
 
         trans_txt = None
         left, mid, right = None, None, None
@@ -147,6 +147,10 @@ class NoCaseDict(OrderedDict):
                     trans_txt = self[key]
                 else:
                     left, mid, right = gt.getTextMargin(key)
+                    is_mid_empty = (len(mid) < 1)
+                    if is_mid_empty:
+                        return None
+
                     is_in = (mid in self)
                     if not is_in:
                         mid = mid.lower()

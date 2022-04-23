@@ -1,41 +1,40 @@
 from matcher import MatcherRecord
 from definition import TranslationState, Definitions as df
 from refs.ref_base import RefBase
+from ignore import Ignore as ig
 
 import re
 
-class RefAbbr(RefBase):
+class RefDoubleQuotedText(RefBase):
     def getPattern(self):
-        return df.ABBR
+        return df.DOUBLE_QUOTE
 
     def getTextForTranslate(self, entry):
-        entry_loc = entry[0]
-        mm: MatcherRecord = entry[1]
-
-        sub_list = mm.getSubEntriesAsList()
-        (oloc, orig) = sub_list[0]
-        (abr_loc, abr_txt) = sub_list[1]
-        (txt_loc, txt) = sub_list[2]
-        return txt
+        return self.getTextForTranslateMultiLevel(entry)
 
     def parse(self, entry):
         entry_loc = entry[0]
         mm: MatcherRecord = entry[1]
 
-        sub_list = mm.getSubEntriesAsList()
-        (oloc, orig) = sub_list[0]
-        (abr_loc, txt) = sub_list[1]
-        (txt_loc, txt) = sub_list[2]
+        try:
+            sub_list = mm.getSubEntriesAsList()
+            (oloc, orig) = sub_list[0]
+            (txt_loc, txt) = sub_list[1]
+        except Exception as e:
+            df.LOG(f'{entry}\n{e}')
+            raise e
 
-        tran = self.tf.isInDict(txt)
-        has_tran = (tran is not None)
-        if not has_tran:
-            entry = (txt, "")
+        is_ignore = ig.isIgnoredWord(txt)
+        if is_ignore:
+            return entry
+
+        tran = self.translateSingle(txt)
+        has_translation = (tran is not None)
+        if not has_translation:
             self.statTranslation(orig=txt)
-            tran = ""
+            tran = f'({txt})'
 
-        tran = self.extractAbbr(tran)
-        tran = f'{txt}: {tran}'
+        tran = f":abbr:`{tran}`"
         (os, oe) = oloc
         (ts, te) = txt_loc
         ns = ts - os

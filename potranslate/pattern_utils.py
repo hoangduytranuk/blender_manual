@@ -65,7 +65,7 @@ class PatternUtils:
                 match_record.pattern = pat
                 sub_list = match_record.getSubEntriesAsList()
                 try:
-                    ref_type = match_record.type
+                    ref_type = (match_record.type if (match_record.type is not None) else ref_type)
                     is_unbracketable = (ref_type in df.ref_type_unquoteable)
                     can_remove_quotes = (not is_including_surrounding_symbols) and is_unbracketable
                     if can_remove_quotes:

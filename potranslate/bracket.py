@@ -120,9 +120,9 @@ class RefAndBracketsParser(OrderedDict):
                 if is_found:
                     local_found_dict.update({loc: mm})
             else:
-                is_bracket = (ref.name.startswith('ARCH_BRACKET'))
+                is_bracket = (ref == RefType.ARCH_BRACKET)
                 if is_bracket:
-                    local_found_dict = st.getTextWithinBrackets('<|(', '>|)', find_txt, is_include_bracket=include_brackets)
+                    local_found_dict = st.getTextWithinBrackets('<|(|{|[', ']|)|}|>', find_txt, is_include_bracket=include_brackets)
                 else:
                     local_found_dict = pu.patternMatchAll(pat, find_txt, ref_type=ref, is_including_surrounding_symbols=include_brackets)
             is_found = (len(local_found_dict) > 0)
@@ -250,13 +250,48 @@ class RefAndBracketsParser(OrderedDict):
         self.update(dict)
 
     def parseMessage(self, is_ref_only=False, include_brackets=False, pattern_list=None, breakup_obs=False, is_reverse=False):
+        def getMatches(entry):
+            pat: re.Pattern = entry[0]
+            ref: RefType = entry[1]
+            local_found_dict = {}
+            try:
+                is_remove_original = (ref == RefType.REMOVE_ORIGINAL) and (self.original_for_removal is not None)
+                if is_remove_original:
+                    (loc, mm) = self.makeMMForOriginal()
+                    is_found = (loc is not None)
+                    if is_found:
+                        local_found_dict.update({loc: mm})
+                else:
+                    is_bracket = (ref == RefType.ARCH_BRACKET)
+                    if is_bracket:
+                        local_found_dict = st.getTextWithinBrackets('<|(|{|[', ']|}|)|>', self.local_obs.blank,
+                                                                    is_include_bracket=include_brackets)
+                    else:
+                        local_found_dict = pu.patternMatchAll(pat, self.local_obs.blank, ref_type=ref,
+                                                              is_including_surrounding_symbols=include_brackets)
+                is_found = (len(local_found_dict) > 0)
+                if is_found:
+                    loc_list = list(local_found_dict.keys())
+                    self.local_obs.markLocListAsUsed(loc_list)
+                    self.update(local_found_dict)
+                    # self.update(found_dict)
+                    # self.breakupOBS()
+                    # self.cleanupDup()
+            except Exception as e:
+                df.LOG(f'{e}; pat:[{pat}]; find_txt:[{self.local_obs.blank}]; ref:[{ref}]; local_found_dict:[{local_found_dict}];',
+                       error=True)
+                raise e
+            return list(local_found_dict.items())
+
         is_inherited_local_obs = (self.local_obs is not None)
         if not is_inherited_local_obs:
             self.local_obs = LocationObserver(self.msg)
 
         actual_pattern_list = (pattern_list if pattern_list else df.pattern_list)
         self.pattern_list = actual_pattern_list
-        self.findPattern(actual_pattern_list, self.msg, include_brackets=include_brackets)
+
+        found_list = list(map(getMatches, actual_pattern_list))
+        # self.findPattern(actual_pattern_list, self.msg, include_brackets=include_brackets)
         if not is_ref_only:
             unparsed_dict = self.local_obs.getUnmarkedPartsAsDict()
             if not bool(unparsed_dict):

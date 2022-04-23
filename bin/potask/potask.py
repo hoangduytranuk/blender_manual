@@ -17,6 +17,7 @@ from correct_abbrev import CorrectAbbreviations
 from merge_po_json import MergeToPO
 from json2po import JSON2PO
 from cleanref_run import CleaningRefs
+from clean_repeat_lines import CleanRepeatLines
 
 # -tr -tran /Users/hoangduytran/Dev/tran/blender_ui/3x/vi.po -f /Users/hoangduytran/new_vi_mix_3_1_and_2_79_0001.po
 # -f /Users/hoangduytran/retran_283.po -tr -fuz -o /Users/hoangduytran/retran_283_0001.po
@@ -40,7 +41,13 @@ parser.add_argument("-raw", "--raw_search", dest="raw_search", help="search on r
 parser.add_argument("-did", "--disp_msgid", dest="display_msgid", help="Display msgid along with msgstr. No effect of msgstr is not selected", action='store_const', const=True)
 parser.add_argument("-dstr", "--disp_msgstr", dest="display_msgstr", help="Display msgstr along with msgid. No effect of msgid is not selected", action='store_const', const=True)
 parser.add_argument("-cl", "--count_line", dest="count_number_of_lines", help="Count number lines and print out the line_count", action='store_const', const=True)
+
 parser.add_argument("-ig", "--ignore", dest="filter_ignored", help="Filtering out ignored items", action='store_const', const=True)
+parser.add_argument("-igf", "--ignore_file", dest="ignore_file", help="File containing ignore entries for filtering repeats")
+parser.add_argument("-kpf", "--keep_file", dest="keep_file", help="File containing repeating entries, result of extraction from make gettext")
+parser.add_argument("-clrep", "--clean_repeat", dest="clean_repeat_lines", help="Cleaning repeatable entries in PO file", action='store_const', const=True)
+
+
 parser.add_argument("-clr", "--clear", dest="clear_po", help="Clearing msgstr entries in the po files, also set no fuzzy", action='store_const', const=True)
 parser.add_argument("-clrcmt", "--clear_comment", dest="clear_po_comment", help="Clearing the comments as well when performing clear_po option", action='store_const', const=True)
 parser.add_argument("-mend", "--match_ends", dest="match_vipo_ends", help="Clearing msgstr entries in the po files, also set no fuzzy", action='store_const', const=True)
@@ -78,6 +85,7 @@ parser.add_argument("-clrref", "--clr_ref", dest="clean_ref", help="Clean up ref
 PrintCurrentBrackets
 args = parser.parse_args()
 
+is_clean_repeat_lines = (True if args.clean_repeat_lines else False)
 is_clean_ref = (True if args.clean_ref else False)
 is_json_to_po = (True if args.json_2_po else False)
 is_translating_txt = (True if args.translation_text else False)
@@ -194,6 +202,13 @@ elif is_clean_ref:
         x = CleaningRefs(
                 input_file=args.from_file,
                 output_to_file=args.output_to_file
+        )
+elif is_clean_repeat_lines:
+        x = CleanRepeatLines(
+                input_file=args.from_file,
+                output_to_file=args.output_to_file,
+                clean_repeat_ignore_file=args.ignore_file,
+                clean_repeat_keep_file=args.keep_file,
         )
 else:
         x = PrintEmptyLine(
